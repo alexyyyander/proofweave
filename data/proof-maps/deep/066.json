@@ -422,7 +422,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Bounded-klt-complements-for-Fano-contractions-September-25-2026/Bounded-klt-complements-for-Fano-contractions-September-25-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Bounded klt complements for Fano contractions; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Bounded klt complements for Fano contractions.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -484,7 +484,6 @@
           "source": "The birational threshold reduction",
           "detail": "The sequence may be chosen with -K_X ample over Z . This replacement preserves all discrepancies and the threshold in .",
           "dependsOn": [
-            "m1-cor-finite-coefficients",
             "m1-thm-main"
           ]
         },
@@ -591,9 +590,7 @@
           "kind": "lemma",
           "source": "Leading forms and compatible further filtrations",
           "detail": "[Canonical specialization] In Lemma~ , suppose further that \\(R_b\\) is normal and that \\(U\\) has a canonical generator \\(_U\\). Then \\((_U)_b\\) generates the canonical divisor of \\( R_b\\): its divisor…",
-          "dependsOn": [
-            "m1-a-adapted-presentation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-a-boundary-specialization",
@@ -641,7 +638,6 @@
           "detail": "[Weak essentiality] On the chosen maximal-rank sequence, there are numbers \\(0\\) such that, for every prime divisor \\(P\\) over \\(S\\) with \\(A^+(P)=0\\), _ H'0,\\ H'_ H P(H') (1+)P(H).",
           "dependsOn": [
             "m1-a-gauss-lifts",
-            "m1-a-exact-penalization",
             "m1-a-canonical-specialization",
             "m1-a-flattening"
           ]
@@ -722,8 +718,7 @@
           "source": "A tower on the residual field",
           "detail": "For a sufficiently small fixed e>0 , every prime with A'(P)<e is lc for A^+ . There are finitely many such primes for each member. At a collapsing level they satisfy \\[ s2 H(P) ea. \\] At the last…",
           "dependsOn": [
-            "m1-b-ordinary-approximation",
-            "m1-b-controlled-extraction"
+            "m1-b-ordinary-approximation"
           ]
         },
         {
@@ -747,8 +742,7 @@
           "source": "A tower on the residual field",
           "detail": "At a collapsing level there are a projective -factorial Fano type model Y of K , a contraction :Y V with V< S , an effective ample rational Cartier divisor H_V on V , and a rational x s^ -1 with the…",
           "dependsOn": [
-            "m1-b-ordinary-approximation",
-            "m1-b-scale-birationality"
+            "m1-b-ordinary-approximation"
           ]
         },
         {
@@ -796,9 +790,7 @@
           "kind": "proposition",
           "source": "Uniform estimates and widths",
           "detail": "For \\(D_10\\), \\(D_1_ H_1\\) on \\(S_1\\), and every divisorial test \\(P_1\\), with restriction multiplicities included in \\(P_i=P_1|_ K_i \\), one has D_1(P_1) C_0_i a_i(P_i). For tests trivial on…",
-          "dependsOn": [
-            "m1-b-push-presentation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-b-class-lattices",
@@ -830,7 +822,6 @@
           "detail": "If \\( M_0\\), \\(\\|\\| L\\), and \\(L1\\), then there are \\(m n_ 0 \\) and a bounded positive integer \\(d_0\\), with \\(m L\\), such that R_ m+d_0 0, R_ m-d_0 0 .",
           "dependsOn": [
             "m1-b-class-lattices",
-            "m1-b-principal-descent",
             "m1-b-push-presentation"
           ]
         },
@@ -885,8 +876,6 @@
           "source": "Bounded axes and specialization of effectivity",
           "detail": "[A bounded guard model] After passing to a subsequence, there are bounded projective \\(\\)-factorial varieties of Fano type \\(F' F\\) and labelled prime divisors on \\(F'\\), of bounded number and…",
           "dependsOn": [
-            "m1-b-ordinary-approximation",
-            "m1-b-controlled-extraction",
             "m1-b-scale-bad-primes"
           ]
         },
@@ -936,8 +925,7 @@
           "source": "Bounded axes and specialization of effectivity",
           "detail": "[The slow-charge bound] For sequences of actual candidates above satisfying \\( (m'+|a_j|)s_ 0\\), the ratio \\(|a_j|/m'\\) cannot tend to infinity, with the convention already specified at degree zero.",
           "dependsOn": [
-            "m1-b-marked-cone-test",
-            "m1-b-bounded-axes-estimates"
+            "m1-b-marked-cone-test"
           ]
         },
         {
@@ -1015,8 +1003,6 @@
           "source": "Real valuations and a finite constrained optimization",
           "detail": "[Compact optimization and continuation] The optimization in is a finite polyhedral optimization with compact sublevels, and attains its minimum whenever feasible. Every optimizer lies on the fixed…",
           "dependsOn": [
-            "m1-c-finite-barrier",
-            "m1-c-skeleton",
             "m1-c-invariantization",
             "m1-c-flattening"
           ]
@@ -1095,9 +1081,7 @@
           "kind": "lemma",
           "source": "Cartier trace and controlled lifting",
           "detail": "[Simultaneous finite-data reduction] For each single application of the preceding trace constructions one may retain simultaneously the following data on a sufficiently general spread: the specified…",
-          "dependsOn": [
-            "m1-c-trace-existence"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-c-trace-budget",
@@ -1110,7 +1094,6 @@
           "dependsOn": [
             "m1-c-trace-existence",
             "m1-c-trace-taylor-flags",
-            "m1-c-trace-initial-survival",
             "m1-c-trace-degree",
             "m1-c-trace-finite-data"
           ]
@@ -1218,9 +1201,7 @@
           "kind": "proposition",
           "source": "Expensive layers, rank growth, and the contradiction",
           "detail": "[Bounded divisorial index] At a final optimizer with \\(d\\) independent probe initials and integral probe parameters, there is a uniformly bounded positive integer \\(e\\) such that \\(ew\\) is a positive…",
-          "dependsOn": [
-            "m1-prop-birational-threshold"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -1236,7 +1217,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Uniform-Cartier-sections-for-Fano-type-contractions-September-25-2026/Uniform-Cartier-sections-for-Fano-type-contractions-September-25-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Uniform Cartier sections for Fano type contractions; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Uniform Cartier sections for Fano type contractions.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1322,7 +1303,6 @@
           "detail": "[Horizontal variants] The chart and metric conclusions have the following two variants. [label=( *)] The same tailorable bounded complement and homogeneous chart argument works if we are working over…",
           "dependsOn": [
             "m2-lem-a-lc-place-tools",
-            "m2-prop-a-uniform-charts",
             "m2-lem-a-function-slopes"
           ]
         },
@@ -1334,11 +1314,7 @@
           "kind": "lemma",
           "source": "Discriminant comparison and uniform chambers",
           "detail": "[Integral approximation] [label=( *)] Let \\(u_i\\) lie in a fixed nonnegative orthant and \\( u_i\\). After passing to a subsequence there are \\(s_i0^+\\), nonzero nonnegative integral vectors \\(n_i\\),…",
-          "dependsOn": [
-            "m2-lem-a-comparison",
-            "m2-lem-a-pullback-phases",
-            "m2-lem-a-linear-chamber"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-b-phase-nonvanishing",
@@ -1383,7 +1359,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

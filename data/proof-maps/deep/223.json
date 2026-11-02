@@ -422,7 +422,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Square-lattice-FK-interfaces-and-nested-loops-for-1-leq-q-lt-4-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Square-lattice FK interfaces and nested loops for 1 <= q < 4; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Square-lattice FK interfaces and nested loops for 1 <= q < 4.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -515,9 +515,7 @@
           "kind": "lemma",
           "source": "Tiles, positive laws, and localization",
           "detail": "[Local tilt bounds] For fixed b>0 , put \\[ F_j= E b^ N_j , d_j=F_j^ -1 b^ N_j \\,d P. \\] The ratios F_j/F_ j-1 are bounded above and below uniformly. Under _j , the shell counts X_i at and beyond the…",
-          "dependsOn": [
-            "m1-prelim-passages"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prelim-absorb",
@@ -573,7 +571,6 @@
           "dependsOn": [
             "m1-prelim-passages",
             "m1-exp-local-costs",
-            "m1-prelim-absorb",
             "m1-prelim-tilts"
           ]
         },
@@ -719,11 +716,7 @@
           "kind": "proposition",
           "source": "The four-change observable and its boundary values",
           "detail": "[Identification of a holomorphic subsequential limit] Suppose an interior subsequential limit h of h_n is holomorphic in the ordinary complex coordinate, and pass simultaneously to a limit r of P_ A…",
-          "dependsOn": [
-            "m1-four-residual",
-            "m1-four-marked",
-            "m1-four-tree"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-wall-distant",
@@ -777,9 +770,7 @@
           "kind": "proposition",
           "source": "Holomorphicity from reflection and extraction",
           "detail": "[Mixed derivative saving] For fixed primary gaps and sufficiently small fixed secondary gaps chosen as in Lemma~ , there is c>0 such that | (_ 1,z ^ (2) +i_ 2,z ^ (2) ) _ j,u ^ (2) H_g(z,u)| =O(n^…",
-          "dependsOn": [
-            "m1-hol-templates"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-hol-disk",
@@ -790,7 +781,6 @@
           "source": "Holomorphicity from reflection and extraction",
           "detail": "[Holomorphic disk limit] For every rational orthogonal polygon with the four flat marks and balanced approximations specified above, every locally continuous subsequential limit of h_n is…",
           "dependsOn": [
-            "m1-gap-closure",
             "m1-wall-factorization",
             "m1-four-conditional-map"
           ]
@@ -813,9 +803,7 @@
           "kind": "corollary",
           "source": "Transfer to marked Jordan quadrilaterals",
           "detail": "[The prescribed bond-percolation crossing] At q=1 , with every edge, including every boundary edge, sampled independently with probability 1/2 and with no wiring, the probability of the event C_n…",
-          "dependsOn": [
-            "m1-jordan-transfer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-moving-drawing",
@@ -868,8 +856,7 @@
           "source": "Alternating tests after exploration",
           "detail": "[Deletion and protected-ball costs] Fix a history and use separate deterministic primal closure. Deleting a set of still random edges changes the actual crossing probability by at most the…",
           "dependsOn": [
-            "m1-moving-drawing",
-            "m1-moving-chart-modulus"
+            "m1-moving-drawing"
           ]
         },
         {
@@ -908,7 +895,6 @@
           "source": "Identification of the Dobrushin strand",
           "detail": "[Bounded martingale tests] For every x>2R+1 , put M_t(x)=(xg_t'(x) g_t(x)-W_t )^h. These processes and their reciprocals are bounded on the stopped range, uniformly in the mesh. For arbitrary…",
           "dependsOn": [
-            "m1-moving-slit",
             "m1-moving-asymptotic"
           ]
         },
@@ -940,9 +926,7 @@
           "kind": "lemma",
           "source": "Identification of the Dobrushin strand",
           "detail": "[Curve compactness and no triple visits] The physical Dobrushin strands are tight in the uniform Euclidean curve topology modulo increasing reparametrization. Every subsequential limit has no…",
-          "dependsOn": [
-            "m1-chordal-territories"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-chordal-avoidability",
@@ -999,10 +983,7 @@
           "dependsOn": [
             "m1-chordal-driver",
             "m1-chordal-compactness",
-            "m1-chordal-gates",
-            "m1-chordal-dense-doubles",
-            "m1-chordal-target",
-            "m1-moving-drawing"
+            "m1-chordal-dense-doubles"
           ]
         },
         {
@@ -1033,9 +1014,7 @@
           "kind": "lemma",
           "source": "Peeling along monochromatic walls",
           "detail": "[Disjoint passages and reference walls] The number of edge-disjoint actual monochromatic cycles surrounding a fixed macroscopic ball in the initial square, and using no deterministic initial wall…",
-          "dependsOn": [
-            "m1-peel-wall-rsw"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-peel-martingales",
@@ -1151,8 +1130,7 @@
           "source": "Recovery of the nested loop collection",
           "detail": "[The canonical traversal is contained in order] For each z Z and k1 , the entire traversal of L_z^k occurs in cyclic order in L_z^k , possibly with extra traversal portions inserted. Its order…",
           "dependsOn": [
-            "m1-loop-continuation",
-            "m1-loop-geometry"
+            "m1-loop-continuation"
           ]
         },
         {
@@ -1192,9 +1170,7 @@
           "source": "Recovery of the nested loop collection",
           "detail": "[Nested full-plane convergence for q<4 ] For every fixed 1 q<4 , the loop collection of the free infinite-volume critical square-lattice FK law converges, through the full mesh sequence, to the…",
           "dependsOn": [
-            "m1-loop-identification",
-            "m1-intro-main",
-            "m1-intro-bond-exponents"
+            "m1-loop-identification"
           ]
         }
       ]
@@ -1211,7 +1187,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Self-dual-random-cluster-interfaces-below-one-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Self-dual random-cluster interfaces below one; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Self-dual random-cluster interfaces below one.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1382,7 +1358,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

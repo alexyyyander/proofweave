@@ -117,7 +117,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Short-Egyptian-fractions-September-25-2026/Short-Egyptian-fractions-September-25-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Short Egyptian fractions; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Short Egyptian fractions.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -234,9 +234,7 @@
           "detail": "For the deterministic list \\(T_0\\) constructed above, every level \\(0 j<d\\) with \\(X=X_j>e^S\\), and every integer \\(1 H:= e^ 4 m \\), one has 1X_ X_ j+1 <u X |1 |T_0| _ t T_0 ( Ct/u)|^2 e^ -0.01m for…",
           "dependsOn": [
             "m1-lem-reciprocal-phase",
-            "m1-prop-density",
-            "m1-lem-residues",
-            "m1-lem-divisor"
+            "m1-lem-residues"
           ]
         },
         {
@@ -248,7 +246,6 @@
           "source": "Counting representations of one",
           "detail": "Let Q>1 be odd. Suppose that a finite list of positive integers m_1,,m_t satisfies _ i=1 ^t1/m_i=1 and contains a multiple of Q . Then 1 has a representation by at most t distinct positive unit…",
           "dependsOn": [
-            "m1-cor-counting",
             "m1-thm-main"
           ]
         },
@@ -316,8 +313,6 @@
             "m1-lem-marked-greedy-prefix",
             "m1-lem-marked-divisor-density",
             "m1-lem-distinct",
-            "m1-cor-prescribed",
-            "m1-lem-exact-marker-padding",
             "m1-cor-counting"
           ]
         }
@@ -338,7 +333,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

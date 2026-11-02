@@ -417,7 +417,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Radial-transfer-estimates-and-polygon-length-laws-for-honeycomb-walks-September-26-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Radial transfer estimates and polygon length laws for honeycomb walks; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Radial transfer estimates and polygon length laws for honeycomb walks.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -599,7 +599,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Critical-honeycomb-chords-with-prescribed-boundary-endpoints-September-26-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Critical honeycomb chords with prescribed boundary endpoints; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Critical honeycomb chords with prescribed boundary endpoints.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -640,10 +640,7 @@
           "kind": "proposition",
           "source": "A prescribed source and a terminal interval",
           "detail": "[Interior connectors] For two macroscopically separated side-interior ports in the hexagons of Theorem~ , the critical mass of connecting paths inside the hexagon is at least cR^ -5/4 . The same…",
-          "dependsOn": [
-            "m2-c-finite",
-            "m2-c-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-c-window-law",
@@ -673,10 +670,7 @@
           "kind": "lemma",
           "source": "A prescribed source and a terminal interval",
           "detail": "[Positive projections at two supports] Let n,m be pure unit normals with m-n . There are constants b,B,A,c_0>0 such that, for every fixed >0 and all sufficiently large integral h , the mass of strict…",
-          "dependsOn": [
-            "m2-c-finite",
-            "m2-c-fixed-height-window"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-c-mixed-displacement",
@@ -697,8 +691,6 @@
           "source": "A prescribed source and a terminal interval",
           "detail": "[Attachment moments] Let E be an event of input chords from a to the stated terminal interval, of critical mass E . The fixed-source attachment construction just described has a translation count N_s…",
           "dependsOn": [
-            "m2-c-positive-projection",
-            "m2-c-mixed-displacement",
             "m2-c-window-law",
             "m2-c-fixed-height-window",
             "m2-c-finite"
@@ -845,7 +837,6 @@
           "source": "Mean length of a prescribed half-plane arch",
           "detail": "[Weak order from separated ports] Start two independent upward irreducible sequences at bottom ports a distance g1 apart, assigning left and right roles by their starts. Let _g(S) be the probability…",
           "dependsOn": [
-            "m2-c-arch-mean",
             "m2-c-truncated-reward"
           ]
         },
@@ -906,7 +897,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Cylinder-loop-weights-and-planar-nesting-September-26-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Cylinder loop weights and planar nesting; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Cylinder loop weights and planar nesting.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1001,9 +992,7 @@
           "kind": "theorem",
           "source": "Cylinder partition functions and contour sectors",
           "detail": "[Finite cylinder formula] For =q^ -3 +q^3^ -1 and 0 , h_N^2Z_ X,Y () =_ l_i\\ -1,0,1\\ \\\\ _ i X l_i=_ i Y l_i=M ^M(-2c)^ _i l_i^2 _ i<j Q^ e(i,j) _ l_il_j (x_i/x_j). The sum includes all allowed…",
-          "dependsOn": [
-            "m3-lem-02-characterization"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-thm-02-contour-sectors",
@@ -1085,9 +1074,7 @@
           "kind": "corollary",
           "source": "Centering, coercivity, and the fluctuation spectrum",
           "detail": "[Control of explicit particles] Constants may depend on the fixed smoothing parameter \\(h\\). One has |ReM|^2+n_e^2 C_h L(B(x)+1), _e:=_ v (|v|-L)_+ C(B(x)+1).",
-          "dependsOn": [
-            "m3-prop-03-trial-bounds"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-prop-03-trial-bounds",
@@ -1097,7 +1084,9 @@
           "kind": "proposition",
           "source": "Centering, coercivity, and the fluctuation spectrum",
           "detail": "[Trial bounds with tilt] Fix \\(a_0<\\) and \\(b_0<\\), and let \\(=a+ib_1\\) satisfy \\(|a| a_0\\), \\(|b_1| b_0\\). The following bounds hold uniformly for admissible real parts of \\(\\), with the imaginary…",
-          "dependsOn": []
+          "dependsOn": [
+            "m3-cor-03-counts"
+          ]
         },
         {
           "id": "m3-lem-03-kernel-regularity",
@@ -1245,9 +1234,7 @@
           "kind": "lemma",
           "source": "Continuing the imbalance sum",
           "detail": "[Weighted polynomial approximation] For the preceding Gaussian exponential, choose \\(a=1-/2\\). Given any fixed precision exponent, there is a polynomial \\(P(Y)\\) of polynomial total degree \\(K_1\\)…",
-          "dependsOn": [
-            "m3-prop-04-interpolation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-lem-04-grid",
@@ -1315,9 +1302,7 @@
           "kind": "lemma",
           "source": "Winding pressure and essential polygons",
           "detail": "[Coercive jet interpolation] For every fixed \\(0<a<1\\), the operators \\(D_a\\) are bounded and satisfy ReD_a(k) c_a>0 (k R), \\|(P_ND_a|_ P_NH )^ -1 \\| c_a^ -1 . Moreover, writing \\(\\|\\|_ ,p \\) for the…",
-          "dependsOn": [
-            "m3-lem-05-winding-data"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -1348,7 +1333,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

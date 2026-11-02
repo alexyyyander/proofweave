@@ -337,7 +337,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Unique-Games-Theorem-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Unique Games Theorem; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Unique Games Theorem.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -540,11 +540,9 @@
           "source": "Matrix extraction and Fourier decoding",
           "detail": "[A transferred slice gives agreement] Fix joint data satisfying Lemma~ . Conditional on these data, the two rules just defined, using independent randomness, agree under with probability at least 2^…",
           "dependsOn": [
-            "m1-prop-matrix-decoding",
             "m1-lem-projected-witness",
             "m1-thm-shortcode",
-            "m1-lem-good-row-advice",
-            "m1-lem-projected-tv"
+            "m1-lem-good-row-advice"
           ]
         },
         {
@@ -578,9 +576,7 @@
           "source": "Clean coordinates and the soundness gap",
           "detail": "[A fixed gap with adjustable completeness] Fix p_*>0 and choose the latent and shortcode data in the order of Equation~ . For every sufficiently large cube k , the matrix game G constructed from a…",
           "dependsOn": [
-            "m1-lem-outer-completeness",
-            "m1-prop-matrix-decoding",
-            "m1-lem-clean"
+            "m1-prop-matrix-decoding"
           ]
         },
         {
@@ -592,13 +588,9 @@
           "source": "Completion of the reduction",
           "detail": "[Rounding and subdivision] Let H be a finite permutation-constraint game with h1 positive rational occurrence weights summing to one. For every positive rational , put Q= h/ . There is a…",
           "dependsOn": [
-            "m1-thm-ugc",
             "m1-thm-repetition",
             "m1-lem-latent",
             "m1-thm-shortcode",
-            "m1-prop-matrix-gap",
-            "m1-lem-good-row-advice",
-            "m1-lem-projected-witness",
             "m1-prop-matrix-decoding",
             "m1-thm-parity",
             "m1-lem-distinct-parity"
@@ -625,7 +617,6 @@
           "source": "Approximation consequences",
           "detail": "[Ordering-CSP consequence] Fix \\(k2\\) and \\( S_k\\), and put \\(_=||/k!\\). For every fixed \\(0<<(1-_)/2\\), it is NP-hard to distinguish finite weighted \\(\\)-ordering-CSP instances \\(I\\) satisfying \\[…",
           "dependsOn": [
-            "m1-prop-finite-ordering-transfer",
             "m1-lem-simple-strong-left",
             "m1-thm-ugc"
           ]
@@ -650,9 +641,7 @@
           "kind": "lemma",
           "source": "Finite formulations of the consequences",
           "detail": "[Simple strong-left games] Fix \\(0<,<1\\) and integers \\(d,H1\\). There are integers \\(h,R1\\), with \\(h H\\) and \\(d h\\), and a deterministic polynomial-time reduction from \\(3SAT\\) to nonempty explicit…",
-          "dependsOn": [
-            "m1-thm-ugc"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-finite-ordering-transfer",
@@ -693,10 +682,8 @@
           "source": "Finite formulations of the consequences",
           "detail": "[A simplex-valued local estimate] Let \\(J,_c,\\) be the data of Lemma~ , and fix \\(0<<1\\). For an integer \\(R1\\), choose \\(c\\) with probability \\(_c\\). Conditional on this one choice of \\(c\\), choose…",
           "dependsOn": [
-            "m1-prop-finite-ordering-transfer",
             "m1-lem-ordering-local-data",
             "m1-lem-ordering-collision",
-            "m1-lem-simple-strong-left",
             "m1-thm-ugc"
           ]
         }
@@ -714,7 +701,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Direct-Proof-of-Optimal-Max-Cut-Hardness-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A Direct Proof of Optimal Max-Cut Hardness; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A Direct Proof of Optimal Max-Cut Hardness.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -836,9 +823,7 @@
           "source": "From excess stability to a label",
           "detail": "[Dimension-independent extraction] Fix t(0,1) , 0<<1-B(t) , and 0<<1/2 . There are tree parameters s2,m1 and constants p_*,>0 , depending only on t,, , with the following property. For any affine…",
           "dependsOn": [
-            "m2-lem-mis",
             "m2-lem-unsplit",
-            "m2-lem-row-symmetry",
             "m2-lem-hashing"
           ]
         },
@@ -882,12 +867,8 @@
           "detail": "[Decoding] Suppose the extraction conclusion of Proposition~ holds with constants p_*,>0 . If T satisfies Equation~ , then the original affine game has value at least ( G) 2^ -2s p_* 2 .",
           "dependsOn": [
             "m2-lem-restriction",
-            "m2-prop-extraction",
-            "m2-prop-affine-games",
             "m2-lem-completeness",
-            "m2-lem-cut-stability",
-            "m2-thm-main",
-            "m2-lem-unweighted"
+            "m2-thm-main"
           ]
         },
         {
@@ -924,7 +905,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Factor-Two-Hardness-Threshold-for-Vertex-Cover-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Factor-Two Hardness Threshold for Vertex Cover; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Factor-Two Hardness Threshold for Vertex Cover.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -985,9 +966,7 @@
           "kind": "proposition",
           "source": "The graph and completeness",
           "detail": "[Deterministic polynomial construction] For a fixed integer m4 , a fixed even square d satisfying , and fixed source alphabets, the graph G can be output explicitly in deterministic time polynomial…",
-          "dependsOn": [
-            "m3-graph-local-norm"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-graph-anticoncentration",
@@ -1007,9 +986,7 @@
           "kind": "proposition",
           "source": "The graph and completeness",
           "detail": "[Completeness] If ()=1 , then G has an independent set of size greater than (1/2-1/m)n . Consequently, \\[ (G)<(12+1m)n. \\]",
-          "dependsOn": [
-            "m3-graph-anticoncentration"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-ana-function",
@@ -1049,9 +1026,7 @@
           "kind": "lemma",
           "source": "Lists from own-question conditional means",
           "detail": "[Conditional cube variance] For each \\(j J\\) and supported own tuple \\(u\\), the function \\(H_j(u,)\\) is \\(1\\)-Lipschitz with respect to \\(\\|\\|_\\). For almost every own \\(s^r\\), _ s^ (t') H_j(u,s)= g_…",
-          "dependsOn": [
-            "m3-ana-gradient"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-ana-lists",
@@ -1071,9 +1046,7 @@
           "kind": "lemma",
           "source": "Pair decoding and soundness",
           "detail": "[Decoding a pair] For every fixed \\(J, a\\) and fixed list maps satisfying , (E_ jk )^2 (j,k J,\\ j<k), Z1+ h2^2 =32-1 2h <32.",
-          "dependsOn": [
-            "m3-ana-lists"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-dec-soundness",
@@ -1087,9 +1060,7 @@
             "m3-ana-function",
             "m3-res-private-variance",
             "m3-dec-pair",
-            "m3-src-hardness",
-            "m3-graph-polynomial",
-            "m3-thm-gap"
+            "m3-graph-polynomial"
           ]
         }
       ]
@@ -1121,7 +1092,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

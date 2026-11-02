@@ -157,7 +157,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-counterexample-to-integer-degree-harmonic-dimension-comparison-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A counterexample to integer-degree harmonic dimension comparison; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A counterexample to integer-degree harmonic dimension comparison.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -208,10 +208,7 @@
           "kind": "lemma",
           "source": "A strict spectral surplus",
           "detail": "[Spectral surplus] There is an odd m=2s-17 for which the following choices are possible. The parameters a_*(0,1) and q_*>1 can be taken arbitrarily close to 1 , with holding at a=a_* for every q .…",
-          "dependsOn": [
-            "m1-lem-weighted-quantile",
-            "m1-lem-hopf-distribution"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-control",
@@ -277,10 +274,7 @@
           "kind": "lemma",
           "source": "Exact transmission on the regular harmonic subspaces",
           "detail": "[Pulse limit with one parameter derivative] For the fixed compact ball and pulse family, e^ -_ l,j B_ l,j (h) &=H_l(1,h)+O_ C^1 (_j),\\\\ P_ l,e (h)&=_lI+O_ C^1 (_j). Here \\(O_ C^1 (_j)\\) means that…",
-          "dependsOn": [
-            "m1-lem-regular",
-            "m1-lem-damping"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-leg",
@@ -290,9 +284,7 @@
           "kind": "lemma",
           "source": "Exact transmission on the regular harmonic subspaces",
           "detail": "[Exact normalization of the full leg and dwell growth] The matrices \\(U_ l,j \\), \\(V_ l,j \\), and \\(D_ l,j \\) have positive diagonal entries, and 0 K_ l,j _l^ -1 I. They depend only on the prescribed…",
-          "dependsOn": [
-            "m1-lem-regular"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-transmission",
@@ -304,8 +296,6 @@
           "detail": "[Exact full-period transmission] For finite spectral data as specified at the end of Section~ , choose the word and compact pulse family above. There are a starting index \\(j_0\\) and parameters \\(h_j…",
           "dependsOn": [
             "m1-lem-pulse",
-            "m1-prop-metric",
-            "m1-thm-main",
             "m1-lem-regular"
           ]
         },
@@ -333,7 +323,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Three-Dimensional-Counterexample-to-Integer-Degree-Harmonic-Dimension-Comparison-September-26-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A Three-Dimensional Counterexample to Integer-Degree Harmonic Dimension Comparison; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A Three-Dimensional Counterexample to Integer-Degree Harmonic Dimension Comparison.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -409,7 +399,6 @@
           "source": "Isolating and prescribing eigenvalue crossings",
           "detail": "[Adjacent doubles] Fix \\(>1\\). For every prescribed sufficiently small neighborhood \\( U\\) as above, every sufficiently large integer \\(k\\), and every \\(i\\) with \\(B_L+1 i<p\\), there is \\(w U\\) for…",
           "dependsOn": [
-            "m2-n-lem-retained-double",
             "m2-n-lem-pole-modes",
             "m2-n-lem-avoidance"
           ]
@@ -467,7 +456,6 @@
           "source": "Exact harmonic transfer across the moving links",
           "detail": "[Signed off-diagonal entry] Suppose the reference lines \\(i h\\) have an isolated linearly split double crossing at \\(s_\\), with positive eigenvalue \\(\\). For \\(L(w)=-_ h(w) \\), let \\[ L_ (s) =.d d |_…",
           "dependsOn": [
-            "m2-n-lem-inward-transfer",
             "m2-n-prop-exact-graphs"
           ]
         },
@@ -479,13 +467,7 @@
           "kind": "lemma",
           "source": "Scalar matching at all crossings",
           "detail": "[Stable weights and the sign of a mismatch] For all sufficiently late \\(J\\), every trial coordinate defined above satisfies, uniformly on the full product of boxes, |u_ hi ^ trial (j)| C(j)^ 1/4…",
-          "dependsOn": [
-            "m2-n-main",
-            "m2-n-lem-adjacent-doubles",
-            "m2-n-prop-angular-program",
-            "m2-n-prop-radial-realization",
-            "m2-n-near-euclidean"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -510,7 +492,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

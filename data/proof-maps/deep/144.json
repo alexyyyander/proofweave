@@ -87,7 +87,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-smooth-three-torus-diffeomorphism-with-simple-Lebesgue-spectrum-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A smooth three-torus diffeomorphism with simple Lebesgue spectrum; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A smooth three-torus diffeomorphism with simple Lebesgue spectrum.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -186,7 +186,6 @@
           "source": "Finite blocks and prediction",
           "detail": "[Finite phase tests] Fix finitely many expressions \\[ P_j(z,w)=_ E_j c_ j, (z)w^, c_ j, L^1(), \\] where each E_j is finite. For every >0 , successively large positive integers L_1,,L_n can be chosen…",
           "dependsOn": [
-            "m1-prop-prediction",
             "m1-lem-passage",
             "m1-lem-signal",
             "m1-lem-neutral",
@@ -214,9 +213,7 @@
           "dependsOn": [
             "m1-prop-prediction",
             "m1-lem-neutral",
-            "m1-lem-passage",
-            "m1-lem-flat-vector",
-            "m1-thm-main"
+            "m1-lem-passage"
           ]
         },
         {
@@ -227,9 +224,7 @@
           "kind": "corollary",
           "source": "Dynamical consequences",
           "detail": "For the diffeomorphism T and normalized standard volume of Theorem~ , every integer k2 and every fixed choice of measurable sets A_1,,A_k^3 satisfy \\[ (_ i=1 ^k T^ -t_i A_i) _ i=1 ^k(A_i) \\] whenever…",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -248,7 +243,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -1,16 +1,16 @@
 #!/usr/bin/env node
-import { readdir, readFile, writeFile } from "node:fs/promises";
+import { readdir, readFile, rm, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 
 import { validateDeepProofMap } from "../packages/domain/deep-proof-map.mjs";
 import { publicationPlainText } from "../packages/domain/proof-map-index.mjs";
 
 /**
- * Promote paper-derived structures to theorem-level maps by classifying every
- * recorded reference against the sentence it appears in. References that are
- * explicitly background ("cf.", "recall", "as in", ...) are dropped; the rest
- * remain as dependency edges. The result is a curated-structure candidate and
- * is still unreviewed.
+ * Promote paper-derived structures to theorem-level maps, keeping only the
+ * references that the surrounding sentence presents as a premise: a dependency
+ * cue immediately before the reference ("by Lemma X") or a dependency verb
+ * immediately after it ("Lemma X gives ..."). Background citations and bare
+ * mentions stay out of the graph. The result is still unreviewed.
  */
 const root = new URL("../", import.meta.url);
 const args = process.argv.slice(2);
@@ -25,9 +25,33 @@ const manifestPath = fileURLToPath(new URL("data/proof-maps/manifest.json", root
 const deepDir = fileURLToPath(new URL("data/proof-maps/deep", root));
 const dryRun = args.includes("--dry-run");
 const only = option("--family", null);
+const machineMarker = "Machine-promoted from the paper structure";
 
 const backgroundPattern = /(cf\.|see also|compare|recall|as discussed|mentioned|independent of|does not (?:use|depend)|apart from|analogous|similarly|\bas in\b|in the same way)/i;
+const identificationPattern = /(?:\bthe case of[^.;]{0,60}\bis\b|\bthe remaining assertions are\b|\bthe other (?:case )?is\b|\bthe (?:vanishing |first |second )?alternative is\b)\s*$/i;
+const beforeDependency = /(?:by|using|via|from|apply|applying|through|thanks to|in view of|as a consequence of|consequence of|combining|combine|combined with|invoking|appeal(?:ing)? to|utiliz\w*|rel(?:y|ies|ying) on|based on|uses?|use)\s+(?:the\s+)?[^.;]{0,100}(?:Lemma|Proposition|Theorem|Corollary)\s*~?\s*$/i;
+const afterDependency = /^\s*(?:\([^)]{0,24}\))?\s*(?:(?:then|now|also|therefore|thus|consequently|hence|further|finally)\s+)?(?:[^.;]{0,120}?)\b(applies?|apply|gives?|give|shows?|show|yields?|yield|implies?|imply|provides?|provide|supplies?|supply|guarantees?|guarantee|ensures?|ensure|forces?|force|makes?|make|identifies?|identify|places?|place|bounds?|bound|permits?|permit|allows?|allow|says?|say|states? that|state that|establishes?|establish|confirms?|confirm|proves?|prove|reduces?|reduce|extends?|extend|determines?|determine|recovers?|recover|controls?|control|characteri[sz]es?|expresses?|preserves?|transports?|takes?|handles?|lets?)\b/i;
+const listDependency = /^\s*(?:,|and|&)\s+(?:Lemma|Proposition|Theorem|Corollary)\s*~?\s*\\(?:c|C|auto)?ref\{[^}]+\}[^.;]{0,80}?\b(?:applies|give|gives|show|shows|yield|yields|imply|implies|provide|provides|supply|supplies|guarantee|guarantees|ensure|ensures|force|forces|make|makes|identify|identifies|place|places|bound|bounds|permit|permits|allow|allows|establish|establishes|confirm|confirms|prove|proves|reduce|reduces|extend|extends|determine|determines|recover|recovers|control|controls)\b/i;
+
 const colors = ["#8b75c9", "#5c8fd6", "#c98b5c", "#5cc9a0", "#b07cc6"];
+
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function classifyEdge(edge) {
+  if (!edge.context || !edge.label) return "unclear";
+  const pattern = new RegExp(`\\\\(?:c|C|auto)?ref\\{${escapeRegExp(edge.label)}\\}`);
+  const match = pattern.exec(edge.context);
+  if (!match) return "unclear";
+  const start = match.index;
+  const before = edge.context.slice(Math.max(0, start - 160), start);
+  const after = edge.context.slice(start + match[0].length, start + match[0].length + 140);
+  if (backgroundPattern.test(before) || backgroundPattern.test(after)) return "background";
+  if (identificationPattern.test(before)) return "mention";
+  if (beforeDependency.test(before) || afterDependency.test(after) || listDependency.test(after)) return "dependency";
+  return "mention";
+}
 
 function slug(value, max = 60) {
   return String(value).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, max);
@@ -60,7 +84,6 @@ function acyclic(nodes, dependencies) {
   for (const [to, froms] of dependencies) {
     for (const from of froms) {
       if (!byId.has(from) || !byId.has(to)) continue;
-      // `from` is cited by the proof of `to`; the edge is from -> to.
       if (reaches(from, to)) {
         dropped += 1;
         continue;
@@ -74,8 +97,7 @@ function acyclic(nodes, dependencies) {
 function buildDeep(structure, family) {
   const nodes = structure.nodes;
   const strategies = [];
-  let droppedBackground = 0;
-  let droppedUnclear = 0;
+  const counts = { background: 0, mention: 0, unclear: 0, cycles: 0 };
   for (const manuscript of structure.manuscripts) {
     const manuscriptNodes = nodes.filter((node) => node.manuscript === manuscript.title);
     if (manuscriptNodes.length === 0) continue;
@@ -84,12 +106,17 @@ function buildDeep(structure, family) {
     const seen = new Set();
     for (const edge of structure.edges) {
       if (!ids.has(edge.from) || !ids.has(edge.to)) continue;
-      if (!edge.context) {
-        droppedUnclear += 1;
+      const verdict = classifyEdge(edge);
+      if (verdict === "background") {
+        counts.background += 1;
         continue;
       }
-      if (backgroundPattern.test(edge.context)) {
-        droppedBackground += 1;
+      if (verdict === "mention") {
+        counts.mention += 1;
+        continue;
+      }
+      if (verdict === "unclear") {
+        counts.unclear += 1;
         continue;
       }
       const key = `${edge.from}|${edge.to}`;
@@ -100,14 +127,13 @@ function buildDeep(structure, family) {
     strategies.push({ manuscript, nodes: manuscriptNodes, dependencies });
   }
   if (strategies.length === 0) return { error: "no strategies" };
+  const dependencyCount = strategies.reduce((total, strategy) => total + [...strategy.dependencies.values()].reduce((sum, list) => sum + list.length, 0), 0);
+  if (dependencyCount === 0) return { error: "no dependency edges" };
 
   const usedRoleIds = new Set(["result"]);
-  const rolesById = new Map();
-  const resultRole = { id: "result", label: "Result", description: "The paper's main stated theorem for this family." };
-  rolesById.set(resultRole.id, resultRole);
+  const rolesById = new Map([["result", { id: "result", label: "Result", description: "The paper's main stated theorem for this family." }]]);
   const roleForSection = (section) => {
-    const base = slug(section || "document");
-    const id = uniqueId(base, usedRoleIds);
+    const id = uniqueId(slug(section || "document"), usedRoleIds);
     if (!rolesById.has(id)) rolesById.set(id, { id, label: section || "Document", description: "A section of the paper." });
     return id;
   };
@@ -118,6 +144,7 @@ function buildDeep(structure, family) {
     const strategyId = `m${index + 1}`;
     const main = strategy.nodes.find((node) => node.kind === "theorem") ?? strategy.nodes[strategy.nodes.length - 1];
     const { dependencies, dropped } = acyclic(strategy.nodes, strategy.dependencies);
+    counts.cycles += dropped;
     const strategyNodes = strategy.nodes.map((node) => ({
       id: node.id,
       role: node.id === main.id ? "result" : roleForSection(node.section),
@@ -138,12 +165,11 @@ function buildDeep(structure, family) {
       color: colors[index % colors.length],
       sourceUrl: strategy.manuscript.pdfUrl,
       sourceLabel: "paper",
-      note: `Statements and proof references extracted from ${strategy.manuscript.title}; background citations removed.`,
+      note: `Statements and proof-dependency references extracted from ${strategy.manuscript.title}.`,
       proofDetail: "section",
       nodes: strategyNodes,
     });
     finalEdges.push({ from: `${strategyId}:${main.id}`, to: "paper-result", type: "proves", label: "states the result" });
-    strategy.dropped = dropped;
   }
 
   const data = {
@@ -169,74 +195,87 @@ function buildDeep(structure, family) {
     relatedManuscripts: [],
     leanAlignments: [],
     caveats: [
-      "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+      `${machineMarker}: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.`,
       "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
     ],
     sources: structure.manuscripts.map((manuscript) => ({ label: manuscript.title, url: manuscript.pdfUrl, kind: "paper" })),
   };
-  return { data, droppedBackground, droppedUnclear, droppedCycles: strategies.reduce((total, strategy) => total + (strategy.dropped ?? 0), 0) };
+  return { data, counts };
 }
 
-const deepFiles = new Set((await readdir(deepDir)).filter((name) => name.endsWith(".json")).map((name) => name.replace(/\.json$/, "")));
+const deepFiles = new Map((await readdir(deepDir)).filter((name) => name.endsWith(".json")).map((name) => [name.replace(/\.json$/, ""), name]));
 const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
-const existing = new Set(manifest.deep.map((entry) => entry.familyNumber));
+const manifestByFamily = new Map(manifest.deep.map((entry) => [entry.familyNumber, entry]));
 const paperFiles = (await readdir(fileURLToPath(new URL("data/proof-maps/paper", root)))).filter((name) => name.endsWith(".json"));
 const results = [];
 
 for (const name of paperFiles) {
   const structure = JSON.parse(await readFile(fileURLToPath(new URL(`data/proof-maps/paper/${name}`, root)), "utf8"));
+  if (structure.familyNumber === "003") continue; // hand-curated Landau map keeps its own route
   if (only && structure.familyNumber !== only) continue;
-  if (existing.has(structure.familyNumber)) continue;
-  if (deepFiles.has(structure.familyNumber)) continue;
+  const existing = deepFiles.get(structure.familyNumber);
+  let existingData = null;
+  if (existing) {
+    existingData = JSON.parse(await readFile(`${deepDir}/${existing}`, "utf8"));
+    const machine = Array.isArray(existingData.caveats) && existingData.caveats.some((caveat) => caveat.includes(machineMarker));
+    if (!machine) continue; // curated map: never overwrite
+  }
   const family = catalog.families.find((candidate) => candidate.number === structure.familyNumber);
   const built = buildDeep(structure, family);
   if (built.error) {
-    results.push({ familyNumber: structure.familyNumber, outcome: "skipped", reason: built.error });
+    results.push({ familyNumber: structure.familyNumber, outcome: existing ? "demoted" : "skipped", reason: built.error });
     continue;
   }
   try {
     validateDeepProofMap(built.data, catalog, lean);
   } catch (error) {
-    results.push({ familyNumber: structure.familyNumber, outcome: "skipped", reason: error instanceof Error ? error.message : String(error) });
+    results.push({ familyNumber: structure.familyNumber, outcome: existing ? "demoted" : "skipped", reason: error instanceof Error ? error.message : String(error) });
     continue;
   }
   results.push({
     familyNumber: structure.familyNumber,
-    outcome: "promoted",
+    outcome: existing ? "updated" : "promoted",
     strategies: built.data.strategies.length,
     nodes: built.data.strategies.reduce((total, strategy) => total + strategy.nodes.length, 0),
     edges: built.data.strategies.reduce((total, strategy) => total + strategy.nodes.reduce((sum, node) => sum + node.dependsOn.length, 0), 0),
-    droppedBackground: built.droppedBackground,
-    droppedUnclear: built.droppedUnclear,
-    droppedCycles: built.droppedCycles,
+    ...built.counts,
     data: built.data,
   });
 }
 
-const promoted = results.filter((entry) => entry.outcome === "promoted");
 if (!dryRun) {
-  for (const entry of promoted) {
-    await writeFile(fileURLToPath(new URL(`data/proof-maps/deep/${entry.familyNumber}.json`, root)), `${JSON.stringify(entry.data, null, 2)}\n`);
-    if (!existing.has(entry.familyNumber)) {
-      manifest.deep.push({
-        familyNumber: entry.familyNumber,
-        route: `/proof-evolution/openai-math/${entry.familyNumber}`,
-        label: entry.data.title,
-      });
+  for (const entry of results) {
+    if (entry.outcome === "updated" || entry.outcome === "promoted") {
+      await writeFile(`${deepDir}/${entry.familyNumber}.json`, `${JSON.stringify(entry.data, null, 2)}\n`);
+      if (!manifestByFamily.has(entry.familyNumber)) {
+        manifest.deep.push({
+          familyNumber: entry.familyNumber,
+          route: `/proof-evolution/openai-math/${entry.familyNumber}`,
+          label: entry.data.title,
+        });
+      }
+    } else if (entry.outcome === "demoted") {
+      await rm(`${deepDir}/${entry.familyNumber}.json`, { force: true });
+      manifest.deep = manifest.deep.filter((item) => item.familyNumber !== entry.familyNumber);
     }
   }
   manifest.deep.sort((left, right) => left.familyNumber.localeCompare(right.familyNumber));
   await writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
 }
 for (const entry of results) delete entry.data;
+const tally = (outcome) => results.filter((entry) => entry.outcome === outcome);
 process.stdout.write(`${JSON.stringify({
   families: results.length,
-  promoted: promoted.length,
-  skipped: results.filter((entry) => entry.outcome === "skipped").length,
-  nodes: promoted.reduce((total, entry) => total + entry.nodes, 0),
-  edges: promoted.reduce((total, entry) => total + entry.edges, 0),
-  droppedBackground: promoted.reduce((total, entry) => total + entry.droppedBackground, 0),
-  droppedUnclear: promoted.reduce((total, entry) => total + entry.droppedUnclear, 0),
-  droppedCycles: promoted.reduce((total, entry) => total + entry.droppedCycles, 0),
-  skippedSample: results.filter((entry) => entry.outcome === "skipped").slice(0, 8),
+  promoted: tally("promoted").length,
+  updated: tally("updated").length,
+  demoted: tally("demoted").length,
+  skipped: tally("skipped").length,
+  nodes: results.filter((entry) => entry.nodes).reduce((total, entry) => total + entry.nodes, 0),
+  edges: results.filter((entry) => entry.edges !== undefined).reduce((total, entry) => total + entry.edges, 0),
+  droppedBackground: results.reduce((total, entry) => total + (entry.background ?? 0), 0),
+  droppedMentions: results.reduce((total, entry) => total + (entry.mention ?? 0), 0),
+  droppedUnclear: results.reduce((total, entry) => total + (entry.unclear ?? 0), 0),
+  droppedCycles: results.reduce((total, entry) => total + (entry.cycles ?? 0), 0),
+  demotedSample: tally("demoted").slice(0, 8),
+  skippedSample: tally("skipped").slice(0, 8),
 }, null, 2)}\n`);

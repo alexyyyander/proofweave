@@ -192,7 +192,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Global-Spherical-Shells-on-Minimal-Surfaces-of-Class-VII-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Global Spherical Shells on Minimal Surfaces of Class VII; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Global Spherical Shells on Minimal Surfaces of Class VII.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -253,9 +253,7 @@
           "kind": "lemma",
           "source": "Surface invariants and the cyclic cover",
           "detail": "[Character cohomology] For 1 and every q=0,1,2 , H^q(X,P_)=0, H^q(X,K_X P_)=0. For every ^* , including =1 , H^0(X,K_X P_)=0. At the trivial character, H^0(X,_X)= , H^1(X,_X)= , and H^2(X,_X)=0 . If…",
-          "dependsOn": [
-            "m1-surface-degree"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-surface-height",
@@ -384,7 +382,6 @@
           "detail": "For the trivial datum and a,b>0 , \\[ H^ 0,0 _ a,b (Y,)=, H^ 0,1 _ a,b (Y,)=H^ 0,2 _ a,b (Y,)=0. \\] In particular its weighted Dolbeault index is one.",
           "dependsOn": [
             "m1-weighted-tail",
-            "m1-weighted-scalar-top",
             "m1-weighted-fredholm"
           ]
         },
@@ -412,9 +409,7 @@
           "detail": "[A section with different end limits] Let E be one of the data in Lemma~ , and write e^2=K_Y e=-m with m>0 . Given any finite >0 , E admits a holomorphic structure whose Dolbeault operator, in its…",
           "dependsOn": [
             "m1-weighted-holomorphic",
-            "m1-weighted-index",
-            "m1-weighted-tail",
-            "m1-surface-degree"
+            "m1-weighted-index"
           ]
         },
         {
@@ -436,7 +431,6 @@
           "source": "Divisor growth and residue currents",
           "detail": "[Weighted cohomology for residue currents] Fix >0 and b> . Let F be either _Y or an end-framed compact datum E with an integrable operator satisfying . Consider the current complex C^ 2,q _ -,b,-3…",
           "dependsOn": [
-            "m1-weighted-fredholm",
             "m1-weighted-tail"
           ]
         },
@@ -448,9 +442,7 @@
           "kind": "proposition",
           "source": "Divisor growth and residue currents",
           "detail": "[Residue obstruction] Fix F\\ ,E\\ and rates (-,b) as in Theorem~ . For distinct closed irreducible curves B_i Y bounded above in height, let _i be nonzero holomorphic differentials on their…",
-          "dependsOn": [
-            "m1-weighted-currents"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-curve-genus",
@@ -506,8 +498,7 @@
           "source": "A cylinder estimate and compactness of the components",
           "detail": "If a component of D is noncompact, its normalization is biholomorphic to .",
           "dependsOn": [
-            "m1-curve-genus",
-            "m1-curve-residue"
+            "m1-curve-genus"
           ]
         },
         {
@@ -531,7 +522,6 @@
           "dependsOn": [
             "m1-curve-genus",
             "m1-cylinder-plane",
-            "m1-cylinder-estimate",
             "m1-cylinder-gauge",
             "m1-compact-section",
             "m1-weighted-currents",
@@ -556,9 +546,7 @@
           "kind": "lemma",
           "source": "Counting rational curves and obtaining the shell",
           "detail": "[Nonsingularity of the compact classes] For the classes e_1,,e_d of Lemma~ , the matrix P(t)=(P(e_i,e_j))_ i,j=1 ^d has nonzero determinant in . Their -span is free of rank d , and P is nonsingular…",
-          "dependsOn": [
-            "m1-compact-classes"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-conclusion-curves",
@@ -587,8 +575,7 @@
             "m1-thm-main",
             "m1-surface-reduction",
             "m1-conclusion-curves",
-            "m1-cor-topology",
-            "m1-cor-aspherical-geography"
+            "m1-cor-topology"
           ]
         }
       ]
@@ -608,7 +595,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

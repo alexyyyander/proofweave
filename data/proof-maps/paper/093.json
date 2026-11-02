@@ -376,301 +376,361 @@
     {
       "from": "m1-cor-intro-transport",
       "to": "m1-lem-gaussian-signals",
+      "label": "cor:intro-transport",
       "context": "[Proof of Corollary~\\ref{cor:intro-transport}] Jensen's inequality in each coordinate gives $\\int|x|^2d\\mu\\le na^2\\log2$, so $\\mu\\in\\mathcal P_2(\\R^n)$. Only the cas"
     },
     {
       "from": "m1-lem-curvature",
       "to": "m1-lem-gaussian-signals",
+      "label": "lem:curvature",
       "context": "satisfies \\[ D^2V_s(y)=s^{-1}\\Id-s^{-2}\\Cov(X\\mid X+\\sqrt sG=y)\\ge0. \\] Indeed, the posterior has the original convex potential plus $|x-y|^2/(2s)$, so Lemma~\\ref{lem:curvature} bounds its covariance by $s\\Id$. Gaussian differentiation is valid without compact support. Thus $\\mu_s$ is centered an"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-lem-gaussian-signals",
+      "label": "thm:main",
       "context": "ac{\\beta_s}{a+\\beta_s}\\frac{t^2}{\\beta_s^2} \\] and H\\\"older's inequality show that $\\mu_s$ satisfies \\eqref{eq:intro-subgaussian} with parameter $a_s$. Theorem~\\ref{thm:main}, with the Sobolev extension in Section~\\ref{sec:calculus}, gives entropy coefficient $Ca_s^2$. In the conventions of \\c"
     },
     {
       "from": "m1-lem-curvature",
       "to": "m1-lem-critical-normalization",
+      "label": "lem:curvature",
       "context": "l to preserve that quotient again. Both operations preserve log-concavity, their combined density relative to the original law can be bounded by $2$, and Lemma~\\ref{lem:curvature} gives a finite logarithmic Sobolev constant for the resulting compact law. A bounded density increase changes the expo"
     },
     {
       "from": "m1-lem-critical-defect",
       "to": "m1-lem-optimizer",
+      "label": "lem:critical-defect",
       "context": "$. For $t\\ge0$, use $t\\le z$ to obtain $B(t)\\le2+2\\log(1+z)\\le2+2\\log2+\\log_+z^2$. Continuity at $t=0$ proves the compact convergence. The tail proof in Lemma~\\ref{lem:critical-defect} did not use unit norm until its last sentence. In particular, for any bounded form sequence $u_j\\to u$ in $L^2$ with en"
     },
     {
       "from": "m1-lem-dirichlet-core",
       "to": "m1-lem-critical-change-reference",
+      "label": "lem:dirichlet-core",
       "context": "cdot D$ and $Dw$ is symmetric, the second identity follows distributionally. Its right side is in $L^2(\\eta)$, since $K$ is bounded and $w\\in L^2(\\eta)$. Lemma~\\ref{lem:dirichlet-core} therefore puts $w$ in the operator domain; no unproved integrability of higher derivatives has been used. Let $p=g^2\\e"
     },
     {
       "from": "m1-lem-critical-change-reference",
       "to": "m1-lem-critical-two-alternatives",
+      "label": "lem:critical-change-reference",
       "context": "In the first alternative the identities and the last inequality are Lemma~\\ref{lem:critical-change-reference}. Apply Lemma~\\ref{lem:translation-gain} to $\\sigma=\\eta$, where $F_0=I$ and $D_0=I/(2\\lambda)$, so the deficit vanishes"
     },
     {
       "from": "m1-lem-translation-gain",
       "to": "m1-lem-critical-two-alternatives",
+      "label": "lem:translation-gain",
       "context": "In the first alternative the identities and the last inequality are Lemma~\\ref{lem:critical-change-reference}. Apply Lemma~\\ref{lem:translation-gain} to $\\sigma=\\eta$, where $F_0=I$ and $D_0=I/(2\\lambda)$, so the deficit vanishes. The coefficient $s^{-2}-\\lambda/s$ is"
     },
     {
       "from": "m1-lem-dirichlet-core",
       "to": "m1-lem-critical-two-alternatives",
+      "label": "lem:dirichlet-core",
       "context": "arity makes its eigenfunction $\\varphi$ smooth. Commuting a derivative gives $A_{\\mu_s}D\\varphi=(\\lambda\\Id-K_s)D\\varphi$. Its right side is in $L^2$, so Lemma~\\ref{lem:dirichlet-core} gives the operator-domain assertion. Taking the energy pairing and then Poincar\\'e gives, exactly as before, \\[ \\E\\lan"
     },
     {
       "from": "m1-lem-critical-flow-bounds",
       "to": "m1-prop-regularized-constants",
+      "label": "lem:critical-flow-bounds",
       "context": "Fix $s$, and let $\\Phi_{s,t}$ be the heat continuity flow from Lemma~\\ref{lem:critical-flow-bounds}, for $t$ on either side of $s$. Transport a form-domain test $g$ by $g_t=g\\circ\\Phi_{s,t}^{-1}$. Its distribution under"
     },
     {
       "from": "m1-lem-critical-two-alternatives",
       "to": "m1-prop-critical-sequence",
+      "label": "lem:critical-two-alternatives",
       "context": "Choose an infinite subsequence with the same alternative at $s=1/8$. Lemma~\\ref{lem:critical-two-alternatives} gives all structural identities and the curvature and mean bounds. Proposition~\\ref{prop:regularized-constants} gives $"
     },
     {
       "from": "m1-prop-regularized-constants",
       "to": "m1-prop-critical-sequence",
+      "label": "prop:regularized-constants",
       "context": "with the same alternative at $s=1/8$. Lemma~\\ref{lem:critical-two-alternatives} gives all structural identities and the curvature and mean bounds. Proposition~\\ref{prop:regularized-constants} gives $\\lambda\\to1$. Consequently \\[ (A-1)w=(\\lambda-1)w-K_sw=o_{L^2}(\\sqrt I). \\] The energy pairing yields $\\E|Dw|^2"
     },
     {
       "from": "m1-prop-critical-sequence",
       "to": "m1-lem-efficient-probes",
+      "label": "prop:critical-sequence",
       "context": "Run the stationary diffusion with law $\\eta$, using Brownian noise independent of $G'$, and write $P_u=e^{-uA}$. Proposition~\\ref{prop:critical-sequence} puts each coordinate in $\\Dom(A)$ and gives the identity \\begin{equation} -Ay=-y/s+w+b_s/s. \\label{eq:prediction-coor"
     },
     {
       "from": "m1-lem-translation-gain",
       "to": "m1-lem-efficient-probes",
+      "label": "lem:translation-gain",
       "context": "nfty$, the assertion also follows weakly by differentiating that marginal identity: Cauchy--Schwarz gives locally integrable averaged derivatives. Apply Lemma~\\ref{lem:translation-gain} to $\\sigma_{u,l}$ and average over $l$. Since $s^{-2}-\\lambda/s$ stays positive, Equations \\eqref{eq:probe-reference-d"
     },
     {
       "from": "m1-lem-gaussian-signals",
       "to": "m1-lem-efficient-probes",
+      "label": "lem:gaussian-signals",
       "context": "ng, Equations~\\eqref{eq:probe-position-control} and \\eqref{eq:probe-coordinate-solution} show that \\[ \\E|\\E[w(Y_0)\\mid L_T]|^2\\le C_s d(T)+o_M(I). \\] By Lemma~\\ref{lem:gaussian-signals}, the left side is $2d'(T)$ for almost every $T$. The error is uniform for $T\\in[0,M]$, and $d(0)=0$. Integrating this"
     },
     {
       "from": "m1-lem-curvature",
       "to": "m1-lem-entropy-loss",
+      "label": "lem:curvature",
       "context": "al observed subspace, for which the loss is zero. Summing the $m$ steps loses $O_{N,b,p}(u\\delta)$ entropy. Apply the anisotropic curvature inequality, Lemma~\\ref{lem:curvature}, to the final posterior pair. For fixed $N$ and $u$ we obtain \\begin{equation} 2N(H_0-H_z)-o_{\\delta\\downarrow0}(1) \\"
     },
     {
       "from": "m1-prop-regularized-constants",
       "to": "m1-prop-prediction",
+      "label": "prop:regularized-constants",
       "context": "For $0\\le r<1/4$ put \\[ \\theta(r)=\\exp\\left(-\\int_0^r\\frac{dt}{R_{s+t}}\\right). \\] Proposition~\\ref{prop:regularized-constants} gives $\\theta(r)=e^{-r}+o(1)$, uniformly on compact intervals under consideration. The common heat flow dissipates rel"
     },
     {
       "from": "m1-lem-gaussian-signals",
       "to": "m1-prop-prediction",
+      "label": "lem:gaussian-signals",
       "context": "L_T\\mid U_r)\\mid\\gamma)\\\\ &=\\E H(\\Law(U_r\\mid L_T)\\mid\\mu_{s+r})+d(T)-H_r\\\\ &\\le\\frac I2\\theta(r)(1/\\lambda+T)+d(T). \\end{align*} The first equality is Lemma~\\ref{lem:gaussian-signals}, conditionally on $U_r$. Fix $v\\ge0$ and then $T>v$. Since $p_t(r)$ is nondecreasing in signal strength $t$, Lemma \\r"
     },
     {
       "from": "m1-lem-efficient-probes",
       "to": "m1-prop-prediction",
+      "label": "lem:efficient-probes",
       "context": "uality is Lemma~\\ref{lem:gaussian-signals}, conditionally on $U_r$. Fix $v\\ge0$ and then $T>v$. Since $p_t(r)$ is nondecreasing in signal strength $t$, Lemma \\ref{lem:efficient-probes} yields \\[ (T-v)\\limsup p_v(r)\\le e^{-r}(1+T). \\] The sequence limit is taken with $T$ fixed. Allowing this fixed $T$"
     },
     {
       "from": "m1-lem-entropy-loss",
       "to": "m1-prop-prediction",
+      "label": "lem:entropy-loss",
       "context": "$ fixed. Allowing this fixed $T$ to be arbitrarily large proves \\begin{equation} \\limsup p_v(r)\\le e^{-r}. \\label{eq:prediction-upper} \\end{equation} Lemma~\\ref{lem:entropy-loss} applies to $p=\\eta$ and $q=\\mu_s$; the exponential-square moment was proved in the proof of Lemma~\\ref{lem:efficient-pr"
     },
     {
       "from": "m1-prop-prediction",
       "to": "m1-lem-posterior-outliers",
+      "label": "prop:prediction",
       "context": "onditional expectations and the conditional affine prediction bound yield \\[ I\\bigl(p_1(r)-m(r)\\bigr) \\ge\\E\\tr\\bigl(C_r^2(\\Id+C_r)^{-1}\\bigr). \\] Proposition~\\ref{prop:prediction} makes the left side $o(I)$. The same scalar eigenvalue inequality proves Equation~\\eqref{eq:conditional-tail}. We fina"
     },
     {
       "from": "m1-lem-hierarchy-bessel",
       "to": "m1-lem-hierarchy-construction",
+      "label": "lem:hierarchy-bessel",
       "context": "=\\langle D^jg_r,T_j\\rangle_2+o(I). \\] Replacing $DT_j$ by $T_{j+1}$ when $j<l$ costs $o(I)$. All test derivatives and their form energies are finite by Lemma~\\ref{lem:hierarchy-bessel}; its bound controls every error for fixed $r$ and $j$. No uniform estimate as $r\\downarrow0$ has been used. Here is t"
     },
     {
       "from": "m1-lem-hierarchy-smoothing",
       "to": "m1-lem-hierarchy-construction",
+      "label": "lem:hierarchy-smoothing",
       "context": "silon\\le C_\\epsilon I$. First take the sequence limit and then let $\\epsilon\\downarrow0$. This proves $|\\E V|=o(\\sqrt I)$, and thus $|\\E S|=o(\\sqrt I)$. Lemma~\\ref{lem:hierarchy-smoothing} applies to $S$. Define \\[ T_{l+1}=e^{1-A}S. \\] It is symmetric, lies in every operator-power domain, is $o(\\sqrt I)$"
     },
     {
       "from": "m1-lem-dirichlet-core",
       "to": "m1-lem-hermite-expansion",
+      "label": "lem:dirichlet-core",
       "context": "The operator-domain It\\^o formula from Lemma~\\ref{lem:dirichlet-core} gives, for each fixed $d$, \\begin{align*} e^vT_d(Y_v) ={}&T_d(Y_0)+\\sqrt2\\int_0^v e^uT_{d+1}(Y_u):dB_u\\\\ &+\\int_0^v"
     },
     {
       "from": "m1-lem-hermite-expansion",
       "to": "m1-lem-hierarchy-operator-tails",
+      "label": "lem:hermite-expansion",
       "context": "$\\|T_1-Q\\|_2=o(\\sqrt I)$, it also proves the assertion for $T_1$. It remains to propagate this estimate to higher levels. Fix $l\\ge1$ and $t>0$. Apply Lemma~\\ref{lem:hermite-expansion} with starting level $1$. Conditional on $Y_0$, the Hermite chaoses are orthogonal even after applying an arbitrary mea"
     },
     {
       "from": "m1-lem-dirichlet-core",
       "to": "m1-lem-hierarchy-divergence",
+      "label": "lem:dirichlet-core",
       "context": "etry of $H$, and integrate by parts to obtain Equation~\\eqref{eq:hierarchy-differentiated-operator}. For general $F\\in\\Dom A$, use the operator core from Lemma~\\ref{lem:dirichlet-core} to choose compact smooth $F_j$ with $F_j\\to F$ and $AF_j\\to AF$ in $L^2$. This convergence also holds in the form norm"
     },
     {
       "from": "m1-prop-hierarchy",
       "to": "m1-lem-hierarchy-divergence",
+      "label": "prop:hierarchy",
       "context": "[Completion of the proof of Proposition~\\ref{prop:hierarchy}] Lemma~\\ref{lem:hierarchy-construction} supplies the fields and all assertions except Equation~\\eqref{eq:hierarchy-curv"
     },
     {
       "from": "m1-lem-hierarchy-construction",
       "to": "m1-lem-hierarchy-divergence",
+      "label": "lem:hierarchy-construction",
       "context": "[Completion of the proof of Proposition~\\ref{prop:hierarchy}] Lemma~\\ref{lem:hierarchy-construction} supplies the fields and all assertions except Equation~\\eqref{eq:hierarchy-curvature}. Fix $l\\ge0$ and write $F=T_l$."
     },
     {
       "from": "m1-lem-hierarchy-operator-tails",
       "to": "m1-lem-hierarchy-divergence",
+      "label": "lem:hierarchy-operator-tails",
       "context": "|DP\\|_2=O(\\sqrt I),\\qquad \\|QP\\|_2=o(\\sqrt I), \\end{equation} where $Q=Dw$ in the strict branch and $Q=0$ in the gap branch. In the strict branch, apply Lemma~\\ref{lem:hierarchy-operator-tails} to the corresponding flattening of $T_{l+1}$. Choose a singular-value cutoff $\\delta\\downarrow0$ sufficiently slowly t"
     },
     {
       "from": "m1-lem-posterior-outliers",
       "to": "m1-lem-matrix-centering",
+      "label": "lem:posterior-outliers",
       "context": "ation} To see the latter assertion in the strict branch, fix $\\delta>0$ and let $P_\\delta$ be the spectral projection of $\\E M_s$ onto $(\\delta,\\infty)$. Lemma~\\ref{lem:posterior-outliers} gives $\\rank P_\\delta=O_\\delta(I)$; the deterministic-projection conclusion of Proposition~\\ref{prop:hierarchy} therefo"
     },
     {
       "from": "m1-prop-hierarchy",
       "to": "m1-lem-matrix-centering",
+      "label": "prop:hierarchy",
       "context": "$\\E M_s$ onto $(\\delta,\\infty)$. Lemma~\\ref{lem:posterior-outliers} gives $\\rank P_\\delta=O_\\delta(I)$; the deterministic-projection conclusion of Proposition~\\ref{prop:hierarchy} therefore gives $\\tr(P_\\delta\\E R^2)=o(1)$. Since $0\\le M_s\\le1$, the left side of Equation~\\eqref{eq:matrix-independe"
     },
     {
       "from": "m1-lem-matrix-copied-slots",
       "to": "m1-lem-matrix-saturation",
+      "label": "lem:matrix-copied-slots",
       "context": "iring $D_i(R^2)$ with $H_i/2$; all products are integrable by the displayed bound. The second uses the symmetry of each $D_i\\Psi$ on its existing slots. Lemma~\\ref{lem:matrix-copied-slots} and Cauchy--Schwarz yield \\[ e^2\\le d\\left(e-\\frac c4+\\frac{2a}{k}\\right). \\] Since $a\\le4e$, $d\\to1$, and $\\liminf e\\"
     },
     {
       "from": "m1-lem-matrix-bounded-column",
       "to": "m1-lem-matrix-blocks",
+      "label": "lem:matrix-bounded-column",
       "context": "eqref{eq:matrix-weighted-change} prove the derivative, commutator, and balance conclusions for these matrices. The bounded-column argument at the end of Lemma~\\ref{lem:matrix-bounded-column} again gives $\\E\\|(S-1)R\\|_{\\HS}^2=o(1)$, so Equation~\\eqref{eq:matrix-weight-comparison} proves the first tracial defec"
     },
     {
       "from": "m1-lem-matrix-index-exchange",
       "to": "m1-lem-matrix-blocks",
+      "label": "lem:matrix-index-exchange",
       "context": "\\ref{lem:matrix-bounded-column} again gives $\\E\\|(S-1)R\\|_{\\HS}^2=o(1)$, so Equation~\\eqref{eq:matrix-weight-comparison} proves the first tracial defect. Lemma~\\ref{lem:matrix-index-exchange} gives the second. For the third, all three indices now lie in one block, and the index-exchange defect is exactly weig"
     },
     {
       "from": "m1-lem-matrix-copied-slots",
       "to": "m1-lem-matrix-gaussian-moments",
+      "label": "lem:matrix-copied-slots",
       "context": "actor depending on a block dimension. The finite-matrix Schatten inequality can itself be obtained by the same singular-value three-lines argument as in Lemma~\\ref{lem:matrix-copied-slots}, interpolating the endpoint bounds with one trace norm and the other norms operator norms, and then applying duality."
     },
     {
       "from": "m1-lem-hermite-expansion",
       "to": "m1-prop-frozen-law",
+      "label": "lem:hermite-expansion",
       "context": "t most $j!$: it first symmetrizes the contracted indices, an orthogonal projection, and Gaussian Hermite orthogonality then gives the factor $j!$. Apply Lemma~\\ref{lem:hermite-expansion} to the band of levels in $\\Psi$. For each fixed $m$, the preceding replacements and Equation~\\eqref{eq:matrix-wick-redu"
     },
     {
       "from": "m1-lem-obs-multipliers",
       "to": "m1-prop-information-upper",
+      "label": "lem:obs-multipliers",
       "context": ". The kernel--kernel derivative is zero almost everywhere, as established in the Sylvester construction, and in any case has zero covariance multiplier. Lemma~\\ref{lem:obs-multipliers} now yields \\[ \\int_0^\\infty\\MI(Y_t;Z_T)\\,\\frac{dT}{T^2} \\le\\frac1{4\\lambda} \\left(9\\E|DR|^2+4\\log(1+L)\\,o(1)\\right)."
     },
     {
       "from": "m1-lem-obs-multipliers",
       "to": "m1-lem-obs-integrated-stability",
+      "label": "lem:obs-multipliers",
       "context": "herefore shows \\[ \\int_0^\\infty|h_T'(v)|^2\\,\\frac{dT}{T^2}=K_L. \\] Discarding two of the three factors $1+q/L$ bounds $K_L$ by the integral evaluated in Lemma~\\ref{lem:obs-multipliers}, namely $\\log(1+L)$. If $v\\ge w\\ge0$, the fundamental theorem of calculus and Cauchy--Schwarz give \\[ |h_T(v)-h_T(w)|"
     },
     {
       "from": "m1-prop-frozen-law",
       "to": "m1-lem-obs-integrated-stability",
+      "label": "prop:frozen-law",
       "context": "try gives \\[ \\E_G|Z_T-\\widetilde Z_T|^2 =\\|h_T(R(Y_t))-h_T(\\sigma^{1/2})\\|_{\\HS}^2. \\] Apply the matrix bound and the squared-mean convergence in Proposition~\\ref{prop:frozen-law}. The resulting factor $K_L$ is fixed while the sequence limit is taken."
     },
     {
       "from": "m1-lem-entropy-calculus",
       "to": "m1-lem-obs-ou-score",
+      "label": "lem:entropy-calculus",
       "context": "egration by parts gives \\[ \\frac{d}{du}\\int r_u\\log r_u\\,d\\gamma =-\\int\\frac{|Dr_u|^2}{r_u}\\,d\\gamma. \\] This is the entropy dissipation calculation of Lemma~\\ref{lem:entropy-calculus}; positive-time smoothing, truncation of the density and spatial cutoffs justify it for finite-entropy posteriors. Aver"
     },
     {
       "from": "m1-lem-obs-ou-score",
       "to": "m1-lem-obs-block-tests",
+      "label": "lem:obs-ou-score",
       "context": "\\[ (N-\\alpha N_u)\\cdot V =\\sum_{\\beta\\text{ selected}}\\tr_\\beta \\bigl((H[N_\\beta]-\\alpha H[(N_u)_\\beta])P\\bigr). \\] Substitute these two statements in Lemma~\\ref{lem:obs-ou-score} and integrate in $T$. For each realized positive block separately, the change of variable $x=T\\beta^2$ has the exact J"
     },
     {
       "from": "m1-lem-matrix-gaussian-moments",
       "to": "m1-lem-obs-block-tests",
+      "label": "lem:matrix-gaussian-moments",
       "context": "ion~\\eqref{eq:obs-block-test-bound}. For completeness, all its polynomial terms are integrable on the compact parameter rectangle. The moment bounds of Lemma~\\ref{lem:matrix-gaussian-moments} control $A_\\beta$ and $A_{u,\\beta}$ under the weighted trace. Conditional on the initial data, diffusion path, and OU"
     },
     {
       "from": "m1-lem-obs-integrated-stability",
       "to": "m1-lem-obs-polynomial-replacement",
+      "label": "lem:obs-integrated-stability",
       "context": "eta[(Z_T-\\widetilde Z_T)_\\beta]\\|_{\\HS}^2\\,\\frac{dT}{T^2} \\\\ &\\quad\\le C_1\\int_0^\\infty \\E|Z_T-\\widetilde Z_T|^2\\,\\frac{dT}{T^2}=o(1), \\end{align*} by Lemma~\\ref{lem:obs-integrated-stability}. All projected errors are summed before this comparison; no small block weight is divided out. Multiplication by the"
     },
     {
       "from": "m1-lem-obs-polynomial-replacement",
       "to": "m1-lem-obs-nonlinear-trace-law",
+      "label": "lem:obs-polynomial-replacement",
       "context": "chatten ideal inequality gives \\[ \\|g_x(A)H[G]\\|_{p}\\le\\sqrt{1+L}\\,\\|H[G]\\|_{p} \\] on each block. Interpolation and telescoping products, exactly as in Lemma~\\ref{lem:obs-polynomial-replacement}, show that these two matrices may be interchanged in every fixed polynomial trace. It remains to identify traces conta"
     },
     {
       "from": "m1-lem-matrix-gaussian-moments",
       "to": "m1-lem-obs-nonlinear-trace-law",
+      "label": "lem:matrix-gaussian-moments",
       "context": "l-replacement}, show that these two matrices may be interchanged in every fixed polynomial trace. It remains to identify traces containing $g_x(A)H[G]$. Lemma~\\ref{lem:matrix-gaussian-moments} gives the joint scalar Gaussian moment law for $A=H[N]$, $H[G']$, and $H[G]$. In particular, $A_u=\\alpha A+\\sqrt{1-\\alp"
     },
     {
       "from": "m1-lem-obs-polynomial-density",
       "to": "m1-lem-obs-nonlinear-trace-law",
+      "label": "lem:obs-polynomial-density",
       "context": "take the approximation error at most $1$; then $\\|p\\|_{L^q(\\gamma_1)} \\le\\sqrt{1+L}+1$. Such approximations exist by the polynomial-density argument in Lemma~\\ref{lem:obs-polynomial-density}, applied to one Gaussian coordinate. The scalar spectral measures of $A$ under $\\tau$ converge to $\\gamma_1$ by the mo"
     },
     {
       "from": "m1-lem-obs-block-tests",
       "to": "m1-prop-information-lower",
+      "label": "lem:obs-block-tests",
       "context": "\\alpha n+\\sqrt{1-\\alpha^2}\\,g'$, and fix a scalar polynomial $P(u,x,a,b)$. Give its matrix version any fixed ordering of the factors of each monomial. Lemmas \\ref{lem:obs-block-tests}, \\ref{lem:obs-polynomial-replacement}, and~\\ref{lem:obs-nonlinear-trace-law}, in that order, imply \\begin{align} &\\lim"
     },
     {
       "from": "m1-lem-obs-polynomial-replacement",
       "to": "m1-prop-information-lower",
+      "label": "lem:obs-polynomial-replacement",
       "context": ",g'$, and fix a scalar polynomial $P(u,x,a,b)$. Give its matrix version any fixed ordering of the factors of each monomial. Lemmas \\ref{lem:obs-block-tests}, \\ref{lem:obs-polynomial-replacement}, and~\\ref{lem:obs-nonlinear-trace-law}, in that order, imply \\begin{align} &\\liminf\\int_0^\\infty\\MI(Y_t;Z_T)\\,\\frac{dT"
     },
     {
       "from": "m1-lem-obs-nonlinear-trace-law",
       "to": "m1-prop-information-lower",
+      "label": "lem:obs-nonlinear-trace-law",
       "context": ",b)$. Give its matrix version any fixed ordering of the factors of each monomial. Lemmas \\ref{lem:obs-block-tests}, \\ref{lem:obs-polynomial-replacement}, and~\\ref{lem:obs-nonlinear-trace-law}, in that order, imply \\begin{align} &\\liminf\\int_0^\\infty\\MI(Y_t;Z_T)\\,\\frac{dT}{T^2} \\notag\\\\ &\\quad\\ge\\int_{\\mathc"
     },
     {
       "from": "m1-lem-obs-polynomial-density",
       "to": "m1-prop-information-lower",
+      "label": "lem:obs-polynomial-density",
       "context": "x(n)g|\\le\\sqrt{1+L}|g|$. Cauchy--Schwarz therefore gives all linear exponential moments for its finite law, uniformly on the compact parameter rectangle. Lemma~\\ref{lem:obs-polynomial-density} shows that polynomials in the four coordinates of $W$ are dense in this $L^2$ space. Since $\\E[r^2\\mid u,x]=1-\\alpha^2"
     },
     {
       "from": "m1-lem-obs-ou-score",
       "to": "m1-prop-information-lower",
+      "label": "lem:obs-ou-score",
       "context": "og(2\\pi e(1+L))$, while its conditional entropy is $\\frac12\\log(2\\pi e)+\\E\\log g_x(n)$ and is at least $\\frac12\\log(2\\pi e)$. Apply the scalar version of Lemma~\\ref{lem:obs-ou-score} and its entropy dissipation identity between times $a$ and $b$, where $0<a<b<\\infty$. This gives \\begin{align*} \\MI(n"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-lem-scalar-divergence",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] Suppose that the asserted dimension-free bound fails. Lemma~\\ref{lem:critical-normalization} gives compact centered co"
     },
     {
       "from": "m1-lem-critical-normalization",
       "to": "m1-lem-scalar-divergence",
+      "label": "lem:critical-normalization",
       "context": "[Proof of Theorem~\\ref{thm:main}] Suppose that the asserted dimension-free bound fails. Lemma~\\ref{lem:critical-normalization} gives compact centered counterexamples with normalized logarithmic Sobolev constant $1$ and linear subgaussian paramete"
     },
     {
       "from": "m1-prop-regularized-constants",
       "to": "m1-lem-scalar-divergence",
+      "label": "prop:regularized-constants",
       "context": "lization} gives compact centered counterexamples with normalized logarithmic Sobolev constant $1$ and linear subgaussian parameter tending to zero. Proposition~\\ref{prop:regularized-constants} shows that their positive-time regularized constants converge to $1$. Proposition~\\ref{prop:critical-sequence} supplies"
     },
     {
       "from": "m1-prop-critical-sequence",
       "to": "m1-lem-scalar-divergence",
+      "label": "prop:critical-sequence",
       "context": "ssian parameter tending to zero. Proposition~\\ref{prop:regularized-constants} shows that their positive-time regularized constants converge to $1$. Proposition~\\ref{prop:critical-sequence} supplies the stationary laws and near-eigenfunction fields at the fixed regularization time $s=1/8$, in either the stri"
     },
     {
       "from": "m1-prop-prediction",
       "to": "m1-lem-scalar-divergence",
+      "label": "prop:prediction",
       "context": "onary laws and near-eigenfunction fields at the fixed regularization time $s=1/8$, in either the strict entropy branch or the spectral gap branch. Proposition~\\ref{prop:prediction} gives the exact prediction curve in both cases. Proposition~\\ref{prop:hierarchy} then gives the symmetric tensor hiera"
     },
     {
       "from": "m1-prop-hierarchy",
       "to": "m1-lem-scalar-divergence",
+      "label": "prop:hierarchy",
       "context": "in either the strict entropy branch or the spectral gap branch. Proposition~\\ref{prop:prediction} gives the exact prediction curve in both cases. Proposition~\\ref{prop:hierarchy} then gives the symmetric tensor hierarchy, and Proposition~\\ref{prop:frozen-law} constructs its matrix square root and"
     },
     {
       "from": "m1-prop-frozen-law",
       "to": "m1-lem-scalar-divergence",
+      "label": "prop:frozen-law",
       "context": "f{prop:prediction} gives the exact prediction curve in both cases. Proposition~\\ref{prop:hierarchy} then gives the symmetric tensor hierarchy, and Proposition~\\ref{prop:frozen-law} constructs its matrix square root and frozen block description. These are precisely the inputs used in the present sec"
     },
     {
       "from": "m1-prop-information-upper",
       "to": "m1-lem-scalar-divergence",
+      "label": "prop:information-upper",
       "context": "square root and frozen block description. These are precisely the inputs used in the present section. For each fixed $t>0$ and $L\\ge1$, combine Propositions~\\ref{prop:information-upper} and~\\ref{prop:information-lower}. They give \\begin{equation}\\label{eq:obs-final-scalar-bound} \\int_0^\\infty \\MI\\left"
     },
     {
       "from": "m1-prop-information-lower",
       "to": "m1-lem-scalar-divergence",
+      "label": "prop:information-lower",
       "context": "cription. These are precisely the inputs used in the present section. For each fixed $t>0$ and $L\\ge1$, combine Propositions~\\ref{prop:information-upper} and~\\ref{prop:information-lower}. They give \\begin{equation}\\label{eq:obs-final-scalar-bound} \\int_0^\\infty \\MI\\left(n; \\sqrt{1+f_L(xe^{\\sqrt{8t}\\,n"
     }
   ]

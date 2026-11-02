@@ -87,7 +87,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-irrationality-exponent-of-pi-is-2-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The irrationality exponent of pi is 2; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The irrationality exponent of pi is 2.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -182,8 +182,7 @@
           "detail": "[Determinant comparison] Let 0<A<1 and 0<<1 , and define g=(A(1-)-)-(1-), L= ^2K ^m (m+1)v_0A^m . The approximations and the interpolation hypotheses cannot hold simultaneously if g>0, E_ ar +E_ an…",
           "dependsOn": [
             "m1-det-translation",
-            "m1-det-collision",
-            "m1-det-arithmetic"
+            "m1-det-collision"
           ]
         },
         {
@@ -195,9 +194,7 @@
           "source": "The arithmetic and analytic determinant estimates",
           "detail": "For every real \\(>2\\), there are positive rational numbers \\(,A,B,C\\) such that 0<<A<B<1, (A-)>1-, C>1, B<1/C, B<C<1. One can then choose \\(0<<1\\) such that g:=(A(1-)-)-(1-)>0.",
           "dependsOn": [
-            "m1-thm-main",
-            "m1-det-comparison",
-            "m1-geom-interpolation"
+            "m1-det-comparison"
           ]
         },
         {
@@ -239,7 +236,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

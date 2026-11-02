@@ -102,7 +102,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Bounded-Step-Walks-on-Gaussian-Primes-September-26-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Bounded-Step Walks on Gaussian Primes; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Bounded-Step Walks on Gaussian Primes.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -218,8 +218,7 @@
           "source": "Coverage from shared continuation data",
           "detail": "[One-step coverage transfer] Use the signed coordinates and the experiment just defined, with integers 1 s k and n1 . Let \\[ 0<3/8, 0<1/64, '=+4, 0<'<1, 0<1, 0'1. \\] Suppose that at every a in the…",
           "dependsOn": [
-            "m1-lem-list",
-            "m1-lem-conditioning"
+            "m1-lem-list"
           ]
         },
         {
@@ -253,9 +252,7 @@
           "kind": "proposition",
           "source": "Zero avoidance costs information",
           "detail": "[Information cost of one batch] There is a constant \\(c_1>0\\), depending only on the fixed schedule parameters, such that for all sufficiently large \\(M\\) and every batch in , 1 L_T \\, _ C I(X'_T;W_…",
-          "dependsOn": [
-            "m1-prop-coverage"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-telescope",
@@ -267,7 +264,6 @@
           "detail": "[A common-law entropy telescope] For every fixed collection \\( C\\) of prime choices, _T I(X'_T;W_ L_T (t_*) O'_T) L_T K_D+o(1), where the error tends to zero uniformly over the choices and the walks…",
           "dependsOn": [
             "m1-lem-continuity",
-            "m1-thm-sieve",
             "m1-prop-information-rate"
           ]
         }
@@ -288,7 +284,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

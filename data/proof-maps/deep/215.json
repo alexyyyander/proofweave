@@ -422,7 +422,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-canonical-massive-continuum-limit-of-the-two-dimensional-O3-model-October-4-2026/massive-continuum-o3.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The canonical massive continuum limit of the two-dimensional O(3) model; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The canonical massive continuum limit of the two-dimensional O(3) model.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -563,9 +563,7 @@
           "kind": "lemma",
           "source": "Block observations and the free kernels",
           "detail": "[Ambient core and tail estimates] The core factor retains the reserve e^ -c_Lp^2s_c of app:explicit-core, apart from the additional envelope \\ e_0(M^Ds_c+ _ x I_c |Z_x|^2)\\ , e_0=C_Lgpoly(M,p). The…",
-          "dependsOn": [
-            "m1-lem-rg-ambient"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-rg-joint",
@@ -575,9 +573,7 @@
           "kind": "proposition",
           "source": "Block observations and the free kernels",
           "detail": "[Joint integration and comparison] For every finite admissible selection A of prepared factors in a fixed pattern, including the compulsory cores, there are nonnegative majorants a_ such that \\[…",
-          "dependsOn": [
-            "m1-lem-rg-reserves"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-rg-canonical-contraction",
@@ -709,9 +705,7 @@
           "kind": "proposition",
           "source": "Trace estimates uniform in the cutoff",
           "detail": "[Rectangular doubling criterion] Let 0 and let n,w4 be integers. If _(n,w)2^ -10 , then, for every k0 , _(2^kn,2^kw)64^ -1 2^ -2^k . For a square with n=w , the transfer operators at circumferences…",
-          "dependsOn": [
-            "m1-lem-trace-concentration"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-trace-uniform",
@@ -846,8 +840,7 @@
           "detail": "[Relativistic reconstruction] The Schwinger functions S_n reconstruct a tempered Wightman theory in 1+1 dimensions with a three-component Hermitian scalar field. Its Hilbert space H is positive, its…",
           "dependsOn": [
             "m1-lem-reflection-positivity",
-            "m1-prop-euclidean-regularity",
-            "m1-prop-slab-clustering"
+            "m1-prop-euclidean-regularity"
           ]
         },
         {
@@ -877,8 +870,7 @@
             "m1-prop-continuum-gap",
             "m1-thm-main",
             "m1-prop-continuum-limit",
-            "m1-prop-euclidean-regularity",
-            "m1-prop-os-reconstruction"
+            "m1-prop-euclidean-regularity"
           ]
         },
         {
@@ -890,8 +882,7 @@
           "source": "Trajectories with a bounded bare offset",
           "detail": "[Canonical increments and comparison estimates] For every type P\\ r,+,-\\ , initialize the nearest-neighbor model as in Section~ . As long as the input couplings lie in their admitted bands, the exact…",
           "dependsOn": [
-            "m1-thm-rg-step",
-            "m1-prop-endpoint-matching"
+            "m1-thm-rg-step"
           ]
         },
         {
@@ -962,9 +953,7 @@
           "source": "Volume estimates uniform in the bare offset",
           "detail": "[Ordinary endpoint laws throughout the terminal band] Fix a finite covering-cap multiplier and C_0>0 before choosing H sufficiently large. Let a trajectory obtained from the microscopic Gibbs law by…",
           "dependsOn": [
-            "m1-lem-comparison-remainder",
             "m1-lem-editable-regions",
-            "m1-prop-integrated-comparison",
             "m1-cor-terminal-alignment"
           ]
         },
@@ -977,7 +966,6 @@
           "source": "Volume estimates uniform in the bare offset",
           "detail": "[Endpoint comparison at a common terminal value] Fix L,R,R' and choose H sufficiently large as in Proposition~ . Consider two admitted ordinary trajectories of depths N K1 , with offsets bounded by…",
           "dependsOn": [
-            "m1-prop-endpoint-matching",
             "m1-prop-free-bounds",
             "m1-thm-rg-step",
             "m1-lem-band-endpoints",
@@ -993,8 +981,6 @@
           "source": "Volume estimates uniform in the bare offset",
           "detail": "[A reference-box test uniform in the offset] The contraction slack >0 and then the parameters may be chosen so that there exist integers K_0,M_01 with 0_(u_1M_0L^N,u_2M_0L^N)2^ -10 whenever N K_0 ,…",
           "dependsOn": [
-            "m1-prop-preliminary",
-            "m1-lem-band-endpoints",
             "m1-lem-retuning",
             "m1-prop-endpoint-comparison"
           ]
@@ -1007,10 +993,7 @@
           "kind": "proposition",
           "source": "Volume estimates uniform in the bare offset",
           "detail": "[Uniform volume comparison and slab decay] Fix K_0,M_0 as in Lemma~ . There exist C,c>0 , independent of N K_0 , |s| R , and k0 , such that the following hold for =_N+s . Let (u_1,u_2) A and…",
-          "dependsOn": [
-            "m1-lem-trace-concentration",
-            "m1-prop-trace-doubling"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-inclined-periods",
@@ -1059,7 +1042,6 @@
           "source": "Continuum fields at a fixed bare-coupling offset",
           "detail": "[Uniform moment bounds] For N K_0 , |s| R , and every type P , the component moment measures in the plane are nonnegative and satisfy S_ n,P,N,s ^ ,cut (Q_1 Q_n) C^n n! for arbitrary physical unit…",
           "dependsOn": [
-            "m1-lem-finite-beta",
             "m1-prop-integrated-comparison",
             "m1-lem-source-comparison"
           ]
@@ -1074,9 +1056,7 @@
           "detail": "[Limits and comparison at fixed offsets] Let N and s s_* with |s| R , for a fixed type P . The fields converge jointly in law and in all joint moments for every finite list of continuous compactly…",
           "dependsOn": [
             "m1-lem-moment-bound",
-            "m1-prop-matching",
-            "m1-prop-uniform-volume",
-            "m1-lem-inclined-periods"
+            "m1-prop-matching"
           ]
         },
         {
@@ -1147,14 +1127,11 @@
           "source": "Uniqueness after canonical normalization",
           "detail": "[Two scale relations force constancy] Let L>1 be a power of two, let >0 , and let I=(-R,R) . Suppose :I(0,) is continuous and s G_s is a family of distribution hierarchies whose evaluation on every…",
           "dependsOn": [
-            "m1-thm-canonical",
             "m1-lem-finite-beta",
             "m1-prop-two-scales",
             "m1-prop-offset-limits",
             "m1-prop-normalization",
-            "m1-thm-main",
-            "m1-lem-shooting-normalization",
-            "m1-cor-canonical-physics"
+            "m1-lem-shooting-normalization"
           ]
         }
       ]
@@ -1171,7 +1148,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-Isolated-Particle-Pole-for-the-Two-Dimensional-O3-Spin-Field-October-4-2026/o3-particle-pole.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from An Isolated Particle Pole for the Two-Dimensional O(3) Spin Field; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from An Isolated Particle Pole for the Two-Dimensional O(3) Spin Field.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1254,9 +1231,7 @@
           "kind": "proposition",
           "source": "Transfer spectra and volume comparison",
           "detail": "[Comparison for three-quarter supports] Let w=w_k be sufficiently large. If the support of a bounded observable F has a lift contained in a rectangle of extent at most 3w/4 in each coordinate, then…",
-          "dependsOn": [
-            "m2-inp-contracts"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-tra-moments",
@@ -1289,9 +1264,7 @@
           "kind": "lemma",
           "source": "The even transfer sector",
           "detail": "[Association and single-component signs] The marginal law of in is positively associated. For even-degree monomials each using a single component, covariances are nonnegative when the components…",
-          "dependsOn": [
-            "m2-par-covariance"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-par-even-gap",
@@ -1335,8 +1308,7 @@
           "detail": "There exist ,c_0>0 and fixed thresholds N_0,w_0 such that for N N_0 , w=w_k w_0 , and every center s , _ tor \\ S(h_s,h'_s)\\ c_0.",
           "dependsOn": [
             "m2-inp-kernel",
-            "m2-tra-moments",
-            "m2-vis-proposition"
+            "m2-tra-moments"
           ]
         },
         {
@@ -1357,9 +1329,7 @@
           "kind": "lemma",
           "source": "A linear bound on the low-energy state count",
           "detail": "For all sufficiently large w , uniformly in y , Q_ w,y (e^ -E )&1-Ce^ -cD^ 3/4 &&(0 E y), \\\\ Q_ w,y (e^ -E )& Ce^ -cD^ 3/4 e^ -t_0E &&(E y+b_w). Every nonzero monomial of Q_ w,y has degree between…",
-          "dependsOn": [
-            "m2-cou-linear"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-mass-moments",
@@ -1396,7 +1366,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

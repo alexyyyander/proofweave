@@ -267,7 +267,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-weak-pinned-planar-distance-theorem-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The weak pinned planar distance theorem; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The weak pinned planar distance theorem.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -388,7 +388,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-power-saving-for-planar-unit-distances-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A power saving for planar unit distances; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A power saving for planar unit distances.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -439,10 +439,7 @@
           "kind": "proposition",
           "source": "An incidence piece and its probability laws",
           "detail": "From a sequence of \\(n=t^3\\) real planar points with at least \\(t^ 4-o(1) \\) ordered unit pairs, one can obtain real algebraic point and center sets \\(P,Q\\), and a nonempty graph \\(E P Q\\) consisting…",
-          "dependsOn": [
-            "m2-inc-specialization",
-            "m2-inc-cutting"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-inc-matching",
@@ -544,11 +541,7 @@
           "detail": "[The bounded alternative is impossible] For a sequence of the incidence pieces in , with the level spaces and quantities S in , no subsequence has S bounded. Consequently S .",
           "dependsOn": [
             "m2-inc-matching",
-            "m2-ht-transfer",
-            "m2-ht-height",
-            "m2-inc-entropy",
-            "m2-pred-acceptance",
-            "m2-inc-piece"
+            "m2-ht-height"
           ]
         },
         {
@@ -624,9 +617,7 @@
           "kind": "proposition",
           "source": "Level decomposition and difference budgets",
           "detail": "[Rare-level lower budget] For each of the three pair experiments, let x be its star vertex and y an opposite endpoint. Its score integrated outside C is at least 2 H_x^*-2 H_y^*-o(S), where both…",
-          "dependsOn": [
-            "m2-bud-pair-laws"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-com-ghost",
@@ -656,11 +647,7 @@
           "kind": "proposition",
           "source": "Common levels and positive rare mass",
           "detail": "[Common variation] For the center-star and point--template-star experiments of , C_Q+C_ P =o(S). Moreover their rare exception means satisfy _ H_q^*_ H_p^*+o(S).",
-          "dependsOn": [
-            "m2-com-transfer",
-            "m2-bud-rare-lower",
-            "m2-bud-upper"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-com-prediction-score",
@@ -682,7 +669,6 @@
           "detail": "[Positive rare mass] The good rare point exceptions satisfy _ t _ H_p^* S >0.",
           "dependsOn": [
             "m2-com-prediction-score",
-            "m2-bud-rare-lower",
             "m2-inc-matching"
           ]
         },
@@ -714,9 +700,7 @@
           "kind": "lemma",
           "source": "Extracting multiplicatively organized pairs",
           "detail": "[Wedge profiles] For an ordinary wedge \\((p,q,r)\\), there are nonnegative random variables \\(E_1,E_2\\), with \\( E_1+ E_2=o(S)\\), such that (n_ pq -n_ rq )-(a_p-a_r) _1& E_1, \\\\ n_ pq -n_ rq _1&…",
-          "dependsOn": [
-            "m2-bud-rare-moments"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-ext-band",
@@ -748,10 +732,7 @@
           "kind": "proposition",
           "source": "Extracting multiplicatively organized pairs",
           "detail": "[Organized pair graph] For the incidence graphs and levels constructed above, there are \\(J\\), a sequence \\(_t0\\), and a simple bipartite graph \\( E\\) between two copies of \\(P\\), each of size at…",
-          "dependsOn": [
-            "m2-ext-band",
-            "m2-ext-circles"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-alg-obstruction",
@@ -791,9 +772,7 @@
           "kind": "lemma",
           "source": "The algebraic obstruction",
           "detail": "There is a \\(k_0\\)-derivation \\(:F F\\) such that \\(_ i 0\\) for every grid edge.",
-          "dependsOn": [
-            "m2-alg-small-height-field"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-alg-surviving-point",
@@ -803,9 +782,7 @@
           "kind": "lemma",
           "source": "The algebraic obstruction",
           "detail": "Some \\(p=p_i\\) has transcendence degree \\(d_1\\) over \\(K_0\\), and evaluation identifies the function field \\(K_0(V_1)\\) with \\(K_0(p)\\).",
-          "dependsOn": [
-            "m2-alg-generic-grid"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-alg-private-valuations",
@@ -817,9 +794,7 @@
           "detail": "For every \\(\\ 1,,j\\ \\) there is an integer-valued valuation \\(v_\\) of \\(M\\) such that \\[ v_(D_)=1, v_(D_m)=0(m). \\] Consequently the classes of \\(D_1,,D_j\\) are independent in \\(M^/(M^)^2\\).",
           "dependsOn": [
             "m2-thm-main",
-            "m2-ht-bounded",
-            "m2-ext-pairs",
-            "m2-alg-obstruction"
+            "m2-ext-pairs"
           ]
         }
       ]
@@ -845,7 +820,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

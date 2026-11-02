@@ -297,7 +297,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Global-Support-and-Convex-Injectivity-Domains-under-Weak-MTW-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Global Support and Convex Injectivity Domains under Weak MTW; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Global Support and Convex Injectivity Domains under Weak MTW.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -349,7 +349,6 @@
           "source": "Minimizing velocities and the branch Hessian",
           "detail": "[Strict radial comparison] For every a G_x and 0<s<s'<1 , A_x(sa)>s s' A_x(s'a) as quadratic forms; that is, the difference is positive on every nonzero vector.",
           "dependsOn": [
-            "m1-lem-interior-characterization",
             "m1-lem-hessian-index"
           ]
         },
@@ -372,7 +371,6 @@
           "source": "Excluding conjugacy in minimizing convex hulls",
           "detail": "Suppose that [b_0,b_1] G_x and that b_0,b_1 are nonconjugate. Then every velocity in [b_0,b_1] is nonconjugate.",
           "dependsOn": [
-            "m1-lem-hessian-index",
             "m1-lem-transverse-concavity"
           ]
         },
@@ -473,9 +471,7 @@
           "dependsOn": [
             "m1-geo-first-cut",
             "m1-geo-local-injectivity",
-            "m1-geo-short-time",
             "m1-lem-covering-homeomorphism",
-            "m1-geo-minimizer-capture",
             "m1-lem-interior-characterization"
           ]
         },
@@ -487,9 +483,7 @@
           "kind": "corollary",
           "source": "Global supports and intermediate transport",
           "detail": "[Convex injectivity domains] For every x , both G_x and I(x) are convex.",
-          "dependsOn": [
-            "m1-geo-support"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-geo-sections",
@@ -554,7 +548,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Uniform-Bi-Holder-Transport-from-Weak-MTW-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Uniform Bi-Holder Transport from Weak MTW; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Uniform Bi-Holder Transport from Weak MTW.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -849,8 +843,7 @@
           "source": "Lower jets and the determinant contradiction",
           "detail": "[The pole matrix and endpoint lower jets] Suppose z_0 is a point where F has a second-order expansion and x(z) is differentiable. Write x=x(z_0) , z_0=_x(tp) , and choose active logs \\[ p=_ j=1…",
           "dependsOn": [
-            "m2-geo-support",
-            "m2-geo-slack"
+            "m2-geo-support"
           ]
         },
         {
@@ -913,11 +906,7 @@
           "dependsOn": [
             "m2-sc-maximum",
             "m2-geo-intermediate",
-            "m2-geo-short-time",
-            "m2-sc-parameter",
-            "m2-sc-levels",
             "m2-jet-transfer",
-            "m2-jet-semibound",
             "m2-sc-outward",
             "m2-jet-outer-conjugacy",
             "m2-jet-outer-test",
@@ -974,7 +963,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

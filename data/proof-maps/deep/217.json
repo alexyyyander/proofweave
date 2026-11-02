@@ -297,7 +297,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-low-temperature-Sherrington-Kirkpatrick-free-energy-limiting-law-September-24-2026/The-low-temperature-Sherrington-Kirkpatrick-free-energy-limiting-law-September-24-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The low-temperature Sherrington–Kirkpatrick free-energy limiting law; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The low-temperature Sherrington–Kirkpatrick free-energy limiting law.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -528,9 +528,7 @@
           "kind": "lemma",
           "source": "Inverting the scalar pair kernel",
           "detail": "[Scalar response on the two sectors] Use the finite resolution above, and put \\(m_t=V_z(K_t,Z_ K_t )\\), \\(_t=V_ zz (K_t,Z_ K_t )\\). Let \\( E_t\\) condition on the scalar prefix through \\(K_t\\). On the…",
-          "dependsOn": [
-            "m1-inv-pair-inverse"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-global-trial-gap",
@@ -635,10 +633,7 @@
           "source": "Weighted comparison budgets",
           "detail": "[Closure for the modified constraints] Along any fixed sequence of optimizers with the strong-removal hypotheses above and fixed outer-comparability constants, the following estimate holds for…",
           "dependsOn": [
-            "m1-bud-common-star",
-            "m1-bud-coarse-profile",
-            "m1-bud-outer-moments",
-            "m1-bud-outer-second"
+            "m1-bud-common-star"
           ]
         },
         {
@@ -691,9 +686,7 @@
           "kind": "lemma",
           "source": "Weighted comparison budgets",
           "detail": "[Integrated errors at free forks] Uniformly, \\[ _0^ c_Hu D_v dv&_ u^2 T_1, T_1=A+B_f+y_c^2,\\\\ _0^ c_Hu D_v^2dv&_ u^3 T_2, T_2=A^2+B_f^2+A^ 3/2 y_c+A y_c^ 5/3 ,\\\\ (avg_ v w D_v^2)^ 1/2 &_ u A (w…",
-          "dependsOn": [
-            "m1-bud-box-moments"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-bud-high-primitive",
@@ -724,8 +717,7 @@
           "source": "Weighted comparison budgets",
           "detail": "[Buffered one-row closure] In any of the boxes of we claim \\[ avg|S_i-_s(K_s(i))|=o(u^3 P_1). \\]",
           "dependsOn": [
-            "m1-bud-high-primitive",
-            "m1-bud-targets"
+            "m1-bud-high-primitive"
           ]
         },
         {
@@ -747,7 +739,6 @@
           "source": "Statistics for the genuine paths",
           "detail": "[Width construction] The preceding construction gives a deterministic envelope with the size, integral, and defect bounds stated in Proposition~ . The random moment bounds will be proved in the next…",
           "dependsOn": [
-            "m1-prop-statistics-pointwise",
             "m1-global-residual-blocks",
             "m1-global-buffer-brackets"
           ]
@@ -854,10 +845,7 @@
           "kind": "lemma",
           "source": "Statistics for the genuine paths",
           "detail": "[Low sources with a retained high pair] Consider an allocation with bounded degree and bounded topology weights. The old prescribed topology is either absent or consists of one pair splitting at mass…",
-          "dependsOn": [
-            "m1-prop-statistics-high",
-            "m1-inv-pair-inverse"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-exp-lem-centered-count",
@@ -878,9 +866,7 @@
           "source": "Finite pressure expansion and power count",
           "detail": "[Coefficients after compression] Fix the dyadic restrictions on the base factors and a cut \\(c w\\) within the region where the small inverse is regular. A sufficiently large fixed separation factor…",
           "dependsOn": [
-            "m1-cor-skcw",
-            "m1-thm-main",
-            "m1-cor-disorder-chaos"
+            "m1-thm-main"
           ]
         }
       ]
@@ -900,7 +886,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

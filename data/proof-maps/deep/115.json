@@ -232,7 +232,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Exact-Uniform-Sampling-of-Contingency-Tables-with-Arbitrary-Margins-September-24-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Exact Uniform Sampling of Contingency Tables with Arbitrary Margins; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Exact Uniform Sampling of Contingency Tables with Arbitrary Margins.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -331,10 +331,7 @@
           "kind": "lemma",
           "source": "Transport and the graph variance bound",
           "detail": "[Conditional transport] Let be a row-major context, and let children l-1,l of its next slot have positive masses z_-,z_+ and means H_-,H_+ . Then (z_-,z_+)(H_--H_+)^2 A_0 E_(H), A_0=2+2d(U+1)^2.",
-          "dependsOn": [
-            "m1-lem-pair-summation",
-            "m1-lem-repair"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-poincare",
@@ -467,7 +464,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-FPRAS-for-Cell-Bounded-Contingency-Tables-September-24-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from An FPRAS for Cell-Bounded Contingency Tables; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from An FPRAS for Cell-Bounded Contingency Tables.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -533,8 +530,7 @@
           "detail": "[Log-concave tree marginals] For integers \\(v<k<w\\) such that \\(a_t(v),a_t(w)>0\\), a_t(k) a_t(v)^ (w-k)/(w-v) a_t(w)^ (k-v)/(w-v) . Consequently the positive support of \\(a_t\\) is an integer interval.",
           "dependsOn": [
             "m2-lem-integer-signature",
-            "m2-lem-forest",
-            "m2-prop-contamination"
+            "m2-lem-forest"
           ]
         },
         {
@@ -711,8 +707,7 @@
           "detail": "[Accuracy of the reference experiment] With probability at least \\(1-1/50\\), the reference experiment does not abort, every stored multiplier collection is good at its own parameter in the sense of ,…",
           "dependsOn": [
             "m2-lem-trace",
-            "m2-lem-time-average",
-            "m2-lem-initialization"
+            "m2-lem-time-average"
           ]
         },
         {
@@ -725,7 +720,6 @@
           "detail": "[Coupling and bounded computation] The implemented run uses a number of bit operations bounded, on every execution, by a fixed polynomial in \\(L\\) and \\(^ -1 \\). It returns a nonnegative rational of…",
           "dependsOn": [
             "m2-prop-weight-oracle",
-            "m2-thm-main",
             "m2-prop-annealing",
             "m2-prop-contamination"
           ]
@@ -765,7 +759,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

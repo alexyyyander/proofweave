@@ -417,7 +417,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Quenched-SLE3-limits-for-general-weak-random-bond-Ising-models-October-5-2026/general-weak-random-bond-ising.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Quenched SLE₃ limits for general weak random-bond Ising models; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Quenched SLE₃ limits for general weak random-bond Ising models.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -500,9 +500,7 @@
           "kind": "lemma",
           "source": "From decaying potentials to crossing comparisons",
           "detail": "[Uniform conditional passage bounds] There is a fixed x_ cr >0 such that _jX_j x_ cr implies, for each of the three checks T_i with inner radius r M_0s_k , B_ k,T_i & q_i^0+C_ b _ j=k ^ J(r)…",
-          "dependsOn": [
-            "m1-lem-crossing-one-step"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-local-comparison",
@@ -522,10 +520,7 @@
           "kind": "proposition",
           "source": "From decaying potentials to crossing comparisons",
           "detail": "[Expected total variation for torus tests] Assume the same array hypotheses and~ . Fix finitely many buffered tests T in a common planar chart, now in physical units. Let 0 and choose tori of lattice…",
-          "dependsOn": [
-            "m1-lem-crossing-one-step",
-            "m1-lem-crossing-bootstrap"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-four-passages",
@@ -558,9 +553,7 @@
           "kind": "lemma",
           "source": "Identification of the physical critical point",
           "detail": "[Rapid annealed decay of dual arms] For every '>_* and A>0 there is a finite constant C_ ',A such that, on the dual lattice, __ B_ 2N (x),', ^ w,* (x B_N(x) inside B_N(x)) C_ ',A N^ -A . The estimate…",
-          "dependsOn": [
-            "m1-lem-fk-barriers"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-physical-criticality",
@@ -571,8 +564,7 @@
           "source": "Identification of the physical critical point",
           "detail": "[Physical criticality] For the original iid bond law and every sufficiently small fixed >0 , the temperature in Proposition~ satisfies _* = _c^(). The environmental mean of the infinite-volume plus…",
           "dependsOn": [
-            "m1-lem-fk-barriers",
-            "m1-lem-dual-arms"
+            "m1-lem-fk-barriers"
           ]
         },
         {
@@ -593,9 +585,7 @@
           "kind": "proposition",
           "source": "Signed barriers and the quenched interface limit",
           "detail": "[Transfer of a finite strip family] Fix h>0 and a finite family of allowed plus strips in A_h^- . The pure critical Dobrushin sample in an ordinary mesh approximation of A_h^- and the target sample…",
-          "dependsOn": [
-            "m1-lem-conditional-gluing"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-ordered-chords",
@@ -616,7 +606,6 @@
           "source": "Signed barriers and the quenched interface limit",
           "detail": "[Progress along a simple limiting chord] Suppose g_n are simple oriented curves, their endpoints tend to a,b , and their traces converge in Hausdorff distance to that of an injective continuous chord…",
           "dependsOn": [
-            "m1-cor-four-passages",
             "m1-thm-main",
             "m1-lem-ordered-chords"
           ]
@@ -635,7 +624,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Quenched-SLE3-Universality-for-the-Weak-Random-Bond-Ising-Model-October-5-2026/quenched-sle3-weak-random-bond-ising.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Quenched SLE₃ Universality for the Weak Random-Bond Ising Model; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Quenched SLE₃ Universality for the Weak Random-Bond Ising Model.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -808,9 +797,7 @@
           "kind": "lemma",
           "source": "One-step moment bounds",
           "detail": "[Moments of finitely dependent Hilbert vectors] Let (V_i)_ i I be centered random vectors in a real Hilbert space, where |I|=N . Suppose a graph of bounded degree on I is a dependency graph:…",
-          "dependsOn": [
-            "m2-mom-one-step"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-mom-taylor-substitution",
@@ -869,11 +856,7 @@
           "kind": "proposition",
           "source": "A variance coordinate and its marginal decay",
           "detail": "[Marginal variance flow] Fix the scale-step parameters and finite constants A,B . For every sufficiently large fixed H , the polynomial coordinate of Definition~ satisfies, whenever 0<z1 , X Az , and…",
-          "dependsOn": [
-            "m2-var-near-w",
-            "m2-var-shell",
-            "m2-var-compatibility"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-traj-initialization",
@@ -896,7 +879,6 @@
           "source": "Tuning a trajectory with vanishing perturbations",
           "detail": "[A small critical trajectory] Fix the scale-step parameters chosen in Proposition~ and a sufficiently large initial spacing s_0 . There are constants A,B,D,c>0 , a fixed cutoff H , and _0>0 such…",
           "dependsOn": [
-            "m2-mom-one-step",
             "m2-traj-initialization",
             "m2-var-near-w",
             "m2-var-flow",
@@ -921,9 +903,7 @@
           "kind": "proposition",
           "source": "Crossing comparisons along the random trajectory",
           "detail": "[Uniform conditional check bounds] Fix the preceding geometry and step constants. There is _*>0 such that if the tuned trajectory satisfies _jX_j_* , then, for every check T_i of ratio a and inner…",
-          "dependsOn": [
-            "m2-cross-single-level"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-cross-torus-comparison",
@@ -978,7 +958,6 @@
           "source": "Identification of the physical critical point",
           "detail": "[Identification of the tuned parameter] The value h_* furnished by Theorem~ is zero.",
           "dependsOn": [
-            "m2-map-step",
             "m2-crit-torus-identities"
           ]
         },
@@ -1015,9 +994,7 @@
           "source": "Identification of the physical critical point",
           "detail": "[Physical critical point] For every sufficiently small fixed >0 , \\[ m_(h)=0(h0), m_(h)>0(h>0). \\] Consequently, for every sufficiently small >0 , the critical inverse temperature in Theorem~ is the…",
           "dependsOn": [
-            "m2-crit-ring-barrier",
-            "m2-crit-subcritical-arms",
-            "m2-thm-main"
+            "m2-crit-ring-barrier"
           ]
         },
         {
@@ -1039,8 +1016,7 @@
           "source": "From bulk comparisons to quenched curves",
           "detail": "[Quenched transfer of a finite strip family] Fix h>0 and a finite family of allowed plus strips in A_h^- . Let _ h,n ^- have the pure Dobrushin spin law in an ordinary lattice approximation of A_h^-…",
           "dependsOn": [
-            "m2-cross-torus-comparison",
-            "m2-curv-conditional-gluing"
+            "m2-cross-torus-comparison"
           ]
         },
         {
@@ -1051,9 +1027,7 @@
           "kind": "lemma",
           "source": "From bulk comparisons to quenched curves",
           "detail": "[Finite strips and limiting barriers] For either sign of displacement, the continuum laws SLE_3(A_h^;a_h^,b_h^) converge in d_ curv , as h0 , to SLE_3(D;a,b) . Given errors _j0 , one can choose…",
-          "dependsOn": [
-            "m2-curv-strip-transfer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-curv-ordered-chords",
@@ -1074,11 +1048,8 @@
           "source": "From bulk comparisons to quenched curves",
           "detail": "[Progress criterion for the curve metric] Let g_n be simple oriented curves with endpoints tending to a,b , and let G be a continuous injective chord with those endpoints and interior in D . Suppose…",
           "dependsOn": [
-            "m2-thm-main",
-            "m2-curv-geometric-input",
             "m2-curv-strip-transfer",
-            "m2-curv-ordered-chords",
-            "m2-cross-four-passages"
+            "m2-curv-ordered-chords"
           ]
         }
       ]
@@ -1095,7 +1066,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Logarithmic-Relative-Fluctuations-in-the-Weakly-Disordered-Planar-Ising-Model-October-5-2026/critical-relative-second-moment-weak-random-bond-ising.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Logarithmic Relative Fluctuations in the Weakly Disordered Planar Ising Model; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Logarithmic Relative Fluctuations in the Weakly Disordered Planar Ising Model.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1126,9 +1097,7 @@
           "kind": "proposition",
           "source": "Reference averaging, charges, and field products",
           "detail": "[Averaging and charge cancellation] Fix >0 smaller than p-b in the applicable row of . For all sufficiently large w and R Cw , a function F of that parity, supported in B_w(z) , satisfies P_ R,z F^ _…",
-          "dependsOn": [
-            "m3-ref-charges"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-ref-ope",
@@ -1182,7 +1151,6 @@
           "source": "An exact local change of scale",
           "detail": "[Exact partition identity] For sufficiently small at fixed L , let a finite-volume real background have finitely many possible anchors, satisfy , and have finite principal norms. Every admissible…",
           "dependsOn": [
-            "m3-block-tree",
             "m3-block-finite"
           ]
         },
@@ -1206,9 +1174,7 @@
           "kind": "corollary",
           "source": "An exact local change of scale",
           "detail": "[Large generating footprints] Retain the animal footprint of a connected coefficient before projecting onto constants. For background coefficients from the small-entry expansion whose footprint has…",
-          "dependsOn": [
-            "m3-block-tree"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-block-tails",
@@ -1404,7 +1370,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

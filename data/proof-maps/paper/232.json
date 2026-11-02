@@ -680,781 +680,937 @@
     {
       "from": "m1-lem-spin-lift",
       "to": "m1-lem-cell-cut",
+      "label": "lem:spin-lift",
       "context": "In particular, complementary components cannot cross the circuit. After specifying the complete inner height layer, the spin lift and the edge weights in Lemma~\\ref{lem:spin-lift} give the claimed height specification. No first-spin agreement event without the open-cell prescriptions has been used"
     },
     {
       "from": "m1-prop-history-order",
       "to": "m1-discrete-ising-partition",
+      "label": "prop:history-order",
       "context": "[Proof of Proposition~\\ref{prop:history-order}] We first sum the second spins by splitting their walls according to the first-spin sign. Lemma~\\ref{discrete:ising-pa"
     },
     {
       "from": "m1-prop-history-order",
       "to": "m1-discrete-online",
+      "label": "prop:history-order",
       "context": "ecified own-history conditional laws. Select a common query block $Q=Q(R)$ and couple its marginals by an ordered kernel $\\kappa_R$, available from Proposition~\\ref{prop:history-order}. For each possible pair of answers $(a_1,a_2)$ recursively complete with the respective conditional laws $\\mu_i^R(\\cdot"
     },
     {
       "from": "m1-prop-history-order",
       "to": "m1-lem-buffer-circuits",
+      "label": "prop:history-order",
       "context": "ich can only decrease the probability of the favorable increasing event. Prescribing the outer cut open with the adverse sign decreases it again by Proposition~\\ref{prop:history-order}. There are no other constraints inside this small outer cut. Lemma~\\ref{lem:cell-cut} and Theorem~\\ref{thm:circuit-inpu"
     },
     {
       "from": "m1-lem-cell-cut",
       "to": "m1-lem-buffer-circuits",
+      "label": "lem:cell-cut",
       "context": "er cut open with the adverse sign decreases it again by Proposition~\\ref{prop:history-order}. There are no other constraints inside this small outer cut. Lemma~\\ref{lem:cell-cut} and Theorem~\\ref{thm:circuit-input} give a positive lower bound in the resulting deterministic regular problem. The sam"
     },
     {
       "from": "m1-thm-circuit-input",
       "to": "m1-lem-buffer-circuits",
+      "label": "thm:circuit-input",
       "context": "gn decreases it again by Proposition~\\ref{prop:history-order}. There are no other constraints inside this small outer cut. Lemma~\\ref{lem:cell-cut} and Theorem~\\ref{thm:circuit-input} give a positive lower bound in the resulting deterministic regular problem. The same comparison applies after any allow"
     },
     {
       "from": "m1-lem-buffer-circuits",
       "to": "m1-prop-local-mixing",
+      "label": "lem:buffer-circuits",
       "context": "cells also in $\\mu$, and use the ordered online kernels thereafter. Search inward in separated annular slots for a good plus circuit in the lower law. By Lemma~\\ref{lem:buffer-circuits}, the failure probability is $C(r/L)^\\alpha$. A plus cell in the lower law is plus also in the upper law, so the selecte"
     },
     {
       "from": "m1-discrete-online",
       "to": "m1-prop-local-mixing",
+      "label": "discrete:online",
       "context": "pins reverse the order and the signs. The slot bound gives $Ce^{-ck}$. The correctness of all marginal conditionings follows from the finite recursion of Lemma~\\ref{discrete:online}, followed only then by volume limits."
     },
     {
       "from": "m1-prop-history-order",
       "to": "m1-cor-conditional-plane-matching",
+      "label": "prop:history-order",
       "context": "erministic regular open-minus circuit inside $B(z,L)$ at a radius comparable to $L$. Adding this prescription lowers the first-color/status law by Proposition~\\ref{prop:history-order}. The old boundary prescriptions are outside this regular circuit. Search inward for a common open-plus circuit and use"
     },
     {
       "from": "m1-prop-local-mixing",
       "to": "m1-cor-conditional-plane-matching",
+      "label": "prop:local-mixing",
       "context": "ions are outside this regular circuit. Search inward for a common open-plus circuit and use the same annular stack and exact inside sampling as in Proposition~\\ref{prop:local-mixing}. The error is $C(r/L)^\\alpha$, independently of the old circuit and its exterior record. The law inside the determini"
     },
     {
       "from": "m1-discrete-online",
       "to": "m1-cor-conditional-plane-matching",
+      "label": "discrete:online",
       "context": "ntity in the statement proves independence from $\\mathcal R$, and averaging the mismatch bound proves the final estimate. For a stopped exploration from Lemma~\\ref{discrete:online}, assume there are no additional pins or equality edges inside the cut and no equality edge crosses it. The geometric i"
     },
     {
       "from": "m1-lem-cell-cut",
       "to": "m1-cor-conditional-plane-matching",
+      "label": "lem:cell-cut",
       "context": "solute heights along exterior paths, reveal no retained component label: open crossing cells have constant factors and no equality edge crosses the cut. Lemma~\\ref{lem:cell-cut} therefore verifies the retained-law hypothesis for precisely these records. Retained second-spin labels must remain un"
     },
     {
       "from": "m1-lem-cell-cut",
       "to": "m1-prop-rare-pins",
+      "label": "lem:cell-cut",
       "context": "retained. In the deterministic outer-cut law, conditioning on this particular closer favorable cut increases the event $A$. Its inside law is the same by Lemma~\\ref{lem:cell-cut}; hence the conditional probability is at least $p_*$. Averaging over successful records proves \\begin{equation}\\label{d"
     },
     {
       "from": "m1-lem-buffer-circuits",
       "to": "m1-lem-collar-switch",
+      "label": "lem:buffer-circuits",
       "context": "vent involves absolute offsets and is not invariant, one must enlarge its bounded range to contain the orbit before applying this identity. Finally apply Lemma~\\ref{lem:buffer-circuits} successively in two disjoint nested collars to require opposite signs, with the given constraints away from both buffer"
     },
     {
       "from": "m1-prop-history-order",
       "to": "m1-lem-height-order",
+      "label": "prop:history-order",
       "context": "eights are bounded in this finite problem by the trace bounds plus graph distance to the trace. FKG and the product-with-$\\{0,1\\}$ argument used in Proposition~\\ref{prop:history-order} therefore give association and ordered comparison on a finite lattice, with inadmissible arrays assigned zero weight."
     },
     {
       "from": "m1-lem-spin-lift",
       "to": "m1-lem-height-order",
+      "label": "lem:spin-lift",
       "context": "ion at each stopping step. This is the asserted empty-exterior law and applies without regularity of the exposed loop. Finally the ambient realization in Lemma~\\ref{lem:spin-lift}, with constant pair pins on the connected skeleton, gives the same flat height problems used above."
     },
     {
       "from": "m1-lem-height-order",
       "to": "m1-lem-shell-moments",
+      "label": "lem:height-order",
       "context": "eir unoriented geometry, the level loops have independent fair height increments. Expose enclosing loops from outside inward, using the stopping rule in Lemma~\\ref{lem:height-order}. If the first loop counted by $N_d(z)$ exists, its unexplored interior has the empty-exterior loop law with a constant"
     },
     {
       "from": "m1-discrete-online",
       "to": "m1-lem-shell-moments",
+      "label": "discrete:online",
       "context": "n-plus $B$ contour $C$ strictly inside its boundary, surrounding $B(z,d/2)$. Choose the outermost such contour by the authorized-edge invasion following Lemma~\\ref{discrete:online}. The search exposes only exterior history and the prescribed open-plus cut data. In particular it reveals no strict i"
     },
     {
       "from": "m1-lem-cell-cut",
       "to": "m1-lem-shell-moments",
+      "label": "lem:cell-cut",
       "context": "ch exposes only exterior history and the prescribed open-plus cut data. In particular it reveals no strict interior cell and leaves the exact cut law of Lemma~\\ref{lem:cell-cut} inside $C$. Moreover \\begin{equation}\\label{moments:cut-radius} d/2\\leq\\dist(z,C)\\leq2d+O(1). \\end{equation} There is"
     },
     {
       "from": "m1-lem-buffer-circuits",
       "to": "m1-lem-shell-moments",
+      "label": "lem:buffer-circuits",
       "context": "{moments:cut-radius} bounds the number of requests by a constant depending only on $\\epsilon$. Bounded lattice displacements are absorbed by the slack. Lemma~\\ref{lem:buffer-circuits} and positive association give a fixed positive probability for their intersection in the free ambient law. All the data"
     },
     {
       "from": "m1-prop-history-order",
       "to": "m1-lem-shell-moments",
+      "label": "prop:history-order",
       "context": "fixed positive probability for their intersection in the free ambient law. All the data imposed on $C$ are favorable for this increasing event, so Proposition~\\ref{prop:history-order} gives the same lower bound after conditioning on $C$. The connected circuit chain contains a path from $C$ to the term"
     },
     {
       "from": "m1-lem-buffer-circuits",
       "to": "m1-moments-covariance",
+      "label": "lem:buffer-circuits",
       "context": "ence does not change their marginal. All arm annuli lie away from the skeleton, since $b\\leq2a+1$ and $c_0$ is small. The logarithmic circuit stack from Lemma~\\ref{lem:buffer-circuits}, applied for each of the two possible wall colors, consequently gives \\begin{equation}\\label{moments:arm} \\Prob\\{\\text"
     },
     {
       "from": "m1-lem-shell-moments",
       "to": "m1-moments-covariance",
+      "label": "lem:shell-moments",
       "context": "end{equation} If $M_d$ counts common loops in this shell, then $M_d\\leq N_d(z)$ and $M_d=0$ outside the event in~\\eqref{moments:arm}. Cauchy--Schwarz and Lemma~\\ref{lem:shell-moments} imply \\[ \\E M_d\\leq (\\E N_d(z)^2)^{1/2} \\Prob(M_d>0)^{1/2} \\leq C(d/b)^{\\alpha/2}. \\] Loops at distance below"
     },
     {
       "from": "m1-thm-midpoint",
       "to": "m1-lem-midpoint-amplification",
+      "label": "thm:midpoint",
       "context": "tic in \\[ [(2^{j-1}-7/2)M,(2^j+7/2)M]\\subset I_{j-1}; \\] indeed the central average contributes at most $M/2$ and rounding at most $A/2\\leq M$. Apply Theorem~\\ref{thm:midpoint} to $\\mathcal W$ restricted to the chosen tail and central sets, and to two copies of $\\mathcal W$ restricted to $\\{Y\\in"
     },
     {
       "from": "m1-moments-covariance",
       "to": "m1-prop-smearing",
+      "label": "moments:covariance",
       "context": "For zero trace, Lemma~\\ref{moments:covariance} and Chebyshev's inequality supply central probability at least $1/2$ with $M=C_A(1+\\sqrt{\\log(n/a)})$, increased if nec"
     },
     {
       "from": "m1-moments-weighted-midpoints",
       "to": "m1-prop-smearing",
+      "label": "moments:weighted-midpoints",
       "context": "ovariance} and Chebyshev's inequality supply central probability at least $1/2$ with $M=C_A(1+\\sqrt{\\log(n/a)})$, increased if necessary to exceed $A/2$. Lemma~\\ref{moments:weighted-midpoints} verifies all midpoint hypotheses for the actual weighted height measure. Apply Lemma~\\ref{lem:midpoint-amplification}"
     },
     {
       "from": "m1-lem-midpoint-amplification",
       "to": "m1-prop-smearing",
+      "label": "lem:midpoint-amplification",
       "context": "ased if necessary to exceed $A/2$. Lemma~\\ref{moments:weighted-midpoints} verifies all midpoint hypotheses for the actual weighted height measure. Apply Lemma~\\ref{lem:midpoint-amplification} with one class to prove \\eqref{moments:smearing-bound} for zero trace. For general trace, put $K_0=\\lceil K\\rceil$. H"
     },
     {
       "from": "m1-lem-height-order",
       "to": "m1-prop-smearing",
+      "label": "lem:height-order",
       "context": "nt-amplification} with one class to prove \\eqref{moments:smearing-bound} for zero trace. For general trace, put $K_0=\\lceil K\\rceil$. Height order from Lemma~\\ref{lem:height-order} traps the law between the flat laws with traces $-K_0$ and $K_0$. For nonnegative weights, the corresponding smearing"
     },
     {
       "from": "m1-lem-cell-cut",
       "to": "m1-prop-smearing",
+      "label": "lem:cell-cut",
       "context": "gle inequality in $L^p$ finishes the proof. On a cut, fix the entire actual inner trace first, so its interior is an ordinary weighted height problem by Lemma~\\ref{lem:cell-cut}. The same argument applies conditionally."
     },
     {
       "from": "m1-lem-buffer-circuits",
       "to": "m1-prop-plane-moments",
+      "label": "lem:buffer-circuits",
       "context": "outside for a good $B$ circuit in an annulus with radii $L_0a$ and $2L_0a$. Choose $C_0$ large enough that all search buffers fit in the ambient graph. Lemma~\\ref{lem:buffer-circuits} gives this stopped-cut event probability at least $c_1>0$. Its trace is contained in two consecutive integers. Condit"
     },
     {
       "from": "m1-prop-smearing",
       "to": "m1-prop-plane-moments",
+      "label": "prop:smearing",
       "context": "tegers. The interior is now an ordinary height problem with trace in $\\{0,1\\}$, and its distance from $z_0$ is between fixed multiples of $L_0a$. Proposition~\\ref{prop:smearing} therefore gives a uniform conditional second-moment bound $C_A$. The random subtraction changes no zero-total smearing."
     },
     {
       "from": "m1-lem-spin-lift",
       "to": "m1-prop-plane-moments",
+      "label": "lem:spin-lift",
       "context": "vely on the pair state at $o$. Consequently the unconditioned free pair has exactly the same increment law as its version with state $(+,+)$ at $o$. By Lemma~\\ref{lem:spin-lift}, the latter is the measure on integer $1$-Lipschitz arrays with $H(o)=0$ and density proportional to $x^{\\sum_{ij}|H(i)"
     },
     {
       "from": "m1-moments-weighted-midpoints",
       "to": "m1-prop-plane-moments",
+      "label": "moments:weighted-midpoints",
       "context": "ing the anchor, and hence introduces no extra anchor constraint into the stopped interior law. The anchored arrays form one midpoint-admissible class by Lemma~\\ref{moments:weighted-midpoints}. Applying Lemma~\\ref{lem:midpoint-amplification} proves~\\eqref{moments:plane-bound} in finite volume. At fixed lattic"
     },
     {
       "from": "m1-lem-midpoint-amplification",
       "to": "m1-prop-plane-moments",
+      "label": "lem:midpoint-amplification",
       "context": "or constraint into the stopped interior law. The anchored arrays form one midpoint-admissible class by Lemma~\\ref{moments:weighted-midpoints}. Applying Lemma~\\ref{lem:midpoint-amplification} proves~\\eqref{moments:plane-bound} in finite volume. At fixed lattice weights, enlarge that volume. The increment conv"
     },
     {
       "from": "m1-prop-local-mixing",
       "to": "m1-prop-plane-moments",
+      "label": "prop:local-mixing",
       "context": "-amplification} proves~\\eqref{moments:plane-bound} in finite volume. At fixed lattice weights, enlarge that volume. The increment convergence from Proposition~\\ref{prop:local-mixing} and the uniform bounds pass the estimate to the plane; higher moments also give convergence of every fixed finite momen"
     },
     {
       "from": "m1-lem-buffer-circuits",
       "to": "m1-lem-nondegeneracy",
+      "label": "lem:buffer-circuits",
       "context": "around $\\supp f_1$ inside $U_1$, avoiding $\\supp f_2$. Prescribe an outer good $B$-plus cut and an inner good $B$-minus cut. Successive applications of Lemma~\\ref{lem:buffer-circuits} in these separated buffers give their joint probability at least $c_2>0$, uniformly in $R$ large enough for rounding."
     },
     {
       "from": "m1-discrete-online",
       "to": "m1-lem-nondegeneracy",
+      "label": "discrete:online",
       "context": "ed buffers give their joint probability at least $c_2>0$, uniformly in $R$ large enough for rounding. Make the choices by the stopped searches following Lemma~\\ref{discrete:online}; the event and the selected cuts depend on first spins and cell statuses, and do not prescribe any second-spin labels."
     },
     {
       "from": "m1-lem-collar-switch",
       "to": "m1-lem-nondegeneracy",
+      "label": "lem:collar-switch",
       "context": "ng Lemma~\\ref{discrete:online}; the event and the selected cuts depend on first spins and cell statuses, and do not prescribe any second-spin labels. By Lemma~\\ref{lem:collar-switch}, conditional on those variables there is a second-spin component in the intervening collar whose fair label flip change"
     },
     {
       "from": "m1-prop-plane-moments",
       "to": "m1-lem-nondegeneracy",
+      "label": "prop:plane-moments",
       "context": "variance $4$ and second moment at least $4$. Averaging over the cut event yields $\\E Y_R^2\\geq4c_2$ in finite volume. The fourth-moment bound in Proposition~\\ref{prop:plane-moments} allows passage of these second moments to the plane. This proves the claim."
     },
     {
       "from": "m1-spectra-unitary",
       "to": "m1-plane-lem-spectrum",
+      "label": "spectra:unitary",
       "context": "Let $V_u$ be ordinary unitary translation on the plane probability space. Lemma~\\ref{spectra:unitary}, applied to the two basis translations, constructs their scalar covariance measures $\\mu_{a,b}(\\dd p)$ on $\\widehat\\T$."
     },
     {
       "from": "m1-prop-plane-moments",
       "to": "m1-plane-lem-spectrum",
+      "label": "prop:plane-moments",
       "context": "/R)\\dd z =R\\int zf(z)\\dd z+O(1), \\] where the deterministic error is bounded because $|u-z|$ is bounded on $u+V$. Orthogonal projection and Proposition~\\ref{prop:plane-moments} bound the $L^2$ norm of the dot product of $A$ with this vector uniformly in $R$. Divide by $R$ and let $R\\to\\infty$."
     },
     {
       "from": "m1-spectra-transfer",
       "to": "m1-plane-lem-mixture",
+      "label": "spectra:transfer",
       "context": "Take $F=\\xi_{e_1}$, an observable on the horizontal reflection row. Apply the scalar construction of Lemma~\\ref{spectra:transfer} to the commuting $U,S$ from Proposition~\\ref{prop:reflection-transfer}. It gives a finite positive measure $\\gamma(\\dd"
     },
     {
       "from": "m1-prop-reflection-transfer",
       "to": "m1-plane-lem-mixture",
+      "label": "prop:reflection-transfer",
       "context": "i_{e_1}$, an observable on the horizontal reflection row. Apply the scalar construction of Lemma~\\ref{spectra:transfer} to the commuting $U,S$ from Proposition~\\ref{prop:reflection-transfer}. It gives a finite positive measure $\\gamma(\\dd k,\\dd\\lambda)$ on the unit circle times $[0,1]$ such that, for every $m"
     },
     {
       "from": "m1-plane-lem-defect",
       "to": "m1-plane-lem-subsequences",
+      "label": "plane:lem:defect",
       "context": "e t\\le2b$ and $l$ in a compact set, \\[ \\delta q_{\\delta t}(\\delta l) =\\frac{t}{\\pi(t^2+l^2)}+O(\\delta), \\] by the folded-tail bound in the proof of Lemma~\\ref{plane:lem:defect}. Consequently every further extraction of the bounded mixing measures gives, on $k\\ne0$, \\begin{equation} \\label{plan"
     },
     {
       "from": "m1-plane-lem-mixture",
       "to": "m1-plane-lem-subsequences",
+      "label": "plane:lem:mixture",
       "context": "other physical preimage of a bounded rescaled set shrinks to $a_*$; its mass tends to zero by local finiteness there and $C\\{a_*\\}=0$, already proved in Lemma~\\ref{plane:lem:mixture}. Thus \\eqref{plane:eq:limiting-mixture} indeed describes the physical measure, with no alias contribution. Multiplyin"
     },
     {
       "from": "m1-lem-endcaps",
       "to": "m1-plane-lem-subsequences",
+      "label": "lem:endcaps",
       "context": "tants agree on overlaps, and the punctured plane is connected. It follows that $|p|^2M=c\\dd p$ there. This argument covers the axes by the other charts; Lemma~\\ref{lem:endcaps} also directly excludes concentration on them. Positivity and the annular bound give $0\\le c<\\infty$."
     },
     {
       "from": "m1-prop-plane-covariance",
       "to": "m1-plane-lem-unique",
+      "label": "prop:plane-covariance",
       "context": "[Proof of Proposition~\\ref{prop:plane-covariance}] For the exact area weights define $A_{\\delta,f}(p)=\\sum_uw_{\\delta,f}(u)e^{ip\\cdot u}$. On every fixed compact set of"
     },
     {
       "from": "m1-lem-nondegeneracy",
       "to": "m1-plane-lem-unique",
+      "label": "lem:nondegeneracy",
       "context": "rmalization \\begin{equation} \\label{plane:eq:normalization} v=(2\\pi)^2c,\\qquad \\sigma(x)=\\sqrt v. \\end{equation} Finiteness of $c$ was already proved. Lemma~\\ref{lem:nondegeneracy} supplies two fixed smooth nonnegative unit averages on separated disks whose difference $f$ has $\\inf_{\\delta\\text{ sma"
     },
     {
       "from": "m1-prop-plane-covariance",
       "to": "m1-prop-reflection-null",
+      "label": "prop:plane-covariance",
       "context": "test supports, lie strictly on opposite sides once $\\delta$ is small. The tests and their reflections converge smoothly on fixed compact sets. By Proposition~\\ref{prop:plane-covariance}, the limit of their covariance is \\[ \\frac{v}{(2\\pi)^2}\\int |p|^2\\widehat\\varphi(p) \\overline{\\widehat{\\v"
     },
     {
       "from": "m1-prop-plane-moments",
       "to": "m1-prop-reflection-null",
+      "label": "prop:plane-moments",
       "context": "he two supports are disjoint. Reflection positivity makes the finite-mesh quantity a squared seminorm. The ordinary second moments are bounded by Proposition~\\ref{prop:plane-moments}, or by Proposition~\\ref{prop:plane-covariance}. Adjoining independent Haar variables does not change the reflection no"
     },
     {
       "from": "m1-lem-boundary-walk",
       "to": "m1-pins-label-count",
+      "label": "lem:boundary-walk",
       "context": "psilon/2-o(1)$. For distinct graph components these portions have disjoint time interiors, because a shared traversal vertex would join the components. Lemma~\\ref{lem:boundary-walk} bounds their number. The same proof, using any fixed smaller constants in the two thresholds, covers rounding at endpoi"
     },
     {
       "from": "m1-lem-boundary-walk",
       "to": "m1-pins-bracket-order",
+      "label": "lem:boundary-walk",
       "context": "second-color plus pins select the zero endpoint of the pair. This argument establishes the integer branch, rather than merely its residue modulo four. Lemma~\\ref{lem:boundary-walk} separates every free site from exterior interactions. After conditioning on the skeleton heights, the nearest-neighbor"
     },
     {
       "from": "m1-lem-spin-lift",
       "to": "m1-pins-bracket-order",
+      "label": "lem:spin-lift",
       "context": "eights, the nearest-neighbor weights factor over the interior components and the exterior; factors between fixed sites affect only the trace probability. Lemma~\\ref{lem:spin-lift} identifies each interior factor with the weighted height law. Applying Lemma~\\ref{lem:height-order} to each fixed trac"
     },
     {
       "from": "m1-lem-height-order",
       "to": "m1-pins-bracket-order",
+      "label": "lem:height-order",
       "context": "between fixed sites affect only the trace probability. Lemma~\\ref{lem:spin-lift} identifies each interior factor with the weighted height law. Applying Lemma~\\ref{lem:height-order} to each fixed trace, and then averaging the resulting kernels, proves \\eqref{pins:height-sandwich}. All these traces h"
     },
     {
       "from": "m1-prop-smearing",
       "to": "m1-pins-bracket-order",
+      "label": "prop:smearing",
       "context": "h fixed trace, and then averaging the resulting kernels, proves \\eqref{pins:height-sandwich}. All these traces have absolute value at most one, so Proposition~\\ref{prop:smearing} gives the last assertion. In particular the upper mean is between zero and one, and the lower mean between minus one an"
     },
     {
       "from": "m1-lem-boundary-walk",
       "to": "m1-pins-marker-checks",
+      "label": "lem:boundary-walk",
       "context": "d marker at depth $3a/2$. There is also a retained component crossing the whole intervening arc. The last-left-visit, first-right-visit construction in Lemma~\\ref{lem:boundary-walk} gives such a chain; since $a$ is much smaller than the arc length, it crosses both endpoint markers. Thus every compon"
     },
     {
       "from": "m1-lem-buffer-circuits",
       "to": "m1-pins-marker-checks",
+      "label": "lem:buffer-circuits",
       "context": "gth and Euclidean distance along the $C^2$ boundary are uniformly comparable. First fix $r>0$, and then take $\\delta$ small enough that $r_\\delta<r$. By Lemma~\\ref{lem:buffer-circuits}, a stack of favorable good circuits between radii $r$ and $\\rho$ fails with probability at most $C(r/\\rho)^\\alpha$. Ap"
     },
     {
       "from": "m1-pins-label-count",
       "to": "m1-pins-marker-checks",
+      "label": "pins:label-count",
       "context": ". They avoid this annulus, and every first-color pin in it is favorable. Restoring the actual plus labels costs at most $2^{M(\\mathcal L,\\epsilon)}$ by Lemma~\\ref{pins:label-count} and the component-label construction of Section~\\ref{sec:discrete}. A good surrounding circuit joins all the pinned ch"
     },
     {
       "from": "m1-thm-midpoint",
       "to": "m1-prop-pin-moments",
+      "label": "thm:midpoint",
       "context": "er from the input class. The anchor stays zero. The weighted midpoint verification in Section~\\ref{sec:moments} establishes the edge-weight premise of Theorem~\\ref{thm:midpoint}. What remains is a positive central mass in every input class. In the test neighborhood require one good cut surround"
     },
     {
       "from": "m1-lem-buffer-circuits",
       "to": "m1-prop-pin-moments",
+      "label": "lem:buffer-circuits",
       "context": "n $U_i\\setminus V_i$, enclosing the entire check support. All these searches have disjoint fixed buffers free of equality edges and second-color labels. Lemma~\\ref{lem:buffer-circuits}, successive conditioning, and the bounded label cost give a joint conditional probability at least $c_0>0$ under $P$."
     },
     {
       "from": "m1-pins-marker-checks",
       "to": "m1-prop-pin-moments",
+      "label": "pins:marker-checks",
       "context": "l probability at least $c_0>0$ under $P$. Expose the test cut from the exterior and choose the collar cuts by their corresponding stopped explorations. Lemma~\\ref{pins:marker-checks} implies that intersecting this event with $P_{\\mathrm{loc}}$ still has probability at least $c_0/2$ under $P$ for fine"
     },
     {
       "from": "m1-prop-smearing",
       "to": "m1-prop-pin-moments",
+      "label": "prop:smearing",
       "context": "ted height problem with a consecutive-pair trace. Subtract its possibly random common offset. Since $\\int f=0$, this does not change $Y_\\delta$. Proposition~\\ref{prop:smearing}, using a finite partition into smaller smearing balls if necessary, gives a fixed $M_0$ and a conditional probability a"
     },
     {
       "from": "m1-lem-collar-switch",
       "to": "m1-prop-pin-moments",
+      "label": "lem:collar-switch",
       "context": "tion}\\label{pins:central-unpartitioned} \\Prob(\\mathcal A\\mid P_{\\mathrm{loc}})\\ge c_1>0, \\qquad \\mathcal A\\subset\\{|Y_\\delta|\\le M_0\\}. \\end{equation} Lemma~\\ref{lem:collar-switch} supplies in each nonanchor collar a weight-preserving involution shifting all its inner heights by $+4$ or $-4$, relati"
     },
     {
       "from": "m1-lem-midpoint-amplification",
       "to": "m1-prop-pin-moments",
+      "label": "lem:midpoint-amplification",
       "context": "bsolute mass, and coordinatewise rounding changes the associated linear statistic by at most half that mass. Increase $M_0$ to absorb this bound. Apply Lemma~\\ref{lem:midpoint-amplification} with \\eqref{pins:every-class-mass} and the parity partition. It gives \\eqref{eq:pin-moments}, uniformly in the ambient"
     },
     {
       "from": "m1-prop-plane-moments",
       "to": "m1-prop-pin-moments",
+      "label": "prop:plane-moments",
       "context": "in the ambient volume. Exhaustion at each fixed mesh gives the plane assertion; Fatou's lemma transfers the moment bounds. With no obstacles use Proposition~\\ref{prop:plane-moments}. The construction uses only fixed positive margins and finitely many requests, proving the stated uniformity and the f"
     },
     {
       "from": "m1-prop-pin-moments",
       "to": "m1-pins-side-norm",
+      "label": "prop:pin-moments",
       "context": "bounds the probability of the ordinary doubled pin event by $CJ^2$. The checked event has no larger probability. If $A$ contains an insertion $Y$, Proposition~\\ref{prop:pin-moments} in this doubled arrangement and Cauchy--Schwarz bound $\\E[|Y\\,\\vartheta Y|\\mid P_{\\mathrm{loc}}\\cap \\vartheta P_{\\mathr"
     },
     {
       "from": "m1-pins-side-norm",
       "to": "m1-lem-analytic-translation",
+      "label": "pins:side-norm",
       "context": "B_\\delta$ be the normalized high-side factor in this backed arrangement and let $A_\\delta$ be the reflected conjugate of the normalized low-side factor. Lemma~\\ref{pins:side-norm} gives $\\|A_\\delta\\|_\\vartheta,\\|B_\\delta\\|_\\vartheta\\le C$. Individual $p_{i,\\delta}$ are invariant under lattice trans"
     },
     {
       "from": "m1-spectra-transfer",
       "to": "m1-lem-analytic-translation",
+      "label": "spectra:transfer",
       "context": "\\lambda^{(z+\\eta_\\delta)/b_\\delta}\\, \\gamma_{A_\\delta,B_\\delta}(\\dd\\lambda), \\end{equation} where the finite cross measure is constructed in Lemma~\\ref{spectra:transfer}, with its circle variable integrated out. For $\\Re w>0$ use $\\lambda^w=e^{w\\log\\lambda}$ on $\\lambda>0$ and give it val"
     },
     {
       "from": "m1-spectra-analytic",
       "to": "m1-lem-analytic-translation",
+      "label": "spectra:analytic",
       "context": "nsfer}, with its circle variable integrated out. For $\\Re w>0$ use $\\lambda^w=e^{w\\log\\lambda}$ on $\\lambda>0$ and give it value zero at $\\lambda=0$. Corollary~\\ref{spectra:analytic} proves that this is holomorphic and bounded by $\\|A_\\delta\\|_\\vartheta\\|B_\\delta\\|_\\vartheta$. Thus $|f_\\delta|\\le C^2$"
     },
     {
       "from": "m1-pins-side-norm",
       "to": "m1-pins-three-moves",
+      "label": "pins:side-norm",
       "context": "en in every fixed gap. At the final placement there is a horizontal site row separating $X_\\delta$ from every other factor. Reflection Cauchy--Schwarz, Lemma~\\ref{pins:side-norm}, and Proposition~\\ref{prop:reflection-null} bound the absolute value of the normalized expectation by $C\\|X_\\delta\\|_\\v"
     },
     {
       "from": "m1-prop-reflection-null",
       "to": "m1-pins-three-moves",
+      "label": "prop:reflection-null",
       "context": "lacement there is a horizontal site row separating $X_\\delta$ from every other factor. Reflection Cauchy--Schwarz, Lemma~\\ref{pins:side-norm}, and Proposition~\\ref{prop:reflection-null} bound the absolute value of the normalized expectation by $C\\|X_\\delta\\|_\\vartheta\\to0$. Adding phases does not change"
     },
     {
       "from": "m1-lem-analytic-translation",
       "to": "m1-pins-three-moves",
+      "label": "lem:analytic-translation",
       "context": "ixed admissible $a_+,a_-,b,c$, the last assertion holds for $d$ in a nonempty open interval of sufficiently large values and for every lattice rounding. Lemma~\\ref{lem:analytic-translation} therefore removes the $du'$ move. The resulting assertion holds for every sufficiently large $c$ with earlier distance"
     },
     {
       "from": "m1-lem-boundary-walk",
       "to": "m1-pins-gap-closing",
+      "label": "lem:boundary-walk",
       "context": "edge crossing it. A surrounding good plus circuit joins the traversing first-color arms on its two sides. The arms exist by the degree-one traversal in Lemma~\\ref{lem:boundary-walk}; they run from the inner gap neighborhood to beyond the chosen outer collar. Together with the local checks, such a ci"
     },
     {
       "from": "m1-pins-marker-checks",
       "to": "m1-pins-gap-closing",
+      "label": "pins:marker-checks",
       "context": "second-color plus labels costs at most a fixed factor $2^M$. There are finitely many gaps, and their successive connections join all groups cyclically. Lemma~\\ref{pins:marker-checks} thus proves \\eqref{pins:offset-synchronization}, with a bound of this power form plus terms whose mesh limsup is zero."
     },
     {
       "from": "m1-prop-history-order",
       "to": "m1-pins-gap-closing",
+      "label": "prop:history-order",
       "context": "the same second-color equalities $E_0$ in both laws. Add the missing favorable first-color pins in one gap and use the ordered stopped coupling of Proposition~\\ref{prop:history-order}. Search outward from the changed region for a common good plus circuit in the same stack. Except with probability $C("
     },
     {
       "from": "m1-lem-cell-cut",
       "to": "m1-pins-gap-closing",
+      "label": "lem:cell-cut",
       "context": "the search meets any equality edge or label prescription. The only changes are on its near side, so the correct stopped kernels agree on its far side by Lemma~\\ref{lem:cell-cut}. Sample those remaining variables identically. This matches the spins and increments in all test disks, and also the"
     },
     {
       "from": "m1-prop-smearing",
       "to": "m1-pins-gap-closing",
+      "label": "prop:smearing",
       "context": "s height trace, the interior is again the unconditioned weighted height problem with a consecutive-pair trace. Subtracting its offset and applying Proposition~\\ref{prop:smearing} provides a central interval $|X_\\delta|\\le M_1$ with positive conditional mass, where $M_1$ is independent of $a$. In"
     },
     {
       "from": "m1-lem-midpoint-amplification",
       "to": "m1-pins-gap-closing",
+      "label": "lem:midpoint-amplification",
       "context": "fixed singletons $\\{0\\}$ in \\eqref{pins:offset-constraints}. Both rounded midpoints of any two such arrays are admissible, without a parity partition. Lemma~\\ref{lem:midpoint-amplification}, with the preceding uniform central mass and bounded rounding error, proves \\eqref{pins:uniform-common-moments}. Ambie"
     },
     {
       "from": "m1-prop-pin-moments",
       "to": "m1-pins-gap-closing",
+      "label": "prop:pin-moments",
       "context": "h the preceding uniform central mass and bounded rounding error, proves \\eqref{pins:uniform-common-moments}. Ambient exhaustion is justified as in Proposition~\\ref{prop:pin-moments}. The filled brackets have the corresponding uniform moments by Lemma~\\ref{pins:bracket-order}."
     },
     {
       "from": "m1-pins-bracket-order",
       "to": "m1-pins-gap-closing",
+      "label": "pins:bracket-order",
       "context": "ommon-moments}. Ambient exhaustion is justified as in Proposition~\\ref{prop:pin-moments}. The filled brackets have the corresponding uniform moments by Lemma~\\ref{pins:bracket-order}."
     },
     {
       "from": "m1-lem-height-order",
       "to": "m1-boundary-synthetic-trace",
+      "label": "lem:height-order",
       "context": "ng on the whole trace and integrating out the statuses. On each high part the synthetic trace is at most zero, and on each low part it is at most $-2$. Lemma~\\ref{lem:height-order} gives the claimed comparison on every retained component."
     },
     {
       "from": "m1-boundary-synthetic-trace",
       "to": "m1-lem-boundary-attachment",
+      "label": "boundary:synthetic-trace",
       "context": "Choose $s/b$ small, to be fixed at the end of the proof. Apply Lemma~\\ref{boundary:synthetic-trace} with one high patch as stated and the rest of the skeleton low. The separators are low and meet the low base part, so"
     },
     {
       "from": "m1-lem-buffer-circuits",
       "to": "m1-lem-boundary-attachment",
+      "label": "lem:buffer-circuits",
       "context": "ite $v$ of the high core. The annular buffers meet only favorable plus pins, and all transition labels lie outside the outer box. The stack estimate of Lemma~\\ref{lem:buffer-circuits}, followed by the bounded label cost, gives an event $G$ with \\begin{equation} \\Prob(G^c)\\le \\eta(s/b),\\qquad \\eta(u)\\"
     },
     {
       "from": "m1-lem-collar-switch",
       "to": "m1-lem-boundary-attachment",
+      "label": "lem:collar-switch",
       "context": ": on $C$ it equals $W$ up to a constant, and outside $C$ it is constant until a path first hits $C$. This is also the component-potential calculation in Lemma~\\ref{lem:collar-switch}. Integrating \\eqref{boundary:component-identity} from the labeled anchor $o$, where $K(o)=-1$, gives an endpoint correc"
     },
     {
       "from": "m1-lem-height-order",
       "to": "m1-boundary-bulk-tubes",
+      "label": "lem:height-order",
       "context": "closing loops in the annulus by a deterministic rule, ordered from outer to inner. All loop jumps are independent fair signs under the flat boundary, by Lemma~\\ref{lem:height-order}. The height outside the first chosen loop is $-2$ plus a symmetric sum of other signs, and hence is at least $-2$ with"
     },
     {
       "from": "m1-boundary-synthetic-trace",
       "to": "m1-prop-boundary-arch",
+      "label": "boundary:synthetic-trace",
       "context": "\\[ Q_{\\ell_j}\\setminus Q_{\\ell_j/2}, \\qquad Q_{7\\ell_j}\\setminus Q_{5\\ell_j}, \\] with artificial exterior allowed, each surrounding its inner box. Use Lemma~\\ref{boundary:synthetic-trace} with high intervals on the two clean boundary subarcs running through \\emph{all} these strips. Place their transitions"
     },
     {
       "from": "m1-lem-buffer-circuits",
       "to": "m1-prop-boundary-arch",
+      "label": "lem:buffer-circuits",
       "context": "nsition labels is independent of $N$. Before imposing those labels, the slightly narrower buffers in each strip see only favorable first-color pins. By Lemma~\\ref{lem:buffer-circuits} there is $a_1>0$ such that, given the earlier complete first-color/status slot records, both good plus circuits in the"
     },
     {
       "from": "m1-boundary-extremal",
       "to": "m1-prop-boundary-arch",
+      "label": "boundary:extremal",
       "context": "ct an innermost circuit in the inner strip and an outermost circuit in the outer strip. Reveal the unsuccessful strips and every nonretained region. By Lemma~\\ref{boundary:extremal}, conditional on this record $\\mathcal R$, all retained middle components have independent height Gibbs laws. Their ske"
     },
     {
       "from": "m1-lem-boundary-attachment",
       "to": "m1-prop-boundary-arch",
+      "label": "lem:boundary-attachment",
       "context": "boxes near the two boundary positions with tangential coordinate $\\pm2\\ell$. Choose $b$ to be a small fixed fraction of $\\ell$, then $s=\\lambda b$ as in Lemma~\\ref{lem:boundary-attachment}. Use the local reference height of the limiting boundary in each box. Both boxes lie in $Q_{5\\ell}\\setminus Q_\\ell$, a"
     },
     {
       "from": "m1-boundary-bulk-tubes",
       "to": "m1-prop-boundary-arch",
+      "label": "boundary:bulk-tubes",
       "context": "and across at depth close to $2\\ell$. All widths are positive fixed fractions of $s$, and all tubes lie in the free part of $Q_{5\\ell}\\setminus Q_\\ell$. Lemma~\\ref{boundary:bulk-tubes} gives a positive lower bound for their simultaneous crossings. The two attachments and the bulk crossings are increasin"
     },
     {
       "from": "m1-prop-boundary-arch",
       "to": "m1-prop-bracket-collapse",
+      "label": "prop:boundary-arch",
       "context": "that its exceptional window lies inside the innermost box. Finally take the mesh small with this geometry fixed. Condition on the bracket trace. Proposition~\\ref{prop:boundary-arch} gives increasing level-zero arches around all windows except with probability at most $JC e^{-cN}$, where $J$ is their"
     },
     {
       "from": "m1-prop-smearing",
       "to": "m1-prop-bracket-collapse",
+      "label": "prop:smearing",
       "context": "n on each such component is nonnegative, and hence so is their sum against a nonnegative $f$. Thus, using the unconditional bracket moment bound of Proposition~\\ref{prop:smearing}, \\[ \\E H_\\delta^{\\pm,\\epsilon}(f) \\ge -\\|H_\\delta^{\\pm,\\epsilon}(f)\\|_2 (JC e^{-cN})^{1/2} \\ge -C_f e^{-cN/2}"
     },
     {
       "from": "m1-prop-smearing",
       "to": "m1-prop-boundary-moments",
+      "label": "prop:smearing",
       "context": "stance and smearing radius is thus bounded above and below independently of $z$ once the mesh is taken sufficiently small for that fixed placement. Proposition~\\ref{prop:smearing}, with original trace zero, gives \\eqref{boundary:uniform-depth-moments}. The passage to the limit uses the higher mome"
     },
     {
       "from": "m1-prop-boundary-arch",
       "to": "m1-prop-boundary-moments",
+      "label": "prop:boundary-arch",
       "context": "$ fixed separated scales inside this neighborhood. For all sufficiently close $z$ the support of $\\rho_z$ is in the inner box of this stack. Apply Proposition~\\ref{prop:boundary-arch} to the true zero boundary. Select an outermost increasing arch by testing from outside and reveal its exterior and real"
     },
     {
       "from": "m1-prop-smearing",
       "to": "m1-prop-tightness",
+      "label": "prop:smearing",
       "context": "A consequence of Proposition~\\ref{prop:smearing}, using a finite cover of a compact set by interior disks, is \\begin{equation} \\sup_\\delta\\|h_\\delta(f)\\|_{L^p} \\le C_"
     },
     {
       "from": "m1-pins-bracket-order",
       "to": "m1-limit-transfer",
+      "label": "pins:bracket-order",
       "context": "and then to the window limit, keeping the chosen true-field marginal throughout. Couple its lower and upper brackets with the true field in order, as in Lemma~\\ref{pins:bracket-order}. First take a joint law limit along the chosen subsequence, with the windows fixed. Next shrink the windows and take"
     },
     {
       "from": "m1-prop-tightness",
       "to": "m1-limit-transfer",
+      "label": "prop:tightness",
       "context": "der}. First take a joint law limit along the chosen subsequence, with the windows fixed. Next shrink the windows and take a further joint limit. Proposition~\\ref{prop:tightness} applies uniformly throughout, so these extractions are possible and the middle marginal is always the already chosen la"
     },
     {
       "from": "m1-prop-bracket-collapse",
       "to": "m1-limit-transfer",
+      "label": "prop:bracket-collapse",
       "context": "limits because evaluation against each nonnegative smooth test is continuous. Write the resulting ordered triple as \\[ H^-\\le H\\le H^+. \\] Proposition~\\ref{prop:bracket-collapse} and moment convergence give \\(\\E H^-(f)=\\E H^+(f)=0\\), as well as \\(\\E H(f)=0\\). For every nonnegative smooth \\(f\\), bo"
     },
     {
       "from": "m1-prop-bracket-insertion",
       "to": "m1-limit-transfer",
+      "label": "prop:bracket-insertion",
       "context": "nnegative tests on an exhaustion of \\(D\\). Continuity of distributions then shows \\(H^-=H=H^+\\) almost surely as distributions. At fixed windows, Proposition~\\ref{prop:bracket-insertion} gives the insertion identity for bounded local increment factors. For bounded continuous functions of zero-total pairi"
     },
     {
       "from": "m1-prop-boundary-moments",
       "to": "m1-limit-references",
+      "label": "prop:boundary-moments",
       "context": "ficiently small. Define \\[ Y_{\\ell,a}=H(\\psi_{\\ell,a}),\\qquad R_{m,a}=\\frac1m\\sum_{\\ell=1}^m Y_{\\ell,a}. \\] The comparable-depth moment bound in Proposition~\\ref{prop:boundary-moments} is uniform along this fixed arc. Minkowski's inequality therefore gives \\(\\sup_{m,a}\\|R_{m,a}\\|_{L^q}\\le C_q\\) for eac"
     },
     {
       "from": "m1-pins-local-geometry",
       "to": "m1-prop-harmonic-moments",
+      "label": "pins:local-geometry",
       "context": ") and all the other centers lie outside \\(\\overline{B(0,4R)}\\). Choose \\(0<b<R/1000\\) and \\(0<\\eta<R/(1000j)\\). Fix the finite regular grid supplied by Lemma~\\ref{pins:local-geometry} for \\(z_0=0\\), \\(\\rho=R\\), and \\(q=j-1\\). Its choice is independent of the small spectator disks and chains constructe"
     },
     {
       "from": "m1-prop-bracket-insertion",
       "to": "m1-prop-harmonic-moments",
+      "label": "prop:bracket-insertion",
       "context": "ocal-geometry}. For each monomial its two selected levels give the oblique separation of the middle-strip boundary pieces and spectators needed by Proposition~\\ref{prop:bracket-insertion}. The pair of levels may depend on the monomial; the grid does not. There are only finitely many monomials. Choose the"
     },
     {
       "from": "m1-limit-transfer",
       "to": "m1-prop-harmonic-moments",
+      "label": "limit:transfer",
       "context": "onomial; the grid does not. There are only finitely many monomials. Choose the exceptional windows small enough to preserve all their positive margins. Lemma~\\ref{limit:transfer} gives zero expectation for each monomial with the insertion. Summing these exact identities gives \\begin{equation} \\E"
     },
     {
       "from": "m1-limit-references",
       "to": "m1-prop-harmonic-moments",
+      "label": "limit:references",
       "context": "_{i=2}^j(H(f_i)-c_iR_{m,a})\\right\\}\\right| \\le C\\|R_{m,a}\\|_{L^p}. \\] The constant does not count chain terms. Choose depths and then \\(m\\) as in Lemma~\\ref{limit:references}; the right side tends to zero. This proves \\eqref{eq:limit-harmonic-tensor}. Finite sums of tensor tests are dense in"
     },
     {
       "from": "m1-prop-boundary-moments",
       "to": "m1-lem-no-diagonal",
+      "label": "prop:boundary-moments",
       "context": "layed pointwise value with \\[ \\E\\left[H(\\rho_{z_1,\\theta\\dist(z_1,\\partial D)}) \\prod_{i=2}^jH(\\rho_{z_i,s_i})\\right]. \\] Proposition~\\ref{prop:boundary-moments} makes this tend to zero. For \\(j=1\\) the same conclusion also follows from the zero mean."
     },
     {
       "from": "m1-prop-harmonic-moments",
       "to": "m1-limit-puncture",
+      "label": "prop:harmonic-moments",
       "context": "tion} One can keep \\(s\\) fixed on a neighborhood of any separated parameter tuple. Parameterizing \\(x=y+se^{i\\theta}\\), the integrand is smooth by Proposition~\\ref{prop:harmonic-moments}; thus \\(L\\) is smooth. Applying a spectator Laplacian under this integral also proves its separate harmonicity. Subtra"
     },
     {
       "from": "m1-lem-boundary-walk",
       "to": "m1-prop-collision",
+      "label": "lem:boundary-walk",
       "context": "ent pair representation of the true law, with both colors plus on the connected boundary skeleton and height anchored to zero at one of its sites. As in Lemma~\\ref{lem:boundary-walk}, this gives the required interior height law. Retain the complementary-spin boundary constraint first as edge equalitie"
     },
     {
       "from": "m1-lem-buffer-circuits",
       "to": "m1-prop-collision",
+      "label": "lem:buffer-circuits",
       "context": "in a first-color circuit search. Search from outside for a good first-color circuit in separated annular slots between scales \\(\\sqrt r\\) and \\(R_0/2\\). Lemma~\\ref{lem:buffer-circuits} gives failure probability at most \\(Cr^{\\kappa_1}\\) in the mesh-first limsup, for some \\(\\kappa_1>0\\). The exploration"
     },
     {
       "from": "m1-prop-local-mixing",
       "to": "m1-prop-collision",
+      "label": "prop:local-mixing",
       "context": "imsup, for some \\(\\kappa_1>0\\). The exploration always queries a cell status together with all its first-color sites, using the stopped kernels of Proposition~\\ref{prop:local-mixing}. Let \\(\\mathcal G_\\delta\\) contain the stopped query record (including its success or failure outcome), the selected c"
     },
     {
       "from": "m1-lem-spin-lift",
       "to": "m1-prop-collision",
+      "label": "lem:spin-lift",
       "context": "_0,R_0)\\). One may choose paths in the ambient triangulation, outside the search disk, to the anchored skeleton. Their sums of the local increments from Lemma~\\ref{lem:spin-lift} give the absolute spectator heights, with the correct common lift fixed at the anchor. Alternatively, portions of path"
     },
     {
       "from": "m1-lem-cell-cut",
       "to": "m1-prop-collision",
+      "label": "lem:cell-cut",
       "context": "en with prescribed first color. Its factor is constant and leaves the complementary spin unrestricted. No imposed equality edge crosses the contour. By Lemma~\\ref{lem:cell-cut}, closed-cell complementary components on its two sides are disconnected. Hence revealing exterior labels reveals no st"
     },
     {
       "from": "m1-cor-conditional-plane-matching",
       "to": "m1-prop-collision",
+      "label": "cor:conditional-plane-matching",
       "context": "ant. The cut surrounds a ball of radius comparable to \\(\\sqrt r\\). The retained-law and exterior-measurability verifications above allow us to apply Corollary~\\ref{cor:conditional-plane-matching}. It couples the increments in \\(B(y_0,Cr)\\), with its connecting paths, to the fixed plane increment marginal \\(\\nu_\\d"
     },
     {
       "from": "m1-prop-plane-moments",
       "to": "m1-prop-collision",
+      "label": "prop:plane-moments",
       "context": "f{eq:limit-small-moments} bounds the first norm by \\(C(1+\\log(1/r))\\). All fixed spectator norms are bounded. The plane zero-total moment bound in Proposition~\\ref{prop:plane-moments} bounds the second norm uniformly. Thus the mesh limsup of \\eqref{eq:limit-coupling-error} is at most \\["
     },
     {
       "from": "m1-prop-plane-covariance",
       "to": "m1-prop-collision",
+      "label": "prop:plane-covariance",
       "context": "oment convergence treats the true field and the spectators, whereas independence factors the plane term as \\(\\E[U'_\\delta V'_\\delta]\\E[F_\\delta]\\). Proposition~\\ref{prop:plane-covariance} evaluates its first factor: \\[ \\lim_{\\delta\\downarrow0}\\E[U'_\\delta V'_\\delta] =\\frac{v}{2\\pi} \\iint\\alpha_r"
     },
     {
       "from": "m1-limit-puncture",
       "to": "m1-prop-collision",
+      "label": "limit:puncture",
       "context": "\\eqref{eq:limit-puncture}. First average its spectator variables on their radial disks. Their harmonic mean value property, including that for \\(L\\) from Lemma~\\ref{limit:puncture}, evaluates them at \\(\\mathbf z\\). After substituting \\(x=y_0+ru\\), \\(y=y_0+rw\\), the singular term is \\[ \\iint\\alpha(u"
     },
     {
       "from": "m1-prop-collision",
       "to": "m1-thm-wick",
+      "label": "prop:collision",
       "context": "any points. The Dirichlet Green function for the negative Euclidean Laplacian has local singularity \\[ \\frac1{2\\pi}\\log(1/|x-y_i|). \\] Proposition~\\ref{prop:collision} shows that its coefficient agrees with the logarithmic singularity of \\(T_j\\) at each point. Lemma~\\ref{limit:puncture}"
     },
     {
       "from": "m1-limit-puncture",
       "to": "m1-thm-wick",
+      "label": "limit:puncture",
       "context": "c1{2\\pi}\\log(1/|x-y_i|). \\] Proposition~\\ref{prop:collision} shows that its coefficient agrees with the logarithmic singularity of \\(T_j\\) at each point. Lemma~\\ref{limit:puncture} therefore makes the difference removable there. It is harmonic on all of \\(D\\). Equation~\\eqref{eq:limit-zero-boundary"
     },
     {
       "from": "m1-lem-no-diagonal",
       "to": "m1-thm-wick",
+      "label": "lem:no-diagonal",
       "context": "lection symmetry and uniform integrability. Induction gives zero for odd moments and, for even \\(j\\), the sum over pairings of the products of \\(vG_D\\). Lemma~\\ref{lem:no-diagonal} says that these are identities of the entire moment distributions, including tests crossing diagonals. The Green produc"
     },
     {
       "from": "m1-prop-tightness",
       "to": "m1-thm-wick",
+      "label": "prop:tightness",
       "context": "r exhaustion of \\(D\\). Evaluation on these tests determines a distribution and generates the Borel sigma-field of the local Sobolev spaces used in Proposition~\\ref{prop:tightness}; this follows, for example, from their realization by countably many localized Fourier coordinates. Hence equality of"
     },
     {
       "from": "m1-prop-plane-covariance",
       "to": "m1-thm-wick",
+      "label": "prop:plane-covariance",
       "context": "nce. The normalization is \\(\\sigma(x)=\\sqrt v\\). Its strict positivity, finiteness, and independence of \\(D\\) and the approximation were proved in Proposition~\\ref{prop:plane-covariance}. All estimates here are for fixed \\(x\\) in the stated closed interval, so the endpoint is included with no additional"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-thm-wick",
+      "label": "thm:main",
       "context": "xed \\(x\\) in the stated closed interval, so the endpoint is included with no additional limiting argument in the parameter. This completes the proof of Theorem~\\ref{thm:main}."
     },
     {
       "from": "m1-spectra-unitary",
       "to": "m1-spectra-transfer",
+      "label": "spectra:unitary",
       "context": "e all its approximating polynomials do. The zero operator has square root zero. For each $k$ apply the one-dimensional positive kernels in the proof of Lemma~\\ref{spectra:unitary} to $B_{N,k}^{1/2}a$, using $U$ and the same integer $N$. Place the resulting circle measure at $\\lambda=k/N$ and sum o"
     },
     {
       "from": "m1-spectra-transfer",
       "to": "m1-spectra-analytic",
+      "label": "spectra:transfer",
       "context": "Take $U=I$ in Lemma~\\ref{spectra:transfer} if no tangential operator is present. For $\\lambda>0$ put $\\lambda^w=\\exp(w\\log\\lambda)$ and set it equal to zero at z"
     },
     {
       "from": "m1-prop-history-order",
       "to": "m1-annulus-ambient",
+      "label": "prop:history-order",
       "context": "triangular face boundaries. Consequently, for fixed $B=b$, a possible $W$ disagreement set satisfies the same triangle equations as in the proof of Proposition~\\ref{prop:history-order}. On a mixed-$b$ triangle its single homogeneous edge cannot belong to that set. Restricting to homogeneous-plus edges o"
     },
     {
       "from": "m1-lem-cell-cut",
       "to": "m1-annulus-ambient",
+      "label": "lem:cell-cut",
       "context": "triangles all cells responsible for authorizing the contour. Each crossing cell has its first spins prescribed and contributes a constant, exactly as in Lemma~\\ref{lem:cell-cut}; the remaining factors separate. This proof is local and applies to a winding contour, which separates the capped spher"
     },
     {
       "from": "m1-annulus-ambient",
       "to": "m1-annulus-one-white",
+      "label": "annulus:ambient",
       "context": "permitted $B$-status history. Specifying its sign therefore multiplies each such marginal weight by $1/2$. It does not change the order comparison. Apply Lemma~\\ref{annulus:ambient} with these deterministic equality edges."
     },
     {
       "from": "m1-annulus-ambient",
       "to": "m1-annulus-slide",
+      "label": "annulus:ambient",
       "context": "bove $a_0$ is unaffected by the additional prescription at $a_1$. Releasing the old open-minus prescription at $a_0$ increases the probability of $A$, by Lemma~\\ref{annulus:ambient}. Next prescribe $b_1$, which increases that probability, and discard the farther contour $b_0$ by the cut property. Thi"
     },
     {
       "from": "m1-annulus-one-white",
       "to": "m1-annulus-slide",
+      "label": "annulus:one-white",
       "context": "nnulus:slide-white}, prescribe both $b_0$ and $b_1$ and then release the nearer positive prescription at $b_0$. This decreases the probability of $A$, by Lemma~\\ref{annulus:one-white}. The distant prescription did not affect the original law below $b_0$, by the cut property. All simultaneous prescripti"
     },
     {
       "from": "m1-discrete-online",
       "to": "m1-annulus-search",
+      "label": "discrete:online",
       "context": "Use the face-invasion construction after Lemma~\\ref{discrete:online}. Start from the lower face layer and invade across unauthorized honeycomb edges, querying a responsible cell together w"
     },
     {
       "from": "m1-annulus-ambient",
       "to": "m1-annulus-search",
+      "label": "annulus:ambient",
       "context": "bed cut-layer spins; complementary-spin labels are never queried. The record's remaining restrictions lie below the contour. The product factorization of Lemma~\\ref{annulus:ambient}, with the colors interchanged when necessary, now identifies the conditional law above it. We condition on the actual s"
     },
     {
       "from": "m1-prop-history-order",
       "to": "m1-annulus-plus-equalities",
+      "label": "prop:history-order",
       "context": "\\vee a_+^+(c). \\] All minus-wall coordinates on $F$ vanish, since its endpoints are common plus pins. Off $F$ the four inequalities in the proof of Proposition~\\ref{prop:history-order} are unchanged. The cell factors $r_y$ do not depend on the equality set. Thus monotonicity and log-supermodularity of $"
     },
     {
       "from": "m1-annulus-patch",
       "to": "m1-annulus-straight-short",
+      "label": "annulus:patch",
       "context": "All crossings below use the induced triangular site graph. Lattice rows and boundary contours are chosen with the fixed collars of Lemma~\\ref{annulus:patch}; that lemma absorbs the bounded corner changes. The crossing between the two displayed interior heights is measurable a"
     },
     {
       "from": "m1-annulus-plus-equalities",
       "to": "m1-annulus-straight-short",
+      "label": "annulus:plus-equalities",
       "context": "have constant $W$ under $\\nu_D$. In the actual law add exactly these equalities, along edges whose endpoints are already pinned $B=+$ by the open cut. By Lemma~\\ref{annulus:plus-equalities}, this decreases all increasing $B$-occupation events, with no loss depending on the number of edges. No equality is add"
     },
     {
       "from": "m1-annulus-ports",
       "to": "m1-annulus-straight-short",
+      "label": "annulus:ports",
       "context": "after normalization the two marginal densities differ by at most a factor two. Mixtures over unobserved exterior statuses preserve this bound. Applying Lemmas~\\ref{annulus:ports} and \\ref{annulus:patch} to the finitely many additional corner components gives a uniform factor $c_1(x)>0$. Consequen"
     },
     {
       "from": "m1-annulus-search",
       "to": "m1-annulus-gluing",
+      "label": "annulus:search",
       "context": "ssings. All observed statuses include all their first-spin sites. No complementary-spin label is revealed. The path version of the invasion argument in Lemma~\\ref{annulus:search} gives these records. Use the actual authorized honeycomb boundary of the explored face set to realize each extremal cr"
     },
     {
       "from": "m1-annulus-patch",
       "to": "m1-annulus-gluing",
+      "label": "annulus:patch",
       "context": "ibed core cells choose open status when homogeneous and closed status when mixed. Include every cell incident to a mutable core site in the patch. Thus Lemma~\\ref{annulus:patch} gives a uniform positive lower bound for $A$. At $x=1$, recorded closed cells keep their already recorded mixed first s"
     },
     {
       "from": "m1-annulus-ambient",
       "to": "m1-annulus-gluing",
+      "label": "annulus:ambient",
       "context": "re at distance at least $\\ell/4$ from the original parallelograms, so their prescribed plus layers do not meet $h^*$. The law is positively associated by Lemma~\\ref{annulus:ambient}. Condition this reference law on the two full paths being occupied-plus. The law in $D$ has the same retained cell fac"
     },
     {
       "from": "m1-annulus-ports",
       "to": "m1-annulus-gluing",
+      "label": "annulus:ports",
       "context": "t spins and statuses are fixed in $h^*$; only the uniformly bounded number of complementary-spin sites in those cores can communicate with the exterior. Lemma~\\ref{annulus:ports} compares the two retained laws with a uniform factor, independently of the exterior complementary-spin wiring. The ori"
     },
     {
       "from": "m1-annulus-straight-short",
       "to": "m1-annulus-gluing",
+      "label": "annulus:straight-short",
       "context": "three. Exact cut factorization off its corners and Lemmas~\\ref{annulus:ports}--\\ref{annulus:patch} compare its law with the alternating open-arc law of Lemma~\\ref{annulus:straight-short}. Lemma~\\ref{annulus:straight-short}, with $r=3\\ell/2$ and $\\eta=11/30$, bounds below the probability of the crossing $"
     },
     {
       "from": "m1-annulus-duality",
       "to": "m1-annulus-first-seed",
+      "label": "annulus:duality",
       "context": "Start under $P_Y$ with a thin band $S$ centered near $H/3$. Lemma~\\ref{annulus:duality} gives a vertical occupied $B$ crossing of one sign, or a winding occupied $W$ circuit of one sign. The sum of the prob"
     },
     {
       "from": "m1-annulus-slide",
       "to": "m1-annulus-first-seed",
+      "label": "annulus:slide",
       "context": "ties of these four events is at least one. A $B$-plus vertical crossing gives a $Y$ seed by the finite-family extraction above. The slide comparison of Lemma~\\ref{annulus:slide} moves its test upward. A $B$-minus vertical crossing is reflected across the horizontal middle line of the cylinder, f"
     },
     {
       "from": "m1-annulus-search",
       "to": "m1-annulus-first-seed",
+      "label": "annulus:search",
       "context": "$W$ winding. Global $W$ flip lets us take its sign to be plus, at a loss of at most a factor two. Search from below in a slightly enlarged band, as in Lemma~\\ref{annulus:search}. On a successful record the retained upper region lies above one open $W$-plus winding $\\gamma$ of class $Y$ and below"
     },
     {
       "from": "m1-annulus-one-white",
       "to": "m1-annulus-first-seed",
+      "label": "annulus:one-white",
       "context": "ictly above the old top, since $2(.69)-1/3>1$ and the search band is thin. Move the top $B$-plus cut up to that reflected contour, now of class $Z$. By Lemma~\\ref{annulus:one-white} and the cut comparison, this move \\emph{decreases} every increasing $B$-plus test. The law between $\\gamma$ and its re"
     },
     {
       "from": "m1-annulus-gluing",
       "to": "m1-annulus-winding",
+      "label": "annulus:gluing",
       "context": "We first obtain a short vertical crossing in a controlled horizontal window. Use the two overlapping width-$6\\ell$ parallelograms of Lemma~\\ref{annulus:gluing}, choosing their vertical height to be about $50m$. Their total horizontal span is less than $500m$. Place their botto"
     },
     {
       "from": "m1-annulus-slide",
       "to": "m1-annulus-winding",
+      "label": "annulus:slide",
       "context": "ht $10m$, request a horizontal crossing through the right parallelogram. These estimates follow from the original horizontal seed, upward translation by Lemma~\\ref{annulus:slide}, and horizontal lengthening with fixed aspect ratios. Cross rectangles extending beyond the parallelogram's sloping si"
     },
     {
       "from": "m1-annulus-first-seed",
       "to": "m1-annulus-seed",
+      "label": "annulus:first-seed",
       "context": "Only the $T=Z$ branch remains after Lemma~\\ref{annulus:first-seed} and \\eqref{annulus:RSW}. By Lemma~\\ref{annulus:winding}, with probability bounded below an exterior search finds a $Z$"
     },
     {
       "from": "m1-annulus-winding",
       "to": "m1-annulus-seed",
+      "label": "annulus:winding",
       "context": "Only the $T=Z$ branch remains after Lemma~\\ref{annulus:first-seed} and \\eqref{annulus:RSW}. By Lemma~\\ref{annulus:winding}, with probability bounded below an exterior search finds a $Z$-oriented $B$-plus winding below $.73H$. Above a success"
     },
     {
       "from": "m1-annulus-ambient",
       "to": "m1-annulus-seed",
+      "label": "annulus:ambient",
       "context": "e original upper plus cut. It is therefore above the free capped-sphere law for increasing $B$-plus tests: prescribing either plus cut is an increase by Lemma~\\ref{annulus:ambient}. Tests of class $Y$ well above the explored band use disjoint, fresh cells, so this comparison applies to them too. T"
     },
     {
       "from": "m1-annulus-slide",
       "to": "m1-annulus-seed",
+      "label": "annulus:slide",
       "context": "istic family. This gives a $Y$ seed under $P_Z$. Finally slide the boundary cuts and change their class to $Y$, moving the test to height near $.77H$. Lemma~\\ref{annulus:slide} preserves the lower bound and gives the matching mixed law $P_Y$. The clearance between old and new cuts guarantees th"
     },
     {
       "from": "m1-thm-circuit-input",
       "to": "m1-annulus-seed",
+      "label": "thm:circuit-input",
       "context": "[Proof of Theorem~\\ref{thm:circuit-input}] Proposition~\\ref{annulus:seed} proves the horizontal alternative in (58) of \\cite{GL2025}. We now use the implication"
     },
     {
       "from": "m1-lem-cell-cut",
       "to": "m1-annulus-seed",
+      "label": "lem:cell-cut",
       "context": "put is precisely an occupied plus circuit under an excluded-boundary-cell law with the first color minus on its boundary layer and the second color free. Lemma~\\ref{lem:cell-cut} identifies this with the law used in the statement of Theorem~\\ref{thm:circuit-input}. Our seed proof was for sufficie"
     },
     {
       "from": "m2-lem-spin-fkg",
       "to": "m2-lem-local-circuit",
+      "label": "lem:spin-fkg",
       "context": "Consider sign plus first. Fix $B=-1$ on both face layers of the radius-$2r$ regular contour. By \\cref{lem:spin-fkg} this lowers every increasing event. The exact cut law identifies its interior with the one-spin minus-boundary law in"
     },
     {
       "from": "m2-lem-worst-cut",
       "to": "m2-lem-buffer-circuits",
+      "label": "lem:worst-cut",
       "context": "site sign on both sides of the larger deterministic cut. FKG lowers the desired probability again, and the exact cut law identifies the remaining problem with \\cref{lem:worst-cut}. This gives a uniform local lower bound under every allowed exterior conditioning. We explain the geometric gluing, w"
     },
     {
       "from": "m2-lem-buffer-circuits",
       "to": "m2-prop-loop-estimates",
+      "label": "lem:buffer-circuits",
       "context": "adii, for example, $1.3n$ and $1.7n$. Their comparison buffers fit strictly between radii $n$ and $2n$ and avoid the fixed boundary layers and equality edges. \\Cref{lem:buffer-circuits} gives a uniformly positive probability of a double-$B$ plus circuit in the inner collar and a double-$B$ minus circuit"
     },
     {
       "from": "m2-lem-double-cut",
       "to": "m2-prop-loop-estimates",
+      "label": "lem:double-cut",
       "context": "stent with the record reproduces the same search and the same cut. Across $C$ both $B$ values are plus, so coherence places no restriction on $W$ there. Thus \\cref{lem:double-cut} gives exactly the plus-$B$, free-$W$ cut law in $U$, even after all unobserved exterior variables are summed out. On $"
     },
     {
       "from": "m2-lem-local-circuit",
       "to": "m2-prop-loop-estimates",
+      "label": "lem:local-circuit",
       "context": "nd the latter probability uniformly in $C$. Choose an exterior face incident to $L$ with center $u$ satisfying $|u|_g=n+O(1)$. Fix $M>10(R+2)$, with $R$ from \\cref{lem:local-circuit}, and choose an integer $m$ such that $(1-p)^m\\le1/8$. About $u$ test the annuli of that lemma at scales \\[ d_i="
     }
   ]

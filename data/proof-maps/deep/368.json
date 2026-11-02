@@ -422,7 +422,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Strong-diffeomorphic-approximation-in-three-dimensions-for-1-le-p-le-2-September-24-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Strong diffeomorphic approximation in three dimensions for 1≤p≤2; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Strong diffeomorphic approximation in three dimensions for 1≤p≤2.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -494,7 +494,6 @@
           "source": "Qualitative topology and strong smoothing",
           "detail": "[Strong PL smoothing] The conclusion of Theorem~ holds if H is replaced by a locally finite PL homeomorphism h:' in W^ 1,p (;^3) .",
           "dependsOn": [
-            "m1-pre-local-tolerances",
             "m1-sm-proper-degree"
           ]
         },
@@ -529,8 +528,6 @@
           "source": "Qualitative topology and strong smoothing",
           "detail": "[Strong PL approximation of a locally bi-Lipschitz map] Under the hypotheses of Theorem~ , there is a locally finite PL homeomorphism G:' satisfying \\[ G-H_ W^ 1,p () <, |G(x)-H(x)|<(x)(x). \\]",
           "dependsOn": [
-            "m1-sm-mesh",
-            "m1-sm-insertion",
             "m1-sm-relative-pl",
             "m1-sm-smoothing",
             "m1-sm-pl-smoothing"
@@ -710,7 +707,6 @@
           "source": "Parametrization, topology, and trace budgets for the low exponents",
           "detail": "[Sharp costs along a thin-grid subspace] In a deep lattice patch adapted to a fixed k -plane E , use side d along E and side d along E^ , where k\\ 1,2\\ . For m=k , the translation-averaged tie-budget…",
           "dependsOn": [
-            "m1-lt-squeeze",
             "m1-lt-curve-probability"
           ]
         },
@@ -757,8 +753,7 @@
           "dependsOn": [
             "m1-lt-relative-germs",
             "m1-lt-budget-transfer",
-            "m1-lt-trace-slicing",
-            "m1-lt-budget-expectation"
+            "m1-lt-trace-slicing"
           ]
         },
         {
@@ -796,16 +791,10 @@
           "dependsOn": [
             "m1-lt-collapse",
             "m1-lt-disk",
-            "m1-la-approximation",
-            "m1-la-jet-selection",
             "m1-lt-budget-transfer",
-            "m1-lt-budget-expectation",
-            "m1-lt-curve-probability",
-            "m1-lt-sharp-grid",
             "m1-pre-local-tolerances",
             "m1-la-radial-blocks",
             "m1-la-kernel-selection",
-            "m1-main-theorem",
             "m1-sm-smoothing",
             "m1-sm-proper-degree"
           ]
@@ -824,7 +813,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Strong-diffeomorphic-approximation-in-three-dimensions-for-p-gt-2-September-24-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Strong diffeomorphic approximation in three dimensions for p>2; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Strong diffeomorphic approximation in three dimensions for p>2.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -898,7 +887,6 @@
           "source": "Retained rank data and an exact carrier",
           "detail": "[Target flattening] Given >0 , 0<<1/100 , and a positive continuous fine tolerance a on , one can retain a compact set K D with (D K)< and construct a Lipschitz map S_0: with the following…",
           "dependsOn": [
-            "m2-hp-transported-bundle",
             "m2-hp-cone-null",
             "m2-hp-thin-bands",
             "m2-hp-regularity"
@@ -946,9 +934,7 @@
           "kind": "lemma",
           "source": "Retained rank data and an exact carrier",
           "detail": "[Relative opening] Let F: be a continuous proper onto map obtained by locally finite image-preserving applications of Lemma~ in genuine homeomorphic neighborhoods. Assume that subsequent applications…",
-          "dependsOn": [
-            "m2-hp-cutoff"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-hp-exceptional-boxes",
@@ -986,7 +972,6 @@
             "m2-pre-local-tolerances",
             "m2-hp-regularity",
             "m2-hp-regular-implant",
-            "m2-hp-cutoff",
             "m2-hp-flattening",
             "m2-hp-opening"
           ]
@@ -1011,9 +996,7 @@
           "kind": "proposition",
           "source": "Retained rank data and an exact carrier",
           "detail": "[Postponed full-rank correction] Let p>2 and let f: be an orientation-preserving Sobolev homeomorphism between bounded domains. Let R be the set of its regular differentiation points at which Df has…",
-          "dependsOn": [
-            "m2-hp-smooth-cutoff"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-hp-hide-cubes",
@@ -1121,7 +1104,6 @@
           "source": "Convex product quantizers and the exterior carrier",
           "detail": "[A carrier exact on the central tubes] Let p>2 . Let T: have the properties of Proposition~ , and let F: have the carrier properties retained in Lemma~ . In particular, F is a proper continuous W^…",
           "dependsOn": [
-            "m2-hp-cutoff",
             "m2-hp-opening",
             "m2-hp-immersed-skeleton"
           ]
@@ -1178,7 +1160,6 @@
           "detail": "[Crossing lower bound] Assume the pre-stack hypotheses of Definition~ and its slope majorant G , and let the pre-stacks avoid the guards. Suppose a guard label has physical distance at least >0 from…",
           "dependsOn": [
             "m2-wl-stairs",
-            "m2-wl-period",
             "m2-wl-routing"
           ]
         },
@@ -1335,7 +1316,6 @@
           "source": "Meshes and wall neighborhoods",
           "detail": "[Uniform weak templates] After the separate-colour normalizations, all normal disks can be thickened into pre-stacks satisfying Definition~ , with the boundary data of Lemma~ . On a physical…",
           "dependsOn": [
-            "m2-wl-pattern",
             "m2-ms-boundary-collar"
           ]
         },
@@ -1385,7 +1365,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

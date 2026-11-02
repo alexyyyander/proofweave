@@ -317,7 +317,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Planar-Graph-Metrics-Embed-into-L1-with-Constant-Distortion-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Planar Graph Metrics Embed into L1 with Constant Distortion; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Planar Graph Metrics Embed into L1 with Constant Distortion.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -380,9 +380,7 @@
           "kind": "lemma",
           "source": "Columns and thin bands",
           "detail": "[Skipping a column] Give an open circular arc its linear order, and assume its complementary closed arc contains a column index. Let a vertex walk stay in the open arc, and let an index i lie…",
-          "dependsOn": [
-            "m1-geo-chord-separation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-geo-outerplanar",
@@ -412,9 +410,7 @@
           "kind": "lemma",
           "source": "Columns and thin bands",
           "detail": "[Two portals] Let C be a component of the subgraph of G_J induced by \\ i:b_i t\\ . An entrance column of C is an index in C adjacent to an index with radial value below t . If entrance columns exist,…",
-          "dependsOn": [
-            "m1-geo-outerplanar"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-geo-cells",
@@ -446,9 +442,7 @@
           "kind": "lemma",
           "source": "Columns and thin bands",
           "detail": "[Successive portal levels] Fix a step >1000a . At depth n1 take the components of \\ b_i n\\ and give each its entrance portals from Lemma~ . The depth-zero node is the whole component, with its sole…",
-          "dependsOn": [
-            "m1-geo-cells"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-sets-vertical",
@@ -569,9 +563,7 @@
           "kind": "corollary",
           "source": "The main update and a packing bound for secondary seeds",
           "detail": "[Separation supplied by the main test] Let (x,y) be an eligible pair satisfying the interior requirements, 1 d(x,y)2 , and |s(x)-s(y)| E_A . If either endpoint has no descending path, then,…",
-          "dependsOn": [
-            "m1-main-ray"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-pack-barrier",
@@ -581,9 +573,7 @@
           "kind": "lemma",
           "source": "The main update and a packing bound for secondary seeds",
           "detail": "[Label mass at a separating tip] Suppose a retained pair has a non-neighbor link separating its representatives strictly, with tip e at a height in J_2 , such that d(e,x)1 or d(e,y)1 . If s(e)<s(w)-j…",
-          "dependsOn": [
-            "m1-sets-component-refinement"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-pack-bound",
@@ -595,7 +585,6 @@
           "detail": "[Restricted packing bound] Fix a narrow band J_2 . In any component of X_ J_2 , every closed d_ J_2 -ball of radius 4R meets seeds from at most M_ pack =2+1600R/g groups. This bound is independent of…",
           "dependsOn": [
             "m1-geo-gap",
-            "m1-geo-skipping",
             "m1-geo-chord-separation",
             "m1-main-ray",
             "m1-geo-padding"
@@ -646,7 +635,6 @@
           "detail": "[Quantitative separation on the two arcs] Set R=10^ -8 . Let s be an ordered field of slope bound 4 on X_I . Suppose that x,y X_I satisfy \\[ 1 d(x,y)2, d_I(x,y)=d(x,y), |s(x)-s(y)|10^ -3 R. \\] Let J…",
           "dependsOn": [
             "m1-geo-chord-separation",
-            "m1-ord-overlap",
             "m1-ord-transverse-lipschitz"
           ]
         },
@@ -690,9 +678,7 @@
           "kind": "lemma",
           "source": "The secondary update",
           "detail": "[The remaining pairs] Suppose a surviving pair has no admitted endpoint in either ordered orientation. Then the increment mode separates it by a positive universal amount with uniformly positive…",
-          "dependsOn": [
-            "m1-ord-two-side"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-pad-success",
@@ -721,8 +707,7 @@
           "detail": "[Chart persistence] There exist constants C_0< and _0>0 such that the following holds. Condition on the past at a step of scale r . Suppose a fixed closed ball B_d(v, r) lies in a single old region…",
           "dependsOn": [
             "m1-int-comparisons",
-            "m1-pack-bound",
-            "m1-sec-validity"
+            "m1-pack-bound"
           ]
         },
         {
@@ -751,7 +736,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/L1-Embeddings-of-Graphs-of-Bounded-Treewidth-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from L1 Embeddings of Graphs of Bounded Treewidth; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from L1 Embeddings of Graphs of Bounded Treewidth.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -962,8 +947,7 @@
           "source": "Uniform lower comparison",
           "detail": "[A youngest crossing anchor] There are at most n_0+1 distinct crossing anchor sequences. The set is nonempty and has a youngest member A_* .",
           "dependsOn": [
-            "m2-lem-finite-limiting-rules",
-            "m2-lem-cache-defined"
+            "m2-lem-finite-limiting-rules"
           ]
         },
         {
@@ -987,10 +971,7 @@
           "kind": "lemma",
           "source": "Uniform lower comparison",
           "detail": "[A geometric obstruction at every early sequence] Let B be any selected early sequence of bags from S to X and let p B be nearest to x . Put =d(x,B) . There is a sequence q B such that, eventually, 4…",
-          "dependsOn": [
-            "m2-lem-separator",
-            "m2-lem-old-distant-anchor"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-protected-successor",
@@ -1014,10 +995,7 @@
           "detail": "[A younger crossing anchor exists] Under the normalized failure assumption , there is a crossing anchor younger than A_* .",
           "dependsOn": [
             "m2-lem-old-distant-anchor",
-            "m2-lem-protected-successor",
             "m2-prop-combined-lower",
-            "m2-lem-youngest-crossing",
-            "m2-thm-main",
             "m2-prop-cobag"
           ]
         }
@@ -1044,7 +1022,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

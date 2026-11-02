@@ -137,7 +137,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Integer-multiplication-below-n-log-n-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Integer multiplication below n log n; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Integer multiplication below n log n.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -247,7 +247,6 @@
           "source": "Faster interchange of address chunks",
           "detail": "[The cost of a rational matrix shear] Let A be a fixed finite collection of rational m m matrices. There is a fixed odd prime q such that the following holds. Let H=(H_1,,H_m) and D=(D_1,,D_m) be two…",
           "dependsOn": [
-            "m1-lem-lower-lower",
             "m1-lem-ordered-affine-streams"
           ]
         },
@@ -286,7 +285,6 @@
           "source": "Fast simultaneous synthetic butterfly layers",
           "detail": "[Packed selected-bit addition on one rectangle] Let R1 , K6 , f1 , L=fK , and 0<K . Let N_0,N_1,N_2,N_3 be positive integers, and let (_1,_2,_3) be a permutation of (x,y,z) . Consider R -bit records…",
           "dependsOn": [
-            "m1-lem-chunk-swap",
             "m1-lem-ordered-affine-streams",
             "m1-lem-elementary-streams"
           ]
@@ -299,9 +297,7 @@
           "kind": "proposition",
           "source": "Fast simultaneous synthetic butterfly layers",
           "detail": "[Simultaneous normalized butterfly layer] Fix \\[ ==1-2^ -50 , =12, C_1=20. \\] Let c,,,' be fixed positive rational numbers satisfying \\[ \\ ,\\ <<1, (1+c/)<, \\ ,+(1-)\\ <'<1, C_1<1. \\] Fix positive…",
-          "dependsOn": [
-            "m1-lem-packed-selected-bit-rectangle"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-synthetic-characters",
@@ -321,9 +317,7 @@
           "kind": "lemma",
           "source": "Synthetic transforms and their tape layout",
           "detail": "[Transform layout and cost] Fix the rational parameters and positive comparison constants a_d b_d , a_r b_r of Proposition~ . Fix constants C_>0 and C_w>1 , and choose the layer constants once as \\[…",
-          "dependsOn": [
-            "m1-prop-simultaneous-layer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-signed-ring-product",
@@ -343,9 +337,7 @@
           "kind": "proposition",
           "source": "Exact normalized polynomial products",
           "detail": "[Convolution from the retained transform layout] Under the hypotheses of Lemma~ , M_r on disk grid operands has an approximation with error less than 2\\,M(3+1)2^ -p and cost \\[ O(Tp). \\] Put m_M=_2M…",
-          "dependsOn": [
-            "m1-lem-signed-ring-product"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-no-sort-resampling",
@@ -379,7 +371,6 @@
           "source": "Resampling with the permutations left in the transform",
           "detail": "[Chirp and permutation cancellation] With R,Q,s_i,t_i as in Lemma~ , assume every t_i is even. For j Z^d , define \\[ a_ j =(- i_ i=1 ^ds_i j_i^2 t_i ). \\] Then a has period t_i in coordinate i , and…",
           "dependsOn": [
-            "m1-cor-exact-arithmetic",
             "m1-thm-main"
           ]
         },
@@ -391,9 +382,7 @@
           "kind": "lemma",
           "source": "Packed additions on grouped rectangles",
           "detail": "[Packed selected-bit addition for grouped rectangles] Let a valid grouped packed stream of Definition~ be supplied, and let A2 bound the actual total bit length of its descriptor D , including the…",
-          "dependsOn": [
-            "m1-lem-packed-selected-bit-rectangle"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -412,7 +401,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

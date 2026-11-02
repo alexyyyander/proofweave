@@ -422,7 +422,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Orbifold-and-logarithmic-Iitaka-subadditivity-September-26-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Orbifold and logarithmic Iitaka subadditivity; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Orbifold and logarithmic Iitaka subadditivity.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -476,7 +476,6 @@
           "source": "The relative Iitaka reduction and its Hodge line",
           "detail": "[Flattening and the exceptional reference] Let g_0:(Z_0,_0) T_0 be a fibration from a smooth compact pair with rational SNC boundary in [0,1] to a smooth compact manifold. There are a smooth-base…",
           "dependsOn": [
-            "m1-setup-log-modification",
             "m1-setup-modification-compatibility"
           ]
         },
@@ -488,10 +487,7 @@
           "kind": "corollary",
           "source": "The relative Iitaka reduction and its Hodge line",
           "detail": "[Simultaneous model control] Suppose a smooth pair (X_1,_1) has a fibration f_1:X_1 Y to a fixed smooth base, and every prime divisor contracted by f_1 into codimension at least two has coefficient…",
-          "dependsOn": [
-            "m1-setup-flattening",
-            "m1-setup-modification-compatibility"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-application-relative-iitaka",
@@ -544,8 +540,7 @@
           "source": "The relative Iitaka reduction and its Hodge line",
           "detail": "The projection of the rank-one top eigenspace to its nonzero pure weight grade is an isomorphism on canonical extensions after unipotentization. Consequently it is an isomorphism of parabolic…",
           "dependsOn": [
-            "m1-rankone-comparison",
-            "m1-setup-log-modification"
+            "m1-rankone-comparison"
           ]
         },
         {
@@ -619,9 +614,7 @@
           "kind": "lemma",
           "source": "Adjoint positivity of an extreme Hodge line",
           "detail": "[Restriction to a boundary component] In the unipotent case of , let E_i be a smooth boundary component and N_i its monodromy logarithm. On the open stratum of E_i , the limiting highest line occurs…",
-          "dependsOn": [
-            "m1-period-numerics"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-period-adjoint-reduction",
@@ -652,8 +645,6 @@
           "source": "Adjoint positivity of an extreme Hodge line",
           "detail": "[The projective period quotient] In , after modifications there is a map p:B' S with connected fibers to a smooth projective variety and a nef rational line P with ^*L=p^*P . On a dense open subset…",
           "dependsOn": [
-            "m1-period-numerics",
-            "m1-period-stabilizer",
             "m1-period-adjoint-reduction"
           ]
         },
@@ -666,11 +657,7 @@
           "source": "Adjoint positivity of an extreme Hodge line",
           "detail": "[Strict loss of rank at the marked boundary] For every component D_i of D , (P|_ D_i )<(P).",
           "dependsOn": [
-            "m1-period-numerics",
-            "m1-period-quotient",
-            "m1-period-boundary",
-            "m1-period-adjoint-reduction",
-            "m1-period-stabilizer"
+            "m1-period-adjoint-reduction"
           ]
         },
         {
@@ -682,9 +669,7 @@
           "source": "Adjoint positivity of an extreme Hodge line",
           "detail": "Let Z be a smooth projective variety, J a nef rational divisor, A a rational divisor, and D=_ i=1 ^s d_iE_i an effective rational divisor with smooth prime components. Suppose A+D is big and \\[ (J|_…",
           "dependsOn": [
-            "m1-period-adjoint",
-            "m1-period-quotient",
-            "m1-period-rankloss"
+            "m1-period-adjoint"
           ]
         },
         {
@@ -705,9 +690,7 @@
           "kind": "lemma",
           "source": "Addition with a log-general-type fiber",
           "detail": "[Analytic comparison with a stable family] Let \\(h V Y\\) be a surjective holomorphic map with connected fibers, where \\(V\\) is a smooth compact Kähler manifold and \\(Y\\) is a smooth compact manifold…",
-          "dependsOn": [
-            "m1-generaltype-selection"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-generaltype-stable-orders",
@@ -727,10 +710,7 @@
           "kind": "lemma",
           "source": "Addition with a log-general-type fiber",
           "detail": "Under the hypotheses of , there is a positive integer \\(b_0\\) and a finite-dimensional space \\[ S H^0_ mer (V, O_V(b_0K_ V/Y )) \\] whose associated meromorphic map has rank \\( F\\) on general…",
-          "dependsOn": [
-            "m1-generaltype-stable-comparison",
-            "m1-generaltype-stable-orders"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-generaltype-expose-valuation",
@@ -741,16 +721,8 @@
           "source": "Addition with a log-general-type fiber",
           "detail": "Let \\(h V Y\\) be a proper surjective holomorphic map of irreducible compact complex spaces, with \\(Y\\) smooth. If a prime divisor \\(E\\) of a smooth \\(V\\) does not dominate \\(Y\\), there is a…",
           "dependsOn": [
-            "m1-generaltype-addition",
-            "m1-generaltype-relative-system",
-            "m1-main-orbifold",
             "m1-setup-flattening",
-            "m1-setup-simultaneous",
-            "m1-application-relative-iitaka",
-            "m1-rankone-comparison",
-            "m1-application-composition",
-            "m1-addition-principle",
-            "m1-setup-log-modification"
+            "m1-setup-simultaneous"
           ]
         },
         {
@@ -923,7 +895,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Logarithmic-Kodaira-dimension-and-whole-fiber-variation-September-26-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Logarithmic Kodaira dimension and whole-fiber variation; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Logarithmic Kodaira dimension and whole-fiber variation.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1051,8 +1023,7 @@
           "source": "The parameter field detected by logarithmic forms",
           "detail": "Let J be the smooth geometric generic fiber of x , or a simultaneous very general complex fiber. Then (W_z,K_ W_z +D_W^0|_ W_z )=0, (J)=(J,K_J+D'|_J)=0. The source-fiber equalities hold on the same…",
           "dependsOn": [
-            "m2-spec-logarithmic",
-            "m2-it-contraction"
+            "m2-spec-logarithmic"
           ]
         },
         {
@@ -1064,9 +1035,7 @@
           "source": "The parameter field detected by logarithmic forms",
           "detail": "The models of Proposition~ may be chosen together with smooth connected projective varieties S,T_0 and morphisms in the commutative diagram [column sep=large,row sep=large] X' & W & Z \\\\ Y & S & T_0…",
           "dependsOn": [
-            "m2-it-contraction",
-            "m2-it-zerofiber",
-            "m2-it-diagram"
+            "m2-it-zerofiber"
           ]
         },
         {
@@ -1162,9 +1131,7 @@
           "kind": "proposition",
           "source": "The root cover and its Hodge line",
           "detail": "[Projective adjoint comparison] Let P be smooth connected projective, let D be reduced SNC, and let L be the rational parabolic extension of the entire highest Hodge line of a polarizable integral…",
-          "dependsOn": [
-            "m2-period-adjoint"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-ro-weak-addition",
@@ -1279,8 +1246,7 @@
           "detail": "The pullback of to a resolution of every irreducible component of E is zero.",
           "dependsOn": [
             "m2-cc-operator",
-            "m2-cc-preparation",
-            "m2-cc-criterion"
+            "m2-cc-preparation"
           ]
         },
         {
@@ -1353,10 +1319,7 @@
           "source": "Markings and a constant finite normalization",
           "detail": "Let H_0,I,P_0 be the geometric generic fibers over T_0 of W,S,Z , respectively. Write B_0 and D_I for the restrictions of B and D_S . These are smooth projective varieties over b , with the indicated…",
           "dependsOn": [
-            "m2-it-diagram",
-            "m2-it-dimensions",
-            "m2-ro-divisors",
-            "m2-ro-trivial"
+            "m2-ro-divisors"
           ]
         }
       ]
@@ -1382,7 +1345,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

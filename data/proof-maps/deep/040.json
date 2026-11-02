@@ -192,7 +192,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Blochs-Conjecture-for-Surfaces-with-pg-equals-q-equals-0-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Bloch’s conjecture for surfaces with p_g=0; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Bloch’s conjecture for surfaces with p_g=0.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -414,8 +414,6 @@
           "source": "Fixed virtual classes and the divisor cosection",
           "detail": "Assume \\(p_g=q=1\\), \\(K\\) ample, and \\(D=3K\\). Every fixed contribution vanishes except those obtained from a low divisor equal to the empty divisor or to the canonical divisor. In either surviving…",
           "dependsOn": [
-            "m1-fix-relative-pot",
-            "m1-fix-excess",
             "m1-lem-rank-one-family",
             "m1-fix-smooth-euler"
           ]
@@ -438,9 +436,7 @@
           "kind": "lemma",
           "source": "A Chow relation and its universal diagonal coefficient",
           "detail": "[Reduction to decorated equality diagonals] Fix a finite list of line bundles on X . Consider a finite polynomial of Chern characters of universal point ideals and their derived duals, together with…",
-          "dependsOn": [
-            "m1-rel-hilbert-recursion"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-universal",
@@ -526,12 +522,10 @@
           "detail": "The actual line bundles \\[ H=K+h', T=(d-1)K-h' \\] are effective and satisfy , with H0 .",
           "dependsOn": [
             "m1-lem-rank-one-family",
-            "m1-prop-nonrank",
             "m1-thm-chow-relation",
             "m1-prop-universal",
             "m1-nr-surviving-numerics",
-            "m1-rel-correspondence",
-            "m1-lem-birational"
+            "m1-rel-correspondence"
           ]
         },
         {
@@ -553,7 +547,6 @@
           "source": "Nonvanishing when the minimal intersection lattice has rank at least two",
           "detail": "For the common universal coefficients defined above, one has c_ out -s c_ mid =0, s>0, where -s is the canonical-divisor coefficient in Equation~ for Y .",
           "dependsOn": [
-            "m1-prop-fixed-auxiliary",
             "m1-prop-universal"
           ]
         },
@@ -566,8 +559,6 @@
           "source": "Nonvanishing when the minimal intersection lattice has rank at least two",
           "detail": "For the data , with numerical inputs K^2=9 and c_2=3 , the two-order middle coefficient is \\[ c_ mid =12. \\]",
           "dependsOn": [
-            "m1-prop-rankone",
-            "m1-thm-chow-relation",
             "m1-rel-correspondence",
             "m1-lem-birational",
             "m1-cor-bloch-pg-zero",
@@ -591,7 +582,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

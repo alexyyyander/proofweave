@@ -147,7 +147,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-curve-scaling-limit-of-half-plane-double-dimers-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The curve scaling limit of half-plane double dimers; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The curve scaling limit of half-plane double dimers.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -219,7 +219,6 @@
           "source": "Transfer through a rectangle and the number of crossings",
           "detail": "[Marked cap vectors] Start with an ordinary two-replica cap vector. In each uncolored cap diagram specify a collection of eligible arches, and retain only diagrams having at most M eligible arches.…",
           "dependsOn": [
-            "m1-prop-rectangle-crossings",
             "m1-lem-spectrum",
             "m1-lem-cap-comparison"
           ]
@@ -321,8 +320,7 @@
           "source": "Localization and compactness of the curves",
           "detail": "[Local exclusion of opposite intersection signs] Let u be either the horizontal or vertical coordinate, let L=\\ u=c\\ be a test line, and let J L be a bounded segment. If u is the vertical coordinate,…",
           "dependsOn": [
-            "m1-prop-localization",
-            "m1-prop-rectangle-short"
+            "m1-prop-localization"
           ]
         },
         {
@@ -401,8 +399,7 @@
           "source": "From puncture data to convergence of curves",
           "detail": "[No reverse passage] Each path _j is a weakly monotone once-around traversal of its canonical Jordan curve. In particular, it has zero curve distance from a simple parametrization of that curve.",
           "dependsOn": [
-            "m1-lem-jordan-line",
-            "m1-prop-local-opposite"
+            "m1-lem-jordan-line"
           ]
         },
         {
@@ -414,7 +411,6 @@
           "source": "From puncture data to convergence of curves",
           "detail": "[Restriction to interior collections] Let _ , 0<1 , and be probability laws on X supported on S . Suppose that _ in X as 0 , that the family (_)_ 0<1 is uniformly tight in X , and that (_)_ a1 is…",
           "dependsOn": [
-            "m1-thm-main",
             "m1-prop-tightness"
           ]
         }
@@ -435,7 +431,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

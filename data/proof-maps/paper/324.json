@@ -306,131 +306,157 @@
     {
       "from": "m1-thm-free-wsc",
       "to": "m1-eq-criterion-bounds",
+      "label": "thm:free-wsc",
       "context": "}\\|v_i\\|,\\ \\sup_i\\|v_i\\|\\right\\} =\\sup_i\\|v_i\\|, \\] because \\(\\sum_{i\\ge1}2^{-i}=1\\). This is a linear isometry. The Hilbert space \\(M\\) is superreflexive, so \\Cref{thm:free-wsc} makes \\(E=\\F(M)\\) weakly sequentially complete. By hypothesis \\(q\\) is completely continuous, and \\Cref{lem:graph-obstr"
     },
     {
       "from": "m1-thm-localized-linearization",
       "to": "m1-lemma-9",
+      "label": "thm:localized-linearization",
       "context": "[Proof of \\Cref{thm:localized-linearization}] Let \\(E=\\F(M)\\) and \\(L=\\Lip(D)=\\|q\\|\\). If \\(L=0\\), then \\(D=0\\) because \\(D(0)=0\\), and \\(q=0\\). Assume \\(L>0\\). If"
     },
     {
       "from": "m1-thm-compact-reduction",
       "to": "m1-lemma-9",
+      "label": "thm:compact-reduction",
       "context": ". This is where completeness of \\(M\\) enters through compact reduction. \\medskip \\noindent\\emph{Estimate the remainder on one compact set.} Fix \\(\\tau>0\\). By \\Cref{thm:compact-reduction}, choose a compact \\(K\\subset M\\), \\(0\\in K\\), and \\(\\nu_i\\in\\F(K)\\) with \\[ \\|\\mu_i-\\nu_i\\|<\\tau,\\qquad \\|\\nu_i\\|\\le"
     },
     {
       "from": "m1-thm-hilbert-map",
       "to": "m1-eq-hn-bounds",
+      "label": "thm:hilbert-map",
       "context": "[Completion of the proof of Theorem~\\ref{thm:hilbert-map}] For fixed \\(x=(u,v)\\), the first \\(N\\) output blocks of \\(h_N(x)\\) and \\(h(x)\\) agree. Indeed, their own slots agree i"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-eq-hn-bounds",
+      "label": "thm:main",
       "context": "[Proof of \\Cref{thm:main}] Take the real Hilbert spaces \\(U\\), \\(V=\\ell_2\\), \\(M=U\\oplus_2V\\) and the map \\(h:M\\to U\\) from \\Cref{thm:hilbert-map"
     },
     {
       "from": "m1-thm-localized-linearization",
       "to": "m1-eq-hn-bounds",
+      "label": "thm:localized-linearization",
       "context": ",\\qquad D=h-\\pi_U,\\qquad q=\\widehat D:E\\to U. \\] The map \\(D\\) is Lipschitz, \\(D(0)=0\\), and it has the finite-family tail-coordinate orthogonality required by \\Cref{thm:localized-linearization}. That theorem makes \\(q\\) completely continuous. By \\eqref{eq:linearization} and \\eqref{eq:h-bounds}, \\[ \\|q\\|=\\Lip(D)"
     },
     {
       "from": "m2-lem-frozen",
       "to": "m2-prop-global",
+      "label": "lem:frozen",
       "context": "ambda,\\bar w^\\lambda)\\) at whichever of \\(s_x,s_{x'}\\) has larger \\(r_\\lambda\\), breaking a tie arbitrarily. These choices may vary with \\(\\lambda\\), but Lemma~\\ref{lem:frozen} still applies to the resulting \\(\\bar S\\). For \\(e=x\\) or \\(x'\\), the chosen pair either agrees with the weights at \\(s"
     },
     {
       "from": "m2-lem-operations",
       "to": "m2-lem-support",
+      "label": "lem:operations",
       "context": "d for the old function and add an operation of scale \\(\\varepsilon\\). If the new function is nonzero at \\(s\\) and the old one is zero there, the proof of Lemma~\\ref{lem:operations} gives an old nonzero value at the zero extension of \\(q\\), with \\(\\|s|_{I_\\gamma}-q\\|_\\infty<\\varepsilon\\). Otherwise t"
     },
     {
       "from": "m2-lem-class-bounds",
       "to": "m2-lem-duality",
+      "label": "lem:class-bounds",
       "context": "Choose an integer \\(C_{\\mathcal L}\\) no smaller than the uniform Lipschitz bound in Lemma~\\ref{lem:class-bounds}. Every singleton \\((u)\\), \\(u\\in\\mathcal L\\), is admissible for the one triple \\(d_{\\mathcal L}=(\\mathcal L,C_{\\mathcal"
     },
     {
       "from": "m2-lem-duality",
       "to": "m2-lem-detector-growth",
+      "label": "lem:duality",
       "context": "The list \\((F_k)_{k\\in H}\\) is admissible for \\(d\\), including when labels repeat. For independent real random signs, the exact list formula in Lemma~\\ref{lem:duality} gives \\begin{align*} \\mathbb E\\,\\sigma_d\\!\\left(\\sum_{i\\in H}\\epsilon_i m_i\\right)^2 &\\geq \\mathbb E\\sum_{k\\in H}"
     },
     {
       "from": "m2-lem-duality",
       "to": "m2-lem-tail-separation",
+      "label": "lem:duality",
       "context": "l V_H\\) for all \\(i,N\\). There is room for one extra tail factor. For each fixed \\(i\\), \\(b_{c,N}(s)\\to1\\) at every \\(s\\in B\\), since \\(\\tau_N(s)\\to0\\). Lemma~\\ref{lem:duality}, used in this one class, therefore gives \\(\\langle F_i b_{c,N},m_i\\rangle\\to\\langle F_i,m_i\\rangle\\). Choose \\(N\\) larg"
     },
     {
       "from": "m2-lem-duality",
       "to": "m2-prop-compatible-detectors",
+      "label": "lem:duality",
       "context": "We pass to subsequences and relabel their indices throughout the proof. Every fixed test pairs to zero in the limit, by weak nullity and Lemma~\\ref{lem:duality}. Fix a concrete representation of each detector \\(F_i\\). If its class is \\(\\mathcal T_h\\), take \\(F_i=u_i\\) and no tai"
     },
     {
       "from": "m2-lem-tail-separation",
       "to": "m2-prop-compatible-detectors",
+      "label": "lem:tail-separation",
       "context": "e used by \\(r_{\\lambda_i}\\) has index \\(>M_i\\). Then \\(r_{\\lambda_i}(s)\\leq\\tau_{M_i}(s)\\). Condition \\eqref{eq:bounded-band-radius} is the hypothesis of Lemma~\\ref{lem:tail-separation}, which gives detectors in one enlarged class with pairwise disjoint supports. Lemma~\\ref{lem:compatible}(1) gives a com"
     },
     {
       "from": "m2-lem-compatible",
       "to": "m2-prop-compatible-detectors",
+      "label": "lem:compatible",
       "context": "q:bounded-band-radius} is the hypothesis of Lemma~\\ref{lem:tail-separation}, which gives detectors in one enlarged class with pairwise disjoint supports. Lemma~\\ref{lem:compatible}(1) gives a common Lipschitz bound for all their finite signed sums. \\paragraph{Distinct labels with bands tending to i"
     },
     {
       "from": "m2-lem-operations",
       "to": "m2-prop-compatible-detectors",
+      "label": "lem:operations",
       "context": "earlier operations may have enlarged it. If \\(L_{\\mathrm{pre}}=0\\), this \\(R\\) and the resulting test vanish, contradicting \\eqref{eq:varying-detection}. Lemma~\\ref{lem:operations} gives \\[ \\|R_{q_i,\\varepsilon_i}p\\|_\\infty \\leq L_{\\mathrm{pre}}\\varepsilon_i,\\qquad K_I(R_{q_i,\\varepsilon_i}"
     },
     {
       "from": "m2-lem-detectors",
       "to": "m2-prop-no-c0",
+      "label": "lem:detectors",
       "context": "ound for \\(T\\) and the identity \\(\\|\\sum_{i\\in H}\\epsilon_i e_i\\|_\\infty=1\\) for nonempty finite \\(H\\) give \\eqref{eq:bounded-signed} for some \\(r,M>0\\). Lemma~\\ref{lem:detectors} supplies a weakly null subsequence and detectors in one class. Proposition~\\ref{prop:compatible-detectors} then supplie"
     },
     {
       "from": "m2-prop-compatible-detectors",
       "to": "m2-prop-no-c0",
+      "label": "prop:compatible-detectors",
       "context": "e \\(H\\) give \\eqref{eq:bounded-signed} for some \\(r,M>0\\). Lemma~\\ref{lem:detectors} supplies a weakly null subsequence and detectors in one class. Proposition~\\ref{prop:compatible-detectors} then supplies compatible detectors with a common nonzero pairing. For their class \\(\\mathcal L_1\\), bound \\(C_1\\), and"
     },
     {
       "from": "m2-lem-detector-growth",
       "to": "m2-prop-no-c0",
+      "label": "lem:detector-growth",
       "context": "tors with a common nonzero pairing. For their class \\(\\mathcal L_1\\), bound \\(C_1\\), and pairing constant \\(\\delta_1\\), set \\(d_1=(\\mathcal L_1,C_1,2)\\). Lemma~\\ref{lem:detector-growth} gives \\[ M^2\\geq\\alpha_{d_1}|H|\\delta_1^2 \\] for every finite set of selected indices \\(H\\), a contra"
     },
     {
       "from": "m2-thm-main",
       "to": "m2-prop-no-c0",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] Lemma~\\ref{lem:completion} gives a separable real Banach space \\(Z\\). Proposition~\\ref{prop:no-c0} excludes a linearly"
     },
     {
       "from": "m2-lem-completion",
       "to": "m2-prop-no-c0",
+      "label": "lem:completion",
       "context": "[Proof of Theorem~\\ref{thm:main}] Lemma~\\ref{lem:completion} gives a separable real Banach space \\(Z\\). Proposition~\\ref{prop:no-c0} excludes a linearly isomorphic copy of ordinary"
     },
     {
       "from": "m2-prop-global",
       "to": "m2-prop-no-c0",
+      "label": "prop:global",
       "context": "pletion} gives a separable real Banach space \\(Z\\). Proposition~\\ref{prop:no-c0} excludes a linearly isomorphic copy of ordinary \\(c_0\\) in \\(Z\\). Propositions~\\ref{prop:global} and \\ref{prop:onto} give a bi-Lipschitz bijection \\[ g:E\\oplus_\\infty U\\longrightarrow U \\] with"
     },
     {
       "from": "m2-prop-onto",
       "to": "m2-prop-no-c0",
+      "label": "prop:onto",
       "context": "able real Banach space \\(Z\\). Proposition~\\ref{prop:no-c0} excludes a linearly isomorphic copy of ordinary \\(c_0\\) in \\(Z\\). Propositions~\\ref{prop:global} and \\ref{prop:onto} give a bi-Lipschitz bijection \\[ g:E\\oplus_\\infty U\\longrightarrow U \\] with \\(E=c_0(\\N)\\) and lo"
     },
     {
       "from": "m2-lem-q",
       "to": "m2-prop-no-c0",
+      "label": "lem:Q",
       "context": "ive a bi-Lipschitz bijection \\[ g:E\\oplus_\\infty U\\longrightarrow U \\] with \\(E=c_0(\\N)\\) and lower constant \\(c_g=1/5-24\\eta>0\\). Lemmas~\\ref{lem:Q} and \\ref{lem:K} give a bounded linear \\(Q:Z\\to U\\) and a Lipschitz \\(K:E\\oplus_\\infty U\\to Z\\) with \\(\\Lip(K)\\leq3\\) an"
     },
     {
       "from": "m2-lem-k",
       "to": "m2-prop-no-c0",
+      "label": "lem:K",
       "context": "tz bijection \\[ g:E\\oplus_\\infty U\\longrightarrow U \\] with \\(E=c_0(\\N)\\) and lower constant \\(c_g=1/5-24\\eta>0\\). Lemmas~\\ref{lem:Q} and \\ref{lem:K} give a bounded linear \\(Q:Z\\to U\\) and a Lipschitz \\(K:E\\oplus_\\infty U\\to Z\\) with \\(\\Lip(K)\\leq3\\) and \\(QK=g-P\\). Ap"
     },
     {
       "from": "m2-lem-absorption",
       "to": "m2-prop-no-c0",
+      "label": "lem:absorption",
       "context": "\\ref{lem:Q} and \\ref{lem:K} give a bounded linear \\(Q:Z\\to U\\) and a Lipschitz \\(K:E\\oplus_\\infty U\\to Z\\) with \\(\\Lip(K)\\leq3\\) and \\(QK=g-P\\). Applying Lemma~\\ref{lem:absorption} yields the onto bi-Lipschitz map \\[ F:Z\\oplus_\\infty E\\to Z,\\qquad F(b,t)=b+K(t,Qb), \\] with"
     },
     {
       "from": "m2-prop-no-c0",
       "to": "m2-cor-same-space",
+      "label": "prop:no-c0",
       "context": "ometric copy of \\(c_0\\). A bounded linear isomorphism from the direct sum onto \\(Z\\) would carry it to a closed linear copy in \\(Z\\), contradicting Proposition~\\ref{prop:no-c0}. The restriction \\(t\\mapsto F(0,t)\\) is a bi-Lipschitz embedding, proving the second statement. Aharoni's theorem \\cite"
     }
   ]

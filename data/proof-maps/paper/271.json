@@ -690,471 +690,565 @@
     {
       "from": "m1-lem-dense-boundary",
       "to": "m1-prop-pin-identities",
+      "label": "lem:dense-boundary",
       "context": "b P_E(A) \\le 2^{m_T}\\frac{\\mathcal Z_P}{\\mathcal Z_E}\\mathbb P_P(A) \\le (2r(E,T))^{m_T}. \\] For $E=F\\cup D_0$, replace $D_0$ by the finite cuts of Lemma~\\ref{lem:dense-boundary}, obtaining $E_n$ and $P_n=E_n\\cup T$. The simultaneous-free event and the weights converge almost surely. The return ev"
     },
     {
       "from": "m1-lem-exterior-moments",
       "to": "m1-prop-fresh-walk",
+      "label": "lem:exterior-moments",
       "context": "First use finitely many pins and take cuts at all pin times and zero. The unconditioned layered hole permutation under $\\mathbb Q_{\\mathbf a}$ satisfies Lemma~\\ref{lem:exterior-moments}. Conditional on every cycle hitting the pins, Proposition~\\ref{prop:next-pin-kernel} identifies its next-pin first mom"
     },
     {
       "from": "m1-prop-next-pin-kernel",
       "to": "m1-prop-fresh-walk",
+      "label": "prop:next-pin-kernel",
       "context": "ed layered hole permutation under $\\mathbb Q_{\\mathbf a}$ satisfies Lemma~\\ref{lem:exterior-moments}. Conditional on every cycle hitting the pins, Proposition~\\ref{prop:next-pin-kernel} identifies its next-pin first moment with independent transitions of its mean matrix. Those transitions are exactly the"
     },
     {
       "from": "m1-prop-exposure",
       "to": "m1-prop-fresh-walk",
+      "label": "prop:exposure",
       "context": "-pin first moment with independent transitions of its mean matrix. Those transitions are exactly the fresh walk observed at the cuts. Together with Proposition~\\ref{prop:exposure}, this proves the finite-pin assertion. For an allowed $E=F\\cup D_0$, fix an exposure for which the disintegration hold"
     },
     {
       "from": "m1-lem-routed-flow",
       "to": "m1-prop-sparse-energy",
+      "label": "lem:routed-flow",
       "context": "In each coset sum the unit flows of Lemma~\\ref{lem:routed-flow} with the coefficients supplied by the restrictions of the \\(\\mu_i\\), and call the result \\(F^\\gamma\\). Its divergence"
     },
     {
       "from": "m1-lem-routed-flow",
       "to": "m1-lem-near-flow",
+      "label": "lem:routed-flow",
       "context": "e a target slot edge with \\(h\\le R\\). Both its endpoint sites lie in \\(B_{2R+1}(z)\\). If a routed original edge \\(e'\\) uses \\(e\\), route containment in Lemma~\\ref{lem:routed-flow} says that this occurrence is either on \\(e'\\) itself or in an incident enlarged box. That box cannot be remote, and th"
     },
     {
       "from": "m1-lem-near-flow",
       "to": "m1-prop-spread-energy",
+      "label": "lem:near-flow",
       "context": "icity, and put \\(\\bar\\mu(w)=\\sum_{a:y_a=w}\\mu(a)\\). Since at most \\(\\ell\\) slots lie over a site, \\(\\|\\bar\\mu\\|_2\\le\\sqrt\\ell\\|\\mu\\|_2\\). As \\(s\\le R\\), Lemma~\\ref{lem:near-flow} bounds the near part pointwise by a convolution with a nonnegative lattice kernel \\[ \\kappa_s(w)=C(1+|w|_\\infty)^{-2}"
     },
     {
       "from": "m1-lem-factorial",
       "to": "m1-lem-blocking",
+      "label": "lem:factorial",
       "context": "the number of holes at any site. The total base intensity of all slot edges incident to a site is bounded by a constant depending only on \\(S,J\\). Thus Lemma~\\ref{lem:factorial} bounds the probability of any mark incident to six prescribed sites by \\(Cp^{12}\\). Since a six-site set is sparse, \\("
     },
     {
       "from": "m1-lem-component-tail",
       "to": "m1-prop-irregularity",
+      "label": "lem:component-tail",
       "context": "Equation~\\eqref{eq:six-blocking} and a union bound give \\(CR^3p^6\\) for failure of the first regularity condition. Failure of the second is bounded by Lemma~\\ref{lem:component-tail} and \\[ C\\sum_{w:|w-z|_\\infty>10R} e^{-c(1+|w-z|_\\infty)^{\\nu\\lambda}} \\le C e^{-c'R^{\\nu\\lambda}}. \\] For the last"
     },
     {
       "from": "m1-lem-factorial",
       "to": "m1-lem-localization",
+      "label": "lem:factorial",
       "context": "ty to overcount all lists of \\(j\\) steps. There are a bounded number of possible next sites, slot edges, and actual-or-fresh designations at each step. Lemma~\\ref{lem:factorial}, combined with independence of the fresh Poisson family, bounds the mixed factorial measure by the product of the actua"
     },
     {
       "from": "m1-prop-nash",
       "to": "m1-prop-diffusion",
+      "label": "prop:nash",
       "context": "plied only during regular times; see \\cite[pp.~935--936]{Nash1958}. Let \\(q=\\|v\\|_2^2\\) for an evolving localized mass. At a regular smooth time, Proposition~\\ref{prop:nash} and \\eqref{eq:norm-dissipation} imply \\[ q'\\le-cq^{5/3},\\qquad (q^{-2/3})'\\ge c'>0 \\quad\\text{when }q>0. \\] At other"
     },
     {
       "from": "m1-lem-hitting-energy",
       "to": "m1-thm-sparse-pins",
+      "label": "lem:hitting-energy",
       "context": "=E\\cup T\\) satisfies \\(\\mathsf I(P)\\), so all the preceding probability estimates apply under \\(\\mathbb P_P\\). Use \\(K=1\\), \\(R=R_1\\), and the vectors of Lemma~\\ref{lem:hitting-energy}. The first term in \\eqref{eq:hitting-energy} obeys \\begin{equation}\\label{eq:bootstrap-short-return} \\mathbb E_P\\lang"
     },
     {
       "from": "m1-lem-localization",
       "to": "m1-thm-sparse-pins",
+      "label": "lem:localization",
       "context": "+R^\\alpha\\beta^{-3/2}\\bigr). \\end{equation} Indeed, propagate a unit mass from each \\(i\\in T\\) in either direction, localizing at \\(z_i=\\bar x_i\\). Lemma~\\ref{lem:localization} bounds the expected discarded mass by \\(Ce^{-c\\beta}\\). On an exposure good for \\(z_i,R\\), Proposition~\\ref{prop:diffus"
     },
     {
       "from": "m1-prop-diffusion",
       "to": "m1-thm-sparse-pins",
+      "label": "prop:diffusion",
       "context": "izing at \\(z_i=\\bar x_i\\). Lemma~\\ref{lem:localization} bounds the expected discarded mass by \\(Ce^{-c\\beta}\\). On an exposure good for \\(z_i,R\\), Proposition~\\ref{prop:diffusion} bounds each one-period entry by \\(C\\beta^{-3/2}\\), and sparseness allows at most \\(L(1+R)^\\alpha\\) target points of \\(T"
     },
     {
       "from": "m1-prop-sparse-energy",
       "to": "m1-thm-sparse-pins",
+      "label": "prop:sparse-energy",
       "context": "u)\\) has mass at most one and is supported above \\(\\mathfrak B_R(z_i)\\); the list of centers, including repetitions, has the growth bound of \\(T\\). Proposition~\\ref{prop:sparse-energy}, followed by Cauchy--Schwarz in \\(u\\) and Lemma~\\ref{lem:suffix-energy}, gives pointwise \\[ |F_d|\\le \\left(\\frac{Cm_T"
     },
     {
       "from": "m1-lem-suffix-energy",
       "to": "m1-thm-sparse-pins",
+      "label": "lem:suffix-energy",
       "context": "the list of centers, including repetitions, has the growth bound of \\(T\\). Proposition~\\ref{prop:sparse-energy}, followed by Cauchy--Schwarz in \\(u\\) and Lemma~\\ref{lem:suffix-energy}, gives pointwise \\[ |F_d|\\le \\left(\\frac{Cm_TR^\\alpha}{|I|}E_g\\right)^{1/2}. \\] Because \\(|I|=\\beta/3\\) and \\(E_g\\ge0"
     },
     {
       "from": "m1-prop-pin-identities",
       "to": "m1-thm-sparse-pins",
+      "label": "prop:pin-identities",
       "context": "99/100})\\); the error is uniform in every induction datum. Increase \\(\\beta_1\\), independently of the grid and its size, so that \\(2r(E,T)\\le p\\). Proposition~\\ref{prop:pin-identities} now gives \\(\\mathbb P_E(T\\subseteq\\mathcal B_E)\\le(2r(E,T))^{m_T} \\le p^{m_T}\\), completing the induction. For arbitra"
     },
     {
       "from": "m1-lem-hitting-energy",
       "to": "m1-lem-return-expansion",
+      "label": "lem:hitting-energy",
       "context": "Lemma~\\ref{lem:hitting-energy} gives \\[ q_i\\le Q_{ii}+2\\langle Q\\eta,g\\rangle -\\langle g,A_Qg\\rangle. \\] Every \\(Q^n\\eta\\) is a non"
     },
     {
       "from": "m1-lem-suffix-energy",
       "to": "m1-prop-long-tail",
+      "label": "lem:suffix-energy",
       "context": "langle Q^K\\eta,y\\rangle =\\langle U_+w,y\\rangle+\\langle U_-w,y\\rangle. \\] For \\(d\\in\\{+,-\\}\\) and almost every \\(u\\in I\\), split the last traversal as in Lemma~\\ref{lem:suffix-energy}: \\[ U_d=B_d(u)C_d(u),\\qquad Y_d(u)=B_d(u)^*y. \\] Both vectors in the resulting pairing \\[ \\langle U_dw,y\\rangle=\\lang"
     },
     {
       "from": "m1-lem-localization",
       "to": "m1-prop-long-tail",
+      "label": "lem:localization",
       "context": "g \\(\\mathfrak B_R(z)\\), in addition to boundary killing. Expanding the powers of \\(Q\\) and \\(Q_R\\) gives convex combinations of matching direction words. Lemma~\\ref{lem:localization}, applied to the whole history of each word, therefore yields \\begin{equation}\\label{eq:tail-localization} \\mathbb E_P\\"
     },
     {
       "from": "m1-prop-diffusion",
       "to": "m1-prop-long-tail",
+      "label": "prop:diffusion",
       "context": "d. On a retained slice, every component of \\(\\mu_d(u)\\) has elapsed propagation length \\[ b=(K-1)\\beta+u\\ge(K-\\tfrac23)\\beta\\ge\\tfrac13K\\beta. \\] Proposition~\\ref{prop:diffusion} and convexity of the norm give \\(\\|\\mu_d(u)\\|_2\\le C\\tau^{-3/4}\\), with a constant independent of \\(K\\). The mass is at"
     },
     {
       "from": "m1-prop-spread-energy",
       "to": "m1-prop-long-tail",
+      "label": "prop:spread-energy",
       "context": "ith a constant independent of \\(K\\). The mass is at most one and is supported over \\(\\mathfrak B_R(z)\\). Since \\(1\\le\\tau\\le R\\), all hypotheses of Proposition~\\ref{prop:spread-energy} hold. Denote its constant for this fixed norm bound by \\(C_{\\rm sp}\\); it too is independent of \\(K\\). Hence \\[ |\\lang"
     },
     {
       "from": "m1-lem-return-expansion",
       "to": "m1-cor-singleton-bound",
+      "label": "lem:return-expansion",
       "context": "Take \\(K=1\\) in Lemma~\\ref{lem:return-expansion} and Proposition~\\ref{prop:long-tail}. By the fresh-walk identity, \\[ r(E,\\{i\\})=\\mathbb E_Pq_i \\le\\mathbb E_P Q_{ii}+"
     },
     {
       "from": "m1-prop-long-tail",
       "to": "m1-cor-singleton-bound",
+      "label": "prop:long-tail",
       "context": "Take \\(K=1\\) in Lemma~\\ref{lem:return-expansion} and Proposition~\\ref{prop:long-tail}. By the fresh-walk identity, \\[ r(E,\\{i\\})=\\mathbb E_Pq_i \\le\\mathbb E_P Q_{ii}+C\\beta^{-3/2}+o(\\beta^{-3/2}). \\] The"
     },
     {
       "from": "m1-prop-diffusion",
       "to": "m1-cor-singleton-bound",
+      "label": "prop:diffusion",
       "context": "ne-turn localization losses are at most \\(Ce^{-c\\beta}\\) in expectation. On a good exposure, the localized diagonal is at most \\(C\\beta^{-3/2}\\) by Proposition~\\ref{prop:diffusion}; on its complement it is at most one. The complement has probability \\(o(\\beta^{-3/2})\\) by \\eqref{eq:good-exposure}. T"
     },
     {
       "from": "m1-prop-pin-identities",
       "to": "m1-cor-singleton-bound",
+      "label": "prop:pin-identities",
       "context": "_PQ_{ii}\\) and proves \\eqref{eq:singleton-return}. For \\(j\\notin D\\), apply this estimate with \\(E=D\\), using the time of \\(j\\) as the cut, and use Proposition~\\ref{prop:pin-identities}: \\[ \\mathbb P_D(j\\in\\mathcal B_D)=2d_D(j) =\\frac{2r(D,\\{j\\})}{1+r(D,\\{j\\})} \\le2r(D,\\{j\\}). \\] For \\(j\\in D\\), the l"
     },
     {
       "from": "m1-lem-localization",
       "to": "m1-lem-ideal-kernel",
+      "label": "lem:localization",
       "context": "eal-killed-upper}. Under the interior hypothesis it cannot act before the full ideal path leaves \\(\\mathfrak B_R(z)\\). The ideal localization estimate in Lemma~\\ref{lem:localization}, with the same radius and at most \\(2K\\) traversals, bounds this exit probability by \\(C_K e^{-c\\beta}\\). This proves \\"
     },
     {
       "from": "m1-prop-diffusion",
       "to": "m1-prop-finite-word",
+      "label": "prop:diffusion",
       "context": "ites.} \\label{fig:midpoint} \\end{figure} Let \\(G\\) be the good-exposure event for \\(z,R\\). Each half has elapsed length \\(n\\beta/2\\ge\\beta/2\\), so Proposition~\\ref{prop:diffusion}, including its adjoint statement, gives \\(\\|\\mu_1\\|_\\infty+\\|\\mu_2\\|_\\infty\\le C\\beta^{-3/2}\\) on \\(G\\). The ideal halv"
     },
     {
       "from": "m1-cor-singleton-bound",
       "to": "m1-prop-finite-word",
+      "label": "cor:singleton-bound",
       "context": ") during the interval is at most \\begin{equation}\\label{eq:ideal-short-tail} \\frac{C^{h_\\beta}}{h_\\beta!}. \\end{equation} For a deterministic \\(w\\), Corollary~\\ref{cor:singleton-bound}, applied with pin set \\(P\\) and summed over slots, gives \\begin{equation}\\label{eq:encounter-initial} \\mathbb P_P\\!\\le"
     },
     {
       "from": "m1-lem-factorial",
       "to": "m1-prop-finite-word",
+      "label": "lem:factorial",
       "context": "beta+1)^3\\) starting sites in the smaller region and a bounded number of next-site and slot-edge choices per step. By the factorial measure domination of Lemma~\\ref{lem:factorial}, the probability of such a list is at most \\begin{equation}\\label{eq:encounter-entrance} C(h_\\beta+1)^3 C^{h_\\beta}"
     },
     {
       "from": "m1-lem-return-expansion",
       "to": "m1-thm-return-bounds",
+      "label": "lem:return-expansion",
       "context": "Suppose first that \\(i\\notin E\\), and take the exposure law \\(\\mathbb P_P\\), \\(P=E\\cup\\{i\\}\\). Lemma~\\ref{lem:return-expansion} and Proposition~\\ref{prop:long-tail} give \\[ r(E,\\{i\\})\\le \\sum_{n=1}^{2K-1}\\mathbb E_P\\langle\\eta,Q^n\\eta\\rangle +\\"
     },
     {
       "from": "m1-prop-long-tail",
       "to": "m1-thm-return-bounds",
+      "label": "prop:long-tail",
       "context": "Suppose first that \\(i\\notin E\\), and take the exposure law \\(\\mathbb P_P\\), \\(P=E\\cup\\{i\\}\\). Lemma~\\ref{lem:return-expansion} and Proposition~\\ref{prop:long-tail} give \\[ r(E,\\{i\\})\\le \\sum_{n=1}^{2K-1}\\mathbb E_P\\langle\\eta,Q^n\\eta\\rangle +\\beta^{-3/2}\\bigl(CK^{-1/2}+o_K(1)\\big"
     },
     {
       "from": "m1-lem-localization",
       "to": "m1-thm-return-bounds",
+      "label": "lem:localization",
       "context": "ghted average of the \\(2^n\\) direction words. Replacing each word by its localized version costs at most \\(C_Ke^{-c\\beta}\\) in expected diagonal mass, by Lemma~\\ref{lem:localization}. Proposition~\\ref{prop:finite-word} and Lemma~\\ref{lem:ideal-kernel} then imply \\[ r(E,\\{i\\})\\le\\beta^{-3/2} \\left(\\f"
     },
     {
       "from": "m1-prop-finite-word",
       "to": "m1-thm-return-bounds",
+      "label": "prop:finite-word",
       "context": "on words. Replacing each word by its localized version costs at most \\(C_Ke^{-c\\beta}\\) in expected diagonal mass, by Lemma~\\ref{lem:localization}. Proposition~\\ref{prop:finite-word} and Lemma~\\ref{lem:ideal-kernel} then imply \\[ r(E,\\{i\\})\\le\\beta^{-3/2} \\left(\\frac\\kappa\\ell\\sum_{n=1}^{2K-1}n^{-3/"
     },
     {
       "from": "m1-lem-ideal-kernel",
       "to": "m1-thm-return-bounds",
+      "label": "lem:ideal-kernel",
       "context": "its localized version costs at most \\(C_Ke^{-c\\beta}\\) in expected diagonal mass, by Lemma~\\ref{lem:localization}. Proposition~\\ref{prop:finite-word} and Lemma~\\ref{lem:ideal-kernel} then imply \\[ r(E,\\{i\\})\\le\\beta^{-3/2} \\left(\\frac\\kappa\\ell\\sum_{n=1}^{2K-1}n^{-3/2} +CK^{-1/2}+"
     },
     {
       "from": "m1-prop-diffusion",
       "to": "m1-thm-return-bounds",
+      "label": "prop:diffusion",
       "context": "}^n)_{ii} -\\sum_{1\\le j<n\\le K} (U_{+,R}^j)_{ii}(U_{+,R}^{n-j})_{ii}. \\end{equation} On good exposures each product is \\(O(\\beta^{-3})\\) by Proposition~\\ref{prop:diffusion}; on the complement each is at most one, and that complement has probability \\(o_K(\\beta^{-3/2})\\). The expected pair su"
     },
     {
       "from": "m1-prop-pin-identities",
       "to": "m1-thm-return-bounds",
+      "label": "prop:pin-identities",
       "context": "rior}. Averaging \\eqref{eq:bonferroni} gives \\[ r(E,\\{i\\})\\ge\\beta^{-3/2} \\left(\\frac\\kappa\\ell\\sum_{n=1}^{K}n^{-3/2}-o_K(1)\\right). \\] Finally, Proposition~\\ref{prop:pin-identities} and Corollary~\\ref{cor:singleton-bound} give, uniformly, \\[ d_E(i)=\\frac{r(E,\\{i\\})}{1+r(E,\\{i\\})},\\qquad 0\\le r(E,\\{"
     },
     {
       "from": "m1-cor-singleton-bound",
       "to": "m1-thm-return-bounds",
+      "label": "cor:singleton-bound",
       "context": "ives \\[ r(E,\\{i\\})\\ge\\beta^{-3/2} \\left(\\frac\\kappa\\ell\\sum_{n=1}^{K}n^{-3/2}-o_K(1)\\right). \\] Finally, Proposition~\\ref{prop:pin-identities} and Corollary~\\ref{cor:singleton-bound} give, uniformly, \\[ d_E(i)=\\frac{r(E,\\{i\\})}{1+r(E,\\{i\\})},\\qquad 0\\le r(E,\\{i\\})-d_E(i)\\le C\\beta^{-3}. \\] This chan"
     },
     {
       "from": "m1-lem-factorial",
       "to": "m1-prop-pressure-equivalence",
+      "label": "lem:factorial",
       "context": "hanges at most two cycle factors in $W_h$, each between one and two, so it increases $W_h$ by at most a factor of four. The Poisson insertion argument of Lemma~\\ref{lem:factorial} gives $\\mathbb E_hN_\\partial\\le C\\beta|\\partial\\Lambda|$. Taking logarithms in \\eqref{eq:surface-cost} yields \\[ 0\\le"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-lem-pin-mixture",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] Integrate \\eqref{eq:pressure-upper} and \\eqref{eq:pressure-lower} from $0$ to $h>0$, and divide by $h$. This bounds \\["
     },
     {
       "from": "m1-prop-pressure-equivalence",
       "to": "m1-lem-pin-mixture",
+      "label": "prop:pressure-equivalence",
       "context": "nd \\eqref{eq:pressure-lower} from $0$ to $h>0$, and divide by $h$. This bounds \\[ S-\\frac{p_N^+(h)-p_N^+(0)}{h}. \\] First send $N\\to\\infty$, using Proposition~\\ref{prop:pressure-equivalence} at both endpoints and $\\rho_N\\to1$. Then send $h\\downarrow0$. For these fixed $\\beta,K$, continuity of $b$ at zero give"
     },
     {
       "from": "m2-lem-kernelenergy",
       "to": "m2-prop-snapshot",
+      "label": "lem:kernelenergy",
       "context": "onregular split slices therefore changes the expected pairing by $o(\\lambda)$. On retained slices use \\eqref{eq:bootstrapspread}; then average over $I$. Lemma~\\ref{lem:kernelenergy} and Cauchy--Schwarz give, at each fixed exposure, the retained average bound \\[ \\frac{C\\beta^{-1/4}}{|I|} \\in"
     },
     {
       "from": "m2-prop-loopinputs",
       "to": "m2-prop-good",
+      "label": "prop:loopinputs",
       "context": "deed, there are at most $C^j$ successive site and slot-edge choices, and the ordered time simplex has volume $u^j/j!$; apply the factorial bound in Proposition~\\ref{prop:loopinputs}. The same count works in reverse order. It bounds lists anywhere in the interval, so it also covers a segment beginni"
     },
     {
       "from": "m2-prop-snapshot",
       "to": "m2-prop-good",
+      "label": "prop:snapshot",
       "context": "lock cut and center, six obstacles in a ball of radius $c_1L$ supply six distinct slot points there. There are at most $CL^{18}$ such six-tuples. Proposition~\\ref{prop:snapshot}, followed by a union over centers and at most $C\\beta$ cuts, bounds this failure probability by \\begin{equation}\\label{"
     },
     {
       "from": "m2-prop-geometryinputs",
       "to": "m2-prop-good",
+      "label": "prop:geometryinputs",
       "context": "in a ball of radius $c_1L$, once $c_1$ is large enough. This is impossible. Thus local regularity holds at all times. For the remaining condition, Proposition~\\ref{prop:geometryinputs} bounds the expected measure of times when distant-component regularity fails in any block $I$ by $C|I|e^{-cR_*^\\xi}$."
     },
     {
       "from": "m2-lem-isolatedpath",
       "to": "m2-prop-good",
+      "label": "lem:isolatedpath",
       "context": "ing the region, by tracing backward from the encounter. It remains to bound the isolated strand's displacement. The site coordinate of the base walk in Lemma~\\ref{lem:isolatedpath} jumps at rate $S$ to each nearest neighbor. Exponential martingales in each coordinate give, for $u\\le2L$, \\[ \\PP_{\\m"
     },
     {
       "from": "m2-prop-good",
       "to": "m2-lem-heatbound",
+      "label": "prop:good",
       "context": "ipation argument \\cite[pp.~935--936]{Nash1958}. For a nonnegative input of mass at most one, let $l=\\norm{v}_2^2$. The all-time local regularity in Proposition~\\ref{prop:good} permits \\eqref{eq:nash} at every smooth time, so $l'\\le-cl^{5/3}$. Instantaneous operations are contractions by Lemma~"
     },
     {
       "from": "m2-lem-kernelenergy",
       "to": "m2-lem-heatbound",
+      "label": "lem:kernelenergy",
       "context": "egularity in Proposition~\\ref{prop:good} permits \\eqref{eq:nash} at every smooth time, so $l'\\le-cl^{5/3}$. Instantaneous operations are contractions by Lemma~\\ref{lem:kernelenergy}. Integrating gives $\\norm{v}_2\\le C(1+u)^{-3/4}$ for a unit point input. Split the kernel at its midpoint and express"
     },
     {
       "from": "m2-prop-good",
       "to": "m2-lem-localization",
+      "label": "prop:good",
       "context": "ing this ball or its immediate neighbors traces back at most $c_0L$ steps to a distinct slot at the deterministic block cut. The obstacle count in Proposition~\\ref{prop:good} thus shows that at most five strands can be relevant before stopping. Their instantaneous neighborhoods have uniformly"
     },
     {
       "from": "m2-lem-heatbound",
       "to": "m2-lem-localization",
+      "label": "lem:heatbound",
       "context": "ch site coordinate have bounded rates and unit increments. Their drift vanishes away from the neighboring obstacles and is uniformly bounded elsewhere. Lemma~\\ref{lem:heatbound}, with the stopping-ball killing, bounds the expected occupation time near the relevant strands by \\[ C\\int_0^{2L}(1+t)"
     },
     {
       "from": "m2-prop-good",
       "to": "m2-lem-cancellation",
+      "label": "prop:good",
       "context": "The step bounds in Proposition~\\ref{prop:good} keep the strand and its adjacent source sites within $CL$ of its starting site. The weights $W$ are comparable through"
     },
     {
       "from": "m2-lem-freebounds",
       "to": "m2-lem-cancellation",
+      "label": "lem:freebounds",
       "context": "for $W_d$. Each strand has bounded degree, contributes for at most $2L$ units of continuous time, and makes at most $CL$ jumps. The difference bounds of Lemma~\\ref{lem:freebounds}, together with \\eqref{eq:removed-edge-source} and \\eqref{eq:transport-source}, give \\eqref{eq:blocksourcevariation}. A"
     },
     {
       "from": "m2-lem-signedsource",
       "to": "m2-lem-cancellation",
+      "label": "lem:signedsource",
       "context": "f terms, and the difference of the two averages is bounded by the slot-difference bound. This adds at most $C\\mathcal W(z)$. For an isolated strand use Lemma~\\ref{lem:signedsource}. Its endpoint displacement is at most $CL^{3/4}$. The spatial endpoint difference therefore costs at most $CL^{3/4}W("
     },
     {
       "from": "m2-prop-good",
       "to": "m2-lem-sourcebins",
+      "label": "prop:good",
       "context": "Proposition~\\ref{prop:good} bounds both displacement and the number of jumps in a bin by $C\\log\\beta$. Continuous contributions have bounded time"
     },
     {
       "from": "m2-lem-freebounds",
       "to": "m2-lem-sourcebins",
+      "label": "lem:freebounds",
       "context": "e bounded time length. Within a bin, $1+s$ changes by a bounded factor, while a spatial shift of $C\\log\\beta$ changes any of the polynomial envelopes in Lemma~\\ref{lem:freebounds} by at most a fixed power of $1+\\log\\beta$. The formulas for removed edges, transports, and seam averaging now give the"
     },
     {
       "from": "m2-prop-snapshot",
       "to": "m2-lem-boxmoment",
+      "label": "prop:snapshot",
       "context": "Expand $\\sum_Q A_Q^2$. Terms using the same slot are bounded by $C\\lambda\\|w\\|_2^2$ by Proposition~\\ref{prop:snapshot}. Terms using two distinct slots, including two slots at the same site, are bounded by $C\\lambda^2\\sum_Q(\\sum_{z\\in Q}w"
     },
     {
       "from": "m2-lem-localization",
       "to": "m2-lem-blockflow",
+      "label": "lem:localization",
       "context": "with a strand starting within \\(B_{4R}(x)\\). Sources of that strand are within \\(CL\\) of its start, and have total variation at most \\(CLW(z_\\alpha)\\). Lemma~\\ref{lem:localization} permits their propagation to the next block to be killed outside a larger ball of radius \\(CL\\) about \\(z_\\alpha\\), at"
     },
     {
       "from": "m2-prop-geometryinputs",
       "to": "m2-lem-blockflow",
+      "label": "prop:geometryinputs",
       "context": "ly regular averaging slice. For each \\(\\alpha\\), choose one available representative slot \\(a_\\alpha\\) within a bounded distance of \\(z_\\alpha\\). Proposition~\\ref{prop:geometryinputs} provides this slot and paths from every slot carrying the localized mass to \\(a_\\alpha\\), of length and displacement at"
     },
     {
       "from": "m2-lem-cancellation",
       "to": "m2-lem-blockflow",
+      "label": "lem:cancellation",
       "context": "ws by \\begin{equation}\\label{eq:blocklocalflow} CL^6Q_j. \\end{equation} Let \\(q_\\alpha\\) be the remaining net mass at \\(a_\\alpha\\). The cancellation in Lemma~\\ref{lem:cancellation}, and the preceding conservation observation, give \\[ |q_\\alpha|\\le CL\\theta_\\alpha W(z_\\alpha). \\] Indeed the error fr"
     },
     {
       "from": "m2-lem-flowoverlap",
       "to": "m2-lem-blockflow",
+      "label": "lem:flowoverlap",
       "context": "ha\\) to infinity along the unit flow from \\(a_\\alpha\\). Bounded displacement of these representatives preserves the inverse-distance overlap estimate in Lemma~\\ref{lem:flowoverlap}, up to a constant. The squared norm of the resulting sum of flows is thus at most \\begin{equation}\\label{eq:blocknetfl"
     },
     {
       "from": "m2-prop-snapshot",
       "to": "m2-lem-blockflow",
+      "label": "prop:snapshot",
       "context": "most \\(C\\beta^{-2}c\\). Summing first over \\(c\\) and then over the dyadic values of \\(b\\le CR\\) proves the estimate without a logarithmic factor. Proposition~\\ref{prop:snapshot} bounds the expectation of \\(Q_j\\) by \\(C\\lambda\\sum W^2\\). To estimate \\(C_j\\), first take pairs whose starting sites"
     },
     {
       "from": "m2-lem-sourcebins",
       "to": "m2-lem-earlysourceenergy",
+      "label": "lem:sourcebins",
       "context": "For a bin beginning at elapsed time \\(s\\), put \\(d_s=\\sqrt{1+s}\\). Lemma~\\ref{lem:sourcebins} bounds its source variation on \\(\\mathcal G\\) by \\(H_\\beta\\sum_\\alpha W_{d_s}(z_\\alpha)\\), where the sum is over the ob"
     },
     {
       "from": "m2-lem-boxmoment",
       "to": "m2-lem-earlysourceenergy",
+      "label": "lem:boxmoment",
       "context": "H_\\beta\\sum_\\alpha W_{d_s}(z_\\alpha)\\), where the sum is over the obstacle slots above \\(B_{4R}(x)\\) at that bin's starting slice. The single-box case of Lemma~\\ref{lem:boxmoment} gives \\begin{align*} \\left\\|\\sum_\\alpha W_{d_s}(z_\\alpha)\\right\\|_{L^2(\\PP_P)} &\\le C\\left(\\sqrt\\lambda\\,\\norm{W_{d_s"
     },
     {
       "from": "m2-lem-localization",
       "to": "m2-lem-earlysourceenergy",
+      "label": "lem:localization",
       "context": "slice in a block contained in the last quarter of the traversal. Every propagation has elapsed time at least \\(\\beta/4\\). Localize to \\(B_{6R}(x)\\); by Lemma~\\ref{lem:localization}, the discarded total variation is rapidly small on \\(\\mathcal G\\). Lemma~\\ref{lem:heatbound} and substochasticity show"
     },
     {
       "from": "m2-lem-heatbound",
       "to": "m2-lem-earlysourceenergy",
+      "label": "lem:heatbound",
       "context": "ime at least \\(\\beta/4\\). Localize to \\(B_{6R}(x)\\); by Lemma~\\ref{lem:localization}, the discarded total variation is rapidly small on \\(\\mathcal G\\). Lemma~\\ref{lem:heatbound} and substochasticity show that a localized unit point mass has total mass at most one and maximum entry at most \\(C\\bet"
     },
     {
       "from": "m2-lem-flowoverlap",
       "to": "m2-lem-earlysourceenergy",
+      "label": "lem:flowoverlap",
       "context": "gma_t\\) such that \\[ \\norm{\\sigma_t}_1\\le M, \\qquad \\norm{\\sigma_t}_\\infty\\le CM\\beta^{-3/2}. \\] At a fully regular such slice, use the unit flows of Lemma~\\ref{lem:flowoverlap}. For every slot \\(a\\), splitting distances at \\(D_*\\) gives \\begin{align*} \\sum_{a'}\\frac{\\sigma_t(a')}{1+\\dist(a,a')"
     },
     {
       "from": "m2-prop-dualenergy",
       "to": "m2-lem-earlysourceenergy",
+      "label": "prop:dualenergy",
       "context": "[Proof of Proposition~\\ref{prop:dualenergy}] The two collections exhaust the sources in the chosen direction. Combine \\eqref{eq:smoothdualcoefficient} and \\eqref{e"
     },
     {
       "from": "m2-prop-comparison",
       "to": "m2-lem-earlysourceenergy",
+      "label": "prop:comparison",
       "context": "[Proof of Proposition~\\ref{prop:comparison}] Fix the cube, pins, and starting slot in the proposition, and expose the cycles under $\\PP_P$, $P=E\\cup\\{i\\}$. Use the"
     },
     {
       "from": "m2-prop-good",
       "to": "m2-lem-earlysourceenergy",
+      "label": "prop:good",
       "context": "=E\\cup\\{i\\}$. Use the trial vector $h$ and constant $c$ from \\eqref{eq:trialvector} and \\eqref{eq:freepotential}. On the good event $\\mathcal G$ of Proposition~\\ref{prop:good}, Proposition~\\ref{prop:dualenergy}, applied with a fixed supremum bound $2$, gives a measurable $X$ such that \\[ \\abs{"
     },
     {
       "from": "m2-prop-scalar",
       "to": "m2-lem-earlysourceenergy",
+      "label": "prop:scalar",
       "context": "ese residuals with those in \\eqref{eq:capacityresiduals}. Since $0\\le h\\le1$, the averaged capacity criterion \\eqref{eq:averagedcapacity} applies. Proposition~\\ref{prop:scalar} and the probability estimate in Proposition~\\ref{prop:good} give \\begin{equation}\\label{eq:returncomparison} r:=\\EE_Pq"
     },
     {
       "from": "m2-lem-freebounds",
       "to": "m2-lem-earlysourceenergy",
+      "label": "lem:freebounds",
       "context": "nd the allowed pin sets. In particular, the good-event estimate is used only through its probability on the complement; there $q_i\\in[0,1]$ suffices. By Lemma~\\ref{lem:freebounds}, $v(x)=O(\\beta^{-3/2})$, so \\[ 1-c=\\frac{v(x)}{1+v(x)}=v(x)+O(\\beta^{-3}). \\] The exact pin identity \\eqref{eq:pinretu"
     },
     {
       "from": "m2-thm-main",
       "to": "m2-lem-surfacecost",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] Fix $S$ and a sufficiently large $\\beta$. The finite-volume magnetization is bounded, so differentiation under the su"
     },
     {
       "from": "m2-prop-comparison",
       "to": "m2-lem-surfacecost",
+      "label": "prop:comparison",
       "context": "ves \\[ \\widehat\\PP_{N,t}(\\mathcal A_x^c) \\le C_{S,\\beta}\\,b_\\beta(t), \\] where $C_{S,\\beta}$ is finite and independent of $N$. On $\\mathcal A_x$, Proposition~\\ref{prop:comparison} applies to each of the $\\ell$ slots at $x$, for every conditional pin set $A$. On its complement, and at sites outside"
     },
     {
       "from": "m2-cor-expansion",
       "to": "m2-lem-surfacecost",
+      "label": "cor:expansion",
       "context": "[Proof of Corollary~\\ref{cor:expansion}] Put $t=\\beta S$. Independence of the three coordinates gives \\[ p_\\beta(0)=I(t)^3,\\qquad I(t)=\\frac1{2\\pi}\\int_{-\\p"
     },
     {
       "from": "m3-lem-pin-inputs",
       "to": "m3-lem-torus-blocking",
+      "label": "lem:pin-inputs",
       "context": "preserves the real-hole set of an exposure, as observed above. The union of the stars of six sites has bounded total intensity. Factorial domination in Lemma~\\ref{lem:pin-inputs} bounds the probability of a mark there by \\(Cp^{12}\\), giving \\(p^6+Cp^{12}\\le Cp^6\\). For \\(n\\) sparse sites, either"
     },
     {
       "from": "m3-lem-lattice-inputs",
       "to": "m3-lem-torus-diffusion",
+      "label": "lem:lattice-inputs",
       "context": "] The energy is the sum of \\(\\tfrac12(v_i-v_j)^2\\) over unordered real-hole edges, including edges from surviving to killed positions. At a regular time, Lemma~\\ref{lem:lattice-inputs} gives \\(H'\\le-cH^{5/3}\\). At other times and at instantaneous factors, the squared norm cannot increase. Unless it ha"
     },
     {
       "from": "m3-lem-pin-inputs",
       "to": "m3-lem-torus-diffusion",
+      "label": "lem:pin-inputs",
       "context": "lity and count site paths. There are boundedly many choices of the next site, slot edge, and actual-or-fresh clock at each step. The factorial bound of Lemma~\\ref{lem:pin-inputs}, combined with the independent fresh factorial measure, bounds the expected number of ordered lists of \\(j\\) steps from"
     },
     {
       "from": "m3-lem-lattice-inputs",
       "to": "m3-lem-torus-flow-pairing",
+      "label": "lem:lattice-inputs",
       "context": "For an individual source slot \\(a\\) in the support of \\(\\mu_i\\), take the flow of Lemma~\\ref{lem:lattice-inputs} in the lift about \\(z_i\\). Multiply its value on each edge by a taper equal to one within anchor radius \\(L/10\\), zero"
     },
     {
       "from": "m3-prop-sparse-pins",
       "to": "m3-cor-positive-magnetization",
+      "label": "prop:sparse-pins",
       "context": "e from pinned-cycle probabilities to the pressure slope uses pressure increments, as in \\cite[Section~7]{BL}. Fix \\(\\beta\\) above the threshold of Proposition~\\ref{prop:sparse-pins}, enlarged so that \\(\\beta>1\\), and put \\(p=\\beta^{-9/10}\\). For an exponent field \\(s>0\\), set \\(q(s)=1-e^{-s}\\), and"
     },
     {
       "from": "m3-lem-next-pin",
       "to": "m3-lem-soft-resolvent",
+      "label": "lem:next-pin",
       "context": "ight and a factor $w^{|A_0|}$, since none of their cut slots is pinned. For a proposed pin set $P'\\subseteq\\mathcal H$, put $Q=\\mathcal H\\setminus P'$. Lemma~\\ref{lem:next-pin}, with the row convention obtained by transposition, says that the remaining cycles all meet $P'$ with probability $\\det"
     },
     {
       "from": "m3-lem-trace-zero-free",
       "to": "m3-lem-hole-cancellation",
+      "label": "lem:trace-zero-free",
       "context": "rdinary Laplace transform $F_B(z)=\\langle e^{zT_B}\\rangle_b$ is zero-free on $|z|<cb$: all slot fields in direction $Y$ have positive real part there, so Lemma~\\ref{lem:trace-zero-free} applies. Take its analytic logarithm equal to zero at $0$. Spectral calculus for $T_B$ gives \\[ \\Rea\\log F_B(z)\\le |"
     },
     {
       "from": "m3-lem-pin-inputs",
       "to": "m3-lem-bad-box-tail",
+      "label": "lem:pin-inputs",
       "context": "Factorial domination from Lemma~\\ref{lem:pin-inputs} bounds the one-mark count near the ends of the period and the ordered two-mark count with time gap less than $\\delta$ b"
     },
     {
       "from": "m3-prop-sparse-pins",
       "to": "m3-lem-bad-box-tail",
+      "label": "prop:sparse-pins",
       "context": "separated by at least $h_k/4$, since \\[ h_k/2-2(h_{k-1}+8)\\ge h_k/4. \\] Recursion gives $2^k$ distinct bad leaves with the sparse growth bound of Proposition~\\ref{prop:sparse-pins}, in coarse coordinates. Indeed a ball of radius less than $h_r/8$ meets at most one branch at every split of scale at l"
     },
     {
       "from": "m3-lem-good-box-paths",
       "to": "m3-lem-hull-comparison",
+      "label": "lem:good-box-paths",
       "context": "ges under $\\rho$ through good boxes, in a region of diameter $Cn$, with length at most $Cn^3$. Replace each of its coarse edges by the cut-hole paths of Lemma~\\ref{lem:good-box-paths}. This gives at most $C_\\beta n^3$ edges of $\\Gamma$ in the stated neighborhood, each obeying \\eqref{eq:contact-cost} w"
     },
     {
       "from": "m3-lem-hull-comparison",
       "to": "m3-lem-cell-resolvent",
+      "label": "lem:hull-comparison",
       "context": "_B(x)-U_B(x')|^2. \\] It holds in the chosen lift, also for a cell covering an entire coordinate circle: only the internal rectangle edges are needed. Use Lemma~\\ref{lem:hull-comparison} both here and for the nonexceptional differences $u_i-U_B(x_i)$. There are at most $\\ell$ holes above a site. In summ"
     },
     {
       "from": "m3-lem-bad-box-tail",
       "to": "m3-lem-cell-resolvent",
+      "label": "lem:bad-box-tail",
       "context": "e at most four. A fixed fine site has at most $Cn^3$ boxes in its short-flag neighborhood; its exceptional probability is at most $C_\\beta n^3\\delta$ by Lemma~\\ref{lem:bad-box-tail}. The total number of holes in $\\Gamma$-components of size at most $C_\\beta n^3$ is at most $C_\\beta n^3$ times the num"
     },
     {
       "from": "m3-prop-weak-field",
       "to": "m3-lem-cell-resolvent",
+      "label": "prop:weak-field",
       "context": "[Proof of Proposition~\\ref{prop:weak-field}] The partition has at most $CV/R^3$ cells and each has volume comparable to $R^3$. Lemmas~\\ref{lem:cell-resolvent} and"
     },
     {
       "from": "m3-lem-hole-cancellation",
       "to": "m3-lem-cell-resolvent",
+      "label": "lem:hole-cancellation",
       "context": "of of Proposition~\\ref{prop:weak-field}] The partition has at most $CV/R^3$ cells and each has volume comparable to $R^3$. Lemmas~\\ref{lem:cell-resolvent} and~\\ref{lem:hole-cancellation}, together with $|c_B|\\le1$, give \\begin{align*} \\E\\bigl|\\ip{f_{\\mathcal H}}{u}\\bigr| &\\le \\E\\sum_B\\sum_{i\\in\\mathcal"
     },
     {
       "from": "m3-lem-strip-maps",
       "to": "m3-prop-zero-field",
+      "label": "lem:strip-maps",
       "context": "/2}\\bigr)} {\\Tr_{\\rm phys}e^{H_0+bM_L^2}}. \\] The middle three factors form the restriction of a tensor product of single-slot sandwich matrices. Lemma~\\ref{lem:strip-maps}, applied to $e^{bs^2/2}e^{bzf_zs^3}e^{bs^2/2}$, and Lemma~\\ref{lem:trace-zero-free} show that the expression inside the"
     },
     {
       "from": "m3-lem-trace-zero-free",
       "to": "m3-prop-zero-field",
+      "label": "lem:trace-zero-free",
       "context": "orm the restriction of a tensor product of single-slot sandwich matrices. Lemma~\\ref{lem:strip-maps}, applied to $e^{bs^2/2}e^{bzf_zs^3}e^{bs^2/2}$, and Lemma~\\ref{lem:trace-zero-free} show that the expression inside the logarithm has no zeros in a fixed strip $|\\Ima z|<a_0$. Here $R_0$ is large enough"
     },
     {
       "from": "m3-prop-weak-field",
       "to": "m3-prop-zero-field",
+      "label": "prop:weak-field",
       "context": "F(x+iy)\\le F(x)\\le S|x|. \\] In particular, \\[ F''(0)=\\frac bV\\Var_b(D_f) =\\frac bV\\langle D_f^2\\rangle_b \\le C_\\beta R^{-\\eta} \\] by Proposition~\\ref{prop:weak-field}, with $\\eta=1/40$, and $b/q\\le2$ for large $R$. This derivative is an ordinary variance, not the Duhamel covariance obt"
     },
     {
       "from": "m3-lem-strip-curvature",
       "to": "m3-prop-zero-field",
+      "label": "lem:strip-curvature",
       "context": "This derivative is an ordinary variance, not the Duhamel covariance obtained by perturbing the Hamiltonian inside its exponential. Fix $a\\in(0,a_0)$ in Lemma~\\ref{lem:strip-curvature}. Choose $\\kappa>0$ so that $c_a\\kappa<\\eta/2$. Equation \\eqref{eq:strip-curvature-growth} then gives, uniformly over"
     },
     {
       "from": "m3-prop-zero-field",
       "to": "m3-prop-scale-comparison",
+      "label": "prop:zero-field",
       "context": "hcal P_j} \\sum_{\\substack{C\\in\\mathcal P_{j+1}\\\\C\\subset B}} |C|\\,|D(C)-D(B)|. \\] To express $T_j$ through the tests of Proposition~\\ref{prop:zero-field}, assign a sign $\\sigma_C\\in\\{-1,1\\}$ to every child and put \\[ \\bar\\sigma_B=\\frac1{|B|}\\sum_{C\\subset B}|C|\\sigma_C,"
     },
     {
       "from": "m3-prop-zero-field",
       "to": "m3-lem-replica-cross",
+      "label": "prop:zero-field",
       "context": "r sum in each cell vanishes, since each translated support stays in that cell and $\\sum_xc_x=0$. Independence of the replicas under $\\gamma_L$ and Proposition~\\ref{prop:zero-field}, applied conditionally, therefore give \\begin{equation}\\label{eq:replica-exponential} \\log\\Tr(\\gamma_Le^{\\pm\\theta O'}"
     }
   ]

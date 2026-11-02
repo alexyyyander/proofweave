@@ -327,7 +327,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Pointwise-Multiple-Ergodic-Averages-for-Mixing-Transformations-October-4-2026/multiple-ergodic-averages.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Pointwise Multiple Ergodic Averages for Mixing Transformations; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Pointwise Multiple Ergodic Averages for Mixing Transformations.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -421,7 +421,6 @@
           "source": "Selected lengths and their joining laws",
           "detail": "[Parameter and small-marginal laws] For every flow Y over C and bounded measurable H_i on W_Y , _ _Y _ i I H_i(P_i) =_ L _Y1L_0^L _ i I H_i(_Y(S_Y^ it y)) \\, t\\, m_Y(y). For every nonempty J I with…",
           "dependsOn": [
-            "m1-prop-structure",
             "m1-lem-triple-convergence",
             "m1-lem-relative-norm"
           ]
@@ -467,9 +466,7 @@
           "kind": "proposition",
           "source": "Channels and closure under selected laws",
           "detail": "[Channel closure] Let Y be a channel and b I . On M_b(Y) take _Y(y_b) as original factor and take every D_(y_i) , i I , as an output, in the old group of . These data make M_b(Y) a channel.",
-          "dependsOn": [
-            "m1-thm-packing"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-channel-copied-law",
@@ -537,9 +534,7 @@
           "kind": "lemma",
           "source": "The square argument",
           "detail": "[Parameter independence] Under _Z , the random variables p and E_b are conditionally independent given w .",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-packing",
@@ -559,9 +554,7 @@
           "kind": "lemma",
           "source": "Tensor packing",
           "detail": "[Gaussian matrix estimate] Let B_1,,B_r be matrices between two finite-dimensional real Hilbert spaces, and put \\[ H_j= 0&B_j\\_j^*&0 , S=_ j=1 ^rH_j^2. \\] If S_ op d and S2d for some d1 , then for…",
-          "dependsOn": [
-            "m1-thm-packing"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -577,7 +570,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Pointwise-convergence-of-fourfold-ergodic-averages-for-mixing-transformations-October-4-2026/fourfold-ergodic-averages.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Pointwise convergence of fourfold ergodic averages for mixing transformations; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Pointwise convergence of fourfold ergodic averages for mixing transformations.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -643,8 +636,7 @@
           "detail": "[Selected laws] Formula~ defines a probability measure _Y on Y^I with the following properties. Every marginal is m_Y , and _Y is invariant under (y_i)_i(S_Y^ it y_i)_i for every t . If :Y' Y is an…",
           "dependsOn": [
             "m2-prop-structure",
-            "m2-lem-lower-length",
-            "m2-lem-relative-norm"
+            "m2-lem-lower-length"
           ]
         },
         {
@@ -677,9 +669,7 @@
           "kind": "lemma",
           "source": "Packing tensors into a subspace of small dimension",
           "detail": "[A Gaussian matrix estimate] Let B_1,,B_r be matrices between two finite-dimensional real Hilbert spaces, and put \\[ H_j= 0&B_j\\\\ B_j^*&0 , S=_ j=1 ^r H_j^2. \\] If S_ op d and S2d for some d1 , then…",
-          "dependsOn": [
-            "m2-thm-packing"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-channel-distal",
@@ -701,9 +691,7 @@
           "kind": "proposition",
           "source": "Channels and preservation of independence",
           "detail": "[Closure under selected laws] Let Y be a channel and b I . On M_b(Y) use _Y(y_b) as original factor. For each j\\ 1,2,3\\ , let the new group j contain the outputs D_(y_i) with D_j and i I . With these…",
-          "dependsOn": [
-            "m2-thm-packing"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-cor-channel-array-distal",
@@ -804,7 +792,6 @@
             "m2-lem-parameter-reanchoring",
             "m2-lem-square-conditional",
             "m2-lem-independent-hilbert-vectors",
-            "m2-thm-main",
             "m2-prop-selectors",
             "m2-prop-role-bound",
             "m2-prop-saturation"
@@ -846,7 +833,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Triple-ergodic-averages-with-distinct-integer-slopes-October-4-2026/triple-ergodic-distinct-slopes.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Triple ergodic averages with distinct integer slopes; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Triple ergodic averages with distinct integer slopes.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -898,8 +885,7 @@
           "source": "From the local estimate to pointwise convergence",
           "detail": "[A real-line test] Let \\(0 k_- k_+\\), and partition \\(\\ k_-,,k_+\\ \\) into \\(w\\) nonempty consecutive blocks. Suppose that bounded Borel functions \\(h_1,h_2,h_3\\) and \\(h_ 0,k \\) are supported in a…",
           "dependsOn": [
-            "m3-lem-tr-kernel",
-            "m3-thm-local"
+            "m3-lem-tr-kernel"
           ]
         },
         {
@@ -966,9 +952,7 @@
           "kind": "lemma",
           "source": "From the local estimate to pointwise convergence",
           "detail": "[Profiles approximate interval indicators] For every \\(c\\) and \\(>0\\), there is an averaging profile \\(\\) with \\[ \\|-h_c\\|_ L^1() <, h_c=c^ -1 1_ (0,c] . \\]",
-          "dependsOn": [
-            "m3-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-lem-local-absolute",
@@ -999,7 +983,6 @@
           "source": "Quadratic structure and localization for the new slopes",
           "detail": "[Local detection] Fix \\(q>2\\) and \\(C_11\\). Suppose that the four inputs \\(R,h,u,v\\), in any slot order, satisfy \\[ R_ 2,I C_1, h_ q,I 1, u_ 2,I , v_ 2,I 1, |H_I(R,h,u,v)|>, \\] where \\(0<<1/2\\).…",
           "dependsOn": [
-            "m3-lem-algebra",
             "m3-lem-local-absolute",
             "m3-lem-progression-separation"
           ]
@@ -1099,7 +1082,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

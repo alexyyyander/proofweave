@@ -202,7 +202,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Cycle-clique-Ramsey-numbers-September-25-2026/Cycle-clique-Ramsey-numbers-September-25-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Cycle--clique Ramsey numbers; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Cycle--clique Ramsey numbers.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -333,8 +333,7 @@
           "source": "From size to independence",
           "detail": "[Size test] Let k5 and t1 be integers. Let G be a finite simple graph with no cycle on exactly k+1 vertices and with clique number at most t . For every Y V(G) , \\[ |Y|>\\ k,2t\\ (G[Y])3. \\]",
           "dependsOn": [
-            "m1-size-hamiltonian",
-            "m1-size-shortening"
+            "m1-size-hamiltonian"
           ]
         },
         {
@@ -387,9 +386,7 @@
           "kind": "corollary",
           "source": "Optimal path systems",
           "detail": "[Singleton and ball compatibility] Consider two options based at distinct vertices x,y X , with integer radius labels r,s-1 . If r=s=-1 , the two options are disjoint and anticomplete whenever xy…",
-          "dependsOn": [
-            "m1-path-separation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-grow-replacement",
@@ -410,8 +407,7 @@
           "source": "Short paths between representatives",
           "detail": "[One-vertex detours] For every orientation of the chains, no outside path relative to S with one internal vertex joins two distinct representatives. Nor can such a path join consecutive vertices of…",
           "dependsOn": [
-            "m1-grow-replacement",
-            "m1-path-interval"
+            "m1-grow-replacement"
           ]
         },
         {
@@ -463,7 +459,6 @@
           "source": "Excluding large cliques",
           "detail": "Suppose that, for some orientation of the chains, an outside path with parameter \\(d\\ 1,,6\\ \\) joins two representatives. Then \\(L=k-t\\), and exactly one of the following alternatives holds: \\(d=2\\),…",
           "dependsOn": [
-            "m1-grow-replacement",
             "m1-terminal-increment",
             "m1-path-interval"
           ]
@@ -496,8 +491,7 @@
             "m1-path-separation",
             "m1-terminal-weights",
             "m1-size-test",
-            "m1-grow-replacement",
-            "m1-terminal-increment"
+            "m1-grow-replacement"
           ]
         },
         {
@@ -538,9 +532,7 @@
           "kind": "lemma",
           "source": "The finite path-system argument",
           "detail": "[Extension rule] Let \\( P\\) be the chosen optimal path system, with total amount \\(L<h=k+1-t\\) and \\(e\\) paths, labelled as in Lemma~ . Fix \\(x<y\\) in \\(S\\), and choose \\(z T(x)\\), \\(w T(y)\\) with…",
-          "dependsOn": [
-            "m1-path-interval"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-finite-required-path-rule",
@@ -612,15 +604,10 @@
             "m1-finite-extension-rule",
             "m1-finite-required-path-rule",
             "m1-finite-strengthening",
-            "m1-finite-packing",
-            "m1-finite-verified",
             "m1-finite-coverage",
             "m1-finite-labels",
             "m1-size-test",
-            "m1-thm-main",
-            "m1-clq-bound",
-            "m1-small-cases",
-            "m1-terminal-contradiction"
+            "m1-clq-bound"
           ]
         }
       ]
@@ -640,7 +627,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

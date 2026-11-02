@@ -111,46 +111,55 @@
     {
       "from": "m1-lem-tail-sampling",
       "to": "m1-prop-conditioning-to-tail",
+      "label": "lem:tail-sampling",
       "context": "ently large $k$, with the lower bound on $k$ independent of the strategy. Suppose, to the contrary, that $p_H=\\Pr(W\\ge\\lceil qk\\rceil)\\ge e^{-ck}$. Apply Lemma~\\ref{lem:tail-sampling} with $\\varepsilon=\\eta$. With \\[ t=1+\\frac{\\log(4/\\eta)}r, \\qquad B=\\log2+Rt, \\] the number of draws satisfies $\\ell\\"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-prop-song-conditioning",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] For $0<\\delta<1-v$, take \\[ T=\\left(\\frac\\delta{4B_4}\\right)^4. \\] Since $B_4\\ge1$ and $0<\\delta<1$, we have $T\\le\\de"
     },
     {
       "from": "m1-prop-conditioning-to-tail",
       "to": "m1-prop-song-conditioning",
+      "label": "prop:conditioning-to-tail",
       "context": "most $T$, Proposition~\\ref{prop:song-conditioning} bounds the excess conditional win rate by $B_4T^{1/4}=\\delta/4$. Set $\\kappa_0=1/(16(4B_4)^4)$. Proposition~\\ref{prop:conditioning-to-tail} therefore gives \\begin{equation}\\label{eq:universal-threshold-rate} \\Pr\\bigl(W\\ge\\lceil(v+\\delta)k\\rceil\\bigr) \\le\\ex"
     },
     {
       "from": "m1-lem-resolvent",
       "to": "m1-lem-exposure",
+      "label": "lem:resolvent",
       "context": "The construction and exact laws have been verified above. To prove the error bounds, let $f(t)=t\\log t$, with $f(0)=0$, as in Lemma~\\ref{lem:resolvent}. Use the flags $\\Omega_j$ to define \\[ U_j=\\mathbb E_{\\Omega_j}\\sum_{\\alpha,\\gamma} \\theta\\,\\chi(f(F_j^\\alpha),H"
     },
     {
       "from": "m1-lem-exposure",
       "to": "m1-prop-root-conditioning",
+      "label": "lem:exposure",
       "context": "can also change the frequencies of the components; after constructing those strategies, we will compare the new component weights with $\\lambda_j$. Use Lemma~\\ref{lem:exposure} for the fixed set $C$. In this proof we restore the mode $i\\in[m]$ in the notation for its vectors and measurements. Fo"
     },
     {
       "from": "m1-lem-question-drift",
       "to": "m1-prop-root-conditioning",
+      "label": "lem:question-drift",
       "context": "aw is at most $1/p$, so \\[ D\\bigl(\\operatorname{law}(J_1,\\ldots,J_m\\mid E_C) \\,\\|\\,\\lambda^{\\otimes m}\\bigr)\\le\\log(1/p). \\] As in Lemma~\\ref{lem:question-drift}, product relative entropy bounds the sum of its marginal relative entropies. Pinsker's inequality, convexity of total v"
     },
     {
       "from": "m1-prop-root-conditioning",
       "to": "m1-cor-support-threshold",
+      "label": "prop:root-conditioning",
       "context": "Proposition~\\ref{prop:root-conditioning} bounds the conditioning error by \\[ \\sqrt{\\tau/2}+4\\sqrt{\\kappa_\\mu\\tau}+2\\kappa_\\mu\\tau. \\] At $T=\\delta^2/(1024(1+\\k"
     },
     {
       "from": "m1-prop-conditioning-to-tail",
       "to": "m1-cor-support-threshold",
+      "label": "prop:conditioning-to-tail",
       "context": "\\kappa_\\mu))$, this is at most \\[ \\frac\\delta{32}+\\frac\\delta8+\\frac\\delta{512} =\\frac{81\\delta}{512}<\\frac\\delta4. \\] Since also $T\\le\\delta/4$, Proposition~\\ref{prop:conditioning-to-tail} gives \\eqref{eq:support-threshold-rate}."
     },
     {
       "from": "m1-thm-main",
       "to": "m1-cor-error-amplification",
+      "label": "thm:main",
       "context": "(-2(p-t)^2k)\\le\\exp(-\\Delta^2k/8)$. For soundness, set $v=\\omega^*(G)\\le s$ and $\\delta=t-v$. Then $\\delta\\ge\\Delta/2>0$ and $\\delta<1-v$, since $t<1$. Theorem~\\ref{thm:main} applies at exactly the threshold $\\lceil(v+\\delta)k\\rceil=\\lceil tk\\rceil$, uniformly over all finite-dimensional joint"
     }
   ]

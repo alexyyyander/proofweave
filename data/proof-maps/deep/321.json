@@ -62,7 +62,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Counterexample-to-Walls-D2-Problem-October-6-2026/wall-d2-counterexample.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A Counterexample to Wall's D(2) Problem; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A Counterexample to Wall's D(2) Problem.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -139,8 +139,6 @@
           "detail": "The local system L_ satisfies H_2(X;L_)=0 .",
           "dependsOn": [
             "m1-prop-plus",
-            "m1-thm-main",
-            "m1-cor-torsion",
             "m1-thm-tower"
           ]
         }
@@ -161,7 +159,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

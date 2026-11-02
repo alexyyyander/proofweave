@@ -67,7 +67,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-counterexample-to-the-Monge-ansatz-for-the-three-marginal-Coulomb-cost-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A counterexample to the Monge ansatz for the three-marginal Coulomb cost; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A counterexample to the Monge ansatz for the three-marginal Coulomb cost.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -143,8 +143,7 @@
           "source": "Equality of the two infima",
           "detail": "Let \\(d2\\) be an integer. If \\(\\) and \\(\\) are absolutely continuous Borel probability measures on \\(^d\\), there is a Borel map \\(Q:^d^d\\) such that \\(Q_\\#=\\).",
           "dependsOn": [
-            "m1-prop-equal-infima",
-            "m1-thm-main"
+            "m1-prop-equal-infima"
           ]
         },
         {
@@ -156,8 +155,6 @@
           "source": "Inverse-power Riesz interactions",
           "detail": "For every integer \\(d2\\) and every real \\(s>0\\), there is a nonnegative density \\(\\) on \\(^d\\) such that \\[ _ ^d (x) x=1, C_c^(^d), C_c^(^d), \\] with the following properties. For \\(= x\\), the value…",
           "dependsOn": [
-            "m1-lem-local",
-            "m1-prop-certificate",
             "m1-lem-common-ball",
             "m1-prop-equal-infima",
             "m1-lem-borel-transport"
@@ -180,7 +177,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

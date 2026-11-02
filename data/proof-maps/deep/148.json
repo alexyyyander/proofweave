@@ -102,7 +102,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-entropy-rate-dimension-formula-for-self-similar-measures-on-the-line-September-24-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The entropy-rate dimension formula for self-similar measures on the line; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The entropy-rate dimension formula for self-similar measures on the line.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -144,8 +144,7 @@
           "source": "Entropy between two scales",
           "detail": "[Uniform nonsaturation] Let be a self-similar probability measure for a finite affine system x r_i x+t_i with 0<|r_i|<1 . If is exact dimensional with dimension d<1 , then :=_ v>0 _v()>0. No…",
           "dependsOn": [
-            "m1-lem-entropy-calculus",
-            "m1-lem-entropy-dimension"
+            "m1-lem-entropy-calculus"
           ]
         },
         {
@@ -177,7 +176,6 @@
           "source": "Conditioning on block types",
           "detail": "[Entropy retained by types] For a system satisfying , with the parameters and conditional laws , for every n1 and s>0 we have H(_ ,n ) &=H(G_ bn _n) nh_b, \\\\ H_s^0(_ ,n ) & H_s^0()+1. Moreover, there…",
           "dependsOn": [
-            "m1-lem-entropy-calculus",
             "m1-lem-entropy-dimension"
           ]
         },
@@ -294,7 +292,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

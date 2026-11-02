@@ -182,7 +182,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Invariant-projection-counterexamples-for-every-irrational-rotation-September-27-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Invariant-projection counterexamples for every irrational rotation; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Invariant-projection counterexamples for every irrational rotation.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -302,7 +302,6 @@
           "source": "Projection fields and transfer between endpoints",
           "detail": "Let p M be a projection satisfying (1-p)T_*p=0 . For every integer A1 and every t X that is an integer multiple of 1/q_A , the identity (1-p(x+t))diag_v R_ x,x+t (v)p(x)=0 holds for almost every x .…",
           "dependsOn": [
-            "m1-prop-parameters",
             "m1-lem-compact-transfer"
           ]
         },
@@ -338,8 +337,7 @@
           "detail": "[Invariance on the ordered pairs] Let p M be a projection satisfying (1-p)T_*p=0 . For every j , (1-p(y))diag_ k (R_ x,y (k))p(x)=0 for P_j-almost every pair. Moreover 0<R_ x,y (k)1 for all k almost…",
           "dependsOn": [
             "m1-lem-rational-graphs",
-            "m1-lem-digit-marginals",
-            "m1-lem-compact-transfer"
+            "m1-lem-digit-marginals"
           ]
         },
         {
@@ -442,7 +440,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Backward-intertwiners-and-a-transitive-commutant-September-27-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Backward intertwiners and a transitive commutant; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Backward intertwiners and a transitive commutant.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -551,8 +549,7 @@
             "m2-thm-direct-model",
             "m2-cor-direct-algebra",
             "m2-prop-fibers",
-            "m2-prop-normquasi",
-            "m2-prop-v"
+            "m2-prop-normquasi"
           ]
         }
       ]
@@ -578,7 +575,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

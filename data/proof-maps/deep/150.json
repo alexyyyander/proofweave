@@ -62,7 +62,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Weak-mixing-of-triangular-billiards-with-an-irrational-angle-October-5-2026/weak-mixing-triangular-billiards.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Weak mixing of triangular billiards with an irrational angle; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Weak mixing of triangular billiards with an irrational angle.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -115,8 +115,7 @@
           "detail": "[Individual coefficient regularity] Suppose \\(h L^(SM)\\), \\(h_ H\\), and \\((X-i)h=0\\) locally in distributions on the regular bundle. Every Fourier coefficient then has a global square-integrable flat…",
           "dependsOn": [
             "m1-lem-energy",
-            "m1-lem-smoothing",
-            "m1-prop-rigidity"
+            "m1-lem-smoothing"
           ]
         },
         {
@@ -140,7 +139,6 @@
           "source": "Side reflections and weak mixing",
           "detail": "Let \\((,)\\) be a standard probability space and \\(_t\\) a measure-preserving flow whose composition operators form a strongly continuous unitary group on complex \\(L^2()\\). If the only flow…",
           "dependsOn": [
-            "m1-thm-main",
             "m1-prop-eigenfunctions"
           ]
         }
@@ -161,7 +159,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

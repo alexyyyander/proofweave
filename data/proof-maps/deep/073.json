@@ -257,7 +257,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Falconer-distance-conjecture-in-all-dimensions-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Falconer distance conjecture in all dimensions; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Falconer distance conjecture in all dimensions.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -338,9 +338,7 @@
           "kind": "lemma",
           "source": "An angular projection gain",
           "detail": "[Planar measure incidence obstruction] Fix 0<b<1 and b<f<2 . There is no sequence 0 with the following data. Let , be subprobabilities on Borel label sets X,W in Euclidean spaces, and let \\[ p:X^2,…",
-          "dependsOn": [
-            "m1-ang-furstenberg"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ang-haar",
@@ -384,7 +382,6 @@
             "m1-reg-regularization",
             "m1-ang-loomis-whitney",
             "m1-reg-pruning-multiplication",
-            "m1-ang-linear-gain",
             "m1-ang-slice-selection",
             "m1-ang-planar-measures",
             "m1-ang-haar"
@@ -399,7 +396,6 @@
           "source": "An angular projection gain",
           "detail": "[Small mass of bad directions] Fix the parameters of Theorem~ . There are c_1,_1>0 such that the following holds at sufficiently small . Let be a bounded point probability satisfying the t -ball…",
           "dependsOn": [
-            "m1-ang-slice-selection",
             "m1-ang-linear-gain"
           ]
         },
@@ -436,9 +432,7 @@
           "kind": "proposition",
           "source": "Preparation of the pair measures",
           "detail": "[Thin-tube upgrade] Let k2 and k-12<s<k . Let , be bounded, separated s -Frostman probabilities in ^ k+1 . Suppose that the two directional measures of G_N have plate bounds Cu^ , uniformly for 2^ -N…",
-          "dependsOn": [
-            "m1-prep-one-scale"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prep-classical-plane",
@@ -538,8 +532,7 @@
           "source": "Profiles and angular tests",
           "detail": "[Exceptional directions] The constant C_d in Definition~ can be chosen depending only on d so that the following holds for all fixed parameters and sufficiently large N . If is any spherical…",
           "dependsOn": [
-            "m1-test-profile-bounds",
-            "m1-test-half-dimensional-fourier"
+            "m1-test-profile-bounds"
           ]
         },
         {
@@ -615,7 +608,6 @@
           "source": "Spherical oscillatory integrals and distance shells",
           "detail": "[Separated spatial expansion] On separated depth- a cells, for every fixed j0 there are bounded measurable functions f_ on X and g_ on Y and constants c_ such that (D(x,y)2^a)^ -j =_ c_ f_(x)g_(y),…",
           "dependsOn": [
-            "m1-osc-shell-conversion",
             "m1-osc-stationary"
           ]
         },
@@ -688,11 +680,8 @@
           "detail": "[State reductions] Suppose the current state is nonterminal, its smoothing index satisfies i<J_0 , and N is sufficiently large with all parameters fixed. For every prescribed T>0 , it is bounded,…",
           "dependsOn": [
             "m1-rec-binning",
-            "m1-test-smooth-masks",
             "m1-osc-shell-conversion",
-            "m1-graph-separated-form",
-            "m1-graph-estimate",
-            "m1-osc-stationary"
+            "m1-graph-estimate"
           ]
         },
         {
@@ -724,7 +713,6 @@
           "source": "The two-depth potential",
           "detail": "[Single-profile angular bound] Let \\( H_0^ [c,N] (c,N)\\) be a recursive angular state of nonterminal width, as in Definition~ . Fix its initial derivative budget \\(B\\) and its common numerical…",
           "dependsOn": [
-            "m1-rec-reductions",
             "m1-ledger-termination",
             "m1-ledger-payment",
             "m1-osc-shell-conversion"
@@ -768,8 +756,7 @@
             "m1-osc-shell-conversion",
             "m1-graph-separated-form",
             "m1-ledger-bound",
-            "m1-asm-entry",
-            "m1-asm-retained-measures"
+            "m1-asm-entry"
           ]
         },
         {
@@ -791,11 +778,8 @@
           "source": "Entry, shell summation, and the limiting distance measure",
           "detail": "For the starting pair in Proposition~ , there is a nonzero finite positive measure, absolutely continuous with respect to ^1 , carried by the original distance set (E) . Consequently ^1((E))>0 .",
           "dependsOn": [
-            "m1-asm-monotone-shell",
-            "m1-thm-main",
             "m1-prep-classical-plane",
-            "m1-prep-starting-pairs",
-            "m1-prep-integer-caps"
+            "m1-prep-starting-pairs"
           ]
         }
       ]
@@ -815,7 +799,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

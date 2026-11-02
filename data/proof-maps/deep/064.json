@@ -192,7 +192,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Topological-triviality-of-mu-constant-families-of-surface-singularities-September-24-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Topological triviality of mu-constant families of surface singularities; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Topological triviality of mu-constant families of surface singularities.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -223,9 +223,7 @@
           "kind": "lemma",
           "source": "Local families and fixed representatives",
           "detail": "[Euler characteristic in a fixed ball] There are a sufficiently small closed Euclidean ball B about 0 , a smaller parameter disk, and >0 such that the following statements hold for every parameter in…",
-          "dependsOn": [
-            "m1-lem-local-family-properties"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-individual-jets",
@@ -398,8 +396,7 @@
           "source": "Specializing the logarithmic square",
           "detail": "[The numerical conclusion of the log model] Let X C , with section , be the projective family of Lemma~ . Let h:Y X be a projective birational morphism from a normal integral threefold, isomorphic…",
           "dependsOn": [
-            "m1-lem-square-specialization",
-            "m1-lem-projective-local-square"
+            "m1-lem-square-specialization"
           ]
         },
         {
@@ -413,13 +410,9 @@
           "dependsOn": [
             "m1-lem-lc-persistence",
             "m1-lem-compactification",
-            "m1-prop-log-model",
-            "m1-lem-surface-boundary",
-            "m1-prop-full-exceptional-boundary",
             "m1-lem-interior-correction",
             "m1-prop-nearby-euler-comparison",
-            "m1-lem-surface-bmy",
-            "m1-prop-beta-from-log-model"
+            "m1-lem-surface-bmy"
           ]
         },
         {
@@ -581,7 +574,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

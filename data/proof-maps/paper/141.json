@@ -224,141 +224,169 @@
     {
       "from": "m1-lem-counting",
       "to": "m1-lem-field-product",
+      "label": "lem:counting",
       "context": "nzero $\\gamma\\in\\F_p$ is a generator precisely when \\[ \\gamma^e\\ne1\\pmod p\\qquad(1\\le e\\le p-2). \\] Each power is computable in polynomial bit time. By Lemma~\\ref{lem:counting}, the universal test is in $\\Flevel{1}$. An existential search over a short interval of candidates, followed by binary s"
     },
     {
       "from": "m1-lem-counting",
       "to": "m1-lem-field-coefficient",
+      "label": "lem:counting",
       "context": ", regardless of $p$. The nonzero-coordinate restrictions can be enforced by zero summands, and powers and inverses are computable in polynomial bit time. Lemma~\\ref{lem:counting} therefore evaluates the sum in $\\Flevel{a+1}$. Extracting coefficients only removes terms and their $x$ exponents, so"
     },
     {
       "from": "m1-lem-counting",
       "to": "m1-prop-controlled-closure",
+      "label": "lem:counting",
       "context": "oduct}&Ld&Lb. \\end{array} \\] Empty sums and products are $0$ and $1$. The bounds can be enlarged in these cases if necessary. Evaluations follow from Lemmas~\\ref{lem:counting} and~\\ref{lem:field-product}. An available restriction is tested while evaluating a summand or factor, with the neutral"
     },
     {
       "from": "m1-lem-field-product",
       "to": "m1-prop-controlled-closure",
+      "label": "lem:field-product",
       "context": "ay} \\] Empty sums and products are $0$ and $1$. The bounds can be enlarged in these cases if necessary. Evaluations follow from Lemmas~\\ref{lem:counting} and~\\ref{lem:field-product}. An available restriction is tested while evaluating a summand or factor, with the neutral value used outside the rang"
     },
     {
       "from": "m1-lem-field-coefficient",
       "to": "m1-prop-controlled-closure",
+      "label": "lem:field-coefficient",
       "context": "ially indexed collection of substitutes are taken before choosing the evaluation prime, as in Definition~\\ref{def:controlled}. Coefficient extraction is Lemma~\\ref{lem:field-coefficient}. For differentiation, write $x$ for the selected variable and $t$ for the others. If the requested order $j$ exceeds"
     },
     {
       "from": "m1-lem-field-product",
       "to": "m1-prop-crt-sign",
+      "label": "lem:field-product",
       "context": "ion} To compute $(\\Pi/p)\\bmod p$, take a product modulo $p$ over all other primes in $\\mathcal P$. The primality and range tests are in $\\Flevel{1}$, so Lemma~\\ref{lem:field-product} puts this product in $\\Flevel{5}$. It is nonzero. Modular inversion, modular powering, and the assumed residues of $X"
     },
     {
       "from": "m1-lem-counting",
       "to": "m1-prop-crt-sign",
+      "label": "lem:counting",
       "context": ":crt-circle-error} \\operatorname{dist}_{\\R/\\Z} \\left(w_k,\\frac{2^kX}{\\Pi}\\right)<2^{-10}. \\end{equation} The scaled sum has at most $2b_Y+11$ bits, and Lemma~\\ref{lem:counting} computes $w_k$ in $\\Flevel{\\max(a,5)+1}$. Call $k$ \\emph{flagged} when $1/8\\le w_k\\le7/8$. If $X=0$, every $c_{p,k}$"
     },
     {
       "from": "m1-prop-crt-sign",
       "to": "m1-cor-controlled-sign",
+      "label": "prop:crt-sign",
       "context": "Apply Proposition~\\ref{prop:crt-sign} with the logarithmic norm bound $b$ in place of $m$ and with the family's cutoff $\\lambda$."
     },
     {
       "from": "m1-lem-monomial-basis",
       "to": "m1-prop-trace",
+      "label": "lem:monomial-basis",
       "context": ")=0\\qquad(1\\le j\\le n). \\end{equation} Apply $\\mathcal L$ in the second factor, writing this map as $\\mathcal L_{x'}$. Since $\\deg_{x'}W\\le n(\\ell-1)$, Lemma~\\ref{lem:monomial-basis} gives $\\mathcal L_{x'}(W)=[(x')^\\tau]W$. This coefficient is $1$. Indeed, the part of combined degree $\\ell-1$ in the"
     },
     {
       "from": "m1-prop-trace",
       "to": "m1-prop-char-coeff",
+      "label": "prop:trace",
       "context": "First compute the trace residues $t_k=\\operatorname{tr}(M_v^k)\\bmod p$ for short indices $1\\le k\\le D$. By Proposition~\\ref{prop:trace}, $M_v^k=M_{v^k}$, and Equation~\\eqref{eq:laurent-coefficient-sum}, \\begin{equation}\\label{eq:trace-extraction} t_k=\\su"
     },
     {
       "from": "m1-lem-counting",
       "to": "m1-prop-char-coeff",
+      "label": "lem:counting",
       "context": "nly polynomially many evaluations and ordinary modular powering with short exponents, so lies in $\\Flevel{a}$. The grid sum and then the sum over $j$, by Lemma~\\ref{lem:counting}, place $t_k$ in $\\Flevel{a+2}$. In particular, a pair $(j,z)$ has at most \\[ n\\lceil\\log_2(L_0+1)\\rceil+n\\lceil\\log_2p"
     },
     {
       "from": "m1-lem-monomial-basis",
       "to": "m1-prop-multiplication-determinant",
+      "label": "lem:monomial-basis",
       "context": "Lemma~\\ref{lem:monomial-basis}, with $S=\\mathbb Z[t]$, defines the matrix and gives its dimension $D$ and compatibility with every specialization. Al"
     },
     {
       "from": "m1-prop-char-coeff",
       "to": "m1-prop-multiplication-determinant",
+      "label": "prop:char-coeff",
       "context": "choose integer lifts of those parameter values. These lifts are additional short inputs; specialization gives integer polynomials in $x$ to which Proposition~\\ref{prop:char-coeff} applies. The basis commutes with specialization and reduction modulo $p$, so their multiplication matrices reduce to t"
     },
     {
       "from": "m1-prop-controlled-closure",
       "to": "m1-prop-multiplication-determinant",
+      "label": "prop:controlled-closure",
       "context": "o their multiplication matrices reduce to the required matrices over the prime field, independently of the lifts. The controlled derivative rule in Proposition~\\ref{prop:controlled-closure} evaluates the entries of $J=\\det(\\partial_jf_i)$ with a fixed increase in hierarchy level. An ordinary $n\\times n$ dete"
     },
     {
       "from": "m1-prop-root-labels",
       "to": "m1-lem-rational-sign",
+      "label": "prop:root-labels",
       "context": "[Proof of Proposition~\\ref{prop:root-labels}] Choose common controlled bounds $d\\ge2$ and $b\\ge1$ such that \\[ \\deg P,\\deg b_0\\le d,\\qquad \\norm{P},\\norm{b_0}\\le2"
     },
     {
       "from": "m1-lem-root-value-bounds",
       "to": "m1-lem-rational-sign",
+      "label": "lem:root-value-bounds",
       "context": "hoose common controlled bounds $d\\ge2$ and $b\\ge1$ such that \\[ \\deg P,\\deg b_0\\le d,\\qquad \\norm{P},\\norm{b_0}\\le2^b. \\] Use the integers $B_0,B$ from Lemma~\\ref{lem:root-value-bounds}, and put $b_j=P^{(j)}$ for $1\\le j\\le d$. For a label $a=(\\mu,\\gamma,S_*)$ in the range of~\\eqref{eq:root-label-range}"
     },
     {
       "from": "m1-prop-controlled-closure",
       "to": "m1-lem-rational-sign",
+      "label": "prop:controlled-closure",
       "context": "ning $C$, its substitutions in $b_j$, the products defining $E,T_j$, and the sums and squares in~\\eqref{eq:root-label-polynomial} are controlled by Proposition~\\ref{prop:controlled-closure}. In a product omitting index $j$, the omitted factor is simply replaced by $1$; no denominator is ever inverted in fin"
     },
     {
       "from": "m1-lem-real-eigenline",
       "to": "m1-lem-bounded-minimum",
+      "label": "lem:real-eigenline",
       "context": "f_i=0\\qquad(1\\le i\\le n). \\] Evaluation at this common zero of the relations shows that the value of $h_u$ is a root of its characteristic polynomial, by Lemma~\\ref{lem:real-eigenline}. For continuity, fix a compact interval $I\\subseteq[0,\\infty)$. Every minimizer for a parameter $u\\in I$ lies in the"
     },
     {
       "from": "m1-lem-real-eigenline",
       "to": "m1-lem-existential-discriminant",
+      "label": "lem:real-eigenline",
       "context": "ontributions has modulus at most \\[ 2\\ell\\sum_{i<j}W_i <\\frac{2\\ell}{(4\\ell)^{\\ell+1}-1}W_j <4W_j. \\] The contribution at index $j$ cannot cancel. By Lemma~\\ref{lem:real-eigenline}, all $\\ell^n=D$ distinct values are roots of the degree-$D$ polynomial $Q(0,y)$. Let $\\Delta(u)$ be the determinant, i"
     },
     {
       "from": "m1-lem-existential-discriminant",
       "to": "m1-prop-specialization",
+      "label": "lem:existential-discriminant",
       "context": "Q(u,R)$ is a nonzero integer polynomial in $u$, with norm at most $2^H R^D=2^{H+D\\rho}$. Applying the root bound to this polynomial and to $\\Delta$ from Lemma~\\ref{lem:existential-discriminant} yields \\begin{equation}\\label{eq:existential-no-crossing} Q(u,R)\\ne0,\\qquad \\Delta(u)\\ne0 \\qquad\\text{for every real"
     },
     {
       "from": "m1-lem-real-eigenline",
       "to": "m1-prop-specialization",
+      "label": "lem:real-eigenline",
       "context": "tion} In particular, $q$ is squarefree. Monicity and degree are preserved by specialization, and $\\norm{q}\\le2^H U^V=2^K$. Each real root is simple, so Lemma~\\ref{lem:real-eigenline} realizes it at a real common zero of the specialized relations. If $F$ has a real zero, Lemma~\\ref{lem:bounded-minimum"
     },
     {
       "from": "m1-lem-bounded-minimum",
       "to": "m1-prop-specialization",
+      "label": "lem:bounded-minimum",
       "context": "K$. Each real root is simple, so Lemma~\\ref{lem:real-eigenline} realizes it at a real common zero of the specialized relations. If $F$ has a real zero, Lemma~\\ref{lem:bounded-minimum} gives a finite limit $\\mu=\\lim_{u\\to\\infty}m(u)$. Divide $Q(u,m(u))=0$ by $u^a$ and take this limit. Every lower-powe"
     },
     {
       "from": "m1-prop-controlled-closure",
       "to": "m1-prop-specialization",
+      "label": "prop:controlled-closure",
       "context": "obtained by a fixed number of sums and products of short integers. Substituting the controlled constant $U=2^\\sigma$ into $Q$ preserves control by Proposition~\\ref{prop:controlled-closure}. Neither the highest nonzero index $a$ nor the coefficients of $\\Delta$ need to be computed: they justify the speciali"
     },
     {
       "from": "m1-thm-controlled-existential",
       "to": "m1-prop-specialization",
+      "label": "thm:controlled-existential",
       "context": "[Completion of the proof of Theorem~\\ref{thm:controlled-existential}] The specialized relations and $g(h_U)$ are controlled by the closure rules. A second application of Proposition~\\ref{"
     },
     {
       "from": "m1-prop-multiplication-determinant",
       "to": "m1-prop-specialization",
+      "label": "prop:multiplication-determinant",
       "context": "f of Theorem~\\ref{thm:controlled-existential}] The specialized relations and $g(h_U)$ are controlled by the closure rules. A second application of Proposition~\\ref{prop:multiplication-determinant} therefore makes $X$ a controlled integer family: it is $(-1)^D$ times the constant coefficient of the characteristic po"
     },
     {
       "from": "m1-cor-controlled-sign",
       "to": "m1-prop-specialization",
+      "label": "cor:controlled-sign",
       "context": "ant} therefore makes $X$ a controlled integer family: it is $(-1)^D$ times the constant coefficient of the characteristic polynomial of $M_{g(h_U)}$. Corollary~\\ref{cor:controlled-sign} gives its sign as an available function, uniformly in the input, the label, and $e$. Short-index existential quantific"
     },
     {
       "from": "m1-lem-monomial-basis",
       "to": "m1-prop-candidate-coordinates",
+      "label": "lem:monomial-basis",
       "context": "The relations \\eqref{eq:candidate-relations} satisfy the degree hypotheses of Lemma~\\ref{lem:monomial-basis}, with coefficient ring $\\R[w]$. Thus the coordinate multiplication matrices exist, and each $P_i$ is monic of degree $"
     },
     {
       "from": "m1-prop-multiplication-determinant",
       "to": "m1-prop-candidate-coordinates",
+      "label": "prop:multiplication-determinant",
       "context": "on matrices exist, and each $P_i$ is monic of degree $\\ell^k$ in $T$. In particular, $P_i\\ne0$ and $j_i$ exists. For controlled integer families, Proposition~\\ref{prop:multiplication-determinant} and coefficient extraction give the final assertion. Fix $c^0\\in C$ and choose $M>G(c^0)$. The set \\[ K_0=\\{c:G(c)\\l"
     }
   ]

@@ -147,7 +147,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Positive-Metric-Entropy-for-the-Standard-Map-at-Large-Parameters-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Positive Metric Entropy for the Standard Map at Large Parameters; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Positive Metric Entropy for the Standard Map at Large Parameters.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -200,9 +200,7 @@
           "kind": "lemma",
           "source": "Nearly full-rate cancellations",
           "detail": "There is a constant A such that, on each outward path associated to , the number of indices in \\ 2,,N-2\\ which are not good is at most A( n+1) 1-c . The estimate holds uniformly for M e .",
-          "dependsOn": [
-            "m1-setup-shortfall-count"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-can-matching",
@@ -222,10 +220,7 @@
           "kind": "lemma",
           "source": "Nearly full-rate cancellations",
           "detail": "[Local scarcity] For every >0 there are '>0 and M_< such that the following holds for M M_ . Fix q_e , a base coordinate _* , and indices j_+,j_-2 on the two outward paths. Suppose both indices are…",
-          "dependsOn": [
-            "m1-can-theorem",
-            "m1-can-matching"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-bridge-theorem",
@@ -245,10 +240,7 @@
           "kind": "lemma",
           "source": "A product estimate across a fast bridge",
           "detail": "[Contracting graphs and their distortion] For sufficiently large M , suppose B_+2 and, at a fixed state with central coordinates (x,y)=(q_0,q_ -1 ) , D_l:= T_ 0,l M^ cl (1 l B_+). For at least one…",
-          "dependsOn": [
-            "m1-bridge-theorem",
-            "m1-setup-shortfall-count"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-scale-fourpoint",
@@ -278,10 +270,7 @@
           "kind": "lemma",
           "source": "Product distances and measures across scales",
           "detail": "[Doubling bound] For all sufficiently large parameters and every integer n1 , e_n e_ 2n C e_n+C n , with a constant independent of n and the parameter.",
-          "dependsOn": [
-            "m1-scale-truncation",
-            "m1-can-theorem"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-scale-selection",
@@ -303,9 +292,7 @@
           "kind": "lemma",
           "source": "Product distances and measures across scales",
           "detail": "[Bounds for local tests] Let I have dyadic endpoints and length p=2^m , where m is fixed. Then (J(I)+V(I))\\,_K=O_I(1). Uniformly over the individual dyadic scales n_0 n N , ^ -1 =O_I(1). At the…",
-          "dependsOn": [
-            "m1-scale-selection"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-scale-affinity-tests",
@@ -345,13 +332,7 @@
           "kind": "proposition",
           "source": "Support restrictions and the geometry of limiting distances",
           "detail": "[Support exclusions] There is a measurable set of full measure for , , and _ on which the following statements hold for every real choice of their arguments. There do not exist r and t>0 such that…",
-          "dependsOn": [
-            "m1-can-theorem",
-            "m1-scale-selection",
-            "m1-bridge-theorem",
-            "m1-scale-local-mass",
-            "m1-scale-decomposition"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-shape-classification",
@@ -361,9 +342,7 @@
           "kind": "proposition",
           "source": "Support restrictions and the geometry of limiting distances",
           "detail": "[Shape classification] Every nonaffine array in X_0 satisfying has one of the following forms: every secant has speed at most c_b ; there is one exterior ray of exact unit speed, and the…",
-          "dependsOn": [
-            "m1-shape-crossloss"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-shape-crossloss",
@@ -436,7 +415,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

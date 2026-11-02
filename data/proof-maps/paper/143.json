@@ -676,546 +676,655 @@
     {
       "from": "m1-lem-flags-contours",
       "to": "m1-lem-separation-proxies",
+      "label": "lem:flags-contours",
       "context": "a(r)})$ and \\eqref{eq:separation-inner-cosine} gives the assertion. Later terms in its affine log relation are negligible by the real-part comparisons of Lemma~\\ref{lem:flags-contours}. For a secondary cosine, the loss is bounded unless its rate derivative is comparable with $\\Lambda_j$. In that case i"
     },
     {
       "from": "m1-lem-separation-source-ratios",
       "to": "m1-lem-separation-proxies",
+      "label": "lem:separation-source-ratios",
       "context": "\\geq p$, positivity and the polynomial angular buffer in \\eqref{eq:separation-barrier} give $U\\gg f_p$; the more quantitative verification is included in Lemma~\\ref{lem:separation-source-ratios}. Join costs also satisfy $V_j\\gg f_p$ for $j<p$. All these statements hold uniformly on the coupled domain; they impl"
     },
     {
       "from": "m1-lem-flags-path",
       "to": "m1-lem-separation-growth",
+      "label": "lem:flags-path",
       "context": "aining left contribution tends to zero if a fixed backstep was chosen with $f_p(u)>Bf_p(u_b)$ for a sufficiently large fixed $B$; such backsteps exist by Lemma~\\ref{lem:flags-path}. Restoring the divisor and the small Cauchy correction proves \\eqref{eq:separation-coupled-growth} with $p$ replaced b"
     },
     {
       "from": "m1-lem-flags-path",
       "to": "m1-lem-separation-source-ratios",
+      "label": "lem:flags-path",
       "context": "fer tends to infinity, so the $o(1)$ corrections have no effect. Write $t=f_n(u)$ and $\\lambda=\\Lambda_n(u)$, with a subscript $0$ for the target. From Lemma~\\ref{lem:flags-path}, \\begin{equation}\\label{eq:separation-rate-derivatives} c t\\leq\\lambda\\leq t\\operatorname{polylog}t, \\qquad \\left|\\f"
     },
     {
       "from": "m1-lem-flags-background",
       "to": "m1-lem-separation-source-ratios",
+      "label": "lem:flags-background",
       "context": "{eq:separation-target-x}; the same is true if the level-$i$ angle is moved farther toward vertical. Background jet errors are swallowed by that gain, by Lemma~\\ref{lem:flags-background}. In particular this gain is larger than the polynomial buffer needed for the level-$n$ side. \\emph{Bounded target slo"
     },
     {
       "from": "m1-lem-separation-proxies",
       "to": "m1-lem-separation-weighted",
+      "label": "lem:separation-proxies",
       "context": "U/2}. \\end{equation} The last factor is bounded by a fixed multiple of $e^{-u}$ and is integrable on the bounded-width domain, because $U/e^u\\to\\infty$. Lemma~\\ref{lem:separation-proxies} thus gives a Cauchy correction of norm at most $C_1e^{K_H}$, where $C_1$ is independent of $H$. Let $F_H$ be the resul"
     },
     {
       "from": "m1-lem-separation-growth",
       "to": "m1-lem-separation-isolate",
+      "label": "lem:separation-growth",
       "context": "l amount there. The source hypotheses handle all derivatives of the interpolation and normalization. The growth bound for the new coupling follows from Lemma~\\ref{lem:separation-growth}. No new transition at an earlier inner band has been requested."
     },
     {
       "from": "m1-lem-separation-proxies",
       "to": "m1-lem-separation-terminal",
+      "label": "lem:separation-proxies",
       "context": "orrections therefore have norm at most $CM e^{-u_b}\\to0$, uniformly over the target family. On a single fixed path the compact-left and tail argument in Lemma~\\ref{lem:separation-proxies} gives the corresponding vanishing at infinity. Denote the corrected functions by $\\widetilde G$; they are holomorphic"
     },
     {
       "from": "m1-lem-separation-weighted",
       "to": "m1-lem-separation-terminal",
+      "label": "lem:separation-weighted",
       "context": "The time of return to a smaller box may diverge; that time is used only in the preliminary real estimates, whose constants have already been removed by Lemma~\\ref{lem:separation-weighted}. Write $X+iY=\\log\\widehat Z_m$. For a fixed small $\\eta>0$, the boundary values on a window about the target are with"
     },
     {
       "from": "m1-lem-flags-path",
       "to": "m1-lem-separation-terminal",
+      "label": "lem:flags-path",
       "context": "e corresponding constants, once the anchor is sufficiently far. The $X$ distances from the target to both ends of a fixed $u$ window tend to infinity by Lemma~\\ref{lem:flags-path}. On that window apply the logarithmic maximum principle to the difference from $c_+(t_*)$. Its upper boundary is bound"
     },
     {
       "from": "m1-thm-separation",
       "to": "m1-lem-separation-terminal",
+      "label": "thm:separation",
       "context": "[Proof of Theorem~\\ref{thm:separation}] We describe the induction explicitly to keep its finite and infinite requests separate. A coupled prefix includes fix"
     },
     {
       "from": "m1-lem-separation-isolate",
       "to": "m1-lem-separation-terminal",
+      "label": "lem:separation-isolate",
       "context": "many children earlier than $a$. Pass them in increasing order. To pass one child, first isolate it on its own sufficiently vertical good contour using Lemma~\\ref{lem:separation-isolate} and the upgrades already obtained for its earlier siblings. Its coupled subtree at level $n+1$ is zero, so the inducti"
     },
     {
       "from": "m1-lem-separation-upgrade",
       "to": "m1-lem-separation-terminal",
+      "label": "lem:separation-upgrade",
       "context": "y many transitions for this request. We have proved all fixed preliminary orders at level $n$, and can now apply Lemma~\\ref{lem:separation-weighted} and Lemma~\\ref{lem:separation-upgrade}. There is no circular use of a stronger estimate at the current level. Preliminary orders at level $n$ invoke upgrade"
     },
     {
       "from": "m1-lem-calculus-support",
       "to": "m1-lem-calculus-differentiation",
+      "label": "lem:calculus-support",
       "context": "r narrowed fringe $\\|E_j\\|<1/2$. The inverse $(I-E_j)^{-1}=\\sum_{n\\ge0}E_j^n$ is a numerical bounded unit and a formal series with finite coefficients by Lemma~\\ref{lem:calculus-support}. Truncating it gives the required differentiated remainder, since the original background transition was differentiate"
     },
     {
       "from": "m1-thm-separation",
       "to": "m1-lem-calculus-cleanup",
+      "label": "thm:separation",
       "context": "uest. A negative prefix through level $j$ has an entirely zero formal subtree, and every earlier subtree is also zero. The zero-subtree conclusion of Theorem~\\ref{thm:separation} therefore bounds its raw outer coefficient by $O(e^{-cV_j})$ on a sufficiently vertical $j$-collar and the correspondin"
     },
     {
       "from": "m1-lem-calculus-differentiation",
       "to": "m1-lem-calculus-cleanup",
+      "label": "lem:calculus-differentiation",
       "context": "em~\\ref{thm:separation} therefore bounds its raw outer coefficient by $O(e^{-cV_j})$ on a sufficiently vertical $j$-collar and the corresponding fringe. Lemma~\\ref{lem:calculus-differentiation} says the same about the formal derivative tree of $K$. To obtain a bound for actual derivatives of an individual delet"
     },
     {
       "from": "m1-lem-separation-family-uniformity",
       "to": "m1-lem-calculus-uniform-separation",
+      "label": "lem:separation-family-uniformity",
       "context": "Definition~\\ref{def:calculus-controlled-family} supplies precisely the common finite-label, source, and flag controls in Lemma~\\ref{lem:separation-family-uniformity}. Apply that lemma to the fixed coupled calculation and its finitely many derivative packet trees. Its weighted estimat"
     },
     {
       "from": "m1-thm-separation",
       "to": "m1-lem-calculus-positive-bounds",
+      "label": "thm:separation",
       "context": "Apply the coupled leading conclusion of Theorem~\\ref{thm:separation} with zero prefix to the cleaned expression and its ordinary derivatives. If its exponent-zero coefficient is absent, in"
     },
     {
       "from": "m1-lem-calculus-uniform-separation",
       "to": "m1-lem-calculus-positive-bounds",
+      "label": "lem:calculus-uniform-separation",
       "context": "nt-zero germs follows from separation. All these statements are uniform on the controlled families of Definition~\\ref{def:calculus-controlled-family}, by Lemma~\\ref{lem:calculus-uniform-separation}. In particular this controls families of different tests at different anchors; pathwise eventuality alone is not being"
     },
     {
       "from": "m1-lem-flags-contours",
       "to": "m1-lem-calculus-positive-bounds",
+      "label": "lem:flags-contours",
       "context": "ding positive shift and use separation. On the relevant domain $\\Re Z_k/f_l\\to\\infty$ for $j\\le k\\le l$, by Equation~\\eqref{eq:flags-retained-buffer} in Lemma~\\ref{lem:flags-contours}. Hence that shift absorbs $e^{C f_l}$ for every fixed $C$. If there is no nonzero term in this interval, request an a"
     },
     {
       "from": "m1-lem-calculus-positive-bounds",
       "to": "m1-lem-calculus-analytic",
+      "label": "lem:calculus-positive-bounds",
       "context": "In a band the cleaned tuple stays in a fixed smaller neighborhood of the limiting tuple by Lemma~\\ref{lem:calculus-positive-bounds}. At a transition write it as the outer tuple plus a strict positive increment $\\delta$. Taylor's formula with integral"
     },
     {
       "from": "m1-lem-calculus-support",
       "to": "m1-lem-calculus-analytic",
+      "label": "lem:calculus-support",
       "context": "oduct estimates to control the differentiated remainder. The coefficients are outer packet operations, to which the same procedure applies recursively. Lemma~\\ref{lem:calculus-support} gives the formal finite coefficient rule. Source errors retain their precision under bounded derivatives of $H$, and f"
     },
     {
       "from": "m1-thm-calculus",
       "to": "m1-lem-calculus-refinement",
+      "label": "thm:calculus",
       "context": "nged, and the actual real formulas and their ordinary derivatives are the same. Proceed through the finite old recipe. A raw operation is available by Theorem~\\ref{thm:calculus}. Every previously positive normalization is still bounded on its real ordinary neighborhood, so Lemma~\\ref{lem:calculu"
     },
     {
       "from": "m1-lem-calculus-positive-bounds",
       "to": "m1-lem-calculus-refinement",
+      "label": "lem:calculus-positive-bounds",
       "context": "raw operation is available by Theorem~\\ref{thm:calculus}. Every previously positive normalization is still bounded on its real ordinary neighborhood, so Lemma~\\ref{lem:calculus-positive-bounds} proves its positivity on the refined flag. Its old ordinary limit identifies its exponent-zero germ. Thus a previously"
     },
     {
       "from": "m1-lem-flags-saturation",
       "to": "m1-lem-calculus-refinement",
+      "label": "lem:flags-saturation",
       "context": "y identity transitions, and later pullback introduces their actual dependence in the prescribed order. Preservation of the old free nodes is supplied by Lemma~\\ref{lem:flags-saturation} in the applications."
     },
     {
       "from": "m1-lem-flags-saturation",
       "to": "m1-lem-elimination-promotion",
+      "label": "lem:flags-saturation",
       "context": "one new independent positive large scale, with coefficient $1$ or $-1$. Convert only the new residual's chain of logarithms until it meets the old cuts. Lemma~\\ref{lem:flags-saturation} proves finite termination, preservation of old free inputs, and the asserted ordinary count. In the bounded case take"
     },
     {
       "from": "m1-thm-calculus",
       "to": "m1-lem-elimination-promotion",
+      "label": "thm:calculus",
       "context": "y fixed power of $|\\log\\rho|$. The derivative of $x-\\varepsilon\\rho(S,t,x)$ in $x$ tends to $1$; its right-hand side is positive in the series sense. Theorem~\\ref{thm:calculus} applies."
     },
     {
       "from": "m1-thm-calculus",
       "to": "m1-lem-elimination-lift",
+      "label": "thm:calculus",
       "context": "eded for the finite recipe from the start. An old recipe not using these additions is revalidated in its original order by the real-bound criterion in Theorem~\\ref{thm:calculus}; old free inputs remain independent. First solve the equation for $w$ with its current backgrounds, using Lemma~\\ref{l"
     },
     {
       "from": "m1-lem-elimination-promotion",
       "to": "m1-lem-elimination-lift",
+      "label": "lem:elimination-promotion",
       "context": "-bound criterion in Theorem~\\ref{thm:calculus}; old free inputs remain independent. First solve the equation for $w$ with its current backgrounds, using Lemma~\\ref{lem:elimination-promotion}. Replay the old coordinate replacements subsequently in their chronological order. Here is the finite algebra used in"
     },
     {
       "from": "m1-lem-elimination-local-inverse",
       "to": "m1-lem-elimination-lift",
+      "label": "lem:elimination-local-inverse",
       "context": "e power-sized boxes. Such boxes preserve the scale regime; the finite-order estimates can equivalently be retested on every sequence of points in them. Lemma~\\ref{lem:elimination-local-inverse} therefore supplies local image neighborhoods and exact hit correction. The calibration preceding this correction matte"
     },
     {
       "from": "m1-thm-calculus",
       "to": "m1-lem-elimination-common-domain",
+      "label": "thm:calculus",
       "context": "finitely many base jets finally needed at that request are defined and bounded on some ordinary box $U_{\\mathcal A}$ with radius independent of $r$, by Theorem~\\ref{thm:calculus}. Its radius and bounds may depend on $\\mathcal A$. Use a smaller box with spare room. At every input in this box, the"
     },
     {
       "from": "m1-lem-elimination-local-inverse",
       "to": "m1-lem-elimination-common-domain",
+      "label": "lem:elimination-local-inverse",
       "context": "ter multiplication by the inverse norm $r^{-c}$ the correction is smaller than the trial radius $r^E$. At each $q$ the fixed-Jacobian contraction used in Lemma~\\ref{lem:elimination-local-inverse} then gives a root strictly inside the trial tube. The field's Jacobian and its first variation stay within the chosen"
     },
     {
       "from": "m1-lem-elimination-lift",
       "to": "m1-lem-elimination-common-domain",
+      "label": "lem:elimination-lift",
       "context": "layed prefixes on these common boxes. The regular implicit stages have unit inverses in their solved directions; width stages use the Schur estimates of Lemma~\\ref{lem:elimination-lift}. All other inverse blocks have the preassigned prefix bounds. The local inverse lemma, now with its available source"
     },
     {
       "from": "m1-thm-calculus",
       "to": "m1-prop-elimination-recursion",
+      "label": "thm:calculus",
       "context": "ic germ. The normalized expression $G$ has raw packet trees, and its locally uniform real convergence makes it positive by the real-bound criterion in Theorem~\\ref{thm:calculus}. That theorem then gives the differentiated convergence in \\eqref{eq:elimination-leading}. If $a$ is negligible in fl"
     },
     {
       "from": "m1-lem-elimination-lift",
       "to": "m1-prop-elimination-recursion",
+      "label": "lem:elimination-lift",
       "context": "n-c-bounds} |c_\\ell|\\le C s^{m-\\ell}. \\end{equation} The quotients in this inequality are positive by real boundedness. If $w_A/s_A$ stays bounded, use Lemma~\\ref{lem:elimination-lift} with $w=su$. Choose replay accuracy larger than every power needed below and correct its hit exactly. At common lower"
     },
     {
       "from": "m1-lem-elimination-promotion",
       "to": "m1-prop-elimination-recursion",
+      "label": "lem:elimination-promotion",
       "context": "ed background from that physical point to its center projection costs $O(|w_A|)$, so the logarithmic comparisons of all moderate scales are unchanged, by Lemma~\\ref{lem:elimination-promotion}. Request a center field tolerance sufficiently large that every $c_\\ell$ will be $o(\\rho^{m-\\ell})$, including the los"
     },
     {
       "from": "m1-lem-elimination-local-inverse",
       "to": "m1-prop-elimination-recursion",
+      "label": "lem:elimination-local-inverse",
       "context": "ers are controlled, and the initial calibration's record discrepancy yields a physical hit error inside the fixed image neighborhood. Correct the hit by Lemma~\\ref{lem:elimination-local-inverse}. The center estimates, arbitrary replay accuracy, and bounded fixed derivatives give $c_\\ell=o(\\rho^{m-\\ell})$ at the"
     },
     {
       "from": "m1-lem-elimination-common-domain",
       "to": "m1-prop-elimination-recursion",
+      "label": "lem:elimination-common-domain",
       "context": "quested record accuracy $\\mathcal A$. The floor realization $r$ is a strict positive monomial times a bounded regular unit with positive limiting value. Lemma~\\ref{lem:elimination-common-domain} therefore applies to this center family with the already fixed new thickness exponent $J_0$. It gives a source exponent"
     },
     {
       "from": "m1-prop-elimination-recursion",
       "to": "m1-thm-absolute-zero",
+      "label": "prop:elimination-recursion",
       "context": "es of these real normalized equations. The zero set on the retained domain is unchanged. The sum is positive by the calculus. Apply exact mode of Proposition~\\ref{prop:elimination-recursion}. At every sufficiently far anchor the resulting chart satisfies identically zero formal data. Ordinary restrictions m"
     },
     {
       "from": "m1-lem-additive-slow",
       "to": "m1-lem-additive-primitives",
+      "label": "lem:additive-slow",
       "context": "onnect it to $w_*$ using paths with all radii comparable to $|Q|$. A common smaller optimal truncation has exponentially small substitution residual, by Lemma~\\ref{lem:additive-slow}. Triangular integration loses only fixed powers and fixed-degree logarithms; these are absorbed by decreasing the expo"
     },
     {
       "from": "m1-lem-additive-gevrey-operations",
       "to": "m1-prop-additive-dispersal",
+      "label": "lem:additive-gevrey-operations",
       "context": "shifts. Numerical finite-anchor dependence has now disappeared. If an outer coefficient was evaluated at an inner kernel, use the rectangular series of Lemma~\\ref{lem:additive-gevrey-operations}, with coefficient bounds $C^{a+b+1}a!b!$ in $h_Q^ah_q^b$. Its separate optimal precisions permit the two variables to"
     },
     {
       "from": "m1-thm-calculus",
       "to": "m1-prop-additive-dispersal",
+      "label": "thm:calculus",
       "context": "tive translations form a finite list. Induction on coordinates proves left-finiteness and finite collision multiplicity, as in the support argument of Theorem~\\ref{thm:calculus}. The finite Taylor and jet operations at each later extraction preserve this property. At the terminal edge all numeri"
     },
     {
       "from": "m1-lem-regular-charges",
       "to": "m1-lem-regular-formal",
+      "label": "lem:regular-charges",
       "context": "[Proof of Lemma~\\ref{lem:regular-charges}] For the layer model, retain the normalization modulo the monomial ideal generated by $E^mH^n$ with $A,B\\ge K+1$. This"
     },
     {
       "from": "m1-lem-additive-gevrey-operations",
       "to": "m1-lem-regular-formal",
+      "label": "lem:additive-gevrey-operations",
       "context": "egrals over fixed subintervals of $[0,1]$. The final $\\Phi_1$ evaluation has the same property. The Gevrey composition and regular-inverse estimates of Lemma~\\ref{lem:additive-gevrey-operations}, or its one-variable dummy-disk proof, apply to these finite operations. Integration on a fixed interval preserves the"
     },
     {
       "from": "m1-thm-calculus",
       "to": "m1-lem-regular-controlled-inputs",
+      "label": "thm:calculus",
       "context": "s not supply a source estimate for an arbitrary smooth input. A holomorphic ordinary test contributes no input defect. A smooth chart sheet supplied by Theorem~\\ref{thm:calculus} already has the required differentiated source bounds. The remaining factors in the pullback chain rule are the primit"
     },
     {
       "from": "m1-lem-calculus-source-pullback",
       "to": "m1-lem-regular-controlled-inputs",
+      "label": "lem:calculus-source-pullback",
       "context": "imposed on that source. At a level-$p$ join the later-rate and Cauchy losses are $o(V_p)$; a fixed current normalization is retained as $C\\Re Z_p$. Thus Lemma~\\ref{lem:calculus-source-pullback} applies, with a transition budget larger than the fixed current losses when the defect comes from a transition, or a su"
     },
     {
       "from": "m1-lem-mixed-actual",
       "to": "m1-lem-mixed-tree",
+      "label": "lem:mixed-actual",
       "context": "nt of $N$. Reflecting if necessary, take the positive fringe and write $\\rho=\\Re L/|L|\\to0$; $\\Re L\\gg\\log(1/\\rho)$. Fix the same $0<\\kappa\\leq1/4$ as in Lemma~\\ref{lem:mixed-actual}. In the comparable case Equation~\\eqref{eq:mixed-comparable-detuning}, with its specified choice of side constant, puts"
     },
     {
       "from": "m1-lem-flags-safe-columns",
       "to": "m1-lem-mixed-poles",
+      "label": "lem:flags-safe-columns",
       "context": "\\asymp 1/\\Lambda_j$, and the same loss is $O(f_j+\\log(2+\\Lambda_j))$; there is no exceptional constant there. For completeness, verify the hypotheses of Lemma~\\ref{lem:flags-safe-columns} for the actual pole sweeps. A fixed positive multiple has real value $x=\\exp(f_k+\\gamma)$ with $\\gamma',\\gamma''=O(1)$:"
     },
     {
       "from": "m1-lem-mixed-poles",
       "to": "m1-lem-mixed-fast-transition",
+      "label": "lem:mixed-poles",
       "context": "e L}$, and $|L\\beta_s|\\ll1$. Equation~\\eqref{eq:mixed-cos-gap} gives $|\\Im c|\\gtrsim |c|\\Lambda_k/\\Lambda_i$, and this is much larger than $|\\beta_s|$ by Lemma~\\ref{lem:mixed-poles}. Put \\[ \\mathcal P=K_0\\left(1+|\\Im(c-\\beta_s)|^{-1}\\right). \\] At each fixed fiber order the one-sided coefficients an"
     },
     {
       "from": "m1-lem-additive-gevrey-operations",
       "to": "m1-lem-mixed-fast-gevrey",
+      "label": "lem:additive-gevrey-operations",
       "context": "in these norms. Analytic operations on units with a fixed nonzero limiting value preserve them on smaller disks; this is also the single-variable case of Lemma~\\ref{lem:additive-gevrey-operations}. The balanced normalization and the finite triangular $f,t_m$ operations therefore have the same factorial estimates."
     },
     {
       "from": "m1-lem-mixed-actual",
       "to": "m1-lem-mixed-controlled-uniformity",
+      "label": "lem:mixed-actual",
       "context": "family controls. This gives common normalized action and pole-cone margins. The polygon length constants and stable comparison bounds are then common by Lemma~\\ref{lem:mixed-actual}. A dependence on the fixed limiting slope is permitted here; common amplitude smallness over slopes is the stronger, se"
     },
     {
       "from": "m1-lem-mixed-tree",
       "to": "m1-lem-mixed-controlled-uniformity",
+      "label": "lem:mixed-tree",
       "context": "y many requested main charges, the finite low-cost separations and derivative orders give one common constant; the tail has the common factorial bound of Lemma~\\ref{lem:mixed-tree}. Its contour remainders require only specified inequalities such as $\\Re L>K\\log(1/\\rho)$ and the finitely many cap-sep"
     },
     {
       "from": "m1-lem-mixed-fast-gevrey",
       "to": "m1-lem-mixed-controlled-uniformity",
+      "label": "lem:mixed-fast-gevrey",
       "context": "p-separation thresholds. The small-slope formal replacement uses the same geometric moment estimate at every point. Similarly, the finite formal norms in Lemma~\\ref{lem:mixed-fast-gevrey} use two fixed layer radii, a fixed state margin, and a common small formal weight. Taking the minimum of the finitely m"
     },
     {
       "from": "m1-lem-mixed-poles",
       "to": "m1-lem-mixed-controlled-uniformity",
+      "label": "lem:mixed-poles",
       "context": "their derivative orders. The direct finite jet formula above gives common powers of the explicit pole losses, even when the numerical denominators vary. Lemma~\\ref{lem:mixed-poles} retains the allowed $D_{j-1}$ loss on the entire forward domain. Its safe-column proof is also uniform: the common real"
     },
     {
       "from": "m1-thm-calculus",
       "to": "m1-lem-mixed-controlled-uniformity",
+      "label": "thm:calculus",
       "context": "zen holomorphic formulas and their proved cutoff overlaps. Holomorphic ordinary inputs contribute no input defect; smooth sheets already constructed by Theorem~\\ref{thm:calculus} supply their own differentiated defects. For pullbacks, the finite chain-rule factors have exactly the raw, Cauchy, an"
     },
     {
       "from": "m1-lem-calculus-source-pullback",
       "to": "m1-lem-mixed-controlled-uniformity",
+      "label": "lem:calculus-source-pullback",
       "context": "apply to them as well. At a level-$p$ good join, keep a fixed current loss as $C\\Re Z_p$; the remaining later-rate and local Cauchy losses are $o(V_p)$. Lemma~\\ref{lem:calculus-source-pullback} therefore preserves the source estimates, choosing a transition budget larger than its current losses or a sufficiently"
     },
     {
       "from": "m1-thm-mixed-packets",
       "to": "m1-lem-mixed-controlled-uniformity",
+      "label": "thm:mixed-packets",
       "context": "[Proof of Theorem~\\ref{thm:mixed-packets}] We have constructed the actual passage, its transition expansions, and the raw coefficients in every band. It remains"
     },
     {
       "from": "m1-lem-calculus-refinement",
       "to": "m1-lem-mixed-controlled-uniformity",
+      "label": "lem:calculus-refinement",
       "context": "ler neighborhoods as needed. An inserted unused node contributes an identity transition. Applying the earlier finite ordinary-chart recipes then invokes Lemma~\\ref{lem:calculus-refinement}. This proves the stated retesting and refinement invariance without identifying an unspecified flat error with zero, an"
     },
     {
       "from": "m1-lem-additive-slow",
       "to": "m1-prop-calculus-library-uniformity",
+      "label": "lem:additive-slow",
       "context": "uments are held in their common boxes. It imposes no return-time requirement on an ordinary test $t(s)$. These observations apply to every estimate in Lemmas~\\ref{lem:additive-slow}, \\ref{lem:additive-primitives}, and \\ref{lem:additive-gevrey-operations}, and hence to the finite formulas of Propositi"
     },
     {
       "from": "m1-lem-additive-primitives",
       "to": "m1-prop-calculus-library-uniformity",
+      "label": "lem:additive-primitives",
       "context": "common boxes. It imposes no return-time requirement on an ordinary test $t(s)$. These observations apply to every estimate in Lemmas~\\ref{lem:additive-slow}, \\ref{lem:additive-primitives}, and \\ref{lem:additive-gevrey-operations}, and hence to the finite formulas of Propositions~\\ref{prop:additive-charge}"
     },
     {
       "from": "m1-lem-additive-gevrey-operations",
       "to": "m1-prop-calculus-library-uniformity",
+      "label": "lem:additive-gevrey-operations",
       "context": "-time requirement on an ordinary test $t(s)$. These observations apply to every estimate in Lemmas~\\ref{lem:additive-slow}, \\ref{lem:additive-primitives}, and \\ref{lem:additive-gevrey-operations}, and hence to the finite formulas of Propositions~\\ref{prop:additive-charge} and \\ref{prop:additive-dispersal}. Lemma~\\"
     },
     {
       "from": "m1-prop-additive-charge",
       "to": "m1-prop-calculus-library-uniformity",
+      "label": "prop:additive-charge",
       "context": "te in Lemmas~\\ref{lem:additive-slow}, \\ref{lem:additive-primitives}, and \\ref{lem:additive-gevrey-operations}, and hence to the finite formulas of Propositions~\\ref{prop:additive-charge} and \\ref{prop:additive-dispersal}. Lemma~\\ref{lem:additive-controlled-family} gives the resulting explicit common jet a"
     },
     {
       "from": "m1-prop-additive-dispersal",
       "to": "m1-prop-calculus-library-uniformity",
+      "label": "prop:additive-dispersal",
       "context": "slow}, \\ref{lem:additive-primitives}, and \\ref{lem:additive-gevrey-operations}, and hence to the finite formulas of Propositions~\\ref{prop:additive-charge} and \\ref{prop:additive-dispersal}. Lemma~\\ref{lem:additive-controlled-family} gives the resulting explicit common jet and angular-error thresholds on the"
     },
     {
       "from": "m1-lem-additive-controlled-family",
       "to": "m1-prop-calculus-library-uniformity",
+      "label": "lem:additive-controlled-family",
       "context": "and \\ref{lem:additive-gevrey-operations}, and hence to the finite formulas of Propositions~\\ref{prop:additive-charge} and \\ref{prop:additive-dispersal}. Lemma~\\ref{lem:additive-controlled-family} gives the resulting explicit common jet and angular-error thresholds on the full forward domain. For the one-rate prim"
     },
     {
       "from": "m1-lem-regular-formal",
       "to": "m1-prop-calculus-library-uniformity",
+      "label": "lem:regular-formal",
       "context": "rd domain. For the one-rate primitives, the same common-box choice controls the integrated layer norm and the stable variation-of-constants operator. In Lemma~\\ref{lem:regular-formal}, the nonzero charge gap is fixed and the high-tail inverse again gains $C/N$. The weighted norm for slow degree has de"
     },
     {
       "from": "m1-lem-regular-charges",
       "to": "m1-prop-calculus-library-uniformity",
+      "label": "lem:regular-charges",
       "context": "multiplied by $\\varepsilon/J$. Consequently the pure and tail contraction margins, factorial constants, optimal proportions, and the endpoint inverses in Lemma~\\ref{lem:regular-charges} are chosen on these boxes, before any particular ordinary test is supplied. The detailed controlled-input verification"
     },
     {
       "from": "m1-lem-regular-controlled-inputs",
       "to": "m1-prop-calculus-library-uniformity",
+      "label": "lem:regular-controlled-inputs",
       "context": "emma~\\ref{lem:regular-charges} are chosen on these boxes, before any particular ordinary test is supplied. The detailed controlled-input verification is Lemma~\\ref{lem:regular-controlled-inputs}. For mixed primitives, the actual continuation in Lemma~\\ref{lem:mixed-actual} is controlled by an integrated fast-pro"
     },
     {
       "from": "m1-lem-mixed-actual",
       "to": "m1-prop-calculus-library-uniformity",
+      "label": "lem:mixed-actual",
       "context": "is supplied. The detailed controlled-input verification is Lemma~\\ref{lem:regular-controlled-inputs}. For mixed primitives, the actual continuation in Lemma~\\ref{lem:mixed-actual} is controlled by an integrated fast-profile norm and a small Lipschitz norm on the larger state box. The contour bound"
     },
     {
       "from": "m1-lem-mixed-tree",
       "to": "m1-prop-calculus-library-uniformity",
+      "label": "lem:mixed-tree",
       "context": "Lemma~\\ref{lem:mixed-actual} is controlled by an integrated fast-profile norm and a small Lipschitz norm on the larger state box. The contour bounds of Lemma~\\ref{lem:mixed-tree} use the fixed finite rate and charge data. Their infinite charge sums have a common geometric majorant $\\eta^M$ with $"
     },
     {
       "from": "m1-lem-mixed-small-formal",
       "to": "m1-prop-calculus-library-uniformity",
+      "label": "lem:mixed-small-formal",
       "context": "au^{-q}e^{\\tau x}$, applied with $\\tau=a/2$, proves this bound with a constant depending only on $\\eta$. Thus the fixed moments and Gevrey constants of Lemmas~\\ref{lem:mixed-small-formal} and \\ref{lem:mixed-fast-gevrey} are common. The graph and layer contractions in Lemma~\\ref{lem:mixed-charts} have comm"
     },
     {
       "from": "m1-lem-mixed-fast-gevrey",
       "to": "m1-prop-calculus-library-uniformity",
+      "label": "lem:mixed-fast-gevrey",
       "context": "$\\tau=a/2$, proves this bound with a constant depending only on $\\eta$. Thus the fixed moments and Gevrey constants of Lemmas~\\ref{lem:mixed-small-formal} and \\ref{lem:mixed-fast-gevrey} are common. The graph and layer contractions in Lemma~\\ref{lem:mixed-charts} have common diagonal inverse bounds on th"
     },
     {
       "from": "m1-lem-mixed-charts",
       "to": "m1-prop-calculus-library-uniformity",
+      "label": "lem:mixed-charts",
       "context": "ixed moments and Gevrey constants of Lemmas~\\ref{lem:mixed-small-formal} and \\ref{lem:mixed-fast-gevrey} are common. The graph and layer contractions in Lemma~\\ref{lem:mixed-charts} have common diagonal inverse bounds on the stipulated slope ranges. The finite large-rate and detuning inequalities in"
     },
     {
       "from": "m1-lem-mixed-controlled-uniformity",
       "to": "m1-prop-calculus-library-uniformity",
+      "label": "lem:mixed-controlled-uniformity",
       "context": "are precisely numerical regime thresholds of Definition~\\ref{def:calculus-controlled-family}; they are independent of the history of the current inputs. Lemma~\\ref{lem:mixed-controlled-uniformity} records the complete uniform choice through all of the mixed constructions. The pole estimates also give uniform safe-"
     },
     {
       "from": "m1-lem-mixed-poles",
       "to": "m1-prop-calculus-library-uniformity",
+      "label": "lem:mixed-poles",
       "context": "r than requiring one numerical column for all tests. To see this quantitatively, let $x_a$ range over the finite list of positive real lattice sweeps in Lemma~\\ref{lem:mixed-poles}, and let $h_a>0$ be their lattice spacings. Common first and second real-jet bounds give, beyond common flag thresholds"
     },
     {
       "from": "m1-lem-flags-background",
       "to": "m1-prop-calculus-library-uniformity",
+      "label": "lem:flags-background",
       "context": "entiated errors and partition losses have common source constants. A sufficiently high fixed Taylor order preserves these geometric margins uniformly by Lemma~\\ref{lem:flags-background}; it does not itself create a source estimate. For source estimates under composition, the inputs are holomorphic or ha"
     },
     {
       "from": "m1-lem-calculus-source-pullback",
       "to": "m1-prop-calculus-library-uniformity",
+      "label": "lem:calculus-source-pullback",
       "context": "cts of an old chart sheet. Every remaining factor in the finite chain rule has one of the listed absorbable losses, uniformly for the controlled family. Lemma~\\ref{lem:calculus-source-pullback} therefore gives the composed source bounds, including its separate treatment of current good-join transition remainders"
     },
     {
       "from": "m1-lem-calculus-uniform-separation",
       "to": "m1-prop-calculus-library-uniformity",
+      "label": "lem:calculus-uniform-separation",
       "context": "-column construction waits for an individual test to reach a smaller ordinary neighborhood. Such a wait is used only for further preliminary requests in Lemma~\\ref{lem:calculus-uniform-separation}, whose constants disappear in the final weighted estimate. This proves the proposition."
     },
     {
       "from": "m1-lem-subdivision-clock",
       "to": "m1-lem-subdivision-resonance-redo",
+      "label": "lem:subdivision-clock",
       "context": "Consider a new initial unscaled annulus. The state change before extracting its monomial is only $r=\\sigma(U-c(p,x))$. For a new Euler clock $D'=hD$, Lemma~\\ref{lem:subdivision-clock} gives $|h|\\le2$, and \\[ D'r=h\\sigma(E-Dc),\\qquad \\partial_r(D'r)=hE_U. \\] The unbounded derivative of the moving cente"
     },
     {
       "from": "m1-lem-subdivision-resonance-redo",
       "to": "m1-thm-finite-templates",
+      "label": "lem:subdivision-resonance-redo",
       "context": "fiber. The real refinements of the terminal cases use finite sign and magnitude alternatives, and their only recursive operation is the redo covered by Lemma~\\ref{lem:subdivision-resonance-redo}. The preceding boundary argument gives $E_d$ and bounds the number of connectors and interior links. Each link has a"
     },
     {
       "from": "m1-lem-terminal-diagonal",
       "to": "m1-lem-terminal-tied-endpoints",
+      "label": "lem:terminal-diagonal",
       "context": "ies of analytic functions on the prepared physical piece. Invariants in a time change are constant for every nearby time, by the weight-zero identity in Lemma~\\ref{lem:terminal-diagonal}. The pure-state invariant is constant for every nearby state by \\eqref{eq:terminal-state-invariant}. The linearizer,"
     },
     {
       "from": "m1-lem-counting-jet-lift",
       "to": "m1-lem-terminal-ambient-extension",
+      "label": "lem:counting-jet-lift",
       "context": "n is triangular with diagonal 1. Differentiating the exact composition identity supplies the corresponding finite jet graphs with the same property; see Lemma~\\ref{lem:counting-jet-lift}. Therefore their addition preserves isolation and gives the claimed derivative formulas. This uses the differentiable"
     },
     {
       "from": "m1-thm-terminal-reduction",
       "to": "m1-lem-terminal-boundary-corners",
+      "label": "thm:terminal-reduction",
       "context": "[Proof of Theorem~\\ref{thm:terminal-reduction}] The real cases above exhaust the constant-state pieces, nozero boxes, simple boxes, and annuli from Theorem~\\ref{thm:f"
     },
     {
       "from": "m1-thm-finite-templates",
       "to": "m1-lem-terminal-boundary-corners",
+      "label": "thm:finite-templates",
       "context": "[Proof of Theorem~\\ref{thm:terminal-reduction}] The real cases above exhaust the constant-state pieces, nozero boxes, simple boxes, and annuli from Theorem~\\ref{thm:finite-templates}; the nonzero-resonance redo is finite. Every additional real cut used a magnitude of a subanalytic variable, a root or"
     },
     {
       "from": "m1-thm-additive-packets",
       "to": "m1-lem-terminal-boundary-corners",
+      "label": "thm:additive-packets",
       "context": "rs use damping and small profile integrals; annular residuals use \\eqref{eq:terminal-profile-integral}. The additive models have the real estimates of Theorem~\\ref{thm:additive-packets}. These establish real existence and state room on open domains described by finitely many strict inequalities, rather"
     },
     {
       "from": "m1-lem-terminal-ambient-extension",
       "to": "m1-lem-terminal-boundary-corners",
+      "label": "lem:terminal-ambient-extension",
       "context": "ounded clock or ratio needs only one fixed finite subdivision for that subsequence. Its locally unique state and finite jet graphs preserve isolation by Lemma~\\ref{lem:terminal-ambient-extension}. The large clocks have their independent affine flag representation; insert the initial log nodes and, for an unbalanc"
     },
     {
       "from": "m1-thm-calculus",
       "to": "m1-lem-terminal-boundary-corners",
+      "label": "thm:calculus",
       "context": "rimitive theorem. On that flag the three packet theorems supply all fixed finite independent derivatives; bounded operations and regular pullbacks use Theorem~\\ref{thm:calculus}. No equality between two originally independent clock arguments is imposed inside a packet test unless provided by its"
     },
     {
       "from": "m1-lem-terminal-tied-endpoints",
       "to": "m1-lem-terminal-boundary-corners",
+      "label": "lem:terminal-tied-endpoints",
       "context": "claimed compatibility with primitive retests. Its application to the complete enlarged matching systems is made in Section~\\ref{sec:counting}. Finally, Lemma~\\ref{lem:terminal-tied-endpoints} gives the nearby physical mismatch identity, and Lemma~\\ref{lem:terminal-ambient-extension} gives the derivative assert"
     },
     {
       "from": "m1-lem-counting-jet-lift",
       "to": "m1-lem-counting-cleared-closure",
+      "label": "lem:counting-jet-lift",
       "context": ", with denominator a power of $\\det G_v$. The same argument applies successively to a finite stack of graphs and to the finite composition identities in Lemma~\\ref{lem:counting-jet-lift}. Every further algebraic or differential operation preserves a rational expression in a finite collection of analytic"
     },
     {
       "from": "m1-thm-absolute-zero",
       "to": "m1-lem-counting-graph-recovery",
+      "label": "thm:absolute-zero",
       "context": "size is chosen separately for every $i$; it can also be made small enough to preserve the prescribed comparisons and ordinary limits for the retest in Theorem~\\ref{thm:absolute-zero}. Write $S_*=R(u,v)$ for the retained old free input, recovered by the locally invertible affine and lifted logarithmic"
     },
     {
       "from": "m1-thm-matching-system",
       "to": "m1-lem-counting-graph-recovery",
+      "label": "thm:matching-system",
       "context": "[Completion of the proof of Theorem~\\ref{thm:matching-system}] Fix an arbitrary finite system in the closure required by Theorem~\\ref{thm:projection-count}, including its equations"
     },
     {
       "from": "m1-thm-projection-count",
       "to": "m1-lem-counting-graph-recovery",
+      "label": "thm:projection-count",
       "context": "[Completion of the proof of Theorem~\\ref{thm:matching-system}] Fix an arbitrary finite system in the closure required by Theorem~\\ref{thm:projection-count}, including its equations and every original graph and strict domain restriction. Suppose it has a sequence of distinct"
     },
     {
       "from": "m1-lem-counting-cleared-closure",
       "to": "m1-lem-counting-graph-recovery",
+      "label": "lem:counting-cleared-closure",
       "context": "ion construction: gradients of inverse margins, products with new multiplier coordinates, and determinants of their derivatives have exactly this form by Lemma~\\ref{lem:counting-cleared-closure}. Parameter copies and specializations add polynomial equalities. Thus an unbounded new coordinate is included in the"
     },
     {
       "from": "m1-thm-terminal-reduction",
       "to": "m1-lem-counting-graph-recovery",
+      "label": "thm:terminal-reduction",
       "context": "additional ordinary argument of these polynomial expressions. No new transfer family is introduced. At every transfer choose a subsequence regime of Theorem~\\ref{thm:terminal-reduction}; there are finitely many transfers in this fixed system. Append any bounded ratios or auxiliary coordinates required b"
     },
     {
       "from": "m1-lem-terminal-ambient-extension",
       "to": "m1-lem-counting-graph-recovery",
+      "label": "lem:terminal-ambient-extension",
       "context": "nel derivatives, with the same nonzero denominators. The other bounded clock and subdivision identities are handled by the same chain rule, as proved in Lemma~\\ref{lem:terminal-ambient-extension}. Lemma~\\ref{lem:counting-jet-lift} therefore lifts the isolated solutions, including any equations containing derivativ"
     },
     {
       "from": "m1-lem-counting-jet-lift",
       "to": "m1-lem-counting-graph-recovery",
+      "label": "lem:counting-jet-lift",
       "context": "inators. The other bounded clock and subdivision identities are handled by the same chain rule, as proved in Lemma~\\ref{lem:terminal-ambient-extension}. Lemma~\\ref{lem:counting-jet-lift} therefore lifts the isolated solutions, including any equations containing derivatives, to isolated solutions of one fi"
     },
     {
       "from": "m1-lem-terminal-boundary-corners",
       "to": "m1-lem-counting-graph-recovery",
+      "label": "lem:terminal-boundary-corners",
       "context": "it. Some strict margins may vanish. Positive-margin domain completeness, used for the proper barrier, does not prove analytic extension at such a limit. Lemma~\\ref{lem:terminal-boundary-corners} instead gives the required extension of each \\emph{old independent-argument} normalized kernel: closed smaller argument"
     },
     {
       "from": "m1-thm-calculus",
       "to": "m1-lem-counting-graph-recovery",
+      "label": "thm:calculus",
       "context": "packet independent derivatives multiplied by constants, signs, and reciprocal powers of the logged dependent scale. These are precisely operations of Theorem~\\ref{thm:calculus}. If only a multiplier or an algebraic auxiliary coordinate diverges while a kernel's clocks remain bounded, that kernel"
     },
     {
       "from": "m1-thm-additive-packets",
       "to": "m1-lem-counting-graph-recovery",
+      "label": "thm:additive-packets",
       "context": "ed library in the precise sense of Definition~\\ref{def:elimination-retestable}. For the primitive transfers this is the coefficient-germ assertion of Theorems~\\ref{thm:additive-packets}, \\ref{thm:regular-packets}, and \\ref{thm:mixed-packets}, carried through the exact terminal identities by Theorem~\\ref{"
     },
     {
       "from": "m1-thm-regular-packets",
       "to": "m1-lem-counting-graph-recovery",
+      "label": "thm:regular-packets",
       "context": "nse of Definition~\\ref{def:elimination-retestable}. For the primitive transfers this is the coefficient-germ assertion of Theorems~\\ref{thm:additive-packets}, \\ref{thm:regular-packets}, and \\ref{thm:mixed-packets}, carried through the exact terminal identities by Theorem~\\ref{thm:terminal-reduction}. T"
     },
     {
       "from": "m1-thm-mixed-packets",
       "to": "m1-lem-counting-graph-recovery",
+      "label": "thm:mixed-packets",
       "context": "ination-retestable}. For the primitive transfers this is the coefficient-germ assertion of Theorems~\\ref{thm:additive-packets}, \\ref{thm:regular-packets}, and \\ref{thm:mixed-packets}, carried through the exact terminal identities by Theorem~\\ref{thm:terminal-reduction}. The affine and logarithmic fla"
     },
     {
       "from": "m1-thm-uniform",
       "to": "m1-lem-counting-rotation",
+      "label": "thm:uniform",
       "context": "[Proof of Theorem~\\ref{thm:uniform}] Fix $d$. For every word $w$ of Theorem~\\ref{thm:matching-system} and every one of its maximal-minor charts $I$, apply"
     },
     {
       "from": "m1-thm-matching-system",
       "to": "m1-lem-counting-rotation",
+      "label": "thm:matching-system",
       "context": "[Proof of Theorem~\\ref{thm:uniform}] Fix $d$. For every word $w$ of Theorem~\\ref{thm:matching-system} and every one of its maximal-minor charts $I$, apply Theorem~\\ref{thm:projection-count}. Let $N_{w,I}<\\infty$ be the r"
     },
     {
       "from": "m1-thm-projection-count",
       "to": "m1-lem-counting-rotation",
+      "label": "thm:projection-count",
       "context": "of of Theorem~\\ref{thm:uniform}] Fix $d$. For every word $w$ of Theorem~\\ref{thm:matching-system} and every one of its maximal-minor charts $I$, apply Theorem~\\ref{thm:projection-count}. Let $N_{w,I}<\\infty$ be the resulting component bound. It is independent of the numerical value of every polynomial"
     },
     {
       "from": "m2-lem-arc-data",
       "to": "m2-lem-axis-extension",
+      "label": "lem:arc-data",
       "context": "\\(\\phi\\) at zero is needed. Finally the strict endpoint signs give \\(|M|<r\\), and the retained opposite peak derivatives give \\(|M_r|<1\\), exactly as in Lemma~\\ref{lem:arc-data}."
     },
     {
       "from": "m2-lem-arc-data",
       "to": "m2-prop-cycle-matching",
+      "label": "lem:arc-data",
       "context": "ve one enters \\(x<0\\). Between consecutive intersections the transformed height is positive, vanishes at the endpoints, and has a unique positive peak by Lemma~\\ref{lem:arc-data}. Both endpoint signs are strict, so the arc belongs to the transverse domain of Lemma~\\ref{lem:axis-extension}. For ei"
     },
     {
       "from": "m2-lem-axis-extension",
       "to": "m2-prop-cycle-matching",
+      "label": "lem:axis-extension",
       "context": "the endpoints, and has a unique positive peak by Lemma~\\ref{lem:arc-data}. Both endpoint signs are strict, so the arc belongs to the transverse domain of Lemma~\\ref{lem:axis-extension}. For either profile, increasing the positive endpoint strictly decreases the negative endpoint, by peak order. The phy"
     },
     {
       "from": "m2-lem-arc-data",
       "to": "m2-fit-references",
+      "label": "lem:arc-data",
       "context": "The entire-profile construction in Lemma~\\ref{lem:arc-data} gives an arc at every lower base height. Its width tends to zero at the peak and tends to infinity as the base tends t"
     },
     {
       "from": "m2-lem-arc-scaling",
       "to": "m2-fit-references",
+      "label": "lem:arc-scaling",
       "context": "by Lemma~\\ref{lem:arc-data}. This calculation is valid for either sign of \\(\\kappa\\). For \\(\\kappa=0\\), one has \\(j_0(s,z)=z\\). The smooth scaling in Lemma~\\ref{lem:arc-scaling} gives, locally uniformly in the finite parameters, \\begin{equation}\\label{eq:fit-reference-small-width} \\Theta_\\kappa("
     },
     {
       "from": "m2-fit-references",
       "to": "m2-lem-curvature-comparison",
+      "label": "fit:references",
       "context": "ith labels \\(k(t)-\\varepsilon\\) and \\(k(t)+\\varepsilon\\) bracket this actual angle at all sufficiently small positive widths. The strict monotonicity in Lemma~\\ref{fit:references} therefore implies \\(z(s)\\to k(t)\\). The bound \\(\\lvert j_\\kappa(s,z(s))-z(s)\\rvert\\le |\\kappa|s^2/2\\) then proves \\(E("
     }
   ]

@@ -392,7 +392,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Boltzmann-Grad-limit-for-stable-radial-potentials-on-regular-kinetic-intervals-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Boltzmann–Grad limit for stable radial potentials on regular kinetic intervals; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Boltzmann–Grad limit for stable radial potentials on regular kinetic intervals.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -445,9 +445,7 @@
           "kind": "proposition",
           "source": "Microscopic flow, scattering, and kinetic envelopes",
           "detail": "[Scattering nondegeneracy] Outside a set of zero incoming flux, an encounter either is a straight force-free passage or satisfies v' v, v_*' v . For M< and >0 , the non-free relative incoming data…",
-          "dependsOn": [
-            "m1-pre-duration"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-pre-envelopes",
@@ -530,7 +528,6 @@
           "source": "Centering at the layer cuts",
           "detail": "[Short-layer residual] Set _0=/2 . There is b_*>0 , depending only on the fixed bounds in Proposition~ , for which the following holds. Suppose b b_* , K() , and J() is a fixed power of 1+|| . Then…",
           "dependsOn": [
-            "m1-pre-scattering",
             "m1-pre-duration",
             "m1-pre-envelopes",
             "m1-pre-operator"
@@ -544,9 +541,7 @@
           "kind": "proposition",
           "source": "Centering at the layer cuts",
           "detail": "[Exact simple-family cancellation] In the retained operator A_j of , a singleton root whose displayed family satisfies the reference-history conditions S_n^ ,J above, ends entirely on independent…",
-          "dependsOn": [
-            "m1-cell-factorization"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cent-charges",
@@ -593,10 +588,7 @@
           "kind": "proposition",
           "source": "Finite history integrals",
           "detail": "[Finite-term bound with its time factors] Fix A< and the finite number L of layers. There is a numerical exponent d in the cell estimates such that, if J= P^Q with Q>2dA , all the following bounds…",
-          "dependsOn": [
-            "m1-hist-gaussian",
-            "m1-cor-cell-factorial"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-hist-irregular",
@@ -646,7 +638,6 @@
           "source": "Finite history integrals",
           "detail": "[Separated original parents] Given L,A,>0 and M_0< , one can discard finite terms of total integral at most _ e^ -M_0p so that, except at fewer than p ordinary pins, the original parent is at…",
           "dependsOn": [
-            "m1-hist-basic",
             "m1-hist-crowding"
           ]
         },
@@ -673,8 +664,7 @@
           "detail": "[Terminal subtree selection] Fix 0<1 and an exponential accuracy A>0 , with the layer count and polynomial size exponent a>0 fixed. There are constants =(,A)>0 , M< , p_0< , and _0>0 , independent of…",
           "dependsOn": [
             "m1-hist-basic",
-            "m1-exp-rerouting",
-            "m1-hist-irregular"
+            "m1-exp-rerouting"
           ]
         },
         {
@@ -696,10 +686,7 @@
           "source": "Terminal trees and exposure of first defects",
           "detail": "[Causal exposure for mixed prescriptions] Fix an admissible mixed whole-cell prescription with p P^a labels and a total energy budget K Rp . Fix a collection of k disjoint regular terminal trees as…",
           "dependsOn": [
-            "m1-hist-gaussian",
-            "m1-hist-pinning",
-            "m1-exp-terminal",
-            "m1-exp-tube"
+            "m1-hist-gaussian"
           ]
         },
         {
@@ -711,12 +698,8 @@
           "source": "Terminal trees and exposure of first defects",
           "detail": "[An extensive-defect gain] Fix 0<1 , A>0 , the layer count, and the polynomial size exponent a>0 . There exist fixed constants =(,A)>0 , p_0< , and sufficiently small _0>0 such that, after the…",
           "dependsOn": [
-            "m1-hist-irregular",
-            "m1-hist-crowding",
             "m1-exp-rerouting",
-            "m1-exp-terminal",
             "m1-exp-exposure",
-            "m1-cent-charges",
             "m1-exp-tube"
           ]
         },
@@ -730,8 +713,7 @@
           "detail": "[Finite marked histories] Fix the layer count and an integer p_* . Sum the absolute integrals of the original prescribed histories with at most p_* labels, integrating all top phase points, and…",
           "dependsOn": [
             "m1-hist-basic",
-            "m1-pre-scattering",
-            "m1-exp-tube"
+            "m1-pre-scattering"
           ]
         },
         {
@@ -766,8 +748,6 @@
           "source": "Summation, stopping, and convergence",
           "detail": "[Summability of completed finite terms] Fix any desired number a>0 . One can choose a finite L , then the rarity cutoffs, with the following property. For every fixed polynomial label cap p P^A ,…",
           "dependsOn": [
-            "m1-cent-residual",
-            "m1-close-energy",
             "m1-cent-charges",
             "m1-hist-basic",
             "m1-hist-irregular",
@@ -832,7 +812,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Hard-sphere-fluctuations-on-the-regular-Boltzmann-lifespan-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Hard-sphere fluctuations on the regular Boltzmann lifespan; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Hard-sphere fluctuations on the regular Boltzmann lifespan.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -905,9 +885,7 @@
           "kind": "theorem",
           "source": "Layered histories and the analytic inputs",
           "detail": "[DHM analytic package] Assume , the parameter hierarchy -- , and a common bound on the Gaussian Bol norms of all birth inputs. For sufficiently large fixed \\(L\\) and sufficiently small \\(\\), the…",
-          "dependsOn": [
-            "m2-lem-kinetic-envelopes"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-dhm-dummies",
@@ -949,9 +927,7 @@
           "kind": "lemma",
           "source": "A componentwise expansion with particle records",
           "detail": "[One-slab identity and variation remainder] For a positive input point-process law, let F' be its factorial hierarchy after the truncated slab. If its factorial measures up to the order in are…",
-          "dependsOn": [
-            "m2-lem-rooted-forest"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-one-root-bridge",
@@ -973,7 +949,6 @@
           "detail": "[Independent factors] The measures g_i have Gaussian Bol-bounded density representatives. With the exponents _i,_i of , for sufficiently small , \\|g_i-f_ i \\|_ ,_i ^ _i , _ 0 i L \\|g_i\\|_ ,_i C. The…",
           "dependsOn": [
             "m2-prop-initial",
-            "m2-lem-one-root-bridge",
             "m2-thm-dhm-package"
           ]
         },
@@ -995,9 +970,7 @@
           "kind": "lemma",
           "source": "A componentwise expansion with particle records",
           "detail": "[Labels and connected components] The retained expansion factors over its global components. If D^R_ i,B is the sum of its diagrams connected on the designated roots B , then F^R_ i,S =_ P(S) _ B D^…",
-          "dependsOn": [
-            "m2-thm-dhm-package"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-stopped-variation",
@@ -1007,11 +980,7 @@
           "kind": "lemma",
           "source": "A componentwise expansion with particle records",
           "detail": "[Stopped variation errors] Choose L sufficiently large in terms of the fixed data and . For any fixed bound on the number of recorded labels, there are c_i>0 such that \\|F^R_ i,S - F^R_ i,S \\|_ e^…",
-          "dependsOn": [
-            "m2-lem-one-slab-expansion",
-            "m2-lem-dhm-dummies",
-            "m2-lem-diagram-labels"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-marked-expansion",
@@ -1022,9 +991,7 @@
           "source": "A componentwise expansion with particle records",
           "detail": "[Marked component expansion] Choose and then L as above. These choices are independent of the moment order and the fixed observation list. On this single pasted dynamics the following statements…",
           "dependsOn": [
-            "m2-prop-initial",
-            "m2-lem-stopped-variation",
-            "m2-prop-one-root"
+            "m2-prop-initial"
           ]
         },
         {
@@ -1035,9 +1002,7 @@
           "kind": "corollary",
           "source": "A componentwise expansion with particle records",
           "detail": "[Terminal-witness expansion] In slab i , let a terminal witness be a connected true C history on n3_i incoming labels, of excess at most 2 , stopped at a contact time in that slab. It may carry…",
-          "dependsOn": [
-            "m2-thm-marked-expansion"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-sharp-cumulants",
@@ -1067,9 +1032,7 @@
           "kind": "lemma",
           "source": "Sharp bounds and the limiting tree measures",
           "detail": "[The fresh-label factorials] For diagrams of complexity at most \\(K\\), the absolute sum with slab sizes \\((n_1,,n_L)\\) is bounded by a sum over chronologically ordered merger pair lists with…",
-          "dependsOn": [
-            "m2-thm-marked-expansion"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-sharp-summability",
@@ -1079,10 +1042,7 @@
           "kind": "lemma",
           "source": "Sharp bounds and the limiting tree measures",
           "detail": "[Uniform summability] For fixed \\(K\\), the sum of the absolute connected diagram measures with slab sizes \\((n_i)\\), after removal of the factor \\(^ 1-h \\), is bounded by C_K(1+n)^ d_K (C L)^n. The…",
-          "dependsOn": [
-            "m2-lem-sharp-merger-coordinates",
-            "m2-lem-sharp-factorials"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-sharp-no-extra",
@@ -1128,12 +1088,8 @@
           "source": "Sharp bounds and the limiting tree measures",
           "detail": "[Last-contact products] In the leading tree sums, deleting a last contact of the highest slab that meets a designated root splits its global tree into the product of the two component tree measures,…",
           "dependsOn": [
-            "m2-lem-sharp-tree-completeness",
             "m2-thm-sharp-cumulants",
-            "m2-thm-dhm-package",
-            "m2-thm-marked-expansion",
-            "m2-lem-sharp-summability",
-            "m2-lem-sharp-no-extra"
+            "m2-lem-sharp-summability"
           ]
         },
         {
@@ -1154,9 +1110,7 @@
           "kind": "proposition",
           "source": "Identification of the covariance and the Gaussian limit",
           "detail": "[Gaussian limit on the pasted dynamics] For the single pasted dynamics fixed above and every fixed observation list, \\[ _i y_i(T)- _i y_i(T) \\ \\ _j_ t_j (_j). \\] All centered moments of the scalar…",
-          "dependsOn": [
-            "m2-thm-sharp-cumulants"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-cutoff",
@@ -1196,9 +1150,7 @@
           "kind": "proposition",
           "source": "The probability of a dynamical cutoff",
           "detail": "[Pure-collision cutting alternatives, imported] Let \\(M\\) be a connected, full, realizable graph containing only scattering contacts. Full means that all its end variables are integrated. Define a…",
-          "dependsOn": [
-            "m2-lem-dhm-local"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-cutoff-neutral",
@@ -1218,9 +1170,7 @@
           "kind": "lemma",
           "source": "The probability of a dynamical cutoff",
           "detail": "[Local adjacent-pair estimates] Consider every possible choice e_1,e_2 of the two prospective fixed edges of a type-A pair, with t_1,t_2 the corresponding contact times. Call that choice strongly…",
-          "dependsOn": [
-            "m2-lem-cutoff-neutral"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-cutoff-amplified",
@@ -1230,11 +1180,7 @@
           "kind": "lemma",
           "source": "The probability of a dynamical cutoff",
           "detail": "[Amplified pure-collision cut] For a sufficiently large dimensional \\(_0\\), every connected realizable full scattering graph with \\(<r(M)2\\), \\(_0\\), has a finite decomposition into cut sequences of…",
-          "dependsOn": [
-            "m2-lem-cutoff-neutral",
-            "m2-lem-cutoff-pair",
-            "m2-prop-cutoff-import"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-cutoff-extraction",
@@ -1254,9 +1200,7 @@
           "kind": "lemma",
           "source": "The probability of a dynamical cutoff",
           "detail": "[A common velocity containing set] Fix one original history graph and its ordinary normals. Suppose the sum of squared velocities at all its births is at most \\(P\\), and suppose there are \\(s\\)…",
-          "dependsOn": [
-            "m2-lem-cutoff-extraction"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-cutoff-time",
@@ -1276,15 +1220,7 @@
           "kind": "lemma",
           "source": "The probability of a dynamical cutoff",
           "detail": "[Summation with finitely many exceptional pieces] Consider the positive low-complexity graph integrals obtained above. Suppose a cut sequence has \\(q=b-O_K(1)\\) ordinary atoms and boundedly many…",
-          "dependsOn": [
-            "m2-lem-cutoff-extraction",
-            "m2-lem-cutoff-time",
-            "m2-lem-cutoff-ellipsoid",
-            "m2-lem-cutoff-amplified",
-            "m2-lem-cutoff-neutral",
-            "m2-cor-terminal-witness",
-            "m2-prop-cutoff-import"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-center-transfer",
@@ -1295,9 +1231,6 @@
           "source": "Exact centering and the hard-sphere fluctuation limit",
           "detail": "[Exact-centering comparison] Let the true and pasted dynamics start from the same initial ensemble. Under the cutoff estimate of , the expectation of any fixed bounded empirical observation list…",
           "dependsOn": [
-            "m2-prop-cutoff",
-            "m2-thm-main",
-            "m2-prop-gaussian-target",
             "m2-prop-cumulant-clt"
           ]
         }
@@ -1324,7 +1257,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

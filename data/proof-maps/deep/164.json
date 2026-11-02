@@ -187,7 +187,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Monochromatic-finite-sums-and-products-in-the-positive-integers-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Monochromatic finite sums and products in the positive integers; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Monochromatic finite sums and products in the positive integers.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -219,7 +219,6 @@
           "source": "Two principles and the combinatorial deduction",
           "detail": "[Selection of a product chain] For every m,r there is n=n(m,r) such that, for every coloring : and every list x_1,,x_n , a chain B_1,,B_m has all nonempty products of x_ B_1 ,,x_ B_m in a single…",
           "dependsOn": [
-            "m1-thm-main",
             "m1-cor-distinct-expressions"
           ]
         },
@@ -297,9 +296,7 @@
           "kind": "lemma",
           "source": "Removing multiplicative masks and detecting a shifted error",
           "detail": "[Prime insertion] Let i>l and let Y have law _i . For every fixed A>0 , uniformly over functions F with |F| V^A , _Y F(Y)=_ p,Y F(pY)+o(1). For a fixed positive integer k , coprime to W and bounded…",
-          "dependsOn": [
-            "m1-lem-sampling"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-mask-removal",
@@ -310,7 +307,6 @@
           "source": "Removing multiplicative masks and detecting a shifted error",
           "detail": "[Weighted removal of multiplicative masks] Put q_ mask =2^m-1 and K_m=q_ mask 2^ q_ mask . Starting from , one obtains a family R of at most K_m pairwise nonparallel row templates, with one…",
           "dependsOn": [
-            "m1-lem-prime-insertion",
             "m1-prop-linear-forms"
           ]
         },
@@ -335,9 +331,7 @@
           "source": "Removing multiplicative masks and detecting a shifted error",
           "detail": "[Weighted additive elimination] With the rows, good-tuple law, and modulus of Lemma~ , fix J_0 and put L( p)=R J_0M( p) . Independently conditional on the primes, let every u_R^0,u_R^1 be uniform on…",
           "dependsOn": [
-            "m1-lem-sampling",
-            "m1-prop-linear-forms",
-            "m1-lem-row-directions"
+            "m1-prop-linear-forms"
           ]
         },
         {
@@ -349,10 +343,7 @@
           "source": "Removing multiplicative masks and detecting a shifted error",
           "detail": "[Uniform correlation test] For every m2 and every nonsingleton target support J_* , the construction above determines a finite family of integer polynomial templates D , with good prime-tuple laws,…",
           "dependsOn": [
-            "m1-lem-mask-removal",
-            "m1-lem-additive-elimination",
-            "m1-lem-sampling",
-            "m1-lem-master-scales"
+            "m1-lem-sampling"
           ]
         },
         {
@@ -377,8 +368,7 @@
           "source": "Dense models and prediction",
           "detail": "[Bounded dense models] There are functions F_ B,a,c : such that, for every fixed J_0 and every dual test at B , _ _i (-F_ B,a,c ) D=o(1) uniformly over its inputs and over the finitely many master…",
           "dependsOn": [
-            "m1-lem-dual-pseudorandomness",
-            "m1-lem-master-scales"
+            "m1-lem-dual-pseudorandomness"
           ]
         },
         {
@@ -414,10 +404,7 @@
           "detail": "[From subgroup cubes to a fine nilsequence projection] Fix a cube type of dimension d , a gap l<i , and J_01 . Assume 2(2^d)-2 s . For every >0 there is =(d,J_0,)>0 , independent of the master count,…",
           "dependsOn": [
             "m1-lem-master-scales",
-            "m1-prop-correlation-test",
-            "m1-cor-product-law",
-            "m1-lem-nilsequence-testing",
-            "m1-prop-dense-model"
+            "m1-cor-product-law"
           ]
         },
         {
@@ -513,9 +500,7 @@
           "kind": "proposition",
           "source": "Local cube laws and lifts of face symmetries",
           "detail": "[A marginal face symmetry has a joint lift] Let K=K' K'' be a connected simply connected nilpotent Lie group with lattice =''' , and let denote the first group projection and its induced map of…",
-          "dependsOn": [
-            "m1-lem-upper-face-coordinates"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-shear-haar",
@@ -560,8 +545,6 @@
           "dependsOn": [
             "m1-lem-conditional-face-invariance",
             "m1-prop-local-cube-law",
-            "m1-prop-face-lift",
-            "m1-lem-shear-haar",
             "m1-lem-finite-word-plan"
           ]
         }
@@ -582,7 +565,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

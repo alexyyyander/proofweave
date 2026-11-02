@@ -217,7 +217,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-abelianity-conjecture-for-special-compact-Kahler-manifolds-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The abelianity conjecture for special compact Kähler manifolds; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The abelianity conjecture for special compact Kähler manifolds.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -411,7 +411,6 @@
           "detail": "Let F be a smooth compactly supported closed E -valued (0,n) -form supported in D_j . There is a smooth compactly supported closed form F_ new of the same type whose traced cohomology class is that…",
           "dependsOn": [
             "m1-sp-weighted-inverse",
-            "m1-sp-smoothing-lemma",
             "m1-thm-zero-spectrum"
           ]
         },
@@ -491,8 +490,7 @@
           "source": "Hilbert tensors and minimal quotients",
           "detail": "Let \\(V\\) be a connected smooth compact K\\\"ahler manifold of dimension \\(d\\), and let \\(V^\\) be the complement of a proper analytic subset. Let a discrete group \\(I\\) act properly and effectively by…",
           "dependsOn": [
-            "m1-thm-gamma-reduction",
-            "m1-thm-hilbert-positivity"
+            "m1-thm-gamma-reduction"
           ]
         },
         {
@@ -563,8 +561,7 @@
             "m1-lem-torus-divisor",
             "m1-de-birational-pushdown",
             "m1-de-neat-pullback",
-            "m1-de-inertia-divisibility",
-            "m1-thm-specialness-inputs"
+            "m1-de-inertia-divisibility"
           ]
         },
         {
@@ -577,7 +574,6 @@
           "detail": "The natural sequence is exact: \\[ 1 N G _*_1(A)1. \\]",
           "dependsOn": [
             "m1-de-inertia-divisibility",
-            "m1-de-small-boundary",
             "m1-thm-specialness-inputs"
           ]
         },
@@ -620,7 +616,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Two-step-monodromy-of-special-quasi-projective-varieties-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Two-step monodromy of special quasi-projective varieties; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Two-step monodromy of special quasi-projective varieties.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -652,8 +648,7 @@
           "source": "Introduction",
           "detail": "Let E be a complex elliptic curve, let q_1,,q_n be distinct points of ^1 , where n3 , and choose points e_1,,e_n of E . Let \\[ b:Y=_ \\ (e_i,q_i)\\ _ i=1 ^n (E^1) E^1. \\] Write D_i for the strict…",
           "dependsOn": [
-            "m2-thm-linear",
-            "m2-thm-completion"
+            "m2-thm-linear"
           ]
         },
         {
@@ -702,7 +697,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

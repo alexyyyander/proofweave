@@ -362,7 +362,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-infinite-finitely-presented-residually-finite-2-group-October-5-2026/residually-finite-torsion.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from An infinite finitely presented residually finite 2-group; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from An infinite finitely presented residually finite 2-group.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -517,8 +517,7 @@
           "dependsOn": [
             "m1-lem-block-laws",
             "m1-lem-triangular",
-            "m1-lem-permutations",
-            "m1-lem-cyclic-vanishing"
+            "m1-lem-permutations"
           ]
         },
         {
@@ -582,8 +581,7 @@
           "source": "Detection by degree truncations",
           "detail": "Under the hypotheses of Lemma~ , W_z(C_L)=z^L.",
           "dependsOn": [
-            "m1-lem-long-commutator",
-            "m1-lem-relocation"
+            "m1-lem-long-commutator"
           ]
         },
         {
@@ -671,10 +669,7 @@
           "detail": "For every d1 , the group _ 12 (R/R_ d ) is finite. The homomorphisms \\[ _ 12 (R)_ 12 (R/R_ d ), d1, \\] separate the elements of _ 12 (R) .",
           "dependsOn": [
             "m1-prop-finite-rank-input",
-            "m1-thm-detection",
-            "m1-thm-main",
-            "m1-prop-ring-input",
-            "m1-prop-relative-torsion"
+            "m1-prop-ring-input"
           ]
         }
       ]
@@ -691,7 +686,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-infinite-finitely-presented-periodic-group-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from An infinite finitely presented periodic group; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from An infinite finitely presented periodic group.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -783,8 +778,6 @@
           "source": "A hierarchy defined by finite local rules",
           "detail": "The substitution E_h simulates every elementary next-parameter replacement and zero declaration. Moreover, if w is a nonzero word at parameter Dh , no sequence of lower-parameter replacements…",
           "dependsOn": [
-            "m2-fr-context",
-            "m2-fr-palette-soundness",
             "m2-fr-verification"
           ]
         },
@@ -830,7 +823,6 @@
           "source": "Cancellation and the matrix-nil algebra",
           "detail": "[Direct cancellation] Fix j,d,b . If q_j 100 >b(d^2+3), then every dimension- d chunk test of label bound b at level j eventually vanishes over every field of characteristic two.",
           "dependsOn": [
-            "m2-prop-hierarchy",
             "m2-ca-alternating"
           ]
         },
@@ -866,7 +858,6 @@
           "detail": "[Eventual vanishing of every fixed test] Over every field K of characteristic two, every letter test at level zero eventually vanishes. The same is true of every level-zero chunk test with any fixed…",
           "dependsOn": [
             "m2-ca-cut-reduction",
-            "m2-ca-automaton",
             "m2-ca-direct"
           ]
         },
@@ -913,9 +904,7 @@
           "kind": "lemma",
           "source": "An ordinary finite presentation for the Steinberg group",
           "detail": "[Three-factor commutator identity] Let X,Y,Z belong to a group, and put A=[X,Y] and B=[Y,Z] . Assume that A commutes with X and Y , that B commutes with Y and Z , and that A commutes with B and X…",
-          "dependsOn": [
-            "m2-thm-finite-presentation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-fp-perfectness",
@@ -945,9 +934,7 @@
           "kind": "lemma",
           "source": "Centrality and rational stability",
           "detail": "A square matrix over R is invertible if and only if its reduction modulo I is invertible. Every tuple of columns whose reductions are linearly independent extends to an invertible matrix. The group…",
-          "dependsOn": [
-            "m2-fp-matrix-periodicity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-st-frames",
@@ -993,8 +980,7 @@
           "source": "Centrality and rational stability",
           "detail": "The group _n(R) is normal in H_n . For n5 , inclusion induces an isomorphism \\[ H_n/_n(R) H_ n+1 /_ n+1 (R). \\]",
           "dependsOn": [
-            "m2-st-linear-algebra",
-            "m2-st-small-presentation"
+            "m2-st-linear-algebra"
           ]
         },
         {
@@ -1111,9 +1097,7 @@
           "kind": "lemma",
           "source": "Torsion in the Steinberg kernel",
           "detail": "The block roots satisfy X_ ij (A+B)&=X_ ij (A)X_ ij (B),\\\\ [X_ ij (A),X_ kl (B)]&=1 &&(j k,\\ i l),\\\\ [X_ ij (A),X_ jk (B)]&=X_ ik (AB) &&(i,j,k distinct). Moreover, an elementary change of basis…",
-          "dependsOn": [
-            "m2-kt-permutations"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-kt-triangular-faithfulness",
@@ -1180,8 +1164,7 @@
             "m2-thm-main",
             "m2-thm-algebra",
             "m2-thm-finite-presentation",
-            "m2-fp-matrix-periodicity",
-            "m2-cor-kazhdan"
+            "m2-fp-matrix-periodicity"
           ]
         }
       ]
@@ -1207,7 +1190,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

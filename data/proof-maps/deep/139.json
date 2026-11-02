@@ -222,7 +222,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Subpolynomial-query-complexity-for-well-conditioned-log-concave-sampling-September-26-2026/article.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Subpolynomial query complexity for well-conditioned log-concave sampling; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Subpolynomial query complexity for well-conditioned log-concave sampling.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -353,8 +353,6 @@
           "source": "Dimension bounds for material derivatives",
           "detail": "[Derivatives along transported paths] For each fixed integer m1 , \\| D^mM_\\|_ L^2(_) (d)L d\\,a^ -m . For fixed integers q1 , m0 , and fixed real 2 p< , every nontrivial split satisfies \\|\\,| D^mU_q|_…",
           "dependsOn": [
-            "m1-lem-material-identities",
-            "m1-thm-tensor-divergence",
             "m1-lem-divergence-l2"
           ]
         },
@@ -448,10 +446,7 @@
           "kind": "proposition",
           "source": "Finite formulas for the two flows",
           "detail": "[Kernel-action circuit] On the stationary product input law, the RMS error of v=( v_Y, v_G) relative to is bounded by (d) times & L d \\\\ &12mm+^ -4t-w (C_ml)^ N_p-1 r L D. It is globally Lipschitz,…",
-          "dependsOn": [
-            "m1-lem-kernel-angle-errors",
-            "m1-lem-kernel-endpoint-quadrature"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-mean-circuit",
@@ -473,9 +468,7 @@
           "kind": "corollary",
           "source": "Finite formulas for the two flows",
           "detail": "[Accuracy without increasing dependency depth] Fix J1 . In all the probability, harmonic, and centering integrations above, one may take at most \\[ N=10(J+2) \\] Picard layers. After any fixed w(0,t)…",
-          "dependsOn": [
-            "m1-prop-kernel-circuit"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-numerical-interface",
@@ -566,12 +559,9 @@
           "source": "Finite evaluation of nested conditional means",
           "detail": "[Accuracy of the compiled routines] For every call reached from the top labels, the standalone routines satisfy W_2( L( M),N(u,^2I_d)) &(d)^pD(x),\\\\ W_2( L( S_ pre ), _ x,r *N(0,3^2I_d/4))…",
           "dependsOn": [
-            "m1-lem-compiler-terminal",
             "m1-lem-compiler-lipschitz",
-            "m1-thm-numerical-interface",
             "m1-lem-compiler-absorption",
             "m1-lem-compiler-sizes",
-            "m1-thm-primitive",
             "m1-lem-compiler-count"
           ]
         },
@@ -629,9 +619,7 @@
           "kind": "theorem",
           "source": "From noisy conditional samples to the target law",
           "detail": "[Subpolynomial upper bound] For every fixed >0 , there is C_< such that, for every integer d2 , a measurable algorithm using the exact value-and-gradient oracle makes at most C_ d^ queries on every…",
-          "dependsOn": [
-            "m1-thm-primitive"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-lower",
@@ -671,10 +659,7 @@
           "kind": "lemma",
           "source": "A logarithmic oracle lower bound",
           "detail": "Let U N(0,^ -1 ) , with from , and suppose n=2q+1<d . Then _ d,q := &= d 2 (-)^n+R_ d,q , & |R_ d,q |& 2\\,d\\,^ 2d-n 1- , \\\\ (U^TD_pU)&2d, & |U|^2& d, (|U|^2)2d.",
-          "dependsOn": [
-            "m1-lem-deferred-haar",
-            "m1-lem-lower-span-statistic"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -693,7 +678,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

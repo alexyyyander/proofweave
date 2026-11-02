@@ -187,7 +187,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Hamiltonian-Fixed-Points-Below-the-Stable-Morse-Number-in-Dimension-Twenty-Two-October-5-2026/hamiltonian-fixed-points-below-stable-morse-number.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Hamiltonian Fixed Points Below the Stable Morse Number in Dimension Twenty-Two; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Hamiltonian Fixed Points Below the Stable Morse Number in Dimension Twenty-Two.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -322,7 +322,6 @@
           "detail": "[Product realization] Let X be a connected closed simply connected K\\\"ahler manifold, let _X be any K\\\"ahler form on X , and let (Y,_Y) be as in Proposition~ . Give M=X Y the product form _X_Y and…",
           "dependsOn": [
             "m1-dyn-involution",
-            "m1-thm-main",
             "m1-dyn-surface",
             "m1-morse-equality"
           ]
@@ -341,7 +340,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Sharpness-of-the-Cyclic-Integral-Floer-Bound-Below-the-Stable-Morse-Number-October-5-2026/sharp-cyclic-integral-floer-bound-below-stable-morse-number.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Sharpness of the Cyclic Integral Floer Bound Below the Stable Morse Number; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Sharpness of the Cyclic Integral Floer Bound Below the Stable Morse Number.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -456,8 +455,7 @@
           "dependsOn": [
             "m2-thm-main",
             "m2-morse-smale",
-            "m2-inv-realization",
-            "m2-inv-perturb"
+            "m2-inv-realization"
           ]
         }
       ]
@@ -474,7 +472,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Hamiltonian-Fixed-Points-Below-the-Stable-Morse-Number-October-5-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Hamiltonian Fixed Points Below the Stable Morse Number; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Hamiltonian Fixed Points Below the Stable Morse Number.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -610,7 +608,6 @@
           "detail": "For the manifolds in , (C)=114N-518, (M)=456N-2056. In particular, (M)-4(C)=16.",
           "dependsOn": [
             "m3-thm-main",
-            "m3-prop-surface",
             "m3-thm-smale",
             "m3-cor-product-realization"
           ]
@@ -644,7 +641,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

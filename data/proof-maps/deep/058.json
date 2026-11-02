@@ -387,7 +387,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Semialgebraic-universal-covers-of-normal-projective-varieties-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Semialgebraic universal covers of normal projective varieties; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Semialgebraic universal covers of normal projective varieties.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -408,9 +408,7 @@
           "kind": "corollary",
           "source": "Assembly of the classification",
           "detail": "[Remmert reduction of semialgebraic covers] Let \\(X\\) be a connected normal projective complex variety whose ordinary universal cover \\(U\\) has a semialgebraic projective-open presentation. Write \\(U…",
-          "dependsOn": [
-            "m1-cmp-affine-base"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-singer-semialgebraic",
@@ -583,8 +581,6 @@
           "detail": "[Projective-fibre propagation] Let q:Q B be smooth, proper, and projective, with connected smooth fibres. Let G Q be open, subanalytic, locally pseudoconvex, and fibrewise semialgebraic with bounded…",
           "dependsOn": [
             "m1-holes-bounded-containers",
-            "m1-holes-tangency-propagation",
-            "m1-holes-interior-trapping",
             "m1-holes-thin-analyticity"
           ]
         },
@@ -651,9 +647,7 @@
           "kind": "corollary",
           "source": "Localization with triangular recenterings",
           "detail": "[Semidefinite outer tests] Suppose, in addition, that the marked kernel is described recursively by strict positive-definiteness tests for finitely many continuous Hermitian matrix functions M_j(Z) ,…",
-          "dependsOn": [
-            "m1-loc-theorem"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-win-plaques",
@@ -663,9 +657,7 @@
           "kind": "lemma",
           "source": "Successive faces and projective windows",
           "detail": "[Algebraicity of the null plaques] Let M be a regular patch of a real algebraic hypersurface in a smooth complex algebraic n -fold. Suppose one side is locally pseudoconvex and the Levi form has…",
-          "dependsOn": [
-            "m1-prep-projective-models"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-win-period",
@@ -696,8 +688,6 @@
           "source": "Successive faces and projective windows",
           "detail": "[Exact first epigraph] There is a connected semialgebraic locally pseudoconvex domain V_2 L such that H is holomorphic on V_2 , H>0 there, and E=\\ (s,w,z):z V_2, s>( w)^ T ( H(z))^ -1 w\\ . In…",
           "dependsOn": [
-            "m1-win-seed-bergman",
-            "m1-holes-tangency-propagation",
             "m1-holes-thin-analyticity"
           ]
         },
@@ -733,20 +723,14 @@
           "detail": "[Projective windows] Let Y be a connected smooth projective variety and let V Y be a nonempty connected semialgebraic open subset that is locally pseudoconvex at its boundary. The following data…",
           "dependsOn": [
             "m1-holes-thin-analyticity",
-            "m1-holes-bounded-containers",
             "m1-holes-relative-divisor-container",
-            "m1-win-plaques",
-            "m1-win-first-epigraph",
             "m1-prep-generic-distance-convergence",
-            "m1-holes-boundary-trapping",
             "m1-holes-interior-trapping",
             "m1-holes-projective-propagation",
-            "m1-holes-container-propagation",
             "m1-holes-section-test",
             "m1-win-siegel-normalization",
             "m1-prep-power-diagonalization",
-            "m1-win-finite-taylor",
-            "m1-loc-theorem"
+            "m1-win-finite-taylor"
           ]
         },
         {
@@ -777,9 +761,7 @@
           "kind": "lemma",
           "source": "The intrinsic quotient",
           "detail": "The domain \\(P\\) is diffeomorphic to \\(^ 2d \\), is Stein, and is biholomorphic to a bounded domain in \\(^d\\). Its Kobayashi distance is a proper distance inducing its usual topology.",
-          "dependsOn": [
-            "m1-win-tower-properties"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-quo-guard",
@@ -821,8 +803,7 @@
           "detail": "Let \\(D_i\\) exhaust a connected complex manifold \\(D\\), and let \\(g_i:D_i V\\) be holomorphic. Suppose that at points \\(x_i x\\) the images belong to \\(U_i\\), and their normalized parameters…",
           "dependsOn": [
             "m1-quo-cutoff-normal",
-            "m1-quo-guard",
-            "m1-loc-theorem"
+            "m1-quo-guard"
           ]
         },
         {
@@ -941,8 +922,7 @@
           "source": "The transverse action and the fibre group",
           "detail": "After the finite-cover replacement of Lemma~ , let K=() . The group K is finitely generated and virtually abelian. For each m M , it acts on f^ -1 (m) as the deck group of a connected regular…",
           "dependsOn": [
-            "m1-quo-projection",
-            "m1-grp-compactifiable-cover"
+            "m1-quo-projection"
           ]
         },
         {
@@ -1050,9 +1030,7 @@
           "kind": "corollary",
           "source": "Quasi-projective covering spaces",
           "detail": "[Projective affine-space uniformization] Let \\(X\\) be a connected smooth projective complex \\(n\\)-fold, where \\(n0\\). If its ordinary universal cover is biholomorphic to \\(^n\\), then there is a…",
-          "dependsOn": [
-            "m1-cor-quasiprojective"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -1068,7 +1046,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Symmetry-of-semialgebraic-bounded-domains-with-compact-quotient-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Symmetry of semialgebraic bounded domains with compact quotient; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Symmetry of semialgebraic bounded domains with compact quotient.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1165,9 +1143,7 @@
           "kind": "proposition",
           "source": "Boundary preparation and independent supports",
           "detail": "[A good supported point] There are a boundary cell S in the first alternative of Lemma~ , a good point p S , and k=2n-_ S entire functions h_1,,h_k on ^N such that h_j(p)=1, |h_j(q)|(-|q-p|^2)(q U),…",
-          "dependsOn": [
-            "m2-lem-rank-dichotomy"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-disc-family",
@@ -1225,7 +1201,6 @@
           "source": "Symmetry of the quadratic model",
           "detail": "[Vey] Let D^m^k be a connected domain biholomorphic to a bounded domain. Suppose that D contains a point (0,w) and is invariant under \\[ (z,w)(z,w+a), (z,w)(e^ i z,w), (z,w)(r^ 1/2 z,rw) \\] for every…",
           "dependsOn": [
-            "m2-thm-main",
             "m2-thm-quadratic-model"
           ]
         }
@@ -1252,7 +1227,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

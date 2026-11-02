@@ -382,7 +382,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Kervaire-Invariant-Problem-at-the-Prime-Three-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Kervaire invariant problem at the prime three; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Kervaire invariant problem at the prime three.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -404,7 +404,6 @@
           "source": "Introduction",
           "detail": "[label=( *)] There are homotopy equivalences of H-spaces \\[ S^ 163 \\ 3\\ T^ 163 (3) T^ 487 (3), BW_ 81 T^ 487 (3). \\] Consequently, W_ 81 ^2T^ 487 (3) . For every integer n>1 , the underlying space S^…",
           "dependsOn": [
-            "m1-cube-strong-criterion",
             "m1-thm-classification"
           ]
         },
@@ -417,10 +416,7 @@
           "source": "Introduction",
           "detail": "One has 0,2 K_3 and 1 K .",
           "dependsOn": [
-            "m1-det-filtration-comparison",
-            "m1-thm-classification",
-            "m1-g-tail-exclusion",
-            "m1-cube-order-three"
+            "m1-det-filtration-comparison"
           ]
         },
         {
@@ -452,8 +448,7 @@
           "source": "The detector and a finite Euler bound",
           "detail": "[Integral CM evaluation] For \\(j2\\), every \\[ x N_2^ 2,\\,43^ j+1 with (x)_3^ b_j \\] has nonzero image in \\(H^2(G;E_ 43^ j+1 )\\).",
           "dependsOn": [
-            "m1-det-filtration-comparison",
-            "m1-det-two-line-basis"
+            "m1-det-filtration-comparison"
           ]
         },
         {
@@ -508,10 +503,7 @@
           "kind": "proposition",
           "source": "The detector and a finite Euler bound",
           "detail": "For every \\(n\\), the group \\(_ -2n (E^ hG )\\) contains an element of infinite additive order. In particular, \\(_ -2 (E^ hG )0\\).",
-          "dependsOn": [
-            "m1-det-semilinear-trace",
-            "m1-det-homotopy-transfer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-det-conditional-repair",
@@ -609,9 +601,7 @@
           "kind": "lemma",
           "source": "The coefficient action and its fixed geometry",
           "detail": "[Scalar cycles] On every nonzero topological Tate page, \\[ A=qb^ -2 \\] is a permanent-cycle unit, and every element of \\(K\\) is a cycle.",
-          "dependsOn": [
-            "m1-coef-h-cohomology"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-coef-rigidity",
@@ -632,7 +622,6 @@
           "source": "The coefficient action and its fixed geometry",
           "detail": "[Fixed geometry and evaluation] The eigenvalue condition \\[ x_i= x_i \\] defines a framed strict formal \\(\\)-module deformation space of relative height three. Its ungraded base and Lie period are \\[…",
           "dependsOn": [
-            "m1-coef-model",
             "m1-coef-rigidity",
             "m1-coef-h-cohomology",
             "m1-coef-tangent"
@@ -692,9 +681,7 @@
           "kind": "lemma",
           "source": "The topological Tate calculation for the subgroup of order three",
           "detail": "With compatible nonzero scalar normalizations, the images of the indicated Greek-letter classes are \\[ _1=, _1=bJ, _ 3/3 =bJ^3, _4= bJ^5. \\] In particular, d_5(b)= b^3, d_5()=0.",
-          "dependsOn": [
-            "m1-coef-fixed-geometry"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-h-normalized-d9",
@@ -744,9 +731,7 @@
           "kind": "proposition",
           "source": "The topological Tate calculation for the subgroup of order three",
           "detail": "The only possible differential between E_ 34 (H) and E_ 105 (H) is d_ 53 (C)=e_ 53 A^ -8 C^2U, d_ 53 (U)=0, e_ 53 k. The class A^ 18 C^ -2 U survives to E_ 105 (H) , and d_ 105 (A^ 18 C^ -2 U) k^ .…",
-          "dependsOn": [
-            "m1-h-d17-d33"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-h-differentials",
@@ -756,10 +741,7 @@
           "kind": "theorem",
           "source": "The topological Tate calculation for the subgroup of order three",
           "detail": "The H -Tate calculation has the following properties. [label=()] The first differential is \\[ d_5(b^m q^n) =(m+2n+2j)b^ m+2 q^n, ^jV, \\] up to a single nonzero scalar normalization. Its cohomology…",
-          "dependsOn": [
-            "m1-h-d17-d33",
-            "m1-h-unit-death"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-g-tail-exclusion",
@@ -789,9 +771,7 @@
           "kind": "lemma",
           "source": "Ascent to the group of order nine",
           "detail": "Suppressing powers of b and the orientation twist u' , the scalar and exterior-degree-three groups at G have a common description P_n . Restriction fits into \\[ 0 k_n P_n res P_n^Q 0, k_n= k,&3…",
-          "dependsOn": [
-            "m1-coef-model"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-g-early-pages",
@@ -873,7 +853,6 @@
           "detail": "The residue in Lemma~ is =8 . The coefficient e_ 53 of the H length-fifty-three differential is nonzero. Moreover, in one has 0 and '=0 .",
           "dependsOn": [
             "m1-h-unit-death",
-            "m1-det-euler-bound",
             "m1-g-d17"
           ]
         },
@@ -952,8 +931,7 @@
           "source": "Ascent to the group of order nine",
           "detail": "The coefficient in is =-1_3 . Equivalently, \\[ L=\\ (t,u):t-3u09\\ . \\]",
           "dependsOn": [
-            "m1-g-unit313",
-            "m1-g-tail-exclusion"
+            "m1-g-unit313"
           ]
         },
         {
@@ -1059,9 +1037,7 @@
           "detail": "There is a map \\(F':^NM F_2T\\) whose composite to \\(T\\) has the same quotient under \\(_T\\) as \\(F\\).",
           "dependsOn": [
             "m1-cube-cubic-filtration",
-            "m1-cube-endomorphisms",
             "m1-finite-main",
-            "m1-cube-relative-tower",
             "m1-cube-order-three",
             "m1-cube-primary-invariant",
             "m1-cube-primary-detection",
@@ -1199,7 +1175,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

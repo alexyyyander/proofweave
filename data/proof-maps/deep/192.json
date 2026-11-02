@@ -82,7 +82,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Unbounded-Violations-of-the-Square-Root-Degree-Bound-September-26-2026/Unbounded-Violations-of-the-Square-Root-Degree-Bound-September-26-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Unbounded Violations of the Square-Root Degree Bound; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Unbounded Violations of the Square-Root Degree Bound.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -185,9 +185,7 @@
           "kind": "lemma",
           "source": "Amplifying an average degree saving",
           "detail": "[Transfer for a fixed finite partition] Under the boundary hypothesis of Theorem~ , let Z_n be centered random variables of variance one converging in distribution to a standard normal. Use q…",
-          "dependsOn": [
-            "m1-thm-mean-cost"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-weighted-event",
@@ -216,7 +214,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

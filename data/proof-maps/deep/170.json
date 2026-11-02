@@ -322,7 +322,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Sharp-Logarithmic-Exponent-of-r-5-t-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The sharp logarithmic exponent of r(5,t); background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The sharp logarithmic exponent of r(5,t).",
       "proofDetail": "section",
       "nodes": [
         {
@@ -461,9 +461,7 @@
           "kind": "lemma",
           "source": "Preparing a consistent tuple for compression",
           "detail": "[High ranks] The retained class cannot be high. In the rank-four case, the stated assumptions instead directly produce an encoding contradicting Lemma~ .",
-          "dependsOn": [
-            "m1-lem-stream-entropy"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-flat-levels",
@@ -523,10 +521,7 @@
           "dependsOn": [
             "m1-lem-marking",
             "m1-lem-decoupling",
-            "m1-lem-high-ranks",
-            "m1-lem-flat-levels",
-            "m1-lem-pivot-retention",
-            "m1-lem-pivot-compression"
+            "m1-lem-flat-levels"
           ]
         },
         {
@@ -538,7 +533,6 @@
           "source": "Compression along a tree of windows",
           "detail": "[A stream with no long consistent subsequence] For every fixed 0<<1/10 and every sufficiently large prime q , there is a stream of N= q^4 q flags whose ordered flag graph is K_5 -free and has…",
           "dependsOn": [
-            "m1-lem-rectangles",
             "m1-lem-stream-entropy"
           ]
         },
@@ -583,7 +577,6 @@
           "source": "The Poisson score",
           "detail": "[Score procedure] Assume the small-cell conclusions of Lemma~ and, when \\(d3\\), the estimates of Lemma~ for outside-own radial lines and hyperplane pairs. Assume also \\[ |S||T| q^ d+1 e^ -b , e(S,T)…",
           "dependsOn": [
-            "m1-thm-main",
             "m1-thm-stream",
             "m1-thm-upper"
           ]
@@ -602,7 +595,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Sharp-Logarithmic-Exponents-for-Fixed-Off-Diagonal-Ramsey-Numbers-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -769,9 +762,7 @@
           "kind": "lemma",
           "source": "Describing sparse pairs: validation and geometry",
           "detail": "[Radial rich lines] Consider the dimension-three output of Proposition~ . A line through a query point x has strength \\[ a_(x)=q|X_x|/n'. \\] Outside one exceptional set of o(n) ambient points,…",
-          "dependsOn": [
-            "m2-geom-rich-lines"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-geom-overlap",
@@ -860,10 +851,7 @@
           "source": "Learning a sparse support from a short row",
           "detail": "[Implementation by proposals] The true-law success in Lemma~ gives the description scheme of Proposition~ .",
           "dependsOn": [
-            "m2-learn-row-success",
             "m2-learn-short-row",
-            "m2-geom-description",
-            "m2-geom-preparation",
             "m2-geom-projection"
           ]
         },
@@ -978,13 +966,11 @@
           "source": "Replacing the context by a shorter description",
           "detail": "The expected number of middle targets lost through the pre-tree deletions, deleted subtrees, or exclusion by the produced caps is \\(o(k)\\). In particular, a prescribed deterministic number \\((k)\\) of…",
           "dependsOn": [
-            "m2-geom-validation",
             "m2-geom-produced-test",
             "m2-mark-good-indices",
             "m2-mark-endpoint-mass",
             "m2-comp-step",
             "m2-comp-high-rank",
-            "m2-intro-prime-construction",
             "m2-base-rectangles",
             "m2-base-selection-entropy",
             "m2-base-flag-graph"
@@ -1046,7 +1032,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

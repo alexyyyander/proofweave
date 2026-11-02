@@ -302,7 +302,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-directional-zero-one-law-under-strict-ellipticity-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A directional zero–one law under strict ellipticity; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A directional zero–one law under strict ellipticity.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -380,8 +380,7 @@
           "dependsOn": [
             "m1-lem-positive-nonbacktracking",
             "m1-lem-slabs",
-            "m1-lem-mean-width",
-            "m1-lem-finite-supremum"
+            "m1-lem-mean-width"
           ]
         },
         {
@@ -403,7 +402,6 @@
           "source": "Finite spatial radii under coexistence",
           "detail": "[Initial averages] Let \\((Z_j)_ j1 \\) be a stationary sequence of nonnegative integrable random variables. For every \\(a>0\\) and positive integer \\(n\\), \\[ P(_ 1 k n 1k_ j=1 ^kZ_j>a) EZ_1 a . \\]",
           "dependsOn": [
-            "m1-prop-radius",
             "m1-lem-mean-width",
             "m1-lem-departure-transfer"
           ]
@@ -418,8 +416,7 @@
           "detail": "Suppose that the annealed walk satisfies 0<P_0(A_v)<1 for some v^d\\ 0\\ . There is a coordinate i for which \\[ P_0(A_ e_i )>0and P_0(A_ -e_i )>0. \\]",
           "dependsOn": [
             "m1-lem-sign-union",
-            "m1-prop-radius",
-            "m1-lem-slabs"
+            "m1-prop-radius"
           ]
         },
         {
@@ -430,9 +427,7 @@
           "kind": "lemma",
           "source": "Rays and a common renewal arrangement",
           "detail": "[Exact-cut bridges] For either sign, the probability under P_ of a slab cut at height H0 is u_H . The numbers u_H satisfy \\[ u_0=1, 1 u_H u_ H+1 p_. \\] Conditional on a cut at H , the list of slabs…",
-          "dependsOn": [
-            "m1-lem-slabs"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-renewal-tail",
@@ -485,7 +480,6 @@
           "dependsOn": [
             "m1-lem-exact-bridge",
             "m1-lem-departure-transfer",
-            "m1-lem-renewal-tail",
             "m1-prop-entropy-upper",
             "m1-lem-entropy-comparison"
           ]
@@ -528,10 +522,8 @@
             "m1-prop-contact-bound",
             "m1-lem-renewal-tail",
             "m1-lem-common-blocks",
-            "m1-thm-main",
             "m1-lem-sign-union",
-            "m1-prop-coordinate-reduction",
-            "m1-prop-entropy-upper"
+            "m1-prop-coordinate-reduction"
           ]
         }
       ]
@@ -548,7 +540,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Directional-transience-implies-ballisticity-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Directional transience implies ballisticity; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Directional transience implies ballisticity.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -602,8 +594,7 @@
           "source": "Geometric and speed reductions",
           "detail": "[Deterministic limiting ray] There is a deterministic unit vector \\(r\\) with \\(h(r)>0\\) such that \\(X_n/\\|X_n\\| r\\) almost surely. After a deterministic signed permutation of the coordinate axes,…",
           "dependsOn": [
-            "m2-geom-radius",
-            "m2-geom-words"
+            "m2-geom-radius"
           ]
         },
         {
@@ -816,9 +807,7 @@
           "kind": "lemma",
           "source": "Clipping paths on arbitrary scales",
           "detail": "[Truncated-moment transfer] Write \\( Q_h=E[K_h(0,)/a_h]\\). For any \\(h,\\ z\\), put \\(X=W_h/z\\) under \\( Q_h\\), and let \\(V=M_h^S/z\\) have the iid sum law of . For fixed \\(0<A<L<\\), with a constant…",
-          "dependsOn": [
-            "m2-clip-clipping"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-kernel-initial-clipping",
@@ -943,8 +932,7 @@
           "source": "Stationary profiles and the contradiction",
           "detail": "[Finitely many persistent profiles] On \\( E\\), there is no dust. The proper classes form the same finite nonempty set at every time, and the profile of each class has full support on horizontal space.",
           "dependsOn": [
-            "m2-profile-sampling",
-            "m2-profile-entropy"
+            "m2-profile-sampling"
           ]
         },
         {
@@ -957,8 +945,7 @@
           "detail": "[No positive stationary normalization rate] Suppose a stationary marked profile law has full-support subprobability profiles and nonnegative marks c_i , positive integer marks h_i , with \\[…",
           "dependsOn": [
             "m2-thm-main",
-            "m2-geom-speed",
-            "m2-geom-ray"
+            "m2-geom-speed"
           ]
         }
       ]
@@ -984,7 +971,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

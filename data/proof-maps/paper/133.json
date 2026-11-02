@@ -397,251 +397,301 @@
     {
       "from": "m1-lem-lift-duality",
       "to": "m1-lem-choice-witness",
+      "label": "lem:lift-duality",
       "context": "o one. Each vertex of \\(T\\) has exactly one neighbor of each adjacent type, and exactly one source vertex has type \\(1\\), so \\eqref{eq:dual} holds. Apply Lemma~\\ref{lem:lift-duality} and then Lemma~\\ref{lem:test-detected}."
     },
     {
       "from": "m1-lem-test-detected",
       "to": "m1-lem-choice-witness",
+      "label": "lem:test-detected",
       "context": "y one neighbor of each adjacent type, and exactly one source vertex has type \\(1\\), so \\eqref{eq:dual} holds. Apply Lemma~\\ref{lem:lift-duality} and then Lemma~\\ref{lem:test-detected}."
     },
     {
       "from": "m1-thm-choice-reduction",
       "to": "m1-lem-extract-choice",
+      "label": "thm:choice-reduction",
       "context": "[Proof of Theorem~\\ref{thm:choice-reduction}] The parity lifts in Definition~\\ref{def:lifts} are simple, uncolored and of equal order; their preceding tag count giv"
     },
     {
       "from": "m1-lem-choice-witness",
       "to": "m1-lem-extract-choice",
+      "label": "lem:choice-witness",
       "context": "ts in Definition~\\ref{def:lifts} are simple, uncolored and of equal order; their preceding tag count gives \\(n\\le A M_t\\). If a successful choice exists, Lemma~\\ref{lem:choice-witness} gives a strict count difference for \\(T_t\\). Lemma~\\ref{lem:test-detected} detects that difference after two joint roun"
     },
     {
       "from": "m1-lem-test-detected",
       "to": "m1-lem-extract-choice",
+      "label": "lem:test-detected",
       "context": "heir preceding tag count gives \\(n\\le A M_t\\). If a successful choice exists, Lemma~\\ref{lem:choice-witness} gives a strict count difference for \\(T_t\\). Lemma~\\ref{lem:test-detected} detects that difference after two joint rounds or one separate round. Conversely, suppose that no successful choice ex"
     },
     {
       "from": "m1-lem-lift-duality",
       "to": "m1-lem-extract-choice",
+      "label": "lem:lift-duality",
       "context": "e round. Conversely, suppose that no successful choice exists. If a graph \\(F\\) with bags of size at most \\(t\\) had different counts into the two lifts, Lemma~\\ref{lem:lift-duality} would give the data \\(\\phi,s,r\\) of Lemma~\\ref{lem:extract-choice}. That lemma would produce a successful choice, a con"
     },
     {
       "from": "m1-lem-hom-implies-wl",
       "to": "m1-lem-extract-choice",
+      "label": "lem:hom-implies-wl",
       "context": "phi,s,r\\) of Lemma~\\ref{lem:extract-choice}. That lemma would produce a successful choice, a contradiction. All such homomorphism counts therefore agree. Lemma~\\ref{lem:hom-implies-wl} gives equivalence in the corresponding convention, including the pure-tuple disjoint-union implementation."
     },
     {
       "from": "m1-thm-eth",
       "to": "m1-lem-sat-choice",
+      "label": "thm:eth",
       "context": "[Proof of Theorem~\\ref{thm:eth}] Use positive-rate ETH \\citep{IP2001}: for some \\(\\delta>0\\), no deterministic \\(3\\)-SAT algorithm runs in \\(2^{\\delta"
     },
     {
       "from": "m1-lem-sparsification",
       "to": "m1-lem-sat-choice",
+      "label": "lem:sparsification",
       "context": ", no deterministic \\(3\\)-SAT algorithm runs in \\(2^{\\delta N}\\operatorname{poly}(|F|)\\) time. Choose \\(\\epsilon<\\delta/4\\), and fix \\(C=C_\\epsilon\\) from Lemma~\\ref{lem:sparsification}. For the Turing-machine model set \\(q=1\\). More generally, suppose the chosen machine model has a simulation taking at"
     },
     {
       "from": "m1-thm-choice-reduction",
       "to": "m1-lem-sat-choice",
+      "label": "thm:choice-reduction",
       "context": "ery sparse disjunct, and accept exactly when at least one pair is inequivalent. Lemmas~\\ref{lem:sparsification} and~\\ref{lem:sat-choice}, together with Theorem~\\ref{thm:choice-reduction}, prove correctness. The matrix input has length \\(\\ell=O(n^2)\\), so the simulated solver takes \\(O_k(n^{qck}+n^{2q}+1)"
     },
     {
       "from": "m2-lem-wl-game",
       "to": "m2-lem-monotonicity",
+      "label": "lem:wl-game",
       "context": "no difficulty, so assume that this common order is positive. A winning strategy can be restricted to a smaller number of slots. For $k\\ge j\\ge 2$, apply Lemma~\\ref{lem:wl-game} in both directions. For $k\\ge 2$ and $j=1$, use its final assertion; the remaining case is immediate. If some $j\\le k$"
     },
     {
       "from": "m2-lem-monotonicity",
       "to": "m2-prop-upper",
+      "label": "lem:monotonicity",
       "context": "merate all labeled simple graphs $H$ on $n$ vertices, and reject exactly when one satisfies $G\\equiv_k H$ but $G\\not\\cong H$. This is the desired test by Lemma~\\ref{lem:monotonicity}. There are $2^{\\binom n2}$ candidates, and testing all $n!$ vertex permutations per candidate suffices for isomorphism."
     },
     {
       "from": "m2-lem-wl-game",
       "to": "m2-prop-mate",
+      "label": "lem:wl-game",
       "context": "The two graphs have the same positive order, and Lemma~\\ref{lem:wl-game} supplies a winning strategy from $G(0)$ to $H$ with $K=r+1$ pair slots. We first recover the forgotten colors and the p"
     },
     {
       "from": "m2-lem-degree",
       "to": "m2-prop-mate",
+      "label": "lem:degree",
       "context": "ee in the interval \\[ I_j=[j(N+1),\\ j(N+1)+N-1]. \\] These intervals are pairwise disjoint and lie above degree one. Every other vertex has degree one. By Lemma~\\ref{lem:degree}, the first announced bijection preserves degrees for every possible vertex choice. It follows that $H$ has precisely th"
     },
     {
       "from": "m2-lem-wl-game",
       "to": "m2-prop-image-consistency",
+      "label": "lem:wl-game",
       "context": "Fix a winning $(r+1)$-pair strategy, supplied by Lemma~\\ref{lem:wl-game}. We will define $Q$ using histories in which Spoiler selects only zero-valuation vertices of blocks in $G(0)$. Their re"
     },
     {
       "from": "m2-lem-degree",
       "to": "m2-prop-image-consistency",
+      "label": "lem:degree",
       "context": "ing histories in which Spoiler selects only zero-valuation vertices of blocks in $G(0)$. Their responses are valuations of the same blocks in $G(\\beta)$: Lemma~\\ref{lem:degree} and the degree intervals preserve every base color. We first record a consequence of winning that holds at every such"
     },
     {
       "from": "m2-lem-cycle-lifting",
       "to": "m2-prop-global-offsets",
+      "label": "lem:cycle-lifting",
       "context": ",a)}+L_{\\ell,t}(x_t)+L_{\\ell,u}(x_u) \\] is a function of those two source coordinates, and the link identity proves $\\sum_i g_i(a_i,a_{i+1})=0$ on $D_e$. Lemma~\\ref{lem:cycle-lifting} supplies functions $Y_i:D_{e,i}\\to\\F$ whose consecutive sums equal $g_i$. Assign $Y_i(a_i)$ to the vertical readout of"
     },
     {
       "from": "m2-prop-isomorphism",
       "to": "m2-prop-global-offsets",
+      "label": "prop:isomorphism",
       "context": "pendent. Site blocks impose no additional constraint. We have obtained the desired global offsets. The final equivalence with graph isomorphism is Proposition~\\ref{prop:isomorphism}."
     },
     {
       "from": "m2-lem-wrapping-address",
       "to": "m2-prop-exact-projection",
+      "label": "lem:wrapping-address",
       "context": "e shifts.} If $D$ is nonwrapping, it has no $Q$ requirement, so restriction causes no problem. If $D$ wraps, its blocks form a wrapping $r$-collection by Lemma~\\ref{lem:wrapping-address}; in particular they exhaust $V$. The address imposed on $C$ restricts to the same address on $D$. When $D$ contains a r"
     },
     {
       "from": "m2-thm-special-twist",
       "to": "m2-prop-exact-projection",
+      "label": "thm:special-twist",
       "context": "[Proof of Theorem~\\ref{thm:special-twist}] Duplicator maintains an assignment in $\\mathcal H_U$, where $U$ is the set of owners of the currently marked vertices."
     },
     {
       "from": "m2-prop-mate",
       "to": "m2-prop-acceptance",
+      "label": "prop:mate",
       "context": "By Proposition~\\ref{prop:mate}, write \\(H\\cong G(\\beta)\\) for some square bits \\(\\beta\\). Transporting equivalence through this isomorphism, apply Pr"
     },
     {
       "from": "m2-prop-image-consistency",
       "to": "m2-prop-acceptance",
+      "label": "prop:image-consistency",
       "context": "By Proposition~\\ref{prop:mate}, write \\(H\\cong G(\\beta)\\) for some square bits \\(\\beta\\). Transporting equivalence through this isomorphism, apply Proposition~\\ref{prop:image-consistency} to obtain nonempty sets \\(Q_{P,a}\\) satisfying \\eqref{eq:image-consistency}. No restriction to the special twists of T"
     },
     {
       "from": "m2-thm-special-twist",
       "to": "m2-prop-acceptance",
+      "label": "thm:special-twist",
       "context": "tion~\\ref{prop:image-consistency} to obtain nonempty sets \\(Q_{P,a}\\) satisfying \\eqref{eq:image-consistency}. No restriction to the special twists of Theorem~\\ref{thm:special-twist} is made here: all wire sums \\(\\Delta_e(a)\\) may depend on the address. First consider a buffered connection \\(l\\) at \\"
     },
     {
       "from": "m2-prop-computation",
       "to": "m2-prop-acceptance",
+      "label": "prop:computation",
       "context": "urce. For a true AND gate, each port receives a true source, so both coordinate images become singletons and their sum is a singleton as well. By Proposition~\\ref{prop:computation}, at least one test is true. Its added connection forces \\(A\\) to have a singleton image at that address. Flipping ind"
     },
     {
       "from": "m2-prop-global-offsets",
       "to": "m2-prop-acceptance",
+      "label": "prop:global-offsets",
       "context": "ate coordinate then imply that all primary sets are singletons. Write \\[ Q_{P,a}=\\{h_P(a)\\} \\qquad(P\\text{ primary},\\ a\\in\\{0,1\\}^r). \\] To use Proposition~\\ref{prop:global-offsets}, it remains to prove that these functions have row-sum form and to supply the functions at the remaining real types. F"
     },
     {
       "from": "m2-prop-isomorphism",
       "to": "m2-prop-acceptance",
+      "label": "prop:isomorphism",
       "context": "us these row-sum functions satisfy all identities in \\eqref{eq:global-offsets}. Proposition~\\ref{prop:global-offsets} supplies global offsets, and Proposition~\\ref{prop:isomorphism} gives \\(G(\\beta)\\cong G(0)\\). Therefore \\(H\\cong G(0)\\), as required."
     },
     {
       "from": "m2-thm-special-twist",
       "to": "m2-prop-rejection",
+      "label": "thm:special-twist",
       "context": "All are zero except the constant of the third comparison of one of the two identity self-connections at \\(A\\), which is one. Form the special twist of Theorem~\\ref{thm:special-twist}: on each wire put \\(b_e\\) on its last link and zero on its other links, and on a square in row \\(i\\) use that link cons"
     },
     {
       "from": "m2-prop-global-offsets",
       "to": "m2-prop-rejection",
+      "label": "prop:global-offsets",
       "context": "rison would force \\(h_A(a)=0\\), whereas the shifted copy's third comparison would force \\(h_A(a)=1\\). This contradiction holds at every address. Propositions~\\ref{prop:global-offsets} and \\ref{prop:isomorphism} therefore show that \\(G(\\beta)\\not\\cong G(0)\\). To prove equivalence, it suffices by Theore"
     },
     {
       "from": "m2-prop-isomorphism",
       "to": "m2-prop-rejection",
+      "label": "prop:isomorphism",
       "context": ", whereas the shifted copy's third comparison would force \\(h_A(a)=1\\). This contradiction holds at every address. Propositions~\\ref{prop:global-offsets} and \\ref{prop:isomorphism} therefore show that \\(G(\\beta)\\not\\cong G(0)\\). To prove equivalence, it suffices by Theorem~\\ref{thm:special-twist} t"
     },
     {
       "from": "m2-thm-main",
       "to": "m2-prop-rejection",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] Proposition~\\ref{prop:upper} gives membership in \\(\\mathrm{EXPTIME}\\). For hardness, fix any language in \\(\\mathrm{EXP"
     },
     {
       "from": "m2-prop-upper",
       "to": "m2-prop-rejection",
+      "label": "prop:upper",
       "context": "[Proof of Theorem~\\ref{thm:main}] Proposition~\\ref{prop:upper} gives membership in \\(\\mathrm{EXPTIME}\\). For hardness, fix any language in \\(\\mathrm{EXPTIME}\\) and its machine \\(M\\)"
     },
     {
       "from": "m2-prop-acceptance",
       "to": "m2-prop-rejection",
+      "label": "prop:acceptance",
       "context": "construction \\eqref{eq:reduction-output} is a deterministic polynomial-time map from its input words to graph--parameter pairs. If \\(M\\) accepts, Proposition~\\ref{prop:acceptance} says that \\(r\\)-WL identifies \\(G(0)\\), so its dimension is at most \\(r\\). If \\(M\\) does not accept, Proposition~\\ref{p"
     },
     {
       "from": "m2-prop-upper",
       "to": "m2-cor-unary",
+      "label": "prop:upper",
       "context": "For membership, convert the unary dimension to binary and apply Proposition~\\ref{prop:upper}. For hardness, the reduction above outputs \\(r=2p(m)+4\\), whose value is polynomial in the source input length \\(m\\). W"
     },
     {
       "from": "m3-game-wl",
       "to": "m3-game-union",
+      "label": "game:wl",
       "context": "is a bijection $V(G)\\to V(H)$. Equal pure histograms supply initial related tuples, and these restricted bijections give exactly the invariant proof of Lemma~\\ref{game:wl}. Hence Duplicator wins between $G$ and $H$. Conversely, let Duplicator win between $G$ and $H$. Play on $D$ against"
     },
     {
       "from": "m3-comp-wrapping",
       "to": "m3-comp-projection",
+      "label": "comp:wrapping",
       "context": "If $V=U$ there is nothing to prove. Assume $V\\subsetneq U$, so $|V|\\leq r$. If a component of $\\Gamma_V$ wraps, Lemma~\\ref{comp:wrapping} requires at least $r$ blocks. It therefore uses all $r$ blocks of $V$, and there is at most one such component. \\emph"
     },
     {
       "from": "m3-comp-projection",
       "to": "m3-comp-sufficiency",
+      "label": "comp:projection",
       "context": "ock $B$ is matched to the affine vertex $z+a_B$. On discarding pebbles, discard offsets only for blocks no longer occupied; the invariant is retained by Lemma~\\ref{comp:projection}. Before placing a new pair there are at most $r$ occupied blocks. For each unoccupied block $B$, independently extend"
     },
     {
       "from": "m3-comp-reduction",
       "to": "m3-circ-construction",
+      "label": "comp:reduction",
       "context": "The order bound and padding assertion are those of Theorem~\\ref{comp:reduction}. Write $N_0$ for the number of valuation vertices before adding marks, the hub, and padding; that proof gives $N_0=O(m^"
     },
     {
       "from": "m3-circ-simulation",
       "to": "m3-circ-computation",
+      "label": "circ:simulation",
       "context": "alar types and $2|\\Sigma|^3$ AND types. The number of product schemas just described is bounded in terms of $r$ and $\\Sigma$, independently of $m$. Proposition~\\ref{circ:simulation} therefore produces a short consistency instance with bounded numbers of types and schemas and dimensions at most two. I"
     },
     {
       "from": "m3-comp-reduction",
       "to": "m3-circ-computation",
+      "label": "comp:reduction",
       "context": "~\\ref{circ:simulation}, the resulting instance has an arc-consistency witness exactly when no test is true, hence exactly when $M$ does not accept $w$. Theorem~\\ref{comp:reduction}, with $K=r+1$, turns existence of the sets into equivalence of the two simple uncolored graphs. This gives the asserted"
     },
     {
       "from": "m3-circ-construction",
       "to": "m3-circ-computation",
+      "label": "circ:construction",
       "context": "istence of the sets into equivalence of the two simple uncolored graphs. This gives the asserted acceptance polarity and the stated $\\WL$ interpretation. Lemma~\\ref{circ:construction} gives their common order $N=O_{r,M}(m^6)$ and the construction time. For all sufficiently large $m$, $N\\leq m^{20}$, so"
     },
     {
       "from": "m3-diag-simulation",
       "to": "m3-diag-language",
+      "label": "diag:simulation",
       "context": "ed without acceptance. There are at most $t\\leq B$ simulated transitions, so this fixed multitape procedure decides $H_s$ within $O_s(B^6)$ steps. Apply Lemma~\\ref{diag:simulation} to this procedure. Its one-tape implementation has time \\[ O_s\\bigl((m+B^6+1)^2\\bigr)=O_s(B^{12})"
     },
     {
       "from": "m3-diag-language",
       "to": "m3-trans-instances",
+      "label": "diag:language",
       "context": "For $s\\ge1$, Theorem~\\ref{diag:language} bounds the running time of $M_s$ on length-$m$ inputs by $C'_s m^{20s}$, for a constant $C'_s$. Put $d=\\lfloor r/3\\rflo"
     },
     {
       "from": "m3-circ-computation",
       "to": "m3-trans-instances",
+      "label": "circ:computation",
       "context": "of length $m$, a running-time bound $T_0(m)$ for $M_s$ satisfies \\[ T_0(m)<m^d-1, \\qquad 2T_0(m)+m+2<m^{r-d}. \\] The computation construction of Theorem~\\ref{circ:computation}, the graph reduction of Theorem~\\ref{comp:reduction}, and Lemma~\\ref{game:wl} therefore give graph pairs with the polar"
     },
     {
       "from": "m3-comp-reduction",
       "to": "m3-trans-instances",
+      "label": "comp:reduction",
       "context": "satisfies \\[ T_0(m)<m^d-1, \\qquad 2T_0(m)+m+2<m^{r-d}. \\] The computation construction of Theorem~\\ref{circ:computation}, the graph reduction of Theorem~\\ref{comp:reduction}, and Lemma~\\ref{game:wl} therefore give graph pairs with the polarity in \\eqref{trans:polarity}. Their common unpadded"
     },
     {
       "from": "m3-game-wl",
       "to": "m3-trans-instances",
+      "label": "game:wl",
       "context": "\\qquad 2T_0(m)+m+2<m^{r-d}. \\] The computation construction of Theorem~\\ref{circ:computation}, the graph reduction of Theorem~\\ref{comp:reduction}, and Lemma~\\ref{game:wl} therefore give graph pairs with the polarity in \\eqref{trans:polarity}. Their common unpadded order is at most $C_r m^6"
     },
     {
       "from": "m3-circ-construction",
       "to": "m3-trans-instances",
+      "label": "circ:construction",
       "context": "20}$. The padding assertion in Theorem~\\ref{comp:reduction} reaches each prescribed order $n\\in I_m$ while preserving equivalence and the diameter bound. Lemma~\\ref{circ:construction} gives the asserted explicit construction time. Choosing $m_0(r)$ to satisfy these finitely many eventual conditions com"
     },
     {
       "from": "m3-diag-simulation",
       "to": "m3-trans-cutoff",
+      "label": "diag:simulation",
       "context": "^{380+6p}\\bigr). \\end{align*} The counters enumerating the interval and the bookkeeping for trials fit in this bound. Applying the one-tape simulation of Lemma~\\ref{diag:simulation} gives $O_{A,r}(m^{760+12p})$ time for this stage. The simulation is by online marked-track sweeps, so its quadratic bou"
     },
     {
       "from": "m3-thm-main",
       "to": "m3-trans-cutoff",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] The parameters in \\eqref{trans:parameters} satisfy, for all sufficiently large $k$, \\begin{equation} \\label{trans:gaps"
     },
     {
       "from": "m3-trans-instances",
       "to": "m3-trans-cutoff",
+      "label": "trans:instances",
       "context": ")$ be its maximum running time over pairs in this class with $n$ vertices in each graph. Every trial of Lemma~\\ref{trans:cutoff} belongs to this class by Lemma~\\ref{trans:instances}. Its construction and correctness proof therefore still give a fixed one-tape decider $B$ for $H_s$, without any assump"
     },
     {
       "from": "m3-diag-language",
       "to": "m3-trans-cutoff",
+      "label": "diag:language",
       "context": "is therefore \\[ O_{A,r}\\bigl(m^{D+50p}\\bigr)<m^s \\] for all sufficiently large $m$, by the first strict gap in \\eqref{trans:gaps}. This contradicts Theorem~\\ref{diag:language} applied to $B$, which requires worst-case time greater than $m^s$ at every sufficiently large length. Choose one thresh"
     }
   ]

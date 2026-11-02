@@ -187,7 +187,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Contact-Fano-manifolds-and-the-LeBrun-Salamon-conjecture-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Contact Fano manifolds and the LeBrun–Salamon conjecture; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Contact Fano manifolds and the LeBrun–Salamon conjecture.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -303,9 +303,7 @@
           "source": "Contact lines and a suitable pair",
           "detail": "[Suitable contact-line pair] There exist a point x X and free parametrized contact lines f_1,f_2:^1 X , with f_1(0)=f_2(0)=x , such that, for affine parameters at 0 and a=f'_1(0) , b=f'_2(0) ,…",
           "dependsOn": [
-            "m1-lines-fixed-degree",
-            "m1-lines-cone-addition",
-            "m1-lines-positive"
+            "m1-lines-cone-addition"
           ]
         },
         {
@@ -348,8 +346,7 @@
           "detail": "There is a map g:^1 X with g^*L=2 and g^*T_X(2)(1)^ 2n . The full scheme _2(^1,X) of degree-two maps is smooth at g , and evaluation at two fixed distinct parameters is submersive there. Its…",
           "dependsOn": [
             "m1-sm-relative-hom",
-            "m1-sm-vertical-cokernel",
-            "m1-sm-fixed-ends"
+            "m1-sm-vertical-cokernel"
           ]
         },
         {
@@ -423,8 +420,7 @@
           "source": "Descent of the common contact value",
           "detail": "[Contact-value descent on the square] Let X be a smooth simply connected complex projective contact Fano manifold with (X)= . Assume that a family of free contact lines covers a dense open subset of…",
           "dependsOn": [
-            "m1-lines-free-cover",
-            "m1-lines-positive"
+            "m1-lines-free-cover"
           ]
         },
         {
@@ -436,7 +432,6 @@
           "source": "Descent of the common contact value",
           "detail": "[Symmetry and the full local family] Apply Proposition~ to the space and tensors of Proposition~ . The resulting section B H^0(X X,L L) is symmetric under exchange of the factors, using the canonical…",
           "dependsOn": [
-            "m1-ext-moving-pair",
             "m1-sm-full-germ"
           ]
         },
@@ -528,9 +523,7 @@
           "kind": "corollary",
           "source": "Identification with a simple adjoint variety",
           "detail": "The incidence and projective-space alternatives in Proposition~ are the adjoint contact varieties of sl_ n+2 () and sp_ 2n+2 () , respectively. Their adjoint polarizations are (1,1) and (2) .",
-          "dependsOn": [
-            "m1-hom-adjoint"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-jet-good-curves",
@@ -542,11 +535,8 @@
           "detail": "In the primitive Picard case, every point of X lies on an immersed rational curve u:^1 X satisfying \\[ u^*L(2), \\,du:T_ ^1 ^*L, u^*F(1)^ 2n . \\]",
           "dependsOn": [
             "m1-jet-value-velocity",
-            "m1-jet-transitive",
             "m1-thm-contact-fano-ke",
-            "m1-thm-main",
-            "m1-thm-projective-contact",
-            "m1-thm-quaternionic"
+            "m1-thm-main"
           ]
         }
       ]
@@ -566,7 +556,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

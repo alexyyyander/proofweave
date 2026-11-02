@@ -688,236 +688,283 @@
     {
       "from": "m1-thm-sw",
       "to": "m1-cor-harmonic-sw",
+      "label": "thm:sw",
       "context": "Writing $A_\\chi(y)=\\sum_{p\\le y}\\chi(p)$, sum \\Cref{thm:sw} against $\\chi$ over reduced residue classes. The main terms cancel, and the loss from the number of classes is at most"
     },
     {
       "from": "m1-lem-memory-absolute",
       "to": "m1-lem-rare-transfer",
+      "label": "lem:memory-absolute",
       "context": "al D$ equally likely choices allow any promotion. Conditional on every omission choice, the remaining weighted row costs are uniformly bounded by the proof of \\Cref{lem:memory-absolute}. Thus the promotion part improves its row bound to $L^{C_a}B/\\mathcal D$, while its column bound remains $L^{C_a}$. S"
     },
     {
       "from": "m1-thm-transference",
       "to": "m1-lem-clean-norm",
+      "label": "thm:transference",
       "context": "[Completion of \\Cref{thm:transference}] Apply \\Cref{eq:distinct-indicator} in the truncated memory identity. The large- and small-rank estimates bound it by"
     },
     {
       "from": "m1-thm-sw",
       "to": "m1-lem-comparison-kernel",
+      "label": "thm:sw",
       "context": "s}, and both \\Cref{eq:ideal-gram-bound,eq:ideal-major-character-error}. Fixed implied constants are absorbed by the margins in these inequalities. Finally use \\Cref{thm:sw} at the precision needed for this $D_*$. None of these choices involves $J$."
     },
     {
       "from": "m1-thm-ideal",
       "to": "m1-lem-comparison-kernel",
+      "label": "thm:ideal",
       "context": "[Proof of \\Cref{thm:ideal}] Split $\\mathcal B$ into blocks $\\mathcal B_1,\\mathcal B_2$ of sizes $s_1,s_2$ differing by at most one. For sufficien"
     },
     {
       "from": "m1-thm-transference",
       "to": "m1-lem-comparison-kernel",
+      "label": "thm:transference",
       "context": "nly afterward require $J\\geq m$ and $J+\\ell\\geq(m+\\ell)(m+\\ell-1)$. These requirements define $J_0$. A still larger fixed $J$ can therefore be chosen to meet \\Cref{thm:transference} without changing any kernel parameter or the exponent $C_1$."
     },
     {
       "from": "m1-lem-dirichlet-mean",
       "to": "m1-lem-exceptional-times",
+      "label": "lem:dirichlet-mean",
       "context": "overlap imply \\[ \\sum_j|Q(t_j)|^2\\ll\\int_{-O(Y)}^{O(Y)}(|Q(t)|^2+|Q'(t)|^2)\\,dt \\ll Y(\\log(2Y))^{O(1)}\\sum_n|c_n|^2. \\] In the last step use \\Cref{lem:dirichlet-mean}; differentiation multiplies a coefficient by $i\\log n$, so the constants here are independent of $j_0$. The range $2L/h"
     },
     {
       "from": "m1-lem-derivative-tests",
       "to": "m1-lem-sparse-residual",
+      "label": "lem:derivative-tests",
       "context": "l. For $1\\leq|z|\\leq cU$ with small fixed $c$, the phase $z\\log n/(2\\pi)$ has monotone first derivative of magnitude comparable to $|z|/U$ and less than $1/2$; \\Cref{lem:derivative-tests} gives $O(U/|z|)$. For $cU<|z|\\ll Y$ the second derivative test gives $O(|z|^{1/2}+U|z|^{-1/2})=O(Y^{1/2})$. Choose a m"
     },
     {
       "from": "m1-lem-rough-sieve-polynomial",
       "to": "m1-lem-long-rough-polynomial",
+      "label": "lem:rough-sieve-polynomial",
       "context": "Set $h_s=2\\lceil T^2\\rceil$ and $D=W^{4h_s+2}=\\exp(O(\\sqrt L\\,T^2))=x^{o(1)}$. By \\Cref{lem:rough-sieve-polynomial}, there is a polynomial \\[ U(n)=\\sum_{d\\mid n}\\lambda_d\\geq\\ind_{\\Pminus(n)>W}, \\] whose coefficients have modulus at m"
     },
     {
       "from": "m1-lem-divisor-moments",
       "to": "m1-thm-typeii",
+      "label": "lem:divisor-moments",
       "context": "abel{eq:typeii-absolute-pre-cauchy} L^{O(1)}\\sum_{u\\asymp x}\\tau(u)\\tau(2u+1) \\ll xL^{O(1)} \\end{equation} by Cauchy's inequality and \\Cref{lem:divisor-moments}. The same estimate applies to each uniform transition or cutoff error, using the total Fourier variations of the other"
     },
     {
       "from": "m1-lem-fourier-separation",
       "to": "m1-thm-typeii",
+      "label": "lem:fourier-separation",
       "context": "fore bounds derivatives of the localized product cutoff by $O_j(L^{C_7(j+1)})$. Its support in $(t_1,t_2,t_3)$ is a fixed compact box. Fourier inversion, as in \\Cref{lem:fourier-separation}, consequently represents this cutoff with total variation $L^{O(1)}$ as a superposition of \\begin{equation}\\label{eq:ty"
     },
     {
       "from": "m1-thm-shift",
       "to": "m1-thm-typeii",
+      "label": "thm:shift",
       "context": "-i\\varrho} \\overline{F_0(z)}G_0(z+k)W_\\ell(z)W_\\ell(z+k). \\] This is \\Cref{eq:shift-bound}, including its harmonic normalization. Given any fixed $D_0$, \\Cref{thm:shift} bounds it by $L^{-D_0}$ once the discrepancy exponent $B$ is sufficiently large. Consequently each separated unweighted"
     },
     {
       "from": "m1-prop-candidate-mass",
       "to": "m1-prop-typei",
+      "label": "prop:candidate-mass",
       "context": "are at most $O(L/\\log L)$ such primes, and the last sum is $O(L)$ by its Euler product and Mertens' theorem. Extract one fixed $Q_0$ slot, as in the proof of \\Cref{prop:candidate-mass}, to write \\[ A(u)=\\sum_{\\substack{pr=u\\\\p\\in Q_0}}b(r), \\qquad 0\\le b(r)\\le L^{O(1)}\\tau(r). \\] Split $p,r$ into dyad"
     },
     {
       "from": "m1-thm-large-sieve",
       "to": "m1-prop-typei",
+      "label": "thm:large-sieve",
       "context": "$. Fix $h$. On conductors $f\\asymp R>L^{C'}$, separate $\\Psi(pr/x)$ by Mellin inversion, which has bounded integrated absolute cost. For each resulting twist, \\Cref{thm:large-sieve}, Cauchy--Schwarz, and \\Cref{lem:divisor-moments} give \\begin{align*} &\\sum_{f\\asymp R}\\frac1{\\varphi(f)} \\sum_{\\c"
     },
     {
       "from": "m1-lem-divisor-moments",
       "to": "m1-prop-typei",
+      "label": "lem:divisor-moments",
       "context": ", separate $\\Psi(pr/x)$ by Mellin inversion, which has bounded integrated absolute cost. For each resulting twist, \\Cref{thm:large-sieve}, Cauchy--Schwarz, and \\Cref{lem:divisor-moments} give \\begin{align*} &\\sum_{f\\asymp R}\\frac1{\\varphi(f)} \\sum_{\\chi\\bmod f}^{*} \\left|\\sum_{p\\asymp P}a_p\\chi"
     },
     {
       "from": "m1-thm-sw",
       "to": "m1-prop-typei",
+      "label": "thm:sw",
       "context": "osts a fixed power of $L$. Since $R\\le x^\\vartheta$, a sufficiently large $C'$ gives any prescribed logarithmic saving. For $1<f\\le2L^{C'}$, fix $r$ and apply \\Cref{thm:sw} to the $p$-sum with the original smooth cutoff $\\Psi(pr/x)$, using partial summation. The nonprincipal character sum is"
     },
     {
       "from": "m1-lem-sieve",
       "to": "m1-lem-proxy-discrepancy",
+      "label": "lem:sieve",
       "context": "Use \\Cref{lem:sieve} on ordinary integers in a cell with $z=W$, $g(p)=1/p$, and $h=2\\lceil T^2\\rceil$. Each divisibility remainder is $O(1)$"
     },
     {
       "from": "m1-thm-sw",
       "to": "m1-lem-proxy-discrepancy",
+      "label": "thm:sw",
       "context": "ts lower bound $x^\\gamma$, and the interval restriction on the full product intersect in one prime interval. Its endpoints lie between $x^\\gamma$ and $x^2$. By \\Cref{thm:sw} and partial summation, the harmonic sum of this prime against a nonprincipal character and the twist $p^{iv}$ has arbit"
     },
     {
       "from": "m1-lem-sieve",
       "to": "m1-lem-proxy-densities",
+      "label": "lem:sieve",
       "context": "et $\\eta$ decrease to zero. Null boundaries give \\[ \\liminf_{x\\to\\infty}\\frac Lx \\#\\{x<m\\le2x:\\Pminus(m)>x^{b_1}\\}\\ge D_{b_1}(1). \\] On the other hand \\Cref{lem:sieve}, with $g(p)=1/p$, $O(1)$ remainders and $h=2\\lfloor1/(40b_1)\\rfloor$, bounds this count by \\[ xV(x^{b_1})(1+O(e^{-c/b_"
     },
     {
       "from": "m1-thm-totient",
       "to": "m1-lem-finite-totient-fibers",
+      "label": "thm:totient",
       "context": "[Proof of \\Cref{thm:totient}] It suffices to consider $0<\\eps<1$. Choose $0<\\delta<1/4$ with $4\\delta<\\eps$. By \\Cref{thm:smooth}, for every suffici"
     },
     {
       "from": "m1-thm-smooth",
       "to": "m1-lem-finite-totient-fibers",
+      "label": "thm:smooth",
       "context": "[Proof of \\Cref{thm:totient}] It suffices to consider $0<\\eps<1$. Choose $0<\\delta<1/4$ with $4\\delta<\\eps$. By \\Cref{thm:smooth}, for every sufficiently large $X$ there are more than $X^{1-\\delta}$ primes $p\\le X$ such that $p-1$ is $X^\\delta$-smoo"
     },
     {
       "from": "m2-lem-root-residue",
       "to": "m2-det-root-replacement",
+      "label": "lem:root-residue",
       "context": "es residues at the active primes and at most $T$ further primes. Its squarefree modulus satisfies $\\log S=O_K(L^{0.96})$, and hence lies in the range of Lemma~\\ref{lem:root-residue}. The total number of monomials, prime choices, and residue matrices is $\\exp(o(L))$. The uniform distribution on $\\mat"
     },
     {
       "from": "m2-lem-log-phase",
       "to": "m2-maj-long-coefficient",
+      "label": "lem:log-phase",
       "context": "after summing the at most $k$ residues and all $d\\le W^r$, is $x^{-c_\\delta}$ after division by $H_m$, uniformly up to $T_*$. At $T_*\\le |u|<x^2$, apply Lemma~\\ref{lem:log-phase}: its lower scale condition holds because $N'\\ge x^{\\delta/2}$ for sufficiently large $x$, and its lower frequency condi"
     },
     {
       "from": "m2-lem-long-prime",
       "to": "m2-maj-long-coefficient",
+      "label": "lem:long-prime",
       "context": "in $C_0$. For the prime part, choose fixed $0<\\tau<\\delta$ and $1-\\delta<\\eta<1$. The scale conditions imply $x^\\tau/2\\le H_m\\le x^\\eta$ for large $x$. Lemma~\\ref{lem:long-prime}, followed by partial summation to replace $p^{-1}$ by $H_m^{-1}$, gives an arbitrary negative power of $L$ when $L^{B_0"
     },
     {
       "from": "m2-lem-rough-counts",
       "to": "m2-maj-long-coefficient",
+      "label": "lem:rough-counts",
       "context": "prove \\eqref{maj:M-uniform} on this range. It remains to treat $|t|\\le L^{B_2}$, hence $|u|\\le2L^{B_2}$. Choose the counting precision $D'$ after $B_2$. Lemma~\\ref{lem:rough-counts} gives, on every subinterval, \\begin{equation}\\label{maj:rough-low-count} \\sum_{m\\in I'}\\chi(m)\\1_{P^-(m)>W} =\\1_{\\chi"
     },
     {
       "from": "m2-lem-prime-estimates",
       "to": "m2-maj-long-coefficient",
+      "label": "lem:prime-estimates",
       "context": "rs because all primes dividing $k$ are at most $W$; for nonprincipal characters the count has zero main term by complete-period cancellation. For primes, Lemma~\\ref{lem:prime-estimates} and character orthogonality give, to any prescribed precision, \\[ \\sum_{p\\in I'}\\chi(p) =\\1_{\\chi\\ \\mathrm{principal}"
     },
     {
       "from": "m2-lem-moment-bounds",
       "to": "m2-maj-sparse-frequency",
+      "label": "lem:moment-bounds",
       "context": "into three classes according to the integer left endpoint modulo three. Each class is separated by at least one. The separated mean-square estimate of Lemma~\\ref{lem:moment-bounds}, whose constant is independent of the coefficients, gives \\begin{equation}\\label{maj:exception-count-calculation} |\\ma"
     },
     {
       "from": "m2-lem-log-phase",
       "to": "m2-maj-sparse-frequency",
+      "label": "lem:log-phase",
       "context": "lus one gives \\begin{equation}\\label{maj:Gram-near} H_n^{-1}|G_{I,J}|\\ll |\\Delta|^{-1}+x^{-c_\\delta}. \\end{equation} For $T_*<|\\Delta|\\le 4XL^B+2<4x^3$, Lemma~\\ref{lem:log-phase} gives \\begin{equation}\\label{maj:Gram-far} H_n^{-1}|G_{I,J}| \\ll\\exp(-L/(\\log L)^{C_3}). \\end{equation} All its scale"
     },
     {
       "from": "m2-prop-major-term",
       "to": "m2-maj-sparse-frequency",
+      "label": "prop:major-term",
       "context": "[Proof of Proposition~\\ref{prop:major-term}] For large $x$ the arcs are disjoint: distinct reduced rationals of denominator at most $L^{A_0}$ are at distance at le"
     },
     {
       "from": "m2-maj-long-coefficient",
       "to": "m2-maj-sparse-frequency",
+      "label": "maj:long-coefficient",
       "context": "_4+B_1})$. Choose $A_s$ large after $A''$. On the remaining set use the unit intervals of Lemma~\\ref{maj:sparse-frequency}. We have $|P_s(t)|\\ll1$, and Lemma~\\ref{maj:long-coefficient} gives $|M_\\alpha(t)|\\ll L^{-A}$ everywhere in the retained range, including its low frequencies. Therefore its contrib"
     },
     {
       "from": "m2-thm-type-ii",
       "to": "m2-maj-sparse-frequency",
+      "label": "thm:type-II",
       "context": "[Completion of Theorem~\\ref{thm:type-II}] Fix the requested precision $D_*$ and choose the expanded-square precision $D_1$ sufficiently large in terms of $D_*$"
     },
     {
       "from": "m2-prop-minor-moment",
       "to": "m2-maj-sparse-frequency",
+      "label": "prop:minor-moment",
       "context": "ese choices precede $K$. The squarefree-label and coincident-label errors from the Cauchy reduction are smaller than every fixed logarithmic power. Proposition~\\ref{prop:minor-moment}, including its restoration of good states and harmonic pads, replaces the remaining determinant equality by \\eqref{eq:d"
     },
     {
       "from": "m2-thm-main",
       "to": "m2-lem-progressions",
+      "label": "thm:main",
       "context": "[Completion of the proof of Theorem~\\ref{thm:main}] For a real upper endpoint $X$, fix an integer $J_0\\geq1$ and partition $(X/2^{J_0},X]$ into the $J_0$ dyads $(X/2^j,X/"
     },
     {
       "from": "m2-lp-pre-primes",
       "to": "m2-lp-mean-value",
+      "label": "lp:pre-primes",
       "context": ")\\bigr) \\end{equation} relative to every proposed estimate with exponent $2u-K+\\epsilon$, $\\epsilon\\ge0$. Thus it suffices to treat $M^{1/k}\\ge A_1k^6$. Lemma~\\ref{lp:pre-primes}, after enlarging $A_1$, supplies a fixed list of $2k^3+5$ primes $r$ in $[M^{1/k},2M^{1/k}]$, all greater than $k$. At"
     },
     {
       "from": "m2-lp-pre-derivatives",
       "to": "m2-lp-log-phase",
+      "label": "lp:pre-derivatives",
       "context": "of $v\\log(b+a/q)/(2\\pi)$ is monotone, has magnitude comparable to $|v|/H$, and has magnitude less than $1/2$. The monotone first derivative estimate in Lemma~\\ref{lp:pre-derivatives} therefore bounds the sum by $O(H/|v|)$. The lower bound on $|v|$ makes this smaller than \\eqref{lp:progression-estimate"
     },
     {
       "from": "m2-lp-mean-value",
       "to": "m2-lp-log-phase",
+      "label": "lp:mean-value",
       "context": "e \\[ y-\\frac j4\\ge\\frac{3y}4-\\frac{23}{80} \\ge\\frac5{16}>\\frac15. \\] Counting integer points proves \\eqref{lp:occupancy}. Let $s$ be supplied by Lemma~\\ref{lp:mean-value}. We also need the following bound for suprema over boxes $Q$: \\begin{equation}\\label{lp:box-supremum} \\sum_Q\\sup_{\\bo"
     },
     {
       "from": "m2-lp-l-upper",
       "to": "m2-lp-local-log-derivative",
+      "label": "lp:L-upper",
       "context": "For large $x$, the disk $|s-s_0|\\le8r_*$ avoids the possible pole at $s=1$ and lies in the region of Lemma~\\ref{lp:L-upper}. At its center the Euler product gives \\[ |D(s_0,\\chi)|\\ge\\prod_p(1+p^{-1-r_*})^{-1} =\\frac{\\zeta(2+2r_*)}{\\zet"
     },
     {
       "from": "m2-lp-local-log-derivative",
       "to": "m2-lp-zero-free",
+      "label": "lp:local-log-derivative",
       "context": "zeta'/\\zeta(\\sigma)=1/(\\sigma-1)+O(1)$ near $1$. Suppose $\\rho=\\beta+iv$ were a zero in \\eqref{lp:zero-free-region}, and set $\\sigma=1+20cT^2/L$. Apply Lemma~\\ref{lp:local-log-derivative} at heights $v$ and $2v$. The evaluation points lie in the respective inner disks, and $\\rho$ lies in the first zero sum"
     },
     {
       "from": "m2-lp-prime-polynomial",
       "to": "m2-lp-zero-free",
+      "label": "lp:prime-polynomial",
       "context": "[Proof of Lemma~\\ref{lp:prime-polynomial}] We first establish the analogous bound with the von Mangoldt weight. Let $\\delta=L^{-A-4}$. Smooth the indicator of $"
     },
     {
       "from": "m3-pre-primes",
       "to": "m3-lp-mean-value",
+      "label": "pre:primes",
       "context": "every proposed estimate with exponent $2u-K+\\epsilon$, $\\epsilon\\ge0$. Thus it suffices to treat $M^{1/k}\\ge A_1k^6$. The prime number theorem in Proposition~\\ref{pre:primes}, after enlarging $A_1$, supplies a fixed list of $2k^3+5$ primes $r$ in $[M^{1/k},2M^{1/k}]$, all greater than $k$. At"
     },
     {
       "from": "m3-pre-derivatives",
       "to": "m3-lp-log-phase",
+      "label": "pre:derivatives",
       "context": "\\log(b+a/q)/(2\\pi)$ is monotone, has magnitude comparable to $|v|/H$, and has magnitude less than $1/2$. The monotone first derivative estimate in Proposition~\\ref{pre:derivatives} therefore bounds the sum by $O(H/|v|)$. The lower bound on $|v|$ makes this smaller than \\eqref{lp:progression-estimate"
     },
     {
       "from": "m3-lp-mean-value",
       "to": "m3-lp-log-phase",
+      "label": "lp:mean-value",
       "context": "e \\[ y-\\frac j4\\ge\\frac{3y}4-\\frac{23}{80} \\ge\\frac5{16}>\\frac15. \\] Counting integer points proves \\eqref{lp:occupancy}. Let $s$ be supplied by Lemma~\\ref{lp:mean-value}. We also need the following bound for suprema over boxes $Q$: \\begin{equation}\\label{lp:box-supremum} \\sum_Q\\sup_{\\bo"
     },
     {
       "from": "m3-lp-l-upper",
       "to": "m3-lp-local-log-derivative",
+      "label": "lp:L-upper",
       "context": "For large $x$, the disk $|s-s_0|\\le8r_*$ avoids the possible pole at $s=1$ and lies in the region of Lemma~\\ref{lp:L-upper}. At its center the Euler product gives \\[ |D(s_0,\\chi)|\\ge\\prod_p(1+p^{-1-r_*})^{-1} =\\frac{\\zeta(2+2r_*)}{\\zet"
     },
     {
       "from": "m3-lp-local-log-derivative",
       "to": "m3-lp-zero-free",
+      "label": "lp:local-log-derivative",
       "context": "zeta'/\\zeta(\\sigma)=1/(\\sigma-1)+O(1)$ near $1$. Suppose $\\rho=\\beta+iv$ were a zero in \\eqref{lp:zero-free-region}, and set $\\sigma=1+20cT^2/L$. Apply Lemma~\\ref{lp:local-log-derivative} at heights $v$ and $2v$. The evaluation points lie in the respective inner disks, and $\\rho$ lies in the first zero sum"
     },
     {
       "from": "m3-lp-prime-polynomial",
       "to": "m3-lp-zero-free",
+      "label": "lp:prime-polynomial",
       "context": "[Proof of Lemma~\\ref{lp:prime-polynomial}] We first establish the analogous bound with the von Mangoldt weight. Let $\\delta=L^{-A-4}$. Smooth the indicator of $"
     },
     {
       "from": "m3-wt-tail",
       "to": "m3-wt-mass",
+      "label": "wt:tail",
       "context": "bounded below. Independently, require $\\mathcal E(R)=-1$ and $\\log R\\le\\Delta/12$. Equations~\\eqref{wt:HP-bounds} and \\eqref{wt:odd-mass}, together with Lemma~\\ref{wt:tail} applied to the fixed positive number $\\Delta/(12L)$, show that these two requirements have probability at least $\\delta"
     },
     {
       "from": "m3-wt-mass",
       "to": "m3-wt-squarefree",
+      "label": "wt:mass",
       "context": "{wt:expectation} and dropping parity and size localization gives the upper bound \\[ 2x\\|\\Psi\\|_\\infty H_QH_P\\,O(TL^{-20}) \\ll xH_QH_PT L^{-20}. \\] By Lemma~\\ref{wt:mass}, its ratio to $X_A/L$ is $O(TL^{-18})=o(1)$, as required."
     }
   ]

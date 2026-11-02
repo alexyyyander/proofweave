@@ -147,7 +147,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -178,10 +178,7 @@
           "kind": "proposition",
           "source": "The signed momentum estimate and its consequence",
           "detail": "[Local theory and continuation] Every smooth admissible datum has a unique maximal classical solution. It is smooth on each compact subinterval of its lifespan. If its maximal time T_ is finite and…",
-          "dependsOn": [
-            "m1-thm-global",
-            "m1-prop-increment"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ret-energy",
@@ -265,9 +262,7 @@
           "kind": "proposition",
           "source": "Occupation of retarded bins",
           "detail": "[Baseline occupation with a joint energy budget] Suppose h I , excluding only deficit bins with h . Then M Chk_1 p (1+ I E), E= E_ p ,&small sector,\\\\ 1,&remaining sector. Consequently, with R=1+I/ E…",
-          "dependsOn": [
-            "m1-occ-crude-lemma"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-dir-direct",
@@ -430,7 +425,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

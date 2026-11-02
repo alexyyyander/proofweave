@@ -372,7 +372,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Sharp-nodal-length-on-smooth-surfaces-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Sharp nodal length on smooth surfaces; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Sharp nodal length on smooth surfaces.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -482,9 +482,7 @@
           "kind": "lemma",
           "source": "Descent and stability",
           "detail": "[One step of descent] There is a fixed \\(L>0\\) such that, at any nonterminal square \\(Q\\), if \\(N(Q)>L\\) or \\(b>L\\), one can assign a tilt \\(b_q\\) to each child \\(q\\) so that, writing \\(m=m(Q,b)\\),…",
-          "dependsOn": [
-            "m1-prop-subdivision"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-stopped-descent",
@@ -507,7 +505,6 @@
           "source": "Descent and stability",
           "detail": "[Large slope forces large growth] For the fixed \\(L\\) in Lemma~ , there are constants \\(B_*1\\) and \\(_*>0\\) such that every admissible square with \\(s(Q)1\\) and \\(K_Q a_0\\) satisfies b B_*, m(Q,b)_*b…",
           "dependsOn": [
-            "m1-thm-subharmonic-profile",
             "m1-lem-profile-extraction"
           ]
         },
@@ -572,7 +569,6 @@
           "detail": "[Bounded mean growth] For the finite trees considered in this section, let T_ term be the collection of terminal squares and let s_ term be their common side length. There is a constant C ,…",
           "dependsOn": [
             "m1-prop-persistence",
-            "m1-lem-descent",
             "m1-lem-stopped-descent",
             "m1-lem-entry-bound"
           ]
@@ -596,9 +592,7 @@
           "source": "Nodal length at the wavelength scale",
           "detail": "[Nodal length from local L^2 growth] Fix the coefficient bounds and coordinate neighborhood from Section~ . There is an >0 such that, for every admissible square I of side s with ks , H^1(I Z_u)…",
           "dependsOn": [
-            "m1-thm-local-length",
             "m1-prop-initial-growth",
-            "m1-thm-main",
             "m1-prop-subdivision",
             "m1-thm-mean-growth"
           ]
@@ -617,7 +611,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Smooth-counterexamples-to-Yaus-nodal-upper-bound-in-dimensions-three-and-four-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Smooth counterexamples to Yau's nodal upper bound in dimensions three and four; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Smooth counterexamples to Yau's nodal upper bound in dimensions three and four.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -681,7 +675,6 @@
           "source": "Profiles with large mean gradient",
           "detail": "[Transverse radial corrugation] There are constants >0 and g_0>0 , depending only on the fixed function F , with the following property. Let be full with nonvanishing gradient on a neighborhood of…",
           "dependsOn": [
-            "m2-prop-profile-amplification",
             "m2-lem-profile-preparation",
             "m2-lem-profile-localization"
           ]
@@ -757,7 +750,6 @@
           "source": "Finite complex waves and robust nodal-area witnesses",
           "detail": "[Simultaneous wave realization] Under the hypotheses of this section, fix arbitrary nonnegative integers m_*,D_* . For every sufficiently large integer n there is a smooth real U_n satisfying and ,…",
           "dependsOn": [
-            "m2-lem-wave-noncancellation",
             "m2-prop-sign-functional",
             "m2-lem-wave-sign-expectation"
           ]
@@ -993,7 +985,6 @@
           "source": "Realization by an ordinary metric",
           "detail": "[Determinant repair on the collar] For the data , suppose that \\( Z-1\\) is sufficiently small in \\(C^1\\) and \\(>0\\). Then an ordinary smooth metric \\(g_*\\), equal to \\(g_0\\) outside a compact subset…",
           "dependsOn": [
-            "m2-corr-realization",
             "m2-corr-weighted",
             "m2-corr-conformal"
           ]
@@ -1029,7 +1020,6 @@
           "source": "Simplicity, persistence, and one fixed metric",
           "detail": "[An arbitrarily close step] Let h U and suppose h-g_0 has compact support in P . For every smooth-topology neighborhood O of h , every N>0 , and every integer k_ , there are an integer k k_ , a…",
           "dependsOn": [
-            "m2-corr-realization",
             "m2-spec-persistence",
             "m2-thm-four"
           ]
@@ -1048,7 +1038,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Power-law-violations-of-Yaus-nodal-upper-bound-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Power-law violations of Yau's nodal upper bound; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Power-law violations of Yau's nodal upper bound.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1099,10 +1089,7 @@
           "kind": "proposition",
           "source": "Envelopes with a fixed power gain",
           "detail": "After fixing the data of Lemma~ and possibly shrinking G , there are common constants >0 and c>0 with the following property. For every smooth G G and all sufficiently large k , there is a smooth…",
-          "dependsOn": [
-            "m3-lem-corrugation",
-            "m3-lem-seed"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-lem-phase-hessian",
@@ -1132,9 +1119,7 @@
           "kind": "proposition",
           "source": "Local packets below an envelope",
           "detail": "[Packets with arbitrary finite accuracy] Fix a nonnegative integer \\(J\\) and a real number \\(M>0\\). Finite construction orders can be chosen, before taking \\(k\\) large, so that every center \\(z\\)…",
-          "dependsOn": [
-            "m3-lem-polynomial-inverse"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-lem-scaled-packets",
@@ -1189,10 +1174,8 @@
           "source": "Exact eigenfunctions and a fixed metric",
           "detail": "Suppose a smooth positive pair has a real eigenfunction u at k^2=N(N+3) , with N>1 . Suppose there is an open region on which the pair equals the round pair and u=u_* , containing a point with 0<t<1…",
           "dependsOn": [
-            "m3-prop-step",
             "m3-lem-noncancellation",
-            "m3-lem-signs",
-            "m3-lem-correction"
+            "m3-lem-signs"
           ]
         },
         {
@@ -1204,7 +1187,6 @@
           "source": "Exact eigenfunctions and a fixed metric",
           "detail": "Let a smooth positive pair P=(A,) have a simple positive base eigenvalue and a real eigenfunction with a sign certificate C . If I(0,) is an open interval containing , there are an integer s1 and >0…",
           "dependsOn": [
-            "m3-thm-main",
             "m3-prop-step",
             "m3-lem-signs"
           ]
@@ -1248,7 +1230,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

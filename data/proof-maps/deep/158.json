@@ -252,7 +252,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Euclidean-plane-is-not-five-colorable-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Euclidean plane is not five-colorable; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Euclidean plane is not five-colorable.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -351,7 +351,6 @@
           "source": "Spectral preliminaries and relative singularity",
           "detail": "[Relative singularity] Let X be an ergodic standard probability-preserving K -system, and let d:X D be an equivariant measurable map with wild law. For every countable tower of factors as above, and…",
           "dependsOn": [
-            "m1-lem-spectral-null-events",
             "m1-lem-spectral-location",
             "m1-lem-line-average"
           ]
@@ -440,10 +439,7 @@
           "kind": "lemma",
           "source": "Transfer between proper and weak measurable colorings",
           "detail": "[Density-point properness] In a weak measurable \\(k\\)-coloring with classes \\(A_1,,A_k\\), the full-density-point set of each \\(A_i\\) contains no unit pair. These density-point sets are disjoint and…",
-          "dependsOn": [
-            "m1-thm-transfer",
-            "m1-prop-palettes-forward"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-palette-transfer",
@@ -545,9 +541,7 @@
           "kind": "lemma",
           "source": "Transitions and local finiteness of cyclic centers",
           "detail": "[Continuity of four-cycle states] For each s\\ X,U,V\\ , the map x_ \\ w_x=s\\ is continuous from L into L^1(S) .",
-          "dependsOn": [
-            "m1-prop-palette-size"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-transitions-step-ban",
@@ -620,8 +614,7 @@
           "source": "Extraction of common exclusion continua",
           "detail": "[Non-null core loops] For all sufficiently large n , some core disk B_ n,x contained in Q has a boundary loop whose image under g_n is not null homotopic in G .",
           "dependsOn": [
-            "m1-lem-transitions-disk-averages",
-            "m1-lem-interfaces-cover"
+            "m1-lem-transitions-disk-averages"
           ]
         },
         {
@@ -643,8 +636,6 @@
           "source": "Extraction of common exclusion continua",
           "detail": "[A connected midpoint preimage crosses the annulus] Let B be an open disk containing x , with B B(x,) , and set A=B(x, ) B . Suppose g: A G is continuous, where G is a finite connected simple graph,…",
           "dependsOn": [
-            "m1-lem-interfaces-graph-word",
-            "m1-prop-interface-cycle",
             "m1-lem-interfaces-hole-maps",
             "m1-lem-interfaces-core-loop"
           ]
@@ -657,9 +648,7 @@
           "kind": "lemma",
           "source": "Angular obstructions and the final contradiction",
           "detail": "[One-sided strip restrictions] Both \\(O(e)\\) and \\(I(e)\\) are nonempty for every \\(e B\\). On an angular neighborhood of \\(e\\), an open strip just outside radius one uses only \\(O(e)\\), and an open…",
-          "dependsOn": [
-            "m1-prop-interface-cycle"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-angular-five",
@@ -700,7 +689,6 @@
           "source": "Angular obstructions and the final contradiction",
           "detail": "The extracted interface cycle cannot have length four.",
           "dependsOn": [
-            "m1-lem-angular-four-rays",
             "m1-lem-angular-words"
           ]
         },
@@ -756,11 +744,7 @@
           "detail": "The extracted interface cycle cannot have length three.",
           "dependsOn": [
             "m1-lem-angular-region",
-            "m1-lem-angular-certificate",
-            "m1-thm-weak-five",
-            "m1-prop-interface-cycle",
-            "m1-prop-angular-five",
-            "m1-prop-angular-four"
+            "m1-lem-angular-certificate"
           ]
         }
       ]
@@ -780,7 +764,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

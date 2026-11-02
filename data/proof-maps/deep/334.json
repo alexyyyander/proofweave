@@ -77,7 +77,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Smooth-Metric-with-No-Local-Isometric-Immersion-into-Three-Space-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A Smooth Metric with No Local Isometric Immersion into Three-Space; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A Smooth Metric with No Local Isometric Immersion into Three-Space.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -128,9 +128,7 @@
           "kind": "lemma",
           "source": "Uniform regularity on caps",
           "detail": "[High derivative equation] Let \\(l8\\). Suppose that the ordinary derivatives of \\(z\\) through order \\(l\\) have uniform \\(L^2\\) bounds on images of compact rectangles in the lower cap, and that the…",
-          "dependsOn": [
-            "m1-lem-drift"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-gradient",
@@ -172,10 +170,7 @@
           "kind": "lemma",
           "source": "Assembly of a smooth metric germ",
           "detail": "[A negatively curved disk] Suppose a smooth metric on a neighborhood of a closed disk has negative curvature in the disk and zero curvature on its boundary. If an isometric immersion of this…",
-          "dependsOn": [
-            "m1-lem-height",
-            "m1-prop-patch"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-flat-jet",
@@ -204,7 +199,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

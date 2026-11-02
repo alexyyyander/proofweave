@@ -417,7 +417,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Random-Walks-on-Critical-FK-Ising-Maps-and-Liouville-Brownian-Motion-October-5-2026/fk-ising-walk-limit.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Random Walks on Critical FK–Ising Maps and Liouville Brownian Motion; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Random Walks on Critical FK–Ising Maps and Liouville Brownian Motion.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -561,7 +561,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Spectral-convergence-for-critical-FK-Ising-planar-maps-October-5-2026/spectral-convergence-critical-fk-ising-planar-maps.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Spectral convergence for critical FK–Ising planar maps; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Spectral convergence for critical FK–Ising planar maps.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -646,9 +646,7 @@
           "kind": "lemma",
           "source": "Local observations of the electrical network",
           "detail": "[Null tests in protected selected slots] Take a finite chronologically ordered list of disjoint slots as in , each with a left safety band of positive limiting duration. Conditional on the incoming…",
-          "dependsOn": [
-            "m2-prop-readout-extension"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-deterministic-germs",
@@ -713,12 +711,8 @@
           "dependsOn": [
             "m2-prop-readout-extension",
             "m2-prop-sphere-support",
-            "m2-lem-dual-geometry",
             "m2-lem-finite-el",
-            "m2-lem-edge-density-budget",
             "m2-lem-edge-flow-compactness",
-            "m2-lem-deterministic-germs",
-            "m2-prop-geometry",
             "m2-thm-network-bounds"
           ]
         },
@@ -730,9 +724,7 @@
           "kind": "lemma",
           "source": "Identification of the electrical energy",
           "detail": "[Cell sandwich and recovery] After a further joint extraction of countably many cell-constrained infima, \\( R^-= R^+\\) for every continuous \\(f\\) and every relatively compact open \\(U D\\),…",
-          "dependsOn": [
-            "m2-prop-readout-extension"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-conductivity",
@@ -781,8 +773,7 @@
             "m2-lem-energy-bounds",
             "m2-lem-uniform-relaxation",
             "m2-prop-readout-extension",
-            "m2-lem-deterministic-germs",
-            "m2-prop-sphere-support"
+            "m2-lem-deterministic-germs"
           ]
         },
         {
@@ -814,7 +805,6 @@
           "source": "Identification of the electrical energy",
           "detail": "[Conductance of an approximating square] Let \\(Q=(0,1)^2\\) have closure in an ordinary canonical chart. There are simple primal boundary circuits approaching \\( Q\\), with four ordered side arcs, for…",
           "dependsOn": [
-            "m2-prop-geometry",
             "m2-lem-uniform-relaxation",
             "m2-lem-energy-measures",
             "m2-lem-harmonic-compactness",
@@ -858,7 +848,6 @@
           "detail": "[No local energy defect] On this extraction, \\(u H^1_ loc (O)\\), \\(u\\) is harmonic on \\(O\\), and = u^2 x in every conformal chart of \\(O\\). Hence the edge energies converge on every relatively…",
           "dependsOn": [
             "m2-lem-uniform-relaxation",
-            "m2-lem-energy-bounds",
             "m2-thm-conductivity",
             "m2-thm-four-point",
             "m2-lem-voltage-bounds"
@@ -892,9 +881,7 @@
           "kind": "lemma",
           "source": "An approximation estimate at every smaller scale",
           "detail": "[Truncated packing at a typical level] Use the selected protocol above with a fixed number of bases. Let \\( I_N\\), with fixed \\(a_->1\\), be a deterministic log interval of length at least \\(cN>0\\),…",
-          "dependsOn": [
-            "m2-prop-address-input"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-reachable-packing",
@@ -917,8 +904,7 @@
           "source": "An approximation estimate at every smaller scale",
           "detail": "[One-base rank credit on a wide range] There is a fixed \\(B>2\\) with the following property. Use a sparse address system from Proposition~ with one base, upper range \\(BN\\), and selected law~ . Fix…",
           "dependsOn": [
-            "m2-prop-address-input",
-            "m2-lem-truncated-packing"
+            "m2-prop-address-input"
           ]
         },
         {
@@ -944,8 +930,7 @@
             "m2-prop-readout-extension",
             "m2-thm-network-bounds",
             "m2-lem-record-null-transfer",
-            "m2-lem-finite-el",
-            "m2-lem-one-base-credit"
+            "m2-lem-finite-el"
           ]
         },
         {
@@ -1036,11 +1021,8 @@
           "source": "From voltage limits to the joint spectral limit",
           "detail": "[A compactness criterion for inverse kernels] Let \\(H=L^2([0,1])\\), and let \\( H_n H\\) be finite-dimensional subspaces containing the constants. Let \\(B_n\\) be nonnegative self-adjoint operators on…",
           "dependsOn": [
-            "m2-thm-main",
             "m2-prop-continuum-form",
-            "m2-lem-normalization",
-            "m2-prop-geometry",
-            "m2-lem-space-normalization"
+            "m2-prop-geometry"
           ]
         }
       ]
@@ -1057,7 +1039,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Linear-Clock-for-Random-Walk-on-Tree-Weighted-Planar-Maps-October-5-2026/linear-clock-random-walk-tree-weighted-planar-maps.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A Linear Clock for Random Walk on Tree-Weighted Planar Maps; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A Linear Clock for Random Walk on Tree-Weighted Planar Maps.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1131,8 +1113,6 @@
           "source": "Sewing and local electrical observations",
           "detail": "[Local numerical-array kernels] On each open coordinate domain, take the limits of the numerical tests on complete buffered prescriptions, with relative labels localized to their cells. Conditional…",
           "dependsOn": [
-            "m3-inp-complete-core",
-            "m3-inp-kernel-transfer",
             "m3-inp-sandwich"
           ]
         },
@@ -1144,9 +1124,7 @@
           "kind": "proposition",
           "source": "Sewing and local electrical observations",
           "detail": "[Coordinate and unit transport] The kernels in Proposition~ can be retained jointly with the following transformations. For a fixed conformal coordinate map , pull back the fields by \\[ g g+Q|'|, g…",
-          "dependsOn": [
-            "m3-inp-kernel-transfer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-inp-gaussian",
@@ -1197,8 +1175,7 @@
           "source": "Nondegeneration of the electrical networks",
           "detail": "[Determinism of point germs] In an ordinary field chart, every bounded real point-germ readout of the extracted local arrays is, almost surely, equal at Lebesgue-almost every point to a deterministic…",
           "dependsOn": [
-            "m3-inp-local-kernels",
-            "m3-inp-gaussian"
+            "m3-inp-local-kernels"
           ]
         },
         {
@@ -1212,8 +1189,7 @@
           "dependsOn": [
             "m3-inp-local-kernels",
             "m3-inp-transport",
-            "m3-inp-array-interface",
-            "m3-nd-el-traffic"
+            "m3-inp-array-interface"
           ]
         },
         {
@@ -1311,9 +1287,7 @@
           "kind": "proposition",
           "source": "The limiting electrical energy",
           "detail": "[Quadratic energy measures] For each open U , the functional F(,U) is quadratic on its finite-energy space and vanishes on constants. If u has locally finite relaxed energy, then \\[ U F(u,U) \\] is…",
-          "dependsOn": [
-            "m3-en-fundamental"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-en-representation",
@@ -1400,7 +1374,6 @@
           "source": "The limiting electrical energy",
           "detail": "[Exact conductance normalization] The scalar in Lemma~ equals one.",
           "dependsOn": [
-            "m3-en-angular-recovery",
             "m3-inp-topology"
           ]
         }
@@ -1433,7 +1406,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

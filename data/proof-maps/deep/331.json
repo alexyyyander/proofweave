@@ -422,7 +422,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Asymptotic-midpoint-uniform-convexity-and-unbounded-diamond-distortion-in-a-reflexive-tree-space-September-27-2026/manuscript.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Asymptotic midpoint uniform convexity and unbounded diamond distortion in a reflexive tree space; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Asymptotic midpoint uniform convexity and unbounded diamond distortion in a reflexive tree space.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -485,9 +485,7 @@
           "kind": "lemma",
           "source": "A paired extension of segment tests",
           "detail": "Let H F be finite and ancestral. If x,y X satisfy x=P_Hx and y=Q_Hy , then \\|x+y\\|+\\|x-y\\| 2 \\|x\\|^2+\\|y\\|^2/12. More generally, for all s,t>0 , \\|x+ty\\|+\\|x-ty\\| 2 \\|x\\|+st\\|y\\| 1+12s^2 .",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-lens",
@@ -516,7 +514,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Midpoint-lenses-in-segment-spaces-September-27-2026/manuscript.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Midpoint lenses in segment spaces; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Midpoint lenses in segment spaces.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -599,9 +597,7 @@
           "kind": "corollary",
           "source": "Finite convex representations",
           "detail": "[The completed atomic ball] Let A be the set of all represented atoms in X . Then \\[ B_X= conv A ^ \\,\\|\\| . \\] Every segment functional d_S has norm one.",
-          "dependsOn": [
-            "m2-lem-finite-hull"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-opposite-crossing",
@@ -612,7 +608,6 @@
           "source": "Cancellation at the boundary",
           "detail": "With the preceding notation, two disjoint segment families S, S' satisfy 2_ g:\\,b_ S (g)b_ S' (g)<0 |b_ S (g)b_ S' (g)| L_ S +L_ S' .",
           "dependsOn": [
-            "m2-thm-main-tail",
             "m2-stab-coef-tail-assembly"
           ]
         },
@@ -698,9 +693,7 @@
           "kind": "proposition",
           "source": "The infinite-height renorming obstruction",
           "detail": "In B_ , the root paths h_v=d_ [o,v] and the coordinates e_v^* have norm one, and the children (e_ v^ j ^*)_j of each fixed vertex are weakly null. If a\\|z\\| N(z) b\\|z\\| , with 0<a b< , then…",
-          "dependsOn": [
-            "m2-binf-obstruction"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-clip-crossing",
@@ -1057,7 +1050,6 @@
           "source": "Endpoint distributions and conditional recovery",
           "detail": "Let >0 and x X satisfy \\|x\\|=1 . There are a finite ancestral head H and a test p=P_Hp J such that (p)1, x(p)1-, \\|Q_Hx\\|. For this same head and every y X satisfying \\|x+y\\|,\\|x-y\\|1+ , put h=6+^2 .…",
           "dependsOn": [
-            "m2-presentation-identity",
             "m2-cor-closed-atomic-ball",
             "m2-lem-opposite-crossing",
             "m2-stab-coef-tail-assembly",
@@ -1135,7 +1127,6 @@
             "m2-lem-forest-structure",
             "m2-cor-closed-atomic-ball",
             "m2-stab-coef-pointwise",
-            "m2-stab-coef-original-products",
             "m2-stab-coef-head-conflict",
             "m2-stab-coef-tail-assembly"
           ]
@@ -1215,8 +1206,7 @@
           "detail": "Let A be a nonempty finite ancestral set and let x,y B_ with x=P_Ax and P_Ay=0 . For every 0 , \\[ \\ \\|x+y\\|,\\|x-y\\|\\ 1, \\|x\\|1- \\|y\\| (2+10). \\]",
           "dependsOn": [
             "m2-binf-projections",
-            "m2-binf-finite-hull",
-            "m2-stab-coef-head-conflict"
+            "m2-binf-finite-hull"
           ]
         },
         {
@@ -1303,9 +1293,7 @@
           "kind": "corollary",
           "source": "Trimming by maximal splitting gain",
           "detail": "For the coordinate segment space, _ B_ (t)>0 for every 0<t<1 .",
-          "dependsOn": [
-            "m2-stab-trim-vanishing-lens"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-mol-finite-head-pair",
@@ -1405,7 +1393,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

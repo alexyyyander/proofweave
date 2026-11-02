@@ -332,7 +332,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Fully-Polynomial-Randomized-Approximation-Scheme-for-Perfect-Matchings-in-General-Graphs-September-23-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -373,9 +373,7 @@
           "kind": "lemma",
           "source": "Controlling the cost of unmatched vertices",
           "detail": "[Relocating a hole along a strong path] Let B be defined by , and suppose that _e_e for every edge and \\[ 18 r_i()4(i V). \\] If |U|\\ 2,4\\ and i,j U are distinct, then g_(U)10^5n B_ ij .",
-          "dependsOn": [
-            "m1-thm-logical-hole-bound"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-subdivision",
@@ -395,9 +393,7 @@
           "kind": "proposition",
           "source": "A subdivision with controlled holes",
           "detail": "[Marked matching laws] For arbitrary positive logical activities, sample from the bag matching law and reveal the edge portions as above. The all-real event has probability 1/I ; conditional on this…",
-          "dependsOn": [
-            "m1-lem-subdivision"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-bag-inflation",
@@ -437,12 +433,7 @@
           "kind": "lemma",
           "source": "A subdivision with controlled holes",
           "detail": "If the logical activities are balanced, then for every even set U of enlarged vertices, \\[ g'(U)_ B' (U)2D_0^ |U|/2 . \\] More precisely, for every U with a real completion, the deterministic…",
-          "dependsOn": [
-            "m1-lem-subdivision",
-            "m1-lem-deletion-accounting",
-            "m1-lem-ultrametric-pairing",
-            "m1-prop-bag-inflation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-quadrangulation",
@@ -502,10 +493,7 @@
           "kind": "lemma",
           "source": "A two-coordinate energy inequality",
           "detail": "[Encodings with a bounded number of preimages] Every switch demand has an encoding (A_P,B) by two perfect matchings, and every error demand has encodings (A^ (j) ,B^ (j) ) for j=0,1 , with the…",
-          "dependsOn": [
-            "m1-lem-quadrangulation",
-            "m1-lem-cell-comparability"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-swap-sum",
@@ -516,8 +504,7 @@
           "source": "A two-coordinate energy inequality",
           "detail": "[Swap sum] The sum in satisfies _ swap 12N^2E .",
           "dependsOn": [
-            "m1-thm-pair-energy",
-            "m1-lem-cell-comparability"
+            "m1-thm-pair-energy"
           ]
         },
         {
@@ -550,7 +537,6 @@
           "detail": "Define T,q,M by , and put &=10Nq(T+1) (K+_2(ND+2)+1), \\\\ s()&=20LM (+_2(1/)+1) (0<<1). Initialize all slots to any one colored perfect matching and run the exact chain for s() steps. The resulting…",
           "dependsOn": [
             "m1-lem-replica-gap",
-            "m1-lem-base-refresh",
             "m1-lem-finite-random-choice"
           ]
         },
@@ -572,9 +558,7 @@
           "kind": "lemma",
           "source": "From samples to the number of perfect matchings",
           "detail": "Suppose the current logical activities are balanced and every empirical mean is within of its exact mean. Then the next scaled activities are balanced and | R R -1| 10100K.",
-          "dependsOn": [
-            "m1-prop-bag-inflation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-finite-random-choice",
@@ -594,9 +578,7 @@
           "kind": "corollary",
           "source": "Prescribed-degree subgraphs and fixed-cardinality matchings",
           "detail": "For either family A= F(G,f) or A= M_k(G) , there are uniform classical randomized algorithms with the following guarantees. [label=()] Given rational 0<<1 and 0<<1/2 , the counting algorithm returns…",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-deletion-sampler",
@@ -607,7 +589,6 @@
           "source": "Prescribed-degree subgraphs and fixed-cardinality matchings",
           "detail": "Given a finite simple undirected unweighted graph H_0 whose vertices and edges are explicitly listed, and a rational 0<<1 , there is a uniform classical randomized algorithm that reports…",
           "dependsOn": [
-            "m1-thm-main",
             "m1-cor-prescribed-degree"
           ]
         }
@@ -625,7 +606,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Entropy-and-Face-Dimension-of-the-Perfect-Matching-Polytope-September-23-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Entropy and Face Dimension of the Perfect-Matching Polytope; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Entropy and Face Dimension of the Perfect-Matching Polytope.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -737,7 +718,6 @@
           "detail": "[Second variation at a fractional maximum] Let G have 2m2 vertices, and suppose that x P(G) has 0<x_e<1 for every edge. If J_c-H has a local maximum at x , then, with d= F_x and s=|E| , 0 d-s+(c+1)m.",
           "dependsOn": [
             "m2-ent-exponential",
-            "m2-ent-main",
             "m2-ent-continuity",
             "m2-geom-lem-reduction"
           ]
@@ -949,7 +929,6 @@
           "detail": "[Bit complexity] The algorithm above is uniform and deterministic, and its running time and output length are polynomial in the input bit length.",
           "dependsOn": [
             "m2-d-lem-unit-mincut",
-            "m2-d-lem-odd-cut-oracle",
             "m2-d-lem-projected-ascent"
           ]
         },
@@ -1025,7 +1004,6 @@
           "source": "Alternative geometric and entropy arguments",
           "detail": "[Coefficient-three and nonlinear counts] A loopless labelled multigraph G on 2m>0 vertices containing k1 pairwise edge-disjoint perfect matchings satisfies N(G)& b_k^m(e^ -3 k)^m, \\\\ N(G)&^m (e^ -8…",
           "dependsOn": [
-            "m2-cons-structural",
             "m2-cons-legacy-defect",
             "m2-cons-regular"
           ]
@@ -1038,9 +1016,7 @@
           "kind": "corollary",
           "source": "Alternative geometric and entropy arguments",
           "detail": "[An exact partition of the ambient edges] If the entire edge set of a loopless labelled graph on 2m>0 vertices is partitioned by k1 perfect matchings, then \\[ N(G)^m(e^ -8 k)^m. \\] When k=1 the count…",
-          "dependsOn": [
-            "m2-cons-legacy-counts"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-b-thm-nonlinear",
@@ -1053,8 +1029,7 @@
           "dependsOn": [
             "m2-ent-continuity",
             "m2-a-prop-supported-codimension",
-            "m2-geom-lem-face",
-            "m2-ent-exponential"
+            "m2-geom-lem-face"
           ]
         },
         {
@@ -1092,7 +1067,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -302,7 +302,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Nonhomeomorphic-closed-aspherical-four-manifolds-with-the-same-homotopy-type-October-4-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Nonhomeomorphic closed aspherical four-manifolds with the same homotopy type; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Nonhomeomorphic closed aspherical four-manifolds with the same homotopy type.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -364,10 +364,6 @@
           "source": "Reflected cyclic covers",
           "detail": "[Parity chamber data] There are chamber data (D,P,S,H) satisfying the chamber hypotheses of Theorem~ , with H a finitely generated nonabelian free group, and a distinguished epimorphism w H Z with…",
           "dependsOn": [
-            "m1-ch-homotopy-type",
-            "m1-ch-poincare-chamber",
-            "m1-ch-boundary-surjectivity",
-            "m1-refl-input",
             "m1-ch-cover-data",
             "m1-ch-even-filling",
             "m1-for-odd-nonfilling"
@@ -392,9 +388,7 @@
           "source": "Reflected cyclic covers",
           "detail": "For every odd integer d3 , the space Q^0_d has no closed topological four-manifold model.",
           "dependsOn": [
-            "m1-refl-cover-comparison",
-            "m1-refl-chamber-data",
-            "m1-refl-input"
+            "m1-refl-cover-comparison"
           ]
         },
         {
@@ -427,9 +421,7 @@
           "kind": "proposition",
           "source": "Two manifold models of the same double cover",
           "detail": "For every odd integer \\(d3\\), the space \\(Q_d\\) has no closed topological four-manifold model.",
-          "dependsOn": [
-            "m1-refl-odd-models"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-mod-panel-coordinates",
@@ -463,7 +455,6 @@
           "source": "Two manifold models of the same double cover",
           "detail": "[The double cover of a full reflection] For every finite flag triangulation \\(K\\) of \\(S\\), let \\(Q^0(K)\\) be its full reflection, using one independent basis label for each vertex. The connected…",
           "dependsOn": [
-            "m1-mod-models",
             "m1-refl-input"
           ]
         },
@@ -541,11 +532,8 @@
           "source": "The reflection extension and its outer actions",
           "detail": "With the marking _1(M) , no homeomorphism of M induces the outer automorphism .",
           "dependsOn": [
-            "m1-thm-self-map",
-            "m1-ext-development",
             "m1-mod-models",
-            "m1-mod-odd-models",
-            "m1-cyc-criterion"
+            "m1-mod-odd-models"
           ]
         },
         {
@@ -690,7 +678,6 @@
           "dependsOn": [
             "m1-ext-embedding",
             "m1-nor-rigidity",
-            "m1-mod-rigid-relations",
             "m1-nor-coxeter-facts",
             "m1-thm-pair",
             "m1-mod-models",
@@ -871,9 +858,7 @@
           "source": "A tensor obstruction on a graph",
           "detail": "[Lifting a kernel cycle] Let \\(x K_e_e\\) be homogeneous and let \\(a\\) be a homogeneous \\(D_e\\)-cycle representing \\(x\\). There is a form \\(a'\\) of the same exterior degree such that (D_e+t\\,…",
           "dependsOn": [
-            "m1-ten-assignment",
             "m1-ten-specialization",
-            "m1-ten-projection",
             "m1-ten-nonzero"
           ]
         },
@@ -936,10 +921,7 @@
           "source": "The obstruction in odd cyclic covers",
           "detail": "[Vertex identities with both endpoint signs] The flat edge restrictions lift to a formal parametrization M_v^ form over R_v satisfying S_v^ form (M_v^ form ) I_v^2, (_h S_v^ form )(M_v^ form )…",
           "dependsOn": [
-            "m1-for-odd-nonfilling",
-            "m1-for-cuts",
-            "m1-for-formal-data",
-            "m1-ten-odd-cycle"
+            "m1-for-odd-nonfilling"
           ]
         }
       ]
@@ -959,7 +941,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

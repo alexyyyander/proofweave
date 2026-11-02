@@ -227,7 +227,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Hilbert-Smith-conjecture-in-every-finite-dimension-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Hilbert–Smith conjecture in every finite dimension; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Hilbert–Smith conjecture in every finite dimension.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -280,9 +280,7 @@
           "kind": "proposition",
           "source": "Compact-source sheaf categories and homotopy invariance",
           "detail": "[Direct images and open extension] For an allowed map g:X Y , direct image induces exact functors \\[ g_*:(X)(Y), g_*:(X)(Y), \\] and the analogous functors for , . They are given by Rg_! Rg_* on these…",
-          "dependsOn": [
-            "m1-prop-test-duality"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cat-symmetric-cone",
@@ -302,9 +300,7 @@
           "kind": "lemma",
           "source": "Compact-source sheaf categories and homotopy invariance",
           "detail": "[Products with the interval] For A(X) and B C_I , the external product B A belongs to (I X) ; the same assertion holds for . For all integers s,r , the natural map _ s,r :_ I,s B_ X,r A _ I X,s+r (B…",
-          "dependsOn": [
-            "m1-cat-simplex-generators"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cat-endpoint-forms",
@@ -315,7 +311,6 @@
           "source": "Compact-source sheaf categories and homotopy invariance",
           "detail": "[The two endpoint forms] Let (A,) be a symmetric degree- r form in (X) or (X) , and let i_t:X I X be x(t,x) . There is a neutral degree- r form on \\[ E A(i_0)_*A(i_1)_*A \\] whose two diagonal forms…",
           "dependsOn": [
-            "m1-cat-interval-products",
             "m1-cat-symmetric-cone"
           ]
         },
@@ -328,8 +323,7 @@
           "source": "Compact-source sheaf categories and homotopy invariance",
           "detail": "[Homotopy invariance] If h:I X Y is a continuous homotopy of maps of test spaces, its endpoint maps induce equal homomorphisms \\[ h_ 0* =h_ 1* :E_r(X) E_r(Y) (r). \\] The same assertion holds for…",
           "dependsOn": [
-            "m1-cat-endpoint-forms",
-            "m1-prop-test-pushforward"
+            "m1-cat-endpoint-forms"
           ]
         },
         {
@@ -350,11 +344,7 @@
           "kind": "proposition",
           "source": "Localization, germs, and dense subcategories",
           "detail": "[Objects supported in an open set] For an open inclusion j:U X , the essential image of j_!: (U)(X) consists exactly of those objects whose cohomology vanishes outside some compact subset of U . This…",
-          "dependsOn": [
-            "m1-prop-test-pushforward",
-            "m1-lem-cutoff",
-            "m1-prop-test-duality"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-germs",
@@ -364,10 +354,7 @@
           "kind": "theorem",
           "source": "Localization, germs, and dense subcategories",
           "detail": "[Germ description] Restriction induces natural isomorphisms \\[ _ (X)/(U) (A,B) colim_ N X U _ D(N) (A|_N,B|_N) \\] for every A,B(X) . These isomorphisms respect composition, open restriction of…",
-          "dependsOn": [
-            "m1-lem-cutoff",
-            "m1-prop-compact-support"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-witt-localization",
@@ -377,9 +364,7 @@
           "kind": "theorem",
           "source": "Localization, germs, and dense subcategories",
           "detail": "[Witt localization] For every open U X and every r , there is a natural long exact sequence W_r((U)) W_r((X)) W_r((X)/(U)) _ r-1 ((U)) . The sequence is natural for and for the pushforwards of : a…",
-          "dependsOn": [
-            "m1-prop-compact-support"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-open-cover",
@@ -390,8 +375,7 @@
           "source": "Localization, germs, and dense subcategories",
           "detail": "[An open cover gives a dense inclusion] If X=U V with U,V open, extension by zero induces a fully faithful exact functor preserving duality (V)/(U V) (X)/(U). Its replete image is dense: every object…",
           "dependsOn": [
-            "m1-thm-germs",
-            "m1-lem-cutoff"
+            "m1-thm-germs"
           ]
         },
         {
@@ -412,10 +396,7 @@
           "kind": "corollary",
           "source": "Localization, germs, and dense subcategories",
           "detail": "The map on Witt groups induced by has kernel and cokernel annihilated by 2 , in every degree and for either test category.",
-          "dependsOn": [
-            "m1-thm-dense-doubling",
-            "m1-prop-open-cover"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lat-point-groups",
@@ -446,9 +427,7 @@
           "source": "A bounded lattice on the test sphere",
           "detail": "[Bounded comparison] For every j0 there is a nonnegative integer e_j , independent of r , such that the kernel and cokernel of \\[ F_r(S^j) E_r(S^j) \\] are annihilated by 2^ e_j for every integer r .",
           "dependsOn": [
-            "m1-lat-point-groups",
             "m1-thm-homotopy",
-            "m1-prop-test-pushforward",
             "m1-thm-witt-localization",
             "m1-lat-finite-chases"
           ]
@@ -462,7 +441,6 @@
           "source": "A bounded lattice on the test sphere",
           "detail": "[Rational sphere calculation] For either G_r=F_r or G_r=E_r , and for j0 , \\[ G_r(S^j) (G_r()) (G_ r-j ()). \\] In particular, for the fixed odd integer d , both F_d(S^d) and E_d(S^d) are…",
           "dependsOn": [
-            "m1-thm-dense-doubling",
             "m1-lat-point-groups"
           ]
         },
@@ -474,9 +452,7 @@
           "kind": "proposition",
           "source": "A bounded lattice on the test sphere",
           "detail": "[Signature on a finite semialgebraic relation] Every finite collection of objects of (S^d) has finite dimensional locally constant cohomology on a common dense open subset of S^d . On a sufficiently…",
-          "dependsOn": [
-            "m1-prop-sphere-rank"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-sphere-lattice",
@@ -500,8 +476,7 @@
           "source": "A bounded lattice on the test sphere",
           "detail": "[Action of degree] Let d3 be odd. If f:S^d S^d is continuous and has degree s , then \\[ f_*u_d=su_din E_d(S^d). \\] Consequently f_* acts on this entire rational group by multiplication by s . More…",
           "dependsOn": [
-            "m1-thm-homotopy",
-            "m1-thm-sphere-lattice"
+            "m1-thm-homotopy"
           ]
         },
         {
@@ -513,8 +488,7 @@
           "source": "A bounded lattice on the test sphere",
           "detail": "[A contractible open set can be localized away] Let d3 be odd. Let X be any test space for , and let U X be a nonempty contractible open subset. Then the quotient functor induces an integral…",
           "dependsOn": [
-            "m1-lat-point-groups",
-            "m1-thm-witt-localization"
+            "m1-lat-point-groups"
           ]
         },
         {
@@ -595,12 +569,7 @@
           "kind": "proposition",
           "source": "Preparing local tests",
           "detail": "[Moving a test into a prescribed open set] For every nonempty open V Y\\ y_\\ , set F=Y V . There are a positive integer s , a degree s map D_s:S^d S^d , and a map h:Y S^d such that \\[ h D_sa, h|_F b…",
-          "dependsOn": [
-            "m1-lem-averaged-test",
-            "m1-lem-orbit-injectivity",
-            "m1-lem-odd-sphere-null",
-            "m1-top-neighborhood-extension"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-character-coproduct",
@@ -610,9 +579,7 @@
           "kind": "lemma",
           "source": "Character classes and the contradiction",
           "detail": "[Character coproducts] There are canonical isomorphisms Rq_* W^+ H _ H_. For every continuous map t:Y X to a compact Hausdorff space and every D , the natural map _ D Rt_* H_ Rt_* H_D is an…",
-          "dependsOn": [
-            "m1-lem-orbit-injectivity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-orthogonality",
@@ -622,9 +589,7 @@
           "kind": "lemma",
           "source": "Character classes and the contradiction",
           "detail": "[Real orthogonality] If D,E are disjoint, the cross pairing between B_D and B_E induced by _t|_ X_t^ is zero. In particular, the projectors associated with any finite partition of are self-adjoint.",
-          "dependsOn": [
-            "m1-lem-character-coproduct"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-sum-classes",
@@ -665,7 +630,6 @@
           "source": "Character classes and the contradiction",
           "detail": "[Equality for a concentrated test] Let k1 , and let V and its character multiplier be as in . If h:Y S^d is constant on Y V , then the classes for satisfy \\[ z_0(h)=z_1(h)==z_ m-1 (h)in E_d(S^d). \\]",
           "dependsOn": [
-            "m1-thm-germs",
             "m1-prop-contractible-quotient"
           ]
         },
@@ -679,10 +643,7 @@
           "detail": "[Contradiction on the invariant chart] For every n1 and every prime p , an orientation-preserving continuous -action on a connected open subset of ^n has nonzero kernel.",
           "dependsOn": [
             "m1-thm-sphere-lattice",
-            "m1-prop-degree-action",
-            "m1-prop-sum-classes",
             "m1-thm-main",
-            "m1-prop-chart-reduction",
             "m1-cor-lie"
           ]
         },
@@ -694,9 +655,7 @@
           "kind": "lemma",
           "source": "Duality shifts and the cylinder signs",
           "detail": "[Suspending the first product input] Let B C_I , A(X) (or the corresponding semialgebraic category), and s,r . Write \\[ _s(B)=[-s]_1: _ I,s (B[1])(_ I,s B)[-1]. \\] Use the first-factor shift…",
-          "dependsOn": [
-            "m1-cat-endpoint-forms"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -715,7 +674,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

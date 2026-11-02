@@ -247,7 +247,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-dimension-free-logarithmic-Sobolev-inequality-for-subgaussian-log-concave-measures-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A dimension-free logarithmic Sobolev inequality for subgaussian log-concave measures; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A dimension-free logarithmic Sobolev inequality for subgaussian log-concave measures.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -354,9 +354,7 @@
           "kind": "lemma",
           "source": "Critical laws after Gaussian regularization",
           "detail": "[Existence and positivity of an optimizer] Let =_s , where s>0 and is compactly supported. Suppose its logarithmic Sobolev and Poincar\\'e constants R=R() and P=R^P() satisfy >R>(P,s) . Then there is…",
-          "dependsOn": [
-            "m1-lem-critical-defect"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-critical-change-reference",
@@ -366,9 +364,7 @@
           "kind": "lemma",
           "source": "Critical laws after Gaussian regularization",
           "detail": "[Change of reference at an optimizer] Under Lemma~ , suppose in addition that =e^ -V is log-concave with bounded K=D^2V . Define \\[ =f^2, h= f^2, w=Dh, I=_|w|^2. \\] Then I=2 H()>0 , R()1/ , each…",
-          "dependsOn": [
-            "m1-lem-dirichlet-core"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-translation-gain",
@@ -389,7 +385,6 @@
           "source": "Critical laws after Gaussian regularization",
           "detail": "[Critical fields in both alternatives] Fix J(0,1/2) compact and s J , and put =1/R_s . There are a smooth positive probability and a smooth vector field w , with 0<I:=_|w|^2< , such that R()^ -1 ,…",
           "dependsOn": [
-            "m1-lem-critical-change-reference",
             "m1-lem-translation-gain",
             "m1-lem-dirichlet-core"
           ]
@@ -454,7 +449,6 @@
           "detail": "[The prediction curve] For the strict and gap critical sequences, for every fixed 0<r<1/4 , m(r) e^ -r . In the strict case, for every fixed finite T0 one also has p_T(r) e^ -r . In the gap case the…",
           "dependsOn": [
             "m1-prop-regularized-constants",
-            "m1-lem-gaussian-signals",
             "m1-lem-efficient-probes",
             "m1-lem-entropy-loss"
           ]
@@ -686,9 +680,7 @@
           "kind": "lemma",
           "source": "Covariance observations and the contradiction",
           "detail": "[Conditional Ornstein--Uhlenbeck score] Let N be a standard Gaussian vector conditional on D , and let Z be any observation for which (N;Z D)< . With independent standard Gaussian G' set \\[ N_u= N+1-…",
-          "dependsOn": [
-            "m1-lem-entropy-calculus"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-obs-block-tests",
@@ -699,7 +691,6 @@
           "source": "Covariance observations and the contradiction",
           "detail": "[Block tests and the scale Jacobian] Fix compact intervals J, X(0,) , and write (u)=^2/(1-^2)^2 , where =e^ -u . Let P(u,x,a,b) be a real polynomial, evaluated on matrices with any one fixed ordering…",
           "dependsOn": [
-            "m1-lem-obs-ou-score",
             "m1-lem-matrix-gaussian-moments"
           ]
         },
@@ -768,10 +759,7 @@
             "m1-prop-regularized-constants",
             "m1-prop-critical-sequence",
             "m1-prop-prediction",
-            "m1-prop-hierarchy",
-            "m1-prop-frozen-law",
-            "m1-prop-information-upper",
-            "m1-prop-information-lower"
+            "m1-prop-hierarchy"
           ]
         }
       ]
@@ -791,7 +779,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

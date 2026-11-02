@@ -322,7 +322,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-higher-dimensional-Erdos-distinct-distances-conjecture-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The higher-dimensional Erdős distinct-distances conjecture; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The higher-dimensional Erdős distinct-distances conjecture.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -343,9 +343,7 @@
           "kind": "lemma",
           "source": "The reduction to sparse cones and concentration",
           "detail": "[Occupancy of proper flats] In the regime~ , a real affine \\(u\\)-flat contains at most \\[ 1,&u=0,\\\\ 2M,&u=1,\\\\ C M(2M),&u=2,\\\\ C_u M^ u/2 ,&3 u<d \\] points of \\(P\\). A circle contains at most \\(2M\\)…",
-          "dependsOn": [
-            "m1-ci-planar-occupancy"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-red-directions",
@@ -357,7 +355,6 @@
           "detail": "After passing to a subsequence, there is an undirected graph \\( G\\) on \\(P\\) with at least \\(cN^2\\) edges such that, for every vertex \\(p\\) and every irreducible projective variety \\(Y P^ d-1 \\) of…",
           "dependsOn": [
             "m1-ci-st",
-            "m1-sc-theorem",
             "m1-red-flat-caps"
           ]
         },
@@ -407,9 +404,7 @@
           "kind": "proposition",
           "source": "The reduction to sparse cones and concentration",
           "detail": "The graph \\( H\\) cannot satisfy both bounds in Lemmas~ and .",
-          "dependsOn": [
-            "m1-red-local-concentration"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-poly-separators",
@@ -488,9 +483,7 @@
           "kind": "lemma",
           "source": "Polynomial interpolation, regularity, and multiplicity",
           "detail": "[Regularity for a whole component family] Let V be a pure k -dimensional family of total degree a as in the lower-bound part of Lemma~ , with equation bound L . The union-of-systems version is…",
-          "dependsOn": [
-            "m1-poly-hilbert"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-poly-pooling",
@@ -586,7 +579,6 @@
           "source": "Secants and terminal curves",
           "detail": "[Generic projection depth] Let X, Y be finite families of distinct irreducible carriers of dimensions k l1 , where k<d and l<d-1 . Fix assigned sets \\[ S_X P X(X X), T_Y P Y(Y Y), \\] pairwise…",
           "dependsOn": [
-            "m1-geo-secants",
             "m1-ci-st",
             "m1-prof-budget"
           ]
@@ -600,8 +592,7 @@
           "source": "Secants and terminal curves",
           "detail": "[Terminal-curve deletion] Assign sample points to finitely many irreducible physical curves Y_i , each containing its assigned points. Pool repetitions of a curve, and require every line member to be…",
           "dependsOn": [
-            "m1-poly-separators",
-            "m1-geo-secants"
+            "m1-poly-separators"
           ]
         },
         {
@@ -638,7 +629,6 @@
           "source": "Polynomial scale profiles",
           "detail": "[Regularity and individual cuts] Inside an open plateau, individual proper cuts of degree O(T_s(b)) on the different carriers collectively capture only o(n) points. At a slightly later interior…",
           "dependsOn": [
-            "m1-poly-pooling",
             "m1-poly-regularity",
             "m1-poly-union-interpolation"
           ]
@@ -688,8 +678,7 @@
           "source": "The sparse-cones assertion",
           "detail": "[Retained products and their image degree] Fix a common positive-dimensional plateau after j cuts, of dimension k=d-j<d-1 , and choose an interior time on that plateau. Write n_x,n_y for the original…",
           "dependsOn": [
-            "m1-prof-regularity",
-            "m1-geo-generic-depth"
+            "m1-prof-regularity"
           ]
         },
         {
@@ -727,10 +716,7 @@
           "kind": "lemma",
           "source": "The sparse-cones assertion",
           "detail": "[Strict rank margin on target plateaux] At typical centers, ranks of directions to arbitrary dense remaining target subsets satisfy H(T_s(b)) (b)T_s(b)A(c s) with a fixed c>0 through all plateaux up…",
-          "dependsOn": [
-            "m1-prof-regularity",
-            "m1-sc-theorem"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-mot-rich",
@@ -864,8 +850,7 @@
           "source": "Uniform concentration of evaluation flats",
           "detail": "Let \\(V S\\) be irreducible of dimension \\(k=s_0+h\\), where \\(1 h<r\\), and let \\(\\) be a ruling incidence provided by Lemma~ . Write \\(j\\ 0,1\\ \\) for the dimension of its fibers over the working open…",
           "dependsOn": [
-            "m1-conc-rulings",
-            "m1-conc-theorem"
+            "m1-conc-rulings"
           ]
         },
         {
@@ -989,9 +974,7 @@
           "kind": "lemma",
           "source": "Real incidence estimates",
           "detail": "[Concentration of planar Cayley lines] For two finite planar sets U,V of sizes u,v , the uv lines have at most (u,v) members in a plane and at most 6u+2v members in a regulus.",
-          "dependsOn": [
-            "m1-ci-planar-motions"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ci-planar-distances",
@@ -1036,7 +1019,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -197,7 +197,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Rational-homology-and-Quillens-conjecture-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Rational homology and Quillen's conjecture; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Rational homology and Quillen's conjecture.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -293,7 +293,6 @@
           "source": "Propagation from a faithful component extension",
           "detail": "Assume the inductive hypothesis on proper subgroups of G in Lemma~ , and let L be a nonabelian simple component with p|L| . Let F be a nonempty family of faithful configurations for L in G such that…",
           "dependsOn": [
-            "m1-lem-propagation",
             "m1-lem-faithfulness-upgrade"
           ]
         },
@@ -414,7 +413,6 @@
             "m1-lem-component-core",
             "m1-lem-linear-sign-centralizer",
             "m1-thm-frame-bound",
-            "m1-lem-decorations",
             "m1-lem-restriction",
             "m1-cor-maximal-family"
           ]
@@ -429,9 +427,7 @@
           "detail": "Let p be an odd prime, let q be odd with p q+1 , and let L=_n(q) with n5 . If L H(L) and H/L is elementary abelian of p -power order, then \\[ H_ m_p(H)-1 ((H);)0. \\] Here m_p(H) denotes the maximum…",
           "dependsOn": [
             "m1-lem-projective-rank",
-            "m1-thm-frame-bound",
-            "m1-lem-restriction",
-            "m1-lem-decorations"
+            "m1-thm-frame-bound"
           ]
         },
         {
@@ -569,7 +565,6 @@
           "source": "Orthogonal components",
           "detail": "A minimal-order counterexample to the rational homological implication at p=2 has no simple component isomorphic to _4(5) .",
           "dependsOn": [
-            "m1-lem-propagation",
             "m1-thm-frame-bound",
             "m1-lem-restriction",
             "m1-lem-psl45-intermediate-core",
@@ -581,10 +576,7 @@
             "m1-thm-main",
             "m1-prop-unitary-odd",
             "m1-thm-reduction-odd",
-            "m1-thm-reduction-two",
-            "m1-prop-linear-two",
-            "m1-prop-symplectic",
-            "m1-prop-orthogonal"
+            "m1-thm-reduction-two"
           ]
         }
       ]
@@ -604,7 +596,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

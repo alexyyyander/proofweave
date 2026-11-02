@@ -372,246 +372,295 @@
     {
       "from": "m1-lem-repair",
       "to": "m1-prop-stationary-success",
+      "label": "lem:repair",
       "context": "For each of at most $|\\mathcal S|(|\\mathcal S|-1)\\le d^2$ defect types, the joint injection in Lemma~\\ref{lem:repair} bounds its total weight by $Z_0$. This proves the upper bound on $\\Lambda$; the other mass inequalities follow from in"
     },
     {
       "from": "m1-lem-small-entry",
       "to": "m1-prop-stationary-success",
+      "label": "lem:small-entry",
       "context": "and call their number $F$. Every transversal and completion gives one such table, so $Z_0\\le F$. Each large cell has both enlarged margins at least $U$. Lemma~\\ref{lem:small-entry} and a union bound show that the proportion of these enlarged tables with some large entry below $L$ is at most \\[ |\\ma"
     },
     {
       "from": "m1-lem-laminar-signature",
       "to": "m1-prop-signature",
+      "label": "lem:laminar-signature",
       "context": "Induct on $|\\mathcal R|$. Lemma~\\ref{lem:laminar-signature} proves the empty case. For a nonempty set choose $t\\in\\mathcal R$, regard its two coordinates as active at $(j,B_t-j)$"
     },
     {
       "from": "m1-lem-pair-summation",
       "to": "m1-prop-signature",
+      "label": "lem:pair-summation",
       "context": "etminus\\{t\\}$. Every resulting matrix $M_j$ has at most one positive eigenvalue by induction; its total is $T+2$ by \\eqref{eq:two-removal-total}. Apply Lemma~\\ref{lem:pair-summation} with $D'=B_t$. The matrix $\\sum_{j=0}^{B_t}V_j$ is exactly the required matrix after also summing slot $t$, and has th"
     },
     {
       "from": "m1-prop-signature",
       "to": "m1-lem-child-logconcavity",
+      "label": "prop:signature",
       "context": "has two excess units. Its two-removal matrix is \\[ \\begin{pmatrix}z_{j-1}^\\eta&z_j^\\eta\\\\ z_j^\\eta&z_{j+1}^\\eta\\end{pmatrix}. \\] Proposition~\\ref{prop:signature} gives at most one positive eigenvalue. The trace is positive, so the determinant is nonpositive: $(z_j^\\eta)^2\\ge z_{j-"
     },
     {
       "from": "m1-lem-pair-summation",
       "to": "m1-lem-transport",
+      "label": "lem:pair-summation",
       "context": "and root potential $1/z_-+1/z_+$. To process the next ordinary slot $v$, branch over its balanced profiles $(j,U-j)$, $0\\le j\\le U$. In the notation of Lemma~\\ref{lem:pair-summation}, use the auxiliary occupancy $D'=U+1$. Then $S(j)$ is the vector of old-hole weights in branch $j$, and $u_j$ is the no"
     },
     {
       "from": "m1-lem-repair",
       "to": "m1-lem-transport",
+      "label": "lem:repair",
       "context": "his limit only after obtaining that inequality; convergence of the demands, the $g_j$'s, or the flows is unnecessary. For the limiting $c_{st,l}^\\sigma$, Lemma~\\ref{lem:repair} injects state/completion pairs into one of the two child fibers. Specifically, since $t$ follows $s$ in row-major orde"
     },
     {
       "from": "m1-lem-child-logconcavity",
       "to": "m1-thm-poincare",
+      "label": "lem:child-logconcavity",
       "context": "ce} z_\\sigma\\Var_p(H_j) =\\frac1{z_\\sigma}\\sum_{a<b}z_a z_b(H_a-H_b)^2. \\end{equation} Zero-mass children may be omitted. For positive endpoints $a<b$, Lemma~\\ref{lem:child-logconcavity} makes every intervening mass at least $\\min(z_a,z_b)$. Telescoping and Cauchy--Schwarz therefore give \\begin{align*}"
     },
     {
       "from": "m1-lem-repair",
       "to": "m1-thm-poincare",
+      "label": "lem:repair",
       "context": "singleton and this inequality holds directly. Let $\\overline H$ be the transversal mean, and compare each defect $X$ to its repair $\\mathcal R(X)$. By Lemma~\\ref{lem:repair}, $f(X)\\le f(\\mathcal R(X))$, the repair map is injective within each of fewer than $d^2$ defect types, and its edge has"
     },
     {
       "from": "m1-lem-integral-interpolation",
       "to": "m1-prop-bin-gap",
+      "label": "lem:integral-interpolation",
       "context": "mu(S)\\le\\mu(D)/2$. Set \\[ t=\\frac1{4dK_0},\\qquad r=tK_0=\\frac1{4d},\\qquad M=(1-t)S+tD. \\] We have $S\\subset M$, by writing $x=(1-t)x+tx$ for $x\\in S$. Lemma~\\ref{lem:integral-interpolation} gives \\begin{equation}\\label{eq:dense-mass-gain} \\mu(M\\setminus S)\\ge(2^t-1)\\mu(S) \\ge t\\log(2)\\mu"
     },
     {
       "from": "m1-lem-mixing",
       "to": "m1-prop-bin-gap",
+      "label": "lem:mixing",
       "context": "The weights satisfy $2^{-4Ad}\\le W(v)\\le1$, so \\[ \\pi_{B,\\min}\\ge\\frac{2^{-4Ad}}{K_0^e},\\qquad \\log\\pi_{B,\\min}^{-1}\\le4d^5\\log2+d\\log(4d^8)\\le4d^5. \\] Lemma~\\ref{lem:mixing} supplies inverse gap at most \\[ K_B=2\\kappa_B^{-2}=3.2\\cdot10^{11}d^{20}\\le d^{32} \\quad(d\\ge14). \\] It bounds the er"
     },
     {
       "from": "m1-lem-small-entry",
       "to": "m1-prop-small-chain",
+      "label": "lem:small-entry",
       "context": "$. Every nonempty completion-block margin is at least $L$. Rejection implies that one of at most $d$ entries of a uniform completion is less than $10d$. Lemma~\\ref{lem:small-entry}, with $a=L$ and threshold $10d\\le L/2$, gives \\[ \\Pp(\\text{rejection})\\le \\frac{40d^5}{L} =\\frac{40}{d^7}"
     },
     {
       "from": "m1-thm-poincare",
       "to": "m1-prop-small-chain",
+      "label": "thm:poincare",
       "context": "Since $p\\ge1/(64d^2)$, both the stated transition bound and the Dirichlet-form comparison \\[ \\mathcal E_P(H)\\ge \\frac{E(H)}{128d^2\\Lambda} \\] follow. Theorem~\\ref{thm:poincare} and $U=d^{20}$ now give an inverse-gap bound of \\begin{align*} 128d^2\\bigl((1+2d^2)4d^2(U+1)^6+2\\bigr) &\\le 98{,}560d^"
     },
     {
       "from": "m1-prop-stationary-success",
       "to": "m1-prop-small-chain",
+      "label": "prop:stationary-success",
       "context": "e d^{160}. \\end{align*} Indeed the coefficient inside parentheses is at most $770d^4U^6$. The graph is connected by Theorem~\\ref{thm:poincare}, and Proposition~\\ref{prop:stationary-success} gives $\\pi_{\\min}\\ge(C+1)^{-2d}$. Lemma~\\ref{lem:mixing} now gives \\eqref{eq:small-mixing}."
     },
     {
       "from": "m1-lem-mixing",
       "to": "m1-prop-small-chain",
+      "label": "lem:mixing",
       "context": "t most $770d^4U^6$. The graph is connected by Theorem~\\ref{thm:poincare}, and Proposition~\\ref{prop:stationary-success} gives $\\pi_{\\min}\\ge(C+1)^{-2d}$. Lemma~\\ref{lem:mixing} now gives \\eqref{eq:small-mixing}."
     },
     {
       "from": "m1-prop-small-chain",
       "to": "m1-thm-almost-uniform",
+      "label": "prop:small-chain",
       "context": "tion, the probability of a disagreement is at most $(T+1)\\eta$. This argument uses neither reversibility nor a stationary-law assertion for $Q$. By Proposition~\\ref{prop:small-chain}, the additional error from replacing the ideal terminal state by a stationary one is at most $\\tau=(C+1)^{2d}e^{-T/d^{1"
     },
     {
       "from": "m1-prop-stationary-success",
       "to": "m1-thm-almost-uniform",
+      "label": "prop:stationary-success",
       "context": "tionary one is at most $\\tau=(C+1)^{2d}e^{-T/d^{160}}$. In a stationary ideal trial every pair $(X,a)$ has probability $\\pi(X)/f(X)=1/\\Lambda$. By Proposition~\\ref{prop:stationary-success}, successful pairs are in bijection with $\\Omega$, and the success probability $s_*=|\\Omega|/\\Lambda$ is at least $1/[2("
     },
     {
       "from": "m1-thm-dense-draw",
       "to": "m1-thm-almost-uniform",
+      "label": "thm:dense-draw",
       "context": "ompletion entries have $O(b+\\log d)$ bits. The proposal uses exactly $q_{\\rm s}$ unbiased bits. Each completion call has bounded polynomial bit cost by Theorem~\\ref{thm:dense-draw}; the numbers of steps, trials, and calls in \\eqref{eq:outer-parameters} are fixed polynomials. Comparisons, additions,"
     },
     {
       "from": "m1-thm-almost-uniform",
       "to": "m1-thm-exact-sampling",
+      "label": "thm:almost-uniform",
       "context": "Set \\[ D=d^6b^2,\\qquad k=2D,\\qquad\\delta=2^{-D},\\qquad M=|\\Omega|. \\] Theorem~\\ref{thm:almost-uniform} gives, for every $z\\in\\Omega$, $p_k(z)\\le1/M+\\delta^2$. Also $M\\le(C+1)^d\\le2^{db}$ and $D\\ge db$, so $M\\delta\\le1$. Th"
     },
     {
       "from": "m1-prop-law-tabulation",
       "to": "m1-thm-exact-sampling",
+      "label": "prop:law-tabulation",
       "context": "are zero. On the complementary event run the bounded sampler with accuracy $k$. On the correction branch, enumerate $\\Omega$ to obtain $M$ and use Proposition~\\ref{prop:law-tabulation} to compute $p_k(z)=a_z/2^R$. Form the integer weights \\begin{equation}\\label{eq:residual-integers} n_z=2^{R+D}-M(2^D-1"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-thm-exact-sampling",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] If either dimension is empty, if $N=0$, or if one dimension is one, return the unique feasible table as in Section~\\re"
     },
     {
       "from": "m2-lem-forest",
       "to": "m2-cor-hj-signatures",
+      "label": "lem:forest",
       "context": "s,\\ell_s+M_s]\\) for every retained cell. For small and free cells take \\([0,b_s]\\), and for a tree cell take \\[ [\\ell_s,\\ell_s+M_s]=[-10db_s,10db_s]. \\] Lemma~\\ref{lem:forest} shows that these tree intervals contain every completion required by the definition of \\(h_j\\). Represent a physical ro"
     },
     {
       "from": "m2-lem-integer-signature",
       "to": "m2-cor-hj-signatures",
+      "label": "lem:integer-signature",
       "context": "y one term, with precisely the root and tree penalty defining \\(h_j\\); there is no multiplicity from tree coordinates. The removal assertion follows from Lemma~\\ref{lem:integer-signature} and passage to a finite limit. Reflecting all coordinates, including those that are summed, gives the addition assertio"
     },
     {
       "from": "m2-lem-integer-signature",
       "to": "m2-lem-tree-marginal",
+      "label": "lem:integer-signature",
       "context": "} at $j=H$, with $0<\\alpha<1$. Sum every cell pair except $t$ at balance. All retained cells have positive width, including small cells of bound one, so Lemma~\\ref{lem:integer-signature} applies. The remaining required total is $M_t$. Let $a_{t;\\alpha}(k)$ be the resulting weight of the retained balanced"
     },
     {
       "from": "m2-lem-forest",
       "to": "m2-lem-tree-marginal",
+      "label": "lem:forest",
       "context": "oot equation. For each balanced small profile and free assignment those equations have exactly one tree completion, contained in the chosen intervals by Lemma~\\ref{lem:forest}. The surviving weight is exactly $2^{-D}$. Consequently, term by term, \\[ a_{t;\\alpha}(k)\\longrightarrow a_t(k). \\] P"
     },
     {
       "from": "m2-prop-contamination",
       "to": "m2-lem-tree-marginal",
+      "label": "prop:contamination",
       "context": "[Proof of Proposition~\\ref{prop:contamination}] Expand $C(H)$ over balanced small profiles and free integer vectors, giving each assignment mass $2^{-D}$. The forest"
     },
     {
       "from": "m2-cor-hj-signatures",
       "to": "m2-lem-binary-signatures",
+      "label": "cor:hj-signatures",
       "context": "ting quadratic form is exactly \\[ \\frac{\\prod_u n_u!}{\\prod_s b_s!} \\sum_{u,v} h_j(n-e_u-e_v)t_ut_v, \\] with zero entries for invalid removals. By Corollary~\\ref{cor:hj-signatures}, it has at most one positive eigenvalue. Together with the nonpositive group-sum-zero subspace, this proves the omissio"
     },
     {
       "from": "m2-lem-binary-contraction",
       "to": "m2-lem-binary-signatures",
+      "label": "lem:binary-contraction",
       "context": "es the addition property of \\(\\widetilde f\\). All \\(p\\)-subset weights in \\eqref{eq:lifts} are strictly positive. The closure assertions now follow from Lemma~\\ref{lem:binary-contraction}, applied respectively in omission and addition variables."
     },
     {
       "from": "m2-lem-binary-signatures",
       "to": "m2-lem-defect-inequalities",
+      "label": "lem:binary-signatures",
       "context": "usions and exclusions specified by \\(\\sigma\\). For \\eqref{eq:defect-two-pair}, sum every other unassigned pair at occupancy one, leaving only \\(i,l\\). By Lemma~\\ref{lem:binary-signatures}, the remaining positive two-element weight has an addition matrix with at most one positive eigenvalue. Restrict its qu"
     },
     {
       "from": "m2-lem-binary-contraction",
       "to": "m2-lem-defect-inequalities",
+      "label": "lem:binary-contraction",
       "context": "its symmetric cubic tensor, zero on repeated indices. Contract it along the indicator of the two elements of pair \\(k\\). By the full-matrix assertion of Lemma~\\ref{lem:binary-contraction}, the resulting matrix has at most one positive eigenvalue even while the two contracted indices are retained. Restrict"
     },
     {
       "from": "m2-lem-binary-signatures",
       "to": "m2-lem-transport",
+      "label": "lem:binary-signatures",
       "context": "nary slots other than $t$ at occupancy one. On the remaining ground set $R\\cup\\{a,b\\}$ the resulting degree is $|R|$, so $N$ is its two-omission matrix. Lemmas~\\ref{lem:binary-signatures} and \\ref{lem:binary-contraction} give the asserted signature. In particular, this argument uses the full-domain weight"
     },
     {
       "from": "m2-lem-binary-contraction",
       "to": "m2-lem-transport",
+      "label": "lem:binary-contraction",
       "context": "upancy one. On the remaining ground set $R\\cup\\{a,b\\}$ the resulting degree is $|R|$, so $N$ is its two-omission matrix. Lemmas~\\ref{lem:binary-signatures} and \\ref{lem:binary-contraction} give the asserted signature. In particular, this argument uses the full-domain weight $f$ even when an entry of $V_t(R)"
     },
     {
       "from": "m2-lem-defect-inequalities",
       "to": "m2-prop-transversal-variance",
+      "label": "lem:defect-inequalities",
       "context": "ecified single choices. For distinct unassigned labels define \\[ a_{il}= \\frac{\\widetilde c_{il}^{\\sigma}}{z_\\sigma} \\frac{\\widetilde c_{li}}{C}. \\] Lemma~\\ref{lem:defect-inequalities} gives \\begin{equation} a_{il}a_{li}\\leq\\frac1{16}, \\qquad a_{il}a_{lk}\\leq a_{ik} \\quad\\text{for distinct }i,l,k."
     },
     {
       "from": "m2-lem-transport",
       "to": "m2-prop-transversal-variance",
+      "label": "lem:transport",
       "context": ", for which $a_{kt}\\leq1$ at every other unassigned label $t$. If only one label remains, choose it as $k$. Branch on the two choices in pair $k$. Apply Lemma~\\ref{lem:transport} with the two elements of $k$ as singleton slots, both of multiplier one, and with the other unassigned pairs as ordinar"
     },
     {
       "from": "m2-lem-transport",
       "to": "m2-lem-defect-mean",
+      "label": "lem:transport",
       "context": "choices in pairs $i,l$, choose one whose transversal mass is at least $C/4$. Denote the selected elements by $a_i,a_l$ and their mates by $b_i',b_l'$. In Lemma~\\ref{lem:transport}, fix $a_l$ included and $b_i'$ excluded, and take $P_0=\\{a_i\\}$, $P_1=\\{b_l'\\}$. All other pairs are ordinary slots. A"
     },
     {
       "from": "m2-lem-defect-inequalities",
       "to": "m2-lem-defect-mean",
+      "label": "lem:defect-inequalities",
       "context": "s are therefore genuine states and edges of the chain, with the same endpoint weights. Their energy is at most $\\mathfrak D(g)$. The lift comparison and Lemma~\\ref{lem:defect-inequalities} give, for each ordinary slot $t$, \\begin{equation} c_{it}c_{tl} \\leq q^2\\widetilde c_{it}\\widetilde c_{tl} \\leq q^2C"
     },
     {
       "from": "m2-lem-defect-mean",
       "to": "m2-prop-observable-variance",
+      "label": "lem:defect-mean",
       "context": "Let $m=\\mathbb E_\\mu g$. Lemma~\\ref{lem:defect-mean} and $(a+b)^2\\leq2a^2+2b^2$ give \\[ (\\bar g_{il}-m)^2 \\leq\\frac{2C_{\\mathrm d}}{C}\\mathfrak D(g) +8\\Var_\\mu(g"
     },
     {
       "from": "m2-prop-transversal-variance",
       "to": "m2-prop-observable-variance",
+      "label": "prop:transversal-variance",
       "context": ")^2\\\\ &\\leq9\\Var_\\mu(g)+\\frac{2C_{\\mathrm d}}{C}\\mathfrak D(g)\\\\ &\\leq(9C_{\\mathrm p}+2C_{\\mathrm d})\\frac{\\mathfrak D(g)}{C}, \\end{align*} using Proposition~\\ref{prop:transversal-variance} in the last step. Finally, \\eqref{eq:energy} and \\eqref{eq:type-mass-bounds} give $\\mathfrak D(g)/C\\leq10p^4\\mathcal E("
     },
     {
       "from": "m2-prop-transversal-variance",
       "to": "m2-lem-trace",
+      "label": "prop:transversal-variance",
       "context": "entity} gives the exact normalization \\[ \\mathfrak D(\\widehat h) =2p^2\\Lambda\\mathcal E(\\widehat h) =2p^2C\\mathcal E_{\\mathrm{tr}}(h). \\] Proposition~\\ref{prop:transversal-variance} therefore implies \\[ \\Var_\\mu(h)\\leq2p^2C_{\\mathrm p}\\mathcal E_{\\mathrm{tr}}(h). \\] This is the stated inverse-gap b"
     },
     {
       "from": "m2-lem-integral-interpolation",
       "to": "m2-lem-bin-conductance",
+      "label": "lem:integral-interpolation",
       "context": "le\\mu(D_0)/2$. Set \\[ t=\\frac{1}{4dB},\\qquad r=tB=\\frac{1}{4d}, \\qquad M=(1-t)S+tD_0. \\] The set $M$ is a finite union of open boxes and contains $S$. Lemma~\\ref{lem:integral-interpolation}, applied with all three functions equal to $\\varrho_a$, gives \\begin{equation} \\mu(M\\setminus S)\\ge(2^t-1)\\mu(S)\\ge\\fr"
     },
     {
       "from": "m2-lem-forest",
       "to": "m2-lem-initialization",
+      "label": "lem:forest",
       "context": "Lemma~\\ref{lem:forest} gives \\(0\\leq D\\leq H\\). Each summand in \\(h_{j+1}\\) is therefore between one half and one times the corresponding sum"
     },
     {
       "from": "m2-lem-trace",
       "to": "m2-prop-annealing",
+      "label": "lem:trace",
       "context": "periment that continues its restart without a transition cap, and then takes its \\(N_{\\rm av}\\) observations using fresh randomness. Write \\(M=H+p+K\\). Lemma~\\ref{lem:trace} and \\eqref{eq:alg-minimum-mass} imply that, from any starting transversal, a stage of \\(\\tau\\) trace steps has pointwis"
     },
     {
       "from": "m2-lem-time-average",
       "to": "m2-prop-annealing",
+      "label": "lem:time-average",
       "context": "identities}, are at least \\(1/(20p^2)\\): this is the type probability bound for defect types, while \\(p_0\\geq 1/(5p^2)\\) and \\(C(j+1)/C(j)\\geq 1/2\\). By Lemma~\\ref{lem:time-average}, each empirical mean in the virtual observation trajectory has mean squared error about its stationary mean at most \\["
     },
     {
       "from": "m2-lem-initialization",
       "to": "m2-prop-annealing",
+      "label": "lem:initialization",
       "context": "ve errors in \\(\\widehat p_0,\\widehat p_{il}\\) change this value by a factor between \\((1-\\eta)/(1+\\eta)\\) and its reciprocal, both lying in \\([1/2,2]\\). Lemma~\\ref{lem:initialization} changes the ideal multiplier by at most another factor two at the next parameter. Equation~\\eqref{eq:alg-multiplier-upd"
     },
     {
       "from": "m2-prop-weight-oracle",
       "to": "m2-lem-bounded-implementation",
+      "label": "prop:weight-oracle",
       "context": "additive constant. A zero count causes an abort before any such division. This bound does not assume good multipliers or accurate weight calls. Proposition~\\ref{prop:weight-oracle} supplies a deterministic polynomial bound on the work and output length of each evaluation, including its statistically"
     },
     {
       "from": "m2-thm-main",
       "to": "m2-lem-bounded-implementation",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] For an infeasible input the preliminary deterministic test returns zero on every execution, as required. Suppose that"
     },
     {
       "from": "m2-prop-annealing",
       "to": "m2-lem-bounded-implementation",
+      "label": "prop:annealing",
       "context": "preliminary deterministic test returns zero on every execution, as required. Suppose that the input is feasible. First let \\(p\\geq 1\\). Combine Proposition~\\ref{prop:annealing} with Lemma~\\ref{lem:bounded-implementation}. Except on an event of probability at most \\(1/50+10J_*\\xi\\), there is no"
     },
     {
       "from": "m2-prop-contamination",
       "to": "m2-lem-bounded-implementation",
+      "label": "prop:contamination",
       "context": "+4\\xi)\\leq\\frac{\\epsilon}{16}. \\label{eq:alg-final-log-error} \\end{equation} The failure bound is less than \\(1/4\\), since \\(10J_*\\xi=\\eta/100\\). Proposition~\\ref{prop:contamination} gives \\[ Z\\leq C(H)\\leq (1+\\epsilon/32)Z. \\] Together with \\eqref{eq:alg-final-log-error}, this implies the desired re"
     },
     {
       "from": "m2-thm-main",
       "to": "m2-cor-integral-flows",
+      "label": "thm:main",
       "context": "lity, including edgeless and zero-capacity cases. If the table is infeasible, return zero for counting and report infeasibility for sampling. Otherwise Theorem~\\ref{thm:main} on the table gives the counting assertion with the stated bit bound. \\emph{Sampling by conditional counts.} We use the"
     }
   ]

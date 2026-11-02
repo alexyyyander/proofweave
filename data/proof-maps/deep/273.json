@@ -112,7 +112,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-entropy-photon-number-inequality-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The entropy photon-number inequality; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The entropy photon-number inequality.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -268,8 +268,7 @@
           "source": "The metric adapted to thermal relaxation",
           "detail": "[Defect estimate] Set \\[ A_*^2=_iw_i\\|q_i\\|_ F_i,* ^2, M_*^2=_iw_i|_i|^2, C_0=(h_0_ v F_0(v))^ -1/2 . \\] Then \\|q_0\\|_ F_0,* A_*+2 \\,C_0M_*. In particular, the previously reserved choice of may be…",
           "dependsOn": [
-            "m1-prop-metric",
-            "m1-prop-regularized-minimum"
+            "m1-prop-metric"
           ]
         },
         {
@@ -291,8 +290,7 @@
           "source": "Stationarity and the thermal limit",
           "detail": "[Entropy production identity] The quantities in satisfy _s=\\|q_s\\|_ F_s,* ^2-(e'_s-nr_s).",
           "dependsOn": [
-            "m1-lem-dual-finiteness",
-            "m1-lem-generator-covariance"
+            "m1-lem-dual-finiteness"
           ]
         },
         {
@@ -326,7 +324,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

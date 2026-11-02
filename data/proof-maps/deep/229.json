@@ -207,7 +207,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Reconstruction-Threshold-for-the-Ferromagnetic-Four-State-Potts-Model-October-5-2026/four-state-potts.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Reconstruction Threshold for the Ferromagnetic Four-State Potts Model; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Reconstruction Threshold for the Ferromagnetic Four-State Potts Model.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -326,7 +326,6 @@
           "source": "Finite verification",
           "detail": "[Finite sign verification] For each row of , the decision rule above terminates without failure, with the counts in Table~ . Every terminal cell is accepted by Type T or Type P. Consequently both…",
           "dependsOn": [
-            "m1-lem-subdivision",
             "m1-lem-type-t",
             "m1-lem-type-p"
           ]
@@ -345,7 +344,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Capacity-Criterion-for-Four-State-Potts-Reconstruction-on-Trees-October-5-2026/four-state-capacity.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A Capacity Criterion for Four-State Potts Reconstruction on Trees; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A Capacity Criterion for Four-State Potts Reconstruction on Trees.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -402,7 +401,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-exact-reconstruction-threshold-for-the-three-state-symmetric-channel-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The exact reconstruction threshold for the three-state symmetric channel; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The exact reconstruction threshold for the three-state symmetric channel.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -463,9 +462,7 @@
           "kind": "proposition",
           "source": "Posterior experiments and reductions",
           "detail": "[The limiting posterior] On a common realization of the tree and spins, the root posterior likelihood vectors \\(m^ () \\) converge almost surely to a vector \\(m^ () \\). Their laws converge weakly to a…",
-          "dependsOn": [
-            "m3-fnd-ordered"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-fnd-log-integrability",
@@ -641,8 +638,7 @@
             "m3-fnd-limit",
             "m3-thm-threshold",
             "m3-fnd-supercritical",
-            "m3-pos-nonreconstruction",
-            "m3-cor-sbm"
+            "m3-pos-nonreconstruction"
           ]
         },
         {
@@ -684,7 +680,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

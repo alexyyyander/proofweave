@@ -172,7 +172,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Stabilizer-Orbits-and-Thick-Tensor-Ideals-of-Dualizable-Kn-Local-Spectra-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Stabilizer orbits and thick tensor ideals of dualizable K(n)-local spectra; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Stabilizer orbits and thick tensor ideals of dualizable K(n)-local spectra.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -349,8 +349,7 @@
           "detail": "[Tate coordinates] For a -basis z_1,,z_r of T_x , the analytic map (y)=(_y(z_1),,_y(z_r)) has invertible differential at x on the height-at-least- h polydisc.",
           "dependsOn": [
             "m1-def-transport",
-            "m1-def-ks",
-            "m1-def-height-rigidity"
+            "m1-def-ks"
           ]
         },
         {
@@ -417,11 +416,9 @@
           "source": "Positive-characteristic orbit density",
           "detail": "[Finite analytic jets] Let F be a complete nonarchimedean valued field, let r1 , and use the maximum norm on F^r . Let =(_i)_ i=1 ^r be an analytic germ at 0 F^r with (0)=0 , and let a_j , for j1 ,…",
           "dependsOn": [
-            "m1-def-natural-comparison",
             "m1-def-recursion",
             "m1-def-stabilizer",
-            "m1-formal-separation",
-            "m1-bundles-nondegeneracy"
+            "m1-formal-separation"
           ]
         },
         {
@@ -465,8 +462,7 @@
           "dependsOn": [
             "m1-fin-curve",
             "m1-orb-density",
-            "m1-fin-translation",
-            "m1-fin-charzero"
+            "m1-fin-translation"
           ]
         },
         {
@@ -490,7 +486,6 @@
           "source": "Invariant ideals and the spectral classification",
           "detail": "[Established support comparison] For every prime \\(p\\) and height \\(n1\\), the following hold. The functor \\( F: D(E)\\) is exact and symmetric monoidal, where the source uses the \\(K(n)\\)-localized…",
           "dependsOn": [
-            "m1-thm-main",
             "m1-fin-radicals"
           ]
         },
@@ -503,8 +498,7 @@
           "source": "Invariant ideals and the spectral classification",
           "detail": "For every prime p and every n1 , \\[ ( D_ (n,p) ) =\\ D_1,, D_ n+1 \\ , \\ D_j\\ =\\ D_l:j l n+1\\ . \\] Thus D_1 is the generic point and D_ n+1 =0 is the unique closed point. For 0 k n , \\[ supp(L_ K(n)…",
           "dependsOn": [
-            "m1-fin-support",
-            "m1-thm-main"
+            "m1-fin-support"
           ]
         }
       ]
@@ -524,7 +518,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

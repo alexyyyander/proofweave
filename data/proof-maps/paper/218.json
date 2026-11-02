@@ -688,431 +688,517 @@
     {
       "from": "m1-lem-initial-coordinates",
       "to": "m1-prop-two-trajectories",
+      "label": "lem:initial-coordinates",
       "context": "choose-A} \\end{equation} This choice is possible before \\(T,H\\) are fixed: the leading variance is \\(C_\\rho\\varepsilon^2\\), and the leading norm bound in Lemma~\\ref{lem:initial-coordinates} is independent of those parameters. Next choose \\(D>0\\) so that \\begin{equation} (L-1)D>C_1A^2+1. \\label{eq:choose-D}"
     },
     {
       "from": "m1-lem-torus-duality",
       "to": "m1-prop-matching",
+      "label": "lem:torus-duality",
       "context": "rimal trajectory, \\eqref{eq:tuned-sector-convergence} applies directly at $\\beta_{\\rm p}$. For the dual trajectory it applies to $K^*(\\beta_{\\rm d})$. By Lemma~\\ref{lem:torus-duality}, $\\widehat Z(K)=\\mathsf H\\widehat Z(K^*)$ and the target is fixed by $\\mathsf H$. Thus the \\emph{primal} normalized par"
     },
     {
       "from": "m1-lem-crossing-one-step",
       "to": "m1-lem-crossing-bootstrap",
+      "label": "lem:crossing-one-step",
       "context": "s the required free collars. Its ratio to its spacing lies in a strictly smaller induction range. The inductive possibility estimates therefore justify Lemma~\\ref{lem:crossing-one-step}, at cost $CX_k(s_{k+1}/r)^c$. This is a fixed multiple of the $j=k$ term in \\eqref{eq:crossing-bootstrap-plain}; the n"
     },
     {
       "from": "m1-lem-crossing-one-step",
       "to": "m1-prop-torus-tests",
+      "label": "lem:crossing-one-step",
       "context": "vels at fixed enlarged environment. The expected error for test $T$ at step $j$ is at most \\[ C_TX_j\\min\\{1,(\\delta s_{j+1}/a_T^{\\rm phys})^c\\}, \\] by Lemmas~\\ref{lem:crossing-one-step} and~\\ref{lem:crossing-bootstrap}. Their sum tends to zero by the same geometric-weight argument as \\eqref{eq:crossing-w"
     },
     {
       "from": "m1-lem-crossing-bootstrap",
       "to": "m1-prop-torus-tests",
+      "label": "lem:crossing-bootstrap",
       "context": "nt. The expected error for test $T$ at step $j$ is at most \\[ C_TX_j\\min\\{1,(\\delta s_{j+1}/a_T^{\\rm phys})^c\\}, \\] by Lemmas~\\ref{lem:crossing-one-step} and~\\ref{lem:crossing-bootstrap}. Their sum tends to zero by the same geometric-weight argument as \\eqref{eq:crossing-weighted-decay}. At level $K$ the"
     },
     {
       "from": "m1-prop-local-comparison",
       "to": "m1-lem-fk-barriers",
+      "label": "prop:local-comparison",
       "context": "disjoint buffered rectangle constructions. Fix the subbands with enough clearance that a small erosion of the buffers preserves this lower bound. Proposition~\\ref{prop:local-comparison}, applied to these two circuit tests, transfers the lower bound to the quenched model, with environmental probability te"
     },
     {
       "from": "m1-prop-matching",
       "to": "m1-lem-fk-barriers",
+      "label": "prop:matching",
       "context": "al-comparison}, applied to these two circuit tests, transfers the lower bound to the quenched model, with environmental probability tending to one. Proposition~\\ref{prop:matching} makes this comparison available for both the primal and dual arrays at $\\beta_*$. Apply it to Edwards--Sokal spins for"
     },
     {
       "from": "m1-lem-fk-barriers",
       "to": "m1-lem-dual-arms",
+      "label": "lem:fk-barriers",
       "context": "Fix $x$. For every $z\\in B_{N+1}(x)$, choose $\\ell_N\\asymp\\log N$ concentric annuli of the type in Lemma~\\ref{lem:fk-barriers}, with inner radii between $N^{1/4}$ and a sufficiently small multiple of $N^{1/2}$. Choose their geometric spacing so t"
     },
     {
       "from": "m1-lem-fk-barriers",
       "to": "m1-prop-physical-criticality",
+      "label": "lem:fk-barriers",
       "context": "By Lemma~\\ref{lem:fk-barriers} and monotonicity, \\[ \\E_\\rho\\phi_{\\beta,\\omega}^{\\mathrm w} (0\\leftrightarrow\\infty)=0,"
     },
     {
       "from": "m1-lem-dual-arms",
       "to": "m1-prop-physical-criticality",
+      "label": "lem:dual-arms",
       "context": "qquad0<\\beta\\le\\beta_*. \\] Fix $\\beta'>\\beta_*$. Finite planar FK duality sends the primal odds to $2/w_e(\\beta')$, exactly the dual family considered in Lemma~\\ref{lem:dual-arms}. In each buffered interior box the induced dual boundary condition is dominated by full wiring. Thus the lemma bounds o"
     },
     {
       "from": "m1-prop-torus-tests",
       "to": "m1-prop-strip-transfer",
+      "label": "prop:torus-tests",
       "context": "h a fixed positive buffer. Use the target bond environment in that chart and independent bonds to complete the torus, whose period is chosen as in Proposition~\\ref{prop:torus-tests}. Until the final averaging step include those extra bonds in the environment. Let $E_h$ be the event of the two require"
     },
     {
       "from": "m1-lem-conditional-gluing",
       "to": "m1-prop-strip-transfer",
+      "label": "lem:conditional-gluing",
       "context": "e fixed finite vector $(\\1_{E_h},V)$. No comparison of the entire torus spin configurations is asserted. We verify the two stochastic orders needed for Lemma~\\ref{lem:conditional-gluing}. In either torus conditioned on $E_h$, inspect each corridor from its exterior side, stopping at its first crossing of"
     },
     {
       "from": "m1-cor-four-passages",
       "to": "m1-lem-progress",
+      "label": "cor:four-passages",
       "context": "riors disjoint. Thus there are six passages, in particular four. Fixed-factor crops give the same conclusion for square annuli if those are used in Corollary~\\ref{cor:four-passages}. For the random assertion, use a measurable continuous representative of $G$. Measurable progress coordinates are obt"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-lem-progress",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] The tuning, matching, and criticality arguments give $\\beta_* =\\beta_c^\\rho(\\varepsilon)$ for all sufficiently small f"
     },
     {
       "from": "m1-lem-ordered-chords",
       "to": "m1-lem-progress",
+      "label": "lem:ordered-chords",
       "context": "rrow\\SLE_3(D;a,b), \\] where $R_n$ is deterministic. Every further subsequence has a joint trace and comparison-curve limit, and the barrier argument and Lemma~\\ref{lem:ordered-chords} identify it as $(L,L,L)$ in traces. We explain the probabilistic passage to curves without assuming target curve tight"
     },
     {
       "from": "m2-pure-hyperplane",
       "to": "m2-pure-calibration",
+      "label": "pure:hyperplane",
       "context": "ed against a distant $B_x$, would give $\\E_0BB_x=O(|x|^{-w})$. This contradicts \\eqref{pure:energy-input}, since $w>2$. The cone assertion follows from Lemma~\\ref{pure:hyperplane}. We next show that, for one sufficiently large fixed $T$, any centered unit-norm cone observable $f_s$ satisfies \\begi"
     },
     {
       "from": "m2-pure-fixed-ratio",
       "to": "m2-pure-calibration",
+      "label": "pure:fixed-ratio",
       "context": "infty+\\|P_{2s}V_s\\|_\\infty\\leq C. \\] The last constant is independent of $A$, since $\\E_0|V_s|\\leq2\\E_0|Y_s|$. Apply the overall $C/T$ transfer bound of Lemma~\\ref{pure:fixed-ratio} to both factors, now conditioned on these radius-$2s$ collars, and integrate in the two disjoint radius-$Ts/4$ squares."
     },
     {
       "from": "m2-pure-calibration",
       "to": "m2-pure-charge",
+      "label": "pure:calibration",
       "context": "We first work at the origin on the geometric scales and with quarter-turn-invariant centered functions. By Lemma~\\ref{pure:calibration}, the vector $E_j=P_{s_j}B$ lies eventually in the cone and has norm comparable to $s_j^{-1}$. Since $\\beta_j=\\ell_{s_j"
     },
     {
       "from": "m2-pure-hyperplane",
       "to": "m2-pure-charge",
+      "label": "pure:hyperplane",
       "context": "$. At that scale compare $f$ with $\\widetilde Q(f)P_rB$, whose norm is at most $C\\|f\\|_\\infty$ by \\eqref{pure:energy-norm}. Their difference is stable. Lemma~\\ref{pure:hyperplane}, followed by norm contraction between adjacent scales, proves \\eqref{pure:energy-remainder} with $v=w$ and $\\widetilde"
     },
     {
       "from": "m2-pure-charge",
       "to": "m2-pure-fusion",
+      "label": "pure:charge",
       "context": "uares of radius a small fixed fraction of $r$. Write $F,G$ for the transferred observables and $U_x,U_y$ for the corresponding transfers of $B_x,B_y$. Theorem~\\ref{pure:charge} gives \\[ \\|F\\|_\\infty+\\|G\\|_\\infty\\leq C_Dl^{-1},\\qquad \\|F-Q(f)U_x\\|_\\infty+\\|G-Q(g)U_y\\|_\\infty \\leq C_Dl^{-"
     },
     {
       "from": "m2-pure-charge",
       "to": "m2-pure-positive-weight",
+      "label": "pure:charge",
       "context": "e between \\(e^{-t}\\) and \\(e^t\\). Consequently \\[ \\|h-1\\|_\\infty \\le \\min\\{K+1,e^{2t}-1\\} \\le C_K\\min\\{1,t\\}. \\] Apply the even transfer estimate in Theorem~\\ref{pure:charge} to the centered even function \\(h-1\\), supported in \\(B_{2m}\\). Since \\(R\\ge8m\\), it gives \\[ \\|P_R(h-1)\\|_\\infty \\le"
     },
     {
       "from": "m2-map-step",
       "to": "m2-map-reversal",
+      "label": "map:step",
       "context": "is bounded below by $e^{-C_LS_j}$, where $S_j$ is the local norm sum in \\eqref{map:mark-parameter}. This follows from the real log bounds used in Proposition~\\ref{map:step}; for a special square it applies to the tilt from $B_A$ to $B_A+G_A$. If two laws satisfy $\\mu\\ge(1-p)\\nu$ and $p>0$,"
     },
     {
       "from": "m2-pure-charge",
       "to": "m2-map-insertion-charge",
+      "label": "pure:charge",
       "context": "because the decorations and replacements preserve its unnormalized pairing and the partition function. Apply this to a pure bond tending to infinity. Theorem~\\ref{pure:charge} identifies the limiting pairing with $Q$, so the total lattice charge is unchanged. Dividing by the output scale $Ls$ i"
     },
     {
       "from": "m2-mom-one-step",
       "to": "m2-mom-hilbert",
+      "label": "mom:one-step",
       "context": "[Completion of Proposition~\\ref{mom:one-step}] The last line follows by combining \\eqref{mom:linear-total}, \\eqref{mom:regular-remainder}, and \\eqref{mom:outlier-dif"
     },
     {
       "from": "m2-pure-charge",
       "to": "m2-var-near-w",
+      "label": "pure:charge",
       "context": "ndence range. Every remaining coefficient has three or four potential occurrences. Their supports fit in a ball of radius $O(Hs)$. The charge bound in Theorem~\\ref{pure:charge}, the boundedness of pure expectation, and H\\\"older's inequality bound each coefficient of degree $d$ by $C_H X^d$. The"
     },
     {
       "from": "m2-pure-fusion",
       "to": "m2-var-shell",
+      "label": "pure:fusion",
       "context": "ation} \\mathcal T_{A\\cup B} =\\frac{T_A+T_B+h_{AB}}{1+c_{AB}}. \\label{var:two-group-identity} \\end{equation} If the anchor distance is $l$, Proposition~\\ref{pure:fusion} gives, coefficient by coefficient, \\begin{equation} h_{AB}=O(l^{-u}),\\qquad c_{AB}=l^{-2}\\bigl(\\kappa T_AT_B+o(1)\\big"
     },
     {
       "from": "m2-map-insertion-charge",
       "to": "m2-var-compatibility",
+      "label": "map:insertion-charge",
       "context": "tion charge obeys \\begin{equation} \\mathcal T_{\\mathrm{out}}=L^{-1}\\mathcal T_{\\mathrm{in}} \\label{var:total-charge-preservation} \\end{equation} by Corollary~\\ref{map:insertion-charge}. One can also see the normalization directly: the conditional coin likelihood integrates to one at every fixed old con"
     },
     {
       "from": "m2-pure-charge",
       "to": "m2-var-compatibility",
+      "label": "pure:charge",
       "context": "ration, and each conditional integration preserves pairing with a test outside the affected region. Pairing with a distant pure bond identifies $Q$ by Theorem~\\ref{pure:charge}. Centering the allocated output logs changes only a scalar, which disappears from the normalized insertion. The facto"
     },
     {
       "from": "m2-map-linearization",
       "to": "m2-var-compatibility",
+      "label": "map:linearization",
       "context": "omponents containing means only cannot create a lower-order term through random allocation. At the only relevant order their output is the linear map of Lemma~\\ref{map:linearization}, which is independent of priorities; its selection indicators are reference auxiliary variables, integrated by $Q$. In"
     },
     {
       "from": "m2-pure-fusion",
       "to": "m2-var-compatibility",
+      "label": "pure:fusion",
       "context": "tive directions inside a group; no within-group independence is used. The remaining terms have a cross factor and hence an $O_L(H^{-u})$ bound from Proposition~\\ref{pure:fusion}. The strip therefore costs $O_L(H^{1-u})z^4=o_H(1)z^4$. Keeping the covariance subtractions with each coefficient is e"
     },
     {
       "from": "m2-mom-taylor-substitution",
       "to": "m2-var-compatibility",
+      "label": "mom:taylor-substitution",
       "context": "variance subtractions with each coefficient is essential here and is permitted because the cutoff depends only on the tuple of labels. Finally apply Corollary~\\ref{mom:taylor-substitution}. For each fixed output tuple, \\eqref{var:variance-expansion} is a sum of bounded multilinear expressions in at most fo"
     },
     {
       "from": "m2-var-near-w",
       "to": "m2-var-flow",
+      "label": "var:near-W",
       "context": "Combine Lemmas~\\ref{var:near-W}, \\ref{var:shell}, and \\ref{var:compatibility}."
     },
     {
       "from": "m2-var-shell",
       "to": "m2-var-flow",
+      "label": "var:shell",
       "context": "Combine Lemmas~\\ref{var:near-W}, \\ref{var:shell}, and \\ref{var:compatibility}."
     },
     {
       "from": "m2-var-compatibility",
       "to": "m2-var-flow",
+      "label": "var:compatibility",
       "context": "Combine Lemmas~\\ref{var:near-W}, \\ref{var:shell}, and \\ref{var:compatibility}."
     },
     {
       "from": "m2-var-near-w",
       "to": "m2-traj-initialization",
+      "label": "var:near-W",
       "context": "h function $K$ proves the claimed asymptotics and derivative. The finite number of bounded bond functions in a cell gives the bounds on $X_0$ and $Y_0$. Lemma~\\ref{var:near-W} gives the assertion about $v_{H,0}$."
     },
     {
       "from": "m2-mom-one-step",
       "to": "m2-traj-critical-trajectory",
+      "label": "mom:one-step",
       "context": "We first choose constants so that the moment bounds propagate whenever the mean remains between the walls $m=\\pm Dv$. In the estimates of Proposition~\\ref{mom:one-step}, write $C_1$ for a common constant and retain its contraction constant $\\rho<1$. Choose $A$ large enough for the initi"
     },
     {
       "from": "m2-traj-initialization",
       "to": "m2-traj-critical-trajectory",
+      "label": "traj:initialization",
       "context": "subsequently fixed $H$, the initial ratios $m_0/(Dv_{H,0})$ at $h=-T\\theta^2$ and $h=T\\theta^2$ are strictly below $-1$ and above $1$ for small $\\theta$. Lemma~\\ref{traj:initialization} permits this choice independently of $H$: the leading denominator is $2Da^2\\theta^2$, whereas the leading numerator div"
     },
     {
       "from": "m2-var-near-w",
       "to": "m2-traj-critical-trajectory",
+      "label": "var:near-W",
       "context": "ble from $Y_0\\le C_{s_0}(1+T)\\theta^2$ and $v_{H,0}/\\theta^2\\to2a^2$. The order so far is $A,D,T,B$. For data satisfying \\eqref{traj:invariant-bounds}, Lemma~\\ref{var:near-W} gives \\begin{equation} W=v+O_H(v^{3/2}), \\label{traj:W-comparison} \\end{equation} where the implicit constant include"
     },
     {
       "from": "m2-var-flow",
       "to": "m2-traj-critical-trajectory",
+      "label": "var:flow",
       "context": "ef{var:near-W} gives \\begin{equation} W=v+O_H(v^{3/2}), \\label{traj:W-comparison} \\end{equation} where the implicit constant includes $A^3$. Use Proposition~\\ref{var:flow} with $z=\\sqrt v$. Its constants $A,B$ are now fixed. Choose $H$ sufficiently large that the $e_Hv^2$ error is smaller"
     },
     {
       "from": "m2-map-step",
       "to": "m2-traj-critical-trajectory",
+      "label": "map:step",
       "context": "ons enter any specified local stencil, so the corresponding potentials are almost surely continuous at the fixed $h$. The crude real-log bounds of Proposition~\\ref{map:step} dominate them on every compact initial parameter interval by a finite deterministic bound at each fixed number of steps"
     },
     {
       "from": "m2-cross-single-level",
       "to": "m2-cross-bootstrap",
+      "label": "cross:single-level",
       "context": "s_{k+1}$. Its eroded collars remain in the region where the new specification is valid. Thus the inductive possibility bound supplies the hypothesis of Lemma~\\ref{cross:single-level}. That lemma costs $C X_k(s_{k+1}/r)^c$, which is a fixed multiple of $X_k(s_k/r)^c$. Adding it to the inductive plain"
     },
     {
       "from": "m2-map-reversal",
       "to": "m2-cross-torus-comparison",
+      "label": "map:reversal",
       "context": "Couple each successive level by the reversal in Proposition~\\ref{map:reversal}. After averaging over the environment, the probability that a test changes at step $j$ is at most \\[ C_TX_j\\min\\{1,(\\"
     },
     {
       "from": "m2-cross-single-level",
       "to": "m2-cross-torus-comparison",
+      "label": "cross:single-level",
       "context": "r the environment, the probability that a test changes at step $j$ is at most \\[ C_TX_j\\min\\{1,(\\delta s_{j+1}/a_T^{\\rm phys})^c\\}. \\] This follows from Lemma~\\ref{cross:single-level} and Proposition~\\ref{cross:bootstrap}; if the test is no larger than the edit square, use the crude candidate count. S"
     },
     {
       "from": "m2-cross-bootstrap",
       "to": "m2-cross-torus-comparison",
+      "label": "cross:bootstrap",
       "context": "test changes at step $j$ is at most \\[ C_TX_j\\min\\{1,(\\delta s_{j+1}/a_T^{\\rm phys})^c\\}. \\] This follows from Lemma~\\ref{cross:single-level} and Proposition~\\ref{cross:bootstrap}; if the test is no larger than the edit square, use the crude candidate count. Sum over steps and the fixed family. E"
     },
     {
       "from": "m2-cross-bootstrap",
       "to": "m2-cross-four-passages",
+      "label": "cross:bootstrap",
       "context": "eir inner lattice radii eventually exceed $M_0s_0$. Condition off their free charts as in \\eqref{cross:quenched-product} and use the plain bound of Proposition~\\ref{cross:bootstrap}. Their environment neighborhoods are disjoint, so \\eqref{cross:annealed-product}, without an inserted mark, yields \\["
     },
     {
       "from": "m2-map-step",
       "to": "m2-crit-self-dual-tuning",
+      "label": "map:step",
       "context": "Choose a fixed large integer $M$ and torus periods $N_k=Ms_k$, so that every complete support and environment-dependence neighborhood of Proposition~\\ref{map:step}, through scale $k$, embeds in the torus. The primitive environment variables in each such neighborhood have their plane"
     },
     {
       "from": "m2-crit-torus-identities",
       "to": "m2-crit-self-dual-tuning",
+      "label": "crit:torus-identities",
       "context": "duality sends $(h,\\xi_e)$ to $(-h,-\\xi_e)$, with the signs transported along the crossing-edge bijection. This transformation preserves their iid law. By Lemma~\\ref{crit:torus-identities}, the normalized duality transform is the orthogonal matrix $\\mathsf H$, and its pure target is fixed. Therefore \\eqref{"
     },
     {
       "from": "m2-cross-local-comparison",
       "to": "m2-crit-ring-barrier",
+      "label": "cross:local-comparison",
       "context": "constant $2c_0>0$, uniformly over pins outside the buffers; this is precisely \\cite[Section~2, Proposition ``Pure buffered RSW consequences'']{S}. Proposition~\\ref{cross:local-comparison} transfers this lower bound to the random spin law, with probability tending to one over the local environment and unifo"
     },
     {
       "from": "m2-crit-ring-barrier",
       "to": "m2-crit-subcritical-arms",
+      "label": "crit:ring-barrier",
       "context": "orhoods are disjoint. Let $\\eta_N\\to0$ be an upper bound for their bad-environment probabilities, uniformly over all these radii and centers, provided by Lemma~\\ref{crit:ring-barrier}. Independence for the annuli around one fixed $z$ gives \\[ \\Prob\\bigl(\\text{at least }m_N/2\\text{ annuli at }z"
     },
     {
       "from": "m2-crit-ring-barrier",
       "to": "m2-crit-physical",
+      "label": "crit:ring-barrier",
       "context": "Lemma~\\ref{crit:ring-barrier} and monotonicity give $m_\\theta(h)=0$ for $h\\le0$. Fix $h=b>0$. Planar FK duality replaces the edge odds by $2/v_e$, so"
     },
     {
       "from": "m2-crit-subcritical-arms",
       "to": "m2-crit-physical",
+      "label": "crit:subcritical-arms",
       "context": "ndition is dominated by full wiring. Taking limits, the dual of the infinite-volume wired primal law therefore satisfies the local annealed arm bounds of Lemma~\\ref{crit:subcritical-arms}. A closed-dual circuit surrounding $B_M$ whose farthest distance from the origin lies in $[R,2R)$ has diameter at leas"
     },
     {
       "from": "m2-thm-main",
       "to": "m2-crit-physical",
+      "label": "thm:main",
       "context": "ment. Their plus magnetization is consequently positive. This proves $\\beta_*=\\beta_c(\\epsilon)$ with the normalization and plus boundary convention of Theorem~\\ref{thm:main}."
     },
     {
       "from": "m2-cross-torus-comparison",
       "to": "m2-curv-strip-transfer",
+      "label": "cross:torus-comparison",
       "context": "s, their reveal regions, and the finitely many strips inside a torus chart with a fixed positive external buffer. Choose a torus period allowed by Proposition~\\ref{cross:torus-comparison}. In this chart use the same bond environment as the target; complete the torus with independent bonds. Write $E_h$ fo"
     },
     {
       "from": "m2-curv-conditional-gluing",
       "to": "m2-curv-strip-transfer",
+      "label": "curv:conditional-gluing",
       "context": "\\end{equation} At this stage the environmental expectation includes the independently added torus bonds. We verify the two order comparisons needed for Lemma~\\ref{curv:conditional-gluing}. In either torus, conditional on $E_h$, reveal the prescribed crossing nearest the exterior side of each corridor. Th"
     },
     {
       "from": "m2-curv-strip-transfer",
       "to": "m2-curv-geometric-input",
+      "label": "curv:strip-transfer",
       "context": "The argument uses only the deterministic geometry and noncrossing of opposite signed paths with the target contour; it applies to the couplings in Proposition~\\ref{curv:strip-transfer}."
     },
     {
       "from": "m2-thm-main",
       "to": "m2-curv-progress",
+      "label": "thm:main",
       "context": "[Completion of the proof of Theorem~\\ref{thm:main}] Fix $\\epsilon$ in the interval already chosen in Sections~\\ref{sec:crossings} and~\\ref{sec:criticality}. Begin with a"
     },
     {
       "from": "m2-curv-geometric-input",
       "to": "m2-curv-progress",
+      "label": "curv:geometric-input",
       "context": "tion} where $R_n\\Longrightarrow\\mathrm{SLE}_3(D;a,b)$ in the curve metric. Choose $\\eta_j\\downarrow0$ and the displacements and finite strip families of Lemma~\\ref{curv:geometric-input}. For each fixed $j$, apply Proposition~\\ref{curv:strip-transfer} to the two entire families. Choose increasing determi"
     },
     {
       "from": "m2-curv-strip-transfer",
       "to": "m2-curv-progress",
+      "label": "curv:strip-transfer",
       "context": "metric. Choose $\\eta_j\\downarrow0$ and the displacements and finite strip families of Lemma~\\ref{curv:geometric-input}. For each fixed $j$, apply Proposition~\\ref{curv:strip-transfer} to the two entire families. Choose increasing deterministic thresholds $n_j$ so that for all $n\\ge n_j$ the geometric p"
     },
     {
       "from": "m2-curv-ordered-chords",
       "to": "m2-curv-progress",
+      "label": "curv:ordered-chords",
       "context": "y the boundary winding argument. Lemma~\\ref{curv:geometric-input} gives \\eqref{curv:forbidden-sides}. Since $L$ and $U$ have the same simple chord law, Lemma~\\ref{curv:ordered-chords} gives \\[ K=L=U\\qquad\\text{almost surely as traces}. \\] Represent this joint convergence with almost-sure convergence"
     },
     {
       "from": "m2-cross-four-passages",
       "to": "m2-curv-progress",
+      "label": "cross:four-passages",
       "context": "diate. It preserves every target passage probability and requires no prior tightness of the target paths in the curve metric. The marginal estimate Corollary~\\ref{cross:four-passages} is precisely \\eqref{curv:passage-criterion} for these target curves, including after this lift. Lemma~\\ref{curv:progre"
     },
     {
       "from": "m3-ref-charges",
       "to": "m3-ref-operator",
+      "label": "ref:charges",
       "context": "[Proof of Lemma~\\ref{ref:charges} and Proposition~\\ref{ref:operator}] Fix a sufficiently large integer $B$ and put $w_k=B^kw$. In the appropriate parity"
     },
     {
       "from": "m3-ref-charges",
       "to": "m3-ref-ope",
+      "label": "ref:charges",
       "context": "ane and in every sufficiently large plus disk: condition on both contours and use independence of their interiors. They consequently preserve charges by Lemma~\\ref{ref:charges}. Proposition~\\ref{ref:operator} gives $\\norm{\\Phi_n}_\\infty+\\norm{\\Psi_n}_\\infty\\le C$, with both supports in $B_{Cn}("
     },
     {
       "from": "m3-ref-operator",
       "to": "m3-ref-ope",
+      "label": "ref:operator",
       "context": "rge plus disk: condition on both contours and use independence of their interiors. They consequently preserve charges by Lemma~\\ref{ref:charges}. Proposition~\\ref{ref:operator} gives $\\norm{\\Phi_n}_\\infty+\\norm{\\Psi_n}_\\infty\\le C$, with both supports in $B_{Cn}(0)$. Their scale-normalized char"
     },
     {
       "from": "m3-block-tree",
       "to": "m3-block-exact",
+      "label": "block:tree",
       "context": "sufficiently small scalar amplitudes gives $\\int e^{H(\\zeta)}\\dd\\mu_0=\\int e^{B'}\\mathcal F(\\zeta)\\dd\\mu_0$. By construction $B'+\\log\\mathcal F=s'+H'$. Lemma~\\ref{block:tree} justifies this logarithm, its exponentiation, and the extension to the whole small-entry ball, including finite source"
     },
     {
       "from": "m3-block-finite",
       "to": "m3-block-exact",
+      "label": "block:finite",
       "context": ", its exponentiation, and the extension to the whole small-entry ball, including finite source jets. Absolute finite-volume summability, proved in Proposition~\\ref{block:finite}, permits truncation of an infinite slot list. This proves \\eqref{block:partition-identity}. Its denominator at zero s"
     },
     {
       "from": "m3-block-carrier",
       "to": "m3-block-tree",
+      "label": "block:carrier",
       "context": "output anchor; summing this choice costs at most $k$, harmless below. For a marked output, root instead at the occurrence containing its first mark. By Lemma~\\ref{block:carrier}, an output weight $v_{\\rm out}$ costs \\[ e^{v_{\\rm out}n'}\\le e^{Cv_{\\rm out}k} \\prod_{a=1}^ke^{Cv_{"
     },
     {
       "from": "m3-block-tree",
       "to": "m3-block-diameter",
+      "label": "block:tree",
       "context": "A connected union of $n'$ parent cells has diameter at most $Cn'R$. Run Lemma~\\ref{block:tree} with twice the required output weight, and retain one weight after the other has paid the ordinary norm. The remaining"
     },
     {
       "from": "m3-block-tree",
       "to": "m3-block-tails",
+      "label": "block:tree",
       "context": "order at least two in small entries or comes from a singleton animal of size $n\\ge L/2$. The first class is bounded by $C_L\\delta^2$ with weight $w$ by Lemma~\\ref{block:tree}. For the second, the weight allocation in \\eqref{block:compression} leaves a fixed positive fraction of $wn$ unused. S"
     },
     {
       "from": "m3-block-diameter",
       "to": "m3-block-finite",
+      "label": "block:diameter",
       "context": "matching chart footprints. The conditional identities and positivity argument are unchanged. The possible nonchart scalar discrepancy is bounded by Corollary~\\ref{block:diameter}. For a box use an ambient grid extending past it and keep prescribed exterior spins as formal coordinates until they a"
     },
     {
       "from": "m3-block-exact",
       "to": "m3-block-finite",
+      "label": "block:exact",
       "context": "ating the animal lists and passing to the limit proves the full finite-volume partition identity and justifies all finite-volume expansions used in Proposition~\\ref{block:exact}. For completeness let $K$ bound the input principal norms at a given step. A selected component producing a fixed pri"
     },
     {
       "from": "m3-ref-comparison",
       "to": "m3-norm-attenuation",
+      "label": "ref:comparison",
       "context": "e of $w$, whose contour lies beyond the collar. Put \\[ D=\\frac{P_{Cw}e^B}{\\langle e^B\\rangle_0},\\qquad N=\\frac{P_{Cw}(e^BF)}{\\langle e^B\\rangle_0}. \\] Lemma~\\ref{ref:comparison} bounds, pointwise, the reference law of the inner spins under any contour assignment above and below by fixed multiples"
     },
     {
       "from": "m3-ref-operator",
       "to": "m3-norm-attenuation",
+      "label": "ref:operator",
       "context": "therefore gives $c\\le D\\le C$ and $|N|\\le C\\norm F_\\infty$, uniformly in $B$. Both functions are even and $\\langle D\\rangle_0=1$. The even part of Proposition~\\ref{ref:operator}, followed by the tower property, gives \\[ P_RD=1+d_R,\\qquad P_RN=\\langle N\\rangle_0+n_R, \\qquad \\norm{d_R}_\\infty\\le"
     },
     {
       "from": "m3-ref-dictionary",
       "to": "m3-norm-reproduction",
+      "label": "ref:dictionary",
       "context": "the $HR$ contour. The weighted placement bound and Minkowski give \\[ \\norm{\\norm A_\\infty}_2\\le C_L Bs. \\] The finite dictionary of Lemma~\\ref{ref:dictionary} supplies $N=N(\\eta,L)$ actual contour assignments $\\sigma_1,\\ldots,\\sigma_N$ such that \\[ \\norm{\\pi P_{HR}A}_\\infty \\"
     },
     {
       "from": "m3-norm-taylor",
       "to": "m3-norm-source",
+      "label": "norm:taylor",
       "context": "l good factors are bounded deterministically, and a changed bad decision is paid by the unused mixed moment powers. The same summable series as in Proposition~\\ref{norm:taylor} proves the asserted $O(U^qs^3)$ bound. In $L^q$ retain one background factor and use \\eqref{norm:weighted-holder} with"
     },
     {
       "from": "m3-block-tree",
       "to": "m3-norm-source",
+      "label": "block:tree",
       "context": "K_{ai}\\ge0. \\end{equation} Here the coefficients are deterministic majorants, not the realized coefficients of the map. They include the factor $L^d$. Lemma \\ref{block:tree}, with the source vertex retained, proves that their weighted row sums are bounded by $C L^d$; reserving additional inpu"
     },
     {
       "from": "m3-norm-reproduction",
       "to": "m3-norm-source",
+      "label": "norm:reproduction",
       "context": "output background slot $b$ and source input $i$. Estimate $\\norm{\\norm{h'_b}_\\infty}_{L^p(\\mu_i)}$ using the deterministic decomposition preceding Proposition~\\ref{norm:reproduction}. If $n_i>M$, crude Minkowski and \\eqref{norm:mixed-input} give \\begin{equation}\\label{norm:mixed-long-source} \\norm{\\"
     },
     {
       "from": "m3-block-carrier",
       "to": "m3-coef-profiles",
+      "label": "block:carrier",
       "context": "ent in the plane-centered background log list at scale $j$. All its anchors follow the same chain of parent cells. The fixed-degree carrier estimate of Lemma~\\ref{block:carrier} bounds the number of occupied slot types and their lengths by constants independent of $j$. Increasing $L$ makes these"
     },
     {
       "from": "m3-norm-taylor",
       "to": "m3-coef-profiles",
+      "label": "norm:taylor",
       "context": "two linear output letters. Its input partitions use either $Y_j^*$ or two copies of $V_j$. These terms are bounded by the multilinear estimates of Proposition~\\ref{norm:taylor}. The strict contractions of Proposition~\\ref{lin:background} therefore bound $Y_j^*$ and $W_j^*$. In~\\eqref{coef:Z}, t"
     },
     {
       "from": "m3-lin-background",
       "to": "m3-coef-profiles",
+      "label": "lin:background",
       "context": "$Y_j^*$ or two copies of $V_j$. These terms are bounded by the multilinear estimates of Proposition~\\ref{norm:taylor}. The strict contractions of Proposition~\\ref{lin:background} therefore bound $Y_j^*$ and $W_j^*$. In~\\eqref{coef:Z}, the constant marked tensor is deterministic. Its first nonzero"
     },
     {
       "from": "m3-lin-marked",
       "to": "m3-coef-profiles",
+      "label": "lin:marked",
       "context": "ontracting connected marked/background transport, with bounded forcing from the constant marked tensor and $V_j$; hence $Z_{j,q,y}^*$ is bounded by Proposition~\\ref{lin:marked}. The degree-two coefficient of $\\cum(u_{j,y}^{\\otimes q},h_j,h_j)$ is zero: at that degree the marked argument is dete"
     },
     {
       "from": "m3-block-exact",
       "to": "m3-coef-invariance",
+      "label": "block:exact",
       "context": "the coefficient and place an outer contour beyond every cut and carrier which occurs in it. For each fixed spin assignment on that contour, apply Proposition~\\ref{block:exact} to the system inside it. The termwise conditional-expectation proof of that proposition leaves these contour spins fix"
     },
     {
       "from": "m3-ref-ope",
       "to": "m3-coef-averages",
+      "label": "ref:ope",
       "context": "at $t_i^2t_k$ and $t_it_k^2$ differ by \\begin{equation}\\label{coef:cubic-error} O\\bigl(r^{-2}+(hr)^{-1}\\bigr). \\end{equation} Since $|A_{ik}|\\le C/h$ by Lemma~\\ref{ref:ope}, squaring the second-degree coefficient adds at most $C((hr)^{-1}+r^{-2})$. The first-degree/cubic crosses obey the sa"
     },
     {
       "from": "m3-norm-taylor",
       "to": "m3-flow-prefix",
+      "label": "norm:taylor",
       "context": "mates reproduce those bounds. This separation is useful because no sign condition is available for an individual $b_j$. The finite Taylor rule in Proposition~\\ref{norm:taylor} determines the cumulant recursion with remainder $O(G_j^{5/2})$. The required algebra can be described explicitly. As"
     },
     {
       "from": "m3-lin-background",
       "to": "m3-flow-prefix",
+      "label": "lin:background",
       "context": "r spaces. The indexed estimates in Proposition~\\ref{norm:taylor} justify all slot sums. The charge of linear covariance transport is unchanged by Proposition~\\ref{lin:background}. Equations~\\eqref{flow:rough} and~\\eqref{flow:cov-recursion} therefore first give the coarse estimate $g_{j+1}-g_j=O(G"
     },
     {
       "from": "m3-coef-averages",
       "to": "m3-flow-prefix",
+      "label": "coef:averages",
       "context": "rable to one on the input prefix, the two geometric errors have bounded sums, and the reciprocal Taylor remainder is $O(G_j)$, bounded by $O(s_j)$. Proposition~\\ref{coef:averages} says that $R_k=\\sum_{j<k}(b_j+B_0)=o(k)$. Thus for each $\\eta>0$ there is $C_\\eta<\\infty$ such that $|R_k|\\le\\eta k+C_"
     },
     {
       "from": "m3-norm-reproduction",
       "to": "m3-flow-prefix",
+      "label": "norm:reproduction",
       "context": "the tensor input required by the moment reproduction estimate; no output probability norm has been assumed to obtain it. For the moment bounds in Proposition~\\ref{norm:reproduction}, choose $B_2$ larger than the fixed multiple of $F_*$ and the initial second moment bound, and $B$ larger than the init"
     }
   ]

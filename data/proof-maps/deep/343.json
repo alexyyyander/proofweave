@@ -147,7 +147,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Symplectic-Ball-Packings-in-Higher-Dimensions-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Symplectic Ball Packings in Higher Dimensions; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Symplectic Ball Packings in Higher Dimensions.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -189,7 +189,6 @@
           "source": "Hamiltonian comparison on a toric domain",
           "detail": "[Lifted rearrangement] For every continuous convex \\(F:\\), every coordinate \\(j\\), and every \\(>0\\), there is a Hamiltonian diffeomorphism \\(q_j:V V\\) such that \\[ F q_j R_jF+. \\] Its isotopy…",
           "dependsOn": [
-            "m1-cmp-comparison",
             "m1-cmp-rearrangement-properties"
           ]
         },
@@ -212,8 +211,7 @@
           "source": "Hamiltonian comparison on a toric domain",
           "detail": "[Planar rearrangement] Let \\(f_y:[0,1]\\) be a jointly continuous family of convex functions, with \\(y\\) in a compact convex parameter set. Let \\(g_y\\) be their increasing rearrangements with respect…",
           "dependsOn": [
-            "m1-cmp-planar-disks",
-            "m1-cmp-lifted"
+            "m1-cmp-planar-disks"
           ]
         },
         {
@@ -330,8 +328,6 @@
             "m1-app-quadrics",
             "m1-geo-transfer",
             "m1-geo-bundle",
-            "m1-cmp-comparison",
-            "m1-surf-packing",
             "m1-geo-relative-moser"
           ]
         },
@@ -423,11 +419,9 @@
           "source": "A distinguished large ball in real dimension six",
           "detail": "Let \\(R_0,R_1,,R_k>0\\), with \\(R_01/2\\), satisfy \\[ _ i=0 ^k R_i^3<1, R_i+R_j<1(i j). \\] Then the disjoint union of their closed six-dimensional balls embeds symplectically into the open ball of…",
           "dependsOn": [
-            "m1-surf-packing",
             "m1-six-toric-model",
             "m1-six-moment-transfer",
             "m1-six-cut",
-            "m1-six-quadric",
             "m1-geo-transfer",
             "m1-geo-relative-moser",
             "m1-geo-shell",
@@ -451,7 +445,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

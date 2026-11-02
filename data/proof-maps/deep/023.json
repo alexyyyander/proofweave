@@ -162,7 +162,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-unconditional-first-moment-for-cubic-Gauss-sums-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from An unconditional first moment for cubic Gauss sums; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from An unconditional first moment for cubic Gauss sums.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -247,9 +247,7 @@
           "kind": "proposition",
           "source": "Type I estimates",
           "detail": "[Type I at large Mellin heights] Suppose RU X , and let (a_r) be divisor-bounded on Nr R . Suppose the smooth compactly supported weights W_r have fixed support ratios and uniformly bounded…",
-          "dependsOn": [
-            "m1-thm-hb-height"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-dual",
@@ -296,7 +294,6 @@
             "m1-thm-cls",
             "m1-lem-cubic-extensions",
             "m1-lem-ordinary-sieve",
-            "m1-prop-dual",
             "m1-prop-typei"
           ]
         },
@@ -348,12 +345,7 @@
           "kind": "lemma",
           "source": "An exact decomposition of the prime sum",
           "detail": "[The sequence condition] Every nonsparse ordinary b coefficient satisfies (SW): against any nonprincipal cubic Hecke character of the indicated trivial infinite parameter and primitive conductor of…",
-          "dependsOn": [
-            "m1-prop-decomposition",
-            "m1-lem-prime-grouping",
-            "m1-lem-stopping-separation",
-            "m1-prop-dispersion"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-bilinear-low",
@@ -388,12 +380,10 @@
           "source": "Bilinear sums and the sharp prime cutoff",
           "detail": "[Fourier truncation] Let \\(1 T X\\), and let \\(V\\) be a fixed smooth function supported in \\((1/2,4)\\), equal to one on a neighborhood of \\([1,2]\\). There is a smooth function \\(I_T\\) such that…",
           "dependsOn": [
-            "m1-thm-main",
             "m1-prop-decomposition",
             "m1-prop-typei",
             "m1-prop-bilinear-low",
-            "m1-prop-typeiheight",
-            "m1-prop-bilinear-height"
+            "m1-prop-typeiheight"
           ]
         },
         {
@@ -435,7 +425,6 @@
           "source": "Fixed angular twists",
           "detail": "[Angular Type I estimates] Suppose RU X , 1 R X^ .51 , and (a_r) is divisor-bounded on Nr R . If W_r has common fixed compact support in (0,) and each fixed derivative is bounded by a fixed…",
           "dependsOn": [
-            "m1-prop-typei",
             "m1-lem-angular-completed-height"
           ]
         },
@@ -448,9 +437,7 @@
           "source": "Fixed angular twists",
           "detail": "[Fixed-angular exceptional moments] Proposition~ holds with replaced by _ . The constants , and the implied constant may additionally depend on the fixed integer .",
           "dependsOn": [
-            "m1-lem-smooth-character-duality",
-            "m1-prop-dual",
-            "m1-lem-character-gram"
+            "m1-prop-dual"
           ]
         },
         {
@@ -461,10 +448,7 @@
           "kind": "lemma",
           "source": "Fixed angular twists",
           "detail": "[The angular sequence condition] Every nonsparse ordinary coefficient _0 constructed in Proposition~ satisfies (SW) after replacement by _=__0 .",
-          "dependsOn": [
-            "m1-lem-decomposition-sw",
-            "m1-lem-angular-hecke"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-angular-dispersion",
@@ -478,8 +462,7 @@
             "m1-prop-angular-dual",
             "m1-prop-typei",
             "m1-thm-angular",
-            "m1-lem-perron-truncation",
-            "m1-lem-angular-hecke"
+            "m1-lem-perron-truncation"
           ]
         }
       ]
@@ -499,7 +482,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

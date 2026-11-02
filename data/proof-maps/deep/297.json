@@ -152,7 +152,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-counterexample-to-Naimarks-problem-in-ZFC-September-24-2026/naimark-counterexample-zfc.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A counterexample to Naimark's problem in ZFC; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A counterexample to Naimark's problem in ZFC.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -353,10 +353,7 @@
           "kind": "lemma",
           "source": "Closed subiterations and countable determination",
           "detail": "Let (B_)_ be a continuous chain whose successor inclusions have property (U). Then every inclusion B_ B_ , for , has (U). The unique lifts of equivalent pure states are equivalent.",
-          "dependsOn": [
-            "m1-na-unique-lift",
-            "m1-na-unitary-states"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-na-inequivalent-limit",
@@ -388,11 +385,7 @@
           "detail": "For every dependency-closed T , the algebras A[T] , , form a continuous bridge iteration in the inherited order, with identity steps at indices outside T . In particular, A[T] is simple and has a…",
           "dependsOn": [
             "m1-na-hnn-restriction",
-            "m1-na-peaking-restriction",
-            "m1-na-unitary-states",
-            "m1-na-base-peak",
-            "m1-na-bridge",
-            "m1-na-simple-extension"
+            "m1-na-unitary-states"
           ]
         },
         {
@@ -404,10 +397,6 @@
           "source": "Closed subiterations and countable determination",
           "detail": "For every dependency-closed S , the inclusion A[S] X_ has property (U).",
           "dependsOn": [
-            "m1-na-peaking-restriction",
-            "m1-na-bridge",
-            "m1-na-inequivalent-limit",
-            "m1-na-trace-expectation",
             "m1-na-reorder",
             "m1-na-hnn-limit",
             "m1-na-unique-chain"
@@ -422,8 +411,7 @@
           "source": "Closed subiterations and countable determination",
           "detail": "For every pure state h of X_ , there is a countable dependency-closed S such that h|_ A[S] is pure and h is its unique state extension to X_ .",
           "dependsOn": [
-            "m1-na-excision",
-            "m1-na-closed-extension"
+            "m1-na-excision"
           ]
         },
         {
@@ -434,9 +422,7 @@
           "kind": "corollary",
           "source": "Closed subiterations and countable determination",
           "detail": "Put c=2^ _0 . If || c , then X_ has at most c pure states.",
-          "dependsOn": [
-            "m1-na-countable-determination"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-na-homogeneity",
@@ -447,15 +433,7 @@
           "source": "The construction in ZFC",
           "detail": "[Kishimoto--Ozawa--Sakai] Let B be a separable C^* -algebra. If pure states h,k of B have GNS representations with the same kernel, there is an automorphism of B such that h=k . In particular, this…",
           "dependsOn": [
-            "m1-na-main",
-            "m1-na-base-peak",
-            "m1-na-state-count",
-            "m1-na-countable-determination",
-            "m1-na-peaking-restriction",
-            "m1-na-inherited",
-            "m1-na-closed-extension",
-            "m1-na-bridge",
-            "m1-na-unique-chain"
+            "m1-na-countable-determination"
           ]
         }
       ]
@@ -475,7 +453,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

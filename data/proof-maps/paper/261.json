@@ -680,426 +680,511 @@
     {
       "from": "m1-thm-main",
       "to": "m1-cor-coexistence",
+      "label": "thm:main",
       "context": "vanish. This interval lies below $-2d$, while $I_d$ lies above $-2d$. Intersect the localization and spectrum events with the probability-one event of Theorem~\\ref{thm:main}, at the same fixed coupling."
     },
     {
       "from": "m1-lem-initial-bottom-density",
       "to": "m1-prop-initialization",
+      "label": "lem:initial-bottom-density",
       "context": "rst solve the scalar equation, then prove the two smallness bounds, and finally identify the inverse form of $D$. \\paragraph{The scalar fixed point.} By Lemma~\\ref{lem:initial-bottom-density}, the boundary values $G_0(\\alpha+i0)$ for $\\alpha\\in-2d+\\mathcal J_d$ form a compact subset of the upper half-plane. Ch"
     },
     {
       "from": "m1-lem-fourier-charge",
       "to": "m1-lem-sweep-prestate",
+      "label": "lem:fourier-charge",
       "context": "ad \\|y\\|_1\\le C,\\qquad \\bar m^2\\Tr M\\le C/N. \\] For example, the numerator in the last expression is $(\\sum_jq_jF_{ij})^2\\le C$, whereas $\\Tr M\\ge cN$. Lemma~\\ref{lem:fourier-charge} now gives \\[ (F^3)_{ii}\\le C(t^\\kappa H_*+tH_*^{1/3}+N^{-1}). \\] The exponent difference $\\frac13-\\frac{2\\delta}{3}-\\k"
     },
     {
       "from": "m1-lem-single-update",
       "to": "m1-lem-sweep-laplacian",
+      "label": "lem:single-update",
       "context": ". \\end{equation} For brevity put \\[ c_x=\\frac{p_x}{q_x-p_xF_{xx}},\\qquad \\rho_x=|\\gamma_x|^2-c_x,\\qquad \\mu_x=\\EE\\gamma_x . \\] The prestate bounds and Lemma~\\ref{lem:single-update} imply \\begin{equation}\\label{eq:sweep-laplacian-coefficients} |\\gamma_x|+|\\rho_x|\\le C,\\qquad |\\mu_x|\\le C\\sqrt t\\,t^"
     },
     {
       "from": "m1-lem-sweep-prestate",
       "to": "m1-lem-sweep-laplacian",
+      "label": "lem:sweep-prestate",
       "context": "ion} Moreover, \\[ \\sum_i\\|u^i\\|_2^2\\le C\\mathcal E(f)\\le CD(f). \\] Temporarily include \\(j=x\\) in \\eqref{eq:sweep-laplacian-linear-output}. The bound of Lemma~\\ref{lem:sweep-prestate}, \\[ \\max_i\\|\\diag(h_i)h\\|^2 \\le C\\sqrt{H_*/t}=Ct^{\\delta/2}, \\] gives \\begin{equation}\\label{eq:sweep-laplacian-linea"
     },
     {
       "from": "m1-lem-fourier-charge",
       "to": "m1-lem-sweep-laplacian",
+      "label": "lem:fourier-charge",
       "context": "ing on the number of candidate pivots has been used. \\paragraph{The dual norm stack.} The Laplacian property implies that every \\(y_x=L_xf\\) is neutral. Lemma~\\ref{lem:fourier-charge}, including its version for at most two ports per site, gives \\[ W^*(y_x)\\le\\|y_x\\|_2^2 +Cb\\|y_x\\|_1^{4/3}\\|y_x\\|"
     },
     {
       "from": "m1-lem-single-update",
       "to": "m1-lem-sweep-lag",
+      "label": "lem:single-update",
       "context": "})_{i\\in R_x},\\qquad k^x=((h_{ix})^2)_{i\\in R_x},\\qquad a_x=1-K_{xx}. \\] The diagonal bound gives \\(a_x=1+O(t)\\), so \\(a_x\\) is bounded away from zero. Lemma~\\ref{lem:single-update} gives \\[ \\gamma_x=\\frac{\\xi_{0,x}+tr_x} {\\sqrt t\\,[1+(\\xi_{0,x}+tr_x)g_{xx}]}, \\] \\[ J_x=-2\\gamma_x\\diag(l^x)h_{R_xR"
     },
     {
       "from": "m1-lem-sweep-laplacian",
       "to": "m1-prop-sweep-increments",
+      "label": "lem:sweep-laplacian",
       "context": "ison following \\eqref{eq:sweep-global-caps} gives $D_{\\rm cur}(Bv|_{\\rm cur})\\le CW(Bv)\\le C\\|v\\|_{\\mathcal H}^2$. The form mean and dual square bound of Lemma~\\ref{lem:sweep-laplacian} consequently imply \\[ \\left\\|\\sum_x\\EE(B^*L_xB)\\right\\|\\le Ct^\\beta,\\qquad \\sum_x(B^*L_xB)^2\\le Ct^{\\delta/2}\\Id. \\]"
     },
     {
       "from": "m1-lem-sweep-j",
       "to": "m1-prop-sweep-increments",
+      "label": "lem:sweep-j",
       "context": "\\delta/2}\\Id. \\] The latter follows by applying the assumed dual bound to $L_x(Bv|_{\\rm cur})$ and summing over $x$. The remaining rows of the table are Lemmas~\\ref{lem:sweep-j}, \\ref{lem:sweep-lag}, and~\\ref{lem:sweep-fourth}. If there are $M$ remaining slots in a uniformly random ordering, eac"
     },
     {
       "from": "m1-lem-sweep-lag",
       "to": "m1-prop-sweep-increments",
+      "label": "lem:sweep-lag",
       "context": "e latter follows by applying the assumed dual bound to $L_x(Bv|_{\\rm cur})$ and summing over $x$. The remaining rows of the table are Lemmas~\\ref{lem:sweep-j}, \\ref{lem:sweep-lag}, and~\\ref{lem:sweep-fourth}. If there are $M$ remaining slots in a uniformly random ordering, each conditional mean an"
     },
     {
       "from": "m1-lem-sweep-fourth",
       "to": "m1-prop-sweep-increments",
+      "label": "lem:sweep-fourth",
       "context": "ing the assumed dual bound to $L_x(Bv|_{\\rm cur})$ and summing over $x$. The remaining rows of the table are Lemmas~\\ref{lem:sweep-j}, \\ref{lem:sweep-lag}, and~\\ref{lem:sweep-fourth}. If there are $M$ remaining slots in a uniformly random ordering, each conditional mean and second moment is the corre"
     },
     {
       "from": "m1-lem-locality",
       "to": "m1-lem-inverse-row",
+      "label": "lem:locality",
       "context": "from distances at most \\(t^{-2}\\) is \\(O(t)\\). For greater distances, the stronger estimate \\(|h_{ij}|\\le Ct^{-1/2}e^{-ct\\dist(i,j)}\\) from the proof of Lemma~\\ref{lem:locality} makes the sum exponentially small. The row-column norm bound therefore gives \\(\\|QKQ^{-1}\\|\\le\\rho<1\\), uniformly over"
     },
     {
       "from": "m1-prop-sweep-increments",
       "to": "m1-lem-local-prospective",
+      "label": "prop:sweep-increments",
       "context": "h_{ij}|^2 +C|h_{ix}|^2\\sum_j|h_{xj}|^2\\le C. \\] The inherited stage-start data and the current cap conditions are the prestate hypotheses of Proposition~\\ref{prop:sweep-increments}; Lemma~\\ref{lem:inverse-row} supplies its inverse-row input. That proposition gives \\(\\|J_x\\|\\le Ct^{\\delta/4}\\). Writ"
     },
     {
       "from": "m1-lem-inverse-row",
       "to": "m1-lem-local-prospective",
+      "label": "lem:inverse-row",
       "context": "|h_{xj}|^2\\le C. \\] The inherited stage-start data and the current cap conditions are the prestate hypotheses of Proposition~\\ref{prop:sweep-increments}; Lemma~\\ref{lem:inverse-row} supplies its inverse-row input. That proposition gives \\(\\|J_x\\|\\le Ct^{\\delta/4}\\). Write \\(I-\\widehat K=\\Schur_{\\{x\\"
     },
     {
       "from": "m1-lem-locality",
       "to": "m1-lem-local-prospective",
+      "label": "lem:locality",
       "context": "_x. \\] Thus \\(\\|K'\\|\\le\\rho_0+Ct^{\\delta/4}\\le\\rho_1<1\\) for small \\(t\\). The terminal set has not changed, so its metric bound has not changed either. Lemmas~\\ref{lem:locality} and \\ref{lem:inverse-row} now apply. The explicit formulas for \\(J_x,L_x\\) contain a factor joining each surviving end"
     },
     {
       "from": "m1-lem-local-prospective",
       "to": "m1-lem-local-transfer",
+      "label": "lem:local-prospective",
       "context": "\\(J_T,L_T,\\mathsf u_T,\\mathsf R^\\sigma_T\\) for its accepted endpoint record or its current prefix record. Every included update has a valid prestate, so Lemma~\\ref{lem:local-prospective} gives the scalar and matrix tails through the last candidate update. Its proof does not require that candidate poststa"
     },
     {
       "from": "m1-lem-inverse-row",
       "to": "m1-lem-local-transfer",
+      "label": "lem:inverse-row",
       "context": "lynomial prefactor. For a minimal torus displacement representative \\(a\\), \\[ \\sum_i|v_i-v_{i+a}|^2\\le |a|_1^2\\|\\nabla v\\|^2. \\] The shell count used in Lemma~\\ref{lem:inverse-row} gives, for \\(s=0,2\\), \\[ \\sum_a |a|_1^s e^{-cu|a|_1} \\le C_d\\sum_{r\\ge0}(1+r)^{d-1+s}e^{-cur} \\le C_d u^{-d-s}, \\] w"
     },
     {
       "from": "m1-lem-local-pullback",
       "to": "m1-lem-local-transfer",
+      "label": "lem:local-pullback",
       "context": "prefactor times \\(\\|\\alpha_T\\|^2+b^{-1}\\|\\nabla v_T\\|^2\\), which is at most \\(C\\| (\\alpha,v)\\|_{{\\rm loc},T}^2\\) by the product and Poincare estimate in Lemma~\\ref{lem:local-pullback}. Summing these local energies costs only bounded overlap. Since \\(uL_{\\mathrm{tile}}\\asymp t^{-3}\\), all these errors"
     },
     {
       "from": "m1-lem-local-prospective",
       "to": "m1-lem-local-trial",
+      "label": "lem:local-prospective",
       "context": "ual retained filtration continues through rollback, marking, and later trials. The poststate of the first breaking update need not satisfy the fine caps; Lemma~\\ref{lem:local-prospective} supplies all decay estimates needed through the breaking update. The next-slot law and its count \\(r_k\\) are used only"
     },
     {
       "from": "m1-lem-matrix-concentration",
       "to": "m1-lem-local-trial",
+      "label": "lem:matrix-concentration",
       "context": "and its count \\(r_k\\) are used only when \\(s_k=1\\); after stopping every variance envelope is zero. We verify the scalar identity variance hypothesis of Lemma~\\ref{lem:matrix-concentration} separately for every monitored quantity. Put \\(\\ell=1+\\log(1/t)\\), let \\(\\EE_{k-1}\\) denote conditional expectation gi"
     },
     {
       "from": "m1-prop-sweep-increments",
       "to": "m1-lem-local-trial",
+      "label": "prop:sweep-increments",
       "context": "red lag coordinate, take \\(\\mathsf H(\\Delta\\mathsf u_i^x)\\) on \\(\\mathbb C^2\\). Its square is \\(|\\Delta\\mathsf u_i^x|^2\\Id_2\\), so the lag stack of Proposition~\\ref{prop:sweep-increments} gives \\(C_d\\ell^2t^\\delta\\Id_2\\) after summing over all remaining possible bit ports. The record has zero increment at"
     },
     {
       "from": "m1-lem-local-pullback",
       "to": "m1-lem-local-trial",
+      "label": "lem:local-pullback",
       "context": "ssions meaningful even after ports are deleted. For \\(L\\), use the self-adjoint Riesz operator \\(A_x=\\mathcal R_T^{-1}B_T^*L_xB_T\\) on \\(\\mathcal H_T\\). Lemma~\\ref{lem:local-pullback} gives directly \\(\\sum_x A_x^2\\le C_dt^{\\delta/2}\\Id_{\\mathcal H_T}\\). For either normalized row proxy, its increment \\("
     },
     {
       "from": "m1-lem-local-transfer",
       "to": "m1-lem-local-trial",
+      "label": "lem:local-transfer",
       "context": "ypothesis so does the current record at \\(\\tau\\). Their physical pivots are distinct by the record convention following \\eqref{eq:local-sweep-records}. Lemma~\\ref{lem:local-transfer} therefore puts the poststate at \\(\\tau\\) strictly inside all four mutable caps, contradicting the definition of \\(\\tau\\"
     },
     {
       "from": "m1-lem-local-trial",
       "to": "m1-prop-ordinary-sweep",
+      "label": "lem:local-trial",
       "context": "Lemma~\\ref{lem:local-trial} and successive conditioning prove the stated conditional retry termination. Lemma~\\ref{lem:local-transfer} and the sto"
     },
     {
       "from": "m1-lem-local-transfer",
       "to": "m1-prop-ordinary-sweep",
+      "label": "lem:local-transfer",
       "context": "Lemma~\\ref{lem:local-trial} and successive conditioning prove the stated conditional retry termination. Lemma~\\ref{lem:local-transfer} and the stopping rule maintain the mutable caps along every accepted sweep, using Lemma~\\ref{lem:local-prospective} thr"
     },
     {
       "from": "m1-lem-local-prospective",
       "to": "m1-prop-ordinary-sweep",
+      "label": "lem:local-prospective",
       "context": "e stated conditional retry termination. Lemma~\\ref{lem:local-transfer} and the stopping rule maintain the mutable caps along every accepted sweep, using Lemma~\\ref{lem:local-prospective} through each candidate breaking update. The exact padded Schur identities then give the \\(K\\) estimate. The two-sided"
     },
     {
       "from": "m1-lem-sweep-prestate",
       "to": "m1-prop-ordinary-sweep",
+      "label": "lem:sweep-prestate",
       "context": "arately yields the three stated new coefficients. In particular the sharp coefficient follows from \\(\\theta(1+t^\\kappa)+(1-\\theta)=1+\\theta t^\\kappa\\). Lemma~\\ref{lem:sweep-prestate} gives the actual virtual diagonal difference \\(g^{\\rm cur}_{ii}-r_i=O(t^\\beta)\\); division by the reserve factor \\(\\sqr"
     },
     {
       "from": "m1-lem-clearing-range-localization",
       "to": "m1-cor-core-decay",
+      "label": "lem:clearing-range-localization",
       "context": "In the support identity \\eqref{eq:clearing-core-support}, use Lemma~\\ref{lem:clearing-range-localization} at both endpoints in place of the uniform bound $\\Pi_{ii}\\le2l_*$. The estimate $|\\Delta S_{ij}|\\le2\\sqrt{\\Pi_{ii}\\Pi_{"
     },
     {
       "from": "m1-lem-assembly-metric",
       "to": "m1-lem-clearing-locality",
+      "label": "lem:assembly-metric",
       "context": "_*\\le Cn_h$ for small $t_j$, since $\\nu<1+e_h$. A provisional group, including its one prospective pivot, obeys the same bound from the heat limit. Apply Lemma~\\ref{lem:assembly-metric} with $M=Cn_h$ to all additions of the stage at once. Starting with the ordinary metric before any clearing, the multipl"
     },
     {
       "from": "m1-lem-cube-weight",
       "to": "m1-prop-committed-assembly",
+      "label": "lem:cube-weight",
       "context": "ative symmetric weights $w_{ij}$ supported in $Q_a^2$, let $l_i=\\sum_jw_{ij}$, $L_\\infty=\\max_i l_i$ and $L_1=\\sum_i l_i$. The difference inequality and Lemma~\\ref{lem:cube-weight} give \\begin{align} \\sum_{i,j}w_{ij}|f_i-f_j|^2 &\\le C L_\\infty\\|\\alpha\\|_{2,Q'_a\\cap A_0}^2 +C\\sum_i l_i|v_i-c"
     },
     {
       "from": "m1-lem-locality",
       "to": "m1-prop-committed-assembly",
+      "label": "lem:locality",
       "context": "f $i\\notin Q_a$ and $x\\in O_a$, then \\[ d_{T_{a-1}}(i,x)\\ge\\tfrac12(\\dist(i,z_a)-D_s)-m' \\ge c\\dist(i,z_a). \\] The old Combes--Thomas bound of Lemma~\\ref{lem:locality} therefore gives, after summing the at most $Cn_h$ removed sites, \\[ \\sum_{x\\in O_a}F^{(a-1)}_{ix} \\le t^{-P}e^{-ctD_s"
     },
     {
       "from": "m1-prop-ordinary-sweep",
       "to": "m1-prop-deterministic-induction",
+      "label": "prop:ordinary-sweep",
       "context": "ce $D\\asymp W$ used below follows from the upper rough comparison for $X$, and from the two lower bounds $X\\ge cb\\Lambda^+$ and $X\\ge c\\Id$. Apply Proposition~\\ref{prop:ordinary-sweep} at the old scale $t_{\\rm old}$, and write $t=\\theta t_{\\rm old}$. On neutral physical-site charges define the compariso"
     },
     {
       "from": "m1-lem-duplication",
       "to": "m1-prop-deterministic-induction",
+      "label": "lem:duplication",
       "context": "{equation} \\mathcal X=\\theta X_{\\rm old} +(1-\\theta)\\diag(p^{-2}), \\label{eq:assembly-affine-reset} \\end{equation} The exact reserve-port identity in Lemma~\\ref{lem:duplication} identifies $\\mathcal X$ with $\\theta X_0$ restricted to reserve charges, where $X_0$ is the duplicated stage-start inve"
     },
     {
       "from": "m1-prop-committed-assembly",
       "to": "m1-prop-deterministic-induction",
+      "label": "prop:committed-assembly",
       "context": "just obtained, and the form equivalence supplies its comparison. At the first trial, and then at any trial whose preceding prefix has the bounds of Proposition~\\ref{prop:committed-assembly}, the lag and row hypotheses of Proposition~\\ref{prop:clearing-trial} hold. The location induction of Lemma~\\ref{lem:cle"
     },
     {
       "from": "m1-prop-clearing-trial",
       "to": "m1-prop-deterministic-induction",
+      "label": "prop:clearing-trial",
       "context": "irst trial, and then at any trial whose preceding prefix has the bounds of Proposition~\\ref{prop:committed-assembly}, the lag and row hypotheses of Proposition~\\ref{prop:clearing-trial} hold. The location induction of Lemma~\\ref{lem:clearing-locality} applies throughout the stopped trial. On DONE, the he"
     },
     {
       "from": "m1-lem-clearing-locality",
       "to": "m1-prop-deterministic-induction",
+      "label": "lem:clearing-locality",
       "context": "bounds of Proposition~\\ref{prop:committed-assembly}, the lag and row hypotheses of Proposition~\\ref{prop:clearing-trial} hold. The location induction of Lemma~\\ref{lem:clearing-locality} applies throughout the stopped trial. On DONE, the heat and core calculation following Proposition~\\ref{prop:committed-"
     },
     {
       "from": "m1-lem-inverse-row",
       "to": "m1-prop-deterministic-induction",
+      "label": "lem:inverse-row",
       "context": "e sweep endpoint itself has the stronger required estimates. The committed endpoint has $\\|K\\|<1/2$ once the total summable increments are chosen small. Lemma~\\ref{lem:inverse-row}, applied with its lag and the terminal metric, gives $\\|(\\Id-K)^{-1}\\|_{\\infty\\to\\infty}\\le C\\log(1/t)$. Proposition~\\r"
     },
     {
       "from": "m1-prop-reset",
       "to": "m1-prop-deterministic-induction",
+      "label": "prop:reset",
       "context": "chosen small. Lemma~\\ref{lem:inverse-row}, applied with its lag and the terminal metric, gives $\\|(\\Id-K)^{-1}\\|_{\\infty\\to\\infty}\\le C\\log(1/t)$. Proposition~\\ref{prop:reset} now restores $g_{ii}=r_i$. Its fourth-row norm cost relative to $t^{(1+\\delta)/4}$ is \\[ Ct^{1/4}t^{.35\\delta}/t^{(1+\\"
     },
     {
       "from": "m1-prop-certificate",
       "to": "m1-prop-witness-bound",
+      "label": "prop:certificate",
       "context": "[Completion of the proof of Proposition~\\ref{prop:certificate}] Initialization and Proposition~\\ref{prop:deterministic-induction} provide the committed-state invariants throughout th"
     },
     {
       "from": "m1-prop-deterministic-induction",
       "to": "m1-prop-witness-bound",
+      "label": "prop:deterministic-induction",
       "context": "[Completion of the proof of Proposition~\\ref{prop:certificate}] Initialization and Proposition~\\ref{prop:deterministic-induction} provide the committed-state invariants throughout the construction. Lemma~\\ref{lem:conditional-freshness}, together wit"
     },
     {
       "from": "m1-lem-conditional-freshness",
       "to": "m1-prop-witness-bound",
+      "label": "lem:conditional-freshness",
       "context": "{prop:certificate}] Initialization and Proposition~\\ref{prop:deterministic-induction} provide the committed-state invariants throughout the construction. Lemma~\\ref{lem:conditional-freshness}, together with the ordinary and clearing query rules verified in Sections~\\ref{sec:local-sweeps} and~\\ref{sec:assembly}"
     },
     {
       "from": "m1-prop-deterministic-induction",
       "to": "m1-prop-threshold",
+      "label": "prop:deterministic-induction",
       "context": "t uses the full finite matrix, without any extra condition on a Schur denominator. For existence, all constants and starting-index requirements in Proposition~\\ref{prop:deterministic-induction} and the witness proof depend only on $d$ and on the fixed window. They are uniform in $u\\in(1/4,1]$ because $t_n=u(4^{-"
     },
     {
       "from": "m1-lem-spectral-averaging",
       "to": "m1-prop-certificate-readout",
+      "label": "lem:spectral-averaging",
       "context": "ch site the true diagonal value is uniform on $[-\\lambda,\\lambda]$ and independent of the other site values. Conditioning on those other values, applying Lemma~\\ref{lem:spectral-averaging}, and summing gives the finite-volume Wegner estimate~\\cite{Wegner1981} \\[ \\EE r_Q\\le\\frac{N}{2\\lambda}(2\\epsilon\\eta)"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-prop-certificate-readout",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] For $d=3$, fix the interval $I_3=(-6+e_2/2,-6+e_2)$ and set $\\lambda_3=\\lambda_0(3)>0$ from Proposition~\\ref{prop:cert"
     },
     {
       "from": "m1-prop-certificate",
       "to": "m1-prop-certificate-readout",
+      "label": "prop:certificate",
       "context": "[Proof of Theorem~\\ref{thm:main}] For $d=3$, fix the interval $I_3=(-6+e_2/2,-6+e_2)$ and set $\\lambda_3=\\lambda_0(3)>0$ from Proposition~\\ref{prop:certificate}. For each fixed $0<\\lambda<\\lambda_3$, that proposition supplies the certificate with probability tending to one, hence"
     },
     {
       "from": "m1-prop-threshold",
       "to": "m1-prop-certificate-readout",
+      "label": "prop:threshold",
       "context": "lambda<\\lambda_d$, put \\[ n_0=\\lfloor\\log_4(3/\\lambda^2)\\rfloor\\ge n_*(d), \\qquad u=(\\lambda^2/3)4^{n_0}\\in(1/4,1]. \\] The existence assertion in Proposition~\\ref{prop:threshold} follows from the construction proving Proposition~\\ref{prop:certificate}. Its final assertion applies the defining feas"
     },
     {
       "from": "m2-cell-profile",
       "to": "m2-cell-branch",
+      "label": "cell:profile",
       "context": "The perturbation from $A^0$ is diagonal and has norm at most $L^{-D_1}+L^{-D_3}$. Taking $D_3>D_1$, \\Cref{cell:profile} and a Neumann series give the first bound in \\Cref{cell:residual}. The profile equation on $J$ gives the exact residual"
     },
     {
       "from": "m2-mat-ward",
       "to": "m2-imp-comparison",
+      "label": "mat:ward",
       "context": "The inverse difference identity gives \\[ PD_2^{-1}k =PD_1^{-1}k-PD_2^{-1}P\\Delta PD_1^{-1}k. \\] By \\cref{mat:ward}, $\\norm{PD_2^{-1}P}\\le1$. This proves the upper bound; interchanging the indices proves the lower bound."
     },
     {
       "from": "m2-mat-ward",
       "to": "m2-imp-schur-interface",
+      "label": "mat:ward",
       "context": "nd the density of those shifts. The identities are the block inverse and source elimination formulas. Symmetry and passivity persist under Schur elimination by \\cref{mat:ward}."
     },
     {
       "from": "m2-mat-phase",
       "to": "m2-trans-envelope",
+      "label": "mat:phase",
       "context": "true real diagonal in $V$ shifts at rate $1$. The only other derivatives are $-i\\tau a_i'(v_i)$, which obey $\\abs{a_i'}^2\\le Ca_i$. The absorption argument of \\Cref{mat:phase} therefore gives \\[ \\Phi'(t)\\ge\\frac12\\tr\\operatorname{Im}(G_D')_{VV} -C\\dim(V\\oplus P). \\] The phase r"
     },
     {
       "from": "m2-hier-sampling",
       "to": "m2-hier-hidden",
+      "label": "hier:sampling",
       "context": "The root does not belong to any exposed triple. By \\Cref{hier:sampling}, acceptance tilts its tile's conditional law by the branch likelihood. With all other true values fixed, the only rema"
     },
     {
       "from": "m2-trans-envelope",
       "to": "m2-hier-cap",
+      "label": "trans:envelope",
       "context": "xp(-C L_{l+1})$ and one, and its reference potential is bounded, because its level does not exceed $l$. In the alternative contributing child survivors, apply \\Cref{trans:envelope} to all possible internal active subsets. The pointwise envelope furnished there depends only on the true potentials an"
     },
     {
       "from": "m2-trans-cell",
       "to": "m2-hier-cap",
+      "label": "trans:cell",
       "context": "(C(1+b_{l+1})^{C_1}\\bigr) \\E_{B,\\rm true}\\rho. \\label{hier:parent-upper} \\end{equation} Here $\\rho$ is the parent's boundary weight used in \\Cref{trans:cell}; the expectation includes its fixed corner boxes. In the comparison alternative, $D$ itself is selected and accepted."
     },
     {
       "from": "m2-hier-sampling",
       "to": "m2-hier-cap",
+      "label": "hier:sampling",
       "context": "$ itself is selected and accepted. It is eligible because its strict ancestor selectors are zero, and allowed because its labels and those above are valid. By \\Cref{hier:sampling}, this alternative has conditional probability $q_{l+1}p_{l+1}$ and its conditional law is the parent branch law. Its ro"
     },
     {
       "from": "m2-imp-weighted",
       "to": "m2-hier-cap",
+      "label": "imp:weighted",
       "context": "dentical corner-box laws. They differ only in the single-side values and their permitted artificial absorptions. The pointwise weight comparison accompanying \\Cref{imp:weighted} compares all such bounded settings by a fixed factor. Integrating that comparison shows that the two averages of $\\rho"
     },
     {
       "from": "m2-hier-comparison",
       "to": "m2-hier-cap",
+      "label": "hier:comparison",
       "context": "[Proof of \\Cref{hier:comparison}] Fix a level $l$ during the pass. Conditional on the initial data and the true potentials, the expectation over its fi"
     },
     {
       "from": "m2-hier-hidden",
       "to": "m2-hier-cap",
+      "label": "hier:hidden",
       "context": "ontrol} bound them by finite deterministic pair-data oscillations and the finite number of ports. For one retained thinnable root $a$, use the conditioning of \\Cref{hier:hidden} and the admissibility of $g$. Restoring its true potential is exactly the closure operation of \\Cref{mat:energy-closur"
     },
     {
       "from": "m2-mat-energy-closure",
       "to": "m2-hier-cap",
+      "label": "mat:energy-closure",
       "context": "thinnable root $a$, use the conditioning of \\Cref{hier:hidden} and the admissibility of $g$. Restoring its true potential is exactly the closure operation of \\Cref{mat:energy-closure}. Its expected increase is at most \\[ 2\\abs{\\mu_a}\\mathcal M_a(g), \\] where $\\mu_a$ is the con"
     },
     {
       "from": "m2-mat-cutoff",
       "to": "m2-hier-cap",
+      "label": "mat:cutoff",
       "context": "domination, $g$ plays no role in any further conditioning or cell integration. For ports $j$ in the parent $D(U(a))$, the uniform bound on $\\abs{\\mu_a}$ from \\Cref{mat:cutoff} and row mass give a cost at most $C c_g^2 h_{D(U(a))}^2$ on occurrence of this root. Its incidence is at most $\\theta"
     },
     {
       "from": "m2-mat-ward",
       "to": "m2-screen-projected",
+      "label": "mat:ward",
       "context": "equation} A\\leq C_n(W+B). \\label{screen:residual-observation} \\end{equation} Taking the imaginary part of the inverse equation, or using the Ward identity of \\Cref{mat:ward}, yields \\[ B^2\\leq (A+B)W\\leq C_n(W+B)W. \\] This implies $B\\leq C_nW$, and then $A\\leq C_nW$ by \\Cref{screen:residual-"
     },
     {
       "from": "m2-screen-paths",
       "to": "m2-screen-walls",
+      "label": "screen:paths",
       "context": "therefore provides the claimed crossing. Since $r_0^{\\mathrm w}/\\rho$ is bounded by an absolute constant, only boundedly many mesh centers are needed. Applying \\Cref{screen:paths} at those centers gives a base wall threshold $a_nL_*^\\alpha$, with failure probability at most $C_nL_*^{-50}$. Run the"
     },
     {
       "from": "m2-screen-paths",
       "to": "m2-screen-limits",
+      "label": "screen:paths",
       "context": "ng annulus about $x$ with radius comparable to $D/200$. Its cost is at least $c_nD^\\alpha$ outside an event of conditional probability at most $C_nD^{-50}$, by \\Cref{screen:paths}. The projected attenuation in \\Cref{screen:projected} applies from the source ports at $x$ to all ports at distance gre"
     },
     {
       "from": "m2-screen-projected",
       "to": "m2-screen-limits",
+      "label": "screen:projected",
       "context": "200$. Its cost is at least $c_nD^\\alpha$ outside an event of conditional probability at most $C_nD^{-50}$, by \\Cref{screen:paths}. The projected attenuation in \\Cref{screen:projected} applies from the source ports at $x$ to all ports at distance greater than $D$ simultaneously. Unitarity bounds that bl"
     },
     {
       "from": "m2-screen-limits",
       "to": "m2-screen-profiles",
+      "label": "screen:limits",
       "context": "so \\[ \\mathcal Q_{\\mathrm{start}}(f) \\leq \\frac{CB^2}{R^2} \\sum_{x\\text{ in the supporting square}}d_{n,N}(x). \\] The uniform spatial mean estimate in \\Cref{screen:limits} now gives \\Cref{screen:rough-profile}. This argument only uses support size and the Lipschitz bound, so it is uniform f"
     },
     {
       "from": "m2-hier-comparison",
       "to": "m2-screen-limit",
+      "label": "hier:comparison",
       "context": "Apply \\Cref{hier:comparison} without extras to $f_N$ in the full transition from stage $n$ to stage $m$. The data have a uniformly bounded Lipschitz"
     },
     {
       "from": "m2-hier-charges",
       "to": "m2-screen-limit",
+      "label": "hier:charges",
       "context": "ion from stage $n$ to stage $m$. The data have a uniformly bounded Lipschitz constant by \\Cref{screen:chord-comparison}. The area-normalized charge estimate of \\Cref{hier:charges} has a vanishing $n$-tail independent of $m,N$, as does the multiplicative error in the comparison. Divide by $b_N^2$, f"
     },
     {
       "from": "m2-hier-comparison",
       "to": "m2-van-adjustment",
+      "label": "hier:comparison",
       "context": "arphi(y)|\\leq C|f(x)-f(y)| \\quad\\text{for all torus sites }x,y. \\end{equation} This random adjustment is admissible at the start of the complementary pass in \\cref{hier:comparison}. The selector events may be used as pre-information. Also $S'$ uses the calibrated reference value at every still-open"
     },
     {
       "from": "m2-hier-hidden",
       "to": "m2-van-adjustment",
+      "label": "hier:hidden",
       "context": "ector events may be used as pre-information. Also $S'$ uses the calibrated reference value at every still-open root, not the hidden true value at that root. By \\cref{hier:hidden}, the disjoint eligible cells and their recorded statuses do not expose any of those hidden values. Thus $H_D^0$ and its"
     },
     {
       "from": "m2-mat-ward",
       "to": "m2-van-barrier",
+      "label": "mat:ward",
       "context": "ce \\begin{equation}\\label{van:commutator-source} \\norm{a}_{\\mathrm{HS}} \\leq \\frac{C}{M_0R\\tau d_0} \\norm{Y_C^\\top u}_{\\mathrm{HS}}. \\end{equation} By \\cref{mat:ward}, the norm of propagation from probe sources to all absorbed outputs is at most one. Since $\\chi=1$ at $I$, \\[ \\norm{Y_"
     },
     {
       "from": "m2-screen-profiles",
       "to": "m2-van-good",
+      "label": "screen:profiles",
       "context": "e zero, and all probe voltages are one. The intermediate energy is therefore exactly $K$: each cell-to-probe pair is counted once by the symmetric energy. Use \\cref{screen:profiles} for the starting stage-$n$ energy and \\cref{hier:comparison,hier:charges} for the first pass. For fixed $M_0,C_0,n$, wi"
     },
     {
       "from": "m2-screen-limits",
       "to": "m2-van-good",
+      "label": "screen:limits",
       "context": "_n e^{-c_nR^\\alpha}$ in operator norm outside an event of vanishing probability. The block ranks grow only polynomially in $R$. Fix $n$ with $d_n\\geq d/2$. By \\cref{screen:limits}, choose a finite jump cutoff capturing the spatial average on this deep square up to, say, a quarter of $d_n$. For suff"
     },
     {
       "from": "m2-screen-walls",
       "to": "m2-van-good",
+      "label": "screen:walls",
       "context": "good-edge costs on the thick grid walls $O_D$. Those costs are still available in the intermediate system, including their buffered tests. The wall estimate in \\cref{screen:walls}, followed by \\cref{screen:projected}, gives for a dyadic distance range of order $D_1$ the expectation bound \\begin{equ"
     },
     {
       "from": "m2-screen-projected",
       "to": "m2-van-good",
+      "label": "screen:projected",
       "context": "walls $O_D$. Those costs are still available in the intermediate system, including their buffered tests. The wall estimate in \\cref{screen:walls}, followed by \\cref{screen:projected}, gives for a dyadic distance range of order $D_1$ the expectation bound \\begin{equation}\\label{van:far-weighted} C_{n,"
     },
     {
       "from": "m2-van-barrier",
       "to": "m2-van-good",
+      "label": "van:barrier",
       "context": "our components. This choice is independent of $n,C_0$; only the scale required to make the far error small depends on them. Finally include $\\mathcal B$ using \\cref{van:barrier}. The total exception probability is less than $1/2$. This proves the event assertion. Apply \\cref{van:barrier-bound} wi"
     },
     {
       "from": "m2-van-good",
       "to": "m2-van-analytic-bounds",
+      "label": "van:good",
       "context": "consequently bounded in modulus by $C\\delta_A(\\delta_A+K)$. Choose $\\kappa$ so that the internal replacement error is less than $c_1d/8$. After the choices in \\cref{van:good}, choose $C_0$ so large that \\cref{van:external-small} makes the external error less than $c_1d/8$. The real part of \\cr"
     },
     {
       "from": "m2-mat-weak",
       "to": "m2-van-analytic-bounds",
+      "label": "mat:weak",
       "context": "\\norm{F_I T}_{\\mathrm{HS}} \\leq\\norm{FT}_{\\mathrm{HS}} \\norm{F_I T}_{\\mathrm{HS}}. \\] The other linear term is its complex conjugate on the circle. By \\cref{mat:weak}, these terms have weak $L^1$ bounds depending only on $C_F$ and $\\kappa$, since $\\norm{F_I T}_{\\mathrm{HS}}\\leq C\\sqrt\\"
     },
     {
       "from": "m2-van-zero",
       "to": "m2-van-analytic-bounds",
+      "label": "van:zero",
       "context": "[Proof of \\cref{van:zero}] Retain the assumption $d>0$. Choose the constants in the following order. First fix the barrier constants $d_0,\\gamma$"
     },
     {
       "from": "m2-van-adjustment",
       "to": "m2-van-analytic-bounds",
+      "label": "van:adjustment",
       "context": "oose $W$ so the tail term is small, then choose $\\delta$ so $\\delta^{p'}$ is small. With these fixed, $D_W$ is a fixed finite constant. Choose the tolerance in \\cref{van:adjustment} sufficiently small relative to $D_W$ and $\\delta$. Take $n$ large for that adjustment and the good-data requirements; t"
     },
     {
       "from": "m2-mat-closure",
       "to": "m2-boot-twist",
+      "label": "mat:closure",
       "context": "Close just the newly added probes using a common Haar phase \\(z\\). The closure identity in \\Cref{mat:closure} and the sandwich estimate in \\Cref{mat:weak}, followed by integration of the weak \\(L^1\\) tail, give \\[ \\int\\norm{(S_z"
     },
     {
       "from": "m2-mat-weak",
       "to": "m2-boot-twist",
+      "label": "mat:weak",
       "context": "Close just the newly added probes using a common Haar phase \\(z\\). The closure identity in \\Cref{mat:closure} and the sandwich estimate in \\Cref{mat:weak}, followed by integration of the weak \\(L^1\\) tail, give \\[ \\int\\norm{(S_z)_{Y'X}}_{\\rm HS}^{s}\\,\\dd z \\le C_s(D"
     },
     {
       "from": "m2-screen-profiles",
       "to": "m2-boot-return",
+      "label": "screen:profiles",
       "context": "iliary hierarchy. Take a scalar voltage \\(f_R\\) equal to one on the radius-\\(R\\) square, zero at radii at least \\(2R\\), and Lipschitz with constant \\(K/R\\). By \\Cref{screen:profiles}, at fixed \\(n\\), \\[ \\E\\mathcal Q_{n,N}(f_R)\\le Kd_n+o_{m,N;n,C_0}(1). \\] Apply \\Cref{hier:comparison} to thin to unifo"
     },
     {
       "from": "m2-hier-comparison",
       "to": "m2-boot-return",
+      "label": "hier:comparison",
       "context": "at least \\(2R\\), and Lipschitz with constant \\(K/R\\). By \\Cref{screen:profiles}, at fixed \\(n\\), \\[ \\E\\mathcal Q_{n,N}(f_R)\\le Kd_n+o_{m,N;n,C_0}(1). \\] Apply \\Cref{hier:comparison} to thin to uniform stage \\(m\\). The profile is supported in the radius-\\(2R\\) square and has Lipschitz constant \\(K/R\\)"
     },
     {
       "from": "m2-hier-charges",
       "to": "m2-boot-return",
+      "label": "hier:charges",
       "context": "r:comparison} to thin to uniform stage \\(m\\). The profile is supported in the radius-\\(2R\\) square and has Lipschitz constant \\(K/R\\), while \\(b_m\\ll R\\). Thus \\Cref{hier:charges}(ii) bounds its unnormalized charge by \\(K r_n\\), where \\(r_n=\\sum_{l\\ge n}q_lp_l\\to0\\), independently of \\(R\\). Writing"
     },
     {
       "from": "m2-boot-tilted",
       "to": "m2-boot-return",
+      "label": "boot:tilted",
       "context": "X\\le K R^2\\), by unitarity. The exceptional contribution is therefore \\(o(1)\\), by the preceding hazard estimate and the product-law path count in the proof of \\Cref{boot:tilted}. That count does not require \\(\\E V^s>0\\). Now \\(d_n\\to0\\) by \\Cref{van:zero}; choosing \\(n,m,N\\) in order in \\Cref{boo"
     },
     {
       "from": "m2-van-zero",
       "to": "m2-boot-return",
+      "label": "van:zero",
       "context": "y the preceding hazard estimate and the product-law path count in the proof of \\Cref{boot:tilted}. That count does not require \\(\\E V^s>0\\). Now \\(d_n\\to0\\) by \\Cref{van:zero}; choosing \\(n,m,N\\) in order in \\Cref{boot:return-stage} proves the assertion. The error notation means that at fixed \\"
     }
   ]

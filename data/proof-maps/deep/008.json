@@ -152,7 +152,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Deligne-Drinfeld-conjecture-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Deligne-Drinfeld conjecture; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Deligne-Drinfeld conjecture.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -217,11 +217,7 @@
           "kind": "proposition",
           "source": "Integral Lie algebras and the special identity",
           "detail": "[Saturated reduction] Let \\[ K_n=_R x,y_n, L_n=W_n K_n. \\] Then \\(L_n\\) is a saturated finite free \\(R\\)-submodule of \\(K_n\\), and its reduction embeds in \\(K_n/2K_n\\). Writing its image as \\( L_n\\),…",
-          "dependsOn": [
-            "m1-lem-lie-lattice",
-            "m1-lem-free-fiber",
-            "m1-lem-special"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-abc-free",
@@ -251,9 +247,7 @@
           "kind": "lemma",
           "source": "A filtered degeneration of the pentagon",
           "detail": "All commutators of a base symbol with a fiber symbol are given by the following formulas. In both algebras use the abbreviations \\[ R_i=[H,U_i], Q_i=[H+V_i,U_i], W_ ij =[V_i,U_j]+[U_i,V_j]. \\] In the…",
-          "dependsOn": [
-            "m1-prop-leading-pentagon"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-deletion-representation",
@@ -320,9 +314,7 @@
           "kind": "lemma",
           "source": "The image of the leading projection",
           "detail": "[Polynomial shift invariance] For every f obtained as above and every polynomial s(C) , f(C,B+s(C))=f(C,B). The identity holds after adjoining any finite collection of commuting scalar indeterminates…",
-          "dependsOn": [
-            "m1-lem-even-indices"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-image-bound",
@@ -348,8 +340,7 @@
           "dependsOn": [
             "m1-prop-projection-injective",
             "m1-prop-image-bound",
-            "m1-lem-low-weights",
-            "m1-prop-saturated-reduction"
+            "m1-lem-low-weights"
           ]
         },
         {
@@ -415,9 +406,7 @@
           "kind": "proposition",
           "source": "Holonomy and odd depth-one values",
           "detail": "For every odd n3 there exists _n V_n for which the coefficient of x^ n-1 y is nonzero. Equivalently, its ordinary y -depth-one part is a nonzero multiple of _x^ n-1 y .",
-          "dependsOn": [
-            "m1-lem-rational-descent"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-depth-addition",
@@ -437,9 +426,7 @@
           "kind": "lemma",
           "source": "Integral generators and the dimension squeeze",
           "detail": "Let \\(K\\) be a finite free \\(_ (2) \\)-module, and suppose that \\(w_1,,w_s K\\) have linearly independent reductions in \\(K/2K\\). Then they are linearly independent over \\(\\), and \\[ (_ i=1 ^s w_i) K…",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -458,7 +445,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

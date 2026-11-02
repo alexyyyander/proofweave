@@ -422,7 +422,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Torsion-Free-Counterexample-to-Reduced-Baum-Connes-Injectivity-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A torsion-free counterexample to reduced Baum–Connes injectivity; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A torsion-free counterexample to reduced Baum–Connes injectivity.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -499,8 +499,6 @@
           "detail": "[The deterministic labeled tower] For every fixed finite type set and every sufficiently large s as above, the construction has the following properties. The auxiliary state sizes are . In a fixed…",
           "dependsOn": [
             "m1-lem-incidence-inversion",
-            "m1-lem-gate-deletions",
-            "m1-lem-separation-deletions",
             "m1-lem-tower-recovery"
           ]
         },
@@ -666,7 +664,6 @@
           "source": "Pruning coherent returns and bicycles",
           "detail": "[Expected theta count] For sufficiently large allowed parameters, the expected number of rooted embedded bicycles in X^ (1) of length below 1.52m_i , based on either side at height i , is at most \\[…",
           "dependsOn": [
-            "m1-lem-pruning-reconstruction",
             "m1-lem-pruning-rank-process"
           ]
         },
@@ -787,11 +784,9 @@
           "source": "Diffuse Heisenberg symbols and voltage approximation",
           "detail": "[Centered block concentration] Fix a surviving incidence type and one of its same or adjacent layer blocks. Assign independent samples from Lemma~ to its unoriented edges. Let \\(X_ ik \\) be its…",
           "dependsOn": [
-            "m1-lem-product-sampler",
             "m1-lem-heisenberg-folner-test",
             "m1-lem-moment-support-rank",
             "m1-lem-repeated-edge-count",
-            "m1-prop-sampled-symbols",
             "m1-prop-pruning",
             "m1-lem-polynomial-avoidance"
           ]
@@ -946,8 +941,7 @@
           "source": "Disjoint domains, cone chains, and an integral detector",
           "detail": "[No prime-order subgroup] The group is torsion-free.",
           "dependsOn": [
-            "m1-lem-cone-exact",
-            "m1-lem-free-resolution-comparison"
+            "m1-lem-cone-exact"
           ]
         },
         {
@@ -984,8 +978,7 @@
           "dependsOn": [
             "m1-lem-no-prime-torsion",
             "m1-prop-graphical-realization",
-            "m1-lem-explicit-heisenberg-detector",
-            "m1-lem-degree-two-restriction"
+            "m1-lem-explicit-heisenberg-detector"
           ]
         },
         {
@@ -1087,7 +1080,6 @@
           "detail": "[A finite witness lies in a finitely generated subgroup] Let H be finitely generated, and let P,Q be fixed finite matrix projections over (H) . If their images have equal K_0 classes over () , then…",
           "dependsOn": [
             "m1-thm-main",
-            "m1-prop-graphical-realization",
             "m1-prop-torsion-detector",
             "m1-prop-reduced-bott-vanishing"
           ]
@@ -1106,7 +1098,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Torsion-Free-Counterexample-to-the-Kadison-Kaplansky-Projection-Conjecture-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A torsion-free counterexample to the Kadison–Kaplansky projection conjecture; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A torsion-free counterexample to the Kadison–Kaplansky projection conjecture.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1137,9 +1129,7 @@
           "kind": "proposition",
           "source": "From a small matrix projection to a scalar projection",
           "detail": "[Scalar compression after a free product] Let \\(\\) be a discrete group and \\(p M_N(C_r^*())\\) a projection with \\[ 0<a:=_ ,N (p)<12. \\] Put \\(K= F_N\\), where \\(t_1,,t_N\\) freely generate \\( F_N\\),…",
-          "dependsOn": [
-            "m2-scalar-subgroup"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-setup-matrix-target",
@@ -1189,9 +1179,7 @@
           "kind": "lemma",
           "source": "Uniform expansion before pruning",
           "detail": "[Uniform gap for the mean] For every height pair, and every fixed choice of its lower-cutoff tables, the mean incidence M satisfies \\[ \\|M:1_B^ 1_A^\\| 1610^ -3 +0.55 <0.8. \\] The bound is uniform in…",
-          "dependsOn": [
-            "m2-exp-fourier"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-exp-cut-tail",
@@ -1244,7 +1232,6 @@
           "source": "Pruning and unique recovery of long paths",
           "detail": "[The tower properties] For all sufficiently large \\(\\), the preceding choices give a graph \\(Y^0\\) on sets of sizes \\(|A_i|=d2^ H_i \\) and \\(|B_i|=2^ H_i \\), and its induced subgraph \\(Y\\), with…",
           "dependsOn": [
-            "m2-exp-realized-gap",
             "m2-prune-prefix-recovery"
           ]
         },
@@ -1330,10 +1317,7 @@
           "kind": "lemma",
           "source": "Geometry of the voltage cover and torsion-freeness",
           "detail": "[A short path avoiding one center] Fix a positive integer L . For sufficiently large , uniformly in Q and i , if a path in X of length at most L joins u,x Q , with u in layer i , and avoids c_Q ,…",
-          "dependsOn": [
-            "m2-geo-arcs",
-            "m2-geo-embeddings"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-geo-balls",
@@ -1344,8 +1328,7 @@
           "source": "Geometry of the voltage cover and torsion-freeness",
           "detail": "[One ball for all earlier intersections] There is a well-order of the indexed copies for which the first three assertions of Theorem~ hold.",
           "dependsOn": [
-            "m2-geo-thin",
-            "m2-geo-avoidance"
+            "m2-geo-thin"
           ]
         }
       ]
@@ -1371,7 +1354,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

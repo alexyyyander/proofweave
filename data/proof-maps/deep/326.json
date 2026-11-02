@@ -82,7 +82,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-cotype-cotype-conjecture-under-the-approximation-property-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The cotype–cotype conjecture under the approximation property; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The cotype–cotype conjecture under the approximation property.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -166,7 +166,6 @@
           "source": "Uniform Walsh decay for finite-rank operators",
           "detail": "[Growth from a slow decrease] Fix an integer \\(m1\\) and constants \\(D_g,D_f1\\). Suppose that \\(m\\) and the parameters \\(a,b\\) in satisfy the hypotheses of Lemma~ . There is \\(c_1(0,1/2]\\), depending…",
           "dependsOn": [
-            "m1-lem-coefficient",
             "m1-lem-walsh-basic",
             "m1-lem-lifts",
             "m1-lem-frames"
@@ -193,8 +192,6 @@
           "source": "Compact factorization and the approximation property",
           "detail": "[A compact domain with controlled dual moments] Let \\(m1\\) be an integer, let \\(1\\), and let \\(X\\) be a Banach space with \\(c_m(X^*)\\). For every nonzero finite-dimensional subspace \\(E X\\), there…",
           "dependsOn": [
-            "m1-thm-main",
-            "m1-lem-coefficient",
             "m1-cor-uniform-cotype-entropy"
           ]
         },
@@ -227,7 +224,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

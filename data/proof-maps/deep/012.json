@@ -222,7 +222,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-joint-Dickman-law-for-consecutive-integers-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The joint Dickman law for consecutive integers; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The joint Dickman law for consecutive integers.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -304,7 +304,6 @@
           "source": "Large-prime labels and their short averages",
           "detail": "[Fixed nonprincipal characters] Fix J2 , positive constants c,C , a nonprincipal Dirichlet character of modulus q_ , and a finite set E of primes. Suppose that, for each x , h_x is a 1-bounded…",
           "dependsOn": [
-            "m1-lem-labels-short",
             "m1-thm-labels-real-mr",
             "m1-lem-labels-marginal",
             "m1-thm-labels-complex-mrt"
@@ -387,8 +386,7 @@
           "source": "Arithmetic preliminaries at an auxiliary log scale",
           "detail": "[Loss from imposing regularity] There is an absolute c_3>0 such that, for each fixed choice of the grid, tolerance, and compact log-size ranges above, there are C>0 and a function _B0 such that the…",
           "dependsOn": [
-            "m1-lem-arith-coefficient-moments",
-            "m1-lem-arith-form-bounds"
+            "m1-lem-arith-coefficient-moments"
           ]
         },
         {
@@ -633,10 +631,8 @@
           "source": "Vanishing of the main energy",
           "detail": "[Vanishing of the main energy] With C_* , , C_6 , and the coarse partition fixed as above, \\[ _ B \\ _ x | Q^ main _ B,x |=0. \\]",
           "dependsOn": [
-            "m1-lem-conclusion-features",
             "m1-lem-conclusion-periodic",
-            "m1-lem-labels-short",
-            "m1-prop-mixed"
+            "m1-lem-labels-short"
           ]
         },
         {
@@ -647,10 +643,7 @@
           "kind": "lemma",
           "source": "Marginals, the joint law, and the ordering corollary",
           "detail": "[Dickman marginal] For every fixed c(0,1) , _ x 1x \\#\\ 1 m x:(m) x^c\\ =(1/c). The limit is through all real x .",
-          "dependsOn": [
-            "m1-thm-main",
-            "m1-cor-comparison"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -669,7 +662,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -297,7 +297,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-two-dimensional-area-law-from-a-global-spectral-gap-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A two-dimensional area law from a global spectral gap; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A two-dimensional area law from a global spectral gap.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -358,9 +358,7 @@
           "kind": "lemma",
           "source": "Marginal tails and an initial box estimate",
           "detail": "[Conditional entropy in a buffered rectangle] There are integers C_ pad 1 and a constant C_ buf , depending only on q,R,J, , with the following property. Let Q be safe, let r1 be an integer, and let…",
-          "dependsOn": [
-            "m1-lem-tail"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-initial-box",
@@ -370,9 +368,7 @@
           "kind": "proposition",
           "source": "Marginal tails and an initial box estimate",
           "detail": "[Initial safe-box estimate] There are constants C< and e_0(0,1) , depending only on q,R,J, , such that F_ box (r) Cr^ 1+e_0 (r1).",
-          "dependsOn": [
-            "m1-lem-initial-buffer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-quasilocal-lr",
@@ -490,9 +486,7 @@
           "kind": "lemma",
           "source": "Symmetric replicas and entropy metrics",
           "detail": "[Relative coherent pin] Let P,x,Y_0,F partition the fixed finite system V , put Y=xY_0 , and let \\[ A_k=A_k(P,xY_0,F), B_k=A_k(Px,Y_0,F), C_ x,k =A_k^ -1/2 B_kA_k^ -1/2 . \\] Suppose 0<t<1/4 , a=2t ,…",
-          "dependsOn": [
-            "m1-lem-movement"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-symbol",
@@ -549,7 +543,6 @@
             "m1-transport-cp",
             "m1-transport-means",
             "m1-lem-relative-pin",
-            "m1-lem-symbol",
             "m1-lem-skew"
           ]
         },
@@ -586,9 +579,6 @@
           "dependsOn": [
             "m1-lem-continuity",
             "m1-scanner-histories",
-            "m1-lem-tail",
-            "m1-prop-transport",
-            "m1-lem-symbol",
             "m1-transport-means"
           ]
         },
@@ -612,8 +602,7 @@
           "detail": "[Improved safe-box estimate] There is a constant \\(C\\), depending only on the Hamiltonian parameters, such that \\[ F_ box (r) Cr^ 1+e_* (r1), e_*=210^ -6 . \\]",
           "dependsOn": [
             "m1-prop-initial-box",
-            "m1-scanner-templates",
-            "m1-prop-scanner"
+            "m1-scanner-templates"
           ]
         },
         {
@@ -653,7 +642,6 @@
           "detail": "[Amplification] Fix C_0>0 and let ,, be as in . Suppose n2 , L= n^ 1- , and \\[ X=A T, S_0=A T_L, Y=S_0 X, Z'= S_0. \\] Assume that |S_0| C_0n^2 , that each of the three cuts X,Y,S_0 has at most C_0n…",
           "dependsOn": [
             "m1-lem-tail",
-            "m1-lem-amplification-local-products",
             "m1-lem-continuity"
           ]
         },
@@ -706,7 +694,6 @@
           "source": "Two families of regions and the area bound",
           "detail": "[Birth-template separation] There is a fixed c_1>0 such that the following holds. Let B be the closed birth region of an initial belt tile of side scale u=t_k , or of a replacement tile whose removal…",
           "dependsOn": [
-            "m1-thm-area",
             "m1-lem-zero-boundary",
             "m1-prop-collar",
             "m1-prop-amplification",
@@ -728,7 +715,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Polynomial-PEPS-approximation-of-gapped-square-grid-ground-states-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Polynomial PEPS approximation of gapped square-grid ground states; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Polynomial PEPS approximation of gapped square-grid ground states.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -859,7 +846,6 @@
           "source": "Encoded frames and changes of ownership",
           "detail": "[Small-patch rewrite] Consider old and new one-sheet frames. Only a bounded number of their holes are affected; all other holes, encodings, and tag owners agree. Suppose there are m=O(1) additional…",
           "dependsOn": [
-            "m2-prop-patch",
             "m2-lem-group-tensor",
             "m2-thm-compression"
           ]
@@ -965,7 +951,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

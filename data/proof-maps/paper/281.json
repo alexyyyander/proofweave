@@ -444,391 +444,469 @@
     {
       "from": "m1-lem-weyl-bounds",
       "to": "m1-lem-centered-sums",
+      "label": "lem:weyl-bounds",
       "context": "d slots. The formula first holds on algebraic tensors and then on smooth vectors. Creation and annihilation have uniform weighted bounds by the proof of Lemma~\\ref{lem:weyl-bounds}. For the remaining term, a one-copy bound between powers of $\\Lambda$ implies a bound for its sum between powers of $1"
     },
     {
       "from": "m1-lem-centered-sums",
       "to": "m1-lem-unitary-clt",
+      "label": "lem:centered-sums",
       "context": "a) =D^{-1/2}\\sum_j \\bigl(K_D^*\\partial_\\alpha K_D\\bigr)(a/\\sqrt D)^{(j)}. \\] The one-copy vacuum mean is $O(D^{-1/2}P(a))$, since it vanishes at zero. Lemma~\\ref{lem:centered-sums}, with this scalar part retained, gives a uniform bound. Further differentiation produces products of finitely many suc"
     },
     {
       "from": "m1-lem-unitary-clt",
       "to": "m1-lem-ordinary-updates",
+      "label": "lem:unitary-clt",
       "context": "preceding word preserves that symmetry. Its vacuum column is $v_Z$. On each root $Z$-eigenspace, the update is a product of small one-child unitaries. Lemma~\\ref{lem:unitary-clt} gives precisely the cost in \\eqref{eq:ordinary-root-updates}; the scalar correction is zero for an exponential of a fix"
     },
     {
       "from": "m1-lem-weyl-bounds",
       "to": "m1-lem-ordinary-updates",
+      "label": "lem:weyl-bounds",
       "context": "y-root-updates}; the scalar correction is zero for an exponential of a fixed observable. The smooth estimates follow inductively from the same lemma and Lemma~\\ref{lem:weyl-bounds}. Mixers are local, and a seed gate is multiplication by a two-by-two unitary; its input derivatives have polynomial se"
     },
     {
       "from": "m1-prop-energy",
       "to": "m1-lem-ordinary-updates",
+      "label": "prop:energy",
       "context": "finite light-cone radius justifies all factorizations before limits are taken. The finite-degree ordinary insertion vectors meet the hypotheses of Proposition~\\ref{prop:energy}: parity makes them centered, the construction preserves rooted symmetry, and the smooth weight dominates $1+N$. Their e"
     },
     {
       "from": "m1-prop-tree-transfer",
       "to": "m1-lem-ordinary-updates",
+      "label": "prop:tree-transfer",
       "context": "ion preserves rooted symmetry, and the smooth weight dominates $1+N$. Their edge pairing is the expectation of $Z_iZ_j$. The root-shift formula and Proposition~\\ref{prop:tree-transfer} therefore give $v_W=\\cE(v_Z)$."
     },
     {
       "from": "m1-lem-unitary-clt",
       "to": "m1-thm-gate-calculus",
+      "label": "lem:unitary-clt",
       "context": "als. Local commuting seed/axis variables plainly have joint exponentials with polynomial smooth bounds. Suppose this is true for the child signal list. Lemma~\\ref{lem:unitary-clt} gives \\eqref{eq:commuting-signal-limit}, including the polynomial frequency bounds on joint exponentials, and Lemma~\\re"
     },
     {
       "from": "m1-lem-centered-sums",
       "to": "m1-thm-gate-calculus",
+      "label": "lem:centered-sums",
       "context": "d signal list. Lemma~\\ref{lem:unitary-clt} gives \\eqref{eq:commuting-signal-limit}, including the polynomial frequency bounds on joint exponentials, and Lemma~\\ref{lem:centered-sums} gives polynomial convergence. Lemma~\\ref{lem:commuting-substitution} then computes each smooth pointwise function and g"
     },
     {
       "from": "m1-lem-commuting-substitution",
       "to": "m1-thm-gate-calculus",
+      "label": "lem:commuting-substitution",
       "context": "commuting-signal-limit}, including the polynomial frequency bounds on joint exponentials, and Lemma~\\ref{lem:centered-sums} gives polynomial convergence. Lemma~\\ref{lem:commuting-substitution} then computes each smooth pointwise function and gives polynomial bounds for the joint exponentials of every new finite"
     },
     {
       "from": "m1-lem-ordinary-updates",
       "to": "m1-thm-gate-calculus",
+      "label": "lem:ordinary-updates",
       "context": "date} with smooth bounds and limits. It adds one gate to the preceding sequence. Ordinary cost and mixer updates may be inserted between these gates by Lemma~\\ref{lem:ordinary-updates}; its proof requires only smooth bounds on the preceding maps and preservation of symmetry. Local seed gates are handle"
     },
     {
       "from": "m1-prop-energy",
       "to": "m1-thm-gate-calculus",
+      "label": "prop:energy",
       "context": "same proof with $D+1$ top factors instead of $D$ gives the same limit, since $(D+1)/D\\to1$. Smoothness supplies the bounded occupation required for Proposition~\\ref{prop:energy}. External parameters can be carried through this induction without being scaled. At the child-product step use the un"
     },
     {
       "from": "m1-thm-gate-calculus",
       "to": "m1-cor-additive-response",
+      "label": "thm:gate-calculus",
       "context": ",x$ derivatives have polynomial bounds from the assumed bounds on $h$ (use Duhamel's formula for matrix derivatives). The external-parameter version of Theorem~\\ref{thm:gate-calculus}, which also applies to its truncated cut recursions, therefore gives uniform smooth bounds and convergence of $K_D(a;t)"
     },
     {
       "from": "m1-lem-unitary-clt",
       "to": "m1-cor-additive-response",
+      "label": "lem:unitary-clt",
       "context": "at zero: \\[ K_\\alpha(t)=\\ii t H_\\alpha,\\qquad K_{\\alpha\\lambda}(t)=\\ii t H_{\\alpha\\lambda} -\\frac{t^2}{2}\\{H_\\alpha,H_\\lambda\\}. \\] In Lemma~\\ref{lem:unitary-clt} one has $T_\\alpha=tH_\\alpha$; the two anticommutator terms cancel exactly. The product of the $D$ child ratios therefo"
     },
     {
       "from": "m1-lem-commuting-substitution",
       "to": "m1-cor-additive-response",
+      "label": "lem:commuting-substitution",
       "context": "equently act on smooth vectors by \\eqref{eq:additive-cut-response}; no separate choice of closure of the displayed expression is used. The exclusions and Lemma~\\ref{lem:commuting-substitution} allow operator inputs and preserve the group law and this generator identification. Repeating this argument at the fin"
     },
     {
       "from": "m1-thm-gate-calculus",
       "to": "m1-lem-classical-color-exclusion",
+      "label": "thm:gate-calculus",
       "context": "equiring a parent orientation. A full root has $D+1$ neighbors; its limiting formula agrees with the $D$-child convention by the full-root assertion of Theorem~\\ref{thm:gate-calculus}. Here is a uniform error estimate. Give the original formula the extra independent colors but ignore them in its comp"
     },
     {
       "from": "m1-lem-classical-trigonometric-density",
       "to": "m1-prop-classical-near-optimum",
+      "label": "lem:classical-trigonometric-density",
       "context": "Use \\eqref{eq:scalar-near-optimal-smooth} with error $\\varepsilon/3$ and write $m^*=z$. Apply Lemma~\\ref{lem:classical-trigonometric-density} to obtain an angle $\\theta$ whose output $m=\\sin(2\\theta)$ has $\\norm{m-m^*}<\\varepsilon/12$. Both outputs are bounded"
     },
     {
       "from": "m1-lem-classical-color-exclusion",
       "to": "m1-prop-classical-near-optimum",
+      "label": "lem:classical-color-exclusion",
       "context": "<\\eta_H$ sufficiently small, and partition the remaining probability into finitely many colors of maximum probability $\\alpha$ sufficiently small. Apply Lemma~\\ref{lem:classical-color-exclusion} to the angle calculation and use the $2$-Lipschitz property of sine. Taking $\\alpha,p_H$ smaller if necessary gives $\\"
     },
     {
       "from": "m1-lem-weyl-bounds",
       "to": "m1-lem-fixed-field-exponentials",
+      "label": "lem:weyl-bounds",
       "context": "The Weyl estimates in Lemma~\\ref{lem:weyl-bounds}, applied to \\(\\sum_j\\xi_jd_j\\), give, for every \\(a\\), \\[ \\norm{W^a e^{\\ii\\xi\\cdot Q}\\zeta} \\le C_a(1+|\\xi|)^{r_a}\\no"
     },
     {
       "from": "m1-lem-fixed-field-exponentials",
       "to": "m1-lem-orthogonal-quadratics",
+      "label": "lem:fixed-field-exponentials",
       "context": "}^2\\) and Gronwall's inequality now give a bound independent of the column count. At a fixed finite column count these differentiations are justified by Lemma~\\ref{lem:fixed-field-exponentials}; its constants are not used in Gronwall's bound. Equivalently one may first truncate the weights and pass to the limit"
     },
     {
       "from": "m1-prop-helper-contraction",
       "to": "m1-lem-orthogonal-quadratics",
+      "label": "prop:helper-contraction",
       "context": "[Proof of Proposition~\\ref{prop:helper-contraction}] We prove a single replacement with arbitrary preceding root maps from the gate calculus: they preserve the joint parit"
     },
     {
       "from": "m1-thm-gate-calculus",
       "to": "m1-lem-orthogonal-quadratics",
+      "label": "thm:gate-calculus",
       "context": "cted; no limit of the extensive Hamiltonian difference is being asserted. The identity holds on the compressed space as well. At this fixed partition, Theorem~\\ref{thm:gate-calculus} applies to both complete operations with \\(t\\) as an external parameter. The complete contraction is the gate at the \\"
     },
     {
       "from": "m1-cor-additive-response",
       "to": "m1-lem-orthogonal-quadratics",
+      "label": "cor:additive-response",
       "context": "We pass the algebraic recursion \\eqref{eq:additive-response-recursion} to the limit by the centered normalized-sum calculation used in the proof of Corollary~\\ref{cor:additive-response}. At a fixed partition, the terminal coefficients and their jets are finite products and smooth compositions of centere"
     },
     {
       "from": "m1-thm-classical-synthesis",
       "to": "m1-lem-orthogonal-quadratics",
+      "label": "thm:classical-synthesis",
       "context": "[Proof of Theorem~\\ref{thm:classical-synthesis}] The finite nested construction proves \\eqref{eq:synthesis-insertion}. To identify the target value, the ideal seed-on"
     },
     {
       "from": "m1-prop-energy",
       "to": "m1-lem-orthogonal-quadratics",
+      "label": "prop:energy",
       "context": "t seed labels, \\(\\norm{\\1_Hv}=\\sqrt{p_H}\\): the mask commutes with the circuit and with \\(Z\\), and \\(Z\\) is unitary. Since \\(\\cL\\) is an isometry, Proposition~\\ref{prop:energy} gives \\[ \\abs{\\cE(v)-\\cE(\\1_{H^c}v)}\\le2\\sqrt{p_H}. \\] Both projected insertion vectors have norm at most one, so \\eqr"
     },
     {
       "from": "m1-lem-weyl-bounds",
       "to": "m1-lem-seed-packet-estimates",
+      "label": "lem:weyl-bounds",
       "context": "The first assertion follows from the creation--annihilation estimates in Lemma~\\ref{lem:weyl-bounds}, or by differentiating a Weyl displacement on \\(\\mathcal S\\). In the Taylor remainder one uses \\(\\norm{q(d)^2\\eta}\\leq"
     },
     {
       "from": "m1-lem-seed-packet-estimates",
       "to": "m1-lem-seed-high-directions",
+      "label": "lem:seed-packet-estimates",
       "context": "xed output \\(Z\\)-spin the centers in \\(\\ell_r\\) and in the displayed expression for \\(w_r\\) differ by \\(4\\gamma_re+O(1)\\); their overlap tends to zero by Lemma~\\ref{lem:seed-packet-estimates} (or the vacuum Weyl formula). Finally, split a bounded family at \\(N\\leq M\\). Its complementary norm is uniformly \\(O("
     },
     {
       "from": "m1-lem-seed-packet-estimates",
       "to": "m1-lem-seed-selective-accuracy",
+      "label": "lem:seed-packet-estimates",
       "context": "be a prefix of the short probes, and write \\(v_{P,r}^{(j)}=(V_ju_r)^*P(V_ju_r)\\vac\\). Center preservation and all centered-tail bounds follow first from Lemma~\\ref{lem:seed-packet-estimates}, without estimating the spin phases. At a standard stage every ordinary probe has zero center phase. At a huge-cost s"
     },
     {
       "from": "m1-lem-seed-selective-accuracy",
       "to": "m1-lem-seed-one-echo",
+      "label": "lem:seed-selective-accuracy",
       "context": "ote the exact ordinary and special components after that forward cost by \\(\\Psi^{\\mathrm{cost}}_{O,r}\\) and \\(\\psi^{\\mathrm{cost}}_{S,r}\\), respectively. Lemma~\\ref{lem:seed-selective-accuracy} gives net identity to \\(o(r)\\) on the ordinary part, including its \\(Z\\)-inserted version. On the special part it give"
     },
     {
       "from": "m1-lem-seed-low-insertions",
       "to": "m1-lem-seed-one-echo",
+      "label": "lem:seed-low-insertions",
       "context": "ort. At this second-flip probe start the exact special norm is still \\(r\\), and the ordinary low action already has the updated unitary \\(W_Z(g_r)A_r\\). Lemma~\\ref{lem:seed-low-insertions} consequently approximates the actual insertion to \\(O(r)\\) by this updated low insertion, irrespective of the temporari"
     },
     {
       "from": "m1-lem-seed-packet-estimates",
       "to": "m1-lem-seed-gram-induction",
+      "label": "lem:seed-packet-estimates",
       "context": "atisfy \\(d_{0,r}=2b\\ell_r+o(1)\\), and the echo directions satisfy \\(g_r=-2tw_r+o(1)\\). Norm-small errors in these bounded directions may be removed using Lemma~\\ref{lem:seed-packet-estimates}. Every actual standard insertion differs by \\(O(r)\\) from its bounded smooth low insertion, by Lemma~\\ref{lem:seed-low"
     },
     {
       "from": "m1-lem-seed-low-insertions",
       "to": "m1-lem-seed-gram-induction",
+      "label": "lem:seed-low-insertions",
       "context": "ay be removed using Lemma~\\ref{lem:seed-packet-estimates}. Every actual standard insertion differs by \\(O(r)\\) from its bounded smooth low insertion, by Lemma~\\ref{lem:seed-low-insertions}. Thus, when computing a new Gram entry, an earlier actual insertion may first be replaced by its low insertion at erro"
     },
     {
       "from": "m1-lem-seed-high-directions",
       "to": "m1-lem-seed-gram-induction",
+      "label": "lem:seed-high-directions",
       "context": ":seed-low-insertions}. Thus, when computing a new Gram entry, an earlier actual insertion may first be replaced by its low insertion at error \\(O(r)\\). Lemma~\\ref{lem:seed-high-directions} therefore makes its pairing with \\(\\ell_r,w_r\\) vanish. Together with \\(\\braket{\\ell_r}{w_r}\\to0\\), this is exactly th"
     },
     {
       "from": "m1-thm-seed-simulation",
       "to": "m1-lem-seed-huge-transverse",
+      "label": "thm:seed-simulation",
       "context": "[Proof of Theorem~\\ref{thm:seed-simulation}] Start with the requested finite seeded word and a tolerance. For a small fixed \\(b>0\\), prepend \\(R_\\star e^{2\\ii b Z"
     },
     {
       "from": "m1-lem-seed-gram-induction",
       "to": "m1-lem-seed-huge-transverse",
+      "label": "lem:seed-gram-induction",
       "context": "he resulting finite probe lists by the successive construction above. With these lists fixed, take \\(r>0\\) sufficiently small. The packet induction and Lemma~\\ref{lem:seed-gram-induction} show that the ordinary word consisting of the initialization, unscaled costs, compensated mixers, and seed echoes has e"
     },
     {
       "from": "m1-prop-tree-transfer",
       "to": "m1-lem-seed-huge-transverse",
+      "label": "prop:tree-transfer",
       "context": "rnating QAOA format. After \\(b\\), the perturbation, the finite probe lists, and \\(r\\) have been chosen, the entire word and its angles are fixed. Proposition~\\ref{prop:tree-transfer} therefore applies before any approximation parameter is changed. This proves the claimed order of limits and parameter"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-lem-seed-huge-transverse",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] Fix $\\varepsilon>0$. Apply Proposition~\\ref{prop:classical-near-optimum} with error $\\varepsilon/4$ and helper bound $"
     },
     {
       "from": "m1-prop-classical-near-optimum",
       "to": "m1-lem-seed-huge-transverse",
+      "label": "prop:classical-near-optimum",
       "context": "[Proof of Theorem~\\ref{thm:main}] Fix $\\varepsilon>0$. Apply Proposition~\\ref{prop:classical-near-optimum} with error $\\varepsilon/4$ and helper bound $\\eta_H=(\\varepsilon/8)^2$. It gives a finite bounded smooth classical calc"
     },
     {
       "from": "m1-thm-classical-synthesis",
       "to": "m1-lem-seed-huge-transverse",
+      "label": "thm:classical-synthesis",
       "context": "ical calculation with output $m$ and helper probability $p_H$ satisfying \\[ \\cE(m)\\ge\\Pstar-\\varepsilon/4, \\qquad 2\\sqrt{p_H}<\\varepsilon/4. \\] Apply Theorem~\\ref{thm:classical-synthesis} with $\\eta=\\varepsilon/8$. The resulting finite seeded circuit has insertion $v$ with \\[ \\cE(v)\\ge\\cE(m)-2\\eta-2\\sqrt{"
     },
     {
       "from": "m1-cor-regular-maxcut",
       "to": "m1-lem-seed-huge-transverse",
+      "label": "cor:regular-maxcut",
       "context": "[Proof of Corollary~\\ref{cor:regular-maxcut}] The normalized negative cost used by Basso et al.~\\cite{BFMVZ2022} is \\[ C_D^-=-\\frac1{\\sqrt D}\\sum_{\\{u,v\\}\\in E}Z_u"
     },
     {
       "from": "m1-lem-eams-finite-step",
       "to": "m1-lem-classical-strong-limit",
+      "label": "lem:eams-finite-step",
       "context": "for energy. We use induction on formula depth. All intermediate moments are uniformly bounded: normalized centered sums satisfy the moment bound used in Lemma~\\ref{lem:eams-finite-step}, and polynomial-growth functions preserve the existence of sufficiently high uniform moments. Suppose the real centere"
     },
     {
       "from": "m1-prop-energy",
       "to": "m1-lem-classical-strong-limit",
+      "label": "prop:energy",
       "context": "ment with distinct child replacements and mixed derivatives bounds the factorial moments of $N_D$ of every fixed order. The energy identity is now Proposition~\\ref{prop:energy} applied to these classical vectors. More explicitly, with $M=D+1$ root children, the projection onto an excitation in"
     },
     {
       "from": "m1-lem-classical-strong-limit",
       "to": "m1-prop-classical-near-optimum-positive-temperature",
+      "label": "lem:classical-strong-limit",
       "context": "3$. Its underlying formula $z^\\delta$ has odd transmitted columns and jointly odd smooth local maps with polynomial-growth derivatives, as checked after Lemma~\\ref{lem:classical-strong-limit}. It therefore meets the hypotheses of Lemma~\\ref{lem:classical-trigonometric-density}. Apply that lemma and then Lemma"
     },
     {
       "from": "m1-lem-classical-trigonometric-density",
       "to": "m1-prop-classical-near-optimum-positive-temperature",
+      "label": "lem:classical-trigonometric-density",
       "context": "odd smooth local maps with polynomial-growth derivatives, as checked after Lemma~\\ref{lem:classical-strong-limit}. It therefore meets the hypotheses of Lemma~\\ref{lem:classical-trigonometric-density}. Apply that lemma and then Lemma~\\ref{lem:classical-color-exclusion} with the choices in the proof of Proposition~\\ref{"
     },
     {
       "from": "m1-lem-classical-color-exclusion",
       "to": "m1-prop-classical-near-optimum-positive-temperature",
+      "label": "lem:classical-color-exclusion",
       "context": "Lemma~\\ref{lem:classical-strong-limit}. It therefore meets the hypotheses of Lemma~\\ref{lem:classical-trigonometric-density}. Apply that lemma and then Lemma~\\ref{lem:classical-color-exclusion} with the choices in the proof of Proposition~\\ref{prop:classical-near-optimum}: the first output error is less than $\\v"
     },
     {
       "from": "m1-prop-classical-near-optimum",
       "to": "m1-prop-classical-near-optimum-positive-temperature",
+      "label": "prop:classical-near-optimum",
       "context": "mma~\\ref{lem:classical-trigonometric-density}. Apply that lemma and then Lemma~\\ref{lem:classical-color-exclusion} with the choices in the proof of Proposition~\\ref{prop:classical-near-optimum}: the first output error is less than $\\varepsilon/12$ in norm, the second less than $\\varepsilon/6$, and one positive-p"
     },
     {
       "from": "m2-lem-regularity",
       "to": "m2-lem-diffusion",
+      "label": "lem:regularity",
       "context": "The drift is measurable in time, bounded by $\\gamma(t)$, and globally Lipschitz in space on every compact time strip by Lemma~\\ref{lem:regularity}. Picard iteration gives a unique strong solution there. These solutions agree on overlaps and extend to time one beca"
     },
     {
       "from": "m2-lem-regularity",
       "to": "m2-lem-constant-transfer",
+      "label": "lem:regularity",
       "context": "es are monotone and converge in $L^1$. Increase the terminal smoothing parameter beyond the finite step bound. The convergence claims then follow from Lemmas~\\ref{lem:regularity} and \\ref{lem:diffusion}. The products involved are uniformly bounded, and the spatial derivative bounds also give unif"
     },
     {
       "from": "m2-lem-diffusion",
       "to": "m2-lem-constant-transfer",
+      "label": "lem:diffusion",
       "context": "rge in $L^1$. Increase the terminal smoothing parameter beyond the finite step bound. The convergence claims then follow from Lemmas~\\ref{lem:regularity} and \\ref{lem:diffusion}. The products involved are uniformly bounded, and the spatial derivative bounds also give uniform continuity for evalu"
     },
     {
       "from": "m2-tail-class",
       "to": "m2-shape-backward",
+      "label": "tail:class",
       "context": "alings are positive, this proves $v>0$. Thus $r(x)>0$ for $x>0$. All required derivatives are bounded on closed steps, by smoothness on compact sets and Lemma~\\ref{tail:class} at infinity. Differentiating \\eqref{shape:backward-r} twice gives \\[ w_\\tau=\\tfrac12w_{xx}+r w_x+3v w. \\] The termina"
     },
     {
       "from": "m2-shape-backward",
       "to": "m2-shape-forward",
+      "label": "shape:backward",
       "context": "+=a_-+\\delta\\Phi_{xx}, \\quad (s_{xx})_+=(s_{xx})_-+\\delta\\Phi_{xxx}. \\end{equation} Here $\\Phi_{xx}>0$ and $\\Phi_{xxx}\\le0$ on the positive half-line by Lemma~\\ref{shape:backward}. For subsequent intervals, put $u=a-1/t$. Equation \\eqref{shape:a-evolution} becomes the linear equation \\[ u_t=\\tfr"
     },
     {
       "from": "m2-tail-class",
       "to": "m2-shape-forward",
+      "label": "tail:class",
       "context": "above independently of a spatial truncation. Initially $u\\ge0$, by the preceding step and \\eqref{shape:s-jump}; at both infinities $u\\to0$ uniformly by Lemma~\\ref{tail:class}. Comparison on $[-A,A]$ and exhaustion prove $a\\ge1/t$. Next apply comparison to $-s_{xx}$ on $[0,A]$ using \\eqref{sh"
     },
     {
       "from": "m2-shape-backward",
       "to": "m2-shape-ibp",
+      "label": "shape:backward",
       "context": "The signs of $R,K,v,j,L$ follow from Lemmas~\\ref{shape:backward} and \\ref{shape:forward}; for $K$ use the common sign of the odd functions $r,s$. Since $H=v-b/2$, we have $B=-2H\\ge0$."
     },
     {
       "from": "m2-shape-forward",
       "to": "m2-shape-ibp",
+      "label": "shape:forward",
       "context": "The signs of $R,K,v,j,L$ follow from Lemmas~\\ref{shape:backward} and \\ref{shape:forward}; for $K$ use the common sign of the odd functions $r,s$. Since $H=v-b/2$, we have $B=-2H\\ge0$. On $x>0$, differentiati"
     },
     {
       "from": "m2-lem-constant-transfer",
       "to": "m2-prop-gap-curvature",
+      "label": "lem:constant-transfer",
       "context": "Suppose first $c>0$ and fix $t\\in I$. Choose a closed neighborhood of $t$ inside $I$. Lemma~\\ref{lem:constant-transfer} supplies positive nondecreasing finite-step approximants $\\gamma_n$, equal to $c$ there, and terminal smoothings $M_n^{"
     },
     {
       "from": "m2-shape-backward",
       "to": "m2-prop-gap-curvature",
+      "label": "shape:backward",
       "context": "d $M_n\\to\\infty$. Write $X^n$ for the associated diffusions and $r_n=c\\Phi_{n,x}$, $v_n=r_{n,x}$, $w_n=r_{n,xx}$, $z_n=r_{n,xxx}$ on that neighborhood. Lemmas~\\ref{shape:backward}, \\ref{shape:forward}, and~\\ref{shape:ibp} verify all sign, integrability, and boundary hypotheses of Proposition~\\ref{c"
     },
     {
       "from": "m2-shape-forward",
       "to": "m2-prop-gap-curvature",
+      "label": "shape:forward",
       "context": "e $X^n$ for the associated diffusions and $r_n=c\\Phi_{n,x}$, $v_n=r_{n,x}$, $w_n=r_{n,xx}$, $z_n=r_{n,xxx}$ on that neighborhood. Lemmas~\\ref{shape:backward}, \\ref{shape:forward}, and~\\ref{shape:ibp} verify all sign, integrability, and boundary hypotheses of Proposition~\\ref{cert:coercivity}. Ther"
     },
     {
       "from": "m2-shape-ibp",
       "to": "m2-prop-gap-curvature",
+      "label": "shape:ibp",
       "context": "d diffusions and $r_n=c\\Phi_{n,x}$, $v_n=r_{n,x}$, $w_n=r_{n,xx}$, $z_n=r_{n,xxx}$ on that neighborhood. Lemmas~\\ref{shape:backward}, \\ref{shape:forward}, and~\\ref{shape:ibp} verify all sign, integrability, and boundary hypotheses of Proposition~\\ref{cert:coercivity}. Therefore \\[ \\E[z_n^2-12"
     },
     {
       "from": "m2-cert-coercivity",
       "to": "m2-prop-gap-curvature",
+      "label": "cert:coercivity",
       "context": "hat neighborhood. Lemmas~\\ref{shape:backward}, \\ref{shape:forward}, and~\\ref{shape:ibp} verify all sign, integrability, and boundary hypotheses of Proposition~\\ref{cert:coercivity}. Therefore \\[ \\E[z_n^2-12v_nw_n^2+6v_n^4](t,X_t^n) \\geq\\frac1{1000}\\E v_n(t,X_t^n)^4. \\] The derivatives throug"
     },
     {
       "from": "m2-lem-regularity",
       "to": "m2-prop-gap-curvature",
+      "label": "lem:regularity",
       "context": "v_n^4](t,X_t^n) \\geq\\frac1{1000}\\E v_n(t,X_t^n)^4. \\] The derivatives through order four converge uniformly in space and are uniformly bounded, by Lemma~\\ref{lem:regularity}. The coupled paths $X_t^n$ converge, and the next spatial derivative bounds ensure uniform continuity when evaluating a"
     },
     {
       "from": "m2-lem-regularity",
       "to": "m2-lem-first-variation",
+      "label": "lem:regularity",
       "context": "Y^\\epsilon_0=0$ and \\[ \\dd Y^\\epsilon_t =\\tfrac12\\beta(t)(\\widetilde u+u)(t,Y^\\epsilon_t)\\,\\dd t +\\dd B_t. \\] This diffusion exists uniquely by Lemma~\\ref{lem:regularity}; its drift is bounded by the integrable function $\\beta$. It\\^o's formula on $[0,T]$ yields the following identity. On"
     },
     {
       "from": "m2-lem-diffusion",
       "to": "m2-lem-first-variation",
+      "label": "lem:diffusion",
       "context": "s, their spatial derivatives, and the associated linear diffusions converge on $[0,T]$ by Lemma~\\ref{lem:regularity} and the same Gronwall estimate as in Lemma~\\ref{lem:diffusion}. The source converges in $L^1$, since the gradients are bounded by one. Passing to the limit in their classical identi"
     },
     {
       "from": "m2-lem-first-variation",
       "to": "m2-lem-contact",
+      "label": "lem:first-variation",
       "context": "For $s<1$, the direction $\\eta=\\mathbf1_{[s,1)}$ adds an atom to $\\mu$ and is admissible. Minimality and Lemma~\\ref{lem:first-variation} give $G(s)\\geq0$. If $K\\subset[0,1)$ is compact, let $\\nu=\\mu|_K$ and take $\\eta_K(t)=-\\nu([0,t])$. This bounded direc"
     },
     {
       "from": "m2-lem-diffusion",
       "to": "m2-lem-contact",
+      "label": "lem:diffusion",
       "context": "\\nu(K)<\\infty$. Since $G\\geq0$, it vanishes $\\mu$-almost everywhere on every such $K$. Its continuity then gives $G=0$ on the relative support $S$. By Lemma~\\ref{lem:diffusion}, $G'(s)=s-q(s)$ and $G''(s)=1-q'(s)$ on compact strips. Every interior support point is a minimum of $G$, proving \\eqre"
     },
     {
       "from": "m2-lem-contact",
       "to": "m2-lem-no-terminal-plateau",
+      "label": "lem:contact",
       "context": "r} with $C=2m\\kappa$. It follows that $q(t)-t\\leq (1-t)-C\\sqrt{1-t}<0$ sufficiently near one. Thus $G(s')<0$ for $s'$ sufficiently near one, contrary to Lemma~\\ref{lem:contact}. This also covers $c=0$."
     },
     {
       "from": "m2-thm-full-support",
       "to": "m2-lem-no-terminal-plateau",
+      "label": "thm:full-support",
       "context": "[Proof of Theorem~\\ref{thm:full-support}] Let $S$ be the support in Lemma~\\ref{lem:contact}. Since $S$ is relatively closed in $[0,1)$, a nonempty component of"
     },
     {
       "from": "m2-prop-gap-curvature",
       "to": "m2-lem-no-terminal-plateau",
+      "label": "prop:gap-curvature",
       "context": "em:contact}, $q(a)=a$, $q(b)=b$, and $q'(a),q'(b)\\leq1$, including the one-sided interpretation at $a=0$. If its constant coefficient is positive, Proposition~\\ref{prop:gap-curvature} makes $q'$ strictly convex inside the gap. By continuity up to its endpoints, \\[ q'(t)<\\frac{b-t}{b-a}q'(a)+\\frac{t-a"
     },
     {
       "from": "m2-lem-diffusion",
       "to": "m2-lem-no-terminal-plateau",
+      "label": "lem:diffusion",
       "context": "n. Thus $S=[0,1)$. The contact identities give $q(t)=t$ for $0<t<1$, and the identity at zero follows from symmetry. Differentiating this identity using Lemma~\\ref{lem:diffusion} gives $\\E\\Phi_{\\gamma,xx}(t,X_t)^2=1$, including the right derivative at zero. Finally, every nonempty interval $(a,b)$"
     },
     {
       "from": "m2-lem-regularity",
       "to": "m2-cor-smooth-measure",
+      "label": "lem:regularity",
       "context": "gamma$ for $k\\geq1$, and evaluate these functions along $X$ unless otherwise indicated. All spatial derivatives are bounded on each compact time strip by Lemma~\\ref{lem:regularity}. Differentiating the PDE and applying It\\^o's formula gives \\begin{equation}\\label{eq:spatial-derivative-martingales}"
     },
     {
       "from": "m2-lem-diffusion",
       "to": "m2-cor-smooth-measure",
+      "label": "lem:diffusion",
       "context": "{equation} The sum is empty for $k=1$. For general integrable $\\gamma$, this identity follows by the finite-step approximation and It\\^o isometry used in Lemma~\\ref{lem:diffusion}. On a fixed strip the spatial factors converge uniformly along the coupled paths, the time coefficients converge in $L^"
     },
     {
       "from": "m2-thm-full-support",
       "to": "m2-cor-smooth-measure",
+      "label": "thm:full-support",
       "context": "d B_t$. Hence \\[ \\frac{\\dd}{\\dd t}\\E a(t,X_t)^2 =\\E b(t,X_t)^2-2\\gamma(t)\\E a(t,X_t)^3 \\quad\\hbox{for almost every }t<1. \\] The left side is zero by Theorem~\\ref{thm:full-support}. Convexity gives $a\\geq0$, and the same theorem gives $\\E a^2=1$, so $\\E a^3\\geq(\\E a^2)^{3/2}=1$. The ratio on the rig"
     },
     {
       "from": "m2-cert-coercivity",
       "to": "m2-cor-smooth-measure",
+      "label": "cert:coercivity",
       "context": "$M_n\\to\\infty$, and let $a_n,b_n,d_n$ and $X^n$ denote the corresponding spatial derivatives and diffusion. At time $t$, the scaled derivatives in Proposition~\\ref{cert:coercivity} are $v_n=ca_n$, $w_n=cb_n$, and $z_n=cd_n$. Thus that proposition and Lemmas~\\ref{shape:backward}--\\ref{shape:ibp} give"
     },
     {
       "from": "m2-shape-backward",
       "to": "m2-cor-smooth-measure",
+      "label": "shape:backward",
       "context": "iffusion. At time $t$, the scaled derivatives in Proposition~\\ref{cert:coercivity} are $v_n=ca_n$, $w_n=cb_n$, and $z_n=cd_n$. Thus that proposition and Lemmas~\\ref{shape:backward}--\\ref{shape:ibp} give \\[ \\E[d_n^2-12c a_n b_n^2+6c^2a_n^4](t,X_t^n) \\geq\\frac{c^2}{1000}\\E a_n(t,X_t^n)^4. \\] T"
     },
     {
       "from": "m2-shape-ibp",
       "to": "m2-cor-smooth-measure",
+      "label": "shape:ibp",
       "context": "the scaled derivatives in Proposition~\\ref{cert:coercivity} are $v_n=ca_n$, $w_n=cb_n$, and $z_n=cd_n$. Thus that proposition and Lemmas~\\ref{shape:backward}--\\ref{shape:ibp} give \\[ \\E[d_n^2-12c a_n b_n^2+6c^2a_n^4](t,X_t^n) \\geq\\frac{c^2}{1000}\\E a_n(t,X_t^n)^4. \\] The derivative bou"
     },
     {
       "from": "m2-lem-diffusion",
       "to": "m2-cor-value",
+      "label": "lem:diffusion",
       "context": "Lemma~\\ref{lem:diffusion} gives the bounded martingale $u(t,X_t)=\\int_0^t a(s,X_s)\\,\\dd B_s$. By Theorem~\\ref{thm:full-support}, its second momen"
     },
     {
       "from": "m2-thm-full-support",
       "to": "m2-cor-value",
+      "label": "thm:full-support",
       "context": "Lemma~\\ref{lem:diffusion} gives the bounded martingale $u(t,X_t)=\\int_0^t a(s,X_s)\\,\\dd B_s$. By Theorem~\\ref{thm:full-support}, its second moment is $t$ and $\\E a(t,X_t)^2=1$. Martingale convergence therefore gives $U_1$ with $|U_1|\\leq1$ and $\\E"
     },
     {
       "from": "m2-lem-regularity",
       "to": "m2-prop-gaussian",
+      "label": "lem:regularity",
       "context": "mph{Euler convergence and normalization.} Use Brownian increments $\\sqrt\\Delta Z_j=B_{t_j}-B_{t_{j-1}}$ to couple~\\eqref{eq:euler} to $X$ up to time $T$. Lemma~\\ref{lem:regularity}, on a slightly larger strip, bounds all spatial derivatives of $u,a$. Their almost-everywhere time derivatives given by"
     },
     {
       "from": "m2-cor-value",
       "to": "m2-prop-gaussian",
+      "label": "cor:value",
       "context": "This converges to the stated integral by~\\eqref{eq:euler-convergence}, uniform convergence of $c_j$ to one, and continuity of $t\\mapsto\\E a(t,X_t)$. Corollary~\\ref{cor:value} gives its limit as $T\\uparrow1$."
     },
     {
       "from": "m2-thm-full-support",
       "to": "m2-cor-algorithm",
+      "label": "thm:full-support",
       "context": "Theorem~\\ref{thm:full-support} gives a strictly increasing minimizer in $\\mathcal U$, exactly the no-overlap-gap hypothesis in \\cite[Assumption~2]{EAM"
     }
   ]

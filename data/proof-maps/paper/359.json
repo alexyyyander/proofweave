@@ -471,271 +471,325 @@
     {
       "from": "m1-main-theorem",
       "to": "m1-map-obstruction",
+      "label": "main:theorem",
       "context": "[Proof of Theorem~\\ref{main:theorem}] Choose $\\phi$ from Proposition~\\ref{base:existence}, and then choose $\\lambda$ as in Proposition~\\ref{metric:transfer}"
     },
     {
       "from": "m1-base-existence",
       "to": "m1-map-obstruction",
+      "label": "base:existence",
       "context": "[Proof of Theorem~\\ref{main:theorem}] Choose $\\phi$ from Proposition~\\ref{base:existence}, and then choose $\\lambda$ as in Proposition~\\ref{metric:transfer}. The domain $M=M_\\phi\\subset\\C^3$ is contractible a"
     },
     {
       "from": "m1-metric-transfer",
       "to": "m1-map-obstruction",
+      "label": "metric:transfer",
       "context": "[Proof of Theorem~\\ref{main:theorem}] Choose $\\phi$ from Proposition~\\ref{base:existence}, and then choose $\\lambda$ as in Proposition~\\ref{metric:transfer}. The domain $M=M_\\phi\\subset\\C^3$ is contractible and carries the asserted smooth complete K\\\"ahler metric with two un"
     },
     {
       "from": "m1-density-main",
       "to": "m1-density-normalized-patch",
+      "label": "density:main",
       "context": "[Completion of the proof of Theorem~\\ref{density:main}] Fix \\(K_*>2C_2/c_0\\). The constant \\(C_1\\) in \\eqref{density:central-derivatives} is now fixed as well. We give a fin"
     },
     {
       "from": "m1-density-moments",
       "to": "m1-density-normalized-patch",
+      "label": "density:moments",
       "context": "t their boundaries gives the same estimate there. Multiplying by \\(\\sqrt{k_j}\\) or \\(k_j\\) proves the two derivative bounds and completes the induction. Lemma~\\ref{density:moments} supplies the exact moments, rotation mean and bandwidth independently of these inequalities. In particular \\(\\int_SW_j"
     },
     {
       "from": "m1-density-moments",
       "to": "m1-tests-averaging",
+      "label": "density:moments",
       "context": "\\xi\\mapsto e^{i\\omega}\\xi$, homogeneity gives $P_k(e^{i\\omega}\\xi)=e^{ik\\omega}P_k(\\xi)$. Thus $U_k(r\\xi)$ has only phase frequencies in $k\\mathbb Z$. By Lemma~\\ref{density:moments}, the phase bandwidth of $W_{j-1}$ is $\\ell_{j-1}<k$ and its constant coefficient on each orbit is one. Averaging the pr"
     },
     {
       "from": "m1-peaks-profiles",
       "to": "m1-tests-negative",
+      "label": "peaks:profiles",
       "context": "ref{tests:averaging-identity}. For $k=k_j$ put $\\rho=r^k$, so homogeneity gives $U_k(r\\xi)=F_\\epsilon(\\rho P_k(\\xi))$. Off the patches, $|aP_k|\\le1/2$ by Lemma~\\ref{peaks:profiles}. If $v=\\rho P_k(\\xi)$, $0\\le\\rho\\le1$, and $s=|1-av|^2$, then $1/4\\le s\\le9/4$ and \\[ F_\\epsilon(v)-\\log|1-av|^2 =\\lo"
     },
     {
       "from": "m1-peaks-bounds",
       "to": "m1-tests-negative",
+      "label": "peaks:bounds",
       "context": "\\le C\\epsilon^2|P_k(\\xi)|. \\] The off-patch set is phase-invariant, and the phase mean of the unregularized logarithm is zero. By the $L^1$ estimate of Lemma~\\ref{peaks:bounds}, its total contribution is thus at most \\begin{equation}\\label{tests:off-patch} C_{\\rm off}\\epsilon^2\\,\\frac{N_k}{k}."
     },
     {
       "from": "m1-peaks-patches",
       "to": "m1-tests-negative",
+      "label": "peaks:patches",
       "context": "off}\\epsilon^2\\,\\frac{N_k}{k}. \\end{equation} Here $C_{\\rm off}$ is independent of $D_0,k,\\rho$ and $0<\\epsilon\\le1$. On a patch, the measure formula of Lemma~\\ref{peaks:patches} writes the combined contribution as \\[ \\frac2k\\int_0^{R_0}\\int_{\\mathbb T^2} F_\\epsilon(\\rho P_k(\\xi)) \\bigl(e"
     },
     {
       "from": "m1-density-moments",
       "to": "m1-tests-later",
+      "label": "density:moments",
       "context": "Include the density and degree thresholds in $Q_*$, and require $Q\\ge4$. By Lemma~\\ref{density:moments}, the increment $W_\\nu-W_{\\nu-1}$ has frequencies within $\\ell_{\\nu-1}$ of $\\pm k_\\nu$. Since $\\ell_{\\nu-1}\\le2k_{\\nu-1"
     },
     {
       "from": "m1-density-main",
       "to": "m1-tests-later",
+      "label": "density:main",
       "context": "bsolute value less than $(Q-2)k_j$. Phase averaging therefore makes its integral against $W_N-W_j$ vanish. Both densities are positive probabilities by Theorem~\\ref{density:main}; hence $\\|W_N-W_j\\|_{L^1(\\sigma)}\\le2$. It follows that \\[ \\left|\\int_S U_{k_j}(r\\xi)(W_N-W_j)\\,d\\sigma\\right| \\le\\f"
     },
     {
       "from": "m1-peaks-bounds",
       "to": "m1-base-convergence",
+      "label": "peaks:bounds",
       "context": "r_1<1$. Around each point of $|z|\\le r_0$, the complex polydisk of radius $(r_1-r_0)/(2\\sqrt2)$ lies in $|z|<r_1$. Cauchy estimates there, together with Lemma~\\ref{peaks:bounds}, give \\[ \\sup_{|z|\\le r_0}|D^mP_k(z)| \\le C_{m,r_0,r_1}r_1^k \\] for every fixed derivative order $m$. Here and below"
     },
     {
       "from": "m1-density-main",
       "to": "m1-base-minorant",
+      "label": "density:main",
       "context": "{\\rm tail}) \\notag\\\\ &\\hspace{1cm}= N(5\\log Q-Ld_3)+5\\log(1/\\eta)+LC_{\\rm tail} \\longrightarrow-\\infty. \\label{base:negative-means} \\end{align} By Theorem~\\ref{density:main}, the measures $\\mu_N=W_N\\,d\\sigma$ are positive representing probabilities. Apply Lemma~\\ref{peaks:mean-criterion} to t"
     },
     {
       "from": "m1-peaks-mean-criterion",
       "to": "m1-base-minorant",
+      "label": "peaks:mean-criterion",
       "context": "\\label{base:negative-means} \\end{align} By Theorem~\\ref{density:main}, the measures $\\mu_N=W_N\\,d\\sigma$ are positive representing probabilities. Apply Lemma~\\ref{peaks:mean-criterion} to these measures, the radii $r_N$, and the continuous function $u(z)=\\phi(z)+4\\log(1/(1-|z|))$. The limit~\\eqref{base:"
     },
     {
       "from": "m1-peaks-bounds",
       "to": "m1-base-chart-estimates",
+      "label": "peaks:bounds",
       "context": "c1k,\\quad |z_2|<\\frac1{\\sqrt k}\\right\\}. \\] It may extend outside the ball, but $P_k$ is an entire homogeneous polynomial. The bound of Lemma~\\ref{peaks:bounds} therefore holds there as well. In fact \\[ |z|^2\\le(1+1/k)^2+1/k\\le1+4/k,\\qquad |P_k(z)|\\le C_P(1+2/k)^k\\le C_Pe^2. \\"
     },
     {
       "from": "m1-base-convergence",
       "to": "m1-base-chart-estimates",
+      "label": "base:convergence",
       "context": "[ \\sum_{j>J}e^{-cQ^j\\delta} \\le\\sum_{m\\ge0}e^{-cQ^m}<\\infty. \\] Both bounds are uniform in the chart center. Termwise differentiation is legitimate by Lemma~\\ref{base:convergence}. Multiplication by the fixed amplitude $L$ preserves these bounds. Finally, the base potential transforms as \\[ \\psi\\"
     },
     {
       "from": "m1-base-existence",
       "to": "m1-base-chart-estimates",
+      "label": "base:existence",
       "context": "[Proof of Proposition~\\ref{base:existence}] Choose $a,\\alpha,s_1,f,b,R_0$ as in Lemma~\\ref{peaks:profiles}. Proposition~\\ref{tests:negative} first chooses $\\epsil"
     },
     {
       "from": "m1-peaks-profiles",
       "to": "m1-base-chart-estimates",
+      "label": "peaks:profiles",
       "context": "[Proof of Proposition~\\ref{base:existence}] Choose $a,\\alpha,s_1,f,b,R_0$ as in Lemma~\\ref{peaks:profiles}. Proposition~\\ref{tests:negative} first chooses $\\epsilon,\\eta$ and then permits any sufficiently large spacing $D_0$."
     },
     {
       "from": "m1-tests-negative",
       "to": "m1-base-chart-estimates",
+      "label": "tests:negative",
       "context": "[Proof of Proposition~\\ref{base:existence}] Choose $a,\\alpha,s_1,f,b,R_0$ as in Lemma~\\ref{peaks:profiles}. Proposition~\\ref{tests:negative} first chooses $\\epsilon,\\eta$ and then permits any sufficiently large spacing $D_0$. Fix such a $D_0$ and its degree t"
     },
     {
       "from": "m1-tests-later",
       "to": "m1-base-chart-estimates",
+      "label": "tests:later",
       "context": "efore that threshold is chosen. We may therefore choose one integer $Q$ satisfying the density threshold, $Q\\ge k_*$, and the Fourier-error threshold of Lemma~\\ref{tests:later}. Now fix a finite amplitude $L$ satisfying~\\eqref{base:amplitude}. Lemma~\\ref{base:convergence} constructs the smooth"
     },
     {
       "from": "m1-base-minorant",
       "to": "m1-base-chart-estimates",
+      "label": "base:minorant",
       "context": "ts:later}. Now fix a finite amplitude $L$ satisfying~\\eqref{base:amplitude}. Lemma~\\ref{base:convergence} constructs the smooth potential with $h\\ge I$; Lemma~\\ref{base:minorant} proves the required obstruction; and Lemma~\\ref{base:chart-estimates} supplies its finite uniform chart bounds. The ch"
     },
     {
       "from": "m1-metric-transfer",
       "to": "m1-base-chart-estimates",
+      "label": "metric:transfer",
       "context": "its finite uniform chart bounds. The chart constant is allowed to depend on these fixed choices, including $L$. The metric parameter $\\lambda$ in Proposition~\\ref{metric:transfer} is chosen only afterward from these bounds, so none of the choices above depends on $\\lambda$."
     },
     {
       "from": "m1-pinch-algebra",
       "to": "m1-pinch-positivity",
+      "label": "pinch:algebra",
       "context": "q\\), and the normalized pair converge. The limiting forms satisfy \\(h\\le E\\le2h\\). The error contributions tend to zero by \\eqref{pinch:rescaled-errors}. Lemma~\\ref{pinch:algebra} shows that the two limiting summands in \\eqref{pinch:rescaled-leading} are nonnegative. Since \\(F\\le0\\), both must vani"
     },
     {
       "from": "m1-metric-transfer",
       "to": "m1-pinch-positivity",
+      "label": "metric:transfer",
       "context": "[Proof of Proposition~\\ref{metric:transfer}] The geometric conclusions concerning the domain and completeness were proved in Lemma~\\ref{metric:complete}. It remain"
     },
     {
       "from": "m1-metric-complete",
       "to": "m1-pinch-positivity",
+      "label": "metric:complete",
       "context": "[Proof of Proposition~\\ref{metric:transfer}] The geometric conclusions concerning the domain and completeness were proved in Lemma~\\ref{metric:complete}. It remains to obtain both uniform real sectional-curvature bounds. By Proposition~\\ref{curv:tensor}, the errors of the"
     },
     {
       "from": "m1-curv-tensor",
       "to": "m1-pinch-positivity",
+      "label": "curv:tensor",
       "context": "rning the domain and completeness were proved in Lemma~\\ref{metric:complete}. It remains to obtain both uniform real sectional-curvature bounds. By Proposition~\\ref{curv:tensor}, the errors of the actual metric have the types and bounds in Lemma~\\ref{pinch:positivity}, with \\(C_{\\mathrm e}\\) depe"
     },
     {
       "from": "m2-grid-phases",
       "to": "m2-grid-criterion",
+      "label": "grid:phases",
       "context": "For each stage choose the phases supplied by Lemma~\\ref{grid:phases}. Assign its phase to all $N_j$ lifts of the same direction. We prove the assertion for a holomorphic function with $|"
     },
     {
       "from": "m2-grid-frequency",
       "to": "m2-grid-criterion",
+      "label": "grid:frequency",
       "context": "b_\\xi I(Rv)|\\le e^{-m_0c}. \\end{equation} Every estimate so far is uniform in the real part of $w$. For each good direction take the Fourier average in Lemma~\\ref{grid:frequency} over its cycle. Since $b_\\xi$ is constant on that cycle, it factors out of the averaged second term of \\eqref{grid:nod"
     },
     {
       "from": "m2-fiber-blocks",
       "to": "m2-quiet-profile",
+      "label": "fiber:blocks",
       "context": "thcal N^{1/2}\\| \\le C\\tau e^{C_*\\epsilon E}\\), proving the second bound. Since \\(P_\\tau=q(1+r)\\) and \\(P^2P_{\\tau\\tau}=Pq^2D\\), the curvature blocks in Lemma~\\ref{fiber:blocks} become \\begin{align} \\frac W{Pq}&=rI+\\mathbf Y+q^{-1}\\partial\\bar\\partial\\log q, \\label{quiet:Wformula}\\\\ P^{-1}\\nab"
     },
     {
       "from": "m2-fiber-perturbation",
       "to": "m2-quiet-profile",
+      "label": "fiber:perturbation",
       "context": "difference \\(h-V=\\tau\\bar{\\mathcal N}\\) and its first two jets are at most \\(C\\tau e^{C_*\\epsilon E}\\). On \\(\\tau\\le e^{-E/4}\\), the curvature formula or Lemma~\\ref{fiber:perturbation} consequently gives \\[ |C^h(T,T)-C^V(T,T)| \\le C\\tau e^{C_*\\epsilon E}|T|^2 \\le\\tfrac12e^{-\\epsilon E}|T|"
     },
     {
       "from": "m2-fiber-ranktwo",
       "to": "m2-quiet-profile",
+      "label": "fiber:ranktwo",
       "context": "). Since \\(qr=q_x\\ge c\\), the squared dual \\(W\\) cost is again negligible compared with \\(P|T|_{\\mathcal N}^2\\). \\end{enumerate} Fix \\(\\eta\\le1/100\\) in Lemma~\\ref{fiber:ranktwo}. Choose \\(\\mu\\) small enough for the terms proportional to \\(\\mu\\), and then \\(E_{\\min}\\) large enough for the exponen"
     },
     {
       "from": "m2-fiber-metric",
       "to": "m2-quiet-profile",
+      "label": "fiber:metric",
       "context": "action with the retained margins \\eqref{quiet:margins}, and hence nonpositive real sectional curvature. Smoothness and positivity at the axis follow from Lemma~\\ref{fiber:metric}; curvature extends by continuity."
     },
     {
       "from": "m2-fiber-blocks",
       "to": "m2-quiet-shear",
+      "label": "fiber:blocks",
       "context": "e derivative collar in \\eqref{quiet:shear-small}. Since \\(E\\) is constant, \\(P_i=0\\), \\(\\mathcal N=G\\), and \\(h=V+\\tau G\\). The holomorphic tilt used in Lemma~\\ref{fiber:blocks} has linear and quadratic coefficients bounded by \\(Ce^{\\epsilon E}\\), because \\(U_\\tau=\\psi-F\\). Its constant term may"
     },
     {
       "from": "m2-fiber-metric",
       "to": "m2-quiet-shear",
+      "label": "fiber:metric",
       "context": "P_i=0\\), and the spatial connection is already bounded. These checks cover all cubic entries. The same bounds extend to zero by the smoothness proved in Lemma~\\ref{fiber:metric}. In these affine coordinates the shear jets of orders two through four are bounded by \\[ e^{-CE-J/2}e^{-(\\psi(s_0)+E)"
     },
     {
       "from": "m2-fiber-perturbation",
       "to": "m2-quiet-shear",
+      "label": "fiber:perturbation",
       "context": "C_4\\epsilon E} \\le C\\exp(-(C+1/2-C_4\\epsilon)E). \\] The estimate includes derivatives of the tilt and uses that \\(|z|\\) is bounded on this range. Apply Lemma~\\ref{fiber:perturbation}, with the inverse metric, connection, and reciprocal margin bounded by fixed powers of \\(e^{C_3E}\\). Increasing the sa"
     },
     {
       "from": "m2-radial-scaled",
       "to": "m2-radial-aligned",
+      "label": "radial:scaled",
       "context": "Since $q$ has no spatial dependence, $\\mathcal N=G$ and $h=V+\\tau G$. Lemma~\\ref{radial:scaled} shows that, through two metric jets, $h$ differs from the constant multiple $(\\lambda+\\tau)V/\\lambda$ by at most $C\\del"
     },
     {
       "from": "m2-radial-curvature",
       "to": "m2-radial-aligned",
+      "label": "radial:curvature",
       "context": "stant multiple $(\\lambda+\\tau)V/\\lambda$ by at most $C\\delta(\\lambda+\\tau)/H$. In particular \\[ h\\asymp\\frac{\\lambda+\\tau}{H}I,\\qquad \\Gamma^h=O(1). \\] Lemma~\\ref{radial:curvature} gives a covariant curvature lower bound $c\\lambda|T|^2/H$ for $V$ in these scaled axes. Multiplication of a metric by a"
     },
     {
       "from": "m2-fiber-perturbation",
       "to": "m2-radial-aligned",
+      "label": "fiber:perturbation",
       "context": "ive term has this bound, and its cubic contractions have the same bound by the inverse estimate $|h^{-1}|\\le CH/(\\lambda+\\tau)$ and the first-jet bounds. Lemma~\\ref{fiber:perturbation} makes this calculation explicit. Reducing $\\delta_0$ therefore gives \\begin{equation}\\label{radial:h-margin} C^h(T,T)\\"
     },
     {
       "from": "m2-fiber-ranktwo",
       "to": "m2-radial-aligned",
+      "label": "fiber:ranktwo",
       "context": "$\\sigma$. All cases retain fixed portions of $A$, $W$, \\eqref{radial:h-margin}, and the symmetrized $PG^2$ term, proving \\eqref{radial:aligned-margin}. Lemma~\\ref{fiber:ranktwo} gives nonpositive real sectional curvature off the fiber axis. The metric is positive there and $h\\ge cV$. Smoothness o"
     },
     {
       "from": "m2-radial-curvature",
       "to": "m2-center-interpolation",
+      "label": "radial:curvature",
       "context": "Gamma^h=\\Gamma^{G_0}+O(C_f/\\lambda),\\qquad C^h(T,T)\\ge c\\lambda|T|^2/H \\quad(\\operatorname{rank}T\\le2). \\end{equation} The second estimate follows from Lemma~\\ref{radial:curvature}, the scaled jet estimates, and the curvature perturbation identity, taking $\\lambda\\gg C_f$. The mixed form in Lemma~\\"
     },
     {
       "from": "m2-fiber-blocks",
       "to": "m2-center-interpolation",
+      "label": "fiber:blocks",
       "context": "follows from Lemma~\\ref{radial:curvature}, the scaled jet estimates, and the curvature perturbation identity, taking $\\lambda\\gg C_f$. The mixed form in Lemma~\\ref{fiber:blocks} is \\[ \\frac{W}{Pq}=(1+r)\\mathcal N -\\tau\\mathcal N h^{-1}\\mathcal N +q^{-1}\\partial\\bar\\partial\\log q. \\"
     },
     {
       "from": "m2-radial-scaled",
       "to": "m2-center-interpolation",
+      "label": "radial:scaled",
       "context": "rak s_\\beta\\beta'\\nabla_h^{2,0}\\Psi+O(C_f/H^2). \\] In fact $q_\\beta/q^2=-\\mathfrak s_\\beta$; the remaining terms contain two first derivatives of $\\Psi$. Lemma~\\ref{radial:scaled} and \\eqref{center:finite-x-h} give $|\\nabla_h^{2,0}\\Psi|\\le C/H$ with absolute $C$. Also $|\\tau\\mathcal N h^{-1}\\mathca"
     },
     {
       "from": "m2-fiber-ranktwo",
       "to": "m2-center-interpolation",
+      "label": "fiber:ranktwo",
       "context": "nter:A-control} make the $A_i$ coupling arbitrarily small in units $(AW)^{1/2}$. Finally $|K/P|\\le C_f/H$. Spending fixed portions of $A,W$ according to Lemma~\\ref{fiber:ranktwo} costs at most \\[ C_f\\frac{P}{qH}|T|^2\\le\\frac{C_f}{H}|T|^2 \\quad\\text{for the }K\\text{ coupling},\\qquad C_f\\frac{P}{"
     },
     {
       "from": "m2-radial-aligned",
       "to": "m2-center-interpolation",
+      "label": "radial:aligned",
       "context": "(1+\\log\\lambda)^2(\\lambda+\\tau d_f)}{H^2}|T|^2. \\] For the last step, use \\eqref{radial:profile-bounds} and the scalar inequality from the proof of Proposition~\\ref{radial:aligned} with $\\lambda/d_f$ in place of $\\lambda$. We have $1\\le d_f\\le C_f$ and may require $\\lambda\\ge C_f$, so the logarithm"
     },
     {
       "from": "m2-center-change",
       "to": "m2-center-interpolation",
+      "label": "center:change",
       "context": "[Completion of Proposition~\\ref{center:change}] Choose $d_0$ to dominate the absolute spin constants in the interpolation estimate, and choose $K_0$ so that $K_0/4-d_"
     },
     {
       "from": "m2-radial-aligned",
       "to": "m2-assembly-change-order",
+      "label": "radial:aligned",
       "context": "Initially grow $H$ with $\\kappa=\\kappa_*$ and $p=\\lambda=1$. Use the $\\lambda=1$, $H\\geq\\sigma$ alternative of Proposition~\\ref{radial:aligned}. Ultimately we will lower $p$ slightly below one for a bump, thereby increasing $\\lambda$, and then restore $p=1$ and r"
     },
     {
       "from": "m2-center-change",
       "to": "m2-assembly-change-order",
+      "label": "center:change",
       "context": "bounds. Include the reserved future value and jet allowance as well. These are exactly old-twist bounds independent of $\\lambda,H$, as required by Proposition~\\ref{center:change}. Choose its shift $L_0$ from these bounds and $E_{\\rm post}$. This fixes its profile constants $C_f$ and a sufficient"
     },
     {
       "from": "m2-quiet-profile",
       "to": "m2-assembly-reset",
+      "label": "quiet:profile",
       "context": "The spatial scale $u_s$ may now be enormous, and $E_{\\rm post}$ need not dominate it. Proposition~\\ref{quiet:profile} permits any fixed holomorphic affine frame at the evaluation point. We first use $V$-unit affine axes, where the curvat"
     },
     {
       "from": "m2-assembly-base",
       "to": "m2-assembly-reset",
+      "label": "assembly:base",
       "context": "[Proof of Proposition~\\ref{assembly:base}] The recursion gives a smooth strictly plurisubharmonic potential on $\\mathbb C^{n+1}$, with nonpositive real sectional"
     },
     {
       "from": "m2-assembly-height",
       "to": "m2-assembly-reset",
+      "label": "assembly:height",
       "context": "zeta,h)$ is tested infinitely often. The stages satisfy $R\\geq1$, $N\\to\\infty$, $c\\to\\infty$, $\\log N\\leq.005c<c/100$, $D_j\\to\\infty$, and $D_j/c_j\\to0$. Lemma~\\ref{assembly:height} supplies the height bound. The node disks, sphere derivative bound, and shear amplitude have the fixed exponents \\eqref"
     },
     {
       "from": "m2-grid-criterion",
       "to": "m2-assembly-reset",
+      "label": "grid:criterion",
       "context": "ks, sphere derivative bound, and shear amplitude have the fixed exponents \\eqref{assembly:test-exponents}. Their phases were chosen as permitted by Proposition~\\ref{grid:criterion}, and their geometric realization allows all those choices. That proposition proves the asserted Liouville property."
     },
     {
       "from": "m2-thm-main",
       "to": "m2-assembly-reset",
+      "label": "thm:main",
       "context": "[Completion of the proof of Theorem~\\ref{thm:main}] Apply Lemma~\\ref{tube:transfer} to the base just constructed. Its tube is connected, complete, and diffeomorphic to Eu"
     },
     {
       "from": "m2-tube-transfer",
       "to": "m2-assembly-reset",
+      "label": "tube:transfer",
       "context": "[Completion of the proof of Theorem~\\ref{thm:main}] Apply Lemma~\\ref{tube:transfer} to the base just constructed. Its tube is connected, complete, and diffeomorphic to Euclidean space, hence simply conne"
     },
     {
       "from": "m2-tube-negative-plane",
       "to": "m2-assembly-reset",
+      "label": "tube:negative-plane",
       "context": "atial indices and one fiber index vanish there. The initial radial metric has a strictly negative holomorphic-plane curvature in a spatial direction. Corollary~\\ref{tube:negative-plane} therefore shows that the tube's sectional curvatures are unbounded below. This proves every assertion of Theorem~\\ref{t"
     }
   ]

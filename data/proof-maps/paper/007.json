@@ -553,276 +553,331 @@
     {
       "from": "m1-q-finite-expansion",
       "to": "m1-q-truncated-weight",
+      "label": "q:finite-expansion",
       "context": "Expand by exact active sets of size at most $m_Q$, with scalar coefficient $5^{|Q_a|}$. The total coefficient sum is $\\exp(O(L\\log L))$, so \\Cref{q:finite-expansion} applies. The product-law expectation is at most $\\E w=S$, by independence of the prime coordinates. Finally $S\\ge1$."
     },
     {
       "from": "m1-q-mrt-short",
       "to": "m1-q-rough-shifts",
+      "label": "q:MRT-short",
       "context": "Y}|F_v(\\theta)|\\ll YD L^{-0.8}. \\end{equation} For integer $D$, every $x\\in(v,v+1)$ has precisely $v+1,\\ldots,v+D$ as the integers in $[x,x+D]$. Apply Theorem~\\ref{q:MRT-short} with $H=D$ and $Z=\\lfloor Y\\rfloor+1$, discarding the unused initial unit interval. The restriction to the residue clas"
     },
     {
       "from": "m1-q-rough-fourier",
       "to": "m1-q-rough-shifts",
+      "label": "q:rough-fourier",
       "context": "-correlation}, before taking its absolute value, over translations by $m=1,\\ldots,D$. Each translation changes at most $2m$ prefix terms for each $z$. By Lemma~\\ref{q:rough-fourier}, the normalized endpoint error is at most \\[ O\\left(\\frac D Y\\sum_{z\\in\\mathcal Z}\\frac1z\\right)=O(D/Y). \\] Let $B$ be"
     },
     {
       "from": "m1-q-center",
       "to": "m1-q-rough-shifts",
+      "label": "q:center",
       "context": "[Proof of \\Cref{q:center}] The full-divisibility contribution is \\eqref{q:full-divisibility}. For every other term in the expansion of \\eqref{q:c"
     },
     {
       "from": "m1-q-finite-law",
       "to": "m1-q-cuts",
+      "label": "q:finite-law",
       "context": "_d^+(n)=\\prod_{p\\mid d}\\left(\\1_{p\\mid n}+\\frac1p\\right). \\] At the end of the proof we transfer precisely these nonnegative costs to integer averages by Lemma~\\ref{q:finite-law}. No assertion about untruncated integer moments of $w$ is needed. \\paragraph{Either endpoint.} For a fixed numerical"
     },
     {
       "from": "m1-q-padding",
       "to": "m1-q-cuts",
+      "label": "q:padding",
       "context": "herefore give \\[ \\Pbb^*(\\omega_Q>400\\log L) \\le\\exp\\bigl((-400+4(e-1))\\log L\\bigr)\\ll L^{-100}. \\] Also $x\\1_{x>K/L}\\le(L/K)x^2$ for $x\\ge0$. Applying Lemma~\\ref{q:padding} bounds the second term in braces by $O_{h,l}(K^{-1})$. Since $\\sum_d1/d=V_*$, this gives the first two terms of \\eqref"
     },
     {
       "from": "m1-q-crude-count",
       "to": "m1-q-bad",
+      "label": "q:crude-count",
       "context": "$h$ and from every padding, so this coefficient is a unit modulo $p$. It is independent of $z$. Fixing the equality pattern, padding and other tuple values, \\Cref{q:crude-count} supplies one saving $(1+L)/H_0$. The remaining count, summed over $3\\le m\\le s$, is at most \\[ \\frac{1+L}{H_0}\\exp(O("
     },
     {
       "from": "m1-q-cuts",
       "to": "m1-q-bad",
+      "label": "q:cuts",
       "context": "ion gives the stated depth and size bounds. Translation merely shifts the same residue coordinates. This verifies all the hypotheses on the deleted events in \\Cref{q:cuts}."
     },
     {
       "from": "m1-q-crude-count",
       "to": "m1-q-rank",
+      "label": "q:crude-count",
       "context": "Use the positive reciprocal majorant and enumeration of \\Cref{q:crude-count}. Thus we may discard the denominators and cutoffs, retain one reciprocal for every distinct prime label, and include t"
     },
     {
       "from": "m1-q-rank-probability",
       "to": "m1-q-rank",
+      "label": "q:rank-probability",
       "context": "_\\nu), \\qquad \\max_p\\mu_\\nu(p)\\le\\frac{1}{V_\\nu H_0} \\le\\frac1{H_0}. \\] This independence allows numerical coincidences. In particular, after subtraction in \\Cref{q:rank-probability}, the controls remain independent of $B_0(y-y')$, even on a sample space that permits such coincidences. We check the s"
     },
     {
       "from": "m1-q-witness-cover",
       "to": "m1-q-singletons",
+      "label": "q:witness-cover",
       "context": "Whenever the integrand is nonzero, Lemma~\\ref{q:witness-cover} supplies $T$ witnesses positive in one common hybrid, with marked private singletons. Order them as $w_1,\\ldots,w_T$ b"
     },
     {
       "from": "m1-q-active",
       "to": "m1-q-singletons",
+      "label": "q:active",
       "context": "every active label occurs in both an earlier and a later witness. In each remaining witness $w_j$, its private marked singleton $y_j$ is not active. By Lemma~\\ref{q:active}, choose an active label $z_j$ and a departure within $w_j$ whose prefix has nonzero $y_j$-contribution modulo $z_j$. F"
     },
     {
       "from": "m1-q-crude-count",
       "to": "m1-q-singletons",
+      "label": "q:crude-count",
       "context": "he hybrids, and the recorded numerical relations are necessary consequences of positivity in the common one. The total recorded length is at most $4L$. Lemma~\\ref{q:crude-count} therefore bounds the equality patterns, numerical reciprocal sums before the selected savings, signs, and weights by $\\"
     },
     {
       "from": "m1-q-block-intervals",
       "to": "m1-q-forest-code",
+      "label": "q:block-intervals",
       "context": "oice of $i$. The lines so defined are distinct, since their directions are independent. Compress each constant run in each perfect block to one run-entry. By \\Cref{q:block-intervals}, a given label occurs in at most one run per block. A regular run of label $z$ has quotient increment \\begin{equation}"
     },
     {
       "from": "m1-q-trace",
       "to": "m1-q-padding-sum",
+      "label": "q:trace",
       "context": "[Proof of \\Cref{q:trace}] First work in the product residue law. The contributions with $U>L^{1/50}$, with a high-rank column, or with $S_1>L^{"
     },
     {
       "from": "m1-q-mixed-difference",
       "to": "m1-q-padding-sum",
+      "label": "q:mixed-difference",
       "context": "in total by \\Cref{q:many-unlit,q:rank,q:singletons}, including the external dimension factors of the trace expansion. We sum the remaining contributions using \\Cref{q:mixed-difference}. By \\Cref{q:forest-code}, the combined column patterns lie in a single family of at most $\\exp(CJk)$ possibilities, in"
     },
     {
       "from": "m1-q-forest-code",
       "to": "m1-q-padding-sum",
+      "label": "q:forest-code",
       "context": "q:rank,q:singletons}, including the external dimension factors of the trace expansion. We sum the remaining contributions using \\Cref{q:mixed-difference}. By \\Cref{q:forest-code}, the combined column patterns lie in a single family of at most $\\exp(CJk)$ possibilities, independently of all padding"
     },
     {
       "from": "m1-q-trace",
       "to": "m1-q-spectral",
+      "label": "q:trace",
       "context": "For every finite matrix, $\\rho(H)^{2k}\\le\\|H^k\\|_{\\mathrm{HS}}^2$. Thus \\Cref{q:trace} and Markov's inequality show that \\[ \\rho(H)\\le eK(C_2\\sqrt W)^J \\] except on a fraction at most $e^{-2k}$ of the orig"
     },
     {
       "from": "m1-q-noncommuting",
       "to": "m1-q-spectral",
+      "label": "q:noncommuting",
       "context": "race} and Markov's inequality show that \\[ \\rho(H)\\le eK(C_2\\sqrt W)^J \\] except on a fraction at most $e^{-2k}$ of the origins. On each remaining block apply \\Cref{q:noncommuting} with \\[ a=2K,\\qquad b=2K(8W)^{J/2},\\qquad P=E. \\] For $J\\ge1$ and $W\\ge10$, the choice \\begin{equation}\\label{q:C3-cho"
     },
     {
       "from": "m1-q-truncated-weight",
       "to": "m1-q-testing",
+      "label": "q:truncated-weight",
       "context": "on}\\label{q:test-vector-norm} \\frac1N\\sum_{t=0}^{N-1}\\|g_t\\|^2 \\le\\frac1N\\sum_{t=0}^{N-1}\\|f_t\\|^2\\le2MS. \\end{equation} For each of the $M$ block positions, \\Cref{q:truncated-weight} applied to the corresponding translated interval of $N$ origins bounds the average truncated weight by $2S$. Summing pr"
     },
     {
       "from": "m1-q-progression",
       "to": "m1-q-testing",
+      "label": "q:progression",
       "context": "[Proof of \\Cref{q:progression}] There are $O(L/\\eta)$ bins. Sum \\eqref{q:bin-estimate}, use $S_0\\ge SV_*/2$ and $V_*\\ge W^J$, and then apply the cente"
     },
     {
       "from": "m1-q-cuts",
       "to": "m1-q-testing",
+      "label": "q:cuts",
       "context": "-1}+L^{-100}+e^{-2WJ}\\bigr)\\notag\\\\ &+\\frac K\\eta\\left(\\frac{C_3}{\\sqrt W}\\right)^J +e^{-L^{0.9}}+X^{-1}. \\label{q:finish} \\end{align} The deletion error in \\Cref{q:cuts} is already summed over the bins. The new error $O((L/\\eta)e^{-L})$ from \\Cref{q:testing} is absorbed by $e^{-L^{0.9}}$,"
     },
     {
       "from": "m1-q-finite-law",
       "to": "m1-q-testing",
+      "label": "q:finite-law",
       "context": "ed by $e^{-L^{0.9}}$, because $L/\\eta$ is polynomial in $L$ and $SV_*\\ge1$. Choose the absolute constants in the following order. First fix $A$ as required by \\Cref{q:finite-law}; in particular $A\\ge1000$ and $A>C_1+20$, where $C_1$ is the absolute exponent in that comparison. The trace proof give"
     },
     {
       "from": "m1-thm-q-affine",
       "to": "m1-q-testing",
+      "label": "thm:q-affine",
       "context": "[Proof of \\Cref{thm:q-affine}] Fix $a_1,a_2\\ge1$ and $b_1,b_2\\ge0$ with nonzero determinant, and put \\[ l=a_1a_2,\\qquad c_0=\\min(a_2b_1,a_1b_2),\\qqu"
     },
     {
       "from": "m1-thm-elliott",
       "to": "m1-prop-analytic-centering",
+      "label": "thm:elliott",
       "context": "[Reduction of \\Cref{thm:elliott}] We deduce \\Cref{thm:elliott} from \\Cref{prop:graph-estimate,prop:analytic-centering}. The zero-function and divergent-"
     },
     {
       "from": "m1-lem-raw-bin",
       "to": "m1-prop-analytic-centering",
+      "label": "lem:raw-bin",
       "context": "ere settled above. Otherwise suppose \\eqref{eq:analytic-bias} holds. Choose $\\tau,T,\\phi,C_0$ and, for each sufficiently large fixed $B$, the divisor family of \\Cref{lem:raw-bin}. Combining \\Cref{lem:raw-lower-bound} with the two propositions gives \\[ c_\\gamma\\frac{L_0}{B} \\le C L_0\\left(B^{-1-c"
     },
     {
       "from": "m1-lem-raw-lower-bound",
       "to": "m1-prop-analytic-centering",
+      "label": "lem:raw-lower-bound",
       "context": "uppose \\eqref{eq:analytic-bias} holds. Choose $\\tau,T,\\phi,C_0$ and, for each sufficiently large fixed $B$, the divisor family of \\Cref{lem:raw-bin}. Combining \\Cref{lem:raw-lower-bound} with the two propositions gives \\[ c_\\gamma\\frac{L_0}{B} \\le C L_0\\left(B^{-1-c_*/2}+B^{-1-\\eps}+\\frac{J}{P_0}\\right)"
     },
     {
       "from": "m1-prop-analytic-centering",
       "to": "m1-lem-rough-multiplier",
+      "label": "prop:analytic-centering",
       "context": "[Completion of \\Cref{prop:analytic-centering}] Apply \\eqref{eq:analytic-rough-target} with $c_w=c_w^{(u)}$ to each fixed $u$ in the expansion at the start of this se"
     },
     {
       "from": "m1-lem-crude-count",
       "to": "m1-lem-activity-blocks",
+      "label": "lem:crude-count",
       "context": "thcal F$ and qualifying at a trace vertex makes the corresponding $Y$ factor zero for every remaining coordinate assignment. Discard these configurations. By \\Cref{lem:crude-count}, those with at least $t_0$ unlit repeated center occurrences have the asserted negligible total. Each of these decisio"
     },
     {
       "from": "m1-lem-primitive-descent",
       "to": "m1-lem-activity-blocks",
+      "label": "lem:primitive-descent",
       "context": "ero total displacement is divisible by $p$, and its edges avoid $p$. Taking extra prime $p$ and the whole path as suffix gives a qualifying specification. By \\Cref{lem:primitive-descent}, a primitive one with fixed support qualifies at a vertex of that tree path. Every tree vertex is a trace vertex, cont"
     },
     {
       "from": "m1-lem-triangular-saving",
       "to": "m1-lem-activity-blocks",
+      "label": "lem:triangular-saving",
       "context": "e the gap is $p$-free and $p\\nmid h$. The selected constraints do not involve one another's variables. Their paths and variables have the description cost of \\Cref{lem:triangular-saving}, which discards this class. The inequality $t_0\\ge B^{2\\eps}$ holds for large $B$. Otherwise \\Cref{lem:forest-path-hi"
     },
     {
       "from": "m1-lem-forest-path-hitting",
       "to": "m1-lem-activity-blocks",
+      "label": "lem:forest-path-hitting",
       "context": "iables have the description cost of \\Cref{lem:triangular-saving}, which discards this class. The inequality $t_0\\ge B^{2\\eps}$ holds for large $B$. Otherwise \\Cref{lem:forest-path-hitting} supplies fewer than $2t_0$ further cuts meeting every gap. For each remaining piece traverse every edge twice and spli"
     },
     {
       "from": "m1-lem-reroot-constraints",
       "to": "m1-lem-few-disconnected",
+      "label": "lem:reroot-constraints",
       "context": "set is nonempty and connected. Every edge carrying a fixed prime has active endpoints after the earlier cuts, and the converse follows from $p\\nmid h$. Apply \\Cref{lem:reroot-constraints} and then specify the common integer \\[ K=b(c_2)-b(c_1),\\qquad |K|=O(\\ell H). \\] Each retained prime gives the test \\eq"
     },
     {
       "from": "m1-lem-triangular-saving",
       "to": "m1-lem-few-disconnected",
+      "label": "lem:triangular-saving",
       "context": "B^{(1-4\\rho)/8}}{J} =\\frac{B^{1/10}}{O(\\log B)}>B^{2\\eps} \\] for large $B$. Roots, endpoints, and prime choices can be recorded with the entropy allowed in \\Cref{lem:triangular-saving}. Choose $K$ only after the rerooting; its $O(\\ell H+1)$ possibilities cost $\\exp(O(B))$. Although its original value"
     },
     {
       "from": "m1-lem-triangular-saving",
       "to": "m1-lem-few-corrupted",
+      "label": "lem:triangular-saving",
       "context": "at least a constant times \\[ \\frac{B^{1-2\\rho}}{JD+1}\\gg\\frac{B^\\rho}{J}>B^{2\\eps}. \\] Its tests have no selected-variable dependencies. They are covered by \\Cref{lem:triangular-saving}. Otherwise at least half the witnesses have distance greater than $D$. Cover the full tree by $O(\\ell/D+1)=O(B^{3\\rho"
     },
     {
       "from": "m1-prop-retained-lines",
       "to": "m1-lem-few-corrupted",
+      "label": "prop:retained-lines",
       "context": "[Proof of \\Cref{prop:retained-lines}] Define $R_{\\boldsymbol d}$ by retaining the conditions obtained in \\Cref{lem:activity-blocks,lem:few-disconnected,lem:"
     },
     {
       "from": "m1-lem-primitive-properties",
       "to": "m1-lem-cylinder-witnesses",
+      "label": "lem:primitive-properties",
       "context": "$; break ties arbitrarily. For witness $j$, choose a private prime $q_j\\notin\\mathcal F$, write $p_j$ for its extra prime, and choose a tail prime $r_j$ as in \\Cref{lem:primitive-properties}. Thus $r_j$ occurs only in its final constant block. That lemma supplies two coefficient facts: \\begin{enumerate}[lab"
     },
     {
       "from": "m1-lem-triangular-saving",
       "to": "m1-lem-cylinder-witnesses",
+      "label": "lem:triangular-saving",
       "context": "ently has logarithmic size $O(B\\log B)$. The constraint choices are specified by witness and line positions and prime slots, within the enumeration allowed in \\Cref{lem:triangular-saving}. All its hypotheses are now verified."
     },
     {
       "from": "m1-lem-cylinder-truncation",
       "to": "m1-prop-cylinder-reduction",
+      "label": "lem:cylinder-truncation",
       "context": "At fixed $\\boldsymbol d,n_{\\mathcal F}$ with $R_{\\boldsymbol d}=1$, apply \\Cref{lem:cylinder-truncation} to the residual cylinders with $t=t_0$ and $w=LJ+1$. Multiply the identity with its pointwise error bound by $K_{\\bold"
     },
     {
       "from": "m1-lem-cylinder-witnesses",
       "to": "m1-prop-cylinder-reduction",
+      "label": "lem:cylinder-witnesses",
       "context": "2t_0$ specifications, including the $t_0$ witnesses with private primes outside $\\mathcal F$. We may drop the retained-data restriction in this positive bound. \\Cref{lem:cylinder-witnesses} supplies at least $B^{2\\eps}$ triangular constraints for each nonzero contribution. Refine the error count by the lit"
     },
     {
       "from": "m1-lem-crude-count",
       "to": "m1-prop-cylinder-reduction",
+      "label": "lem:crude-count",
       "context": "ence. Joint qualification fixes one residue for each distinct prime used by the specifications, or is inconsistent and contributes zero. For each refinement, \\Cref{lem:crude-count} gives $A^{\\ell J}\\prod_p p^{-1}$, with the product over distinct prime labels, rather than charging a shared residue re"
     },
     {
       "from": "m1-lem-triangular-saving",
       "to": "m1-prop-cylinder-reduction",
+      "label": "lem:triangular-saving",
       "context": "ence statuses and all choices of witness constraints have cost $\\exp(O(B\\log^2 B))$. These are exactly the positive majorant and description budget required by \\Cref{lem:triangular-saving}. Its reverse elimination applies to the system just supplied by \\Cref{lem:cylinder-witnesses} and gives $O(e^{-B^{1+\\e"
     },
     {
       "from": "m1-prop-retained-lines",
       "to": "m1-lem-trace-token-record",
+      "label": "prop:retained-lines",
       "context": "currences; isolated active vertices create no label. Multiplying the distinct prime values of the tokens covering an edge recovers its label, proving (i). By \\Cref{prop:retained-lines}, the fixed primes with several active components contribute $O(B^{1-2\\rho}B^\\rho)=O(B^{1-\\rho})$ subtree tokens. Unlit"
     },
     {
       "from": "m1-lem-trace-topology",
       "to": "m1-lem-trace-summation",
+      "label": "lem:trace-topology",
       "context": "$r=r_*$. Then $\\ell=g+b+r$ and $b\\le10(r+1)$. Set $\\delta=\\eps/10-\\eta=9\\eta$. Combining the preceding bounds, \\eqref{eq:trace-pivot-saving} and the count in \\Cref{lem:trace-topology}, the negative base-$B$ exponent is at least \\[ (1+\\delta)g+(99-o(1))r-\\eps b-o(\\ell). \\] Here $4^\\ell$ and the fixed c"
     },
     {
       "from": "m1-thm-high-trace",
       "to": "m1-lem-trace-summation",
+      "label": "thm:high-trace",
       "context": "[Completion of the proof of \\Cref{thm:high-trace}] The density assertion is \\Cref{lem:bad-density}. Apply \\Cref{prop:retained-lines} to split the trace sum into retaine"
     },
     {
       "from": "m1-lem-bad-density",
       "to": "m1-lem-trace-summation",
+      "label": "lem:bad-density",
       "context": "[Completion of the proof of \\Cref{thm:high-trace}] The density assertion is \\Cref{lem:bad-density}. Apply \\Cref{prop:retained-lines} to split the trace sum into retained and discarded configurations. For the retained"
     },
     {
       "from": "m1-prop-retained-lines",
       "to": "m1-lem-trace-summation",
+      "label": "prop:retained-lines",
       "context": "[Completion of the proof of \\Cref{thm:high-trace}] The density assertion is \\Cref{lem:bad-density}. Apply \\Cref{prop:retained-lines} to split the trace sum into retained and discarded configurations. For the retained part, the triangle inequality boun"
     },
     {
       "from": "m1-prop-cylinder-reduction",
       "to": "m1-lem-trace-summation",
+      "label": "prop:cylinder-reduction",
       "context": "ounds the absolute full expectation by $\\E_{\\mathcal F}R_{\\boldsymbol d} |\\E_{\\mathcal S\\setminus\\mathcal F} K_{\\boldsymbol d}\\prod_j\\1_Y(n+b_j)|$. Now apply \\Cref{prop:cylinder-reduction}. Their discarded contributions are $O(\\exp(-B^{1+\\eps/2}))$. The retained conditional main term is bounded by \\Cref{l"
     },
     {
       "from": "m1-lem-finite-prime-stability",
       "to": "m1-lem-affine-dilation",
+      "label": "lem:finite-prime-stability",
       "context": "sum_{E\\subseteq P(a)}(-1)^{|E|}f_{a,E}(m). \\label{eq:affine-dilation-expansion} \\end{equation} Each summand agrees with $f$ at prime powers outside $P(a)$, so \\Cref{lem:finite-prime-stability} proves the last assertion."
     },
     {
       "from": "m1-lem-affine-dilation",
       "to": "m1-lem-affine-residue",
+      "label": "lem:affine-dilation",
       "context": "a nonunit $m/d$ every character on the right vanishes. The case $q=1$ is the trivial identity with the stated convention. The finite expansion now follows from \\Cref{lem:affine-dilation}."
     },
     {
       "from": "m1-lem-affine-residue",
       "to": "m1-prop-affine-progression",
+      "label": "lem:affine-residue",
       "context": "th functions are nonzero. Choose $j\\in\\{1,2\\}$ for which $f_j$ is uniformly nonpretentious. Since \\[ \\1_{n\\equiv b\\pmod l} =\\1_{n+h_j\\equiv b+h_j\\pmod l}, \\] \\Cref{lem:affine-residue}, using the least nonnegative representative of $b+h_j$ modulo $l$, expands the indicator as a function of $m=n+h_j$ int"
     },
     {
       "from": "m1-lem-affine-stability",
       "to": "m1-prop-affine-progression",
+      "label": "lem:affine-stability",
       "context": "plicative functions, each agreeing with a fixed Dirichlet character outside a fixed finite prime set. Their products with $f_j$ are uniformly nonpretentious by \\Cref{lem:affine-stability}. Apply \\Cref{thm:elliott} to each product at shift $h_j$ and the unchanged other factor at its distinct shift, and sum"
     },
     {
       "from": "m1-thm-elliott",
       "to": "m1-prop-affine-progression",
+      "label": "thm:elliott",
       "context": "with a fixed Dirichlet character outside a fixed finite prime set. Their products with $f_j$ are uniformly nonpretentious by \\Cref{lem:affine-stability}. Apply \\Cref{thm:elliott} to each product at shift $h_j$ and the unchanged other factor at its distinct shift, and sum the finitely many conclusi"
     },
     {
       "from": "m1-cor-affine",
       "to": "m1-prop-affine-progression",
+      "label": "cor:affine",
       "context": "[Proof of \\Cref{cor:affine}] Zero factors again give an immediate conclusion. Otherwise set \\begin{equation} \\Delta=a_1b_2-a_2b_1,\\qquad l=a_1a_2"
     },
     {
       "from": "m1-lem-affine-dilation",
       "to": "m1-prop-affine-progression",
+      "label": "lem:affine-dilation",
       "context": "Indeed, when $\\Delta>0$ the two arguments on the left are $a_2(a_1n+b_1)$ and $a_1(a_2n+b_2)$; when $\\Delta<0$ their order is reversed. Expand $U$ and $V$ by \\Cref{lem:affine-dilation}. Each pair of multiplicative components has a uniformly nonpretentious factor, inherited from the corresponding origina"
     }
   ]

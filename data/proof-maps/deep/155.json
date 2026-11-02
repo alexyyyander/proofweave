@@ -132,7 +132,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-translational-tile-with-no-fully-periodic-tiling-in-dimension-three-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A translational tile with no fully periodic tiling in dimension three; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A translational tile with no fully periodic tiling in dimension three.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -173,10 +173,7 @@
           "kind": "proposition",
           "source": "A word rule with no vertical period",
           "detail": "[The vertical-period obstruction] There is no array W I satisfying the line rule, having every column nonconstant, and having a positive vertical period.",
-          "dependsOn": [
-            "m1-word-vertical",
-            "m1-word-affine"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-word-model",
@@ -248,12 +245,7 @@
           "kind": "proposition",
           "source": "Forcing activity and excluding full periodicity",
           "detail": "No common solution of this finite system is invariant under a finite-index subgroup of G .",
-          "dependsOn": [
-            "m1-act-ordinary",
-            "m1-enc-exclusion",
-            "m1-act-seed",
-            "m1-word-obstruction"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-model-block-inverse",
@@ -273,9 +265,7 @@
           "kind": "theorem",
           "source": "A common solution of the tiling equations",
           "detail": "There are a finite cyclic group V and finitely many nonempty finite sets F_1,,F_s G=^2 V for which the simultaneous tiling equations \\[ A F_=G(1 s) \\] have a common solution, but no common solution…",
-          "dependsOn": [
-            "m1-act-nonperiodic"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-stack-partition",
@@ -305,11 +295,7 @@
           "kind": "corollary",
           "source": "Stacking the system into one tile",
           "detail": "[One tile with a cyclic finite coordinate] For some positive integer Q , there is a finite nonempty set F=^2Q which tiles but admits no fully periodic tiling.",
-          "dependsOn": [
-            "m1-stack-equivalence",
-            "m1-model-system",
-            "m1-stack-partition"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-geom-random-representatives",
@@ -329,9 +315,7 @@
           "kind": "proposition",
           "source": "Passing to three-dimensional space",
           "detail": "The tile T tiles ^3 , and tiles ^3 up to null sets.",
-          "dependsOn": [
-            "m1-stack-cyclic"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-geom-rounding",
@@ -363,12 +347,7 @@
           "kind": "proposition",
           "source": "Passing to three-dimensional space",
           "detail": "The Euclidean tile has no almost-everywhere translational tiling whose translation set is invariant under a full-rank lattice in ^3 .",
-          "dependsOn": [
-            "m1-geom-grid",
-            "m1-stack-cyclic",
-            "m1-thm-main",
-            "m1-geom-existence"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -387,7 +366,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

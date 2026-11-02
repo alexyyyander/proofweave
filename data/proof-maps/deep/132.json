@@ -67,7 +67,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-superquadratic-separation-between-sensitivity-and-block-sensitivity-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A superquadratic separation between sensitivity and block sensitivity; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A superquadratic separation between sensitivity and block sensitivity.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -118,9 +118,7 @@
           "kind": "proposition",
           "source": "Sensitivity recurrences",
           "detail": "For 1 d , write S'_b=S_ -1,b and J'_b=J_ -1,b . Then S_ ,1 & M^2S'_0+rS'_1, & J_ ,1 & M^2J'_0+rS'_1,\\\\ S_ ,0 & tS'_0+S'_1+3J'_1, & J_ ,0 & tS'_0+3J'_1.",
-          "dependsOn": [
-            "m1-lem-labelling"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-quantitative-profiles",
@@ -132,7 +130,6 @@
           "detail": "Suppose that d 1 and M 9^ d+1 . For every 0 d and b\\ 0,1\\ , the predicates of the construction satisfy \\[ S_ ,b 2L M^ +b . \\]",
           "dependsOn": [
             "m1-prop-recurrences",
-            "m1-thm-main",
             "m1-lem-labelling",
             "m1-lem-blocks"
           ]
@@ -156,7 +153,6 @@
           "source": "Quantitative bounds and separation",
           "detail": "There exist a real number >2 and nonconstant total Boolean functions F_m , for integers m1 , such that \\[ (F_m,0) s(F_m)^ for every m, (F_m,0). \\]",
           "dependsOn": [
-            "m1-thm-main",
             "m1-lem-composition"
           ]
         }
@@ -177,7 +173,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

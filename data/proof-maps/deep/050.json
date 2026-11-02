@@ -77,7 +77,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/ample-rank-two-bundles-on-the-quadric-surface-without-griffiths-positive-metrics-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Ample rank-two bundles on the quadric surface without Griffiths-positive metrics; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Ample rank-two bundles on the quadric surface without Griffiths-positive metrics.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -108,9 +108,7 @@
           "kind": "lemma",
           "source": "A bundle defined by three graphs",
           "detail": "The divisor D has bidegree (3,3) and exactly six singular points, all ordinary transverse intersections of two components. There are no triple intersections.",
-          "dependsOn": [
-            "m1-lem-matrix-data"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-construction",
@@ -174,9 +172,7 @@
           "kind": "lemma",
           "source": "The invariant measure obstruction",
           "detail": "The projective transformations induced by the matrices A and B in preserve no nonzero finite positive Borel measure on ^1 .",
-          "dependsOn": [
-            "m1-lem-matrix-data"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-obstruction",
@@ -188,10 +184,7 @@
           "detail": "For the bundle G of Proposition~ , every finite nonnegative plurisubharmonic function on the total space of F=G^ whose restriction to each fiber is a Hermitian quadratic form is identically zero.",
           "dependsOn": [
             "m1-lem-ruling-reduction",
-            "m1-lem-seminorm-curvature",
-            "m1-lem-no-invariant-measure",
             "m1-thm-main",
-            "m1-prop-construction",
             "m1-prop-ampleness",
             "m1-prop-limit"
           ]
@@ -213,7 +206,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

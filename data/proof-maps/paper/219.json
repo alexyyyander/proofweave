@@ -419,251 +419,301 @@
     {
       "from": "m1-prop-tree-stability",
       "to": "m1-lem-tree-log",
+      "label": "prop:tree-stability",
       "context": "the displayed formulas and the almost sure positivity of all incoming imaginary parts. All formulas are continuous when their inputs lie in $\\DD$. Proposition~\\ref{prop:tree-stability} therefore gives convergence in probability. The polynomial bounds and sufficiently high, but finitely many, inverse-ma"
     },
     {
       "from": "m1-lem-tree-log",
       "to": "m1-cor-tree-density",
+      "label": "lem:tree-log",
       "context": "By the definition of the density-of-states measure, $\\EE m_o(\\zeta)=\\int(t-\\zeta)^{-1}\\,d\\nu_{d,w}(t)$. Lemma~\\ref{lem:tree-log} gives $L^1$ continuity of $m_o$ on $J\\times[0,h]$, uniformly on this compact parameter set. Thus $\\pi^{-1}\\EE\\Im m_o(e"
     },
     {
       "from": "m1-lem-spectral-averaging",
       "to": "m1-lem-ward",
+      "label": "lem:spectral-averaging",
       "context": "The identity $G^*G=\\eta^{-1}\\Im G$, followed by averaging its diagonal, gives the equality. Lemma~\\ref{lem:spectral-averaging} gives the inequality. For the final assertion, begin each exploration at a uniform vertex or uniform oriented edge. At"
     },
     {
       "from": "m1-prop-local-law",
       "to": "m1-prop-empirical-recursion",
+      "label": "prop:local-law",
       "context": "[Proof of Proposition~\\ref{prop:local-law}] At $\\eta=h$, the cavity resolvent at a vertex with a sufficiently large fixed tree neighborhood is close to the clean-"
     },
     {
       "from": "m1-prop-tree-stability",
       "to": "m1-prop-empirical-recursion",
+      "label": "prop:tree-stability",
       "context": "ra. The fraction of vertices failing this fixed tree test has expectation $O(n^{-1})$. Write $\\delta_*$ for the fixed $L^2$ smallness threshold in Proposition~\\ref{prop:tree-stability}. As permitted by its parameter order, take $h$ small and then $w_0/h^2$ small enough that the starting disk norm is be"
     },
     {
       "from": "m1-prop-empirical-recursion",
       "to": "m1-cor-local-consequences",
+      "label": "prop:empirical-recursion",
       "context": "For the first item, take the augmented recursion of Proposition~\\ref{prop:empirical-recursion} with internal levels covering the prescribed neighborhood. By Proposition~\\ref{prop:local-law}, its input law tends to"
     },
     {
       "from": "m1-prop-local-law",
       "to": "m1-cor-local-consequences",
+      "label": "prop:local-law",
       "context": "rst item, take the augmented recursion of Proposition~\\ref{prop:empirical-recursion} with internal levels covering the prescribed neighborhood. By Proposition~\\ref{prop:local-law}, its input law tends to the tree cavity law. Its internal iid potential coordinates are independent of these inputs by"
     },
     {
       "from": "m1-prop-tree-stability",
       "to": "m1-cor-local-consequences",
+      "label": "prop:tree-stability",
       "context": "open disk almost surely, where the finite recursion is continuous. Thus no higher inverse-margin order is required as the observed radius grows. Proposition~\\ref{prop:tree-stability} supplies the common-environment boundary continuity. Conversion back to the half-plane is valid since the limiting tre"
     },
     {
       "from": "m1-cor-tree-density",
       "to": "m1-cor-local-consequences",
+      "label": "cor:tree-density",
       "context": "$\\EE\\Im m_o(e+i\\eta)$. In the microscopic substitution with fixed $s,y$, continuity of the tree expectation gives $\\EE\\Im m_o\\to\\pi\\rho_{d,w}(E)$ by Corollary~\\ref{cor:tree-density}. This proves \\eqref{eq:trace-slow-power}, after decreasing $c$. All finite-graph constants were uniform in $e\\in J$,"
     },
     {
       "from": "m1-lem-spectral-averaging",
       "to": "m1-prop-marked-limits",
+      "label": "lem:spectral-averaging",
       "context": "The Wegner bound of Lemma~\\ref{lem:spectral-averaging} gives tightness of the point measures on each compact interval. Choose interval endpoints uncharged almost surely by a"
     },
     {
       "from": "m1-cor-local-consequences",
       "to": "m1-prop-marked-limits",
+      "label": "cor:local-consequences",
       "context": "solvent} \\sum_{i\\text{ in list}}u_i(v)^2 \\le (1+L^2)\\Im G_{vv}(E+i/n). \\end{equation} The right side is uniformly integrable at a sampled vertex by Corollary~\\ref{cor:local-consequences}. Consequently the limiting empirical second moments lose no mass. More explicitly, represent the joint convergence al"
     },
     {
       "from": "m1-lem-tree-log",
       "to": "m1-lem-tree-log-potential",
+      "label": "lem:tree-log",
       "context": "-potential} are asymptotic to \\(-\\log|\\zeta|\\) at imaginary infinity, which fixes the constant. The boundary continuity and logarithmic integrability in Lemma~\\ref{lem:tree-log}, together with the Schur identities, pass the right side to the boundary in expectation. They apply also to the two in"
     },
     {
       "from": "m1-lem-conditional-mean",
       "to": "m1-prop-gaussian-marks",
+      "label": "lem:conditional-mean",
       "context": "me assertion for the unsmoothed marks, with a possibly singular positive semidefinite color covariance \\(C_{\\mathcal L}(\\omega)\\). Their means vanish by Lemma~\\ref{lem:conditional-mean}. Edge agreement makes \\(C_{\\mathcal L}(\\omega)\\) invariant under re-rooting, and the covariance is a measurable functi"
     },
     {
       "from": "m1-prop-marked-limits",
       "to": "m1-prop-gaussian-marks",
+      "label": "prop:marked-limits",
       "context": "trix within this fixed empirical law. In original coordinates the root covariance is \\((\\Im m_o)C_{\\mathcal L}\\). Its expectation is \\(\\Id_m\\) by Proposition~\\ref{prop:marked-limits}, so \\[ (\\EE_\\omega\\Im m_o)C_{\\mathcal L}=\\Id_m, \\qquad C_{\\mathcal L}=\\frac1{\\pi\\rho}\\Id_m. \\] This proves \\eqref{eq:"
     },
     {
       "from": "m1-cor-local-consequences",
       "to": "m1-prop-marked-resolvent",
+      "label": "cor:local-consequences",
       "context": "unded convergence applied to the conditional probabilities. We must compare this limit with $M_k(iy)$ on the same space as its sampled environments. Corollary~\\ref{cor:local-consequences} gives the large-microscopic-height limit jointly with every fixed-radius environment. Its limiting tree diagonal is the"
     },
     {
       "from": "m1-lem-ward",
       "to": "m1-prop-marked-resolvent",
+      "label": "lem:ward",
       "context": "o proves convergence to $m_\\alpha^*$ itself. The off-diagonal entries in \\eqref{eq:joint-environment-height} tend to zero by the sampled Ward estimate in Lemma~\\ref{lem:ward}. Thus this is a statement about the existing environments, rather than only about the marginal distributions of the dia"
     },
     {
       "from": "m1-sw-weighted-blocks",
       "to": "m1-sw-schur",
+      "label": "sw:weighted-blocks",
       "context": "be inverted by \\(U_F\\) gives \\[ U_F(D_F+A'_{FF}-z)U_F =\\operatorname{sign}(D_F)+U_F(A'_{FF}-z)U_F. \\] The second term has norm at most \\(\\delta_F\\), by Lemma~\\ref{sw:weighted-blocks}, the bound \\(|s_1|=O(T)\\), and \\eqref{eq:sw-weight-bounds}. Since \\(\\delta_F=o(1)\\), a Neumann expansion proves \\eqref{"
     },
     {
       "from": "m1-sw-schur",
       "to": "m1-sw-trace-cut",
+      "label": "sw:schur",
       "context": "The full block-inverse trace is \\[ \\Tr\\widetilde G_I+\\Tr G_F+ \\Tr\\bigl(\\widetilde G_IA'_{IF}G_F^2A'_{FI}\\bigr). \\] The far trace is \\(o_{\\PP}(1)\\) by Lemma~\\ref{sw:schur}. For the last term recall \\(Q_F=U_F^{-1}G_FU_F^{-1}\\). It has bounded norm, and \\[ U_F^{-1}G_F^2U_F^{-1}=Q_FU_F^2Q_F,\\"
     },
     {
       "from": "m1-prop-gaussian-insertion",
       "to": "m1-sw-lindeberg",
+      "label": "prop:gaussian-insertion",
       "context": "[Completion of Proposition~\\ref{prop:gaussian-insertion}] The coefficient bounds were proved in \\eqref{eq:insertion-coefficients}. Combine \\eqref{eq:sw-finite-matrix} with the"
     },
     {
       "from": "m1-sw-trace-cut",
       "to": "m1-sw-lindeberg",
+      "label": "sw:trace-cut",
       "context": "p:gaussian-insertion}] The coefficient bounds were proved in \\eqref{eq:insertion-coefficients}. Combine \\eqref{eq:sw-finite-matrix} with the trace cut in Lemma~\\ref{sw:trace-cut} and the Gaussian replacement in Lemma~\\ref{sw:lindeberg}. They give a conditional comparison of bounded smooth tests of"
     },
     {
       "from": "m1-prop-potential-switch",
       "to": "m1-sw-lindeberg",
+      "label": "prop:potential-switch",
       "context": "for almost every \\(\\mathcal E\\), and is bounded, so bounded convergence removes the conditioning. The unconditional potential-switch identity from Proposition~\\ref{prop:potential-switch} therefore gives \\begin{equation}\\label{eq:sw-trace-limit} \\bigl(\\Im\\Tr(H_r-z_\\ell)^{-1}\\bigr)_{\\ell=1}^b \\ \\Longrig"
     },
     {
       "from": "m1-prop-marked-resolvent",
       "to": "m1-sw-lindeberg",
+      "label": "prop:marked-resolvent",
       "context": "t f(e)\\,d e\\), which tends to zero. Dominated convergence is thus applicable to each finite measure \\(\\sigma\\), including any mass at infinity. By Proposition~\\ref{prop:marked-resolvent}, applying the same inversion to \\(\\Im m(z)\\) gives \\(\\int f\\,\\,d\\nu\\). Taking a countable determining family of compact"
     },
     {
       "from": "m1-prop-transform-regularity",
       "to": "m1-lem-density-adjustment",
+      "label": "prop:transform-regularity",
       "context": "q:dbm-original-domain} |e|=O(K^{7/8}+T)=o(K),\\qquad cT^{1/2}\\le u\\le CK. \\end{equation} The lower height exceeds a fixed positive power of \\(K\\). Proposition~\\ref{prop:transform-regularity}, with a radius comparable to \\(K\\) and any fixed exponent smaller than \\(50\\tau\\), therefore gives \\[ \\sum_j\\frac{u}{("
     },
     {
       "from": "m1-lem-discrepancy",
       "to": "m1-lem-density-adjustment",
+      "label": "lem:discrepancy",
       "context": "domain}. For \\(u/K\\) sufficiently small, the omitted terms with \\(|x_j|>K\\) sum to \\(O(u/K)\\), uniformly for \\(|e|=o(K)\\), by the linear count bound from Lemma~\\ref{lem:discrepancy}. Hence the retained sum has a positive lower bound. For \\(u/K\\) bounded below, every retained point has \\(|x_j-e|\\le2K\\"
     },
     {
       "from": "m1-prop-marked-resolvent",
       "to": "m1-lem-density-adjustment",
+      "label": "prop:marked-resolvent",
       "context": "|\\mathfrak m-i|\\le1/4\\), the argument \\(z=\\alpha_*s_2\\mathfrak m-s_1\\) has \\(\\Im z\\asymp T\\) and \\(|z|=O(T)\\). Propositions~\\ref{prop:transform-regularity} and \\ref{prop:marked-resolvent} imply \\[ \\PV\\sum_j\\frac1{x_j-z}=i\\pi\\rho+o(1) \\] uniformly in this disk, with the symmetric principal-value convention"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-lem-goe-counts",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] Choose the fixed compact bulk interval \\(J\\) with \\(I_{d,\\kappa}\\subset\\operatorname{int}J\\). The finitely many smalln"
     },
     {
       "from": "m1-prop-tree-stability",
       "to": "m1-lem-goe-counts",
+      "label": "prop:tree-stability",
       "context": "ref{thm:main}] Choose the fixed compact bulk interval \\(J\\) with \\(I_{d,\\kappa}\\subset\\operatorname{int}J\\). The finitely many smallness choices in Proposition~\\ref{prop:tree-stability} and the subsequent arguments give one positive number \\(w_0(d,\\kappa)\\). Fix any \\(0<w<w_0(d,\\kappa)\\) and \\(E\\in I_{d,"
     },
     {
       "from": "m1-cor-tree-density",
       "to": "m1-lem-goe-counts",
+      "label": "cor:tree-density",
       "context": "rop:tree-stability} and the subsequent arguments give one positive number \\(w_0(d,\\kappa)\\). Fix any \\(0<w<w_0(d,\\kappa)\\) and \\(E\\in I_{d,\\kappa}\\). Corollary~\\ref{cor:tree-density} gives a continuous density on an open neighborhood of \\(I_{d,\\kappa}\\), strictly positive there; write \\(\\rho=\\rho_{d,w"
     },
     {
       "from": "m1-prop-marked-limits",
       "to": "m1-lem-goe-counts",
+      "label": "prop:marked-limits",
       "context": "\\(I_{d,\\kappa}\\), strictly positive there; write \\(\\rho=\\rho_{d,w}(E)>0\\). Start with any sequence of admissible graph sizes tending to infinity. Proposition~\\ref{prop:marked-limits} supplies a further subsequence on which the unscaled microscopic measures \\(\\nu_n\\) converge in law to a process \\(\\nu\\"
     },
     {
       "from": "m2-lem-model",
       "to": "m2-ent-type-count",
+      "label": "lem:model",
       "context": "bound over all types, gives \\eqref{eq:ent-type-count} with a slightly larger sublinear allowance. The simplicity probability is bounded away from zero by Lemma~\\ref{lem:model}, so the statement transfers to uniform simple graphs. The symmetrized histograms no longer depend on the half-edge orde"
     },
     {
       "from": "m2-ent-type-count",
       "to": "m2-ent-star-edge",
+      "label": "ent:type-count",
       "context": "values outside a range of order \\([-n^\\gamma,n^\\gamma]\\) into its two end bins. The resulting vertex alphabet has \\(M=n^{2\\ell\\gamma+o(1)}\\) elements, so Lemma~\\ref{ent:type-count} applies. Let \\(\\mathcal L\\) be the random quantized labeling of \\(F\\), and let \\(T,Q\\) be its random histograms. Entrop"
     },
     {
       "from": "m2-lem-tree-identities",
       "to": "m2-ent-star-edge",
+      "label": "lem:tree-identities",
       "context": "from its integral by \\(O((n\\eta)^{-1})\\), by summing the lengths of the quantile intervals. An omitted or extra bounded eigenvalue costs \\(O(\\log n/n)\\). Lemma~\\ref{lem:tree-identities} gives the remaining regularization error \\(O(\\eta)\\). This proves \\eqref{eq:ent-global-entropy}."
     },
     {
       "from": "m2-lem-tree-identities",
       "to": "m2-ent-projected-entropy",
+      "label": "lem:tree-identities",
       "context": ") \\le \\frac{\\ell}{2}\\log\\frac{2\\pi{\\rm e}\\eta}{\\pi\\rho} +O(n^{-c}). \\] By the typical-star estimate at \\(E+i\\eta\\) and the tree covariance in Lemma~\\ref{lem:tree-identities}, the covariance of the noise \\(\\mathcal B(Y_{\\rm star})\\) differs from \\(\\Id_D\\) by a polynomially small error outside"
     },
     {
       "from": "m2-ent-star-edge",
       "to": "m2-ent-projected-entropy",
+      "label": "ent:star-edge",
       "context": "small error outside a polynomially small fraction of centers. Gaussian total variation after translation, followed by the entropy-continuity argument in Lemma~\\ref{ent:star-edge}, allows this noise to be replaced by \\(G\\) at polynomial entropy cost. Similarly, the edge coordinates have the same e"
     },
     {
       "from": "m2-ent-tensor",
       "to": "m2-ent-gaussian-criterion",
+      "label": "ent:tensor",
       "context": "P_iB_n) \\] in the Gaussian space \\(U_i\\). Since \\(\\operatorname{He}_j\\) is a fixed polynomial, the assumed moment symmetries give the swap constraints of Lemma~\\ref{ent:tensor} with polynomially small errors. In fixed finite dimensions the distance to the common kernel of a collection of linear"
     },
     {
       "from": "m2-prop-edge-moments",
       "to": "m2-ent-gaussian-criterion",
+      "label": "prop:edge-moments",
       "context": "[Proof of Proposition~\\ref{prop:edge-moments}] Condition on a graph in the common events of Lemmas~\\ref{ent:type-count} and \\ref{ent:projected-entropy} and Propositi"
     },
     {
       "from": "m2-ent-type-count",
       "to": "m2-ent-gaussian-criterion",
+      "label": "ent:type-count",
       "context": "[Proof of Proposition~\\ref{prop:edge-moments}] Condition on a graph in the common events of Lemmas~\\ref{ent:type-count} and \\ref{ent:projected-entropy} and Proposition~\\ref{prop:spectral-input}. Apply Lemma~\\ref{ent:gaussian-criterion}, wi"
     },
     {
       "from": "m2-ent-projected-entropy",
       "to": "m2-ent-gaussian-criterion",
+      "label": "ent:projected-entropy",
       "context": "[Proof of Proposition~\\ref{prop:edge-moments}] Condition on a graph in the common events of Lemmas~\\ref{ent:type-count} and \\ref{ent:projected-entropy} and Proposition~\\ref{prop:spectral-input}. Apply Lemma~\\ref{ent:gaussian-criterion}, with \\(q\\) replaced by \\(\\max(q,2)"
     },
     {
       "from": "m2-prop-spectral-input",
       "to": "m2-ent-gaussian-criterion",
+      "label": "prop:spectral-input",
       "context": "f Proposition~\\ref{prop:edge-moments}] Condition on a graph in the common events of Lemmas~\\ref{ent:type-count} and \\ref{ent:projected-entropy} and Proposition~\\ref{prop:spectral-input}. Apply Lemma~\\ref{ent:gaussian-criterion}, with \\(q\\) replaced by \\(\\max(q,2)\\), to \\(B_n=B_V\\). Complete delocalizatio"
     },
     {
       "from": "m2-prop-spectral-input",
       "to": "m2-prop-endpoint-control",
+      "label": "prop:spectral-input",
       "context": "k,s,y\\) are fixed. The exponents in polynomial errors may depend on fixed moment orders. \\paragraph{Initial estimates.} Put \\(z_0=s+\\mathrm i S\\). Proposition~\\ref{prop:spectral-input} and Lemma~\\ref{lem:tree-identities} give, for some \\(c>0\\), \\begin{equation}\\label{eq:lim-initial-estimates} \\begin{sp"
     },
     {
       "from": "m2-lem-tree-identities",
       "to": "m2-prop-endpoint-control",
+      "label": "lem:tree-identities",
       "context": "polynomial errors may depend on fixed moment orders. \\paragraph{Initial estimates.} Put \\(z_0=s+\\mathrm i S\\). Proposition~\\ref{prop:spectral-input} and Lemma~\\ref{lem:tree-identities} give, for some \\(c>0\\), \\begin{equation}\\label{eq:lim-initial-estimates} \\begin{split} m_n(z_0)&=m_*+O(S^{-c}),\\\\"
     },
     {
       "from": "m2-prop-endpoint-control",
       "to": "m2-prop-microscopic-limit",
+      "label": "prop:endpoint-control",
       "context": "\\leavevmode \\paragraph{Tightness.} For fixed \\(L,y>0\\), positivity gives \\[ \\nu_n([-L,L])\\le \\frac{L^2+y^2}{y}\\Im m_n(\\mathrm i y). \\] Proposition~\\ref{prop:endpoint-control}, with \\(y\\) a sufficiently large fixed number, therefore proves tightness of the local counts. It also proves compact-o"
     },
     {
       "from": "m2-prop-edge-moments",
       "to": "m2-prop-microscopic-limit",
+      "label": "prop:edge-moments",
       "context": "n eigenbasis ordering. The positions and the corresponding marks are tight: their number is bounded, and the conditional second-moment estimates of Proposition~\\ref{prop:edge-moments} control the marks. Extract these marked lists together with the preceding limit. For completeness, fixed-order moment"
     },
     {
       "from": "m2-sw-weighted-blocks",
       "to": "m2-sw-schur",
+      "label": "sw:weighted-blocks",
       "context": "be inverted by \\(U_F\\) gives \\[ U_F(D_F+A'_{FF}-z)U_F =\\operatorname{sign}(D_F)+U_F(A'_{FF}-z)U_F. \\] The second term has norm at most \\(\\delta_F\\), by Lemma~\\ref{sw:weighted-blocks}, the bound \\(|s_1|=O(T)\\), and \\eqref{eq:sw-weight-bounds}. Since \\(\\delta_F=o(1)\\), a Neumann expansion proves \\eqref{"
     },
     {
       "from": "m2-sw-schur",
       "to": "m2-sw-trace-cut",
+      "label": "sw:schur",
       "context": "The full block-inverse trace is \\[ \\Tr\\widetilde G_I+\\Tr G_F+ \\Tr\\bigl(\\widetilde G_IA'_{IF}G_F^2A'_{FI}\\bigr). \\] The far trace is \\(o_{\\PP}(1)\\) by Lemma~\\ref{sw:schur}. For the last term recall \\(Q_F=U_F^{-1}G_FU_F^{-1}\\). It has bounded norm, and \\[ U_F^{-1}G_F^2U_F^{-1}=Q_FU_F^2Q_F,\\"
     },
     {
       "from": "m2-prop-gaussian-insertion",
       "to": "m2-sw-lindeberg",
+      "label": "prop:gaussian-insertion",
       "context": "[Completion of Proposition~\\ref{prop:gaussian-insertion}] The coefficient bounds were proved after \\eqref{eq:sw-finite-matrix}. That equation, Lemma~\\ref{sw:trace-cut}, and Lem"
     },
     {
       "from": "m2-sw-trace-cut",
       "to": "m2-sw-lindeberg",
+      "label": "sw:trace-cut",
       "context": "[Completion of Proposition~\\ref{prop:gaussian-insertion}] The coefficient bounds were proved after \\eqref{eq:sw-finite-matrix}. That equation, Lemma~\\ref{sw:trace-cut}, and Lemma~\\ref{sw:lindeberg} prove the conditional comparison with \\(\\mathcal S_r\\) in the proposition. Each compariso"
     },
     {
       "from": "m2-prop-continuous-switching",
       "to": "m2-sw-lindeberg",
+      "label": "prop:continuous-switching",
       "context": "th \\(\\mathcal S_r\\) in the proposition. Each comparison concerns bounded tests, so its conditional error can be averaged by bounded convergence. By Proposition~\\ref{prop:continuous-switching}, the unconditional law of \\(\\mathcal S_r\\) is the law of \\(m\\) for every \\(r\\). This proves \\eqref{eq:sw-trace-limit};"
     },
     {
       "from": "m2-thm-main",
       "to": "m2-lem-goe-counts",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] Start with any sequence of admissible graph sizes tending to infinity. Proposition~\\ref{prop:microscopic-limit} suppli"
     },
     {
       "from": "m2-prop-microscopic-limit",
       "to": "m2-lem-goe-counts",
+      "label": "prop:microscopic-limit",
       "context": "[Proof of Theorem~\\ref{thm:main}] Start with any sequence of admissible graph sizes tending to infinity. Proposition~\\ref{prop:microscopic-limit} supplies a further subsequence on which the unscaled microscopic measures \\(\\nu_n\\) converge in law to a process \\(\\nu\\"
     }
   ]

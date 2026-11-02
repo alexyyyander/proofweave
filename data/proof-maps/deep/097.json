@@ -107,7 +107,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Euclidean-Steinitz-Bergstrom-theorem-September-24-2026/The-Euclidean-Steinitz-Bergstrom-theorem-September-24-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Euclidean Steinitz–Bergström theorem; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Euclidean Steinitz–Bergström theorem.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -161,7 +161,6 @@
           "source": "Constructing the signed walk",
           "detail": "[Adding slabs] Let D^m be bounded, nonempty, open, convex and centrally symmetric. Let D_*>0 , >0 , and let m_1,,m_n be real rows of length m . Set \\[ K=(2D_*D)_ i=1 ^n\\ x:|m_i x|<\\ . \\] For every…",
           "dependsOn": [
-            "m1-thm-signing",
             "m1-prop-filtered",
             "m1-prop-adaptive"
           ]
@@ -196,8 +195,7 @@
           "detail": "Let K^m be a nonempty bounded open convex set symmetric about zero and satisfying _Q(K)^2 Q for every positive definite diagonal Q . For every coordinate vector e , there is another domain T_e(K)…",
           "dependsOn": [
             "m1-lem-simultaneous-density",
-            "m1-lem-minkowski",
-            "m1-prop-adaptive"
+            "m1-lem-minkowski"
           ]
         },
         {
@@ -241,7 +239,6 @@
           "source": "Matrix variation along the filter",
           "detail": "For the matrices X,Y,Z,V above, suppose E=E_(s,t) e_0 , where \\[ c_a=a2^a, e_0=1 16c_a , a=32. \\] If q=(c_aE)^ 1/a , then q<1/4 and V q(I_d+X), (p(X)-p(Z)) Cq(X).",
           "dependsOn": [
-            "m1-lem-increment",
             "m1-lem-endpoint-comparison"
           ]
         },
@@ -265,7 +262,6 @@
           "detail": "There is an absolute c_1 with the following property. Let I\\ 0,,n\\ be an index set whose values h_t lie in an interval of length at most e_0 , where e_0 is the constant in Lemma~ . For every u0 , P\\…",
           "dependsOn": [
             "m1-lem-increment",
-            "m1-prop-filtered",
             "m1-lem-ou-energy"
           ]
         },
@@ -311,7 +307,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

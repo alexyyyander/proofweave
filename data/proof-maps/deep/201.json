@@ -177,7 +177,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Counterexample-to-Kuroshs-Division-Ring-Problem-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A Counterexample to Kurosh’s Division-Ring Problem; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A Counterexample to Kurosh’s Division-Ring Problem.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -285,8 +285,7 @@
           "source": "The space of eigenvalue responses",
           "detail": "[Specialization and finite witnesses] The scalar identities for M_h and every linear identity expressing m T_P hold after any admissible specialization of the partner input for which the required…",
           "dependsOn": [
-            "m1-lem-generic-detection",
-            "m1-lem-admissible-evaluation"
+            "m1-lem-generic-detection"
           ]
         },
         {
@@ -320,7 +319,6 @@
           "source": "Transfer of the first unsolved word coefficient",
           "detail": "[Transfer of a leading coefficient] Let R=diag(P,C_0) be a small matrix input of total size N S ; the block C_0 may be absent. Let I be a set of labels at P such that W(C_0)-_h is invertible for…",
           "dependsOn": [
-            "m1-lem-killed-pole",
             "m1-lem-active-specialization"
           ]
         },
@@ -333,7 +331,6 @@
           "source": "Functional linkage and replication",
           "detail": "[Functional linkage] Let P be a small generic input of size p , and let h,h' be linked labels at P . Let C_1,,C_s be small generic inputs of sizes in S , jointly independent with P , where s=0 is…",
           "dependsOn": [
-            "m1-prop-word-transfer",
             "m1-lem-active-specialization",
             "m1-lem-scalar-branches"
           ]
@@ -405,8 +402,7 @@
           "source": "The common space of spectral relations",
           "detail": "[A common tangent space] Fix \\(M1\\) independent generic size-\\(b\\) points and their selected roots. At inputs with this diagonal and arbitrary strictly upper block arrows, the collective span of all…",
           "dependsOn": [
-            "m1-lem-pair-quotient-surjectivity",
-            "m1-lem-tail-defect"
+            "m1-lem-pair-quotient-surjectivity"
           ]
         },
         {
@@ -463,7 +459,6 @@
           "source": "Cyclic relations on the leading free-word errors",
           "detail": "[The left nullspace] The left nullspace of the limiting matrix in Lemma~ , including its curve column, has dimension \\(g\\). Its projection to the old blocks identifies it with \\( G\\): for each \\(c…",
           "dependsOn": [
-            "m1-prop-compatible-relations",
             "m1-thm-cyclic-compatibility",
             "m1-lem-repeated-splitting"
           ]
@@ -537,7 +532,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

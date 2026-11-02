@@ -672,446 +672,535 @@
     {
       "from": "m1-pre-local-tolerances",
       "to": "m1-sm-pl-smoothing",
+      "label": "pre:local-tolerances",
       "context": "re chosen at that same small scale, so both the radius and gradient restrictions survive. This is also an instance of the local minorant construction in Lemma~\\ref{pre:local-tolerances}. Here is the global error choice. First take disjoint vertex balls so small that their volumes, multiplied by the fix"
     },
     {
       "from": "m1-sm-proper-degree",
       "to": "m1-sm-pl-smoothing",
+      "label": "sm:proper-degree",
       "context": "rac12 \\dist(h(x),\\R^3\\setminus\\Omega')\\right\\}. \\] The preceding constructions permit these fine tolerances and a total Sobolev error less than $\\eps$. Lemma~\\ref{sm:proper-degree} makes $g$ a diffeomorphism onto the original target. This proves the Proposition."
     },
     {
       "from": "m1-pre-local-tolerances",
       "to": "m1-sm-mesh",
+      "label": "pre:local-tolerances",
       "context": "$ on $\\Omega$ with sufficiently small absolute Lipschitz constant, below all the prescribed local bounds and below $10^{-3}\\dist(x,\\R^3\\setminus\\Omega)$. Lemma~\\ref{pre:local-tolerances} supplies such a minorant. Take the maximal dyadic cubes for which \\[ l_Q\\le\\inf_Qs. \\] Failure of the condition for t"
     },
     {
       "from": "m1-sm-local-extension",
       "to": "m1-sm-insertion",
+      "label": "sm:local-extension",
       "context": "-value-bound}, sufficiently small $a$ makes the union of $\\eta$ and these identity maps an embedding, as in Equation~\\eqref{sm:patched-embedding}. Apply Lemma~\\ref{sm:local-extension} with $B=B_Q(5)$ and displacement $\\lambda$. Precomposition by the resulting $A$ installs $h_Q$ on $C$ and preserves th"
     },
     {
       "from": "m1-sm-mesh",
       "to": "m1-sm-bilip-pl",
+      "label": "sm:mesh",
       "context": "Fix the coarse neighborhoods, local bounds $K_P$, and finite mesh configurations of Lemma~\\ref{sm:mesh}. Until the final resolution choice, we describe rules and libraries uniformly over all admissible meshes, rather than"
     },
     {
       "from": "m1-sm-insertion",
       "to": "m1-sm-bilip-pl",
+      "label": "sm:insertion",
       "context": "crease for agreement of the new model and the old map, and the full decrease for the sets fixed by the ambient change. These are precisely the margins in Lemma~\\ref{sm:insertion}. Choose all insertion and displacement tolerances by the backward procedure following Equation~\\eqref{sm:value-update}"
     },
     {
       "from": "m1-sm-relative-pl",
       "to": "m1-sm-bilip-pl",
+      "label": "sm:relative-pl",
       "context": "p_i\\widehat K_i \\] is compact in that open patch. It lies strictly inside the currently protected cores, so $G^*$ is PL on a neighborhood of $K$. Apply Lemma~\\ref{sm:relative-pl} to $G^*$ on the open patch, keeping $K$ fixed. Obtain a PL embedding $h^*$ there with uniform error less than $a_{s,P}/"
     },
     {
       "from": "m1-sm-smoothing",
       "to": "m1-sm-bilip-pl",
+      "label": "sm:smoothing",
       "context": "[Proof of Theorem~\\ref{sm:smoothing}] Apply Proposition~\\ref{sm:bilip-pl} with Sobolev tolerance $\\eps/2$ and value tolerance $\\xi/2$, obtaining a PL homeom"
     },
     {
       "from": "m1-sm-pl-smoothing",
       "to": "m1-sm-bilip-pl",
+      "label": "sm:pl-smoothing",
       "context": "Proposition~\\ref{sm:bilip-pl} with Sobolev tolerance $\\eps/2$ and value tolerance $\\xi/2$, obtaining a PL homeomorphism $h:\\Omega\\to\\Omega'$. Apply Proposition~\\ref{sm:pl-smoothing} to $h$ with the same tolerances. The triangle inequality proves Equation~\\eqref{sm:smoothing-conclusion}. Both approxim"
     },
     {
       "from": "m1-sm-local-extension",
       "to": "m1-lt-clean-crossing",
+      "label": "sm:local-extension",
       "context": "by a PL homeomorphism on a compact neighborhood of the prospective side intersections, and install the approximation on a smaller closed neighborhood by Lemma~\\ref{sm:local-extension}. The support misses the axis, and the unsupported part of the disk has a positive gap from the cutting side. Take the"
     },
     {
       "from": "m1-lt-clean-crossing",
       "to": "m1-lt-star-replacement",
+      "label": "lt:clean-crossing",
       "context": "of a straight interval under a homeomorphism. At each of its intersections with a chosen round section, straighten the arc in an ambient chart and apply Lemma~\\ref{lt:clean-crossing} to the section disk. The opposite-side crossing persists once if the support is sufficiently small. Move the changed"
     },
     {
       "from": "m1-lt-unknot-cut",
       "to": "m1-lt-star-replacement",
+      "label": "lt:unknot-cut",
       "context": "is unknot in just the strand under consideration, with exactly two boundary crossings. The section-cleaning homeomorphisms preserve the ambient unknot. Lemma~\\ref{lt:unknot-cut} therefore makes the strand boundary-parallel in its annular-sector ball. Straighten each such strand in that ball, usi"
     },
     {
       "from": "m1-lt-punctured-product",
       "to": "m1-lt-star-replacement",
+      "label": "lt:punctured-product",
       "context": "andard source sphere--ray pair to this pair. A sufficiently small round target sphere lies inside $H(B_r)$; together with $S$ it bounds a shell to which Lemma~\\ref{lt:punctured-product} applies. Its product comparison of the marked boundary spheres is homotopic to radial projection on their punctured co"
     },
     {
       "from": "m1-sm-relative-pl",
       "to": "m1-lt-relative-germs",
+      "label": "sm:relative-pl",
       "context": "borhoods of all protected points. Enclose smaller germs by closed polyhedra inside those affine neighborhoods and apply the relative PL approximation of Lemma~\\ref{sm:relative-pl}. Equivalently, excise these neighborhoods and approximate on their open complement as a PL three-manifold with boundar"
     },
     {
       "from": "m1-lt-clean-crossing",
       "to": "m1-lt-budget-transfer",
+      "label": "lt:clean-crossing",
       "context": "Each area-line hit is an isolated intersection of the image of a regular source surface with an affine target interval. Apply Lemma~\\ref{lt:clean-crossing}, then Corollary~\\ref{lt:affine-crossing}, in a paired source and target neighborhood. For a curve-plane hit, interchan"
     },
     {
       "from": "m1-lt-affine-crossing",
       "to": "m1-lt-budget-transfer",
+      "label": "lt:affine-crossing",
       "context": "e hit is an isolated intersection of the image of a regular source surface with an affine target interval. Apply Lemma~\\ref{lt:clean-crossing}, then Corollary~\\ref{lt:affine-crossing}, in a paired source and target neighborhood. For a curve-plane hit, interchange source and target and clean the preima"
     },
     {
       "from": "m1-lt-relative-germs",
       "to": "m1-lt-budget-transfer",
+      "label": "lt:relative-germs",
       "context": "t there by genericity. A surviving hit remains in its intended source stratum and target tie simplex, and the cleaning does not increase its count. Use Lemma~\\ref{lt:relative-germs} to obtain a locally bi-Lipschitz map $G$ with finite closed-piece $C^1$ formulas, keeping smaller exact crossing and ce"
     },
     {
       "from": "m1-lt-squeeze",
       "to": "m1-lt-budget-transfer",
+      "label": "lt:squeeze",
       "context": "orward and inverse conditions. These choices use only topology and qualitative approximation; no derivative bound for $G$ is charged to a budget. Apply Lemma~\\ref{lt:squeeze} in the target and set $H_0=T\\circ G$. It has the asserted local regularity and is an onto homeomorphism. On each compac"
     },
     {
       "from": "m1-lt-budget-expectation",
       "to": "m1-lt-curve-probability",
+      "label": "lt:budget-expectation",
       "context": "translation invariant, so it is legitimate inside this unnormalized joint integral. The omitted trace length has correspondingly small expected cost by Lemma~\\ref{lt:budget-expectation}. Choose the omitted length and $s$ sufficiently small, then choose the mesh bounds for the finite graph cover. Markov"
     },
     {
       "from": "m1-lt-squeeze",
       "to": "m1-lt-sharp-grid",
+      "label": "lt:squeeze",
       "context": "odic simplexwise map on the horizontal slice is a torus map with periodic displacement and degree one. Its signed Jacobian integrates to one base area. Lemma~\\ref{lt:squeeze} converts this integral, in the large-$a$ limit, into the signed projected triangle weights. Generic heights give only"
     },
     {
       "from": "m1-lt-curve-probability",
       "to": "m1-lt-sharp-grid",
+      "label": "lt:curve-probability",
       "context": "ubspaces changes these constants only through its two norm bounds. The final length assertion follows by making the anisotropic rescaling before applying Lemma~\\ref{lt:curve-probability}."
     },
     {
       "from": "m1-lt-target-mesh",
       "to": "m1-lt-source-mesh",
+      "label": "lt:target-mesh",
       "context": "Use the construction of Lemma~\\ref{lt:target-mesh}, now with cubical rather than anisotropic deep patches, and impose uniform altitude avoidance on the unstructured sites"
     },
     {
       "from": "m1-lt-relative-germs",
       "to": "m1-la-radial-blocks",
+      "label": "lt:relative-germs",
       "context": "block's support. \\paragraph{The protected germ and the radial maps.} Apply Proposition~\\ref{lt:star} at the retained centers. In the subsequent use of Lemma~\\ref{lt:relative-germs} and Proposition~\\ref{lt:budget-transfer}, require the initial map $H_0$ to satisfy \\[ b^{-1}\\circ H_0=\\Id\\quad\\hbox{ne"
     },
     {
       "from": "m1-lt-budget-transfer",
       "to": "m1-la-radial-blocks",
+      "label": "lt:budget-transfer",
       "context": "ted germ and the radial maps.} Apply Proposition~\\ref{lt:star} at the retained centers. In the subsequent use of Lemma~\\ref{lt:relative-germs} and Proposition~\\ref{lt:budget-transfer}, require the initial map $H_0$ to satisfy \\[ b^{-1}\\circ H_0=\\Id\\quad\\hbox{near every retained center}. \\] Keep the na"
     },
     {
       "from": "m1-lt-trace-slicing",
       "to": "m1-la-radial-blocks",
+      "label": "lt:trace-slicing",
       "context": "rrow0, \\] and integration in the relative variables and wedge parameters gives the corresponding averaged trace estimate. The generic surface formula in Lemma~\\ref{lt:trace-slicing} applies. This proves \\eqref{la:wedge-cost}, including the later target-mesh averaging of Lemma~\\ref{lt:budget-expectat"
     },
     {
       "from": "m1-lt-budget-expectation",
       "to": "m1-la-radial-blocks",
+      "label": "lt:budget-expectation",
       "context": "e. The generic surface formula in Lemma~\\ref{lt:trace-slicing} applies. This proves \\eqref{la:wedge-cost}, including the later target-mesh averaging of Lemma~\\ref{lt:budget-expectation}. The outer grid has only $O(l^{1-m})$ edges or faces at scale $lh$ per macro boundary, so its converted bounded-deriva"
     },
     {
       "from": "m1-lt-trace-slicing",
       "to": "m1-la-kernel-selection",
+      "label": "lt:trace-slicing",
       "context": "expectation} C_l\\sum_i\\int_{N_{Ch}(K_i)}|Df-D_i|^p. \\end{equation} The measured curve strata, and the measured surface strata when $p=2$, are covered by Lemma~\\ref{lt:trace-slicing}. For the additional unprojected rank-two plane section when $p<2$, ordinary Sobolev slicing and translation Fubini supp"
     },
     {
       "from": "m1-lt-curve-probability",
       "to": "m1-la-kernel-selection",
+      "label": "lt:curve-probability",
       "context": "rescaling, \\eqref{la:collapse-model-identity} prevents inflation of the model term. The factors from $DP_0$ and from anisotropy multiply only $Df-D_i$. Lemma~\\ref{lt:curve-probability}, followed by H\\\"older on each curve, gives the edge length-power budgets. At $p=2$, Lemma~\\ref{lt:budget-expectation}"
     },
     {
       "from": "m1-lt-budget-expectation",
       "to": "m1-la-kernel-selection",
+      "label": "lt:budget-expectation",
       "context": "anisotropy multiply only $Df-D_i$. Lemma~\\ref{lt:curve-probability}, followed by H\\\"older on each curve, gives the edge length-power budgets. At $p=2$, Lemma~\\ref{lt:budget-expectation} and the squared derivative trace integrals give the face budgets. A bounded model derivative costs $C_M(lh)^3$ per she"
     },
     {
       "from": "m1-lt-collapse",
       "to": "m1-la-cell-completion",
+      "label": "lt:collapse",
       "context": "st reparametrize every unprescribed edge at constant speed, keeping common vertices. On an unprescribed face, cone-extend these edge changes. If $p<2$, Lemma~\\ref{lt:collapse} in dimension two gives face energy bounded by $CH$ times its boundary $p$-energy plus a chosen error. If $p=2$, use th"
     },
     {
       "from": "m1-lt-disk",
       "to": "m1-la-cell-completion",
+      "label": "lt:disk",
       "context": "f{lt:collapse} in dimension two gives face energy bounded by $CH$ times its boundary $p$-energy plus a chosen error. If $p=2$, use the crude estimate of Lemma~\\ref{lt:disk}; after scaling it bounds the face energy by a constant times its base image area plus $H$ times its edge squared energy"
     },
     {
       "from": "m1-la-approximation",
       "to": "m1-la-cell-completion",
+      "label": "la:approximation",
       "context": "[Proof of Theorem~\\ref{la:approximation}] We first construct locally bi-Lipschitz approximants; smoothing is performed only after their global derivative costs"
     },
     {
       "from": "m1-la-jet-selection",
       "to": "m1-la-cell-completion",
+      "label": "la:jet-selection",
       "context": "aragraph{Order of the fixed data.} Let $\\varepsilon_0>0$ be a tail tolerance, to be sent to zero. Choose the compact rank truncation and its bound $M$ in Lemma~\\ref{la:jet-selection}. Choose $l$ so small that all the $O_M(l)$ contributions in volume and section shells and in cap regions are below a p"
     },
     {
       "from": "m1-lt-budget-transfer",
       "to": "m1-la-cell-completion",
+      "label": "lt:budget-transfer",
       "context": "ntrolled by $M$. Fix the bounded radial area weights and compact clearance margins before choosing the target budget mesh. Choose that mesh using Proposition~\\ref{lt:budget-transfer} and Lemmas~\\ref{lt:budget-expectation}, \\ref{lt:curve-probability}, and~\\ref{lt:sharp-grid}. This determines $H_0$, wi"
     },
     {
       "from": "m1-lt-budget-expectation",
       "to": "m1-la-cell-completion",
+      "label": "lt:budget-expectation",
       "context": "dial area weights and compact clearance margins before choosing the target budget mesh. Choose that mesh using Proposition~\\ref{lt:budget-transfer} and Lemmas~\\ref{lt:budget-expectation}, \\ref{lt:curve-probability}, and~\\ref{lt:sharp-grid}. This determines $H_0$, with the required exact affine germs. Th"
     },
     {
       "from": "m1-lt-curve-probability",
       "to": "m1-la-cell-completion",
+      "label": "lt:curve-probability",
       "context": "clearance margins before choosing the target budget mesh. Choose that mesh using Proposition~\\ref{lt:budget-transfer} and Lemmas~\\ref{lt:budget-expectation}, \\ref{lt:curve-probability}, and~\\ref{lt:sharp-grid}. This determines $H_0$, with the required exact affine germs. The small radial parameters, a"
     },
     {
       "from": "m1-lt-sharp-grid",
       "to": "m1-la-cell-completion",
+      "label": "lt:sharp-grid",
       "context": "ng the target budget mesh. Choose that mesh using Proposition~\\ref{lt:budget-transfer} and Lemmas~\\ref{lt:budget-expectation}, \\ref{lt:curve-probability}, and~\\ref{lt:sharp-grid}. This determines $H_0$, with the required exact affine germs. The small radial parameters, angular attenuation parame"
     },
     {
       "from": "m1-pre-local-tolerances",
       "to": "m1-la-cell-completion",
+      "label": "pre:local-tolerances",
       "context": "output maps have been fixed. Finally complete the uncontrolled cells using Lemma~\\ref{la:cell-completion}, with summable positive error prescriptions. Lemma~\\ref{pre:local-tolerances} permits the locally finite fine choices and these summable prescriptions. \\paragraph{Controlling ordinary and failed c"
     },
     {
       "from": "m1-la-radial-blocks",
       "to": "m1-la-cell-completion",
+      "label": "la:radial-blocks",
       "context": "ributions are as small as prescribed. No later large constant multiplies the unprotected tail in \\eqref{la:ordinary-tail}. For full-rank radial blocks, Lemma~\\ref{la:radial-blocks} gives the small wedge budget and the contracted spoke lengths. On compact points of a failed full-rank block, $F=\\Id$,"
     },
     {
       "from": "m1-la-kernel-selection",
       "to": "m1-la-cell-completion",
+      "label": "la:kernel-selection",
       "context": "uprema of the fixed bounded weights are allowed an arbitrarily small enlargement error by a still finer target mesh. The kernel shells are controlled by Lemma~\\ref{la:kernel-selection}, \\eqref{la:normal-kernel-face}, and \\eqref{la:core-edge-energy}. Their prescribed face and edge contributions in \\eqre"
     },
     {
       "from": "m1-main-theorem",
       "to": "m1-la-cell-completion",
+      "label": "main:theorem",
       "context": "[Proof of Theorem~\\ref{main:theorem}] Fix $1\\le p\\le2$ and $\\varepsilon>0$. Apply Theorem~\\ref{la:approximation} with sufficiently small error, obtaining a"
     },
     {
       "from": "m1-sm-smoothing",
       "to": "m1-la-cell-completion",
+      "label": "sm:smoothing",
       "context": "y Theorem~\\ref{la:approximation} with sufficiently small error, obtaining a locally bi-Lipschitz homeomorphism $H:\\Omega\\to\\Lambda$ in $W^{1,p}$. Apply Theorem~\\ref{sm:smoothing} to $H$ with a smaller error. The triangle inequality gives a smooth diffeomorphism $g:\\Omega\\to\\Lambda$ such that \\[ \\"
     },
     {
       "from": "m1-sm-proper-degree",
       "to": "m1-la-cell-completion",
+      "label": "sm:proper-degree",
       "context": "\\] Both approximation theorems give global $W^{1,p}$ membership and retain the target for each approximant. In particular, the proper-degree argument in Lemma~\\ref{sm:proper-degree}, used during smoothing, establishes bijectivity before any limit is taken; the nonsingular smooth differential then sup"
     },
     {
       "from": "m2-hp-regularity",
       "to": "m2-hp-transported-bundle",
+      "label": "hp:regularity",
       "context": "ry $x$ in the box where that derivative is nonzero. A countable box exhaustion and the three coordinate directions prove \\eqref{hp:range-in-bundle}. By Lemma~\\ref{hp:regularity}, $f(D)$ has zero volume. Suppose that $A\\subset f(D)$ has positive $\\nu$ measure and $V(\\nu,y)=\\R^3$ on $A$. The diff"
     },
     {
       "from": "m2-hp-transported-bundle",
       "to": "m2-hp-flattening",
+      "label": "hp:transported-bundle",
       "context": "and the reciprocals of their nonzero singular values are bounded. Partition by rank and, at rank one, by a finite angular partition of the range lines. Lemma~\\ref{hp:transported-bundle} further partitions the data among finitely many directions $e$. The measure $f_\\#\\mu$ is absolutely continuous with res"
     },
     {
       "from": "m2-hp-cone-null",
       "to": "m2-hp-flattening",
+      "label": "hp:cone-null",
       "context": "e $f_\\#\\mu$ is absolutely continuous with respect to $\\nu$, so every $\\nu$-full choice in these pieces is also full for the weight being retained. Apply Lemma~\\ref{hp:cone-null} to obtain simultaneous graph-null data in each direction. By inner regularity choose compact subsets of the finitely m"
     },
     {
       "from": "m2-hp-thin-bands",
       "to": "m2-hp-flattening",
+      "label": "hp:thin-bands",
       "context": "strictly inside each box and a fixed rank and direction assignment there. In what follows $K^*$ denotes the compact target data in one such box. Apply Lemma~\\ref{hp:thin-bands} to $K^*$. Sort the starts of the length-$L$ bands pointwise, writing them as $a_1(h)\\le\\cdots\\le a_N(h)$. Order stati"
     },
     {
       "from": "m2-hp-regularity",
       "to": "m2-hp-flattening",
+      "label": "hp:regularity",
       "context": "eps$. Lastly, put $U=\\Omega\\setminus F_0^{-1}(Z)$. On $U$, $F_0$ is a Sobolev homeomorphism with positive orientation onto $\\Lambda\\setminus Z$. Apply Lemma~\\ref{hp:regularity} on a countable interior exhaustion. Its nonregular source points form a fixed null set $E\\subset U$, and the image of"
     },
     {
       "from": "m2-hp-flattening",
       "to": "m2-hp-wells",
+      "label": "hp:flattening",
       "context": "ar derivative has tangential part $r\\,dn$. Here $|r|\\geq3d_-/4$. Thus each endpoint law is absolutely continuous for three-dimensional volume. By Proposition~\\ref{hp:flattening}, almost every target point off the closed sheet-value set has exactly the stated regular or exceptional type. Fubini a"
     },
     {
       "from": "m2-hp-immersed-skeleton",
       "to": "m2-hp-cutoff",
+      "label": "hp:immersed-skeleton",
       "context": "\\emph{The lift and its energy.} Apply Lemma~\\ref{hp:immersed-skeleton}. Increase $C$ so that all auxiliary image neighborhoods and inverse-chart neighborhoods are contained in $\\{|t|<Cs\\}$."
     },
     {
       "from": "m2-hp-cutoff",
       "to": "m2-hp-opening",
+      "label": "hp:cutoff",
       "context": "For a single cutoff the assertion about fibres is part of Lemma~\\ref{hp:cutoff}: its nontrivial fibres lie inside separate Whitney tetrahedra, and their diameters tend to zero at the exact inner seam"
     },
     {
       "from": "m2-hp-regularity",
       "to": "m2-hp-exceptional-boxes",
+      "label": "hp:regularity",
       "context": "ure on which both required bounds hold. Almost every phase additionally has all facet coordinates as $L^1$ Lebesgue points of the normal slices of $g$. Lemma~\\ref{hp:regularity} gives zero image volume for these generic facets, including their finite tangential extensions. Intersecting with these"
     },
     {
       "from": "m2-hp-cutoff",
       "to": "m2-hp-regular-implant",
+      "label": "hp:cutoff",
       "context": "whereas $\\int_{V_b}|DF|^p$ is bounded below by a fixed multiple of $|Db|^p|V_b|$. The volume $|V_b|$ is a fixed shape multiple of $R^3/\\det Db$. Apply Lemma~\\ref{hp:cutoff} to $F b^{-1}$ in the target-normalized coordinates and then precompose its result with $b$. It is the identity on the"
     },
     {
       "from": "m2-pre-local-tolerances",
       "to": "m2-hp-carrier",
+      "label": "pre:local-tolerances",
       "context": "ct supports so small that the oscillation of the map being replaced gives \\[ |F_b^1-F_\\kappa|<a/4, \\qquad |F_b-F_b^1|<a/4. \\] The positive minorants in Lemma~\\ref{pre:local-tolerances} permit these choices simultaneously on each locally finite family. Thus the final carrier satisfies $|F_b-f|<a$. Thes"
     },
     {
       "from": "m2-hp-wells",
       "to": "m2-hp-carrier",
+      "label": "hp:wells",
       "context": "motion before the rank and endpoint data were fixed. \\emph{First round: fixing the exceptional boxes.} Classify both endpoint signs simultaneously as in Lemma~\\ref{hp:wells}. In the range $2<p<3$, the exceptional inverse assignments have compact ranges in a fixed source null set. Apply Lemm"
     },
     {
       "from": "m2-hp-exceptional-boxes",
       "to": "m2-hp-carrier",
+      "label": "hp:exceptional-boxes",
       "context": "ultaneously as in Lemma~\\ref{hp:wells}. In the range $2<p<3$, the exceptional inverse assignments have compact ranges in a fixed source null set. Apply Lemma~\\ref{hp:exceptional-boxes}, with $g=1+|Df|^p$, to enclose them in finitely many marked cubes $U$, discarding only a prescribed small assignment we"
     },
     {
       "from": "m2-hp-regularity",
       "to": "m2-hp-carrier",
+      "label": "hp:regularity",
       "context": "tional inverse points with strict inner margins. In the grid phase selection impose the generic-facet condition for both $F_0$ and the original map $f$. Lemma~\\ref{hp:regularity} supplies full-measure sets of phases for both conditions, so their intersection retains the same budget choices. The in"
     },
     {
       "from": "m2-hp-regular-implant",
       "to": "m2-hp-carrier",
+      "label": "hp:regular-implant",
       "context": "ire that the whole inset endpoint rectangle lies in the interior of its previously chosen $W_U$. For regular signs, the uniform differentiation tests in Lemma~\\ref{hp:regular-implant} permit the required normalized value and gradient accuracy on every buffered box. These upper bounds on $R$ are indepe"
     },
     {
       "from": "m2-hp-cutoff",
       "to": "m2-hp-carrier",
+      "label": "hp:cutoff",
       "context": "morphism $h_{\\rm ref}$ finely approximating $F_\\kappa$. Choose it so fine that $h_{\\rm ref}^{-1}F_\\kappa$ satisfies the normalized identity tolerance of Lemma~\\ref{hp:cutoff} on each exceptional cube, and so that $h_{\\rm ref}^{-1}(W_U)\\Subset\\interior U^-$. Inverse continuity on the compact lo"
     },
     {
       "from": "m2-hp-flattening",
       "to": "m2-hp-carrier",
+      "label": "hp:flattening",
       "context": "t is \\[ C_p |Db|^pR^3/\\det Db \\leq C_p\\int_{V_b}|DF_0|^p \\leq C_p\\int_{V_b}|Df|^p, \\] where the final absolute factor is supplied by Proposition~\\ref{hp:flattening}. The comparison uses the fixed $F_0$ jet tests; the $F_\\kappa$ tests were required to be equally accurate before apply"
     },
     {
       "from": "m2-hp-opening",
       "to": "m2-hp-carrier",
+      "label": "hp:opening",
       "context": "rked cube is required. A suitable PL reference is available on the genuine homeomorphic neighborhoods in use. One way to obtain it globally is to apply Lemma~\\ref{hp:opening} to $F_b^1$ with a closed neighborhood of all chosen compact tests fixed, and then use Lemma~\\ref{sm:relative-pl}. The"
     },
     {
       "from": "m2-hp-cutoff",
       "to": "m2-hp-smooth-cutoff",
+      "label": "hp:cutoff",
       "context": "Use the construction in Lemma~\\ref{hp:cutoff} up to the hole-filling stage. The lift is now smooth on its neighborhood, and the lifted hole boundaries are smooth em"
     },
     {
       "from": "m2-hp-smooth-cutoff",
       "to": "m2-hp-full-rank-correction",
+      "label": "hp:smooth-cutoff",
       "context": "=r_j^{-1}A_j^{-1}\\bigl(k(x_j+r_j\\xi)-f(x_j)\\bigr) \\] is within $cs/2$ of $\\xi$ on $|t(\\xi)|\\leq Cs$. In particular it meets the closeness hypothesis of Lemma~\\ref{hp:smooth-cutoff} with a fixed positive margin. Apply that Lemma separately in these disjoint cubes, and return to the original coordina"
     },
     {
       "from": "m2-hp-wells",
       "to": "m2-qt-poisson",
+      "label": "hp:wells",
       "context": "absolute value elsewhere below half the preceding gap, using the minimum over the compact slope set. There are only finitely many protected patches, by Lemma~\\ref{hp:wells}, and their supports have been separated. The minimum of their positive gap requirements is positive away from the endpo"
     },
     {
       "from": "m2-hp-carrier",
       "to": "m2-qt-poisson",
+      "label": "hp:carrier",
       "context": "simultaneously. All these requirements determine only smaller residual thresholds, after the endpoint neighborhoods have been fixed, as allowed by Proposition~\\ref{hp:carrier}."
     },
     {
       "from": "m2-qt-quantizer",
       "to": "m2-qt-strict",
+      "label": "qt:quantizer",
       "context": "schitz bounds follow from those of $T$ and $\\eta$. Fine motion keeps the segment from $y$ to $q$ inside $\\Lambda$ and makes $T_\\eta$ proper, as in Proposition~\\ref{qt:quantizer}. Invariance of domain gives an open image; properness gives a relatively closed image. Connectedness of $\\Lambda$ pro"
     },
     {
       "from": "m2-qt-calibration",
       "to": "m2-qt-subdivision",
+      "label": "qt:calibration",
       "context": "ained measure gives simultaneous avoidance, even for singular data. The original center, corner, and sector-ray exclusions have already been arranged by Lemma~\\ref{qt:calibration}. All choices are finite per face and locally finite in $\\Lambda$. A Sobolev map has zero weak derivative almost every"
     },
     {
       "from": "m2-qt-quantizer",
       "to": "m2-qt-exterior",
+      "label": "qt:quantizer",
       "context": "y their common faces because they are subdifferentials of the same piecewise-quadratic function. The offset dimensions are exactly complementary by Proposition~\\ref{qt:quantizer}. Removing the central subpolygons and the full blocks therefore leaves the usual half-space or corner neighborhood at"
     },
     {
       "from": "m2-hp-cutoff",
       "to": "m2-qt-central-carrier",
+      "label": "hp:cutoff",
       "context": "ns, the central prisms, and all boxes and sampling margins specified next depend only on the prescribed target geometry and on the geometric constants of Lemma~\\ref{hp:cutoff}; they do not depend on a map $h_*$ or $K_0$. Include the properness requirements at this stage. Fix a compact exhaust"
     },
     {
       "from": "m2-hp-opening",
       "to": "m2-qt-central-carrier",
+      "label": "hp:opening",
       "context": "minorant $\\rho\\leq\\tau/10$ of all the resulting target value-closeness requirements, including their affine normalization factors. Open $\\widehat F$ by Lemma~\\ref{hp:opening} and apply Lemma~\\ref{sm:relative-pl}, relative to the fixed enlarged protection balls, to obtain a PL homeomorphism $h_"
     },
     {
       "from": "m2-hp-immersed-skeleton",
       "to": "m2-qt-central-carrier",
+      "label": "hp:immersed-skeleton",
       "context": "B_{\\rm s}=B(x',\\alpha l)$ in the usable lift region, with an injective immersion chart on a larger neighborhood $U$. The joint immersion neighborhood of Lemma~\\ref{hp:immersed-skeleton} supplies these charts also across ordinary skeleton seams; the limiting inner seams $S$ are treated separately below."
     },
     {
       "from": "m2-hp-opening",
       "to": "m2-qt-edge-matching",
+      "label": "hp:opening",
       "context": "is relatively closed. Adjoin the closed protected exact data, slightly inside their exact neighborhoods. All these old target tests avoid $E_0$. Apply Lemma~\\ref{hp:opening} to obtain arbitrarily close old homeomorphisms $k_n$ agreeing with $K_0$ over every one of these tests and retaining th"
     },
     {
       "from": "m2-wl-stairs",
       "to": "m2-wl-crossing-bound",
+      "label": "wl:stairs",
       "context": "erwise the conclusion is immediate. The coarea bound below will make the weighted crossing sums absolutely integrable. Use the whole-interval stairs of Lemma~\\ref{wl:stairs}, before restricting to stable occupied intervals. They act on the star and on $\\Gamma$, fixing vertices and each edge"
     },
     {
       "from": "m2-wl-period",
       "to": "m2-wl-crossing-bound",
+      "label": "wl:period",
       "context": "\\bigr) -U\\bigl(S(\\ell(h_*(a_L)))\\bigr). \\end{aligned} \\end{equation} Here the sum is over roots of the tested colour. The first equality is Proposition~\\ref{wl:period}. For the second, choose a fixed piecewise regular representative of $\\gamma$, homotopic relative to its endpoints. It"
     },
     {
       "from": "m2-wl-routing",
       "to": "m2-wl-crossing-bound",
+      "label": "wl:routing",
       "context": "+v$. The upper local slope of $d$ is at most the sum of the two original slopes. Partial transition itineraries have derivative $+1$ or $-1$, and Proposition~\\ref{wl:routing} gives a unique reachable ancestry for every piece-value and every diagonal-segment value. Thus coarea pays for all reac"
     },
     {
       "from": "m2-wl-crossing-bound",
       "to": "m2-wl-barrier",
+      "label": "wl:crossing-bound",
       "context": "the diameter of the selected stretch and smaller-chart margins. Every spherical path between such two hits has $G$-cost at least a fixed $c_\\delta>0$ by Lemma~\\ref{wl:crossing-bound}. Apply Lemma~\\ref{wl:sphere} to the whole or truncated sphere. For almost every radius $R\\in[h,2h]$, \\[ \\int_{\\Sigma"
     },
     {
       "from": "m2-wl-sphere",
       "to": "m2-wl-barrier",
+      "label": "wl:sphere",
       "context": "nd smaller-chart margins. Every spherical path between such two hits has $G$-cost at least a fixed $c_\\delta>0$ by Lemma~\\ref{wl:crossing-bound}. Apply Lemma~\\ref{wl:sphere} to the whole or truncated sphere. For almost every radius $R\\in[h,2h]$, \\[ \\int_{\\Sigma_R}G^p\\,d\\mathcal H^2\\geq cR^{"
     },
     {
       "from": "m2-wl-stable",
       "to": "m2-wl-realization",
+      "label": "wl:stable",
       "context": "Lemma~\\ref{wl:stable} supplies the occupied stacks. We first construct $h$ with their exact parameter correspondence and then prove the asse"
     },
     {
       "from": "m2-qt-exterior",
       "to": "m2-wl-realization",
+      "label": "qt:exterior",
       "context": "cupied $B$ interval, thus at multiple gates on every subedge. The corresponding target components are balls by the graph-handlebody description in Proposition~\\ref{qt:exterior}; this includes the intermediate chambers along a subedge. A target ball boundary consists of a punctured-sphere patch"
     },
     {
       "from": "m2-wl-stairs",
       "to": "m2-wl-realization",
+      "label": "wl:stairs",
       "context": "homeomorphism. On the cores and tubes use $h_*$, matching the boundary values. Finally remake the stairs with their increments allocated only on $E_j$; Lemma~\\ref{wl:stairs} still bounds their root-parameter speeds. We now pin the point label $q_h(x)$, rather than the support of an individual"
     },
     {
       "from": "m2-wl-crossing-bound",
       "to": "m2-wl-realization",
+      "label": "wl:crossing-bound",
       "context": "alue at the guard anchor bounded away from zero. Apply the period identity to $\\gamma$ and weight its crossings by the occupied-stair coefficients as in Lemma~\\ref{wl:crossing-bound}. The two appended fibre paths contribute zero for almost every parameter with nonzero coefficient. Thus the potential"
     },
     {
       "from": "m2-wl-barrier",
       "to": "m2-wl-realization",
+      "label": "wl:barrier",
       "context": "etch and use nearby guards. The connector bound just proved applies to every spherical path between the fibre and a guard. The sphere argument of Proposition~\\ref{wl:barrier} therefore gives \\eqref{wl:barrier-divergence}, contradicting the same previously scheduled capacity. The initial guard"
     },
     {
       "from": "m2-wl-stairs",
       "to": "m2-wl-parameter-cost",
+      "label": "wl:stairs",
       "context": "interval corresponds by the original affine map $p_j$ to its target label. The subsequent stair has bounded forward speed against that root parameter by Lemma~\\ref{wl:stairs}. In inactive label directions the stair is constant. The chain rule in the piecewise product coordinates therefore yi"
     },
     {
       "from": "m2-qt-strict",
       "to": "m2-wl-strict",
+      "label": "qt:strict",
       "context": "ure parameters decrease, with arbitrary compact-local error prescriptions. Now fix $P^{\\varepsilon}$ and $h$, and use the strict quantizer $T_\\eta$ from Lemma~\\ref{qt:strict}. The composition convergence requires checking the tangential derivative at a collapsed stratum, not merely invoking u"
     },
     {
       "from": "m2-ms-boundary-collar",
       "to": "m2-ms-edge-tests",
+      "label": "ms:boundary-collar",
       "context": "orners, and have finitely many hits on each compact edge. Near the normalization cut use the PL general-position counts and the straight-chord germs from Lemma~\\ref{ms:boundary-collar}; elsewhere isolated crossings can be cleaned off a smaller cut collar. Away from modifications, the graph speeds are t"
     },
     {
       "from": "m2-wl-pattern",
       "to": "m2-ms-weak-templates",
+      "label": "wl:pattern",
       "context": ". Restriction to a smaller enlarged interval therefore gives the open domain, compact margin, and absence of any additional lateral frontier required in Lemma~\\ref{wl:pattern}. The sufficient test in Lemma~\\ref{wl:pattern} therefore supplies the entire pattern trivialization, preserving the op"
     },
     {
       "from": "m2-ms-boundary-collar",
       "to": "m2-ms-weak-templates",
+      "label": "ms:boundary-collar",
       "context": "t test in Lemma~\\ref{wl:pattern} therefore supplies the entire pattern trivialization, preserving the opposite parameter. The joint boundary collar from Lemma~\\ref{ms:boundary-collar} extends it to the true boundary. Finally apply \\eqref{ms:normal-slope} to the proportional widths. The finite template"
     },
     {
       "from": "m2-ms-weak-templates",
       "to": "m2-ms-slots",
+      "label": "ms:weak-templates",
       "context": "instead uses arbitrary margin-spaced placements with same-colour gap at least $cH/(1+\\#\\text{hits})$; in the outer buffer use the clustered placements of Lemma~\\ref{ms:weak-templates}. A tetrahedron is used for the sharp conclusion only when every required edge uses the slots. Use the same combinatori"
     },
     {
       "from": "m2-ms-normal-templates",
       "to": "m2-ms-slots",
+      "label": "ms:normal-templates",
       "context": "_\\eta\\bigl(\\Delta(\\delta'+\\Delta)\\bigr), \\] where the old fractions differ from $t_*$ by $O(\\delta')$. Monotonicity and the common-multiplier property in Lemma~\\ref{ms:normal-templates} give at least $(1-O_\\eta(\\delta'+\\Delta))\\Delta$ response in group height $u$ at fixed probability coordinates $(a,b)$."
     }
   ]

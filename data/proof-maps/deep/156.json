@@ -107,7 +107,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-nine-dimensional-counterexample-to-Borsuks-covering-assertion-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A nine-dimensional counterexample to Borsuk's covering assertion; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A nine-dimensional counterexample to Borsuk's covering assertion.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -192,10 +192,7 @@
           "kind": "theorem",
           "source": "The equality case gives a simplicial cycle",
           "detail": "[Supports at equality] Let k3 and m=N_k . Suppose f: P( R^k)^ m-1 is a smooth admissible map. Its support complex K has every pair of labels as an edge, every facet has k vertices, and \\[ _ I a facet…",
-          "dependsOn": [
-            "m1-thm-label-bound",
-            "m1-lem-local-degree"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-six-from-map",
@@ -230,8 +227,7 @@
           "dependsOn": [
             "m1-thm-equality-complex",
             "m1-thm-label-bound",
-            "m1-lem-six-from-map",
-            "m1-lem-six-properties"
+            "m1-lem-six-from-map"
           ]
         },
         {
@@ -255,8 +251,7 @@
           "source": "The obstruction on ten labels",
           "detail": "Every connected component of an edge link is a cycle of length three or four.",
           "dependsOn": [
-            "m1-lem-two-tetrahedra",
-            "m1-lem-six-properties"
+            "m1-lem-two-tetrahedra"
           ]
         },
         {
@@ -283,9 +278,6 @@
           "detail": "There is no admissible map RP^3^9 .",
           "dependsOn": [
             "m1-lem-partner-blocks",
-            "m1-lem-facet-complement",
-            "m1-lem-six-properties",
-            "m1-lem-two-tetrahedra",
             "m1-thm-main",
             "m1-lem-projector-geometry",
             "m1-lem-cover-to-map"
@@ -299,9 +291,7 @@
           "kind": "corollary",
           "source": "The diameter obstruction",
           "detail": "For every integer d9 , there is a compact subset of R^d of diameter 2 that cannot be covered by d+1 subsets of strictly smaller diameter.",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -320,7 +310,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

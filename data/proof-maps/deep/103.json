@@ -362,7 +362,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Exact-Derandomization-of-Logarithmic-Space-L-equals-RL-equals-BPL-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Exact derandomization of logarithmic space: L = RL = BPL; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Exact derandomization of logarithmic space: L = RL = BPL.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -529,9 +529,7 @@
           "kind": "lemma",
           "source": "Stochastic atoms and their interfaces",
           "detail": "[Port contract] All main and preparatory row tables, auxiliary scores, and the smooth witnesses just constructed have bounded values and bounded row support. Every row access class used for a main or…",
-          "dependsOn": [
-            "m1-lem-atom-margins"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-atom-assembly",
@@ -575,9 +573,7 @@
           "kind": "lemma",
           "source": "Conditional averaging in the shared environment",
           "detail": "[Validated walk variants] A length- d word in the walk of Lemma~ can be expanded into a bounded-alphabet family of variants described by O(d) bits such that: each fixed variant acts bijectively and…",
-          "dependsOn": [
-            "m1-thm-ctrl-realization"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-est-true-means",
@@ -587,9 +583,7 @@
           "kind": "lemma",
           "source": "Additive estimation and conditional prefix bounds",
           "detail": "[True sample means] Using true stochastic tables in Equations~ -- gives, after the indicated conditional averages, the prescribed raw inputs and vector values on their conditioning slices, with the…",
-          "dependsOn": [
-            "m1-lem-env-ranks"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-est-loss",
@@ -609,9 +603,7 @@
           "kind": "lemma",
           "source": "Additive estimation and conditional prefix bounds",
           "detail": "[Scale and domain comparison] Compare a budget- m sample term with the same term using true stochastic inputs. For a first-channel mean contribution use its clipped relative error against 1+d_y . In…",
-          "dependsOn": [
-            "m1-lem-est-loss"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-est-omission",
@@ -669,7 +661,6 @@
           "source": "Additive estimation and conditional prefix bounds",
           "detail": "[Conditional prefix bounds] Assume exact local grouping, the earlier task error bounds, and that the sample functions depend only on variables varied by the conditional walk. Their uniform slice…",
           "dependsOn": [
-            "m1-lem-est-mean-prefix",
             "m1-lem-env-gap",
             "m1-lem-est-raw-difference"
           ]
@@ -752,8 +743,7 @@
           "dependsOn": [
             "m1-prop-buf-error",
             "m1-lem-est-prefix",
-            "m1-lem-buf-clamping",
-            "m1-lem-atom-assembly"
+            "m1-lem-buf-clamping"
           ]
         },
         {
@@ -777,8 +767,7 @@
           "dependsOn": [
             "m1-lem-ctrl-replay",
             "m1-lem-env-gap",
-            "m1-lem-env-variants",
-            "m1-prop-est-clean"
+            "m1-lem-env-variants"
           ]
         },
         {
@@ -822,9 +811,7 @@
           "source": "Adaptive fingerprints within budget blocks",
           "detail": "[Direct cost of collisions] The direct collision contribution to any final pre-incoming output has norm at most 2^ -p \\,2^ C h_* B^ -1/(2s) , for a fixed C independent of D_1,D_2, introduced below.…",
           "dependsOn": [
-            "m1-lem-est-raw-difference",
-            "m1-lem-buf-update",
-            "m1-lem-buf-clamping"
+            "m1-lem-est-raw-difference"
           ]
         },
         {
@@ -836,10 +823,7 @@
           "source": "Adaptive fingerprints within budget blocks",
           "detail": "[Uniform block coupling] The fixed constants can be chosen so that, for every task of budget M I_b and precision p , each prescribed actual--clean output discrepancy, including every pre-incoming…",
           "dependsOn": [
-            "m1-lem-fp-clean",
-            "m1-prop-est-clean",
-            "m1-lem-atom-assembly",
-            "m1-lem-fp-hash"
+            "m1-lem-fp-clean"
           ]
         },
         {
@@ -850,10 +834,7 @@
           "kind": "theorem",
           "source": "Adaptive fingerprints within budget blocks",
           "detail": "[Error bounds for the actual estimators] For every allowed task, with precision p defined in Equation~ , the actual row outputs, including the pre-incoming scores and support witnesses, satisfy \\[ d_…",
-          "dependsOn": [
-            "m1-prop-fp-coupling",
-            "m1-prop-est-clean"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-fp-catalytic",
@@ -963,9 +944,7 @@
           "source": "Finite numerical queries with bounded suspended storage",
           "detail": "[Uniform numerical interface] Fix the digit alphabet, positive reciprocal intervals, and constants bounding the following recipe class. A recipe at slack d1 has a fixed number of stages built from…",
           "dependsOn": [
-            "m1-lem-arith-residue-stream",
             "m1-lem-arith-sums-scales",
-            "m1-lem-arith-reciprocal",
             "m1-lem-arith-buffered-test",
             "m1-lem-arith-gate-evaluation"
           ]
@@ -1032,9 +1011,7 @@
           "kind": "lemma",
           "source": "Uniform controller implementation",
           "detail": "[Ordered terminal paths and excursions] Every unbalanced path required by the estimator has the following ordered form: restoring selection and validity tests; local label maps and, if necessary, a…",
-          "dependsOn": [
-            "m1-lem-est-paths"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-ctrl-equality",
@@ -1058,15 +1035,9 @@
           "detail": "[Concrete recipe certificates] All actual estimator operations admit regenerable records and a fixed finite ordering of operation strata. At a prefix of slack d , each ordinary layer has O(d)…",
           "dependsOn": [
             "m1-lem-est-paths",
-            "m1-lem-ctrl-paths",
-            "m1-thm-arith-interface",
-            "m1-lem-fp-buckets",
-            "m1-lem-buf-update",
             "m1-lem-buf-clamping",
             "m1-lem-atom-margins",
-            "m1-lem-ctrl-cap",
-            "m1-lem-atom-ports",
-            "m1-lem-ctrl-score-rank"
+            "m1-lem-ctrl-cap"
           ]
         },
         {
@@ -1078,17 +1049,10 @@
           "source": "Uniform controller implementation",
           "detail": "[Parameter replay and salt visibility] The records in Lemma~ are regenerable in the sense of Definition~ . With respect to their own effective environments, actual procedures at a budget in block b…",
           "dependsOn": [
-            "m1-lem-atom-ports",
-            "m1-lem-est-paths",
-            "m1-thm-arith-interface",
             "m1-thm-ctrl-realization",
-            "m1-lem-ctrl-recipes",
             "m1-lem-ctrl-local-graph",
             "m1-lem-ctrl-paths",
-            "m1-lem-ctrl-equality",
-            "m1-lem-ctrl-tour",
-            "m1-lem-ctrl-cap",
-            "m1-lem-ctrl-score-rank"
+            "m1-lem-ctrl-equality"
           ]
         },
         {
@@ -1128,10 +1092,7 @@
           "kind": "corollary",
           "source": "Derandomization and quantitative consequences",
           "detail": "Under these conventions, PromiseBPL=PromiseL .",
-          "dependsOn": [
-            "m1-thm-probability",
-            "m1-thm-fixed-precision"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-certified-search",
@@ -1141,9 +1102,7 @@
           "kind": "corollary",
           "source": "Derandomization and quantitative consequences",
           "detail": "[Certified accepting computations] Fix a randomized logarithmic-space machine M that halts within a fixed polynomial bound T(n)1 on every input and every coin sequence, and fix an integer c0 . There…",
-          "dependsOn": [
-            "m1-thm-fixed-precision"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-effective-simulation",
@@ -1164,8 +1123,7 @@
           "source": "The effective compiler",
           "detail": "[A total resource-capped interpreter] There is one fixed randomized Turing machine U with polynomial worst-case running time and O((m+2)) counted work bits on every binary input of length m , with…",
           "dependsOn": [
-            "m1-thm-effective-simulation",
-            "m1-thm-fixed-precision"
+            "m1-thm-effective-simulation"
           ]
         }
       ]
@@ -1185,7 +1143,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -97,7 +97,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Gaussian-Propeller-Bound-in-Every-Dimension-September-24-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Gaussian propeller bound in every dimension; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Gaussian propeller bound in every dimension.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -244,7 +244,6 @@
           "detail": "[Soundness] Fix \\(>0\\) with \\(C_k+2<1\\), and choose \\(,D\\) as in for this \\(\\). If every labeling of \\(G\\) satisfies at most \\(\\) of its edges, where 0<< ^2 4kD , then \\((A I_k) C_k+2\\).",
           "dependsOn": [
             "m1-kc-matrix",
-            "m1-kc-main",
             "m1-kc-kn-input",
             "m1-kc-ug-input",
             "m1-kc-completeness"
@@ -267,7 +266,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -277,7 +277,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-explicit-counterexample-to-the-Auslander-Reiten-conjecture-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from An explicit counterexample to the Auslander-Reiten conjecture; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from An explicit counterexample to the Auslander-Reiten conjecture.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -308,9 +308,7 @@
           "kind": "lemma",
           "source": "From two stable actions to a finite module",
           "detail": "[Complete-resolution comparison] Let R be a finite-dimensional algebra over a field of characteristic two. Let P_ be a totally acyclic complex of finite projective left R -modules, and let Q_ be an…",
-          "dependsOn": [
-            "m1-conv-proposition"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-alg-c",
@@ -470,7 +468,6 @@
           "source": "Two twists and a finite bimodule fiber",
           "detail": "The finite bimodule F in is projective on both A -sides, and the map v of Lemma~ satisfies the following conditions. For every integer a0 , define ^a:H^a H^a V^a, (g,j) F(g)v+v[a]j. Then ^0 is…",
           "dependsOn": [
-            "m1-branch-twist",
             "m1-branch-profile"
           ]
         },
@@ -492,9 +489,7 @@
           "kind": "proposition",
           "source": "The radical and extension of scalars",
           "detail": "For every field extension K/ , the algebra _K=K_ and module Z_K=K_ Z satisfy all conclusions of Theorem~ over K .",
-          "dependsOn": [
-            "m1-prop-radical"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -510,7 +505,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-counterexample-to-Tachikawas-second-conjecture-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A counterexample to Tachikawa's second conjecture; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A counterexample to Tachikawa's second conjecture.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -605,9 +600,7 @@
           "kind": "lemma",
           "source": "Homological preliminaries",
           "detail": "[Finite shifts and evaluation] Every stable shift of a finite side-projective bimodule has a finite side-projective representative. Evaluation at a finite E -module X sends stable maps between these…",
-          "dependsOn": [
-            "m2-h-stable-image"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-tr-trivial-symmetric",
@@ -705,9 +698,7 @@
           "kind": "proposition",
           "source": "Polynomial stable endomorphisms and twists",
           "detail": "For every \\(H k^\\) and every \\(m0\\), the action of \\(U_H(-)\\) on the groups in is .U_H|_ ^ 3m =H^ -m \\,1_ P_m , .U_H|_ ^ -3m-1 =H^ m+2 \\,1_ D P_m . In particular, the negative action is the stated…",
-          "dependsOn": [
-            "m2-e-socle"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-b-bimodule",
@@ -795,10 +786,8 @@
             "m2-h-duality",
             "m2-h-perfect-factor",
             "m2-a-dual-dimensions",
-            "m2-b-trace-obstruction",
             "m2-b-stable-adjunction",
             "m2-b-bimodule",
-            "m2-b-bar-model",
             "m2-b-profile"
           ]
         },
@@ -837,9 +826,7 @@
           "detail": "The module and resolution in satisfy \\[ H^a_(P_Z,Z)=0 (a>0\\ or\\ a-2). \\]",
           "dependsOn": [
             "m2-t-comparison-maps",
-            "m2-thm-main",
-            "m2-t-finite-module",
-            "m2-tr-transfer"
+            "m2-t-finite-module"
           ]
         },
         {
@@ -850,10 +837,7 @@
           "kind": "proposition",
           "source": "The endomorphism algebra and homological consequences",
           "detail": "Let B be a finite-dimensional symmetric algebra over a field and let N be a finite-dimensional nonprojective left B -module satisfying _B^i(N,N)=0 for all i>0 . Put \\[ G=B N, =_B(G)^ op , \\] where…",
-          "dependsOn": [
-            "m2-cor-homological",
-            "m2-cor-finitistic"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-cor-tilting-complements",
@@ -900,7 +884,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

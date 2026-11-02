@@ -147,7 +147,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-Almost-Linear-Approximation-Scheme-for-Edit-Distance-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from An Almost-Linear Approximation Scheme for Edit Distance; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from An Almost-Linear Approximation Scheme for Edit Distance.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -292,9 +292,7 @@
           "kind": "lemma",
           "source": "A comparison tree and cost-weighted curvature",
           "detail": "[Comparison-band coverage] At a non-bad comparison node with | v|1- , the action ^* belongs to C_ b,r . Its representative is not skipped: the band is nonempty, h_64Fb , and the rounded action (b,r)…",
-          "dependsOn": [
-            "m1-lem-comparison-tree"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-generic-regret",
@@ -326,7 +324,6 @@
           "detail": "Condition on the complete child tables at such a comparison node. Then &h_( d_ C +2+SH^ -3 )\\\\ &+2 c+2SH^ -4 Fc. Here h_64Fb and d_ C 4(p_*+21) .",
           "dependsOn": [
             "m1-lem-group-accuracy",
-            "m1-thm-refinement",
             "m1-lem-comparison-tree",
             "m1-lem-generic-regret",
             "m1-cor-bad-node-cost",
@@ -408,9 +405,7 @@
           "detail": "[Charged expected running time] The large-input algorithm has worst-case expected running time N^ 1+o(1) on the logarithmic-word RAM, over its internal randomness. This includes input processing,…",
           "dependsOn": [
             "m1-thm-seed",
-            "m1-lem-local-work",
-            "m1-lem-unconditional-sizes",
-            "m1-thm-main"
+            "m1-lem-local-work"
           ]
         }
       ]
@@ -430,7 +425,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

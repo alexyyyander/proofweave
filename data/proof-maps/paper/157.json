@@ -687,581 +687,697 @@
     {
       "from": "m1-thm-main",
       "to": "m1-cor-hadwiger",
+      "label": "thm:main",
       "context": "al coloring gives \\[ |V(G)|\\le\\sum_{I\\in\\mathcal I(G)}|I|w_I \\le\\alpha(G)\\sum_{I\\in\\mathcal I(G)}w_I. \\] Hence \\(\\chi_f(G)\\ge |V(G)|/\\alpha(G)\\). Apply \\Cref{thm:main} and the minor bound above, noting that \\(26m/75+2/3<m/2\\) for \\(m\\ge5\\)."
     },
     {
       "from": "m1-lem-entropy-support",
       "to": "m1-prop-raw-to-graph",
+      "label": "lem:entropy-support",
       "context": "subseteq R\\). Each removes at least one unit, so the procedure terminates at a residual set with no feasible law. When a recording leaves a feasible residual, \\Cref{lem:entropy-support} shows that the new minimum entropy exceeds the old one by at least \\(-\\log(1-\\varepsilon_N)\\). Other deletions cannot d"
     },
     {
       "from": "m1-lem-terminal-cut",
       "to": "m1-prop-raw-to-graph",
+      "label": "lem:terminal-cut",
       "context": "o(m), \\end{equation} since \\(m=2^{1000gN}\\). \\medskip\\noindent\\textbf{Terminal exceptions in the sample.} For each terminal set fix sets \\(S,E_0\\) supplied by \\Cref{lem:terminal-cut}. Let \\(k=\\lceil m/200\\rceil\\). The probability that at least \\(k\\) sampled positions have raw type in \\(S\\) is at most"
     },
     {
       "from": "m1-lem-hole-triangle-free",
       "to": "m1-prop-raw-to-graph",
+      "label": "lem:hole-triangle-free",
       "context": "(E_0\\), of which there are also fewer than \\(m/200\\). Their sum is less than \\(m/100\\), a contradiction. Finally, \\(\\alpha(G)\\le2\\) holds deterministically by \\Cref{lem:hole-triangle-free}."
     },
     {
       "from": "m1-lem-gram-frame-normalization",
       "to": "m1-lem-frame-images",
+      "label": "lem:gram-frame-normalization",
       "context": "ually injective \\(h\\)-frames having Gram matrix \\(G\\). Under independent uniform columns that orbit has probability at least \\(2^{-h^2-2}\\) for large \\(N\\), by \\Cref{lem:gram-frame-normalization}. Since the raw probability of any \\(G\\) is at most one, the density ratio on every such orbit is at most \\(2^{h^2+2}\\)."
     },
     {
       "from": "m1-lem-paired-frame-orbit",
       "to": "m1-lem-frame-images",
+      "label": "lem:paired-frame-orbit",
       "context": "el bound. Its possible dependence on \\(h\\) is harmless: \\(h\\) is fixed before \\(n\\) grows. For (b), the restricted Gram of primal tuples is fixed by \\(E\\). By \\Cref{lem:paired-frame-orbit}, all based realizations with that Gram and individual injectivity lie in one orbit. Projection of an invariant uniform"
     },
     {
       "from": "m1-lem-cut-kernel",
       "to": "m1-lem-raw-intersections",
+      "label": "lem:cut-kernel",
       "context": "tradiction. Let the majority have size \\(g-z\\). There are at least \\(z(g-z)\\ge zg/2\\) unequal pairs, hence \\(z\\le4D/g\\). Its common value belongs to \\(W_*\\) by \\Cref{lem:cut-kernel}, so subtract it from every coordinate. The resulting representation vanishes at a strict majority. It is unique: two su"
     },
     {
       "from": "m1-lem-base-moments",
       "to": "m1-lem-label-support",
+      "label": "lem:base-moments",
       "context": "-degree moments. Extend the right side of \\eqref{eq:label-decomposition} to the full row and column indexing. Its rank is at most $\\sum_s\\dim Q_s\\le R_*$. By \\Cref{lem:base-moments} it belongs to $W$. If its difference from $w$ were nonzero, choose a nonzero difference moment of minimal selector deg"
     },
     {
       "from": "m1-lem-base-moments",
       "to": "m1-lem-sparse-pin-labels",
+      "label": "lem:base-moments",
       "context": "mbers. Comparing any further sparse member with its expression in this basis uses at most $(K+1)(R_*+14)$ labels. Their evaluation vectors are independent by \\Cref{lem:base-moments} and \\eqref{eq:moment-parameters}. Consequently every label of the further member occurs in one of the chosen basis repr"
     },
     {
       "from": "m1-lem-sparse-pin-labels",
       "to": "m1-lem-small-tables",
+      "label": "lem:sparse-pin-labels",
       "context": "most fourteen selected rays as an element of $S_{i,e}^{\\pm}$. Any nonzero such vector would have a sparse representation on selected labels and is forbidden by \\Cref{lem:sparse-pin-labels}. Independence of those label factors and the nonzero constant coordinate of each point then makes all coefficients zero"
     },
     {
       "from": "m1-lem-generic-mixers",
       "to": "m1-lem-small-tables",
+      "label": "lem:generic-mixers",
       "context": "rs to zero. Forward and reverse evaluations are distinguished. The two labels at this endpoint differ, so these are the indexed ordered evaluations covered by \\Cref{lem:generic-mixers}. This argument specifies the bits; their occurrence in parameter tests will be supplied by \\Cref{lem:binary-mixing}."
     },
     {
       "from": "m1-lem-binary-mixing",
       "to": "m1-lem-small-tables",
+      "label": "lem:binary-mixing",
       "context": "he indexed ordered evaluations covered by \\Cref{lem:generic-mixers}. This argument specifies the bits; their occurrence in parameter tests will be supplied by \\Cref{lem:binary-mixing}. It makes no assumption about independence of arbitrary actual evaluations at fixed points."
     },
     {
       "from": "m1-lem-small-tables",
       "to": "m1-thm-gradient-realization",
+      "label": "lem:small-tables",
       "context": "choose a splitting of the table space as $\\mathcal J=D\\oplus\\mathcal J'$, append the key space, and append an additional primal complement. The independence in \\Cref{lem:small-tables} makes these splittings possible. Retain the small table on the product of the two table spaces and the actual frozen e"
     },
     {
       "from": "m1-lem-label-support",
       "to": "m1-thm-gradient-realization",
+      "label": "lem:label-support",
       "context": "at most $d_++d_-$: in bases extending those spaces all entries outside their rows and columns vanish. Consequently \\[ \\rank x_{i,e}\\le2K+28\\le R_*. \\] Apply \\Cref{lem:label-support} to every component. For a selected label at $i$, compare its label summand with all key directions in that component."
     },
     {
       "from": "m1-lem-sparse-pin-labels",
       "to": "m1-thm-gradient-realization",
+      "label": "lem:sparse-pin-labels",
       "context": "se direction spaces $p_s\\otimes\\F^{1+d_{\\mathrm b}}$ form a direct sum. Any vector of $S_{i,e}^{\\pm}$ in this sum has zero component at the selected label, by \\Cref{lem:sparse-pin-labels}. Thus this summand of $x_{i,e}$ projects to zero modulo just its individual key ray if the atom uses this component, a"
     },
     {
       "from": "m1-thm-gradient-realization",
       "to": "m1-prop-collision",
+      "label": "thm:gradient-realization",
       "context": "determine every frozen cross entry. Together with the fixed algebraic data, leaves, parameters, and table, they determine a choice of the abstract solution in \\Cref{thm:gradient-realization}. One can make this choice deterministic by taking the first solution in fixed coordinate orders on the finite spaces."
     },
     {
       "from": "m1-lem-small-tables",
       "to": "m1-prop-collision",
+      "label": "lem:small-tables",
       "context": "averaged. This preserves both their mass bounds and the product of the two conditional orientation laws. \\paragraph{Image entropy inside a retained cell.} By \\Cref{lem:small-tables}, the $k$ nominal key directions are jointly independent modulo the pins, with rank computed separately by component and"
     },
     {
       "from": "m1-lem-walsh",
       "to": "m1-prop-collision",
+      "label": "lem:walsh",
       "context": "es has largest point mass at most $2^{-.95tN}$ under its conditional cell law. The two laws are independent. Absorb the separated phases into bounded weights. \\Cref{lem:walsh}, in dimension $tN$, bounds the absolute character mean by \\begin{equation}\\label{eq:gram-character-bound} 2^{tN/2}\\big"
     },
     {
       "from": "m1-thm-phase-alternative",
       "to": "m1-lem-no-cover-rank",
+      "label": "thm:phase-alternative",
       "context": "[Proof of \\Cref{thm:phase-alternative}] Write \\[ c_s=10^{-12}(1+r)^{-4},\\qquad q_0=2^{-100r-10}, \\qquad \\theta=10^{-4},\\qquad \\Gamma=D+2r+10, \\] and let \\(s"
     },
     {
       "from": "m1-lem-frame-images",
       "to": "m1-lem-no-cover-rank",
+      "label": "lem:frame-images",
       "context": "oved for an upper bound. By \\Cref{lem:no-cover-rank}, the last expression is at most \\[ 2^{2s}p_0^{q_0s/2}+2^{-hq_0s/4}. \\] The channel marginal comparison in \\Cref{lem:frame-images} multiplies this bound by a constant depending on \\(h\\) and the number of components, but independent of \\(n\\). Markov's"
     },
     {
       "from": "m1-lem-walsh",
       "to": "m1-lem-no-cover-rank",
+      "label": "lem:walsh",
       "context": "eton-joint-pmax}. The ignored equations only enlarge the event, so no independence between a coefficient list and the map defining it has been assumed. Apply \\Cref{lem:walsh} to \\Cref{eq:offset-walsh}, on \\((t_A+t_B)N\\) bits, with the two tuples ordered as \\[ \\bigl(Z_A,\\Phi_{u_{A,R}}(\\omega_B"
     },
     {
       "from": "m1-lem-peeling",
       "to": "m1-lem-tiny-cover",
+      "label": "lem:peeling",
       "context": "aves. The total new rank is at most \\(4K_1+2d_0<u_0\\). The scalar channel lists have bounded length in \\(n\\); nominal support descriptions cost \\(O(n)\\) bits. \\Cref{lem:peeling} permits this refinement and the subsequent second peeling, with total final rank at most \\(K\\), losing only exponential"
     },
     {
       "from": "m1-lem-frame-images",
       "to": "m1-lem-empty-status",
+      "label": "lem:frame-images",
       "context": "\\(\\gamma_i\\in\\F\\). At any fixed tag, label and parameter point, the raw key law is the single-key reference up to an exponentially small injectivity error, by \\Cref{lem:frame-images}. The individual marginal density bound, which is a fixed constant at this stage, transfers the reference disagreement o"
     },
     {
       "from": "m1-lem-frame-images",
       "to": "m1-lem-synthetic-slice",
+      "label": "lem:frame-images",
       "context": "lar, the two translation columns do not share a forced nominal constant direction. For fixed independent nominal columns, the restricted-image transitivity in \\Cref{lem:frame-images} gives the uniform injective law with its specified Gram. One batch consequently has the claimed reference law, indepen"
     },
     {
       "from": "m1-lem-walsh",
       "to": "m1-lem-synthetic-slice",
+      "label": "lem:walsh",
       "context": "traints, individual injectivity indicators, and the two arbitrary tests are separate bounded weights on the two batches; their normalization factors are fixed. \\Cref{lem:walsh} bounds every nontrivial character contribution by \\(O(2^{-N/2})\\). The same computation without the tests gives the no"
     },
     {
       "from": "m1-lem-raw-intersections",
       "to": "m1-lem-zero-delta",
+      "label": "lem:raw-intersections",
       "context": "Suppose otherwise. By \\Cref{lem:raw-intersections}, the two canonical sparse representations \\(w^{(i)}=(w_l^{(i)})_l\\) of the marked \\(\\lambda_i\\)'s have the same value o"
     },
     {
       "from": "m1-lem-synthetic-slice",
       "to": "m1-lem-zero-delta",
+      "label": "lem:synthetic-slice",
       "context": "n the retained units. Both tester bits have probability at least \\(1/4\\): the bias of the sum of \\(r_0\\) independent bit-pair products is \\(2^{-r_0}\\). Apply \\Cref{lem:synthetic-slice} with no affine variables (\\(d=0\\)), the shared-only flavor, and internal Gram \\((q)\\). The Gram event depends only on t"
     },
     {
       "from": "m1-prop-status-preparation",
       "to": "m1-lem-zero-delta",
+      "label": "prop:status-preparation",
       "context": "[Proof of \\Cref{prop:status-preparation}] If no prediction exists along any subsequence, retain the first-peeling law. Apply \\Cref{lem:injection} to the uncond"
     },
     {
       "from": "m1-lem-injection",
       "to": "m1-lem-zero-delta",
+      "label": "lem:injection",
       "context": "[Proof of \\Cref{prop:status-preparation}] If no prediction exists along any subsequence, retain the first-peeling law. Apply \\Cref{lem:injection} to the unconditional pair event, using the first pins and the final budget \\(K\\) as an upper bound. The failure toleran"
     },
     {
       "from": "m1-lem-empty-status",
       "to": "m1-lem-zero-delta",
+      "label": "lem:empty-status",
       "context": "e the prediction and the finite initial pigeonholing described after \\Cref{def:prediction}. If both prediction classes vanish, perform the \\(o(1)\\) deletion in \\Cref{lem:empty-status} now. Thus all later refinements start with the exact identity in that case. For the moment test attainability of \\Cref"
     },
     {
       "from": "m1-thm-phase-alternative",
       "to": "m1-lem-zero-delta",
+      "label": "thm:phase-alternative",
       "context": "port phase conditions are automatic too. Unconditional injection gives (ii). \\paragraph{Mixing of the four phase bits.} Now suppose \\(\\Delta\\ne0\\), and apply \\Cref{thm:phase-alternative}. If its mixing alternative holds, any specified pattern of the four cross-phase bits has probability at least \\[ \\frac"
     },
     {
       "from": "m1-lem-tiny-cover",
       "to": "m1-lem-zero-delta",
+      "label": "lem:tiny-cover",
       "context": "accepting family in \\Cref{rem:tiny-accepting-family} and the relative form of \\Cref{lem:injection}; a positive mass remains. If the limit is zero, part (a) of \\Cref{lem:tiny-cover} retains a fiber of mass \\(2^{-o(N)}\\) on which the condition is automatic. Its individual marginals have at most the a"
     },
     {
       "from": "m1-lem-peeling",
       "to": "m1-lem-zero-delta",
+      "label": "lem:peeling",
       "context": "er division by the global retained mass \\(2^{-o(N)}\\). On the other leaves the joint exact-image bound weakens from \\(1-\\zeta\\) to at most \\(1-2\\zeta\\), as in \\Cref{lem:peeling}. Use its second-peeling conclusion only in case (iii), where the new image rank is within \\(u_0\\). This leaves total ra"
     },
     {
       "from": "m1-lem-gram-frame-normalization",
       "to": "m1-lem-histogram-gram-normalization",
+      "label": "lem:gram-frame-normalization",
       "context": "The bounds in \\Cref{lem:gram-frame-normalization} put the probability, divided by $2^{-ab}$, between $(1-2^{a-N})(1-2^{a+b-N})$ and $1$. This gives the stated relative e"
     },
     {
       "from": "m1-lem-frame-images",
       "to": "m1-lem-histogram-batch-comparison",
+      "label": "lem:frame-images",
       "context": "By \\Cref{lem:frame-images}, the image laws are uniform laws on the indicated independent vectors with their same-endpoint Gram entries prescribed."
     },
     {
       "from": "m1-lem-walsh",
       "to": "m1-lem-histogram-batch-comparison",
+      "label": "lem:walsh",
       "context": "trix between the two batches is nonzero. Its bit rank is at least $N$. The individual batch Gram densities can be included in the two separate bounded weights. \\Cref{lem:walsh} bounds this character by a constant times $\\norm{F}_\\infty\\norm{G}_\\infty2^{-N/2}$. There are only boundedly many chara"
     },
     {
       "from": "m1-lem-histogram-gram-normalization",
       "to": "m1-lem-histogram-batch-comparison",
+      "label": "lem:histogram-gram-normalization",
       "context": "$\\norm{F}_\\infty\\norm{G}_\\infty2^{-N/2}$. There are only boundedly many characters. Applying the same expansion with $F=G=1$ controls the normalization, while \\Cref{lem:histogram-gram-normalization} bounds all internal normalization factors. The zero character gives the product of separate expectations."
     },
     {
       "from": "m1-lem-walsh",
       "to": "m1-lem-reference-product",
+      "label": "lem:walsh",
       "context": "t least $N$ between the two selected position groups. The prescribed single-position diagonal densities and the unary functions are separately bounded weights. \\Cref{lem:walsh} gives the error above. The identical expansion with all functions one gives the normalization of the off-position Gram"
     },
     {
       "from": "m1-lem-histogram-gram-normalization",
       "to": "m1-lem-histogram-many-queries",
+      "label": "lem:histogram-gram-normalization",
       "context": "tively. We have $b_{\\mathrm{in}}=O(\\ell)$. The normalization in the denominator is at least a fixed constant times $2^{-b_{\\mathrm{in}}-b_{\\mathrm{cross}}}$ by \\Cref{lem:histogram-gram-normalization}. In the nonnegative numerator, drop injectivity and the within-draw conditions, and expand only the cross-draw conditio"
     },
     {
       "from": "m1-lem-histogram-control",
       "to": "m1-lem-histogram-many-queries",
+      "label": "lem:histogram-control",
       "context": "[Proof of \\Cref{lem:histogram-control}] We first obtain a uniform bound for coarse conditional information. Fix a partition with a bounded number $r$ of cells"
     },
     {
       "from": "m1-lem-histogram-batch-comparison",
       "to": "m1-lem-typicality",
+      "label": "lem:histogram-batch-comparison",
       "context": "^{-\\Omega(n)}$ probability, because their $Z$ inputs are independent and their total number of columns is bounded. With the nominal inputs fixed on this event, \\Cref{lem:histogram-batch-comparison} compares the product of the two tests with the product of their separate raw expectations, at error $O(2^{-N/2})$. Aver"
     },
     {
       "from": "m1-lem-histogram-gram-normalization",
       "to": "m1-lem-typicality",
+      "label": "lem:histogram-gram-normalization",
       "context": "ative to the product of the individual raw batch laws. Indeed it adds only $O((\\ell')^2)$ mutual Gram conditions and injectivity; count their normalizations by \\Cref{lem:histogram-gram-normalization} and bound the indicator in the numerator by one. After averaging the inputs, the all-success probability on the indepen"
     },
     {
       "from": "m1-lem-generic-mixers",
       "to": "m1-lem-binary-mixing",
+      "label": "lem:generic-mixers",
       "context": "gral against the product of unary weights. If an interacting pair of positions belongs to the same endpoint, their labels are distinct. The second property of \\Cref{lem:generic-mixers} says that every nonzero parity of its ordered $L,R$ bits, with its possible $E$ bits in either order, has bilinear rank"
     },
     {
       "from": "m1-lem-walsh",
       "to": "m1-lem-binary-mixing",
+      "label": "lem:walsh",
       "context": "x the other position inputs. The remaining terms become separate unary phases. The selected pair has rank at least $n/5$ by one of the preceding two arguments. \\Cref{lem:walsh} gives an error $O(2^{-n/10})$ against the two remaining bounded unary weights. Input conditioning costs only the fixed"
     },
     {
       "from": "m1-lem-frame-images",
       "to": "m1-lem-unary-positivity",
+      "label": "lem:frame-images",
       "context": "For each fixed point parameter, the raw key law is the single-key reference up to an exponentially small injectivity error, by \\Cref{lem:frame-images}. The first conclusion therefore follows from the one-endpoint part of \\Cref{lem:typicality}, also after conditioning on"
     },
     {
       "from": "m1-lem-typicality",
       "to": "m1-lem-unary-positivity",
+      "label": "lem:typicality",
       "context": "-key reference up to an exponentially small injectivity error, by \\Cref{lem:frame-images}. The first conclusion therefore follows from the one-endpoint part of \\Cref{lem:typicality}, also after conditioning on a feasible summary. Fix a nonzero profile $x\\in\\cX$ of total component rank at most $K$, a"
     },
     {
       "from": "m1-lem-generic-mixers",
       "to": "m1-lem-unary-positivity",
+      "label": "lem:generic-mixers",
       "context": "nonzero profile $x\\in\\cX$ of total component rank at most $K$, and consider the sign \\[ s_x(z)=(-1)^{T(x,\\operatorname{atom}(z))}. \\] By the first property of \\Cref{lem:generic-mixers}, its dependence on $Z$ factors through a bounded-dimensional space of linear forms, independent of the other input valu"
     },
     {
       "from": "m1-lem-histogram-quadratic-bias",
       "to": "m1-lem-unary-positivity",
+      "label": "lem:histogram-quadratic-bias",
       "context": "ent row bits on the past imposes at most $s_0$ linear conditions on their distribution. The polar rank can therefore lose at most $2s_0$ further dimensions. By \\Cref{lem:histogram-quadratic-bias}, \\[ \\abs{m_j}\\le b_* \\] pointwise, including after the non-$Z$ inputs are fixed. The $D_j$ are martingale differences"
     },
     {
       "from": "m1-lem-typicality",
       "to": "m1-lem-product-terminal-remainder",
+      "label": "lem:typicality",
       "context": "ht-hand side is a bounded common input-and-key test, involving two fresh copies of each original position. Repeated labels across these copies are permitted by \\Cref{lem:typicality}. It follows that, outside an exponentially small mixed exceptional set, \\begin{equation}\\label{eq:product-four-corner-t"
     },
     {
       "from": "m1-lem-frame-images",
       "to": "m1-lem-product-terminal-remainder",
+      "label": "lem:frame-images",
       "context": "-\\Omega(n)}$ probability, since all copies have fresh $Z$ inputs. The dependent-input contribution is $o(1)$ by the fixed sup bound. On the independence event, \\Cref{lem:frame-images} gives the uniform image law with prescribed same-endpoint Grams and injectivity. Ignore injectivity at an exponentially"
     },
     {
       "from": "m1-lem-histogram-gram-normalization",
       "to": "m1-lem-product-terminal-remainder",
+      "label": "lem:histogram-gram-normalization",
       "context": "the individual single-key references. There are only boundedly many additional Gram bits, and their normalization is bounded uniformly in the nominal inputs by \\Cref{lem:histogram-gram-normalization}. Expand their indicators into characters. The nominal $L,R$ phases are now constants. The global Gram phases already in"
     },
     {
       "from": "m1-lem-walsh",
       "to": "m1-lem-product-terminal-remainder",
+      "label": "lem:walsh",
       "context": "rectangle between $I_0$ and $I_1$, whose bit rank is at least $N$. The individual diagonal densities may also be absorbed into the respective bounded weights. \\Cref{lem:walsh} bounds this term by $O(2^{-N/2})$. The same argument applies to a nonzero $J_0$--$J_1$ pattern. If neither class-(b) p"
     },
     {
       "from": "m1-thm-weak-product",
       "to": "m1-lem-product-terminal-remainder",
+      "label": "thm:weak-product",
       "context": "[Proof of \\Cref{thm:weak-product}] If $r=1$, quantize the values of $W_n$ in $[-B,B]$ with mesh at most $\\eps/2$, choosing representatives in the same in"
     },
     {
       "from": "m1-lem-product-twisted-regularity",
       "to": "m1-lem-product-terminal-remainder",
+      "label": "lem:product-twisted-regularity",
       "context": "the reference measure is a probability measure and the actual-query indicator and weights have bound one. This includes $B=0$, when $S_n=0$. For $r\\ge2$, apply \\Cref{lem:product-twisted-regularity} to a nontrivial split of the full set of positions. Recursively apply it to group factors in the structured terms until"
     },
     {
       "from": "m1-lem-binary-mixing",
       "to": "m1-cor-weak-product-factorized-integration",
+      "label": "lem:binary-mixing",
       "context": "Apply \\Cref{lem:binary-mixing} to each structured term, with $f_{a,j,n}(K_j)w_j$ as its unary weights. The number of terms and their bounds are fixed"
     },
     {
       "from": "m1-lem-limit-global-projection",
       "to": "m1-lem-limit-model",
+      "label": "lem:limit-global-projection",
       "context": "r bits. For every numerical option, positive integer truncation height, and successively improving fixed accuracy, request the cells of a partition provided by \\Cref{lem:limit-global-projection} as tuple tests. For every tuple cylinder already obtained and successively improving accuracy, request all unary indica"
     },
     {
       "from": "m1-thm-weak-product",
       "to": "m1-lem-limit-model",
+      "label": "thm:weak-product",
       "context": "global-projection} as tuple tests. For every tuple cylinder already obtained and successively improving accuracy, request all unary indicator factors needed in \\Cref{thm:weak-product}. Include their unary pullbacks and the finite Boolean operations needed to record them. Enumerate these requests and fu"
     },
     {
       "from": "m1-lem-typicality",
       "to": "m1-lem-limit-model",
+      "label": "lem:typicality",
       "context": "king the unique measure with those finite-dimensional laws. Cylinder evaluation is continuous because bit cylinders are clopen. For each fixed unary cylinder, \\Cref{lem:typicality} says that the sum of its empirical status masses differs in probability from its reference mass by a quantity tending t"
     },
     {
       "from": "m1-lem-unary-positivity",
       "to": "m1-lem-limit-model",
+      "label": "lem:unary-positivity",
       "context": "$ are obtained by taking the limits of their conditional density averages on increasing finite cylinder partitions. For a generic role/basis assignment, apply \\Cref{lem:unary-positivity} to each fixed cylinder of positive limiting reference weight. The lower fraction is independent of the cell; the onset"
     },
     {
       "from": "m1-lem-reference-product",
       "to": "m1-lem-limit-model",
+      "label": "lem:reference-product",
       "context": "roximation to all measurable sets, giving the claimed almost-everywhere lower densities. This argument does not condition on arbitrary nominal input cells. By \\Cref{lem:reference-product}, every finite collection of unary signature tests has its product reference law in the tuple limit. Therefore the unary"
     },
     {
       "from": "m1-lem-histogram-control",
       "to": "m1-lem-limit-zero-product",
+      "label": "lem:histogram-control",
       "context": "For each integer $R$, cylinder inequalities give $0\\le\\eta_R\\le R\\rho$, and the measures increase with $R$. The uniform small-set conclusion of \\Cref{lem:histogram-control} also gives uniform integrability of the successful-query densities. Indeed, since their masses are at most one, $\\nu_n\\"
     },
     {
       "from": "m1-lem-limit-global-projection",
       "to": "m1-lem-limit-zero-product",
+      "label": "lem:limit-global-projection",
       "context": "ability, tends to zero because it is bounded above by \\eqref{eq:limit-option-overlap}. Choose a global partition with projection error at most $\\varepsilon$ in \\Cref{lem:limit-global-projection}. For that finite partition the inner product of the projected densities is \\[ \\sum_{C:\\,\\nu_n(C)>0} \\frac{\\eta_{A,R,n}"
     },
     {
       "from": "m1-lem-limit-model",
       "to": "m1-lem-limit-density",
+      "label": "lem:limit-model",
       "context": "The displayed expression is jointly measurable and nonnegative, by \\Cref{lem:limit-model}. We prove equality against every tuple cylinder indicator $W$. At a fixed accuracy $\\varepsilon$, apply \\Cref{thm:weak"
     },
     {
       "from": "m1-thm-weak-product",
       "to": "m1-lem-limit-density",
+      "label": "thm:weak-product",
       "context": "measurable and nonnegative, by \\Cref{lem:limit-model}. We prove equality against every tuple cylinder indicator $W$. At a fixed accuracy $\\varepsilon$, apply \\Cref{thm:weak-product} to its prelimit global key test $W_n$. On the reference key space its structured approximation has the form \\[ W_n^{(\\v"
     },
     {
       "from": "m1-lem-typicality",
       "to": "m1-lem-limit-density",
+      "label": "lem:typicality",
       "context": "ny orientation flag only decreases its bound. After both leaves are averaged, the mass of exceptional orientations is bounded by the mixed orientation error in \\Cref{lem:typicality}. An opposite-leaf-dependent choice of the flag cannot increase that unconditional error. Apply \\Cref{lem:binary-mixing"
     },
     {
       "from": "m1-lem-binary-mixing",
       "to": "m1-lem-limit-density",
+      "label": "lem:binary-mixing",
       "context": "bounded by the mixed orientation error in \\Cref{lem:typicality}. An opposite-leaf-dependent choice of the flag cannot increase that unconditional error. Apply \\Cref{lem:binary-mixing} to each structured term. Again its unary weights are the status indicators times bounded global unary factors. The resu"
     },
     {
       "from": "m1-lem-empty-status",
       "to": "m1-lem-status-predicted",
+      "label": "lem:empty-status",
       "context": ",2\\}). \\end{equation} Equality of functions here is exactly the almost-everywhere equality recorded in the prepared subsequential class. If both $e_i$ vanish, \\Cref{lem:empty-status} supplies the exact identity $p_i=T(\\lambda_i,\\mathrm{atom})+h_i$ on all atoms. Hence on each span $p_i+h_i=\\boldsymbol\\"
     },
     {
       "from": "m1-prop-status-preparation",
       "to": "m1-lem-status-predicted",
+      "label": "prop:status-preparation",
       "context": "S|d\\quad\\text{in }\\F. \\] Evaluate the basis terms in \\eqref{eq:status-forced-coefficients} at their local targets. The $a$-terms sum to $|S|c+|S|c=0$, because \\Cref{prop:status-preparation} fixed the same value $c=\\sum_i a(\\lambda_i)$ in both units. The remaining terms are \\[ \\sum_{j\\in S}\\mathsf u_{B,j}(\\De"
     },
     {
       "from": "m1-lem-status-duality",
       "to": "m1-lem-status-predicted",
+      "label": "lem:status-duality",
       "context": "\\] By \\eqref{eq:phase-compatibility}, this equals $|S|d$. Together with the role contribution it is zero. Thus every dual relation vanishes on the target, and \\Cref{lem:status-duality} proves solvability. The argument used only surviving generic labels and the prediction on those labels, so additional e"
     },
     {
       "from": "m1-lem-status-global-prediction",
       "to": "m1-lem-status-span",
+      "label": "lem:status-global-prediction",
       "context": "Without prediction, the probability of an obstructable base pair is less than $.1$ by \\Cref{lem:status-global-prediction}. This statement uses the unflagged iid base law. In the full conditional-law experiment, a passed injecting table exist"
     },
     {
       "from": "m1-lem-limit-model",
       "to": "m1-lem-status-span",
+      "label": "lem:limit-model",
       "context": "-prediction}. This statement uses the unflagged iid base law. In the full conditional-law experiment, a passed injecting table exists on mass at least $.99$ by \\Cref{lem:limit-model}. Their intersection therefore has mass greater than $.89$. On it no nonzero dual pattern exists for any exclusions with"
     },
     {
       "from": "m1-lem-status-duality",
       "to": "m1-lem-status-span",
+      "label": "lem:status-duality",
       "context": "em:limit-model}. Their intersection therefore has mass greater than $.89$. On it no nonzero dual pattern exists for any exclusions within the stated budget, so \\Cref{lem:status-duality} solves the scalar system for every such table. No independence of the two events is being assumed. With prediction, a"
     },
     {
       "from": "m1-lem-status-predicted",
       "to": "m1-lem-status-span",
+      "label": "lem:status-predicted",
       "context": "e injecting table exists on positive mass in the same experiment. The exact prediction and all almost-sure unary properties continue to hold on that event, and \\Cref{lem:status-predicted} gives the assertion."
     },
     {
       "from": "m1-lem-status-span",
       "to": "m1-lem-fresh-lists",
+      "label": "lem:status-span",
       "context": "_0+900<B_*$. On a predicted branch it is at most the stored exceptions plus this quantity, still leaving many generic labels. Scalar solvability is retained by \\Cref{lem:status-span}. Fix one solution on these stabilized spans. We prove a statement for one edge after any labels used on earlier edges"
     },
     {
       "from": "m1-lem-limit-model",
       "to": "m1-prop-positive-overlap",
+      "label": "lem:limit-model",
       "context": "clusion failed, finiteness of the option collection would give \\eqref{eq:limit-vanishing-overlap} along the sequence in question. Construct the common model of \\Cref{lem:limit-model} and apply \\Cref{prop:limit-overlap}. By \\Cref{lem:status-span}, there is positive model mass of a table with both flag"
     },
     {
       "from": "m1-prop-limit-overlap",
       "to": "m1-prop-positive-overlap",
+      "label": "prop:limit-overlap",
       "context": "option collection would give \\eqref{eq:limit-vanishing-overlap} along the sequence in question. Construct the common model of \\Cref{lem:limit-model} and apply \\Cref{prop:limit-overlap}. By \\Cref{lem:status-span}, there is positive model mass of a table with both flags passed and with a scalar solution"
     },
     {
       "from": "m1-lem-status-span",
       "to": "m1-prop-positive-overlap",
+      "label": "lem:status-span",
       "context": "eqref{eq:limit-vanishing-overlap} along the sequence in question. Construct the common model of \\Cref{lem:limit-model} and apply \\Cref{prop:limit-overlap}. By \\Cref{lem:status-span}, there is positive model mass of a table with both flags passed and with a scalar solution surviving the needed exclusi"
     },
     {
       "from": "m1-lem-fresh-lists",
       "to": "m1-prop-positive-overlap",
+      "label": "lem:fresh-lists",
       "context": "}. By \\Cref{lem:status-span}, there is positive model mass of a table with both flags passed and with a scalar solution surviving the needed exclusions. Apply \\Cref{lem:fresh-lists}. This gives between one and seven matched generators per edge with fresh allowed labels. Their sum vectors obey \\eqref{"
     },
     {
       "from": "m1-lem-limit-density",
       "to": "m1-prop-positive-overlap",
+      "label": "lem:limit-density",
       "context": "ibed binary conditions in \\eqref{eq:limit-success-format}. At every matched position the refined status overlap is positive. The full-density identification in \\Cref{lem:limit-density}, combined with the independent unary projections of the limiting reference law, expresses the limiting full-query overl"
     },
     {
       "from": "m1-prop-collision",
       "to": "m1-prop-positive-overlap",
+      "label": "prop:collision",
       "context": "g contradiction therefore proves the stated subsequential lower bound. Finally the successful densities are unnormalized with respect to the retained law, and \\Cref{prop:collision} explicitly charges any law restriction of reciprocal mass $2^{o(N)}$. A positive constant, or its product with such res"
     },
     {
       "from": "m1-thm-raw-supersaturation",
       "to": "m1-prop-positive-overlap",
+      "label": "thm:raw-supersaturation",
       "context": "our-hole probability has exponent at most $k_{\\max}+.03+o(1)$, whereas \\[ 100g-(k_{\\max}+.03)=44g+55.97>0. \\] Thus these overlaps are on the scale required for \\Cref{thm:raw-supersaturation}."
     },
     {
       "from": "m1-lem-unary-positivity",
       "to": "m1-lem-rare-large-set-hit",
+      "label": "lem:unary-positivity",
       "context": "o(n)=o(N)\\). The restricted mixed law therefore still satisfies the hypotheses of \\Cref{lem:typicality,thm:weak-product}, and the uniform profile estimates in \\Cref{lem:unary-positivity}. We give the measure-identification argument for this restricted law. It uses no density bound on its individually nor"
     },
     {
       "from": "m1-lem-reference-product",
       "to": "m1-lem-rare-large-set-hit",
+      "label": "lem:reference-product",
       "context": "a countable product of compact spaces. Write \\(\\Xi_j\\) for the single-key signature space at position \\(j\\), and \\(\\rho\\) for the tuple-test reference law. By \\Cref{lem:reference-product}, the unary projections of \\(\\rho\\) are independent with the respective laws on \\(\\Xi_j\\). The limiting \\(W\\)-coordinate"
     },
     {
       "from": "m1-lem-typicality",
       "to": "m1-lem-rare-large-set-hit",
+      "label": "lem:typicality",
       "context": "delta\\). Let \\(\\theta\\) denote a limiting orientation status array. Its unfiltered unary measure equals the single-key reference measure on every cylinder, by \\Cref{lem:typicality}. The requested unary base-status measure therefore has a density \\(h_j^\\theta\\) relative to that reference measure. Ver"
     },
     {
       "from": "m1-lem-limit-density",
       "to": "m1-lem-rare-large-set-hit",
+      "label": "lem:limit-density",
       "context": "are-one-law-density} \\end{equation} Here \\(\\xi_j\\) is the unary projection of the tuple signature. This is the one-law version of the density identification in \\Cref{lem:limit-density}; the details needed here are as follows. Fix a tuple cylinder and an accuracy \\(\\epsilon>0\\). By \\Cref{thm:weak-produc"
     },
     {
       "from": "m1-thm-weak-product",
       "to": "m1-lem-rare-large-set-hit",
+      "label": "thm:weak-product",
       "context": "ion of the density identification in \\Cref{lem:limit-density}; the details needed here are as follows. Fix a tuple cylinder and an accuracy \\(\\epsilon>0\\). By \\Cref{thm:weak-product}, its prelimit indicator can be replaced on actual successful queries by a bounded finite sum of products of global unar"
     },
     {
       "from": "m1-lem-binary-mixing",
       "to": "m1-lem-rare-large-set-hit",
+      "label": "lem:binary-mixing",
       "context": "anishing set of orientations. This comparison allows the requested unary status indicators as orientation-dependent unary weights. For each structured product, \\Cref{lem:binary-mixing} gives its successful integral as \\(\\kappa_{\\mathfrak r}\\) times the product of its separate unary status integrals, wit"
     },
     {
       "from": "m1-lem-histogram-control",
       "to": "m1-lem-rare-superlevel-nets",
+      "label": "lem:histogram-control",
       "context": "nfiltered query density. Since \\(\\int d\\,d\\nu\\le1\\), its superlevel set \\(\\{d>T\\}\\) has reference measure at most \\(1/T\\). The uniform small-set conclusion of \\Cref{lem:histogram-control} therefore makes the integral on this set uniformly small as \\(T\\) increases. Choose a fixed \\(T\\) so large that \\(\\int_"
     },
     {
       "from": "m1-lem-small-tables",
       "to": "m1-prop-rare-overlap",
+      "label": "lem:small-tables",
       "context": "s interchanged. Thus the coupled conditions in \\eqref{eq:recipe-scalars} hold, as do its diagonal and role conditions. Choose the binary prescriptions given by \\Cref{lem:small-tables}. These are base queries: the recorded old marks and prescribed basis values already determine the \\(p_i\\)-values, so no"
     },
     {
       "from": "m1-thm-gradient-realization",
       "to": "m1-prop-rare-overlap",
+      "label": "thm:gradient-realization",
       "context": "These are base queries: the recorded old marks and prescribed basis values already determine the \\(p_i\\)-values, so no additional \\(p_i\\)-filter is imposed. By \\Cref{thm:gradient-realization}, equal accepted keys therefore satisfy the hypotheses of \\Cref{prop:collision}. At all but an exponentially small prop"
     },
     {
       "from": "m1-prop-collision",
       "to": "m1-prop-rare-overlap",
+      "label": "prop:collision",
       "context": "ine the \\(p_i\\)-values, so no additional \\(p_i\\)-filter is imposed. By \\Cref{thm:gradient-realization}, equal accepted keys therefore satisfy the hypotheses of \\Cref{prop:collision}. At all but an exponentially small proportion of orientations, \\Cref{lem:binary-mixing,lem:unary-positivity} give a fi"
     },
     {
       "from": "m1-lem-rare-superlevel-nets",
       "to": "m1-prop-rare-overlap",
+      "label": "lem:rare-superlevel-nets",
       "context": "d success lower bound times \\(a_0/2\\) then gives \\(b_0\\). Removing these leaves loses \\(o(N^{-4})\\) leaf-pair mass even before compatibility is imposed. Apply \\Cref{lem:rare-superlevel-nets} on each remaining B-leaf and each numerical base format. Fix its uniform constants \\(t,\\delta_0\\), and put \\[ \\delta=\\"
     },
     {
       "from": "m1-lem-rare-large-set-hit",
       "to": "m1-prop-rare-overlap",
+      "label": "lem:rare-large-set-hit",
       "context": "are-independent-net-error} \\end{equation} Hence the leaf pairs on which the inner probability exceeds \\(a_0/2\\) have mass at most \\(2CL e_n/a_0=o(N^{-4})\\), by \\Cref{lem:rare-large-set-hit}. On any other compatible pair, at least \\(a_0/2\\) of the A-orientations pass the admissibility filter and all relevant"
     },
     {
       "from": "m1-thm-raw-supersaturation",
       "to": "m1-prop-rare-overlap",
+      "label": "thm:raw-supersaturation",
       "context": "[Proof of \\Cref{thm:raw-supersaturation}] Fix the construction constants and, for every sufficiently large \\(n\\), fix mixers satisfying \\Cref{lem:generic-mixers"
     },
     {
       "from": "m1-lem-generic-mixers",
       "to": "m1-prop-rare-overlap",
+      "label": "lem:generic-mixers",
       "context": "[Proof of \\Cref{thm:raw-supersaturation}] Fix the construction constants and, for every sufficiently large \\(n\\), fix mixers satisfying \\Cref{lem:generic-mixers}, before choosing a unit law. Suppose there is no common sufficiently-large-\\(n\\) bound as asserted. Then along an incre"
     },
     {
       "from": "m1-prop-positive-overlap",
       "to": "m1-prop-rare-overlap",
+      "label": "prop:positive-overlap",
       "context": "ir final leaves satisfy the required image bounds. Every alternative with positive limiting mass of injecting compatible tables gives the overlap criterion by \\Cref{prop:positive-overlap}. The remaining inverse-polynomial alternative gives it by \\Cref{prop:rare-overlap}. In both cases \\Cref{prop:collision}"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-prop-rare-overlap",
+      "label": "thm:main",
       "context": "[Proof of \\Cref{thm:main}] Apply \\Cref{prop:raw-to-graph} to \\Cref{thm:raw-supersaturation}. For every sufficiently large admissible \\(n\\), there"
     },
     {
       "from": "m1-prop-raw-to-graph",
       "to": "m1-prop-rare-overlap",
+      "label": "prop:raw-to-graph",
       "context": "[Proof of \\Cref{thm:main}] Apply \\Cref{prop:raw-to-graph} to \\Cref{thm:raw-supersaturation}. For every sufficiently large admissible \\(n\\), there is a graph on \\(m=2^{C_0gN}\\) s"
     },
     {
       "from": "m2-thm-main",
       "to": "m2-cor-fractional-spectral",
+      "label": "thm:main",
       "context": "Take the constructed examples in Theorem~\\ref{thm:main} and put \\(m=|V(G)|\\). They have \\(\\alpha(G)\\le2\\). Every well-signed one-negative matrix on these graphs has rank great"
     },
     {
       "from": "m2-mt-finite-metric",
       "to": "m2-mt-segment-comparison",
+      "label": "mt:finite-metric",
       "context": "nto $[A,B]$ is at distance $u$ from $A$ and at distance $h$ from $X$, both sides equal $h+|u-\\theta d(A,B)|$. This also holds for a degenerate segment. Apply \\Cref{mt:finite-metric} to the original configuration together with $\\widehat p,\\widehat q$, obtaining a tree $T'$ with error $K'=K(\\ell+2)$."
     },
     {
       "from": "m2-mt-finite-metric",
       "to": "m2-mt-finite-tree",
+      "label": "mt:finite-metric",
       "context": "most \\(D+1\\); an infimum need not be attained. Choose also one point in each flat. This gives \\(\\ell=k+2|\\mathcal D|\\le k^2\\) marked representatives. Apply \\Cref{mt:finite-metric} and work in their tree hull \\(K_s\\). Let \\(H_{i,s}\\) be the hull of representatives chosen from the \\(i\\)-th flat, and"
     },
     {
       "from": "m2-mt-segment-comparison",
       "to": "m2-mt-finite-tree",
+      "label": "mt:segment-comparison",
       "context": "at their fractional parameters along the corresponding actual hyperbolic segments. Their lifts \\(z_i,z_j\\) belong to their respective flats by convexity, and \\Cref{mt:segment-comparison} gives \\begin{equation}\\label{mt:bag-radius} d_{\\mathbb H}(z_i,z_j)\\le 2R+11K(\\ell+2)=:R_*. \\end{equation} For any none"
     },
     {
       "from": "m2-mt-flat-normalization",
       "to": "m2-mt-finite-tree",
+      "label": "mt:flat-normalization",
       "context": "(z_i,z_j)\\le 2R+11K(\\ell+2)=:R_*. \\end{equation} For any nonempty bag, fix one of these lifts. It has distance at most \\(R_*\\) from every flat in the bag. By \\Cref{mt:flat-normalization}, their joint Gram norm is at most \\(k(\\cosh^2R_*+\\sinh^2R_*)\\). It remains to obtain a single finite combinatorial pat"
     },
     {
       "from": "m2-mt-single-bag",
       "to": "m2-mt-common-bag",
+      "label": "mt:single-bag",
       "context": "Let \\(r\\) be the vertex bag from \\Cref{mt:single-bag}, let \\(z\\) be the edge bag from \\Cref{mt:weighted-bag}, and let \\(A=\\{v\\in V_0:r\\in S_v\\}\\). Along the path from \\(r\\)"
     },
     {
       "from": "m2-mt-weighted-bag",
       "to": "m2-mt-common-bag",
+      "label": "mt:weighted-bag",
       "context": "Let \\(r\\) be the vertex bag from \\Cref{mt:single-bag}, let \\(z\\) be the edge bag from \\Cref{mt:weighted-bag}, and let \\(A=\\{v\\in V_0:r\\in S_v\\}\\). Along the path from \\(r\\) to \\(z\\), each \\(S_v\\) with \\(v\\in A\\) is an initial i"
     },
     {
       "from": "m2-mt-load-matching",
       "to": "m2-mt-common-bag",
+      "label": "mt:load-matching",
       "context": "disappear on the single edge \\(xy\\). See \\Cref{mt:fig-path}. If the bag weight at \\(x\\) were less than \\(cm/2\\), then \\(\\sum_{e\\in\\mathcal E_+}w_e>cm/2\\). By \\Cref{mt:load-matching}, \\(\\mathcal E_+\\) has a matching of size greater than \\(cm/4\\), hence at least \\(q\\) since \\(q\\le cm/4\\). Also \\(|A_-|"
     },
     {
       "from": "m2-thm-matrix-obstruction",
       "to": "m2-mr-trace-cross",
+      "label": "thm:matrix-obstruction",
       "context": "[Proof of \\Cref{thm:matrix-obstruction}] Use the constant $c=c(a)>0$ from \\Cref{mt:weighted-bag}; explicitly we may take \\begin{equation}\\label{mr:constants}"
     },
     {
       "from": "m2-mt-weighted-bag",
       "to": "m2-mr-trace-cross",
+      "label": "mt:weighted-bag",
       "context": "[Proof of \\Cref{thm:matrix-obstruction}] Use the constant $c=c(a)>0$ from \\Cref{mt:weighted-bag}; explicitly we may take \\begin{equation}\\label{mr:constants} \\begin{aligned} K(a)&=\\left\\lceil\\frac5a\\right\\rceil"
     },
     {
       "from": "m2-mr-positive-block",
       "to": "m2-mr-trace-cross",
+      "label": "mr:positive-block",
       "context": "ue would violate condition (iii). Discard these labels. The other clique blocks are positive semidefinite. They have strictly negative off-diagonal entries; \\Cref{mr:positive-block} shows that deleting at most one coordinate makes each positive definite. Work with $s\\ge2$, and apply \\Cref{mt:finite-"
     },
     {
       "from": "m2-mt-finite-tree",
       "to": "m2-mr-trace-cross",
+      "label": "mt:finite-tree",
       "context": "negative off-diagonal entries; \\Cref{mr:positive-block} shows that deleting at most one coordinate makes each positive definite. Work with $s\\ge2$, and apply \\Cref{mt:finite-tree} to their positive spans. For every hole between two labels the blocks are orthogonal, so their tree subtrees intersect."
     },
     {
       "from": "m2-mt-single-bag",
       "to": "m2-mr-trace-cross",
+      "label": "mt:single-bag",
       "context": "2$, and apply \\Cref{mt:finite-tree} to their positive spans. For every hole between two labels the blocks are orthogonal, so their tree subtrees intersect. By \\Cref{mt:single-bag}, there is a bag missing fewer than $3q$ of the supplied single labels. Keep the labels in this bag and denote their se"
     },
     {
       "from": "m2-mr-spectral-support",
       "to": "m2-mr-trace-cross",
+      "label": "mr:spectral-support",
       "context": "-tree,mt:flat-normalization} makes $\\|B_s\\|$ uniformly bounded in $s$. The rank is at most that of $M_s$, and its negative index is at most one. Consequently \\Cref{mr:spectral-support} gives \\[ \\limsup_{s\\to\\infty}\\frac{\\|B_s^2-I\\|_{\\mathrm F}^2}{v} \\le2\\delta. \\] Since $\\delta>0$ is fixed, the left-h"
     },
     {
       "from": "m2-mr-matching",
       "to": "m2-mr-trace-cross",
+      "label": "mr:matching",
       "context": "}{v} \\le2\\delta. \\] Since $\\delta>0$ is fixed, the left-hand quantity before taking a limsup is at most $3\\delta=\\tau^4$ for all sufficiently large $s$. Apply \\Cref{mr:matching} to obtain a coordinate matching with $p_s^0$ pairs and adjacency matrix $W_s$. Then \\begin{equation}\\label{mr:first-ma"
     },
     {
       "from": "m2-mt-common-bag",
       "to": "m2-mr-trace-cross",
+      "label": "mt:common-bag",
       "context": "positive spans are orthogonal and their flats intersect. The candidate weights satisfy \\Cref{mt:weighted-bag}, so a bag has group weight at least $cm$. Apply \\Cref{mt:common-bag} to the supplied single labels $U$ and these groups, using $q\\le cm/60$. It yields a bag containing all but fewer than"
     },
     {
       "from": "m2-lem-paired-frame-orbit",
       "to": "m2-lem-frame-images",
+      "label": "lem:paired-frame-orbit",
       "context": "on each \\(V_e^+\\) and \\(L^{-\\mathsf T}\\) on \\(V_e^-\\), independently at vertices and components. For primal tuples, their restricted Gram is fixed by \\(E\\). By \\Cref{lem:paired-frame-orbit}, all based realizations with that Gram and individual injectivity lie in one orbit. Projection of an invariant uniform"
     },
     {
       "from": "m2-lem-frame-images",
       "to": "m2-lem-channel-thinning",
+      "label": "lem:frame-images",
       "context": "entration of these fractions by the bounded-differences method \\citep{azuma1967,mcdiarmid1989}, with the needed exponential-moment estimate included below. By \\Cref{lem:frame-images}(c), a prescribed nonzero channel combination, conditional on \\(f\\), has probability at most \\(2^{-(N-d)+1}\\) of taking"
     }
   ]

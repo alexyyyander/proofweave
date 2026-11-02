@@ -422,7 +422,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Finite-Smith-Toda-Complexes-at-Varying-Primes-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Finite Smith–Toda Complexes at Varying Primes; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Finite Smith–Toda Complexes at Varying Primes.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -493,9 +493,7 @@
           "kind": "proposition",
           "source": "Ultraproducts, gradings, and finite cells",
           "detail": "The functor h_ induces a symmetric monoidal equivalence between _ cell and the category of finite-cell graded A -modules. For X,Y , the natural comparison h_(X)_A h_(Y) h_(X Y) is an equivalence…",
-          "dependsOn": [
-            "m1-found-mapping-pairings"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-found-koszul-realization",
@@ -638,8 +636,7 @@
           "dependsOn": [
             "m1-power-prime-to-p",
             "m1-layer-even-trivializations",
-            "m1-layer-acyclic-sphere",
-            "m1-layer-partial-thom"
+            "m1-layer-acyclic-sphere"
           ]
         },
         {
@@ -720,7 +717,6 @@
           "source": "Universal coefficients for successive cycles",
           "detail": "For the chosen cycles through b_a , there exist the following data as germs along : Filtered -graded commutative ring spectra R_p^a , with an equivalence R^a h_(R_p^a) at every filtration order,…",
           "dependsOn": [
-            "m1-universal-triangular",
             "m1-universal-associated-graded",
             "m1-universal-filtered-cells"
           ]
@@ -861,8 +857,6 @@
           "dependsOn": [
             "m1-universal-primewise-models",
             "m1-conn-k-test",
-            "m1-norm-target-locality",
-            "m1-norm-normalization",
             "m1-norm-naturality",
             "m1-norm-attachment"
           ]
@@ -1016,7 +1010,6 @@
           "detail": "The \\(p\\)-localizations of finite CW spectra are closed under the finite suspensions and cofibers in Equation~ .",
           "dependsOn": [
             "m1-thm-main",
-            "m1-real-hurewicz",
             "m1-cob-regularity"
           ]
         }
@@ -1034,7 +1027,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-finite-Smith-Toda-complex-V4-at-the-prime-1009-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A finite Smith–Toda complex V(4) at the prime 1009; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A finite Smith–Toda complex V(4) at the prime 1009.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1174,7 +1167,6 @@
           "source": "The unital complexes through height three",
           "detail": "[Construction through V(3) ] For 0 n3 there is a finite p -local cell spectrum V(n) with a bottom-cell unit _n:S_ (p) V(n) and a binary multiplication \\[ _n:V(n) V(n) V(n) \\] whose two unit…",
           "dependsOn": [
-            "m2-low-algebraic-vanishing",
             "m2-fw-anss",
             "m2-fw-coordinates",
             "m2-low-finite-localization"
@@ -1335,10 +1327,7 @@
           "kind": "corollary",
           "source": "Eliminating two obstruction degrees by Frobenius",
           "detail": "The obstruction groups in bidegrees \\[ (s,w)=(2q+1,u_4+2), (s,w)=(q(p-1)+1,u_4+p-1) \\] vanish in the additive cobar calculation of Table~ . Among its rows with k2 , only the row k=p remains to be…",
-          "dependsOn": [
-            "m2-frob-k2",
-            "m2-frob-kpminus1"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-top-small-stems",
@@ -1388,7 +1377,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

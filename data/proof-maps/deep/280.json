@@ -137,7 +137,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Strongly-rational-unitary-vertex-operator-algebras-and-conformal-nets-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Strongly rational unitary vertex operator algebras and conformal nets; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Strongly rational unitary vertex operator algebras and conformal nets.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -338,7 +338,6 @@
           "source": "Unitarizing every simple module",
           "detail": "[The required permutation product before positivity] Let \\(V\\) be simple and strongly rational, let \\(D=V V\\), and let \\(\\) exchange the factors. Write \\(T_(N)\\) for the Barron--Dong--Mason…",
           "dependsOn": [
-            "m1-thm-strong-unitarity",
             "m1-thm-positive-fusion"
           ]
         },
@@ -355,8 +354,7 @@
             "m1-thm-energy",
             "m1-cor-charged-general",
             "m1-lem-charged-tools",
-            "m1-prop-strong-intertwining",
-            "m1-thm-positive-fusion"
+            "m1-prop-strong-intertwining"
           ]
         },
         {
@@ -378,9 +376,7 @@
           "source": "All sectors and complete rationality",
           "detail": "Let \\(V\\) be a simple unitary strongly rational VOA. Its conformal net \\(A_V\\) is completely rational. The CWX functor constructed in Theorem~ is essentially surjective onto the additive category of…",
           "dependsOn": [
-            "m1-cor-locality",
-            "m1-prop-exhaustion",
-            "m1-thm-cwx-embedding"
+            "m1-cor-locality"
           ]
         },
         {
@@ -394,8 +390,7 @@
           "dependsOn": [
             "m1-thm-positive-fusion",
             "m1-thm-strong-unitarity",
-            "m1-cor-charged-general",
-            "m1-thm-rationality"
+            "m1-cor-charged-general"
           ]
         }
       ]
@@ -415,7 +410,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

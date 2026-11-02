@@ -307,7 +307,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Abelian-Zilber-Pink-Conjecture-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The abelian Zilber–Pink conjecture; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The abelian Zilber–Pink conjecture.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -380,8 +380,7 @@
           "detail": "The auxiliary sequence theorem implies Theorem~ for every abelian variety over .",
           "dependsOn": [
             "m1-lemma-height-decomposition",
-            "m1-lemma-real-calculus",
-            "m1-thm-sequence"
+            "m1-lemma-real-calculus"
           ]
         },
         {
@@ -458,10 +457,8 @@
           "source": "When every height scale diverges",
           "detail": "Theorem~ holds for all-high sequence data.",
           "dependsOn": [
-            "m1-thm-sequence",
             "m1-prop-tangent",
-            "m1-lemma-intersection-lower-bound",
-            "m1-thm-dill-form"
+            "m1-lemma-intersection-lower-bound"
           ]
         },
         {
@@ -493,7 +490,6 @@
           "source": "Auxiliary subvarieties over fields of bounded degree",
           "detail": "For a minimal admissible choice, the following assertions hold after discarding finitely many indices and passing to a subsequence. For every pair of positive integers D,B , there is an index…",
           "dependsOn": [
-            "m1-lemma-height-kernel",
             "m1-lemma-bounded-conormal"
           ]
         },
@@ -506,8 +502,7 @@
           "source": "Auxiliary subvarieties over fields of bounded degree",
           "detail": "In a minimal admissible product for the putative low-factor counterexample, d_0>0 .",
           "dependsOn": [
-            "m1-lemma-real-calculus",
-            "m1-thm-all-high"
+            "m1-lemma-real-calculus"
           ]
         },
         {
@@ -565,7 +560,6 @@
             "m1-prop-minimal-products",
             "m1-thm-sequence",
             "m1-thm-all-high",
-            "m1-lemma-fixed-low-point",
             "m1-prop-arithmetic-positive",
             "m1-lemma-small-sections",
             "m1-prop-index"
@@ -579,9 +573,7 @@
           "kind": "proposition",
           "source": "From non-density to maximal atypical finiteness",
           "detail": "Every irreducible subvariety of every abelian variety over contains only finitely many optimal subvarieties.",
-          "dependsOn": [
-            "m1-thm-nondensity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-maximal-optimal",
@@ -592,9 +584,7 @@
           "source": "From non-density to maximal atypical finiteness",
           "detail": "Let X be an irreducible subvariety of an abelian variety and S= X_ sp . Every maximal atypical subvariety of X in S is optimal in X .",
           "dependsOn": [
-            "m1-thm-main",
             "m1-prop-optimal-finite",
-            "m1-cor-finite-rank-translates",
             "m1-thm-nondensity"
           ]
         }
@@ -612,7 +602,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-E-times-CM-Component-of-Zilber-Pink-for-Curves-in-A2-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The E×CM component of Zilber–Pink for curves in A2; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The E×CM component of Zilber–Pink for curves in A2.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -739,7 +729,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Quaternionic-Division-Points-on-Curves-in-the-Siegel-Threefold-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Quaternionic division points on curves in the Siegel threefold; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Quaternionic division points on curves in the Siegel threefold.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -790,9 +780,7 @@
           "kind": "proposition",
           "source": "The quadratic variation and its isogeny exceptions",
           "detail": "[Finitely many isogeny exceptions] Fix finitely many closed irreducible Hodge-generic curves in _2() . For every ordered pair of these curves there are finitely many rational positive projective…",
-          "dependsOn": [
-            "m3-prop-monodromy"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-thm-interpolation",
@@ -832,11 +820,7 @@
           "kind": "lemma",
           "source": "Interpolation with two arguments",
           "detail": "[Interpolation through successive layers] Let W' A^M be irreducible of dimension k1 , with coordinates including a,U,q . Let b=(G_1,,G_t) have controlled generators and V( b)=W' . Suppose \\[ V(…",
-          "dependsOn": [
-            "m3-thm-interpolation",
-            "m3-lem-zero-estimate",
-            "m3-lem-graph-fiber"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-lem-potential-good",
@@ -856,9 +840,7 @@
           "kind": "proposition",
           "source": "Arithmetic coordinates and common local relations",
           "detail": "[Small labeled integral vectors] There are constants c,C>0 with the following property. For every target t , an extension L/K(t) of degree at most C defines all geometric endomorphisms of A_t . There…",
-          "dependsOn": [
-            "m3-lem-qm-plane"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-prop-dr-size",
@@ -868,9 +850,7 @@
           "kind": "proposition",
           "source": "Arithmetic coordinates and common local relations",
           "detail": "[Coordinate heights and local norms] Choose the vectors of . Their affine coordinates in the fixed frame satisfy z(t),a,P C(h+ d). There are center neighborhoods at every place, with a single…",
-          "dependsOn": [
-            "m3-lem-potential-good"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-prop-good-comparison",
@@ -903,9 +883,6 @@
           "source": "Arithmetic coordinates and common local relations",
           "detail": "[Common relations with controlled coefficients] Suppose h Q_0(d) , increasing Q_0 if necessary. The proximity embeddings can be partitioned into at most Q_1(d) groups, and one group V has S_ small =…",
           "dependsOn": [
-            "m3-prop-small-vectors",
-            "m3-prop-good-comparison",
-            "m3-lem-proximity",
             "m3-prop-dr-size"
           ]
         },
@@ -928,7 +905,6 @@
           "source": "Auxiliary markings and the height bound",
           "detail": "There is a fixed odd prime and a fixed geometrically connected finite \\' e tale cover S S_* parameterizing symplectic markings at level , with a fixed lift t_0 of t_ 0,* , such that every…",
           "dependsOn": [
-            "m3-prop-monodromy",
             "m3-lem-finite-field-incidence"
           ]
         },
@@ -951,10 +927,7 @@
           "source": "Auxiliary markings and the height bound",
           "detail": "For a selected marked target as in , each applicable list above, formed from a nonempty selected group of places, satisfies the all-branch nonidentity hypothesis of . More precisely, let W be any…",
           "dependsOn": [
-            "m3-prop-monodromy",
-            "m3-prop-finite-correspondences",
-            "m3-lem-qm-plane",
-            "m3-prop-marking"
+            "m3-prop-monodromy"
           ]
         },
         {
@@ -966,10 +939,6 @@
           "source": "Auxiliary markings and the height bound",
           "detail": "Fix a reduced irreducible closed Hodge-generic curve C_2 over , and let C^ be its normalization. For a fixed nonnegative ample logarithmic height h on the smooth projective completion of C^ and a…",
           "dependsOn": [
-            "m3-prop-marking",
-            "m3-prop-common-relations",
-            "m3-thm-interpolation",
-            "m3-prop-dr-size",
             "m3-prop-nonidentity"
           ]
         },
@@ -994,11 +963,7 @@
           "source": "From heights to finiteness",
           "detail": "For fixed A,>0 , the set of QM points t S() satisfying h(t) A d(t)^ is finite.",
           "dependsOn": [
-            "m3-lem-flat-coordinate-bound",
-            "m3-prop-monodromy",
-            "m3-thm-main",
             "m3-lem-finite-covers",
-            "m3-prop-marking",
             "m3-thm-height"
           ]
         }
@@ -1031,7 +996,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

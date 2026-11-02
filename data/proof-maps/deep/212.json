@@ -422,7 +422,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/No-bigeodesics-in-planar-first-passage-percolation-September-24-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from No bigeodesics in planar first-passage percolation; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from No bigeodesics in planar first-passage percolation.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -513,10 +513,7 @@
           "kind": "lemma",
           "source": "Sectors, order, and confinement",
           "detail": "[Opposite functionals] Let an oriented bigeodesic pass through z , and let p^+ and p^- be its two rays starting at z . Then, for every w^2 , B_ p^+ (z,w)+B_ p^- (z,w) 0. Consequently _ p^- =-_ p^+ .…",
-          "dependsOn": [
-            "m1-lem-busemann-basic",
-            "m1-cor-fixed-label"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-charts",
@@ -549,8 +546,7 @@
           "source": "Sectors, order, and confinement",
           "detail": "[Uniform confinement of all rays] Almost surely there is a finite H(z)1 for every z^2 such that every upper ray from z lies in Q^+(z,H(z)) and every lower ray from z lies in Q^-(z,H(z)) . Moreover,…",
           "dependsOn": [
-            "m1-thm-structure",
-            "m1-lem-ray-order"
+            "m1-thm-structure"
           ]
         },
         {
@@ -561,9 +557,7 @@
           "kind": "lemma",
           "source": "Sectors, order, and confinement",
           "detail": "[Crossing from separated sites] Let x_1<y_1 , and suppose upper rays p from x and q from y satisfy \\[ p Q^+(x,H_x), q Q^+(y,H_y). \\] If s(y_1-x_1)>H_x+H_y+|x_2-y_2| and r(_p)>r(_q) , then the rays…",
-          "dependsOn": [
-            "m1-lem-ray-order"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-calibrated-rays",
@@ -602,7 +596,6 @@
           "detail": "[Countable exceptional parameters in an independent metric] Let V,W be independent environments, each with the iid law . Almost surely, simultaneously for every E_I(V) , all W -rays of label -…",
           "dependsOn": [
             "m1-lem-measurable",
-            "m1-prop-exceptional-countable",
             "m1-thm-structure"
           ]
         },
@@ -627,8 +620,7 @@
           "source": "Exceptional labels and opposite coalescence",
           "detail": "[Coalescence at opposite exceptional labels] Almost surely, simultaneously for all E_I(U) , every two U -rays of label - coalesce. Almost surely the same statement holds with upper and lower sectors…",
           "dependsOn": [
-            "m1-lem-independent-exceptional",
-            "m1-lem-cut-transfer"
+            "m1-lem-independent-exceptional"
           ]
         },
         {
@@ -640,8 +632,7 @@
           "source": "A label budget on horizontal lines",
           "detail": "[Comparison after a finite increase] Let T be a base metric and T^k a metric obtained by increasing finitely many edge weights. Both environments are assumed to have the structural properties already…",
           "dependsOn": [
-            "m1-lem-finite-change",
-            "m1-lem-crossing"
+            "m1-lem-finite-change"
           ]
         },
         {
@@ -673,8 +664,6 @@
           "source": "A label budget on horizontal lines",
           "detail": "[Expected label count at an edge] There is a finite constant C , depending only on the chart and the weight law, such that for every lattice edge e and every H1 , N_e(H) C(H+1).",
           "dependsOn": [
-            "m1-lem-finite-change",
-            "m1-lem-budget-comparison",
             "m1-prop-label-budget"
           ]
         },
@@ -688,9 +677,6 @@
           "detail": "[Absence of forks] Almost surely there is no upper or lower fork in any of the countably many charts under consideration.",
           "dependsOn": [
             "m1-prop-edge-count",
-            "m1-prop-opposite-coalescence",
-            "m1-prop-exceptional-countable",
-            "m1-lem-usable",
             "m1-prop-cone"
           ]
         },
@@ -703,10 +689,8 @@
           "source": "Excluding forks and identifying Busemann pairs",
           "detail": "[Common Busemann pairs for a common label] On one event of probability one, whenever two oriented bigeodesics p,q in any fixed chart have the same upper label, their two Busemann functions agree: B_…",
           "dependsOn": [
-            "m1-prop-exceptional-countable",
             "m1-prop-opposite-coalescence",
-            "m1-lem-busemann-basic",
-            "m1-prop-no-forks"
+            "m1-lem-busemann-basic"
           ]
         },
         {
@@ -749,9 +733,7 @@
           "kind": "proposition",
           "source": "Finite perturbations with divergent gain",
           "detail": "[Marks with an arbitrary toll] With R_0 fixed as above, for every positive integer M the common coupling defines marks J_M(k)\\ 0,1\\ at all horizontal sites, with the same marginal probability at each…",
-          "dependsOn": [
-            "m1-lem-divergent-gain"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-union",
@@ -761,9 +743,7 @@
           "kind": "lemma",
           "source": "Finite perturbations with divergent gain",
           "detail": "[Preservation in a union] Fix M , put R=R(M) , and suppose distinct sites k,y are marked. Their selected paths p_k,p_y are bigeodesics in the union metric T^*=T^ k,y,R . Every edge of p_k has the…",
-          "dependsOn": [
-            "m1-lem-finite-change"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-distinct-marks",
@@ -774,16 +754,8 @@
           "source": "Finite perturbations with divergent gain",
           "detail": "[No repeated marked label] Almost surely, for each positive integer M , the selected upper labels at distinct marked sites of are distinct.",
           "dependsOn": [
-            "m1-lem-union",
-            "m1-cor-same-busemann",
             "m1-lem-opposite",
-            "m1-thm-main",
             "m1-lem-charts",
-            "m1-prop-cone",
-            "m1-thm-structure",
-            "m1-prop-tilt-marks",
-            "m1-lem-budget-comparison",
-            "m1-lem-measurable",
             "m1-prop-label-budget"
           ]
         },
@@ -816,7 +788,6 @@
           "source": "Boundary comparison without boundary integrability",
           "detail": "[The fixed-functional boundary comparison] Two random coalescing geodesics with the same full-plane Busemann linear functional agree almost surely under the assumptions of .",
           "dependsOn": [
-            "m1-lem-boundary-correction",
             "m1-lem-zero-boundary-difference"
           ]
         }
@@ -834,7 +805,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Strict-convexity-and-differentiability-of-the-planar-exponential-first-passage-limit-shape-September-24-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Strict convexity and differentiability of the planar exponential first-passage limit shape; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Strict convexity and differentiability of the planar exponential first-passage limit shape.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1036,9 +1007,7 @@
           "kind": "proposition",
           "source": "Disjoint witnesses and exclusion of corners",
           "detail": "[Absence of corners] For every b , the two one-sided transverse derivatives at u=(1,b) agree: \\[ a_-=a_+. \\]",
-          "dependsOn": [
-            "m2-df-wi-long-paths"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-df-convex-regularity",
@@ -1147,9 +1116,7 @@
           "kind": "lemma",
           "source": "Local gauges for nearly calibrated roads",
           "detail": "[Linear-scale tail bound] Suppose the period excess bound satisfies C_s n^ for some fixed <1 . Fix the neighborhood and finitely many labels of Lemma~ . After subtraction of one common deterministic…",
-          "dependsOn": [
-            "m2-found-lem-network"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-found-lem-common-gauge",
@@ -1312,8 +1279,7 @@
           "source": "Selected access and charged tunnels",
           "detail": "[Tunnel accounting] If a path piece with the specified type has normalized center-label cost c , then c^- Y+W_ c_- /+W_ c_+ /. If Y>0 , the internal minimizer has a physical forward realization…",
           "dependsOn": [
-            "m2-access-conditioning",
-            "m2-access-physical"
+            "m2-access-conditioning"
           ]
         },
         {
@@ -1359,7 +1325,6 @@
           "detail": "[Uniform extraction from a long geodesic] For every sufficiently small fixed \\(,>0\\), the final geometric choices above can be made so that there are deterministic \\(_n,_n0\\) and fixed constants…",
           "dependsOn": [
             "m2-model-metric",
-            "m2-links-extreme",
             "m2-access-selected-cuts",
             "m2-access-accounting"
           ]
@@ -1387,7 +1352,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

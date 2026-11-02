@@ -422,7 +422,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Absolutely-Continuous-Spectrum-for-Weak-Disorder-Anderson-Models-in-Dimensions-at-Least-Three-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -443,9 +443,7 @@
           "kind": "corollary",
           "source": "Introduction",
           "detail": "[Spectral coexistence] For every fixed d3 and every fixed 0<<_d , there is a deterministic number _ d, (0,/2] such that the open interval \\[ J_ d, =(-2d-,-2d-+_ d, ) \\] is disjoint from I_d and,…",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-certificate",
@@ -616,10 +614,7 @@
           "source": "The algebra and estimates of an ordinary sweep",
           "detail": "[Ordinary-sweep increment estimates] Consider a current numerical prefix of a sweep whose initial physical state satisfies the bounds at a stage boundary in Section~ , including self-consistency, and…",
           "dependsOn": [
-            "m1-lem-sweep-laplacian",
-            "m1-lem-sweep-j",
-            "m1-lem-sweep-lag",
-            "m1-lem-sweep-fourth"
+            "m1-lem-sweep-laplacian"
           ]
         },
         {
@@ -653,7 +648,6 @@
           "source": "Local trials and the ordinary sweep",
           "detail": "[A prospective ordinary update] Suppose the sweep starts by duplicating a physical state satisfying the complete stage-boundary bounds of Section~ , including self-consistency, the broad bounds and…",
           "dependsOn": [
-            "m1-prop-sweep-increments",
             "m1-lem-inverse-row",
             "m1-lem-locality"
           ]
@@ -702,10 +696,8 @@
           "detail": "[One trial] Under the standing duplicated stage-start and metric assumptions, suppose all earlier tiles were accepted under the trial rule and the present trial starts with their accepted matrix…",
           "dependsOn": [
             "m1-lem-local-prospective",
-            "m1-lem-matrix-concentration",
             "m1-prop-sweep-increments",
-            "m1-lem-local-pullback",
-            "m1-lem-local-transfer"
+            "m1-lem-local-pullback"
           ]
         },
         {
@@ -718,7 +710,6 @@
           "detail": "[Ordinary sweep] Suppose a committed stage state satisfies the complete stage-boundary bounds of Section~ , including the broad bounds and comparators , the self-consistency relation \\(r_i=g_ ii \\),…",
           "dependsOn": [
             "m1-lem-local-trial",
-            "m1-lem-local-transfer",
             "m1-lem-local-prospective",
             "m1-lem-sweep-prestate"
           ]
@@ -841,11 +832,8 @@
           "dependsOn": [
             "m1-prop-ordinary-sweep",
             "m1-lem-duplication",
-            "m1-prop-committed-assembly",
-            "m1-prop-clearing-trial",
             "m1-lem-clearing-locality",
-            "m1-lem-inverse-row",
-            "m1-prop-reset"
+            "m1-lem-inverse-row"
           ]
         },
         {
@@ -858,8 +846,7 @@
           "detail": "[Pending-site bound] There is a constant c_ h >0 such that, after increasing the fixed lower cutoff n_0 if necessary, for every n_0 j m/2 and every torus site x , \\[ (x is pending at the end of stage…",
           "dependsOn": [
             "m1-prop-certificate",
-            "m1-prop-deterministic-induction",
-            "m1-lem-conditional-freshness"
+            "m1-prop-deterministic-induction"
           ]
         },
         {
@@ -870,9 +857,7 @@
           "kind": "proposition",
           "source": "Failure histories and removal of pending sites",
           "detail": "[Existence and measurability of the threshold] The feasibility event in is Borel, and the set of integers in Definition~ is nonempty. Consequently _d>0 . For every fixed 0<<_d , every m4n_0 , and…",
-          "dependsOn": [
-            "m1-prop-deterministic-induction"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-spectral-averaging",
@@ -893,9 +878,7 @@
           "source": "From the certificate to pure absolute continuity",
           "detail": "[Spectral readout] Fix d3 , >0 and a nonempty bounded open interval I . Let H_m be the true Anderson operator on T_m=(/L_m)^d , L_m=4^ 20m , with independent uniform diagonal values in [-,] at every…",
           "dependsOn": [
-            "m1-thm-main",
-            "m1-prop-certificate",
-            "m1-prop-threshold"
+            "m1-prop-certificate"
           ]
         }
       ]
@@ -912,7 +895,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Pure-Point-Spectrum-for-the-Two-Dimensional-Anderson-Model-at-Every-Positive-Disorder-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1035,9 +1018,7 @@
           "kind": "lemma",
           "source": "A weighted projected impedance estimate",
           "detail": "[Comparison of absorbed responses] Suppose D_1,D_2 are invertible matrices with -ImD_j P . If D_2-D_1=P P and K , then, for every k , \\[ (1+K)^ -1 PD_1^ -1 k PD_2^ -1 k (1+K) PD_1^ -1 k . \\]",
-          "dependsOn": [
-            "m2-mat-ward"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-imp-polynomials",
@@ -1077,9 +1058,7 @@
           "kind": "corollary",
           "source": "A weighted projected impedance estimate",
           "detail": "[Eliminating the missing directions] Let N=-P on the boundary space. Almost everywhere in the boundary law, the N,N block of T is invertible. Define its Schur matrix and transformed source by T &=P…",
-          "dependsOn": [
-            "m2-mat-ward"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-trans-cell",
@@ -1121,9 +1100,7 @@
           "kind": "lemma",
           "source": "A hierarchy of probability splits and energy comparisons",
           "detail": "[The hidden root law] At an accepted root whose cell port is still open, condition on the selectors, the needed corner-box identities, all branch acceptance indicators, and the other true potentials.…",
-          "dependsOn": [
-            "m2-hier-sampling"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-hier-comparison",
@@ -1144,12 +1121,6 @@
           "source": "A hierarchy of probability splits and energy comparisons",
           "detail": "[The parent-alternative cap] There are constants C,C_1 such that, with K_l=(C(1+b_ l+1 )^ C_1 ) , for 01 , Z_l() K_l Q_ current (f) +C B_l(f). The estimate holds during either pass and during every…",
           "dependsOn": [
-            "m2-trans-envelope",
-            "m2-trans-cell",
-            "m2-hier-sampling",
-            "m2-hier-comparison",
-            "m2-hier-hidden",
-            "m2-mat-energy-closure",
             "m2-mat-cutoff"
           ]
         },
@@ -1216,7 +1187,6 @@
           "source": "Screening and affine energies at a fixed stage",
           "detail": "[Fixed-stage limits] For each fixed sufficiently large n there is a finite number d_n0 with the following properties. The jump tails satisfy _n(D), _n(D)0, uniformly in the site, sufficiently large…",
           "dependsOn": [
-            "m2-screen-paths",
             "m2-screen-projected"
           ]
         },
@@ -1240,9 +1210,7 @@
           "kind": "proposition",
           "source": "Screening and affine energies at a fixed stage",
           "detail": "[Limit of the affine energy densities] The fixed-stage limits satisfy d_n dfor some 0 d<. More precisely, a deterministic _n0 can be chosen such that d_m(1+_n)d_n+_n (m>n) for all sufficiently large…",
-          "dependsOn": [
-            "m2-hier-comparison"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-van-zero",
@@ -1262,10 +1230,7 @@
           "kind": "lemma",
           "source": "Vanishing of the limiting energy in two dimensions",
           "detail": "Fix M_0 . For every a>0 , one can arrange a by taking n , then m>n , then N sufficiently large. More precisely, the estimate holds for all sufficiently large n , all sufficiently large m depending on…",
-          "dependsOn": [
-            "m2-hier-comparison",
-            "m2-hier-hidden"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-van-barrier",
@@ -1275,9 +1240,7 @@
           "kind": "lemma",
           "source": "Vanishing of the limiting energy in two dimensions",
           "detail": "For suitable fixed d_0,>0 , ( B^c) C e^ -cM_0R . On B P , for every compatible matrix D' on the source columns indexed by J , A_ IJ D' _ HS C M_0R d_0 S_ CJ D' _ HS . The constant includes the fixed…",
-          "dependsOn": [
-            "m2-mat-ward"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-van-good",
@@ -1288,7 +1251,6 @@
           "source": "Vanishing of the limiting energy in two dimensions",
           "detail": "Assume d>0 . There is a constant c_1>0 with the following property. For every sufficiently small fixed >0 , one can choose M_0 sufficiently large and finite constants C_1,C_F , before choosing…",
           "dependsOn": [
-            "m2-screen-profiles",
             "m2-screen-limits",
             "m2-screen-walls",
             "m2-screen-projected"
@@ -1304,9 +1266,7 @@
           "detail": "Choose sufficiently small depending on d , then the constants in , and then C_0 sufficiently large. There are constants c_2>0 and B_p< , independent of the later choices n,m,N , such that on G |…",
           "dependsOn": [
             "m2-van-good",
-            "m2-mat-weak",
-            "m2-van-zero",
-            "m2-van-adjustment"
+            "m2-mat-weak"
           ]
         },
         {
@@ -1351,11 +1311,7 @@
           "source": "A fixed-energy fractional-moment estimate",
           "detail": "[Small return to a filled annulus] For each fixed sufficiently large \\(C_0\\) and each \\(>0\\), one can choose \\(n\\), then \\(m>n\\), then a threshold for \\(N\\), so that \\[ U^2< \\] for every subsequent…",
           "dependsOn": [
-            "m2-screen-profiles",
-            "m2-hier-comparison",
-            "m2-hier-charges",
-            "m2-boot-tilted",
-            "m2-van-zero"
+            "m2-hier-charges"
           ]
         }
       ]
@@ -1381,7 +1337,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -357,211 +357,253 @@
     {
       "from": "m1-red-trace",
       "to": "m1-red-reduction",
+      "label": "red:trace",
       "context": "ication gives $ue=pu$ and $u-I=(p-e)(2e-I)$. For $a$ sufficiently close to $e$, the latter has norm less than one, so $u$ is invertible and $p=ueu^{-1}$. Lemma~\\ref{red:trace} preserves all the trace coefficients. For a conjugacy class $C$ of $G$, its intersection with $\\Gamma$ is a union of c"
     },
     {
       "from": "m1-cy-weights-lemma",
       "to": "m1-cy-trace-identity",
+      "label": "cy:weights-lemma",
       "context": "\\] is basic, has degree $n-1$, and satisfies $d\\eta=(d\\alpha)^m-(d\\alpha')^m$. It respects all the face and rotation identifications. Stokes' theorem and Lemma~\\ref{cy:weights-lemma}\\textup{(iii)} express the weighted sum of $\\int_{\\Delta_n}d\\eta$ as a signed sum of copies of \\[ I=\\sum_{h\\in\\mathcal"
     },
     {
       "from": "m1-ch-center-geometry",
       "to": "m1-ch-selector-estimates",
+      "label": "ch:center-geometry",
       "context": "econd fraction is at most one. A nonzero cutoff derivative requires $E_y\\le0.75$ for $A$ or $E_y\\le0.62$ for $D$. In either case $E_y-\\theta\\le-0.04$. Lemma~\\ref{ch:center-geometry} bounds the number of these terms by $e^{\\gamma r}$. The first fraction is consequently at most $Ce^{\\gamma r-0.04N}\\le"
     },
     {
       "from": "m1-ch-center-geometry",
       "to": "m1-ch-terminal",
+      "label": "ch:center-geometry",
       "context": "Every center in the support of $D$ has score greater than $0.58>1/2$. Apply Lemma~\\ref{ch:center-geometry} and Lemma~\\ref{ch:selector-estimates}. If $\\phi_r(P)>0$, then $q_r(P)>0.80$, so $\\sum_zD_z\\ge1/2$. The Cauchy--Schwar"
     },
     {
       "from": "m1-ch-selector-estimates",
       "to": "m1-ch-terminal",
+      "label": "ch:selector-estimates",
       "context": "Every center in the support of $D$ has score greater than $0.58>1/2$. Apply Lemma~\\ref{ch:center-geometry} and Lemma~\\ref{ch:selector-estimates}. If $\\phi_r(P)>0$, then $q_r(P)>0.80$, so $\\sum_zD_z\\ge1/2$. The Cauchy--Schwarz inequality on the finite support giv"
     },
     {
       "from": "m1-ch-accurate-string",
       "to": "m1-ch-string-estimates",
+      "label": "ch:accurate-string",
       "context": "There are at most $e^{c_2rb}$ strings, for a constant $c_2$ fixed by the metric. By Lemma~\\ref{ch:accurate-string} and \\eqref{ch:smoothing-error}, at least one string has $S\\le2\\epsilon$. Every string with $\\Delta>4\\epsilon$ has $S>4\\"
     },
     {
       "from": "m1-ch-summary",
       "to": "m1-ch-string-estimates",
+      "label": "ch:summary",
       "context": "[Completion of the proof of Proposition~\\ref{ch:summary}] Use the same selector $A$ in both versions. Inequality \\eqref{ch:selector-concentration} gives \\eqref{ch:selection-bo"
     },
     {
       "from": "m1-co-regularity",
       "to": "m1-co-contraction-lemma",
+      "label": "co:regularity",
       "context": "he opposite direction, so $dY_j(V)=-\\partial_uY_j$. Define the scalar function \\[ H_j(u)=\\int_{\\R}U_j(v-u)K_j(Y_j(u),Y_j(v))\\,dv. \\] As in the proof of Lemma~\\ref{co:regularity}, it is periodic. For a smooth stage its distributional derivative is \\[ H_j'(u) =-\\int U_j'(v-u)K_j(Y_j(u),Y_j(v))\\,"
     },
     {
       "from": "m1-ch-summary",
       "to": "m1-co-positivity",
+      "label": "ch:summary",
       "context": "This cancellation uses the integrated mass; it does not require either channel to have mass one at each time. The first and third inequalities of Proposition~\\ref{ch:summary} imply \\[ \\sum_y A(u)_y(p(u,y)-a_*) \\geq\\phi_{r_j}(P_j(u))-20\\epsilon_j. \\] For the other term, the prediction upper b"
     },
     {
       "from": "m1-ch-terminal",
       "to": "m1-co-positivity",
+      "label": "ch:terminal",
       "context": "age the negative term in \\eqref{co:contraction} vanishes. This is immediate from $\\rho_{b_*}=0$ in case (i). In case (ii), let $S=\\supp D(P_{b_*}(u))$. Lemma~\\ref{ch:terminal} gives $\\operatorname{diam}S\\leq4r$. If $z=gw$ with $z,w\\in S$, then $d(w,gw)\\leq4r$, contrary to \\eqref{co:twist-assum"
     },
     {
       "from": "m1-ch-summary",
       "to": "m1-co-connection",
+      "label": "ch:summary",
       "context": "j$ of $t_i$ modulo periods. The distance between the two labels in $g^aJ_i$ is $d(h_{i-1},h_i)$, independently of $a$. The derivative estimate of Proposition~\\ref{ch:summary}, or Lemma~\\ref{ch:terminal} at the last stage, therefore bounds the square root of the pointwise sum in \\eqref{co:fishe"
     },
     {
       "from": "m1-ch-terminal",
       "to": "m1-co-connection",
+      "label": "ch:terminal",
       "context": "The distance between the two labels in $g^aJ_i$ is $d(h_{i-1},h_i)$, independently of $a$. The derivative estimate of Proposition~\\ref{ch:summary}, or Lemma~\\ref{ch:terminal} at the last stage, therefore bounds the square root of the pointwise sum in \\eqref{co:fisher} by $C\\epsilon_j^{-10}l_i\\"
     },
     {
       "from": "m1-co-regularity",
       "to": "m1-co-connection",
+      "label": "co:regularity",
       "context": "of a coefficient in its own time variable contributes no exterior two-form. These calculations hold in the interior and extend to the closed simplex by Lemma~\\ref{co:regularity}. Summation over stages gives \\begin{equation} |dB(\\partial_i,\\partial_{i'})|\\leq C_Rl_il_{i'}. \\label{co:coarse-curv"
     },
     {
       "from": "m1-co-positivity",
       "to": "m1-co-connection",
+      "label": "co:positivity",
       "context": "ty}. Summation over stages gives \\begin{equation} |dB(\\partial_i,\\partial_{i'})|\\leq C_Rl_il_{i'}. \\label{co:coarse-curvature} \\end{equation} Finally Lemma~\\ref{co:positivity} permits division by $C_{\\rm nor}$. The scalar normalizer inherits all symmetries and face restrictions of $B$, so \\eqre"
     },
     {
       "from": "m1-pf-order-kernel",
       "to": "m1-pf-terminal-singular",
+      "label": "pf:order-kernel",
       "context": "c measure on the line. Let $b$ be the mass of that measure. The orbit masses sum to at most one, because the final channel is a subprobability channel. Lemma~\\ref{pf:order-kernel}, with the same measure in source and target, gives norm at most $b$ and a rank-$N$ approximation with error at most $b/"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-pf-occupancy",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] By Proposition~\\ref{red:reduction}, it suffices to treat a finitely generated group with a fixed word metric and an id"
     },
     {
       "from": "m1-red-reduction",
       "to": "m1-pf-occupancy",
+      "label": "red:reduction",
       "context": "[Proof of Theorem~\\ref{thm:main}] By Proposition~\\ref{red:reduction}, it suffices to treat a finitely generated group with a fixed word metric and an idempotent $p$ having an exponential m"
     },
     {
       "from": "m1-cy-weights-lemma",
       "to": "m1-pf-occupancy",
+      "label": "cy:weights-lemma",
       "context": "group with a fixed word metric and an idempotent $p$ having an exponential moment. The zero idempotent is immediate, so assume $M_p>0$, with $M_p$ as in Lemma~\\ref{cy:weights-lemma}. For the construction of Sections~\\ref{sec:connection} and~\\ref{sec:curvature}, write \\[ Q_R=C S^{3/2}R^{-1/10},\\qqua"
     },
     {
       "from": "m1-co-connection",
       "to": "m1-pf-occupancy",
+      "label": "co:connection",
       "context": "ius $r=6^{J_*-1}R$, the scale ladder, and all constants denoted $C_R$. Let $g$ have infinite order, or have finite order with $\\min_h d(h,gh)>4r$. Proposition~\\ref{co:connection} provides a compatible connection family through every sufficiently large even dimension $n$. Combining Proposition~\\ref"
     },
     {
       "from": "m1-cy-trace-identity",
       "to": "m1-pf-occupancy",
+      "label": "cy:trace-identity",
       "context": "d(h,gh)>4r$. Proposition~\\ref{co:connection} provides a compatible connection family through every sufficiently large even dimension $n$. Combining Proposition~\\ref{cy:trace-identity}, Theorem~\\ref{pf:bound}, and \\eqref{cy:moment}, we obtain \\begin{align} |\\tau_{[g]}(p)| &\\le \\sum_{h\\in\\mathcal T_n(g"
     },
     {
       "from": "m1-pf-bound",
       "to": "m1-pf-occupancy",
+      "label": "pf:bound",
       "context": "connection} provides a compatible connection family through every sufficiently large even dimension $n$. Combining Proposition~\\ref{cy:trace-identity}, Theorem~\\ref{pf:bound}, and \\eqref{cy:moment}, we obtain \\begin{align} |\\tau_{[g]}(p)| &\\le \\sum_{h\\in\\mathcal T_n(g)}|v_{n+1}(h)|"
     },
     {
       "from": "m2-lem-proper",
       "to": "m2-lem-refinement",
+      "label": "lem:proper",
       "context": "hcal P_\\sigma|_\\tau \\quad\\text{over all original cofaces }\\sigma\\supseteq\\tau, \\quad\\text{including }\\sigma=\\tau. \\] There are finitely many cofaces by Lemma~\\ref{lem:proper}. The common refinement consists of the nonempty intersections of cells and their faces. If $\\tau$ is a face of $\\sigma"
     },
     {
       "from": "m2-lem-proper",
       "to": "m2-lem-filtration-exists",
+      "label": "lem:proper",
       "context": "atives of the finitely many original simplex orbits by finitely many open balls $U_r(c)$, and take all their $H$-translates. These balls cover $|K|$. By Lemma~\\ref{lem:proper}, only finitely many translated radius-$R$ balls meet a given original simplex. Apply Lemma~\\ref{lem:refinement} with e"
     },
     {
       "from": "m2-lem-refinement",
       "to": "m2-lem-filtration-exists",
+      "label": "lem:refinement",
       "context": "$H$-translates. These balls cover $|K|$. By Lemma~\\ref{lem:proper}, only finitely many translated radius-$R$ balls meet a given original simplex. Apply Lemma~\\ref{lem:refinement} with every activation set equal to $X$, with $T=S=T_d$, and with $Z=\\varnothing$. For a common allowed radius $t\\in(r,"
     },
     {
       "from": "m2-lem-filtration-exists",
       "to": "m2-prop-zero-strata",
+      "label": "lem:filtration-exists",
       "context": "he admissible pair $(Z_{d-1},T_{d-1})$ so that $\\mathcal I_{d-1}(Z_{d-1})$ is within $\\epsilon$ of the infimum over the admissible choices at this step. Lemma~\\ref{lem:filtration-exists} ensures that this class is nonempty. Its infimum is a finite nonnegative number, so such a choice exists. Consequentl"
     },
     {
       "from": "m2-lem-refinement",
       "to": "m2-prop-zero-strata",
+      "label": "lem:refinement",
       "context": "re locally finite, and their use is conditioned on clopen sets, so the construction is equivariant and locally constant on every original simplex. Apply Lemma~\\ref{lem:refinement} with $T=T_d$, $S=T_{d-1}$, $P=Z_d$, $Z=Z_{d-1}$, and the centers and activation sets $(hc,hB)$. Outside a countable se"
     },
     {
       "from": "m2-lem-tree",
       "to": "m2-prop-zero-strata",
+      "label": "lem:tree",
       "context": "$ into affine polyhedral pieces on which $f_c=\\rho(c,\\cdot)$ is affine. On a $d$-dimensional piece $Q$, its tangential gradient has norm $\\alpha\\le1$ by Lemma~\\ref{lem:tree}. Euclidean slicing perpendicular to that gradient gives \\[ \\int_r^b\\operatorname{vol}_{d-1}(Q\\cap\\{f_c=t\\})\\,dt =\\al"
     },
     {
       "from": "m2-lem-proper",
       "to": "m2-lem-finite-component-labels",
+      "label": "lem:proper",
       "context": "ponents are singletons, since $Z_0(x)$ is a locally finite zero-dimensional subcomplex. If $b_F\\in\\kappa$ and $p\\in U_F$, the support-distance bound from Lemma~\\ref{lem:proper} gives \\[ \\min d_Y(\\supp b_F,\\supp p) \\leq\\sqrt n\\,\\rho(b_F,p)\\leq 2R\\sqrt n. \\] Choose an original top simplex contai"
     },
     {
       "from": "m2-lem-carrier",
       "to": "m2-lem-surviving-flags",
+      "label": "lem:carrier",
       "context": "}, a nonzero term has levels exactly $0,1,\\ldots,n$. In particular $F_0=\\{z\\}$ for a point $z\\in Z_0\\cap\\sigma$ and $F_i\\subseteq Z_i$ for every $i$. By Lemma~\\ref{lem:carrier}, $z$ lies in the relative interior of a unique $i$-simplex $S_i$ of $T_i$ contained in $Z_i$. To see why this carrier c"
     },
     {
       "from": "m2-thm-sparse",
       "to": "m2-lem-equivariant-homotopy",
+      "label": "thm:sparse",
       "context": "[Proof of Theorem~\\ref{thm:sparse}] The geometric construction applies for every sufficiently large $n$ depending only on $D$, as fixed by \\eqref{eq:stric"
     },
     {
       "from": "m2-lem-proper",
       "to": "m2-lem-equivariant-homotopy",
+      "label": "lem:proper",
       "context": "y large $n$ depending only on $D$, as fixed by \\eqref{eq:strict-volume}. For nonempty $K$, construct $F^\\epsilon$ as above. The stabilizers are finite by Lemma~\\ref{lem:proper}, and $F^\\epsilon$ and inclusion $\\iota$ both induce the identity in augmented degree $-1$. Lemma~\\ref{lem:equivariant-h"
     },
     {
       "from": "m2-lem-path-identities",
       "to": "m2-lem-pfaffian-recurrence",
+      "label": "lem:path-identities",
       "context": "one entry from that column. For $m\\ge2$, each minor on the second line omits $h_0$ and $h_i$ from the original list. Applying the deletion identity in Lemma~\\ref{lem:path-identities} twice shows that its weighted sum under $v_{2m}$ is $q_{m-1}$. For $m=1$, the minor is $p_0=1$, whose weighted sum is"
     },
     {
       "from": "m2-lem-path-identities",
       "to": "m2-prop-detector",
+      "label": "lem:path-identities",
       "context": "Finally, $z_{2m}$ is the exterior projection of $v_{2m+1}$. Each one-deletion term in \\eqref{eq:detector-formula} has weighted sum $v_{2m}(p_m)=q_m$, by Lemma~\\ref{lem:path-identities}. Since $\\sum_{i=0}^{2m}(-1)^i=1$, their signed sum gives \\[ \\psi_m(z_{2m})=q_m=2^{-m}\\lambda, \\] using Lemma~\\ref{lem"
     },
     {
       "from": "m2-lem-pfaffian-recurrence",
       "to": "m2-prop-detector",
+      "label": "lem:pfaffian-recurrence",
       "context": "m}(p_m)=q_m$, by Lemma~\\ref{lem:path-identities}. Since $\\sum_{i=0}^{2m}(-1)^i=1$, their signed sum gives \\[ \\psi_m(z_{2m})=q_m=2^{-m}\\lambda, \\] using Lemma~\\ref{lem:pfaffian-recurrence}. Repeated projected vertices already have zero exterior image and zero value under $\\psi_m$, so they require no separa"
     },
     {
       "from": "m2-thm-bass",
       "to": "m2-prop-detector",
+      "label": "thm:bass",
       "context": "[Proof of Theorem~\\ref{thm:bass}] First let $G$ be finitely generated, let $e\\in M_q(\\C G)$ be an idempotent, and fix an infinite-order $g\\in G$. Constr"
     },
     {
       "from": "m2-prop-path-cycle",
       "to": "m2-prop-detector",
+      "label": "prop:path-cycle",
       "context": "in Section~\\ref{sec:idempotents}. Let $D\\geq2$ be a degree bound for this fixed graph, and choose an even integer $n=2m\\geq n_0(D)$ with $m\\geq1$. Proposition~\\ref{prop:path-cycle} gives the cycle $z_n$, and Proposition~\\ref{prop:detector} gives an $H$-invariant cocycle $\\psi_m:E_n\\to\\C$ with \\[ \\p"
     },
     {
       "from": "m2-thm-sparse",
       "to": "m2-prop-detector",
+      "label": "thm:sparse",
       "context": "a=0$. Otherwise Proposition~\\ref{prop:path-cycle} realizes $z_n$ as a cycle in $C_n(K)_H$ for an $H$-invariant complex $K$ satisfying all hypotheses of Theorem~\\ref{thm:sparse}. That theorem gives $\\psi_m(z_n)=0$, with the same conclusion. Every finitely generated projective right $\\C G$-module"
     },
     {
       "from": "m2-lem-locality",
       "to": "m2-prop-detector",
+      "label": "lem:locality",
       "context": "group elements occurring in their entries. Then $G_0$ is finitely generated and $x=i_*x_0$ for some $x_0\\in K_0(\\C G_0)$, where $i:G_0\\hookrightarrow G$. Lemma~\\ref{lem:locality} expresses $\\HS_G(x)([g]_G)$ as the sum of the coefficients $\\HS_{G_0}(x_0)(C)$ over those $G_0$-conjugacy classes $C\\su"
     },
     {
       "from": "m2-thm-bass",
       "to": "m2-cor-integral",
+      "label": "thm:bass",
       "context": "nt matrix over $\\C G$ represents $P\\otimes_{\\Z G}\\C G$. Consequently its trace coefficients are the images under $\\Z\\hookrightarrow\\C$ of those of $P$. Theorem~\\ref{thm:bass} and this coefficientwise injection give vanishing at all infinite-order elements. No injectivity assertion about the ma"
     },
     {
       "from": "m2-cor-integral",
       "to": "m2-cor-homotopy-idempotents",
+      "label": "cor:integral",
       "context": "ugmentation trace $\\epsilon$ is the sum of these coefficients, while the Kaplansky trace $\\kappa$ is the identity coefficient. The sum is finite, and Corollary~\\ref{cor:integral} gives \\[ \\epsilon(x)=\\sum_{C\\in\\con(G)}h_C(x)=h_{[1]_G}(x)=\\kappa(x). \\] This is the weak Bass conjecture for every gr"
     },
     {
       "from": "m2-cor-torsion-free",
       "to": "m2-cor-homotopy-idempotents",
+      "label": "cor:torsion-free",
       "context": "[Proof of Corollary~\\ref{cor:torsion-free}\\textup{(i)}] Let $e\\in M_q(\\C G)$ be idempotent and put $x=[e(\\C G)^q]\\in K_0(\\C G)$. Since $G$ is torsion-free, Theore"
     },
     {
       "from": "m2-thm-bass",
       "to": "m2-cor-homotopy-idempotents",
+      "label": "thm:bass",
       "context": "of of Corollary~\\ref{cor:torsion-free}\\textup{(i)}] Let $e\\in M_q(\\C G)$ be idempotent and put $x=[e(\\C G)^q]\\in K_0(\\C G)$. Since $G$ is torsion-free, Theorem~\\ref{thm:bass} says that $\\HS_G(x)$ is supported on $[1]_G$. Therefore \\begin{align} \\tau_{G,q}(e) &=\\HS_G(x)([1]_G)\\notag\\\\ &=\\sum"
     }
   ]

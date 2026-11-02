@@ -207,7 +207,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Elementary-Positivity-of-Chromatic-Quasisymmetric-Functions-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Elementary positivity of chromatic quasisymmetric functions; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Elementary positivity of chromatic quasisymmetric functions.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -409,10 +409,7 @@
           "kind": "theorem",
           "source": "Positive wall transport and change of chart",
           "detail": "[Positive sections] Every _m has coefficients in ((v^ -1 )) in every chamber. More generally, the same is true of a section F all of whose incoming coefficients belong to ((v^ -1 )) .",
-          "dependsOn": [
-            "m1-wall-factors",
-            "m1-wall-recursion"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-wall-product",
@@ -445,7 +442,6 @@
           "source": "Positive wall transport and change of chart",
           "detail": "[Change of chart] The wall system for C , with simple data D_c , is carried to the wall system for C' , with simple data D_ c' , as follows. Off the cut p^ , use the covector map T from and act on…",
           "dependsOn": [
-            "m1-wall-unit",
             "m1-wall-fiber-bound"
           ]
         },
@@ -529,9 +525,7 @@
           "source": "The triangular chart and monomial sections",
           "detail": "[Monomial sections] For every partition with at most D parts, padded by zeroes to length D , one has in the all-negative chamber m_(Y)=_ _ i=1 ^D_i d_i . In particular, E_k=_ d_1++d_k (0 k D).",
           "dependsOn": [
-            "m1-tri-domination",
-            "m1-tri-stationary",
-            "m1-tri-pure"
+            "m1-tri-domination"
           ]
         },
         {
@@ -543,7 +537,6 @@
           "source": "The triangular chart and monomial sections",
           "detail": "[Elementary positivity] Let G be a natural unit interval graph on n vertices, and put M=|E(G)| . In its elementary expansion \\[ _G(X;q)=_ n c_(q)e_(X), \\] every c_(q) belongs to and has degree at…",
           "dependsOn": [
-            "m1-tri-embedding",
             "m1-graph-kernel",
             "m1-graph-reciprocity",
             "m1-tri-monomial",
@@ -621,8 +614,6 @@
           "dependsOn": [
             "m1-route-parity",
             "m1-graph-kernel",
-            "m1-main-theorem",
-            "m1-tri-embedding",
             "m1-graph-digits",
             "m1-graph-reciprocity"
           ]
@@ -644,7 +635,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

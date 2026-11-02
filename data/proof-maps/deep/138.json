@@ -152,7 +152,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Subset-Sum-in-Time-2-power-0-49n-October-4-2026/subset-sum.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Subset Sum in Time $`O(2^{0.49n})`$; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Subset Sum in Time $`O(2^{0.49n})`$.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -282,8 +282,6 @@
           "detail": "[Sparse distinctions] With probability 1-o(1) over P , the following implication holds simultaneously for every v\\ -1,0,1\\ ^n with at most m nonzero coordinates: _i v_ic_i0 _i v_ic_i0 P. The error is…",
           "dependsOn": [
             "m1-lem-prime-collision",
-            "m1-thm-main",
-            "m1-prop-preliminary",
             "m1-thm-aliases",
             "m1-thm-checksum",
             "m1-lem-isolation"
@@ -303,7 +301,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Low-Space-Algorithm-for-Worst-Case-Subset-Sum-September-26-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A Low-Space Algorithm for Worst-Case Subset Sum; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A Low-Space Algorithm for Worst-Case Subset Sum.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -375,10 +373,7 @@
           "source": "Compressing repeated sums",
           "detail": "[Compressed-block trial] For sufficiently large main-branch inputs, the compressed-block trial uses at most u^ 15 2^ n/2 word operations on every random outcome, including bounded sampling, and uses…",
           "dependsOn": [
-            "m2-lem-streams",
-            "m2-lem-samplers",
-            "m2-lem-deficiency",
-            "m2-lem-prime"
+            "m2-lem-deficiency"
           ]
         },
         {
@@ -447,8 +442,7 @@
           "source": "Survival within the resource budgets",
           "detail": "On a YES input with \\(<.00765n\\), a representation trial with the bounded samplers and operation cap succeeds with probability at least \\(u^ -110 \\), for sufficiently large main-branch inputs.",
           "dependsOn": [
-            "m2-lem-representation",
-            "m2-lem-samplers"
+            "m2-lem-representation"
           ]
         },
         {
@@ -486,7 +480,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

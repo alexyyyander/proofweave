@@ -422,7 +422,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-counterexample-to-Hadwigers-conjecture-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A counterexample to Hadwiger's conjecture; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A counterexample to Hadwiger's conjecture.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -506,9 +506,7 @@
           "source": "From supersaturation to a finite graph",
           "detail": "Assume the conclusion of at a given sufficiently large \\(n\\). For \\(m=2^ C_0gN \\), the sampled graph defined in satisfies \\[ (G)2, (G)<m/100 \\] with probability \\(1-(-(m))\\). The implied positive…",
           "dependsOn": [
-            "m1-lem-entropy-support",
-            "m1-lem-terminal-cut",
-            "m1-lem-hole-triangle-free"
+            "m1-lem-entropy-support"
           ]
         },
         {
@@ -549,10 +547,7 @@
           "kind": "lemma",
           "source": "Frame laws and preparation of unit laws",
           "detail": "The following statements hold for all sufficiently large \\(n\\). [label=( *)] The plus frame \\([P,X]\\) is uniform among injective maps. Conditional on it, the minus columns are independent uniforms on…",
-          "dependsOn": [
-            "m1-lem-gram-frame-normalization",
-            "m1-lem-paired-frame-orbit"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-raw-intersections",
@@ -562,9 +557,7 @@
           "kind": "lemma",
           "source": "Frame laws and preparation of unit laws",
           "detail": "Let \\(\\) satisfy the joint cap in . Outside a set of \\(\\)-probability \\(2^ -(N) \\), \\[ _ e ( P_ 1,e P_ 2,e )2D. \\] For any unit outside that exceptional set and any \\(U_1_1=U_2_2\\), both \\(_i\\) have…",
-          "dependsOn": [
-            "m1-lem-cut-kernel"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-peeling",
@@ -604,9 +597,7 @@
           "kind": "lemma",
           "source": "Low-rank moments and mixing forms",
           "detail": "[Label support] Every w W of rank at most R_* has a representation w=_ s L (p_s I)Z_s(p_s I), |L| R_*, where each Z_s is symmetric, (Z_s)_ ii =(Z_s)_ 0i , and _ s L Z_s R_* .",
-          "dependsOn": [
-            "m1-lem-base-moments"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-sparse-pin-labels",
@@ -616,9 +607,7 @@
           "kind": "lemma",
           "source": "Low-rank moments and mixing forms",
           "detail": "Put L_0^ lab =R_*+14 . At an endpoint, the union of the nonzero label supports of all vectors in all S_ i,e ^ that can be written as _ s L p_s z_s with |L| L_0^ lab has size at most B_0=2||K(R_*+14).",
-          "dependsOn": [
-            "m1-lem-base-moments"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-generic-mixers",
@@ -638,11 +627,7 @@
           "kind": "lemma",
           "source": "Recipes and realization of the gradients",
           "detail": "[Table flags and binary prescriptions] The following statements hold. [label=( *)] For a fixed pair of leaves and a numerical small table, admissibility is the intersection of two unary orientation…",
-          "dependsOn": [
-            "m1-lem-sparse-pin-labels",
-            "m1-lem-generic-mixers",
-            "m1-lem-binary-mixing"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-gradient-realization",
@@ -653,8 +638,7 @@
           "source": "Recipes and realization of the gradients",
           "detail": "[Gradient realization] Suppose two units in fixed leaves have lists satisfying , the binary prescriptions yielding , equal matched keys, and an admissible injecting small table. Freeze their actual…",
           "dependsOn": [
-            "m1-lem-small-tables",
-            "m1-lem-sparse-pin-labels"
+            "m1-lem-small-tables"
           ]
         },
         {
@@ -666,8 +650,6 @@
           "source": "From overlapping key distributions to four holes",
           "detail": "[Collision criterion] Let be a unit law in , and let be a restriction of it of relative mass at least 2^ -o(N) , decomposed into leaves satisfying . Mix the leaves with their actual masses in .…",
           "dependsOn": [
-            "m1-thm-gradient-realization",
-            "m1-lem-small-tables",
             "m1-lem-walsh"
           ]
         },
@@ -690,8 +672,7 @@
           "source": "Phase estimates before key collisions",
           "detail": "[Rank growth without a cover] Let \\(r1\\) be an integer, set \\(m_r=100r+10\\) and \\(q_r=2^ -m_r \\), and let \\(s\\) be a power of two with \\(s2^ m_r \\). Suppose \\(T_1,,T_s\\) are independent copies of a…",
           "dependsOn": [
-            "m1-thm-phase-alternative",
-            "m1-lem-walsh"
+            "m1-thm-phase-alternative"
           ]
         },
         {
@@ -734,9 +715,7 @@
           "kind": "lemma",
           "source": "Preparation of the two-endpoint statuses",
           "detail": "[Exactification of vanishing prediction classes] If \\(e_1=e_2=0\\), deleting \\(o(1)\\) unit mass makes p_i=T(_i,)+a on all of , i=1,2, an exact identity on every retained unit.",
-          "dependsOn": [
-            "m1-lem-frame-images"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-synthetic-slice",
@@ -760,13 +739,7 @@
           "source": "Preparation of the two-endpoint statuses",
           "detail": "[Equal coefficients when the tensor difference vanishes] On a predicted branch with \\(=0\\) throughout, \\(_1=_2\\).",
           "dependsOn": [
-            "m1-lem-raw-intersections",
-            "m1-lem-synthetic-slice",
-            "m1-prop-status-preparation",
-            "m1-lem-injection",
-            "m1-lem-empty-status",
-            "m1-thm-phase-alternative",
-            "m1-lem-tiny-cover"
+            "m1-lem-injection"
           ]
         },
         {
@@ -787,9 +760,7 @@
           "kind": "lemma",
           "source": "Leaf histograms and mixed-law estimates",
           "detail": "[Gram normalization] Let a plus slots and b minus slots in one ambient component be independent uniform vectors, and prescribe their entire a by b Gram matrix. If a+b N/2 , the probability of that…",
-          "dependsOn": [
-            "m1-lem-gram-frame-normalization"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-histogram-batch-comparison",
@@ -800,7 +771,6 @@
           "source": "Leaf histograms and mixed-law estimates",
           "detail": "[Comparison of two bounded batches] Consider two bounded batches of prescribed nominal columns in one raw endpoint, or in two independent raw endpoints. Suppose their union is nominally independent…",
           "dependsOn": [
-            "m1-lem-frame-images",
             "m1-lem-walsh",
             "m1-lem-histogram-gram-normalization"
           ]
@@ -826,7 +796,6 @@
           "source": "Leaf histograms and mixed-law estimates",
           "detail": "[Many queries and prescribed cells] Fix a bounded query shape. There are constants c_1,c_2>0 , independent of any key-space partition, with the following property. Put = c_1n and repeat the query…",
           "dependsOn": [
-            "m1-lem-histogram-gram-normalization",
             "m1-lem-histogram-control"
           ]
         },
@@ -873,11 +842,7 @@
           "kind": "lemma",
           "source": "Leaf histograms and mixed-law estimates",
           "detail": "[Unary reference law and base-status positivity] Fix an endpoint, tag, label, flavor, and feasible tester summary with diagonal q . For a bounded number of common global key tests, its empirical…",
-          "dependsOn": [
-            "m1-lem-frame-images",
-            "m1-lem-typicality",
-            "m1-lem-histogram-quadratic-bias"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-weak-product",
@@ -908,12 +873,8 @@
           "source": "Weak product testing",
           "detail": "[A terminal remainder on actual inputs] Let I,J be a nontrivial partition of some of the template positions. Let D_n be a common function of their global keys with D_n_ B_1 and D_n_ , T . Let _n(I,J)…",
           "dependsOn": [
-            "m1-lem-typicality",
             "m1-lem-frame-images",
-            "m1-lem-histogram-gram-normalization",
-            "m1-lem-walsh",
-            "m1-thm-weak-product",
-            "m1-lem-product-twisted-regularity"
+            "m1-lem-walsh"
           ]
         },
         {
@@ -924,9 +885,7 @@
           "kind": "corollary",
           "source": "Weak product testing",
           "detail": "[Factorized integration of the approximant] For the structured sum in and arbitrary bounded unary input weights, outside exponentially small mixed mass, &_z A_n(O,z)S_n(K(O,z))_jw_j(O,z_j)\\\\ &= _ a=1…",
-          "dependsOn": [
-            "m1-lem-binary-mixing"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-limit-global-projection",
@@ -947,10 +906,7 @@
           "source": "A common limit for successful queries",
           "detail": "[Common signature model] There is a subsequence and a common limiting experiment with the following properties. [label=( *)] For each tag and diagonal bit (l,q) there is a compact bit-sequence space…",
           "dependsOn": [
-            "m1-lem-limit-global-projection",
-            "m1-thm-weak-product",
-            "m1-lem-typicality",
-            "m1-lem-reference-product"
+            "m1-lem-typicality"
           ]
         },
         {
@@ -962,8 +918,7 @@
           "source": "A common limit for successful queries",
           "detail": "[Passage of vanishing overlaps] Assume . For almost every Z , the measures _A(Z),_B(Z) of every usable option are absolutely continuous with respect to , and their densities have product zero -almost…",
           "dependsOn": [
-            "m1-lem-histogram-control",
-            "m1-lem-limit-global-projection"
+            "m1-lem-histogram-control"
           ]
         },
         {
@@ -974,12 +929,7 @@
           "kind": "lemma",
           "source": "A common limit for successful queries",
           "detail": "[Successful-query density] For almost every Z , the full limiting successful-query measure on this side has density G_Z(u)= _ h^_ t_,_ (_(u))\\,d_Z() (u) with respect to .",
-          "dependsOn": [
-            "m1-lem-limit-model",
-            "m1-thm-weak-product",
-            "m1-lem-typicality",
-            "m1-lem-binary-mixing"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-limit-overlap",
@@ -1021,7 +971,6 @@
           "detail": "[Predicted scalar compatibility] For a predicted pair with a table satisfying the compatibility conditions of , the system -- is soluble. The assertion survives any further bounded label exclusions…",
           "dependsOn": [
             "m1-lem-empty-status",
-            "m1-prop-status-preparation",
             "m1-lem-status-duality"
           ]
         },
@@ -1034,9 +983,6 @@
           "source": "Solving the status constraints",
           "detail": "[Scalar solvability on positive mass] In each positive-mass alternative of , the common experiment has positive mass of passed injecting tables for which the scalar system is soluble, robustly under…",
           "dependsOn": [
-            "m1-lem-status-global-prediction",
-            "m1-lem-limit-model",
-            "m1-lem-status-duality",
             "m1-lem-status-predicted"
           ]
         },
@@ -1048,9 +994,7 @@
           "kind": "lemma",
           "source": "Solving the status constraints",
           "detail": "[Fresh lists of at most seven generators] On each scalar-soluble pair from , further bounded exclusions can be made so that every scalar solution on the resulting four edge spans can be realized by…",
-          "dependsOn": [
-            "m1-lem-status-span"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-positive-overlap",
@@ -1062,12 +1006,7 @@
           "detail": "[Positive-mass overlap] For every positive-mass alternative of , some fixed numerical option has expected unnormalized successful-query overlap bounded below by a positive constant along a…",
           "dependsOn": [
             "m1-lem-limit-model",
-            "m1-prop-limit-overlap",
-            "m1-lem-status-span",
-            "m1-lem-fresh-lists",
-            "m1-lem-limit-density",
-            "m1-prop-collision",
-            "m1-thm-raw-supersaturation"
+            "m1-lem-limit-density"
           ]
         },
         {
@@ -1079,11 +1018,6 @@
           "source": "The inverse-polynomial option and completion of the proof",
           "detail": "[Uniform large-set hit estimate] Fix \\(>0\\), and consider a sequence of unit laws whose mixed joint densities are at most \\(2^ O(N) \\) relative to \\(^2\\), whose two marginals are at most \\(M2^ o(N)…",
           "dependsOn": [
-            "m1-lem-unary-positivity",
-            "m1-lem-reference-product",
-            "m1-lem-typicality",
-            "m1-lem-limit-density",
-            "m1-thm-weak-product",
             "m1-lem-binary-mixing"
           ]
         },
@@ -1108,16 +1042,7 @@
           "source": "The inverse-polynomial option and completion of the proof",
           "detail": "In the inverse-polynomial alternative of , the overlap criterion holds with a lower bound \\((N^ -4 )\\), along the prepared sequence.",
           "dependsOn": [
-            "m1-lem-small-tables",
-            "m1-thm-gradient-realization",
-            "m1-prop-collision",
-            "m1-lem-rare-superlevel-nets",
-            "m1-lem-rare-large-set-hit",
-            "m1-thm-raw-supersaturation",
-            "m1-lem-generic-mixers",
-            "m1-prop-positive-overlap",
-            "m1-thm-main",
-            "m1-prop-raw-to-graph"
+            "m1-thm-main"
           ]
         }
       ]
@@ -1134,7 +1059,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-counterexample-to-the-Colin-de-Verdiere-chromatic-conjecture-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A counterexample to the Colin de Verdière chromatic conjecture; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A counterexample to the Colin de Verdière chromatic conjecture.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1165,9 +1090,7 @@
           "kind": "corollary",
           "source": "Introduction",
           "detail": "[Fractional-colouring obstruction] There are finite nonempty simple graphs \\(G\\) of arbitrarily large order for which \\[ _f(G) |V(G)| (G) |V(G)| 2 >(G)+1(G)+1 h(G). \\]",
-          "dependsOn": [
-            "m2-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-cor-list-spectral",
@@ -1207,9 +1130,7 @@
           "kind": "lemma",
           "source": "Finite trees for Lorentz blocks",
           "detail": "[Comparison of segment points] Let \\(T\\) and the points \\(z_i^T\\) satisfy . For \\(\\), associate the point at fraction \\(\\) of \\([z_i^T,z_j^T]_T\\) with the point at the same fraction of the hyperbolic…",
-          "dependsOn": [
-            "m2-mt-finite-metric"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-mt-finite-tree",
@@ -1220,9 +1141,7 @@
           "source": "Finite trees for Lorentz blocks",
           "detail": "[Finite tree principle] For each index \\(s\\), let \\(P_ 1,s ,,P_ k,s \\) be positive subspaces in a Lorentz space, whose dimension may depend on \\(s\\). Fix a set \\( D\\) of pairs of distinct labels, and…",
           "dependsOn": [
-            "m2-mt-finite-metric",
-            "m2-mt-segment-comparison",
-            "m2-mt-flat-normalization"
+            "m2-mt-segment-comparison"
           ]
         },
         {
@@ -1265,8 +1184,7 @@
           "detail": "[A common bag] Suppose the hypotheses of hold in the same tree. Suppose additionally that \\(S_e S_v\\) whenever the edge \\(e\\) and the vertex \\(v V_0\\) conflict. If \\(q cm/4\\), there is a vertex \\(x\\)…",
           "dependsOn": [
             "m2-mt-single-bag",
-            "m2-mt-weighted-bag",
-            "m2-mt-load-matching"
+            "m2-mt-weighted-bag"
           ]
         },
         {
@@ -1318,14 +1236,8 @@
           "source": "The matrix obstruction",
           "detail": "[A trace bound across the second normalization] For each j , let H_j,Q_j be two lists of Lorentz vectors whose joint Gram matrix has operator norm at most a fixed K . Let v_j . Suppose that for every…",
           "dependsOn": [
-            "m2-thm-matrix-obstruction",
-            "m2-mt-weighted-bag",
             "m2-mr-positive-block",
-            "m2-mt-finite-tree",
-            "m2-mt-single-bag",
-            "m2-mr-spectral-support",
-            "m2-mr-matching",
-            "m2-mt-common-bag"
+            "m2-mr-spectral-support"
           ]
         },
         {
@@ -1366,9 +1278,7 @@
           "kind": "lemma",
           "source": "The distribution problem and its preliminary tools",
           "detail": "The following statements hold for all sufficiently large \\(n\\). [label=( *)] At independently sampled raw vertices and components, images of prescribed primal coefficient tuples that are independent…",
-          "dependsOn": [
-            "m2-lem-paired-frame-orbit"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-channel-thinning",
@@ -1378,9 +1288,7 @@
           "kind": "lemma",
           "source": "The distribution problem and its preliminary tools",
           "detail": "[Channel thinning] Fix any bound \\(q_ test \\) on the lengths of the ambient tuples to be tested; this bound is fixed before \\(,M_0,n\\). For all sufficiently large \\(n\\) there are subsets \\(A_e^…",
-          "dependsOn": [
-            "m2-lem-frame-images"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-distribution-tests",
@@ -1415,7 +1323,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

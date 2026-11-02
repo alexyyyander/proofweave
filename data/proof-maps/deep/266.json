@@ -377,7 +377,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-maximum-number-of-mutually-unbiased-bases-in-dimension-six-September-24-2026/The-maximum-number-of-mutually-unbiased-bases-in-dimension-six-September-24-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The maximum number of mutually unbiased bases in dimension six; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The maximum number of mutually unbiased bases in dimension six.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -509,8 +509,7 @@
             "m1-seed-arrangement",
             "m1-seed-gap-filters",
             "m1-seed-sum-test",
-            "m1-seed-shared-interval",
-            "m1-seed-dual-support"
+            "m1-seed-shared-interval"
           ]
         },
         {
@@ -582,7 +581,6 @@
           "source": "Completion over a fixed seed ball",
           "detail": "[Linear remainder bound] Every feasible completion associated to the cell satisfies Z- J(s,)_F E_r, E_r= e_ off ^2+ ( 6 42 2h^2+p)^2 , where e_ off = R_s^2(L+A_0+1) 2m +zR_s m .",
           "dependsOn": [
-            "m1-completion-comparison-pieces",
             "m1-completion-l-bound"
           ]
         },
@@ -625,7 +623,6 @@
           "source": "Completion over a fixed seed ball",
           "detail": "[Completion coverage conditional on successful termination] Fix a seed ball for which the frame and bound constructions are certified. Suppose that every final unitary cell is either excluded by a…",
           "dependsOn": [
-            "m1-completion-polar",
             "m1-completion-unitary-cover"
           ]
         },
@@ -840,10 +837,7 @@
           "kind": "proposition",
           "source": "Refining the phase-ball cover",
           "detail": "Suppose Stage B is run on a finite list of records with valid Root certificates, under the arithmetic assumptions and error bounds of Section~ . On a completed run, let A be its final atlas of…",
-          "dependsOn": [
-            "m1-refine-farthest-corner",
-            "m1-refine-atlas-assignment"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-refine-batch-cover",
@@ -961,7 +955,6 @@
             "m1-refine-cover-preservation",
             "m1-refine-batch-cover",
             "m1-exclude-local-certificate",
-            "m1-thm-main",
             "m1-lem-three-mub-six"
           ]
         },
@@ -1011,7 +1004,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Exact-Fourier-certificates-for-complex-Hadamard-matrices-of-order-six-September-24-2026/Exact-Fourier-certificates-for-complex-Hadamard-matrices-of-order-six-September-24-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Exact Fourier certificates for complex Hadamard matrices of order six; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Exact Fourier certificates for complex Hadamard matrices of order six.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1074,8 +1067,7 @@
           "detail": "[Single-matrix certificate] For every 66 Hadamard matrix H and for each q\\ q_ cross ,q_ same \\ , 3 |L_ H |^2_H + |g_ H ()g_ H (q)|^2 _H=0.",
           "dependsOn": [
             "m2-lem-partitions",
-            "m2-lem-contraction",
-            "m2-cor-dichotomy"
+            "m2-lem-contraction"
           ]
         },
         {
@@ -1120,8 +1112,7 @@
           "source": "Complete families and the cubic obstruction",
           "detail": "Every permutation of the rows of T can be completed to a symmetry of T by column permutations, row and column phase factors, and, if necessary, complex conjugation. Consequently |G(b)| is constant on…",
           "dependsOn": [
-            "m2-prop-cubic-classification",
-            "m2-prop-cubic-exclusion"
+            "m2-prop-cubic-classification"
           ]
         },
         {
@@ -1192,7 +1183,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

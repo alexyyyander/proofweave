@@ -292,7 +292,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Almost-Linear-Time-Maximum-Cardinality-Matching-in-Sparse-General-Graphs-September-24-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Almost-Linear-Time Maximum-Cardinality Matching in General Graphs; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Almost-Linear-Time Maximum-Cardinality Matching in General Graphs.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -451,10 +451,7 @@
           "kind": "lemma",
           "source": "Local projection and the perfect-matching bound",
           "detail": "[Recovering the full residual cut] Suppose \\(>0\\), and let \\(v\\) be the full unscaled exchange maximum. Suppose a true explored region of maximum \\(v\\) is available when \\(v>0\\), and an unlocked…",
-          "dependsOn": [
-            "m1-lem-projection",
-            "m1-phase-guard-adequacy"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-phase-accounting",
@@ -465,7 +462,6 @@
           "source": "Local projection and the perfect-matching bound",
           "detail": "[Phase accounting] In a phase with initial deficit \\(K\\), threshold \\(L\\), and target \\(g_*\\), every guarded prefix before completion satisfies _ peels w(R_0)2L(g_*-1)+S^ -800 , \\#\\ blockers\\…",
           "dependsOn": [
-            "m1-match-top-maintenance",
             "m1-match-deletion",
             "m1-match-exchange-projection",
             "m1-match-bottom-surplus"
@@ -480,8 +476,7 @@
           "source": "Local projection and the perfect-matching bound",
           "detail": "[No false stall without a stochastic failure] If the subcubic graph has a perfect matching, a settled phase state with fewer than \\(g_*\\) gains admits neither a valid \\(LOW\\) exit nor a permanent…",
           "dependsOn": [
-            "m1-match-top-maintenance",
-            "m1-lem-priced-steps"
+            "m1-match-top-maintenance"
           ]
         },
         {
@@ -492,9 +487,7 @@
           "kind": "lemma",
           "source": "Local projection and the perfect-matching bound",
           "detail": "[Eventual adequacy of the guards] For every sufficiently large fixed \\(a\\) and fixed admissible reliability parameter \\(\\), all deterministic guards of the PM construction are adequate for all…",
-          "dependsOn": [
-            "m1-phase-accounting"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-subcubic",
@@ -505,10 +498,7 @@
           "source": "Local projection and the perfect-matching bound",
           "detail": "[Fixed-parameter subcubic perfect-matching search] For the integers \\(a1000\\) and fixed reliability parameters \\(0 a+1\\), the construction defines a uniform randomized algorithm on loopless subcubic…",
           "dependsOn": [
-            "m1-phase-guard-adequacy",
-            "m1-phase-stall",
-            "m1-match-pair-action",
-            "m1-lem-priced-steps"
+            "m1-phase-guard-adequacy"
           ]
         },
         {
@@ -604,7 +594,6 @@
           "detail": "[Packet and virtual-job router] Conditional on an overlay satisfying Lemma~ , the procedure above produces explicit routes for all packets with both maximum length and total traversal congestion on…",
           "dependsOn": [
             "m1-route-cheeger",
-            "m1-lem-routing-helper",
             "m1-route-sampling",
             "m1-lem-integral-flow",
             "m1-lem-capacity-scaling"
@@ -749,10 +738,7 @@
           "kind": "lemma",
           "source": "Maintaining and exposing the cycle backend",
           "detail": "[Compressed graph edits] The single child graph J can be initialized nonempty. Throughout an epoch it uses at most h_ib times a logarithmic factor many active slots and edges, including slots…",
-          "dependsOn": [
-            "m1-update-classes",
-            "m1-update-support"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-update-flat-lift",
@@ -794,11 +780,7 @@
           "kind": "lemma",
           "source": "Maintaining and exposing the cycle backend",
           "detail": "[Recursive work bounds] For a prefix of s graph operations, counting queries and edits and including an operation that terminates partway through, level i has total work and explicit public-log size…",
-          "dependsOn": [
-            "m1-update-support",
-            "m1-update-compressed-edits",
-            "m1-update-recourse"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-update-reliability",
@@ -814,7 +796,6 @@
             "m1-lem-flat-cycle",
             "m1-update-anchor-core",
             "m1-lem-backend-reduction",
-            "m1-update-compressed-edits",
             "m1-update-flat-lift",
             "m1-update-multiplicity",
             "m1-update-recourse"
@@ -873,10 +854,7 @@
           "kind": "lemma",
           "source": "Explicit output and one uniform program",
           "detail": "[Halting and one physical word constant] The schedule is realizable by one finite program with a fixed physical word constant c_0 . On every path, including failed paths, it halts after polynomially…",
-          "dependsOn": [
-            "m1-thm-main",
-            "m1-uniform-fixed-branch"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-f-factor",
@@ -897,7 +875,6 @@
           "source": "Prescribed-degree factors",
           "detail": "[Linearithmic factor reduction] For the input of Corollary~ , one can construct a possibly empty simple graph H_f with |V(H_f)|+|E(H_f)|=O(m(n+2)) such that H_f has a perfect matching if and only if…",
           "dependsOn": [
-            "m1-uniform-network",
             "m1-cor-f-factor",
             "m1-thm-main"
           ]
@@ -919,7 +896,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

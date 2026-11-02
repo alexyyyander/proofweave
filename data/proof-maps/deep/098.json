@@ -57,7 +57,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-doubling-Hilbert-subset-with-no-finite-dimensional-bi-Lipschitz-embedding-September-25-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A doubling Hilbert subset with no finite-dimensional bi-Lipschitz embedding; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A doubling Hilbert subset with no finite-dimensional bi-Lipschitz embedding.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -110,9 +110,7 @@
           "kind": "corollary",
           "source": "Crossings force a packing contradiction",
           "detail": "[Finite- p function-space obstruction] For every real 1 p< , the fixed metric space S of Theorem~ is isometric to a subset S_p of L_p([0,1];) , where [0,1] carries Lebesgue measure. With its induced…",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-banach",
@@ -122,9 +120,7 @@
           "kind": "corollary",
           "source": "Compact obstructions in infinite-dimensional Banach spaces",
           "detail": "[Compact Banach-space obstruction] There is a universal constant such that every infinite-dimensional real Banach space B contains a compact subset K_B whose doubling constant is at most and which…",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -143,7 +139,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

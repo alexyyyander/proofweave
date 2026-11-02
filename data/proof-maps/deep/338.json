@@ -187,7 +187,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Uniformization-of-complete-Kahler-manifolds-with-positive-bisectional-curvature-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Uniformization of complete Kähler manifolds with positive bisectional curvature; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Uniformization of complete Kähler manifolds with positive bisectional curvature.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -325,9 +325,7 @@
           "kind": "lemma",
           "source": "The cotangent envelope: compactness and frames",
           "detail": "[Boundary factorization] Let L be an r r smooth Hermitian matrix on the circle with mI L MI , where 0<m M< . There is a holomorphic invertible matrix H on , smooth with smooth inverse on , such that…",
-          "dependsOn": [
-            "m1-lem-disc-frames"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-disc-inequality",
@@ -359,9 +357,7 @@
           "kind": "lemma",
           "source": "A differential inequality for the disc envelope",
           "detail": "[Symplectic cost and the Schur complement] In a cotangent vector space with canonical bivector J=_i e_i f_i , let H>0 be Hermitian, and suppose H W , where the vertical block C of W is positive. Then…",
-          "dependsOn": [
-            "m1-prop-disc-inequality"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ell-optimizer-contacts",
@@ -439,7 +435,6 @@
           "detail": "The function q is nondecreasing, q c>0 for large s , and s, q Ce^, _ s q(s)s2. Uniformly on every fixed compact set, (x,t)/s1 , and there is c_K>0 such that, eventually on that compact set, e^ -2s g…",
           "dependsOn": [
             "m1-prop-harnack-completeness",
-            "m1-chart-local-charts",
             "m1-lem-static-distortion"
           ]
         },
@@ -452,7 +447,6 @@
           "source": "Harnack inequalities and shrinking holomorphic charts",
           "detail": "The manifold M is simply connected.",
           "dependsOn": [
-            "m1-prop-ricci-windows",
             "m1-prop-harnack-completeness"
           ]
         },
@@ -541,7 +535,6 @@
           "dependsOn": [
             "m1-lem-unif-backward-limit",
             "m1-prop-ricci-windows",
-            "m1-thm-uniformization",
             "m1-prop-polynomial-models"
           ]
         }
@@ -562,7 +555,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

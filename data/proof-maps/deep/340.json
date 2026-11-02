@@ -112,7 +112,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-counterexample-to-the-nearby-Lagrangian-conjecture-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A counterexample to the nearby Lagrangian conjecture; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A counterexample to the nearby Lagrangian conjecture.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -143,9 +143,7 @@
           "kind": "proposition",
           "source": "Stable tubes and a kernel class",
           "detail": "There exists 0 a_9, _*a=0. Moreover, (BJ)_*:_9BO_9BG is injective.",
-          "dependsOn": [
-            "m1-thm-tube-fibration"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-localized-family",
@@ -226,8 +224,7 @@
           "source": "The zero-level cobordism",
           "detail": "The complement of W_b up to Y\\ 2\\ is, after compatible corner rounding, a product cylinder over the outgoing boundary of W_b , smoothly in b . Consequently [W]=0 in [B,H(Y)] .",
           "dependsOn": [
-            "m1-lem-signed-flows",
-            "m1-lem-band-is-stabilization"
+            "m1-lem-signed-flows"
           ]
         },
         {
@@ -239,7 +236,6 @@
           "source": "The zero-level cobordism",
           "detail": "Let k,l20 , and put \\[ Y=S^ k+l-1 , =\\ q_ k,l =0\\ Y S^ k-1 S^ l-1 . \\] For a closed collar embedding e: J Y , the composite H() ( J) e_!H(Y)(Y) induces an isomorphism on _9 in the product component.…",
           "dependsOn": [
-            "m1-prop-one-critical",
             "m1-lem-residual-hcob"
           ]
         },
@@ -296,8 +292,7 @@
           "dependsOn": [
             "m1-lem-stabilization-smoothing",
             "m1-thm-main",
-            "m1-prop-kernel-class",
-            "m1-prop-one-critical"
+            "m1-prop-kernel-class"
           ]
         }
       ]
@@ -317,7 +312,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

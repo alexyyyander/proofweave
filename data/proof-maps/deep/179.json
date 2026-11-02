@@ -67,7 +67,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-circulant-Hadamard-conjecture-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The circulant Hadamard conjecture; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The circulant Hadamard conjecture.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -154,11 +154,9 @@
           "source": "The binary coefficient identity",
           "detail": "Let \\(O\\) be a local domain with maximal ideal \\(\\), let \\(k=O/\\), and let \\(0 t\\). Then \\(1+tO\\) is a subgroup of \\(O^\\), and \\[ _t:1+tO(k,+), _t(1+tL)=L \\] is a group homomorphism.",
           "dependsOn": [
-            "m1-thm-main",
             "m1-prop-order",
             "m1-prop-alternating",
-            "m1-lem-torsion",
-            "m1-cor-barker"
+            "m1-lem-torsion"
           ]
         }
       ]
@@ -178,7 +176,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

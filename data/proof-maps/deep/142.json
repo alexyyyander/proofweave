@@ -177,7 +177,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Deterministic-Polynomial-Factorization-over-Prime-Fields-October-4-2026/Deterministic-Polynomial-Factorization-over-Prime-Fields.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Deterministic Polynomial Factorization over Prime Fields; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Deterministic Polynomial Factorization over Prime Fields.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -419,8 +419,7 @@
           "dependsOn": [
             "m1-div-compression",
             "m1-geom-descent",
-            "m1-norm-solve",
-            "m1-div-arithmetic"
+            "m1-norm-solve"
           ]
         },
         {
@@ -433,12 +432,8 @@
           "detail": "[Odd-degree splitting] Let p be prime, L=_2p , and B=20+(n+1)(L+1) . Suppose that p>B^ 200000 and that F F_p[X] is monic, square-free, totally split, and of odd degree 3 N n . Choose an odd prime q N…",
           "dependsOn": [
             "m1-norm-solve",
-            "m1-div-compression",
             "m1-geom-lifts",
-            "m1-div-trace",
-            "m1-geom-separation",
-            "m1-div-circuits",
-            "m1-ff-unitroot"
+            "m1-div-trace"
           ]
         },
         {
@@ -472,8 +467,7 @@
           "source": "Uniform bit complexity",
           "detail": "Let E be the largest supplied auxiliary prime, or 2 when none is needed, as in Theorem~ . The complete algorithm uses O(B^ 500000 +B^ 100 E^ 20 ) bit operations. The same bound applies if the…",
           "dependsOn": [
-            "m1-norm-solve",
-            "m1-ff-unitroot"
+            "m1-norm-solve"
           ]
         },
         {
@@ -506,8 +500,6 @@
           "detail": "There is an absolute constant c_0 such that, for every prime p>B^ 200000 and every prime q n , an auxiliary prime for (p,q) exists with \\[ c_0B^ 20000000 . \\]",
           "dependsOn": [
             "m1-analytic-hecke",
-            "m1-analytic-explicit",
-            "m1-thm-factorization",
             "m1-thm-reduction"
           ]
         }
@@ -528,7 +520,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

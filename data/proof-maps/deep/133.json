@@ -237,7 +237,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Parity-lifts-and-bounded-treewidth-witnesses-for-Weisfeiler-Leman-equivalence-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Parity lifts and bounded-treewidth witnesses for Weisfeiler–Leman equivalence; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Parity lifts and bounded-treewidth witnesses for Weisfeiler–Leman equivalence.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -312,9 +312,7 @@
           "source": "Extracting a choice from a bounded-bag witness",
           "detail": "[Choice extraction] Let \\(F\\) have a tree decomposition with bags of size at most \\(t\\). Suppose that a homomorphism \\(:F G\\) and weights \\(s:V(F)\\) and \\(r:E(F)\\) satisfy , where \\(a=\\). Then the…",
           "dependsOn": [
-            "m1-thm-choice-reduction",
             "m1-lem-choice-witness",
-            "m1-lem-test-detected",
             "m1-lem-lift-duality",
             "m1-lem-hom-implies-wl"
           ]
@@ -338,7 +336,6 @@
           "source": "The ETH lower bound",
           "detail": "[Grouping sparse clauses] A \\(3\\)-CNF with \\(m\\) clauses yields a simultaneous-choice instance with \\(t\\) domains, each domain and pair-label set having size at most \\[ A=2^ 3 m/t . \\] A simultaneous…",
           "dependsOn": [
-            "m1-thm-eth",
             "m1-lem-sparsification",
             "m1-thm-choice-reduction"
           ]
@@ -367,7 +364,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-complexity-of-identifying-a-graph-by-Weisfeiler-Leman-refinement-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The complexity of identifying a graph by Weisfeiler–Leman refinement; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The complexity of identifying a graph by Weisfeiler–Leman refinement.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -479,8 +476,7 @@
           "source": "Wire comparisons and global offsets",
           "detail": "[Global offsets] For any right-hand sides in the construction of Section~ , all square equations admit a simultaneous assignment to the readout names if and only if there are row-sum functions h_P:\\…",
           "dependsOn": [
-            "m2-lem-cycle-lifting",
-            "m2-prop-isomorphism"
+            "m2-lem-cycle-lifting"
           ]
         },
         {
@@ -522,8 +518,7 @@
           "source": "Exact projection and a local game strategy",
           "detail": "[Exact projection] For V U with |U| r+1 , restriction to the readout names occurring in V maps H_U onto H_V .",
           "dependsOn": [
-            "m2-lem-wrapping-address",
-            "m2-thm-special-twist"
+            "m2-lem-wrapping-address"
           ]
         },
         {
@@ -547,7 +542,6 @@
           "dependsOn": [
             "m2-prop-mate",
             "m2-prop-image-consistency",
-            "m2-thm-special-twist",
             "m2-prop-computation",
             "m2-prop-global-offsets",
             "m2-prop-isomorphism"
@@ -562,7 +556,6 @@
           "source": "From acceptance to identification",
           "detail": "If \\(M\\) does not accept \\(w\\), then there is a choice of square bits \\(\\) such that \\(G()_r G(0)\\) but \\(G() G(0)\\).",
           "dependsOn": [
-            "m2-thm-special-twist",
             "m2-prop-global-offsets",
             "m2-prop-isomorphism",
             "m2-thm-main",
@@ -596,7 +589,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Unconditional-time-lower-bounds-for-Weisfeiler-Leman-equivalence-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Unconditional time lower bounds for Weisfeiler–Leman equivalence; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Unconditional time lower bounds for Weisfeiler–Leman equivalence.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -627,9 +620,7 @@
           "kind": "lemma",
           "source": "Weisfeiler--Leman conventions and the bijective game",
           "detail": "[Pure tuples in a disjoint union] Suppose k3 and G,H are connected graphs of diameter at most two. Run either convention on D=G H , including mixed tuples. The stable color histograms restricted to…",
-          "dependsOn": [
-            "m3-game-wl"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-comp-reduction",
@@ -679,9 +670,7 @@
           "kind": "lemma",
           "source": "A compressed graph representation of arc consistency",
           "detail": "[Exact projection] For V U with |U| r+1 , H_U|_V= H_V.",
-          "dependsOn": [
-            "m3-comp-wrapping"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-comp-sufficiency",
@@ -713,9 +702,7 @@
           "kind": "lemma",
           "source": "Encoding computations by short consistency instances",
           "detail": "[Constructing padded graphs] Fix r3 and a short consistency template with bounded numbers of types and schemas and bounded vector dimensions. Suppose its one-coordinate domains and maps are supplied…",
-          "dependsOn": [
-            "m3-comp-reduction"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-circ-computation",
@@ -726,8 +713,6 @@
           "source": "Encoding computations by short consistency instances",
           "detail": "[Computation reduction] Fix such a machine M and an integer r3 , and put d= r/3 . There is a single effective construction, depending only on M and r , with the following property. For each m2 for…",
           "dependsOn": [
-            "m3-circ-simulation",
-            "m3-comp-reduction",
             "m3-circ-construction"
           ]
         },
@@ -779,9 +764,7 @@
           "detail": "There is an absolute constant D with the following property. Fix a sufficiently large r , with s,p as in , and a correct deterministic equivalence decider A in either stated model. There is a correct…",
           "dependsOn": [
             "m3-diag-simulation",
-            "m3-thm-main",
-            "m3-trans-instances",
-            "m3-diag-language"
+            "m3-trans-instances"
           ]
         }
       ]
@@ -813,7 +796,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

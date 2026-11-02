@@ -333,301 +333,361 @@
     {
       "from": "m1-lem-fundamental",
       "to": "m1-lem-small-sieve",
+      "label": "lem:fundamental",
       "context": "cify one class of the progression coordinate modulo $l$. Their count is $J/l+O(1)$, with an absolute error independent of the step and the classes. Apply Lemma~\\ref{lem:fundamental} at level $J^{1/2}$. Its sieve parameter is $v/2$, and the remainder sum is \\[ \\ll J^{1/2}(1+\\log J)^{C_2} \\] for an ab"
     },
     {
       "from": "m1-lem-elementary-buchstab",
       "to": "m1-lem-future-integrals",
+      "label": "lem:elementary-buchstab",
       "context": "\\ge n/3+(s-n)/3. \\] For either sign of \\(\\delta\\ne0\\), this contradicts \\(U(s)-\\omega_{\\rm Bu}(s)\\to0\\), using the independently proved Buchstab limit in Lemma~\\ref{lem:elementary-buchstab}. Thus \\(U=\\omega_{\\rm Bu}\\). Together with \\(a^\\circ+c^\\circ=c_0\\) and \\eqref{eq:functions-gap-sum}, this identifies \\"
     },
     {
       "from": "m1-lem-future-integrals",
       "to": "m1-lem-derivative-weights",
+      "label": "lem:future-integrals",
       "context": "ensions, the explicit formulas are \\[ \\phi_\\ee(s)=A\\left(\\frac{s}{s-1}-\\log(s-1)\\right),\\qquad \\phi_\\oo(s)=A\\quad(0.95\\le s\\le3). \\] These formulas and Lemma~\\ref{lem:future-integrals} prove positivity. Differentiation gives \\begin{align} \\phi_\\ee'(s)&=-\\frac{s}{(s-1)^2}\\phi_\\oo(s-1) &&(s\\ge1.98"
     },
     {
       "from": "m1-lem-derivative-weights",
       "to": "m1-lem-regeneration",
+      "label": "lem:derivative-weights",
       "context": "\\phi_i(s)}\\qquad(h\\ge0). \\] Here the support minimum is \\(s-1\\) for either type, and the identity follows from \\eqref{eq:functions-derivative-integrals}. Lemma~\\ref{lem:derivative-weights} makes this tail at most \\(e^{-\\lambda h}\\), with any fixed large \\(\\lambda\\), outside a sufficiently large compact. Th"
     },
     {
       "from": "m1-lem-regeneration",
       "to": "m1-lem-invariant",
+      "label": "lem:regeneration",
       "context": "ght starts just after a regeneration. The remaining event is that there was no regenerating time among \\(0,\\ldots,n-1\\); its probability tends to zero by Lemma~\\ref{lem:regeneration} and dominated convergence over \\(\\mu\\). Stationarity and then \\(n\\to\\infty\\) give \\[ \\mu(Q)=\\frac{\\beta}{M} \\E\\"
     },
     {
       "from": "m1-lem-regeneration",
       "to": "m1-prop-occupation",
+      "label": "lem:regeneration",
       "context": "Also \\(S_j\\le j\\log2\\), so for \\(v>b\\), \\[ |H_0(v)|\\le \\|F\\|_\\infty \\E\\!\\left[\\tau\\, \\1_{\\{\\tau\\ge(v-b)/\\log2\\}}\\right]. \\] The exponential moment in Lemma~\\ref{lem:regeneration} gives an exponentially decreasing upper bound as \\(v\\to\\infty\\). The function \\(H_0\\) is continuous, including for the"
     },
     {
       "from": "m1-lem-regeneration",
       "to": "m1-lem-marked-visits",
+      "label": "lem:regeneration",
       "context": "nning consists of the initial segment to regeneration and a geometric number of unmarked complete cycles. The first segment has uniformly bounded mean by Lemma~\\ref{lem:regeneration}; the latter sum has finite mean by the preceding conditional-cycle description. Thus \\(D\\) is uniformly tight over the"
     },
     {
       "from": "m1-lem-prime-inputs",
       "to": "m1-lem-prime-harmonic",
+      "label": "lem:prime-inputs",
       "context": "Apply partial summation to the prime number theorem in Lemma~\\ref{lem:prime-inputs}, between $w^u$ and the upper endpoint. The main term is $\\int dt/(t\\log t)=\\int dx/x$. The integrated error, including"
     },
     {
       "from": "m1-lem-prime-harmonic",
       "to": "m1-lem-high-states",
+      "label": "lem:prime-harmonic",
       "context": "(\\log B)^2$, this tail is smaller than every fixed negative power of $B$, even after multiplication by $B$. To sum over all possible high ancestors, use Lemma~\\ref{lem:prime-harmonic}: their total prefix weight is $O(B)$. This argument is an upper bound even when it counts a terminal prefix more than"
     },
     {
       "from": "m1-lem-derivative-weights",
       "to": "m1-prop-prime-coupling",
+      "label": "lem:derivative-weights",
       "context": "r bound. Its corresponding $x$-interval has logarithmic width comparable to $h/(t+1)$ and lower endpoint at least $\\ell/2$, for sufficiently large $w$. Lemma~\\ref{lem:derivative-weights} bounds logarithmic derivatives of the weights and backward opposite weight ratios by fixed polynomials in $S$. Therefo"
     },
     {
       "from": "m1-lem-high-states",
       "to": "m1-prop-prime-occupation",
+      "label": "lem:high-states",
       "context": "Remove high-state histories by Lemma~\\ref{lem:high-states}. On a remaining compact-ending prefix, $s<r/\\ell$ bounds the terminal ratio in a fixed compact set. The positive weig"
     },
     {
       "from": "m1-lem-discrete-marginals",
       "to": "m1-prop-prime-occupation",
+      "label": "lem:discrete-marginals",
       "context": "e is at most \\begin{equation}\\label{eq:prime-scaled-reward} C\\frac{r^2e^{-c'r}}{\\phi_i(s)}. \\end{equation} Put $K_B=C'\\log\\log B$. At a step covered by Lemma~\\ref{lem:discrete-marginals}, sum first over ratio bins. Since $r>\\ell s$ and $\\ell\\geq1$, cancellation of $\\phi_i$ bounds the expected reward from"
     },
     {
       "from": "m1-lem-derivative-weights",
       "to": "m1-prop-prime-occupation",
+      "label": "lem:derivative-weights",
       "context": "me bound, because $W_0$ is bounded on its extended range. The empty prefix contributes $O(B^2e^{-c''B})$. On $K<r\\leq K_B$, the Dickman lower bounds in Lemma~\\ref{lem:derivative-weights} bound \\eqref{eq:prime-scaled-reward} by $\\exp(O(K_B\\log(K_B+2)))$. Even after multiplication by $N$, the coupling fail"
     },
     {
       "from": "m1-lem-band-bounds",
       "to": "m1-prop-prime-occupation",
+      "label": "lem:band-bounds",
       "context": "d the comparison of weights follows from their logarithmic derivative bounds and \\eqref{eq:prime-coupling-errors}. On a band $R\\leq\\widetilde r\\leq eR$, Lemma~\\ref{lem:band-bounds} bounds the expected sum after cancellation of $\\phi_i$ by $O(R+1)$. Thus this band contributes at most $C(R+1)R^2e^{-c"
     },
     {
       "from": "m1-lem-regeneration",
       "to": "m1-prop-prime-occupation",
+      "label": "lem:regeneration",
       "context": "aries, and continuous upper and lower approximations suffice. Continuous removal of high states is harmless as well. For example, the drift estimate in Lemma~\\ref{lem:regeneration} gives a uniformly bounded exponential moment of the ratio at each step, so a union bound up to the low-state horizon gi"
     },
     {
       "from": "m1-prop-occupation",
       "to": "m1-prop-prime-occupation",
+      "label": "prop:occupation",
       "context": "ng a high state before exit. Alternatively one can use the continuous original-weight conclusion of Lemma~\\ref{lem:high-states} on compacts. Apply Proposition~\\ref{prop:occupation} to the transferred test and use its uniformity in the starting state. This gives \\eqref{eq:prime-occupation} and compl"
     },
     {
       "from": "m1-lem-derivative-weights",
       "to": "m1-lem-ref-residual",
+      "label": "lem:derivative-weights",
       "context": "\\gg(\\log B)^{3/2}$. Below it every relevant next ratio is at least $s\\sqrt b-1$, and the boundary ratio is at least $s\\sqrt b$. The Dickman bounds from Lemma~\\ref{lem:derivative-weights}, together with the backward-ratio bounds there, show that these deviations divided by $\\phi_i(s)$ are smaller than ever"
     },
     {
       "from": "m1-lem-high-states",
       "to": "m1-lem-ref-residual",
+      "label": "lem:high-states",
       "context": "greater than $2S$. Any remaining prefix with terminal gap below $S/2$ has reduced that ancestor's gap by more than half. The factorial-tail argument in Lemma~\\ref{lem:high-states}, multiplied by the crude $O(\\log B)$ residual bound, deals with those prefixes. This completes the proof."
     },
     {
       "from": "m1-lem-prime-harmonic",
       "to": "m1-lem-ref-anomaly",
+      "label": "lem:prime-harmonic",
       "context": "On a fixed compact gap interval the admitted polynomial has bounded length, because every exponent exceeds $1$. For each such length, Lemma~\\ref{lem:prime-harmonic} gives convergence of the ordered prime sum to its harmonic integral. Ties, moving upper endpoints, and admission equal"
     },
     {
       "from": "m1-lem-future-integrals",
       "to": "m1-lem-ref-anomaly",
+      "label": "lem:future-integrals",
       "context": "2 dx/x)=1/2$, and its first-omission decomposition has the same bound. Finally the benchmark deviations $a(r/2)$ and $c(r/2)$ have the required decay by Lemma~\\ref{lem:future-integrals}. Combining these comparisons proves \\eqref{eq:ref-anomaly-decay}."
     },
     {
       "from": "m1-lem-band-bounds",
       "to": "m1-lem-local-reference",
+      "label": "lem:band-bounds",
       "context": "uniformly in the start. To verify this, use bounded compact-gap visits on a fixed compact range and, outside it, sum the unit logarithmic gap bands from Lemma~\\ref{lem:band-bounds}. After canceling $\\phi_i$, a band $R\\leq r'\\leq eR$ costs at most a fixed polynomial in $R$ times $\\exp(-cR\\log(R+2))$"
     },
     {
       "from": "m1-lem-prime-harmonic",
       "to": "m1-lem-local-reference",
+      "label": "lem:prime-harmonic",
       "context": "nt}. For fixed $b\\in[b_0,b_1]$ and the indicated ratios, the starting gap is bounded and the ordered reference polynomial has uniformly bounded length. Lemma~\\ref{lem:prime-harmonic} therefore gives uniform convergence of the discrete polynomial to $Q_\\ee$: along any convergent parameter sequence, tie"
     },
     {
       "from": "m1-lem-small-sieve",
       "to": "m1-lem-edge-witness",
+      "label": "lem:small-sieve",
       "context": "Choose $K_*$ so that Lemma~\\ref{lem:small-sieve} gives $|N_e/\\mu_e-1|<\\eps/2$ whenever $\\log_w J_e\\ge K_*$. Along the given branch the numbers $v_j$ decrease strictly,"
     },
     {
       "from": "m1-prop-prime-occupation",
       "to": "m1-prop-regular-boxes",
+      "label": "prop:prime-occupation",
       "context": "We first establish the exclusions leading to \\eqref{eq:boxes-exception}. The compact-history estimate in Proposition~\\ref{prop:prime-occupation} permits each geometric exception to be estimated in the tilted prime chain, at a cost at most $C_KB^{-2}$ times its occ"
     },
     {
       "from": "m1-lem-high-states",
       "to": "m1-prop-regular-boxes",
+      "label": "lem:high-states",
       "context": "t at most $C_KB^{-2}$ times its occurrence probability. Histories with a ratio exceeding $S_*=(\\log B)^2$ cost $O_A(B^{-A})$ in the original measure, by Lemma~\\ref{lem:high-states}. On the remaining histories, Proposition~\\ref{prop:prime-coupling} compares the prime chain with the continuous chain"
     },
     {
       "from": "m1-prop-prime-coupling",
       "to": "m1-prop-regular-boxes",
+      "label": "prop:prime-coupling",
       "context": "es with a ratio exceeding $S_*=(\\log B)^2$ cost $O_A(B^{-A})$ in the original measure, by Lemma~\\ref{lem:high-states}. On the remaining histories, Proposition~\\ref{prop:prime-coupling} compares the prime chain with the continuous chain up to \\[ N_*=O((\\log B)^3) \\] steps. Its failure probability tends"
     },
     {
       "from": "m1-lem-regeneration",
       "to": "m1-prop-regular-boxes",
+      "label": "lem:regeneration",
       "context": "he continuous comparison where useful, retaining the indicated slack when returning to prime paths. \\paragraph{Length.} The iid regeneration cycles from Lemma~\\ref{lem:regeneration} have finite mean length and positive finite mean log decrement. Their exponential moments imply finite variances, so Ch"
     },
     {
       "from": "m1-lem-band-bounds",
       "to": "m1-prop-regular-boxes",
+      "label": "lem:band-bounds",
       "context": "n $z$ is large. Thus the crossing arrival has \\[ .4\\theta B\\le r\\le\\theta B. \\] Consider the slightly enlarged gap band $[.3\\theta B,1.1\\theta B]$. By Lemma~\\ref{lem:band-bounds}, the probability of any arrived-at state in this band with ratio $s>T$ tends to zero uniformly in $B$ as $T\\to\\infty$."
     },
     {
       "from": "m1-lem-edge-witness",
       "to": "m1-prop-regular-boxes",
+      "label": "lem:edge-witness",
       "context": "after the coupling errors. Designate the first such used bin. Since $\\alpha_{\\min}B\\to\\infty$, its position precedes every possible witnessing edge of Lemma~\\ref{lem:edge-witness}. Also $\\alpha_{\\min}B>w^{1/4}+h$ eventually, so its bin is a search bin. \\paragraph{Repeated search bins.} If two pos"
     },
     {
       "from": "m1-prop-inverse",
       "to": "m1-lem-nonlinear-points",
+      "label": "prop:inverse",
       "context": "[Proof of \\cref{prop:inverse}] \\textbf{The fixed whole-box list.} To make the order of choices explicit, choose an integer \\(h_1\\) such that \\[ \\fra"
     },
     {
       "from": "m1-lem-small-sieve",
       "to": "m1-lem-nonlinear-points",
+      "label": "lem:small-sieve",
       "context": "let \\(m=m_{p,v}\\) count the survivors on \\(I_p\\) for that pattern, and let \\(m_{e,u}=m_{p,v;e,u}\\) count those with \\(j\\equiv e\\pmod u\\). The upper bounds in \\cref{lem:small-sieve} give, uniformly in the patterns, \\begin{equation} m\\ll JV_0. \\label{eq:inverse-m-upper} \\end{equation} They also show"
     },
     {
       "from": "m1-lem-elementary-large-sieve",
       "to": "m1-lem-nonlinear-points",
+      "label": "lem:elementary-large-sieve",
       "context": "ed. Fractions belonging to distinct such primes are distinct, and the whole family is separated modulo one by at least \\(((1+\\xi)U)^{-2}\\ge(4U^2)^{-1}\\). Lemma~\\ref{lem:elementary-large-sieve} therefore gives \\[ \\sum_{u\\in\\mathcal U} u\\sum_{e\\bmod u}(m_{e,u}-m/u)^2 \\ll (J+U^2)m; \\] see \\cite{MontgomeryVaugha"
     },
     {
       "from": "m1-lem-prime-inputs",
       "to": "m1-prop-structured-variance",
+      "label": "lem:prime-inputs",
       "context": "s. In particular, \\[ \\varphi(HT_0T_1)=\\varphi(H)T_0\\varphi(T_1). \\] Since \\(HT_0T_1\\le R^{4/5+o(1)}\\) and \\(X_1=R^{1-o(1)}\\), Brun--Titchmarsh, in the form of \\cref{lem:prime-inputs}, bounds the number of primes for each such choice by \\begin{equation}\\label{eq:variance-bt} \\ll\\frac{X_1}{\\log R\\,\\var"
     },
     {
       "from": "m1-lem-random-variance",
       "to": "m1-prop-structured-variance",
+      "label": "lem:random-variance",
       "context": "\\(\\xi\\). Each actual prime has one associated \\(m_0\\), so this upper count introduces no missing multiplicity. We verify the hypotheses of the stable part of \\cref{lem:random-variance} for the measure \\eqref{eq:variance-small-measure}. Take one or two fixed \\(j\\)'s and let \\(\\nu_t\\in\\{1,2\\}\\) be the num"
     },
     {
       "from": "m1-lem-fundamental",
       "to": "m1-prop-structured-variance",
+      "label": "lem:fundamental",
       "context": "the interval count has error \\(O(1)\\). This gives both the main term and the error in \\eqref{eq:variance-small-intersections}. Fix a small \\(\\zeta>0\\). Apply \\cref{lem:fundamental} at level \\(w^{A_1}\\), first choosing the fixed \\(A_1\\) large enough that its fundamental-lemma error is smaller than a"
     },
     {
       "from": "m1-lem-hyperbola",
       "to": "m1-prop-structured-variance",
+      "label": "lem:hyperbola",
       "context": "] Its right side is a unit by \\eqref{eq:variance-unit}. For any squarefree \\(l\\le R^{1/10}\\) coprime to \\(HT_1\\), the completion lemma proved in the appendix, \\cref{lem:hyperbola}, gives the count with \\(l\\mid p\\) as \\begin{equation}\\label{eq:variance-hyperbola-count} \\frac{XY_2\\varphi(N)} {lT_1^"
     },
     {
       "from": "m1-prop-inverse",
       "to": "m1-cor-hard-endpoints",
+      "label": "prop:inverse",
       "context": "tual included bad endpoint under consideration has a witness from the bounded candidate set, by \\cref{lem:edge-witness,prop:regular-boxes}. For each candidate, \\cref{prop:inverse} costs at most a prescribed \\(\\sigma\\) fraction of its full harmonic box and supplies a fixed list of at most \\(F\\) rati"
     },
     {
       "from": "m1-prop-structured-variance",
       "to": "m1-cor-hard-endpoints",
+      "label": "prop:structured-variance",
       "context": "nic box and supplies a fixed list of at most \\(F\\) rationals. Both \\(F\\) and the list definition are independent of the choice of the isolated prime. To apply \\cref{prop:structured-variance}, fix all the other prime choices and one rational on this list. Then \\(H,C_0,T\\) are fixed as \\(p\\) varies. If the stru"
     },
     {
       "from": "m1-prop-regular-boxes",
       "to": "m1-cor-hard-endpoints",
+      "label": "prop:regular-boxes",
       "context": "l box by \\[ H_e(\\sigma+CF\\sigma_2). \\] The total enlarged-box mass is at most \\(C'_K B^{-2}\\), where \\(C'_K\\) is independent of sufficiently small \\(\\xi\\), by \\cref{prop:regular-boxes}. First choose \\(\\sigma\\) sufficiently small; this fixes \\(F\\). Then choose \\(\\sigma_2\\) sufficiently small in terms of"
     },
     {
       "from": "m1-lem-stops-aligned-average",
       "to": "m1-lem-stops-euler-probability",
+      "label": "lem:stops-aligned-average",
       "context": "[Proof of \\cref{lem:stops-aligned-average}] Every prime in the search bin eventually exceeds both $D$ and $P$. The alignment of the prime factors of $q'$ implies"
     },
     {
       "from": "m1-lem-prime-inputs",
       "to": "m1-lem-stops-euler-probability",
+      "label": "lem:prime-inputs",
       "context": "at least $P^{-.05}$. If its upper endpoint is $v$, then $v>P^{1.04}$ implies \\[ vP^{-.05}\\ge v^{9/10}. \\] The uniform short-interval prime number theorem in \\cref{lem:prime-inputs} therefore applies. Every upper endpoint has logarithm at most $(s^\\circ+.02)\\log P$. Summing the resulting lower boun"
     },
     {
       "from": "m1-lem-fundamental",
       "to": "m1-lem-stops-euler-probability",
+      "label": "lem:fundamental",
       "context": "ct vanishes, the claim is trivial. In every other case, the restricted primes are at least $3$; their sieve densities $g(t)=1/(t-1)$ satisfy the hypotheses of \\cref{lem:fundamental}. Here are the required progression and remainder bounds. Choose a fixed $A_2$ large enough, in terms of $\\gamma_1$, t"
     },
     {
       "from": "m1-lem-stops-aligned-average",
       "to": "m1-prop-stopped-comparison",
+      "label": "lem:stops-aligned-average",
       "context": "hypothetical choices need not be actual stops; their local counts are auxiliary. Let $\\mathcal P$ denote this tag bin, and use the hypothetical counts $T_p$ of \\cref{lem:stops-aligned-average}. On its aligning subset, $T_p=S_{pq'}(x(P))$. For all choices of $p$ in the tag bin, put $b=x(P)$ and use the gap $r_"
     },
     {
       "from": "m1-lem-local-reference",
       "to": "m1-prop-stopped-comparison",
+      "label": "lem:local-reference",
       "context": "ypotheses of \\cref{lem:stops-aligned-average} therefore hold. For sufficiently large $z$, the actual cutoff lies in the fixed interval $[b_0-1,b_1]$. Applying \\cref{lem:local-reference} on this interval, together with the product identity $V_{\\rm all}(P)=V_0V(b)$, gives \\[ \\frac{\\mu_{pq'}P_\\ee(r_{pq'},b"
     },
     {
       "from": "m1-cor-hard-endpoints",
       "to": "m1-prop-hard-stopping",
+      "label": "cor:hard-endpoints",
       "context": "For a hard endpoint, \\cref{cor:hard-endpoints} gives a rational on one of its candidate lists that satisfies \\eqref{eq:stops-eligible} and aligns to every path factor"
     },
     {
       "from": "m1-prop-regular-boxes",
       "to": "m1-prop-hard-stopping",
+      "label": "prop:regular-boxes",
       "context": "positions, as we now show. Fix one regular full candidate box and one eligible rational $A/D$ on its list. Each of its search bins has multiplicity one, and \\cref{prop:regular-boxes} supplies at least $c_7\\log w$ such bins. For clarity, the count follows because all nonsearch factors together decrease"
     },
     {
       "from": "m1-lem-marked-visits",
       "to": "m1-prop-hard-stopping",
+      "label": "lem:marked-visits",
       "context": "ion. Outside it, a hard endpoint has the correct tag by the end of its search positions. \\paragraph{Finding an even visit before the compact endpoint.} Apply \\cref{lem:marked-visits} to the continuous standard path. For any prescribed probability error $\\varepsilon_1>0$, with $b_0$ fixed, choosing $b"
     },
     {
       "from": "m1-prop-prime-coupling",
       "to": "m1-prop-hard-stopping",
+      "label": "prop:prime-coupling",
       "context": "e\\frac{b_1}{3.09}, \\qquad 2.09\\le s\\le2.13. \\end{equation} The choice of $b_1$ depends on the probability budget and fixed $b_0$, not on $z$ or on $\\xi$. Use \\cref{prop:prime-coupling} for standard prime paths with lower exponent cutoff $1$. Actual included paths are a subset of these standard paths; t"
     },
     {
       "from": "m1-lem-high-states",
       "to": "m1-prop-hard-stopping",
+      "label": "lem:high-states",
       "context": "a subset of these standard paths; their rules agree above exponent $2$. High-ratio histories ending in the fixed compact window have negligible scaled mass by \\cref{lem:high-states}. On the remaining histories the coupling matches states and exits, with a failure probability tending to zero. The in"
     },
     {
       "from": "m1-prop-prime-occupation",
       "to": "m1-prop-hard-stopping",
+      "label": "prop:prime-occupation",
       "context": "s well. Thus the coupling cannot lose the needed visit merely by stopping the compared segment at the compact endpoint. The compact-history event estimate in \\cref{prop:prime-occupation} now bounds the harmonic mass of compact endpoints missing such a visit by \\[ C_K(\\varepsilon_1+o(1))B^{-2}+o(B^{-2}),"
     },
     {
       "from": "m1-thm-survivors",
       "to": "m1-prop-hard-stopping",
+      "label": "thm:survivors",
       "context": "[Proof of Theorem~\\ref{thm:survivors}] By Proposition~\\ref{prop:reference-margin}, there is an absolute $c_L>0$ such that \\begin{equation}\\label{eq:assembly-"
     },
     {
       "from": "m1-prop-reference-margin",
       "to": "m1-prop-hard-stopping",
+      "label": "prop:reference-margin",
       "context": "[Proof of Theorem~\\ref{thm:survivors}] By Proposition~\\ref{prop:reference-margin}, there is an absolute $c_L>0$ such that \\begin{equation}\\label{eq:assembly-reference} P_\\ee(r_0,B)\\ge\\frac{c_L}{B^2} \\"
     },
     {
       "from": "m1-lem-edge-witness",
       "to": "m1-prop-hard-stopping",
+      "label": "lem:edge-witness",
       "context": "armonic mass at most $\\beta/B^2$. The following choices give this claim without requiring any constant to be chosen again at an earlier stage. First use Lemma~\\ref{lem:edge-witness} to fix a larger threshold $K_*$, a positive edge-discrepancy threshold, and a fixed maximum number $H_e$ of candidate p"
     },
     {
       "from": "m1-prop-inverse",
       "to": "m1-prop-hard-stopping",
+      "label": "prop:inverse",
       "context": "s have total harmonic mass at most $C'_K/B^2$, with $C'_K$ independent of sufficiently small fixed $\\xi$. Choose the exception fraction $\\sigma$ in Proposition~\\ref{prop:inverse} sufficiently small that \\[ H_eC'_K\\sigma \\] is less than another prescribed small fraction of $\\beta$. The inverse pro"
     },
     {
       "from": "m1-prop-structured-variance",
       "to": "m1-prop-hard-stopping",
+      "label": "prop:structured-variance",
       "context": "of the eventual sufficiently small fixed width. Each list is attached to its entire candidate box. Next choose the variance exception fraction in Proposition~\\ref{prop:structured-variance} small enough relative to $H_e$, $C'_K$, $F$ and $\\beta$. A prime-count fraction in the isolated bin converts to a harmo"
     },
     {
       "from": "m1-prop-stopped-comparison",
       "to": "m1-prop-hard-stopping",
+      "label": "prop:stopped-comparison",
       "context": "e global eligibility bounds and alignment of every factor with exponent greater than $C_s$. Choose the absolute owner threshold $\\eta$ required by Proposition~\\ref{prop:stopped-comparison}. Choose $b_0$ sufficiently large in terms of $C_s$ and $K$ and for the local reference and prime estimates in that prop"
     },
     {
       "from": "m1-lem-tree-lower-bound",
       "to": "m1-prop-hard-stopping",
+      "label": "lem:tree-lower-bound",
       "context": "{prop:stopped-comparison} gives \\[ \\sum_{d\\in\\mathcal S} \\bigl(S_d(b_d)-\\mu_dP_\\ee(r_d,b_d)\\bigr)\\ge0. \\] Apply \\eqref{eq:stopped-comparison-identity}, Lemma~\\ref{lem:tree-lower-bound} and \\eqref{eq:assembly-reference}. We obtain \\[ S_1(B)\\ge\\left(1-\\frac38\\right)c_L\\frac{YV_0}{B^2} \\ge\\frac{c_L}{2}\\f"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-prop-hard-stopping",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] By Theorem~\\ref{thm:survivors} and Mertens' formula, there is an absolute $c_0>0$ such that, for every sufficiently la"
     },
     {
       "from": "m1-lem-small-sieve",
       "to": "m1-prop-hard-stopping",
+      "label": "lem:small-sieve",
       "context": "step $q$ is invertible modulo every sieve prime, and the integers already counted in \\eqref{eq:assembly-survivor-lower} avoid its prescribed class there. Lemma~\\ref{lem:small-sieve} and Mertens' formula therefore give \\begin{equation}\\label{eq:large-prime-deletion} \\#\\{\\text{these survivors divisibl"
     },
     {
       "from": "m1-lem-fundamental",
       "to": "m1-lem-elementary-brun-titchmarsh",
+      "label": "lem:fundamental",
       "context": "hese primes, the Chinese remainder theorem therefore gives the intersection count \\[ J/l+O(1), \\] with an absolute error independent of $x,a,q,l$. Apply Lemma~\\ref{lem:fundamental} with $X=J$ and $g(p)=1/p$ on this prime set. If $N$ counts the surviving coordinates, it gives \\begin{equation}\\label{"
     }
   ]

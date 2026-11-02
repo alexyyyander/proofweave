@@ -97,7 +97,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-free-uniform-spanning-forest-is-a-factor-of-IID-September-25-2026/The-free-uniform-spanning-forest-is-a-factor-of-IID-September-25-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The free uniform spanning forest is a factor of IID; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The free uniform spanning forest is a factor of IID.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -241,7 +241,6 @@
           "source": "One Borel graph rule",
           "detail": "There is a Borel equivariant rule assigning a continuous path w_e starting at zero to each edge of a vertex-labeled graph such that, for every fixed graph with independent uniform vertex labels,…",
           "dependsOn": [
-            "m1-thm-main",
             "m1-lem-forest-response",
             "m1-prop-brownian-sampler",
             "m1-cor-unimodular"
@@ -255,12 +254,7 @@
           "kind": "lemma",
           "source": "Strongly Rayleigh processes on countable groups",
           "detail": "[Strongly Rayleigh response] Let F be a nonempty finite set and let be a strongly Rayleigh probability law on \\ 0,1\\ ^F . For h^F , let \\[ _h(x)= (_ j F h_jx_j)(x) _ z\\ 0,1\\ ^F (_ j F h_jz_j)(z) ,…",
-          "dependsOn": [
-            "m1-thm-sr-group",
-            "m1-prop-brownian-sampler",
-            "m1-lem-edge-noise",
-            "m1-cor-dpp-group"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -279,7 +273,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

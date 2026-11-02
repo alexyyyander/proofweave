@@ -518,296 +518,355 @@
     {
       "from": "m1-thm-upper",
       "to": "m1-lem-sample-triangle-free",
+      "label": "thm:upper",
       "context": "[Proof of Theorem~\\ref{thm:upper}] We prove the estimates for sufficiently large $t$; increasing the final constant covers the finitely many smaller valu"
     },
     {
       "from": "m1-lem-occupancy",
       "to": "m1-lem-sample-triangle-free",
+      "label": "lem:occupancy",
       "context": "initely many smaller values. First, if $G$ is triangle-free and $\\alpha(G)<t$, every neighborhood is independent, so its maximum degree is at most $t-1$. Lemma~\\ref{lem:occupancy}, with $D=t-1$, gives $|V(G)|<8t^2/\\log t$. Consequently \\begin{equation}\\label{eq:ramsey-three-upper} r(3,t)\\le C_3\\f"
     },
     {
       "from": "m1-lem-incidence",
       "to": "m1-lem-marking",
+      "label": "lem:incidence",
       "context": "Hence their joint flag count is at most $64q^4$. If this condition fails, declare the flag poor-cheap when \\[ |\\{y\\in Z_l:a\\perp y\\}|\\le |Z_l|/(8q). \\] Lemma~\\ref{lem:incidence} bounds the number of these $a$ by $Cq^5/|Z_l|$. The available $b$ belong to $U_r^0$, whose size is at most $5|Z_l|$."
     },
     {
       "from": "m1-lem-stream-entropy",
       "to": "m1-lem-marking",
+      "label": "lem:stream-entropy",
       "context": "0$, and the specified flags have been revealed. Thus \\[ \\EE H_{\\theta_0}(F_{\\rm cheap}) =H(F\\mid\\mathsf C,\\Omega)\\ge H(F)-H(\\mathsf C,\\Omega). \\] Using Lemma~\\ref{lem:stream-entropy} and~\\eqref{eq:marking-cost} gives \\[ \\EE\\bigl[(\\ell-h)J_0-H_{\\theta_0}(F_{\\rm cheap})\\bigr] \\le C(\\Lambda+k+\\Delta q\\"
     },
     {
       "from": "m1-lem-rectangles",
       "to": "m1-lem-low-conflict",
+      "label": "lem:rectangles",
       "context": ")$, and $a\\perp y$ shows that both flags belong to $\\mathcal R(V)$. The first rectangle is determined by the earlier slot, the second by the later slot. Lemma~\\ref{lem:rectangles} thus bounds the number of charged partners of any slot by $C\\sigma$, pointwise for every actual tuple. Set $c_{ij}=\\Pr"
     },
     {
       "from": "m1-lem-stream-entropy",
       "to": "m1-lem-high-ranks",
+      "label": "lem:stream-entropy",
       "context": "longs to this common domain, of size at most $Q_4$. No old context is needed. The resulting tuple has entropy at most $4\\sigma\\ell+O(k)$, contradicting Lemma~\\ref{lem:stream-entropy} after the constant-probability conditioning."
     },
     {
       "from": "m1-lem-flat-levels",
       "to": "m1-lem-pivot-retention",
+      "label": "lem:flat-levels",
       "context": "descendant's original support, the expected fraction evicted by a relevant ancestor fresh test is $O(\\sigma^{-2000\\beta})$ by \\eqref{eq:low-conflict} and Lemma~\\ref{lem:flat-levels}. Inherited sets are intersections of precisely these ambient tests. The probability of reaching a node but failing its"
     },
     {
       "from": "m1-lem-fresh-test",
       "to": "m1-lem-pivot-retention",
+      "label": "lem:fresh-test",
       "context": "st. Likewise no ancestor test is conditioned on descendant survival. Thus all the conditional-law estimates used above have the form actually supplied by Lemma~\\ref{lem:fresh-test}. Markov now gives a positive constant probability of retaining at least $c k$ middle targets. Keep exactly $\\lfloor c"
     },
     {
       "from": "m1-thm-predictor",
       "to": "m1-lem-pivot-compression",
+      "label": "thm:predictor",
       "context": "the costs over their ancestors. Dropped children only reduce this sum. The predictor and validations at a successful node cost $O(qP(d_A+d_B+P))$ by Theorem~\\ref{thm:predictor} and Lemma~\\ref{lem:fresh-test}. Since $K_*=o(P)$, summing the last bound over the $O(\\log(w+2))$ depths gives the firs"
     },
     {
       "from": "m1-lem-fresh-test",
       "to": "m1-lem-pivot-compression",
+      "label": "lem:fresh-test",
       "context": "s. Dropped children only reduce this sum. The predictor and validations at a successful node cost $O(qP(d_A+d_B+P))$ by Theorem~\\ref{thm:predictor} and Lemma~\\ref{lem:fresh-test}. Since $K_*=o(P)$, summing the last bound over the $O(\\log(w+2))$ depths gives the first term in~\\eqref{eq:stage-outpu"
     },
     {
       "from": "m1-lem-pivot-retention",
       "to": "m1-lem-pivot-compression",
+      "label": "lem:pivot-retention",
       "context": "iting integer encodings multiply these bounds by at most an absolute constant. The maximum message length therefore bounds its entropy by $\\Lambda'$. By Lemma~\\ref{lem:pivot-retention}, the joint probability of successful extraction, over the prior law and the independent public tables, is bounded below"
     },
     {
       "from": "m1-lem-marking",
       "to": "m1-prop-compression-stage",
+      "label": "lem:marking",
       "context": "Apply Lemma~\\ref{lem:marking}, select a deterministic class and window length by constant-probability conditioning, and use Lemma~\\ref{lem:decoupling"
     },
     {
       "from": "m1-lem-decoupling",
       "to": "m1-prop-compression-stage",
+      "label": "lem:decoupling",
       "context": "Apply Lemma~\\ref{lem:marking}, select a deterministic class and window length by constant-probability conditioning, and use Lemma~\\ref{lem:decoupling}. Lemma~\\ref{lem:high-ranks} eliminates the high classes. In reciprocal classes, Lemma~\\ref{lem:flat-levels} and the o"
     },
     {
       "from": "m1-lem-high-ranks",
       "to": "m1-prop-compression-stage",
+      "label": "lem:high-ranks",
       "context": "Apply Lemma~\\ref{lem:marking}, select a deterministic class and window length by constant-probability conditioning, and use Lemma~\\ref{lem:decoupling}. Lemma~\\ref{lem:high-ranks} eliminates the high classes. In reciprocal classes, Lemma~\\ref{lem:flat-levels} and the open-band deletion supply~\\eqr"
     },
     {
       "from": "m1-lem-flat-levels",
       "to": "m1-prop-compression-stage",
+      "label": "lem:flat-levels",
       "context": "y constant-probability conditioning, and use Lemma~\\ref{lem:decoupling}. Lemma~\\ref{lem:high-ranks} eliminates the high classes. In reciprocal classes, Lemma~\\ref{lem:flat-levels} and the open-band deletion supply~\\eqref{eq:pivot-support-input} and its averaged incidence bounds. Lemmas~\\ref{lem:pi"
     },
     {
       "from": "m1-lem-pivot-retention",
       "to": "m1-prop-compression-stage",
+      "label": "lem:pivot-retention",
       "context": "In reciprocal classes, Lemma~\\ref{lem:flat-levels} and the open-band deletion supply~\\eqref{eq:pivot-support-input} and its averaged incidence bounds. Lemmas~\\ref{lem:pivot-retention} and~\\ref{lem:pivot-compression} finish the construction. For open bands,~\\eqref{eq:window-count} follows from $k/m\\asym"
     },
     {
       "from": "m1-lem-pivot-compression",
       "to": "m1-prop-compression-stage",
+      "label": "lem:pivot-compression",
       "context": "\\ref{lem:flat-levels} and the open-band deletion supply~\\eqref{eq:pivot-support-input} and its averaged incidence bounds. Lemmas~\\ref{lem:pivot-retention} and~\\ref{lem:pivot-compression} finish the construction. For open bands,~\\eqref{eq:window-count} follows from $k/m\\asymp\\sigma^{1+\\eta/2}/D$. For inte"
     },
     {
       "from": "m1-lem-rectangles",
       "to": "m1-thm-stream",
+      "label": "lem:rectangles",
       "context": "Suppose instead that every stream has a consistent subsequence of length $k$. Choose one and condition the stream on the rectangle occupancy event of Lemma~\\ref{lem:rectangles}, whose probability tends to one. Lemma~\\ref{lem:stream-entropy} applies to it and to every constant-density extraction"
     },
     {
       "from": "m1-lem-stream-entropy",
       "to": "m1-thm-stream",
+      "label": "lem:stream-entropy",
       "context": "ence of length $k$. Choose one and condition the stream on the rectangle occupancy event of Lemma~\\ref{lem:rectangles}, whose probability tends to one. Lemma~\\ref{lem:stream-entropy} applies to it and to every constant-density extraction considered above. Initially the context is empty and every domai"
     },
     {
       "from": "m1-lem-rich-lines",
       "to": "m1-lem-overlap-geometry",
+      "label": "lem:rich-lines",
       "context": "ation}\\label{eq:plane-list-length} J_p\\le q^{1/2}e^{-2g_0/15},\\qquad J_p/M\\le C e^{-13g_0/12}=o(1). \\end{equation} If the capped residual was retained, Lemma~\\ref{lem:rich-lines} gives $Cn/M\\le Cq/a$ rich lines. Each has $q+1$ rational centers, so there are at most $Cq^2/a^2$ relevant center--lin"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-lem-score-procedure",
+      "label": "thm:main",
       "context": "[Completion of the proof of Theorem~\\ref{thm:main}] Fix $0<\\eta<1/10$. By Theorem~\\ref{thm:stream}, for every sufficiently large prime $q$ there is a $K_5$-free graph on"
     },
     {
       "from": "m1-thm-stream",
       "to": "m1-lem-score-procedure",
+      "label": "thm:stream",
       "context": "[Completion of the proof of Theorem~\\ref{thm:main}] Fix $0<\\eta<1/10$. By Theorem~\\ref{thm:stream}, for every sufficiently large prime $q$ there is a $K_5$-free graph on \\[ N=\\lfloor q^4\\log q\\rfloor \\] vertices with"
     },
     {
       "from": "m1-thm-upper",
       "to": "m1-lem-score-procedure",
+      "label": "thm:upper",
       "context": "every sufficiently large integer $t$. The parameter $\\eta$ is fixed before taking $t$ large, and the threshold is allowed to depend on $\\varepsilon$. Theorem~\\ref{thm:upper}, with its absolute constant $C$, and the lower bound just proved give, for each $\\varepsilon>0$ and all sufficiently la"
     },
     {
       "from": "m2-base-incidence",
       "to": "m2-geom-validation",
+      "label": "base:incidence",
       "context": "nt uniform points of $X$. For an opposite point $y$, write $p_X(y)=|X\\cap N(y)|/|X|$, where $N(y)$ is its incident neighborhood. The variance identity in Lemma~\\ref{base:incidence} yields \\[ \\sum_y\\bigl(p_X(y)-p_j\\bigr)^2 \\leq \\frac{q^{j-1}}{|X|}, \\qquad p_j=\\frac{Q_{j-1}}{Q_j}. \\] Since $qp_j=1-"
     },
     {
       "from": "m2-geom-validation",
       "to": "m2-geom-projection",
+      "label": "geom:validation",
       "context": "h logarithmic gaps increase by $O(1)$. These are the induction hypotheses, with changed fixed constants. Reorient if necessary, apply induction, and then Lemma~\\ref{geom:validation}, which returns caps on both quotient sides. In particular, the projected $S$ cap captures $.99|S_0|$ and has size at mo"
     },
     {
       "from": "m2-geom-validation",
       "to": "m2-geom-preparation",
+      "label": "geom:validation",
       "context": "ithmic gap increases by $O(\\log\\sigma)$; the former gap increases by $O(1)$. Apply the dimension-two description, with reorientation if needed, and then Lemma~\\ref{geom:validation}. The resulting cap on $S_1$ has size at most \\[ \\frac{Cq^3}{|T_1|} \\leq\\frac{Cq^4\\sigma}{|T|} \\leq Cn\\sigma e^b\\leq"
     },
     {
       "from": "m2-geom-rich-lines",
       "to": "m2-geom-radial",
+      "label": "geom:rich-lines",
       "context": "{M^2}{K_p}\\geq c e^{(2/3+1/10)g}. \\] Also $cq\\leq n/M\\leq Cqe^{g/20}$, and \\eqref{geom:product-upper} gives $g\\leq\\sigma/2+O(1)$. Hence all hypotheses of Lemma~\\ref{geom:rich-lines} hold uniformly. In the capped residual case, that lemma gives $Cn/M\\leq Cq/a$ rich lines; each has $q+1$ rational cente"
     },
     {
       "from": "m2-geom-radial",
       "to": "m2-geom-overlap",
+      "label": "geom:radial",
       "context": "on of two distinct planes through $x$ is a radial line; each radial line belongs to $q+1$ planes and therefore accounts for at most $Cq^2$ ordered pairs. Lemma~\\ref{geom:radial} gives \\[ E_a\\leq Cq^{4-2v}e^\\chi a^{-100} \\leq B^2e^{2\\chi}a^{-200}. \\] The last inequality uses $B=q^3/n'\\asymp q^{2"
     },
     {
       "from": "m2-base-incidence",
       "to": "m2-learn-regular-pencils",
+      "label": "base:incidence",
       "context": "e total weight is at most $CqBf_C$ and each weight is at most one. Its pencil sums have mean $O(Bf_C)$ and total squared deviation at most $Cq^jBf_C$, by Lemma~\\ref{base:incidence}. For sufficiently large $q$, exceeding $Be^\\xi$ therefore excludes at most \\[ C\\frac{q^jBf_C}{B^2e^{2\\xi}}=Cn'f_Ce^{-2"
     },
     {
       "from": "m2-learn-high-moment",
       "to": "m2-learn-row-success",
+      "label": "learn:high-moment",
       "context": "Use the deterministic threshold $z_{\\min}/(10q)$. By Lemma~\\ref{learn:high-moment}, the probability that $|T_x^*|$ exceeds it, conditional on $\\mathcal O_x$, is at most \\[ \\exp\\{-.1pP+p(b+8P\\tau+O(1))\\"
     },
     {
       "from": "m2-learn-second-moment",
       "to": "m2-learn-row-success",
+      "label": "learn:second-moment",
       "context": "exceeds it, conditional on $\\mathcal O_x$, is at most \\[ \\exp\\{-.1pP+p(b+8P\\tau+O(1))\\} \\le e^{-.09pP}\\le q^{-50} \\] outside $D_0\\cup D_1\\cup D_2$. By Lemma~\\ref{learn:second-moment}, the corresponding bound outside $D_0\\cup D_2$ is $e^{-cP}$. Multiply each conditional estimate by the probability that"
     },
     {
       "from": "m2-base-tails",
       "to": "m2-learn-row-success",
+      "label": "base:tails",
       "context": "hat event's probability, not conditioned on its occurrence. The total sample count is Poisson with mean $qP$, and its exceeding $2qP$ costs $e^{-cqP}$ by Lemma~\\ref{base:tails}, again negligible. The remaining probability is at least $c e^{-8P\\tau}$. On this joint event, at least $.99n'$ traini"
     },
     {
       "from": "m2-learn-empty-exceptional",
       "to": "m2-learn-row-success",
+      "label": "learn:empty-exceptional",
       "context": "_x\\le .1z/q$. Apart from $o(n)$ static exceptions and $.01n'$ unsampled failures, their exceptional and typical score contributions give $A_x<z/(2q)$, by Lemma~\\ref{learn:empty-exceptional} and $z\\ge z_{\\min}$. Sampled points are included automatically. This retains a fixed fraction of $S'$ and hence of $S$."
     },
     {
       "from": "m2-learn-row-success",
       "to": "m2-learn-implementation",
+      "label": "learn:row-success",
       "context": "al. It is fresh relative to the data used to prepare $S'$. The encoder accepts a proposal precisely if every entry belongs to $S'$ and the conclusion of Lemma~\\ref{learn:row-success} holds for that row. The encoder knows the hidden data, so this is a well-defined finite test. For a specified ordered r"
     },
     {
       "from": "m2-learn-short-row",
       "to": "m2-learn-implementation",
+      "label": "learn:short-row",
       "context": "[Completion of Proposition~\\ref{learn:short-row}] Lemmas~\\ref{learn:row-success} and~\\ref{learn:implementation} give the stated set, message bound, and failure probabil"
     },
     {
       "from": "m2-geom-description",
       "to": "m2-learn-implementation",
+      "label": "geom:description",
       "context": "[Completion of the description lemma] \\label{learn:completion} The only unresolved branch in the proof of Lemma~\\ref{geom:description} was the prepared small-cell case in projective dimension two or three. Its inputs satisfy exactly the hypotheses of Pro"
     },
     {
       "from": "m2-geom-preparation",
       "to": "m2-learn-implementation",
+      "label": "geom:preparation",
       "context": "y the lemma's stated budget. Dimension two has no plane-list reduction and no external radial overlaps. The dimension-three large-cell reduction of Proposition~\\ref{geom:preparation} invokes the now established dimension-two result. The bounded higher-dimensional projection induction of Proposition~\\r"
     },
     {
       "from": "m2-geom-projection",
       "to": "m2-learn-implementation",
+      "label": "geom:projection",
       "context": "tion of Proposition~\\ref{geom:preparation} invokes the now established dimension-two result. The bounded higher-dimensional projection induction of Proposition~\\ref{geom:projection} then applies successively. Its validation calls use fresh tables, as stipulated in the preceding section. Hence all bra"
     },
     {
       "from": "m2-base-incidence",
       "to": "m2-mark-marking",
+      "label": "base:incidence",
       "context": "ts, and its joint domain has size $O(q^d)$ since $l\\le r$. For $l=0$ there are no popular endpoints. For a poor-cheap position, the variance estimate in Lemma~\\ref{base:incidence} bounds the number of first endpoints in \\eqref{mark:poor} by $Cq^{d+1}/|Z_l|$. Indeed their incidence count deviates by"
     },
     {
       "from": "m2-base-selection-entropy",
       "to": "m2-mark-marking",
+      "label": "base:selection-entropy",
       "context": "ins uniformly. All values outside $U$ are known at $\\theta_0$, so \\[ \\E H_{\\theta_0}(F_U)=H(F\\mid\\theta_0) \\ge H(F)-H(\\theta_0). \\] Lemma~\\ref{base:selection-entropy} and \\eqref{mark:message-cost} consequently give \\begin{align*} \\E\\bigl[(\\ell-h)J_0-H_{\\theta_0}(F_U)\\bigr] &\\le (\\ell"
     },
     {
       "from": "m2-base-event-transfer",
       "to": "m2-mark-collision",
+      "label": "base:event-transfer",
       "context": "joint law, the event $\\{a\\perp y,\\ c\\not\\perp b\\}$ has probability zero by consistency. The relative entropy of this law to the product law is $I_{ij}$. Lemma~\\ref{base:event-transfer} therefore bounds the product probability of this reverse-conflict event by $CI_{ij}$. For given endpoints $a,y$, let \\["
     },
     {
       "from": "m2-mark-representatives",
       "to": "m2-mark-good-indices",
+      "label": "mark:representatives",
       "context": "There are $\\Theta(k)$ unexposed positions, because $T_1=o(m)$. By \\eqref{mark:budget} and Lemma~\\ref{mark:representatives}, the expected proportion violating the deficit bound is at most \\[ C\\frac{\\mathcal B/k}{D\\sigma^\\beta}=O(\\sigma^{-2\\be"
     },
     {
       "from": "m2-mark-endpoint-mass",
       "to": "m2-mark-good-indices",
+      "label": "mark:endpoint-mass",
       "context": "t every representative be good simultaneously. Finally, at a good index, \\[ \\frac{\\delta_i+1}{K} \\le \\sigma^{-2\\beta}+(D\\sigma^{3\\beta})^{-1}=o(1). \\] Lemma~\\ref{mark:endpoint-mass} proves the uniform endpoint assertion."
     },
     {
       "from": "m2-mark-endpoint-mass",
       "to": "m2-comp-high-rank",
+      "label": "mark:endpoint-mass",
       "context": "t^{(2)},b_t^{(2)})\\). These are auxiliary samples, independent of the actual unexposed tuple given the history and indices. By \\eqref{mark:high-caps} and Lemma~\\ref{mark:endpoint-mass}, their first and second marginal atom sizes are at most \\(Ce^K/q^{r'}\\) and \\(Ce^K/q^r\\), respectively, and their suppo"
     },
     {
       "from": "m2-base-incidence",
       "to": "m2-comp-high-rank",
+      "label": "base:incidence",
       "context": "deed an incident flag. \\paragraph{Coverage.} Consider an actual target at a good middle index, and write it \\((c,y)\\). The weighted variance estimate of Lemma~\\ref{base:incidence} shows that, except for at most \\(O(q^{d+1-r'}e^K)\\) values of \\(y\\), a source sample satisfies \\(a\\perp y\\) with probab"
     },
     {
       "from": "m2-base-event-transfer",
       "to": "m2-comp-high-rank",
+      "label": "base:event-transfer",
       "context": "has at least \\(.1h/q\\) first-endpoint hits on \\(y\\), again with failure probability \\(o(1)\\). Consistency of the actual early representative and target, Lemma~\\ref{base:event-transfer}, and \\eqref{mark:good-index} bound the product-law conflict probability \\(\\Prob(a\\perp y,\\ c\\not\\perp b)\\) by \\(C\\sigma"
     },
     {
       "from": "m2-comp-rich-union",
       "to": "m2-comp-high-rank",
+      "label": "comp:rich-union",
       "context": "}e^{-K}. \\] For \\(0<u\\le u_0\\), with \\(u_0>0\\) fixed and small, this is relative density at least \\(c u e^{-K}\\) in \\(\\PG(V_y)\\). Since \\(y\\in\\PG(V_y)\\), Lemma~\\ref{comp:rich-union} gives \\begin{equation}\\label{comp:high-tail} \\#\\{y:\\dim V_y=r,\\ a_y\\ge u\\} \\le Cq^r(Ce^K/u)^{d+1}. \\end{equatio"
     },
     {
       "from": "m2-geom-validation",
       "to": "m2-comp-tree-loss",
+      "label": "geom:validation",
       "context": "rt. If this test succeeds, the second test's hidden source is also a fixed positive fraction of its original support, by the \\(.99\\) capture assertion of Lemma~\\ref{geom:validation}. For either test and every fixed opposite point \\(y\\), let \\(E_y\\) be the event that the test is produced and excludes"
     },
     {
       "from": "m2-geom-produced-test",
       "to": "m2-comp-tree-loss",
+      "label": "geom:produced-test",
       "context": "dation}. For either test and every fixed opposite point \\(y\\), let \\(E_y\\) be the event that the test is produced and excludes \\(y\\) by its ambient test. Lemma~\\ref{geom:produced-test} gives \\begin{equation}\\label{comp:pointwise-test} \\Prob(E_y\\mid\\text{readiness data}) \\le Cq\\frac{|X\\cap N(y)|}"
     },
     {
       "from": "m2-mark-good-indices",
       "to": "m2-comp-tree-loss",
+      "label": "mark:good-indices",
       "context": "estimate nor \\eqref{comp:subtree-loss} conditions on eventual survival of a descendant or target. The expected bad-index fraction tends to zero by Proposition~\\ref{mark:good-indices}, and the bad-endpoint mass at every good index tends uniformly to zero by Lemma~\\ref{mark:endpoint-mass}. Combining the"
     },
     {
       "from": "m2-mark-endpoint-mass",
       "to": "m2-comp-tree-loss",
+      "label": "mark:endpoint-mass",
       "context": "xpected bad-index fraction tends to zero by Proposition~\\ref{mark:good-indices}, and the bad-endpoint mass at every good index tends uniformly to zero by Lemma~\\ref{mark:endpoint-mass}. Combining these losses with \\eqref{comp:subtree-loss} and the \\(O(H)\\) relevant tests gives expected total loss \\(o(k)"
     },
     {
       "from": "m2-comp-step",
       "to": "m2-comp-tree-loss",
+      "label": "comp:step",
       "context": "[Proof of Lemma~\\ref{comp:step}] Apply the preparation of Section~\\ref{mark:section}. Its class selection conditions on an event of probability bounded"
     },
     {
       "from": "m2-comp-high-rank",
       "to": "m2-comp-tree-loss",
+      "label": "comp:high-rank",
       "context": "lection conditions on an event of probability bounded below; its choices and orientation are determined by the revealed history. In a high-rank class use Lemma~\\ref{comp:high-rank}, with \\(w=1\\). Its cost \\(O(q\\sigma^{1+\\beta})\\) is bounded by \\eqref{comp:step-bounds}, and its exponent \\(O(K)\\) is \\"
     },
     {
       "from": "m2-intro-prime-construction",
       "to": "m2-comp-tree-loss",
+      "label": "intro:prime-construction",
       "context": "[Proof of Theorem~\\ref{intro:prime-construction}] Fix $d\\ge5$ and $0<\\eta<1/10$, with all the parameters of Equation~\\eqref{base:stream-parameters}. Suppose, for a cont"
     },
     {
       "from": "m2-base-rectangles",
       "to": "m2-comp-tree-loss",
+      "label": "base:rectangles",
       "context": "pose, for a contradiction, that every stream has a consistent $k$-tuple. Select one by a fixed rule, and condition on the simultaneous rectangle event of Lemma~\\ref{base:rectangles}. For large $q$ this event has probability at least $1/2$, so the new stream law is dominated by twice the iid law. The"
     },
     {
       "from": "m2-base-selection-entropy",
       "to": "m2-comp-tree-loss",
+      "label": "base:selection-entropy",
       "context": "olved. Consequently the final length is deterministic and satisfies $\\ell_*=\\Theta(k)$, and the final stream law still has a constant domination factor. Lemma~\\ref{base:selection-entropy} therefore applies to the final tuple $F_*$. Only the marking scans are now performed: no further class selection, tuple"
     },
     {
       "from": "m2-base-flag-graph",
       "to": "m2-comp-tree-loss",
+      "label": "base:flag-graph",
       "context": "\\log\\sigma\\to\\infty$. Consequently some stream has no consistent $k$-tuple. Its flag graph has independence number less than $k$ and is $K_{d+1}$-free by Lemma~\\ref{base:flag-graph}, as required."
     },
     {
       "from": "m2-end-triangle-free",
       "to": "m2-end-upper-bound",
+      "label": "end:triangle-free",
       "context": "m $r(2,t)=t$. If a triangle-free graph has no independent set of size $t$, then all its degrees are below $t$, because every neighborhood is independent. Lemma~\\ref{end:triangle-free}, with $D_0=t$, bounds its order by $8t(t+1)/\\log(t+1)$. This proves the case $s=3$. Now let $s\\ge4$ and suppose the es"
     },
     {
       "from": "m2-intro-main",
       "to": "m2-end-upper-bound",
+      "label": "intro:main",
       "context": "[Proof of Theorem~\\ref{intro:main}] The lower bound follows from Equation~\\eqref{end:lower-slack} and the choice of $\\eta$ made there. Proposition~\\ref{en"
     }
   ]

@@ -422,7 +422,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Global-Arthur-Enhancements-of-Cuspidal-Excursion-Parameters-October-5-2026/manuscript.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Global Arthur Enhancements of Cuspidal Excursion Parameters; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Global Arthur Enhancements of Cuspidal Excursion Parameters.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -566,8 +566,7 @@
           "source": "An open-orbit criterion for enhancement",
           "detail": "[Boundary under nonexistence] If the enhancement in Theorem~ does not exist for , then at every selected place x_i and every geometric point of R , the coordinate e belongs to E_ t_ x_i after…",
           "dependsOn": [
-            "m1-prop-global-support",
-            "m1-prop-open-orbit-enhancement"
+            "m1-prop-global-support"
           ]
         },
         {
@@ -717,7 +716,6 @@
           "detail": "The equivalence of Theorem~ identifies the Iwahori horizontal trace with ^L(Y_N) , carrying [1_I] to P_N and [Z(V)] to P_N V . Sheaf duality D=(-,) is a duality on this coherent model, and DP_N P_N .…",
           "dependsOn": [
             "m1-trace-coend",
-            "m1-trace-hecke-algebra",
             "m1-thm-enhanced-iwahori"
           ]
         },
@@ -783,9 +781,7 @@
           "kind": "lemma",
           "source": "Coherent local tests after regrading",
           "detail": "[Polynomial representatives on the slice] Put C=(L)^L and C'=(U_H)^H , with the map C C' given by the spherical coordinate s_ sph =tu . Write B_ sph =shH^(B_ sph ^0) for the classical spherical…",
-          "dependsOn": [
-            "m1-lem-test-places"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-local-spherical-reconstruction",
@@ -796,7 +792,6 @@
           "source": "Coherent local tests after regrading",
           "detail": "After shrinking the saturated slice U_H around the identity class, there are an isomorphism L_S_Y and an H -equivariant isomorphism of graded algebras over (U_H) shH^(B_ sph ^0) \\ \\ ^ _ Y (L_S) =(Y).…",
           "dependsOn": [
-            "m1-trace-coend",
             "m1-local-polynomial-representatives"
           ]
         },
@@ -809,7 +804,6 @@
           "source": "Coherent local tests after regrading",
           "detail": "Let t , H=Z_L(t) and m be associated with a selected place as in Lemmas~ and~ . After an etale base change on invariant holonomy functions and a saturated shrinking about the identity class, the…",
           "dependsOn": [
-            "m1-prop-trace-model",
             "m1-trace-hecke-algebra"
           ]
         },
@@ -851,9 +845,7 @@
           "kind": "proposition",
           "source": "A simultaneous lower bound",
           "detail": "Every irreducible constituent of D_b occurs among the constituents of _ i=1 ^n(V_i_ ,ad ) |_ (')^n . This assertion concerns occurrence of constituents and does not prescribe their multiplicities.",
-          "dependsOn": [
-            "m1-lem-glob-cohomology"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-bounds-weight-bound",
@@ -865,8 +857,7 @@
           "detail": "Quotient N_b(V) by m_C and localize at the neutral spherical Hecke values of f outside the finite exceptional set in Proposition~ . On the resulting finite-dimensional space, every eigenvalue of…",
           "dependsOn": [
             "m1-lem-glob-weights",
-            "m1-bounds-constituent-inclusion",
-            "m1-bounds-nearby"
+            "m1-bounds-constituent-inclusion"
           ]
         },
         {
@@ -918,8 +909,7 @@
           "detail": "There are morphisms _i:[ R/A] whose field-valued images have unipotent residual holonomy and a vector in E_i outside its open H_i -orbit. For every n1 , the product morphism =(_1,,_n) is affine.…",
           "dependsOn": [
             "m1-lem-test-places",
-            "m1-prop-open-orbit-enhancement",
-            "m1-thm-local-test-model"
+            "m1-prop-open-orbit-enhancement"
           ]
         },
         {
@@ -977,7 +967,6 @@
           "detail": "For every finite initial segment of the selected places, \\[ q_^*f0in H^0(Q_,F_n^ ind ). \\]",
           "dependsOn": [
             "m1-boundary-simple-quotient",
-            "m1-thm-main",
             "m1-lem-tensor-nilpotence",
             "m1-prop-ind-qc-comparison",
             "m1-prop-open-orbit-enhancement"
@@ -997,7 +986,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Rationality-of-the-Canonical-Unramified-Arthur-Filtration-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Rationality of the Canonical Unramified Arthur Filtration; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Rationality of the Canonical Unramified Arthur Filtration.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1113,9 +1102,7 @@
           "kind": "lemma",
           "source": "A quadratic model with its Frobenius action",
           "detail": "[Inverse transport on arrows] Choose structures _M: M on compact objects. On an arrow h:M N put T(h)&=_N\\,(h)\\,_M^ -1 , \\\\ S(h)&=^ -1 (_N^ -1 h_M)=T^ -1 (h). The action in the bilinear Hom pairing is…",
-          "dependsOn": [
-            "m2-tr-bar-contraction"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-mod-compact-normalization",
@@ -1229,7 +1216,6 @@
           "detail": "[Concentration, injection, and Weil spanning] On a fixed retained spectral component, the trace of every closed invariant nilpotent support category is concentrated in degree zero. If ' are such…",
           "dependsOn": [
             "m2-orb-localization",
-            "m2-tr-orbit-trace",
             "m2-inp-langlands",
             "m2-inp-trace"
           ]
@@ -1393,7 +1379,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

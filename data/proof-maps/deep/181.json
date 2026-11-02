@@ -107,7 +107,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-linear-cycle-and-edge-decomposition-of-every-graph-September-24-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A linear cycle-and-edge decomposition of every graph; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A linear cycle-and-edge decomposition of every graph.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -128,9 +128,7 @@
           "kind": "corollary",
           "source": "Introduction",
           "detail": "Every finite simple undirected Eulerian graph on \\(n\\) vertices has an edge partition into at most \\(Cn\\) cycles, with \\(C\\) from . For every fixed \\(,p>0\\), there exist \\(>0\\) and an integer…",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-lovasz",
@@ -182,9 +180,7 @@
           "kind": "lemma",
           "source": "Routing with team constraints",
           "detail": "[Routing] Let P be a graph of order r 2 with cut expansion h>0 , and put g=8(r/h) (2r), =2g(1+ r). Let D be a finite set of demands, where demand p has distinct endvertices x_p,y_p V(P) . Suppose…",
-          "dependsOn": [
-            "m1-thm-aharoni-haxell"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-edge-split",
@@ -194,9 +190,7 @@
           "kind": "lemma",
           "source": "Expansion in small reservoirs",
           "detail": "[Edge splitting] Fix c>0 and a positive integer l . For all sufficiently large D , if an r -vertex graph P has cut expansion at least h_0 cD^ 0.90 and D^ 0.90 r D^ 1.02 , then its edge set can be…",
-          "dependsOn": [
-            "m1-lem-chernoff"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-vertex-sampling",
@@ -206,9 +200,7 @@
           "kind": "lemma",
           "source": "Expansion in small reservoirs",
           "detail": "[Vertex sampling] Fix c'>0 and p(0,1) . Let P have order D^ 0.90 r D^ 1.02 and cut expansion at least h=c'D^ 0.90 . Select each vertex independently with probability p to form V' . With probability…",
-          "dependsOn": [
-            "m1-lem-chernoff"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-small-residue",
@@ -219,10 +211,7 @@
           "source": "Expansion in small reservoirs",
           "detail": "[Small residue] Fix >0 and c>0 . For all sufficiently large D , let G be an r -vertex graph with D^ 0.90 r D^ 1.02 containing a spanning subgraph of cut expansion at least cD^ 0.90 . Then E(G) has a…",
           "dependsOn": [
-            "m1-lem-edge-split",
-            "m1-lem-vertex-sampling",
-            "m1-cor-endpoint-paths",
-            "m1-lem-routing"
+            "m1-lem-vertex-sampling"
           ]
         },
         {
@@ -265,11 +254,7 @@
           "kind": "lemma",
           "source": "Pair folding and resolving batches",
           "detail": "[Batch resolution] For every sufficiently large real D , set \\[ a=D^ 0.01 , L_0=D^ 0.03 , B_0=D^ 0.30 , =D^ 0.90 . \\] Let Y be a finite vertex set. Let W be a finite indexed family of subsets W Y ,…",
-          "dependsOn": [
-            "m1-cor-endpoint-paths",
-            "m1-lem-pair-folding",
-            "m1-lem-routing"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-prefix-choice",
@@ -289,13 +274,7 @@
           "kind": "proposition",
           "source": "The induction",
           "detail": "There is an absolute constant \\(C\\) such that every finite simple graph on \\(n1\\) vertices has an edge partition into at most \\(C(n)n\\) simple cycles and single edges.",
-          "dependsOn": [
-            "m1-lem-scale-split",
-            "m1-lem-prefix-choice",
-            "m1-lem-small-residue",
-            "m1-lem-edge-split",
-            "m1-lem-batch-resolution"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -314,7 +293,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

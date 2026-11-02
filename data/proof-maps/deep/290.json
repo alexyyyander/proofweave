@@ -132,7 +132,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Expected-amenable-subalgebras-preserving-core-commutants-September-23-2026/Expected-amenable-subalgebras-preserving-core-commutants-September-23-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Expected amenable subalgebras preserving core commutants; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Expected amenable subalgebras preserving core commutants.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -208,7 +208,6 @@
           "source": "An estimate uniform in total modular energy",
           "detail": "[The iterated kernel] Formula~ defines a unital completely positive map Z: B() B(H^ n ) , possibly nonnormal. It satisfies Z((a))&=Z((a))=(a)1(a M), &Z(e_N)&=1, \\\\ Z(f(X_M))&=f(S_n+d)(f C_0()). For…",
           "dependsOn": [
-            "m1-prop-energy",
             "m1-prop-inputs"
           ]
         },
@@ -245,8 +244,7 @@
           "source": "The continuous core and the general inclusion",
           "detail": "If N is a type III_1 factor, then \\[ (N c(M),)^=N' c(M). \\]",
           "dependsOn": [
-            "m1-thm-ud",
-            "m1-thm-main"
+            "m1-thm-ud"
           ]
         }
       ]
@@ -263,7 +261,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Bounded-recovery-for-modular-spectral-averages-September-23-2026/Bounded-recovery-for-modular-spectral-averages-September-23-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Bounded recovery for modular spectral averages; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Bounded recovery for modular spectral averages.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -294,10 +292,7 @@
           "kind": "proposition",
           "source": "Bicentralizers and the reduction",
           "detail": "[Established bicentralizer results] Let M be a type III_1 factor with separable predual and a faithful normal state. If B=(M,) is nonscalar, then B is a type III_1 subfactor with a normal -preserving…",
-          "dependsOn": [
-            "m2-thm-main",
-            "m2-thm-rigidity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-mod-predual",
@@ -348,9 +343,7 @@
           "source": "Recovering bounded operators from spectral vectors",
           "detail": "[Bounded recovery] Let M be a von Neumann algebra with a faithful normal state such that M_=1 . Use the standard-space notation and the fixed mean m of . Fix T(H) and s . Suppose that _n>0 tends to…",
           "dependsOn": [
-            "m2-mod-localization",
-            "m2-mod-average",
-            "m2-mod-means"
+            "m2-mod-average"
           ]
         },
         {
@@ -362,8 +355,7 @@
           "source": "Spectral rigidity",
           "detail": "[Estimate at a spectral point] Let a,a^ M satisfy a= a^ . For s , set \\[ T_s=R(a^)-L(b_s(a))(H). \\] If h_n H are unit vectors with D -spectral supports contained in [s-d_n,s+d_n] , where d_n>0 and…",
           "dependsOn": [
-            "m2-rec-bounded",
-            "m2-mod-predual"
+            "m2-rec-bounded"
           ]
         },
         {
@@ -375,8 +367,7 @@
           "source": "Spectral rigidity",
           "detail": "[Estimate on an interval] Let a,a^ M satisfy a= a^ . For every nonempty compact interval I , every c , and every h E_D(I)H , t (R(a^ )-cL(a))U_th_ av h_ s I (b_s(a)-ca) .",
           "dependsOn": [
-            "m2-mod-average",
-            "m2-spec-point"
+            "m2-mod-average"
           ]
         },
         {
@@ -388,9 +379,7 @@
           "source": "Spectral rigidity",
           "detail": "[Joint spectral pairing] For every (r,p),(q,) S , (i(r+qp))=1.",
           "dependsOn": [
-            "m2-mod-localization",
-            "m2-spec-interval",
-            "m2-mod-average"
+            "m2-spec-interval"
           ]
         },
         {
@@ -429,7 +418,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

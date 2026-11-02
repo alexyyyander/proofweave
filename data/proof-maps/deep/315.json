@@ -277,7 +277,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Singer-conjecture-in-dimension-four-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Singer conjecture in dimension four; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Singer conjecture in dimension four.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -436,9 +436,7 @@
           "kind": "lemma",
           "source": "A boundary from finite-energy functions",
           "detail": "The boundary B is a nondegenerate compact connected metric space.",
-          "dependsOn": [
-            "m1-compact-potential"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-compact-near-path",
@@ -448,9 +446,7 @@
           "kind": "lemma",
           "source": "A boundary from finite-energy functions",
           "detail": "For every x B and every open neighborhood W of x in X , there is an open neighborhood V W of x such that any two vertices in V can be joined by a finite graph path whose vertices all lie in W .…",
-          "dependsOn": [
-            "m1-compact-good-boxes"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-dyn-length",
@@ -531,10 +527,7 @@
           "kind": "proposition",
           "source": "Dimension and cohomology of the boundary",
           "detail": "The boundary B has covering dimension at most one.",
-          "dependsOn": [
-            "m1-topo-thin-walls",
-            "m1-compact-near-path"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-topo-cech",
@@ -607,8 +600,7 @@
           "detail": "Let be a finitely presented torsion-free one-ended group with no nontrivial splitting over a finite or two-ended subgroup. Suppose it acts minimally by convergence on a nondegenerate compact metric…",
           "dependsOn": [
             "m1-pret-invariant-class",
-            "m1-pret-package",
-            "m1-pret-parabolic-cuts"
+            "m1-pret-package"
           ]
         },
         {
@@ -643,8 +635,7 @@
           "source": "A continuum without cut points",
           "detail": "The map :P R extends to a continuous retraction \\[ r:B L, L= R^ \\,B , \\] which is locally constant on B L . The space L is a nondegenerate continuum without cut points, and \\[ L1, H^1(L; F_2)=0. \\]",
           "dependsOn": [
-            "m1-dyn-minimal",
-            "m1-block-near-path"
+            "m1-dyn-minimal"
           ]
         },
         {
@@ -658,9 +649,7 @@
           "dependsOn": [
             "m1-dyn-convergence",
             "m1-compact-near-path",
-            "m1-block-graph",
             "m1-block-retraction",
-            "m1-block-near-path",
             "m1-pret-parabolic-cuts",
             "m1-dyn-parabolic"
           ]
@@ -794,8 +783,7 @@
           "detail": "For every m M and all x,y L A , Q_m(x)=Q_m(y) Q_ m+1 (x)=Q_ m+1 (y). In particular, the threshold M is independent of x and y .",
           "dependsOn": [
             "m1-push-majority",
-            "m1-push-component-labels",
-            "m1-block-setting"
+            "m1-push-component-labels"
           ]
         },
         {
@@ -807,7 +795,6 @@
           "source": "Pushing paths and local connectedness",
           "detail": "In the setting of Proposition~ , the continuum L is locally connected.",
           "dependsOn": [
-            "m1-push-refinement",
             "m1-push-component-labels"
           ]
         },
@@ -842,7 +829,6 @@
           "dependsOn": [
             "m1-end-restriction",
             "m1-end-paths-in-regions",
-            "m1-thm-main",
             "m1-topo-dimension",
             "m1-topo-cech",
             "m1-block-setting",
@@ -858,10 +844,7 @@
           "kind": "corollary",
           "source": "Euler characteristic, signature, and finite covers",
           "detail": "Let Q be a finite connected aspherical integral Poincar\\'e complex of formal dimension four, with arbitrary orientation character. Then \\[ (Q)=b_2^ (2) ( Q)0. \\] Moreover, (Q)=0 if and only if every…",
-          "dependsOn": [
-            "m1-thm-main",
-            "m1-found-model"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-signature",
@@ -905,7 +888,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

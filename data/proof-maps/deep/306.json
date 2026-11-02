@@ -427,7 +427,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Purely-Cosmetic-Surgery-on-Knots-in-the-Three-Sphere-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Purely cosmetic surgery on knots in the three-sphere; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Purely cosmetic surgery on knots in the three-sphere.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -510,9 +510,7 @@
           "kind": "lemma",
           "source": "Ordinary instanton theory and the handle units",
           "detail": "[Topological and determinant data for the unit families] The single steps r r+1 for r=0,1 , and their composite 012 , have H_1=0 and b^+=0 . A determinant on a single step with the prescribed end…",
-          "dependsOn": [
-            "m1-thm-ordinary-units"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-ordinary-perturbations",
@@ -599,7 +597,6 @@
           "source": "Ordinary instanton theory and the handle units",
           "detail": "[Compactifications in the unit dimensions] For the rigid maps, intervals and pentagons above, all moduli spaces needed in dimensions zero and one have no particles and no unwanted central contacts at…",
           "dependsOn": [
-            "m1-lem-ordinary-central-cost",
             "m1-lem-ordinary-perturbations",
             "m1-lem-ordinary-regular-gluing"
           ]
@@ -614,9 +611,6 @@
           "detail": "[Flat replacement and the continuation exterior] At the outer cut M_ 03 of a single-step pentagon, or M_ 04 of the compressed pentagon, write N for the sphere-chain cap and V for its exterior.…",
           "dependsOn": [
             "m1-lem-ordinary-polygon",
-            "m1-lem-ordinary-harmonic-caps",
-            "m1-lem-ordinary-central-cost",
-            "m1-lem-ordinary-perturbations",
             "m1-lem-ordinary-regular-gluing"
           ]
         },
@@ -629,9 +623,7 @@
           "source": "Ordinary instanton theory and the handle units",
           "detail": "[Minimum-charge harmonic caps] Let N be either hard cap of Lemma~ , with one of its specified determinants c . At charge 1/4 the only possible unordered split difference is \\ c,-c\\ . For each metric…",
           "dependsOn": [
-            "m1-lem-ordinary-cap-shifts",
-            "m1-lem-ordinary-perturbations",
-            "m1-lem-ordinary-regular-gluing"
+            "m1-lem-ordinary-perturbations"
           ]
         },
         {
@@ -657,13 +649,9 @@
           "source": "Ordinary instanton theory and the handle units",
           "detail": "[No additional ends of the minimum cap matches] For a generic noncentral exterior angle, the cap matches counted in Lemmas~ and form a compact zero-dimensional set. The two types of cap-interval…",
           "dependsOn": [
-            "m1-lem-ordinary-holonomy-degree",
             "m1-lem-ordinary-harmonic-caps",
-            "m1-lem-ordinary-regular-gluing",
-            "m1-thm-ordinary-units",
             "m1-lem-ordinary-low-dimensional-compactness",
             "m1-lem-caps-irreducible-gluing",
-            "m1-lem-ordinary-flat-replacement",
             "m1-lem-ordinary-metric-families",
             "m1-lem-ordinary-unit-topology",
             "m1-lem-ordinary-cap-shifts"
@@ -678,7 +666,6 @@
           "source": "Ordinary instanton theory and the handle units",
           "detail": "[The ordinary bridge] Fix an orientation-preserving diffeomorphism :Y_ -2 Y_2 , with fixed bundle and collar identifications. The stacked cobordism and its rigid count T=f_-\\,^ -1 \\,f_+:Y_0 Y_0…",
           "dependsOn": [
-            "m1-lem-ordinary-central-cost",
             "m1-thm-ordinary-units"
           ]
         },
@@ -746,8 +733,7 @@
           "source": "The negative interval unit",
           "detail": "[The other associahedron facets] In the boundary relation at index i=-2 for the family , the M_ 04 ,M_ 03 ,M_ 14 ,Z_1,Z_3 facets and all their degenerations contribute nothing. The M_ 02 ,M_ 24…",
           "dependsOn": [
-            "m1-lem-ordinary-central-cost",
-            "m1-lem-negative-four-topology"
+            "m1-lem-ordinary-central-cost"
           ]
         },
         {
@@ -769,8 +755,6 @@
           "source": "The negative interval unit",
           "detail": "[The surviving pentagon count] At index i_ total =-2 the face P consists of isolated regular exterior matches at the selected center with a flat N_U . Their count induces a mod-two isomorphism. It is…",
           "dependsOn": [
-            "m1-lem-negative-faces",
-            "m1-lem-ordinary-regular-gluing",
             "m1-lem-ordinary-neck-decay"
           ]
         },
@@ -784,7 +768,6 @@
           "detail": "[Contraction of the pentagon to the interval] The map on homology counted in Lemma~ agrees modulo two with B .",
           "dependsOn": [
             "m1-lem-ordinary-neck-decay",
-            "m1-prop-negative-invariance",
             "m1-thm-negative-unit",
             "m1-prop-negative-local-sign",
             "m1-lem-negative-four-topology",
@@ -852,10 +835,7 @@
           "dependsOn": [
             "m1-prop-caps-nonvanishing",
             "m1-lem-caps-pencil",
-            "m1-lem-caps-labelled-compactness",
-            "m1-lem-caps-irreducible-gluing",
-            "m1-lem-caps-extreme",
-            "m1-lem-caps-closed-comparison"
+            "m1-lem-caps-extreme"
           ]
         },
         {
@@ -918,11 +898,8 @@
           "source": "Caps and a nonzero ordinary pairing",
           "detail": "[Cap periods and the ordinary pairing] Generic period choices on the old cap parts exclude reducible ASD cap solutions in the bounded charge ranges needed for the cap cycles, comparison homotopies,…",
           "dependsOn": [
-            "m1-prop-estimates-cap",
             "m1-lem-caps-labelled-compactness",
-            "m1-lem-caps-irreducible-gluing",
-            "m1-thm-caps-pairing",
-            "m1-lem-caps-closed-comparison"
+            "m1-lem-caps-irreducible-gluing"
           ]
         },
         {
@@ -943,9 +920,7 @@
           "kind": "lemma",
           "source": "The stack, its lifts, and the nonzero instanton count",
           "detail": "[Existence and restrictions of the lifts] These choices define integral classes on the closed stack, and \\(l=_0-c_0\\) is characteristic. For every bit vector \\(e=(e_1,,e_n)\\ 0,1\\ ^n\\), set c_e=c_0+_…",
-          "dependsOn": [
-            "m1-prop-stack-lattice"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-stack-telescope",
@@ -976,8 +951,6 @@
           "source": "The stack, its lifts, and the nonzero instanton count",
           "detail": "[Compatible sphere representatives] The sphere tests can be chosen with the following properties, preserving the integral map \\(B\\) on homology and its mod-two unit property. For a commuting…",
           "dependsOn": [
-            "m1-lem-negative-cap",
-            "m1-prop-negative-invariance",
             "m1-prop-negative-local-sign"
           ]
         },
@@ -1003,10 +976,7 @@
           "detail": "[The relative macro] The two-parameter, two-test family on the chronological cobordism \\(B\\,H\\,B\\), with the above data and irreducible outer limits, defines an integral map on Floer homology at…",
           "dependsOn": [
             "m1-lem-stack-charge-costs",
-            "m1-prop-negative-local-sign",
-            "m1-lem-stack-tests",
-            "m1-thm-ordinary-units",
-            "m1-thm-negative-unit"
+            "m1-prop-negative-local-sign"
           ]
         },
         {
@@ -1055,9 +1025,6 @@
           "source": "The stack, its lifts, and the nonzero instanton count",
           "detail": "[A nonzero family with positive coupled index] Fix the old caps and their compact probes. Prescribe any lower bounds on the two outside pad lengths, and prescribe any odd evaluations of \\(\\) on their…",
           "dependsOn": [
-            "m1-thm-caps-pairing",
-            "m1-thm-ordinary-units",
-            "m1-thm-negative-unit",
             "m1-lem-stack-finite-lattice",
             "m1-prop-stack-macro",
             "m1-prop-stack-composition"
@@ -1081,9 +1048,7 @@
           "kind": "lemma",
           "source": "A simultaneous family of metrics",
           "detail": "[Placement of the interfaces] The neighborhoods in can be placed strictly inside the macro so that U is disjoint from J_1 J_2 , C_ 1,i is disjoint from J_i , N_ 3-i C_ 1,i , and C_0 C_ 1,1 C_ 1,2 .…",
-          "dependsOn": [
-            "m1-prop-stack-lattice"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-geometry-toric",
@@ -1093,9 +1058,7 @@
           "kind": "lemma",
           "source": "A simultaneous family of metrics",
           "detail": "[The toric model and its periods] The toric space associated to the punctured polygon is C_2 . With w=a+b_0 and normalized coordinates =x/w, y'=y/w, L=1/w, r_1=a/w, r_2=b_0/w, r_1+r_2=1, it has a…",
-          "dependsOn": [
-            "m1-lem-geometry-plumbing"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-geometry-scalar",
@@ -1152,10 +1115,7 @@
           "kind": "lemma",
           "source": "A simultaneous family of metrics",
           "detail": "[The tube and the corner replacement] The family of Proposition~ extends across w_03 to the low-low corner, with exactly the true cuts J_1,J_2 . Every macro in this region contains a tube of fiber…",
-          "dependsOn": [
-            "m1-prop-geometry-assembly",
-            "m1-lem-geometry-collars"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-geometry-period-support",
@@ -1231,7 +1191,6 @@
           "source": "A simultaneous family of metrics",
           "detail": "[Tube comparison and retained-region energy] Fix P . Let 0 through the family in Section~ , allowing all admissible deeper regularizations and rational isolations. Let R_ be the union of the retained…",
           "dependsOn": [
-            "m1-lem-geometry-comparison",
             "m1-lem-estimates-hodge",
             "m1-lem-estimates-local",
             "m1-lem-estimates-cylinder"
@@ -1284,7 +1243,6 @@
           "source": "A simultaneous family of metrics",
           "detail": "[Cap constants before exterior choices] For each old cap W there is a metric, unchanged on its rational end collars, and a number C_W< such that \\[ \\, P\\ \\,L_ P ,_ P >0:\\\\ isolation at least L_ P ,…",
           "dependsOn": [
-            "m1-lem-estimates-local",
             "m1-prop-estimates-energy",
             "m1-lem-estimates-cylinder"
           ]
@@ -1298,10 +1256,7 @@
           "source": "A simultaneous family of metrics",
           "detail": "[Order of finite choices] The constants C_W can be fixed before choosing the delays, exceptional evaluations and repetition count in the stack. After those choices have specified a finite problem P ,…",
           "dependsOn": [
-            "m1-cor-estimates-tube",
-            "m1-lem-estimates-vertices",
-            "m1-prop-estimates-cap",
-            "m1-thm-estimates-clamp"
+            "m1-cor-estimates-tube"
           ]
         },
         {
@@ -1346,9 +1301,7 @@
           "kind": "corollary",
           "source": "Spinor indices and exclusion of unwanted strata",
           "detail": "At the minimal trace reducer, the framed tangential ASD index is zero, the normal ASD index is one complex dimension, and the coupled Dirac operator is invertible. Its normalized eigenline sphere…",
-          "dependsOn": [
-            "m1-prop-indices-lens-index"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-indices-virtual-sums",
@@ -1409,7 +1362,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

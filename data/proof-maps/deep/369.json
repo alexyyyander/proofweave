@@ -117,7 +117,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Strict-hot-spots-and-absence-of-interior-critical-points-on-smooth-simply-connected-planar-domains-September-24-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Strict hot spots and absence of interior critical points on smooth simply connected planar domains; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Strict hot spots and absence of interior critical points on smooth simply connected planar domains.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -158,9 +158,7 @@
           "kind": "lemma",
           "source": "Spectral and planar preliminaries",
           "detail": "There is a fixed smooth positive function on such that every v has boundary trace h_v=v satisfying \\[ _ h_v s=0. \\] If v0 , its boundary trace is nonzero and takes both signs.",
-          "dependsOn": [
-            "m1-lem-gap"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-nodal",
@@ -180,10 +178,7 @@
           "kind": "proposition",
           "source": "Spectral and planar preliminaries",
           "detail": "The real eigenspace has dimension at most two.",
-          "dependsOn": [
-            "m1-lem-boundary-weight",
-            "m1-lem-nodal"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-vector",
@@ -235,9 +230,7 @@
           "kind": "lemma",
           "source": "Boundary kernels and the multiplier identity",
           "detail": "For tangent Lipschitz data h,k , E(h,k)= &12 N_0(s,t) (h(s)-h(t))(k(s)-k(t)) s t\\\\ &- R(s,t)h(s) k(t) s t +_ |'|()h k s.",
-          "dependsOn": [
-            "m1-lem-curvature"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-multiplier",
@@ -287,10 +280,7 @@
           "kind": "proposition",
           "source": "Reciprocal Green functions and a squared-distance kernel",
           "detail": "For every finite set of interior points, the reciprocal matrix of M^ , with diagonal zero, has (P).",
-          "dependsOn": [
-            "m1-lem-regularization",
-            "m1-lem-update"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-bordered",
@@ -300,11 +290,7 @@
           "kind": "lemma",
           "source": "Reciprocal Green functions and a squared-distance kernel",
           "detail": "For distinct s_1,,s_m and p , the matrix B&\\\\^T&0 , B_ ij = 1/N(s_i,s_j),&i j,\\\\0,&i=j, _i=1/K(p,s_i), has (P).",
-          "dependsOn": [
-            "m1-prop-interior-reciprocal",
-            "m1-lem-kernel-estimates",
-            "m1-thm-negative-kernel"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-hilbert",
@@ -316,8 +302,7 @@
           "detail": "For every p there is an injective Lipschitz map b: , where is a separable real Hilbert space, such that b(s)-b(t)_^2=D_p(s,t).",
           "dependsOn": [
             "m1-thm-main",
-            "m1-prop-multiplier",
-            "m1-prop-multiplicity"
+            "m1-prop-multiplier"
           ]
         }
       ]
@@ -337,7 +322,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

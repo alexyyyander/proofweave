@@ -192,7 +192,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Partition-Principle-does-not-imply-Choice-September-24-2026/partition-principle-without-choice.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Partition Principle does not imply Choice; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Partition Principle does not imply Choice.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -263,9 +263,7 @@
           "kind": "lemma",
           "source": "A monoid of diagrams",
           "detail": "Let M satisfy the algebraic and margin hypotheses, and let a finite nonempty overlap prescription on copies of M be valid. There is a conservative extension realizing it by left translations. The…",
-          "dependsOn": [
-            "m1-lem-mono-probe-heights"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-mono-simulation",
@@ -288,8 +286,6 @@
           "source": "A monoid of diagrams",
           "detail": "Suppose a probe satisfies Equation~ in one stage of a tower of the two operations. It continues to satisfy that equation at every later stage and at the union, with the full later downward closure of…",
           "dependsOn": [
-            "m1-thm-monoid",
-            "m1-lem-mono-simulation",
             "m1-lem-mono-countable-ideal"
           ]
         },
@@ -469,7 +465,6 @@
           "source": "Components of subdiagrams and their stabilizers",
           "detail": "[Countable stabilizer quotient] In the ground model, |G_C/K_C|_0 .",
           "dependsOn": [
-            "m1-thm-monoid",
             "m1-lem-mono-descent"
           ]
         },
@@ -571,10 +566,8 @@
           "detail": "[Truth for the symmetric quotient] For each standard first-order formula and internal hereditarily symmetric names , \\[ W([]_G) ( p G)\\ M p_ _ S (). \\] In particular W .",
           "dependsOn": [
             "m1-lem-symmetric-forcing-schema",
-            "m1-thm-main-consistency",
             "m1-lem-constructible-consistency",
-            "m1-thm-main-transitive",
-            "m1-thm-construction-summary"
+            "m1-thm-main-transitive"
           ]
         }
       ]
@@ -594,7 +587,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

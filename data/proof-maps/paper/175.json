@@ -93,41 +93,49 @@
     {
       "from": "m1-thm-discrete",
       "to": "m1-cor-typical-cover",
+      "label": "thm:discrete",
       "context": "If no such copy exists, no graph containing $H$ can be contained in such a union. Thus $\\calF_H\\subseteq\\mathcal E_{K_0}(\\calD)$. Theorem~\\ref{thm:discrete} supplies a cover of $\\calF_H$ of cost at most $1/2$ at $r$, contrary to $r>q(H;n)$."
     },
     {
       "from": "m1-lem-compression",
       "to": "m1-prop-transfer",
+      "label": "lem:compression",
       "context": "Y$. A candidate image $a$ is usable for a vertex $w$ when $N_J(w)\\subseteq N_{G_*}(a)\\cap Y$. For any nonempty set $U$ of vertices to be matched, apply Lemma~\\ref{lem:compression} to \\[ \\calR=\\{N_J(w):w\\in U\\}. \\] It gives an admissible test $\\calQ\\subseteq\\calR$. Every $N_G(w)\\cap Y$, for $w\\in U"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-prop-stars",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] Fix \\begin{equation}\\label{eq:constants} M=B=1000,\\qquad k=2K_0M(B+1)^2. \\end{equation} Choose an absolute integer $n"
     },
     {
       "from": "m1-prop-transfer",
       "to": "m1-prop-stars",
+      "label": "prop:transfer",
       "context": "}] Fix \\begin{equation}\\label{eq:constants} M=B=1000,\\qquad k=2K_0M(B+1)^2. \\end{equation} Choose an absolute integer $n_0\\geq2$ large enough for Propositions~\\ref{prop:transfer}, \\ref{prop:degree-embedding}, and~\\ref{prop:stars}, and so that, for every $n\\geq n_0$, \\begin{equation}\\label{eq:deter"
     },
     {
       "from": "m1-prop-degree-embedding",
       "to": "m1-prop-stars",
+      "label": "prop:degree-embedding",
       "context": "n}\\label{eq:constants} M=B=1000,\\qquad k=2K_0M(B+1)^2. \\end{equation} Choose an absolute integer $n_0\\geq2$ large enough for Propositions~\\ref{prop:transfer}, \\ref{prop:degree-embedding}, and~\\ref{prop:stars}, and so that, for every $n\\geq n_0$, \\begin{equation}\\label{eq:deterministic-cutoffs} \\frac{8\\lo"
     },
     {
       "from": "m1-lem-q-lower",
       "to": "m1-prop-stars",
+      "label": "lem:q-lower",
       "context": "cutoffs. Set \\[ L=\\max\\{2A,64,n_0^2\\}. \\] If $H$ is edgeless, use only empty pieces. Otherwise write $q=q(H;n)>0$ and $d=\\degen(H)\\geq1$. When $n<n_0$, Lemma~\\ref{lem:q-lower} gives $Lq\\geq n_0^2/(n(n-1))\\geq1$. When $q\\geq1/(2A)$, we also have $Lq\\geq1$. In either case put all edges in one pie"
     },
     {
       "from": "m1-cor-typical-cover",
       "to": "m1-prop-stars",
+      "label": "cor:typical-cover",
       "context": "\\end{equation} These bounds also give $s\\leq10\\log n$, so \\eqref{eq:parameters} holds. Take the family $\\calD$ from Proposition~\\ref{prop:transfer}. Corollary~\\ref{cor:typical-cover} supplies a copy of $H$ covered by $K_0$ members $G_1,\\ldots,G_{K_0}$ of $\\calD$. Fix those graphs and the labelled copy"
     },
     {
       "from": "m1-lem-split",
       "to": "m1-prop-stars",
+      "label": "lem:split",
       "context": "minus Y$ into $B$ possibly empty blocks of size at most $\\lceil n/B\\rceil$. Subdivide each initial edge piece as follows. \\emph{Edges inside $Y$.} Apply Lemma~\\ref{lem:split} with $m=M$ to obtain $M$ pieces of degeneracy at most $\\lceil d/M\\rceil\\leq s$. Each is supported on at most $|Y|\\leq n"
     }
   ]

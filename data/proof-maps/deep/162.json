@@ -197,7 +197,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Balanced-Counterexamples-to-Rysers-Conjecture-at-Prime-Orders-September-27-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Balanced counterexamples to Ryser's conjecture at prime orders; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Balanced counterexamples to Ryser's conjecture at prime orders.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -222,10 +222,8 @@
             "m1-thm-main",
             "m1-prop-candidate-graph",
             "m1-sel-selection",
-            "m1-prop-deterministic-reduction",
             "m1-sel-deletion-domination",
-            "m1-cor-core-pencil",
-            "m1-prop-pencil-local"
+            "m1-cor-core-pencil"
           ]
         },
         {
@@ -420,7 +418,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Counterexample-to-Rysers-Covering-Conjecture-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A counterexample to Ryser's covering conjecture; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A counterexample to Ryser's covering conjecture.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -497,7 +495,6 @@
           "detail": "[Exclusion of an intermediate approximate subfield] There is no sequence of prime powers q , each satisfying the proper-subfield hypothesis of Theorem~ , together with sets S_q^* and numbers K2 such…",
           "dependsOn": [
             "m2-inc-scalar-coverings",
-            "m2-thm-incidence",
             "m2-inc-simultaneous-extraction"
           ]
         },
@@ -520,7 +517,6 @@
           "source": "Line covers after random deletions",
           "detail": "[Line covers after random deletions] Let q through prime powers for which every proper subfield of _q has order at most q^ 1/3 . Fix a positive integer D and constants >0 and 0<<1 . For each q , let…",
           "dependsOn": [
-            "m2-thm-incidence",
             "m2-lem-martingale"
           ]
         },
@@ -542,9 +538,7 @@
           "kind": "lemma",
           "source": "Selecting compatible translates",
           "detail": "[A domination certificate] Let a finite simple graph have a vertex partition into nonempty parts A_1,,A_n . If there is no independent set containing one vertex from each part, then there are a…",
-          "dependsOn": [
-            "m2-thm-selection"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-gadget",
@@ -604,7 +598,6 @@
             "m2-thm-main",
             "m2-con-pool-properties",
             "m2-con-deletion-count",
-            "m2-lem-gadget",
             "m2-con-intersection"
           ]
         }
@@ -631,7 +624,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -222,7 +222,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-l1-Bass-Conjecture-for-Discrete-Groups-October-5-2026/l1-bass-conjecture.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The ℓ¹-Bass Conjecture for Discrete Groups; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The ℓ¹-Bass Conjecture for Discrete Groups.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -275,9 +275,7 @@
           "kind": "proposition",
           "source": "Cyclic simplex formulas for the trace",
           "detail": "[Trace as a curvature average] Let n=2m>0 and let be a compatible connection family through dimension n . Write A_h for the matrix of d_h on the section t_0=0 . If E_ _n denotes uniform probability…",
-          "dependsOn": [
-            "m1-cy-weights-lemma"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ch-summary",
@@ -343,8 +341,7 @@
           "source": "Smooth summaries at a spatial scale",
           "detail": "For M_2 sufficiently large, uniformly in P,z,y , _w_z(P)_w(P;z,w)&5, \\\\ |_w_z(P)_wH_y(w)-E_r(P^z,y)| &5. The transfer derivatives satisfy (_w| _z(P)_w|^2 _z(P)_w )^ 1/2 C N_1d(h,h') r .",
           "dependsOn": [
-            "m1-ch-accurate-string",
-            "m1-ch-summary"
+            "m1-ch-accurate-string"
           ]
         },
         {
@@ -436,7 +433,6 @@
           "source": "Curvature estimates and the Pfaffian bound",
           "detail": "[Average of the neighbor counts] Let R1 , n8R , and 0 k n . Choose (t_1,,t_n) with uniform probability on _n , and independently choose I uniformly among the k -element subsets of \\ 1,,n\\ . Then E_…",
           "dependsOn": [
-            "m1-thm-main",
             "m1-red-reduction",
             "m1-co-connection",
             "m1-cy-trace-identity",
@@ -457,7 +453,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Bass-trace-conjecture-for-complex-group-rings-September-24-2026/The-Bass-trace-conjecture-for-complex-group-rings-September-24-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Bass trace conjecture and the characteristic-zero Kaplansky idempotent conjecture; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Bass trace conjecture and the characteristic-zero Kaplansky idempotent conjecture.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -671,7 +667,6 @@
             "m2-lem-pfaffian-recurrence",
             "m2-thm-bass",
             "m2-prop-path-cycle",
-            "m2-thm-sparse",
             "m2-lem-locality"
           ]
         },
@@ -724,7 +719,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

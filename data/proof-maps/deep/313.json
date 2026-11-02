@@ -317,7 +317,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Finite-generation-for-the-Kn-local-sphere-September-24-2026/Finite-generation-for-the-Kn-local-sphere-September-24-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Finite generation for the K(n)-local sphere; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Finite generation for the K(n)-local sphere.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -478,9 +478,7 @@
           "kind": "lemma",
           "source": "The completed tower and its extension-space quotient",
           "detail": "[The analytic \\' e tale-marking tower] lem:tower-etale-comparison Let Z_^ et denote the completed perfected tower of ordered \\' e tale Tate-module markings over X_m . There is a relative analytic…",
-          "dependsOn": [
-            "m1-thm-tower-comparison"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-eq-tower-support-descent",
@@ -522,9 +520,7 @@
           "kind": "proposition",
           "source": "Kummer calculations with uniform supports",
           "detail": "[Relative line and disc calculations]prop:kum-line The following statements hold over S , naturally under base change, with arbitrary retained compact profinite parameters. [label=( *)] There is a…",
-          "dependsOn": [
-            "m1-eq-kum-difference"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lemma-21",
@@ -584,9 +580,7 @@
           "kind": "theorem",
           "source": "Compact supports on independent extension tuples",
           "detail": "[Scalar comparison and admissibility] For every s0 and every compact profinite D , extension of constants induces natural quasi-isomorphisms E_ D _ _c(Y_s,) &\\ \\ _c(Y_s D,), \\\\ R_ D _ _c(Y_s,) &\\ \\…",
-          "dependsOn": [
-            "m1-eq-ind-rank-triangle"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lemma-27",
@@ -618,9 +612,7 @@
           "kind": "corollary",
           "source": "Compact supports on independent extension tuples",
           "detail": "[Functions on the independent locus] cor:ind-functions For every s0 , (Y_s,^)=, (Y_s D,^) =R_ D . The identifications are by pullback of scalars. For s1 , projection Y_s Y_ s-1 has relative…",
-          "dependsOn": [
-            "m1-thm-tower-comparison"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-eq-trans-root-functor",
@@ -660,9 +652,7 @@
           "kind": "lemma",
           "source": "Natural root diagrams and Cartier transfers",
           "detail": "[One bound for a fixed finite diagram] Fix a finite Yoneda diagram of translation representations, descend it at a finite marking stage, and fix a cohomological degree. Its successive boundary maps…",
-          "dependsOn": [
-            "m1-eq-trans-root-functor"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-eq-laurent-descent",
@@ -682,9 +672,7 @@
           "kind": "lemma",
           "source": "The Laurent model for analytic compact supports",
           "detail": "lem:laurent-action The G -action on W and on W_ D is jointly continuous from a complete step, with a compact set of group and parameter values, into a complete step. It is uniformly equicontinuous…",
-          "dependsOn": [
-            "m1-eq-laurent-descent"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-corollary-36",
@@ -856,10 +844,7 @@
           "kind": "lemma",
           "source": "Finiteness of the compact coefficient cohomology",
           "detail": "lem:coeff-finite-representations Assume the coefficient finiteness assertion at height m+1 . For a basic coefficient M over A_m , including any fixed tensor product of the basic division-tuple…",
-          "dependsOn": [
-            "m1-thm-pro-countability",
-            "m1-lem-mark-associated-coefficients"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lemma-53",
@@ -881,9 +866,7 @@
           "kind": "corollary",
           "source": "Finiteness of the compact coefficient cohomology",
           "detail": "cor:coeff-morava Let E_n be Morava E -theory for the height- n Honda group over F_ p^n , and let \\[ G_n=P_n( F_ p^n / F_p) \\] be its extended stabilizer. For every i0 and every t Z , both groups \\[…",
-          "dependsOn": [
-            "m1-thm-coeff-finite"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-proposition-55",
@@ -944,7 +927,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

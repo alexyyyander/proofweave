@@ -277,7 +277,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-uniform-Hilbert-transform-estimate-for-Lipschitz-directions-September-25-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A uniform Hilbert transform estimate for Lipschitz directions; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A uniform Hilbert transform estimate for Lipschitz directions.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -348,9 +348,7 @@
           "kind": "lemma",
           "source": "Short transforms and band reduction",
           "detail": "Let \\(b W^ 1, ()\\), and let \\(T= m(D)\\), where \\( m\\) is smooth away from zero and \\[ A( m) =_ 0 r4 _ 0 ||^r| m^ (r) ()|<. \\] Then [b,T] h_2 C A( m)b'_ h_2. The commutator is initially defined on the…",
-          "dependsOn": [
-            "m1-red-carleson"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-red-composition-commutator",
@@ -361,8 +359,7 @@
           "source": "Short transforms and band reduction",
           "detail": "For \\( t b_0\\) and \\(T\\) as in , TC_t h-C_tTh_2 C A( m) t\\, h_2. The constant is uniform over \\( u1\\), \\((u) C_ Lip \\).",
           "dependsOn": [
-            "m1-red-fixed-time",
-            "m1-red-commutator"
+            "m1-red-fixed-time"
           ]
         },
         {
@@ -373,10 +370,7 @@
           "kind": "proposition",
           "source": "Short transforms and band reduction",
           "detail": "The uniform restricted estimate in implies .",
-          "dependsOn": [
-            "m1-red-restricted-strong",
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-red-time-reduction",
@@ -386,9 +380,7 @@
           "kind": "lemma",
           "source": "Short transforms and band reduction",
           "detail": "For any fixed \\(1<p<\\), the contribution of \\((,)<|t|<a\\) to \\(HP_w\\) has \\(L^p\\) norm at most \\(C_p(1+L)\\) if \\(L L_0\\), and at most a fixed \\(C_p\\) otherwise. On the remaining times below \\(w\\),…",
-          "dependsOn": [
-            "m1-red-fixed-time"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-red-scale-truncation",
@@ -430,11 +422,7 @@
           "kind": "proposition",
           "source": "Short transforms and band reduction",
           "detail": "Suppose that the following bounds hold, uniformly for every admissible finite form \\(_ S \\) in , with the fixed packet constants there. The field \\(u:^2\\) is bounded and measurable, the sets…",
-          "dependsOn": [
-            "m1-thm-band-restricted",
-            "m1-red-bin-levels",
-            "m1-red-packet-representation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-tile-prop-model",
@@ -488,9 +476,7 @@
           "detail": "[Tree bound] Suppose a scalar tree \\( T\\) satisfies \\(D_E(s)\\) on its tiles and has size at most \\(\\). If \\(|g|_E\\), then |_ T (f,g)| C|R_T|. The size assumption can be replaced by the same bound on…",
           "dependsOn": [
             "m1-tile-lem-synthesis",
-            "m1-tile-prop-model",
-            "m1-tile-lem-density",
-            "m1-tile-lem-size"
+            "m1-tile-prop-model"
           ]
         },
         {
@@ -531,9 +517,7 @@
           "kind": "lemma",
           "source": "Reference-line concentration and significant directions",
           "detail": "For every t -box Q of width W , the main coefficients satisfy _ z_s Q\\\\_slength(Q) a_s^ main _ H ^2R_s CQ. The same estimate holds after restricting to any fixed subcollection.",
-          "dependsOn": [
-            "m1-tile-lem-synthesis"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-conc-annular-variation",
@@ -563,9 +547,7 @@
           "kind": "proposition",
           "source": "Reference-line concentration and significant directions",
           "detail": "For every slope t , every collection satisfying , every line Y_t=y_0 , every horizontal interval I of length l on that line, and every b2 , the normalized L^b(I) norms of E_t , S_t , and \\[ V_3(_…",
-          "dependsOn": [
-            "m1-conc-annular-variation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-conc-top-good",
@@ -575,9 +557,7 @@
           "kind": "corollary",
           "source": "Reference-line concentration and significant directions",
           "detail": "For every fixed J_*>0 there are a fixed exponent C_ top and a measurable set X_ top with X_ top S e^ -J_*L such that, for all tops T and all z X_ top , _ J \\ _ v W ( F_ T, J (z+(0,v)) _ H + D F_ T, J…",
-          "dependsOn": [
-            "m1-conc-line-moments"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-conc-mask-removal",
@@ -587,9 +567,7 @@
           "kind": "proposition",
           "source": "Reference-line concentration and significant directions",
           "detail": "Given any fixed H>0 , choose A sufficiently large after K_1 and C_ top , and then choose a sufficiently large fixed count threshold exponent C_n . There is a measurable set F_ conc F such that \\[ F…",
-          "dependsOn": [
-            "m1-conc-top-good"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-count-simultaneous",
@@ -671,9 +649,7 @@
           "kind": "lemma",
           "source": "Angular hierarchy and predicted factors",
           "detail": "[Moving weights] In the setting of , fix a top T contributing to A_c , and take endpoint weights _k=_ T,i_ j+1 ,k . If z_0 I Z_0 and the parameters satisfy , then, uniformly for z' I , ( _k(z'))_k_…",
-          "dependsOn": [
-            "m1-hier-weight-variation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-hier-amplitude-motion",
@@ -695,9 +671,7 @@
           "kind": "lemma",
           "source": "Angular hierarchy and predicted factors",
           "detail": "[Good paths] There is a fixed exponent C_ path , chosen independently of the mass cutoff below, such that the following construction is valid. Call R bad at z if any of E_R(z), S_R(z), V_ R, (z) ,…",
-          "dependsOn": [
-            "m1-conc-line-moments"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-hier-path-expansion",
@@ -740,9 +714,7 @@
           "source": "Angular hierarchy and predicted factors",
           "detail": "[Fourier-supported averaging] There is a fixed sufficiently small \\('>0\\) such that, with Q=G^ 3/4 _ j+1 , =' Q/w, every positive probability \\(\\) satisfying \\((-,)\\) obeys \\(\\,1\\).",
           "dependsOn": [
-            "m1-count-simultaneous",
-            "m1-pred-marked-comparison",
-            "m1-res-path-product"
+            "m1-count-simultaneous"
           ]
         },
         {
@@ -765,9 +737,7 @@
           "kind": "lemma",
           "source": "Residual terms and integration along paths",
           "detail": "[Variation of the common coefficients] Uniformly over the segments and their starting indices, _ i_j k<i_f |_j(k)| +_ k=i_j ^ i_f-2 |_j(k+1)-_j(k)| L^ C_w . The exponent C_w is fixed before M is…",
-          "dependsOn": [
-            "m1-hier-weight-variation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-res-path-product",
@@ -778,7 +748,6 @@
           "source": "Residual terms and integration along paths",
           "detail": "[Integrated path product] With M chosen by , the estimate holds for every path top R , every shift, and every vertex parameter with _2 L^2 . Its constants are independent of the tile collection,…",
           "dependsOn": [
-            "m1-pred-marked-comparison",
             "m1-hier-marking"
           ]
         },
@@ -840,8 +809,7 @@
           "source": "Interpolation, boundary averaging, and completion",
           "detail": "[The three model estimates] For the packet forms in , let \\(u\\) be a bounded measurable real slope, let \\(F,E^2\\) be measurable sets of positive finite measure, and suppose \\(\\|f\\|_ H _F\\) and…",
           "dependsOn": [
-            "m1-assembly-improved-model",
-            "m1-red-model-suffices"
+            "m1-assembly-improved-model"
           ]
         }
       ]
@@ -861,7 +829,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

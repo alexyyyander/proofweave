@@ -267,7 +267,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Tangent-flow-uniqueness-2026-09-24/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -373,8 +373,7 @@
           "source": "A normalized family and its formal Gaussian action",
           "detail": "[Gaussian solutions on a conical tail] Let J H^2_G(S) solve LJ=f_c with f_c L^2_G compactly supported. On a conical tail outside that support, its link displacement belongs to X^ con _h for every…",
           "dependsOn": [
-            "m1-lin-conical",
-            "m1-lin-rates"
+            "m1-lin-conical"
           ]
         },
         {
@@ -406,11 +405,8 @@
           "source": "A normalized family and its formal Gaussian action",
           "detail": "[Normalized family and polynomial jets] Let be the number of cylindrical ends. The observations can be chosen so that their values are q= P(p) in analytic reduced coordinates p=(b,x) R^ m- R^ , with…",
           "dependsOn": [
-            "m1-lin-rates",
             "m1-lin-observations",
-            "m1-lin-gaussian-conical",
-            "m1-lin-gaussian",
-            "m1-lin-conical"
+            "m1-lin-gaussian-conical"
           ]
         },
         {
@@ -431,9 +427,7 @@
           "kind": "lemma",
           "source": "A normalized family and its formal Gaussian action",
           "detail": "[Finite Taylor graphs] For every fixed M1 , let v^ (M) (b,x) be the coefficientwise real normal-height polynomial through degree M in the opening variables, let _M be the multiplier polynomial, and…",
-          "dependsOn": [
-            "m1-lin-family"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ref-real-comparison",
@@ -498,7 +492,6 @@
           "source": "Two lateral stationary actions",
           "detail": "[Exponential backward shielding] On a fixed log-length overlap suppose the hypotheses of Lemma~ hold with E B^ -2 . A solution of the homogeneous difference equation with zero entrance value and…",
           "dependsOn": [
-            "m1-gauge-mixed",
             "m1-gauge-radial"
           ]
         },
@@ -513,8 +506,7 @@
           "dependsOn": [
             "m1-lin-global",
             "m1-arr-contours",
-            "m1-lin-conical",
-            "m1-jump-compatibility"
+            "m1-lin-conical"
           ]
         },
         {
@@ -526,8 +518,7 @@
           "source": "Two lateral stationary actions",
           "detail": "[Endpoint first variation] At fixed compact observation values, a differentiable family of the preceding exact normalized solves satisfies \\[ dG d =_ exits boundary position and momentum terms. \\]…",
           "dependsOn": [
-            "m1-arr-preliminary-solves",
-            "m1-jump-endpoints"
+            "m1-arr-preliminary-solves"
           ]
         },
         {
@@ -548,10 +539,7 @@
           "kind": "lemma",
           "source": "Two lateral stationary actions",
           "detail": "[Geometric telescoping] For any sufficiently high real-coefficient polynomial path \\(p_0(s)\\) with the specified opening jet and any sufficiently large fixed \\(\\), the arrays \\(G_(s,p_0(s)+s^ h)\\),…",
-          "dependsOn": [
-            "m1-arr-real-stops",
-            "m1-arr-division"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-arr-division",
@@ -582,7 +570,6 @@
           "source": "Two lateral stationary actions",
           "detail": "[A regular implicit solve in each array] For the \\(g_i\\) selected above, form actual expressions \\(g_ ,i (s,p)\\) by applying the same finite differentiations and polynomial operations to \\[ G_(s,p)-…",
           "dependsOn": [
-            "m1-arr-gevrey",
             "m1-arr-division",
             "m1-arr-formal-replacement"
           ]
@@ -605,9 +592,7 @@
           "kind": "proposition",
           "source": "Two lateral stationary actions",
           "detail": "[The common-parameter action upper bound] The formal critical arc implies that there are common parameters \\(p(s)\\), having a formal expansion with real coefficients, such that…",
-          "dependsOn": [
-            "m1-arr-flatness-upgrade"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-jump-jump",
@@ -639,9 +624,7 @@
           "kind": "proposition",
           "source": "The collapsing end and its action jump",
           "detail": "[Compatibility of the normalized height families] Fix the common parameter p on the inner parameter ball and the matched numbers Z,Z_* on each adverse end. Choose the fixed constants in the…",
-          "dependsOn": [
-            "m1-jump-height-inverse"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-jump-moving-exit",
@@ -652,7 +635,6 @@
           "source": "The collapsing end and its action jump",
           "detail": "[Variation of a logarithmic exit] Keep p,Z,Z_* fixed and use the canonical prescription _s(g-g_c)=0 at the moving exit. Put = Y . For the normalized family obtained above, its physical boundary…",
           "dependsOn": [
-            "m1-jump-height-inverse",
             "m1-lin-shielding"
           ]
         },
@@ -665,8 +647,7 @@
           "source": "The collapsing end and its action jump",
           "detail": "[Moving exits and the exterior limit] For the common parameter p , first make the high-stop synchronization , then shorten all adverse turns from fixed scaled size to |y| Y_0 . At each fixed…",
           "dependsOn": [
-            "m1-jump-compatibility",
-            "m1-gauge-height"
+            "m1-jump-compatibility"
           ]
         },
         {
@@ -677,10 +658,7 @@
           "kind": "lemma",
           "source": "The collapsing end and its action jump",
           "detail": "[A nonzero lateral difference] Equation has two exterior lateral slope solutions selected by l/y1 on sectors reaching (y^2)=2/3 . On their common positive ray, l_+(y)-l_-(y)=c_0y^3e^ -y^2/2 (1+O(y^…",
-          "dependsOn": [
-            "m1-jump-jump",
-            "m1-jump-endpoints"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-phase-jets",
@@ -721,8 +699,7 @@
           "detail": "[The integrated averaged equation] Continue the preliminary solution from z_1 to its fixed real-radius height section r_0(0,2) . In prescribed transition gauges, use the circular averages of the…",
           "dependsOn": [
             "m1-arr-preliminary-solves",
-            "m1-gauge-mixed",
-            "m1-phase-inner-evaluation"
+            "m1-gauge-mixed"
           ]
         },
         {
@@ -733,9 +710,7 @@
           "kind": "proposition",
           "source": "Mean jets and the phase of the end contributions",
           "detail": "[The phase to constant order] For an adverse end set Z_0=(-)^ -1/2 on the branch continued from positive values, and define Z by its mean height at the common section as in Proposition~ . Let \\[…",
-          "dependsOn": [
-            "m1-phase-primitive"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-phase-no-arc",
@@ -747,8 +722,7 @@
           "detail": "[Exclusion of a critical opening arc] Every real formal arc (b(s),x(s)) through the origin satisfying F(b(s),x(s))=0 , where F is the formal Gaussian action of , has x0 .",
           "dependsOn": [
             "m1-arr-contours",
-            "m1-arr-action-upper",
-            "m1-jump-jump"
+            "m1-arr-action-upper"
           ]
         },
         {
@@ -759,9 +733,7 @@
           "kind": "lemma",
           "source": "The finite-jet obstruction",
           "detail": "[Finite-power estimate] There is an integer m1 such that, for every sufficiently large fixed N , there are a neighborhood of (0,0) and a constant C_N for which |x|^m C_N(| f_N(b,x)|+|x|^ N-1 ) for…",
-          "dependsOn": [
-            "m1-phase-no-arc"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-flow-localized",
@@ -772,7 +744,6 @@
           "source": "A localized gradient inequality",
           "detail": "[Localized gradient and opening estimates] There are (0,1/2) and >0 with the following property. For every sufficiently small >0 there are a neighborhood of S on the observation core, a weak normal…",
           "dependsOn": [
-            "m1-jet-finite-power",
             "m1-ref-finite-taylor",
             "m1-ref-real-comparison"
           ]
@@ -785,9 +756,7 @@
           "kind": "lemma",
           "source": "Propagation and convergence of the rescaled flow",
           "detail": "[Improvement on a smaller ball] Fix a spatial loss (0,1) . Suppose the hypotheses of Proposition~ hold to radius R , and d C_0e^ -R^2/8 . Suppose also that, on each fixed interior fraction of the…",
-          "dependsOn": [
-            "m1-flow-localized"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-flow-propagation",
@@ -833,8 +802,6 @@
           "dependsOn": [
             "m1-flow-propagation",
             "m1-flow-finite-length",
-            "m1-geo-representative",
-            "m1-thm-main",
             "m1-geo-tangent"
           ]
         }
@@ -855,7 +822,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

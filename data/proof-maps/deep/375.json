@@ -252,7 +252,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/De-Giorgis-conjecture-in-dimension-eight-September-26-2026/article.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A positive resolution of De Giorgi's conjecture in dimension eight; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A positive resolution of De Giorgi's conjecture in dimension eight.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -431,10 +431,7 @@
           "source": "Rigidity under a finite density bound",
           "detail": "[Rough gap bound] There is \\(C<\\) such that, at all sufficiently distant good zeros, l(z) C(( s(z))^2+s(z)^ 1/10 ).",
           "dependsOn": [
-            "m1-lem-finite-critical",
-            "m1-thm-finite",
             "m1-lem-finite-green",
-            "m1-lem-diffuse-mean",
             "m1-lem-finite-gap"
           ]
         },
@@ -489,7 +486,6 @@
           "source": "Penalized reach and isolated interfaces",
           "detail": "[An isolated graph and mean-curvature derivatives] There are uniform c,c',C,>0 such that, for sufficiently large d(z) and h in , the zero set in B_ ch (z) is a single graph over T_z , extending over…",
           "dependsOn": [
-            "m1-lem-reach-density-window",
             "m1-thm-finite",
             "m1-cor-finite-subcritical",
             "m1-lem-reach-half-line-barrier"
@@ -539,10 +535,7 @@
           "kind": "lemma",
           "source": "Interface stability and exact interactions",
           "detail": "[Sharp means] For each >0 there exist P_< and, for each fixed P P_ , a number _ ,P >0 such that every zero with 0<D(z)<_ ,P is regular and satisfies cD(z) I_P(z) C_P D(z), I_P(z)(1-)|A(z)|^2,…",
-          "dependsOn": [
-            "m1-lem-diffuse-mean",
-            "m1-lem-diffuse-compactness"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-interface-mean-gradient",
@@ -598,8 +591,6 @@
           "detail": "[A half-space inverse] Let p_0>n , V_g=3g^2-1 , and L_g=-_y-_t^2+V_g(t) on ^m(0,) , with zero Dirichlet trace. For some b_0>0 , uniformly in 0 b b_0 , its inverse maps the norm \\[ _ (y,t) e^ -b|y|…",
           "dependsOn": [
             "m1-lem-reach-half-line-barrier",
-            "m1-prop-interface-exact-comparison",
-            "m1-lem-reach-small-defect",
             "m1-lem-reach-phase-ball"
           ]
         },
@@ -611,9 +602,7 @@
           "kind": "lemma",
           "source": "Interface stability and exact interactions",
           "detail": "[Uniform area on good pieces] For 0<1/4 , the area of X in any unit ball is bounded by a dimensional constant, independently of . Consequently its area in an ambient ball of radius r1 is at most…",
-          "dependsOn": [
-            "m1-lem-diffuse-local"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-interface-integral",
@@ -756,7 +745,6 @@
           "source": "A radial threshold and automatic bounded density",
           "detail": "[Area at small reach] For all sufficiently large R , the set \\[ \\ z B_ 2R :m_H(z)=1,\\ d(z) L/2\\ \\] has area at least c K(R)R^m , with c>0 independent of R and of the selected center.",
           "dependsOn": [
-            "m1-thm-stable",
             "m1-thm-finite"
           ]
         }
@@ -777,7 +765,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

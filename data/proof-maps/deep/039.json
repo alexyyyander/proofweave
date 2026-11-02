@@ -257,7 +257,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Nagatas-Conjecture-for-Plane-Curves-September-23-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Nagata's conjecture for plane curves; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Nagata's conjecture for plane curves.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -420,10 +420,7 @@
           "kind": "lemma",
           "source": "Interpolation on the exponent set",
           "detail": "[Integer row counts] If q(1-)m1 , then the exponent set satisfies N_K& m &&(K),\\\\ \\#\\ K:N_K t\\ & q(m-t+1) &&(1 t m,\\ t).",
-          "dependsOn": [
-            "m1-lem-exponent-enclosure",
-            "m1-lem-slice-profile"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-full-rank",
@@ -437,9 +434,7 @@
             "m1-lem-interpolation",
             "m1-lem-integer-rows",
             "m1-prop-matrix-limit",
-            "m1-thm-main",
             "m1-lem-universal",
-            "m1-prop-squares",
             "m1-prop-necessary-w",
             "m1-lem-collision"
           ]
@@ -453,7 +448,6 @@
           "source": "Fields and multipoint positivity",
           "detail": "Let k be an uncountable algebraically closed field of characteristic zero, and let r10 . There is a countable union of proper Zariski-closed subsets of the space of distinct ordered r -tuples in ^2_k…",
           "dependsOn": [
-            "m1-lem-universal",
             "m1-thm-main"
           ]
         },
@@ -481,7 +475,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Maximal-Seshadri-Constants-on-Arbitrary-Polarized-Surfaces-September-23-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Maximal Seshadri constants on arbitrary polarized surfaces; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Maximal Seshadri constants on arbitrary polarized surfaces.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -616,8 +610,7 @@
           "source": "Finite subgroups as jet tests",
           "detail": "For the fixed parameters d,H,T of Section~ , there is an integer r_0 such that for every integer r r_0 one can choose a single t>T and a subgroup G of r distinct points for which the following holds:…",
           "dependsOn": [
-            "m2-lem-direction",
-            "m2-prop-subgroup-test"
+            "m2-lem-direction"
           ]
         },
         {
@@ -660,7 +653,6 @@
           "detail": "[The square upper bound] For every ample line bundle L on a smooth integral complex projective surface S and every tuple of r distinct points, \\[ (S,L;p_1,,p_r)L^2/r. \\]",
           "dependsOn": [
             "m2-lem-positive-square",
-            "m2-thm-main",
             "m2-cor-torus-test",
             "m2-cor-surface-transfer",
             "m2-lem-jet-open",
@@ -677,10 +669,7 @@
           "detail": "Let K be an uncountable algebraically closed field of characteristic zero, let S be a smooth integral projective surface over K , and let L be an ample line bundle on S . There is an integer…",
           "dependsOn": [
             "m2-thm-main",
-            "m2-lem-jet-open",
-            "m2-lem-positive-square",
-            "m2-prop-homogeneous-nef",
-            "m2-lem-sesha-upper"
+            "m2-lem-jet-open"
           ]
         }
       ]
@@ -697,7 +686,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Maximal-Multipoint-Seshadri-Constants-in-Higher-Dimensions-October-5-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Maximal Multipoint Seshadri Constants in Higher Dimensions; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Maximal Multipoint Seshadri Constants in Higher Dimensions.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -880,7 +869,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

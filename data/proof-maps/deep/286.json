@@ -427,7 +427,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Arithmeticity-of-twisted-finite-correspondences-for-lattices-over-local-fields-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Arithmeticity of twisted finite correspondences for lattices over local fields; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Arithmeticity of twisted finite correspondences for lattices over local fields.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -628,7 +628,6 @@
           "source": "Boundary obstructions, links, and strict gap growth",
           "detail": "[Additional invariant limiting variables] Adjoin to the compact spectral data any bounded limiting tests which are asymptotically unchanged by fixed left and right Fourier shifts. The corresponding…",
           "dependsOn": [
-            "m1-lem-links-gram-transport",
             "m1-prop-links-link"
           ]
         },
@@ -697,9 +696,7 @@
           "kind": "proposition",
           "source": "Transverse Fourier products and geometric transfer",
           "detail": "[Transverse products] Fix face types, a thickness bound, and sufficiently small compact transverse face patches at the basepoint o . Suppose the supports of f and g lie within that thickness of the…",
-          "dependsOn": [
-            "m1-lem-setup-building-interpolation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-transfer-fullness",
@@ -747,7 +744,6 @@
           "detail": "[Sharpness at isolated types] At an isolated source vertex, every candidate is sharp, and all candidate choices agree.",
           "dependsOn": [
             "m1-prop-transfer-transverse",
-            "m1-lem-links-relative-boundedness",
             "m1-lem-transfer-disjointness"
           ]
         },
@@ -761,7 +757,6 @@
           "detail": "[Incidence containment] The following inclusions hold: [label=( *)] The support space of _F( I_i(O)) is contained in _ z F _z(O) . If the path is mixed and p(i) is archimedean, in every even highest…",
           "dependsOn": [
             "m1-lem-links-relative-boundedness",
-            "m1-prop-links-link",
             "m1-lem-links-matrix-data"
           ]
         },
@@ -774,8 +769,7 @@
           "source": "Transverse Fourier products and geometric transfer",
           "detail": "[Propagation of incidence words] Consider a finite word of operations, each replacing either one of a pair of vertices by an incident vertex of a prescribed type, and ending with dual types. Call the…",
           "dependsOn": [
-            "m1-prop-transfer-types",
-            "m1-prop-transfer-incidence"
+            "m1-prop-transfer-types"
           ]
         },
         {
@@ -802,7 +796,6 @@
             "m1-lem-transfer-inequality-word",
             "m1-lem-transfer-incidence-words",
             "m1-prop-transfer-isolated-sharpness",
-            "m1-prop-transfer-incidence",
             "m1-prop-links-gap-count"
           ]
         },
@@ -838,9 +831,7 @@
           "kind": "corollary",
           "source": "Transverse Fourier products and geometric transfer",
           "detail": "[Fibrewise links and polynomial fullness] Disintegrate over the two sharp endpoint faces and use genuine source amplifications if necessary. For product-almost every pair of endpoint fibres, the…",
-          "dependsOn": [
-            "m1-prop-transfer-incidence"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-finite-frame",
@@ -850,9 +841,7 @@
           "kind": "proposition",
           "source": "Reconstruction at finite-place panels",
           "detail": "[Compact-open fixed algebras] For every compact open subgroup U<T , the algebra D_*^U is a countable product of finite matrix algebras. Moreover, D_*^T= C1, and the source action is nontrivial.",
-          "dependsOn": [
-            "m1-lem-links-obstruction"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-finite-arch-separation",
@@ -862,9 +851,7 @@
           "kind": "corollary",
           "source": "Reconstruction at finite-place panels",
           "detail": "[Separation of archimedean types] A connected noncompact simple real source cannot be matched to a finite-place target panel. Consequently the type permutation preserves the archimedean and…",
-          "dependsOn": [
-            "m1-prop-finite-frame"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-finite-corner-automorphisms",
@@ -908,8 +895,7 @@
           "source": "Reconstruction at finite-place panels",
           "detail": "[Separation of residue characteristics] The source and target residue characteristics are equal. The type permutation preserves each residue-characteristic subset of the type list.",
           "dependsOn": [
-            "m1-lem-finite-blocks",
-            "m1-lem-finite-corner-kernel"
+            "m1-lem-finite-blocks"
           ]
         },
         {
@@ -930,9 +916,7 @@
           "kind": "lemma",
           "source": "Reconstruction at finite-place panels",
           "detail": "[The limiting source-only kernel] For any sequence of levels tending to infinity, any choices of blocks at those levels, and any Hausdorff limit G_ of their stabilizers, the subgroup G_(V1) has zero…",
-          "dependsOn": [
-            "m1-lem-finite-corner-kernel"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-finite-dimensions",
@@ -944,8 +928,6 @@
           "detail": "[Dimensions and shrinking stabilizers] Matched finite-place panel groups have equal Lie dimension over their common prime field. The target stabilizers of the blocks of D_n shrink to the identity…",
           "dependsOn": [
             "m1-lem-finite-limit-kernel",
-            "m1-cor-finite-arch-separation",
-            "m1-cor-finite-primes",
             "m1-lem-finite-blocks"
           ]
         },
@@ -958,8 +940,7 @@
           "source": "Reconstruction at finite-place panels",
           "detail": "[The full frame algebra] There is a T -equivariant normal isomorphism \\[ D_* L^(T) \\] with the left translation action. In these coordinates the commuting source action has the form (_s…",
           "dependsOn": [
-            "m1-prop-finite-dimensions",
-            "m1-lem-finite-corner-kernel"
+            "m1-prop-finite-dimensions"
           ]
         },
         {
@@ -1063,8 +1044,7 @@
           "source": "Length multipliers and ray lifts",
           "detail": "[Ray lift] Consider any sequence of finite tracial coefficient algebras, twists, and countable group homomorphisms into \\(Isom(X)\\). Let \\( d_1 \\), \\(l/ d_1 \\), and let \\(Y D\\) have Fourier support…",
           "dependsOn": [
-            "m1-lem-ray-geometry",
-            "m1-lem-ray-angular"
+            "m1-lem-ray-geometry"
           ]
         },
         {
@@ -1076,7 +1056,6 @@
           "source": "Length multipliers and ray lifts",
           "detail": "[Common-endpoint overlap] For a displacement \\(g\\) of length \\(L\\), put \\[ w_ d_1 (g,v)=_X_ o,d_1 (p,v)_ go,d_1 (p,v)\\,dp. \\] There are smooth annular partitions about \\(g^+\\), at integer depths \\(0…",
           "dependsOn": [
-            "m1-prop-ray-lift",
             "m1-lem-ray-unary",
             "m1-prop-ray-radial"
           ]
@@ -1102,8 +1081,7 @@
           "source": "Length multipliers and ray lifts",
           "detail": "[Uniform short approximation] Let \\(R_n\\), and let \\(_n\\) be projective representations in finite tensors as above. Suppose \\|D_ 1_ \\ r_T> R_n\\ _n()\\|_20 (,\\ >0). There are \\(a_n=o(R_n)\\) and…",
           "dependsOn": [
-            "m1-prop-ray-radial",
-            "m1-prop-ray-lift"
+            "m1-prop-ray-radial"
           ]
         },
         {
@@ -1153,9 +1131,7 @@
           "kind": "lemma",
           "source": "Linear subsequences and heights for isolated components",
           "detail": "[Entropy lower bound] Suppose an isolated source type \\(i\\), with factor \\(S\\), is matched to the measured type \\(p(i)\\), with factor \\(T\\). Let \\(Q_S\\) and \\(Q_T\\) be the homogeneous dimensions of…",
-          "dependsOn": [
-            "m1-lem-scale-original-model"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-scale-tight-factor",
@@ -1179,7 +1155,6 @@
           "detail": "[Kazhdan tightening] Fix a finite Kazhdan set \\( F\\). For every \\(>0\\) there is \\(_K>0\\) with the following property. Suppose \\(_n\\) are admissible and \\|D_ 1_ \\ r_T>L_n\\ _n()\\|_2 _K ( F). After…",
           "dependsOn": [
             "m1-lem-scale-tight-factor",
-            "m1-prop-ray-radial",
             "m1-prop-ray-lift",
             "m1-cor-ray-small-change"
           ]
@@ -1257,7 +1232,6 @@
           "source": "Linear subsequences and heights for isolated components",
           "detail": "[Integrated opposite-pair estimate] There is a dense linear subspace E H such that, for each fixed set of mask controls and each E , there is a finite constant C_ with _ B_S^ (2) ,p_(x,y)\\,dm(x,y)…",
           "dependsOn": [
-            "m1-lem-scale-complement-isometry",
             "m1-prop-scale-linear-subsequence"
           ]
         },
@@ -1316,9 +1290,7 @@
           "kind": "proposition",
           "source": "Linear subsequences and heights for isolated components",
           "detail": "[Height at an isolated type] For a matched isolated pair the homogeneous dimensions agree, Q_S=Q_T=Q . There is a family of positive injective self-adjoint operators b_x , affiliated to A_1 , for…",
-          "dependsOn": [
-            "m1-lem-scale-closed-covariance"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-panels-upper",
@@ -1379,8 +1351,7 @@
           "source": "Upper speeds at real panels",
           "detail": "[The defect and the good subspace] For a range W of Lemma~ , put \\[ _0=c_Sr- W. \\] Then _00 . There is a sum G_W W_1 of optimal source-module copies whose codimension in W is at most C_0 . Each copy…",
           "dependsOn": [
-            "m1-lem-panels-riesz",
-            "m1-lem-panels-optimal-modules"
+            "m1-lem-panels-riesz"
           ]
         }
       ]
@@ -1400,7 +1371,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

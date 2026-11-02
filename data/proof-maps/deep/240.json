@@ -422,7 +422,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-CH-Obstruction-to-a-Prescribed-Categoricity-Threshold-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A CH obstruction to a prescribed categoricity threshold; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A CH obstruction to a prescribed categoricity threshold.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -698,10 +698,8 @@
           "dependsOn": [
             "m1-aec-arrays",
             "m1-aec-size",
-            "m1-aec-order-size",
             "m1-cat-bounded",
             "m1-cat-countable-base",
-            "m1-thm-main",
             "m1-aec-class",
             "m1-end-two-models"
           ]
@@ -728,8 +726,7 @@
           "detail": "The class \\(K\\) has neither joint embedding nor amalgamation. The failure of amalgamation can be witnessed over a countable model.",
           "dependsOn": [
             "m1-end-two-models",
-            "m1-aec-class",
-            "m1-cat-bounded"
+            "m1-aec-class"
           ]
         },
         {
@@ -755,8 +752,6 @@
           "detail": "If \\(H K\\) has countable base, its canonical point \\(p_H\\) does not factor through \\(Sh( C_0^ op ,J_ )\\). This applies, in particular, to every model on the categoricity tail \\(\\|H\\|\\).",
           "dependsOn": [
             "m1-bool-extension",
-            "m1-aec-order-size",
-            "m1-aec-size",
             "m1-cat-bounded",
             "m1-cat-tail"
           ]
@@ -775,7 +770,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Eventual-Categoricity-for-Abstract-Elementary-Classes-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Eventual categoricity for abstract elementary classes; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Eventual categoricity for abstract elementary classes.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -848,9 +843,7 @@
           "kind": "theorem",
           "source": "Set codes and models indexed by orders",
           "detail": "[Order presentation] Suppose has arbitrarily large models and ()= . There are at most labels, each of positive finite arity, and a functor E from nonempty linear orders and order embeddings to and…",
-          "dependsOn": [
-            "m2-found-partition"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-found-order-basic",
@@ -984,9 +977,7 @@
           "kind": "proposition",
           "source": "Stable diagrams and amalgamation at closed levels",
           "detail": "[Stable diagrams] There is a definable, nondecreasing cardinal function \\(t\\), with \\(t()>+\\) a categoricity cardinal for every infinite \\(\\), having the following properties. Tuples of length at…",
-          "dependsOn": [
-            "m2-lev-canonical-classes"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lev-closure-categoricity",
@@ -1084,7 +1075,6 @@
           "detail": "[Amalgamation at closed levels] There is an unbounded class of strong-limit cardinals \\(\\) of countable cofinality with the following properties. \\(\\) is categorical in \\(\\), and any two \\(\\)-sized…",
           "dependsOn": [
             "m2-lev-closure-categoricity",
-            "m2-lev-placed-lifts",
             "m2-lev-stabilization",
             "m2-lev-testing"
           ]
@@ -1120,8 +1110,7 @@
           "dependsOn": [
             "m2-found-order-template",
             "m2-lev-stabilization",
-            "m2-lev-closure-categoricity",
-            "m2-lev-amalgamation"
+            "m2-lev-closure-categoricity"
           ]
         },
         {
@@ -1167,9 +1156,7 @@
           "kind": "lemma",
           "source": "The one-dimensional calculus",
           "detail": "[Parameter orbits for a scheme] Fix an infinite . If >b+ and ^= , then, at every sufficiently closed level greater than , there are at most diagrams of -tuples over a fixed parameter tuple of length…",
-          "dependsOn": [
-            "m2-lev-block-transpositions"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-calc-testing",
@@ -1180,8 +1167,7 @@
           "source": "The one-dimensional calculus",
           "detail": "[Uniform testing for natural layouts] For each fixed natural layout there is a monotone cardinal function g() with the following property. Two placed comparison types of tuples of length at most over…",
           "dependsOn": [
-            "m2-lev-ordinal-vectors",
-            "m2-lev-testing"
+            "m2-lev-ordinal-vectors"
           ]
         },
         {
@@ -1218,7 +1204,6 @@
           "source": "The one-dimensional calculus",
           "detail": "[Amalgamation and types for a scheme] At sufficiently closed levels, C has amalgamation. If A B_0,B_1 are arrows and v_i are equally indexed bounded tuples in B_i , then an amalgam over A identifying…",
           "dependsOn": [
-            "m2-calc-placed-comparisons",
             "m2-calc-compact-placement",
             "m2-calc-testing"
           ]
@@ -1242,8 +1227,6 @@
           "source": "The one-dimensional calculus",
           "detail": "[Uniform majority approximations] Let |v| and let _0 be bounded. At sufficiently closed levels there are approximation sequences for p=(v/A) at size , of every prescribed bounded infinite length .…",
           "dependsOn": [
-            "m2-lev-rich-orders",
-            "m2-lev-directed-unions",
             "m2-calc-placed-comparisons",
             "m2-calc-parameter-orbits"
           ]
@@ -1258,8 +1241,7 @@
           "detail": "[Stationary free extension] Let A B be an arrow at a sufficiently closed level and let p=(v/A) , where |v| . There is a specified actual type p^B over B , called its free lift, extending p . At every…",
           "dependsOn": [
             "m2-calc-compact-placement",
-            "m2-calc-scheme-amalgamation",
-            "m2-calc-approximations"
+            "m2-calc-scheme-amalgamation"
           ]
         },
         {
@@ -1314,8 +1296,7 @@
           "source": "The one-dimensional calculus",
           "detail": "[Universality of a fresh strip] Let C already satisfy the working package. In addition to its fixed template F , one may use a presentation G with the following properties: it has a fixed set of…",
           "dependsOn": [
-            "m2-calc-support-closure",
-            "m2-calc-scheme-amalgamation"
+            "m2-calc-support-closure"
           ]
         },
         {
@@ -1326,9 +1307,7 @@
           "kind": "corollary",
           "source": "The one-dimensional calculus",
           "detail": "[Approximate retractions] For same-level A B there are arrows (r_i:B A:i<) such that, for every a A , \\[ |\\ i<:r_i(a) a\\ |<_0. \\] The maps are not asserted to fix all of A at once.",
-          "dependsOn": [
-            "m2-calc-universal-strip"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-calc-retraction-descent",
@@ -1362,8 +1341,7 @@
           "source": "Isolation and dominated extensions",
           "detail": "There is a bound function h , depending only on the fixed working scheme, with the following property. Put =|u,c|+_0 . At sufficiently closed eligible levels, precisely one of the following…",
           "dependsOn": [
-            "m2-calc-compact-placement",
-            "m2-iso-free-isolation"
+            "m2-calc-compact-placement"
           ]
         },
         {
@@ -1401,7 +1379,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -422,7 +422,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Margulis-Platonov-conjecture-over-global-function-fields-October-5-2026/margulis-platonov-global-function-fields.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Margulis–Platonov conjecture over global function fields; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Margulis–Platonov conjecture over global function fields.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -572,7 +572,6 @@
           "detail": "[The symmetric permutation lattice] Let m3 , let =S_m c with c^2=1 , and let \\[ M=(^m/1)sign_ C_2 , 1=(1,,1). \\] Thus S_m permutes coordinates and c acts by -1 . An extension of by M that splits over…",
           "dependsOn": [
             "m1-tor-sign-element",
-            "m1-tor-norm-approximation",
             "m1-tor-cyclic-detection"
           ]
         },
@@ -596,7 +595,6 @@
           "detail": "[Commuting approximation] The following assertions hold. Let a,b L^1 . For each v A , let x_v,t_v U(k_v) belong to one common separable field torus and satisfy x_v=a_v and t_v=b_v . There exist…",
           "dependsOn": [
             "m1-tor-norm-approximation",
-            "m1-approx-power-factor",
             "m1-arith-closure"
           ]
         },
@@ -695,9 +693,7 @@
           "source": "Additive recurrence and the exclusion of simple colors",
           "detail": "In odd characteristic, \\(\\)-almost every palette satisfies . In fact, for each \\(h H\\), membership in \\( S\\) is constant on all positions \\(xh\\), \\(x A\\).",
           "dependsOn": [
-            "m1-pal-translation-obstruction",
-            "m1-rec-spectral-concentration",
-            "m1-rec-quadric-orthogonality"
+            "m1-pal-translation-obstruction"
           ]
         },
         {
@@ -808,7 +804,6 @@
           "detail": "For d E^ satisfying Equation~ , the invariance group of F_d is transitive on D^2\\ (0,0)\\ . Consequently, whenever b,bd D , f(bd)-f(b)=( d/d).",
           "dependsOn": [
             "m1-char-supported-shears",
-            "m1-char-trivial",
             "m1-quo-local-abelianization"
           ]
         },
@@ -884,7 +879,6 @@
           "source": "Induction on the degree",
           "detail": "Let K=k_v . Arbitrarily close to 1 in S(K) there are nonempty open sets of elements u(K) for which both equations in have a solution a . The elements a,w,q may all be required to lie in any…",
           "dependsOn": [
-            "m1-ind-main",
             "m1-arith-finite-index",
             "m1-thm-main"
           ]
@@ -925,7 +919,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Margulis-Platonov-conjecture-over-number-fields-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Margulis–Platonov conjecture over number fields; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Margulis–Platonov conjecture over number fields.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -946,9 +940,7 @@
           "kind": "corollary",
           "source": "Introduction",
           "detail": "[Positive-density congruence subgroup property] Let k be a number field and G an absolutely almost simple simply connected algebraic k -group. Let M/k be the minimal Galois extension over which G…",
-          "dependsOn": [
-            "m2-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-known-mp",
@@ -1065,7 +1057,6 @@
           "source": "Finite quotients of an odd-degree unitary group",
           "detail": "With the preceding notation, the following statements hold. [label=( *)] Let a,b A_0 . For every v A , suppose that x_v,t_v U(k_v) commute and have determinants a_v,b_v . There exist commuting x',t…",
           "dependsOn": [
-            "m2-lem-norm-torus",
             "m2-prop-power-approximation",
             "m2-prop-finite-defect"
           ]
@@ -1141,7 +1132,6 @@
           "source": "Excluding finite abelian characters",
           "detail": "Let E D be a * -stable maximal subfield, Galois over L . Let d E^ have n distinct L -conjugates t_1,,t_n whose set is disjoint from \\ t_1,, t_n\\ , where z=z^* on E . Then, whenever b,bd D ,…",
           "dependsOn": [
-            "m2-lem-chars-pure-shears",
             "m2-lem-chars-additive-span"
           ]
         },
@@ -1189,7 +1179,6 @@
           "detail": "Let b D^\\# have nonzero Hermitian part. For every r_1(D)(L) with r_ A_D W and r_ sufficiently close to 1 , one has f^\\#(br)=f^\\#(b).",
           "dependsOn": [
             "m2-cor-chars-step-invariance",
-            "m2-thm-no-characters",
             "m2-lem-colors-local-abelianization"
           ]
         },
@@ -1234,9 +1223,7 @@
           "source": "Excluding nonabelian simple colors",
           "detail": "Let 0<1 . [label=( *)] There is an integer r=r()2 such that, for every probability-preserving action T of ^2 and every event E of probability , some 1 j r satisfies \\[ P(E T_ (j,j^2) ^ -1 E)>0. \\]…",
           "dependsOn": [
-            "m2-thm-no-simple-colors",
-            "m2-prop-palette-measure",
-            "m2-lem-finite-obstruction"
+            "m2-prop-palette-measure"
           ]
         },
         {
@@ -1258,8 +1245,7 @@
           "source": "The finite simple-group obstruction",
           "detail": "Let p3 be an odd prime, let H=_p(q) be the full isometry group of a nondegenerate Hermitian form over _ q^2 , and let T H be an irreducible torus of order q^p+1 . If w T has field degree p over _ q^2…",
           "dependsOn": [
-            "m2-lem-finite-abelian-test",
-            "m2-lem-finite-obstruction"
+            "m2-lem-finite-abelian-test"
           ]
         },
         {
@@ -1292,7 +1278,6 @@
           "detail": "If D=M_3(L) , then V_0/R=1 .",
           "dependsOn": [
             "m2-prop-finite-defect",
-            "m2-lem-unitary-uniform-roots",
             "m2-lem-restriction-mp"
           ]
         },
@@ -1352,7 +1337,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

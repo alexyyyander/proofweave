@@ -92,7 +92,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Single-fold-Diophantine-representations-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Single-fold Diophantine representations; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Single-fold Diophantine representations.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -201,9 +201,7 @@
           "kind": "proposition",
           "source": "A power graph from a growth function",
           "detail": "Suppose that g: has a complete single-fold graph and that there are fixed constants >0 and u_0 , with u_04 , such that ( u)^2< g(u)<u u (u u_0). Then the relation \\[ (b,n,c) b2\\ and \\ c=b^n (b,n,c)…",
-          "dependsOn": [
-            "m1-lem-pell-sequences"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-subset",
@@ -238,9 +236,7 @@
           "dependsOn": [
             "m1-prop-power",
             "m1-prop-subset",
-            "m1-thm-main",
             "m1-lem-counter-universality",
-            "m1-cor-unique-h10",
             "m1-prop-rank-one"
           ]
         }
@@ -261,7 +257,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

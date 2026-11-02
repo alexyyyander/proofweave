@@ -191,81 +191,97 @@
     {
       "from": "m1-lem-prices-remove",
       "to": "m1-lem-prices-scalar-pairing",
+      "label": "lem:prices-remove",
       "context": "Fix $c$ and first take $s\\in V_m$. Apply Lemma~\\ref{lem:prices-remove} to the actual terminal measures \\[ U_s=\\phi_s(\\nu^c)_+, \\qquad V_s=\\phi_s(\\nu^c)_-. \\] Their masses have difference $"
     },
     {
       "from": "m1-lem-local",
       "to": "m1-prop-prices",
+      "label": "lem:local",
       "context": ":prices-scalar-masses} therefore imply $\\rho_q^{c_{n,\\varepsilon}}\\ge0$, including the zero case. These residuals are the positive measures $\\sigma_i$ of Lemma~\\ref{lem:local}, in the unit directions $e_+(n),e_-(n)$. Each of these directions has dot product at least $1/2$ with either test direc"
     },
     {
       "from": "m1-prop-label-packing",
       "to": "m1-lem-labels-spatial-comparison",
+      "label": "prop:label-packing",
       "context": "[Proof of Proposition~\\ref{prop:label-packing}] Denote the bracket for a level-$l$ vertex by $\\mathcal C_l(q)$. All its quantities are nonnegative and measurable; the"
     },
     {
       "from": "m1-prop-finite-band",
       "to": "m1-lem-labels-spatial-comparison",
+      "label": "prop:finite-band",
       "context": "[Proof of Proposition~\\ref{prop:finite-band}] We first bound the normalized band in \\eqref{eq:finite-band}. For a label history $\\mathbf n=(n_1,\\ldots,n_m)\\in\\mathc"
     },
     {
       "from": "m1-lem-good-label",
       "to": "m1-lem-labels-spatial-comparison",
+      "label": "lem:good-label",
       "context": "_p$ and $q\\in\\mathcal R(Q)$, every $x\\in Q$ satisfies $|x-q|_\\infty\\le21r_k$. Thus $Q\\subset D(q)$, and $Q$ also lies in the $50r_k$ neighborhood used in Lemma~\\ref{lem:good-label}. If $(q,n)$ is bad and $E_k(q)\\le c_*$, that lemma says $\\Prob_x(n_k=n)=0$ throughout $Q$. Every remaining bad-root cha"
     },
     {
       "from": "m1-prop-prices",
       "to": "m1-lem-labels-spatial-comparison",
+      "label": "prop:prices",
       "context": "ning bad-root charge is bounded by $a_q\\le c_*^{-1}a_qE_k(q)$. Take the supremum of each label probability on $Q$ and apply the directional part of Proposition~\\ref{prop:prices}. Its price charges sum by \\eqref{eq:price-budget}; its root charges sum by \\eqref{eq:neighbor-budget}. The finite palet"
     },
     {
       "from": "m1-lem-appendix-sobolev-calculus",
       "to": "m1-lem-sobolev-band",
+      "label": "lem:appendix-sobolev-calculus",
       "context": "The translation estimate of Lemma~\\ref{lem:appendix-sobolev-calculus} gives, for $t\\ge a$ and $z\\in\\R^2$, \\begin{align*} |A_tg(x+z)-A_tg(x)| &\\le\\frac1{\\pi t^2}\\int_{B(x,t)}|g(y+z)-g(y)|\\"
     },
     {
       "from": "m1-prop-finite-band",
       "to": "m1-lem-sobolev-band",
+      "label": "prop:finite-band",
       "context": "wer radius $a$, \\eqref{eq:band-uniform-approximation} gives uniform convergence of the band envelopes. If $b/a$ is a power of two greater than one, Proposition~\\ref{prop:finite-band} therefore passes to the limit by the local variation inequality in Lemma~\\ref{lem:appendix-vector-measure}: \\[ \\int|\\n"
     },
     {
       "from": "m1-lem-appendix-vector-measure",
       "to": "m1-lem-sobolev-band",
+      "label": "lem:appendix-vector-measure",
       "context": "lopes. If $b/a$ is a power of two greater than one, Proposition~\\ref{prop:finite-band} therefore passes to the limit by the local variation inequality in Lemma~\\ref{lem:appendix-vector-measure}: \\[ \\int|\\nabla S_{a,b}g| \\le\\liminf_j\\int|\\nabla S_{a,b}g_j| \\le C\\lim_j\\|\\nabla g_j\\|_1=C\\|\\nabla g\\|_1. \\] The li"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-lem-sobolev-band",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] At this point take $g=|f|$. Lemma~\\ref{lem:appendix-sobolev-calculus} shows that $g\\in W^{1,1}(\\R^2)$ and \\[ V_g:=\\|\\"
     },
     {
       "from": "m1-lem-appendix-planar-embedding",
       "to": "m1-lem-sobolev-band",
+      "label": "lem:appendix-planar-embedding",
       "context": "mma~\\ref{lem:appendix-sobolev-calculus} shows that $g\\in W^{1,1}(\\R^2)$ and \\[ V_g:=\\|\\nabla g\\|_1\\le\\|\\nabla f\\|_1. \\] The planar Sobolev inequality in Lemma~\\ref{lem:appendix-planar-embedding} gives $g\\in L^2(\\R^2)$. The strong $L^2$ maximal inequality \\cite[(1.2)]{Kinnunen1997} then yields $Mf=Mg\\in L^2(\\R^2)$"
     },
     {
       "from": "m1-lem-appendix-square",
       "to": "m1-lem-sobolev-band",
+      "label": "lem:appendix-square",
       "context": "res $Q$ of side $t$, and retain those meeting $O$. There are finitely many, since $O$ is contained in a bounded neighborhood of $K$. Choose the cutoff of Lemma~\\ref{lem:appendix-square}, equal to one on $3Q$ and supported in $5Q$, and put \\[ c_Q=\\frac1{|5Q|}\\int_{5Q}g,\\qquad g_Q=\\chi_Q(g-c_Q). \\] The p"
     },
     {
       "from": "m1-lem-appendix-planar-embedding",
       "to": "m1-cor-bv-input",
+      "label": "lem:appendix-planar-embedding",
       "context": "Df|(\\R^2). \\] The variation formula and lower semicontinuity show that these gradient norms tend to $|Df|(\\R^2)$, so the approximation is strict in $BV$. Lemma~\\ref{lem:appendix-planar-embedding} bounds $\\|f_\\varepsilon\\|_2$ uniformly; an almost-everywhere convergent subsequence and Fatou's lemma give $f\\in L^2$."
     },
     {
       "from": "m1-thm-main",
       "to": "m1-cor-bv-input",
+      "label": "thm:main",
       "context": "silon-Mf|\\le M(f_\\varepsilon-f)$ and the strong $L^2$ maximal inequality yield $Mf\\in L^2$ and $Mf_\\varepsilon\\to Mf$ in $L^2$, hence locally in $L^1$. Theorem~\\ref{thm:main} bounds the global weak-gradient norm of $Mf_\\varepsilon$ by $C|Df|(\\R^2)$. Lemma~\\ref{lem:appendix-vector-measure} now"
     },
     {
       "from": "m1-lem-appendix-vector-measure",
       "to": "m1-cor-bv-input",
+      "label": "lem:appendix-vector-measure",
       "context": "Mf_\\varepsilon\\to Mf$ in $L^2$, hence locally in $L^1$. Theorem~\\ref{thm:main} bounds the global weak-gradient norm of $Mf_\\varepsilon$ by $C|Df|(\\R^2)$. Lemma~\\ref{lem:appendix-vector-measure} now gives the asserted finite derivative measure and local $BV$ regularity. For $u=M\\1_E$ we have $0\\le u\\le1$. Apply"
     },
     {
       "from": "m1-lem-appendix-sobolev-calculus",
       "to": "m1-lem-appendix-planar-embedding",
+      "label": "lem:appendix-sobolev-calculus",
       "context": "ves $|u(x,y)|\\le a(y)$ and $|u(x,y)|\\le b(x)$. Thus $|u(x,y)|^2\\le a(y)b(x)$; integrating proves the first inequality. For general $u$, approximate as in Lemma~\\ref{lem:appendix-sobolev-calculus}. Applying the smooth inequality to differences shows that the approximants are Cauchy in $L^2$. Their $L^2$ limit agree"
     }
   ]

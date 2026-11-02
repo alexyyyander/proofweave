@@ -147,7 +147,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Kadisons-similarity-theorem-through-uniform-derivation-estimates-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Kadison's similarity theorem through uniform derivation estimates; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Kadison's similarity theorem through uniform derivation estimates.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -282,9 +282,7 @@
           "kind": "lemma",
           "source": "Free-product geometry and invariant tensors",
           "detail": "[Word structure] The symmetrized operator G preserves every level H_k in . There are operators B_k B(J_k) , with \\|B_k\\|\\|G\\| , such that, for all d_0 E , x E^ , and J_k , G(d_0 x^ k ) &=d_0 x^ k…",
-          "dependsOn": [
-            "m1-lem-invariant-intertwiners"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-full-column",
@@ -343,7 +341,6 @@
           "source": "Free compression and the Hankel test",
           "detail": "[Free compression] For b=b^* p C p with _p(b)=0 , E_ C (ebe)=u^2b, \\|ebe\\|2 u\\,\\|b\\|_ 2,_p +u\\|b\\|, u=_p(e). Here E_ C is the trace-preserving conditional expectation from onto C .",
           "dependsOn": [
-            "m1-thm-free-corner",
             "m1-lem-free-symmetrization"
           ]
         },
@@ -378,8 +375,7 @@
           "source": "Transfer to finite factors",
           "detail": "[Finite standard multiplicities] Let \\(M\\) be a separable-predual \\(II_1\\) factor, and let \\(M\\) act on \\(H_r=L^2(M)^r\\) by common left multiplication, where \\(r1\\) is finite. For every \\(Y B(H_r)\\),…",
           "dependsOn": [
-            "m1-lem-irreducible-hyperfinite",
-            "m1-thm-free-corner"
+            "m1-lem-irreducible-hyperfinite"
           ]
         },
         {
@@ -418,10 +414,7 @@
           "dependsOn": [
             "m1-lem-cyclic-implementation",
             "m1-thm-universal",
-            "m1-lem-cb-implementation",
-            "m1-thm-similarity",
-            "m1-thm-kirchberg",
-            "m1-cor-hyperreflexivity"
+            "m1-lem-cb-implementation"
           ]
         }
       ]
@@ -441,7 +434,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

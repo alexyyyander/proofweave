@@ -247,7 +247,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-projective-fourfold-with-large-fundamental-group-and-non-Stein-universal-cover-October-5-2026/large-fundamental-group-non-stein.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A projective fourfold with large fundamental group and non-Stein universal cover; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A projective fourfold with large fundamental group and non-Stein universal cover.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -289,7 +289,6 @@
           "source": "Reduction to an abelian surface with cyclic image",
           "detail": "Let W be a projective variety, F W a closed subscheme, and L a very ample line bundle. Fix a positive integer . For all sufficiently large m and every set of distinct points p_1,,p_ W F , the…",
           "dependsOn": [
-            "m1-prop-large-reduction",
             "m1-red-compact-criterion"
           ]
         },
@@ -468,7 +467,6 @@
           "source": "An infinite cyclic image",
           "detail": "The readings just constructed satisfy the three chart hypotheses of Lemma~ .",
           "dependsOn": [
-            "m1-prop-model-hyperbolicity",
             "m1-prop-kernel-compatibility"
           ]
         },
@@ -526,7 +524,6 @@
           "detail": "There exist a simple abelian surface A , a smooth connected projective complex variety S' , and a closed embedding A S' such that \\[ (_1(A)_1(S')). \\]",
           "dependsOn": [
             "m1-thm-orbifold-cyclic",
-            "m1-lem-ambient-realization",
             "m1-lem-ambient-blowdown",
             "m1-thm-main",
             "m1-prop-large-reduction",
@@ -547,7 +544,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-surface-counterexample-to-Shafarevich-holomorphic-convexity-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A surface counterexample to Shafarevich holomorphic convexity; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A surface counterexample to Shafarevich holomorphic convexity.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -629,7 +626,6 @@
           "source": "A family of paired punctures",
           "detail": "For every m , the induced operator _m- on the weighted completed Magnus algebra of F raises degree by at least one.",
           "dependsOn": [
-            "m2-lem-degree-one",
             "m2-lem-substitution"
           ]
         },
@@ -653,9 +649,7 @@
           "kind": "lemma",
           "source": "A family of paired punctures",
           "detail": "The joint action of on the 48 markings and on the sign of x_0 factors through a finite 2-group. The element _* has nontrivial sign, whereas _*^2 fixes every marking and acts trivially on _ pair .",
-          "dependsOn": [
-            "m2-lem-family"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-shift-basis",
@@ -665,9 +659,7 @@
           "kind": "lemma",
           "source": "A weighted presentation for the pinched fiber",
           "detail": "The elements in form a free pro-\\(2\\) basis of \\(L\\). Give \\(u_ i,j \\) weight \\(i++1\\), and denote the resulting Magnus valuation by \\(_L\\). Each of \\(T_1-\\), \\(T_2-\\), and \\(-\\) raises the degree of…",
-          "dependsOn": [
-            "m2-lem-substitution"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-involution",
@@ -689,9 +681,7 @@
           "kind": "lemma",
           "source": "A weighted presentation for the pinched fiber",
           "detail": "Let \\(: F L H\\) be the continuous extension of the homomorphism from the preceding section: \\[ x T_1, y T_2, a_j a_ 0,j , c_0,c_11. \\] If \\(f F\\) has \\(_F(f) n\\), its \\(L\\)-component under \\(\\) has…",
-          "dependsOn": [
-            "m2-lem-shift-basis"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-deep-invariance",
@@ -722,8 +712,7 @@
           "source": "An infinite quotient compatible with the family",
           "detail": "The group Q is infinite. The homomorphism \\[ :_1(U) Q \\] induced by _0 has dense image on every punctured fiber. Each component meridian of D has finite image, and every component meridian of D_* has…",
           "dependsOn": [
-            "m2-prop-involution",
-            "m2-lem-weighted-gs"
+            "m2-prop-involution"
           ]
         },
         {
@@ -744,10 +733,7 @@
           "kind": "lemma",
           "source": "The projective surface and its rational fiber",
           "detail": "Let h:X C' be the composite of p and Y C' . The resolution can be chosen so that the reduced fiber \\[ Z=h^ -1 (c_*)_ red \\] has only smooth rational irreducible components and ordinary transverse…",
-          "dependsOn": [
-            "m2-lem-distinguished-meridians",
-            "m2-lem-local-detection"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-infinite-special-image",
@@ -758,7 +744,6 @@
           "source": "The projective surface and its rational fiber",
           "detail": "Let Z=h^ -1 (c_*)_ red be the rational nodal fiber of . Some connected component Z_0 of Z satisfies \\[ |(_1(Z_0)_1(X))| =. \\]",
           "dependsOn": [
-            "m2-prop-infinite-quotient",
             "m2-thm-main",
             "m2-lem-rational-hull"
           ]
@@ -786,7 +771,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -152,7 +152,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Existential-universal-real-sentences-in-the-counting-hierarchy-October-4-2026/etr-counting-hierarchy.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Existential–universal real sentences in the counting hierarchy; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Existential–universal real sentences in the counting hierarchy.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -195,9 +195,7 @@
           "kind": "lemma",
           "source": "Counting and controlled polynomial families",
           "detail": "[Finite-field coefficient extraction] Let V_w(x,t) be a controlled family, where x=(x_1,,x_h) is a selected subset of its indeterminates and t denotes the remaining ones. Let ^h be a short index.…",
-          "dependsOn": [
-            "m1-lem-counting"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-controlled-closure",
@@ -207,10 +205,7 @@
           "kind": "proposition",
           "source": "Counting and controlled polynomial families",
           "detail": "[Closure of controlled families] Controlled families are preserved by each of the following operations, applied a fixed number of times: sums and products over short index sets, with uniform bounds…",
-          "dependsOn": [
-            "m1-lem-counting",
-            "m1-lem-field-product"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-crt-sign",
@@ -220,10 +215,7 @@
           "kind": "proposition",
           "source": "Counting and controlled polynomial families",
           "detail": "[Sign from residues] Let X(w) and suppose that nonnegative short integers m(w) and (w) are computable in polynomial time, with |X(w)|2^ m(w) . Define Z=(16,m,), Y=2Z^4. If X(w) p , represented in \\…",
-          "dependsOn": [
-            "m1-lem-field-product",
-            "m1-lem-counting"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-controlled-sign",
@@ -292,8 +284,7 @@
           "detail": "[Multiplication determinant rule] Let n1 be polynomially bounded and polynomial-time computable, and let 2 be a short polynomial-time computable integer. Suppose that r_1,,r_n,v are controlled…",
           "dependsOn": [
             "m1-lem-monomial-basis",
-            "m1-prop-char-coeff",
-            "m1-prop-controlled-closure"
+            "m1-prop-char-coeff"
           ]
         },
         {
@@ -384,10 +375,8 @@
           "detail": "Let F be nonnegative on ^n , let n1 , and choose an odd 3 with > F . Define G,h_u,f_i,Q,D by Equations~ and . Let H,V be nonnegative integers bounding _2Q and _uQ , respectively, and choose the…",
           "dependsOn": [
             "m1-lem-existential-discriminant",
-            "m1-lem-real-eigenline",
             "m1-lem-bounded-minimum",
             "m1-prop-controlled-closure",
-            "m1-thm-controlled-existential",
             "m1-prop-multiplication-determinant",
             "m1-cor-controlled-sign"
           ]
@@ -421,7 +410,6 @@
           "source": "From two real blocks to two existential tests",
           "detail": "[Candidate coordinates] Let W be nonnegative on ^k , where k1 , and let C be a nonempty subset of Z=\\ W=0\\ that is both open and closed in Z . Choose an odd integer 3 with > W , and put \\[ G(c)=_ i=1…",
           "dependsOn": [
-            "m1-lem-monomial-basis",
             "m1-prop-multiplication-determinant"
           ]
         },
@@ -462,7 +450,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

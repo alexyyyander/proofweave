@@ -417,7 +417,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/From-critical-crossings-to-quenched-near-critical-universality-in-Voronoi-percolation-October-5-2026/critical-crossings-quenched-near-critical-universality-voronoi-percolation.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from From critical crossings to quenched near-critical universality in Voronoi percolation; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from From critical crossings to quenched near-critical universality in Voronoi percolation.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -468,9 +468,7 @@
           "kind": "proposition",
           "source": "Critical estimates and their geometric consequences",
           "detail": "[Quenched scalar Cardy convergence] For every fixed polygon quad Q , \\[ ^ _e (C_Q)Cardy(Q) in probability over the Poisson geometry. \\] The assertion holds simultaneously for every member of any…",
-          "dependsOn": [
-            "m1-lem-pivotal-arms"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-good-sequences",
@@ -503,7 +501,6 @@
           "source": "Critical estimates and their geometric consequences",
           "detail": "[Bulk arms of arbitrary color order] There are c_0,C>0 such that, on a deterministic sequence and at fixed positive radii r<R , the probability of four disjoint bulk arms of any specified color order…",
           "dependsOn": [
-            "m1-lem-rectangle-colors",
             "m1-lem-good-sequences"
           ]
         },
@@ -612,9 +609,7 @@
           "kind": "lemma",
           "source": "Critical explorations and oriented loops",
           "detail": "[Contact rules] In a subsequential curve limit, the exploration has no interior triple point, no double point on the original boundary, and no second visit to either switch. Its interior double…",
-          "dependsOn": [
-            "m1-lem-color-arms"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-face-convergence",
@@ -639,8 +634,7 @@
           "detail": "[The stopped target face] At a stop separated from the two endpoints of L , the outgoing edge faces the unqueried component containing the target. In a coupled subsequential limit its boundary…",
           "dependsOn": [
             "m1-lem-revealed-faces",
-            "m1-lem-exploration-contacts",
-            "m1-lem-boundary-arms"
+            "m1-lem-exploration-contacts"
           ]
         },
         {
@@ -676,7 +670,6 @@
           "source": "Critical explorations and oriented loops",
           "detail": "[Sampled target domains determine the curve] Every subsequential limit of the exploration in Proposition~ has the law of chordal SLE_6 as an ordered curve.",
           "dependsOn": [
-            "m1-lem-new-tip-disconnection",
             "m1-lem-exploration-contacts"
           ]
         },
@@ -703,8 +696,7 @@
           "source": "Critical explorations and oriented loops",
           "detail": "[Oriented loop convergence] In a Jordan disk with monochromatic boundary, along every deterministic sequence of tilings under consideration, the critical interface loops converge to the Camia--Newman…",
           "dependsOn": [
-            "m1-lem-virtual-restoration",
-            "m1-lem-face-convergence"
+            "m1-lem-virtual-restoration"
           ]
         },
         {
@@ -736,7 +728,6 @@
           "source": "Joint crossings and prescribed regions",
           "detail": "[Free segments of a terminal path] Discard squares left unchanged in the test and squares outside its quad. Construct a graph approximation to the middle quad with the remaining middle squares…",
           "dependsOn": [
-            "m1-lem-rectangle-colors",
             "m1-lem-exploration-tightness",
             "m1-lem-color-arms",
             "m1-lem-boundary-arms"
@@ -750,9 +741,7 @@
           "kind": "lemma",
           "source": "Joint crossings and prescribed regions",
           "detail": "[Transfer by polygon witnesses] Let two deterministic good sequences be coupled so that their ordinary critical polygon crossing indicators converge jointly to the same indicators for a countable…",
-          "dependsOn": [
-            "m1-lem-free-segments"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-critical-tests",
@@ -763,7 +752,6 @@
           "source": "Joint crossings and prescribed regions",
           "detail": "[Joint critical tests with prescribed squares] Fix finitely many polygon quads and finitely many closed squares of positive side length, with the squares mutually separated and separated from every…",
           "dependsOn": [
-            "m1-lem-forced-transfer",
             "m1-lem-forced-continuity",
             "m1-lem-good-sequences"
           ]
@@ -777,7 +765,6 @@
           "source": "An absolutely convergent expansion in sites",
           "detail": "[Uniform bound for the site expansion] Fix a box B , finitely many polygonal crossing tests, and R2 replica labels. Let g(1,2) be an exponent in the lower four-arm bound of Lemma~ . There is a…",
           "dependsOn": [
-            "m1-lem-localization",
             "m1-lem-pivotal-arms"
           ]
         },
@@ -859,8 +846,6 @@
           "source": "Replacing a site by a mesoscopic square",
           "detail": "[One-trial comparison] For the preceding fixed layouts and tolerances, there is C_*< , independent of the number of trials, their scales, and sufficiently small mesh, such that (E N B_J^c) C_*\\, (E…",
           "dependsOn": [
-            "m1-lem-necklace-sleeve",
-            "m1-prop-replacement",
             "m1-lem-necklace-bit"
           ]
         },
@@ -903,9 +888,7 @@
           "detail": "[Common finite-time crossing limits] Choose finitely many quads in Q_ rat and finitely many real parameters. Their jointly coupled crossing indicators, with the prescribed scales r_e , have a…",
           "dependsOn": [
             "m1-lem-common-calibration",
-            "m1-prop-expansion-bound",
             "m1-lem-square-normalization",
-            "m1-thm-main",
             "m1-lem-pivotal-scale"
           ]
         }
@@ -923,7 +906,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Pivotal-Amplitude-for-Voronoi-Percolation-from-Cardys-Formula-October-5-2026/voronoi-pivotal-amplitude.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A Pivotal Amplitude for Voronoi Percolation from Cardy's Formula; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A Pivotal Amplitude for Voronoi Percolation from Cardy's Formula.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1048,8 +1031,7 @@
           "source": "The spectrum of four-interface transmission",
           "detail": "[Modulus equation] The functions T^ are smooth on (0,) X and satisfy _pT=(L+B_p)T, L=18_ w=x,y (3_ i=1 ^4_ w_iw_i +_ i=1 ^4_ j i w_i-w_j 2 \\,_ w_i ). For every p_0>0 and every fixed finite derivative…",
           "dependsOn": [
-            "m2-an-back-lobes",
-            "m2-an-limit"
+            "m2-an-back-lobes"
           ]
         },
         {
@@ -1105,7 +1087,6 @@
           "source": "Separating the conformal data of the two ends",
           "detail": "[Separated-end transmission] There are constants _1,_2>0 and C< , depending only on the fixed constants in , such that the transmission probabilities of every such marked annulus satisfy |T^- K\\,l_i^…",
           "dependsOn": [
-            "m2-sh-comparison",
             "m2-an-limit"
           ]
         },
@@ -1161,9 +1142,7 @@
           "kind": "lemma",
           "source": "Uniform transfer of signed connection states",
           "detail": "[First-reduction tails] For fixed L , the end-history subprobability masses satisfy, in the mesh-first limit, \\|_j^ in \\|_ ess\\,sup_ _ Lr \\|_k^ out (_ Lr )\\|_ C 2^ -(2+)j 2^ -(2+)k +o(1) for each…",
-          "dependsOn": [
-            "m2-tr-frontier"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-tr-insertion",
@@ -1185,9 +1164,7 @@
           "kind": "corollary",
           "source": "Uniform transfer of signed connection states",
           "detail": "[Contraction of antisymmetric products] There are '>0 , s_0< , and a fixed ratio L>1 such that, for r s_0 and s/r=L^N , the transfer \\[ M=M_ s/L,s M_ r,Lr \\] with all intermediate seam successes…",
-          "dependsOn": [
-            "m2-tr-insertion"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-cl-derivative",
@@ -1232,10 +1209,7 @@
           "source": "The intensity derivative and the pivotal amplitude",
           "detail": "[Summable logarithmic error] There are constants >0 and C< such that |Rf'(R) f(R) +| CR^ - for all sufficiently large R .",
           "dependsOn": [
-            "m2-cl-derivative",
-            "m2-cl-tail",
-            "m2-cl-determinant",
-            "m2-thm-main"
+            "m2-cl-derivative"
           ]
         }
       ]
@@ -1252,7 +1226,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Cardys-formula-for-critical-Poisson-Voronoi-percolation-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Cardy’s formula for critical Poisson–Voronoi percolation; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Cardy’s formula for critical Poisson–Voronoi percolation.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1317,9 +1291,7 @@
           "kind": "lemma",
           "source": "Circuit components and orthogonal fields",
           "detail": "[No right bypass and its converse] A rim has no path of its own color joining two distinct rim vertices with all its other points in the open right-hand disk. Conversely, a simple monochromatic…",
-          "dependsOn": [
-            "m3-lemma-rim"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-lemma-sandwich",
@@ -1329,9 +1301,7 @@
           "kind": "lemma",
           "source": "Circuit components and orthogonal fields",
           "detail": "[Sandwich] In an annular band, suppose that there are disjoint essential simple black and white circuits, with the white circuit on the right of the black one for the direction of the band. There is…",
-          "dependsOn": [
-            "m3-lemma-no-bypass"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-fields-closed-prop",
@@ -1341,9 +1311,7 @@
           "kind": "proposition",
           "source": "Circuit components and orthogonal fields",
           "detail": "[Closed-sum tail] For every fixed bounded box B and every a>0 , the full-plane model of spacing satisfies _ 0 \\!_ P a rim,\\ P B\\\\(P) a |Q_P(1)|^2=0. The corresponding full sums for V_P vanish…",
-          "dependsOn": [
-            "m3-lemma-mesh"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-prop-probability-input",
@@ -1414,7 +1382,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

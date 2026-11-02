@@ -562,341 +562,409 @@
     {
       "from": "m1-lem-markers",
       "to": "m1-lem-periodic-overlap",
+      "label": "lem:markers",
       "context": "since $w<K$; every letter there belongs to a block and has the asserted value. For (ii), each indicated start $x$ has $[x-d,x+d]\\subseteq[z-H,z+H]$, so Lemma~\\ref{lem:markers} gives a period below $d$ for its length-$K$ block. Consecutive blocks overlap in $K-1$ letters, at least the product o"
     },
     {
       "from": "m1-lem-periodic-overlap",
       "to": "m1-lem-shared-anchor",
+      "label": "lem:periodic-overlap",
       "context": "Suppose instead that every value is $\\bot$. The seed starts $x_\\tau=z_\\bullet(\\tau)$ have diameter at most $w_E$. By Equation~\\eqref{eq:end-overlap} and Lemma~\\ref{lem:periodic-overlap}, all seeds have one common two-sided extension $\\pi$. The word agrees with $\\pi$ throughout their union \\[ [x_{\\min},"
     },
     {
       "from": "m1-lem-shared-anchor",
       "to": "m1-lem-decoded-end",
+      "label": "lem:shared-anchor",
       "context": "he same values on their common letters, so the passing true candidate cannot disappear in the proposed suffix. Uniqueness therefore identifies it. Apply Lemma~\\ref{lem:shared-anchor} with the singleton reference set $\\{t\\}$; its equality condition is automatic."
     },
     {
       "from": "m1-lem-prediction",
       "to": "m1-lem-main-split",
+      "label": "lem:prediction",
       "context": "nd the suffix establishes all later boundaries, so \\(\\mathcal A(t)\\) holds. Their joint checks give an ideally eligible pair of the actual current trial. Lemma~\\ref{lem:prediction}, together with the ideal computations before and after that trial, gives \\(F_{1,e}(x)=y\\). If tags differ, the clock g"
     },
     {
       "from": "m1-lem-periodic-overlap",
       "to": "m1-lem-periodic-split",
+      "label": "lem:periodic-overlap",
       "context": "), with the indicated center \\(z\\). The marker property gives short-period \\(K_\\circ\\)-blocks at all starts from \\(z-H+d_\\circ\\) through \\(z+H-d_\\circ\\). Lemma~\\ref{lem:periodic-overlap} makes these one periodic run of some period \\(d<d_\\circ\\). The second inequality of \\eqref{eq:periodic-parameters} plac"
     },
     {
       "from": "m1-lem-affine-recovery",
       "to": "m1-lem-aligned-stage",
+      "label": "lem:affine-recovery",
       "context": "plit uses these as skips and gives its graph tests on \\(D_i^*\\). Both splits act on \\(U_{i+1}\\) with the same deterministic affine update \\(g_{i+1}\\). By Lemma~\\ref{lem:affine-recovery} these determine the product of its episode linear parts. Equation~\\eqref{eq:basis-recovery} shows that starting from \\("
     },
     {
       "from": "m1-lem-total-tables",
       "to": "m1-lem-aligned-stage",
+      "label": "lem:total-tables",
       "context": "raph tests for \\(g_i\\). The domain promise and empty terminal domain follow from the definitions of the full sets, and the next total table follows from Lemma~\\ref{lem:total-tables}. Starting with identity graph tests on the empty \\(D_5\\) domain, the five stages consequently produce graph tests for \\"
     },
     {
       "from": "m1-lem-total-tables",
       "to": "m1-prop-parameters",
+      "label": "lem:total-tables",
       "context": "aves. The spare trial has arbitrary predictions. Thus every history, including every infeasible history, has a prediction on every trial, as required in Lemmas~\\ref{lem:total-tables} and~\\ref{lem:bad-histories}. There is one measurement kind for each node and payload in \\(U_{i+1}\\), and one trial kin"
     },
     {
       "from": "m1-lem-bad-histories",
       "to": "m1-prop-parameters",
+      "label": "lem:bad-histories",
       "context": "rbitrary predictions. Thus every history, including every infeasible history, has a prediction on every trial, as required in Lemmas~\\ref{lem:total-tables} and~\\ref{lem:bad-histories}. There is one measurement kind for each node and payload in \\(U_{i+1}\\), and one trial kind for each trial, block, and"
     },
     {
       "from": "m1-lem-clock",
       "to": "m1-prop-parameters",
+      "label": "lem:clock",
       "context": "strict inequality without a fixed-point assumption about the clock size. Fix this roster, tag alphabet, prediction schedule, and \\(\\mathcal Z\\). Apply Lemma~\\ref{lem:clock} with this roster and prime threshold \\(1\\), obtaining \\(n_1,W_1\\) and roster residues. Set \\(R_1=n_1\\). Reserve the pr"
     },
     {
       "from": "m1-lem-markers",
       "to": "m1-prop-parameters",
+      "label": "lem:markers",
       "context": "gin{equation}\\label{eq:parameter-inner-marker} d_\\circ>10(2h_1+2R_1+5), \\qquad K_\\circ>3d_\\circ^2, \\end{equation} and obtain the inner marker rule from Lemma~\\ref{lem:markers}, with an integer inspection radius \\(r_\\circ\\ge K_\\circ\\). To prove the stage-1 count, fix \\(\\gamma\\in\\Gamma_1\\) and a"
     },
     {
       "from": "m1-lem-search-crossings",
       "to": "m1-prop-parameters",
+      "label": "lem:search-crossings",
       "context": "contains at most one marker. Such a marker accounts for at most \\(2R_1+1\\) integer values of \\(\\delta\\). This is also the endpoint-crossing estimate of Lemma~\\ref{lem:search-crossings}; it does not depend on the as yet unchosen halfwidth \\(H\\). Distinct nonzero differences identify distinct ordered pai"
     },
     {
       "from": "m1-lem-periodic-split",
       "to": "m1-prop-parameters",
+      "label": "lem:periodic-split",
       "context": "he cuts with displacements \\(a dN_Mn_1\\), \\(0\\le a<n_2\\), run through every second-clock residue. Each displacement is less than \\(R_2\\), as required by Lemma~\\ref{lem:periodic-split}. \\subsection*{Stage 3 and the inner search halfwidth} Choose \\(\\mu_3=\\lfloor C_3\\rfloor+1\\), construct the stage-3 ste"
     },
     {
       "from": "m1-lem-shared-anchor",
       "to": "m1-prop-parameters",
+      "label": "lem:shared-anchor",
       "context": "uation} and obtain its marker rule and radius \\(r_\\bullet\\ge K_\\bullet\\). These choices imply \\[ w_E<d_\\bullet, \\qquad K_\\bullet-w_E>d_\\bullet^2, \\] so Lemma~\\ref{lem:shared-anchor} applies to each required set of unexpanded candidate origins. For fixed \\(\\gamma\\in\\Gamma_4\\), apply the same endpoint"
     },
     {
       "from": "m1-lem-time-decoder",
       "to": "m1-prop-parameters",
+      "label": "lem:time-decoder",
       "context": "ernal by Equation~\\eqref{eq:parameter-stage4-padding}. Unique decoding therefore precedes the exact end test at that decoded origin, just as required by Lemma~\\ref{lem:time-decoder}. Finally, the side of every noncontrol computation is determined by the event order. Prefixes read earlier measuremen"
     },
     {
       "from": "m1-lem-template",
       "to": "m1-prop-component-cost",
+      "label": "lem:template",
       "context": "gin of any episode. In every such case its indicated \\(q\\) is the argument end minus \\(B_{\\rm tail}\\). It remains to check that the other conditions fit Lemma~\\ref{lem:template}. Their possible endpoints have a finite inventory: \\begin{enumerate}[label=\\textup{(\\alph*)}] \\item nominal main bounda"
     },
     {
       "from": "m1-lem-total-tables",
       "to": "m1-prop-component-cost",
+      "label": "lem:total-tables",
       "context": "rough actual intervals on the reading side. Every schedule has finitely many measurements and trials, irrespective of word length. The table formulas in Lemma~\\ref{lem:total-tables} use these interval products, finite clock graphs, bounded marker values, and finite vector operations. They run no sequ"
     },
     {
       "from": "m1-prop-component-cost",
       "to": "m1-lem-final-suffix",
+      "label": "prop:component-cost",
       "context": "By Proposition~\\ref{prop:component-cost}, \\eqref{eq:final-F} has height at most one. Fix a length threshold large enough to contain all bounded end-decision win"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-lem-final-suffix",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] Fix the DFA transition monoid and choose its faithful representation on basis vectors indexed by \\(M\\). Proposition~\\r"
     },
     {
       "from": "m1-prop-parameters",
       "to": "m1-lem-final-suffix",
+      "label": "prop:parameters",
       "context": "[Proof of Theorem~\\ref{thm:main}] Fix the DFA transition monoid and choose its faithful representation on basis vectors indexed by \\(M\\). Proposition~\\ref{prop:parameters} supplies all finite constructions and their hypotheses. Start with identity graph tests on the empty residual domain \\"
     },
     {
       "from": "m1-lem-aligned-stage",
       "to": "m1-lem-final-suffix",
+      "label": "lem:aligned-stage",
       "context": "ers} supplies all finite constructions and their hypotheses. Start with identity graph tests on the empty residual domain \\(D_5\\), of height zero. Apply Lemma~\\ref{lem:aligned-stage} backward for \\(i=4,3,2,1,0\\). The same-update requirement makes the secondary tests valid skips for the primary tests,"
     },
     {
       "from": "m1-lem-periodic-split",
       "to": "m1-lem-final-suffix",
+      "label": "lem:periodic-split",
       "context": "valid skips for the primary tests, and Boolean recovery gives the preceding computation on each domain. We obtain graph tests for \\(F_2\\) on \\(D_0^*\\). Lemma~\\ref{lem:periodic-split} now gives graph tests for \\(F_2\\) on \\((E\\setminus S_1)^*\\). By Lemma~\\ref{lem:affine-recovery}, their linear parts giv"
     },
     {
       "from": "m1-lem-affine-recovery",
       "to": "m1-lem-final-suffix",
+      "label": "lem:affine-recovery",
       "context": "h domain. We obtain graph tests for \\(F_2\\) on \\(D_0^*\\). Lemma~\\ref{lem:periodic-split} now gives graph tests for \\(F_2\\) on \\((E\\setminus S_1)^*\\). By Lemma~\\ref{lem:affine-recovery}, their linear parts give the products of the homogeneous lifts of \\(F_1\\). Querying homogeneous inputs \\((v,1)\\) gives"
     },
     {
       "from": "m1-lem-main-split",
       "to": "m1-lem-final-suffix",
+      "label": "lem:main-split",
       "context": "their linear parts give the products of the homogeneous lifts of \\(F_1\\). Querying homogeneous inputs \\((v,1)\\) gives \\(F_1\\) on these skipped sequences. Lemma~\\ref{lem:main-split} then gives \\(F_1\\) on \\(E^*\\). One further Boolean linear-part recovery gives the original monoid action on \\(E^*\\). B"
     },
     {
       "from": "m1-lem-split",
       "to": "m1-lem-final-suffix",
+      "label": "lem:split",
       "context": "s \\(F_1\\) on \\(E^*\\). One further Boolean linear-part recovery gives the original monoid action on \\(E^*\\). By Proposition~\\ref{prop:component-cost} and Lemma~\\ref{lem:split}, each split changes a skip bound \\(H\\) to at most \\(\\max\\{2,H+1\\}\\). There are exactly twelve split applications along"
     },
     {
       "from": "m2-lem-periodic-extension",
       "to": "m2-lem-boundary-transport",
+      "label": "lem:periodic-extension",
       "context": "one center $z$. If its marker is present, usability leaves the boundary unchanged. If absent, the old and new periodic blocks have the same extension by Lemma~\\ref{lem:periodic-extension}: $|h|\\leq R_r<d_\\circ$, and the blocks have length $K_\\circ>3d_\\circ^2$. Thus the least period $d$, smooth divisor $\\si"
     },
     {
       "from": "m2-lem-clock",
       "to": "m2-prop-inner-ambiguity",
+      "label": "lem:clock",
       "context": "ntributes at most $C_{\\rm cl}$, because \\[ q-(t+p-p')\\equiv(q-t)+v_{p'}-v_p\\pmod n. \\] This is precisely the uniform translated-difference bound of Lemma~\\ref{lem:clock}. It remains to count pairs for which no scale is usable. For an ordered pair of slots define its numerical digit diff"
     },
     {
       "from": "m2-lem-periodic-extension",
       "to": "m2-prop-inner-ambiguity",
+      "label": "lem:periodic-extension",
       "context": "t $2(h'_r+J_r)<d_\\circ$. Among those centers whose searches are absent, their length-$K_\\circ$ blocks determine the same two-sided periodic extension, by Lemma~\\ref{lem:periodic-extension}: their start distance is less than $d_\\circ$, and $K_\\circ-d_\\circ>d_\\circ^2$. Only absent candidates enter this compar"
     },
     {
       "from": "m2-lem-placement",
       "to": "m2-lem-prefix-code",
+      "label": "lem:placement",
       "context": "By Lemma~\\ref{lem:placement}, each decision window is internal before the prescribed endpoint. Its letters therefore remain unchanged under extensi"
     },
     {
       "from": "m2-lem-periodic-extension",
       "to": "m2-lem-end-guard",
+      "label": "lem:periodic-extension",
       "context": "riod less than $d_e$. Their starts differ by at most $w$, and \\[ K_e-w>d_e^2. \\] Their seeds consequently determine the same two-sided periodic word by Lemma~\\ref{lem:periodic-extension}. The overlapping union of the seeds consists entirely of letters of this word. The true first mismatch is after the t"
     },
     {
       "from": "m2-lem-placement",
       "to": "m2-prop-main-split",
+      "label": "lem:placement",
       "context": "rd in $E^*$ factors as $P_x^{\\rm main}Q_y^{\\rm main}$. The prefix length is positive and its cut lies before the earliest possible first episode end, by Lemma~\\ref{lem:placement}. Hence there is a first episode $e$. If the prefix chose $k=t+h$ with $h\\in\\mathcal H$, then the true origin $t$ belon"
     },
     {
       "from": "m2-lem-end-guard",
       "to": "m2-prop-main-split",
+      "label": "lem:end-guard",
       "context": "hose $k=t+h$ with $h\\in\\mathcal H$, then the true origin $t$ belongs to the suffix's end-guard list. Its diameter is $\\operatorname{diam}\\mathcal H<w$. Lemma~\\ref{lem:end-guard} therefore forces the concatenation to end exactly at the end of $e$, with its true anchor $q$. This conclusion applies"
     },
     {
       "from": "m2-lem-affine-line",
       "to": "m2-prop-main-split",
+      "label": "lem:affine-line",
       "context": "scale.} Let $e\\in E\\setminus D_0$ and fix $x\\in V$. Then $q-t\\pmod n\\notin W$, some scale $r$ is usable at $t$, and $A_1(t)$ fails. Put $v=xT_{s,B_0}$. Lemma~\\ref{lem:affine-line} chooses an interval $j$ for which the corrected segment function is constant on the coordinate line through the true tu"
     },
     {
       "from": "m2-lem-boundary-transport",
       "to": "m2-prop-main-split",
+      "label": "lem:boundary-transport",
       "context": "nd guard succeeds because $A_1(t)$ fails. Each candidate for the selected role differs from $t$ by a multiple of $\\delta_r$ of magnitude at most $R_r$. Lemma~\\ref{lem:boundary-transport} leaves all its later interval products and its $B_l$-to-$b$ product unchanged. Thus every candidate in the universal s"
     },
     {
       "from": "m2-lem-affine-recovery",
       "to": "m2-lem-sequence-lift",
+      "label": "lem:affine-recovery",
       "context": "i+1}$, the graph test for sending $v\\in U_i$ to $w\\in U_i$ is therefore \\[ \\bigcup_{f\\in U_{i+1}} \\left(R_{[v,1_M],[w,1_M]+f}\\cap R_{0,f}\\right), \\] by Lemma~\\ref{lem:affine-recovery}. The zero in $R_{0,f}$ is the zero vector of $U_{i+1}$. This formula applies to the entire sequence, including the em"
     },
     {
       "from": "m2-lem-affine-line",
       "to": "m2-prop-aligned-splits",
+      "label": "lem:affine-line",
       "context": "e}, proving $g_{i+1,e}(x)=y$. \\emph{Completeness: count all lost offsets of the needed kind.} Fix $e\\in D_i\\setminus D_{i+1}$ and $x\\in U_{i+1}$. Apply Lemma~\\ref{lem:affine-line} to the true buffer tuple and the vector \\[ v=x\\rho_i(T_{s,B_{i,0}}). \\] It gives an interval $j$ and thus one required"
     },
     {
       "from": "m2-prop-inner-ambiguity",
       "to": "m2-prop-aligned-splits",
+      "label": "prop:inner-ambiguity",
       "context": "lds, so the true candidate passes the current decoding predicate. If an offset $p$ fails uniqueness, some $p'\\ne p$ satisfies $A_0(t+p-p',q)$. By Proposition~\\ref{prop:inner-ambiguity}, at most $C_0$ ordered pairs $(p,p')$ have this property. In particular at most $C_0$ offsets $p$ can fail uniqueness."
     },
     {
       "from": "m2-lem-end-ambiguity",
       "to": "m2-prop-aligned-splits",
+      "label": "lem:end-ambiguity",
       "context": "A failure of uniqueness gives an ordered pair $p\\ne p'$ with \\[ \\text{there exists }\\gamma\\in\\Delta_0 \\text{ with }A_1(t+p-p'+\\gamma). \\] Lemma~\\ref{lem:end-ambiguity} bounds the number of these pairs, and hence the number of lost offsets, by $C_1$. In either stage, a copy of the requi"
     },
     {
       "from": "m2-prop-aligned-splits",
       "to": "m2-prop-recursive-recovery",
+      "label": "prop:aligned-splits",
       "context": "On $D_2^*=\\{\\eps\\}$, the graph tests for $g_2$ are $\\{\\eps\\}$ for equal input and output and empty otherwise. Apply Proposition~\\ref{prop:aligned-splits} at stage $1$ and Lemma~\\ref{lem:split} to obtain graph tests for $g_2$ on $D_1^*$. Lemma~\\ref{lem:sequence-lift} conver"
     },
     {
       "from": "m2-lem-split",
       "to": "m2-prop-recursive-recovery",
+      "label": "lem:split",
       "context": "$, the graph tests for $g_2$ are $\\{\\eps\\}$ for equal input and output and empty otherwise. Apply Proposition~\\ref{prop:aligned-splits} at stage $1$ and Lemma~\\ref{lem:split} to obtain graph tests for $g_2$ on $D_1^*$. Lemma~\\ref{lem:sequence-lift} converts these to graph tests for $g_1$ on $D"
     },
     {
       "from": "m2-lem-sequence-lift",
       "to": "m2-prop-recursive-recovery",
+      "label": "lem:sequence-lift",
       "context": "tput and empty otherwise. Apply Proposition~\\ref{prop:aligned-splits} at stage $1$ and Lemma~\\ref{lem:split} to obtain graph tests for $g_2$ on $D_1^*$. Lemma~\\ref{lem:sequence-lift} converts these to graph tests for $g_1$ on $D_1^*$. Use those tests as the skipped-class tests in the stage-$0$ applic"
     },
     {
       "from": "m2-prop-main-split",
       "to": "m2-prop-recursive-recovery",
+      "label": "prop:main-split",
       "context": "s for $g_1$ on $D_0^*$, and Lemma~\\ref{lem:sequence-lift} recovers graph tests for $g_0$ on $D_0^*$. These are the skipped-class tests required by Proposition~\\ref{prop:main-split}, whose application yields graph tests for $g_0$ on $E^*$. Finally, Lemma~\\ref{lem:affine-recovery} recovers the produc"
     },
     {
       "from": "m2-lem-affine-recovery",
       "to": "m2-prop-recursive-recovery",
+      "label": "lem:affine-recovery",
       "context": "^*$. These are the skipped-class tests required by Proposition~\\ref{prop:main-split}, whose application yields graph tests for $g_0$ on $E^*$. Finally, Lemma~\\ref{lem:affine-recovery} recovers the product of the linear parts of the maps $g_{0,e}$. By \\eqref{eq:main-update}, these are the true $T_e$ ac"
     },
     {
       "from": "m2-lem-templates",
       "to": "m2-prop-components",
+      "label": "lem:templates",
       "context": "L-p'$, whether or not that is a genuine episode origin. There are only finitely many reference or decoded offsets; we may take a finite union over them. Lemma~\\ref{lem:templates} therefore supplies the finite template cover even for standalone suffixes with incorrect hypotheses. We check that the"
     },
     {
       "from": "m2-lem-placement",
       "to": "m2-lem-remainder",
+      "label": "lem:placement",
       "context": "position zero. Otherwise the prefix ending at $q+b_{\\rm tail}$ is a complete episode. All the required bounded windows for that prefix are internal by Lemma~\\ref{lem:placement}, even when the mismatch itself is early. In the no-mismatch case, finite choices of the bounded initial word, period,"
     },
     {
       "from": "m2-lem-templates",
       "to": "m2-lem-remainder",
+      "label": "lem:templates",
       "context": "such templates. Words below the threshold form a finite language. On every template the test $T(u)=d$ is an ultimately periodic monoid-product test, so Lemma~\\ref{lem:templates} gives a height-one language with that value on the template cover. Intersecting with $F$ gives exactly $F\\cap T^{-1}(d"
     },
     {
       "from": "m2-lem-prefix-code",
       "to": "m2-lem-remainder",
+      "label": "lem:prefix-code",
       "context": "sing.} Repeatedly remove an episode prefix while one exists. Every episode is nonempty, so this procedure terminates, and the remaining word is in $F$. Lemma~\\ref{lem:prefix-code} makes each removed prefix unique. Any alternative $E^*F$ factorization must therefore remove the same successive episod"
     },
     {
       "from": "m2-thm-main",
       "to": "m2-lem-remainder",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] The component bounds needed for the three applications of Lemma~\\ref{lem:split} are supplied by Proposition~\\ref{prop:"
     },
     {
       "from": "m2-lem-split",
       "to": "m2-lem-remainder",
+      "label": "lem:split",
       "context": "[Proof of Theorem~\\ref{thm:main}] The component bounds needed for the three applications of Lemma~\\ref{lem:split} are supplied by Proposition~\\ref{prop:components}. If the skip graph tests have height at most $b$, that lemma gives t"
     },
     {
       "from": "m2-prop-components",
       "to": "m2-lem-remainder",
+      "label": "prop:components",
       "context": "[Proof of Theorem~\\ref{thm:main}] The component bounds needed for the three applications of Lemma~\\ref{lem:split} are supplied by Proposition~\\ref{prop:components}. If the skip graph tests have height at most $b$, that lemma gives the new bound \\[ \\max\\{2,b+1\\}. \\] Indeed the epis"
     },
     {
       "from": "m2-prop-aligned-splits",
       "to": "m2-lem-remainder",
+      "label": "prop:aligned-splits",
       "context": "tage-1 skipped class is $D_2=\\varnothing$, whose graph tests consist only of the empty-sequence tests and have height zero. In the order proved in Proposition~\\ref{prop:aligned-splits} and Proposition~\\ref{prop:main-split}, the bounds are therefore \\[ \\underbrace{0}_{D_2^*} \\ \\longrightarrow\\ \\under"
     },
     {
       "from": "m2-prop-main-split",
       "to": "m2-lem-remainder",
+      "label": "prop:main-split",
       "context": "whose graph tests consist only of the empty-sequence tests and have height zero. In the order proved in Proposition~\\ref{prop:aligned-splits} and Proposition~\\ref{prop:main-split}, the bounds are therefore \\[ \\underbrace{0}_{D_2^*} \\ \\longrightarrow\\ \\underbrace{2}_{\\text{stage 1}} \\ \\longrigh"
     },
     {
       "from": "m3-marker-local",
       "to": "m3-marker-periodic",
+      "label": "marker:local",
       "context": "al, and all its letters agree with this continuation. For~\\textup{(iii)}, each integer start $x$ from $z+d$ through $y-d$ has $[x-d,x+d]\\subseteq[z,y]$. Lemma~\\ref{marker:local} therefore gives a period below $d$ for its length-$K$ block. Successive blocks overlap in $K-1>d^2$ letters, so the fir"
     },
     {
       "from": "m3-marker-periodic",
       "to": "m3-schedule-periodic-cuts",
+      "label": "marker:periodic",
       "context": "Lemma~\\ref{marker:periodic} gives one periodic continuation, of some period $d'<d$, throughout \\[ [z+d,z+H_u+H_{\\rm ext}-d+K). \\] The $|M|$ period"
     },
     {
       "from": "m3-schedule-margins",
       "to": "m3-episode-prefix-code",
+      "label": "schedule:margins",
       "context": "Suppose that a complete episode is read from its beginning in a longer word. By Lemma~\\ref{schedule:margins}, every bounded search and seed inspection lies inside the episode, so locality gives exactly the same search values on"
     },
     {
       "from": "m3-schedule-margins",
       "to": "m3-episode-shared-end",
+      "label": "schedule:margins",
       "context": "use $k=t+a$ for an actual offset $a\\in\\mathcal H$, the set $\\mathcal O_k$ contains $t$. All its other origins differ from $t$ by $\\mathcal H-\\mathcal H$. Lemma~\\ref{schedule:margins} puts their bounded end data inside the first episode and after $k$. A proposed suffix must supply every one of these wi"
     },
     {
       "from": "m3-marker-periodic",
       "to": "m3-episode-shared-end",
+      "label": "marker:periodic",
       "context": "tart less than $w<d_\\bullet$ apart and overlap in at least $K_\\bullet-w>d_\\bullet^2$ letters. Their short-period continuations are therefore identical by Lemma~\\ref{marker:periodic}. The word agrees with that continuation on both seeds and hence on their union. If one seed ends earlier, there is stil"
     },
     {
       "from": "m3-episode-shared-end",
       "to": "m3-outer-split",
+      "label": "episode:shared-end",
       "context": "ositive and, on a nonempty such word, ends at an outer cut strictly within its first episode. The true origin is among the origins checked by the suffix. Lemma~\\ref{episode:shared-end} therefore forces the true endpoint $b$ and clock anchor $q$, even when the two tags propose different forms or boundary"
     },
     {
       "from": "m3-schedule-periodic-cuts",
       "to": "m3-outer-split",
+      "label": "schedule:periodic-cuts",
       "context": "Thus the main pair succeeds. If some $f_j^u(t)$ is absent, write $z=z_j(t)$. The last part of $\\neg A_*(t,q)$ makes $[z,z+H_u+H_{\\rm ext}]$ markerless. Lemma~\\ref{schedule:periodic-cuts} gives a period $d'<d$ and cuts \\begin{equation} k_a=k_0+a d'N_MB,\\qquad 0\\le a<n,\\qquad k_0=z+H_u+L_{\\rm lag}, \\labe"
     },
     {
       "from": "m3-clock-robust",
       "to": "m3-decode-sparsity",
+      "label": "clock:robust",
       "context": "akes the clock count uniform.} For each fixed $Q\\in\\mathcal Q$, the clock part of $A_*(\\tau,Q)$ is \\[ \\varphi(Q-t)+\\varphi(p')-\\varphi(p)\\in W. \\] Apply Lemma~\\ref{clock:robust} at the translate $\\varphi(Q-t)$, with the realized roster values $\\varphi(p)$. It counts at most $c_{\\rm cl}\\log(2m)$ o"
     },
     {
       "from": "m3-alg-shift-table",
       "to": "m3-inner-split",
+      "label": "alg:shift-table",
       "context": "oves $G_e(x)=y$. The positive stencil length rules out a pair on the empty word. For completeness, fix an episode $e\\in D$ and any input $x\\in U$. Apply Lemma~\\ref{alg:shift-table} to the total function $f'_{\\psi_e}$ at its actual tuple $\\mathbf d'$. A coordinate $j$ exists on which the shifted outp"
     },
     {
       "from": "m3-compile-templates",
       "to": "m3-compile-components",
+      "label": "compile:templates",
       "context": "i(Q_\\tau-\\tau)$ use only fixed moduli. Consequently the predicates $Z$ and $A_*$, and the universal and uniqueness checks in the decoder, use the data of Lemma~\\ref{compile:templates}. Where an absent larger search requires a reference end check, its periodic agreement requirement is covered by the las"
     },
     {
       "from": "m3-compile-templates",
       "to": "m3-compile-remainder",
+      "label": "compile:templates",
       "context": "from a finite set. These too are such templates. Shorter words form a finite language. On each template, the monoid-value test is ultimately periodic by Lemma~\\ref{compile:templates}. Construct the height-one expression for that value on the template cover and intersect it with $N_{\\rm end}$. The resu"
     },
     {
       "from": "m3-thm-main",
       "to": "m3-compile-remainder",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] The empty alphabet was handled at the start of the construction. For a nonempty alphabet, Proposition~\\ref{compile:com"
     },
     {
       "from": "m3-compile-components",
       "to": "m3-compile-remainder",
+      "label": "compile:components",
       "context": "[Proof of Theorem~\\ref{thm:main}] The empty alphabet was handled at the start of the construction. For a nonempty alphabet, Proposition~\\ref{compile:components} supplies all component bounds required by Lemma~\\ref{alg:split}. First use the inner split of Proposition~\\ref{inner:s"
     },
     {
       "from": "m3-alg-split",
       "to": "m3-compile-remainder",
+      "label": "alg:split",
       "context": "bet was handled at the start of the construction. For a nonempty alphabet, Proposition~\\ref{compile:components} supplies all component bounds required by Lemma~\\ref{alg:split}. First use the inner split of Proposition~\\ref{inner:split} on $D$, with no skipped episodes. The graph languages of i"
     },
     {
       "from": "m3-inner-split",
       "to": "m3-compile-remainder",
+      "label": "inner:split",
       "context": "empty alphabet, Proposition~\\ref{compile:components} supplies all component bounds required by Lemma~\\ref{alg:split}. First use the inner split of Proposition~\\ref{inner:split} on $D$, with no skipped episodes. The graph languages of its empty skip domain are the identity tests on $\\{\\eps\\}$ and"
     },
     {
       "from": "m3-outer-split",
       "to": "m3-compile-remainder",
+      "label": "outer:split",
       "context": "me height, and evaluation on $(v,1)$ recovers every graph language of $F_e$ on $D^*$. Use these as the skip graph languages for the outer split of Proposition~\\ref{outer:split}. They refer to the same deterministic updates $F_e$ as that split, including on the skipped episodes. A second applicat"
     }
   ]

@@ -247,7 +247,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Artinian-Lex-Plus-Powers-Betti-Theorem-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Artinian Lex-Plus-Powers Betti Theorem; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Artinian Lex-Plus-Powers Betti Theorem.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -405,7 +405,6 @@
             "m1-filt-minimal",
             "m1-tor-deficit",
             "m1-box-inequalities",
-            "m1-thm-main",
             "m1-mono-bound",
             "m1-stab-main",
             "m1-cor-characteristic-zero"
@@ -425,7 +424,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Commuting-Division-Coefficient-Forms-and-the-Artinian-Eisenbud-Green-Harris-Conjecture-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -476,9 +475,7 @@
           "kind": "proposition",
           "source": "Division coefficients and monomial ideals",
           "detail": "[Monomial extraction] Let \\(f_1,,f_n\\), \\(k\\), \\(\\), \\(A\\), and \\(t_1,,t_n\\) satisfy the hypotheses of Lemma~ . For every homogeneous ideal \\(I S=\\) containing the \\(f_i\\), there is one monomial…",
-          "dependsOn": [
-            "m2-lem-ordered-basis"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-stage-basepoint",
@@ -603,8 +600,7 @@
           "dependsOn": [
             "m2-prop-binary-curves",
             "m2-lem-binary-cover",
-            "m2-lem-binary-matrices",
-            "m2-lem-picard-free"
+            "m2-lem-binary-matrices"
           ]
         },
         {
@@ -666,7 +662,6 @@
           "source": "Coherent descent and Euler characteristics",
           "detail": "Let \\(Q\\) be a projective scheme over a field, and let \\(:T' Q\\) be a torsor under a constant finite group of order \\(a\\). For every coherent-sheaf class \\(\\) on \\(Q\\), \\[ (T',^*)=a\\,(Q,). \\]",
           "dependsOn": [
-            "m2-prop-rank-to-euler",
             "m2-prop-binary-curves"
           ]
         },
@@ -678,9 +673,7 @@
           "kind": "lemma",
           "source": "The equivariant index calculation",
           "detail": "There is an \\(H'\\)-equivariant map \\[ : T^h() X_ , \\] where \\(H'\\) acts by translation on \\( T\\) and trivially on \\(^h()\\). It has an \\(H' S^1\\)-equivariant lift \\[ : T S^ 2h+1 Y_1. \\] If \\(t_0 T\\)…",
-          "dependsOn": [
-            "m2-lem-picard-character-maps"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-index-integral-pushforward",
@@ -713,9 +706,7 @@
           "kind": "lemma",
           "source": "The equivariant index calculation",
           "detail": "Let \\(p\\) be a prime, let \\(v1\\), and let \\(A,Q\\). Suppose the reduction of \\(A\\) modulo \\(p\\) has exact order \\(0\\) at \\(u=0\\). If \\(h v\\) and \\[ A(u)Q(u)=0 (p^v,u^ h+1 ) , \\] then \\(p^v Q(0)\\).",
-          "dependsOn": [
-            "m2-thm-division"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-veronese-extension",
@@ -769,9 +760,7 @@
           "kind": "corollary",
           "source": "Generality and consequences",
           "detail": "[Quadratic Cayley--Bacharach] Let \\(F\\) have characteristic zero, let \\(r1\\), and let \\(^r_F\\) be a zero-dimensional scheme-theoretic complete intersection of \\(r\\) quadrics, of degree \\(2^r\\). For…",
-          "dependsOn": [
-            "m2-cor-characteristic-zero"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -796,7 +785,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

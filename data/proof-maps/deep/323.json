@@ -192,7 +192,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Relative-independence-of-the-separable-quotient-problem-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Relative independence of the separable quotient problem; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Relative independence of the separable quotient problem.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -280,9 +280,7 @@
           "kind": "lemma",
           "source": "A measure on the continuum gives separable quotients",
           "detail": "Let X and E satisfy the hypotheses of Lemma~ . There are >0 and a family (h_)_ < in S_ E^ ** such that the functionals f_=h_ R_E X^* satisfy <\\|f_\\|1(<), and, for every y R_E(B_X) , \\ :h_(y)0\\ =0.",
-          "dependsOn": [
-            "m1-pos-density"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-pos-sampling",
@@ -304,8 +302,7 @@
           "detail": "Suppose that c carries a c -additive probability measure on its full power set that vanishes on singletons, with additivity understood for disjoint families of cardinality strictly less than c . Then…",
           "dependsOn": [
             "m1-pos-density",
-            "m1-pos-family",
-            "m1-pos-sampling"
+            "m1-pos-family"
           ]
         },
         {
@@ -343,8 +340,7 @@
           "source": "Passing between real and complex spaces",
           "detail": "The universal separable quotient assertions over and over are equivalent. More specifically, if a real Banach space X has no separable infinite-dimensional quotient, its complexification has no…",
           "dependsOn": [
-            "m1-ev-positive-transfer",
-            "m1-ev-finite-sum"
+            "m1-ev-positive-transfer"
           ]
         },
         {
@@ -465,8 +461,7 @@
           "source": "Vectors detected at a prescribed weight",
           "detail": "For every >0 and every infinite set of indices there is an infinite subset on which no finite uncropped path has four hits at threshold .",
           "dependsOn": [
-            "m1-ch-closures",
-            "m1-pair-exact"
+            "m1-ch-closures"
           ]
         },
         {
@@ -489,8 +484,7 @@
           "detail": "For every infinite-dimensional closed subspace F E , there are a single operation family, a number _F>0 , and actual path functionals P_b B_ E^* of that family, indexed by b\\ 0,1\\ ^ , such that \\[…",
           "dependsOn": [
             "m1-branch-reduction",
-            "m1-ev-small",
-            "m1-pair-exact"
+            "m1-ev-small"
           ]
         },
         {
@@ -534,8 +528,7 @@
           "source": "Changing the predual",
           "detail": "Under CH there is an infinite-dimensional real Banach space with no separable infinite-dimensional quotient.",
           "dependsOn": [
-            "m1-branch-separation",
-            "m1-ev-criterion"
+            "m1-branch-separation"
           ]
         },
         {
@@ -548,8 +541,7 @@
           "detail": "Under CH, the real counterexample X constructed above satisfies X= X^*=_1 . Its complexification is a counterexample over of norm density _1 .",
           "dependsOn": [
             "m1-ch-norm",
-            "m1-twist-lemma",
-            "m1-ev-fields"
+            "m1-twist-lemma"
           ]
         },
         {
@@ -572,7 +564,6 @@
           "detail": "If ZFC with a measurable cardinal is consistent, then ZFC with a real-valued measurable continuum is consistent.",
           "dependsOn": [
             "m1-model-solovay",
-            "m1-intro-small-density",
             "m1-ev-positive-transfer",
             "m1-twist-density"
           ]
@@ -594,7 +585,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

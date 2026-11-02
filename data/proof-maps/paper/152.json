@@ -192,101 +192,121 @@
     {
       "from": "m1-lem-dyadic",
       "to": "m1-prop-good-frames",
+      "label": "lem:dyadic",
       "context": "Apply \\Cref{lem:dyadic} to each $g_j$. Let $c_{j,h}$ be the right side of \\eqref{eq:dyadic-convolution} for that process, and put $\\alpha_h^2=\\"
     },
     {
       "from": "m1-prop-finite-splitting",
       "to": "m1-lem-bin-spaces",
+      "label": "prop:finite-splitting",
       "context": "e} \\left|L^{-1}\\ln\\sigma_j(P_{\\pi(e)}^+) -\\lambda_{(j)}(e)\\right| \\leq Cbn/L. \\end{equation} This argument uses the no-gap part of \\Cref{prop:finite-splitting}; a threshold has not yet been chosen. Fix one good witness $e_*$ in $U$. Equations \\eqref{eq:short-log-singular} and \\e"
     },
     {
       "from": "m1-prop-finite-splitting",
       "to": "m1-lem-switch-orbits",
+      "label": "prop:finite-splitting",
       "context": "s.} Let $\\gamma=\\gamma_Q$ and put $\\widetilde v_t=e^{-\\gamma t}v_t$. Use the same weighting on equation data, with the step datum at its output time $t+1$. By \\Cref{prop:finite-splitting}, the weighted propagators on slow spaces forward and fast spaces backward have norm at most $e^{Cbn}e^{-g|t-s|}$. The"
     },
     {
       "from": "m1-prop-finite-splitting",
       "to": "m1-lem-switch-jacobian",
+      "label": "prop:finite-splitting",
       "context": "$p$-minor has absolute value at least $e^{\\Lambda_x n-Cbn}$, where $\\Lambda_x$ is the sum of its fast rates. This follows from the fast volume lower bound in \\Cref{prop:finite-splitting} and from the uniformly invertible restriction of the endpoint projection. Every other maximal minor contains a slow sta"
     },
     {
       "from": "m1-lem-relative-exterior",
       "to": "m1-lem-switch-jacobian",
+      "label": "lem:relative-exterior",
       "context": "ves differ by at most $C\\delta$ for large $k$. On every unperturbed subinterval the $p$-th exterior product has norm at most $e^{\\Lambda_x\\ell+Cbn}$. Applying \\Cref{lem:relative-exterior} gives, for every fixed $C_0$, \\begin{equation}\\label{eq:relative-minor-transfer} \\left\\|\\bigwedge^pD(S^n)_z-"
     },
     {
       "from": "m1-lem-switch-jacobian",
       "to": "m1-lem-switch-injective",
+      "label": "lem:switch-jacobian",
       "context": "First fix a retained pair. Its cell and four endpoint labels are locally constant among retained inputs near it, because of the positive wall margins. By \\Cref{lem:switch-jacobian}, the implicit equations define a smooth local pair branch near its outputs. This branch agrees with the constructed sw"
     },
     {
       "from": "m1-lem-switch-orbits",
       "to": "m1-lem-switch-injective",
+      "label": "lem:switch-orbits",
       "context": "a)$ of each other. Moreover the recovered equations give \\[ F_x(x')=F_x(z)=F_x(x),\\qquad P_x(x')=P_x(w)=P_x(x). \\] Apply the boundary uniqueness argument of \\Cref{lem:switch-orbits} with both reference halves equal to the true good orbit of $x$. It uses $x$'s endpoint projections, zero matching datum"
     },
     {
       "from": "m1-thm-switching",
       "to": "m1-lem-switch-injective",
+      "label": "thm:switching",
       "context": "[Proof of \\Cref{thm:switching}] The construction above applies for all sufficiently large $k$. Equation \\eqref{eq:switch-scales} gives $\\sum_kB_k^{16}"
     },
     {
       "from": "m1-prop-words",
       "to": "m1-lem-word-tv",
+      "label": "prop:words",
       "context": "[Proof of \\Cref{prop:words}] \\emph{Growth of the fixed parameters.} Whenever $X_i\\ge6$, rounding in \\eqref{eq:word-recursion} gives \\begin{equation"
     },
     {
       "from": "m1-prop-words",
       "to": "m1-lem-recognition",
+      "label": "prop:words",
       "context": "assertion is vacuous. Suppose both assertions hold at level $i$. Distinct level-$(i+1)$ words differ in at least $(1-\\varepsilon_i)N_i$ constituent labels by \\Cref{prop:words}, Property~(\\ref{word:distance}). Each unequal constituent pair contributes at least $d_i m_i$ symbol mismatches, giving"
     },
     {
       "from": "m1-lem-rates",
       "to": "m1-prop-system",
+      "label": "lem:rates",
       "context": "r of names is at most \\[ m_j L_j^{\\lceil(n+2r)/m_j\\rceil+1}. \\] Keeping $j$ fixed and sending $n\\to\\infty$ bounds the entropy rate by $R_j=(\\log L_j)/m_j$. By \\Cref{lem:rates}, $R_j\\to0$. Only now let $j\\to\\infty$: every finite-coordinate partition has entropy rate zero. This count uses no assu"
     },
     {
       "from": "m1-lem-aligned-law",
       "to": "m1-prop-window-entropy",
+      "label": "lem:aligned-law",
       "context": "Write $q=D-1$. By \\Cref{lem:aligned-law} we work under $\\mu_i$. Decompose its uniform parent-slot index as \\[ J=hN_i+u,\\qquad 0\\le h<N_{i+1},\\quad 0\\le u<N_i."
     },
     {
       "from": "m1-prop-words",
       "to": "m1-prop-window-entropy",
+      "label": "prop:words",
       "context": "$u$ admissible if $u+D_i^*\\le N_i$. Its failure probability is \\[ \\beta_i=\\frac{D_i^*-1}{N_i}\\le\\frac{D_i^*}{N_i}. \\] For every fixed $v$ and admissible $u$, \\Cref{prop:words}, Property~(\\ref{word:frequency}), applied at level $i+1$, puts the law of the $D_i^*$ labels at this offset within $10^"
     },
     {
       "from": "m1-lem-aligned-law",
       "to": "m1-lem-graph-windows",
+      "label": "lem:aligned-law",
       "context": "start span $2D-1$ such positions, including the unused intervening position. \\Cref{fig:lists} illustrates these positions and their common lag when $D=4$. By \\Cref{lem:aligned-law}, the first boundary has the boundary-start law. Its position modulo $H_i$ is uniform: its position in a $\\mathcal W_{i+"
     },
     {
       "from": "m1-prop-words",
       "to": "m1-lem-graph-windows",
+      "label": "prop:words",
       "context": "All parent boundaries are already group boundaries. On every other residue all the labels in \\eqref{eq:two-list-starts} belong to one of the prescribed groups. \\Cref{prop:words}, Property~(\\ref{word:graph}), applies because $D$ is an allowed power-of-two lag. Finally $2D_i^*/H_i\\to0$ by the defin"
     },
     {
       "from": "m1-lem-rates",
       "to": "m1-lem-cheap-scales",
+      "label": "lem:rates",
       "context": "_k^{16} \\ge c^{16}\\sum_{i\\ {\\rm large}}|J_i|R_i^{16} \\ge \\frac{c^{16}}{32} \\sum_{i\\ {\\rm large}}K_iR_i^{16}=\\infty, \\] contrary to the hypothesis and \\Cref{lem:rates}. Thus one can select successively later tests with ratio tending to zero. Since $B_{\\log n}n=(B_{\\log n}/R_i)D\\ell_i$ a"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-lem-symbol-matching",
+      "label": "thm:main",
       "context": "[Completion of the proof of \\Cref{thm:main}] \\Cref{prop:system} supplies a standard nonatomic ergodic invertible probability-preserving system of zero entropy. If"
     },
     {
       "from": "m1-prop-system",
       "to": "m1-lem-symbol-matching",
+      "label": "prop:system",
       "context": "[Completion of the proof of \\Cref{thm:main}] \\Cref{prop:system} supplies a standard nonatomic ergodic invertible probability-preserving system of zero entropy. If it had a smooth volu"
     },
     {
       "from": "m1-thm-switching",
       "to": "m1-lem-symbol-matching",
+      "label": "thm:switching",
       "context": "{thm:main}] \\Cref{prop:system} supplies a standard nonatomic ergodic invertible probability-preserving system of zero entropy. If it had a smooth volume model, \\Cref{thm:switching} and \\Cref{lem:cheap-scales} would supply the tests above. The original pair law at each late test would satisfy both \\e"
     },
     {
       "from": "m1-lem-cheap-scales",
       "to": "m1-lem-symbol-matching",
+      "label": "lem:cheap-scales",
       "context": "stem} supplies a standard nonatomic ergodic invertible probability-preserving system of zero entropy. If it had a smooth volume model, \\Cref{thm:switching} and \\Cref{lem:cheap-scales} would supply the tests above. The original pair law at each late test would satisfy both \\eqref{eq:passing-upper} and \\"
     }
   ]

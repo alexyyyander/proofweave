@@ -422,7 +422,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Gaussian-free-field-limits-of-weighted-integer-Lipschitz-heights-October-6-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Gaussian free-field limits of weighted integer Lipschitz heights; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Gaussian free-field limits of weighted integer Lipschitz heights.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -485,9 +485,7 @@
           "kind": "lemma",
           "source": "Exact cuts and conditional comparison",
           "detail": "[The complementary-spin partition sum] For a^E define Z(a)=_ \\ -,+\\ ^ V _ e=uv E a_e^ \\ _u_v\\ , 0^0=1. Then Z is increasing in every coordinate and is log-supermodular: Z(a b)Z(a b) Z(a)Z(b).",
-          "dependsOn": [
-            "m1-prop-history-order"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-discrete-online",
@@ -538,8 +536,7 @@
           "detail": "[Plane matching after a stopped cut] Let R be an exterior record, and let G be its successful-search event, determined by that record. Suppose that on every successful record a good circuit surrounds…",
           "dependsOn": [
             "m1-prop-history-order",
-            "m1-discrete-online",
-            "m1-lem-cell-cut"
+            "m1-discrete-online"
           ]
         },
         {
@@ -590,7 +587,6 @@
           "dependsOn": [
             "m1-lem-height-order",
             "m1-discrete-online",
-            "m1-lem-cell-cut",
             "m1-lem-buffer-circuits",
             "m1-prop-history-order"
           ]
@@ -650,7 +646,6 @@
           "detail": "[Smearing with bounded boundary values] In a bounded height problem as specified above, suppose its fixed trace has absolute value at most K . Let n be the distance from the smearing center to the…",
           "dependsOn": [
             "m1-moments-covariance",
-            "m1-moments-weighted-midpoints",
             "m1-lem-midpoint-amplification",
             "m1-lem-height-order",
             "m1-lem-cell-cut"
@@ -717,7 +712,6 @@
           "source": "Reflection and the plane normalization",
           "detail": "[Punctured spectral measure] There is a positive, locally finite measure C on \\ 0\\ , invariant under the lattice rotations and reflections, such that every finitely supported real array (b_u) with…",
           "dependsOn": [
-            "m1-spectra-unitary",
             "m1-prop-plane-moments"
           ]
         },
@@ -764,8 +758,7 @@
           "detail": "[Form of every subsequential spectrum] Every vague subsequential limit is M( p)=c p |p|^2 for some finite c0 , at this point possibly depending on the subsequence. This identity holds on the entire…",
           "dependsOn": [
             "m1-plane-lem-defect",
-            "m1-plane-lem-mixture",
-            "m1-lem-endcaps"
+            "m1-plane-lem-mixture"
           ]
         },
         {
@@ -777,7 +770,6 @@
           "source": "Reflection and the plane normalization",
           "detail": "[A cutoff identity determining the coefficient] There is a single c0 such that C_ converges vaguely to c p/|p|^2 as 0 .",
           "dependsOn": [
-            "m1-prop-plane-covariance",
             "m1-lem-nondegeneracy"
           ]
         },
@@ -825,7 +817,6 @@
           "source": "Separated pins and transfer to boundary brackets",
           "detail": "[Integer traces and order] The bracket traces are actual integer heights satisfying H_^ +, \\ 0,1\\ , H_^ -, \\ -1,0\\ on S_ 0, , H_^ , =0on A_ , . Conditional on either trace, the free interior has the…",
           "dependsOn": [
-            "m1-lem-boundary-walk",
             "m1-lem-spin-lift",
             "m1-lem-height-order",
             "m1-prop-smearing"
@@ -854,7 +845,6 @@
           "source": "Separated pins and transfer to boundary brackets",
           "detail": "[Checked pin moments] Consider any of the fixed separated arrangements above, including arrangements enlarged by reflected copies. Let Y_=H_(f) , where f is a real smooth zero-integral test supported…",
           "dependsOn": [
-            "m1-thm-midpoint",
             "m1-lem-buffer-circuits",
             "m1-pins-marker-checks",
             "m1-prop-smearing",
@@ -885,7 +875,6 @@
           "detail": "[Analytic translation] Partition a finite arrangement of the preceding checked obstacles and local factors into two families separated strictly in projection on a lattice reflection normal n . At…",
           "dependsOn": [
             "m1-pins-side-norm",
-            "m1-spectra-transfer",
             "m1-spectra-analytic"
           ]
         },
@@ -909,8 +898,7 @@
           "detail": "[Separated insertion] At fixed positive gaps satisfying , and for any product _ of local Haar-phase factors at the representatives with fixed frequencies, J_^ -1 0. This holds for every converging…",
           "dependsOn": [
             "m1-pins-side-norm",
-            "m1-prop-reflection-null",
-            "m1-lem-analytic-translation"
+            "m1-prop-reflection-null"
           ]
         },
         {
@@ -971,8 +959,7 @@
           "detail": "[Attachment to a clean arc] There are constants >0 and a_0>0 , depending only on x , with the following property. Fix b>0 and put s= b . Suppose a retained height problem has a connected bounding…",
           "dependsOn": [
             "m1-boundary-synthetic-trace",
-            "m1-lem-buffer-circuits",
-            "m1-lem-collar-switch"
+            "m1-lem-buffer-circuits"
           ]
         },
         {
@@ -1061,9 +1048,7 @@
           "kind": "lemma",
           "source": "Identification of the limiting field",
           "detail": "[Vanishing references] There are finite averages \\(R_m\\) of unit radial pairings of \\(H\\), supported arbitrarily near the boundary, such that \\[ \\|R_m\\|_ L^p 0 for every p<. \\] Each \\(R_m\\) uses…",
-          "dependsOn": [
-            "m1-prop-boundary-moments"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-harmonic-moments",
@@ -1117,7 +1102,6 @@
             "m1-lem-cell-cut",
             "m1-cor-conditional-plane-matching",
             "m1-prop-plane-moments",
-            "m1-prop-plane-covariance",
             "m1-limit-puncture"
           ]
         },
@@ -1132,10 +1116,7 @@
           "dependsOn": [
             "m1-prop-collision",
             "m1-limit-puncture",
-            "m1-lem-no-diagonal",
-            "m1-prop-tightness",
-            "m1-prop-plane-covariance",
-            "m1-thm-main"
+            "m1-lem-no-diagonal"
           ]
         },
         {
@@ -1168,9 +1149,7 @@
           "kind": "corollary",
           "source": "Scalar spectral measures",
           "detail": "[Bounded analytic matrix elements] For the positive contraction S above and vectors a,b , there is a bounded holomorphic function F_ a,b on w>0 such that \\[ F_ a,b (j)= a,S^jb(j=1,2,), |F_ a,b…",
-          "dependsOn": [
-            "m1-spectra-transfer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-annulus-ambient",
@@ -1258,9 +1237,7 @@
           "kind": "lemma",
           "source": "The weighted annulus estimate",
           "detail": "[Equalities on a fixed plus layer] In the law of Lemma~ , fix a permitted history and an equality set E_0 . Let F be a set of edges both of whose endpoints are pinned B=+ . Adding the equalities…",
-          "dependsOn": [
-            "m1-prop-history-order"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-annulus-straight-short",
@@ -1271,7 +1248,6 @@
           "source": "The weighted annulus estimate",
           "detail": "[A straight short-direction crossing] Fix a cell class T and 0<<1/2 . In triangular coordinates let P=[0,3r] . Give its long sides open-plus B cuts and its short sides open-minus B cuts, exclude…",
           "dependsOn": [
-            "m1-annulus-patch",
             "m1-annulus-plus-equalities",
             "m1-annulus-ports"
           ]
@@ -1300,7 +1276,6 @@
           "detail": "[Seed with a matching class] There is c=c(x,C)>0 such that, for each sufficiently large n , one of T=Y,Z has a seed of occupied B -plus cells, under the matching mixed law P_T , in a band of height…",
           "dependsOn": [
             "m1-annulus-duality",
-            "m1-annulus-slide",
             "m1-annulus-one-white"
           ]
         },
@@ -1326,7 +1301,6 @@
           "source": "The weighted annulus estimate",
           "detail": "[The mixed-cylinder seed estimate] For every fixed C3 there is =(x,C)>0 such that, for all sufficiently large n , P_Y( H_Y^+([-2n,2n])) on the mixed cylinder Cyl_ Cn,5n of , with the same lattice…",
           "dependsOn": [
-            "m1-annulus-first-seed",
             "m1-annulus-winding",
             "m1-annulus-ambient",
             "m1-annulus-slide",
@@ -1348,7 +1322,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Gaussian-free-field-limit-of-integer-Lipschitz-heights-with-two-arc-boundary-data-October-6-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Gaussian free field limit of integer Lipschitz heights with two-arc boundary data; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Gaussian free field limit of integer Lipschitz heights with two-arc boundary data.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1399,9 +1373,7 @@
           "kind": "lemma",
           "source": "Buffered circuits, mixing, and rare pins",
           "detail": "[Local double circuits] There are R>3 , p>0 , and r_0< with the following property. In a constrained coherent-pair law, suppose that the radius- Rr face-ball patch about z , including the two layers…",
-          "dependsOn": [
-            "m2-lem-spin-fkg"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-worst-cut",
@@ -1421,9 +1393,7 @@
           "kind": "lemma",
           "source": "Buffered circuits, mixing, and rare pins",
           "detail": "[Circuits in buffers] Consider a fixed positive-width polygonal collar, or a fixed positive-width tube following a polygonal arc. Suppose it has a buffer disjoint from E_0 and from all prescribed B…",
-          "dependsOn": [
-            "m2-lem-worst-cut"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-loop-estimates",
@@ -1435,8 +1405,7 @@
           "detail": "[Loop estimates] There are constants c_0>0 and 0<<1 such that, for all sufficiently large integer n , the following statements hold. [label=()] If the interior of a simple contour L contains _ 2n (z)…",
           "dependsOn": [
             "m2-lem-buffer-circuits",
-            "m2-lem-double-cut",
-            "m2-lem-local-circuit"
+            "m2-lem-double-cut"
           ]
         }
       ]
@@ -1462,7 +1431,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

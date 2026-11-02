@@ -182,7 +182,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-hyperbolic-group-with-no-geometric-CAT0-action-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A hyperbolic group with no geometric CAT(0) action; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A hyperbolic group with no geometric CAT(0) action.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -243,9 +243,7 @@
           "kind": "lemma",
           "source": "Diagrams and linear filling",
           "detail": "A null letter word has a picture of minimum total top perimeter and, subject to this, minimum number of remaining interior faces, with the following properties. The same assertion holds for a fixed…",
-          "dependsOn": [
-            "m1-diagram-existence"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-diagram-weighted-rank",
@@ -290,11 +288,7 @@
           "source": "Diagrams and linear filling",
           "detail": "For every D< and >0 there is an integer K=K(D,) such that the vertices of any finite planar multigraph of maximum degree at most D can be partitioned into sets of size at most K , with at most times…",
           "dependsOn": [
-            "m1-thm-diagram",
-            "m1-diagram-fragment",
-            "m1-diagram-rank",
-            "m1-diagram-existence",
-            "m1-diagram-normal-form"
+            "m1-diagram-rank"
           ]
         },
         {
@@ -487,9 +481,7 @@
           "kind": "lemma",
           "source": "The geometric obstruction",
           "detail": "The unit vectors M_C,M_D are antipodal in T : \\[ d_T(M_C,M_D)=2, M_C M_D =-1. \\]",
-          "dependsOn": [
-            "m1-geom-exceptional"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-no-configuration",
@@ -500,8 +492,7 @@
           "source": "The geometric obstruction",
           "detail": "No complete (0) space contains the configuration asserted in Proposition~ .",
           "dependsOn": [
-            "m1-geom-antipodal",
-            "m1-geom-square"
+            "m1-geom-antipodal"
           ]
         },
         {
@@ -513,8 +504,6 @@
           "source": "Selection and the finite-model conclusion",
           "detail": "[A deterministic diagonal sequence] There is a sequence of realizations of the tables, with n_j and positive parameters _j,_j,_j0 , such that [label=( *)] the associated complexes P_j are aspherical…",
           "dependsOn": [
-            "m1-prop-sampling",
-            "m1-thm-diagram",
             "m1-lem-model-presentation"
           ]
         },
@@ -527,9 +516,7 @@
           "source": "Selection and the finite-model conclusion",
           "detail": "For all sufficiently large j , the group G_j in Lemma~ admits no geometric action on any proper complete (0) space.",
           "dependsOn": [
-            "m1-lem-completion-diagonal",
-            "m1-prop-configuration",
-            "m1-prop-no-configuration"
+            "m1-prop-configuration"
           ]
         },
         {
@@ -541,7 +528,6 @@
           "source": "Selection and the finite-model conclusion",
           "detail": "[Finite-model filling transfer] Let P be a finite connected CW complex with contractible universal cover. Suppose a finite presentation of _1P has a linear disk-filling inequality. Then P has a…",
           "dependsOn": [
-            "m1-thm-main",
             "m1-prop-completion-no-action",
             "m1-thm-diagram"
           ]
@@ -563,7 +549,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

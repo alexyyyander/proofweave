@@ -142,7 +142,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Quantitative-Superexponential-Bounds-for-van-der-Waerden-Numbers-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Quantitative Superexponential Bounds for van der Waerden Numbers; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Quantitative Superexponential Bounds for van der Waerden Numbers.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -193,9 +193,7 @@
           "kind": "lemma",
           "source": "The cyclic model and its coordinate meshes",
           "detail": "[Uniform neighborhoods] For I V , let w=|I| and \\[ N(I)=\\ Y:_ (Y, I) w\\ . \\] Every J V whose closure meets N(I) satisfies |J| w/16 . The arc N(I) contains at most 49 mesh endpoints.",
-          "dependsOn": [
-            "m1-mesh-width"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-mesh-truncated",
@@ -205,9 +203,7 @@
           "kind": "lemma",
           "source": "The cyclic model and its coordinate meshes",
           "detail": "[Local complexity after truncation] On every circle arc of length at most 4H , the output V_ is constant between at most 16004D breakpoints. Its value at a breakpoint is also determined, and need not…",
-          "dependsOn": [
-            "m1-mesh-width"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-count-arrangement",
@@ -240,9 +236,7 @@
           "source": "Counting global words and anchored local patterns",
           "detail": "[Local patterns through a specified label] There is an absolute constant C such that, for every h_0<h2M and every full label , the number of pairs consisting of t\\ 0,,h-1\\ ^D and an eligible pattern…",
           "dependsOn": [
-            "m1-mesh-neighbors",
-            "m1-mesh-truncated",
-            "m1-count-arrangement"
+            "m1-mesh-truncated"
           ]
         },
         {
@@ -264,9 +258,7 @@
           "source": "An outer coloring of the labels",
           "detail": "[Balanced outer coloring] For all sufficiently large k , there is a map c_*:\\ 0,1\\ with the following properties. [label=( *)] In every cyclic progression having at least k light positions, each bit…",
           "dependsOn": [
-            "m1-count-global",
-            "m1-count-local",
-            "m1-outer-lll"
+            "m1-count-local"
           ]
         },
         {
@@ -287,10 +279,7 @@
           "kind": "lemma",
           "source": "Repeated labels and the outer-color dichotomy",
           "detail": "[Closest return and drift] Choose a heavy label and let J be its set of occurrence indices, with m_*=|J|>k/M . Let h be the smallest positive difference between two members of J , attained at j' and…",
-          "dependsOn": [
-            "m1-mesh-width",
-            "m1-dichotomy-affinity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-dichotomy-path",
@@ -310,9 +299,7 @@
           "kind": "lemma",
           "source": "Repeated labels and the outer-color dichotomy",
           "detail": "[Drift relative to every heavy interval] For every heavy index j_* of the fixed progression and each 1 i D , |v_i|2M k \\,|V(y_i(n_ j_* ))|. The heavy label here need not be the one used to choose h .",
-          "dependsOn": [
-            "m1-dichotomy-path"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-dichotomy-main",
@@ -324,7 +311,6 @@
           "detail": "[Outer-color dichotomy] For every sufficiently large k , the coloring c_0 from has the following property. Every cyclic progression n_j=n_0+jd , 0 j<k , with d0 in G , satisfies at least one of these…",
           "dependsOn": [
             "m1-outer-coloring",
-            "m1-dichotomy-path",
             "m1-mesh-neighbors"
           ]
         },
@@ -361,12 +347,7 @@
           "kind": "theorem",
           "source": "A sparse perturbation of the outer coloring",
           "detail": "[A cyclic two-coloring] There is an absolute integer K_0 such that, for every integer k K_0 , the construction in gives an integer \\[ N=q^D k^ ck , c=10^ -5 , \\] and a coloring C:/N\\ 0,1\\ for which…",
-          "dependsOn": [
-            "m1-perturb-multiplicity",
-            "m1-perturb-signatures",
-            "m1-dichotomy-main",
-            "m1-setup-prime"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-transfer-product",
@@ -431,7 +412,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

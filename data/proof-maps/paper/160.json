@@ -209,131 +209,157 @@
     {
       "from": "m1-mesh-width",
       "to": "m1-mesh-neighbors",
+      "label": "mesh:width",
       "context": "Fix $Y_0\\in\\overline I$ and put $r_0=\\rho(Y_0)+\\alpha$. Every $Y\\in N(I)$ has circle distance at most $2w$ from $Y_0$. By \\Cref{mesh:width} and the Lipschitz property of $\\rho$, \\[ \\rho(Y)+\\alpha\\ge r_0-2w\\ge(1-4H)r_0\\ge r_0/2, \\] where the last inequality h"
     },
     {
       "from": "m1-mesh-width",
       "to": "m1-mesh-truncated",
+      "label": "mesh:width",
       "context": "The portion of the arc on which $\\rho\\ge\\eta$ has at most two components. Within one component, successive mesh endpoints have spacing at least $H\\eta/4$, by \\Cref{mesh:width} applied at either endpoint of the intervening mesh interval. The number of mesh endpoints in these components is theref"
     },
     {
       "from": "m1-count-arrangement",
       "to": "m1-count-global",
+      "label": "count:arrangement",
       "context": "\\le z\\le k$. The comparisons for all $j$ use at most $3k^2F$ lines in the two parameters $a,b$. Equality signs give precisely the assigned half-open labels, so \\Cref{count:arrangement} bounds the number of scalar words by $9(3k^2F+1)^2$. Apply this bound separately in all $2D$ scalar coordinates, allow"
     },
     {
       "from": "m1-mesh-neighbors",
       "to": "m1-count-local",
+      "label": "mesh:neighbors",
       "context": "he restriction at the regular anchor. Also $\\lambda t_i/h$ is integral, so the translation $\\tau_z$ is integral. Modulo one every target belongs to $N(I)$ from \\Cref{mesh:neighbors}, and at most $49$ mesh endpoints are relevant. The unreduced target range lies in an interval of length at most $3|I|<1"
     },
     {
       "from": "m1-mesh-truncated",
       "to": "m1-count-local",
+      "label": "mesh:truncated",
       "context": "d-system coordinates.} The anchor interval has width at most $2H$ and the retained drift bound is $|b|\\le H$. The target range has length at most $4H<1$. Apply \\Cref{mesh:truncated} to its image on the circle: at most $16004D$ breakpoints determine the truncated output $V_\\eta$. Again each circle bre"
     },
     {
       "from": "m1-count-arrangement",
       "to": "m1-count-local",
+      "label": "count:arrangement",
       "context": "very target. They determine values at breakpoints as well as on open intervals; this accounts for half-open endpoints and for exact equalities $\\rho=\\eta$. By \\Cref{count:arrangement} with $e=2$, the number of possible scalar output sequences is at most \\[ 9(16004Dh+1)^2\\le C_0(Dh)^2 \\] for an absolut"
     },
     {
       "from": "m1-count-global",
       "to": "m1-outer-coloring",
+      "label": "count:global",
       "context": "rs on strictly fewer than one quarter of its positions. There are at most $kT_{\\mathrm{glob}}$ such events in total, where $T_{\\mathrm{glob}}$ is the number in \\Cref{count:global}. For the second family, take one event for each eligible recorded pattern and its discrete parameters $h,t$, where $h_"
     },
     {
       "from": "m1-count-local",
       "to": "m1-outer-coloring",
+      "label": "count:local",
       "context": "rst-family events is at most \\begin{equation}\\label{outer:first-weight} kT_{\\mathrm{glob}}e^{-(\\delta M-1)/32}=o(1). \\end{equation} For a fixed label $\\beta$, \\Cref{count:local} bounds the second-family weight of events using $\\xi_\\beta$ by \\begin{equation}\\label{outer:second-weight} \\sum_{h_0<h"
     },
     {
       "from": "m1-outer-lll",
       "to": "m1-outer-coloring",
+      "label": "outer:lll",
       "context": "in two distinct events whenever their supports share a label variable. Since all label bits are independent, this is a dependency graph of the kind required in \\Cref{outer:lll}; independence holds from the joint sigma-algebra of all nonneighbors. By summing \\Cref{outer:incident-weight} over the"
     },
     {
       "from": "m1-mesh-width",
       "to": "m1-dichotomy-drift",
+      "label": "mesh:width",
       "context": "m_*-1}\\le\\frac{k-1}{m_*-1}\\le2M. \\] All vectors $(\\hat x(n_j),\\tilde y(n_j))$, $j\\in J$, lie in one full-label box, whose coordinate widths are at most $2H$ by \\Cref{mesh:width}. By \\Cref{dichotomy:affinity}, their differences are proportional to differences of indices. In particular the differen"
     },
     {
       "from": "m1-dichotomy-affinity",
       "to": "m1-dichotomy-drift",
+      "label": "dichotomy:affinity",
       "context": "*-1}\\le2M. \\] All vectors $(\\hat x(n_j),\\tilde y(n_j))$, $j\\in J$, lie in one full-label box, whose coordinate widths are at most $2H$ by \\Cref{mesh:width}. By \\Cref{dichotomy:affinity}, their differences are proportional to differences of indices. In particular the difference at the chosen gap $h$ is $h"
     },
     {
       "from": "m1-dichotomy-path",
       "to": "m1-dichotomy-heavy-width",
+      "label": "dichotomy:path",
       "context": "Let the full label at $j_*$ have multiplicity $m'>k/M$, and let $j_-$ and $j_+$ be its extreme occurrence indices. By \\Cref{dichotomy:path}, $j_+-j_-=a h$ for an integer $m'-1\\le a<k/h$. Set $L_i=|V(y_i(n_{j_*}))|$. The real representative difference \\[ \\Del"
     },
     {
       "from": "m1-outer-coloring",
       "to": "m1-dichotomy-main",
+      "label": "outer:coloring",
       "context": "If the progression has at least $\\delta k$ light positions, \\Cref{outer:coloring}\\textup{(i)} supplies at least $\\delta k/4\\ge\\gamma k$ occurrences of each bit. We may therefore assume that fewer than"
     },
     {
       "from": "m1-dichotomy-path",
       "to": "m1-dichotomy-main",
+      "label": "dichotomy:path",
       "context": "0}\\right) =\\frac4{1000}+\\frac1D<\\frac12. \\end{equation} Thus each full block has at least $h/2$ regular positions. All labels within the block are distinct by \\Cref{dichotomy:path}, since its indices have distinct residues modulo $h$. Also $|u_i|\\le H_x$ and $|v_i|\\le H$ for all $i$ by \\Cref{dichoto"
     },
     {
       "from": "m1-mesh-neighbors",
       "to": "m1-dichotomy-main",
+      "label": "mesh:neighbors",
       "context": "\\le\\frac{|j-j_*|}{h}|v_i| \\le|v_i|\\le\\frac{2M}{k}L_*. \\] For large $k$ this places $y_i(n_j)$ in the circular $L_*$-neighborhood of $\\overline{I_*}$. Applying \\Cref{mesh:neighbors} with $I=I_*$ and $J=V(y_i(n_j))$ gives \\[ |V(y_i(n_j))|\\ge\\frac{L_*}{16}\\ge|v_i|, \\] where the final inequality uses $"
     },
     {
       "from": "m1-dichotomy-affinity",
       "to": "m1-perturb-multiplicity",
+      "label": "dichotomy:affinity",
       "context": "First fix a second-system box, and let $J$ be the indices whose centered representatives lie in that box. Every coordinate interval has width at most $2H$, so \\Cref{dichotomy:affinity} gives \\[ \\tilde y(n_j)=A+jB\\qquad(j\\in J) \\] for suitable $A,B\\in\\R^D$. The indices in $J$ need not be consecutive. I"
     },
     {
       "from": "m1-count-arrangement",
       "to": "m1-perturb-signatures",
+      "label": "count:arrangement",
       "context": "es $(\\theta_0,\\theta_1,\\theta_2)$. Their joint signs, including equality, determine the complete word $(\\floor{f(n_j)})_{j<k}$ for all realized progressions. \\Cref{count:arrangement}, in the fixed dimension three, therefore gives at most $C\\bigl(k(Dq^2+2)\\bigr)^3$ such words. Allowing all triples of"
     },
     {
       "from": "m1-count-global",
       "to": "m1-perturb-signatures",
+      "label": "count:global",
       "context": "Multiplying the two counts proves \\Cref{perturb:signature-count}; no independence between the two words is asserted or needed. For the logarithmic estimate, \\Cref{count:global} bounds $\\log T_{\\mathrm{glob}}$ by $O(k^{3/10}\\log k)$. Also $Dq^2+2\\le3Dq^2$, so the remaining logarithm in \\Cref{per"
     },
     {
       "from": "m1-perturb-multiplicity",
       "to": "m1-perturb-cyclic",
+      "label": "perturb:multiplicity",
       "context": "1/100$. Fix a target color $b\\in\\{0,1\\}$. Every position with $c_0(n_j)=1-b$ must have $E_{\\kappa(n_j)}=1$ for the whole progression to receive color $b$. By \\Cref{perturb:multiplicity}, these positions specify at least $\\gamma k/4$ distinct keys. This set of keys is determined before the bits are sampl"
     },
     {
       "from": "m1-perturb-signatures",
       "to": "m1-perturb-cyclic",
+      "label": "perturb:signatures",
       "context": "d} A_k&\\le2T_{\\mathrm{aff}}(1-p)^{k/4}\\\\ &\\le2\\max\\{1,T_{\\mathrm{aff}}\\}\\exp(-pk/4) =\\exp\\bigl(-pk/4+o(pk)\\bigr)=o(1), \\end{aligned} \\end{equation} using \\Cref{perturb:signatures} and $1-p\\le e^{-p}$. Neither union bound requires independence between different progressions or signatures. By \\Cref{"
     },
     {
       "from": "m1-dichotomy-main",
       "to": "m1-perturb-cyclic",
+      "label": "dichotomy:main",
       "context": "\\end{equation} using \\Cref{perturb:signatures} and $1-p\\le e^{-p}$. Neither union bound requires independence between different progressions or signatures. By \\Cref{dichotomy:main}, every nonzero-step cyclic progression is covered by the first case or the affine case. The cases may overlap, which o"
     },
     {
       "from": "m1-setup-prime",
       "to": "m1-perturb-cyclic",
+      "label": "setup:prime",
       "context": "eding thresholds and constants depend only on the fixed numerical parameters, and the bound in \\Cref{setup:q-bounds} is uniform over every prime $P$ allowed by \\Cref{setup:prime}. A single absolute $K_0$ therefore works for every integer $k\\ge K_0$. Finally, $q\\ge k^{ck/D}$ gives $N=q^D\\ge k^{ck}"
     },
     {
       "from": "m1-main-intro",
       "to": "m1-transfer-product",
+      "label": "main:intro",
       "context": "[Proof of Theorem~\\ref{main:intro}] Theorem~\\ref{perturb:cyclic} supplies, for every integer $k$ above an absolute threshold, such a cyclic coloring with"
     },
     {
       "from": "m1-perturb-cyclic",
       "to": "m1-transfer-product",
+      "label": "perturb:cyclic",
       "context": "[Proof of Theorem~\\ref{main:intro}] Theorem~\\ref{perturb:cyclic} supplies, for every integer $k$ above an absolute threshold, such a cyclic coloring with \\[ N=q^D\\ge k^{ck},\\qquad c=1"
     },
     {
       "from": "m1-main-intro",
       "to": "m1-transfer-limits",
+      "label": "main:intro",
       "context": "For $r\\ge2$, the inequality $\\lfloor\\log_2r\\rfloor\\ge(\\log r)/(2\\log2)$ and Theorem~\\ref{main:intro} give, for all $k\\ge K_0$, \\[ \\inf_{\\substack{r\\in\\Z\\\\r\\ge2}} \\frac{\\log W_r(k)}{k\\log r} \\ge\\frac{c}{2\\log2}\\log k."
     },
     {
       "from": "m1-transfer-large-r",
       "to": "m1-transfer-limits",
+      "label": "transfer:large-r",
       "context": "and Theorem~\\ref{main:intro} give, for all $k\\ge K_0$, \\[ \\inf_{\\substack{r\\in\\Z\\\\r\\ge2}} \\frac{\\log W_r(k)}{k\\log r} \\ge\\frac{c}{2\\log2}\\log k. \\] Theorem~\\ref{transfer:large-r} gives, for all $r\\ge256$, \\[ \\inf_{\\substack{k\\in\\Z\\\\k\\ge3}} \\frac{\\log W_r(k)}{\\log r} \\ge\\frac{\\log r}{64\\log2}. \\"
     }
   ]

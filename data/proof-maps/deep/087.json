@@ -317,7 +317,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-symmetric-Mahler-conjecture-and-its-equality-cases-September-22-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The symmetric Mahler conjecture and its equality cases; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The symmetric Mahler conjecture and its equality cases.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -350,9 +350,7 @@
           "kind": "corollary",
           "source": "Introduction",
           "detail": "[Symmetric entropy--transport inequality] For every integer n1 , let _i(dx)=e^ -V_i(x) \\,dx , i=1,2 , be full-dimensional log-concave probability measures, both symmetric about the origin, with…",
-          "dependsOn": [
-            "m1-cor-functional-mahler"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-sums",
@@ -424,9 +422,7 @@
           "kind": "lemma",
           "source": "Feasible bases",
           "detail": "[Additional boundary equalities have probability zero] Let F: D D be the lens map of Lemma~ . Assume that the nonzero spanning rows b_1,,b_m are pairwise nonproportional. For every I B and j I , \\[…",
-          "dependsOn": [
-            "m1-lem-planar-lens"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-simplex-integral",
@@ -508,9 +504,7 @@
             "m1-prop-metric-median",
             "m1-lem-three-balls",
             "m1-thm-hansen-lima",
-            "m1-lem-hanner",
-            "m1-cor-symmetric-inequality",
-            "m1-thm-main"
+            "m1-lem-hanner"
           ]
         }
       ]
@@ -527,7 +521,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Mahler-Conjecture-for-General-Convex-Bodies-September-22-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Mahler Conjecture for General Convex Bodies; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Mahler Conjecture for General Convex Bodies.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -621,7 +615,6 @@
           "dependsOn": [
             "m2-prop-scalar-input",
             "m2-lem-cone-reduction",
-            "m2-lem-biased-projections",
             "m2-lem-projection-tails"
           ]
         },
@@ -793,9 +786,7 @@
           "source": "The linear-field bound and simplex rigidity",
           "detail": "[Linear-field bound] For the normalized field satisfying~ , with \\(t_-I T t_+I\\), and the fixed profiles satisfying -- and \\( C-.341\\), \\[ _ p -J_(u)+.80\\|[L,T]\\|_2^2 -1.94 T^2. \\] Consequently, with…",
           "dependsOn": [
-            "m2-lem-linear-spectral-identity",
-            "m2-thm-mahler",
-            "m2-cor-functional-mahler"
+            "m2-lem-linear-spectral-identity"
           ]
         },
         {
@@ -858,9 +849,7 @@
           "kind": "lemma",
           "source": "Quantitative one-variable estimates",
           "detail": "[Interpolation from second differences] Put \\( R(M)=.536M+.00001\\). For any of \\[ F, F, F,n_F(F=d, K, C), R_v,V_2, \\] the error from its central chord, the affine interpolant through the two…",
-          "dependsOn": [
-            "m2-lem-scalar-strip"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-scalar-tail",
@@ -871,7 +860,6 @@
           "source": "Quantitative one-variable estimates",
           "detail": "[Tail derivative bounds] For \\(x64\\), set \\(D=x_x\\), \\(=x^ -2 \\), and \\(L= x+12(2)-12\\). For each row function \\(F\\), the entries are upper bounds for \\(|D^jF|/\\), uniformly on this range: \\[ c|ccc…",
           "dependsOn": [
-            "m2-lem-scalar-ranges",
             "m2-lem-scalar-layer",
             "m2-lem-scalar-certificates"
           ]
@@ -906,7 +894,6 @@
           "detail": "[Concentration and primitive bounds] The following bounds hold in the bounded region just specified. For a set in \\([0,3.6]\\) of length \\(2H\\), \\(0<H T_0\\), the mean of \\((A_j)_+\\) on the set is at…",
           "dependsOn": [
             "m2-lem-scalar-certificates",
-            "m2-lem-scalar-interpolation",
             "m2-lem-scalar-layer"
           ]
         }
@@ -924,7 +911,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Symplectic-Balls-in-Symmetric-Polar-Products-September-22-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Symplectic Balls in Symmetric Polar Products; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Symplectic Balls in Symmetric Polar Products.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -976,8 +963,6 @@
           "source": "Realization in a polar product",
           "detail": "Let n2 be an integer, let b_1,,b_m^n span ^n , and set \\[ K=\\ x^n: |b_j x| 1, 1 j m\\ . \\] For every 0<c<4 there is a smooth symplectic embedding \\[ B^ 2n (c) (K)(K^). \\]",
           "dependsOn": [
-            "m3-lem-planar-map",
-            "m3-thm-holomorphic-ball",
             "m3-prop-uniform-slice"
           ]
         },
@@ -990,7 +975,6 @@
           "source": "Arbitrary convex bodies and consequences",
           "detail": "[Finite polar approximation] Let K^n be an origin-symmetric convex body. For every >0 , there are finitely many vectors b_1,,b_m^n spanning ^n such that \\[ K'=\\ x^n:|b_j x |1, 1 j m\\ \\] satisfies K…",
           "dependsOn": [
-            "m3-thm-main",
             "m3-prop-finite-strips"
           ]
         },
@@ -1047,7 +1031,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -322,7 +322,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Uniform-Stability-of-the-Spherical-Laughlin-Gap-October-5-2026/uniform-stability-spherical-laughlin-gap.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Uniform Stability of the Spherical Laughlin Gap; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Uniform Stability of the Spherical Laughlin Gap.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -404,8 +404,7 @@
           "source": "A local calculus in the lowest Landau level",
           "detail": "[The physical interactions] The unperturbed Hamiltonian H_q and the Fock lift of any bounded real scalar symbol have physical, neutral, Hermitian rapid interactions of uniform sizes C_D and C_D\\|\\|_…",
           "dependsOn": [
-            "m1-locality-frame",
-            "m1-locality-calculus"
+            "m1-locality-frame"
           ]
         },
         {
@@ -495,7 +494,6 @@
           "source": "Pinning zeros and transporting weighted observables",
           "detail": "[Transport of the pinned spaces] There is a number-preserving and axially invariant unitary path U_ q,d (s) on F_t , starting at the identity, such that \\[ U_ q,d (s) H_t= H_ q,d (s). \\] Writing _sU_…",
           "dependsOn": [
-            "m1-locality-row-symbols",
             "m1-locality-filters",
             "m1-locality-difference"
           ]
@@ -543,9 +541,7 @@
           "kind": "corollary",
           "source": "Pinning zeros and transporting weighted observables",
           "detail": "[Cost of changing a calibration state] Let q^0=3 q/3 and r=q-q^0\\ 0,1,2\\ . Consider the interaction K_ q,3 (f) on F_ q-3 and its common-frame comparison with K_ q^0,3 (f) . Embed a unit vector Z_…",
-          "dependsOn": [
-            "m1-pinning-weighted-transport"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-flags-branch-algebra",
@@ -577,9 +573,7 @@
           "kind": "proposition",
           "source": "Reading zero modes by orthogonal branches",
           "detail": "[Weighted observable at one branch] Fix p(0,2) , L2 , and f(j)=f_ L,p (j) . In the orthogonal coordinates , (J_ q,F J_ q,E )^*D_q(f)(J_ q,F J_ q,E ) = & D_ q-1 (f)+K_ q,1 (f)&0\\\\ 0&D_ q-3 (f)+f(q)+K_…",
-          "dependsOn": [
-            "m1-lem-flags-polar"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-flags-northern-step",
@@ -589,9 +583,7 @@
           "kind": "lemma",
           "source": "Reading zero modes by orthogonal branches",
           "detail": "[Northern comparison] There are fixed c0 and b_01 with the following property. Let O=O^* be neutral, of norm at most one, supported on a slot ball of radius r2 centered at latitude index m , and put…",
-          "dependsOn": [
-            "m1-pinning-northern-observable"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-flags-reference-compatibility",
@@ -612,7 +604,6 @@
           "source": "Reading zero modes by orthogonal branches",
           "detail": "[Local observables in history coordinates] For every fixed a(0,2) there are B,C< such that the following holds uniformly in n,q and in the allowed slot frames. Let O=O^* be a neutral slot observable…",
           "dependsOn": [
-            "m1-lem-flags-northern-step",
             "m1-lem-flags-reference-compatibility"
           ]
         },
@@ -624,9 +615,7 @@
           "kind": "corollary",
           "source": "Reading zero modes by orthogonal branches",
           "detail": "[One-hole comparison] Suppose h=1 , equivalently q=3n-2 . Let , be any two unit vectors in Z_ n,q . Let \\ O_x\\ be a measurable family of neutral self-adjoint observables of norm at most one,…",
-          "dependsOn": [
-            "m1-thm-flags-local-readout"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-charge-pooled",
@@ -668,10 +657,8 @@
           "detail": "[Calibrated electron step] For q above the fixed stopping range, |_q+ K_q_ _q | C(J_q+|_q-_ q^0 | +f(q) (L+q)^2 ). For any collection of northern center terms of K_q , their expectation in _q may…",
           "dependsOn": [
             "m1-prop-flags-weighted-step",
-            "m1-thm-flags-local-readout",
             "m1-prop-charge-pooled",
             "m1-lem-charge-sums",
-            "m1-lem-charge-scalars",
             "m1-pinning-one-sided"
           ]
         },
@@ -685,8 +672,7 @@
           "detail": "[First averaged comparison] Let W be a neutral Hermitian interaction with bounded strength per unit area and fixed rapid locality bounds. For unit vectors Z_ n,q and Z_ n',q with hole numbers h,h' ,…",
           "dependsOn": [
             "m1-thm-flags-local-readout",
-            "m1-prop-charge-pooled",
-            "m1-lem-charge-calibration"
+            "m1-prop-charge-pooled"
           ]
         },
         {
@@ -730,7 +716,6 @@
           "source": "Local removal of interaction energy",
           "detail": "[Vanishing weight on fixed deficits] For A_ q,M in , there are coefficients 0 a_ q,M, 1 such that \\[ A_ q,M =_ =0 ^ 2q-2 a_ q,M, P_ q, . \\] For every fixed 0 , _ M _ q a_ q,M, =0. Moreover, for each…",
           "dependsOn": [
-            "m1-thm-local-energy-descent",
             "m1-lem-evacuation-rows",
             "m1-locality-frame",
             "m1-locality-calculus"
@@ -759,7 +744,6 @@
           "source": "Relative bounds and stability",
           "detail": "[Relative form bound] For this fixed sufficiently large , there is a constant C independent of q such that -CG\\ \\ _x A_x\\ \\ CG whenever the A_x are physical, neutral, Hermitian operators satisfying…",
           "dependsOn": [
-            "m1-thm-local-energy-descent",
             "m1-locality-calculus",
             "m1-lem-zero-modes"
           ]
@@ -857,9 +841,7 @@
           "kind": "lemma",
           "source": "Retaining the unused four-body blocks",
           "detail": "[Three-body tail] For sufficiently large q , L_3(W_3_ z=16 ^q q_z(q)R_ 3,z W_3^) -_qH, where _q=_ 17 z q\\ odd d_ 3,z d_a |q_z(q)|(z+1), _q61 4096 .",
-          "dependsOn": [
-            "m1-prop-retained-blocks"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -875,7 +857,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Fock-space-inequality-and-the-Laughlin-spectral-gap-September-24-2026/A-Fock-space-inequality-and-the-Laughlin-spectral-gap-September-24-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A Fock-space inequality and the Laughlin spectral gap; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A Fock-space inequality and the Laughlin spectral gap.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -982,7 +964,6 @@
           "source": "The tail estimate and the gap",
           "detail": "[Three-body tail] For sufficiently large Q , _3(W_3_ z=16 ^Qq_z(Q)R_ 3,z W_3^) -_QH, where _Q=_ 17 z Q\\ odd d_ 3,z d_a |q_z(Q)|(z+1), _Q61 4096 .",
           "dependsOn": [
-            "m2-thm-fock",
             "m2-lem-square",
             "m2-prop-a4"
           ]
@@ -1048,7 +1029,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

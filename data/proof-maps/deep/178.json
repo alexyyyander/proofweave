@@ -202,7 +202,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Deterministic-nonbipartite-Ramanujan-graphs-in-every-fixed-degree-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Deterministic nonbipartite Ramanujan graphs in every fixed degree; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Deterministic nonbipartite Ramanujan graphs in every fixed degree.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -394,7 +394,6 @@
           "source": "Pairing down to a sparse boundary",
           "detail": "[Control of squared entry sums] For any fixed radius \\(R_c\\), the simultaneous accounts retain &T_S=_ x S e_x(x)^2 n^, T_V=_ i V E_ ii ^2 n^ n/l_0,\\\\ &T_ XS,k =_ i X,\\ x S\\\\ dist(vtxi,vtxx) k…",
           "dependsOn": [
-            "m1-lem-early-index-words",
             "m1-lemma-pencil-coefficients",
             "m1-lem-early-near-reference"
           ]
@@ -419,9 +418,7 @@
           "kind": "lemma",
           "source": "Pairing down to a sparse boundary",
           "detail": "[Linearization and its residual] For every surviving output pair, decompose its actual increment as \\( E_ ij =B_e L_ ij + N_ ij \\), where \\( L\\) is linear in \\(z\\) and evaluated on the old output…",
-          "dependsOn": [
-            "m1-lem-early-index-words"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-early-high-moments",
@@ -433,10 +430,7 @@
           "detail": "[High moments] There is a constant \\(C_*\\), independent of every sufficiently large even order \\(p\\), with the following property. After \\(p\\) is fixed, one may choose a fixed \\(_p>0\\), a fixed near…",
           "dependsOn": [
             "m1-lem-early-interpolation",
-            "m1-lemma-pencil-coefficients",
-            "m1-prop-early-phase",
-            "m1-lem-early-trace-accounts",
-            "m1-lem-early-low-squares"
+            "m1-lemma-pencil-coefficients"
           ]
         },
         {
@@ -584,13 +578,10 @@
           "source": "The algorithm and its bit complexity",
           "detail": "For each fixed d and the fixed choices in Section~ , every stage of the preceding construction is implementable with polynomially many bit operations in n .",
           "dependsOn": [
-            "m1-thm-main",
             "m1-prop-early-phase",
             "m1-prop-cleanup",
-            "m1-prop-boundary-completion",
             "m1-lem-repair-projector",
-            "m1-lem-repair-bulk",
-            "m1-thm-exact-repair"
+            "m1-lem-repair-bulk"
           ]
         }
       ]
@@ -610,7 +601,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -162,7 +162,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-exponential-state-lower-bound-for-two-way-nondeterministic-complementation-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from An exponential state lower bound for two-way nondeterministic complementation; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from An exponential state lower bound for two-way nondeterministic complementation.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -354,7 +354,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-exponential-two-way-deterministic-state-lower-bound-for-one-way-liveness-September-25-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from An exponential two-way deterministic state lower bound for one-way liveness; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from An exponential two-way deterministic state lower bound for one-way liveness.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -375,9 +375,7 @@
           "kind": "corollary",
           "source": "Introduction",
           "detail": "There are no absolute constants C,c>0 such that every n -state two-way nondeterministic automaton over every finite alphabet has an equivalent two-way deterministic automaton with at most Cn^c states.",
-          "dependsOn": [
-            "m2-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-rank-basic",
@@ -445,8 +443,6 @@
           "source": "An exponential rank-loss bound",
           "detail": "[Degree bound for a unital relation-monoid divisor] Let H be a finite set of size h2 . If an identity-containing submonoid Sk admits a unital surjection :SH , then \\[ k(h)=2^ (h-2)/31 . \\] No…",
           "dependsOn": [
-            "m2-lem-corners",
-            "m2-lem-unit-lifts",
             "m2-thm-rank-loss"
           ]
         },
@@ -478,9 +474,7 @@
           "kind": "lemma",
           "source": "Local matching representation of deterministic machines",
           "detail": "[Tree tour] For a finite tree with at least one edge, this rule has a single cycle on its directed edge traversals, for every choice of cyclic orders. If the two joins at two distinct leaves are…",
-          "dependsOn": [
-            "m2-thm-machine-diagrams"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-small-nfa",
@@ -501,8 +495,6 @@
           "source": "From relation products to the state lower bound",
           "detail": "Let H be a nonempty finite set. Suppose a deterministic automaton recognizing nonzero relation products over H has a symbol-diagram representation in k as in Theorem~ . Let Sk be the submonoid…",
           "dependsOn": [
-            "m2-thm-main",
-            "m2-prop-small-nfa",
             "m2-thm-machine-diagrams",
             "m2-cor-divisor-degree"
           ]
@@ -530,7 +522,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

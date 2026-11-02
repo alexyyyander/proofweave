@@ -102,7 +102,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-finitely-generated-counterexample-to-the-Eilenberg-Ganea-conjecture-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A finitely generated counterexample to the Eilenberg–Ganea conjecture; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A finitely generated counterexample to the Eilenberg–Ganea conjecture.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -260,8 +260,7 @@
           "source": "Small transport with nontrivial holonomy",
           "detail": "Suppose g and gx are nonidentity, where x is a signed standard generator. Their direction vectors belong to a common simplex of L . If their word lengths are n and n+1 , in either order, then…",
           "dependsOn": [
-            "m1-lem-trace-normal-form",
-            "m1-prop-small-labels"
+            "m1-lem-trace-normal-form"
           ]
         }
       ]
@@ -281,7 +280,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

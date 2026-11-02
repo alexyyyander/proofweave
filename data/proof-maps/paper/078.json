@@ -421,236 +421,283 @@
     {
       "from": "m1-lem-entropy-restriction",
       "to": "m1-lem-typical-conditioning",
+      "label": "lem:entropy-restriction",
       "context": "surprise bound on $\\mathcal E$ gives $\\mathsf P(y\\mid x)\\ge\\eps^{d_+}$ for every retained child, so summing these masses gives the support count. Apply Lemma~\\ref{lem:entropy-restriction} to $\\mathsf U_c\\le r_C(c)^{-1}\\mathsf P(\\,\\cdot\\mid C=c)$ for the lower bound in \\eqref{eq:typical-cell-entropy}; the s"
     },
     {
       "from": "m1-lem-typical-conditioning",
       "to": "m1-thm-finite-conditioning",
+      "label": "lem:typical-conditioning",
       "context": "l bounds proves \\eqref{eq:star-independent}. Leaving the $i$th pair unestimated and bounding the other $n-1$ kernels proves \\eqref{eq:star-pair}. Apply Lemma~\\ref{lem:typical-conditioning} to $\\mathsf U=R$ and each of $\\mathsf V=\\Lambda_0,\\ldots,\\Lambda_n$, with $A=c^n/m$ or $c^{n-1}/m$. A union bound prov"
     },
     {
       "from": "m1-lem-marginal-core",
       "to": "m1-thm-finite-conditioning",
+      "label": "lem:marginal-core",
       "context": "a(b_j). \\] Divide by $R_C(C)$. Since $R(G^c)\\le\\eta$, Markov's inequality bounds by $\\eta/\\tau$ the mass of conditionals losing more than $\\tau$. Apply Lemma~\\ref{lem:marginal-core} to the subprobability in each selected conditional, with its complete finite list of factor comparisons and threshold $"
     },
     {
       "from": "m1-lem-homogenization",
       "to": "m1-lem-profile-diagonal",
+      "label": "lem:homogenization",
       "context": "For the first assertion, apply Lemma~\\ref{lem:homogenization} to lists of length $q_k\\uparrow\\infty$, meshes $a_k\\downarrow0$, and, for example, $\\sigma=1$, $\\theta_k\\downarrow0$. A"
     },
     {
       "from": "m1-thm-ren-wang",
       "to": "m1-thm-planar-projection",
+      "label": "thm:ren-wang",
       "context": "ed tags has at most \\(M\\) allowed projection bins, so the total number of distinct tubes is at most \\(CQM\\). Put \\[ \\chi=\\min\\{1,d,(d+s)/2\\}. \\] Apply Theorem~\\ref{thm:ren-wang} with output loss \\(\\alpha/4\\). Choose \\(\\eta\\) sufficiently small that \\(C\\eta<\\eta_0(\\alpha/4,s,d)\\) and \\(C\\eta<\\alph"
     },
     {
       "from": "m1-lem-classical-splitting",
       "to": "m1-lem-classical-cap-regularization",
+      "label": "lem:classical-splitting",
       "context": "ber of bins times $\\eps^{\\eta_\\eps}$ tends to zero. Then $\\logeps{1/p}=o(1)$ on every retained bin. This proves \\eqref{eq:classical-cap-bounds}. Apply Lemma~\\ref{lem:classical-splitting} when the input is saturated. Before any later subpower tilt, impose the uniform probability bins of Lemma~\\ref{lem:hom"
     },
     {
       "from": "m1-lem-homogenization",
       "to": "m1-lem-classical-cap-regularization",
+      "label": "lem:homogenization",
       "context": "-bounds}. Apply Lemma~\\ref{lem:classical-splitting} when the input is saturated. Before any later subpower tilt, impose the uniform probability bins of Lemma~\\ref{lem:homogenization}; its conditional relative-entropy estimate preserves the stipulated profiles. Their score tends to $\\betac t+h$, while"
     },
     {
       "from": "m1-lem-classical-splitting",
       "to": "m1-lem-classical-localization",
+      "label": "lem:classical-splitting",
       "context": "e limit, their nonnegative limiting deficits have zero mean. The uniform lower bounds on all conditional deficits permit the same Markov selection as in Lemma~\\ref{lem:classical-splitting}. The composition of the chosen conditional root tests gives the predecessor assertion. The finite errors quoted in th"
     },
     {
       "from": "m1-lem-homogenization",
       "to": "m1-prop-least-aspect",
+      "label": "lem:homogenization",
       "context": "izon to $1+m$ reduces the subtracted root supremum. The universal bound forces the resulting diagonal to saturate. For the homogeneity assertion, apply Lemma~\\ref{lem:homogenization} to finite initial lists of these pairs under the stated bounds on the child alphabets, and choose their meshes and erro"
     },
     {
       "from": "m1-lem-profile-diagonal",
       "to": "m1-prop-least-aspect",
+      "label": "lem:profile-diagonal",
       "context": "nite initial lists of these pairs under the stated bounds on the child alphabets, and choose their meshes and errors before the corresponding precision. Lemma~\\ref{lem:profile-diagonal} then retains the countable list. In the applications below the children are finite tuples of grid observations at fixe"
     },
     {
       "from": "m1-lem-classical-localization",
       "to": "m1-prop-saturated-path",
+      "label": "lem:classical-localization",
       "context": "On a finite dyadic mesh, work backwards from $1$ using Lemma~\\ref{lem:classical-localization} with $d=0$. A composed predecessor has minimum depth at least the later $b$ and maximum depth at most the later $a$ pl"
     },
     {
       "from": "m1-lem-classical-splitting",
       "to": "m1-prop-saturated-path",
+      "label": "lem:classical-splitting",
       "context": "minimum depth at least the later $b$ and maximum depth at most the later $a$ plus the time difference. Split its variable shape into narrow bins and use Lemma~\\ref{lem:classical-splitting} to preserve all equalities already imposed. Drop redundant labels. Before making this split, sample each incoming pre"
     },
     {
       "from": "m1-lem-entropy-splitting",
       "to": "m1-prop-saturated-path",
+      "label": "lem:entropy-splitting",
       "context": "uent finite binning and trimming introduce at most their normalized entropy or relative-entropy cost into the averaged conditional mutual information, by Lemma~\\ref{lem:entropy-splitting}. Retain typical parts on which this cost and all finitely many score defects are bounded by a common deterministic $q_"
     },
     {
       "from": "m1-lem-profile-diagonal",
       "to": "m1-prop-isotropic-reduction",
+      "label": "lem:profile-diagonal",
       "context": "ical localization cells with each required error $o(\\eta_j)$. Only afterwards divide by $\\eta_j$ and take the outer diagonal. This is an application of Lemma~\\ref{lem:profile-diagonal} with the error measured in the new units. No modulus of differentiability uniform over profiles is used. If $m=0$, u"
     },
     {
       "from": "m1-lem-classical-splitting",
       "to": "m1-prop-isotropic-reduction",
+      "label": "lem:classical-splitting",
       "context": "eta). \\] Since $J$ records $R_d$, this also bounds the orientation cost under $\\mathsf P^E$. The binary tag $\\boldsymbol1_E$ costs $O(1/\\ell)=o(\\eta)$. Lemma~\\ref{lem:classical-splitting}, the original $o(\\eta)$ deficits, and the common lower bound $-o(\\eta)$ for the complementary deficits give $o(\\eta)$ d"
     },
     {
       "from": "m1-lem-typical-conditioning",
       "to": "m1-prop-isotropic-reduction",
+      "label": "lem:typical-conditioning",
       "context": "$o(\\eta)$ under the same finite envelope. Choose one $\\lambda_\\eps\\downarrow0$ with $\\log(1/\\lambda_\\eps)=o(\\eta\\ell)$, using $\\eta\\ell\\to\\infty$. Apply Lemma~\\ref{lem:typical-conditioning} to the event $E$, with $C=J$, $X=(B,J)$, $Y=D_q$, and all three exceptional thresholds equal to $\\lambda_\\eps$. Outside"
     },
     {
       "from": "m1-lem-classical-localization",
       "to": "m1-prop-isotropic-reduction",
+      "label": "lem:classical-localization",
       "context": "there are fixed intervals $(u_j,u_j+h_j)$, chosen after their inner limits, with \\[ h_j^{-1}\\Ent(R_{m(u_j+h_j)}\\mid T,C_{u_j})\\longrightarrow0. \\] Apply Lemma~\\ref{lem:classical-localization} to the saturated observation at $u_j+h_j$, with $r=u_j$, $b=b(u_j+h_j)$, and $d=e(u_j+h_j)$. Its conditional final sha"
     },
     {
       "from": "m1-lem-zero-information",
       "to": "m1-lem-affine-block-core",
+      "label": "lem:zero-information",
       "context": "$\\Lambda_{\\mathrm{coord}}(\\theta,q) =\\lambda^0(\\theta)\\prod_j\\xi_j^\\theta(q_j)$. These are probability laws on their respective observation spaces. Use Lemma~\\ref{lem:zero-information} with cutoff $v$ for both likelihood ratios. Pull both allowed sets back to the original $(P,\\theta)$ space through the"
     },
     {
       "from": "m1-lem-typical-conditioning",
       "to": "m1-prop-directional-bootstrap",
+      "label": "lem:typical-conditioning",
       "context": "n subpower envelope for this test. Fix a differentiability point $j\\in(0,1)$ of $F_B$ and a much smaller fixed increment $a>0$. For $0<\\eta<1/2$, apply Lemma~\\ref{lem:typical-conditioning} with the observation $A_j$, both to $\\mathsf R\\le(K_{\\mathrm{pair}}/m_H)\\mu_A\\otimes\\mu_B$ and to its retention from $\\"
     },
     {
       "from": "m1-lem-marginal-core",
       "to": "m1-prop-directional-bootstrap",
+      "label": "lem:marginal-core",
       "context": "ves the second term. It is smaller than the working precision when $a\\ll j$. All translations and dilations have subpower size. Before resampling, apply Lemma~\\ref{lem:marginal-core} to the two named factors of $\\mathsf G_j$. With threshold $1/4$ it gives a normalized pair $q_j$ of raw mass $M_j\\ge1/"
     },
     {
       "from": "m1-thm-finite-conditioning",
       "to": "m1-prop-directional-bootstrap",
+      "label": "thm:finite-conditioning",
       "context": "r ball and strip bounds persist; its support retains the direction counts. Now sample two pins independently over $(q_j)_A$ using the kernel of $q_j$. Theorem~\\ref{thm:finite-conditioning} compares the star with the independent product of these actual marginals and with either retained pair $q_j$ times the"
     },
     {
       "from": "m1-thm-planar-projection",
       "to": "m1-prop-directional-bootstrap",
+      "label": "thm:planar-projection",
       "context": "d A_j)$. The former keeps the reciprocal direction bound and the latter the child ball bound; the core supplies their actual product comparison. Thus Theorem~\\ref{thm:planar-projection} applies with dimensions $s,u$ and count \\eqref{eq:rate-direction-count}. It gives \\[ F_B'(j)\\ge\\min\\{1,s,(s+u)/2\\}=(s"
     },
     {
       "from": "m1-lem-curve-traces",
       "to": "m1-lem-closure-contact-tuples",
+      "label": "lem:curve-traces",
       "context": "Choose a common differentiability point of $b,S$ which is a Lebesgue point of $S'$ and a point of the strong curve traces in Lemma~\\ref{lem:curve-traces}. The assertions concerning aperture boundaries follow by differentiating the nonnegative Lipschitz functions $b(u)$ an"
     },
     {
       "from": "m1-prop-rate-transfer",
       "to": "m1-lem-closure-contact-tuples",
+      "label": "prop:rate-transfer",
       "context": "ry transverse rate and $D$ on the support, and the Lebesgue-point property fixes the last coordinate to $s$. Each strict-hypothesis implication in Proposition~\\ref{prop:rate-transfer} persists on this support: a violation with a strictly positive source or a strictly subunit target would hold on an ope"
     },
     {
       "from": "m1-thm-characteristic-trace",
       "to": "m1-lem-closure-positive-x",
+      "label": "thm:characteristic-trace",
       "context": "ust $L_X$ is raised by $t$ at the plane point. This is an inward direction of the resolution cone. At almost every $(i,v)$ the affine cone blow-up in Theorem~\\ref{thm:characteristic-trace} supplies a sequence $t\\downarrow0$ along which this increase divided by $t$ tends to $x(i,v)$. At almost every $i$, th"
     },
     {
       "from": "m1-lem-closure-contact-tuples",
       "to": "m1-lem-closure-positive-x",
+      "label": "lem:closure-contact-tuples",
       "context": "$x$ at least $\\gamma$, and its compact support contains a tuple with $x\\ge\\gamma$. All its other transverse components are the same plus traces used in Lemma~\\ref{lem:closure-contact-tuples}. This proves the assertion without requiring a trace for the characteristic component $x$."
     },
     {
       "from": "m1-thm-classical-growth",
       "to": "m1-lem-closure-sign-algebra",
+      "label": "thm:classical-growth",
       "context": "[Completion of the proof of Theorem~\\ref{thm:classical-growth}] Choose a contact point satisfying the preceding lemmas, and keep its $p,s$ fixed. The identity \\eqref{eq:closure-cont"
     },
     {
       "from": "m1-lem-closure-positive-x",
       "to": "m1-lem-closure-sign-algebra",
+      "label": "lem:closure-positive-x",
       "context": "that $p\\ge p_*$. Since $p>0$, the point cannot lie on the lower aperture boundary, so the minus side is admissible. Choose there a tuple with $B\\le0$. Lemma~\\ref{lem:closure-positive-x} gives $x=x^-\\ge\\gamma>0$. For this tuple $F$ is nondecreasing. If $z<1$, then $F(p)\\ge F(p_*)\\ge1+s$; if $z=1$, then $"
     },
     {
       "from": "m1-prop-isotropic-exclusion",
       "to": "m1-lem-closure-sign-algebra",
+      "label": "prop:isotropic-exclusion",
       "context": "bove remain valid. Thus no matched-clock least-aspect extremizer can exist under $\\beta>\\gamma$. The isotropic alternative was already excluded by Proposition~\\ref{prop:isotropic-exclusion}. The contradiction proves $\\beta\\le\\gamma$, completing Theorem~\\ref{thm:classical-growth}."
     },
     {
       "from": "m1-lem-packet-bessel",
       "to": "m1-lem-packet-decomposition",
+      "label": "lem:packet-bessel",
       "context": "d_{j,n,O}= \\frac{|X-X_{j,n}-(C_t-C_r)V_j|}{\\sigma_r}. \\] Its higher derivatives have bounds independent of \\(n\\). The same integration operator as in Lemma~\\ref{lem:packet-bessel} therefore gives, for every \\(M\\), \\begin{equation} |\\langle g_{j,n},h_O\\rangle| \\le C_M\\frac{\\rho_r}{\\rho_t}(1+d_{j,n"
     },
     {
       "from": "m1-lem-packet-decomposition",
       "to": "m1-lem-cap-class",
+      "label": "lem:packet-decomposition",
       "context": "t by the same amount. The available coefficient exponents, after subtracting \\(\\logeps{\\|f\\|_2^2}\\), lie in a fixed bounded interval after the cutoff in Lemma~\\ref{lem:packet-decomposition}; so do the maxima, since counts have exponent at most \\(Q\\) and weights are bounded at fixed depths. The number of bin"
     },
     {
       "from": "m1-lem-cap-class",
       "to": "m1-prop-local-root-comparison",
+      "label": "lem:cap-class",
       "context": "d{equation} Take \\(R=\\eps^{-\\eta}\\) in \\eqref{eq:packet-cap-bessel}. Its near set is covered by at most \\(C\\eps^{-4\\eta}\\) root caps of the same widths. Lemma~\\ref{lem:cap-class} therefore bounds its coefficient square sum by \\(C m\\eps^{w(F)-g-\\xi-4\\eta-e_{\\rm pkt}}\\). The far term is at most \\(C_"
     },
     {
       "from": "m1-lem-packet-decomposition",
       "to": "m1-prop-packet-trivial-growth",
+      "label": "lem:packet-decomposition",
       "context": "Split into fixed aperture-width bins, at a cost tending to zero. Apply Lemma~\\ref{lem:packet-decomposition} with \\(r=b_*=0\\), then the class and winner construction. Restrict to the mass floor as justified above. Work within"
     },
     {
       "from": "m1-prop-local-root-comparison",
       "to": "m1-prop-packet-trivial-growth",
+      "label": "prop:local-root-comparison",
       "context": "ore bounds the conditional endpoint score by \\(A_J+t+e_{\\rm pkt}\\). Restoring \\(J\\) adds \\(\\Ent(J)\\), with the recorded tag error; here \\(b_*=0\\). Proposition~\\ref{prop:local-root-comparison} at \\(r=0\\) gives \\[ P_t\\le\\Ent(J)+\\EE A_J+t+e_{\\rm pkt} \\le K_0+t+2e_{\\rm pkt}, \\] because \\(N\\le N_{\\rm all}\\). Fir"
     },
     {
       "from": "m1-prop-local-root-comparison",
       "to": "m1-prop-finite-packet-composition",
+      "label": "prop:local-root-comparison",
       "context": "} Here the potentially large entropy $\\Ent(J)$ has not been discarded. Only the extra ambiguity and choice tags have been charged to $\\mathcal R$. Proposition~\\ref{prop:local-root-comparison} gives $K_J\\le A_J+\\mathcal R$. Its whole-class earlier test gives $P_r^{\\rm all}\\ge K_r^*-\\mathcal R$. The universal e"
     },
     {
       "from": "m1-prop-packet-trivial-growth",
       "to": "m1-lem-packet-boundary-slack",
+      "label": "prop:packet-trivial-growth",
       "context": "-tail order give \\[ m_Z\\le\\eps^{-C\\mathcal R}m\\,\\#\\mathcal T_Z, \\] with the tails absorbed by the coefficient and output floors as in the proof of Proposition~\\ref{prop:packet-trivial-growth}. Only after this bound, keep the given law of \\((Z,D)\\) and choose \\(T\\) uniformly in \\(\\mathcal T_Z\\), independently o"
     },
     {
       "from": "m1-thm-classical-growth",
       "to": "m1-lem-packet-boundary-slack",
+      "label": "thm:classical-growth",
       "context": "EE w(F)\\le g+C\\mathcal R, \\qquad \\tau(T)\\le g-\\Ent(T)+C\\mathcal R. \\] This support bound holds for the possibly biased contributor marginal on \\(T\\). Theorem~\\ref{thm:classical-growth}, applied to the exact lines and the faithful enlarged aperture represented by \\(D\\), gives \\[ \\Ent(T\\mid D)+w_{\\rm loc"
     },
     {
       "from": "m1-lem-packet-boundary-slack",
       "to": "m1-prop-boundary-alternatives",
+      "label": "lem:packet-boundary-slack",
       "context": "K_0$, all with smaller widths at least $b$. This contradicts \\eqref{eq:forced-root-gap}. Allowing the shape mesh to vanish gives $b\\le u_0-\\nu+o(1)$. By Lemma~\\ref{lem:packet-boundary-slack}, for $t\\le\\nu$ this yields \\[ a-b\\ge u_t-u_0+\\nu+o(1) =\\nu-t/2+o(1)\\ge\\nu/2+o(1). \\] Start with a backward s"
     },
     {
       "from": "m1-prop-packet-trivial-growth",
       "to": "m1-lem-orientation-alignment",
+      "label": "prop:packet-trivial-growth",
       "context": "ontributors shares its \\(P\\). Write \\(\\mathcal T_{J,P}=\\{T\\in\\mathcal T_J:P(T)=P\\}\\) and \\(N_{J,P}=\\#\\mathcal T_{J,P}\\). The finite mass bound of Proposition~\\ref{prop:packet-trivial-growth}, with the fixed floor and tail comparison, bounds the collapsed mass by \\(mN_{J,P}\\) with the stated finite error. Onl"
     },
     {
       "from": "m1-lem-cap-class",
       "to": "m1-lem-orientation-alignment",
+      "label": "lem:cap-class",
       "context": "vision the number of distinct assigned \\(E\\) labels is at most \\(\\eps^{-\\logeps{N_{\\rm all}}+g-w(j,l)-C_*\\eta}\\), by the whole-class fiber lower bound of Lemma~\\ref{lem:cap-class}. Since \\(E\\) is assigned deterministically to \\(T\\), \\begin{equation} \\Ent(T\\mid E)\\ge g-w(j,l)-d_1(J)-\\delta_J-C_*(h"
     },
     {
       "from": "m1-lem-packet-bessel",
       "to": "m1-lem-packet-coherence",
+      "label": "lem:packet-bessel",
       "context": "The first inequality is the synthesis Bessel estimate followed by the analysis Bessel estimate of Lemma~\\ref{lem:packet-bessel}. It holds for any subset of output sites and any subset of atoms. Suppose first that \\(d=2\\). If \\(A_{OT}\\) is the no"
     },
     {
       "from": "m1-thm-packet-growth",
       "to": "m1-thm-oscillatory-estimate",
+      "label": "thm:packet-growth",
       "context": "Fix $0<\\gamma<1$ and a loss $\\eta>0$. Apply Theorem~\\ref{thm:packet-growth} with \\[ \\eps=\\lambda^{-1},\\qquad \\Planck=t=L=1. \\] Thus its finite conclusion is $P_1\\le K_0+\\gamma/2+\\eta$ for all su"
     },
     {
       "from": "m1-lem-packet-bessel",
       "to": "m1-thm-oscillatory-estimate",
+      "label": "lem:packet-bessel",
       "context": ". The case $f=0$ is immediate. At the root the packet radius is $\\rho_0=\\lambda^{-1/2}$. Write $m_O$ for the canonical root masses. The Bessel bound of Lemma~\\ref{lem:packet-bessel} gives \\[ M:=\\sum_Om_O\\le C|F|. \\] If $D$ is any admissible root aperture of widths $b\\le a\\le1/2$, its velocity center"
     },
     {
       "from": "m1-thm-bochner-riesz",
       "to": "m1-lem-br-kernel",
+      "label": "thm:bochner-riesz",
       "context": "[Proof of Theorem~\\ref{thm:bochner-riesz}] Combining \\eqref{eq:br-rescaled-shell} and \\eqref{eq:br-unit-shell} shows that the shell of radius $\\lambda$ has $L^3$"
     },
     {
       "from": "m1-lem-br-complex-order",
       "to": "m1-cor-full-bochner-riesz",
+      "label": "lem:br-complex-order",
       "context": "First let $3<p<\\infty$. Put \\[ \\theta=1-\\frac3p\\in(0,1),\\qquad c=\\delta-\\theta>0, \\qquad z(w)=c+w. \\] On the boundary $\\Re w=0$, Lemma~\\ref{lem:br-complex-order} with $r=c/2$ and Theorem~\\ref{thm:bochner-riesz} give a polynomially growing $L^3$ bound for $T_{c+i\\tau}$. On $\\Re w="
     },
     {
       "from": "m1-thm-bochner-riesz",
       "to": "m1-cor-full-bochner-riesz",
+      "label": "thm:bochner-riesz",
       "context": "[ \\theta=1-\\frac3p\\in(0,1),\\qquad c=\\delta-\\theta>0, \\qquad z(w)=c+w. \\] On the boundary $\\Re w=0$, Lemma~\\ref{lem:br-complex-order} with $r=c/2$ and Theorem~\\ref{thm:bochner-riesz} give a polynomially growing $L^3$ bound for $T_{c+i\\tau}$. On $\\Re w=1$, apply the same lemma with $r=1+c/2>1$. Lemma"
     },
     {
       "from": "m1-lem-br-kernel",
       "to": "m1-cor-full-bochner-riesz",
+      "label": "lem:br-kernel",
       "context": "/2$ and Theorem~\\ref{thm:bochner-riesz} give a polynomially growing $L^3$ bound for $T_{c+i\\tau}$. On $\\Re w=1$, apply the same lemma with $r=1+c/2>1$. Lemma~\\ref{lem:br-kernel} supplies an integrable real-order kernel and hence a polynomially growing $L^\\infty$ bound for $T_{1+c+i\\tau}$. This i"
     }
   ]

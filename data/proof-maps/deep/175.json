@@ -72,7 +72,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Graph-Decompositions-at-the-Integral-Expectation-Threshold-October-5-2026/graph-threshold-decompositions.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Graph Decompositions at the Integral Expectation Threshold; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Graph Decompositions at the Integral Expectation Threshold.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -168,9 +168,6 @@
           "source": "Direct embedding lemmas",
           "detail": "Put A=400e^4 . There is an absolute integer N_3 such that, for every n N_3 and every star forest J on at most n vertices with |V_+(J)| n/100 , p_c(J;n)2Aq(J;n). If q(J;n)<1/(2A) , the stronger bound…",
           "dependsOn": [
-            "m1-thm-main",
-            "m1-prop-transfer",
-            "m1-prop-degree-embedding",
             "m1-lem-q-lower",
             "m1-cor-typical-cover",
             "m1-lem-split"
@@ -193,7 +190,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

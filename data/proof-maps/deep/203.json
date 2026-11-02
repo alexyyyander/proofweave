@@ -422,7 +422,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Donovans-Conjecture-over-Algebraic-Closures-of-Prime-Fields-September-24-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Donovan's Conjecture over Algebraically Closed Fields; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Donovan's Conjecture over Algebraically Closed Fields.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -572,10 +572,7 @@
           "kind": "lemma",
           "source": "A Cartan bound for fixed root data",
           "detail": "Let \\( I\\) be any set of at most \\(K\\) ordinary irreducible characters of \\(\\), and let \\(pr_ I \\) be their orthogonal coordinate projection. Then \\[ \\|pr_ I _ x, \\|^2 K|W|^3, \\|pr_ I _ P_ x, \\|^2…",
-          "dependsOn": [
-            "m1-thm-geometric-cartan",
-            "m1-geom-projective-images"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-quasisimple-cartan",
@@ -682,7 +679,6 @@
           "source": "Cartan bounds for quasisimple groups",
           "detail": "For odd \\(p\\), the original central subgroup and every inherited residual central torus satisfy \\[ |Z_p|,\\ | T_R^F|_p ((q-1)_p(q+1)_p)^3. \\] The full residual connected center satisfies the analogous…",
           "dependsOn": [
-            "m1-thm-quasisimple-cartan",
             "m1-lem-restriction-rows",
             "m1-thm-geometric-cartan",
             "m1-fam-type-a",
@@ -700,9 +696,7 @@
           "kind": "proposition",
           "source": "Ordinary labels, single cycles, and block cores",
           "detail": "[Labels and ordinary branching] The following conventions and formulas apply to the unipotent factors of the ordinary Jordan labels in the groups just specified. For _n^(q) , where =1 or -1 ,…",
-          "dependsOn": [
-            "m1-lab-sparse"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lab-fingerprints",
@@ -921,12 +915,9 @@
           "source": "Runner reductions and projective cones",
           "detail": "At these two-cycle endpoints the number \\(m_i\\) of ordinary split Harish--Chandra rank-one steps above the triangle in each packet is uniformly bounded. The complete collection at this triangle and…",
           "dependsOn": [
-            "m1-run-localization",
-            "m1-prop-runner-reduction",
             "m1-prop-core-blocks",
             "m1-run-cone-transfer",
             "m1-thm-geometric-cartan",
-            "m1-prop-triangle-cartan",
             "m1-lem-row-projection",
             "m1-lem-central-transfer"
           ]
@@ -973,9 +964,7 @@
           "kind": "lemma",
           "source": "The cuspidal triangle endpoint",
           "detail": "[Inertia] The stabilizer quotient W_=N_G( L,)/L is the relative rational Weyl group of C_L in C . On a packet outside the even-sign case its factor is _b W(B_ r_ i,b ) . On an even-sign packet it is…",
-          "dependsOn": [
-            "m1-prop-single-cycle"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-end-head",
@@ -1056,9 +1045,7 @@
           "kind": "lemma",
           "source": "The cuspidal triangle endpoint",
           "detail": "[Exact total count] Sum the numbers of simple endomorphism-algebra types over all size choices~ . The result is | T| .",
-          "dependsOn": [
-            "m1-end-even-algebra"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-end-exhaustion",
@@ -1070,10 +1057,7 @@
           "detail": "[Exhaustion of the endpoint simples] Every simple module in the block union of T is a quotient of R_L^G for one of the pairs constructed in~ .",
           "dependsOn": [
             "m1-prop-single-cycle",
-            "m1-end-presentation",
-            "m1-end-count",
             "m1-end-head",
-            "m1-end-inertia",
             "m1-prop-triangle-cartan",
             "m1-thm-geometric-cartan",
             "m1-end-residual",
@@ -1158,7 +1142,6 @@
           "source": "Extensions and field Morita finiteness",
           "detail": "[The conditional extension criterion] Fix p and M . Suppose that the comparison property of Definition~ holds uniformly for the data constructed from all reduced blocks of defect order at most M .…",
           "dependsOn": [
-            "m1-lem-ext-dual-recovery",
             "m1-lem-ext-integral-bases",
             "m1-lem-ext-reduced-structure",
             "m1-lem-ext-based-sylow",
@@ -1236,8 +1219,7 @@
           "source": "Sylow-equivariant Frobenius comparison",
           "detail": "[Projective extension of the transports] For the Lie-component orbit above there is an integral Morita bimodule M_J between ^m(b') and b' on which I has covariance transports defined up to scalars in…",
           "dependsOn": [
-            "m1-per-row-return",
-            "m1-per-br"
+            "m1-per-row-return"
           ]
         },
         {
@@ -1249,9 +1231,7 @@
           "source": "Sylow-equivariant Frobenius comparison",
           "detail": "[Removing the scalar defect] Let S be a finite p -group acting on two block algebras by crossed systems with the same group labels and respective factors a_ xy ,a'_ xy . Suppose that a nonzero Morita…",
           "dependsOn": [
-            "m1-prop-sylow-comparison",
             "m1-per-scalar-overlap",
-            "m1-per-row-return",
             "m1-per-algebraic-action"
           ]
         },
@@ -1266,7 +1246,6 @@
           "dependsOn": [
             "m1-thm-donovan",
             "m1-prop-sylow-comparison",
-            "m1-thm-extension-finiteness",
             "m1-thm-quasisimple-cartan"
           ]
         }
@@ -1284,7 +1263,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Integral-Donovan-Finiteness-over-Witt-Vectors-September-25-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Integral Donovan Finiteness over Witt Vectors; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Integral Donovan Finiteness over Witt Vectors.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1407,7 +1386,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

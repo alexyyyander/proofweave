@@ -422,7 +422,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Exact-Birch-Swinnerton-Dyer-Formula-from-Low-Selmer-Corank-October-7-2026/exact-bsd-low-selmer-corank.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -495,9 +495,7 @@
           "kind": "lemma",
           "source": "Arithmetic inputs and exact normalizations",
           "detail": "[Compatible auxiliary fields] Let E/ have conductor N and analytic rank r\\ 0,1\\ . There exist coprime negative odd fundamental discriminants D,D'<-4 such that, for \\[ K=( D), F=(DD'), L=( D,D'), \\]…",
-          "dependsOn": [
-            "m1-classical-twist-density"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-classical-gross-zagier",
@@ -539,9 +537,7 @@
           "kind": "lemma",
           "source": "Integral cohomology and determinant comparisons",
           "detail": "[Exact local complements] Let paired perfect local maps U_v L_v and U'_v L'_v have a specified nullhomotopy of their cup restriction. Suppose the induced morphism \\[ L'_v/U'_v U_v^ \\] is an…",
-          "dependsOn": [
-            "m1-models-finite-models"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-models-evaluations",
@@ -661,9 +657,7 @@
           "kind": "lemma",
           "source": "Auxiliary primes and residual concentration",
           "detail": "[Scalar localization] For the constant roots coefficient, global degree-two localization is injective on these residual tests. In particular a cup of two paired classes which is locally zero has a…",
-          "dependsOn": [
-            "m1-models-finite-models"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-vertical-parity",
@@ -701,7 +695,6 @@
           "dependsOn": [
             "m1-models-evaluations",
             "m1-vertical-lift-test",
-            "m1-vertical-tests",
             "m1-vertical-parity"
           ]
         },
@@ -836,9 +829,7 @@
           "source": "The single-curve determinant and its central value",
           "detail": "[Spectral-height identity] For the horizontal sequence just constructed, C_0_0L(f,1)Z' d_0 =(2-a_*) h_^ K_b (Q_X,Q_X) _ .",
           "dependsOn": [
-            "m1-single-height-direction",
-            "m1-single-logarithm",
-            "m1-classical-gross-zagier"
+            "m1-single-height-direction"
           ]
         },
         {
@@ -937,7 +928,6 @@
           "detail": "[Inert derivative coordinates] There are fresh inert good prime sequences \\(\\), with \\(-1\\) and Tate Frobenius tending to \\(J=_T()\\) for complex conjugation \\(\\), for which the limiting local…",
           "dependsOn": [
             "m1-pair-finite-divisibility",
-            "m1-models-evaluations",
             "m1-models-square-switch"
           ]
         },
@@ -950,9 +940,7 @@
           "source": "The analytic series and the pair comparison",
           "detail": "[The integral comparison quotient] Using the descended analytic ideals, the fraction \\[ U_w=B_w/L_w \\] is represented by an integral series, and \\(p U_w\\). Removing any newly added tame variables…",
           "dependsOn": [
-            "m1-models-series-division",
-            "m1-pair-finite-divisibility",
-            "m1-pair-trace"
+            "m1-models-series-division"
           ]
         },
         {
@@ -1038,8 +1026,7 @@
           "detail": "[The toric weight limits] At every fixed stage i , the periods P_ j,i (m) have coefficientwise limits as positive m tends to zero on the chosen p -adic branch and tends to infinity ordinarily. The…",
           "dependsOn": [
             "m1-pair-primitive",
-            "m1-theta-fourier-measure",
-            "m1-pair-interpolation"
+            "m1-theta-fourier-measure"
           ]
         },
         {
@@ -1109,7 +1096,6 @@
           "source": "Content at a character and extraction of a primitive class",
           "detail": "[The cyclotomic corner] The corner modules satisfy D_ xy =D_ xf D_ fy .",
           "dependsOn": [
-            "m1-theta-test-point",
             "m1-extraction-binary"
           ]
         },
@@ -1146,8 +1132,7 @@
           "source": "Removing the divisors of the integral quotient",
           "detail": "[Equality of the two quotient ideals] For every auxiliary tuple satisfying the preceding requirements, (U_w)=(U_ w ) in R .",
           "dependsOn": [
-            "m1-pair-finite-divisibility",
-            "m1-models-series-division"
+            "m1-pair-finite-divisibility"
           ]
         },
         {
@@ -1168,9 +1153,7 @@
           "kind": "lemma",
           "source": "Removing the divisors of the integral quotient",
           "detail": "[First-order tests and formal codimension] Let (A, m,k) be a regular local ring with chark=0 . Let D:A^s A^r , r s1 , have entries in m , and let D_1 be its linear part on the tangent space T_A=_k(…",
-          "dependsOn": [
-            "m1-unit-augmented-alternating"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-unit-simultaneous-jumps",
@@ -1181,14 +1164,9 @@
           "source": "Removing the divisors of the integral quotient",
           "detail": "The new tame directions can be chosen so that, for every such q , the following two loci have codimension at least two in S_ ( q, y) : the locus where both one-sided primitive complexes for a single…",
           "dependsOn": [
-            "m1-vertical-horizontal-directions",
             "m1-models-finite-models",
             "m1-vertical-parity",
-            "m1-vertical-lift-test",
-            "m1-unit-tangent-minors",
             "m1-models-evaluations",
-            "m1-unit-augmented-alternating",
-            "m1-vertical-obstruction-span",
             "m1-pair-trace"
           ]
         },
@@ -1201,7 +1179,6 @@
           "source": "Removing the divisors of the integral quotient",
           "detail": "The two quotients U_w are units. Their specialization with all artificial variables zero gives an integral unit comparison between the analytic series and strict determinant on the true…",
           "dependsOn": [
-            "m1-unit-simultaneous-jumps",
             "m1-pair-integral-quotient",
             "m1-unit-quotient-regularity"
           ]
@@ -1230,9 +1207,7 @@
           "kind": "corollary",
           "source": "The central value and the exact formula",
           "detail": "For every elliptic curve of analytic rank zero or one, including CM curves, and for the imaginary twist in Lemma~ , X(E)+X(E^D)=0.",
-          "dependsOn": [
-            "m1-classical-discrepancy-identity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-center-cm-zero",
@@ -1273,7 +1248,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Selmer-converse-for-elliptic-curves-at-every-prime-October-7-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Selmer converse for elliptic curves at every prime; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Selmer converse for elliptic curves at every prime.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1338,9 +1313,7 @@
           "kind": "lemma",
           "source": "A tame deformation and its Selmer length",
           "detail": "If the compact Selmer line of W/K has nonzero localization, then H^1_ (K,W)=H^1_ (K,W)=0 . The only remaining possibility is the following strict case in the V summand: r=1 , and the compact Selmer…",
-          "dependsOn": [
-            "m2-prop-arithmetic-reduction"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-tame-primes",
@@ -1375,7 +1348,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

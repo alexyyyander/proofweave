@@ -427,7 +427,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Finite-Congruence-Lattices-Characterization-and-Undecidability-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Finite congruence lattices: characterization and undecidability; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Finite congruence lattices: characterization and undecidability.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -538,9 +538,7 @@
           "kind": "proposition",
           "source": "Affine test lattices and almost simple intervals",
           "detail": "If the test lattice L is representable by a finite algebra, it is isomorphic to an ordinary subgroup interval of a finite group.",
-          "dependsOn": [
-            "m1-f-lem-subdirect"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-f-prop-monolith",
@@ -560,9 +558,7 @@
           "kind": "lemma",
           "source": "Affine test lattices and almost simple intervals",
           "detail": "[Extension description] Suppose H acts by automorphisms on S^s , transitively on the simple coordinates. Fix a coordinate o , identify its group with S , and let A_0 H be its stabilizer, with induced…",
-          "dependsOn": [
-            "m1-f-lem-subdirect"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-f-prop-interval-cases",
@@ -572,11 +568,7 @@
           "kind": "proposition",
           "source": "Affine test lattices and almost simple intervals",
           "detail": "[Cases for a prepared interval] Use the notation of , in the core quotient. Let Aut(S) be the image of a coordinate stabilizer in H , and put I= S , identifying S with its inner automorphisms. The…",
-          "dependsOn": [
-            "m1-f-lem-coset",
-            "m1-f-prop-prepared-links",
-            "m1-f-lem-extension-description"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-f-lem-purity",
@@ -586,9 +578,7 @@
           "kind": "lemma",
           "source": "Affine test lattices and almost simple intervals",
           "detail": "[Purity and kernel joins] If the full extension poset with artificial top of is isomorphic to L , every proper label is pure. These labels are then parametrized by all H -normalized subgroups E K…",
-          "dependsOn": [
-            "m1-f-prop-prepared-links"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-f-lem-lower-grid",
@@ -609,11 +599,7 @@
           "source": "Affine test lattices and almost simple intervals",
           "detail": "[Ordinary almost simple starting interval] If the test lattice L is representable, then either the whole L or a prepared reverse link with top an initial trunk point has an ordinary almost simple…",
           "dependsOn": [
-            "m1-f-prop-ordinary-interval",
-            "m1-f-prop-interval-cases",
-            "m1-f-lem-purity",
-            "m1-f-lem-lower-grid",
-            "m1-f-prop-monolith"
+            "m1-f-prop-interval-cases"
           ]
         },
         {
@@ -656,10 +642,7 @@
           "kind": "proposition",
           "source": "Simultaneous path pruning and affine witness patterns",
           "detail": "[Finite schedule of simultaneous exclusions] Suppose that the local exclusions below prohibit their prescribed failed patterns with absolute case and chart-loss bounds. For a bounded path length,…",
-          "dependsOn": [
-            "m1-w-selection",
-            "m1-w-bounded-exclusion"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-c-parameter-order",
@@ -739,9 +722,7 @@
           "kind": "lemma",
           "source": "Pruning inside a high-rank classical ancestor",
           "detail": "[Supported groups in a prepared anchor] For every remaining direct system, each block \\(a\\) has an actually supported matrix subgroup \\(R_a\\), projectively contained in \\(E^+\\), of order greater than…",
-          "dependsOn": [
-            "m1-f-prop-interval-cases"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-c-direct-compatibility",
@@ -913,9 +894,7 @@
           "kind": "lemma",
           "source": "Pruning inside a high-rank classical ancestor",
           "detail": "[Common refinement of missing tensor systems] A finite pattern line of the missing systems in has a common tensor refinement formed from the lift algebras of tuple intersections \\(_iR_ i,a_i \\).…",
-          "dependsOn": [
-            "m1-c-full-spanning"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-c-tensor-pruning",
@@ -926,9 +905,7 @@
           "source": "Pruning inside a high-rank classical ancestor",
           "detail": "[Completion of tensor-system pruning] The missing tensor systems of are excluded by an absolute bound on the possible invariant partitions of their common fine slots. Hence all tensor systems are…",
           "dependsOn": [
-            "m1-c-tensor-order",
-            "m1-c-orbit-bound",
-            "m1-c-tensor-refinement"
+            "m1-c-orbit-bound"
           ]
         },
         {
@@ -991,9 +968,7 @@
           "kind": "lemma",
           "source": "Pruning inside an alternating ancestor",
           "detail": "[Missing normal powers with primitive factor action] Let \\([H,K_i]\\) be a prepared interval and \\(Y_i K_i\\) a direct power of nonabelian simple groups with \\(HY_i=K_i\\). If the action of \\(H\\) on its…",
-          "dependsOn": [
-            "m1-f-prop-interval-cases"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-c-cartesian-refinement",
@@ -1003,9 +978,7 @@
           "kind": "lemma",
           "source": "Pruning inside an alternating ancestor",
           "detail": "[Common Cartesian refinement] A finite pattern line of missing Cartesian labels has a common refinement into finite coordinate sets. It is constructed from the tuple intersections of the slotwise…",
-          "dependsOn": [
-            "m1-c-tensor-refinement"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-c-cartesian-pruning",
@@ -1016,8 +989,7 @@
           "source": "Pruning inside an alternating ancestor",
           "detail": "[Completion of Cartesian pruning] Missing Cartesian labels are excluded. Together with , this excludes all nontrivial Cartesian decompositions.",
           "dependsOn": [
-            "m1-c-alternating-orbits",
-            "m1-c-cartesian-refinement"
+            "m1-c-alternating-orbits"
           ]
         },
         {
@@ -1089,8 +1061,7 @@
           "source": "Excluding bounded algebraic types",
           "detail": "[No bounded-type parent with a stage remaining] Fix the finite list of bounded root systems. There is a fixed trial increment t such that a prepared current parent with a remaining private-chart…",
           "dependsOn": [
-            "m1-w-witness",
-            "m1-w-height-rigidity"
+            "m1-w-witness"
           ]
         },
         {
@@ -1141,9 +1112,7 @@
           "kind": "lemma",
           "source": "Protections and the length of high-type paths",
           "detail": "[Descent and the single Frobenius cycle] Retain the hypotheses of , and assume the candidate label has the ancestor tensor-system exclusion in . Let be arithmetic Frobenius for the ancestor ground…",
-          "dependsOn": [
-            "m1-w-min-degree"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-w-coarsening-count",
@@ -1153,10 +1122,7 @@
           "kind": "proposition",
           "source": "Protections and the length of high-type paths",
           "detail": "[Counting prime tensor coarsenings] Under the hypotheses of , each prime s t(B) defines a canonical congruence coarsening P_s into s matrix factors, normalized by the candidate label. Its full…",
-          "dependsOn": [
-            "m1-w-atom-cycle",
-            "m1-w-min-degree"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-w-root-count",
@@ -1206,9 +1172,7 @@
           "kind": "lemma",
           "source": "Protections and the length of high-type paths",
           "detail": "[The quadratic form in characteristic two] Let J be simply connected of sufficiently high type D_e in characteristic two, with ordinary pinned map =Fr_2^f , f1 . Let 0 be 2 -restricted, and consider…",
-          "dependsOn": [
-            "m1-w-h1-injective"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-w-rational-composition",
@@ -1250,12 +1214,7 @@
           "kind": "proposition",
           "source": "Protections and the length of high-type paths",
           "detail": "[No homogeneous type A configuration] Four nodes of a protected run of type A cannot have all pair edges of one color in the preceding palette.",
-          "dependsOn": [
-            "m1-w-rational-composition",
-            "m1-w-universal-cuts",
-            "m1-w-a-word-cuts",
-            "m1-w-natural-root"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-w-signed-cuts",
@@ -1275,10 +1234,7 @@
           "kind": "proposition",
           "source": "Protections and the length of high-type paths",
           "detail": "[No homogeneous signed configuration] Four nodes of a protected run having one fixed series B, C, or D cannot have all pair edges of one color in the preceding palette.",
-          "dependsOn": [
-            "m1-w-rational-composition",
-            "m1-w-universal-cuts"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-w-path-bound",
@@ -1288,12 +1244,7 @@
           "kind": "theorem",
           "source": "Protections and the length of high-type paths",
           "detail": "[Bound on protected high-type paths] There is an absolute constant D_0 such that a prepared path all of whose socles are of high alternating or high classical type, and whose consecutive…",
-          "dependsOn": [
-            "m1-w-alternating-switch",
-            "m1-w-characteristic-switch",
-            "m1-f-negative-family",
-            "m1-f-thm-almost-simple-reduction"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -1312,7 +1263,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

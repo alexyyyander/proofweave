@@ -107,7 +107,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-isomorphism-of-the-free-group-factors-September-23-2026/An-isomorphism-of-the-free-group-factors-September-23-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from An isomorphism of the free group factors; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from An isomorphism of the free group factors.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -215,7 +215,6 @@
           "detail": "[Moment invariance] For every p P and t , (ev_t(p)) =(ev_0(p)).",
           "dependsOn": [
             "m1-lem-flow-trace-identity",
-            "m1-prop-flow",
             "m1-lem-flow-global-ode"
           ]
         },
@@ -248,8 +247,7 @@
           "source": "A small cocycle with a prescribed word value",
           "detail": "[Spectral limit of the prefix sums] The measures _m converge weakly to the probability measure d(x)=1 2 4-x x \\,1_ (0,4) (x)\\,dx. In particular, (\\ 0\\ )=0 .",
           "dependsOn": [
-            "m1-lem-cocycle-prefixes",
-            "m1-lem-small-cocycle"
+            "m1-lem-cocycle-prefixes"
           ]
         },
         {
@@ -309,7 +307,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -192,7 +192,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Continuum-Coulomb-hardness-with-binary-nuclear-charges-September-24-2026/Continuum-Coulomb-hardness-with-binary-nuclear-charges-September-24-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Continuum Coulomb hardness with binary nuclear charges; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Continuum Coulomb hardness with binary nuclear charges.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -255,9 +255,7 @@
           "kind": "lemma",
           "source": "Finite models and a controllable contact geometry",
           "detail": "[A bounded right inverse for contact lengths] For every real assignment (d_ ij )_ \\ i,j\\ C there are displacements s_i R^3 such that u_ ij (s_j-s_i)=d_ ij , _i|s_i|6m_ C |d_ ij |. For an empty…",
-          "dependsOn": [
-            "m1-lem-contact-layout"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-hubbard",
@@ -268,8 +266,7 @@
           "source": "Finite models and a controllable contact geometry",
           "detail": "[Hubbard reduction with rational hoppings] The construction above is deterministic and polynomial time. With C_s=C_0+_ \\ i,j\\ C K_ ij =3k+32_e v_e^2 +_ \\ i,j\\ C K_ ij , it satisfies |E(H_ Hub (t))…",
           "dependsOn": [
-            "m1-lem-second-order",
-            "m1-prop-positive-spin"
+            "m1-lem-second-order"
           ]
         },
         {
@@ -330,9 +327,7 @@
           "kind": "proposition",
           "source": "Isolated wells and deterministic energy tuning",
           "detail": "[Uniform single-well eigenvalue oracle] Suppose the centers and the parameters in \\([1,4]^m\\) are rational, and all their numerators and denominators, as well as those of \\(q,q'\\), have at most \\(B\\)…",
-          "dependsOn": [
-            "m1-lem-wells-ritz-approximation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-tuning",
@@ -343,8 +338,7 @@
           "source": "Isolated wells and deterministic energy tuning",
           "detail": "[Tuning with fixed rounded charges] At any fixed rational centers satisfying the hypotheses of this section, and with the integer charges in already fixed, one can compute rational \\(_1,,_m\\) such…",
           "dependsOn": [
-            "m1-lem-wells-secants",
-            "m1-prop-ritz-oracle"
+            "m1-lem-wells-secants"
           ]
         },
         {
@@ -439,9 +433,6 @@
           "dependsOn": [
             "m1-lem-hopping-quadrature",
             "m1-lem-displacement",
-            "m1-lem-hopping-displacement",
-            "m1-lem-positive-hopping",
-            "m1-prop-tuning",
             "m1-lem-hopping-orientation"
           ]
         },
@@ -509,7 +500,6 @@
           "dependsOn": [
             "m1-lem-one-body-matrix",
             "m1-lem-continuum-coulomb-compression",
-            "m1-lem-continuum-elimination",
             "m1-prop-calibration"
           ]
         }
@@ -527,7 +517,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/QMA-hardness-of-continuum-Coulomb-energy-with-unit-nuclear-charges-September-24-2026/QMA-hardness-of-continuum-Coulomb-energy-with-unit-nuclear-charges-September-24-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from QMA-hardness of continuum Coulomb energy with unit nuclear charges; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from QMA-hardness of continuum Coulomb energy with unit nuclear charges.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -613,7 +603,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

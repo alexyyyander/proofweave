@@ -236,66 +236,79 @@
     {
       "from": "m1-thm-density",
       "to": "m1-cor-all-degrees",
+      "label": "thm:density",
       "context": "For $4\\le d\\le8$ use Theorem~\\ref{thm:density}. For $d\\ge9$, \\[ d-2\\ge\\frac{3d+1}{4}, \\] so Browning's theorem, in the cited form of Xiao, applies to the primitive p"
     },
     {
       "from": "m1-lem-density-content",
       "to": "m1-cor-all-degrees",
+      "label": "lem:density-content",
       "context": "sity}. For $d\\ge9$, \\[ d-2\\ge\\frac{3d+1}{4}, \\] so Browning's theorem, in the cited form of Xiao, applies to the primitive positive-leading part of $f$. Lemma~\\ref{lem:density-content} transfers its density to $f$, retaining the original local factors."
     },
     {
       "from": "m1-cor-separable-products",
       "to": "m1-lem-density-content",
+      "label": "cor:separable-products",
       "context": "[Proof of Corollary~\\ref{cor:separable-products}] Write \\[ F_i=c_i\\prod_{g\\in\\mathcal G_i}g,\\qquad c_i\\in\\Z\\setminus\\{0\\}, \\] where $\\mathcal G_i$ is a set of distinct"
     },
     {
       "from": "m1-prop-large-prime-tail",
       "to": "m1-lem-density-content",
+      "label": "prop:large-prime-tail",
       "context": "a>0$. For large $X$ the values $g(n)$ here are positive, so $a=p$ and $b=g(n)/p^k$ include every input counted by $T_{g,k}(X)$. If $d=k+2\\le8$, use Proposition~\\ref{prop:large-prime-tail}. Finally, if $d=k+2\\ge9$, then $k=d-2\\ge(3d+1)/4$ and $k/d>3/4$. Xiao's estimate in \\cite[Section~9]{Xiao2017PowerFree}"
     },
     {
       "from": "m1-lem-lattice-basis",
       "to": "m1-prop-lattice-boxes",
+      "label": "lem:lattice-basis",
       "context": "d Euclidean norm, since \\[ Mx_i-c_ix_0=Mx_0(s_i-c_i/M),\\qquad |s_i-c_i/M|\\le M^{-1}. \\] Let $U_*$ be the inverse shortest nonzero length of $\\Lambda_c$. Lemma~\\ref{lem:lattice-basis} gives integral coordinates with $|x'_i|\\ll U_*$. The preimages of a lattice basis form a basis of $\\Z^d$, so this is a"
     },
     {
       "from": "m1-lem-paired-boxes",
       "to": "m1-prop-lattice-boxes",
+      "label": "lem:paired-boxes",
       "context": "are $O(T^d)$ such integer vectors. Hence there are $O(X^{m-dj})$ possible $s$-boxes in this case. The $V_*$ case gives the identical bound for $t$-boxes. Lemma~\\ref{lem:paired-boxes} supplies boundedly many partners in either direction, proving \\eqref{eq:lattice-box-count} for their union. When $j=0$,"
     },
     {
       "from": "m1-lem-balanced-factorization",
       "to": "m1-lem-quartic-fibers",
+      "label": "lem:balanced-factorization",
       "context": "r a zero-dimensional set. Taking $B\\asymp X^U$ bounds the exceptional $x'$ by $O(X^{2U})$. Each such $x'$ determines $x$, and the fixed-$x$ conclusion of Lemma~\\ref{lem:balanced-factorization} gives only $O_f(1)$ selected points above it. Finally, suppose $Y\\subseteq Z$ is irreducible and $n$ is transcendental"
     },
     {
       "from": "m1-prop-weighted-hilbert",
       "to": "m1-prop-quartic-surface",
+      "label": "prop:weighted-hilbert",
       "context": "supplies a pair-image bound or an extra field degree; on a plane, deficient bounds for every pair lead to a contradiction. We will repeatedly use Proposition~\\ref{prop:weighted-hilbert} for algebraically independent coordinate functions $a_i,a_j$. Its polynomial $C_1$ has weight $D$ and involves $b_i$ or"
     },
     {
       "from": "m1-lem-rational-values",
       "to": "m1-prop-curve-alternatives",
+      "label": "lem:rational-values",
       "context": "argument with the fixed-degree map \\eqref{eq:curve-input-function} bounds the degree for $n$. If any $y'_i$ is a nonpolynomial rational function, apply Lemma~\\ref{lem:rational-values} to the integral inputs $s$ and the integral outputs $y'_i$. Their bounds follow from the transformed coordinate box."
     },
     {
       "from": "m1-prop-quintic-discard",
       "to": "m1-prop-curve-alternatives",
+      "label": "prop:quintic-discard",
       "context": "cted point, the integer $s$ gives $z=(s-\\tau_1)/(\\tau_2-\\tau_1)\\in L$. Thus its integer value $n=\\Phi(z)$ belongs to the global exceptional set of Proposition~\\ref{prop:quintic-discard}. Such a curve has no surviving selected points. On every remaining polynomial line curve, \\[ \\deg b_i\\ge g=(d-1)(k-1"
     },
     {
       "from": "m1-thm-density",
       "to": "m1-cor-cyclotomic-density",
+      "label": "thm:density",
       "context": "f order eight when $p\\equiv1\\pmod8$, and none otherwise. Each root is simple, since $4T^3$ is nonzero there, and therefore lifts uniquely modulo $p^2$. Theorem~\\ref{thm:density} gives the displayed Euler product and asymptotic. Every prime in this product is at least $17$. For finite products, $"
     },
     {
       "from": "m1-prop-large-prime-tail",
       "to": "m1-prop-cyclotomic-central",
+      "label": "prop:large-prime-tail",
       "context": "Proposition~\\ref{prop:large-prime-tail} already treats the primes $p>N$. For the remaining range, split into dyadic intervals with lower endpoint $P=N^\\eta$, w"
     },
     {
       "from": "m1-lem-balanced-factorization",
       "to": "m1-prop-cyclotomic-central",
+      "label": "lem:balanced-factorization",
       "context": "$p^2\\ge N^{2-2\\epsilon_0}>N$. It also tends to infinity, so the fixed bad primes are eventually absent. These are the only uses of $p>X$ in the proof of Lemma~\\ref{lem:balanced-factorization}: exclusion of the fixed bad primes and at most one input per root class modulo $p^2$ in an interval of length $N$. Repe"
     }
   ]

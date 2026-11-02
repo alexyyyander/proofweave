@@ -340,131 +340,157 @@
     {
       "from": "m1-field-positive",
       "to": "m1-act-constraint",
+      "label": "field:positive",
       "context": "Write $\\rho=M_\\delta(B)\\geq0$. Proposition~\\ref{field:positive} gives \\begin{equation}\\label{act:positive-symbol} Q_s:=s^2I-2sB+K^2\\geq0\\quad(s\\in\\R), \\qquad 0\\leq\\rho\\leq\\kappa^{2\\"
     },
     {
       "from": "m1-trace-deficit",
       "to": "m1-act-constraint",
+      "label": "trace:deficit",
       "context": "end{split} \\end{equation} The last identity is also part of Proposition~\\ref{field:positive}. Since $(sI-B)^2+V=Q_s+\\delta I\\geq\\delta I$ and $N\\geq0$, Theorem~\\ref{trace:deficit} applies. It supplies $L(t)=R(t)^{-1}>0$ and Hermitian matrices $Z(t)$ satisfying \\begin{equation}\\label{act:LZ} V+tI="
     },
     {
       "from": "m1-act-quantitative-action",
       "to": "m1-act-constraint",
+      "label": "act:quantitative-action",
       "context": "[Proof of Theorem~\\ref{act:quantitative-action}] Fix $0<\\delta\\leq1$. Proposition~\\ref{path:connecting} supplies, for every $0<\\varepsilon\\leq1$, a lower triangular m"
     },
     {
       "from": "m1-path-connecting",
       "to": "m1-act-constraint",
+      "label": "path:connecting",
       "context": "[Proof of Theorem~\\ref{act:quantitative-action}] Fix $0<\\delta\\leq1$. Proposition~\\ref{path:connecting} supplies, for every $0<\\varepsilon\\leq1$, a lower triangular matrix $C_\\varepsilon$ and a path $B_\\varepsilon$ with the"
     },
     {
       "from": "m1-pre-spectral",
       "to": "m1-bound-sharp",
+      "label": "pre:spectral",
       "context": ", then multiply the family by the inverse square root of its Gram matrix. The Gram matrix tends to $I_n$, and the form matrix tends to $-\\diag(k_i^2)$ by Lemma~\\ref{pre:spectral}; an operator norm error below $\\xi$ gives \\eqref{bound:trial}. Let $U$ have rows $u_i$, and choose a bounded interval"
     },
     {
       "from": "m1-pre-young",
       "to": "m1-bound-sharp",
+      "label": "pre:young",
       "context": "ell_l^2)\\le0. \\] Set $Z=A^TA$. The matrices $AA^T$ and $Z$ have the same nonzero eigenvalues, with multiplicity. Summing the preceding bound and applying Lemma~\\ref{pre:young} yields \\[ \\mathcal E_K(A) \\le\\int_\\R\\{\\tr(WZ)-\\tr(Z^q)\\} \\le D_\\sigma\\int_\\R\\tr(W^p). \\] Theorem~\\ref{act:quantitati"
     },
     {
       "from": "m1-act-quantitative-action",
       "to": "m1-bound-sharp",
+      "label": "act:quantitative-action",
       "context": "ming the preceding bound and applying Lemma~\\ref{pre:young} yields \\[ \\mathcal E_K(A) \\le\\int_\\R\\{\\tr(WZ)-\\tr(Z^q)\\} \\le D_\\sigma\\int_\\R\\tr(W^p). \\] Theorem~\\ref{act:quantitative-action}, with its nonnegative defects discarded, gives $b_\\sigma\\sum_i\\ell_i^{2\\gamma}\\le D_\\sigma\\int\\tr(W^p)+\\eta$ for every"
     },
     {
       "from": "m1-comp-relations",
       "to": "m1-rig-fixed-right-spaces",
+      "label": "comp:relations",
       "context": "collection has total dimension at most $m$, proving \\eqref{rig:dimension-bound} and finiteness of the nonzero blocks. On the full-measure set from Proposition~\\ref{comp:relations}, $A^TA=\\sum_\\alpha G_\\alpha^TG_\\alpha$. Each summand acts on its own orthogonal space $\\mathcal R_\\alpha$, and only fi"
     },
     {
       "from": "m2-thm-trace",
       "to": "m2-lem-trace-half-lines",
+      "label": "thm:trace",
       "context": "[Proof of Theorem~\\ref{thm:trace}] The convergence assertions were proved above. Let $D\\geq0$ be an $n\\times n$ matrix and define \\[ F_0(t,D)=\\frac{\\tr"
     },
     {
       "from": "m2-thm-trace",
       "to": "m2-prop-field-comparison",
+      "label": "thm:trace",
       "context": "d $0<\\sigma<1$. Put \\[ D=K^2-B^2,\\qquad V=D+\\delta I,\\qquad Y_s=(sI-B)^2. \\] Then $X_s=Y_s+V=Q_s(B)+\\delta I\\geq\\delta I$ satisfies the hypothesis of Theorem~\\ref{thm:trace}. Let $R(t)$ and $N$ be its resolvent average and integrated matrix, as defined in \\eqref{eq:trace-resolvents} and \\eqr"
     },
     {
       "from": "m2-lem-field-regularity",
       "to": "m2-prop-paths",
+      "label": "lem:field-regularity",
       "context": "ign matrices. Such a cutoff can be obtained from any cutoff of a neighborhood of this compact set by averaging over the finitely many sign matrices. By Lemma~\\ref{lem:field-regularity}, the field \\[ \\widehat M_\\delta(B)=\\chi(B)M_\\delta(B) \\] is bounded and globally Lipschitz. \\smallskip \\noindent\\e"
     },
     {
       "from": "m2-thm-action",
       "to": "m2-prop-paths",
+      "label": "thm:action",
       "context": "[Proof of Theorem~\\ref{thm:action}] Fix $\\delta>0$ and, for each $0<\\varepsilon\\leq1$, choose $C_\\varepsilon$, $A_\\varepsilon=C_\\varepsilon U$, and $B_\\va"
     },
     {
       "from": "m2-prop-field-comparison",
       "to": "m2-prop-paths",
+      "label": "prop:field-comparison",
       "context": "\\bigr),\\\\ r_\\delta(A,B)&=\\|M_\\delta(B)-AA^{\\mathsf T}\\|_{\\HS}^2. \\end{align*} If $r_\\delta(A,B)=0$, then $M_\\delta(B)=AA^{\\mathsf T}\\geq0$, and Proposition~\\ref{prop:field-comparison} gives $F(A,B)\\leq E_\\delta$. This is the only point at which positivity of the field is needed; the constructed paths t"
     },
     {
       "from": "m2-thm-main",
       "to": "m2-lem-form-compactness",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] Recall that $\\sigma=\\gamma-\\tfrac12$, $p=1+\\sigma$ and $q=1+1/\\sigma$. We first prove the inequality for real symmetr"
     },
     {
       "from": "m2-thm-action",
       "to": "m2-lem-form-compactness",
+      "label": "thm:action",
       "context": "t_\\R\\tr(W^p)\\,dx. \\] All terms are finite for each $C$: the rows of $A$ are bounded and supported on $\\overline\\Omega$, and $W$ is locally integrable. Theorem~\\ref{thm:action} supplies the reverse bound in terms of the $k_i$. Writing $\\mathrm B$ for Euler's beta function, the substitution $s=k_"
     },
     {
       "from": "m3-lem-hs-calculus",
       "to": "m3-lem-field-regularity",
+      "label": "lem:HS-calculus",
       "context": "{equation}\\label{eq:tail} f(X_s(B))-f(s^2)I_N=-2s f'(s^2)B+R_s(B), \\end{equation} where $R_s(B)=f'(s^2)K^2+h_s(H_s(B))$ has norm $O(|s|^{2\\beta-2})$. By Lemma~\\ref{lem:HS-calculus}, its Lipschitz constant as a function of $B$ has the same bound: the factor $2|s|$ from $H_s$ multiplies $O(|s|^{2\\beta"
     },
     {
       "from": "m3-lem-mu",
       "to": "m3-lem-jensen",
+      "label": "lem:mu",
       "context": ")e). \\] Set $b=e^{\\transpose}Be$ and $z=e^{\\transpose}K^2e-b^2$. The scalar argument on the right is $(s-b)^2+z$. Integrate at a symmetric cutoff and use Lemma~\\ref{lem:mu} to obtain \\eqref{eq:jensen}. This uses scalar concavity only; no operator concavity on the whole real line is asserted."
     },
     {
       "from": "m3-lem-mu",
       "to": "m3-lem-average",
+      "label": "lem:mu",
       "context": "\\,d\\tau. \\] These scalar integrands are nonnegative. Tonelli's theorem and a shift in $s$ evaluate their integral by the same calculation as $\\mu'(d)$ in Lemma~\\ref{lem:mu}, giving \\eqref{eq:P-kernel}. For $h\\ge0$ and $x\\in\\R$, the gamma integral gives \\begin{equation}\\label{eq:gamma-mixtur"
     },
     {
       "from": "m3-lem-average",
       "to": "m3-lem-trace-average",
+      "label": "lem:average",
       "context": "orm in $t$: the coefficient has norm at most $4\\|D\\|_{\\HS}$, whereas $M_R(B)\\to M(B)$ in matrix norm. Average with respect to the even measure $\\nu$ from Lemma~\\ref{lem:average}. Both conjugation terms average to $\\mathcal P(D)$, proving the claim."
     },
     {
       "from": "m3-prop-rankone",
       "to": "m3-lem-trace-average",
+      "label": "prop:rankone",
       "context": "[Proof of Proposition~\\ref{prop:rankone}] If $a=0$, both sides of \\eqref{eq:rankone} vanish. Otherwise the preceding construction applies. Multiply the matrix i"
     },
     {
       "from": "m3-path-existence",
       "to": "m3-path-parity",
+      "label": "path:existence",
       "context": "[Proof of Proposition~\\ref{path:existence}] Put $\\kappa=\\|K\\|_{\\mathrm{op}}$ and $\\ell=x_+-x_-$, and use the continuous representative of $u$. Choose a smooth no"
     },
     {
       "from": "m3-thm-action",
       "to": "m3-path-parity",
+      "label": "thm:action",
       "context": "[Proof of Theorem~\\ref{thm:action}] Fix $\\delta>0$, and use the field $M$ and primitive $J$ from Section~\\ref{sec:field}. For each $0<\\varepsilon\\le1$, th"
     },
     {
       "from": "m3-prop-rankone",
       "to": "m3-path-parity",
+      "label": "prop:rankone",
       "context": "spose}\\to0$. At the limit $(B_*,a_*)$ we have $M(B_*)=a_*a_*^{\\transpose}$ and \\[ |a_*|^{2q}-a_*^{\\transpose}(K^2-B_*^2)a_*\\ge\\eta, \\] contrary to Proposition~\\ref{prop:rankone}. This proves \\eqref{eq:uniform-penalty}. Equation~\\eqref{eq:penalty-bound} now implies \\[ J(-K)-J(K)\\le \\sup_{C\\text"
     },
     {
       "from": "m3-lem-jensen",
       "to": "m3-path-parity",
+      "label": "lem:jensen",
       "context": "plies \\[ J(-K)-J(K)\\le \\sup_{C\\text{ lower triangular}}\\mathcal E_K(Cu)+|I|\\eta_\\varepsilon. \\] Let $\\varepsilon\\downarrow0$ at this fixed $\\delta$. By Lemma~\\ref{lem:jensen}, \\[ \\sup_C\\mathcal E_K(Cu) \\ge\\sum_i\\int_{-k_i}^{k_i} \\bigl((k_i^2-s^2+\\delta)^\\sigma-\\delta^\\sigma\\bigr)\\,ds."
     },
     {
       "from": "m3-thm-action",
       "to": "m3-spectral-dirichlet",
+      "label": "thm:action",
       "context": "int_I(Wm-m^q) \\leq A_\\sigma\\int_I W^{1+\\sigma}. \\] The last inequality follows by maximizing $Wm-m^q$ over $m\\geq0$; the maximizer is $(W/q)^\\sigma$. Theorem~\\ref{thm:action} therefore yields \\[ \\sum_{j=1}^N\\int_{-k_j}^{k_j}(k_j^2-s^2)^\\sigma\\,ds \\leq A_\\sigma\\int_I W^{1+\\sigma}. \\] Substitu"
     },
     {
       "from": "m3-spectral-forms",
       "to": "m3-spectral-signed",
+      "label": "spectral:forms",
       "context": "of the negative part. If $V_+\\in L^1_{\\mathrm{loc}}$, then $C_c^\\infty(\\R)\\subset\\mathcal D_V$, proving the asserted density. The compactness argument in Lemma~\\ref{spectral:forms} still applies. On a negative spectral subspace bounded away from zero, the same relative form bound controls the $H^1$"
     }
   ]

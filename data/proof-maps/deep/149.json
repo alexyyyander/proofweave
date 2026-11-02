@@ -87,7 +87,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Uniform-Permanence-in-Weakly-Reversible-Mass-Action-Systems-October-5-2026/permanence.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Uniform Permanence in Weakly Reversible Mass-Action Systems; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Uniform Permanence in Weakly Reversible Mass-Action Systems.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -118,9 +118,7 @@
           "kind": "corollary",
           "source": "Affine minima with arbitrary tolerance",
           "detail": "[Uniform activity bound] Let m1 , a<b , and E:[a,b]^m(0,) be as in Lemma~ . Fix a family supplied by that lemma. There is h_0(0,1) such that, for every 0<h<h_0 and every p^m , each label active at…",
-          "dependsOn": [
-            "m1-lem-affine"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-plateau",
@@ -154,7 +152,6 @@
           "detail": "[Trapping and finite entry] Fix 0<h h_P . Along any solution segment contained in B_h , the function t F_h(x(t)) is nondecreasing. If the segment x([s,t]) is contained in B_h(P K_h) , then…",
           "dependsOn": [
             "m1-prop-increase",
-            "m1-prop-plateau",
             "m1-thm-main"
           ]
         }
@@ -172,7 +169,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Boundedness-and-persistence-of-weakly-reversible-mass-action-systems-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Boundedness and persistence of weakly reversible mass-action systems; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Boundedness and persistence of weakly reversible mass-action systems.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -203,9 +200,7 @@
           "kind": "corollary",
           "source": "Affine labels with a prescribed tolerance",
           "detail": "[Uniform activity bound] Let m1 , a<b , and E:[a,b]^m(0,) be as in Lemma~ . Fix a finite nonempty family \\ (r_,c_):\\ supplied by that Lemma. There is h_0>0 such that, for every 0<h<h_0 and every p^m…",
-          "dependsOn": [
-            "m2-lem-affine"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-cut-flux",
@@ -248,9 +243,7 @@
           "kind": "corollary",
           "source": "From affine labels to persistent trajectories",
           "detail": "For every finite weakly reversible mass-action network with positive constant rates and every x^0_ >0 ^d , there is an equilibrium x^*(x^0+S)_ >0 ^d .",
-          "dependsOn": [
-            "m2-prop-polytope"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -275,7 +268,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

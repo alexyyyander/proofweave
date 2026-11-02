@@ -112,7 +112,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-direct-proof-of-the-complete-Crouzeix-inequality-September-26-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A direct proof of the complete Crouzeix inequality; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A direct proof of the complete Crouzeix inequality.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -168,7 +168,6 @@
           "dependsOn": [
             "m1-lem-exterior-collar",
             "m1-lem-faber",
-            "m1-lem-resolvent",
             "m1-prop-coefficients"
           ]
         },
@@ -208,7 +207,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-complete-Crouzeix-theorem-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The complete Crouzeix theorem: optimal similarity and a common positive boundary representation; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The complete Crouzeix theorem: optimal similarity and a common positive boundary representation.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -315,7 +314,6 @@
           "source": "From admissible domains to bounded Hilbert-space operators",
           "detail": "[Gaussian analytic outer approximation] For every nonempty compact convex K^2 and every >0 , there is an admissible _ such that \\[ K_, _\\ x:(x,K)<\\ . \\]",
           "dependsOn": [
-            "m2-cor-polynomial",
             "m2-thm-structural",
             "m2-thm-representation"
           ]
@@ -329,9 +327,7 @@
           "source": "From admissible domains to bounded Hilbert-space operators",
           "detail": "[The sharp complete inequality for bounded operators] Let H be a complex Hilbert space, with no separability assumption, and let A B( H) . Suppose first that H\\ 0\\ , and put \\[ W(A)=\\ x,Ax:x H,\\…",
           "dependsOn": [
-            "m2-cor-polynomial",
-            "m2-lem-gaussian",
-            "m2-lem-conformal-coordinates"
+            "m2-lem-gaussian"
           ]
         }
       ]
@@ -357,7 +353,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

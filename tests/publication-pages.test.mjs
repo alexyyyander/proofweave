@@ -141,9 +141,9 @@ test("the proof-map index, scaffold, deep maps, and API render with explicit sta
   assert.equal(api.status, 200);
   const payload = await api.json();
   assert.equal(payload.entries.length, 372);
-  assert.equal(payload.summary.deep, 347);
+  assert.equal(payload.summary.deep, 346);
   assert.equal(payload.summary.draft, 0);
-  assert.equal(payload.summary.paper, 0);
+  assert.equal(payload.summary.paper, 1);
   assert.equal(payload.summary.paperStatements, 13629);
   assert.equal(payload.summary.lean, 18);
   assert.equal(payload.summary.scaffold, 7);

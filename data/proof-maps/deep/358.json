@@ -112,7 +112,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Three-Manifold-Without-Conjugate-Points-and-Without-a-Nonpositively-Curved-Metric-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A Three-Manifold Without Conjugate Points and Without a Nonpositively Curved Metric; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A Three-Manifold Without Conjugate Points and Without a Nonpositively Curved Metric.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -143,9 +143,7 @@
           "kind": "corollary",
           "source": "The manifold and the obstruction to nonpositive curvature",
           "detail": "The manifold M admits no locally CAT(0) length metric inducing its manifold topology.",
-          "dependsOn": [
-            "m1-thm-no-cat0-action"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-no-npc",
@@ -155,9 +153,7 @@
           "kind": "proposition",
           "source": "The manifold and the obstruction to nonpositive curvature",
           "detail": "The closed smooth three-manifold M defined by admits no smooth Riemannian metric of nonpositive sectional curvature.",
-          "dependsOn": [
-            "m1-cor-no-local-cat0"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-cometric-bounds",
@@ -262,7 +258,6 @@
           "detail": "There are constants C_e,C_m>0 , uniform for sufficiently small >0 , such that every returning passage satisfies S(p,p)& L(1+v_0^2), \\\\ S(e,e)& C_e L, \\\\ |S(p,e)-Lp_1|& C_m L|p_1|.",
           "dependsOn": [
             "m1-lem-turning-time",
-            "m1-prop-turning-index",
             "m1-lem-turning-gauge",
             "m1-lem-turning-duality"
           ]
@@ -276,7 +271,6 @@
           "source": "Uniform control of returning geodesics",
           "detail": "[All neck passages] Choose >0 to satisfy Lemma~ and , and then choose the boundary periods as in Section~ . Let be any complete unit-speed geodesic of the resulting closed manifold. For every…",
           "dependsOn": [
-            "m1-lem-neck-passages",
             "m1-lem-elementary-passages",
             "m1-prop-turning-index"
           ]
@@ -302,8 +296,7 @@
           "dependsOn": [
             "m1-thm-main",
             "m1-prop-passage-index",
-            "m1-prop-global-assembly",
-            "m1-prop-no-npc"
+            "m1-prop-global-assembly"
           ]
         }
       ]
@@ -323,7 +316,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

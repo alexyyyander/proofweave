@@ -282,7 +282,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Generalized-Cartan-Hadamard-isoperimetry-and-Euclidean-equality-rigidity-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Generalized Cartan–Hadamard isoperimetry and Euclidean equality rigidity; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Generalized Cartan–Hadamard isoperimetry and Euclidean equality rigidity.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -464,8 +464,6 @@
           "detail": "[The constant test] Let v(0,(B)) be a differentiability point of I , and let E minimize the confined perimeter at volume v . Then m_(h^2-b^2)\\,d Y_m I(v)^ (m-2)/m .",
           "dependsOn": [
             "m1-lem-profile-curvature",
-            "m1-lem-area-growth",
-            "m1-lem-capacity-cutoffs",
             "m1-thm-extrinsic-sobolev"
           ]
         },
@@ -513,9 +511,7 @@
           "kind": "lemma",
           "source": "All dimensions and finite-volume sets",
           "detail": "[Passage to finite volume] Let M be a complete connected smooth Riemannian manifold without boundary. Let J:[0,)[0,) be continuous and increasing, with J(0)=0 . Suppose that P(F) J(|F|) for every…",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-equality-boundary",
@@ -549,8 +545,6 @@
           "source": "Regularity of equality sets",
           "detail": "[Cutoffs for an equality boundary] Under the hypotheses of , there are _j_c() such that \\[ 0_j1, _j(x)1(x), _|__j|^2\\,d0. \\]",
           "dependsOn": [
-            "m1-lem-capacity-cutoffs",
-            "m1-prop-equality-boundary",
             "m1-cor-model-ball-spectral"
           ]
         }
@@ -568,7 +562,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Sharp-integral-fillings-in-CAT%280%29-spaces-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Sharp integral fillings in CAT(0) spaces; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Sharp integral fillings in CAT(0) spaces.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -690,9 +684,7 @@
           "source": "Radial variation and the two-dimensional base case",
           "detail": "[Sharp filling in cycle dimension two] Let Y be a compact CAT(0) space. Every integral two-cycle T_2(Y) admits S_3(Y) with \\[ S=T, (S) c_2(T)^ 3/2 = (T)^ 3/2 6 . \\]",
           "dependsOn": [
-            "m2-lem-extremizer",
             "m2-lem-euclidean-density",
-            "m2-prop-radial",
             "m2-thm-current-background"
           ]
         },
@@ -832,7 +824,6 @@
           "source": "Conformally weighted chords",
           "detail": "[Admissibility of the chord tests] Fix a>0 and put \\[ w(t)=(1+at^2)^ -(n-2)/2 (t). \\] Then vw(s) and vw(s)^2 belong to , and D(vw(s))&=w(s)Dv+w'(s),\\\\ D(vw(s)^2)&=w(s)^2Dv+2w(s)w'(s). If f:[0,) is…",
           "dependsOn": [
-            "m2-lem-composites",
             "m2-prop-sobolev-space"
           ]
         },
@@ -844,9 +835,7 @@
           "kind": "lemma",
           "source": "Conformally weighted chords",
           "detail": "[A consequence of the radial inequality] For every center y Y , with r=d(y,) , and every nonnegative g , _Y(ngDr^2+rDr Dg ) n4_Y r^2g.",
-          "dependsOn": [
-            "m2-prop-sobolev-space"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-chord-transform",
@@ -887,11 +876,8 @@
             "m2-lem-extremizer",
             "m2-prop-base",
             "m2-prop-radial",
-            "m2-prop-small-set",
             "m2-prop-almost-sobolev",
             "m2-prop-compact-embedding",
-            "m2-prop-minimizer",
-            "m2-lem-composites",
             "m2-lem-compact-reduction"
           ]
         },
@@ -904,7 +890,6 @@
           "source": "The classical domain inequality and sharpness",
           "detail": "Let M be a connected, noncompact, oriented Riemannian manifold of dimension d . If C_d(M) has compact support and C=0 , then C=0 .",
           "dependsOn": [
-            "m2-cor-cartan-hadamard",
             "m2-thm-main"
           ]
         }
@@ -931,7 +916,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

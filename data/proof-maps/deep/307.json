@@ -127,7 +127,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Failure-of-rational-injectivity-for-maximal-coarse-assembly-October-5-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Failure of rational injectivity for maximal coarse assembly; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Failure of rational injectivity for maximal coarse assembly.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -193,9 +193,7 @@
           "kind": "lemma",
           "source": "An integral class that persists at every scale",
           "detail": "For every fixed integer r3 and all sufficiently large j , p_ Y,j ^*_j 2^ \\,j-_2D_r K^1(P_r(Y_j)).",
-          "dependsOn": [
-            "m1-top-chern-divisibility"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-top-component-detection",
@@ -259,9 +257,7 @@
           "kind": "proposition",
           "source": "Maximal Roe algebras and the coarse index",
           "detail": "[Coarse functoriality] Conjugation by an exact covering isometry defines a * -homomorphism \\[ h_A=(V_h):A_Z A_W. \\] Its induced map on K -theory is independent of the covering isometry. These induced…",
-          "dependsOn": [
-            "m1-ana-fixed-propagation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ana-naturality",
@@ -295,8 +291,6 @@
           "detail": "For T , the operator L(T) belongs to and commutes with P . For T,T' , the defect D=L(T)L(T')-L(TT') has finite vertex support and satisfies PD=0 in A_Y .",
           "dependsOn": [
             "m1-ana-compacts",
-            "m1-ana-transfer",
-            "m1-ana-fixed-propagation",
             "m1-ana-functoriality"
           ]
         },
@@ -330,7 +324,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-counterexample-to-the-coarse-Novikov-conjecture-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A counterexample to the coarse Novikov conjecture; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A counterexample to the coarse Novikov conjecture.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -361,9 +355,7 @@
           "kind": "lemma",
           "source": "Finite discs with congruence fibers",
           "detail": "[Small-loop lemma] For each integer A1 there is J(A) such that, for all j J(A) , every closed edge path in X_j of length at most A has charge zero. One may take J(A)=\\ 2,N(A)+ A/2\\ , with N(A) from…",
-          "dependsOn": [
-            "m2-lem-trace"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-persistence",
@@ -408,7 +400,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

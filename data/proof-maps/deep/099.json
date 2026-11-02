@@ -257,7 +257,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Edit-Distance-in-l1-Matching-Bounds-up-to-Constants-in-the-Exponent-September-27-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Edit Distance in l1: Matching Bounds up to Constants in the Exponent; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Edit Distance in l1: Matching Bounds up to Constants in the Exponent.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -309,7 +309,6 @@
           "source": "Alignments and a displacement inequality",
           "detail": "[Finite Fourier displacement identity] Let T=_ j=1 ^b/p_j , where the integers p_j are at least two. For T , set \\[ _(t)= \\!(2 i_ j=1 ^b _jt_j p_j ), F()=_ t T F(t) _ (t). \\] For every F:T C and l T…",
           "dependsOn": [
-            "m1-prop-displacement",
             "m1-lem-cuts"
           ]
         },
@@ -353,9 +352,7 @@
           "kind": "proposition",
           "source": "Binary encoding and the lower bound",
           "detail": "For all sufficiently large k , every _1 embedding of \\[ W_k=\\ (W_ k,p (z)):z G_ k,p \\ \\ 0,1\\ ^ N_k \\] has distortion at least (h/24)^k 16w (c_0k k) for an absolute constant c_0>0 .",
-          "dependsOn": [
-            "m1-prop-family"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-or",
@@ -393,7 +390,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Finite-Circle-Obstructions-Binary-Codes-and-Histogram-Embeddings-for-Edit-Distance-September-27-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Finite-Circle Obstructions, Binary Codes, and Histogram Embeddings for Edit Distance; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Finite-Circle Obstructions, Binary Codes, and Histogram Embeddings for Edit Distance.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -496,9 +493,7 @@
           "kind": "lemma",
           "source": "Excluded-coordinate translations on a finite circle",
           "detail": "[Separation under arbitrary alignments] For every node a at height 0 h , every v G , and every ,z L^ -1 Z/ Z , r_ N_ (W_a(v,),W_a(v,+z)) N_ 3^ - _(z).",
-          "dependsOn": [
-            "m2-pre-tagged-rows"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-exc-annihilator",
@@ -579,7 +574,6 @@
           "source": "An alphabet-uniform embedding by substring histograms",
           "detail": "[Histogram estimates] Let s1 be an integer and let L,L' be lists of size s in the set of Lemma~ , and set T= E\\|H_L^-H_ L' ^\\|_1 . If every cross-pair has -distance at least a , then T2s(1-s^2e^ - a…",
           "dependsOn": [
-            "m2-upper-uniform",
             "m2-upper-partitions",
             "m2-upper-move"
           ]
@@ -598,7 +592,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Tree-Constructions-for-the-l1-Distortion-of-Binary-Edit-Distance-September-27-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Tree Constructions for the l1 Distortion of Binary Edit Distance; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Tree Constructions for the l1 Distortion of Binary Edit Distance.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -704,8 +698,7 @@
           "source": "A finite tree with nested periods",
           "detail": "[Finite obstruction] For all sufficiently large k , the word image \\ G(x):x A\\ , with ordinary edit distance, has distortion at least C_1^ -1 (k/4)^k , for an absolute constant C_1 .",
           "dependsOn": [
-            "m3-lem-finite-fourier",
-            "m3-lem-finite-cost"
+            "m3-lem-finite-fourier"
           ]
         },
         {
@@ -805,9 +798,7 @@
           "kind": "lemma",
           "source": "A constant-distortion code for one prescribed length",
           "detail": "[Separation of unequal-label segments] For sufficiently large integers M and integers 1 K M , there are K binary words of length P=M^2 such that any two length- a segments of distinct codewords…",
-          "dependsOn": [
-            "m3-thm-804"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -838,7 +829,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

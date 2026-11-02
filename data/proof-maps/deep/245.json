@@ -317,7 +317,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Weak-and-strong-normalization-in-pure-type-systems-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Weak and strong normalization in pure type systems; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Weak and strong normalization in pure type systems.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -411,8 +411,7 @@
           "source": "Structural properties",
           "detail": "[Subject reduction] If M:A and M_^*M' , then M':A , with the exact original expected type.",
           "dependsOn": [
-            "m1-pts-context-conversion",
-            "m1-pts-correctness"
+            "m1-pts-context-conversion"
           ]
         },
         {
@@ -423,9 +422,7 @@
           "kind": "lemma",
           "source": "Structural properties",
           "detail": "[Uniqueness for neutral expressions] If H is neutral and H:A and H:B , then A=_ B . If H:s for a literal sort s , then s itself is sorted in . Every normal typable application is neutral.",
-          "dependsOn": [
-            "m1-pts-correctness"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-pts-normalizing-judgments",
@@ -536,8 +533,7 @@
           "source": "Sort profiles and normalization candidates",
           "detail": "[Advancing one component] Under the hypotheses of Lemma~ , also holds for every actual type with profile in S .",
           "dependsOn": [
-            "m1-lem-sn-fundamental",
-            "m1-lem-test-properties"
+            "m1-lem-sn-fundamental"
           ]
         },
         {
@@ -821,9 +817,7 @@
           "kind": "lemma",
           "source": "Relational coding of the diagonal argument",
           "detail": "[Evaluation, validity, and response] The relation \\(\\) is an equivalence relation, with the congruence builder of Lemma~ , and \\[ RoundRel_X(x):xRound_Xx. \\] Data cancellation supplies \\[ LP(i,a):…",
-          "dependsOn": [
-            "m1-rel-equivalence"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-rel-tags",
@@ -833,9 +827,7 @@
           "kind": "lemma",
           "source": "Relational coding of the diagonal argument",
           "detail": "[Tagged observations] For \\(t=0,,r\\) there are proofs of the signed bits \\(H_a(x^t)\\) if \\(b_a(t)=1\\), and \\( H_a(x^t)\\) if \\(b_a(t)=0\\), and proofs \\[ O_i(x^t) le(i,x). \\] Each \\(H_a\\) and \\(O_i\\)…",
-          "dependsOn": [
-            "m1-rel-equivalence"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-rel-query-realization",
@@ -953,14 +945,10 @@
           "detail": "[Exclusion by system-wide weak normalization] Assume that every legal expression of the given pure type system is weakly beta-normalizing. For every primary component containing an odd closed walk…",
           "dependsOn": [
             "m1-rel-contradiction",
-            "m1-lem-enc-labelled-metatheory",
-            "m1-lem-enc-no-normal-proof",
-            "m1-thm-main",
             "m1-pts-finite-restriction",
             "m1-prop-signed-component",
             "m1-prop-one-child-component",
             "m1-obs-interface-theorem",
-            "m1-prop-advance-component",
             "m1-prop-interfaces-imply-sn"
           ]
         }
@@ -981,7 +969,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

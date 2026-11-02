@@ -358,221 +358,265 @@
     {
       "from": "m1-loc-descent",
       "to": "m1-loc-swap",
+      "label": "loc:descent",
       "context": "heir results are nonempty and have size at most $|S|$, even when an added facility already belongs to $S$: they are interpreted as actual set unions, and Lemma~\\ref{loc:descent}'s padding observation applies. Local optimality therefore gives a nonnegative cost change for every one of them. Ever"
     },
     {
       "from": "m1-loc-swap",
       "to": "m1-loc-anchoring",
+      "label": "loc:swap",
       "context": "Set \\[ V_i=\\sum_{p\\in C_i}(s_p+d_p^*),\\qquad q_0=\\bigl|\\{i\\in O:n_i\\operatorname{sep}_i<b\\}\\bigr|. \\] The all-bad case of Lemma~\\ref{loc:swap} gives \\begin{equation} \\sum_{i\\in O}V_i=\\operatorname{cost}(S)+P\\le6P. \\label{loc:V-bound} \\end{equation} Call a cent"
     },
     {
       "from": "m1-sam-computable-radius",
       "to": "m1-sam-radius-budget",
+      "label": "sam:computable-radius",
       "context": "ls is needed. For a third-menu addition every $p\\in\\mathcal D(w,q)$ satisfies $d(p,O)\\ge r-d(w,p)\\ge r-q>0.9r$. The attained population inequality from Lemma~\\ref{sam:computable-radius} gives $|\\mathcal D(w,q)|\\ge P/(mq)$. Disjointness now implies \\[ P=\\sum_{p\\in D}d(p,O) \\ge0.9\\sum_{\\text{third menu}"
     },
     {
       "from": "m1-sam-radius-budget",
       "to": "m1-sam-probability",
+      "label": "sam:radius-budget",
       "context": "y ball or for exceeding the observable limits. Along any terminal guided trajectory $\\gamma$ of length at most $2m$, multiply these conditional ratios. Lemma~\\ref{sam:radius-budget} applies to its full adaptive sequence and bounds the product of its menu losses. Consequently the actual cylinder proba"
     },
     {
       "from": "m1-sam-computable-radius",
       "to": "m1-sam-sampling-mass",
+      "label": "sam:computable-radius",
       "context": "(p,H)\\le d_p^*+r_i+R_i\\qquad(p\\in C_i). \\label{sam:covered-client-bound} \\end{equation} Use Equation~\\eqref{sam:upward-radius}, $r_i\\le1.2\\bar d_i$, and Lemma~\\ref{sam:computable-radius} to obtain, with $P_A=\\sum_{i\\in A}P_i$, \\[ \\sum_{i\\in A}\\sum_{p\\in C_i}d(p,H) \\le(3.4+1.2\\kappa)P_A+5.2\\kappa P. \\] F"
     },
     {
       "from": "m1-sam-sampling-mass",
       "to": "m1-sam-successful-prefix",
+      "label": "sam:sampling-mass",
       "context": "ct radius and its leaf. If only the second inequality fails, condition on removal mode and a client assigned to $R^*$, and delete that original center. Lemma~\\ref{sam:sampling-mass} supplies the same fixed positive lower bound $\\rho_\\kappa$ on both conditioning events. Every guided ball addition cove"
     },
     {
       "from": "m1-sam-probability",
       "to": "m1-sam-successful-prefix",
+      "label": "sam:probability",
       "context": "within $2m$ steps. Empty bad clusters can remain in $B$ throughout; they never contribute to the stopping quantities or to any division by $n_i$. Apply Lemma~\\ref{sam:probability} with $\\rho=\\rho_\\kappa$. Its exponential probability bound gives a recorded terminal prefix, and the guide's invariant"
     },
     {
       "from": "m1-sam-computable-radius",
       "to": "m1-sam-successful-prefix",
+      "label": "sam:computable-radius",
       "context": "o=\\rho_\\kappa$. Its exponential probability bound gives a recorded terminal prefix, and the guide's invariants give all the stated properties, including Lemma~\\ref{sam:computable-radius} for the radius sum. The arithmetic and running-time assertions follow from the implementation below."
     },
     {
       "from": "m1-comp-partition-max",
       "to": "m1-comp-completion",
+      "label": "comp:partition-max",
       "context": "For each feasible count branch, apply Lemma~\\ref{comp:partition-max} to the function in Lemma~\\ref{comp:surrogate-properties}, with error at most $\\theta-1/e$, and construct the correspond"
     },
     {
       "from": "m1-comp-surrogate-properties",
       "to": "m1-comp-completion",
+      "label": "comp:surrogate-properties",
       "context": "For each feasible count branch, apply Lemma~\\ref{comp:partition-max} to the function in Lemma~\\ref{comp:surrogate-properties}, with error at most $\\theta-1/e$, and construct the corresponding $U_X$. Keep the cheapest constructed solution, inclu"
     },
     {
       "from": "m1-sam-successful-prefix",
       "to": "m1-comp-recovery",
+      "label": "sam:successful-prefix",
       "context": "The algorithm always retains $S$ as a candidate. Suppose henceforth $m>0$, and fix $\\kappa=10^{-6}$ and $\\theta=0.38$. Run the sampling procedure of Theorem~\\ref{sam:successful-prefix} for at most $2m$ steps, examining every prefix. Its successful prefix has the structure used in Theorem~\\ref{comp:comp"
     },
     {
       "from": "m1-comp-completion",
       "to": "m1-comp-recovery",
+      "label": "comp:completion",
       "context": "pling procedure of Theorem~\\ref{sam:successful-prefix} for at most $2m$ steps, examining every prefix. Its successful prefix has the structure used in Theorem~\\ref{comp:completion}, and satisfies \\[ I\\le\\kappa P,\\qquad T_i:=\\sum_{p\\in N_i}d(p,H),\\quad \\sum_{i\\in B}T_i\\le\\kappa P, \\qquad N_i=\\{p\\"
     },
     {
       "from": "m1-sam-radius-budget",
       "to": "m1-ref-two-stage",
+      "label": "sam:radius-budget",
       "context": "rescribed mode and eligible client set, the guide draws from the actual law conditioned on that event and uses the correct radius-menu entry specified in Lemma~\\ref{sam:radius-budget}. At a state of its first stage, write \\[ T(H)=\\sum_{i\\in B}\\sum_{p\\in N_i^1}d(p,H),\\qquad I(H)=\\sum_{s\\in S_0\\setminu"
     },
     {
       "from": "m1-sam-near-clients",
       "to": "m1-ref-two-stage",
+      "label": "sam:near-clients",
       "context": "It stops this stage as soon as both inequalities hold in the other direction. Here are the probability bounds needed to invoke the general guide lemma. Lemma~\\ref{sam:near-clients} gives $|N_i^1|\\ge qn_i$ for every nonempty uncovered cluster, and hence \\begin{equation}\\label{ref:near-bound} d(i,H)\\"
     },
     {
       "from": "m1-sam-computable-radius",
       "to": "m1-ref-two-stage",
+      "label": "sam:computable-radius",
       "context": "er can use its dummy at distance at most $d_p^*+(2+\\kappa)a_2\\bar d_i+\\kappa r^0(w_i)$. Since every leader used in either stage has $r_i\\le a_2\\bar d_i$, Lemma~\\ref{sam:computable-radius} bounds the sum of the last radius terms by $(11/2)\\kappa P$. Thus throughout the first stage the total sampling weight"
     },
     {
       "from": "m1-sam-probability",
       "to": "m1-ref-two-stage",
+      "label": "sam:probability",
       "context": "uation~\\eqref{ref:radius-sum} because $a_1\\le a_2=3/2$. The joint progress probabilities just proved and the global radius budget meet the hypotheses of Lemma~\\ref{sam:probability}. That lemma gives the claimed $\\exp(-O_\\mu(m))$ probability. In particular, its guide may switch stages using the unobs"
     },
     {
       "from": "m1-ref-recovery",
       "to": "m1-ref-charges",
+      "label": "ref:recovery",
       "context": "[Proof of Theorem~\\ref{ref:recovery}] The algorithm retains $S$ as a feasible candidate. When $m=0$, Equation~\\eqref{ref:proxy-hypothesis} gives $\\operator"
     },
     {
       "from": "m1-ref-two-stage",
       "to": "m1-ref-charges",
+      "label": "ref:two-stage",
       "context": "oxy-hypothesis} gives $\\operatorname{cost}(S)\\le(1+\\mu)P$, which suffices. For $m>0$, first consider the branch with the correct guesses of $P$ and $m$. Lemma~\\ref{ref:two-stage} produces a suitable prefix with probability at least $\\exp(-O_\\mu(m))$. Completion is attempted at every prefix. Theor"
     },
     {
       "from": "m1-comp-completion",
       "to": "m1-ref-charges",
+      "label": "comp:completion",
       "context": "$ and $m$. Lemma~\\ref{ref:two-stage} produces a suitable prefix with probability at least $\\exp(-O_\\mu(m))$. Completion is attempted at every prefix. Theorem~\\ref{comp:completion} supplies the needed colors and labels with probability $\\exp(-O(m))$ and always respects the cardinality bound. Conditi"
     },
     {
       "from": "m1-sam-computable-radius",
       "to": "m1-ref-charges",
+      "label": "sam:computable-radius",
       "context": ",n\\Delta\\}$. Try all these values and all $m\\le\\min\\{h,\\lfloor L_0\\log N\\rfloor\\}$. The sampling menus are finite and have polynomial bit complexity by Lemmas~\\ref{sam:computable-radius} and~\\ref{sam:radius-budget}; their single-exponential probability cost has already been accounted for over the whole tr"
     },
     {
       "from": "m1-sam-radius-budget",
       "to": "m1-ref-charges",
+      "label": "sam:radius-budget",
       "context": "es and all $m\\le\\min\\{h,\\lfloor L_0\\log N\\rfloor\\}$. The sampling menus are finite and have polynomial bit complexity by Lemmas~\\ref{sam:computable-radius} and~\\ref{sam:radius-budget}; their single-exponential probability cost has already been accounted for over the whole trajectory. Each completion u"
     },
     {
       "from": "m1-imp-cglss",
       "to": "m1-sur-low-sensitivity",
+      "label": "imp:cglss",
       "context": "Since $L\\ge1$ and $k>2L$, we have $h\\ge2$ and $h-L=k-2L\\ge1$. Apply Theorem~\\ref{imp:cglss} at target $h$, then replay its output using Lemma~\\ref{imp:surplus-history} to obtain the real set $U$ and its compatib"
     },
     {
       "from": "m1-imp-surplus-history",
       "to": "m1-sur-low-sensitivity",
+      "label": "imp:surplus-history",
       "context": "Since $L\\ge1$ and $k>2L$, we have $h\\ge2$ and $h-L=k-2L\\ge1$. Apply Theorem~\\ref{imp:cglss} at target $h$, then replay its output using Lemma~\\ref{imp:surplus-history} to obtain the real set $U$ and its compatible budgets. In either output branch, $|U|\\le h+L=k$. Pad $U$ to size $k$ usi"
     },
     {
       "from": "m1-loc-descent",
       "to": "m1-sur-low-sensitivity",
+      "label": "loc:descent",
       "context": ":local-start} |S|=k,\\qquad \\operatorname{cost}(S)\\le\\operatorname{cost}(U). \\end{equation} This is polynomial time on the bounded integral metric, as in Lemma~\\ref{loc:descent}. Fix an optimum $O$ of size $h$, padding if necessary, and write $P=\\operatorname{opt}_h>0$, $C_i=\\{p:p\\text{ is assig"
     },
     {
       "from": "m1-str-strictness",
       "to": "m1-sur-low-sensitivity",
+      "label": "str:strictness",
       "context": "\\operatorname{cost}(U)\\le\\sum_{p\\in D}\\alpha_p. \\] Every nonempty cluster has $P_i\\ge1$ in the positive integral metric, so $\\lambda\\le2\\le TP_i$. Apply Lemma~\\ref{str:strictness} to all nonempty clusters. Empty clusters contribute no budgets. There are at most $h$ nonempty clusters, and therefor"
     },
     {
       "from": "m1-loc-anchoring",
       "to": "m1-sur-low-sensitivity",
+      "label": "loc:anchoring",
       "context": "he last inequality use $\\xi\\le1$, $e\\le vP$, and $v\\le1/12$. Since $|S|-h=L$, Equation~\\eqref{sur:anchoring-scale} is precisely the scale hypothesis of Theorem~\\ref{loc:anchoring} with tolerance $1/100$. \\textit{The bad-cluster count and cost dichotomy.} Apply Theorem~\\ref{loc:anchoring} to $S,O,b"
     },
     {
       "from": "m1-loc-swap",
       "to": "m1-sur-low-sensitivity",
+      "label": "loc:swap",
       "context": "isfying \\begin{equation}\\label{sur:bad-price} m\\lambda=8mb\\le8C_0P. \\end{equation} Write $P_b=\\sum_{i\\text{ bad}}P_i$ and $P_g=P-P_b$. If $P_b\\le P/10$, Lemma~\\ref{loc:swap}, with $u=6/5$, gives \\[ \\operatorname{cost}(S) \\le\\frac65(P_g+P/100)+\\frac{17}{5}P_b \\le1.432P<\\left(2-\\frac c{100}\\"
     },
     {
       "from": "m1-loc-descent",
       "to": "m1-asm-integral",
+      "label": "loc:descent",
       "context": "Compute a width-$5$ local optimum $S_k$ of size $k$ and retain it as a candidate. Lemmas~\\ref{loc:descent} and~\\ref{loc:swap} give polynomial time and $\\operatorname{cost}(S_k)\\le5\\operatorname{opt}_k$. Every other retained ca"
     },
     {
       "from": "m1-loc-swap",
       "to": "m1-asm-integral",
+      "label": "loc:swap",
       "context": "Compute a width-$5$ local optimum $S_k$ of size $k$ and retain it as a candidate. Lemmas~\\ref{loc:descent} and~\\ref{loc:swap} give polynomial time and $\\operatorname{cost}(S_k)\\le5\\operatorname{opt}_k$. Every other retained candidate will also s"
     },
     {
       "from": "m1-comp-recovery",
       "to": "m1-asm-integral",
+      "label": "comp:recovery",
       "context": "S_k)\\le5\\operatorname{opt}_k$. Every other retained candidate will also satisfy the budget, and we return the least-cost candidate. If $k\\le2L$, apply Theorem~\\ref{comp:recovery} to $S_k$ with the supplied count bound $M_0=2L$ and failure parameter $\\zeta$. For its analysis, take an optimum of siz"
     },
     {
       "from": "m1-sur-low-sensitivity",
       "to": "m1-asm-integral",
+      "label": "sur:low-sensitivity",
       "context": ".97\\le2-\\gamma$, this implies Equation~\\eqref{asm:integral-guarantee}, including the case $k=1$. Suppose now that $k>2L$. Compute the candidate of Proposition~\\ref{sur:low-sensitivity} with target $h=k-L$. In addition, for every integer $h'$ with $k-2L<h'\\le k$, compute a width-$5$ local optimum $S_{h'}"
     },
     {
       "from": "m1-asm-sensitive",
       "to": "m1-asm-integral",
+      "label": "asm:sensitive",
       "context": "(2-c/100)(1+\\xi)\\operatorname{opt}_k \\le(2-\\gamma)(1+\\xi)\\operatorname{opt}_k. \\] This conclusion is deterministic. Otherwise, let $h'$ be supplied by Lemma~\\ref{asm:sensitive}, take an optimum $O$ of size $h'$, and put $P=\\operatorname{opt}_{h'}$, $b=\\beta P$. The local set $S_{h'}$ has no surp"
     },
     {
       "from": "m1-loc-anchoring",
       "to": "m1-asm-integral",
+      "label": "loc:anchoring",
       "context": "$ has no surplus relative to $O$. Equation~\\eqref{asm:separation} says that no center is short at scale $b$, so the left side of the scale condition in Theorem~\\ref{loc:anchoring} is zero. With tolerance $1/100$, that theorem supplies distinct good proxies with total assignment cost at most $P_g+P/"
     },
     {
       "from": "m1-main-theorem",
       "to": "m1-asm-integral",
+      "label": "main:theorem",
       "context": "[Proof of Theorem~\\ref{main:theorem}] Handle the elementary cases and zero optimum as in Section~\\ref{pre:section}. Apply Lemma~\\ref{pre:rounding} with the"
     },
     {
       "from": "m1-pre-rounding",
       "to": "m1-asm-integral",
+      "label": "pre:rounding",
       "context": "[Proof of Theorem~\\ref{main:theorem}] Handle the elementary cases and zero optimum as in Section~\\ref{pre:section}. Apply Lemma~\\ref{pre:rounding} with the fixed $\\varepsilon_0=\\gamma/16$ and the algorithm of Proposition~\\ref{asm:integral}. The successful approximat"
     },
     {
       "from": "m2-thm-preparation",
       "to": "m2-lem-prep-weighted-rounding",
+      "label": "thm:preparation",
       "context": "[Proof of Theorem~\\ref{thm:preparation}] We first form disjoint bundles containing most of each representative's assigned mass. We then round their deficits jo"
     },
     {
       "from": "m2-thm-finite-inequality",
       "to": "m2-lem-scalar-bounds",
+      "label": "thm:finite-inequality",
       "context": "[Proof of Theorem~\\ref{thm:finite-inequality}] We may discard indices of probability zero. The proof treats the quantities with a fixed second index $i$ as a row, w"
     },
     {
       "from": "m2-lem-rnd-completion",
       "to": "m2-lem-rnd-batch",
+      "label": "lem:rnd-completion",
       "context": "l cap charge is bounded using $b\\le Q/g$. If $y=1$, the alive set itself is a full unit; its maximum distance is at most $V/g$. The radius argument from Lemma~\\ref{lem:rnd-completion} then bounds any source erasing an alive copy within $5V/g$ of the client. Only $O_\\Delta(1)$ sources have nonzero cont"
     },
     {
       "from": "m2-thm-finite-inequality",
       "to": "m2-lem-rnd-average",
+      "label": "thm:finite-inequality",
       "context": "n{equation}\\label{eq:rnd-normalized-comparison} R_i(1-Pq_{ti})\\le D_i+D_t\\qquad(q_{ti}<1). \\end{equation} These are precisely the radius hypotheses of Theorem~\\ref{thm:finite-inequality}. The error in changing the taper coefficient is controlled without any bound on individual normalized radii. Multiply"
     },
     {
       "from": "m2-lem-rnd-batch",
       "to": "m2-lem-rnd-survival",
+      "label": "lem:rnd-batch",
       "context": "source gives its selection action, and each heavy source gives the unique chunk containing this target. The marginal and pair estimates in the proof of Lemma~\\ref{lem:rnd-batch} give an erasure probability at least \\[ \\Delta\\ell g\\bigl(1-O_\\Delta(\\ell)\\bigr) -O(\\Delta^2\\ell^2g^2)\\ge\\ell/2"
     },
     {
       "from": "m2-thm-preparation",
       "to": "m2-thm-pseudo",
+      "label": "thm:preparation",
       "context": "star=1+2/e\\), and choose a fixed positive rational number \\[ t\\le\\min\\{1/8,\\varepsilon/10\\}. \\] Choose the parameters in the constructions underlying Theorems~\\ref{thm:preparation} and~\\ref{thm:grid-rounding} with unconditioned cost factors at most \\(1+t\\) and \\(\\alpha_\\star+t\\), respectively, and w"
     },
     {
       "from": "m2-thm-grid-rounding",
       "to": "m2-thm-pseudo",
+      "label": "thm:grid-rounding",
       "context": "fixed positive rational number \\[ t\\le\\min\\{1/8,\\varepsilon/10\\}. \\] Choose the parameters in the constructions underlying Theorems~\\ref{thm:preparation} and~\\ref{thm:grid-rounding} with unconditioned cost factors at most \\(1+t\\) and \\(\\alpha_\\star+t\\), respectively, and with their respective budget-"
     },
     {
       "from": "m2-thm-main",
       "to": "m2-thm-pseudo",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] Fix \\(\\varepsilon>0\\). Apply Theorem~\\ref{thm:pseudo} with loss \\(\\varepsilon/4\\), obtaining a deterministic \\(c\\)-add"
     },
     {
       "from": "m2-thm-li-svensson",
       "to": "m2-thm-pseudo",
+      "label": "thm:li-svensson",
       "context": "e+\\varepsilon/4<\\alpha<1+2/e+\\varepsilon/2. \\] The pseudo-algorithm is a \\(c\\)-additive \\(\\alpha\\)-approximation. The additive-to-ordinary reduction of Theorem~\\ref{thm:li-svensson}, with a fixed positive rational loss at most \\(\\varepsilon/2\\) and the implementation in Section~\\ref{sec:reduction-imp"
     }
   ]

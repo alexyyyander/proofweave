@@ -277,7 +277,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Choiceless-polynomial-time-with-counting-does-not-capture-polynomial-time-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Choiceless polynomial time with counting does not capture polynomial time; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Choiceless polynomial time with counting does not capture polynomial time.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -503,14 +503,11 @@
           "source": "Encoding complete choiceless computations",
           "detail": "Suppose predicates in a relational formula T are replaced by formulas whose free variables are among their displayed argument variables and whose free-variable measure is at most w . Capture-avoiding…",
           "dependsOn": [
-            "m1-thm-main",
             "m1-prop-query-ptime",
             "m1-cor-transitive-support",
             "m1-prop-base-equivalence",
             "m1-prop-base-homogeneity",
-            "m1-thm-hf-transfer",
-            "m1-prop-opposite-answers",
-            "m1-cor-linear-algebraic-logics"
+            "m1-prop-opposite-answers"
           ]
         }
       ]
@@ -527,7 +524,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Witnessed-symmetric-choice-is-strictly-stronger-than-choiceless-polynomial-time-with-counting-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Witnessed symmetric choice is strictly stronger than choiceless polynomial time with counting; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Witnessed symmetric choice is strictly stronger than choiceless polynomial time with counting.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -611,7 +608,6 @@
           "source": "A witnessed-choice sentence on all inputs",
           "detail": "[A total all-input definition] The sentence \\((,p)\\) of Equations~ and~ is a fixed \\(+\\) sentence over \\(\\). It evaluates to either true or false on every finite \\(\\)-structure, never to \\(\\), and…",
           "dependsOn": [
-            "m2-sen-history",
             "m2-sen-resources",
             "m2-sen-tree-test"
           ]
@@ -696,9 +692,7 @@
           "kind": "proposition",
           "source": "Small orbits give supports at every rank",
           "detail": "[Small-orbit support bound] Let L2 , b^ V_L , and N=|A_b| . Let q0 and let x be an atom or a hereditarily finite set over A_b . If |H x| N^q , then x has a K -support consisting of at most \\[…",
-          "dependsOn": [
-            "m2-sup-sparse-cochain"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-sup-hereditary",
@@ -731,9 +725,7 @@
           "kind": "lemma",
           "source": "Counting equivalence and central-group homogeneity",
           "detail": "[Persistent large component] For all sufficiently large L , every graph G T obtained by deleting at most 6M edges has a unique component with more than L^3/2 vertices. If T T' and |T'|6M , the…",
-          "dependsOn": [
-            "m2-base-boundary"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-base-equivalence",
@@ -779,10 +771,7 @@
           "kind": "corollary",
           "source": "Counting equivalence and central-group homogeneity",
           "detail": "[Widths at the support scale] Fix positive integers q,m independently of L , and let \\[ N=N_L=(L^3), s=2L(q_3N+1)^2+1, M= L^ 7/4 . \\] For all sufficiently large L , Proposition~ holds, Proposition~…",
-          "dependsOn": [
-            "m2-base-giant",
-            "m2-base-equivalence"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-hf-transfer",
@@ -875,7 +864,6 @@
             "m2-eval-description",
             "m2-sup-hereditary",
             "m2-base-width",
-            "m2-hf-transfer",
             "m2-thm-main",
             "m2-sen-all-input",
             "m2-grid-separation"
@@ -904,7 +892,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

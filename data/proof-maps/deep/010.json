@@ -292,7 +292,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Dimension-of-the-Two-Adic-Hecke-Algebra-at-Odd-Level-October-5-2026/two-adic-hecke.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Dimension of the Two-Adic Hecke Algebra at Odd Level; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Dimension of the Two-Adic Hecke Algebra at Odd Level.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -435,7 +435,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Fontaine-Mazur-modularity-at-the-prime-2-October-6-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Fontaine–Mazur modularity at the prime 2; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Fontaine–Mazur modularity at the prime 2.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -604,9 +604,7 @@
           "kind": "proposition",
           "source": "Completed forms and their local parameters",
           "detail": "The residual Hecke summand belongs to the product block just specified. The exact projective-generator functor gives \\[ L=_ cts,G_2 (P,M), \\] taken in the compact dual category of the specified…",
-          "dependsOn": [
-            "m2-prop-completed-forms"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-simple-growth",
@@ -639,9 +637,7 @@
           "kind": "lemma",
           "source": "Completed forms and their local parameters",
           "detail": "Assume that \\(\\) is unramified at the auxiliary primes. Localize at a characteristic-two point of the completed Hecke spectrum at which their Frobenii have distinct eigenvalues. The point may be the…",
-          "dependsOn": [
-            "m2-prop-completed-forms"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-forward-basechange",
@@ -673,9 +669,7 @@
           "kind": "lemma",
           "source": "Propagation from a characteristic-two curve",
           "detail": "[Auxiliary-prime bound] There is a sufficiently large integer h , independent of n , and sets Q_n of h primes outside S such that: every prime in Q_n splits in F(_ 2^n ,2^ 1/2^n ) and has residue…",
-          "dependsOn": [
-            "m2-lem-curve-cohomology"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-twist-rank",
@@ -720,7 +714,6 @@
           "dependsOn": [
             "m2-lem-twist-rank",
             "m2-lem-jet-exactness",
-            "m2-thm-localized-propagation",
             "m2-lem-curve-completion"
           ]
         },
@@ -803,9 +796,7 @@
           "source": "Connectedness and potential pro-modularity",
           "detail": "Let \\(F\\), the marked set, and the fixed-determinant representation scheme \\(Y\\) be as above, with the degree inequalities . Let \\(y\\) be a transverse closed residual point of \\(Y\\), with finite…",
           "dependsOn": [
-            "m2-lem-marked-local-base",
-            "m2-prop-relative-presentation",
-            "m2-lem-pseudo-bad-loci"
+            "m2-lem-marked-local-base"
           ]
         },
         {
@@ -820,7 +811,6 @@
             "m2-lem-good-connectedness",
             "m2-lem-dimension-comparison",
             "m2-prop-rep-space",
-            "m2-lem-pseudo-bad-loci",
             "m2-lem-inertia-basechange",
             "m2-lem-forward-basechange"
           ]
@@ -835,12 +825,10 @@
           "detail": "If nonempty, the transverse closed residual fiber of \\(Y\\) is geometrically connected. Consequently, if one transverse chart has potentially pro-modular component images, every transverse chart does.",
           "dependsOn": [
             "m2-lem-chart-propagation",
-            "m2-thm-potential-promodularity",
             "m2-prop-completed-forms",
             "m2-prop-hecke-dimension",
             "m2-lem-pseudo-bad-loci",
-            "m2-prop-field-preparation",
-            "m2-thm-localized-propagation"
+            "m2-prop-field-preparation"
           ]
         },
         {
@@ -863,7 +851,6 @@
           "detail": "Suppose r|_ is reducible, and record the line of Lemma~ . Fix = r . After enlarging coefficients, there is a complete local integral -algebra D , together with its fixed global determinant , its…",
           "dependsOn": [
             "m2-cor-charzero-line-dimension",
-            "m2-prop-relative-presentation",
             "m2-lem-curve-completion",
             "m2-lem-dimension-comparison",
             "m2-thm-potential-promodularity",
@@ -947,7 +934,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

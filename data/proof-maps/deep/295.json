@@ -112,7 +112,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Vanishing of higher bounded Hochschild cohomology; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Vanishing of higher bounded Hochschild cohomology.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -175,8 +175,7 @@
           "detail": "[Simultaneous finite path requirements] Fix a finite set F(M) , an integer d1 , and >0 . Consider a finite collection of tests. Each test consists of a finite list of path expressions y_1,,y_r in the…",
           "dependsOn": [
             "m1-lem-popa-special",
-            "m1-lem-distinguished-letters",
-            "m1-thm-walk"
+            "m1-lem-distinguished-letters"
           ]
         },
         {
@@ -199,8 +198,7 @@
           "detail": "Let (M,) be a type II_1 von Neumann algebra with separable predual and a faithful normal tracial state, and let be the measure supplied by Theorem~ . Suppose that T:M M is bounded, linear, and…",
           "dependsOn": [
             "m1-thm-walk",
-            "m1-lem-ultrapower",
-            "m1-thm-rigidity"
+            "m1-lem-ultrapower"
           ]
         },
         {
@@ -301,7 +299,6 @@
           "source": "Bounded primitives for Hochschild cocycles",
           "detail": "For n2 and C_b^n(M,zM) , set (J_z)(a_1,,a_ n-1 ) =_ i=1 ^ n-1 (-1)^i(&za_1,,za_ i-1 , q,qa_i,\\\\[-2pt] &a_ i+1 ,,a_ n-1 ). Set J_z=0 in degrees zero and one. Then, in every degree, dJ_z+J_zd=-cut_z.…",
           "dependsOn": [
-            "m1-thm-main",
             "m1-prop-classical",
             "m1-prop-tracial-primitive"
           ]
@@ -323,7 +320,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

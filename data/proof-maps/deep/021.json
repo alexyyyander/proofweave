@@ -217,7 +217,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-quadratic-bound-for-Jacobsthals-function-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A quadratic bound for Jacobsthal's function; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A quadratic bound for Jacobsthal's function.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -497,8 +497,7 @@
           "dependsOn": [
             "m1-prop-prime-occupation",
             "m1-lem-regeneration",
-            "m1-lem-band-bounds",
-            "m1-lem-edge-witness"
+            "m1-lem-band-bounds"
           ]
         },
         {
@@ -520,7 +519,6 @@
           "source": "An inverse estimate for a witnessing edge",
           "detail": "[Degree-uniform nonlinear lattice-point bound] Let \\(P\\) be nonzero and of degree at most \\(D_01\\), and let \\(S1\\). The number of lattice points in \\([0,S]^2\\) lying on at least one nonlinear…",
           "dependsOn": [
-            "m1-prop-inverse",
             "m1-lem-small-sieve",
             "m1-lem-elementary-large-sieve"
           ]
@@ -545,8 +543,6 @@
           "detail": "Fix the compact-box parameters, the inverse-estimate parameters and a relative-error threshold \\(>0\\). For every fixed \\(_2>0\\) there is a fixed sufficiently large \\(C_s\\), independent of…",
           "dependsOn": [
             "m1-lem-prime-inputs",
-            "m1-lem-random-variance",
-            "m1-lem-fundamental",
             "m1-lem-hyperbola"
           ]
         },
@@ -581,9 +577,7 @@
           "source": "Stops for endpoints with small effective size",
           "detail": "Uniformly over all subsets E of the primes less than P , _ d_0 P^ .95 \\ d_0 t E W_E(d_0) d_0 e^ - (.94-o(1)).",
           "dependsOn": [
-            "m1-lem-stops-aligned-average",
-            "m1-lem-prime-inputs",
-            "m1-lem-fundamental"
+            "m1-lem-prime-inputs"
           ]
         },
         {
@@ -595,7 +589,6 @@
           "source": "Stops for endpoints with small effective size",
           "detail": "[Comparison at stops] There is an absolute constant _0>0 with the following property. Fix C_s and the regular-box parameters. Take 0<_0 , then take b_0 sufficiently large in terms of C_s , and take…",
           "dependsOn": [
-            "m1-lem-stops-aligned-average",
             "m1-lem-local-reference"
           ]
         },
@@ -610,16 +603,10 @@
           "dependsOn": [
             "m1-cor-hard-endpoints",
             "m1-prop-regular-boxes",
-            "m1-lem-marked-visits",
-            "m1-prop-prime-coupling",
-            "m1-lem-high-states",
-            "m1-thm-survivors",
             "m1-prop-reference-margin",
             "m1-lem-edge-witness",
-            "m1-prop-structured-variance",
             "m1-prop-stopped-comparison",
             "m1-lem-tree-lower-bound",
-            "m1-thm-main",
             "m1-lem-small-sieve"
           ]
         },
@@ -690,7 +677,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

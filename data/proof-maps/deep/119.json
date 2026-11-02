@@ -227,7 +227,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Sharp-binary-information-contraction-on-the-discrete-cube-September-24-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Sharp binary-information contraction on the discrete cube; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Sharp binary-information contraction on the discrete cube.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -361,7 +361,6 @@
           "source": "A reserve that survives adding either common output",
           "detail": "[Local joining for the linear reserve] Let (A,B) have any joint law on [-1,1]^2 with e_a= H(A)>0 and e_b= H(B)>0 . Put \\[ a= A, b= B, m=a+b 2 , e=e_a+e_b 2 , \\] and I=H(m)-e , I_a=H(a)-e_a ,…",
           "dependsOn": [
-            "m1-capacity-onebit",
             "m1-canonical-coverage",
             "m1-reserve-corner"
           ]
@@ -395,9 +394,7 @@
           "source": "Paying the information increment by thinning",
           "detail": "[The entropy interval on a thinning path] Every state on satisfies _q^s(h-b)_+ h^2 \\,dh3.",
           "dependsOn": [
-            "m1-scalar-entropy-bounds",
-            "m1-thinning-interval",
-            "m1-thinning-payment"
+            "m1-scalar-entropy-bounds"
           ]
         },
         {
@@ -450,10 +447,7 @@
             "m1-canonical-coverage",
             "m1-thinning-high-value",
             "m1-upgrade-high-information",
-            "m1-wall-monotonicity",
-            "m1-upgrade-production",
-            "m1-main-soft",
-            "m1-main-ck"
+            "m1-wall-monotonicity"
           ]
         }
       ]
@@ -470,7 +464,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Hellinger-contraction-with-arbitrary-Boolean-output-bias-September-24-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Hellinger contraction with arbitrary Boolean output bias; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Hellinger contraction with arbitrary Boolean output bias.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -533,8 +527,6 @@
           "detail": "For the fixed s , parameters, and profile above, every increasing Boolean function satisfies G((1+T_ f)/2) sB( f).",
           "dependsOn": [
             "m2-lem-scalar",
-            "m2-ind-lem-coordinate",
-            "m2-thm-induction",
             "m2-ind-lem-compression"
           ]
         },
@@ -655,9 +647,7 @@
           "kind": "lemma",
           "source": "Intermediate biases",
           "detail": "For every \\(-1<d<1\\), with \\(V,\\) defined by and , one has ll (12-2m^2)V^2,&0 m15,\\\\[2pt] -1 100 V,&15 m23,\\\\[2pt] -1 50 V,&23 m37 50 .",
-          "dependsOn": [
-            "m2-prop-intermediate"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-large-bias",
@@ -692,9 +682,7 @@
             "m2-prop-large-bias",
             "m2-thm-main",
             "m2-thm-induction",
-            "m2-lem-crossing",
-            "m2-prop-central",
-            "m2-prop-intermediate"
+            "m2-lem-crossing"
           ]
         },
         {
@@ -732,7 +720,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -192,7 +192,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-high-arity-counterexample-to-Pixton-completeness-in-Chow-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A high-arity counterexample to Pixton completeness in Chow; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A high-arity counterexample to Pixton completeness in Chow.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -302,8 +302,7 @@
           "detail": "For every \\(m0\\), \\(t_m(_ g,m )=0\\).",
           "dependsOn": [
             "m1-prop-known-relations",
-            "m1-lem-detector-cutoff",
-            "m1-lem-detector-unit"
+            "m1-lem-detector-cutoff"
           ]
         },
         {
@@ -355,9 +354,7 @@
           "source": "Faithful tensor tests in relative Chow",
           "detail": "[Finite color polarization] In the pure subspace \\(^ k A_k(U)\\), evaluations using the same scalar map \\(z U W_b\\) in every slot are jointly injective. For fixed \\(k,U\\), a finite collection of…",
           "dependsOn": [
-            "m1-lem-coefficient-algebra",
-            "m1-prop-tensor-test",
-            "m1-lem-relative-pfaffian"
+            "m1-lem-coefficient-algebra"
           ]
         },
         {
@@ -418,9 +415,7 @@
           "kind": "proposition",
           "source": "A surface relation from determinant-fixed Quot schemes",
           "detail": "[Localization relation] Under the hypotheses of Theorem~ , the scalar \\(a_ N,t_0 \\) satisfies \\[ a_ N,t_0 \\,T_^ \\,t_0 =0 in B_ S,b-1 . \\]",
-          "dependsOn": [
-            "m1-prop-tensor-test"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-scalar",
@@ -461,8 +456,6 @@
           "source": "The triple coefficient and arbitrary color products",
           "detail": "[Arbitrary color products] Let a smooth curve family of genus \\(b5\\), with a section, be over a smooth irreducible quasi-projective base \\(S\\) satisfying \\( S<(b-1)^2-1\\). Put \\[ t_b=25(b-1)^2-1. \\]…",
           "dependsOn": [
-            "m1-thm-surface",
-            "m1-lem-exterior-ideal",
             "m1-prop-tensor-test"
           ]
         },
@@ -506,9 +499,7 @@
           "kind": "proposition",
           "source": "A cubic class on weighted compactifications",
           "detail": "[Controlled pure lifts] For every stable heavy type (h,B) one can choose a symmetric class G_ h,B ^2(X_ h,B (3)) with the following properties. [label=( *)] Over the smooth heavy base, G_ h,B is…",
-          "dependsOn": [
-            "m1-lem-triple-exceptional-cancellation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-support-advancement",
@@ -542,9 +533,7 @@
           "source": "Support induction and Chow vanishing",
           "detail": "[Repeated-color advancement] Suppose that a vertex of genus \\(h\\) has a flag and that \\(k>h+1 2 \\) pure entries contain one common color \\(i\\). Their product is a finite linear combination of…",
           "dependsOn": [
-            "m1-lem-point-centered-algebra",
-            "m1-prop-tensor-test",
-            "m1-lem-support-advancement"
+            "m1-lem-point-centered-algebra"
           ]
         },
         {
@@ -579,7 +568,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

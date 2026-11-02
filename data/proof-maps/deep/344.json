@@ -162,7 +162,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-metric-Blaschke-theorem-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The metric Blaschke theorem; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The metric Blaschke theorem.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -288,7 +288,6 @@
           "source": "Weighted comparison along a closed geodesic",
           "detail": "[Comparison on each geodesic] In the normalized intermediate case of Proposition~ , let f(x,y) be the Jacobi determinant of any fixed unit-speed geodesic, as in Proposition~ . Put \\[ R=(0,T)^2,…",
           "dependsOn": [
-            "m1-lag-block-bounds",
             "m1-lag-profiles",
             "m1-weighted-scalar"
           ]
@@ -302,7 +301,6 @@
           "source": "Global comparison and the equality case",
           "detail": "[Polar integration over a full period] For every p M , \\[ _ S_pM _0^D J(,t)\\,dt\\,d_p()=V, _ S_pM _0^T J(,t)\\,dt\\,d_p()=2V. \\]",
           "dependsOn": [
-            "m1-thm-comparison",
             "m1-weighted-geodesic",
             "m1-geom-structure",
             "m1-thm-volume-reduction"
@@ -386,7 +384,6 @@
           "source": "The geodesic space and its integral classes",
           "detail": "[Arithmetic parameters] Let p:S(E) B and x be as in Proposition~ , and let \\[ =12e(T_ vert S(E)) H^2(S(E); Q), X=e^2 H^4(B;). \\] There is a class Y H^4(B; Q) such that, with pullbacks by p…",
           "dependsOn": [
-            "m1-geo-attachment",
             "m1-geo-gysin"
           ]
         },
@@ -432,9 +429,7 @@
           "kind": "theorem",
           "source": "The sharp quaternionic volume bound",
           "detail": "For a quaternionic-type Blaschke manifold of dimension 4r , r2 , the contact characteristic number of Proposition~ satisfies N=_ B e^ 4r-1 1 2r+1 4r 2r .",
-          "dependsOn": [
-            "m1-alg-relations"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-rig-complex",
@@ -473,9 +468,7 @@
             "m1-geo-contact",
             "m1-thm-volume-reduction",
             "m1-thm-blaschke",
-            "m1-geom-cut-time",
-            "m1-rig-complex",
-            "m1-rig-planes"
+            "m1-geom-cut-time"
           ]
         }
       ]
@@ -495,7 +488,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

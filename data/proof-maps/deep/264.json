@@ -417,7 +417,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Generic-Future-Inextendibility-with-Square-Integrable-Connection-Near-a-Fixed-Kerr-Spacetime-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Generic Future Inextendibility with Square-Integrable Connection Near a Fixed Kerr Spacetime; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Generic Future Inextendibility with Square-Integrable Connection Near a Fixed Kerr Spacetime.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -448,9 +448,7 @@
           "kind": "proposition",
           "source": "Background geometry and finite branch tubes",
           "detail": "[First runout and corner removal] Every seed whose future geodesic has finite maximal proper lifetime in M_d crosses S . Its first runout from P_d is either a branch, where one optical coordinate has…",
-          "dependsOn": [
-            "m1-prop-bg-package"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-bg-branch-tube",
@@ -460,9 +458,7 @@
           "kind": "lemma",
           "source": "Background geometry and finite branch tubes",
           "detail": "[A finite observation tube] Fix a branch seed, with optical ordering u u_* , v . There is a relatively compact open neighborhood N of this seed, as small as desired, with the following properties.…",
-          "dependsOn": [
-            "m1-prop-bg-package"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ex-homotopy",
@@ -482,9 +478,7 @@
           "kind": "lemma",
           "source": "From an arbitrary weak exit to countably many tests",
           "detail": "[A local first-exit graph] Suppose that a future timelike C^1 curve exits M as in Definition~ . There is a precompact ambient coordinate chart with coordinates (s,z)^3 , a constant c>0 , a bottom…",
-          "dependsOn": [
-            "m1-ex-homotopy"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ex-boxes",
@@ -504,11 +498,7 @@
           "kind": "proposition",
           "source": "From an arbitrary weak exit to countably many tests",
           "detail": "[A positive family supplied by every weak exit] Under the hypotheses of , there is a measurable set S T of positive smooth section measure such that every future unit geodesic with seed in S has…",
-          "dependsOn": [
-            "m1-ex-graph",
-            "m1-ex-boxes",
-            "m1-ex-homotopy"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-exit-cover",
@@ -519,9 +509,7 @@
           "source": "From an arbitrary weak exit to countably many tests",
           "detail": "[Countable cover of all future extensions] Every datum in admitting a future C^0 W^ 1,2 _ loc extension belongs to some E(O,B) . Consequently the extendible set is precisely \\[ _ O B \\ _ B=1 ^…",
           "dependsOn": [
-            "m1-prop-exit-family",
-            "m1-prop-bg-runout",
-            "m1-lem-bg-branch-tube"
+            "m1-prop-exit-family"
           ]
         },
         {
@@ -574,9 +562,7 @@
           "detail": "[Quadratic low error] For every _2>0 , the input loss and the support fraction may be chosen sufficiently small, with the finite base orders fixed, so that on every existing bootstrap subslab _ 0 t…",
           "dependsOn": [
             "m1-thm-dn-comparison",
-            "m1-lem-dn-high-uniform",
-            "m1-prop-packet-preparation",
-            "m1-prop-experiment-attachment"
+            "m1-prop-packet-preparation"
           ]
         },
         {
@@ -587,10 +573,7 @@
           "kind": "proposition",
           "source": "Attachment, curvature signal, and matched observing states",
           "detail": "[Attachment to the full development] For sufficiently large finite T , the exact exterior and deep experiments, restricted inside their construction margins, lie in a smooth globally hyperbolic…",
-          "dependsOn": [
-            "m1-prop-packet-preparation",
-            "m1-thm-dn-comparison"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-curvature-signal",
@@ -600,9 +583,7 @@
           "kind": "proposition",
           "source": "Attachment, curvature signal, and matched observing states",
           "detail": "[Whole-patch curvature signal] At every point of Q_T with |( v)|1/2 , one has, for all large T , |D(g_T)-D(g)|>2. The norm is the ordinary angular component norm. No bound on D(g) , or on background…",
-          "dependsOn": [
-            "m1-thm-dn-comparison"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-matched-seeds",
@@ -612,11 +593,7 @@
           "kind": "proposition",
           "source": "Attachment, curvature signal, and matched observing states",
           "detail": "[Matched seeds and finite observations] For v T+J_0 , use the same numerical states in g_T on its future unit shell. Their backward geodesics give maps _ T,v :O_0 O with _ v T+J_0 \\|_ T,v -incl\\|_…",
-          "dependsOn": [
-            "m1-lem-bg-branch-tube",
-            "m1-prop-packet-preparation",
-            "m1-thm-dn-comparison"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ho-base-comparison",
@@ -646,9 +623,7 @@
           "kind": "proposition",
           "source": "Averaged holonomy and the category argument",
           "detail": "[Averaged holonomy obstruction] Assume on the observation box, bounded F components of the selected unit tangents, and a fixed bounded momentum box in . Fix one extension and one collection of at…",
-          "dependsOn": [
-            "m1-ho-base-comparison"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-nowhere-dense",
@@ -659,9 +634,7 @@
           "source": "Averaged holonomy and the category argument",
           "detail": "[Nowhere denseness of the extension tests] For the single neighborhood fixed in , every set E(O,B) of is relatively nowhere dense in .",
           "dependsOn": [
-            "m1-prop-matched-seeds",
-            "m1-thm-main",
-            "m1-prop-exit-cover"
+            "m1-prop-matched-seeds"
           ]
         }
       ]
@@ -678,7 +651,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Generic-C1-Future-Inextendibility-Near-Rotating-Subextremal-Kerr-Spacetimes-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Generic C1 Future Inextendibility Near Rotating Subextremal Kerr Spacetimes; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Generic C1 Future Inextendibility Near Rotating Subextremal Kerr Spacetimes.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -806,8 +779,7 @@
           "source": "Closed transport tests and selection of a branch",
           "detail": "[A branch seed for every passing test] If d A(O,B) , then there is w O whose first runout from P_d is one of the two branches in Equation~ . After exchanging the optical labels and preparing the…",
           "dependsOn": [
-            "m2-test-comparison",
-            "m2-test-corner-null"
+            "m2-test-comparison"
           ]
         },
         {
@@ -971,7 +943,6 @@
             "m2-attach-absolute-shell",
             "m2-prep-signed-entry",
             "m2-energy-signed-experiment",
-            "m2-attach-development",
             "m2-test-observer-comparison"
           ]
         },
@@ -1038,12 +1009,9 @@
           "source": "Signed curvature separation and small loops",
           "detail": "[Finite small-loop violation] Fix a passing test A(O,B) , a datum d A(O,B) , and a branch seed w O as in Corollary~ . For every finite m10 the signed experiments can be chosen with p_m(d_T^-d)0 such…",
           "dependsOn": [
-            "m2-holo-signal",
             "m2-attach-observer",
-            "m2-holo-loops",
             "m2-attach-development",
             "m2-holo-interpolation",
-            "m2-phase-main",
             "m2-test-closed",
             "m2-phase-baire",
             "m2-test-exit-cover"
@@ -1073,7 +1041,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Quantitative-Near-Kerr-Evolution-and-Generic-C2-Future-Inextendibility-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Quantitative Near-Kerr Evolution and Generic C2 Future Inextendibility; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Quantitative Near-Kerr Evolution and Generic C2 Future Inextendibility.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1134,9 +1102,7 @@
           "kind": "proposition",
           "source": "Closed tests and the finite-observation reduction",
           "detail": "[Regular-exit covering] If \\(d U_\\) admits a \\(C^2\\) future extension, there exist \\(O O\\) and \\(N1\\) such that \\(d A(O,N)\\) and every seed in \\(O\\) reaches its finite MGHD endpoint on a regular…",
-          "dependsOn": [
-            "m3-cat-homotopy"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-cat-destruction",
@@ -1234,10 +1200,7 @@
           "kind": "lemma",
           "source": "Kerr geometry and spatial microlocal separation",
           "detail": "[Zero-energy directions at spatial fiber infinity] The zero-temporal-energy characteristic set has no photon trapping away from the horizon radial set. Strictly outside the horizon, its spatial…",
-          "dependsOn": [
-            "m3-geo-radial",
-            "m3-geo-horizon-source"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-st-hhv",
@@ -1267,9 +1230,7 @@
           "kind": "proposition",
           "source": "Stationary gauges and causal modulation",
           "detail": "[Stationary estimates] For sufficiently large , the conically modified base operator has the following estimates. Bounded-frequency estimates with weaker compact errors persist uniformly as , at the…",
-          "dependsOn": [
-            "m3-st-conic-gauge"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-st-transpose",
@@ -1291,10 +1252,7 @@
           "kind": "lemma",
           "source": "Stationary gauges and causal modulation",
           "detail": "[Profiles and mode-preserving corrections] There are smooth stationary tensors H_i for 1 i4 and J_i,H_i^1 for 1 i3 , with stationary vector fields V_i,W_i , such that J_i= L_ V_i b, H_i^1= L_ W_i…",
-          "dependsOn": [
-            "m3-st-hhv",
-            "m3-st-stationary-estimates"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-st-families",
@@ -1304,9 +1262,7 @@
           "kind": "proposition",
           "source": "Stationary gauges and causal modulation",
           "detail": "[Exact stationary families and supplements] For small p=(m,v) R^4 R^3 there is a smooth family G_p of exact diffeomorphic stationary Kerr metrics with G_0=b , tangent directions H, L_Wb , and symbol…",
-          "dependsOn": [
-            "m3-st-profiles"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-st-adjoint-tails",
@@ -1316,9 +1272,7 @@
           "kind": "lemma",
           "source": "Stationary gauges and causal modulation",
           "detail": "[Adjoint tails] Let K_p^* be the supported bilinear-spatial-transpose kernel dual to the decaying stationary problem. It is seven-dimensional, locally of order H^ -4 , and conormal O(r^ -2+ ) at…",
-          "dependsOn": [
-            "m3-st-families"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-st-filter",
@@ -1379,7 +1333,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

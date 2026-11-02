@@ -200,101 +200,121 @@
     {
       "from": "m1-geom-basic",
       "to": "m1-top-interpolation",
+      "label": "geom:basic",
       "context": "his interpolation is its original parametrization, so the restriction is the identity. The projections $Y_j\\to B_j$ and $X_j\\to B_j$ are $1$-Lipschitz by Lemma~\\ref{geom:basic}; hence they induce simplicial maps of the corresponding Rips complexes."
     },
     {
       "from": "m1-geom-quotients",
       "to": "m1-top-chern-divisibility",
+      "label": "geom:quotients",
       "context": "Take $j$ large enough that $l_j>4r$ and reduction $\\Gamma\\to Q_{2j}$ is injective on the word ball of radius $2r$; the latter condition is available from Lemma~\\ref{geom:quotients}. In this proof write $m=2^j$, suppress $j$ in $U_j,V_j$, and abbreviate $g_{j,k}$ to $g_k$. We first describe integral"
     },
     {
       "from": "m1-top-interpolation",
       "to": "m1-top-chern-divisibility",
+      "label": "top:interpolation",
       "context": "Z$ by \\[ \\delta_1(v_x,v_y)=(v_y)_1-(v_x)_1+l_j a_{xy}, \\qquad \\delta_2(v_x,v_y)=(v_y)_2-(v_x)_2+l_j b_{xy}. \\] The triangle identities in the proof of Lemma~\\ref{top:interpolation} show that $a,b$ are cocycles. The seam numbers record the winding of the interpolated coordinate maps, so $[a]=p_{Y,j}^"
     },
     {
       "from": "m1-top-chern-divisibility",
       "to": "m1-top-k-divisibility",
+      "label": "top:chern-divisibility",
       "context": "Take $j$ satisfying Lemma~\\ref{top:chern-divisibility} and $2^j>D_r$, and put $z=[\\mathcal L'_{j,r}]-1\\in K^0(P_r(Y_j))$. The classifying map of this line bundle can be taken"
     },
     {
       "from": "m1-top-k-divisibility",
       "to": "m1-top-component-detection",
+      "label": "top:k-divisibility",
       "context": "In addition to the hypotheses needed for Lemma~\\ref{top:k-divisibility}, take $j>2r$. Cover $P_r(X_j)$ by the induced subcomplexes \\[ M^+=P_r(X_j)|_{\\{t\\geq-r\\}},\\qquad M^-=P_r(X_j)|_{\\{t\\l"
     },
     {
       "from": "m1-top-component-detection",
       "to": "m1-top-infinite-order",
+      "label": "top:component-detection",
       "context": "product} and functoriality, the restriction of $n\\alpha_r$ is exactly the difference in \\eqref{top:component-nonzero}. Choosing $j$ also large enough for Lemma~\\ref{top:component-detection} proves $n\\alpha_r\\neq0$. We have proved that for every nonzero $n$ and every integer $r\\geq3$, the scale-$r$ image of"
     },
     {
       "from": "m1-ana-fixed-propagation",
       "to": "m1-ana-multipliers",
+      "label": "ana:fixed-propagation",
       "context": "Products of $D$ with elements of $\\C[Z]$ have finite propagation and compact entries. Decompose $D$ into matchings as in Lemma~\\ref{ana:fixed-propagation}. It suffices to show that a matching operator whose entries have norm at most one acts contractively. For such an oper"
     },
     {
       "from": "m1-ana-fixed-propagation",
       "to": "m1-ana-functoriality",
+      "label": "ana:fixed-propagation",
       "context": "n bound for every fixed $T\\in\\C[Z]$. Moreover, \\[ \\|V_\\lambda T V_\\lambda^*-V_\\nu T V_\\nu^*\\|_{\\mathrm{op}} \\leq 2\\|T\\|_{\\mathrm{op}}|\\lambda-\\nu|. \\] Lemma~\\ref{ana:fixed-propagation}, applied to the four entries, promotes this estimate to maximal-norm continuity on $\\C[Z]$; contractivity and density g"
     },
     {
       "from": "m1-ana-functoriality",
       "to": "m1-ana-naturality",
+      "label": "ana:functoriality",
       "context": "a_3$, subtract the two identities, and use the definition of the Rips direct-limit assembly map. Independence of the covering choices follows from Proposition~\\ref{ana:functoriality}."
     },
     {
       "from": "m1-ana-compacts",
       "to": "m1-ana-transport-defect",
+      "label": "ana:compacts",
       "context": "E$ of components of $Y$ containing the vertex support of $D$. Every $P_n$ preserves each fiber, so $P_nD$ has vertex support in the same finite set $E$. Lemma~\\ref{ana:compacts} identifies its maximal norm with its concrete operator norm. On $H_Y$, we have $P_nD\\to0$ in operator norm; hence $P_n"
     },
     {
       "from": "m1-ana-transfer",
       "to": "m1-ana-transport-defect",
+      "label": "ana:transfer",
       "context": "[Proof of Proposition~\\ref{ana:transfer}] For $T\\in\\C[B]$, put \\[ \\Phi(T)=PL(T)\\in A_Y. \\] Since $P$ is a projection commuting with the lifts, Lemma~\\ref{ana:t"
     },
     {
       "from": "m1-ana-fixed-propagation",
       "to": "m1-ana-transport-defect",
+      "label": "ana:fixed-propagation",
       "context": "C[B]$ and has the same propagation bound. The difference from each approximant in \\eqref{eq:split-approximants} has this fixed propagation bound as well. Lemma~\\ref{ana:fixed-propagation} promotes the concrete convergence to maximal-norm convergence. Hence \\begin{equation}\\label{eq:split-identity} f_A\\Ph"
     },
     {
       "from": "m1-ana-functoriality",
       "to": "m1-ana-transport-defect",
+      "label": "ana:functoriality",
       "context": "vergence. Hence \\begin{equation}\\label{eq:split-identity} f_A\\Phi(T)=\\Ad(JV)(T). \\end{equation} By density this identity holds on $A_B$. Finally, Proposition~\\ref{ana:functoriality} says that a covering isometry over the identity induces the identity on $K$-theory. Applying it to $JV$ proves $(f_A\\P"
     },
     {
       "from": "m1-ana-compacts",
       "to": "m1-ana-endpoints",
+      "label": "ana:compacts",
       "context": "es addition of their $K_1$-classes. Using this additivity in \\eqref{eq:equal-stacks} and canceling $\\overline I_*$ gives \\[ q_*(E_-)_*=q_*(E_+)_*. \\] By Lemma~\\ref{ana:compacts}, $\\K_X$ is the algebra of compact operators on $H_X$, so $K_1(\\K_X)=0$. The six-term exact sequence for \\[ 0\\longrigh"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-ana-endpoints",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] The graphs $X_j$ constructed above are finite and connected with a uniform degree bound, and their coarse disjoint uni"
     },
     {
       "from": "m1-top-infinite-order",
       "to": "m1-ana-endpoints",
+      "label": "top:infinite-order",
       "context": "ed above are finite and connected with a uniform degree bound, and their coarse disjoint union $X$ is uniformly discrete and has bounded geometry. Proposition~\\ref{top:infinite-order} gives an infinite-order class \\[ \\alpha=(i_+)_*\\beta-(i_-)_*\\beta\\in\\KX_1(X). \\] By Proposition~\\ref{ana:transfer}, ch"
     },
     {
       "from": "m1-ana-transfer",
       "to": "m1-ana-endpoints",
+      "label": "ana:transfer",
       "context": "nd has bounded geometry. Proposition~\\ref{top:infinite-order} gives an infinite-order class \\[ \\alpha=(i_+)_*\\beta-(i_-)_*\\beta\\in\\KX_1(X). \\] By Proposition~\\ref{ana:transfer}, choose $b\\in K_1(A_Y)$ satisfying \\[ (f_A)_*(b)=\\mu_B^{\\max}(\\beta). \\] Naturality of the maximal coarse index (Propo"
     },
     {
       "from": "m1-ana-naturality",
       "to": "m1-ana-endpoints",
+      "label": "ana:naturality",
       "context": "By Proposition~\\ref{ana:transfer}, choose $b\\in K_1(A_Y)$ satisfying \\[ (f_A)_*(b)=\\mu_B^{\\max}(\\beta). \\] Naturality of the maximal coarse index (Proposition~\\ref{ana:naturality}) and Proposition~\\ref{ana:endpoints} now give \\begin{align*} \\mu_X^{\\max}(\\alpha) &=(i_{+,A})_*\\mu_B^{\\max}(\\beta)"
     },
     {
       "from": "m2-lem-trace",
       "to": "m2-lem-smallloops",
+      "label": "lem:trace",
       "context": "$g_\\ell^m=z^{-1}w^{-1}z$ and $\\tr(g_\\ell^m)=\\tr(w^{-1})$ modulo $2^\\ell$. Here $0<\\abs m\\le A$. If $j\\ge J(A)$, then $\\ell\\ge N(A)$ and this contradicts Lemma~\\ref{lem:trace} applied to $w^{-1}$."
     },
     {
       "from": "m2-lem-smallloops",
       "to": "m2-prop-persistence",
+      "label": "lem:smallloops",
       "context": "dge path in $X_j$ from $x$ to $y$ of length at most $r$, and let $b_r(x,y)$ be its charge. Two choices differ by a closed path of length at most $2r$, so Lemma~\\ref{lem:smallloops} makes this integer independent of the choice. Reversing a path gives $b_r(y,x)=-b_r(x,y)$. Around any Rips triangle, th"
     }
   ]

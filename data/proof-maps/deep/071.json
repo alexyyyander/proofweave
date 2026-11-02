@@ -232,7 +232,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Removable-Boundaries-and-Rigidity-of-Circle-Domains-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Removable Boundaries and Rigidity of Circle Domains; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Removable Boundaries and Rigidity of Circle Domains.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -336,7 +336,6 @@
           "dependsOn": [
             "m1-lem-ends",
             "m1-lem-level-pairs",
-            "m1-thm-dust-sobolev",
             "m1-prop-models",
             "m1-lem-normalization",
             "m1-lem-null-area"
@@ -364,8 +363,7 @@
             "m1-lem-ends",
             "m1-lem-ball-synthesis",
             "m1-thm-dust-sobolev",
-            "m1-lem-null-area",
-            "m1-thm-main"
+            "m1-lem-null-area"
           ]
         }
       ]
@@ -382,7 +380,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Koebes-Circle-Domain-Conjecture-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Koebe's Circle-Domain Conjecture; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Koebe's Circle-Domain Conjecture.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -413,9 +411,7 @@
           "kind": "lemma",
           "source": "The quotient sphere and compatible coordinates",
           "detail": "[Small disks and contours] The following assertions hold. [label=( *)] If F X is closed, every nondegenerate continuum contained in F B is contained in F . Suppose that F X is closed and contains B ,…",
-          "dependsOn": [
-            "m2-lem-quotient"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-level-continua",
@@ -525,7 +521,6 @@
             "m2-thm-barrier",
             "m2-lem-dust-disks",
             "m2-lem-path-coding",
-            "m2-lem-level-continua",
             "m2-lem-trace-null"
           ]
         },
@@ -570,7 +565,6 @@
           "source": "Positive laws of admissible paths",
           "detail": "[Fusion of laws] Let \\(S\\) be standard Borel, let \\(B\\) be compact metric, and let \\( M\\) be a Borel family of probability measures on \\(S\\), closed under Borel probability mixtures. Suppose a Borel…",
           "dependsOn": [
-            "m2-thm-positive-law",
             "m2-lem-countable-law",
             "m2-lem-path-coding"
           ]
@@ -605,8 +599,7 @@
           "detail": "[Countably many unavailable endpoints] Fix any countable coordinate list satisfying (P), and fix >0 . In the ungated endpoint problem with \\[ E=\\ 3R |z|4R\\ , E_* =\\ |z|=7R/2\\ , \\] there are at most…",
           "dependsOn": [
             "m2-thm-positive-law",
-            "m2-lem-point-avoidance",
-            "m2-lem-diffuse-intersections"
+            "m2-lem-point-avoidance"
           ]
         },
         {
@@ -640,9 +633,7 @@
           "kind": "lemma",
           "source": "The first selection and path--level intersections",
           "detail": "[Generic level intersections of a path law] Fix a countable prior compatible list with flag set , possibly containing period coordinates, and let be a law from Theorem~ . For every prior coordinate i…",
-          "dependsOn": [
-            "m2-lem-dust-disks"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-compact-arcs",
@@ -652,9 +643,7 @@
           "kind": "lemma",
           "source": "Period coordinates and the marked components",
           "detail": "[Compact simple-arc reduction] Let be an endpoint law supplied by Theorem~ , with target b and prescribed collars C_j(b)= U_j(b) . For every sufficiently deep prescribed collar C= U , there is a…",
-          "dependsOn": [
-            "m2-lem-law-levels"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-stream",
@@ -666,8 +655,7 @@
           "detail": "[A stream coordinate] Let U be a dust disk, let b B U , and put C= U . Suppose is supported on a compact family of simple arcs from C to b , meeting C only at their initial points and b only at their…",
           "dependsOn": [
             "m2-lem-point-avoidance",
-            "m2-lem-level-continua",
-            "m2-lem-trace-null"
+            "m2-lem-level-continua"
           ]
         },
         {
@@ -695,8 +683,7 @@
             "m2-lem-line-payment",
             "m2-thm-positive-law",
             "m2-lem-compact-arcs",
-            "m2-lem-stream",
-            "m2-lem-stream-stokes"
+            "m2-lem-stream"
           ]
         },
         {
@@ -725,8 +712,7 @@
           "source": "Period coordinates and the marked components",
           "detail": "[Retained scalar tests] Let G contain infinity, let X=G B be its quotient sphere, and fix R with \\ |z| R\\ \\ \\ G . Let u_1,,u_m C(X,) be smooth on G , with _G| u_i|^2< , and suppose ((u_i,u_j)(B))=0(i…",
           "dependsOn": [
-            "m2-thm-retained-tests",
-            "m2-lem-end-components"
+            "m2-thm-retained-tests"
           ]
         },
         {
@@ -762,7 +748,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

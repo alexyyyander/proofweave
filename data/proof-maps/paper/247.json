@@ -580,441 +580,529 @@
     {
       "from": "m1-lem-strip",
       "to": "m1-lem-stable-center",
+      "label": "lem:strip",
       "context": "ort of a representative of $z$. To show that $z$ commutes with a specified root, enlarge $S$ to contain both indices of that root. Choose $h\\notin S$. By Lemma~\\ref{lem:strip}, $z$ acts trivially on the strips $S\\times\\{h\\}$ and $\\{h\\}\\times S$, since its matrix image is the identity. For $i,j\\"
     },
     {
       "from": "m1-lem-strip",
       "to": "m1-lem-permutations",
+      "label": "lem:strip",
       "context": "_{ba}(1)x_{ab}(1). \\] On a column strip from $\\{a,b\\}$ to an outside coordinate, its three elementary row additions exchange the two entries over $\\F_2$. Lemma~\\ref{lem:strip} gives this as an exact group action. The reverse strip is exchanged in the same way. Roots with both indices outside $\\"
     },
     {
       "from": "m1-lem-stable-center",
       "to": "m1-lem-permutations",
+      "label": "lem:stable-center",
       "context": "bitrary finite permutations. Any injective relabeling of a finite set extends to a permutation of a larger finite set, so the last assertion follows from Lemma~\\ref{lem:stable-center}."
     },
     {
       "from": "m1-lem-strip",
       "to": "m1-lem-block-laws",
+      "label": "lem:strip",
       "context": "rip to block $j$ by the corresponding row operation; an operation inside block $j$ acts by the inverse column operation. These are exact strip actions by Lemma~\\ref{lem:strip}. An operation inside any other outer block centralizes the block root. Gaussian elimination over $\\F_2$ writes $P$ as"
     },
     {
       "from": "m1-lem-strip",
       "to": "m1-lem-wrap",
+      "label": "lem:strip",
       "context": "the roots from inner indices in $H_r$ to inner indices in $L_r$, with arbitrary outer indices, form an abelian strip $V_r$ that injects into matrices by Lemma~\\ref{lem:strip}. Figure~\\ref{fig:wrap-strip} displays these two bands. We shall show that conjugation by one $D_h$ enlarges their wid"
     },
     {
       "from": "m1-lem-wrap",
       "to": "m1-lem-cyclic-vanishing",
+      "label": "lem:wrap",
       "context": "Choose one finite root word for $z$, and apply Lemma~\\ref{lem:wrap} to its graded word. Since $S_b$ is strictly upper triangular, Lemma~\\ref{lem:triangular} gives, in the stable group, \\"
     },
     {
       "from": "m1-lem-triangular",
       "to": "m1-lem-cyclic-vanishing",
+      "label": "lem:triangular",
       "context": "Choose one finite root word for $z$, and apply Lemma~\\ref{lem:wrap} to its graded word. Since $S_b$ is strictly upper triangular, Lemma~\\ref{lem:triangular} gives, in the stable group, \\[ W_z(C_b)=W_z(S_b) =\\prod_{s=0}^{b-1}\\iota_s(z(0))=1. \\] The fixed injection exte"
     },
     {
       "from": "m1-lem-block-laws",
       "to": "m1-prop-relative-torsion",
+      "label": "lem:block-laws",
       "context": "sive kernels of the nilpotent map $C_b-\\Id$ makes $C_b$ upper triangular with all diagonal entries $1$. Thus some $P\\in\\GL_b(\\F_2)$ has this effect. By Lemma~\\ref{lem:block-laws}, conjugation by a Steinberg lift of the repeated basis change takes $W_z(C_b)$ to $W_z(P^{-1}C_bP)$. Centrality of $J("
     },
     {
       "from": "m1-lem-triangular",
       "to": "m1-prop-relative-torsion",
+      "label": "lem:triangular",
       "context": "}, conjugation by a Steinberg lift of the repeated basis change takes $W_z(C_b)$ to $W_z(P^{-1}C_bP)$. Centrality of $J(R)$ makes these elements equal. Lemma~\\ref{lem:triangular} then gives \\begin{equation}\\label{eq:cyclic-two-power} W_z(C_b)=\\prod_{s=0}^{b-1}\\iota_s(z)=z^b. \\end{equation} The la"
     },
     {
       "from": "m1-lem-permutations",
       "to": "m1-prop-relative-torsion",
+      "label": "lem:permutations",
       "context": "f{lem:triangular} then gives \\begin{equation}\\label{eq:cyclic-two-power} W_z(C_b)=\\prod_{s=0}^{b-1}\\iota_s(z)=z^b. \\end{equation} The last equality uses Lemma~\\ref{lem:permutations}: every coordinate image of the central element $z$ equals $z$ in the stable group. Choose a power of two $b$ large eno"
     },
     {
       "from": "m1-lem-cyclic-vanishing",
       "to": "m1-prop-relative-torsion",
+      "label": "lem:cyclic-vanishing",
       "context": "mma~\\ref{lem:permutations}: every coordinate image of the central element $z$ equals $z$ in the stable group. Choose a power of two $b$ large enough for Lemma~\\ref{lem:cyclic-vanishing}. Then $z^b=1$."
     },
     {
       "from": "m1-lem-commutator",
       "to": "m1-lem-opposite",
+      "label": "lem:commutator",
       "context": "Apply Lemma~\\ref{lem:commutator} to \\[ X=x_{ih}(a),\\qquad Y=x_{hj}(b),\\qquad Z=x_{ji}(c). \\] Then $A=[X,Y]=x_{ij}(ab)$ and $B'=[Y,Z]=x_{hi}(bc)$. The S"
     },
     {
       "from": "m1-lem-opposite",
       "to": "m1-lem-long-commutator",
+      "label": "lem:opposite",
       "context": "The phase mismatch gives $qp=0$, so Lemma~\\ref{lem:opposite} applies. We first show that the commutator does not change when the cut between $p$ and $q$ moves, provided both new pa"
     },
     {
       "from": "m1-lem-phases",
       "to": "m1-lem-long-commutator",
+      "label": "lem:phases",
       "context": "ass of the concatenation. Conversely, a nonzero class $w$ as in the statement can be cut into two parts of lengths at least $N$. The subword assertion of Lemma~\\ref{lem:phases} makes their start and end phases $\\sigma(w)$ and $\\tau(w)$, respectively. Define $H_i(w)$ by any such cut. The independ"
     },
     {
       "from": "m1-lem-strip",
       "to": "m1-lem-wrong-row",
+      "label": "lem:strip",
       "context": "index is $i$, the supports are disjoint and the elements commute. If one index is $i$, the root lies in a strip between $\\{i,h\\}$ and its complement. By Lemma~\\ref{lem:strip}, conjugation by $H_i(w)$ acts on that strip by its matrix $\\Id+wE_{ii}$. This matrix is its own inverse, since $w^2=0$"
     },
     {
       "from": "m1-lem-long-commutator",
       "to": "m1-lem-wrong-row",
+      "label": "lem:long-commutator",
       "context": "is sufficient for these two applications of the phase rule. We have proved that all generators of $U$ commute. They have square $1$ by root addition and Lemma~\\ref{lem:long-commutator}. Their matrix images are $\\Id+wE_{ij}$, indexed by positions and nonzero word classes satisfying \\eqref{eq:wrong-row}."
     },
     {
       "from": "m1-lem-block-laws",
       "to": "m1-lem-relocation",
+      "label": "lem:block-laws",
       "context": "f the middle numerical pairing. Scalar products are immediate. Applying $\\rho$ to the entries in \\eqref{eq:high-word}, and then using the block roots of Lemma~\\ref{lem:block-laws}, produces an element of $J(R)$. To justify this assertion, the original matrix word is the identity already over the su"
     },
     {
       "from": "m1-lem-permutations",
       "to": "m1-lem-relocation",
+      "label": "lem:permutations",
       "context": "s=\\mathbf e_0$ and $v_s=\\mathbf e_0^*$ for every $s$. The evaluated word is $z$ supported on the coordinates $(i,0)$, which is the same stable element by Lemma~\\ref{lem:permutations} and centrality. We change this evaluation in three steps. \\emph{Add entries in unused columns.} Keep all $u_s=\\mathbf"
     },
     {
       "from": "m1-lem-strip",
       "to": "m1-lem-relocation",
+      "label": "lem:strip",
       "context": "tors belong to the strip from $S\\times\\{0\\}$ to $S\\times(\\Z/L\\setminus\\{0\\})$. The original factors, supported on $S\\times\\{0\\}$, normalize this strip by Lemma~\\ref{lem:strip}. We can therefore collect the additional factors into a single strip element. Both the old and new evaluated words have"
     },
     {
       "from": "m1-lem-wrong-row",
       "to": "m1-lem-relocation",
+      "label": "lem:wrong-row",
       "context": "actors commute. The factor with $r=\\sigma(w)$ is the root in \\eqref{eq:relocation}; all the other factors are wrong-row generators of $U(S\\times\\Z/L,P)$. Lemma~\\ref{lem:wrong-row} says that the retained, consistent roots normalize this subgroup. Collecting the other factors expresses the evaluated"
     },
     {
       "from": "m1-lem-long-commutator",
       "to": "m1-prop-odd-power",
+      "label": "lem:long-commutator",
       "context": "relations prove the claim unless the two roots are opposite. In that case both products vanish, and the reverse match also gives $\\sigma(w)\\ne\\tau(w')$. Lemma~\\ref{lem:long-commutator}, whose length hypotheses hold because $|w|,|w'|\\ge M\\ge N$, then gives $[x_{uv}(w),x_{vu}(w')]=1$. This proves the clai"
     },
     {
       "from": "m1-lem-relocation",
       "to": "m1-prop-odd-power",
+      "label": "lem:relocation",
       "context": "tly collect the product by offsets, preserving within each offset the order of the original word. The offset-zero word is precisely the relocated word of Lemma~\\ref{lem:relocation}, and every other offset word is its coordinate permutation. They all give $z$, since $z\\in J(R)$. There are $L$ offsets"
     },
     {
       "from": "m1-lem-strip",
       "to": "m1-lem-high-entries",
+      "label": "lem:strip",
       "context": "1}]. \\] The two conjugated factors lie respectively in the strips from $S$ to $\\{h\\}$ and from $\\{h\\}$ to $S$. More explicitly, write $A_g=\\pi(g)|_S$. By Lemma~\\ref{lem:strip}, \\begin{align*} g x_{ih}(a)g^{-1} &=\\prod_{r\\in S}x_{rh}\\bigl((A_g)_{ri}a\\bigr),\\\\ g x_{hj}(b)g^{-1} &=\\prod_{s"
     },
     {
       "from": "m1-lem-cyclic-vanishing",
       "to": "m1-thm-detection",
+      "label": "lem:cyclic-vanishing",
       "context": "as $\\bigcap_dR_{\\ge d}=0$, so its matrix image is the identity over $R$ and $z\\in J(R)$. Taking $d=1$ also shows that $z$ maps to $1$ in $\\St(\\F_2)$. By Lemma~\\ref{lem:cyclic-vanishing}, $W_z(C_b)=1$ for every sufficiently large integer $b$. Choose an odd phase modulus $L$ from Lemma~\\ref{lem:phases} bey"
     },
     {
       "from": "m1-lem-phases",
       "to": "m1-thm-detection",
+      "label": "lem:phases",
       "context": "to $1$ in $\\St(\\F_2)$. By Lemma~\\ref{lem:cyclic-vanishing}, $W_z(C_b)=1$ for every sufficiently large integer $b$. Choose an odd phase modulus $L$ from Lemma~\\ref{lem:phases} beyond this threshold. This choice uses a fixed representative of $z$ and precedes every choice of a long-entry represe"
     },
     {
       "from": "m1-lem-high-entries",
       "to": "m1-thm-detection",
+      "label": "lem:high-entries",
       "context": "long-entry representative. Now choose its phase threshold $N$ and an integer $M\\ge2N+k+1$. The element $z$ is trivial in the truncation at degree $2M$. Lemma~\\ref{lem:high-entries} supplies a representative with nonzero word entries of lengths at least $M$. Applying Proposition~\\ref{prop:odd-power}"
     },
     {
       "from": "m1-prop-odd-power",
       "to": "m1-thm-detection",
+      "label": "prop:odd-power",
       "context": "n the truncation at degree $2M$. Lemma~\\ref{lem:high-entries} supplies a representative with nonzero word entries of lengths at least $M$. Applying Proposition~\\ref{prop:odd-power} to this representative yields \\[ z^L=W_z(C_L)=1. \\] On the other hand, Proposition~\\ref{prop:relative-torsion} gives $"
     },
     {
       "from": "m1-prop-relative-torsion",
       "to": "m1-thm-detection",
+      "label": "prop:relative-torsion",
       "context": "entries of lengths at least $M$. Applying Proposition~\\ref{prop:odd-power} to this representative yields \\[ z^L=W_z(C_L)=1. \\] On the other hand, Proposition~\\ref{prop:relative-torsion} gives $z^{2^a}=1$ for some $a\\ge0$, since $z\\in J(R)$ has trivial reduction to $\\St(\\F_2)$. The integers $L$ and $2^a$"
     },
     {
       "from": "m1-prop-finite-rank-input",
       "to": "m1-lem-stabilizer-uce",
+      "label": "prop:finite-rank-input",
       "context": "The extension is central by Proposition~\\ref{prop:finite-rank-input}\\textup{(ii)}, because its kernel acts trivially on the strip. Both its source and target are perfect. Indeed, an intern"
     },
     {
       "from": "m1-lem-commutator",
       "to": "m1-lem-stabilizer-uce",
+      "label": "lem:commutator",
       "context": "y_{hj}(b)]=\\widehat y_{ij}(ab) \\qquad(h\\leq r;\\ i,h,j\\text{ distinct}). \\end{equation} To prove this, choose a fourth distinct index $f\\leq r$ and apply Lemma~\\ref{lem:commutator} to \\[ X=y_{ih}(a),\\qquad Y=y_{hf}(b),\\qquad Z=y_{fj}(1). \\] All its commuting hypotheses follow from \\eqref{eq:lifts-c"
     },
     {
       "from": "m1-thm-stability",
       "to": "m1-lem-ordered-frames",
+      "label": "thm:stability",
       "context": "[Proof of Theorem~\\ref{thm:stability}] We now combine the stabilizer calculation with the ordered-frame complex to prove Theorem~\\ref{thm:stability}. Fix $m\\"
     },
     {
       "from": "m1-prop-finite-rank-input",
       "to": "m1-lem-ordered-frames",
+      "label": "prop:finite-rank-input",
       "context": "5$, this action is transitive. To see this, complete a given frame to an invertible matrix, placing it in the last $l$ columns, and put $r=m-l$. By Proposition~\\ref{prop:finite-rank-input}\\textup{(iii)}, the map $\\GL_r/\\E_r\\to\\GL_m/\\E_m$ is an isomorphism. Right multiplication by a suitable complementary $\\"
     },
     {
       "from": "m1-lem-stabilizer-uce",
       "to": "m1-lem-ordered-frames",
+      "label": "lem:stabilizer-uce",
       "context": "ix belongs to $\\E_m$ precisely when $A\\in\\E_{m-l}$. Write $S_l=S_{m-l,l}$ for the rest of the proof. All these complementary ranks are at least eight, so Lemma~\\ref{lem:stabilizer-uce} applies. Take a free right $\\Z[\\E_m]$-resolution $P_\\bullet\\to\\Z$ of the trivial module and form the first-quadrant do"
     },
     {
       "from": "m1-prop-finite-rank-input",
       "to": "m1-prop-finite-quotients",
+      "label": "prop:finite-rank-input",
       "context": "paces over $\\F_2$. Moreover $B_d=\\F_2\\oplus I_d$ with $I_d^d=0$, so every finite square matrix over $I_d$ is nilpotent. The centrality assertion in Proposition~\\ref{prop:finite-rank-input} therefore applies to $B_d$. The kernel of \\[ \\St_{12}(B_d)\\longrightarrow\\E_{12}(B_d) \\] is central, and the matrix gr"
     },
     {
       "from": "m1-thm-stability",
       "to": "m1-prop-finite-quotients",
+      "label": "thm:stability",
       "context": "p \\cite{Schur1904}; see also \\cite[Theorem~10.1.4]{Robinson1996}. Since $\\St_{12}(B_d)$ is perfect, it is itself finite. Let $g\\ne1$ in $\\St_{12}(R)$. Theorem~\\ref{thm:stability} makes its image in $\\St(R)$ nonidentity, and Theorem~\\ref{thm:detection} detects that image in $\\St(B_d)$ for some $d$."
     },
     {
       "from": "m1-thm-detection",
       "to": "m1-prop-finite-quotients",
+      "label": "thm:detection",
       "context": "\\St_{12}(B_d)$ is perfect, it is itself finite. Let $g\\ne1$ in $\\St_{12}(R)$. Theorem~\\ref{thm:stability} makes its image in $\\St(R)$ nonidentity, and Theorem~\\ref{thm:detection} detects that image in $\\St(B_d)$ for some $d$. The natural square \\[ \\begin{tikzpicture}[baseline=(current bounding bo"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-prop-finite-quotients",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] The algebra $R$ is infinite and finitely presented as a unital $\\F_2$-algebra. Accordingly $\\Gamma=\\St_{12}(R)$ has an"
     },
     {
       "from": "m1-prop-ring-input",
       "to": "m1-prop-finite-quotients",
+      "label": "prop:ring-input",
       "context": "eparating finite-quotient maps of $\\Gamma$ proves residual finiteness of $G$. Fix $g\\in G$. Its matrix image is $\\Id+A$ for some $A\\in M_{12}(I)$. Proposition~\\ref{prop:ring-input} gives an integer $r\\ge1$ with $A^r=0$. Choose $a\\ge0$ with $2^a\\ge r$. In characteristic two, \\[ (\\Id+A)^{2^a}=\\Id+A^{"
     },
     {
       "from": "m1-prop-relative-torsion",
       "to": "m1-prop-finite-quotients",
+      "label": "prop:relative-torsion",
       "context": "^a}\\in J_{12}(R)$, and its reduction to $\\St_{12}(\\F_2)$ is still trivial. Its stable image belongs to $J(R)$ and reduces to $1$ in $\\St(\\F_2)$, so Proposition~\\ref{prop:relative-torsion} kills that image by a 2-power $2^b$. The injectivity in Theorem~\\ref{thm:stability} then yields $g^{2^{a+b}}=1$ in $\\Ga"
     },
     {
       "from": "m2-fr-context",
       "to": "m2-fr-faithful",
+      "label": "fr:context",
       "context": "eaches the success zero. No cell outside those blocks is needed. For the converse, consider any sequence from a concatenation of canonical blocks. By Lemmas~\\ref{fr:context} and \\ref{fr:palette-soundness}, all structural and marker syntax remains valid and all palettes retain exactly one of e"
     },
     {
       "from": "m2-fr-palette-soundness",
       "to": "m2-fr-faithful",
+      "label": "fr:palette-soundness",
       "context": "ro. No cell outside those blocks is needed. For the converse, consider any sequence from a concatenation of canonical blocks. By Lemmas~\\ref{fr:context} and \\ref{fr:palette-soundness}, all structural and marker syntax remains valid and all palettes retain exactly one of each color. At any time read a r"
     },
     {
       "from": "m2-fr-verification",
       "to": "m2-fr-faithful",
+      "label": "fr:verification",
       "context": "its region is fixed. Interleavings with another transaction cannot change this payload, by ownership; palette operations cannot change an addressed bit. Lemma~\\ref{fr:verification} therefore applies throughout the transaction. If it reaches replacement success, its certificate establishes a genuine"
     },
     {
       "from": "m2-fr-palette-soundness",
       "to": "m2-fr-token-normalization",
+      "label": "fr:palette-soundness",
       "context": "$ blocks, including the final block if acquisition stopped partway through it. Every palette here is complete. First remove all its checker heads using Lemma~\\ref{fr:palette-soundness}, or obtain a zero. Apply Lemma~\\ref{fr:rollback} to the transaction head and release the acquired cells, or again obtai"
     },
     {
       "from": "m2-fr-rollback",
       "to": "m2-fr-token-normalization",
+      "label": "fr:rollback",
       "context": "partway through it. Every palette here is complete. First remove all its checker heads using Lemma~\\ref{fr:palette-soundness}, or obtain a zero. Apply Lemma~\\ref{fr:rollback} to the transaction head and release the acquired cells, or again obtain a zero. The interval is a factor of a nonzero"
     },
     {
       "from": "m2-prop-hierarchy",
       "to": "m2-ca-direct",
+      "label": "prop:hierarchy",
       "context": "Fix such a test and choose $n$ above the long-word threshold in Proposition~\\ref{prop:hierarchy}. In its length-$n$ sum discard the sequences whose concatenated word is zero. We partition the remaining sequences in"
     },
     {
       "from": "m2-ca-alternating",
       "to": "m2-ca-direct",
+      "label": "ca:alternating",
       "context": "_m} X_{\\sigma(1)}\\cdots X_{\\sigma(m)}\\right)V\\otimes a. \\] The weights $X_i$ themselves need not be distinct. The displayed middle sum vanishes by Lemma~\\ref{ca:alternating}. There are only finitely many sequences of total length $n$, so summing the zero orbit contributions proves the desire"
     },
     {
       "from": "m2-prop-hierarchy",
       "to": "m2-ca-cut-reduction",
+      "label": "prop:hierarchy",
       "context": "Let $M$ be a letter test at level $j$. By Proposition~\\ref{prop:hierarchy}, there are integers $B,N_0$ such that every nonzero word of length at least $N_0$ has the stated cut decomposition, wit"
     },
     {
       "from": "m2-ca-cut-reduction",
       "to": "m2-ca-all-tests",
+      "label": "ca:cut-reduction",
       "context": "nds \\begin{equation} d_j=d\\prod_{i=1}^{j-1}\\bigl(C_k|\\Sigma_i|^k\\bigr). \\label{ca:dimension-product} \\end{equation} The empty product gives $d_1=d$. Lemma~\\ref{ca:cut-reduction} reduces dimension-$d$ letter tests at level zero to dimension-$d_1$ chunk tests at level one. At a level $i\\geq1$, Lem"
     },
     {
       "from": "m2-ca-automaton",
       "to": "m2-ca-all-tests",
+      "label": "ca:automaton",
       "context": "d_1=d$. Lemma~\\ref{ca:cut-reduction} reduces dimension-$d$ letter tests at level zero to dimension-$d_1$ chunk tests at level one. At a level $i\\geq1$, Lemma~\\ref{ca:automaton} turns a dimension-$d_i$ chunk test into a letter test of dimension at most $d_{i+1}=C_k|\\Sigma_i|^kd_i$ at that same le"
     },
     {
       "from": "m2-ca-direct",
       "to": "m2-ca-all-tests",
+      "label": "ca:direct",
       "context": "ular there is a finite $J\\geq1$ such that \\[ 2^{h_J}>400k d_J^2\\geq100k(d_J^2+3), \\] where the second inequality uses $d_J\\geq1$. Direct cancellation, Lemma~\\ref{ca:direct}, therefore applies to all dimension-$d_J$ chunk tests of label bound $k$ at level $J$. Work backwards through the fini"
     },
     {
       "from": "m2-prop-hierarchy",
       "to": "m2-thm-algebra",
+      "label": "prop:hierarchy",
       "context": "nonzero letter $a_j$ at level $j$. The word \\[ w_j=E_0E_1\\cdots E_{j-1}(a_j) \\] is nonzero by repeated use of the nonzero-preservation clause of Proposition~\\ref{prop:hierarchy}. Its length is $L_0L_1\\cdots L_{j-1}$, which tends strictly to infinity because each $L_i>1$. The nonzero classes $[w"
     },
     {
       "from": "m2-ca-all-tests",
       "to": "m2-thm-algebra",
+      "label": "ca:all-tests",
       "context": "s list is empty then $T=0$ and there is nothing to prove. Otherwise let $b=\\max_\\gamma|v_\\gamma|$. Introduce a central indeterminate $z$ and apply Proposition~\\ref{ca:all-tests} over the field $K=\\F_2(z)$ to the chunks $v_\\gamma$ with weights $zA_\\gamma$. Its length-$n$ sum is the image of the po"
     },
     {
       "from": "m2-thm-algebra",
       "to": "m2-cor-nil-algebra",
+      "label": "thm:algebra",
       "context": "Let $F=\\F_2\\langle\\Sigma_0\\rangle$ be the free unital algebra used in Theorem~\\ref{thm:algebra}, and let $F_+$ be its subalgebra spanned by the nonempty words. This is the free nonunital associative algebra on the f"
     },
     {
       "from": "m2-thm-finite-presentation",
       "to": "m2-fp-three-factor",
+      "label": "thm:finite-presentation",
       "context": "[Proof of Theorem~\\ref{thm:finite-presentation}] First omit Equation~\\eqref{fp:finite-algebra-relators}, and denote the resulting finitely presented group by $P_0$. W"
     },
     {
       "from": "m2-fp-matrix-periodicity",
       "to": "m2-st-linear-algebra",
+      "label": "fp:matrix-periodicity",
       "context": "The invertibility assertion is Lemma~\\ref{fp:matrix-periodicity}. To complete a tuple of columns, complete their reductions to a basis over $\\F_2$ and lift the additional columns; the"
     },
     {
       "from": "m2-st-linear-algebra",
       "to": "m2-st-small-presentation",
+      "label": "st:linear-algebra",
       "context": "Let $H'_n$ be the presented group and let $\\pi:H'_n\\to H_n$ be its natural surjection, which is surjective by Lemma~\\ref{st:linear-algebra}. We prove injectivity by induction on $n$. For $n=5$, every true relation is included, so there is nothing to prove. Su"
     },
     {
       "from": "m2-st-frames",
       "to": "m2-st-small-presentation",
+      "label": "st:frames",
       "context": "qquad ststs=t. \\] The final equality is a true relation on the first three coordinates, and $t\\in P'$. Thus the endpoint coset is the starting coset. By Lemma~\\ref{st:frames}, $X_n$ is simply connected. Combinatorial edge paths with the same endpoints therefore differ by backtracks and triangl"
     },
     {
       "from": "m2-st-small-presentation",
       "to": "m2-prop-centrality",
+      "label": "st:small-presentation",
       "context": "in S$, \\[ x_{ij}(a)=[x_{it}(a),x_{tj}(1)], \\] so it fixes the internal roots as well. Exactly one outside coordinate is needed for this argument. Proposition~\\ref{st:small-presentation} now gives a homomorphism $H_n\\to\\operatorname{Aut}(\\St_n(R))$. On the image of each Steinberg generator it is conjugati"
     },
     {
       "from": "m2-st-linear-algebra",
       "to": "m2-st-quotient",
+      "label": "st:linear-algebra",
       "context": "Elementary generators normalize their own generated subgroup, and diagonal conjugation preserves each elementary root subgroup. Lemma~\\ref{st:linear-algebra} therefore proves normality. In the presentation of Proposition~\\ref{st:small-presentation}, kill all elementary genera"
     },
     {
       "from": "m2-st-small-presentation",
       "to": "m2-st-quotient",
+      "label": "st:small-presentation",
       "context": "and diagonal conjugation preserves each elementary root subgroup. Lemma~\\ref{st:linear-algebra} therefore proves normality. In the presentation of Proposition~\\ref{st:small-presentation}, kill all elementary generators. Elementary swap words then become trivial, so the conjugation relation for a swap iden"
     },
     {
       "from": "m2-st-finite-splitting",
       "to": "m2-st-extensions",
+      "label": "st:finite-splitting",
       "context": "up generated by the original matrices. Let \\[ 1\\longrightarrow\\Q\\xrightarrow{\\iota}X \\longrightarrow\\E_n(R)\\longrightarrow1 \\] be a central extension. Lemma~\\ref{st:finite-splitting} gives a unique splitting on each unitriangular subgroup. Their root lifts agree whenever a root occurs in different ord"
     },
     {
       "from": "m2-prop-centrality",
       "to": "m2-st-extensions",
+      "label": "prop:centrality",
       "context": "n $\\varphi\\in\\Hom(J_n,\\Q)$, form \\[ X_\\varphi= (\\St_n(R)\\times\\Q)/ \\{(j,-\\varphi(j)):j\\in J_n\\}. \\] The subgroup being divided out is central by Proposition~\\ref{prop:centrality}. The map $q\\mapsto[(1,q)]$ is injective, and the induced map $X_\\varphi\\to\\E_n(R)$ is surjective with this central kern"
     },
     {
       "from": "m2-st-quotient",
       "to": "m2-st-stabilizers",
+      "label": "st:quotient",
       "context": "Complete a prescribed ordered frame to a matrix $h\\in H_m$, putting the prescribed columns in the last $l$ positions. By Lemma~\\ref{st:quotient}, the complementary $H_r$ represents every coset of $\\E_m(R)$ in $H_m$, since $r\\geq9$. Multiplying $h$ on the right by"
     },
     {
       "from": "m2-st-coinvariants",
       "to": "m2-st-stabilizers",
+      "label": "st:coinvariants",
       "context": "}$. Thus its coinvariants are zero: their defining relations include $-a-a=-2a$. The characteristic of $R$ does not change the rational orientation sign. Lemma~\\ref{st:coinvariants} gives vanishing in every degree. If $l=1$, the orientation module is trivial and the same Lemma identifies homology wit"
     },
     {
       "from": "m2-st-frames",
       "to": "m2-st-h2",
+      "label": "st:frames",
       "context": "omplex has the form \\[ K_j=T_j\\oplus A_{j+1},\\qquad d_K(t,a)=(d_Tt,F(t)-d_Aa). \\] Every augmented horizontal row is exact at positions $p=-1,0,1,2$, by Lemma~\\ref{st:frames} and the freeness of each $P_q$. To kill a cycle of total degree $j\\leq2$ in $K_\\bullet$, choose its component of larges"
     },
     {
       "from": "m2-st-stabilizers",
       "to": "m2-st-h2",
+      "label": "st:stabilizers",
       "context": "hows that $F_*:H_2(T_\\bullet)\\to H_2(A_\\bullet)$ is an isomorphism. Here the connecting map is precisely the augmentation map $F_*$. For $0\\leq p\\leq3$, Lemma~\\ref{st:stabilizers} gives a single orbit of simplices, and the oriented chain module is \\[ C_p\\cong\\Q[G]\\otimes_{\\Q[K_{p+1}]}\\Q_{\\epsilon_"
     },
     {
       "from": "m2-st-h2",
       "to": "m2-prop-rational-stability",
+      "label": "st:h2",
       "context": "Proposition~\\ref{st:h2} and the bar-cochain identification above show that restriction gives a bijection on central extension classes by $\\Q$."
     },
     {
       "from": "m2-st-extensions",
       "to": "m2-prop-rational-stability",
+      "label": "st:extensions",
       "context": "Proposition~\\ref{st:h2} and the bar-cochain identification above show that restriction gives a bijection on central extension classes by $\\Q$. By Lemma~\\ref{st:extensions}, this is precisely restriction on the displayed Hom groups. Restriction is a homomorphism of these Hom groups, so its b"
     },
     {
       "from": "m2-prop-centrality",
       "to": "m2-kt-field-kernel",
+      "label": "prop:centrality",
       "context": "It is abelian by Proposition~\\ref{prop:centrality}. Suppose that $\\varphi:J_n(\\F_2)\\longrightarrow\\Q$ is a homomorphism. Form the central extension \\[ H=\\bigl(\\St_n(\\F"
     },
     {
       "from": "m2-st-finite-splitting",
       "to": "m2-kt-field-kernel",
+      "label": "st:finite-splitting",
       "context": "/\\{(z,-\\varphi(z)):z\\in J_n(\\F_2)\\}. \\] The copy of $\\Q$ injects into $H$, and the quotient by that copy is $\\E_n(\\F_2)$. This last group is finite. By Lemma~\\ref{st:finite-splitting}, its central extension by $\\Q$ splits. Projection onto the resulting $\\Q$ factor, composed with $\\St_n(\\F_2)\\longrighta"
     },
     {
       "from": "m2-kt-rational-detection",
       "to": "m2-kt-field-kernel",
+      "label": "kt:rational-detection",
       "context": "hism from a perfect group to an abelian group, and is therefore zero. On the kernel $J_n(\\F_2)$ it is $\\varphi$. Thus every such $\\varphi$ is zero, and Lemma~\\ref{kt:rational-detection} proves the claim."
     },
     {
       "from": "m2-kt-permutations",
       "to": "m2-kt-block-laws",
+      "label": "kt:permutations",
       "context": "_2$ expresses $P$ as a product of elementary matrices. All nonzero pivots equal $1$, and a row interchange is the product of the three additions used in Lemma~\\ref{kt:permutations}. Lift these elementary factors inside each outer block and apply the exact strip actions successively. This proves the"
     },
     {
       "from": "m2-kt-triangular-faithfulness",
       "to": "m2-kt-triangular-evaluation",
+      "label": "kt:triangular-faithfulness",
       "context": "diagonal entry $a(\\lambda)$ at each inner index. Split its block root into the commuting product of its diagonal terms and its strictly upper terms. By Lemma~\\ref{kt:triangular-faithfulness}, the diagonal terms normalize $U$, so all strictly upper terms in the whole word can be collected on the right. The di"
     },
     {
       "from": "m2-kt-block-laws",
       "to": "m2-kt-stable-torsion",
+      "label": "kt:block-laws",
       "context": "l in a basis adapted to its successive kernels. Thus some $P\\in\\GL_N(\\F_2)$ makes $P^{-1}C_NP$ upper triangular with all diagonal entries equal to $1$. Lemma~\\ref{kt:block-laws} gives an exact conjugation between the two evaluated root words. Both belong to $J_{nN}(R)$, which is central by Propo"
     },
     {
       "from": "m2-prop-centrality",
       "to": "m2-kt-stable-torsion",
+      "label": "prop:centrality",
       "context": "o $1$. Lemma~\\ref{kt:block-laws} gives an exact conjugation between the two evaluated root words. Both belong to $J_{nN}(R)$, which is central by Proposition~\\ref{prop:centrality}; that conjugation consequently fixes $W$. Lemma~\\ref{kt:triangular-evaluation} now yields \\[ W=\\prod_{s=1}^{N}\\iota_s"
     },
     {
       "from": "m2-kt-triangular-evaluation",
       "to": "m2-kt-stable-torsion",
+      "label": "kt:triangular-evaluation",
       "context": "e two evaluated root words. Both belong to $J_{nN}(R)$, which is central by Proposition~\\ref{prop:centrality}; that conjugation consequently fixes $W$. Lemma~\\ref{kt:triangular-evaluation} now yields \\[ W=\\prod_{s=1}^{N}\\iota_s(u). \\] Each $\\iota_s(u)$ belongs to the central kernel at rank $nN$. By Lemma~\\"
     },
     {
       "from": "m2-kt-permutations",
       "to": "m2-kt-stable-torsion",
+      "label": "kt:permutations",
       "context": "W$. Lemma~\\ref{kt:triangular-evaluation} now yields \\[ W=\\prod_{s=1}^{N}\\iota_s(u). \\] Each $\\iota_s(u)$ belongs to the central kernel at rank $nN$. By Lemma~\\ref{kt:permutations}, a permutation of coordinates conjugates any one of these coordinate images to any other. Centrality therefore makes th"
     },
     {
       "from": "m2-kt-wrap-removal",
       "to": "m2-kt-stable-torsion",
+      "label": "kt:wrap-removal",
       "context": "ages to any other. Centrality therefore makes them equal, and \\begin{equation}\\label{kt:cyclic-power} W=\\iota_1(u)^N. \\end{equation} On the other hand, Lemma~\\ref{kt:wrap-removal} and then Lemma~\\ref{kt:triangular-evaluation}, now with diagonal value $0$, give \\begin{equation}\\label{kt:truncated-po"
     },
     {
       "from": "m2-kt-field-kernel",
       "to": "m2-kt-stable-torsion",
+      "label": "kt:field-kernel",
       "context": "lar-evaluation}, now with diagonal value $0$, give \\begin{equation}\\label{kt:truncated-power} W=W_u(S_N)=\\prod_{s=1}^{N}\\iota_s(u(0)). \\end{equation} By Lemma~\\ref{kt:field-kernel}, $u(0)$ has finite order. Its coordinate images commute, so their product in \\eqref{kt:truncated-power} has finite ord"
     },
     {
       "from": "m2-kt-stable-torsion",
       "to": "m2-kt-kernel-torsion",
+      "label": "kt:stable-torsion",
       "context": "Fix $u\\in J_n(R)$ and a homomorphism $\\varphi:J_n(R)\\longrightarrow\\Q$. Proposition~\\ref{kt:stable-torsion} provides a rank $q\\geq n$ at which the image of $u$ has finite order. Successively applying Proposition~\\ref{prop:ratio"
     },
     {
       "from": "m2-prop-rational-stability",
       "to": "m2-kt-kernel-torsion",
+      "label": "prop:rational-stability",
       "context": "longrightarrow\\Q$. Proposition~\\ref{kt:stable-torsion} provides a rank $q\\geq n$ at which the image of $u$ has finite order. Successively applying Proposition~\\ref{prop:rational-stability} extends $\\varphi$ to a homomorphism $J_q(R)\\longrightarrow\\Q$. This extension kills the torsion image of $u$, so $\\varp"
     },
     {
       "from": "m2-prop-centrality",
       "to": "m2-kt-kernel-torsion",
+      "label": "prop:centrality",
       "context": "hi$ to a homomorphism $J_q(R)\\longrightarrow\\Q$. This extension kills the torsion image of $u$, so $\\varphi(u)=0$. The group $J_n(R)$ is abelian by Proposition~\\ref{prop:centrality}. Lemma~\\ref{kt:rational-detection} therefore makes $u$ torsion. Again, no stabilization map was required to be injectiv"
     },
     {
       "from": "m2-kt-rational-detection",
       "to": "m2-kt-kernel-torsion",
+      "label": "kt:rational-detection",
       "context": "\\longrightarrow\\Q$. This extension kills the torsion image of $u$, so $\\varphi(u)=0$. The group $J_n(R)$ is abelian by Proposition~\\ref{prop:centrality}. Lemma~\\ref{kt:rational-detection} therefore makes $u$ torsion. Again, no stabilization map was required to be injective."
     },
     {
       "from": "m2-thm-main",
       "to": "m2-kt-kernel-torsion",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] Take the algebra $R$ from Theorem~\\ref{thm:algebra} and put $G=\\St_{12}(R)$. Theorem~\\ref{thm:finite-presentation} gi"
     },
     {
       "from": "m2-thm-algebra",
       "to": "m2-kt-kernel-torsion",
+      "label": "thm:algebra",
       "context": "[Proof of Theorem~\\ref{thm:main}] Take the algebra $R$ from Theorem~\\ref{thm:algebra} and put $G=\\St_{12}(R)$. Theorem~\\ref{thm:finite-presentation} gives an ordinary finite presentation of $G$. Its imag"
     },
     {
       "from": "m2-thm-finite-presentation",
       "to": "m2-kt-kernel-torsion",
+      "label": "thm:finite-presentation",
       "context": "[Proof of Theorem~\\ref{thm:main}] Take the algebra $R$ from Theorem~\\ref{thm:algebra} and put $G=\\St_{12}(R)$. Theorem~\\ref{thm:finite-presentation} gives an ordinary finite presentation of $G$. Its image $\\E_{12}(R)$ is infinite, because distinct entries in any one"
     },
     {
       "from": "m2-fp-matrix-periodicity",
       "to": "m2-kt-kernel-torsion",
+      "label": "fp:matrix-periodicity",
       "context": "2}(R)$ is infinite, because distinct entries in any one elementary matrix position give distinct matrices and $R$ is infinite. Thus $G$ is infinite. By Lemma~\\ref{fp:matrix-periodicity}, the elementary matrix group $\\E_{12}(R)$ is periodic. For $g\\in G$, choose a positive integer $a$ killing its element"
     },
     {
       "from": "m2-cor-kazhdan",
       "to": "m2-kt-kernel-torsion",
+      "label": "cor:kazhdan",
       "context": "[Proof of Corollary~\\ref{cor:kazhdan}] Theorem~\\ref{thm:algebra} presents \\(R\\) as a unital associative \\(\\F_2\\)-algebra on finitely many generators. Since \\"
     }
   ]

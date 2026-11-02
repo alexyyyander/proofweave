@@ -252,7 +252,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-trace-cone-classifies-Razak-Jacelon-stabilizations-September-25-2026/The-trace-cone-classifies-Razak-Jacelon-stabilizations-September-25-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The trace cone classifies Razak–Jacelon stabilizations; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The trace cone classifies Razak–Jacelon stabilizations.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -344,8 +344,7 @@
           "source": "Sequence models and local error ideals",
           "detail": "[Strict comparison from regularized limits] Let \\(x,y D_+\\). If there is \\(0<<1\\) such that d_(x) d_(y) for every regularized limit , then \\(x y\\). The same assertion holds after finite matrix…",
           "dependsOn": [
-            "m1-seq-uniform-witness",
-            "m1-st-folding"
+            "m1-seq-uniform-witness"
           ]
         },
         {
@@ -370,7 +369,6 @@
           "source": "Sequence models and local error ideals",
           "detail": "[Constant ideals and all traces] For a model \\(p\\) and every \\(s S\\), _D(p(s))=_D(Q(U_s)). Given countably many models \\(p_i:S D\\), there is a separable subalgebra \\(D_0 D\\) containing their ranges…",
           "dependsOn": [
-            "m1-seq-sandwich",
             "m1-seq-elementary-tests"
           ]
         },
@@ -394,10 +392,7 @@
           "kind": "lemma",
           "source": "Sequence models and local error ideals",
           "detail": "[Local diagonalization] Let \\( A\\) be a countable dense \\( Q+i Q\\) \\(*\\)-subalgebra of \\(S=S_Y\\), containing the localized dense sets to be tested. For each \\(j\\), let \\(L_j: A D\\) be a map, and…",
-          "dependsOn": [
-            "m1-st-controllers",
-            "m1-seq-uniform-witness"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-sm-stabilizers",
@@ -420,8 +415,7 @@
           "source": "Small stabilizers",
           "detail": "[A finite cone stage] Let \\(S=C_0((0,1]) P\\). Fix finitely many upper tests , finitely many lower requests , and a finite multiplicativity test set. For each lower request one can fix a number…",
           "dependsOn": [
-            "m1-sm-stabilizers",
-            "m1-st-folding"
+            "m1-sm-stabilizers"
           ]
         },
         {
@@ -485,12 +479,7 @@
           "source": "Norm uniqueness of sequence models",
           "detail": "[Tracial alignment] If p,q:S D are models with the same data, then rational diagonal averaging, coordinate multiplier conjugacy, and the foldings of give models p, q:S D with ( p- q)(S(U)) J(U) (U X…",
           "dependsOn": [
-            "m1-seq-all-traces",
-            "m1-seq-diagonal",
-            "m1-un-trace-cap",
-            "m1-un-barycenter",
             "m1-un-finite-traces",
-            "m1-st-folding",
             "m1-seq-regularized"
           ]
         },
@@ -512,9 +501,7 @@
           "kind": "proposition",
           "source": "Norm uniqueness of sequence models",
           "detail": "[Multiplier stable uniqueness] Suppose S is separable, nuclear, and lower semicontinuous over X , H is sigma-unital, and :S H is an X -full homomorphism. Let ,:S L(E_H) be weakly equivariant…",
-          "dependsOn": [
-            "m1-un-absorption"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-un-kk-nullity",
@@ -557,14 +544,8 @@
           "source": "Norm uniqueness of sequence models",
           "detail": "[Uniqueness with a spare model] Let p,q:S D be equal-data models satisfying (p-q)(S(U)) J(U) for every open U . Let be a model for a strictly positive multiple of the same data. Then p and q are…",
           "dependsOn": [
-            "m1-sm-stabilizers",
-            "m1-sm-coefficient-domination",
-            "m1-un-hereditary-support",
-            "m1-un-kk-nullity",
             "m1-un-stable-uniqueness",
-            "m1-un-finite-truncation",
-            "m1-st-folding",
-            "m1-un-uniqueness"
+            "m1-un-finite-truncation"
           ]
         },
         {
@@ -595,9 +576,7 @@
           "kind": "lemma",
           "source": "Tracial approximation on a cone",
           "detail": "[Realization in a factor] Let :Q M be a nondegenerate representation with weakly dense range in a separably acting factor. There is a homomorphism l:S M with the following rank data. If M is…",
-          "dependsOn": [
-            "m1-tc-semifinite-embedding"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-tc-measurable-realization",
@@ -629,9 +608,7 @@
           "kind": "proposition",
           "source": "Tracial approximation on a cone",
           "detail": "[Simultaneous finite approximation] The target vector ((t_i^ (1) ,t_i^ (2) ,t_i^ (2) )_i;(y_j^2)_j) belongs to the closed convex hull of the candidate vectors.",
-          "dependsOn": [
-            "m1-un-barycenter"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-tc-rank-average",
@@ -642,10 +619,7 @@
           "source": "Tracial approximation on a cone",
           "detail": "[A lower rank bound preserved by averaging] Fix lower data y,g, as in -- . If a finite rational average satisfies \\[ \\|__ yv_^*g(H_(s))v_ y-y^2\\| <^2/2, \\] then for every extended trace on Q ,…",
           "dependsOn": [
-            "m1-tc-rough-model",
-            "m1-tc-finite-convexity",
             "m1-seq-diagonal",
-            "m1-seq-regularized",
             "m1-un-trace-cap",
             "m1-st-realification",
             "m1-seq-uniform-witness"
@@ -659,10 +633,7 @@
           "kind": "lemma",
           "source": "Correction of the cone models",
           "detail": "[A hereditary support for the defects] Let h:S D be and suppose that, for every open U X , h(sz)-h(s)h(z), h(zs)-h(z)h(s) J(U) (s S(U),\\ z S). Let E=C^*(h(S)) and let I E be the ideal generated by…",
-          "dependsOn": [
-            "m1-sm-coefficient-domination",
-            "m1-un-hereditary-support"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cc-scaled-dilation",
@@ -683,7 +654,6 @@
           "source": "Correction of the cone models",
           "detail": "[A finite correction retaining the original corner] Under the hypotheses of , let F be a finite subset of the unit ball of S and let >0 . There are an integer N , a bounded linear * -preserving map…",
           "dependsOn": [
-            "m1-un-absorption",
             "m1-cc-scaled-dilation"
           ]
         },
@@ -695,11 +665,7 @@
           "kind": "proposition",
           "source": "Correction of the cone models",
           "detail": "[Cone correction] Suppose h:S D is and satisfies . After trace-preserving coordinate corner padding, there is a homomorphism :S D such that (-h^ pad )(S(U)) J(U) (U X open). The padding can be chosen…",
-          "dependsOn": [
-            "m1-cc-finite-correction",
-            "m1-seq-diagonal",
-            "m1-st-folding"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cc-finite-trace-determination",
@@ -720,11 +686,6 @@
           "source": "Correction of the cone models",
           "detail": "[Existence of cone models] Let m be a finite full-support Radon measure on (0,1] . There is a homomorphism p:S D such that, for every regularized limit trace with =|_Q , p=m F(). This includes…",
           "dependsOn": [
-            "m1-tc-rough-model",
-            "m1-cc-correction",
-            "m1-sm-stabilizers",
-            "m1-st-ideals",
-            "m1-seq-smallideal-properties",
             "m1-cc-finite-trace-determination"
           ]
         },
@@ -737,11 +698,7 @@
           "source": "Point models and approximate intertwining",
           "detail": "[A covariant line model] There is a model \\[ :C_0() P D \\] for Lebesgue measure and \\(F\\). Let \\((f)(t)=f(t-1)\\), acting trivially on \\(P\\). For c.p.c. coordinate lifts \\(_n\\), there are unitaries…",
           "dependsOn": [
-            "m1-cc-cone-existence",
-            "m1-seq-diagonal",
-            "m1-seq-elementary-tests",
-            "m1-seq-uniform-witness",
-            "m1-un-uniqueness"
+            "m1-cc-cone-existence"
           ]
         },
         {
@@ -762,9 +719,7 @@
           "kind": "corollary",
           "source": "Point models and approximate intertwining",
           "detail": "[Existence of point models] There is a homomorphism \\(:P Q_\\) such that \\[ =F(|_Q) \\] for every regularized limit \\(\\).",
-          "dependsOn": [
-            "m1-pt-corner"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-pt-actual-map",
@@ -774,11 +729,7 @@
           "kind": "proposition",
           "source": "Point models and approximate intertwining",
           "detail": "[An actual homomorphism] There is a homomorphism \\(:P Q\\) satisfying \\[ =F()( T(Q)), ()=G. \\] It is injective, and its constant sequence is a point model.",
-          "dependsOn": [
-            "m1-pt-point-model",
-            "m1-un-uniqueness",
-            "m1-seq-regularized"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-pt-intertwining",
@@ -788,10 +739,7 @@
           "kind": "theorem",
           "source": "Point models and approximate intertwining",
           "detail": "[Trace-cone classification] There is an isomorphism \\(:P Q\\) such that \\[ =F()( T(Q)), ()=G. \\] Consequently holds.",
-          "dependsOn": [
-            "m1-pt-actual-map",
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -810,7 +758,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

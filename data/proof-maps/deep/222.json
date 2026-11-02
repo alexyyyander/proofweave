@@ -422,7 +422,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-free-energy-of-the-Ising-random-perceptron-September-24-2026/The-free-energy-of-the-Ising-random-perceptron-September-24-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The free energy of the Ising random perceptron; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The free energy of the Ising random perceptron.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -453,9 +453,7 @@
           "kind": "proposition",
           "source": "Variations, order, and the Ising entropy",
           "detail": "[Continuity and tail order] For step paths on arbitrary partitions, |V_f(p)-V_f(q)|&12\\|f'\\|_^2\\|p-q\\|_ L^1 ,\\\\ |(h')-(h)|&12\\|h'-h\\|_ L^1 . Thus V_f extends uniquely and continuously to all…",
-          "dependsOn": [
-            "m1-var-variation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-var-step-reduction",
@@ -486,7 +484,6 @@
           "source": "Variations, order, and the Ising entropy",
           "detail": "[Concavity and a supporting field] The functional is concave on nonnegative nondecreasing step paths. For any two such paths, represented on a common partition, (h')(h) -12_0^1(h'(u)-h(u))_h(u)\\,du.…",
           "dependsOn": [
-            "m1-var-folded-kernel",
             "m1-var-variation",
             "m1-var-continuity-order"
           ]
@@ -543,9 +540,7 @@
           "kind": "lemma",
           "source": "Overlap arrays and probability cascades",
           "detail": "[Marked cascade transformation] Let X_ k-1 be a terminal log factor depending on the marked path. For i1 , let E_i integrate the original level- i child-mark kernel, conditional on the marked…",
-          "dependsOn": [
-            "m1-arr-cascade"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-arr-limit",
@@ -557,8 +552,7 @@
           "detail": "[Bounded reweighting of convergent arrays] Let a sequence of random base probabilities have jointly convergent arrays of bounded observables and of the conditional covariances of finitely many fresh…",
           "dependsOn": [
             "m1-arr-quantization",
-            "m1-arr-cascade",
-            "m1-arr-tilt"
+            "m1-arr-cascade"
           ]
         },
         {
@@ -571,7 +565,6 @@
           "detail": "[Evaluation of one fresh pattern] Suppose that the limiting spin-overlap array of a sequence of base Gibbs probabilities has diagonal one, is Gram, and satisfies the Ghirlanda--Guerra property. Let p…",
           "dependsOn": [
             "m1-arr-ultrametric",
-            "m1-arr-limit",
             "m1-arr-tilt",
             "m1-arr-law-continuity"
           ]
@@ -627,9 +620,7 @@
           "kind": "lemma",
           "source": "The upper bound by enriched affine comparison",
           "detail": "[Derivatives of the comparison function] The function F_N is continuous on the parameter region above. For every nonnegative nondecreasing direction on the fixed partition, its right directional…",
-          "dependsOn": [
-            "m1-arr-calculus"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-upper-coercive",
@@ -664,7 +655,6 @@
           "detail": "[Ordered coupling of the spin and tree overlaps] In any joint array limit from Lemma~ , the two-replica law of (R_ 12 ,T_ 12 ) is supported on a set ordered in both coordinates. If p is the quantile…",
           "dependsOn": [
             "m1-arr-ultrametric",
-            "m1-upper-bound",
             "m1-var-continuity-order",
             "m1-arr-fresh-pattern",
             "m1-var-step-reduction"
@@ -678,9 +668,7 @@
           "kind": "lemma",
           "source": "The perturbed bulk and restoration of two patterns",
           "detail": "[Overlap identities on uniform good parameter sets] There are measurable sets G_N^ N with ( G_N)1 such that the following holds. For every deterministic sequence v(N) G_N , every subsequential limit…",
-          "dependsOn": [
-            "m1-arr-variance"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-bulk-restoration",
@@ -693,9 +681,6 @@
           "dependsOn": [
             "m1-bulk-good-parameters",
             "m1-arr-ultrametric",
-            "m1-arr-limit",
-            "m1-arr-quantization",
-            "m1-arr-cascade",
             "m1-arr-tilt"
           ]
         },
@@ -796,7 +781,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Microscopic-jamming-in-the-negative-spherical-perceptron-September-24-2026/Microscopic-jamming-in-the-negative-spherical-perceptron-September-24-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Microscopic jamming in the negative spherical perceptron; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Microscopic jamming in the negative spherical perceptron.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -849,8 +834,7 @@
           "detail": "[Derivative profile and Gaussian interpolation] For a step profile define D_q(s)= A_j^2 on [m_ j-1 ,m_j) . This is nonnegative and nondecreasing, satisfies D_q\\|u'\\|_^2 , and is constant across…",
           "dependsOn": [
             "m2-lem-hier-cascade-tilt",
-            "m2-lem-hier-rank-array",
-            "m2-lem-hier-array-continuity"
+            "m2-lem-hier-rank-array"
           ]
         },
         {
@@ -987,8 +971,7 @@
           "source": "The Gaussian pressure",
           "detail": "[Synchronization and identification] Suppose the joint array (R,Q) is a subsequential limit from Lemma~ . Then R0 off the diagonal. There are nonnegative nondecreasing profiles r,q , on a common…",
           "dependsOn": [
-            "m2-lem-hier-rank-array",
-            "m2-lem-hier-cascade-tilt"
+            "m2-lem-hier-rank-array"
           ]
         },
         {
@@ -999,10 +982,7 @@
           "kind": "lemma",
           "source": "The Gaussian pressure",
           "detail": "[Deleting and reinserting finitely many rows] Consider any convergent deleted-row overlap-array subsequence satisfying the preceding lemmas. Reinsert finitely many independent Gaussian rows, with…",
-          "dependsOn": [
-            "m2-lem-hier-array-continuity",
-            "m2-lem-hier-cascade-tilt"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-press-empirical",
@@ -1268,8 +1248,7 @@
           "source": "Zero temperature and mechanical bounds",
           "detail": "[Positive-gap cutoffs] Constants \\(c,C,u_0>0\\), independent of the density, exist such that, for \\(0<<u<1\\), \\(G_ N,, (,u) c(u-)\\). For every fixed UNSAT density in the interval under consideration…",
           "dependsOn": [
-            "m2-thresh-slab-direction",
-            "m2-zero-endpoint"
+            "m2-thresh-slab-direction"
           ]
         },
         {
@@ -1280,9 +1259,7 @@
           "kind": "corollary",
           "source": "Zero temperature and mechanical bounds",
           "detail": "With \\(g\\) and \\(\\) as in Proposition~ , _J=_ 0\\ nondecreasing,\\ L^1\\\\ >0 _0^1(t)^ -1 \\, t -2g(0,0) . Equivalently one may impose \\((0)=1\\) and replace the terminal condition by \\(g(1,z)=-V(z)/\\).",
-          "dependsOn": [
-            "m2-zero-variational"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-crit-duality",
@@ -1382,7 +1359,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

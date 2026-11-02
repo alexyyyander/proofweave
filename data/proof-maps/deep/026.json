@@ -82,7 +82,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Positive-lower-density-of-large-prime-gaps-September-25-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Positive lower density of large prime gaps; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Positive lower density of large prime gaps.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -125,10 +125,7 @@
           "kind": "lemma",
           "source": "From two adjacent intervals to gap counts",
           "detail": "Suppose h1 and that for at least X integers m(X,2X] , the interval (m,m+h] contains a prime and (m+h,m+2h] contains none. Then at least X/h distinct primes p(X,2X+h] have a consecutive successor p^+…",
-          "dependsOn": [
-            "m1-thm-main",
-            "m1-prop-weights"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-weight-moments",
@@ -203,9 +200,7 @@
           "kind": "lemma",
           "source": "Analytic estimates for the square",
           "detail": "[Singular series in boxes] Fix an integer s0 and a constant K1 . For each positive integer h , let I_1,,I_s be intervals of h consecutive integers, all contained in an interval of diameter at most Kh…",
-          "dependsOn": [
-            "m1-prop-weight-moments"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -224,7 +219,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

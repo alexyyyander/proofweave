@@ -347,7 +347,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from An Upper Bound of 9/4 for the Matrix Multiplication Exponent; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from An Upper Bound of 9/4 for the Matrix Multiplication Exponent.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -399,7 +399,6 @@
           "source": "Separating a shared tensor leg",
           "detail": "[Shared-leg entropy inequality] Let T=_ i=1 ^s T_i be a sum of nonzero tensors with a common first space and matched, pairwise disjoint sectors on the other two legs, as in Proposition~ . For every…",
           "dependsOn": [
-            "m1-prop-separation",
             "m1-lem-interpolation"
           ]
         },
@@ -434,7 +433,6 @@
           "source": "Discrete growth and the arithmetic exponent",
           "detail": "[Diagonal growth] Let P:_ >0 ^2_ >0 be symmetric, with P(1,b)=b . Suppose it satisfies for a1,b2 and for a,h1 . Then P(a,a) a^ 4/3 for every a1 .",
           "dependsOn": [
-            "m1-thm-main",
             "m1-lem-existence"
           ]
         },
@@ -464,7 +462,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Complex-Matrix-Multiplication-Below-2.258-and-Rectangular-Bounds-September-24-2026/Complex-Matrix-Multiplication-Below-2.258-and-Rectangular-Bounds-September-24-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Complex Matrix Multiplication Below 2.258 and Rectangular Bounds; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Complex Matrix Multiplication Below 2.258 and Rectangular Bounds.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -506,8 +504,7 @@
           "source": "Tensors and arithmetic exponents",
           "detail": "[Equal rectangular summands] Suppose a tensor of cost \\(R\\) restricts or degenerates to a direct sum of \\(M\\) copies of the matrix-multiplication tensor with dimensions \\(l_1,l_2,l_3\\). Then W( l_1,…",
           "dependsOn": [
-            "m2-lem-border-overhead",
-            "m2-lem-rank-exponent"
+            "m2-lem-border-overhead"
           ]
         },
         {
@@ -548,9 +545,7 @@
           "kind": "lemma",
           "source": "Finite tensor constructions",
           "detail": "[Preservation of unresolved fibers] The identity in Lemma~ holds with arbitrary coefficients and arbitrary unresolved local indices inside the tensors \\(U_s\\), including indices correlated between…",
-          "dependsOn": [
-            "m2-lem-group"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-hierarchy",
@@ -704,9 +699,7 @@
           "kind": "proposition",
           "source": "Banked constructions and attainable values",
           "detail": "[Banked marginal matching] Let ( S) , and let _X,_Y,_Z be its three canonical local-grade marginals. For every 0<3 , F_() H_ marg () :=H( _X)+H( _Y)+H( _Z)3. The constructions proving this bound are…",
-          "dependsOn": [
-            "m2-val-ap-set"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-face",
@@ -718,8 +711,7 @@
           "detail": "[ W constructions on a face] Suppose =(p_0,p_1,p_2,E_0,E_1,E_2)( S) satisfies E_1=0 . Put Q&=(p_2+E_0,\\ p_0+E_2,\\ p_1), \\\\ J()&=(p_2)+(E_0)+(p_0)+(E_2) -(Q_0)-(Q_1), where (s)=-s s and (0)=0 . Then…",
           "dependsOn": [
             "m2-lem-group",
-            "m2-prop-values",
-            "m2-prop-monotonicity"
+            "m2-prop-values"
           ]
         },
         {
@@ -740,9 +732,7 @@
           "kind": "lemma",
           "source": "Arithmetic-progression restrictions and differential comparison",
           "detail": "For all sufficiently large integers \\(L\\), there is a set \\(J\\ 1,,L\\ \\) with no nonconstant three-term arithmetic progression and \\[ |J| L-O( L). \\]",
-          "dependsOn": [
-            "m2-val-ap-set"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-compile",
@@ -778,8 +768,7 @@
           "source": "Arithmetic-progression restrictions and differential comparison",
           "detail": "[Lower tests for the W value] Fix \\(1\\). On the relative interior of the three-letter simplex, put \\[ C_W(q)=(q)-qq^, L_W=C_W(q):D^2. \\] Every \\(C^2\\) lower test \\(\\) for \\(U_\\) satisfies L_W- at its…",
           "dependsOn": [
-            "m2-prop-values",
-            "m2-lem-compile"
+            "m2-prop-values"
           ]
         },
         {
@@ -844,9 +833,7 @@
           "kind": "lemma",
           "source": "A rational certificate for the comparison bound",
           "detail": "[Complex covariance normalization] For =(p_0,p_1,p_2,E_0,E_1,E_2) , set \\[ r_i=1-_i, z=x+iy=3r_0-1+i3(r_2-r_1), D_i=r_i(1-r_i)+2p_i. \\] Then D_i=Var(g_i) . In the (x,y) coordinates the covariance…",
-          "dependsOn": [
-            "m2-thm-ap"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-cert-interior-lemma",
@@ -872,7 +859,6 @@
             "m2-ap-chart-error",
             "m2-thm-ap",
             "m2-cert-interior-lemma",
-            "m2-thm-main",
             "m2-thm-asi"
           ]
         },
@@ -884,10 +870,7 @@
           "kind": "theorem",
           "source": "Conditional labels and entropy",
           "detail": "[Conditional-label entropy bound] If a tensor of cost \\(e^C\\) has a readable label tree, then W(r_ XY (),r_ XZ (),r_ YZ ()) C for every leaf law \\(\\).",
-          "dependsOn": [
-            "m2-lem-rectangular-sum",
-            "m2-lem-rank-exponent"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-cor-balance",
@@ -998,8 +981,7 @@
           "detail": "[Characteristic-zero dual bound] For every field \\(F\\) of characteristic zero, \\(_F>0.465\\).",
           "dependsOn": [
             "m2-thm-main",
-            "m2-lem-rank-exponent",
-            "m2-cor-characteristic-transfer"
+            "m2-lem-rank-exponent"
           ]
         }
       ]
@@ -1016,7 +998,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Staggered extraction for exact matrix multiplication over every field; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Staggered extraction for exact matrix multiplication over every field.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1077,9 +1059,7 @@
           "kind": "lemma",
           "source": "Recovering the ideal outputs and composing extractions",
           "detail": "[Uniform loss from inherited masks] The total number of G_e -orbits of variables on the three sides is polynomial in N , uniformly over target triples e . Suppose every inherited or global mask is…",
-          "dependsOn": [
-            "m3-thm-joint-step"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-lem-hole-repair",
@@ -1090,7 +1070,6 @@
           "source": "Recovering the ideal outputs and composing extractions",
           "detail": "[Exact repair by presence masks] Let Q_N be a tensor over an arbitrary field, with at most (bN) nonzero monomials for a fixed b>0 . Let G_N be a finite group of coefficient-preserving permutations of…",
           "dependsOn": [
-            "m3-thm-joint-step",
             "m3-lem-orbit-masks"
           ]
         },
@@ -1127,8 +1106,6 @@
           "source": "Terminal dimensions and the rank comparison",
           "detail": "[Finite staggered yield] Assume the prescriptions of Section~ , the balance conditions , and positive entries of L_A,L_B,L_C . Let S_*=S_0+S_1+S_2 be the terminal rate defined above. For every fixed…",
           "dependsOn": [
-            "m3-thm-joint-step",
-            "m3-lem-replication",
             "m3-prop-leaf-volume"
           ]
         },
@@ -1140,9 +1117,7 @@
           "kind": "proposition",
           "source": "Exact parameters and numerical certification",
           "detail": "[Numerical certificate] The exact parameters above satisfy every positivity and balance condition used in Proposition~ . All thirty partial capacity entries in Table~ are positive. In particular,…",
-          "dependsOn": [
-            "m3-thm-main"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -1173,7 +1148,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

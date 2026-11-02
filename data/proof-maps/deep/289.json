@@ -347,7 +347,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Universal-strong-Kadison-Kastler-stability-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Universal strong Kadison–Kastler stability; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Universal strong Kadison–Kastler stability.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -388,9 +388,7 @@
           "kind": "lemma",
           "source": "Perturbation tools and a completely positive criterion",
           "detail": "[Close representations] Let ,:P(H) be normal unital * -representations of a von Neumann algebra. If - _ e<1/4 , there is a unitary u(H) with \\[ u(x)u^*=(x)(x P), u-I4e. \\]",
-          "dependsOn": [
-            "m1-lem-commutant-cb"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-ucp",
@@ -400,9 +398,7 @@
           "kind": "proposition",
           "source": "Perturbation tools and a completely positive criterion",
           "detail": "[UCP criterion] Let P,Q be von Neumann algebras, let :P(H) be a faithful normal unital representation, and let Q(H) have the same identity. Suppose that F:P Q is UCP and \\[ F- _ e<10^ -3 , _ y Q_1…",
-          "dependsOn": [
-            "m1-lem-paired"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-tensor-gap",
@@ -612,9 +608,7 @@
           "kind": "lemma",
           "source": "Finite factors in their original representations",
           "detail": "[Norm control of tracial conjugations] Let M,N(K) be _1 factors in common standard tracial position with vector . Suppose that R M N is an irreducible hyperfinite subfactor of M , presented by…",
-          "dependsOn": [
-            "m1-lem-finite-ball-tests"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-jordan-orientation",
@@ -635,19 +629,10 @@
           "source": "Finite factors in their original representations",
           "detail": "There are absolute constants b_0>0 and C_ st >0 such that the following holds. Let M,N(K) be type _1 factors on a separable Hilbert space in common standard tracial position with vector . Suppose…",
           "dependsOn": [
-            "m1-lem-boundary-correction",
-            "m1-lem-boundary-mean",
-            "m1-lem-tracial-conjugations",
             "m1-lem-boundary-intertwiner",
             "m1-lem-boundary-diagonal-unitary",
-            "m1-lem-double-ergodicity",
             "m1-lem-jordan-orientation",
-            "m1-thm-finite",
-            "m1-lem-finite-neighbor",
             "m1-thm-amenable",
-            "m1-lem-irreducible-hyperfinite",
-            "m1-prop-finite-common-position",
-            "m1-lem-finite-right-action",
             "m1-thm-amplification",
             "m1-lem-paired"
           ]
@@ -681,10 +666,7 @@
           "source": "Preparing infinite factors and comparing modular graphs",
           "detail": "[Preparing an infinite pair] There are absolute constants c,C>0 with the following property. Suppose M_0,N_0(H) are factors on a separable Hilbert space, M_0 is infinite, and d(M_0,N_0)<t<c . For the…",
           "dependsOn": [
-            "m1-thm-amenable",
             "m1-lem-common-infinite-amplification",
-            "m1-lem-tensor-gap",
-            "m1-lem-fixed-tensor-factor",
             "m1-lem-commutant-cb"
           ]
         },
@@ -728,9 +710,7 @@
           "kind": "lemma",
           "source": "Aligning the modular action",
           "detail": "For a separably acting properly infinite von Neumann algebra P(H) and h=h^*(H) , \\[ (h,P')4 _h|_P. \\]",
-          "dependsOn": [
-            "m1-lem-commutant-cb"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-local-normalizer-linear",
@@ -752,9 +732,7 @@
           "kind": "lemma",
           "source": "Aligning the modular action",
           "detail": "[A path of approximate normalizers] There are absolute constants e_0,C_ path >0 such that the following holds. Let P(H) be a separably acting type factor, let I be an interval containing 0 , and let…",
-          "dependsOn": [
-            "m1-lem-local-normalizer-linear"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-analytic-multiplier",
@@ -776,10 +754,7 @@
           "detail": "[From modular cuts to near normalizers] Let M,N(H) be a prepared pair on a separable Hilbert space, with M of type and (M,N) . Write \\[ U_P(t)=e^ itL_P , L_P=_P(P=M,N), W(t)=U_N(t)U_M(t)^*. \\] Assume…",
           "dependsOn": [
             "m1-cor-modular-cuts",
-            "m1-lem-invariant-mean",
-            "m1-lem-analytic-multiplier",
-            "m1-lem-local-normalizer-path",
-            "m1-prop-ucp"
+            "m1-lem-analytic-multiplier"
           ]
         },
         {
@@ -801,8 +776,6 @@
           "source": "Aligning the modular action",
           "detail": "[Correction of normalizer representations] There are absolute e_1,C_1>0 such that the following holds. Let P(H) be a separably acting type factor. For any family v_t N_P , t , with \\[ e:=_ t,s…",
           "dependsOn": [
-            "m1-lem-small-exact-normalizer",
-            "m1-prop-modular-alignment",
             "m1-lem-modular-near-normalizers"
           ]
         },
@@ -826,7 +799,6 @@
           "detail": "[Completely bounded gap of common crossed products] Let P,Q(H) be normalized by the same group U . If (P,Q)< , then \\[ (C(P,U),C(Q,U)). \\] The conclusion holds with any strict upper bound in place of…",
           "dependsOn": [
             "m1-lem-tensor-gap",
-            "m1-lem-invariant-mean",
             "m1-lem-core-fixed-points"
           ]
         },
@@ -840,12 +812,8 @@
           "detail": "[Conjugacy through a common crossed product] There are an absolute _0>0 and a nondecreasing function :(0,_0)(0,) , with ()0 as 0 , with the following property. Suppose P,Q(H) are unital von Neumann…",
           "dependsOn": [
             "m1-lem-core-gap",
-            "m1-thm-amenable",
             "m1-lem-finite-neighbor",
-            "m1-thm-finite",
-            "m1-lem-invariant-mean",
-            "m1-lem-core-fixed-points",
-            "m1-prop-ucp"
+            "m1-thm-finite"
           ]
         },
         {
@@ -858,9 +826,6 @@
           "detail": "[Uniform stability of separably acting factors] There are an absolute t_ fac >0 and a nondecreasing function _ fac :(0,t_ fac )(0,) with _ fac (t)0 as t0 such that the following holds. For every…",
           "dependsOn": [
             "m1-thm-finite",
-            "m1-prop-prepared-pair",
-            "m1-prop-modular-alignment",
-            "m1-prop-core-descent",
             "m1-prop-ucp"
           ]
         },
@@ -905,9 +870,7 @@
           "source": "Centers and arbitrary Hilbert spaces",
           "detail": "For every a>0 there is _ sep (a)>0 such that whenever M,N are unital von Neumann algebras on a separable Hilbert space and d(M,N)<_ sep (a) , there is a unitary u with \\[ uMu^*=N, u-I<a. \\] The…",
           "dependsOn": [
-            "m1-thm-factors",
             "m1-lem-centers-close",
-            "m1-lem-fiber-gap",
             "m1-lem-measurable-implementers"
           ]
         },
@@ -921,8 +884,7 @@
           "detail": "Let M,N(H) be unital von Neumann algebras, and let g>d(M,N) . Given finite sets E M , F N , and V H with V containing a nonzero vector, there are separable unital C^* -subalgebras A M , B N and a…",
           "dependsOn": [
             "m1-thm-main",
-            "m1-prop-ucp",
-            "m1-thm-separable-algebras"
+            "m1-prop-ucp"
           ]
         },
         {
@@ -933,9 +895,7 @@
           "kind": "corollary",
           "source": "Uniformity and commutator estimates",
           "detail": "For every >0 there is >0 , independent of the algebras, their representations, and their Hilbert spaces, such that unital von Neumann algebras M,N(H) with the same identity and d(M,N)< satisfy \\[…",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -951,7 +911,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Near-Inclusions-of-von-Neumann-Algebras-Without-Small-Spatial-Embeddings-October-5-2026/near-inclusions.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Near Inclusions of von Neumann Algebras Without Small Spatial Embeddings; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Near Inclusions of von Neumann Algebras Without Small Spatial Embeddings.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1004,8 +964,7 @@
           "detail": "For each n , let E_ 1n ,E_ 2n be commuting projections on a complex Hilbert space H_n , with D_n=E_nH_n nonzero and finite-dimensional, where E_n=E_ 1n E_ 2n . Let R_ 1n , R_ 2n be unitaries…",
           "dependsOn": [
             "m2-thm-main",
-            "m2-prop-near",
-            "m2-lem-clock"
+            "m2-prop-near"
           ]
         }
       ]
@@ -1022,7 +981,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Close-Separable-Cstar-Algebras-Without-Spatial-Conjugacy-October-5-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Close Separable C*-Algebras Without Spatial Conjugacy; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Close Separable C*-Algebras Without Spatial Conjugacy.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1063,10 +1022,7 @@
           "kind": "corollary",
           "source": "A convergent-sequence obstruction",
           "detail": "Under the hypotheses of Proposition~ , suppose that P has the spatial tensor-norm identity relative to D , whereas Q does not. Then _D(P) and _D(Q) are not spatially conjugate. If W(L) is unitary and…",
-          "dependsOn": [
-            "m3-prop-sequences",
-            "m3-lem-invariant"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-lem-tree",
@@ -1131,7 +1087,6 @@
           "dependsOn": [
             "m3-lem-absorption",
             "m3-lem-free-norm",
-            "m3-thm-main",
             "m3-lem-ambient",
             "m3-prop-sequences",
             "m3-cor-obstruction",
@@ -1167,7 +1122,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

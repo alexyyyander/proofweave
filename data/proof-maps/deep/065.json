@@ -332,7 +332,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Virasoro-Constraints-under-Projectivization-October-5-2026/virasoro-constraints-under-projectivization.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Virasoro Constraints under Projectivization; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Virasoro Constraints under Projectivization.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -514,7 +514,6 @@
           "source": "Spectral projections and block gradings",
           "detail": "[Comparison at zero fiber degree] The projectors P_B,P_X and the cluster logarithm L_X have holomorphic coefficient germs through y=0 . Their Taylor expansions at y=0 satisfy P_F=S_W_FS_W^ -1…",
           "dependsOn": [
-            "m1-loc-factorization",
             "m1-spec-gauge",
             "m1-spec-calculus"
           ]
@@ -539,8 +538,7 @@
           "detail": "The following identities hold in the formal Laurent calculus of Lemma~ : _F^ -1 G_F_F &=_ 0,F +_+nw z , \\\\ _F^ -1 T_F_F &=y^j( _F( )- _F( +z) z )e^ z_ . Under the same change of space, the logarithm…",
           "dependsOn": [
             "m1-spec-calculus",
-            "m1-spec-gauge",
-            "m1-spec-zero"
+            "m1-spec-gauge"
           ]
         },
         {
@@ -589,8 +587,7 @@
           "dependsOn": [
             "m1-cont-polynomiality",
             "m1-spec-modes",
-            "m1-spec-zero",
-            "m1-fixed-equivalence"
+            "m1-spec-zero"
           ]
         },
         {
@@ -613,7 +610,6 @@
           "detail": "If the ordinary descendant potential of B satisfies its ordinary modes projectively, then the same is true for X .",
           "dependsOn": [
             "m1-fixed-equivalence",
-            "m1-cont-finite-tests",
             "m1-cont-monodromy",
             "m1-spec-modes"
           ]
@@ -655,7 +651,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Virasoro-Constraints-for-Projective-Complete-Intersections-September-24-2026/article.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Virasoro Constraints for Projective Complete Intersections; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Virasoro Constraints for Projective Complete Intersections.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -769,13 +765,7 @@
           "source": "First-page contractions and locality",
           "detail": "[Local first-page algebra] Fix the arities of a scalar test as in , applied to one coefficient operation of . For each of its evaluation correspondences, assume the extending class and…",
           "dependsOn": [
-            "m2-fp-scalar-limit",
-            "m2-fp-first-index",
-            "m2-fp-pullback",
-            "m2-fp-leading-class",
-            "m2-fp-trace-normalization",
-            "m2-fp-chain-contraction",
-            "m2-ev-restriction"
+            "m2-fp-leading-class"
           ]
         },
         {
@@ -807,8 +797,7 @@
           "source": "Evaluation correspondences on expanded configurations",
           "detail": "[Restriction with recorded assignments] The class _I is an actual extending correspondence on the smooth total configuration family. Let i_:Q_ Q_I be a central component, with the recorded side and…",
           "dependsOn": [
-            "m2-ev-configuration",
-            "m2-ev-aligned-cut"
+            "m2-ev-configuration"
           ]
         },
         {
@@ -840,8 +829,7 @@
           "source": "Cap tests for the contact identity",
           "detail": "[Finite cap spanning] For the fiber classes of , finitely many coefficient rows in the ordinary zero-section variables span the full dual of F_ H (E) over (()) . Equivalently, after using G_ to…",
           "dependsOn": [
-            "m2-ev-groups",
-            "m2-cap-linearization"
+            "m2-ev-groups"
           ]
         },
         {
@@ -862,10 +850,7 @@
           "kind": "lemma",
           "source": "Cap tests for the contact identity",
           "detail": "[Incoming tests from Q ] Modulo q^ d+1 , the Q cap realizes every linear functional on F_ H (D) by finitely many ordinary coefficient rows with external coefficients having nonnegative q -powers and…",
-          "dependsOn": [
-            "m2-cap-span",
-            "m2-cap-bounded-rows"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-cap-p",
@@ -876,8 +861,7 @@
           "source": "Cap tests for the contact identity",
           "detail": "[Outgoing states from P ] Modulo q^ d+1 , every prescribed state supported in F_ H (D) can be prepared by finite combinations of P rows with imposed nonnegative left-section degrees. The coefficients…",
           "dependsOn": [
-            "m2-cap-span",
-            "m2-cap-bounded-rows"
+            "m2-cap-span"
           ]
         },
         {
@@ -888,11 +872,7 @@
           "kind": "proposition",
           "source": "Cap tests for the contact identity",
           "detail": "[Cap realization of the contact identity] Fix H,d0 in either configuration. Replace a seam by a right cap Q on its left and a left cap P on its right. There is a finite combination of ordinary…",
-          "dependsOn": [
-            "m2-cap-q",
-            "m2-cap-p",
-            "m2-cap-bounded-rows"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-cap-uniform",
@@ -914,10 +894,7 @@
           "kind": "lemma",
           "source": "Transport by capped chains",
           "detail": "[Realization and common local geometry] For either configuration in , chains of arbitrarily large length and all unions of capped subchains obtained from them have projective semistable realizations…",
-          "dependsOn": [
-            "m2-ev-restriction",
-            "m2-fp-local-algebra"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-sew-transport",
@@ -938,7 +915,6 @@
           "source": "Transport by capped chains",
           "detail": "[Preparations valid for every subset] For any fixed finite ordered list of switches, one can choose a contact bound and cap identity test at each switch so that the following hold simultaneously for…",
           "dependsOn": [
-            "m2-cap-identity",
             "m2-cap-uniform"
           ]
         },
@@ -951,10 +927,8 @@
           "source": "Transport by capped chains",
           "detail": "[A bound on busy switches] There are constants B and r_0 , depending on the fixed test, k , and n , but independent of chain length, surgery subset, contact bounds and auxiliary row arities, with the…",
           "dependsOn": [
-            "m2-conv-positive-rule",
             "m2-ev-restriction",
-            "m2-ev-groups",
-            "m2-fp-local-algebra"
+            "m2-ev-groups"
           ]
         },
         {
@@ -966,10 +940,6 @@
           "source": "Transport by capped chains",
           "detail": "[Equality at an idle switch] Fix a local operation pattern and a switch j outside its busy set. Keep its recorded component assignments and all data off the surgery region at j . Sum all relative-map…",
           "dependsOn": [
-            "m2-sew-geometry",
-            "m2-ev-restriction",
-            "m2-ev-groups",
-            "m2-cap-identity",
             "m2-sew-preparation"
           ]
         },
@@ -991,10 +961,7 @@
           "kind": "lemma",
           "source": "Detection of primitive error tensors",
           "detail": "[A positive scalar test] Let \\(E(J_^*)^ r \\) be a coefficient tensor obtained by applying one positive Virasoro coefficient rule, with fixed coherent \\(B_0\\)-inputs in all other slots. Its positive…",
-          "dependsOn": [
-            "m2-det-operations",
-            "m2-conv-positive-rule"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-det-detection",
@@ -1004,9 +971,7 @@
           "kind": "theorem",
           "source": "Detection of primitive error tensors",
           "detail": "[Detection] Assume that \\(X\\) has a detection subspace, and that all admissible scalar tests of every positive Virasoro coefficient vanish, with degree weights distinguishing the curve classes under…",
-          "dependsOn": [
-            "m2-det-norm"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-ind-toric",
@@ -1026,9 +991,7 @@
           "kind": "lemma",
           "source": "Induction for complete intersections",
           "detail": "[Blowup detection data] Let M be an n -dimensional smooth complete intersection and let S M be a smooth codimension-two complete intersection cut by two ambient equations. Write p: M=_S M M , j:E M ,…",
-          "dependsOn": [
-            "m2-sew-transport"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-ind-degrees",
@@ -1038,9 +1001,7 @@
           "kind": "lemma",
           "source": "Induction for complete intersections",
           "detail": "[Degree separation] The ordinary and blowup configurations used in can be equipped with coherent numerical divisor tests which distinguish every curve class with a possibly nonzero ordinary…",
-          "dependsOn": [
-            "m2-sew-transport"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-ind-deformation",
@@ -1051,12 +1012,7 @@
           "source": "Induction for complete intersections",
           "detail": "[Passage to special smooth fibers] Suppose the tested constraints, and hence the constraints detected by , hold on very general members of one of the smooth complete-intersection families or nested…",
           "dependsOn": [
-            "m2-det-detection",
-            "m2-sew-transport",
-            "m2-thm-main",
-            "m2-ind-toric",
-            "m2-ind-degrees",
-            "m2-ind-blowup-data"
+            "m2-ind-toric"
           ]
         }
       ]
@@ -1082,7 +1038,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

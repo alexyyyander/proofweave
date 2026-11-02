@@ -381,196 +381,235 @@
     {
       "from": "m1-lem-packet-model",
       "to": "m1-prop-unfolding",
+      "label": "lem:packet-model",
       "context": "Lemma~\\ref{lem:packet-model} expresses the left side as \\[ \\frac1{h_K\\vol(F)} \\sum_I\\int_F\\sum_{\\alpha\\in I\\setminus\\{0\\}} P((\\alpha)I^{-1})"
     },
     {
       "from": "m1-lem-residue",
       "to": "m1-prop-weighted-count",
+      "label": "lem:residue",
       "context": ")<m\\le x/d(\\mathbf k)}b(m). \\end{equation} First suppose $d=d(\\mathbf k)\\le Q^{1/8}$, and put $u=x/d$. Then $u\\ge Q^{5/8}\\ge D^{1/4}$. For $h=1/\\log u$, Lemma~\\ref{lem:residue} gives $\\zeta_K(1+h)\\ll_n\\kappaK\\log u$. There is no upper restriction on $u$: increasing $u$ only decreases $h$, so the"
     },
     {
       "from": "m1-prop-unfolding",
       "to": "m1-prop-tightness",
+      "label": "prop:unfolding",
       "context": "=\\frac{2^n}{(n-1)!} \\bigl(\\max\\{0,\\log(\\theta^n/z)\\}\\bigr)^{n-1}. \\] Put $X=\\theta^nQ$ and $U=Q^{3/4}$. Up to an $n$-dependent constant, Proposition~\\ref{prop:unfolding} reduces the first moment to \\[ \\frac1{\\sqrt D\\,\\kappaK} \\sum_{\\N\\mathfrak a\\le X} P(\\mathfrak a)\\left(\\log\\frac"
     },
     {
       "from": "m1-prop-weighted-count",
       "to": "m1-prop-tightness",
+      "label": "prop:weighted-count",
       "context": "at most $(\\log Q)^{n-1}$, since $\\theta<1$. The terms with $\\N\\mathfrak a\\le\\min(U,X)$ contribute at most $C_nQ^{-1/4}(\\log Q)^{n-1}$, by applying Proposition~\\ref{prop:weighted-count} at $x=y=U$. When $X>U$, define the truncated cumulative sum \\[ A_U(t)=\\sum_{U<\\N\\mathfrak a\\le t}P(\\mathfrak a), \\qqu"
     },
     {
       "from": "m1-lem-packet-model",
       "to": "m1-prop-tightness",
+      "label": "lem:packet-model",
       "context": "t is compact. Given a desired mass error, choose $\\theta$ first and then $Q$ sufficiently large. The finitely many earlier packet supports are compact by Lemma~\\ref{lem:packet-model}, so the whole sequence is tight. The lattice space is locally compact and second countable; weak compactness for tight"
     },
     {
       "from": "m1-prop-weighted-count",
       "to": "m1-prop-ball-bound",
+      "label": "prop:weighted-count",
       "context": "e Cr^{n-1} \\one_{[z_w-Cr,z_w+Cr]}(z) \\] for some $C\\ge1$ depending only on $V,b_0,n$. Choose $r_0$ small enough that $z_w>4Cr_0$ on $V$. Use Proposition~\\ref{prop:weighted-count} with \\[ x=(z_w+2Cr)Q,\\qquad y=4CrQ. \\] This slightly enlarged interval contains every contributing ideal norm. Uniform"
     },
     {
       "from": "m1-prop-unfolding",
       "to": "m1-prop-ball-bound",
+      "label": "prop:unfolding",
       "context": "e A_0Q$ with a fixed $A_0\\ge1$, and $\\eta x\\le y\\le x$ with $\\eta=4Cr/A_0\\le1$, after decreasing $r_0$ if necessary. For every fixed $r\\in(0,r_0)$, Proposition~\\ref{prop:unfolding} therefore gives, eventually, \\begin{equation}\\label{eq:vector-box} \\int E_{\\one_{w+[-b_0r,b_0r]^n}}\\dd\\mu_* \\ll"
     },
     {
       "from": "m1-prop-entropy-from-balls",
       "to": "m1-lem-entropy-components",
+      "label": "prop:entropy-from-balls",
       "context": "ith $\\xi\\le w^{-1}\\mu$. Equation~\\eqref{eq:entropy-decomposition}, applied to this restricted decomposition, would give $h_\\xi(T)=0$, contradicting Proposition~\\ref{prop:entropy-from-balls}."
     },
     {
       "from": "m1-thm-main",
       "to": "m1-lem-entropy-components",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] Let $\\mu_i$ be the packet probabilities for a sequence in the theorem. Equation~\\eqref{eq:discriminant-scale} gives $Q"
     },
     {
       "from": "m1-prop-tightness",
       "to": "m1-lem-entropy-components",
+      "label": "prop:tightness",
       "context": "f{thm:main}] Let $\\mu_i$ be the packet probabilities for a sequence in the theorem. Equation~\\eqref{eq:discriminant-scale} gives $Q_i\\to\\infty$. By Proposition~\\ref{prop:tightness}, this sequence is tight and every weak subsequential limit $\\mu$ is an $A_n$-invariant probability. Proposition~\\ref{pr"
     },
     {
       "from": "m1-prop-ball-bound",
       "to": "m1-lem-entropy-components",
+      "label": "prop:ball-bound",
       "context": "\\to\\infty$. By Proposition~\\ref{prop:tightness}, this sequence is tight and every weak subsequential limit $\\mu$ is an $A_n$-invariant probability. Proposition~\\ref{prop:ball-bound} supplies the hypotheses of Proposition~\\ref{prop:entropy-from-balls}. Lemma~\\ref{lem:entropy-components} shows that alm"
     },
     {
       "from": "m1-lem-packet-model",
       "to": "m1-prop-adelic-packet",
+      "label": "lem:packet-model",
       "context": "s instead retain the translates $\\mathcal N(I)$. The same decomposition becomes \\[ \\coprod_{[I]}(\\mathcal N(I)\\times C)/E, \\] with exactly the action in Lemma~\\ref{lem:packet-model}. Haar measure pushes to uniform counting measure on each finite unit orbit and to the stated logarithmic Haar measure o"
     },
     {
       "from": "m2-lem-ideal-estimate",
       "to": "m2-prop-cusp",
+      "label": "lem:ideal-estimate",
       "context": "nto intervals $(2^{-j-1}X_r,2^{-j}X_r]$. Whenever such an interval contains one of these $l$, its upper endpoint is at least $D^{1/4}$ and at most $Q$. Lemma~\\ref{lem:ideal-estimate}, with interval length half the upper endpoint, bounds its ideal count by $O(\\kappa 2^{-j}X_r)$. Its weight in \\eqref{e"
     },
     {
       "from": "m2-lem-ideal-estimate",
       "to": "m2-prop-ball",
+      "label": "lem:ideal-estimate",
       "context": "gth comparable to $Q_ir$, so it is at least the square root of its upper endpoint for large $i$. The upper endpoint lies between $D_i^{1/4}$ and $D_i$. Lemma~\\ref{lem:ideal-estimate} and \\eqref{eq:vector-unfolding} therefore give \\[ \\mu_i(xB(r)) \\le\\int_X\\widehat f_{x,r}\\,\\dd\\mu_i \\le\\frac{C_3r^5}{"
     },
     {
       "from": "m2-prop-packet-volume",
       "to": "m2-prop-bowen",
+      "label": "prop:packet-volume",
       "context": "er integrals are bounded uniformly in $p>0$, because the first five absolute logarithms range over a fixed bounded set. Repeating the unfolding of Proposition~\\ref{prop:packet-volume}, with the additional restriction $\\mathfrak b\\mid(z)\\mathfrak D_K$, gives \\begin{equation} \\int_X\\#\\{\\text{admissible"
     },
     {
       "from": "m2-lem-trace-slice",
       "to": "m2-prop-bowen",
+      "label": "lem:trace-slice",
       "context": "\\le\\exp\\left(C\\frac{\\log D}{\\log\\log D}\\right). \\label{eq:ideal-divisors} \\end{equation} Lemma~\\ref{lem:trace-slice} bounds the number of allowed products by $O(Q(e^{-t}+D^{-1/30}))$. Uniformly for $t\\le T_{+,i}$, \\[ D_i^{-1/30}=o(e^{"
     },
     {
       "from": "m2-lem-block-groups",
       "to": "m2-lem-fixed-pieces",
+      "label": "lem:block-groups",
       "context": "pport, so $j^{-1}Cj$ is diagonal for every $j\\in J$. Taking $j=1$ shows that $C$ is diagonal. Conjugating by a root subgroup within one of the blocks of Lemma~\\ref{lem:block-groups} forces the two corresponding diagonal entries of $C$ to agree. Consequently the commutant of $\\Delta$ is exactly the al"
     },
     {
       "from": "m2-lem-plateau",
       "to": "m2-prop-plaque-comparison",
+      "label": "lem:plateau",
       "context": "h-$F$ input grid may be an auxiliary grid selected for this comparison. Thus $R$ and $F$ need not belong to the countable list used to define the states; Lemma~\\ref{lem:plateau} compares the auxiliary laws back to the recorded ones. Its boundary selection uses $\\mu_i$ and the scale bound, and doe"
     },
     {
       "from": "m2-lem-no-periods",
       "to": "m2-prop-plaque-comparison",
+      "label": "lem:no-periods",
       "context": "arts.} Choose input inner charts and fixed displacement test ranges first. An input chart may have any fixed plaque extension needed for these ranges. By Lemma~\\ref{lem:no-periods}, output inner charts can be chosen whose outer charts accommodate the entire image plaque range, with a margin. A finit"
     },
     {
       "from": "m2-lem-patch-comparison",
       "to": "m2-prop-plaque-comparison",
+      "label": "lem:patch-comparison",
       "context": "nsverse cells whose closures lie in its projected transverse range, and plaque bins admitted over the whole range. Their products form an inner set as in Lemma~\\ref{lem:patch-comparison}. Here are the two loss estimates. First, a path varying the transverse output coordinate through one fine cell pulls ba"
     },
     {
       "from": "m2-lem-sampling",
       "to": "m2-prop-plaque-comparison",
+      "label": "lem:sampling",
       "context": "pply this result first to the identity motion. Compare any chart at the sample with a chart extending far enough to contain its bounded plaque domain. By Lemma~\\ref{lem:sampling}, each probability has positive mass on every neighborhood of the sampled point. Choose a nonnegative continuous test su"
     },
     {
       "from": "m2-lem-patch-comparison",
       "to": "m2-lem-u-factor",
+      "label": "lem:patch-comparison",
       "context": "by \\(o(1)\\) across the patch. Thus patches and their subpatches admit a common collection of inner \\(U\\) bins. Here are the trimming details needed for Lemma~\\ref{lem:patch-comparison}. A patch meeting a coarse output wall has its sampled point in a collar of relative width \\(o(1)\\); the grid conventio"
     },
     {
       "from": "m2-prop-plaque-comparison",
       "to": "m2-lem-u-factor",
+      "label": "prop:plaque-comparison",
       "context": "\\ u_s^{-1}u\\right). \\end{equation} This changes the two coordinates separately, so the product assertion holds in displacement coordinates as well. Proposition~\\ref{prop:plaque-comparison} identifies overlapping chart probabilities projectively. Apply this comparison on product ranges containing the identi"
     },
     {
       "from": "m2-thm-product",
       "to": "m2-prop-activity",
+      "label": "thm:product",
       "context": "First observe that Theorem~\\ref{thm:product} factors the measure of any pattern group into its one-dimensional root measures, in a suitable order. Indeed, the cone"
     },
     {
       "from": "m2-prop-activity",
       "to": "m2-lem-va-support",
+      "label": "prop:activity",
       "context": "$x=\\psi(q_s)v_sa_s$, the $V$ displacements corresponding to varying $v$ at fixed $a_s$ are \\[ a_s^{-1}v_s^{-1}va_s. \\] By Proposition~\\ref{prop:activity}, their probability is supported on $V_\\omega^+$. A general $VA$ displacement is \\[ a_s^{-1}v_s^{-1}va =\\bigl(a_s^{"
     },
     {
       "from": "m2-prop-plaque-comparison",
       "to": "m2-lem-activity-indicators",
+      "label": "prop:plaque-comparison",
       "context": "because $\\mu_i$ is $A$-invariant. Consequently these paired laws are tight. In every subsequential limit their two marginals are $\\mathsf P$, and Proposition~\\ref{prop:plaque-comparison} identifies the two projective $U_{jk}$ measures. Their exact activity indicators are therefore equal. Applying the co"
     },
     {
       "from": "m2-prop-plaque-comparison",
       "to": "m2-lem-transverse-inactive",
+      "label": "prop:plaque-comparison",
       "context": "ere. Identify $U_{jk}$ with $\\R$ by $t\\mapsto1+tE_{jk}$. Choose a fixed $b\\in L$ with $\\lambda=e^{\\beta_{jk}(b)}>1$. Fixed-motion equivariance in Proposition~\\ref{prop:plaque-comparison}, together with $A$-invariance of the prelimit sampling law, says that the projective law of $m^{U_{jk}}_\\omega$ is inva"
     },
     {
       "from": "m2-prop-cusp",
       "to": "m2-lem-entropy-partition",
+      "label": "prop:cusp",
       "context": "on gives the consistency in assertion~2. Decreasing all box sizes by a common fixed factor ensures that every lift lies in the prescribed $O$. By Proposition~\\ref{prop:cusp}, a probability $\\nu\\leq C\\mu_i$ assigns the $k$th layer mass at most $C_5e^{-c k}$, uniformly for sufficiently large $i"
     },
     {
       "from": "m2-lem-va-support",
       "to": "m2-lem-inactive-cell-concentration",
+      "label": "lem:va-support",
       "context": "inated by $C$ times the usual state law. Its crossing-root indicators vanish almost surely, since their nonnegative sum has expectation tending to zero. Lemma~\\ref{lem:va-support} therefore puts the second point on the same $H_s$ plaque as the sample. Its $z$ coordinate equals the sampled $z$. The"
     },
     {
       "from": "m2-prop-segment-activity",
       "to": "m2-lem-inactive-cell-concentration",
+      "label": "prop:segment-activity",
       "context": "[Proof of Proposition~\\ref{prop:segment-activity}] Suppose, along a subsequence, that the expression in \\eqref{eq:segment-activity} tends to zero. Choose even integers"
     },
     {
       "from": "m2-lem-entropy-partition",
       "to": "m2-lem-inactive-cell-concentration",
+      "label": "lem:entropy-partition",
       "context": "sufficiently large $i$, where $\\varepsilon_0>0$ will be small. This follows from the uniform cusp estimate and domination. Take the neighborhood $O$ in Lemma~\\ref{lem:entropy-partition} small enough to use Proposition~\\ref{prop:bowen} uniformly on $K$. If a name atom $B\\in\\mathcal P_{[0,N_i]}$ meets $T^{"
     },
     {
       "from": "m2-prop-bowen",
       "to": "m2-lem-inactive-cell-concentration",
+      "label": "prop:bowen",
       "context": "l. This follows from the uniform cusp estimate and domination. Take the neighborhood $O$ in Lemma~\\ref{lem:entropy-partition} small enough to use Proposition~\\ref{prop:bowen} uniformly on $K$. If a name atom $B\\in\\mathcal P_{[0,N_i]}$ meets $T^{-N_i/2}K$, choose a reference point in that inter"
     },
     {
       "from": "m2-prop-segment-activity",
       "to": "m2-lem-root-line-laws",
+      "label": "prop:segment-activity",
       "context": "ble $u=R_i t$ gives \\[ \\frac1{R_i}\\int_0^{\\tau R_i}\\int_X A_{J,i}\\bigl(xa(u b_J)\\bigr)\\,\\dd\\xi_i(x)\\,\\dd u \\longrightarrow0. \\] This contradicts Proposition~\\ref{prop:segment-activity}. The parameters in assertion~1 range over a countable set, so the assertion holds simultaneously almost surely. For a"
     },
     {
       "from": "m2-lem-activity-indicators",
       "to": "m2-lem-root-line-laws",
+      "label": "lem:activity-indicators",
       "context": "ndicators at the common point $xa(R_i v(s,t))$, with total expected error $o(1)$. The expected defect there is $o(1)$ by the approximate transitivity in Lemma~\\ref{lem:activity-indicators}; its distribution is unchanged by the translation. Integrating over the rectangle proves the claim."
     },
     {
       "from": "m2-lem-root-line-laws",
       "to": "m2-lem-deterministic-root-arrays",
+      "label": "lem:root-line-laws",
       "context": "efore gives positive probability to a positive deficiency. Choose a point $F$ in its support that has a positive deficiency and satisfies assertion~1 of Lemma~\\ref{lem:root-line-laws}. For each integer $q$, choose a neighborhood $U_q$ of $F$ of diameter less than $1/q$. It has positive limiting proba"
     },
     {
       "from": "m2-thm-full-activity",
       "to": "m2-lem-convolution",
+      "label": "thm:full-activity",
       "context": "[Proof of Theorem~\\ref{thm:full-activity}] Suppose the theorem fails, and take the deterministic arrays and limiting functions from Lemma~\\ref{lem:deterministic-"
     },
     {
       "from": "m2-lem-deterministic-root-arrays",
       "to": "m2-lem-convolution",
+      "label": "lem:deterministic-root-arrays",
       "context": "[Proof of Theorem~\\ref{thm:full-activity}] Suppose the theorem fails, and take the deterministic arrays and limiting functions from Lemma~\\ref{lem:deterministic-root-arrays}. Fix an edge $j\\to k$, and choose $\\ell$ distinct from $j,k$. Lemma~\\ref{lem:positive-root-intervals} supplies, for ea"
     },
     {
       "from": "m2-lem-positive-root-intervals",
       "to": "m2-lem-convolution",
+      "label": "lem:positive-root-intervals",
       "context": "deterministic arrays and limiting functions from Lemma~\\ref{lem:deterministic-root-arrays}. Fix an edge $j\\to k$, and choose $\\ell$ distinct from $j,k$. Lemma~\\ref{lem:positive-root-intervals} supplies, for each of the roots $\\ell j$ and $j\\ell$, positive limiting integral on each of the intervals $(-2,-1)$ and"
     },
     {
       "from": "m2-lem-activity-indicators",
       "to": "m2-lem-convolution",
+      "label": "lem:activity-indicators",
       "context": "t everywhere. The argument applies to every root, contradicting the deficiency \\eqref{eq:limiting-deficiency}. Thus \\eqref{eq:full-activity} holds. By Lemma~\\ref{lem:activity-indicators}, the sequence indicators converge jointly in law to the activity indicators of the limiting state. Since each has expe"
     }
   ]

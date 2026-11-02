@@ -162,7 +162,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Thomason-Model-Structures-in-Every-Strict-Higher-Dimension-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Thomason Model Structures in Every Strict Higher Dimension; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Thomason Model Structures in Every Strict Higher Dimension.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -322,7 +322,6 @@
           "source": "Couniversality and the unit on posets",
           "detail": "[A greatest new element] Suppose that A E is a sieve with a right adjoint retraction, and that E A has a greatest element. For every attaching functor in , the map j admits a retraction p:Y X such…",
           "dependsOn": [
-            "m1-lem-relative-prism",
             "m1-lem-pushout-cylinder",
             "m1-lem-gray-nerve"
           ]
@@ -353,7 +352,6 @@
           "detail": "[The unit on every poset] For every small poset S , the adjunction unit \\[ _S: SS \\] is a weak homotopy equivalence. This assertion is natural in S and holds for every finite n1 and for n= .",
           "dependsOn": [
             "m1-lem-relative-prism",
-            "m1-lem-gray-nerve",
             "m1-lem-simplicial-gluing",
             "m1-lem-filtered"
           ]
@@ -446,8 +444,7 @@
           "detail": "[Properness] The model structure of Proposition~ is left and right proper.",
           "dependsOn": [
             "m1-cor-attachment-invariance",
-            "m1-lem-filtered",
-            "m1-prop-model-structure"
+            "m1-lem-filtered"
           ]
         },
         {
@@ -460,7 +457,6 @@
           "detail": "[The unit after two subdivisions] For every simplicial set K , the canonical map _K=_ ^2K :^2K L_nK is a weak equivalence.",
           "dependsOn": [
             "m1-lem-subdivision-posets",
-            "m1-prop-poset-unit",
             "m1-lem-simplicial-gluing",
             "m1-prop-attachment-comparison",
             "m1-lem-filtered"
@@ -519,7 +515,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

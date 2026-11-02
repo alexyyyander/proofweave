@@ -127,7 +127,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Taming-implies-compatibility-on-four-manifolds-October-6-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Taming implies compatibility on four-manifolds; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Taming implies compatibility on four-manifolds.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -287,12 +287,8 @@
           "source": "Densities and planar tangent measures",
           "detail": "[Vanishing transverse moment] Under the hypotheses of Theorem~ , _r:= _ C _ B_r(x) |_ L_^ z_x(y)r|^2 (y)(x,)=o(r^2).",
           "dependsOn": [
-            "m1-thm-splitting",
-            "m1-lem-density",
             "m1-thm-main",
             "m1-prop-separation",
-            "m1-prop-growth",
-            "m1-prop-energy",
             "m1-lem-zero-pairing"
           ]
         },
@@ -353,11 +349,9 @@
           "source": "The compatible cone",
           "detail": "[Residual pairings] Let \\(A,P'\\) be positive currents whose trace measures \\(,'\\) have quadratic growth. Suppose \\[ _ s0 s^ -2 '(B_s(x))=0 for '-almost every x. \\] Then _ r0 S_rA *S_rP' _ L^2 0.",
           "dependsOn": [
-            "m1-thm-taming-cones",
             "m1-lem-invariant-cohomology",
             "m1-lem-class-separation",
-            "m1-prop-class-estimates",
-            "m1-cor-taming-cones"
+            "m1-prop-class-estimates"
           ]
         }
       ]
@@ -377,7 +371,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -222,7 +222,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Single-Exponential-Recovery-and-Bounded-Price-Strictness-for-Metric-k-Median-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Single-exponential recovery and bounded-price strictness for metric k-median; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Single-exponential recovery and bounded-price strictness for metric k-median.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -351,9 +351,7 @@
           "kind": "lemma",
           "source": "Joint sampling of leaders and removals",
           "detail": "[Sampling mass] At every correct main state with =10^ -6 , W(H)3.42P+61T_ near (H). If the first stopping inequality fails, the joint event of sampling a client in _ i B N_i and choosing ball mode…",
-          "dependsOn": [
-            "m1-sam-computable-radius"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-sam-successful-prefix",
@@ -365,8 +363,7 @@
           "detail": "[A successful sampling prefix] Assume the equal-size comparison setup and Equation~ , with 1 m M_0 , and use =10^ -6 . Given S and the correct guesses P,m , one run of the actual experiment has, with…",
           "dependsOn": [
             "m1-sam-sampling-mass",
-            "m1-sam-probability",
-            "m1-sam-computable-radius"
+            "m1-sam-probability"
           ]
         },
         {
@@ -410,10 +407,7 @@
           "kind": "theorem",
           "source": "Completing sampled prefixes and recovering the budget",
           "detail": "[Single-exponential recovery] Suppose |S|=|O|=h1 , P=cost(O)>0 , and O has an injective proxy map into S for its good centers such that \\[ _ i good _ p C_i d(p,_i) P_g+0.01P. \\] Assume the number m…",
-          "dependsOn": [
-            "m1-sam-successful-prefix",
-            "m1-comp-completion"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ref-two-stage",
@@ -426,8 +420,7 @@
           "dependsOn": [
             "m1-sam-radius-budget",
             "m1-sam-near-clients",
-            "m1-sam-computable-radius",
-            "m1-sam-probability"
+            "m1-sam-computable-radius"
           ]
         },
         {
@@ -439,11 +432,7 @@
           "source": "Sharper recovery when few clusters are unanchored",
           "detail": "[Refined charge bound] For the endpoint above, the cost bound in Equation~ is at most (1+2 a_1++11+ q)P (1+2/e+6)P.",
           "dependsOn": [
-            "m1-ref-recovery",
-            "m1-ref-two-stage",
-            "m1-comp-completion",
-            "m1-sam-computable-radius",
-            "m1-sam-radius-budget"
+            "m1-comp-completion"
           ]
         },
         {
@@ -488,7 +477,6 @@
             "m1-imp-cglss",
             "m1-imp-surplus-history",
             "m1-str-strictness",
-            "m1-loc-anchoring",
             "m1-loc-swap"
           ]
         },
@@ -514,9 +502,7 @@
             "m1-loc-descent",
             "m1-loc-swap",
             "m1-comp-recovery",
-            "m1-sur-low-sensitivity",
-            "m1-asm-sensitive",
-            "m1-loc-anchoring"
+            "m1-asm-sensitive"
           ]
         }
       ]
@@ -533,7 +519,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Approximation-Threshold-for-Metric-k-Median-September-24-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The approximation threshold for metric k-median; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The approximation threshold for metric k-median.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -584,9 +570,7 @@
           "kind": "lemma",
           "source": "Preparing the openings",
           "detail": "Let q_e0 be rational counts and let _e>0 be rational weights. One can randomly update the counts within the bounds [ q_e, q_e] , preserving _e_e q_e on every update, until at most one count is…",
-          "dependsOn": [
-            "m2-thm-preparation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-finite-inequality",
@@ -606,9 +590,7 @@
           "kind": "lemma",
           "source": "A finite inequality for the drift",
           "detail": "[Scalar bounds] Fix x , put X=1-x , and take 0 w X and s\\ 0,1\\ . Use the functions in Equation~ , and define z&=Pw^2,& b&=(2-s)P(x+w),& a&=A+2Pw,& C&=1-Ps,\\\\ d_0&=.52,& d_1&=.4,&…",
-          "dependsOn": [
-            "m2-thm-finite-inequality"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-grid-rounding",
@@ -660,9 +642,7 @@
           "kind": "lemma",
           "source": "Tapered iterative rounding",
           "detail": "[Averaged ideal drift] Conditional on the pre-round history, the ideal expression satisfies f+_ graph B BgV+12 V.",
-          "dependsOn": [
-            "m2-thm-finite-inequality"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-rnd-survival",
@@ -694,12 +674,7 @@
           "kind": "theorem",
           "source": "Deterministic implementation and completion",
           "detail": "[Deterministic additive approximation] For every fixed \\(>0\\), there is an instance-independent integer \\(c0\\) and a deterministic polynomial-time algorithm for metric \\(k\\)-median that opens at most…",
-          "dependsOn": [
-            "m2-thm-preparation",
-            "m2-thm-grid-rounding",
-            "m2-thm-main",
-            "m2-thm-li-svensson"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -724,7 +699,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

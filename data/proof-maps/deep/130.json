@@ -257,7 +257,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-explicit-power-saving-for-the-exact-discrete-Fourier-transform-September-25-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from An explicit power saving for the exact discrete Fourier transform; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from An explicit power saving for the exact discrete Fourier transform.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -351,8 +351,7 @@
           "source": "An explicit saving for a fixed two-coordinate transform",
           "detail": "There is a deterministic exact algorithm applying C^ k to an arbitrary complex array of length 2^k in \\[ O(2^k(k+1)^) \\] time, for every integer k0 . The bound includes fixed-table construction, all…",
           "dependsOn": [
-            "m1-net-finite-interface",
-            "m1-net-indexing"
+            "m1-net-finite-interface"
           ]
         },
         {
@@ -393,9 +392,7 @@
           "kind": "lemma",
           "source": "Compiling a Fourier transform on its own coordinates",
           "detail": "[Effective exact-width Toeplitz layers] An invertible lower triangular Toeplitz matrix of width r has a word on exactly r coordinates in O(1+^4r) mixed rounds. A fixed algorithm prepares the word and…",
-          "dependsOn": [
-            "m1-loc-replay"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-loc-fourier",
@@ -430,7 +427,6 @@
           "detail": "Let 1 and r_1,,r_2 be integers, and suppose the required specified roots are given. Put R=_jr_j and r_ =_jr_j . The map _jF_ r_j is computable in O\\!(R(+1)^(1+ r_ )^4) +(,r_ ,(R+2)) operations,…",
           "dependsOn": [
             "m1-loc-compiler",
-            "m1-lem-sector-address",
             "m1-net-tensor-bound"
           ]
         },
@@ -442,13 +438,7 @@
           "kind": "lemma",
           "source": "Working lengths and the transform at every length",
           "detail": "One has r_j=O((j+1)^2) and \\[ R_=((+2)). \\] For the largest with R_2n , as n , =\\!( n n ), =( n). The primes and this value of can be found with a number of operations polynomial in (n+2) , using…",
-          "dependsOn": [
-            "m1-thm-main",
-            "m1-cor-decimal",
-            "m1-net-tensor-bound",
-            "m1-lem-sector-address",
-            "m1-cor-polynomial-multiplication"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-syn-local-certificate",
@@ -496,7 +486,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Finite-tensor-savings-and-exact-Fourier-circuits-September-25-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Finite tensor savings and exact Fourier circuits; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Finite tensor savings and exact Fourier circuits.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -547,9 +537,7 @@
           "kind": "lemma",
           "source": "From a finite win to exact Fourier circuits",
           "detail": "[Triangular Toeplitz layers] Every invertible lower triangular Toeplitz matrix of width r has a factorization on exactly r coordinates into O(1+^4 r) monomial and pair layers. The implied constant is…",
-          "dependsOn": [
-            "m2-fft-dirty-layers"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-fourier-layers",
@@ -559,9 +547,7 @@
           "kind": "lemma",
           "source": "From a finite win to exact Fourier circuits",
           "detail": "[Exact-width Fourier layers] For every integer r1 , the unnormalized Fourier matrix F_r has a factorization on exactly r coordinates into O(1+^4r) monomial and pair layers, with an absolute implied…",
-          "dependsOn": [
-            "m2-fft-toeplitz-layers"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-win-to-fourier",
@@ -571,11 +557,7 @@
           "kind": "proposition",
           "source": "From a finite win to exact Fourier circuits",
           "detail": "[Transfer of a finite win] If a finite win exists, there are integers n_m and exact linear circuits for F_ n_m whose scalar gate counts satisfy \\[ L(n_m)=o(n_m_2n_m). \\] In particular the conclusion…",
-          "dependsOn": [
-            "m2-lem-amplification",
-            "m2-lem-fourier-layers",
-            "m2-lem-generation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-prices",
@@ -595,9 +577,7 @@
           "kind": "lemma",
           "source": "Packing finite comparisons into global prices",
           "detail": "[Packing comparisons] Let \\(^ (1) ,,^ (R) ^m\\) be any finite family of comparison vectors, with \\(m1\\) and the type list containing all their nonmonomial factors and calls. Under the no-win…",
-          "dependsOn": [
-            "m2-lem-generation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-price-word-bounds",
@@ -627,9 +607,7 @@
           "kind": "lemma",
           "source": "Triangular matrices and invertible corners",
           "detail": "[A rectangular shear from a linear DAG] Suppose a permitted linear DAG with l scalar gates computes Gx , with a designated output coordinates. Then s(G) 8l+2a. If only a_0 rows of G are nonzero, a…",
-          "dependsOn": [
-            "m2-fft-dirty-layers"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-scalar-convolution",
@@ -661,8 +639,6 @@
           "detail": "[Uniform cascade estimate] For each fixed cell K as in , there is a constant C_K such that, for every k,t1 and N=n^k , p( T_t(H^ k )) tk n^ k-1 p(K) +C_K(Nt(2t)+(k+1)^3N). The constant is independent…",
           "dependsOn": [
             "m2-lem-shear-dag",
-            "m2-lem-triangular",
-            "m2-lem-scalar-convolution",
             "m2-thm-corner"
           ]
         },
@@ -700,7 +676,6 @@
           "source": "Changing the coefficient boundary and specializing prices",
           "detail": "[Feedback law] Let \\[ K= M&C\\&D _ n+r (), M_n(), H(z)=M+zC(I_r-zD)^ -1 B. \\] If s_0 satisfies \\[ (I_r-s_0D)0, H(s_0)0, \\] then p(H(s_0)) p(K). No invertibility of D is required.",
           "dependsOn": [
-            "m2-thm-corner",
             "m2-lem-scalar-convolution",
             "m2-lem-triangular"
           ]
@@ -713,9 +688,7 @@
           "kind": "theorem",
           "source": "Changing the coefficient boundary and specializing prices",
           "detail": "[Algebraic specialization] Let X(z)_n((z)) be regular at z_0 , and assume X(z_0) is invertible. Suppose there are a finite set E and a real constant C_0 such that, for every s E , the matrix X(s) is…",
-          "dependsOn": [
-            "m2-lem-boundary-comparison"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-pivot-bound",
@@ -748,8 +721,7 @@
           "source": "Pivoting and the price of a dense pair",
           "detail": "[Scalar pivot invariance] Under the hypotheses of , if r=1 , then p( K)=p(K) .",
           "dependsOn": [
-            "m2-pivot-lem-one-port",
-            "m2-lem-pivot-bound"
+            "m2-pivot-lem-one-port"
           ]
         },
         {
@@ -760,9 +732,7 @@
           "kind": "corollary",
           "source": "Pivoting and the price of a dense pair",
           "detail": "[Exchange of two basis members] Let U=(u_1,,u_n,u_*) and V=(v_1,,v_n,v_*) be ordered bases of the same space of linear forms, viewing each list as a column vector of its forms, and let \\[ V=KU, K=…",
-          "dependsOn": [
-            "m2-lem-scalar-pivot"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-pair-price",
@@ -773,7 +743,6 @@
           "source": "Pivoting and the price of a dense pair",
           "detail": "[Price of a dense pair] Every invertible 22 matrix all of whose entries are nonzero has price at most 3/2 . In particular, p( 1&1\\\\1&u ) 32 (u\\ 0,1\\ ).",
           "dependsOn": [
-            "m2-thm-feedback",
             "m2-pivot-cor-basis-exchange"
           ]
         },
@@ -785,9 +754,7 @@
           "kind": "lemma",
           "source": "Signed matrices and the reflection contradiction",
           "detail": "For every integer m1 , \\[ p(T_m)=m2^ m-1 . \\]",
-          "dependsOn": [
-            "m2-lem-scalar-pivot"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-reflect-sparse-reflection",
@@ -797,11 +764,7 @@
           "kind": "lemma",
           "source": "Signed matrices and the reflection contradiction",
           "detail": "Let A be a real symmetric w w matrix with h supported unordered off-diagonal pairs. Let R act as +I on A and as -I on ( A)^ . Then \\[ p(R) 32h+2w. \\]",
-          "dependsOn": [
-            "m2-lem-pair-price",
-            "m2-thm-feedback",
-            "m2-thm-specialization"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-finite-win",
@@ -836,7 +799,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

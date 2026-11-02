@@ -117,7 +117,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Kirchberg-Rordam-character-criterion-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Kirchberg–Rørdam character criterion; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Kirchberg–Rørdam character criterion.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -189,7 +189,6 @@
           "source": "The dimension-drop criterion without stable rank one",
           "detail": "Let :M_3 B and :M_2 B be completely positive contractive maps with commuting ranges, satisfying (x)(y)=(1)(xy) for =, . If (1_3)+(1_2)=1_B , there is a unital homomorphism I(2,3) B .",
           "dependsOn": [
-            "m1-prop-rw",
             "m1-lem-rw-exact-cut"
           ]
         },
@@ -319,10 +318,8 @@
           "source": "From finite tensor powers to absorption",
           "detail": "Every nonzero unital C^* -algebra B without characters contains a separable C^* -subalgebra D without characters and with 1_D=1_B .",
           "dependsOn": [
-            "m1-thm-main",
             "m1-thm-finite",
-            "m1-prop-kr",
-            "m1-cor-infinite-tensor"
+            "m1-prop-kr"
           ]
         }
       ]
@@ -342,7 +339,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

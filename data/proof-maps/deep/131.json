@@ -97,7 +97,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Polynomial-Mixing-of-the-Switch-Chain-for-Every-Graphical-Degree-Sequence-September-25-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Polynomial mixing of the switch chain for every graphical degree sequence; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Polynomial mixing of the switch chain for every graphical degree sequence.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -193,9 +193,7 @@
           "kind": "corollary",
           "source": "Controlling the equality projections",
           "detail": "[Summed equality-indicator energy] For every vertex pair a and every function f on the graph space, _ b:\\,b a= \\|R_ a,b f\\|^2 _ b:\\,b a= \\|g_ a,b f\\|^2.",
-          "dependsOn": [
-            "m1-sl-comparison"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-dis-nonnegative",
@@ -206,8 +204,7 @@
           "source": "Controlling the equality projections",
           "detail": "The ordered sum D=_ a,b V2\\ b= h_a h_b is self-adjoint and positive semidefinite.",
           "dependsOn": [
-            "m1-dis-interaction",
-            "m1-sl-global"
+            "m1-dis-interaction"
           ]
         },
         {
@@ -254,10 +251,7 @@
           "kind": "lemma",
           "source": "From pair resampling to the switch chain",
           "detail": "The operators above satisfy h_a n^2J_a, _ a V2 J_a=2L, H2n^2L.",
-          "dependsOn": [
-            "m1-thm-main",
-            "m1-cor-exact-sampling"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -276,7 +270,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -277,7 +277,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Ambiently-homeomorphic-isolated-hypersurfaces-of-multiplicities-two-and-three-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -399,9 +399,7 @@
           "source": "Two seeds with different orders",
           "detail": "[The seeds] There are real-coefficient weighted homogeneous polynomials p_1,p_2 , each in an even number s_0 of variables, such that: both are sums, in disjoint variables, of chains with exponents at…",
           "dependsOn": [
-            "m1-seed-product",
             "m1-seed-chain",
-            "m1-bg-real",
             "m1-bg-orlik"
           ]
         },
@@ -479,8 +477,7 @@
           "source": "Local and rational isometries of tensor squares",
           "detail": "[Equivariant rational local--global principle] Let (V_j,U_j,_j) be rational vector spaces with nonsingular symmetric forms preserved by operators of finite odd order. If they are equivariantly…",
           "dependsOn": [
-            "m1-bg-hasse",
-            "m1-local-hermitian-lengths"
+            "m1-bg-hasse"
           ]
         },
         {
@@ -527,9 +524,7 @@
           "kind": "lemma",
           "source": "From local isometries to an integral isometry",
           "detail": "[Spectral properties of the added factors] Every eigenvalue of _j has odd order divisible by both 11 and 13 . On every complex eigenspace, the hermitian form \\[ (x,y)_j(x, y) \\] is nondegenerate and…",
-          "dependsOn": [
-            "m1-bg-ts"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-global-integral",
@@ -604,7 +599,6 @@
           "source": "From the integral forms to the ambient germs",
           "detail": "[Initial-form Milnor-fibre counterexamples] In the single ambient dimension N+1 , put \\[ f_j(z,t)=f_j(z)+t^2, j=1,2. \\] The germs f_1, f_2:(^ N+1 ,0)(,0) are topologically right equivalent and have…",
           "dependsOn": [
-            "m1-topo-right-equivalence",
             "m1-topo-analytic"
           ]
         }
@@ -622,7 +616,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Ambiently-homeomorphic-isolated-hypersurface-germs-in-C4-with-multiplicities-four-and-five-September-27-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Ambiently homeomorphic isolated hypersurface germs in ℂ⁴ with multiplicities four and five; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Ambiently homeomorphic isolated hypersurface germs in ℂ⁴ with multiplicities four and five.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -675,7 +669,6 @@
           "detail": "[Analytic germs and their orders] For the parameters of Lemma~ and every sufficiently small \\(s>0\\), each \\(C_ i,s \\) is a smooth complex fourfold near the origin, and \\(f_ i,s \\) has an isolated…",
           "dependsOn": [
             "m2-lem-plane-data",
-            "m2-lem-isolation",
             "m2-lem-simultaneous-parameters"
           ]
         },
@@ -697,9 +690,7 @@
           "kind": "lemma",
           "source": "Boundary geometry and the Milnor representative",
           "detail": "[Outer boundary regularity] For every sufficiently small fixed \\(s>0\\), the map \\(f_s\\) on the compact outer lateral boundary of \\(X_s\\) over \\(\\ |v|\\ \\) is proper, and its restriction to every…",
-          "dependsOn": [
-            "m2-lem-isolation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-continuations",
@@ -732,8 +723,7 @@
           "source": "Circle collapse and integral homology",
           "detail": "[inner homology and acyclic total] There are natural identifications H_3(W)=K, H_2(W)=H/_*D, :H_3(W;/k) D/kD. The large total \\(_s\\) is acyclic.",
           "dependsOn": [
-            "m2-lem-continuations",
-            "m2-thm-tube"
+            "m2-lem-continuations"
           ]
         },
         {
@@ -745,8 +735,6 @@
           "source": "Circle collapse and integral homology",
           "detail": "[The large tube computes the local page] The middle homology and filling pairing of the page of are naturally those of a sufficiently small ordinary Milnor representative of \\(f_s\\).",
           "dependsOn": [
-            "m2-lem-boundary",
-            "m2-lem-isolation",
             "m2-lem-acyclic"
           ]
         },
@@ -758,9 +746,7 @@
           "kind": "lemma",
           "source": "Circle collapse and integral homology",
           "detail": "[Mayer--Vietoris boundary] The full page has an exact sequence 0 K H_3(_s) H E 1 H/_*D. The image of the exterior page in \\(H_3(_s)\\) maps isomorphically under \\(\\) to \\(H\\).",
-          "dependsOn": [
-            "m2-lem-boundary"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-bock",
@@ -771,8 +757,7 @@
           "source": "The mod-four Bockstein and the exact lattice",
           "detail": "[Bockstein equals finite-map transfer] For \\(b H/kH=H_2(J)\\), and any \\( H_3(J;/k)\\) with \\(_ Bock =b\\), (i_*)=^!bkD, with the orientation of \\(\\) fixed after .",
           "dependsOn": [
-            "m2-lem-mv",
-            "m2-lem-continuations"
+            "m2-lem-mv"
           ]
         },
         {
@@ -861,8 +846,7 @@
           "source": "From the integral lattice to an embedded link",
           "detail": "[Real signs] The quadratic form B_|F_ ,1 is indefinite and has dimension at least five. The Hermitian form on F_ ,5 has dimension at least two over L and is indefinite at the real place of L^+…",
           "dependsOn": [
-            "m2-lem-plane-data",
-            "m2-lem-parameter-indices"
+            "m2-lem-plane-data"
           ]
         },
         {
@@ -906,7 +890,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

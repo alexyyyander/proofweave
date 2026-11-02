@@ -227,7 +227,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Universal-cover-splitting-for-compact-Kahler-manifolds-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Universal-cover splitting for compact Kähler manifolds; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Universal-cover splitting for compact Kähler manifolds.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -372,7 +372,6 @@
           "detail": "[Transport of inverse germs] Let \\(R:[0,1]^2 X\\) be a continuous box with \\(R(0,0)=o\\), and set \\[ (r)=R(r,0) L_1, (r)=R(0,r) L_2, (r)=R(r,r) X. \\] There are mutually inverse local biholomorphism…",
           "dependsOn": [
             "m1-lem-leaves",
-            "m1-thm-main",
             "m1-prop-rectangles"
           ]
         },
@@ -408,7 +407,6 @@
           "detail": "The connection of \\(g\\) preserves both \\(E_1|_ X^0 \\) and \\(E_2|_ X^0 \\). Both subbundles are integrable on all of \\(X\\). They admit simultaneous local holomorphic product coordinates.",
           "dependsOn": [
             "m1-canon-metric-input",
-            "m1-thm-nef-big",
             "m1-thm-main"
           ]
         },
@@ -544,8 +542,7 @@
             "m1-cross-semialgebraic-lift",
             "m1-cross-tree-path",
             "m1-cross-nearby-routes",
-            "m1-cross-stability",
-            "m1-thm-crossing"
+            "m1-cross-stability"
           ]
         },
         {
@@ -592,7 +589,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Integrability-of-split-tangent-bundles-on-rationally-connected-manifolds-September-23-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Integrability of split tangent bundles on rationally connected manifolds; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Integrability of split tangent bundles on rationally connected manifolds.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -718,7 +715,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

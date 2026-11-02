@@ -681,371 +681,445 @@
     {
       "from": "m1-lem-insertion",
       "to": "m1-prop-increments",
+      "label": "lem:insertion",
       "context": "First, all the form domains through particle number $2N$ are nonempty. Use Lemma~\\ref{lem:insertion} with $w=V^{-1/2}$, starting from the vacuum. At every step its smallness condition is bounded by $C(2N)r^3/V\\le C\\alpha"
     },
     {
       "from": "m1-lem-entropy",
       "to": "m1-prop-increments",
+      "label": "lem:entropy",
       "context": "o labelled vector and symmetrizing gives a nonzero bosonic form vector. Bounded fields do not alter the form domain. Reserve half the kinetic energy for Lemma~\\ref{lem:entropy} and apply Lemma~\\ref{lem:cube} to the other half. Since $\\sum_vn_v(n_v-1)\\ge N(D-1)$, every $N$-particle state satisfie"
     },
     {
       "from": "m1-lem-cube",
       "to": "m1-prop-increments",
+      "label": "lem:cube",
       "context": "gives a nonzero bosonic form vector. Bounded fields do not alter the form domain. Reserve half the kinetic energy for Lemma~\\ref{lem:entropy} and apply Lemma~\\ref{lem:cube} to the other half. Since $\\sum_vn_v(n_v-1)\\ge N(D-1)$, every $N$-particle state satisfies \\[ \\mathcal F_N(\\sigma)\\ge"
     },
     {
       "from": "m1-lem-entropy",
       "to": "m1-lem-localization",
+      "label": "lem:entropy",
       "context": "and is subadditive in each color sector, whence \\[ S(\\sigma)\\le H(w)+\\sum_jw_j [S(\\sigma_{i,j})+S(\\sigma_{o,j})]. \\] All entropies are finite by Lemma~\\ref{lem:entropy}, applied also to the finitely many color spaces. This proves \\eqref{eq:two-color}. Conditional on positions, colors are"
     },
     {
       "from": "m1-lem-entropy",
       "to": "m1-lem-tilt",
+      "label": "lem:entropy",
       "context": "{equation} Both energies are finite: $g$ and its gradients are bounded at fixed $N,K$, and positive-time heat traces control the eigenvalue-weighted sum. Lemma~\\ref{lem:entropy} then gives finite entropies. To bound the relative entropy $D(\\tau\\Vert\\Gamma)$, first let $g^2$ be constant on a fini"
     },
     {
       "from": "m1-lem-localization",
       "to": "m1-prop-local-penalty",
+      "label": "lem:localization",
       "context": "We combine the exponential localization of \\citet[Section~3, ``Exponential spatial localization'']{HS} with the thermal entropy decomposition of Lemma~\\ref{lem:localization}. For $h\\ge0$, choose sine--cosine masks $p_h,q_h$ such that $p_h=1$ at distance at most $h$ from $A$, $p_h=0$ from dist"
     },
     {
       "from": "m1-prop-increments",
       "to": "m1-prop-local-penalty",
+      "label": "prop:increments",
       "context": "Its volume is at most $C(h+4)^3|A|$, and $p_h$ is compactly supported there. Apply Lemma~\\ref{lem:localization}. Outside, the upper increments of Proposition~\\ref{prop:increments} give $F_{J-j}^{(-W)}\\ge F_J^{(-W)}-C\\alpha j$. Inside, divide the kinetic energy into three fixed positive portions. On"
     },
     {
       "from": "m1-lem-entropy",
       "to": "m1-prop-local-penalty",
+      "label": "lem:entropy",
       "context": ")}\\ge F_J^{(-W)}-C\\alpha j$. Inside, divide the kinetic energy into three fixed positive portions. One portion pays for the entire von Neumann entropy by Lemma~\\ref{lem:entropy}. Apply Lemmas~\\ref{lem:cube} and \\ref{lem:close} to the other two, with $s=s_0$. The field costs at most $j$, while the"
     },
     {
       "from": "m1-lem-cube",
       "to": "m1-prop-local-penalty",
+      "label": "lem:cube",
       "context": "ide, divide the kinetic energy into three fixed positive portions. One portion pays for the entire von Neumann entropy by Lemma~\\ref{lem:entropy}. Apply Lemmas~\\ref{lem:cube} and \\ref{lem:close} to the other two, with $s=s_0$. The field costs at most $j$, while the color entropy costs at most"
     },
     {
       "from": "m1-lem-close",
       "to": "m1-prop-local-penalty",
+      "label": "lem:close",
       "context": "etic energy into three fixed positive portions. One portion pays for the entire von Neumann entropy by Lemma~\\ref{lem:entropy}. Apply Lemmas~\\ref{lem:cube} and \\ref{lem:close} to the other two, with $s=s_0$. The field costs at most $j$, while the color entropy costs at most $T(C+j)$ by \\eqref{e"
     },
     {
       "from": "m1-lem-localization",
       "to": "m1-prop-low-count",
+      "label": "lem:localization",
       "context": "satisfying $|\\nabla\\phi|^2\\le C\\phi$. In particular $p^2$ and the localization gradient cost are bounded by $C\\phi$. We compare each outside state from Lemma~\\ref{lem:localization} with a state obtained by filling the empty central cubes. Set $k=\\lfloor\\eta D|A|\\rfloor$, where $0<\\eta<1$ will be fix"
     },
     {
       "from": "m1-lem-insertion",
       "to": "m1-prop-low-count",
+      "label": "lem:insertion",
       "context": "d sum with equal amplitude to obtain an orbital $w$ with \\[ \\norm w_\\infty^2\\le C/|A|,\\qquad \\norm{\\nabla w}_2^2\\le C. \\] Starting at the vacuum, apply Lemma~\\ref{lem:insertion} successively $k$ times with this orbital. Its smallness condition is satisfied because $Ckr^3/|A|\\le CD r^3\\to0$. The r"
     },
     {
       "from": "m1-prop-increments",
       "to": "m1-prop-low-count",
+      "label": "prop:increments",
       "context": "rantees every old--new hard-core condition. Consequently \\[ \\mathcal F_{N-j}(\\sigma_{o,j}) \\ge F_{N-j+k}-Ck(1+rk/|A|). \\] Here $k\\le\\eta N<N$, so Proposition~\\ref{prop:increments} applies up to $N+k\\le2N$. Its lower increment followed by $j$ upper increments gives \\begin{equation}\\label{eq:outside-"
     },
     {
       "from": "m1-lem-entropy",
       "to": "m1-prop-low-count",
+      "label": "lem:entropy",
       "context": "ha\\eta$, the final term in \\eqref{eq:outside-fill-comparison} is absorbed by half the positive insertion gain. For large $D$, $k\\ge\\eta D|A|/2$. Inside, Lemma~\\ref{lem:entropy} with the full kinetic energy bounds the free energy below by $-Tj-CT|A|(V^{-1}+T^{3/2})$. Apply Lemma~\\ref{lem:localiza"
     },
     {
       "from": "m1-lem-tilt",
       "to": "m1-prop-low-count",
+      "label": "lem:tilt",
       "context": "e state this gives \\begin{equation}\\label{eq:shortage-penalty} \\mathcal F_N(\\sigma)-F_N \\ge c\\alpha D|A|-C\\alpha\\E_\\sigma n_\\phi. \\end{equation} Apply Lemma~\\ref{lem:tilt} with $G=-\\lambda n_\\phi$, $0\\le\\lambda\\le1$, and write $L(\\lambda)=-\\log\\E_\\mu e^{-2\\lambda n_\\phi}$. Since $0\\le n_\\ph"
     },
     {
       "from": "m1-lem-tilt",
       "to": "m1-prop-close-count",
+      "label": "lem:tilt",
       "context": "ualities bound the squared full gradient of each summand by $Cs_0^{-2}u(d(x_i,A))\\xi(d_i/s_0)$. Bounded overlap proves \\eqref{eq:close-enlargement}. Use Lemma~\\ref{lem:tilt} with $G=\\lambda m_A$ for $0\\le\\lambda\\le s_0$. Since $M_G\\ge1$, \\eqref{eq:close-enlargement} bounds its right side by \\"
     },
     {
       "from": "m1-prop-local-penalty",
       "to": "m1-prop-close-count",
+      "label": "prop:local-penalty",
       "context": "ince $M_G\\ge1$, \\eqref{eq:close-enlargement} bounds its right side by \\[ (C\\lambda^2s_0^{-2}+2T\\lambda)\\E_{\\sigma_g}m_A \\le C\\E_{\\sigma_g}m_A. \\] Proposition~\\ref{prop:local-penalty}, with $W=0$ and $J=N$, bounds the same free-energy excess below by $c\\alpha b^{-3}\\E_{\\sigma_g}m_A-C\\alpha D|A|$. Choos"
     },
     {
       "from": "m1-lem-free-cutoffs",
       "to": "m1-lem-marked-kernel",
+      "label": "lem:free-cutoffs",
       "context": "Irregularity forces a failure on at least one half: an endpoint window, the mesh maximum, or the half-average with threshold $C_{\\rm reg}$. The proof of Lemma~\\ref{lem:free-cutoffs} bounds each such half failure by $C_tD^{-12}$. Once again the opposite half is bounded by its heat kernel supremum. T"
     },
     {
       "from": "m1-cor-field-density",
       "to": "m1-prop-trajectory-moment",
+      "label": "cor:field-density",
       "context": "inite volume this identity follows from the Duhamel formula and trace cyclicity. The field is bounded and the positive-time traces are finite. Apply Corollary~\\ref{cor:field-density} to the cell covers in Equation~\\eqref{eq:bin-volume}, and then integrate in $u$. It follows that \\begin{equation}\\labe"
     },
     {
       "from": "m1-prop-increments",
       "to": "m1-prop-trajectory-moment",
+      "label": "prop:increments",
       "context": "\\le\\frac{\\beta C}{\\delta}D|A| \\sum_{n\\le n_*}(n+1)^3\\eta_n. \\end{equation} The vacuum case has zero left side. In addition, Proposition~\\ref{prop:increments} gives \\begin{equation}\\label{eq:color-removal-cost} \\frac{Z_J}{Z_N}\\le e^{\\beta C_{\\rm inc}\\alpha(N-J)}. \\end{equation"
     },
     {
       "from": "m1-lem-sandwich",
       "to": "m1-prop-trajectory-moment",
+      "label": "lem:sandwich",
       "context": "~\\ref{prop:increments} gives \\begin{equation}\\label{eq:color-removal-cost} \\frac{Z_J}{Z_N}\\le e^{\\beta C_{\\rm inc}\\alpha(N-J)}. \\end{equation} Evaluate Lemma~\\ref{lem:sandwich} at $q=\\beta/\\delta$. The enlarged symmetric space decomposes by the number $J$ of original-color particles and the occu"
     },
     {
       "from": "m1-prop-certificates",
       "to": "m1-prop-trajectory-moment",
+      "label": "prop:certificates",
       "context": "[Proof of Proposition~\\ref{prop:certificates}] It suffices to prove arbitrarily small exponential bases for simultaneous failures of each of the six individual tests"
     },
     {
       "from": "m1-prop-purification",
       "to": "m1-prop-trajectory-moment",
+      "label": "prop:purification",
       "context": "to prove arbitrarily small exponential bases for simultaneous failures of each of the six individual tests. At both endpoints the law is $\\mu$, by Proposition~\\ref{prop:purification}. Thus the low-count test at $Y$ and the close-count tests at $Y,Z$ have this property by Propositions~\\ref{prop:low-cou"
     },
     {
       "from": "m1-prop-low-count",
       "to": "m1-prop-trajectory-moment",
+      "label": "prop:low-count",
       "context": "the law is $\\mu$, by Proposition~\\ref{prop:purification}. Thus the low-count test at $Y$ and the close-count tests at $Y,Z$ have this property by Propositions~\\ref{prop:low-count} and \\ref{prop:close-count}. For the number of visitors choose $E=E_{\\rm all}$ and $\\lambda=c't$, where $c'>0$ is suffi"
     },
     {
       "from": "m1-prop-close-count",
       "to": "m1-prop-trajectory-moment",
+      "label": "prop:close-count",
       "context": "position~\\ref{prop:purification}. Thus the low-count test at $Y$ and the close-count tests at $Y,Z$ have this property by Propositions~\\ref{prop:low-count} and \\ref{prop:close-count}. For the number of visitors choose $E=E_{\\rm all}$ and $\\lambda=c't$, where $c'>0$ is sufficiently small and fixed. E"
     },
     {
       "from": "m1-lem-gaussian-packing",
       "to": "m1-lem-averaged-hit",
+      "label": "lem:gaussian-packing",
       "context": "A_k(c)+B_s\\bigr). \\end{equation} We use the cutoff only to obtain this necessary event. We now discard it and integrate the unrestricted bridge law. By Lemma~\\ref{lem:gaussian-packing}, the density of $X_s$, averaged over the labels, is bounded by \\eqref{bridge:packed-density}. Since $B_s$ is independe"
     },
     {
       "from": "m1-lem-free-cutoffs",
       "to": "m1-cor-success-supply",
+      "label": "lem:free-cutoffs",
       "context": "he linear means of both bridge legs stay within distance $3$ of $v$. The Gaussian maximal bound therefore makes confinement failure at most $Ce^{-c/t}$. Lemma~\\ref{lem:free-cutoffs} gives a regularity failure probability $\\varepsilon_D(t)\\to0$, uniformly over the listed endpoints and the target point"
     },
     {
       "from": "m1-lem-averaged-hit",
       "to": "m1-cor-success-supply",
+      "label": "lem:averaged-hit",
       "context": "points. A confined trial can collide only with an obstacle visiting the ball of radius $12$, since $r<1$. Union-bounding over those obstacles and using Lemma~\\ref{lem:averaged-hit}, with a self-label summand omitted when necessary, gives for each target cell \\begin{align} \\frac1m\\sum_i\\int_B Q_{y_"
     },
     {
       "from": "m1-cor-success-supply",
       "to": "m1-lem-useful-labels",
+      "label": "cor:success-supply",
       "context": "ion lie in the radius-$5$ ball about $v$. The remaining labels are eligible, and their number is at least $(\\ell-3\\theta)D\\ge\\ell D/2$. We now apply Corollary~\\ref{cor:success-supply} to the \\emph{entire} eligible list at this site, not merely the subset just used to prove its lower cardinality bound."
     },
     {
       "from": "m1-prop-purification",
       "to": "m1-lem-conditional-law",
+      "label": "prop:purification",
       "context": "Condition first on $Y,Z,W'$. In the slab law of Proposition~\\ref{prop:purification}, the two outer heat kernels are then constant. The remaining free reference is a product of torus bridges, weighted on"
     },
     {
       "from": "m1-prop-certificates",
       "to": "m1-prop-group-supply",
+      "label": "prop:certificates",
       "context": "Choose $p_1<p/2$ in Proposition~\\ref{prop:certificates} and meet also the requirements of Lemma~\\ref{lem:useful-labels}. Fix the full path sample before the allocation random"
     },
     {
       "from": "m1-lem-useful-labels",
       "to": "m1-prop-group-supply",
+      "label": "lem:useful-labels",
       "context": "Choose $p_1<p/2$ in Proposition~\\ref{prop:certificates} and meet also the requirements of Lemma~\\ref{lem:useful-labels}. Fix the full path sample before the allocation randomizations. At a certified cell there are at least $\\ell D/2\\ge M"
     },
     {
       "from": "m1-lem-single-hit",
       "to": "m1-prop-group-comparison",
+      "label": "lem:single-hit",
       "context": "with the fixed opponent, first use the unconditioned bridge $B_i$. The event contributing under $P_i$ satisfies the regularity and confinement cutoffs. Lemma~\\ref{lem:single-hit} bounds its probability by $C(tr+rD^{3\\gamma}h_0^{-1/2})$. Dividing by $a_i\\ge a_t$ proves the required estimate for $P"
     },
     {
       "from": "m1-thm-scaled",
       "to": "m1-lem-cancellation",
+      "label": "thm:scaled",
       "context": "[Proof of Theorem~\\ref{thm:scaled}] With the fixed choices above, set \\begin{equation}\\label{cmp:c-star} c_*:=\\frac{\\upsilon\\ell}{32M G C_{\\mathrm{path}}"
     },
     {
       "from": "m1-prop-good-paths",
       "to": "m1-lem-cancellation",
+      "label": "prop:good-paths",
       "context": "th}}}>0, \\qquad \\upsilon=\\frac1{2000}. \\end{equation} For large $K$, at least $\\upsilon V^2$ ordered cell pairs meet the displacement condition of Proposition~\\ref{prop:good-paths}. For each such pair, Lemma~\\ref{lem:tag-normalization}, \\eqref{cmp:D-choice} and \\eqref{cmp:one-group-gain} give \\[ \\A"
     },
     {
       "from": "m1-lem-tag-normalization",
       "to": "m1-lem-cancellation",
+      "label": "lem:tag-normalization",
       "context": "tion} For large $K$, at least $\\upsilon V^2$ ordered cell pairs meet the displacement condition of Proposition~\\ref{prop:good-paths}. For each such pair, Lemma~\\ref{lem:tag-normalization}, \\eqref{cmp:D-choice} and \\eqref{cmp:one-group-gain} give \\[ \\Aff(P_{vw},Q_{vw}) \\ge\\frac{G_D}{4D C_2} \\ge\\frac\\ell{"
     },
     {
       "from": "m1-prop-certificates",
       "to": "m1-lem-cancellation",
+      "label": "prop:certificates",
       "context": "ell,\\theta$ and small $b$ as in Sections~\\ref{sec:energy} and~\\ref{sec:spatial}. Choose a sufficiently small target certificate-failure base $p_1$. Proposition~\\ref{prop:certificates} then allows $H_1$ to be fixed before choosing a sufficiently small positive $t$, also meeting the deterministic bridge"
     },
     {
       "from": "m2-en-sharp",
       "to": "m2-en-cosine-correction",
+      "label": "en:sharp",
       "context": "[Proof of Lemma~\\ref{en:sharp}] We detail both the gap allocation and the resolution of the zero mode. The calculations may first be made with finitel"
     },
     {
       "from": "m2-en-small-gap",
       "to": "m2-en-cosine-correction",
+      "label": "en:small-gap",
       "context": "d^2z}{\\pi} \\le C\\|\\psi\\|^2. \\] The last inequality follows from $\\int|z|^2\\|\\psi_z\\|^2\\dd^2z/\\pi =\\langle n-n_++1\\rangle_\\psi$ and $rn/v_b=O(1)$. Apply Lemma~\\ref{en:small-gap} to the operator $\\mathcal H_0(z)$ on $|z|^2\\le2n$, with a fixed sufficiently small $\\delta$. The coherent projection p"
     },
     {
       "from": "m2-en-sharp",
       "to": "m2-en-surplus",
+      "label": "en:sharp",
       "context": "C(\\mathfrak h(s)+\\mathfrak h(t))$ allows a fraction of this scalar remainder to recenter the microcell penalty from $n_b/v_b$ to $D$. On a low piece use Lemma~\\ref{en:sharp}. The convexity of $e_r$ and the bound $e_r''(x)\\ge8\\pi r$ imply \\begin{equation}\\label{en:scalar-convexity} v_be_r(n_"
     },
     {
       "from": "m2-mom-local-covariance",
       "to": "m2-en-observable",
+      "label": "mom:local-covariance",
       "context": "[Proof of Proposition~\\ref{mom:local-covariance}] Apply the sector restrictions and excitation cutoffs used in Lemma~\\ref{en:surplus}, now with $E=B$ and $Q=D^u$. A box"
     },
     {
       "from": "m2-en-surplus",
       "to": "m2-en-observable",
+      "label": "en:surplus",
       "context": "[Proof of Proposition~\\ref{mom:local-covariance}] Apply the sector restrictions and excitation cutoffs used in Lemma~\\ref{en:surplus}, now with $E=B$ and $Q=D^u$. A box-wise operator evaluates by summing over these restrictions. For each fixed box the o"
     },
     {
       "from": "m2-set-low-counts",
       "to": "m2-lp-good-probability",
+      "label": "set:low-counts",
       "context": "every site in $A$ is at most $e^{-(\\vartheta-o(1))|A|}$. To obtain the interior supply, start with the lower endpoint count $\\ell_*D$ supplied by Proposition~\\ref{set:low-counts}. Its failure probability is $O(D^{-2})$, jointly $(C/D^2)^{|A|}$. Remove labels with a close endpoint at either time, a"
     },
     {
       "from": "m2-set-close-tail",
       "to": "m2-lp-good-probability",
+      "label": "set:close-tail",
       "context": "robability is $O(D^{-2})$, jointly $(C/D^2)^{|A|}$. Remove labels with a close endpoint at either time, and labels whose displacement exceeds one. Proposition~\\ref{set:close-tail} gives a joint small-parameter bound for a fixed positive fraction of close labels, since $s\\ll D^{-1/3}$. Its one-site"
     },
     {
       "from": "m2-lp-collision",
       "to": "m2-lp-insertion",
+      "label": "lp:collision",
       "context": "For unexposed opponents, sum Lemma~\\ref{lp:collision} over endpoint shells using~\\eqref{lp:flagged-count}. Both endpoint lists satisfy \\[ \\sum_k\\beta_{ik} \\leq C b_D(f_0D"
     },
     {
       "from": "m2-lp-insertion",
       "to": "m2-lp-trial-density",
+      "label": "lp:insertion",
       "context": "For a single label, its conditional density is an admissibility indicator divided by its free insertion probability. Proposition \\ref{lp:insertion} bounds that denominator below by $3/4$, uniformly in the other allowed paths. Successively integrate labels, or equiva"
     },
     {
       "from": "m2-en-energy-outputs",
       "to": "m2-palm-counts",
+      "label": "en:energy-outputs",
       "context": "+\\left(\\frac{n_v}{D|v|}-1\\right). \\] The quadratic and quartic inequalities for this sum give the displayed bounds from the count moments of Proposition~\\ref{en:energy-outputs}. The binomial contribution to the fourth moment is at most $C_j(D^{-2+2x}+D^{-3+3x})$; the second term is smaller for"
     },
     {
       "from": "m2-set-count-mgf",
       "to": "m2-palm-counts",
+      "label": "set:count-mgf",
       "context": "3x})$; the second term is smaller for $x<1$. The required first and second moments of $n_v/(D|v|)$ follow either from these count estimates or from Proposition~\\ref{set:count-mgf}. For the last assertion, use the event that every unit cell meeting the indicated cells has count at most $CD$, where"
     },
     {
       "from": "m2-lp-good-probability",
       "to": "m2-palm-omissions",
+      "label": "lp:good-probability",
       "context": "t within distance $s$ by $CD^2s^3$ per unit volume. Division by $D$ gives $CDs^3=CD^{-7/5}$. The visitor and free-cutoff estimates in the proof of Proposition~\\ref{lp:good-probability} give errors of arbitrarily high fixed power for the remaining motion failures. Summing over the unit cells meeting an"
     },
     {
       "from": "m2-palm-counts",
       "to": "m2-palm-omissions",
+      "label": "palm:counts",
       "context": "ef{lp:good-probability} and a union bound. There are $O_{x,j}(1)$ tests for a local comparison and $O_x(R^3)$ tests at scale $R$. On the count event in Lemma~\\ref{palm:counts}, the total reference weight is bounded by $C_j/f_0$. Its complement is negligible. This proves the second claim and t"
     },
     {
       "from": "m2-lp-insertion",
       "to": "m2-palm-transport",
+      "label": "lp:insertion",
       "context": "rately, of paths retained in that copy and paths already inserted in that copy. Paths to be inserted at later stages are not checked at this stage. Proposition~\\ref{lp:insertion} gives success probability at least $1/2$ for every such proposal, including every allowed preceding history. Thus each"
     },
     {
       "from": "m2-lp-trial-density",
       "to": "m2-palm-likelihood",
+      "label": "lp:trial-density",
       "context": "by a success probability at least $1/2$. The first density factor in \\eqref{palm:pair-proposal-disintegration} is bounded by $CD^{Cx}$ on $C_k$, by Corollary~\\ref{lp:trial-density}. Integrating the auxiliary right paths successively, bounding each normalizer by $2$, and using $m=O(x^{-1/2})$ gives"
     },
     {
       "from": "m2-lp-collision",
       "to": "m2-palm-two-switches",
+      "label": "lp:collision",
       "context": "Integrating a free bridge or a marginal of a common-uniform-midpoint proposal against a deterministic allowed opponent costs at most $C_x\\beta_{lk}$, by Lemma~\\ref{lp:collision}. The same assertion holds with the roles of the two paths exchanged. We give the analogous verification for denominat"
     },
     {
       "from": "m2-palm-two-switches",
       "to": "m2-palm-fourth",
+      "label": "palm:two-switches",
       "context": "ntification there are three blocks, two of them singletons. A surviving term in \\eqref{palm:switch-expansion} must therefore contain at least one edge. Lemma~\\ref{palm:two-switches} and the identification cost bound its total by \\begin{equation}\\label{palm:one-match} C_{x,j}D^{-1"
     },
     {
       "from": "m2-palm-fourth",
       "to": "m2-palm-augmented-comparison",
+      "label": "palm:fourth",
       "context": "i}T_w^{-1}\\overline{F_S} +(T_w^{\\mathrm{rel}}-1)-M_w. \\] The inequality $|a+b+c|^4\\le27(|a|^4+|b|^4+|c|^4)$ separates the three terms. Lemma~\\ref{palm:fourth} treats the first. For the second, the count-tail bound gives \\[ \\E\\bigl[T_v^{\\mathrm{rel}}|T_w^{\\mathrm{rel}}-1|^4\\bi"
     },
     {
       "from": "m2-palm-counts",
       "to": "m2-palm-augmented-comparison",
+      "label": "palm:counts",
       "context": "\\bigr] \\le C_jD^x\\E|T_w^{\\mathrm{rel}}-1|^4+O(D^{-A}) \\] for any fixed $A$, after averaging cells. Neighboring pairs have uniformly bounded degrees, so Lemma~\\ref{palm:counts} applies. For the third term use $\\E[T_v^{\\mathrm{rel}}M_w^4] \\le C_jD^{4x}\\E M_w+O(D^{-A})$ and Lemma~\\ref{palm:omissi"
     },
     {
       "from": "m2-palm-omissions",
       "to": "m2-palm-augmented-comparison",
+      "label": "palm:omissions",
       "context": "ve uniformly bounded degrees, so Lemma~\\ref{palm:counts} applies. For the third term use $\\E[T_v^{\\mathrm{rel}}M_w^4] \\le C_jD^{4x}\\E M_w+O(D^{-A})$ and Lemma~\\ref{palm:omissions}. On omitted first tags or data the density is zero, so the fourth error is exactly the omitted reference mass. The sam"
     },
     {
       "from": "m2-palm-local-comparison",
       "to": "m2-palm-augmented-comparison",
+      "label": "palm:local-comparison",
       "context": "[Proof of Proposition~\\ref{palm:local-comparison}] Let $q$ be the Lebesgue density of the common projection $\\nu_{v,w}$. Conditional Jensen under the projection gives \\["
     },
     {
       "from": "m2-palm-omissions",
       "to": "m2-long-mass",
+      "label": "palm:omissions",
       "context": "The omitted tags, failed endpoint neighborhoods and route-existence rejections have total weighted mass $O(D^{-1-c})+o_K(1)$ by Lemma~\\ref{palm:omissions} and Proposition~\\ref{rt:routes}. For the latter use the marginal bad-site bound in an $O(R^3)$ neighborhood, the expon"
     },
     {
       "from": "m2-rt-routes",
       "to": "m2-long-mass",
+      "label": "rt:routes",
       "context": "tags, failed endpoint neighborhoods and route-existence rejections have total weighted mass $O(D^{-1-c})+o_K(1)$ by Lemma~\\ref{palm:omissions} and Proposition~\\ref{rt:routes}. For the latter use the marginal bad-site bound in an $O(R^3)$ neighborhood, the exponentially small probability of a"
     },
     {
       "from": "m2-lp-good-probability",
       "to": "m2-long-mass",
+      "label": "lp:good-probability",
       "context": "events smaller than any power of $D$. It remains to check the subprobability steps near the two ends. Use the full-path count and motion event of Proposition~\\ref{lp:good-probability} in the enlarged endpoint neighborhoods solely to estimate the discarded mass; it is not added to the conditional bridge"
     },
     {
       "from": "m2-lp-insertion",
       "to": "m2-long-mass",
+      "label": "lp:insertion",
       "context": "n this event, a pinned trial with a separated midpoint has probability at least $3/4$. Indeed, start with the full original obstacle collection in Proposition~\\ref{lp:insertion}, delete any replaced originals, and add the already generated paths. Only boundedly many added paths can meet the tria"
     },
     {
       "from": "m2-lp-insertion",
       "to": "m2-long-normalizers",
+      "label": "lp:insertion",
       "context": "The conditional distribution of any one original path, given all the others, is bounded by $c_0^{-1}B_l$ with $c_0=3/4$, by Proposition~\\ref{lp:insertion}. This remains true after arbitrary checks have been removed. Every reduced normalizer is positive by inserting its co"
     },
     {
       "from": "m2-lp-trial-density",
       "to": "m2-long-shared-density",
+      "label": "lp:trial-density",
       "context": "product bridge law. A middle stage, conditional on all these originals and on the preceding history, has primary marginal at most $C D^{Cx}B_l$, by Corollary~\\ref{lp:trial-density} and its acceptance probability at least $1/2$. A pin has primary conditional bridge law at most $2\\1_{\\rm range}(y) B_"
     },
     {
       "from": "m2-long-kernel",
       "to": "m2-long-shared-density",
+      "label": "long:kernel",
       "context": "e discarded in this upper bound, so the retained cutoff is independent of the preceding history. This cutoff conditional bridge is the kernel $\\nu_r$ in Lemma~\\ref{long:kernel}. Both estimates hold uniformly in the history, including histories obtained after deleting some outside checks. Apply"
     },
     {
       "from": "m2-long-transitions",
       "to": "m2-long-product",
+      "label": "long:transitions",
       "context": "T$ have common labels. Only shared output coordinates are identified by the integration against $B_U$. Suppose first that the sets are disjoint. Apply Lemma \\ref{long:transitions}, delete the union output-admissibility indicator in an upper bound, and integrate with the separate protocols. The ter"
     },
     {
       "from": "m2-long-shared-density",
       "to": "m2-long-product",
+      "label": "long:shared-density",
       "context": "^-f_T B_T$, with the original tag indicators included. Integrating unshared output coordinates leaves the product of their marginals on $A=S\\cap T$. By Lemma~\\ref{long:shared-density}, one of these marginal densities is at most $G_D^q$; the other has integral at most one. Thus the free output integral"
     },
     {
       "from": "m2-long-product",
       "to": "m2-long-augmented-moments",
+      "label": "long:product",
       "context": "od keep the common first-tag factor $h_{v,i}/T_v$. Conditional on the outside of $S\\cup T$ it is fixed, because neither changed set contains $i$. Apply Lemma~\\ref{long:product} to the two choices. The conditional expectation in its disjoint leading term is exactly the original expectation of th"
     },
     {
       "from": "m2-long-label-average",
       "to": "m2-long-augmented-moments",
+      "label": "long:label-average",
       "context": "left(\\sum_j\\frac{h_{w,j}}{T_w}\\right)^2\\right] =\\E[T_v^{\\rm rel}(T_w^{\\rm rel})^2]. \\] The errors and intersecting choices are controlled by Lemma~\\ref{long:label-average} and \\eqref{long:route-average}. This proves \\eqref{long:second-moment}. The mass bound is Lemma~\\ref{long:mass}. For"
     },
     {
       "from": "m2-long-mass",
       "to": "m2-long-augmented-moments",
+      "label": "long:mass",
       "context": "ting choices are controlled by Lemma~\\ref{long:label-average} and \\eqref{long:route-average}. This proves \\eqref{long:second-moment}. The mass bound is Lemma~\\ref{long:mass}. For the right augmented estimate keep the same two-copy construction, and hence the same common measure. Reverse onl"
     },
     {
       "from": "m2-rt-routes",
       "to": "m2-long-augmented-moments",
+      "label": "rt:routes",
       "context": "ter the fill without meeting the bad component. Thus every site of $Q_v$ lies outside every such fill. The component-size cutoff is unchanged, so Proposition~\\ref{rt:routes} applies with the common terminal endpoint and the noncommon endpoints in $Q_v$. The preceding calculation therefore giv"
     },
     {
       "from": "m2-long-comparison",
       "to": "m2-long-augmented-moments",
+      "label": "long:comparison",
       "context": "[Proof of Proposition~\\ref{long:comparison}] The augmented reference has mass $\\E T_v^{\\rm rel}$, while its common measure has mass $\\int\\ell_{v,w}\\,\\dd P_{{\\rm au"
     },
     {
       "from": "m2-palm-counts",
       "to": "m2-long-augmented-moments",
+      "label": "palm:counts",
       "context": "emains zero on the omitted reference events; their loss was included in the mass estimate. Outside the negligible count tails, $T_v^{\\rm rel}\\le C/f_0$. Lemma~\\ref{palm:counts} and the uniform marginal weights of the ordered cell pairs therefore bound the main term of \\eqref{long:centered-second"
     },
     {
       "from": "m2-palm-reference",
       "to": "m2-long-augmented-moments",
+      "label": "palm:reference",
       "context": "ffinity and preserves both masses. Project both augmented comparisons to the common ordered bath. Their reference densities are $s_v^2$ and $s_w^2$, by Lemma~\\ref{palm:reference}, and their common projected density is that of $\\nu_{vw}$. The triangle inequality in $L^2$ and the two bounds \\eqref{"
     }
   ]

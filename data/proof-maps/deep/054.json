@@ -257,7 +257,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Irrational-cubic-fourfolds-with-geometric-K3-categories-September-24-2026/Irrational-cubic-fourfolds-with-geometric-K3-categories-September-24-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Irrational cubic fourfolds with geometric K3 categories; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Irrational cubic fourfolds with geometric K3 categories.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -445,8 +445,6 @@
           "source": "Whole transcendental lattices under factorization",
           "detail": "[The contribution forced by rationality] Let M be a rationally connected smooth projective fourfold with \\[ h^ 3,1 (M)=1, rankT_M=21, |discT_M|=d>2, End_ Hdg (T_ M, )=. \\] Let S consist of the…",
           "dependsOn": [
-            "m1-pre-weak-factorization",
-            "m1-gw-blocks",
             "m1-gw-hodge",
             "m1-gw-k3-center",
             "m1-pre-mrc-fibration",
@@ -482,7 +480,6 @@
           "source": "Uniform bounds for the link diagrams",
           "detail": "[Bounded data exclude large K3 degrees] Fix the finite-type families occurring in each of the following statements, and fix an integer N1 . There is an integer b , depending only on these families…",
           "dependsOn": [
-            "m1-bd-bounded-mrc",
             "m1-bd-pencil"
           ]
         },
@@ -564,7 +561,6 @@
           "detail": "[Bounded terminalization diagrams] Let (T,) range over a bounded collection of projective klt log-Fano pairs with fixed finite rational coefficient set and bounded marked support. There is a bounded…",
           "dependsOn": [
             "m1-bd-cartier-strata",
-            "m1-bd-snc-places",
             "m1-bd-contractions"
           ]
         },
@@ -590,9 +586,7 @@
           "detail": "[Order of the uniform choices] For the conic-base ends V/T of ordinary fourfold links in the paths of Theorem~ , over Q with Q1 , a single rational number \\[ 0<c<1/4 \\] can be fixed such that the…",
           "dependsOn": [
             "m1-bd-diagrams",
-            "m1-bd-coefficient",
-            "m1-bd-terminalization",
-            "m1-bd-exclusions"
+            "m1-bd-coefficient"
           ]
         },
         {
@@ -709,9 +703,7 @@
           "kind": "lemma",
           "source": "An intrinsic correction on conic-bundle nodes",
           "detail": "[Residues in a bounded diagram] Suppose that a normal projective model of a genus-zero presentation L/k occurs in a bounded family of diagrams \\[ Y S, \\] where S is a normal projective surface model…",
-          "dependsOn": [
-            "m1-bd-pencil"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-sf-unique",
@@ -795,7 +787,6 @@
           "source": "Cubic fourfolds of admissible discriminant",
           "detail": "[An irrationality criterion] There is an integer d_0 with the following property. Let X be a smooth complex cubic fourfold, and let \\[ A_X=H^4(X,) H^ 2,2 (X), T_X=A_X^ H^4(X,). \\] Suppose that \\[…",
           "dependsOn": [
-            "m1-sf-vanishing",
             "m1-gw-k3-center",
             "m1-gw-net-center"
           ]
@@ -811,7 +802,6 @@
           "dependsOn": [
             "m1-sf-vanishing",
             "m1-cor-associated-k3",
-            "m1-cor-hilbert-square",
             "m1-cor-chow-diagonal"
           ]
         }
@@ -832,7 +822,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

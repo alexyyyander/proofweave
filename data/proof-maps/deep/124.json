@@ -157,7 +157,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-polynomial-time-algorithm-for-three-machine-unit-job-scheduling-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -261,9 +261,7 @@
           "kind": "lemma",
           "source": "Separators with a shared cutoff",
           "detail": "[Shared-cutoff walk] Fix a normalized full schedule of a domain and let \\(S\\) and \\(S^+\\) be consecutive priority prefixes, differing by the promotion of one job from high to low. Suppose \\(s\\) is a…",
-          "dependsOn": [
-            "m1-lem-lex-prefix"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-any-ideal",
@@ -273,9 +271,7 @@
           "kind": "corollary",
           "source": "Separators with a shared cutoff",
           "detail": "Every ideal of a nonempty set with a full schedule has an actual separator in some full schedule of that set.",
-          "dependsOn": [
-            "m1-lem-shared"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-edge-labels",
@@ -316,8 +312,7 @@
           "source": "Short global lists and changes of direction",
           "detail": "For either update, assuming in the switch case, the pre-pruning qualifier union on \\(W\\) is exactly \\(W S\\). On these high jobs the pre-pruning key order agrees with the side's priority order. After…",
           "dependsOn": [
-            "m1-lem-carry",
-            "m1-lem-edge-labels"
+            "m1-lem-carry"
           ]
         },
         {
@@ -328,9 +323,7 @@
           "kind": "lemma",
           "source": "Short global lists and changes of direction",
           "detail": "Every pruned list produced by this construction has at most five entries. At most three of them are injections from its current run.",
-          "dependsOn": [
-            "m1-lem-update-labels"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-flatten",
@@ -350,9 +343,7 @@
           "kind": "lemma",
           "source": "Short global lists and changes of direction",
           "detail": "[A short extension of an earlier low set] Consider an already constructed edge from a parent \\(U\\) to a child \\(W\\), in its old working frame. Its low cutoff \\(H_- U\\) has a global downset extension…",
-          "dependsOn": [
-            "m1-lem-list-length"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-g",
@@ -362,9 +353,7 @@
           "kind": "lemma",
           "source": "Short global lists and changes of direction",
           "detail": "The set \\(G\\) in is a global upset satisfying both properties in .",
-          "dependsOn": [
-            "m1-lem-edge-labels"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-entry-size",
@@ -374,9 +363,7 @@
           "kind": "lemma",
           "source": "Short global lists and changes of direction",
           "detail": "Every entry constructed above has fewer than \\(40\\) leaves. This bound persists through any number of same-direction updates.",
-          "dependsOn": [
-            "m1-lem-old-low"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-past",
@@ -387,9 +374,6 @@
           "source": "Preserving the global boundary invariants",
           "detail": "The updated child list satisfies Invariant~ .",
           "dependsOn": [
-            "m1-lem-update-labels",
-            "m1-lem-g",
-            "m1-lem-carry",
             "m1-lem-shared"
           ]
         },
@@ -403,8 +387,6 @@
           "detail": "The pruned child list satisfies Invariant~ , with its quantifier over all feasible reorderings of \\(W'\\).",
           "dependsOn": [
             "m1-lem-update-labels",
-            "m1-lem-prune",
-            "m1-lem-lex-prefix",
             "m1-lem-carry"
           ]
         },
@@ -416,9 +398,7 @@
           "kind": "proposition",
           "source": "Preserving the global boundary invariants",
           "detail": "Starting from any feasible full schedule, the marking and list construction is defined at every node. Its pruned lists are global upset lists of length at most five, with fewer than \\(40\\) leaves per…",
-          "dependsOn": [
-            "m1-lem-edge-labels"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-global-child",
@@ -428,9 +408,7 @@
           "kind": "lemma",
           "source": "Global interval predicates and completion",
           "detail": "In the valid construction of , let \\(W'=(a',b')\\) be a child of \\(W=(a,b)\\), with parent center \\(v\\), edge cutoff \\(S\\), new pruned list \\('\\), and cutoff predicate \\( S\\) satisfying . In the edge's…",
-          "dependsOn": [
-            "m1-lem-edge-labels"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-relative-splits",
@@ -440,9 +418,7 @@
           "kind": "lemma",
           "source": "Global interval predicates and completion",
           "detail": "Every marked slot \\(z\\) in a node \\(W\\) has a bounded relative description of its earlier jobs in either the working direction that produced it or the original direction. The formulas use the stated…",
-          "dependsOn": [
-            "m1-lem-separator-description"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-final-count",
@@ -452,12 +428,7 @@
           "kind": "lemma",
           "source": "Global interval predicates and completion",
           "detail": "The predicates in have fewer than \\(500\\) leaves.",
-          "dependsOn": [
-            "m1-thm-structure",
-            "m1-prop-construction-valid",
-            "m1-lem-global-child",
-            "m1-lem-relative-splits"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -476,7 +447,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

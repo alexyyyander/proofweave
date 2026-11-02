@@ -422,7 +422,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Endpoint-convergence-for-the-planar-Schrodinger-equation-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Endpoint convergence for the planar Schrodinger equation; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Endpoint convergence for the planar Schrodinger equation.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -621,8 +621,7 @@
           "detail": "[Binary derivative] For almost every path, G(s)\\ 0,1\\ for almost every s .",
           "dependsOn": [
             "m1-lem-transverse-angular-choice",
-            "m1-lem-transverse-costs",
-            "m1-lem-transverse-block-test"
+            "m1-lem-transverse-costs"
           ]
         },
         {
@@ -644,7 +643,6 @@
           "source": "A power saving for transverse inputs",
           "detail": "[Finite alternation and a full-to-empty jump] Almost surely E agrees modulo null sets with a finite union of intervals and has an interior transition from an interval of full measure to an interval…",
           "dependsOn": [
-            "m1-lem-transverse-hills",
             "m1-lem-transverse-block-test"
           ]
         },
@@ -693,10 +691,7 @@
           "detail": "[Broad saving] There is an absolute c_b>0 such that, whenever K s^ c_b , the broad part of the functional in a ball of radius O(s^2) satisfies _ Q broad (Q)^ 2/3 \\|V\\|_ L^6(Q) ^2 s^ -c_b m_0^ 2/3 s^…",
           "dependsOn": [
             "m1-lem-transverse-product",
-            "m1-prop-transverse",
             "m1-prop-sparse",
-            "m1-lem-packets",
-            "m1-lem-fractal",
             "m1-lem-sparse-layers"
           ]
         },
@@ -817,9 +812,7 @@
           "kind": "lemma",
           "source": "Rich tubes lie in a short list of plates",
           "detail": "[A truncated parameter energy] Let H1 and let be a finite measure on ^2 of mass m , satisfying \\[ (B(z,r)) A r^ 1+ (z^2,\\ r H^ -1 ), A>0. \\] Set =/(1+) . Then \\ H,|z-z'|^ -1 \\ \\,d(z')\\,d(z) C_ A^…",
-          "dependsOn": [
-            "m1-prop-rich"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-distribution",
@@ -881,10 +874,7 @@
           "kind": "lemma",
           "source": "The dyadic distribution estimate",
           "detail": "[Frame estimate for one tuple] For every tuple remaining after , M_0 _0^ -C mh B_1^2B_2^2 A_ _1 ^2A_ _2 ^2 (h^3E_1 A_ _1 ^2 +h^3E_2 A_ _2 ^2 ). In particular, ^6M_0^3 _0^ -C (1+_1+_2)^C m^3h^ 10…",
-          "dependsOn": [
-            "m1-thm-frame",
-            "m1-thm-distribution"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-shortmax",
@@ -941,9 +931,7 @@
           "kind": "theorem",
           "source": "Endpoint square summation and the order of limits",
           "detail": "[Local strong maximal estimate] There is a constant C such that, for every f H^ 1/3 (^2) whose Fourier transform has compact support and every x_0^2 , _ B(x_0,1) _ 0 t<1 |S(t)f(x)|\\,dx C\\|f\\|_ H^ 1/3…",
-          "dependsOn": [
-            "m1-lem-endpoint-square-sum"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-endpoint-heat-envelope",
@@ -972,7 +960,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Endpoint-pointwise-convergence-for-the-Schrodinger-equation-in-higher-dimensions-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Endpoint pointwise convergence for the Schrodinger equation in higher dimensions; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Endpoint pointwise convergence for the Schrodinger equation in higher dimensions.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1033,10 +1021,7 @@
           "kind": "proposition",
           "source": "Packet estimates and a near-Cauchy bound",
           "detail": "[Arbitrary auxiliary weights] Let 2<p q_k , and let f_T be band-limited packets of scale N . For b_T0 , require f_T=0 if b_T=0 , and set B_b(z)^2=_Tb_T^2w_T(z) . Then, for every >0 , B_b(z)^ 2-p…",
-          "dependsOn": [
-            "m2-p-buffered-refined",
-            "m2-p-reproduction"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-p-local-linear",
@@ -1076,11 +1061,7 @@
           "kind": "proposition",
           "source": "Packet estimates and a near-Cauchy bound",
           "detail": "[Weighted transport through a hierarchy] Take nested frequency grids at scales K<K' , rounded within fixed factors. Assemble all child fields in each parent cap, and localize them on its parent…",
-          "dependsOn": [
-            "m2-p-weighted",
-            "m2-p-convolution",
-            "m2-p-reproduction"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-p-near-cauchy",
@@ -1102,11 +1083,7 @@
           "detail": "[A polynomial starting bound] Under the hypotheses of , there is a fixed finite M_k such that |Y| C(2+R)^ M_k _Ts_T^2.",
           "dependsOn": [
             "m2-p-weighted",
-            "m2-p-local-linear",
-            "m2-p-near-cauchy",
-            "m2-p-hierarchy",
-            "m2-p-convolution",
-            "m2-p-reproduction"
+            "m2-p-near-cauchy"
           ]
         },
         {
@@ -1137,9 +1114,7 @@
           "kind": "lemma",
           "source": "The transverse frame estimate",
           "detail": "[Clipped smoothing] Fix C_3 sufficiently large. There is a fixed L such that, with K_0=HS^L h , each cap field V_b admits a scale- K_0 packet representation with integrated square energy at most CD…",
-          "dependsOn": [
-            "m2-f-exact"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-f-selection",
@@ -1173,9 +1148,7 @@
           "kind": "lemma",
           "source": "The transverse frame estimate",
           "detail": "[Restricted path law] For the selected tree, and for each of the directional restrictions constructed below, one can draw a uniform root point Z from a subpower fraction of Y and then a path to a…",
-          "dependsOn": [
-            "m2-f-selection"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-f-conditioning",
@@ -1195,11 +1168,7 @@
           "kind": "lemma",
           "source": "The transverse frame estimate",
           "detail": "[Angular test and original broad witnesses] Fix one field, a cap parameter l away from the endpoints and the transition seam, and a finite mesh of 0<v u with l+Cu<e_i . Suppose that \\[…",
-          "dependsOn": [
-            "m2-p-weighted",
-            "m2-f-selection",
-            "m2-f-paths"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-f-inflation",
@@ -1211,8 +1180,7 @@
           "detail": "[Ball inflation in a cap] Work inside a cap _l of the preceding lemma, and suppose f(l+v)-f(l)=-xv+O( u) on the required finite mesh in [0,2u] . Put d_0=1-2x/k . For the isotropic cell Q_v of radius…",
           "dependsOn": [
             "m2-f-angular",
-            "m2-p-kakeya",
-            "m2-p-hierarchy"
+            "m2-p-kakeya"
           ]
         },
         {
@@ -1251,8 +1219,7 @@
           "source": "The transverse frame estimate",
           "detail": "[Cross-field one-step inflation] Let K R K^2 be two inverse widths in a fixed finite packet tree. At scale K , let W_j , 1 j m=k+1 , be the original selected packet fields testing the root high set,…",
           "dependsOn": [
-            "m2-p-local-multilinear",
-            "m2-p-kakeya"
+            "m2-p-local-multilinear"
           ]
         },
         {
@@ -1264,8 +1231,7 @@
           "source": "The transverse frame estimate",
           "detail": "[Vanishing left limit] In the subpower case, _ s- d_i(s)=0 for every i. Consequently f_i(0)=0 , including when e_i=0 .",
           "dependsOn": [
-            "m2-p-hierarchy",
-            "m2-f-cross-field-inflation"
+            "m2-p-hierarchy"
           ]
         },
         {
@@ -1320,10 +1286,7 @@
           "kind": "corollary",
           "source": "Fractal norms, compact arrays, and norm transport",
           "detail": "[Power-loss norm for compact arrays] Let U be a compact array of scale L , and let satisfy in a spacetime box of side O(L^2) . For every >0 , with sufficiently many fixed profile derivatives,…",
-          "dependsOn": [
-            "m2-d-layers",
-            "m2-d-fractal"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-d-strip-decoupling",
@@ -1353,10 +1316,7 @@
           "kind": "proposition",
           "source": "Fractal norms, compact arrays, and norm transport",
           "detail": "[Codimension-two strip saving] Fix 0<<1/8 . Suppose g has bounded frequency support contained in an O(S^ - ) neighborhood of an affine (n-2) -plane, and Q is a collection of unit cubes in a ball of…",
-          "dependsOn": [
-            "m2-d-packet-expansion",
-            "m2-d-fractal"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -1381,7 +1341,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

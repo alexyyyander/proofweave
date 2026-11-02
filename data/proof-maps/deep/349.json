@@ -167,7 +167,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Solomon-Yau-least-volume-theorem-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Solomon–Yau least-volume theorem; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Solomon–Yau least-volume theorem.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -199,7 +199,6 @@
           "source": "Normalization and the immersion reduction",
           "detail": "[Immersion reduction] Let \\(F:M^m S^ m+1 \\) be a smooth minimal immersion of a closed manifold, with \\(m2\\). If some image point has \\(q\\) preimages, then \\[ (M,F^*g_ round ) q_m. \\] In particular,…",
           "dependsOn": [
-            "m1-lem-cone-operation",
             "m1-lem-clifford-ratios"
           ]
         },
@@ -469,8 +468,7 @@
           "source": "Low-density cones and attainment",
           "detail": "[Spherical stationary output] Under the outer induction hypothesis of Proposition~ , let V0 be a stationary integral m -varifold in S^ m+1 with M(V)<a_m . If m=2 or 3 , assume additionally that C(V)…",
           "dependsOn": [
-            "m1-lem-cone-operation",
-            "m1-prop-low-density-cones"
+            "m1-lem-cone-operation"
           ]
         },
         {
@@ -482,11 +480,9 @@
           "source": "Low-density cones and attainment",
           "detail": "[A least counterexample] Fix m2 and assume Theorem~ in dimensions 2,,m-1 . Suppose the class E_m of smooth closed connected embedded minimal hypersurfaces S^ m+1 satisfying \\[ is not totally…",
           "dependsOn": [
-            "m1-prop-lorentz-family",
             "m1-lem-detection-gap",
             "m1-lem-cone-operation",
             "m1-prop-low-density-cones",
-            "m1-thm-volume",
             "m1-prop-immersion-reduction",
             "m1-prop-index-rigidity",
             "m1-thm-minmax",
@@ -510,7 +506,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -62,7 +62,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-logarithmic-Brunn-Minkowski-conjecture-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The logarithmic Brunn–Minkowski conjecture; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The logarithmic Brunn–Minkowski conjecture.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -93,9 +93,7 @@
           "kind": "proposition",
           "source": "From a variance bound to volume",
           "detail": "[Variance bound] Let n2 , N1 , q2 be an even integer, and >0 . Let p_1,,p_N^n\\ 0\\ and h_1,,h_N>0 . Set _i(x)=( p_i,x h_i )^q, V(x)= 2 |x|^2+_ i=1 ^N_i(x), d=Z^ -1 e^ -V(x) \\,dx, where Z=_ ^n e^ -V(x)…",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-moment",
@@ -126,11 +124,9 @@
           "source": "A tensor estimate for the divergence tests",
           "detail": "[Moment-coordinate tensor estimate] Let d=Z^ -1 e^ -V dx and d=e^ - dz be smooth probability measures on ^n . Suppose D_z^2 is positive definite and x=(z) is a smooth diffeomorphism pushing to . For…",
           "dependsOn": [
-            "m1-prop-variance",
             "m1-lem-moment",
             "m1-lem-density",
-            "m1-thm-main",
-            "m1-cor-lp"
+            "m1-thm-main"
           ]
         },
         {
@@ -141,9 +137,7 @@
           "kind": "corollary",
           "source": "Volume and measure consequences",
           "detail": "[Measure inequality and scalar (B) -conjecture] Let n1 , let be an even log-concave Radon measure on ^n , and let K,L^n be origin-symmetric convex bodies. Then, for every 01 , ( W[h_K^ 1- h_L^]) (K)^…",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -162,7 +156,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

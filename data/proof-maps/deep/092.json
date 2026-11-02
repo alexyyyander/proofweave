@@ -157,7 +157,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-single-lattice-covering-bound-of-order-n-log-n-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A single-lattice covering bound of order n log n; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A single-lattice covering bound of order n log n.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -218,9 +218,7 @@
           "kind": "lemma",
           "source": "Folded Gaussian blocks",
           "detail": "[Usable anchors] There are absolute constants A,B>0 with the following property. Let b B be an integer, and use the objects in Lemma~ . Suppose that H is a finite abelian group, |H| b^4 , and g_0:H…",
-          "dependsOn": [
-            "m1-lem-sampler"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-block-cell",
@@ -263,9 +261,7 @@
           "source": "One shear and exact coverage",
           "detail": "[Completion] Let K^n be a convex body and a full-rank lattice. If its hole proportion =1-|_(K)| satisfies \\[ <(1-)k^ -n \\] for a positive integer k , then (1+1/k)K+=^n .",
           "dependsOn": [
-            "m1-thm-main",
             "m1-prop-vertical",
-            "m1-lem-sections",
             "m1-lem-horizontal",
             "m1-lem-shear"
           ]
@@ -284,7 +280,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Translative-covering-densities-of-order-n-log-n-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Translative covering densities of order n log n; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Translative covering densities of order n log n.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -389,7 +385,6 @@
           "detail": "[Witnesses for residual lists] Fix A_0>0 . There are constants A,C_*,H>0 such that, for all sufficiently large n , the following holds. Let R1 , and let (x_ i )_ i=1 ^ m_ , A , be any finite nonempty…",
           "dependsOn": [
             "m2-lem-caps",
-            "m2-prop-blocks",
             "m2-cor-caps-disjoint"
           ]
         },
@@ -411,9 +406,7 @@
           "kind": "lemma",
           "source": "Many targets for each finite pattern",
           "detail": "[Separated targets] Fix H>0 and k_0>0 . For all sufficiently large n , let P=(p_1,,p_N) be a deterministic list satisfying \\[ N n^ k_0 (_0n), \\] and let G B_D\\ p_1,,p_N\\ be measurable with |G|_nD^n/4…",
-          "dependsOn": [
-            "m2-lem-cylinder"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-pattern-tail",
@@ -426,10 +419,8 @@
           "dependsOn": [
             "m2-prop-localization",
             "m2-lem-caps",
-            "m2-cor-witnesses",
             "m2-lem-targets",
             "m2-prop-poisson",
-            "m2-thm-main",
             "m2-lem-volume",
             "m2-prop-periodization"
           ]
@@ -455,7 +446,6 @@
           "source": "Rational polytopes and normal lists",
           "detail": "With the same c and n_0 as in Theorem~ , for every n n_0 there is a centrally symmetric polytope P_n R^n with rational vertices such that \\[ _T(P_n)>c n n. \\]",
           "dependsOn": [
-            "m2-thm-main",
             "m2-prop-periodization"
           ]
         },
@@ -502,7 +492,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

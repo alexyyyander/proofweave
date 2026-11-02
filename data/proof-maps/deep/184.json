@@ -152,7 +152,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Correspondence-Coloring-Graphs-with-a-Forbidden-Clique-October-5-2026/correspondence-coloring-forbidden-clique.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Correspondence coloring graphs with a forbidden clique; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Correspondence coloring graphs with a forbidden clique.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -296,9 +296,7 @@
           "source": "Coloring rounds with dependent entry weights",
           "detail": "[Collision bound] Let E_v be the set of edges of H with an endpoint hosted at a neighbor of v in G' , and let X_v count the edges of E_v whose two endpoints activate. Then (4K^ -0.99 X_v>) O(^3)e^…",
           "dependsOn": [
-            "m1-prop-one-round",
-            "m1-lem-round-expectation",
-            "m1-thm-main"
+            "m1-lem-round-expectation"
           ]
         }
       ]
@@ -315,7 +313,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Logarithmic-Independence-Bound-for-Clique-Free-Graphs-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A logarithmic independence bound for clique-free graphs; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A logarithmic independence bound for clique-free graphs.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -445,8 +443,7 @@
           "dependsOn": [
             "m2-lem-triangle-peeling",
             "m2-lem-weighted-splitting",
-            "m2-lem-invariant-preservation",
-            "m2-thm-weighted-triangles"
+            "m2-lem-invariant-preservation"
           ]
         },
         {
@@ -485,7 +482,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

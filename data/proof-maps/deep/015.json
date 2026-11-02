@@ -237,7 +237,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Equidistribution-of-Prime-Degree-Torus-Packets-with-Arbitrary-Local-Type-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Equidistribution of Prime-Degree Torus Packets with Arbitrary Local Type; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Equidistribution of Prime-Degree Torus Packets with Arbitrary Local Type.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -350,7 +350,6 @@
           "source": "Entropy and identification of the limit",
           "detail": "[Entropy in the ergodic components] Under the hypotheses of Proposition~ , almost every A_n -ergodic component of has positive entropy for a(1) .",
           "dependsOn": [
-            "m1-prop-entropy-from-balls",
             "m1-thm-main",
             "m1-prop-tightness",
             "m1-prop-ball-bound"
@@ -364,9 +363,7 @@
           "kind": "proposition",
           "source": "Adelic formulation and choices",
           "detail": "The adelic torus quotient is compact. Its packet and canonical probability agree with P_ K,M(g_f),' and _ K,M(g_f),' for an ordering ' of the real embeddings. Every prescribed local homothety type…",
-          "dependsOn": [
-            "m1-lem-packet-model"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -382,7 +379,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Equidistribution-of-Primitive-Sextic-Torus-Packets-October-5-2026/primitive-sextic-torus-packets.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Equidistribution of Primitive Sextic Torus Packets; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Equidistribution of Primitive Sextic Torus Packets.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -575,7 +572,6 @@
           "source": "A product rule for the plaque probabilities",
           "detail": "In each chart , the limiting \\(V\\)-plaque probability is a product in the coordinates \\(w,u\\). Its \\(u\\) marginal agrees with the \\(U\\)-plaque probability at the sampled state. Consequently there is…",
           "dependsOn": [
-            "m2-lem-patch-comparison",
             "m2-prop-plaque-comparison"
           ]
         },
@@ -607,9 +603,7 @@
           "kind": "proposition",
           "source": "Active roots and their support",
           "detail": "[Composition and positive-root support] Almost surely, activity is transitively closed: \\[ a_ pq ()a_ qr () (1-a_ pr ())=0 (p,q,r distinct). \\] Let b L be regular, let V be the pattern group of all b…",
-          "dependsOn": [
-            "m2-thm-product"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-va-support",
@@ -678,9 +672,6 @@
           "source": "Activity along long diagonal segments",
           "detail": "Fix finitely many atoms S of P , with their VA charts, and an interior transverse depth l_i R_i . Suppose that probabilities _i C_i satisfy A_ J,i \\,_i0 . Condition on one of these symbols S and on…",
           "dependsOn": [
-            "m2-lem-va-support",
-            "m2-prop-segment-activity",
-            "m2-lem-entropy-partition",
             "m2-prop-bowen"
           ]
         },
@@ -703,7 +694,6 @@
           "source": "Combining the root orientations",
           "detail": "For any such convergent subsequence, the limiting law and its prelimit arrays have the following properties. Almost surely, for every v_0 L with rational coordinates, every oriented cut J , and every…",
           "dependsOn": [
-            "m2-prop-segment-activity",
             "m2-lem-activity-indicators"
           ]
         },
@@ -715,9 +705,7 @@
           "kind": "lemma",
           "source": "Combining the root orientations",
           "detail": "If fails for some root, there is a subsequence and a deterministic choice of arrays (G_ ,i )_ , each taken from , with the following properties: G_ ,i F_ weak-* on bounded intervals, and the…",
-          "dependsOn": [
-            "m2-lem-root-line-laws"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-positive-root-intervals",
@@ -767,7 +755,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

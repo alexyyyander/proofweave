@@ -317,7 +317,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-L3-bound-for-the-trilinear-Hilbert-transform-October-5-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from An <i>L</i><sup>3</sup> bound for the trilinear Hilbert transform; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from An <i>L</i><sup>3</sup> bound for the trilinear Hilbert transform.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -369,9 +369,7 @@
           "source": "Local forms and the outer reduction",
           "detail": "[Outer reduction] Proposition~ implies Theorem~ , and Theorem~ implies Theorem~ .",
           "dependsOn": [
-            "m1-prop-normalized",
-            "m1-thm-local",
-            "m1-thm-main"
+            "m1-prop-normalized"
           ]
         },
         {
@@ -512,8 +510,7 @@
           "source": "Quadratic charts and local detection",
           "detail": "[Continuous bounded inverse] For \\(0<<1/2\\), let \\(g\\) be supported on an interval \\(I\\), with \\(\\|g\\|_1\\) and \\(\\|g\\|_ U(I) \\). There is a bounded atom \\(\\) of complexity at most \\[…",
           "dependsOn": [
-            "m1-thm-lss",
-            "m1-lem-chart-operations"
+            "m1-thm-lss"
           ]
         },
         {
@@ -625,7 +622,6 @@
           "detail": "[Truncating the two high positions] For the tuple above, put k=k_t . There are an integer K_0 k^ O(1) , further bounded-packing segments, and nested projection families P^ new _a,P^ new _b on those…",
           "dependsOn": [
             "m1-cor-predictor-list",
-            "m1-lem-predictor-replacement",
             "m1-lem-two-accuracy-expansion"
           ]
         },
@@ -729,7 +725,6 @@
           "dependsOn": [
             "m1-lem-same-tag",
             "m1-lem-compression",
-            "m1-lem-usable-bessel",
             "m1-lem-tag-separation"
           ]
         },
@@ -742,7 +737,6 @@
           "source": "Localization by quadratic curvature",
           "detail": "[Localization into current groups] For an active pattern in , there are poly(k) fixed search leaves such that, up to total absolute length-weighted error at most Ce^ -k |R| , each leaf contributes _…",
           "dependsOn": [
-            "m1-lem-historical-masks",
             "m1-lem-tag-separation"
           ]
         },
@@ -755,8 +749,7 @@
           "source": "Localization by quadratic curvature",
           "detail": "[Outgoing filters and near-band defects] At a use of , suppose slots a,b are fixed side states S_a,S_b , chosen independently of the helper catalog. Suppose the other two slots have whole arguments…",
           "dependsOn": [
-            "m1-lem-tag-separation",
-            "m1-lem-historical-masks"
+            "m1-lem-tag-separation"
           ]
         },
         {
@@ -790,10 +783,7 @@
           "kind": "lemma",
           "source": "Short depth blocks and side terms",
           "detail": "[Variation on certified endpoint cells] Let Z_ G,s be a basic coarse output in Equation~ . Consider a common collection of disjoint, or boundedly overlapping, depth intervals [r,t] . At each right…",
-          "dependsOn": [
-            "m1-lem-usable-bessel",
-            "m1-lem-compression"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-sides-stacks",
@@ -865,9 +855,7 @@
           "kind": "lemma",
           "source": "Linearization, persistent components, and tops",
           "detail": "[Coherence of good predicates] Good modes in one CURRENT component at height \\(h\\) have the same PRE component at height \\(h-\\). The core/side decision is constant on each minimal PRE component.…",
-          "dependsOn": [
-            "m1-lem-height-stabilization"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-entry-rank",
@@ -939,9 +927,7 @@
           "kind": "lemma",
           "source": "Linearization, persistent components, and tops",
           "detail": "[Hereditary representatives] Fix the height, role, group, and type. We can choose a representative mode \\(a E_ h- \\) for every successful component so that it is inherited whenever an earlier…",
-          "dependsOn": [
-            "m1-lem-height-stabilization"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-component-size",
@@ -966,7 +952,6 @@
           "dependsOn": [
             "m1-lem-hereditary-labels",
             "m1-lem-separated-mode-rows",
-            "m1-lem-lifted-row-compression",
             "m1-prop-linear-side",
             "m1-lem-component-size"
           ]
@@ -1020,7 +1005,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

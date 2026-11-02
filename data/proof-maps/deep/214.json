@@ -252,7 +252,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Nonuniqueness-of-percolation-on-nonamenable-quasi-transitive-graphs-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Nonuniqueness of percolation on nonamenable quasi-transitive graphs; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Nonuniqueness of percolation on nonamenable quasi-transitive graphs.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -273,9 +273,7 @@
           "kind": "corollary",
           "source": "Introduction",
           "detail": "[Arbitrary Cayley graphs] Let be a nonamenable finitely generated group, and let S be any finite symmetric generating set with the identity removed. For Bernoulli bond percolation on the simple…",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-critical-laws",
@@ -335,9 +333,7 @@
           "kind": "proposition",
           "source": "Preliminaries and the unimodular reduction",
           "detail": "[Reduction to a unimodular action] If (G) is nonunimodular, then < and T_ is bounded. For the proof of the operator gap it therefore remains to treat the case in which =(G) is unimodular.",
-          "dependsOn": [
-            "m1-pre-threshold-order"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-critical-operator",
@@ -439,9 +435,7 @@
           "kind": "lemma",
           "source": "Critical clusters remain controlled after deletions",
           "detail": "[A capped pivotal-radius tail] For the fixed (0,1/2) , there is c>0 such that, uniformly in x , all sufficiently large M , and integers 1 K M^ 1-s , _(s_x M, rad_ piv (C_x,x) KM^s/2) (- cK^2M^ 2 M ).",
-          "dependsOn": [
-            "m1-good-good-clusters"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-amp-scales",
@@ -514,7 +508,6 @@
           "source": "Amplifying local endpoint maps",
           "detail": "[Second moment of the load] There is a fixed polynomial Q(k,M)1 such that L^2 Q(k,M) u^ 2k whenever kM n/2 and n(W/u)^k.",
           "dependsOn": [
-            "m1-amp-splicing",
             "m1-amp-coding"
           ]
         },
@@ -526,10 +519,7 @@
           "kind": "lemma",
           "source": "Amplifying local endpoint maps",
           "detail": "[One amplification step] Fix an old map. For n N tending to infinity and k=O( n) with kM n/2 and n(W/u)^k , there is, for all sufficiently large such n , a new local map with parameters satisfying u'…",
-          "dependsOn": [
-            "m1-amp-efficient-maps",
-            "m1-amp-initial"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-mom-maximal-potential",
@@ -582,7 +572,6 @@
           "source": "Critical moments and susceptibility",
           "detail": "[An almost linear susceptibility bound] For every >0 there is C_< such that _ (p) C_(-p)^ -1- , 0 p<.",
           "dependsOn": [
-            "m1-mom-critical-moments",
             "m1-mom-decision-tree"
           ]
         },
@@ -634,9 +623,7 @@
           "kind": "proposition",
           "source": "Deformation by pivotal corridors",
           "detail": "[Small change of operator norm] For every t0 , 0 T_0-T_t 2t\\,T_0P^kT_0entrywise, m_t m_0-2t^km_0^2.",
-          "dependsOn": [
-            "m1-def-calibration"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-def-decrease",
@@ -666,9 +653,7 @@
           "kind": "lemma",
           "source": "Deformation by pivotal corridors",
           "detail": "[Two distinct exterior clusters] There is a constant C'>0 such that, for every induced domain D and u,v D , _p(X_t^D(u)X_t^D(v);\\ C_u^D C_v^D) s_t^D(u)s_t^D(v)-C'(_0^+)^2T_0^3(u,v). The constant is…",
-          "dependsOn": [
-            "m1-def-deletion"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-def-legs",
@@ -678,11 +663,7 @@
           "kind": "lemma",
           "source": "Deformation by pivotal corridors",
           "detail": "[Decomposition into two legs] On Q_w , suppose x C_u^ D_w , y C_v^ D_w , and C_u^ D_w C_v^ D_w . Then N^V_ xy c_k+N^ D_w _ xu +N^ D_w _ vy .",
-          "dependsOn": [
-            "m1-def-decrease",
-            "m1-def-correlation",
-            "m1-pre-trace"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-def-endpoint",
@@ -692,9 +673,7 @@
           "kind": "lemma",
           "source": "Deformation by pivotal corridors",
           "detail": "[Comparison along a path] If a simple path in D joins b to z and has length l , then s_t^D(b) e^ -tlc_k p^l s_t^D(z).",
-          "dependsOn": [
-            "m1-def-basic"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-path-selection",
@@ -715,9 +694,7 @@
           "source": "Paths with an escape at each endpoint",
           "detail": "[Smoothing a connection kernel] For all vertices a,b and integers l0 , (P^lT_0)(a,b)c_ \\,^l.",
           "dependsOn": [
-            "m1-path-selection",
-            "m1-def-deletion",
-            "m1-thm-critical-operator"
+            "m1-path-selection"
           ]
         },
         {
@@ -739,14 +716,10 @@
           "source": "Critical boundedness and the nonuniqueness interval",
           "detail": "[One coupling for an interval] Let G be infinite, connected, locally finite, and quasi-transitive. Suppose <p_1<p_2<1 and T_ p_2 is bounded on ^2(V) . In the coupling obtained by assigning…",
           "dependsOn": [
-            "m1-thm-main",
             "m1-thm-critical-operator",
             "m1-pre-unimodular-reduction",
             "m1-pre-threshold-order",
-            "m1-pre-simple-reduction",
-            "m1-con-critical-limit",
-            "m1-cor-critical-laws",
-            "m1-pre-critical-finiteness"
+            "m1-cor-critical-laws"
           ]
         }
       ]
@@ -766,7 +739,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

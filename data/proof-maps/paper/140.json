@@ -689,501 +689,601 @@
     {
       "from": "m1-h-dv-ambient-gram",
       "to": "m1-h-dv-gaussian-moment",
+      "label": "h:dv:ambient-gram",
       "context": "e common first noise contributes \\(\\delta^2\\mathbf1\\mathbf1^{\\mathsf T}\\), and the prefactor is \\((2\\pi)^{-m(p-1)/2}\\). On the full-rank tuples of Proposition~\\ref{h:dv:ambient-gram}, adding the positive definite noise covariance can only increase the determinant. Indeed, for positive definite \\(G\\)"
     },
     {
       "from": "m1-h-dv-finite-density",
       "to": "m1-h-proj-density-by-tests",
+      "label": "h:dv:finite-density",
       "context": "[Proof of Theorem~\\ref{h:dv:finite-density}] For a real \\(\\psi\\in C_c(\\mathbb R^{md}\\times\\mathbb R^m)\\), let \\(Z\\sim N(0,I_m)\\) be independent. Then \\[ \\int\\psi"
     },
     {
       "from": "m1-h-dv-gaussian-moment",
       "to": "m1-h-proj-density-by-tests",
+      "label": "h:dv:gaussian-moment",
       "context": "lta Z)\\, d\\gamma_m(A)d\\mu(s) \\longrightarrow\\int\\psi\\,d\\eta_\\mu \\] by bounded convergence, since \\(\\mu\\) is finite. H\\\"older's inequality and Lemma~\\ref{h:dv:gaussian-moment} bound the limiting functional by \\(\\mathcal B\\|\\psi\\|_{L^{p/(p-1)}(\\lambda_m)}\\). The measure \\(\\lambda_m\\) is locally"
     },
     {
       "from": "m1-h-dv-finite-density",
       "to": "m1-h-proj-normalized",
+      "label": "h:dv:finite-density",
       "context": "sitive mass contains a support point, and is contained in the ball of radius \\(2\\rho\\) about that point. Hence its mass is at most \\((2\\rho)^a\\). Apply Theorem~\\ref{h:dv:finite-density} with \\(\\beta=a\\), \\(p=q\\), \\(H=2^a\\), and support radius \\(R=1\\). For \\(0\\le j\\le q-2\\), the parameters in \\eqref{h:loc"
     },
     {
       "from": "m1-h-dv-finite-density",
       "to": "m1-h-block-bound",
+      "label": "h:dv:finite-density",
       "context": "tained in a sphere-centered ball of radius \\(2t\\). The local bound therefore gives \\[ \\mu_j(B(x,t))\\le(2Rt)^a \\qquad(x\\in\\mathbb R^d,\\ t>0). \\] Apply Theorem~\\ref{h:dv:finite-density} with exponent \\(\\beta=a\\), moment order \\(p=q\\), coefficient \\(H=(2R)^a\\), and support radius \\(r\\). The margin \\eqref{"
     },
     {
       "from": "m1-h-ev-ellipsoid",
       "to": "m1-h-block-bound",
+      "label": "h:ev:ellipsoid",
       "context": "of destinations. Since \\(0\\le g_j\\le1\\) and \\(\\sum_jg_j\\le1\\), the last integral is at most \\[ \\lambda_m(\\mathcal E_{z,r})\\le C_{\\mathrm E}^d r^m \\] by Lemma~\\ref{h:ev:ellipsoid}. Multiplication by its \\(1/q'=1-1/q\\) power restores the radius exponent: \\[ r^{a-m(1-1/q)}(r^m)^{1-1/q}=r^a. \\] Absor"
     },
     {
       "from": "m1-h-stream-categories",
       "to": "m1-h-stream-success",
+      "label": "h:stream:categories",
       "context": "Use the angular score in Lemma~\\ref{h:stream:categories}. Fix a seed and a prior-preserving Borel replacement as in Section~\\ref{h:stream:reduction}, with prior $\\sigma$. If $T"
     },
     {
       "from": "m1-h-local-caps",
       "to": "m1-h-stream-success",
+      "label": "h:local:caps",
       "context": "ing Borel replacement as in Section~\\ref{h:stream:reduction}, with prior $\\sigma$. If $T=0$, its output is a signal-independent mixture of terminal laws. Lemma~\\ref{h:local:caps} gives local mass at scale $\\epsilon$. The radius-two ball about a sphere point covers $S^{d-1}$, so total success is at"
     },
     {
       "from": "m1-h-block-bound",
       "to": "m1-h-stream-success",
+      "label": "h:block:bound",
       "context": "d monotonicity in the scale. For a block of length $m\\le q$, Lemma~\\ref{h:stream:categories} places every preceding continuation in the form required by Lemma~\\ref{h:block:bound}, with $N\\le(m+2)2^M\\le(q+2)2^M$. That block lemma multiplies the scale by at most \\[ \\exp(C_0d/a)N^{1/(aq)} \\] for an"
     },
     {
       "from": "m1-h-main",
       "to": "m1-h-ev-reflection",
+      "label": "h:main",
       "context": "[Proof of Theorem~\\ref{h:main}] Fix the finite constant \\(A>0\\) in the theorem. Take \\(d\\) above the absolute threshold in Proposition~\\ref{h:stream:s"
     },
     {
       "from": "m1-h-stream-success",
       "to": "m1-h-ev-reflection",
+      "label": "h:stream:success",
       "context": "[Proof of Theorem~\\ref{h:main}] Fix the finite constant \\(A>0\\) in the theorem. Take \\(d\\) above the absolute threshold in Proposition~\\ref{h:stream:success}, and large enough that \\(a\\ge1\\) and \\(q\\ge d/16\\). Put \\[ K_A=\\exp(C(1+A))>1,\\qquad L=\\log(1/\\epsilon),\\qquad B=\\lce"
     },
     {
       "from": "m1-h-subquadratic",
       "to": "m1-h-ev-reflection",
+      "label": "h:subquadratic",
       "context": "[Proof of Corollary~\\ref{h:subquadratic}] Since $M(d)=o(d^2)$, there is a dimension $d_M$ after which $M(d)\\le d^2$. Apply Theorem~\\ref{h:main} with the numeric"
     },
     {
       "from": "m1-h-worst-signal",
       "to": "m1-h-ev-reflection",
+      "label": "h:worst-signal",
       "context": "[Proof of Corollary~\\ref{h:worst-signal}] Average the original fixed-signal experiment over $S\\sim\\sigma$ before choosing Borel versions. Its measurability make"
     },
     {
       "from": "m1-h-stream-borel",
       "to": "m1-h-ev-reflection",
+      "label": "h:stream:borel",
       "context": "2/3$. Theorem~\\ref{h:main} and Corollary~\\ref{h:subquadratic} give the corresponding conclusions with their unchanged constants and dimension thresholds. Lemma~\\ref{h:stream:borel} preserves the average used in those arguments even if a version changes behavior at exceptional individual signals."
     },
     {
       "from": "m1-h-dv-finite-density",
       "to": "m1-h-cube-density",
+      "label": "h:dv:finite-density",
       "context": "ll containing \\(Q\\) gives \\(f=0\\) almost everywhere, and the zero density suffices. Suppose now that \\(L>0\\). Apply the general finite-measure result Theorem~\\ref{h:dv:finite-density} with \\[ H=L,\\qquad R=4r,\\qquad m=k, \\qquad \\beta=3n/4,\\qquad p=\\lfloor n/4\\rfloor. \\] For its factors \\(J_j\\), the re"
     },
     {
       "from": "m1-h-ev-ellipsoid",
       "to": "m1-h-cube-density",
+      "label": "h:ev:ellipsoid",
       "context": "ensity relative to spherical area is assumed. The set \\(\\mathcal E_{u_*,r}\\) is the exact projected image of the enclosing ball \\(B_d(\\iota(u_*),4r)\\). Lemma~\\ref{h:ev:ellipsoid} makes this set Borel and gives the asserted common support. The same lemma gives \\[ \\lambda_k(\\mathcal E_{u_*,r}) \\l"
     },
     {
       "from": "m1-h-cube-density",
       "to": "m1-h-cube-block",
+      "label": "h:cube:density",
       "context": "\\(z,r\\). An empty \\(\\mathcal B(z,r)\\) is immediate. Otherwise choose the same \\(u_*\\in\\mathcal B(z,r)\\) for all \\(v\\). The exact joint densities from Lemma~\\ref{h:cube:density} share its region \\(\\mathcal E_{u_*,r}\\). Apply Lemma~\\ref{h:alt:selection} with density norm at most \\(C_2^nLr^{\\beta-"
     },
     {
       "from": "m1-h-alt-selection",
       "to": "m1-h-cube-block",
+      "label": "h:alt:selection",
       "context": "same \\(u_*\\in\\mathcal B(z,r)\\) for all \\(v\\). The exact joint densities from Lemma~\\ref{h:cube:density} share its region \\(\\mathcal E_{u_*,r}\\). Apply Lemma~\\ref{h:alt:selection} with density norm at most \\(C_2^nLr^{\\beta-k(1-1/p)}\\) and domain measure at most \\(C_2^nr^k\\). The image-measure iden"
     },
     {
       "from": "m1-h-stream-categories",
       "to": "m1-h-cube-success",
+      "label": "h:stream:categories",
       "context": "from any prescribed initial state. For \\(T>0\\), partition the stream into \\(m=\\lceil T/p\\rceil\\) consecutive blocks, each of length at most \\(p=k_0\\). Lemma~\\ref{h:stream:categories}, with angular terminal score and signal \\(\\iota(u)\\), represents the preceding success function by the exact block form"
     },
     {
       "from": "m1-h-cube-block",
       "to": "m1-h-cube-success",
+      "label": "h:cube:block",
       "context": "ef{h:stream:categories}, with angular terminal score and signal \\(\\iota(u)\\), represents the preceding success function by the exact block formula in Corollary~\\ref{h:cube:block}. For a block of length \\(k\\), its Borel routes have at most \\begin{equation}\\label{h:cube:destinations} N\\le(k+2)2^M \\"
     },
     {
       "from": "m1-h-dv-ambient-gram",
       "to": "m1-h-cube-inverse",
+      "label": "h:dv:ambient-gram",
       "context": "The cases \\(L=0\\) and an empty parameter ball are immediate as above. Apply Proposition~\\ref{h:dv:ambient-gram} in parameter dimension \\(n\\) to \\(\\mathbf1_{\\mathcal B(z,r)}f(u)\\,du\\), with \\[ H=Ln^{-\\beta/2},\\qquad R=\\sqrt n\\,r,\\q"
     },
     {
       "from": "m1-h-dv-gaussian-ac",
       "to": "m1-h-dv-joint-density",
+      "label": "h:dv:gaussian-ac",
       "context": "\\}\\). If \\(\\lambda_m(E)=0\\), Fubini's theorem gives \\(|E_A|=0\\) for \\(\\gamma_m\\)-almost every \\(A\\). Such a matrix has full row rank almost surely, and Lemma~\\ref{h:dv:gaussian-ac} therefore gives \\((A_\\#\\mu)(E_A)=0\\). A second application of Fubini shows that \\(\\eta_\\mu(E)=0\\). Thus the finite me"
     },
     {
       "from": "m1-h-dv-joint-density",
       "to": "m1-h-dv-joint-l1",
+      "label": "h:dv:joint-density",
       "context": "F\\) almost everywhere. Fatou's lemma and \\eqref{h:dv:gaussian-moment-bound} then give \\(\\int F^p\\,d\\lambda_m\\le\\mathcal B^p\\). The density identity from Lemma~\\ref{h:dv:joint-density} now applies to arbitrary bounded \\(\\lambda_m\\)-completed-measurable functions of the exact matrix--label pair."
     },
     {
       "from": "m1-h-dv-gaussian-ac",
       "to": "m1-h-dv-pointwise-density",
+      "label": "h:dv:gaussian-ac",
       "context": "w_\\delta(r)=\\delta^{-1}w_1(r/\\delta)\\); its probability mass therefore concentrates at radius zero as \\(\\delta\\downarrow0\\). Fix a full-row-rank \\(A\\). Lemma~\\ref{h:dv:gaussian-ac} gives a nonnegative \\(L^1\\) density \\(f_A\\) of \\(A_\\#\\mu\\). At a Lebesgue point \\(y\\) of \\(f_A\\), its ball averages \\["
     },
     {
       "from": "m1-h-dv-finite-density",
       "to": "m1-h-ev-density",
+      "label": "h:dv:finite-density",
       "context": "The restriction \\(\\mu\\) is supported on \\(B(z,R)\\) and inherits the all-radius bound. Theorem~\\ref{h:dv:finite-density}, together with \\eqref{h:dv:dimension-margin}, gives its strong joint \\(L^p\\) density and \\eqref{h:ev:density-moment}. T"
     },
     {
       "from": "m1-h-dv-joint-density",
       "to": "m1-h-ev-density",
+      "label": "h:dv:joint-density",
       "context": "ensity}, together with \\eqref{h:dv:dimension-margin}, gives its strong joint \\(L^p\\) density and \\eqref{h:ev:density-moment}. The fiber identification in Lemma~\\ref{h:dv:joint-density} gives the asserted common almost-everywhere choice of projection densities."
     },
     {
       "from": "m1-h-ev-density",
       "to": "m1-h-ev-coefficient-step",
+      "label": "h:ev:density",
       "context": "For the fixed ball \\(B(z,R)\\), take \\(\\mu_w=\\mathbf1_{B(z,R)}h_w\\sigma\\) in Lemma~\\ref{h:ev:density}. Its exact density \\(F_w\\) is supported on the common domain \\(\\mathcal E_{z,R}\\) of Lemma~\\ref{h:ev:ellipsoid}. The"
     },
     {
       "from": "m1-h-ev-ellipsoid",
       "to": "m1-h-ev-coefficient-step",
+      "label": "h:ev:ellipsoid",
       "context": "ke \\(\\mu_w=\\mathbf1_{B(z,R)}h_w\\sigma\\) in Lemma~\\ref{h:ev:density}. Its exact density \\(F_w\\) is supported on the common domain \\(\\mathcal E_{z,R}\\) of Lemma~\\ref{h:ev:ellipsoid}. The image identity gives \\[ \\int_{B(z,R)}h\\,d\\sigma =\\int_{\\mathcal E_{z,R}}\\sum_w g_w(A,y)F_w(A,y) \\,d\\lamb"
     },
     {
       "from": "m1-h-alt-selection",
       "to": "m1-h-ev-coefficient-step",
+      "label": "h:alt:selection",
       "context": "e image identity gives \\[ \\int_{B(z,R)}h\\,d\\sigma =\\int_{\\mathcal E_{z,R}}\\sum_w g_w(A,y)F_w(A,y) \\,d\\lambda_m(A,y). \\] The density condition of Lemma~\\ref{h:alt:selection} applies on this domain with its norm parameter equal to \\[ \\mathcal U=C_{\\mathrm D}^{d(1-1/p)} H R^{\\beta"
     },
     {
       "from": "m1-h-stream-categories",
       "to": "m1-h-ev-coefficient-success",
+      "label": "h:stream:categories",
       "context": "replacement from Section~\\ref{h:stream:reduction}. Conditional on almost every shared seed, the initial state remains independent of the signal and rows. Lemma~\\ref{h:stream:categories} supplies, from every specified boundary state, including an unreachable one, Borel routes to fresh continuations. In a"
     },
     {
       "from": "m1-h-ev-coefficient-step",
       "to": "m1-h-ev-coefficient-success",
+      "label": "h:ev:coefficient-step",
       "context": "ore. The terminal bound \\eqref{h:dv:terminal-coefficient} starts the all-radius coefficient at \\(H_0=4^n\\epsilon^{n-\\beta}\\). With \\(N=(p+2)2^M\\), Proposition~\\ref{h:ev:coefficient-step} gives one recurrence for all actual block lengths \\(1\\le m\\le p\\): \\begin{equation}\\label{h:ev:coefficient-recursion}"
     },
     {
       "from": "m1-h-ev-coefficient-success",
       "to": "m1-h-ev-success",
+      "label": "h:ev:coefficient-success",
       "context": "In Proposition~\\ref{h:ev:coefficient-success}, set \\(\\beta=n/2\\) and use \\(4^n\\le4^d\\) for the first formula. For the second, set \\(\\beta=d/2\\), use the polar termin"
     },
     {
       "from": "m1-h-local-caps",
       "to": "m1-h-end-linear",
+      "label": "h:local:caps",
       "context": "meets the unit sphere of $U^\\perp$, choose a point of the intersection. The entire intersection lies in the ball of radius $2/5$ about that sphere point. Lemma~\\ref{h:local:caps}, applied in ambient dimension $k\\ge d-T\\ge3d/4$, bounds its conditional spherical probability by \\[ \\left(\\frac25\\righ"
     },
     {
       "from": "m2-lem-spherical-ball",
       "to": "m2-lem-residual-information",
+      "label": "lem:spherical-ball",
       "context": "g the fiber to its unit sphere, the successful set therefore lies in a chordal ball of radius $2\\epsilon/R\\le2\\epsilon/r_0<1$ centered on that sphere. By Lemma~\\ref{lem:spherical-ball}, its conditional mass is at most $(2\\epsilon/r_0)^{d-b-1}$. Under the comparison law, the output and signal are conditi"
     },
     {
       "from": "m2-lem-borel-rules",
       "to": "m2-lem-padding",
+      "label": "lem:borel-rules",
       "context": "nditional success at least $p$: otherwise the strictly positive difference between $p$ and that conditional success would have a positive integral. Apply Lemma~\\ref{lem:borel-rules} to this one fixed-seed experiment. Its uniform-prior success is unchanged. This step does not require a jointly measura"
     },
     {
       "from": "m2-lem-spherical-ball",
       "to": "m2-lem-early-clock",
+      "label": "lem:spherical-ball",
       "context": "angle\\le\\epsilon\\}} \\,\\nu_{j,v}(du)\\,\\sigma_d(ds) \\le\\epsilon^{d-1}, \\] because $r_{j,v}\\le1$ and each angular cap has mass at most $\\epsilon^{d-1}$ by Lemma~\\ref{lem:spherical-ball}. Summing gives \\eqref{eq:output-capacity} for its conditional success. The same numerical bound holds for almost every"
     },
     {
       "from": "m2-lem-residual-sphere",
       "to": "m2-lem-raw-sample-bound",
+      "label": "lem:residual-sphere",
       "context": "le d-2$. Condition on all the data. The estimator and the signal are then conditionally independent, and the conditional signal is the residual sphere in Lemma~\\ref{lem:residual-sphere}. On radius at least $1/2$, the successful points have relative chordal cap mass at most $(4\\epsilon)^{d-b-1}$, by the a"
     },
     {
       "from": "m2-lem-residual-information",
       "to": "m2-lem-raw-sample-bound",
+      "label": "lem:residual-information",
       "context": "ef{lem:residual-sphere}. On radius at least $1/2$, the successful points have relative chordal cap mass at most $(4\\epsilon)^{d-b-1}$, by the argument in Lemma~\\ref{lem:residual-information}. Add the corresponding failure probability from \\eqref{eq:residual-chebyshev}. The zero-row case uses the deterministic"
     },
     {
       "from": "m2-lem-spherical-ball",
       "to": "m2-lem-projection-fibers",
+      "label": "lem:spherical-ball",
       "context": "j$ balls of radius $r$. Each nonempty intersection with the sphere is contained in a radius-$4r$ ball centered on the sphere. The spherical ball bound in Lemma~\\ref{lem:spherical-ball}, with the trivial bound one when necessary, proves \\eqref{eq:affine-tube}. For a standard Gaussian point, its projectio"
     },
     {
       "from": "m2-lem-projection-fibers",
       "to": "m2-thm-equal-label-measure",
+      "label": "lem:projection-fibers",
       "context": "_{:,i-1})$ has Lebesgue integral one on $\\R^{k\\times m}$. This argument does not require the columns of $Z$ to be independent. The bound is integrable by Lemma~\\ref{lem:projection-fibers}. Dominated convergence gives the second integration order and equates these two limits. For clarity, the left measure"
     },
     {
       "from": "m2-thm-equal-label-measure",
       "to": "m2-lem-gaussian-test",
+      "label": "thm:equal-label-measure",
       "context": "test is observable from $(B,U_1,\\ldots,U_t)$: $C_0$, $C_0B$, and its evaluated label $C_0U_1$ are all determined there. The common density versions of Theorem~\\ref{thm:equal-label-measure} make the last factor measurable, finite, and positive almost surely under the independent-tuple reference. The replica"
     },
     {
       "from": "m2-cor-replica-likelihood",
       "to": "m2-lem-gaussian-test",
+      "label": "cor:replica-likelihood",
       "context": "aining expectation is \\[ \\int cJ^{-k}p_{\\widetilde A}(\\widetilde A S_1)^{-m} p^{\\otimes t}(d\\mathbf s)\\gamma_{k,d}^{F}(d\\widetilde A)=1 \\] by Corollary~\\ref{cor:replica-likelihood}. This proves the normalization of \\eqref{eq:gaussian-projected-test}. Here are the needed Gaussian determinant bounds."
     },
     {
       "from": "m2-lem-replica-logs",
       "to": "m2-lem-gaussian-test",
+      "label": "lem:replica-logs",
       "context": "t of this expression is bounded by a constant and the positive logarithms of $J$, the Gaussian determinant, and the last density. Those are integrable by Lemma~\\ref{lem:replica-logs}, the chi-square calculation, and \\eqref{eq:gaussian-negative-moment}. Thus $\\log\\Lambda$ is absolutely integrable. Solv"
     },
     {
       "from": "m2-lem-gaussian-test",
       "to": "m2-lem-gaussian-density",
+      "label": "lem:gaussian-test",
       "context": "he tuple only through $(A,Y)$. Divide by the finite positive density $p_A(Y)$ and apply Jensen first to $\\widetilde A$; all logarithms are integrable by Lemma~\\ref{lem:gaussian-test}. Only after obtaining \\eqref{eq:gaussian-density-sum} do we average over $Y$ given $A$. Its law is then the original $p"
     },
     {
       "from": "m2-thm-gaussian-block",
       "to": "m2-lem-gaussian-density",
+      "label": "thm:gaussian-block",
       "context": "[Proof of Theorem~\\ref{thm:gaussian-block}] Generate $W$ conditionally on $(A,Y)$ independently of the replicas. Each pair $(S_i,W)$ has the original pair law, an"
     },
     {
       "from": "m2-lem-replica-information",
       "to": "m2-lem-gaussian-density",
+      "label": "lem:replica-information",
       "context": "n $(A,Y)$ independently of the replicas. Each pair $(S_i,W)$ has the original pair law, and the side matrix $B$ is independent of the whole construction. Lemma~\\ref{lem:replica-information}, followed by Lemmas~\\ref{lem:gaussian-test} and \\ref{lem:gaussian-density}, gives \\[ tI(S;W\\mid B,BS) \\le H(W)+Ckm+m\\"
     },
     {
       "from": "m2-thm-distance-block",
       "to": "m2-lem-distance-heights",
+      "label": "thm:distance-block",
       "context": "[Proof of Theorem~\\ref{thm:distance-block}] Generate $W$ from the shared data independently of the replicas conditional on $(A,Y)$. Each replica has the original"
     },
     {
       "from": "m2-lem-replica-information",
       "to": "m2-lem-distance-heights",
+      "label": "lem:replica-information",
       "context": "l signal--message pair law, and $B$ is independent of this coupling. The finite correlation bound \\eqref{eq:distance-correlation-upper} therefore permits Lemma~\\ref{lem:replica-information} with $t=q$: \\[ qI(S;W\\mid B,BS) \\le H(W)+\\tc(S_1,\\ldots,S_q)-\\tc(C_1,\\ldots,C_q\\mid B). \\] Subtract \\eqref{eq:distanc"
     },
     {
       "from": "m2-lem-padding",
       "to": "m2-prop-gaussian-streaming",
+      "label": "lem:padding",
       "context": "Use the first step of Lemma~\\ref{lem:padding} to choose a fixed shared-seed conditional experiment with success at least $3/5$ and then take its Borel replacement. I"
     },
     {
       "from": "m2-lem-early-clock",
       "to": "m2-prop-gaussian-streaming",
+      "label": "lem:early-clock",
       "context": "family of Borel replacements. Put $\\beta=\\log(1/\\epsilon)$. If $T>d\\beta$, the conclusion is immediate. On the remaining branch, Lemmas~\\ref{lem:padding} and \\ref{lem:early-clock} give padded states of entropy at most \\begin{equation}\\label{eq:gaussian-clock-width} h_T=M\\log2+\\log(T+2)=o(d^2), \\q"
     },
     {
       "from": "m2-lem-conditional-priors",
       "to": "m2-prop-gaussian-streaming",
+      "label": "lem:conditional-priors",
       "context": "ntire selected learner experiment and all appended rows, and put $Z=BS$. Consider a positive-probability value $V_i=v$, and put $p_v=\\Prob\\{V_i=v\\}$. By Lemma~\\ref{lem:conditional-priors}, its conditional signal law has a Borel density $f_v$ satisfying \\[ f_v\\le L_v:=1/p_v \\quad\\hbox{relative to }\\sigma_"
     },
     {
       "from": "m2-thm-gaussian-block",
       "to": "m2-prop-gaussian-streaming",
+      "label": "thm:gaussian-block",
       "context": "atrix $A$ and its exact label $AS$. The side matrix $B$ remains independent of this entire conditional signal, block, and message experiment. Therefore Theorem~\\ref{thm:gaussian-block} applies with $L=L_v$ and with message $V_{i+1}$. Apply that numerical bound at each $v$ before averaging. Concavity of"
     },
     {
       "from": "m2-lem-raw-sample-bound",
       "to": "m2-prop-gaussian-streaming",
+      "label": "lem:raw-sample-bound",
       "context": "on}\\label{eq:gaussian-streaming-endpoint} \\mathcal I(V_n)\\ge \\tfrac12(d-\\ell-1)\\log\\frac1{5\\epsilon}-\\log2 \\ge c_1d\\beta \\end{equation} for large $d$. Lemma~\\ref{lem:raw-sample-bound} also gives $T>\\lfloor d/2\\rfloor$. In particular $T>0$, and for $d\\ge32$ the inequality $k\\ge d/16$ gives the explicit"
     },
     {
       "from": "m2-lem-padding",
       "to": "m2-prop-distance-streaming",
+      "label": "lem:padding",
       "context": "Apply Lemma~\\ref{lem:padding} with $p=2/3$ and $p'=3/5$. It first fixes a shared seed using the original jointly measurable experiment, then chooses"
     },
     {
       "from": "m2-lem-conditional-priors",
       "to": "m2-prop-distance-streaming",
+      "label": "lem:conditional-priors",
       "context": "sed only for analysis. Put $Z=BS$ and $\\mathcal D(V)=I(S;V\\mid B,Z)$. For a block from $V$ to $W$, condition on a value $v$ with probability $p_v>0$. By Lemma~\\ref{lem:conditional-priors}, the conditional signal density is bounded by $\\exp(b_v)$, where $b_v=\\log(1/p_v)$. The next standard Gaussian matrix $"
     },
     {
       "from": "m2-thm-distance-block",
       "to": "m2-prop-distance-streaming",
+      "label": "thm:distance-block",
       "context": "ix $A$ is independent of $(S,V)$, the ending state is a function of $(v,A,AS)$, and $B$ remains independent of the entire conditional experiment. Apply Theorem~\\ref{thm:distance-block} at this fixed $v$ and then average. Since $\\sum_vp_vb_v=H(V)$, \\begin{align} I(S;W\\mid V,B,Z) &\\le \\frac{H(W\\mid V)}q"
     },
     {
       "from": "m2-lem-raw-sample-bound",
       "to": "m2-prop-distance-streaming",
+      "label": "lem:raw-sample-bound",
       "context": "e $d$. This is the direct $90/d$ radius estimate and the event of mass at least $1/2$ used in the distance-bin route. The corresponding raw-data bound in Lemma~\\ref{lem:raw-sample-bound} also yields $T>\\lfloor d/2\\rfloor$, equivalently $T>d/2$ for integer $T$. The zero-row experiment in that lemma has res"
     },
     {
       "from": "m2-thm-streaming",
       "to": "m2-prop-distance-streaming",
+      "label": "thm:streaming",
       "context": "[Proof of Theorem~\\ref{thm:streaming}] Its uniform-prior success $2/3$ is at least the $3/5$ required by Proposition~\\ref{prop:gaussian-streaming}, which pro"
     },
     {
       "from": "m2-prop-gaussian-streaming",
       "to": "m2-prop-distance-streaming",
+      "label": "prop:gaussian-streaming",
       "context": "[Proof of Theorem~\\ref{thm:streaming}] Its uniform-prior success $2/3$ is at least the $3/5$ required by Proposition~\\ref{prop:gaussian-streaming}, which proves the theorem. Proposition~\\ref{prop:distance-streaming} gives a second proof using the linear entropy cost"
     },
     {
       "from": "m2-haar-streaming",
       "to": "m2-prop-distance-streaming",
+      "label": "haar:streaming",
       "context": "nce-streaming} gives a second proof using the linear entropy cost. The later sections give three further proofs: the Haar current-state argument in Proposition~\\ref{haar:streaming}, and the synthetic and incidence full-history arguments in Proposition~\\ref{syn:streaming} and Theorem~\\ref{inc:precisi"
     },
     {
       "from": "m2-syn-streaming",
       "to": "m2-prop-distance-streaming",
+      "label": "syn:streaming",
       "context": "hree further proofs: the Haar current-state argument in Proposition~\\ref{haar:streaming}, and the synthetic and incidence full-history arguments in Proposition~\\ref{syn:streaming} and Theorem~\\ref{inc:precision}. Each uses the same learner model, while retaining its own side law, conditional experi"
     },
     {
       "from": "m2-inc-precision",
       "to": "m2-prop-distance-streaming",
+      "label": "inc:precision",
       "context": "rrent-state argument in Proposition~\\ref{haar:streaming}, and the synthetic and incidence full-history arguments in Proposition~\\ref{syn:streaming} and Theorem~\\ref{inc:precision}. Each uses the same learner model, while retaining its own side law, conditional experiment, and clock estimate."
     },
     {
       "from": "m2-haar-upper-correlation",
       "to": "m2-haar-maximal",
+      "label": "haar:upper-correlation",
       "context": "all, so $\\mathcal M f\\ge(v_k2^k)^{-1}$ there. Its logarithm is bounded on that support, while $f\\log f$ is integrable by the bounded-density argument in Lemma~\\ref{haar:upper-correlation}. Jensen's inequality under the probability density $f$ now yields \\[ \\int f\\log(\\mathcal M f/f) \\le\\log\\int_{\\{f>0\\}"
     },
     {
       "from": "m2-haar-upper-correlation",
       "to": "m2-haar-lower-correlation",
+      "label": "haar:upper-correlation",
       "context": "e logarithmic expectations are finite: the variational bound after averaging controls their nonnegative parts by the finite correlation $J_Z\\le J_S$ from Lemma~\\ref{haar:upper-correlation}. We next estimate $F_i(\\delta_i)$ while holding the entire replica outcome $(A,S_0,\\ldots,S_r)$ fixed. Put $D=D_{i-1}"
     },
     {
       "from": "m2-haar-maximal",
       "to": "m2-haar-lower-correlation",
+      "label": "haar:maximal",
       "context": "log\\mathcal M p_A(AS). \\] Here the last expectation uses the individual marginal $(A,S_0)$. The right side is finite by Lemmas~\\ref{haar:upper-correlation} and \\ref{haar:maximal}; Jensen may also be read in the extended sense before averaging. Substitution into \\eqref{haar:cdf-test} proves \\eqref"
     },
     {
       "from": "m2-haar-upper-correlation",
       "to": "m2-haar-block",
+      "label": "haar:upper-correlation",
       "context": "d on the left is also coupled independently with $B$. The common map $(B,s)\\mapsto Bs$ is continuous, and the unprojected total correlation is finite by Lemma~\\ref{haar:upper-correlation}. These are precisely the application hypotheses of Lemma~\\ref{lem:replica-information}. Applied in the conditional ex"
     },
     {
       "from": "m2-lem-replica-information",
       "to": "m2-haar-block",
+      "label": "lem:replica-information",
       "context": "is continuous, and the unprojected total correlation is finite by Lemma~\\ref{haar:upper-correlation}. These are precisely the application hypotheses of Lemma~\\ref{lem:replica-information}. Applied in the conditional experiment $V=v$, it gives \\[ mI(S;W\\mid V=v,B,BS) \\le H(W\\mid V=v)+J_S(v)-J_Z(v). \\] No"
     },
     {
       "from": "m2-lem-residual-information",
       "to": "m2-haar-terminal",
+      "label": "lem:residual-information",
       "context": "Apply Lemma~\\ref{lem:residual-information} with $G=B$, $V=V_f$, $b=\\ell$, and $r_0=1/2$. Its hypotheses hold because $B$ is independent of $(S,V_f,\\widehat S)$."
     },
     {
       "from": "m2-lem-padding",
       "to": "m2-haar-streaming",
+      "label": "lem:padding",
       "context": "Apply the fixed-shared-seed part of Lemma~\\ref{lem:padding} to the learner in Definition~\\ref{def:streaming-model}. The resulting Borel experiment has data-independent initializa"
     },
     {
       "from": "m2-haar-terminal",
       "to": "m2-haar-streaming",
+      "label": "haar:terminal",
       "context": "ependent initialization and uniform-prior success at least $2/3$, with fresh transition and output randomness retained. This is the success threshold in Lemma~\\ref{haar:terminal}. First, success forces $T=\\Omega(d)$ without any memory restriction. Suppose $T\\le d/8$, and grant an estimator all $T"
     },
     {
       "from": "m2-lem-residual-sphere",
       "to": "m2-haar-streaming",
+      "label": "lem:residual-sphere",
       "context": "a(d)$ without any memory restriction. Suppose $T\\le d/8$, and grant an estimator all $T$ raw pairs, filling in ignored samples after any early stopping. Lemma~\\ref{lem:residual-sphere} with $b=T$ gives a uniform residual sphere in kernel dimension $d-T$; \\eqref{eq:residual-markov} bounds its probability"
     },
     {
       "from": "m2-lem-raw-sample-bound",
       "to": "m2-haar-streaming",
+      "label": "lem:raw-sample-bound",
       "context": "bounds its probability of radius below $1/2$ by $4T/(3d)$. At $T=0$ the radius is one deterministically. On radius at least $1/2$, the cap argument of Lemma~\\ref{lem:raw-sample-bound} bounds conditional success by $(4\\epsilon)^{d-T-1}$. Thus \\begin{equation}\\label{haar:raw-sample-bound} \\mathbb P\\{\\t"
     },
     {
       "from": "m2-lem-early-clock",
       "to": "m2-haar-streaming",
+      "label": "lem:early-clock",
       "context": "ons. Put $L=\\log(1/\\epsilon)\\ge\\log10$. If $T\\ge dL$, the conclusion already holds. On the remaining branch $T<dL$, apply the output-capacity bound of Lemma~\\ref{lem:early-clock} to this uniform-prior experiment with $p_0=2/3$. It gives \\begin{equation}\\label{haar:output-count} (d-1)L\\le M\\log2+"
     },
     {
       "from": "m2-haar-block",
       "to": "m2-haar-streaming",
+      "label": "haar:block",
       "context": "data processing give \\[ I(S;W\\mid B,Z) \\le I(S;V,W\\mid B,Z) =I(S;V\\mid B,Z)+I(S;W\\mid V,B,Z). \\] The initial state is independent of $(S,B,Z)$. Proposition~\\ref{haar:block} and \\eqref{haar:padded-width} therefore imply \\begin{equation}\\label{haar:information-clock} I(S;V_f\\mid B,Z)\\le Cd\\lc"
     },
     {
       "from": "m2-lem-replica-logs",
       "to": "m2-syn-logs",
+      "label": "lem:replica-logs",
       "context": "law}}{=} \\Delta(\\mathbf X)\\det(G^{\\mathsf T}G)^{1/2} \\quad\\text{conditionally on }\\mathbf X. \\] The logarithm of \\(\\Delta(\\mathbf X)\\) is integrable by Lemma~\\ref{lem:replica-logs}. Gaussian column residuals factor \\(\\det(G^{\\mathsf T}G)\\) into independent chi-squared variables of degrees \\(m,m-1,\\"
     },
     {
       "from": "m2-syn-synthetic",
       "to": "m2-syn-logs",
+      "label": "syn:synthetic",
       "context": "A\\). Conditionally on \\((A,b,\\mathbf X)\\), the matrix \\(B\\) remains independent, and the conditional law of \\(F\\) is \\(\\gamma_{k,m}^{B L_{\\mathbf X}}\\). Lemma~\\ref{syn:synthetic} therefore gives \\begin{equation}\\label{syn:conditional-mean} \\E[\\Xi\\mid A,b,\\mathbf X]\\le a_qU_A(b). \\end{equation} It"
     },
     {
       "from": "m2-syn-block",
       "to": "m2-syn-logs",
+      "label": "syn:block",
       "context": "[Proof of Proposition~\\ref{syn:block}] The preceding lemma permits subtraction of all likelihood and correlation terms. Conditional Jensen in \\eqref{syn:con"
     },
     {
       "from": "m2-lem-replica-information",
       "to": "m2-syn-logs",
+      "label": "lem:replica-information",
       "context": "eterminant scale in the synthetic likelihood. The critical kernel was integrated before taking a logarithm, leaving only \\(\\log(1+\\log\\Lambda)\\). Apply Lemma~\\ref{lem:replica-information} with \\(t=\\ell\\), the representative \\(S=X_1\\), message \\(W=z\\), and map \\(\\phi_B(x)=Bx\\). Every replica has the requir"
     },
     {
       "from": "m2-lem-padding",
       "to": "m2-syn-streaming",
+      "label": "lem:padding",
       "context": "Apply Lemma~\\ref{lem:padding} with \\(p=2/3\\) and \\(p'=s_0=16/25=0.64\\) to the learner in Definition~\\ref{def:streaming-model}. This gives determinis"
     },
     {
       "from": "m2-lem-early-clock",
       "to": "m2-syn-streaming",
+      "label": "lem:early-clock",
       "context": "ilon=\\log(1/\\epsilon)\\). It suffices to consider dimensions for which \\(T\\le dL_\\epsilon\\). At other dimensions the claimed lower bound already holds. Lemma~\\ref{lem:early-clock}, applied with \\(p_0=s_0\\), gives \\begin{equation}\\label{syn:output-count} s_0\\le(T+1)2^M\\epsilon^{d-1},\\qquad L_\\epsi"
     },
     {
       "from": "m2-lem-raw-sample-bound",
       "to": "m2-syn-streaming",
+      "label": "lem:raw-sample-bound",
       "context": "ng}. Its exact per-index state count gives \\begin{equation}\\label{syn:padded-width} K=(T+2)2^M,\\qquad \\log K=o(d^2). \\end{equation} Since \\(s_0>3/5\\), Lemma~\\ref{lem:raw-sample-bound} gives \\(T>\\lfloor d/2\\rfloor\\) for all sufficiently large \\(d\\). We use the weaker consequence \\begin{equation}\\label{"
     },
     {
       "from": "m2-lem-conditional-priors",
       "to": "m2-syn-streaming",
+      "label": "lem:conditional-priors",
       "context": "t \\(i\\) blocks, with \\(H_0\\) constant. Use one independent \\(B\\sim\\gamma_{m,d}\\) and \\(Y=BX\\) throughout. If a history \\(h\\) has probability \\(p_h>0\\), Lemma~\\ref{lem:conditional-priors} gives its conditional signal density \\[ \\frac{\\Prob\\{H_{i-1}=h\\mid X=x\\}}{p_h}\\le\\frac1{p_h} \\quad\\text{relative to }"
     },
     {
       "from": "m2-syn-block",
       "to": "m2-syn-streaming",
+      "label": "syn:block",
       "context": "is a measurable \\(K\\)-valued function of the new block and its exact labels. The side matrix remains independent of this conditional experiment. Proposition~\\ref{syn:block} therefore applies with \\(\\Lambda=1/p_h\\). Averaging it over histories gives \\begin{align} I(X;H_i\\mid H_{i-1},B,Y) &"
     },
     {
       "from": "m2-lem-residual-information",
       "to": "m2-syn-streaming",
+      "label": "lem:residual-information",
       "context": "end{equation} The postponed deterministic output is a function of the final tagged state, and therefore of \\(H_p\\). To obtain the matching endpoint, use Lemma~\\ref{lem:residual-information} with \\(S=X\\), \\(V=H_p\\), \\(G=B\\), and \\(r_0=1/4\\). The output is a function of \\(H_p\\), and \\(B\\) is independent of the"
     },
     {
       "from": "m2-inc-swap",
       "to": "m2-inc-densities",
+      "label": "inc:swap",
       "context": "ments of the full-rank regular loci changes neither \\(\\mathsf M_A,\\mathsf M_C\\) nor the corresponding \\(\\mathsf H_A,\\mathsf H_C\\). Fix \\(s_1\\) and apply Lemma~\\ref{inc:swap} to \\[ x=(s_2,\\ldots,s_k),\\qquad z=A,\\qquad G(x,z)=AU. \\] For fixed \\(A\\), the target has \\(\\ell\\) independent \\(n\\)-co"
     },
     {
       "from": "m2-inc-densities",
       "to": "m2-inc-kernel",
+      "label": "inc:densities",
       "context": "interpreted as \\(+\\infty\\) when the distance is zero. Integrate in \\(z\\) using Tonelli's theorem and then apply conditional Fatou along \\(\\rho=2^{-j}\\). Lemma~\\ref{inc:densities} and \\(Q\\ll\\mathsf H\\) identify the almost-sure limit of the ball averages with \\(p_D(Ds_1)\\). This proves \\eqref{inc:c"
     },
     {
       "from": "m2-inc-projection",
       "to": "m2-inc-kernel",
+      "label": "inc:projection",
       "context": "t\\downarrow2\\) from above also gives \\(K_0\\ge2^{-n}\\). A second estimate uses the projection onto \\(U^\\perp\\), of dimension \\(d-\\ell\\le d-2\\). Applying Lemma~\\ref{inc:projection} to a matrix with orthonormal rows for this projection bounds its density by \\(Fd^d/v_{d-\\ell}\\). A ball of radius \\(t\\"
     },
     {
       "from": "m2-inc-block",
       "to": "m2-inc-maximal",
+      "label": "inc:block",
       "context": "[Proof of Proposition~\\ref{inc:block}] On the full-measure set in Lemma~\\ref{inc:densities}, the log likelihood ratio is the sum of the message term \\(\\log(w"
     },
     {
       "from": "m2-inc-densities",
       "to": "m2-inc-maximal",
+      "label": "inc:densities",
       "context": "[Proof of Proposition~\\ref{inc:block}] On the full-measure set in Lemma~\\ref{inc:densities}, the log likelihood ratio is the sum of the message term \\(\\log(w\\phi_J(A,As_1))\\), the term \\begin{equation}\\label{inc"
     },
     {
       "from": "m2-inc-kernel",
       "to": "m2-inc-maximal",
+      "label": "inc:kernel",
       "context": "asymp d\\). The \\((A,s_1)\\)-marginal under \\(Q\\) is the original independent Gaussian/prior draw. Averaging \\eqref{inc:log-ratio-conditional} and using Lemmas~\\ref{inc:kernel} and~\\ref{inc:maximal} consequently gives \\begin{equation}\\label{inc:log-ratio} \\mathbb E_Q\\log^+\\frac{p_D(Ds_1)}{p_A(A"
     },
     {
       "from": "m2-lem-padding",
       "to": "m2-inc-short",
+      "label": "lem:padding",
       "context": "The padding count in Lemma~\\ref{lem:padding}, including stopping at index zero, gives \\eqref{inc:width}. Its stopped records remain fixed while fresh unused observ"
     },
     {
       "from": "m2-lem-early-clock",
       "to": "m2-inc-short",
+      "label": "lem:early-clock",
       "context": "ing at index zero, gives \\eqref{inc:width}. Its stopped records remain fixed while fresh unused observations are generated. The output-capacity bound in Lemma~\\ref{lem:early-clock}, with success at least \\(2/3\\) and \\((T+1)2^M\\le w\\), gives \\[ \\frac23\\le w\\epsilon^{d-1},\\qquad (d-1)L_\\epsilon\\le"
     },
     {
       "from": "m2-lem-conditional-priors",
       "to": "m2-inc-history",
+      "label": "lem:conditional-priors",
       "context": "For a positive-probability history \\(V_{i-1}=v\\), Lemma~\\ref{lem:conditional-priors} gives the Bayes density \\[ f_v(s)=\\frac{\\Pr\\{V_{i-1}=v\\mid S=s\\}}{\\Pr\\{V_{i-1}=v\\}} \\le F_v:=\\frac1{\\Pr\\{V_{i-1}=v\\}}"
     },
     {
       "from": "m2-inc-block",
       "to": "m2-inc-history",
+      "label": "inc:block",
       "context": "of its entire experiment; it remains independent of the entire conditional signal, fresh-block, and message experiment after conditioning on \\(v\\). Proposition~\\ref{inc:block} therefore applies at each such history. The finite history has entropy \\(H(V_{i-1})\\le b\\log w\\). Hence Jensen's ineq"
     },
     {
       "from": "m2-lem-residual-information",
       "to": "m2-inc-fiber-precision",
+      "label": "lem:residual-information",
       "context": "Apply Lemma~\\ref{lem:residual-information} with \\(V=\\widehat S\\), the identity output kernel, \\(b=p\\), and \\(r_0=1/2\\). For the residual radius \\(R=\\|P_{\\ker B}S"
     },
     {
       "from": "m2-lem-residual-sphere",
       "to": "m2-inc-fiber-precision",
+      "label": "lem:residual-sphere",
       "context": "ef{lem:residual-information} with \\(V=\\widehat S\\), the identity output kernel, \\(b=p\\), and \\(r_0=1/2\\). For the residual radius \\(R=\\|P_{\\ker B}S\\|\\), Lemma~\\ref{lem:residual-sphere} gives \\[ \\Pr\\{R<1/2\\}\\le\\frac{4p}{3d}\\le\\frac13. \\] Success at least \\(2/3\\) therefore leaves event mass at least \\(1/"
     },
     {
       "from": "m2-lem-raw-sample-bound",
       "to": "m2-inc-fiber-precision",
+      "label": "lem:raw-sample-bound",
       "context": "pre-generated observations through its horizon, including ignored rows after stopping. Its output is a kernel of those data and independent randomness. Lemma~\\ref{lem:raw-sample-bound} shows that success at least \\(3/5\\), and hence at least \\(2/3\\), already requires \\(T>\\lfloor d/2\\rfloor\\) for large \\("
     },
     {
       "from": "m2-inc-precision",
       "to": "m2-inc-fiber-precision",
+      "label": "inc:precision",
       "context": "[Proof of Theorem~\\ref{inc:precision}] If \\(T\\ge dL_\\epsilon\\), the desired bound is immediate. Otherwise apply Lemmas~\\ref{inc:short} and~\\ref{inc:history}"
     },
     {
       "from": "m2-inc-short",
       "to": "m2-inc-fiber-precision",
+      "label": "inc:short",
       "context": "[Proof of Theorem~\\ref{inc:precision}] If \\(T\\ge dL_\\epsilon\\), the desired bound is immediate. Otherwise apply Lemmas~\\ref{inc:short} and~\\ref{inc:history}. The terminal output is a kernel of the final padded state, hence of \\(V_b\\); conditional data p"
     },
     {
       "from": "m2-inc-history",
       "to": "m2-inc-fiber-precision",
+      "label": "inc:history",
       "context": "[Proof of Theorem~\\ref{inc:precision}] If \\(T\\ge dL_\\epsilon\\), the desired bound is immediate. Otherwise apply Lemmas~\\ref{inc:short} and~\\ref{inc:history}. The terminal output is a kernel of the final padded state, hence of \\(V_b\\); conditional data processing and Lemma~\\r"
     }
   ]

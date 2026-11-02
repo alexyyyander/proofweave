@@ -402,7 +402,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Elliptic-capacity-propagation-and-Fourier-restriction-to-the-sphere-September-24-2026/Elliptic-capacity-propagation-and-Fourier-restriction-to-the-sphere-September-24-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Elliptic capacity propagation and Fourier restriction to the sphere; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Elliptic capacity propagation and Fourier restriction to the sphere.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -614,7 +614,6 @@
           "detail": "[Conditional prediction of the axis] For >0 , (Y,R)=sY on R Y . For <0 , this equality holds for every finite (Y,R) . Parameter-coordinate increments of F dominate those of . In particular, if <0 ,…",
           "dependsOn": [
             "m1-geo-angular-exclusion",
-            "m1-geo-axis-prediction",
             "m1-ent-finite-states"
           ]
         },
@@ -638,9 +637,7 @@
           "kind": "lemma",
           "source": "Entropy profiles and their tangents",
           "detail": "[Realization of tangents] Every tangent used below, and every finite succession of such tangents at finitely many sites, has a realizing sequence of the same sheared states, with hereditary support…",
-          "dependsOn": [
-            "m1-ent-regularization"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ent-peeling",
@@ -690,9 +687,7 @@
           "kind": "lemma",
           "source": "Projection tests and correlated parameters",
           "detail": "[Weighted projection test] Let be a planar Frostman k probability law and let be a Frostman law of directions, where 0<k2 and 0<1 . Let E be a set of point--direction pairs of dense measure. For a…",
-          "dependsOn": [
-            "m1-proj-furstenberg"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-proj-radial",
@@ -702,9 +697,7 @@
           "kind": "lemma",
           "source": "Projection tests and correlated parameters",
           "detail": "[Radial nonconcentration away from strips] Let 0<s_01 and let be a planar Frostman s_0 law at resolution m^ -1 . Suppose that, for every fixed >0 , every strip of width m^ - has power-small mass,…",
-          "dependsOn": [
-            "m1-proj-furstenberg"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-proj-scalar",
@@ -756,12 +749,9 @@
           "source": "Projection tests and correlated parameters",
           "detail": "[The equal-slope tie] Suppose =1 and >0 in . At a generic point of there is a tangent with singleton spatial rates p,g , an affine diagonal rate H for the pair (B,D) , and an affine diagonal…",
           "dependsOn": [
-            "m1-proj-product",
             "m1-proj-scalar",
-            "m1-ent-finite-states",
             "m1-ent-regularization",
-            "m1-ent-tangent-realization",
-            "m1-proj-projection"
+            "m1-ent-tangent-realization"
           ]
         },
         {
@@ -802,7 +792,6 @@
           "source": "Excluding calibrated aspect paths",
           "detail": "[Longitudinal comparisons] The following two comparisons are available locally, and in inherited path tangents, under the stated derivative and conditional-time bounds. [label=()] Low longitudinal…",
           "dependsOn": [
-            "m1-ent-regularization",
             "m1-asp-scalar"
           ]
         },
@@ -854,12 +843,8 @@
           "source": "Excluding calibrated aspect paths",
           "detail": "There is no calibrated profile satisfying with \\(<0\\).",
           "dependsOn": [
-            "m1-ent-signed-envelope",
             "m1-ent-control",
-            "m1-geo-main",
-            "m1-asp-stationary",
-            "m1-asp-increasing-positive",
-            "m1-asp-increasing-zero"
+            "m1-geo-main"
           ]
         },
         {
@@ -922,9 +907,7 @@
           "kind": "lemma",
           "source": "Propagation of oscillatory packets",
           "detail": "[Preliminary bounds] For a single-step map and each terminal bin, w^2_ v I |c_v|^2^2_v|d_v|^2, K(c_I) m^ 4+o(1) K(d). In particular, 2 .",
-          "dependsOn": [
-            "m1-pkt-frame"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-pkt-refined-decoupling",
@@ -944,9 +927,7 @@
           "kind": "proposition",
           "source": "Propagation of oscillatory packets",
           "detail": "[Discrete fourth-power propagation] Consider one consecutive transition in an admissible family, with scale ratio =m_+/m_-=m^ +o(1) , where >0 is fixed. Fix finite retained parent and child…",
-          "dependsOn": [
-            "m1-pkt-refined-decoupling"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ext-time-dimension",
@@ -1054,12 +1035,8 @@
           "source": "Extremal selection and propagation",
           "detail": "[Terminal mass] The same kept output satisfies r w^2_ b\\ kept |c_b|^2 m^ o_i(1) (m^ -2(1-s) ,h_1^ -1 ) ^2\\# R .",
           "dependsOn": [
-            "m1-pkt-frame",
-            "m1-pkt-composition",
             "m1-pkt-quartic",
-            "m1-ext-leaves",
-            "m1-pkt-main",
-            "m1-ext-represented"
+            "m1-ext-leaves"
           ]
         },
         {
@@ -1117,9 +1094,7 @@
           "dependsOn": [
             "m1-glob-initial-peaks",
             "m1-glob-sparse-covering",
-            "m1-glob-sparse-cubic",
-            "m1-thm-main",
-            "m1-cor-sphere-kakeya-maximal"
+            "m1-glob-sparse-cubic"
           ]
         }
       ]
@@ -1136,7 +1111,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Diagonal-Fourier-extension-for-positively-curved-surfaces-in-three-dimensions-September-24-2026/Diagonal-Fourier-extension-for-positively-curved-surfaces-in-three-dimensions-September-24-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Diagonal Fourier extension for positively curved surfaces in three dimensions; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Diagonal Fourier extension for positively curved surfaces in three dimensions.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1229,8 +1204,7 @@
           "detail": "[Discrete critical estimate] Let \\(c\\) be the terminal coefficient array obtained from \\(d\\) by the synthesis and sampling map of Theorem~ , with any fixed permitted output mask. For every…",
           "dependsOn": [
             "m2-lem-density",
-            "m2-thm-packet",
-            "m2-lem-weighted"
+            "m2-thm-packet"
           ]
         },
         {
@@ -1242,7 +1216,6 @@
           "source": "Joint estimates on sparse balls",
           "detail": "[Sparse balls] There is a constant _0(0,1) depending only on the fixed graph setup with the following property. Suppose that h is supported in Q_0 , \\|h\\|_31 , and 0<_0 . Let B be a finite family of…",
           "dependsOn": [
-            "m2-prop-discrete",
             "m2-lem-packet-frame"
           ]
         },
@@ -1285,7 +1258,6 @@
           "source": "Global bounds and exponent dependence",
           "detail": "[Global graph estimate] Fix a phase and window setup for which Theorem~ and Proposition~ apply. For 3<p4 , put =p-3, =10^ -6 ^2. There is a constant C , independent of p in this interval, such that…",
           "dependsOn": [
-            "m2-prop-sparse",
             "m2-lem-sparse-cover"
           ]
         },
@@ -1298,7 +1270,6 @@
           "source": "Global bounds and exponent dependence",
           "detail": "[Lower bound for the best constant] For every nonempty compact smooth surface in the stated class there is c_>0 such that its best extension constant satisfies C_ ,p ^ best c_(p-3)^ -1/p , 3<p4. This…",
           "dependsOn": [
-            "m2-cor-schrodinger-smoothing",
             "m2-thm-main"
           ]
         },
@@ -1337,7 +1308,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

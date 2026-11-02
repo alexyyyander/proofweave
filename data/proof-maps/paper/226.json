@@ -214,96 +214,115 @@
     {
       "from": "m1-prop-rectangle-crossings",
       "to": "m1-lem-marked-cap",
+      "label": "prop:rectangle-crossings",
       "context": "[Proof of Proposition~\\ref{prop:rectangle-crossings}] We use longitudinal coordinates in columns and put $d=(v-u)/n$. Choose seams $a,b$ at approximately the one-third and"
     },
     {
       "from": "m1-lem-spectrum",
       "to": "m1-lem-marked-cap",
+      "label": "lem:spectrum",
       "context": "at least $2^{-2k}$. Sum over all choices of $k$ eligible marks in each cap. Every coefficient is nonnegative. Lemma~\\ref{lem:marked-cap}, followed by Lemmas~\\ref{lem:spectrum} and~\\ref{lem:cap-comparison}, bounds the normalized contraction by \\[ C M^{2k}\\exp(-c d k^2). \\] Here the constant $C$"
     },
     {
       "from": "m1-lem-cap-comparison",
       "to": "m1-lem-marked-cap",
+      "label": "lem:cap-comparison",
       "context": "m over all choices of $k$ eligible marks in each cap. Every coefficient is nonnegative. Lemma~\\ref{lem:marked-cap}, followed by Lemmas~\\ref{lem:spectrum} and~\\ref{lem:cap-comparison}, bounds the normalized contraction by \\[ C M^{2k}\\exp(-c d k^2). \\] Here the constant $C$ is uniform for every cut ins"
     },
     {
       "from": "m1-lem-spectrum",
       "to": "m1-lem-sandwiched-insertion",
+      "label": "lem:spectrum",
       "context": "Use the real orthogonal singular-mode basis at the middle seam supplied by Lemma~\\ref{lem:spectrum}; it is the same for both replicas. Write its change-of-basis matrix as $Q$, and put \\[ P_I=Q^T\\1_{S(I)}Q. \\] Here $\\1"
     },
     {
       "from": "m1-lem-cap-comparison",
       "to": "m1-lem-sandwiched-insertion",
+      "label": "lem:cap-comparison",
       "context": "absolute sum, and the bounded state sums prove~\\eqref{eq:sandwiched-insertion}. The displayed bounds on $\\|V_L\\|,\\|V_R\\|$ and the partition comparison in Lemma~\\ref{lem:cap-comparison} now prove \\eqref{eq:marked-contraction-bound}."
     },
     {
       "from": "m1-prop-rectangle-short",
       "to": "m1-lem-two-chain-positivity",
+      "label": "prop:rectangle-short",
       "context": "[Proof of Proposition~\\ref{prop:rectangle-short}] For a partition interval $I$, combine \\eqref{eq:marked-contraction-bound}, \\eqref{eq:observable-contraction}, and \\eqr"
     },
     {
       "from": "m1-prop-localization",
       "to": "m1-lem-walk-attachment",
+      "label": "prop:localization",
       "context": "[Proof of Proposition~\\ref{prop:localization}] We first compare one matching in $\\mathcal R_{\\delta,R}$ with one in a larger rectangle. Choose a fixed rectangular w"
     },
     {
       "from": "m1-prop-localization",
       "to": "m1-cor-local-crossings",
+      "label": "prop:localization",
       "context": "Apply Proposition~\\ref{prop:localization} to a fixed neighborhood of $K$. On its agreement event, all such portions are also portions of rectangle cycles. Thei"
     },
     {
       "from": "m1-prop-rectangle-crossings",
       "to": "m1-cor-local-crossings",
+      "label": "prop:rectangle-crossings",
       "context": "ay differ, but their crossing paths and their parameter-disjointness do not. Their number is therefore bounded by the rectangle traversal count of Proposition~\\ref{prop:rectangle-crossings}. Take $R$ large enough that both cuts have positive longitudinal room to the rectangle ends. For horizontal cuts this"
     },
     {
       "from": "m1-prop-localization",
       "to": "m1-prop-local-opposite",
+      "label": "prop:localization",
       "context": "Fix a coupling error $\\eps>0$ and apply Proposition~\\ref{prop:localization} to a neighborhood of $K$. On its agreement event, both directed portions remain rectangle paths with exactly the same s"
     },
     {
       "from": "m1-prop-rectangle-short",
       "to": "m1-prop-local-opposite",
+      "label": "prop:rectangle-short",
       "context": "lities for their new connections. If the portions belong to distinct rectangle cycles, their two nonzero indices give the second forbidden event in Proposition~\\ref{prop:rectangle-short}. If they belong to the same rectangle cycle $g$, its whole-cycle index satisfies $\\iota_I(g)\\in\\{-1,0,1\\}$ by the Jord"
     },
     {
       "from": "m1-cor-local-crossings",
       "to": "m1-lem-disk-trips",
+      "label": "cor:local-crossings",
       "context": "tions preserves disjointness. Assign each one a slab it traverses; their number is bounded by the sum of the finitely many local traversal counts in Corollary~\\ref{cor:local-crossings}. This proves tightness."
     },
     {
       "from": "m1-lem-disk-trips",
       "to": "m1-prop-tightness",
+      "label": "lem:disk-trips",
       "context": "ions of the original finite polygonal paths. This rule depends only on the loop, not on any probability tolerance or trip-count bound. Now fix $\\eps>0$. Lemma~\\ref{lem:disk-trips}, together with the deterministic bounds for meshes bounded away from zero, lets us choose integers $A_j<\\infty$ such th"
     },
     {
       "from": "m1-thm-cylindrical",
       "to": "m1-lem-visible-signatures",
+      "label": "thm:cylindrical",
       "context": "l portion of the ordered lists. Their stabilized memberships in every larger finite puncture set agree with the corresponding limiting multiset record. Theorem~\\ref{thm:cylindrical}, applied to the largest of any finite family of puncture sets, gives the joint law of all these records. These finite"
     },
     {
       "from": "m1-prop-cle-facts",
       "to": "m1-lem-visible-signatures",
+      "label": "prop:cle-facts",
       "context": "ate visible entries. It remains to exclude a singleton signature. Suppose a nonconstant additional entry has signature $\\{q\\}$ and diameter $a>0$. Proposition~\\ref{prop:cle-facts} supplies infinitely many canonical loops around $q$. Every such loop contains another sampled point $q'$, so its corres"
     },
     {
       "from": "m1-lem-jordan-line",
       "to": "m1-lem-no-backtracking",
+      "label": "lem:jordan-line",
       "context": "$\\gamma_j$ visits it, contrary to the choice of the test line. Take a disk around $p$ meeting $C$ only in the common open subarc $\\eta((\\alpha,\\beta))$. Lemma~\\ref{lem:jordan-line} supplies open intervals on $L$ within this disk lying in the two different Jordan domains. At every sufficiently fine g"
     },
     {
       "from": "m1-prop-local-opposite",
       "to": "m1-lem-no-backtracking",
+      "label": "prop:local-opposite",
       "context": "rid extraction transfers their opposite nonzero indices to the discrete loop for all sufficiently late members of the subsequence. This contradicts Proposition~\\ref{prop:local-opposite}. Thus $\\phi$ is nondecreasing. A nondecreasing degree-one parametrization differs from a homeomorphic parametrization"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-lem-interior-restriction",
+      "label": "thm:main",
       "context": "[Completion of the proof of Theorem~\\ref{thm:main}] We have identified every subsequential closed-disk limit as standard nested $\\CLE_4$, with every macroscopic loop matc"
     },
     {
       "from": "m1-prop-tightness",
       "to": "m1-lem-interior-restriction",
+      "label": "prop:tightness",
       "context": "disk limit as standard nested $\\CLE_4$, with every macroscopic loop matched and with multiplicity one, and hence obtained full ambient convergence. Proposition~\\ref{prop:tightness} supplies uniform ambient tightness for $0<\\delta\\le1$. The discrete laws and the identified limit are supported on $S$,"
     }
   ]

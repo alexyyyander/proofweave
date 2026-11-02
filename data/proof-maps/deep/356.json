@@ -242,7 +242,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Giglis-distributional-curvature-characterization-of-Alexandrov-spaces-September-24-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Gigli’s distributional curvature characterization of Alexandrov spaces; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Gigli’s distributional curvature characterization of Alexandrov spaces.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -350,8 +350,7 @@
           "detail": "[A localized error estimate] For the finite centered law above, every semiconcave compactly supported Lipschitz \\(f0\\), and every family \\(q_ AB W^ 1,2 (M)\\), 6 f\\, E|A B|^2 16 ER(A,B,B,A)(f) +12 E…",
           "dependsOn": [
             "m1-fwd-dual",
-            "m1-fwd-configuration",
-            "m1-fwd-algebra"
+            "m1-fwd-configuration"
           ]
         },
         {
@@ -412,9 +411,7 @@
           "dependsOn": [
             "m1-pre-approximation",
             "m1-fwd-curvature",
-            "m1-fwd-gradient-bound",
-            "m1-fwd-coefficients",
-            "m1-pre-tensor-continuity"
+            "m1-fwd-coefficients"
           ]
         },
         {
@@ -559,8 +556,7 @@
           "detail": "[Common calibrated paths and their velocities] There is a Borel prescription \\(S:x S(x)(M)\\), defined outside one \\(m\\)-null set and with \\(S(x)_1=x\\), such that \\(S(x)\\) satisfies . For every \\(f…",
           "dependsOn": [
             "m1-heat-index",
-            "m1-heat-laplace-principle",
-            "m1-heat-viscous-index"
+            "m1-heat-laplace-principle"
           ]
         },
         {
@@ -592,7 +588,6 @@
           "source": "Frames along geodesics and Hessian comparison",
           "detail": "[Energy controls the content of a rank defect] Work in a bounded region where and the Poincar\\'e inequality hold with fixed constants. There are an enlargement factor L and _0>0 with the following…",
           "dependsOn": [
-            "m1-frames-countable-frames",
             "m1-frames-content-null"
           ]
         },
@@ -637,9 +632,7 @@
           "kind": "lemma",
           "source": "Frames along geodesics and Hessian comparison",
           "detail": "[Countable trials with prescribed global endpoints] Fix 0<<1 , a compact test gradient Z , and a countable family in Proposition~ whose gradients include Z . There is a countable collection Y_ ,Z of…",
-          "dependsOn": [
-            "m1-frames-path-calculus"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-frames-terminal-trace",
@@ -649,9 +642,7 @@
           "kind": "lemma",
           "source": "Frames along geodesics and Hessian comparison",
           "detail": "[Terminal gradient trace] For the radial calibrated paths just described, the terminal representative supplied by Proposition~ satisfies v(1)= q(_1) almost surely. In particular | q|=r almost…",
-          "dependsOn": [
-            "m1-frames-countable-frames"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-frames-hessian",
@@ -662,7 +653,6 @@
           "source": "Frames along geodesics and Hessian comparison",
           "detail": "[Distributional Hessian comparison] Let \\(n2\\) be an integer, let \\( R\\), and let \\((M,d,m)\\), with \\(m= H^n\\), be a full-support \\(((n-1),n)\\) space satisfying for every global \\(X,Y(M)\\) and every…",
           "dependsOn": [
-            "m1-frames-terminal-trace",
             "m1-heat-index",
             "m1-frames-trial-density"
           ]
@@ -700,7 +690,6 @@
           "dependsOn": [
             "m1-heat-index",
             "m1-frames-hessian",
-            "m1-weight-distance-modification",
             "m1-weight-every-geodesic"
           ]
         }
@@ -718,7 +707,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Weak-Hessian-bounds-along-every-geodesic-in-RCD-spaces-September-24-2026/weak-hessian-geodesics.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Weak Hessian bounds along every geodesic in RCD spaces; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Weak Hessian bounds along every geodesic in RCD spaces.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -761,8 +750,7 @@
           "detail": "[A distributional Hessian bound changes curvature] Let \\((M,d,m)\\) be a full-support \\((K,N)\\) space, where \\(K R\\) and \\(1<N<\\). Let \\(F M R\\) be bounded and globally Lipschitz, and let \\(G M R\\) be…",
           "dependsOn": [
             "m2-weight-resolvent",
-            "m2-pre-approximation",
-            "m2-weight-every-geodesic"
+            "m2-pre-approximation"
           ]
         }
       ]
@@ -788,7 +776,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

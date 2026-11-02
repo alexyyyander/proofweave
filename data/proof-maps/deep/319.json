@@ -322,7 +322,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Counterexamples-to-the-Hahn-Wilson-conjecture-at-height-two-September-26-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Counterexamples to the Hahn-Wilson conjecture at height two; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Counterexamples to the Hahn-Wilson conjecture at height two.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -363,9 +363,7 @@
           "kind": "proposition",
           "source": "Law charts and the height-two quotient",
           "detail": "There is a flat affine groupoid stack N and a map r: M_k N that quotients the vertical central Z -action on arrows. Its pullback is exact and identifies sheaves on N with sheaves on M_k having…",
-          "dependsOn": [
-            "m1-geom-torsor"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-geom-open",
@@ -463,8 +461,7 @@
           "detail": "Projective dimensions in the Ext sense satisfy pd_ N ( O)4, pd_ M_k ( O), pd_ M_0 ( O)5, pd_ M ( O)6. For sheaves on M_k , the right adjoint of r^* has r_*M=(c-1:M M), R^1r_*M=(c-1:M M), R^ >1…",
           "dependsOn": [
             "m1-geom-sections-resolution",
-            "m1-geom-group-cohomology",
-            "m1-geom-open"
+            "m1-geom-group-cohomology"
           ]
         },
         {
@@ -508,8 +505,7 @@
           "source": "Completion, operations, and the overlap",
           "detail": "[Complete operations and their representatives] There is an identification of graded algebras E_ sD =(x^ -s )^(s), E_n=0(n D). Products use left-coefficient skew convolution in , with degrees added.…",
           "dependsOn": [
-            "m1-complete-fracture",
-            "m1-geom-thickened-charts"
+            "m1-complete-fracture"
           ]
         },
         {
@@ -555,9 +551,7 @@
           "kind": "lemma",
           "source": "Completion, operations, and the overlap",
           "detail": "[The tower is the reduction tower] For a finite-cell realization Y=_eY_e there are natural equivalences \\[ Y/t^d Y_d(d1). \\] Under these equivalences, the tower projection is the intrinsic reduction…",
-          "dependsOn": [
-            "m1-complete-fracture"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-complete-topology",
@@ -659,7 +653,6 @@
           "source": "From pivots to a gluing lattice",
           "detail": "[Compact stages of the cone] For every degree i , the normalized overlap has an identification W_i(Y)= Q K, compatible with the t -period identifications. The map _iY W_i(Y) has finite kernel and…",
           "dependsOn": [
-            "m1-complete-sections",
             "m1-glue-pivot-topology",
             "m1-complete-reductions"
           ]
@@ -673,7 +666,6 @@
           "source": "From pivots to a gluing lattice",
           "detail": "[Simultaneous defect pairs] The vectors (q_j,k_l) Q K , indexed by the paired lists, are linearly independent modulo C_0^ lat . For every sufficiently large integer N , at least cN^ pairs, for a…",
           "dependsOn": [
-            "m1-glue-pivot-topology",
             "m1-op-operator"
           ]
         },
@@ -699,8 +691,7 @@
           "detail": "[Constraint on global maps] For every map g:U P with P(T') , the induced map \\[ W_i( g): Q K W_i( P) \\] is continuous and sends each paired vector (q_j,k_l) into the discrete lattice (_iLP W_i( P)) .",
           "dependsOn": [
             "m1-glue-object",
-            "m1-complete-topology",
-            "m1-glue-overlap"
+            "m1-complete-topology"
           ]
         },
         {
@@ -732,7 +723,6 @@
           "source": "The obstruction to a global finite construction",
           "detail": "[Finite towers and retracts] For an idempotent-complete triangulated category C and an object T_0 , every P_ C (T_0) is a retract of an object P_0 admitting a finite tower of triangles \\[ F_j P_j P_…",
           "dependsOn": [
-            "m1-rew-obs-tower-criterion",
             "m1-obs-periodic-splitting"
           ]
         },
@@ -815,11 +805,7 @@
           "kind": "theorem",
           "source": "The obstruction to a global finite construction",
           "detail": "For the object U D( N) constructed in Proposition~ , \\[ U_ D( N) (T'). \\]",
-          "dependsOn": [
-            "m1-rew-obs-tower-criterion",
-            "m1-obs-principal",
-            "m1-obs-dual-ghost"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-comp-algebraicity",
@@ -840,10 +826,8 @@
           "source": "Comparison with chromatic homotopy theory",
           "detail": "[The height-two comparison inputs] Let C_E=Comod_ E_*E be the ordinary abelian category of all graded comodules. Then \\[ Ext_ C_E ^ s (M,N)=0 (M,N C_E,\\ s>6). \\] This includes every internal grading…",
           "dependsOn": [
-            "m1-geom-cohomological-bounds",
             "m1-geom-sections-resolution",
-            "m1-geom-group-cohomology",
-            "m1-comp-algebraicity"
+            "m1-geom-group-cohomology"
           ]
         },
         {
@@ -982,8 +966,6 @@
           "source": "The counterexample and its localizations",
           "detail": "There are equivalences \\[ L_2^fX_ sp L_2X_ sp Z_ sp , L_ T(2) X_ sp L_ K(2) X_ sp . \\]",
           "dependsOn": [
-            "m1-thm-main",
-            "m1-op-operator",
             "m1-glue-object",
             "m1-obs-nonmembership",
             "m1-transfer-criterion",
@@ -1030,7 +1012,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

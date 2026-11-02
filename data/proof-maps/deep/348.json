@@ -407,7 +407,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Zero-Plane-Rigidity-for-Einstein-Four-Manifolds-October-4-2026/einstein-boundary.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Zero-Plane Rigidity for Einstein Four-Manifolds; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Zero-Plane Rigidity for Einstein Four-Manifolds.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -471,7 +471,6 @@
           "source": "Curvature blocks and their covariant derivatives",
           "detail": "[Differential equations for the Weyl blocks] The tensor Z= T belongs to the parallel subbundle G of type (5/2,1/2) . On this bundle, put B_ op =Q_ 5/2 (T) . Then \\[ T=6(T-N), N=(T^2)_0=T^2-2v^2Id, \\]…",
           "dependsOn": [
-            "m1-lem-curvature-blocks",
             "m1-lem-quadratic-curvature-action"
           ]
         },
@@ -598,7 +597,6 @@
           "source": "Upper volume deficit and balanced Weyl moments",
           "detail": "[A rational sine minorant] Put \\[ a_0=157 50 , b_0=22 7 , S(z)=a_0z-(b_0z)^3 6 +(a_0z)^5 120 -(b_0z)^7 5040 . \\] The constants satisfy a_0<<b_0 , and 0 S(z)( z) for 0 z1/2 . Its coefficients are \\[…",
           "dependsOn": [
-            "m1-prop-upper-volume-deficit",
             "m1-lem-upper-polar",
             "m1-lem-upper-radial"
           ]
@@ -621,9 +619,7 @@
           "kind": "proposition",
           "source": "Upper volume deficit and balanced Weyl moments",
           "detail": "[Balanced Weyl moments] If neither Weyl block is identically zero, then =0 and E v^2= E b^2 .",
-          "dependsOn": [
-            "m1-lem-moment-obstruction"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-hessian-components",
@@ -654,8 +650,7 @@
           "source": "A weighted Hessian inequality for the Weyl blocks",
           "detail": "[Weighted Hessian inequality] For every global Lipschitz scalar weight m m_0>0 , 0 E, where \\(i,j\\) in the middle term are derivative indices and \\[ G_v=(-42-3b^2-10 3 v^2)e +75B+25 3 C_N-100 3 E_B…",
           "dependsOn": [
-            "m1-lem-hessian-operator",
-            "m1-lem-hessian-components"
+            "m1-lem-hessian-operator"
           ]
         },
         {
@@ -696,9 +691,7 @@
           "kind": "proposition",
           "source": "A weighted Hessian inequality for the Weyl blocks",
           "detail": "[The projection cost] For the weight , P(L_m)_Y,(L_m)_Y 24m 9 64 |p-q|^2 . The bracket on the right is nonnegative. Both assertions remain valid under the closed inequalities \\(v+b2\\) and \\(x+y2\\).",
-          "dependsOn": [
-            "m1-lem-real-vector-projections"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-coupling-estimates",
@@ -733,9 +726,7 @@
           "kind": "proposition",
           "source": "The equality case and the parallel splitting",
           "detail": "[Parallel Weyl blocks] Both T and U are parallel, with eigenvalues (2,-1,-1) .",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-bernstein-conversion",
@@ -797,7 +788,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Positively-curved-Einstein-four-manifolds-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Positively curved Einstein four-manifolds; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Positively curved Einstein four-manifolds.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -851,7 +842,6 @@
           "source": "Curvature blocks and their covariant derivatives",
           "detail": "[Differential equations for the Weyl blocks] The tensor Z= T belongs to the parallel subbundle G of type (5/2,1/2) . On this bundle, put B_ op =Q_ 5/2 (T) . Then \\[ T=6(T-N), N=(T^2)_0=T^2-2v^2Id, \\]…",
           "dependsOn": [
-            "m2-lem-curvature-blocks",
             "m2-lem-quadratic-curvature-action"
           ]
         },
@@ -990,7 +980,6 @@
           "source": "Upper volume deficit and balanced Weyl moments",
           "detail": "[A rational sine minorant] Put \\[ a_0=157 50 , b_0=22 7 , S(z)=a_0z-(b_0z)^3 6 +(a_0z)^5 120 -(b_0z)^7 5040 . \\] The constants satisfy a_0<<b_0 , and 0 S(z)( z) for 0 z1/2 . Its coefficients are \\[…",
           "dependsOn": [
-            "m2-prop-upper-volume-deficit",
             "m2-lem-upper-polar",
             "m2-lem-upper-radial"
           ]
@@ -1013,9 +1002,7 @@
           "kind": "proposition",
           "source": "Upper volume deficit and balanced Weyl moments",
           "detail": "[Balanced Weyl moments] If neither Weyl block is identically zero, then =0 and E v^2= E b^2 .",
-          "dependsOn": [
-            "m2-lem-moment-obstruction"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-hessian-components",
@@ -1046,8 +1033,7 @@
           "source": "A weighted Hessian inequality for the Weyl blocks",
           "detail": "[Weighted Hessian inequality] For every global Lipschitz scalar weight m m_0>0 , 0 E, where \\(i,j\\) in the middle term are derivative indices and \\[ G_v=(-42-3b^2-10 3 v^2)e +75B+25 3 C_N-100 3 E_B…",
           "dependsOn": [
-            "m2-lem-hessian-operator",
-            "m2-lem-hessian-components"
+            "m2-lem-hessian-operator"
           ]
         },
         {
@@ -1088,9 +1074,7 @@
           "kind": "proposition",
           "source": "A weighted Hessian inequality for the Weyl blocks",
           "detail": "[The projection cost] For the weight , P(L_m)_Y,(L_m)_Y 24m 9 64 |p-q|^2 . The bracket on the right is nonnegative. Both assertions remain valid under the closed inequalities \\(v+b2\\) and \\(x+y2\\).",
-          "dependsOn": [
-            "m2-lem-real-vector-projections"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-coupling-estimates",
@@ -1256,8 +1240,7 @@
             "m2-prop-parallel-models",
             "m2-lem-model-curvature",
             "m2-lem-global-isometry",
-            "m2-thm-classification",
-            "m2-prop-sharp-sobolev"
+            "m2-thm-classification"
           ]
         },
         {
@@ -1279,9 +1262,7 @@
           "source": "Analytic foundations and characteristic formulas",
           "detail": "[Local signed heat coefficient] For the three operators in Lemma~ , let str denote the trace on ^0 minus that on ^1 plus that on ^+ . Write for their connection curvatures. The constant local…",
           "dependsOn": [
-            "m2-prop-characteristic-identities",
-            "m2-lem-form-complex-laplacians",
-            "m2-lem-volume-topology"
+            "m2-lem-form-complex-laplacians"
           ]
         }
       ]
@@ -1307,7 +1288,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

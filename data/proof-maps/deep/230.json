@@ -257,7 +257,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-exact-Hausdorff-gauge-for-SLE-September-25-2026/An-exact-Hausdorff-gauge-for-SLE-September-25-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from An exact Hausdorff gauge for SLE; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from An exact Hausdorff gauge for SLE.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -386,9 +386,7 @@
           "source": "Disk moments and deterministic coefficients",
           "detail": "[Finite, positive disk moments] For every integer n1 , the deterministic numbers m_n():=_ mix ^*L_^n, m_n:=_ mix ^*L^n =_ m_n() satisfy 0<m_n<. Moreover L>0 almost surely, and, for each fixed angle,…",
           "dependsOn": [
-            "m1-mp-level-moments",
-            "m1-mass-positive",
-            "m1-mass-construction"
+            "m1-mp-level-moments"
           ]
         },
         {
@@ -456,8 +454,6 @@
           "detail": "[The lower Hausdorff bound] Almost surely, \\[ ^h(([s,t]))>0 for every real 0<s<t<. \\]",
           "dependsOn": [
             "m1-hd-bad-cells",
-            "m1-mass-construction",
-            "m1-mass-positive",
             "m1-gauge-admissible"
           ]
         },
@@ -470,7 +466,6 @@
           "source": "All-time upper covers and theorem assembly",
           "detail": "[A cell visit forces a conformal-radius crossing] Let \\(Q\\) be a closed square of side \\(r\\), centered at \\(z=x+iy\\), where \\(y>0\\). If \\(y>4r\\) and \\(Q\\), then \\(z\\) reaches conformal radius \\(8r\\)…",
           "dependsOn": [
-            "m1-op-mixing",
             "m1-op-finite-tilt"
           ]
         },
@@ -486,9 +481,7 @@
             "m1-gauge-multiplicity",
             "m1-hd-visit",
             "m1-mass-restart",
-            "m1-thm-main",
-            "m1-gauge-admissible",
-            "m1-hd-lower"
+            "m1-gauge-admissible"
           ]
         }
       ]
@@ -505,7 +498,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-explicit-exact-Hausdorff-gauge-for-SLE-September-26-2026/An-explicit-exact-Hausdorff-gauge-for-SLE-September-26-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from An explicit exact Hausdorff gauge for SLE; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from An explicit exact Hausdorff gauge for SLE.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -693,9 +686,7 @@
           "detail": "[The conditional physical-disk rule] Suppose 4<<8 . There exist C,c>0 and L_02 , depending only on , with the following property. Consider ordinary chordal SLE in H , possibly after a finite stopping…",
           "dependsOn": [
             "m2-geom-first-hit-access",
-            "m2-geom-extension",
-            "m2-ll-localization",
-            "m2-ll-swallowing"
+            "m2-geom-extension"
           ]
         },
         {
@@ -727,7 +718,6 @@
           "source": "A uniform tail for spatially integrated stopped densities",
           "detail": "[Disjoint-window concentration] Let D B(0,1) be Borel, let 0<r R and K>0 with 3R1 , and let be a continuous adapted curve. For each z D , suppose that a test starts at a stopping time _z , with _z=…",
           "dependsOn": [
-            "m2-mesh-tail",
             "m2-ll-approach",
             "m2-ll-disk-rule"
           ]
@@ -771,7 +761,6 @@
           "source": "Uniform passages and dense visits",
           "detail": "[A small image semicircle] Let F be univalent on H , and let a F( H) . Suppose :[0,T] H is continuous, (0)=0 , (t) H for t>0 , and F((t)) a as t0 . Fix r>0 and L>1 , and write A= L . Choose t_0>0 so…",
           "dependsOn": [
-            "m2-rc-step",
             "m2-es-guide-compactness",
             "m2-geom-extension"
           ]
@@ -834,7 +823,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

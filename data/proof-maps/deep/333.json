@@ -107,7 +107,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Smooth-isometric-immersions-of-closed-surfaces-into-Euclidean-four-space-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Smooth isometric immersions of closed surfaces into Euclidean four-space; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Smooth isometric immersions of closed surfaces into Euclidean four-space.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -251,9 +251,6 @@
           "source": "Realizing the primitive metric addition",
           "detail": "[Finite periodic expansion] Under the hypotheses of Proposition~ , for each integer L2 there are periodic differential operators U_1,,U_L with values in ^4 , and symmetric tensor differential…",
           "dependsOn": [
-            "m1-prop-primitive-realization",
-            "m1-prop-exact-correction",
-            "m1-prop-small-increment",
             "m1-lem-phase-data"
           ]
         },
@@ -276,7 +273,6 @@
           "source": "Global preparation and finite assembly",
           "detail": "[Global primitive preparation] Let (M,g) be a closed smooth Riemannian surface. There exist a smooth immersion F^0:M^4 , a smooth unit normal n^0 , and a finite list \\[ (D_j,x_j,y_j,a_j), 1 j K, \\]…",
           "dependsOn": [
-            "m1-lem-spherical-preparation",
             "m1-thm-main",
             "m1-prop-primitive-addition"
           ]
@@ -298,7 +294,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

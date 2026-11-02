@@ -107,7 +107,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/the-additive-indecomposability-of-the-primes-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The additive indecomposability of the primes; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The additive indecomposability of the primes.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -183,8 +183,7 @@
           "source": "Quadratic characters with arbitrary translating centres",
           "detail": "Under the assumed eventual decomposition of the primes, _ T p 2T p p _ t_p |_ x S_p _p(x-t)|=o(T) (T).",
           "dependsOn": [
-            "m1-lem-size",
-            "m1-lem-collision"
+            "m1-lem-size"
           ]
         },
         {
@@ -301,7 +300,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

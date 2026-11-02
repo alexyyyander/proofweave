@@ -262,7 +262,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Fixed-energy-universality-for-weak-Anderson-disorder-on-random-regular-graphs-October-5-2026/fixed-energy-universality-weak-anderson-disorder-random-regular-graphs.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Fixed-energy universality for weak Anderson disorder on random regular graphs; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Fixed-energy universality for weak Anderson disorder on random regular graphs.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -349,10 +349,7 @@
           "kind": "proposition",
           "source": "A distributional local law on the finite graph",
           "detail": "[Empirical recursion] For each fixed j1 there are c,C,y_0>0 such that, when y y_0 , \\ W_2(P_H,_j(P_H))>y^ -c \\ Cy^ -c . The same assertion holds with P_H^0 on the left and _j^0(P_H) on the right.…",
-          "dependsOn": [
-            "m1-prop-local-law",
-            "m1-prop-tree-stability"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-local-consequences",
@@ -363,7 +360,6 @@
           "source": "A distributional local law on the finite graph",
           "detail": "[Consequences of the local law] Fix E in the interior of J and s . The following statements hold. At =E+(s+iy)/n , in the order n and then y , the diagonal G_ vv () at a uniform vertex, jointly with…",
           "dependsOn": [
-            "m1-prop-empirical-recursion",
             "m1-prop-tree-stability",
             "m1-cor-tree-density"
           ]
@@ -419,9 +415,7 @@
           "kind": "lemma",
           "source": "Conditional Gaussian rigidity",
           "detail": "[Tree logarithmic potential] At positive height, with all tree Green functions evaluated at \\(\\), -U()=_|m_o| + d2_|1-g_i g'|. Both sides have finite limits as \\(=E+i\\), \\(0\\). Denote the limit of…",
-          "dependsOn": [
-            "m1-lem-tree-log"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-gaussian-marks",
@@ -568,7 +562,6 @@
           "source": "Identification by finite-matrix Dyson Brownian motion",
           "detail": "For every compact interval \\(J\\) and every \\(b>0\\), \\[ _ m1 (b\\, G_m(J))<. \\]",
           "dependsOn": [
-            "m1-thm-main",
             "m1-prop-tree-stability",
             "m1-cor-tree-density",
             "m1-prop-marked-limits"
@@ -588,7 +581,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/GOE-bulk-universality-for-fixed-degree-random-regular-graphs-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from GOE bulk universality for fixed-degree random regular graphs; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from GOE bulk universality for fixed-degree random regular graphs.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -696,13 +689,7 @@
           "kind": "lemma",
           "source": "Gaussian moments at sampled edges",
           "detail": "[Entropy criterion for Gaussian moments] Fix an integer \\(q2\\). Let \\(B_n\\) be random vectors in \\(D\\) with \\(\\|B_n\\| K_n\\) almost surely, where \\(K_n=n^ o(1) \\) is deterministic. Suppose that for…",
-          "dependsOn": [
-            "m2-ent-tensor",
-            "m2-prop-edge-moments",
-            "m2-ent-type-count",
-            "m2-ent-projected-entropy",
-            "m2-prop-spectral-input"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-endpoint-control",
@@ -825,7 +812,6 @@
           "source": "Identification by finite-matrix Dyson Brownian motion",
           "detail": "For every compact interval \\(J\\) and every \\(b>0\\), \\[ _ m1 (b\\, G_m(J))<. \\]",
           "dependsOn": [
-            "m2-thm-main",
             "m2-prop-microscopic-limit"
           ]
         }
@@ -852,7 +838,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -491,211 +491,253 @@
     {
       "from": "m1-pts-validity",
       "to": "m1-pts-thinning",
+      "label": "pts:validity",
       "context": "a binder, first rename its bound variable fresh for $\\Delta$. Its domain sorting is a premise of product formation or a smaller subderivation supplied by Lemma~\\ref{pts:validity}. Induction transports this sorting to $\\Delta$, making the extended target context valid. Induction therefore also tran"
     },
     {
       "from": "m1-pts-substitution",
       "to": "m1-pts-context-conversion",
+      "label": "pts:substitution",
       "context": "vert to obtain $x:D$. Thus the identity on the old variables is a typed substitution from $\\Gamma,x:D$ to $\\Gamma,x:D'$. As in the suffix construction in Lemma~\\ref{pts:substitution}, transport each later sorting judgment, append the same declaration, and extend the identity substitution. Finally tran"
     },
     {
       "from": "m1-pts-context-conversion",
       "to": "m1-pts-subject-reduction",
+      "label": "pts:context-conversion",
       "context": ", apply induction to its subject premise and reapply the same rule. At product formation, a step in the domain preserves its original sort by induction. Lemma~\\ref{pts:context-conversion} transports the codomain sorting to the changed binder context, and the same product rule re-forms the result. A codomai"
     },
     {
       "from": "m1-pts-correctness",
       "to": "m1-pts-subject-reduction",
+      "label": "pts:correctness",
       "context": "ct type by induction. A step $N\\to_\\beta N'$ in the argument gives the new result type $E[x:=N']$; convert this to $E[x:=N]$, whose sorting was proved in Lemma~\\ref{pts:correctness}. It remains to treat a root contraction $(\\lambda x:D_0.P)N\\to_\\beta P[x:=N]$. Suppose the application premises assign"
     },
     {
       "from": "m1-pts-correctness",
       "to": "m1-pts-neutral-uniqueness",
+      "label": "pts:correctness",
       "context": "nd irreducibility of $s$ give $D\\to_\\beta^*s$. Subject reduction therefore sorts $s$. For a nonempty neutral spine, the stronger application assertion in Lemma~\\ref{pts:correctness} sorts its expected type directly. Finally, the head of a normal application cannot be a lambda, since that would give"
     },
     {
       "from": "m1-pts-neutral-uniqueness",
       "to": "m1-pts-normalizing-judgments",
+      "label": "pts:neutral-uniqueness",
       "context": "on of the expected type. In the second case $A^\\#=A$, so there is nothing to convert if that sort is unsorted. Finally a normal application is neutral by Lemma~\\ref{pts:neutral-uniqueness}, and a lambda cannot have a sort type by generation and product/sort separation."
     },
     {
       "from": "m1-lem-normal-profiles",
       "to": "m1-lem-feasible-profiles",
+      "label": "lem:normal-profiles",
       "context": "Necessity follows by induction on a sorted normal expression, using Lemma~\\ref{lem:normal-profiles}. Conversely, $s$ witnesses $\\operatorname{Ax}(s)$, and a variable declared at type $s$ witnesses $\\{s\\}$. Given normal"
     },
     {
       "from": "m1-lem-sn-head-expansion",
       "to": "m1-lem-candidate-lattice",
+      "label": "lem:sn-head-expansion",
       "context": "Lemma~\\ref{lem:sn-head-expansion} shows that $\\top_T$ is a candidate. Intersections of candidates preserve all three requirements of Definition~\\ref{def:"
     },
     {
       "from": "m1-lem-test-properties",
       "to": "m1-lem-candidate-lattice",
+      "label": "lem:test-properties",
       "context": "$. In particular, the least candidate is the intersection of all candidates. For \\eqref{eq:product-test-candidate}, a term in $G_T$ passes every test by Lemma~\\ref{lem:test-properties} and the containment $G_{T_n}\\subseteq C_{n,a}$. Suppose a head contractum belongs to \\eqref{eq:product-test-candidate}"
     },
     {
       "from": "m1-lem-test-properties",
       "to": "m1-lem-sn-fundamental",
+      "label": "lem:test-properties",
       "context": "e, beyond a common prefix for the finite expressions in question. Choose $z$ outside the free names of all other images. It belongs to $G_{(B\\xi)^\\#}$ by Lemma~\\ref{lem:test-properties}, and hence satisfies whichever of the three admissibility conditions applies. Any allowed parameter extension can be us"
     },
     {
       "from": "m1-lem-sn-head-expansion",
       "to": "m1-lem-sn-fundamental",
+      "label": "lem:sn-head-expansion",
       "context": "odomain candidate proves the test. If the actual codomain profile is in $U$, use any compatible parameter extension, the body's strong normalization, and Lemma~\\ref{lem:sn-head-expansion}. We have verified every product test; the introduction direction of the product-equality requirement proves the conclus"
     },
     {
       "from": "m1-lem-sn-fundamental",
       "to": "m1-prop-advance-component",
+      "label": "lem:sn-fundamental",
       "context": "ings and use the identity substitution. Choose parameters successively; all variable images lie in $G$ and therefore the environment is admissible. Apply Lemma~\\ref{lem:sn-fundamental} separately to $h$ and to each $n_i$ at its exact successive domain. Each is strongly normalizing by hypothesis or by th"
     },
     {
       "from": "m1-lem-test-properties",
       "to": "m1-prop-advance-component",
+      "label": "lem:test-properties",
       "context": "e generic application and never applies the fundamental lemma to such an application. Since the stack was arbitrary, $h\\in G_T$. The reverse inclusion is Lemma~\\ref{lem:test-properties}."
     },
     {
       "from": "m1-prop-advance-component",
       "to": "m1-prop-interfaces-imply-sn",
+      "label": "prop:advance-component",
       "context": "Process the finitely many components and apply Proposition~\\ref{prop:advance-component}. At the end, $G_T=\\top_T$ for every actual type with nonempty profile. Empty-profile actual types are literal sorts, fo"
     },
     {
       "from": "m1-lem-test-properties",
       "to": "m1-prop-interfaces-imply-sn",
+      "label": "lem:test-properties",
       "context": "the end, $G_T=\\top_T$ for every actual type with nonempty profile. Empty-profile actual types are literal sorts, for which this equality already holds by Lemma~\\ref{lem:test-properties}. Suppose a typable expression is not strongly normalizing and choose one of least syntax size, among all valid context"
     },
     {
       "from": "m1-lem-candidate-lattice",
       "to": "m1-prop-signed-component",
+      "label": "lem:candidate-lattice",
       "context": "mathcal T_S}\\mathcal C(T) \\] use inclusion in coordinates with sign $+$ and reverse inclusion in coordinates with sign $-$. This is a complete lattice by Lemma~\\ref{lem:candidate-lattice}. Extend a vector $v$ to actual types in $U$ by $v_T=\\top_T$. Define an operator $F:\\mathcal L\\to\\mathcal L$. At a nonp"
     },
     {
       "from": "m1-lem-support-dependence",
       "to": "m1-prop-one-child-component",
+      "label": "lem:support-dependence",
       "context": "Candidate existence and product equality follow from the recursion. Lemma~\\ref{lem:support-dependence} gives the required invariances. To verify specialization, let $T=\\Pi x:D.E$, take $\\Gamma\\vdash N:D$ with $N\\xi\\in R_D$"
     },
     {
       "from": "m1-lem-support-substitution",
       "to": "m1-prop-one-child-component",
+      "label": "lem:support-substitution",
       "context": "[ h(N\\xi)\\in R_E(\\xi[x\\mapsto N\\xi],\\theta_x) \\] when the actual codomain profile lies in $S$; here $\\theta_x$ is the prescribed binder extension. Apply Lemma~\\ref{lem:support-substitution} to substitution for $x$ in $E$, with comparison direction $+$. All old bits agree. The prescribed bit of $x$ is exactly"
     },
     {
       "from": "m1-obs-graph-lemma",
       "to": "m1-obs-plain-construction",
+      "label": "obs:graph-lemma",
       "context": "ies \\begin{equation}\\label{obs:potential-drop} p_C(T_q)\\le p_C(E)<p_C(T). \\end{equation} Here $J\\in C$ follows from the positive ascent in Lemma~\\ref{obs:graph-lemma}; hence $p_C(E)$ is defined. To prove the first inequality, thin $T$ and $q$ to a common prefix, choosing the displayed"
     },
     {
       "from": "m1-obs-goodness-basic",
       "to": "m1-obs-substitution",
+      "label": "obs:goodness-basic",
       "context": "eratorname{Ax}(s)$ active, contrary to this being a skipped Read. Thus that head also persists. In the active case use the all-shape base projection of Lemma~\\ref{obs:goodness-basic} and the Val induction already proved, even if substitution changes the root shape. Read outside actual profile $S$ sta"
     },
     {
       "from": "m1-obs-graph-lemma",
       "to": "m1-obs-reduction-transport",
+      "label": "obs:graph-lemma",
       "context": "cannot have been skipped, since its syntactic head is a lambda. Let $K,L$ be the actual function and result layers, respectively. They are active. By Lemma~\\ref{obs:graph-lemma}, the actual domain layer $I$ is active whenever it belongs to $H$. The argument is good if $I$ is active. Evaluation u"
     },
     {
       "from": "m1-obs-substitution",
       "to": "m1-obs-reduction-transport",
+      "label": "obs:substitution",
       "context": "fore identifies this body value with the one at the raw image, with the same payload. Lambda goodness supplies body goodness for both typed extensions. Lemma~\\ref{obs:substitution} now identifies that value with the beta contractum and proves its goodness. No strong normalization of $N\\xi$ was used"
     },
     {
       "from": "m1-obs-graph-lemma",
       "to": "m1-obs-interface-theorem",
+      "label": "obs:graph-lemma",
       "context": "ual product profile $K$ is in $S$. First suppose that the actual instantiated codomain profile $L$ is in $S$, and let $I$ be the actual domain profile. Lemma~\\ref{obs:graph-lemma} places the open codomain profile in $S$. Thus if $I\\in H$, the definition makes $I$ direct and hence active; in particu"
     },
     {
       "from": "m1-obs-substitution",
       "to": "m1-obs-interface-theorem",
+      "label": "obs:substitution",
       "context": "s over every payload and therefore includes this choice. Its open codomain $E$ is normal, with generic profile in $U\\cup S$, so its Read is good. Apply Lemma~\\ref{obs:substitution} to substitute $N^\\#$ there, using the raw image $N\\xi$. This image is convertible to $N^\\#\\xi$, as required. The lemm"
     },
     {
       "from": "m1-obs-reduction-transport",
       "to": "m1-obs-interface-theorem",
+      "label": "obs:reduction-transport",
       "context": ". This expression is typed by substitution and hence weakly normalizing by the system hypothesis. Transport its tree along a normalizing sequence using Lemma~\\ref{obs:reduction-transport}. Its normal form is precisely $(E[N/x])^\\#$, because $N$ and $N^\\#$ are convertible. Normal-tree independence identifi"
     },
     {
       "from": "m1-lem-enc-propositional",
       "to": "m1-chan-double-laws",
+      "label": "lem:enc-propositional",
       "context": ". If $\\epsilon=0$, it selects the negation of the negative comparison. The propositional double-negation equivalence is available from $\\mathsf{pl}$ by Lemma~\\ref{lem:enc-propositional}, since the logical constructors and classical proof builders have already been derived in the labelled fragment. Thus"
     },
     {
       "from": "m1-chan-point-laws",
       "to": "m1-chan-access",
+      "label": "chan-point-laws",
       "context": "peratorname{dummy});\\top, \\langle w,f_i(\\operatorname{dummy})\\rangle_{\\operatorname{Single}}\\bigr). \\] Together with $D(\\operatorname{dummy})$ from Lemma~\\ref{chan-point-laws} and the proof of $\\top$, this gives, by $\\mathsf{pl}$, a proof of $\\langle f_e(w),\\operatorname{dummy}\\rangle_F$. Cance"
     },
     {
       "from": "m1-rel-equivalence",
       "to": "m1-rel-lift-properties",
+      "label": "rel-equivalence",
       "context": "e \\(i\\) and use propositional reflexivity, symmetry, or transitivity of the instantiated biconditionals. Its congruence builder is the pair displayed in Lemma~\\ref{rel-equivalence}, with the relation replaced by \\(\\simeq\\). Primitive \\(X\\)-evaluation is preserved by \\(\\operatorname{Round}_X\\). App"
     },
     {
       "from": "m1-rel-equivalence",
       "to": "m1-rel-tags",
+      "label": "rel-equivalence",
       "context": "duction of \\(i\\), its observation component. The congruence builder for \\(\\operatorname{Ae}\\) is the explicit two-component transitivity construction of Lemma~\\ref{rel-equivalence}. Given \\(e:x\\simeq x'\\), the canonical signed bits imply the two same-tag bit comparisons. At \\(i\\), combine \\(e[i]\\)"
     },
     {
       "from": "m1-rel-tags",
       "to": "m1-rel-observation-equivalence",
+      "label": "rel-tags",
       "context": "s \\(y\\sim z\\). Abstract the two premises and pair the directions to obtain \\(\\operatorname{SA}\\). Given \\(e:x\\simeq x'\\), use the same-tag direction of Lemma~\\ref{rel-tags}, then \\(\\operatorname{back}(\\operatorname{SA},-)\\). Given \\(f:x^t\\sim x'^{\\,t}\\), use \\(\\operatorname{to}(\\operatorname"
     },
     {
       "from": "m1-rel-witnesses",
       "to": "m1-rel-pair-laws",
+      "label": "rel-witnesses",
       "context": "For \\eqref{rel-pair-left} forward, first negate \\(T_r(x^0,x'^{\\,\\ell})\\). Given such a proof, map it forward through Lemma~\\ref{rel-witnesses} and open its witness \\(u\\) into \\(\\bot\\). Its second conjunct is \\(x'^{\\,\\ell}\\sim u^r\\), contradicted by \\(\\operatorn"
     },
     {
       "from": "m1-rel-ind-congruence",
       "to": "m1-rel-wf",
+      "label": "rel-ind-congruence",
       "context": "F})} \\bigl(F(i),F(i'),\\operatorname{IndC}(D(d))\\bigr). \\] Now assume $ex:\\operatorname{Ext}(i)$. The proof $d_s$ from \\eqref{rel-shift-comparison} and Lemma~\\ref{rel-ind-congruence} give \\[ \\operatorname{IndC}(d_s): \\operatorname{Ind}(i_{z_i})\\leftrightarrow\\operatorname{Ind}(Si). \\] The f"
     },
     {
       "from": "m1-rel-contradiction",
       "to": "m1-prop-enc-exclusion",
+      "label": "rel-contradiction",
       "context": "If the configuration prohibited in~\\eqref{obs:forbidden} occurred, Sections~\\ref{sec:enc-wrappers}--\\ref{rel-diagonal}, culminating in Proposition~\\ref{rel-contradiction}, would give a finite legal labelled context $\\Delta$ of the form above and a proof-mode term \\[ \\Delta"
     },
     {
       "from": "m1-lem-enc-labelled-metatheory",
       "to": "m1-prop-enc-exclusion",
+      "label": "lem:enc-labelled-metatheory",
       "context": "cification. The system-wide hypothesis therefore applies to this particular open legal term $|P|$. Choose a finite reduction to a full beta-normal form. Lemma~\\ref{lem:enc-labelled-metatheory} lifts that reduction to a labelled reduct $P'$ with the same exact type $F_b$, the same proof mode, and normal erasure."
     },
     {
       "from": "m1-lem-enc-no-normal-proof",
       "to": "m1-prop-enc-exclusion",
+      "label": "lem:enc-no-normal-proof",
       "context": "ref{lem:enc-labelled-metatheory} lifts that reduction to a labelled reduct $P'$ with the same exact type $F_b$, the same proof mode, and normal erasure. Lemma~\\ref{lem:enc-no-normal-proof} rules out $P'$."
     },
     {
       "from": "m1-thm-main",
       "to": "m1-prop-enc-exclusion",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] By Lemma~\\ref{pts:finite-restriction}, it suffices to treat a finite specification. Process the finitely many primary"
     },
     {
       "from": "m1-pts-finite-restriction",
       "to": "m1-prop-enc-exclusion",
+      "label": "pts:finite-restriction",
       "context": "[Proof of Theorem~\\ref{thm:main}] By Lemma~\\ref{pts:finite-restriction}, it suffices to treat a finite specification. Process the finitely many primary components in dependency order. For a c"
     },
     {
       "from": "m1-prop-signed-component",
       "to": "m1-prop-enc-exclusion",
+      "label": "prop:signed-component",
       "context": "s to treat a finite specification. Process the finitely many primary components in dependency order. For a component without an odd closed walk use Proposition~\\ref{prop:signed-component}. For one with no profile triple entirely inside it use Proposition~\\ref{prop:one-child-component}. Every remaining comp"
     },
     {
       "from": "m1-prop-one-child-component",
       "to": "m1-prop-enc-exclusion",
+      "label": "prop:one-child-component",
       "context": "rder. For a component without an odd closed walk use Proposition~\\ref{prop:signed-component}. For one with no profile triple entirely inside it use Proposition~\\ref{prop:one-child-component}. Every remaining component satisfies the hypotheses of Proposition~\\ref{prop:enc-exclusion}; hence Proposition~\\ref{obs"
     },
     {
       "from": "m1-obs-interface-theorem",
       "to": "m1-prop-enc-exclusion",
+      "label": "obs:interface-theorem",
       "context": "t use Proposition~\\ref{prop:one-child-component}. Every remaining component satisfies the hypotheses of Proposition~\\ref{prop:enc-exclusion}; hence Proposition~\\ref{obs:interface-theorem} supplies its candidate interface. Proposition~\\ref{prop:advance-component} therefore advances the processed invariant a"
     },
     {
       "from": "m1-prop-advance-component",
       "to": "m1-prop-enc-exclusion",
+      "label": "prop:advance-component",
       "context": "t satisfies the hypotheses of Proposition~\\ref{prop:enc-exclusion}; hence Proposition~\\ref{obs:interface-theorem} supplies its candidate interface. Proposition~\\ref{prop:advance-component} therefore advances the processed invariant at every stage. Once all components are processed, Proposition~\\ref{prop:int"
     },
     {
       "from": "m1-prop-interfaces-imply-sn",
       "to": "m1-prop-enc-exclusion",
+      "label": "prop:interfaces-imply-sn",
       "context": "e interface. Proposition~\\ref{prop:advance-component} therefore advances the processed invariant at every stage. Once all components are processed, Proposition~\\ref{prop:interfaces-imply-sn} gives strong normalization of every legal expression. This includes expressions in arbitrary valid open contexts and ev"
     }
   ]

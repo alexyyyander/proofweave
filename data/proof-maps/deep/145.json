@@ -147,7 +147,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Rokhlins-multiple-mixing-problem-for-one-transformation-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Rokhlin's multiple-mixing problem for one transformation; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Rokhlin's multiple-mixing problem for one transformation.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -198,9 +198,7 @@
           "kind": "lemma",
           "source": "Ordered arrays and conditional locality",
           "detail": "[Rolling an axis into the local state] Let R I satisfy |R| k-2 , and choose a I R . There is an extension of the saturated object whose local state is Y'=Y^I , with local law m_1 , parameter…",
-          "dependsOn": [
-            "m1-lem-local-conditioning"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-square-locality",
@@ -284,8 +282,7 @@
           "detail": "[Projection of tensor contractions] In any three-cell row of the grouped square, abbreviate the cell spaces by H_r,H_s,H_t and their common-active projections by P_r,P_s,P_t . For g H_s , h H_t , set…",
           "dependsOn": [
             "m1-lem-active-reduction",
-            "m1-lem-fixed-squares",
-            "m1-lem-polar-group"
+            "m1-lem-fixed-squares"
           ]
         },
         {
@@ -443,7 +440,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

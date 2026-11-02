@@ -152,7 +152,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Canonical-ampleness-of-compact-hyperbolic-Kahler-manifolds-September-23-2026/canonical-ampleness.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Canonical ampleness of compact hyperbolic Kähler manifolds; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Canonical ampleness of compact hyperbolic Kähler manifolds.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -270,7 +270,6 @@
           "source": "The trace of the complex Hessian",
           "detail": "[Trace identities] For every smooth closed real (1,1) -form q , d(F_t)&=(B(0)^*k(x)B(0)), \\\\ P_q(F_t)&=1 2 _0^ 2 (_h q)(f(e^ i ))\\,, \\\\ A_h(F_t)&=n-A_ R_h (f). Here F_t means the disc z F(t,z) , not…",
           "dependsOn": [
-            "m1-pre-green",
             "m1-hes-determinant"
           ]
         },
@@ -283,9 +282,7 @@
           "source": "The trace of the complex Hessian",
           "detail": "[Maximizing inequality] For a maximizer of d+P_q- A_h centered at x , the boundary-unitary frame satisfies (B(0)^*k(x)B(0)) +1 2 _0^ 2 (_hq)(f(e^ i ))\\, (n-A_ R_h (f)). It also satisfies Equation~ ,…",
           "dependsOn": [
-            "m1-hes-trace",
-            "m1-hes-determinant",
-            "m1-ex-dilation"
+            "m1-hes-trace"
           ]
         },
         {
@@ -366,7 +363,6 @@
           "source": "Positive top self-intersection",
           "detail": "The canonical class has positive top self-intersection: \\[ _X c_1(K_X)^n>0. \\]",
           "dependsOn": [
-            "m1-nef-nef",
             "m1-thm-negative-cma",
             "m1-prop-volume-lower-bound"
           ]
@@ -435,9 +431,7 @@
           "kind": "lemma",
           "source": "Smoothing a bounded positive potential",
           "detail": "[Fixed-factor changes of radius] Let be plurisubharmonic on a domain in ^n . Suppose that all closed balls B(x,R) with centers in a fixed set E are contained in the domain, and that m M on their…",
-          "dependsOn": [
-            "m1-nef-bounded-smoothing"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -456,7 +450,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

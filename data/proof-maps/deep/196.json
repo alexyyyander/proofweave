@@ -87,7 +87,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Torsion-Free-Group-Algebra-with-Zero-Divisors-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A Torsion-Free Group Algebra with Zero Divisors; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A Torsion-Free Group Algebra with Zero Divisors.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -163,9 +163,7 @@
           "kind": "lemma",
           "source": "From bounded patterns to spherical arrangements",
           "detail": "[A linear bound on comparison intervals] Suppose an arrangement with N disk boundaries is divided into N' N pieces by cutting each original path into consecutive segments, without crossing an…",
-          "dependsOn": [
-            "m1-prop-bounded-pattern"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-planar-separation",
@@ -186,7 +184,6 @@
           "source": "From bounded patterns to spherical arrangements",
           "detail": "[Absence of reduced spherical arrangements] With probability 1-o(1) , admits no reduced spherical arrangement. In particular, for all sufficiently large admissible n there exist graphs of the…",
           "dependsOn": [
-            "m1-lem-planar-separation",
             "m1-lem-planar-intervals"
           ]
         },
@@ -218,11 +215,7 @@
           "kind": "corollary",
           "source": "Cone pictures and torsion-freeness",
           "detail": "The universal cover of \\(X\\) is contractible, and \\(G\\) is torsion-free.",
-          "dependsOn": [
-            "m1-prop-topology",
-            "m1-thm-main",
-            "m1-prop-no-arrangements"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -241,7 +234,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

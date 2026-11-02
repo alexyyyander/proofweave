@@ -67,7 +67,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Nontrivial-Markov-Type-Forces-Superreflexivity-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Nontrivial Markov Type Forces Superreflexivity; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Nontrivial Markov Type Forces Superreflexivity.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -109,7 +109,6 @@
           "source": "Reduction to a finite walk",
           "detail": "[Odd edge labels] Suppose V is a normed space of Markov type p with constant K . For a finite marked chain satisfying , let g: E V satisfy g(e^*)=-g(e) . If E_1,,E_n are its first n edges, with…",
           "dependsOn": [
-            "m1-thm-main",
             "m1-lem-ordered-norm",
             "m1-prop-walks"
           ]
@@ -156,8 +155,7 @@
           "detail": "[Two levels] Let the reduced form of w have length >0 , with n_+ positive letters and n_- negative letters. For every j , c_w(j)=-n_-, c_w(h_w(0)+j)=n_+.",
           "dependsOn": [
             "m1-lem-action",
-            "m1-prop-chart-transport",
-            "m1-lem-ordered-norm"
+            "m1-prop-chart-transport"
           ]
         }
       ]
@@ -177,7 +175,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

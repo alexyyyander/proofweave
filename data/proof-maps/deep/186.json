@@ -77,7 +77,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-uniform-influence-bound-for-hypergraph-properties-October-5-2026/hypergraph-influences.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A uniform influence bound for hypergraph properties; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A uniform influence bound for hypergraph properties.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -120,9 +120,7 @@
           "kind": "lemma",
           "source": "Restriction to a vertex block",
           "detail": "[Capturing a support at one vertex] Let n r3 and 1 m n be integers, let k>0 , and put \\[ = r r-1 , L=(k/r)^. \\] Suppose rLm-1 n-1 12. For a uniform m -subset B of [n] and every S E_ n,r with 1|S| L ,…",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-threshold",
@@ -150,7 +148,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Sharp-Threshold-Bound-for-Monotone-Graph-Properties-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A Sharp Threshold Bound for Monotone Graph Properties; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A Sharp Threshold Bound for Monotone Graph Properties.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -214,9 +212,7 @@
           "kind": "lemma",
           "source": "Restricting to the edges incident with a vertex block",
           "detail": "[Capturing low Fourier levels] Suppose t= n16 , and put \\[ m= n, k= m 64 . \\] Then _ S E_n\\\\1 |S| k^2/2 f(S)^2 4m^ -1/4 I(f).",
-          "dependsOn": [
-            "m2-thm-threshold"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -241,7 +237,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

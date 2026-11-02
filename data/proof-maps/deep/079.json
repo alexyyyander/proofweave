@@ -427,7 +427,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Critical-local-smoothing-for-the-three-dimensional-wave-equation-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Critical local smoothing for the three-dimensional wave equation; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Critical local smoothing for the three-dimensional wave equation.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -548,9 +548,7 @@
           "kind": "lemma",
           "source": "Cylinder experiments and extremal configurations",
           "detail": "[Polynomial test reduction] At every stage of a polynomial setup, the base and normal cutoff and density conditions hold with enlarged fixed powers. To any prescribed polynomial regularity floor or…",
-          "dependsOn": [
-            "m1-cyl-localization"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-cylinder",
@@ -618,7 +616,6 @@
           "source": "Cylinder experiments and extremal configurations",
           "detail": "[Two-shear intersection] Normalize one starting interval and the later test widths to _i=r_j=f_j=1 , and put =_j/_i . Let Q^-, Q^- be two projected tests, with bounded base footprints and normal…",
           "dependsOn": [
-            "m1-cyl-matched-chain",
             "m1-cyl-split-saturation",
             "m1-cyl-one-time",
             "m1-cyl-localization"
@@ -711,8 +708,7 @@
           "source": "Cylinder experiments and extremal configurations",
           "detail": "[Forward flattening of scores] At finitely many gates in forward order, prescribe finitely many finite-valued measurable row names, each having polynomially many values. Conditional names may also…",
           "dependsOn": [
-            "m1-cyl-rarity",
-            "m1-lem-fw-restriction"
+            "m1-cyl-rarity"
           ]
         },
         {
@@ -748,8 +744,7 @@
           "source": "Cylinder experiments and extremal configurations",
           "detail": "[Recoverable phase names] Let a finite phase-cell name be observed on a later law. Suppose that, for each name, all its predecessors at an ordinary-regularized gate i are covered by s^ -o(1)…",
           "dependsOn": [
-            "m1-cyl-rarity",
-            "m1-cyl-borel-paths"
+            "m1-cyl-rarity"
           ]
         },
         {
@@ -846,9 +841,7 @@
           "kind": "lemma",
           "source": "Lower-dimensional estimates",
           "detail": "[Conditional planar incidence bootstrap] Fix a,g(0,1] and >0 . There are a finite collection of pairs 0<z' z1 and a tolerance >0 with the following property. Let (Q, L,D) vary with 0 , where Q and L…",
-          "dependsOn": [
-            "m1-low-ren-wang"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-low-classical-names",
@@ -874,8 +867,7 @@
           "detail": "[Exclusion of classical zero costs] A classical cylinder extremal configuration with >/2 cannot have both minimal shear costs equal to zero.",
           "dependsOn": [
             "m1-low-classical-names",
-            "m1-low-likelihood",
-            "m1-low-conditional-incidence"
+            "m1-low-likelihood"
           ]
         },
         {
@@ -1062,9 +1054,7 @@
           "kind": "proposition",
           "source": "Canonical names and conditional observations",
           "detail": "[Radial dichotomy] Let _i=(_i,r_i) and _j=(_j,r_j) be conditionally independent, identically distributed planar marks given Z . Suppose their bounded-depth records obey the preceding score calculus,…",
-          "dependsOn": [
-            "m1-names-radial-finite"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-names-parent-direction-transfer",
@@ -1097,9 +1087,7 @@
           "kind": "proposition",
           "source": "Canonical names and conditional observations",
           "detail": "[Pin-product alternatives] In addition to the hypotheses of Proposition~ , assume the following. The score calculus and the preceding conditional projection rule apply to all fixed finite queries…",
-          "dependsOn": [
-            "m1-names-radial-low-product"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-int-differential-cost",
@@ -1198,8 +1186,7 @@
           "source": "Interior phase inequalities",
           "detail": "[Horizontal width] For quadratic admissible tangent data, e2m . If m>0 and radial spreading holds, e2m+d.",
           "dependsOn": [
-            "m1-int-modes-geometric",
-            "m1-names-parent-direction-transfer"
+            "m1-int-modes-geometric"
           ]
         },
         {
@@ -1210,9 +1197,7 @@
           "kind": "proposition",
           "source": "Interior phase inequalities",
           "detail": "[Binary time estimate] Assume quadratic admissible data, m>0 , c>3 , and line avoidance. At a binary layer p2p , freeze contact coefficients at F_p , and let \\[ b_ miss (p)=p^ -1 H_ (F_ 2p F_ p,2p ,…",
-          "dependsOn": [
-            "m1-int-differential-cost"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-int-actions",
@@ -1245,7 +1230,6 @@
           "source": "Completion of the cylinder estimate",
           "detail": "[The stationary equality boundary] In the classical equality configuration q=c_2=1 , J=0 , the exact-side quadratic replica construction has the radial spreading property at almost every strong time…",
           "dependsOn": [
-            "m1-act-line-test",
             "m1-cyl-borel-paths"
           ]
         },
@@ -1258,7 +1242,6 @@
           "source": "Completion of the cylinder estimate",
           "detail": "[Strict affine boundary] Suppose c_2=1 and q<1 , with no lower bound on q . Use the artificial quadratic template ending at D , and set v_0=u(D) ; in the hybrid case take D=1 . If the boundary prefix…",
           "dependsOn": [
-            "m1-act-line-test",
             "m1-cyl-borel-paths"
           ]
         },
@@ -1281,9 +1264,7 @@
           "source": "Completion of the cylinder estimate",
           "detail": "[Off-gap path contradiction] Suppose that on an open time interval and in a sufficiently narrow right neighborhood of v=Jt the following hold. The profiles E,E^g are nonnegative and uniformly…",
           "dependsOn": [
-            "m1-thm-cylinder",
-            "m1-act-stationary-boundary",
-            "m1-act-strict-boundary"
+            "m1-act-stationary-boundary"
           ]
         },
         {
@@ -1349,7 +1330,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

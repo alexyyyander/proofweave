@@ -182,7 +182,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-counterexample-to-Sidorenkos-conjecture-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A counterexample to Sidorenko's conjecture; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A counterexample to Sidorenko's conjecture.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -364,8 +364,7 @@
           "source": "Transverse configurations and determinant signs",
           "detail": "For every fixed even D12 , every activity pattern B C , and every prescribed set of incidence signs, =__ j J _ \\ i,k\\ A_j (1+c_0_ \\ i,k\\ _ ij _ kj )+o(1), where the _e are independent uniform signs.…",
           "dependsOn": [
-            "m1-lem-local-transverse",
-            "m1-lem-joint-signs"
+            "m1-lem-local-transverse"
           ]
         },
         {
@@ -521,14 +520,9 @@
           "source": "The singular contribution",
           "detail": "[Vanishing singular contribution] For every sufficiently large even D=2r and every activity set B C , _ L,Y =o(1) as q through odd primes, with D fixed. The dimension threshold can be chosen for all…",
           "dependsOn": [
-            "m1-lem-tail-residue",
-            "m1-lem-tail-residual-counts",
             "m1-prop-planted-gain",
-            "m1-lem-rank-layer",
-            "m1-prop-transverse-limit",
             "m1-lem-chart-comparison",
             "m1-lem-finite-host",
-            "m1-thm-main",
             "m1-cor-amplification",
             "m1-cor-forcing"
           ]
@@ -550,7 +544,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

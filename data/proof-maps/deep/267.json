@@ -422,7 +422,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Bose-Einstein-condensation-at-positive-temperature-in-the-dilute-hard-sphere-gas-October-5-2026/positive-temperature-hard-spheres.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -532,11 +532,8 @@
           "source": "Localization and joint spatial estimates",
           "detail": "[Weighted local free-energy penalty] There are c,C>0 , independent of b , such that for every 0 J N , every bounded measurable 0 W1 , and every finite-energy symmetric trace-one state , F_J^ (-W)…",
           "dependsOn": [
-            "m1-lem-localization",
             "m1-prop-increments",
-            "m1-lem-entropy",
-            "m1-lem-cube",
-            "m1-lem-close"
+            "m1-lem-entropy"
           ]
         },
         {
@@ -640,11 +637,8 @@
           "dependsOn": [
             "m1-cor-field-density",
             "m1-prop-increments",
-            "m1-lem-sandwich",
             "m1-prop-certificates",
-            "m1-prop-purification",
-            "m1-prop-low-count",
-            "m1-prop-close-count"
+            "m1-prop-purification"
           ]
         },
         {
@@ -712,9 +706,7 @@
           "kind": "lemma",
           "source": "Exposing the environment and retaining movable groups",
           "detail": "[Exact conditional law] For almost every exposed datum the normalizers in Equation~ are positive, and the conditional law of the unexposed trajectories is _ I (_ I ) =1 Z_ I _ \\ all pairs in I avoid…",
-          "dependsOn": [
-            "m1-prop-purification"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-group-supply",
@@ -724,10 +716,7 @@
           "kind": "proposition",
           "source": "Exposing the environment and retaining movable groups",
           "detail": "[Unconditional supply of good cells] For any prescribed p>0 , the constants before M can be chosen as above, and then M can be chosen sufficiently large, so that for sufficiently large D and K , _ B…",
-          "dependsOn": [
-            "m1-prop-certificates",
-            "m1-lem-useful-labels"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-group-comparison",
@@ -810,8 +799,6 @@
           "source": "A common measure and positive occupation",
           "detail": "[Cancellation away from an overlap] Consider two changes S,T of the preceding kind, with G1 , and put U=S T . Suppose that the following conditions hold. There is There are decompositions S=C_S F_S…",
           "dependsOn": [
-            "m1-thm-scaled",
-            "m1-prop-good-paths",
             "m1-lem-tag-normalization"
           ]
         }
@@ -829,7 +816,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Quantum-Depletion-and-Momentum-Distribution-in-the-Dilute-Hard-Sphere-Bose-Gas-October-5-2026/Quantum-Depletion-in-the-Dilute-Hard-Sphere-Bose-Gas.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -951,7 +938,6 @@
           "source": "Local energy bounds with retained excitations",
           "detail": "[Exceptional cosine coefficients] Let n satisfy , let |z|^22n , and restrict the excitation space to n_+ n and n_L M/4 . On this space the exact cosine expansion may replace the coefficients in…",
           "dependsOn": [
-            "m2-en-sharp",
             "m2-en-small-gap"
           ]
         },
@@ -1041,9 +1027,7 @@
           "kind": "proposition",
           "source": "Short trajectories and local certificates",
           "detail": "[Uniform insertion probabilities] Fix good data in all neighborhoods met by the following trials. In the first three assertions existing unexposed paths may take any values satisfying their…",
-          "dependsOn": [
-            "m2-lp-collision"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lp-trial-density",
@@ -1099,8 +1083,7 @@
           "source": "Smoothed deletion measures and their local comparison",
           "detail": "[Cost of omissions] For every indicated cell v , the mass in P_ aug,v of tags outside I is at most C_ x,j D^ -1-1/8 , uniformly in v . The mass lost by a failure of the required good neighborhood is…",
           "dependsOn": [
-            "m2-lp-good-probability",
-            "m2-palm-counts"
+            "m2-lp-good-probability"
           ]
         },
         {
@@ -1158,7 +1141,6 @@
           "source": "Smoothed deletion measures and their local comparison",
           "detail": "[Fourth-moment comparison before projection] For sufficiently small x>0 , depending on the previously chosen exponent u , the measures above satisfy 1 | C_d| _ v w \\ |_v-1|^4\\, P_ aug,v +|_w-1|^4\\,…",
           "dependsOn": [
-            "m2-palm-fourth",
             "m2-palm-counts",
             "m2-palm-omissions",
             "m2-palm-local-comparison"
@@ -1215,8 +1197,7 @@
           "dependsOn": [
             "m2-palm-omissions",
             "m2-rt-routes",
-            "m2-lp-good-probability",
-            "m2-lp-insertion"
+            "m2-lp-good-probability"
           ]
         },
         {
@@ -1297,9 +1278,7 @@
           "dependsOn": [
             "m2-long-product",
             "m2-long-label-average",
-            "m2-long-mass",
             "m2-rt-routes",
-            "m2-long-comparison",
             "m2-palm-counts",
             "m2-palm-reference"
           ]
@@ -1367,7 +1346,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

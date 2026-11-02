@@ -162,7 +162,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Filtered-products-and-boundary-preserving-compression-in-complex-cobordism-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Filtered products and boundary-preserving compression in complex cobordism; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Filtered products and boundary-preserving compression in complex cobordism.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -203,9 +203,7 @@
           "kind": "lemma",
           "source": "Compatible smash products and quantitative nilpotence",
           "detail": "[Slicing a simplex] For every 1 there is a natural continuous map \\[ =(_1,,_): ^j(^j)^ \\] in the variable [j] , such that at most j of the points _r(x) are nonvertices, for each x^j .",
-          "dependsOn": [
-            "m1-prop-compatible-adams-lift"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-quantitative-nilpotence",
@@ -236,8 +234,6 @@
           "source": "Compatible smash products and quantitative nilpotence",
           "detail": "[The unit fiber at large primes] For every odd prime p , the spectrum BP is a retract of MU_ (p) by unit-preserving maps of spectra, and \\[ I_ BP Sp_ 2p-3 . \\] Consequently a lift through (I_ MU )_…",
           "dependsOn": [
-            "m1-thm-filtered-product",
-            "m1-prop-compatible-adams-lift",
             "m1-lem-cell-truncation",
             "m1-thm-quantitative-nilpotence"
           ]
@@ -281,8 +277,7 @@
           "source": "Point tests and controlled avoidance",
           "detail": "[Stable avoidance] Let P be a finite polyhedron and f:P C(t,n) a PL map. Let Z T(t,n) be a coordinate arrangement, and let q1 be an integer. Suppose that \\[ _ S (f,Z)=0, Z M-q, P2q-5. \\] There is a…",
           "dependsOn": [
-            "m1-lem-box-duality",
-            "m1-lem-coordinate-thickening"
+            "m1-lem-box-duality"
           ]
         },
         {
@@ -303,10 +298,7 @@
           "kind": "lemma",
           "source": "Boundary compression by padding",
           "detail": "[Batch vanishing] Let P be a finite polyhedron, let f:P C(t,n) be PL, and let 0<a<1/16 . Suppose \\[ _ MU (f,Z_ an (t,n))=0. \\] For every sufficiently large integer , with b=n and H= ab/4 , one has \\[…",
-          "dependsOn": [
-            "m1-thm-filtered-product",
-            "m1-lem-point-test-products"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-boundary-compression",
@@ -317,9 +309,7 @@
           "source": "Boundary compression by padding",
           "detail": "[Boundary compression] Let P be a finite polyhedron, let f:P C(t,n) be PL, and fix 0<a<1/16 . If \\[ _ MU (f,Z_ an (t,n))=0, \\] then for arbitrarily large positive integers u there is a continuous map…",
           "dependsOn": [
-            "m1-lem-point-test-products",
-            "m1-lem-stable-avoidance",
-            "m1-lem-boundary-restoration"
+            "m1-lem-stable-avoidance"
           ]
         },
         {
@@ -340,9 +330,7 @@
           "kind": "lemma",
           "source": "Torus bundles and compact parameter spaces",
           "detail": "[The cobordism criterion] Fix positive integers p,n and a real number a . Let P be a finite polyhedron, let f:P C(2p+1,n) be PL, and let Z=Z_ an (2p+1,n) . If the slot bundle on T(f,Z) embeds into a…",
-          "dependsOn": [
-            "m1-lem-framed-torus"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-finite-parameter-reduction",
@@ -354,7 +342,6 @@
           "detail": "[Finite parameter reduction] Fix positive integers p,n and a real number a . Let Y be compact metrizable, let f:Y C(2p+1,n) be continuous, and put Z=Z_ an (2p+1,n) . Suppose the slot bundle on T(f,Z)…",
           "dependsOn": [
             "m1-thm-torus-compression",
-            "m1-lem-torus-mu",
             "m1-thm-boundary-compression"
           ]
         }
@@ -372,7 +359,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Radius-of-comparison-equals-half-the-mean-dimension-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Radius of comparison equals half the mean dimension; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Radius of comparison equals half the mean dimension.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -423,9 +410,7 @@
           "kind": "lemma",
           "source": "Comparison along uniformly allocated orbit blocks",
           "detail": "[Uniform block allocation] Let k,H_0 be positive integers with H_02 , put e=kH_0 , and let b_0>0 . Suppose that >0 and r0 satisfy /k>r . There exist an open set B X , pairwise disjoint open sets…",
-          "dependsOn": [
-            "m2-thm-niu-open-tower"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-finite-coordinate-compression",
@@ -445,10 +430,7 @@
           "kind": "proposition",
           "source": "Comparison along uniformly allocated orbit blocks",
           "detail": "[Comparison gives a parametrized bundle embedding] Let r be a comparison bound for A . Fix positive integers p,g,k,H_0 with H_02 , numbers 0<a<1/16 and b_0>0 , and an integer R such that RH_0…",
-          "dependsOn": [
-            "m2-lem-uniform-block-allocation",
-            "m2-lem-finite-coordinate-compression"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-polyhedral-refinement",
@@ -488,14 +470,7 @@
           "kind": "theorem",
           "source": "The individual-cover bound and the equality",
           "detail": "Let h be a minimal homeomorphism of an infinite compact metrizable space X , and let A=C(X)_h . For every finite comparison bound r for A and every finite open cover U of X , \\[ _ k D( U^ [0,k) ) k…",
-          "dependsOn": [
-            "m2-lem-colored-subordinate-nerve",
-            "m2-lem-packet-reconstruction",
-            "m2-prop-comparison-bundle",
-            "m2-thm-torus-compression",
-            "m2-lem-polyhedral-refinement",
-            "m2-thm-main"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -520,7 +495,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

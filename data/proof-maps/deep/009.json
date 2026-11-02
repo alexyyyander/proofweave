@@ -317,7 +317,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Reconstruction-of-Function-Fields-from-Mod-ell-Milnor-K-Theory-October-5-2026/mod-ell-bogomolov-pop.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -393,7 +393,6 @@
           "detail": "Assume~\\(s2\\). A line~\\(H A_F\\) is the inertia of a quasi-divisorial valuation if and only if H=S_1 S_2 for alternating subspaces S_1,S_2 A_F of dimension s. The quasi-divisorial valuation~\\(v\\)…",
           "dependsOn": [
             "m1-prop-local-dimension",
-            "m1-lem-local-approximation",
             "m1-thm-local-input",
             "m1-lem-residue-duality"
           ]
@@ -525,7 +524,6 @@
             "m1-lem-kummer-kernel",
             "m1-prop-finite-curve-test",
             "m1-lem-residue-duality",
-            "m1-cor-flag-matching",
             "m1-prop-point-recognition",
             "m1-lem-curve-orders"
           ]
@@ -749,7 +747,6 @@
             "m1-lem-curve-intersection",
             "m1-thm-main",
             "m1-prop-local-dimension",
-            "m1-thm-field-isomorphism",
             "m1-prop-global-scalar"
           ]
         }
@@ -767,7 +764,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Bogomolov-Pop-reconstruction-theorem-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Bogomolov-Pop reconstruction theorem; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Bogomolov-Pop reconstruction theorem.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -901,8 +898,7 @@
           "source": "Recovering the local data",
           "detail": "In the setting of Proposition~ , let w and v be matched quasi-prime (d-1) -divisors. Then lw is algebraic over a finite field if and only if kv is. When this holds, the induced isomorphism W_ Lw W_…",
           "dependsOn": [
-            "m2-local-transport",
-            "m2-local-criterion-hypotheses"
+            "m2-local-transport"
           ]
         },
         {
@@ -923,9 +919,7 @@
           "kind": "lemma",
           "source": "Finite tests on residual curves",
           "detail": "[Hyperplane sections of a quasi-finite map] Let V be an integral variety over an algebraically closed field, and let f:V P^N be quasi-finite, with V=a2 . For a general hyperplane H , the inverse…",
-          "dependsOn": [
-            "m2-tests-residual"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-pencil-uniform",
@@ -1007,9 +1001,6 @@
           "dependsOn": [
             "m2-prelim-curve-kernel",
             "m2-recovery-curves",
-            "m2-recovery-residue-powers",
-            "m2-recovery-incidence",
-            "m2-recovery-kummer-descent",
             "m2-prelim-completion"
           ]
         },
@@ -1047,10 +1038,7 @@
           "source": "From the recovered quotients to the field",
           "detail": "[Pop's reconstruction theorems] Let F/ and F'/' be function fields of transcendence degree greater than one over algebraically closed fields of characteristic different from . From _F^c_F^a and the…",
           "dependsOn": [
-            "m2-thm-main",
-            "m2-prelim-central-lift",
             "m2-local-transport",
-            "m2-recovery-curves",
             "m2-recovery-rational"
           ]
         }
@@ -1077,7 +1065,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

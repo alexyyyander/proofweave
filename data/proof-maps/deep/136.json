@@ -427,7 +427,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-PCP-for-PPAD-conjecture-a-quasilinear-reduction-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The PCP-for-PPAD conjecture: a quasilinear reduction; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The PCP-for-PPAD conjecture: a quasilinear reduction.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -553,14 +553,7 @@
           "kind": "theorem",
           "source": "Outer index groups and systematic square codes",
           "detail": "[Outer-code interface] There exist fixed constants d , _1>0 , C_0< , >0 , _ out >0 , and K_ out < , with \\ (8C_0)^ -1 ,_1/16\\ , having the following uniform properties for every input length N and…",
-          "dependsOn": [
-            "m1-oc-expansion",
-            "m1-oc-systematic",
-            "m1-oc-local-agreement",
-            "m1-oc-full-proximity",
-            "m1-oc-one-axis",
-            "m1-oc-near-code"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-outer-uncertainty",
@@ -593,9 +586,7 @@
           "kind": "lemma",
           "source": "Certified programs and persistent tape equations",
           "detail": "[Simultaneous scratch restoration] Suppose all scratch recurrences at a legal repeated clock are triangular and their references, on arbitrary exact duplicated full parents, satisfy their assigned A…",
-          "dependsOn": [
-            "m1-thm-outer-codes"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-outer-fill",
@@ -605,9 +596,7 @@
           "kind": "lemma",
           "source": "Certified programs and persistent tape equations",
           "detail": "[Local reversible filling] For every full operation in Definition~ , there is a canonical reversible schedule from zero target and zero temporary scratch to its required full target and zero…",
-          "dependsOn": [
-            "m1-op-scratch-restoration"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-outer-wiring",
@@ -630,9 +619,7 @@
           "kind": "lemma",
           "source": "A locally evolving outer representation",
           "detail": "[Closure under finite differences] For every positive-degree persistent full slot D and every , one can allocate a finite certified full program whose output, in the same encoder type as D , is the…",
-          "dependsOn": [
-            "m1-lem-outer-fill"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-oe-preparation",
@@ -656,7 +643,6 @@
           "detail": "[Soundness of the valid-word tester] There are fixed constants C_ rep < and g_ rep >0 such that, if rej(W)<g_ rep , some valid extended label v satisfies \\[ (W,R_v) C_ rep rej(W). \\] The tester has…",
           "dependsOn": [
             "m1-thm-outer-codes",
-            "m1-op-scratch-restoration",
             "m1-lem-outer-wiring",
             "m1-lem-outer-fill"
           ]
@@ -669,11 +655,7 @@
           "kind": "theorem",
           "source": "A locally evolving outer representation",
           "detail": "[Outer representation interface] There are fixed positive constants _ raw ,_ raw , fixed integers C_L,c_ raw , and uniform deterministic algorithms with the following properties for every End-of-Line…",
-          "dependsOn": [
-            "m1-oe-preparation",
-            "m1-oe-valid-testing",
-            "m1-lem-outer-uncertainty"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-port-gadget",
@@ -814,9 +796,7 @@
           "source": "Binary composition and the robust outer circuit",
           "detail": "[A fixed rational mesh satisfies every gate] For every fixed rational 0<<1/10 , every generalized circuit in Definition~ has a rational assignment satisfying all its gates, each coordinate having…",
           "dependsOn": [
-            "m1-thm-main",
-            "m1-thm-port-gadget",
-            "m1-lem-geometric-procedures"
+            "m1-thm-port-gadget"
           ]
         },
         {
@@ -969,8 +949,6 @@
           "source": "The inner path and its algebraic representation",
           "detail": "[Inner algebra interface] Fix c_ allow . The field and grid parameters -- , the common domain K^u , and the one-port positive family templates can be chosen before the port count and the function.…",
           "dependsOn": [
-            "m1-ia-validity",
-            "m1-ia-path-endpoints",
             "m1-ia-stacks",
             "m1-ia-exact-validator",
             "m1-ia-evolution",
@@ -1028,10 +1006,8 @@
           "source": "Binary testing and average correction at a fixed radius",
           "detail": "[Smooth tester and distance] For each fixed template, the canonical encodings of valid extended labels have constant relative distance. They admit a perfectly complete bounded-bit tester with the…",
           "dependsOn": [
-            "m1-ib-axis-replacement",
             "m1-ib-vector-ld",
-            "m1-ib-row-extension",
-            "m1-lem-inner-algebra-interface"
+            "m1-ib-row-extension"
           ]
         },
         {
@@ -1077,9 +1053,7 @@
           "source": "Binary testing and average correction at a fixed radius",
           "detail": "[Consistent bit simulation] Fix a finite cone of one- or two-axis row decoding, a reference satisfying the corresponding row constraints, and a requested bit of the output symbol. For analysis,…",
           "dependsOn": [
-            "m1-ib-inner-table-prediction",
-            "m1-ib-one-axis-support",
-            "m1-ib-two-axis-support"
+            "m1-ib-inner-table-prediction"
           ]
         },
         {
@@ -1102,9 +1076,7 @@
           "kind": "lemma",
           "source": "Binary testing and average correction at a fixed radius",
           "detail": "[All hypothetical read slots are smooth] For the tester, the corrector of Proposition~ , and the finite linear compositions used below, use their stated bounded outer-index request laws, with joint…",
-          "dependsOn": [
-            "m1-ib-bit-simulation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ib-neighbors",
@@ -1115,8 +1087,6 @@
           "source": "Binary testing and average correction at a fixed radius",
           "detail": "[Local flags and encoded neighbors] Within a sufficiently small fixed radius of a valid canonical word, one can decide its incident-edge flags with arbitrarily high fixed reliability, and supply its…",
           "dependsOn": [
-            "m1-ib-tester",
-            "m1-lem-inner-algebra-interface",
             "m1-ib-average-correction",
             "m1-ib-all-branch-density"
           ]
@@ -1139,9 +1109,7 @@
           "kind": "lemma",
           "source": "Binary testing and average correction at a fixed radius",
           "detail": "[Inner binary interface] For the inner algebraic families of Lemma~ , there is a deterministic polynomial-time binary encoding with the following properties, uniform over the circuits in each fixed…",
-          "dependsOn": [
-            "m1-lem-inner-algebra-interface"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-dummy-port",
@@ -1165,7 +1133,6 @@
           "detail": "[Source correspondence and virtual access] For either w_*(s) or w_*^+(s) , every tag- i point or line Y operand agrees with its dummy counterpart for s_i at the same original indices, after renaming…",
           "dependsOn": [
             "m1-ia-source-data",
-            "m1-ia-port-ancestry",
             "m1-prop-dummy-port"
           ]
         },
@@ -1255,8 +1222,7 @@
           "detail": "[Uniform component stability] Fix a positive desired component error e . Mesh resolution, quantization width, scalar tolerances, and precision of public constants can be chosen so that, whenever all…",
           "dependsOn": [
             "m1-geo-coverage",
-            "m1-geo-interface",
-            "m1-lem-geometric-procedures"
+            "m1-geo-interface"
           ]
         },
         {
@@ -1316,9 +1282,7 @@
           "kind": "lemma",
           "source": "Consequences for games and markets",
           "detail": "[The input-once Pure-Circuit interface] There are a fixed positive rational _F and a deterministic polynomial-time reduction from End-of-Line to NAND/PURIFY circuits of the form just defined. Every…",
-          "dependsOn": [
-            "m1-lem-application-circuits"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-market-hardness",
@@ -1373,7 +1337,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -262,7 +262,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-Infinite-Finitely-Presented-Simple-Amenable-Group-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from An infinite finitely presented simple amenable group; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from An infinite finitely presented simple amenable group.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -383,9 +383,7 @@
           "kind": "lemma",
           "source": "Amenability from random polygonal partitions",
           "detail": "Let H be a subgroup of a countable group J . Suppose that for every finite K H and every >0 there is a probability measure on J such that \\[ _ k K \\|k-\\|_1<. \\] Then for every finite K H and every >0…",
-          "dependsOn": [
-            "m1-thm-amenability"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-multiplier",
@@ -405,9 +403,7 @@
           "kind": "lemma",
           "source": "Finite generation of the multiplier",
           "detail": "For each fixed integer d0 , the augmented complex C_*( E_m) has zero homology in degrees -1,0,,d when m is sufficiently large. The required lower bound on m depends only on d .",
-          "dependsOn": [
-            "m1-lem-comparison"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-hom-full-stability",
@@ -501,8 +497,7 @@
             "m1-lem-hom-finite-set-bars",
             "m1-lem-hom-coefficient-finiteness",
             "m1-lem-hom-finiteness-transfers",
-            "m1-lem-hom-cofinal-completion",
-            "m1-lem-hom-full-stability"
+            "m1-lem-hom-cofinal-completion"
           ]
         },
         {
@@ -529,10 +524,7 @@
           "source": "Finite generation of the multiplier",
           "detail": "For all sufficiently large finite m , conjugation by every element of F_m induces the identity on H_2(A_m) .",
           "dependsOn": [
-            "m1-lem-hom-alternating-surjection",
             "m1-lem-extension",
-            "m1-thm-multiplier",
-            "m1-prop-hom-full-finiteness",
             "m1-thm-simplicity"
           ]
         },
@@ -681,7 +673,6 @@
           "source": "Propagation of the polygon laws",
           "detail": "[One sloping predicate and rectangular partitions] A translated primitive sloping predicate has a joint central law with every finite aligned rectangular partition. At this stage one may retain both…",
           "dependsOn": [
-            "m1-lem-line-slide",
             "m1-lem-small-support",
             "m1-lem-pair-laws"
           ]
@@ -807,7 +798,6 @@
           "detail": "[A finitely presented central cover] For all sufficiently large fixed finite m , there is a finitely presented group G and a surjective homomorphism : G A_m whose kernel is central.",
           "dependsOn": [
             "m1-lem-aligned-slot-transport",
-            "m1-lem-translation-slot-transport",
             "m1-lem-slot-generation"
           ]
         },
@@ -841,7 +831,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

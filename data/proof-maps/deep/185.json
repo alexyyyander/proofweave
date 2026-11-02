@@ -132,7 +132,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Counterexample-to-the-Infinite-Matroid-Packing-Covering-Conjecture-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A Counterexample to the Infinite Matroid Packing/Covering Conjecture; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A Counterexample to the Infinite Matroid Packing/Covering Conjecture.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -362,9 +362,7 @@
           "kind": "theorem",
           "source": "Assembling a self-dual matroid",
           "detail": "There is a matroid Q on E_0=L R whose bases are precisely the family B in Proposition~ . It is equal to its dual on the same labels, and all its bases are admissible. In particular, for every basis B…",
-          "dependsOn": [
-            "m1-prop-basis-family"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-separate-covering-packing",
@@ -374,9 +372,7 @@
           "kind": "corollary",
           "source": "The separate Covering and Packing conjectures",
           "detail": "The unrestricted separate Covering and Packing Conjectures of Bowler and Carmesin are both false in ZFC.",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -395,7 +391,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

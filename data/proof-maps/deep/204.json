@@ -197,7 +197,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Tensor-Saturation-for-Even-Spin-Groups-September-24-2026/Tensor-Saturation-for-Even-Spin-Groups-September-24-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Tensor saturation for even spin groups; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Tensor saturation for even spin groups.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -260,7 +260,6 @@
           "detail": "[Schedules give moments] A real schedule for (,,) gives a real moment solution for (,,) , where =(1) . No lattice condition is required. The statement also holds for root subsystems with arbitrary…",
           "dependsOn": [
             "m1-lem-coefficient",
-            "m1-lem-flag-composition",
             "m1-lem-invariant-moment"
           ]
         },
@@ -292,9 +291,7 @@
           "kind": "lemma",
           "source": "Real moments and schedules",
           "detail": "[Decreasing radial paths] For generic strict labels and a generic regular polygonal shape ending at , there is a dominant path from to whose velocities are Weyl translates of the shape velocities, in…",
-          "dependsOn": [
-            "m1-real-triangles"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-real-variation",
@@ -337,9 +334,7 @@
           "source": "Real moments and schedules",
           "detail": "[Exposed jumps are covers] The generic area maximum has no nonzero jump at a shape break. Every other nonzero unfolded jump is a reflection and is a Bruhat cover in its local chamber frame.",
           "dependsOn": [
-            "m1-real-polytope",
             "m1-real-exposure",
-            "m1-prop-basic-schedule",
             "m1-real-decreasing-paths",
             "m1-real-variation",
             "m1-real-strict-approximation"
@@ -418,7 +413,6 @@
           "source": "Lattices and continuation of schedules",
           "detail": "[Continuation] Under the standing assumption of no integral schedule, a local link cannot exist.",
           "dependsOn": [
-            "m1-lem-hard-case",
             "m1-int-half-kernel"
           ]
         },
@@ -430,9 +424,7 @@
           "kind": "lemma",
           "source": "Lattices and continuation of schedules",
           "detail": "[Direct links] In the exceptional schedule with components \\(P,Q\\), each of the following produces a forbidden local link: [label=( *)] a signed cross-component pair with strict concordant position…",
-          "dependsOn": [
-            "m1-prop-continuation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-knot-profile-rigidity",
@@ -490,11 +482,9 @@
           "detail": "[Matching at a knot] Within each two-value class at a knot, the transfers of the high value form disjoint matching pairs inside each component, together with unused single labels. In an opposite…",
           "dependsOn": [
             "m1-lem-hard-case",
-            "m1-prop-knot-count",
             "m1-prop-continuation",
             "m1-thm-integral-schedule",
-            "m1-prop-strict-count",
-            "m1-int-closedness"
+            "m1-prop-strict-count"
           ]
         },
         {
@@ -587,9 +577,6 @@
           "dependsOn": [
             "m1-prop-zero-tail",
             "m1-prop-preprojective",
-            "m1-lem-filtered-intersection",
-            "m1-tail-threshold-bounds",
-            "m1-thm-main",
             "m1-lem-invariant-moment",
             "m1-thm-integral-schedule",
             "m1-prop-columns"
@@ -612,7 +599,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

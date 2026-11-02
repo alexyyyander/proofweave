@@ -187,7 +187,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/P-equals-W-in-composite-rank-for-fixed-determinant-September-24-2026/P-equals-W-in-composite-rank-for-fixed-determinant-September-24-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from P=W in composite rank for fixed determinant; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from P=W in composite rank for fixed determinant.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -230,9 +230,7 @@
           "kind": "proposition",
           "source": "Lefschetz operators and the comparison criterion",
           "detail": "Cup product by e sends P_kH^m(X) into P_ k+2 H^ m+2 (X) . For every i0 and every m , it induces an isomorphism e^i:Gr^P_ R-i H^m(X) \\ \\ Gr^P_ R+i H^ m+2i (X).",
-          "dependsOn": [
-            "m1-norm-low-cohomology"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-alg-comparison",
@@ -430,9 +428,7 @@
           "source": "A common cohomological operator",
           "detail": "Under nonabelian Hodge theory, the operator satisfies \\[ f'W_jH^m(X^B,) W_ j-4 H^ m-2 (X^B,). \\]",
           "dependsOn": [
-            "m1-log-restriction",
             "m1-log-nah",
-            "m1-log-scalar-flat-product",
             "m1-trans-logarithm"
           ]
         },
@@ -504,8 +500,6 @@
           "dependsOn": [
             "m1-calc-translation-formula",
             "m1-calc-flag-sum",
-            "m1-spec-perverse-lowering",
-            "m1-trans-weights",
             "m1-thm-main",
             "m1-norm-relative-lefschetz",
             "m1-alg-comparison",
@@ -520,9 +514,7 @@
           "kind": "corollary",
           "source": "Equality of the filtrations",
           "detail": "Let C be a smooth projective complex curve of genus g2 , let n2 and d be coprime integers, and let L^d(C) . For the moduli space X of stable rank- n , determinant- L , trace-free Higgs bundles and…",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-endoscopic-weights",
@@ -561,7 +553,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

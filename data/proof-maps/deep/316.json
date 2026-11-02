@@ -177,7 +177,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Stable-Hurewicz-Image-of-the-Sphere-at-Two-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Stable Hurewicz Image of the Sphere at Two; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Stable Hurewicz Image of the Sphere at Two.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -232,9 +232,7 @@
           "kind": "lemma",
           "source": "Weights, primitives, and homology suspension",
           "detail": "Under the splitting of Proposition~ , the stable adjoint suspension on reduced pieces is weight preserving. At weight r it is the natural map D_rT D_r( T), T=^ X, formed by using the same suspension…",
-          "dependsOn": [
-            "m1-prop-free-ring"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-linear-diagonal",
@@ -264,9 +262,7 @@
           "kind": "lemma",
           "source": "Weights, primitives, and homology suspension",
           "detail": "The only nonzero positive-weight transfer quotients are at weights r=2^k , k0 . As Steenrod modules they are M_0(n)=^n_2, M_k(n)=^n d_0^nD_k(k1), n0. For n>0 these give the weight decomposition of…",
-          "dependsOn": [
-            "m1-lem-weight-suspension"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-zero-weights",
@@ -277,8 +273,6 @@
           "source": "Weights, primitives, and homology suspension",
           "detail": "There is an equivalence of augmented commutative ring spectra R:=^_+QS^0 P(S\\ u\\ )[(1+u)^ -1 ], t=1+u, and compatible augmented commutative ring maps R P_ N (S\\ u\\ ), N0. The induced homology maps…",
           "dependsOn": [
-            "m1-prop-free-ring",
-            "m1-lem-weight-modules",
             "m1-lem-weight-suspension"
           ]
         },
@@ -290,9 +284,7 @@
           "kind": "lemma",
           "source": "Weights, primitives, and homology suspension",
           "detail": "For n1 , a positive-dimensional class in the kernel of \\[ _*:H_*QS^n H_ *+1 QS^ n+1 \\] is decomposable. The same assertion holds for _*:H_*Q_0S^0 H_ *+1 QS^1 . In each case the kernel in positive…",
-          "dependsOn": [
-            "m1-lem-weight-suspension"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-primitive-roots",
@@ -378,12 +370,9 @@
           "detail": "[Triple block nilpotence] Suppose B H_i(Q_0X_v) , i>0 , is primitive and A -annihilated. If _ v* B=0 , then \\[ B^ 3 =0. \\]",
           "dependsOn": [
             "m1-lem-pairing",
-            "m1-prop-no-fourth-powers",
             "m1-lem-primitive-roots",
             "m1-lem-weight-suspension",
-            "m1-lem-weight-modules",
-            "m1-lem-weight-product",
-            "m1-lem-cone-square"
+            "m1-lem-weight-product"
           ]
         },
         {
@@ -485,9 +474,7 @@
             "m1-lem-tor-injection",
             "m1-lem-algebra-functional-halving",
             "m1-lem-milnor-coinvariants",
-            "m1-lem-algebra-near-top-square",
-            "m1-lem-algebra-obstruction",
-            "m1-lem-algebra-odd-tensor"
+            "m1-lem-algebra-near-top-square"
           ]
         },
         {
@@ -501,8 +488,6 @@
           "dependsOn": [
             "m1-lem-suspension-kernel",
             "m1-lem-primitive-roots",
-            "m1-prop-no-fourth-powers",
-            "m1-lem-weight-modules",
             "m1-lem-milnor-coinvariants",
             "m1-lem-zero-weights"
           ]
@@ -533,7 +518,6 @@
             "m1-lem-zero-weights",
             "m1-cor-tensor-detection",
             "m1-lem-algebra-obstruction",
-            "m1-thm-curtis",
             "m1-prop-hopf-case"
           ]
         }
@@ -554,7 +538,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -177,7 +177,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Ultraflat-real-Littlewood-polynomials-October-5-2026/ultraflat-real-littlewood-polynomials.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Ultraflat real Littlewood polynomials; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Ultraflat real Littlewood polynomials.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -264,8 +264,7 @@
           "detail": "[Spreading with equal coefficient magnitudes] Let B\\ 0\\ be finite and invariant under negation. For every >0 , there is a real g C_c^((-1/2,1/2)) , with 0 g1 , such that for every sufficiently large…",
           "dependsOn": [
             "m1-lem-quadratic",
-            "m1-lem-complex-rounding",
-            "m1-prop-balanced"
+            "m1-lem-complex-rounding"
           ]
         },
         {
@@ -287,8 +286,6 @@
           "source": "Waves of nearly constant modulus",
           "detail": "[Signed interval packing, ] Let a_1,,a_r^m\\ 0\\ be pairwise nonparallel, with r2 , and let w_1,,w_r>0 satisfy 2_iw_i<1 . There are an integer H1 and points _1,,_H^m such that the closed arcs centered…",
           "dependsOn": [
-            "m1-prop-waves",
-            "m1-prop-balanced",
             "m1-lem-oscillatory-bounds",
             "m1-lem-stationary-phase"
           ]
@@ -307,7 +304,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Nearly-minimal-maxima-and-positive-minima-of-Littlewood-polynomials-October-5-2026/littlewood-lower-envelope.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Nearly minimal maxima and positive minima of Littlewood polynomials; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Nearly minimal maxima and positive minima of Littlewood polynomials.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -338,9 +335,7 @@
           "kind": "lemma",
           "source": "Spreading Fourier coefficients",
           "detail": "[Uniform quadratic integration] Let g C_c^() and let \\ 0\\ be fixed. As T through positive real values, _ g(x)(T x^2/2-ux)\\,dx = & (sgn()/8-u^2/(2T)) T| | \\\\ &(g(u T ) +O_ g, (T^ -1 )), uniformly for…",
-          "dependsOn": [
-            "m2-prop-auxiliary"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-signed-packing",
@@ -420,7 +415,6 @@
           "dependsOn": [
             "m2-lem-rounding",
             "m2-thm-main",
-            "m2-prop-correction",
             "m2-prop-starting"
           ]
         }
@@ -438,7 +432,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Asymptotically-minimal-maxima-of-real-Littlewood-polynomials-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Asymptotically minimal maxima of real Littlewood polynomials; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Asymptotically minimal maxima of real Littlewood polynomials.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -470,7 +464,6 @@
           "source": "Reduction to approximation and rounding",
           "detail": "[Rounding with a small defect] There is an absolute constant C such that for every N1 and every X^N , some signs _0,,_ N-1 satisfy _ t |_ k=0 ^ N-1 (_k-X_k)(kt)| C(1+ (X)80N (X) ). The square-root…",
           "dependsOn": [
-            "m3-thm-main",
             "m3-prop-almost-signs"
           ]
         },
@@ -492,9 +485,7 @@
           "kind": "theorem",
           "source": "Packing signed intervals",
           "detail": "[Pippenger--Spencer] For each integer r2 and each >0 , there exists >0 with the following property. If an r -uniform hypergraph satisfies, for some t>0 , \\[ (1-)t<d(v)<(1+)tfor every vertex v,…",
-          "dependsOn": [
-            "m3-lem-signed-packing"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-prop-auxiliary",
@@ -514,9 +505,7 @@
           "kind": "lemma",
           "source": "Spreading Fourier coefficients",
           "detail": "[Uniform quadratic integration] Let g C_c^() and let \\ 0\\ be fixed. As T through positive real values, _ g(x)(T x^2/2-ux)\\,dx = & (sgn()/8-u^2/(2T)) T| | \\\\ &(g(u T ) +O_ g, (T^ -1 )), uniformly for…",
-          "dependsOn": [
-            "m3-prop-auxiliary"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-lem-sampling-poisson",
@@ -528,7 +517,6 @@
           "detail": "Let C_c^() , let x_* and \\ 0\\ , and let J be compact. For b J and , put \\[ x_ b, =x_*+ -b , _ b, =(b-)x_* -(b- )^2 2 . \\] As N tends to infinity through positive integers, uniformly for b J , &1 N _…",
           "dependsOn": [
             "m3-lem-quadratic",
-            "m3-prop-almost-signs",
             "m3-prop-auxiliary",
             "m3-lem-signed-packing"
           ]
@@ -565,9 +553,7 @@
           "kind": "corollary",
           "source": "Binary merit factors and Morse shifts",
           "detail": "[All-length unbounded binary merit factors] For N2 , let \\[ F_N=_ A\\ -1,1\\ ^N F(A). \\] Then \\[ _ N F_N=+, \\] where the limit runs through all integer lengths. Equivalently, one can choose a word A_N\\…",
-          "dependsOn": [
-            "m3-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-cor-morse",
@@ -610,7 +596,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

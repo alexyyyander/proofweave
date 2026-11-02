@@ -417,7 +417,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Numerical-semiampleness-of-nef-adjoint-classes-on-compact-Kahler-manifolds-October-6-2026/numerical-generalized-abundance.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Numerical semiampleness of nef adjoint classes on compact Kähler manifolds; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Numerical semiampleness of nef adjoint classes on compact Kähler manifolds.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -562,9 +562,7 @@
           "kind": "lemma",
           "source": "An ordinary adjoint on the projective base",
           "detail": "[Extension across the discriminant] The parabolic extension of the eigenline in Lemma~ is L_S of . This identification persists on higher smooth base models with simple normal crossing complement.",
-          "dependsOn": [
-            "m1-adj-root"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-adj-rank",
@@ -673,10 +671,7 @@
           "kind": "lemma",
           "source": "Nef classes in algebraic dimension zero",
           "detail": "For these choices, \\(M\\) is big and c_nqvol(M) C_nq, (M,z):=\\ u0:b_z^*M-u\\ F_z\\ 0\\ C_nA_q at a very general point \\(z Z\\), where \\(b_z:Bl_zZ Z\\) has exceptional divisor \\(F_z\\).",
-          "dependsOn": [
-            "m1-zero-pole-threshold",
-            "m1-zero-subvarieties"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-zero-nef-pushforward",
@@ -731,7 +726,6 @@
           "source": "Nef classes in algebraic dimension zero",
           "detail": "There are constants \\(c_n,C_n>0\\) such that, for every sufficiently large \\(q\\), one can choose a rational number \\[ c_nA_q s C_nA_q \\] and a Kähler current \\(T\\) in \\(C_s\\) with analytic…",
           "dependsOn": [
-            "m1-zero-direct-image",
             "m1-zero-cotangent-z",
             "m1-zero-two-slot-volume"
           ]
@@ -745,7 +739,6 @@
           "source": "Nef classes in algebraic dimension zero",
           "detail": "The pole just defined satisfies b_V s-C_n .",
           "dependsOn": [
-            "m1-zero-pole-threshold",
             "m1-zero-slope-descent"
           ]
         },
@@ -759,8 +752,7 @@
           "detail": "On a smooth projective modification \\(h_+:U^+ E^+\\) one can choose an approximation h_+^*(2p_+^*M+s)=^++\\ D^+\\ , ^+\\ Kähler, D^+0\\ rational, retaining the log-ideal orders of \\(T|_E\\), such that the…",
           "dependsOn": [
             "m1-zero-direct-image",
-            "m1-zero-incidence-pole",
-            "m1-zero-line-nonvanishing"
+            "m1-zero-incidence-pole"
           ]
         },
         {
@@ -773,14 +765,11 @@
           "detail": "Let \\(X\\) be a smooth simple compact Kähler manifold of algebraic dimension zero carrying a generically nondegenerate holomorphic two-form. Every nef rational holomorphic line bundle on \\(X\\) has…",
           "dependsOn": [
             "m1-zero-mass-test",
-            "m1-zero-no-correspondences",
             "m1-zero-cotangent-slope",
-            "m1-zero-line-nonvanishing",
             "m1-pre-ordinary",
             "m1-pre-negative",
             "m1-zero-vanishing",
-            "m1-zero-geometric-reduction",
-            "m1-thm-decomposition"
+            "m1-zero-geometric-reduction"
           ]
         },
         {
@@ -831,7 +820,6 @@
             "m1-cycle-detection",
             "m1-desc-representative",
             "m1-pre-picard",
-            "m1-cycle-sections",
             "m1-pre-negative",
             "m1-desc-flat"
           ]
@@ -845,8 +833,7 @@
           "source": "The nef summand on the algebraic-reduction fibers",
           "detail": "Under the assumptions of Proposition~ , there are modifications p:T' T and b:W' W , with T' smooth compact K\\\"ahler and W' smooth projective, a fibration h':T' W' lifting h , and a nef rational line…",
           "dependsOn": [
-            "m1-cycle-nef-summand",
-            "m1-desc-nef"
+            "m1-cycle-nef-summand"
           ]
         },
         {
@@ -871,10 +858,7 @@
           "detail": "Let \\(T\\) be a smooth compact K\\\"ahler manifold of dimension \\(n\\), let \\((T,B)\\) be a rational simple normal crossing klt pair with \\(J=K_T+B\\) pseudo-effective, and let \\(h:T W\\) be a surjective…",
           "dependsOn": [
             "m1-pre-ordinary",
-            "m1-pre-negative",
             "m1-pre-contract",
-            "m1-thm-decomposition",
-            "m1-pre-projective",
             "m1-zero-vanishing",
             "m1-cycle-nef-summand",
             "m1-cycle-base-descent",
@@ -898,7 +882,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Numerical-Semiampleness-of-Nef-Adjoint-Divisors-October-3-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Numerical Semiampleness of Nef Adjoint Divisors; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Numerical Semiampleness of Nef Adjoint Divisors.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1093,8 +1077,7 @@
           "detail": "In the setting of , for all sufficiently small t and at a very general point x X , every nonzero section of kP , where k is a positive integer and kP is Cartier, satisfies _x(s)4k.",
           "dependsOn": [
             "m2-j-base-component",
-            "m2-j-moving-kernel",
-            "m2-lemma-bounded-curves"
+            "m2-j-moving-kernel"
           ]
         },
         {
@@ -1205,8 +1188,7 @@
           "detail": "Let (X,B) be a projective -factorial klt -pair of dimension n , with T=K_X+B pseudo-effective, and let L be a nef Cartier divisor on X . If m is an integer greater than 2n , there is a terminating…",
           "dependsOn": [
             "m2-input-models",
-            "m2-prop-positive-part",
-            "m2-prop-full-all"
+            "m2-prop-positive-part"
           ]
         },
         {
@@ -1245,7 +1227,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Minimal-models-and-Mori-fibre-spaces-for-generalized-log-canonical-Q-pairs-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Minimal models and Mori fibre spaces for generalized log canonical Q-pairs; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Minimal models and Mori fibre spaces for generalized log canonical Q-pairs.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1312,9 +1294,7 @@
           "kind": "proposition",
           "source": "From local phases to minimal models",
           "detail": "The conclusion of Theorem~ over implies its conclusion over every algebraically closed field of characteristic zero.",
-          "dependsOn": [
-            "m3-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-prop-cone-estimates",
@@ -1397,7 +1377,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

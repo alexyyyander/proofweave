@@ -132,7 +132,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-Endpoint-Gradient-Bound-for-the-Centered-Disk-Maximal-Operator-September-26-2026/article.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from An Endpoint Gradient Bound for the Centered Disk Maximal Operator; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from An Endpoint Gradient Bound for the Centered Disk Maximal Operator.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -225,9 +225,7 @@
           "kind": "proposition",
           "source": "Dyadic vector masses and common prices",
           "detail": "[Common discounted prices] For p V_k , 1 k m , define D_ Q_p =_ c C _ q R(Q_p) _ l=k ^m2^ -(l-k) _ s V_l _ qs d_s^c, =1 100 . These nonnegative prices satisfy _ k=1 ^m_ p V_k D_ Q_p 41^2 2(1-2^ - ) _…",
-          "dependsOn": [
-            "m1-lem-local"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-labels-neighbors",
@@ -288,9 +286,7 @@
           "source": "Directions that change slowly in scale and position",
           "detail": "[Spatial comparison] Fix a particle, a level 1 l m , and x D(q_l) . Set \\[ c_s=R_s(y)+E_s(q_s), 1 s m. \\] For 1 k(l+1,m) , R_k(x)+T_k(x) C_ s=1 ^k2^ s-k c_s. The assertion for R_k holds at every x in…",
           "dependsOn": [
-            "m1-prop-label-packing",
             "m1-prop-finite-band",
-            "m1-lem-good-label",
             "m1-prop-prices"
           ]
         },
@@ -304,11 +300,9 @@
           "detail": "[Sobolev finite bands] For every real g W^ 1,1 (^2) and 0<a b< , S_ a,b g is globally Lipschitz and (S_ a,b g)\\| g\\|_1 a^2 . If b/a is a nonnegative integer power of two, then _ ^2 | S_ a,b g|\\, x…",
           "dependsOn": [
             "m1-lem-appendix-sobolev-calculus",
-            "m1-prop-finite-band",
             "m1-lem-appendix-vector-measure",
             "m1-thm-main",
-            "m1-lem-appendix-planar-embedding",
-            "m1-lem-appendix-square"
+            "m1-lem-appendix-planar-embedding"
           ]
         },
         {
@@ -382,7 +376,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

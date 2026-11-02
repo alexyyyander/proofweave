@@ -413,221 +413,265 @@
     {
       "from": "m1-op-mixing",
       "to": "m1-op-potential",
+      "label": "op:mixing",
       "context": "Choose $0<q<p$ and $\\varepsilon\\in(0,a/2)$. Lemma~\\ref{op:mixing} gives a uniform bound on $\\EE_x^*F_q(\\theta_m)$ for all sufficiently large integers $m$, since $F_q$ is integrable agai"
     },
     {
       "from": "m1-op-finite-tilt",
       "to": "m1-op-potential",
+      "label": "op:finite-tilt",
       "context": "l is finite by endpoint nonattainment; the remaining integrand is bounded by a constant times $e^{-(2a-4\\varepsilon)s}$. For a finite inner horizon $l$, Lemma~\\ref{op:finite-tilt} gives \\[ G_0(x)\\EE_x^*[H\\ind_{\\{t<\\tau_l(x)\\}}] =\\EE[H G_t(x)\\ind_{\\{x\\in D_t,\\ s_x(t)<l\\}}]. \\] First take $H=1$. Mo"
     },
     {
       "from": "m1-mp-kernel-integral",
       "to": "m1-mp-level-moments",
+      "label": "mp:kernel-integral",
       "context": "\\prod_i\\dd A(x_i), \\] because $e_i^{-\\alpha}\\min\\{1,(e_i/b_i)^\\alpha\\}\\le b_i^{-\\alpha}$. This proves \\eqref{mp:ordinary-moments} by Lemma~\\ref{mp:kernel-integral}. For the additional fixed center, apply the same argument to $m+1$ points and use \\[ \\min\\{1,(e_0/b_0)^\\alpha\\}\\le e_0"
     },
     {
       "from": "m1-mass-restart",
       "to": "m1-mass-positive",
+      "label": "mass:restart",
       "context": "obability. The germ zero--one law makes it one. Hence positive mass is present before every positive time. Restart at each rational time and apply Proposition~\\ref{mass:restart}. The strictly positive conformal weight preserves positivity, giving positive increments on all rational intervals on"
     },
     {
       "from": "m1-mp-level-moments",
       "to": "m1-coef-positive-moments",
+      "label": "mp:level-moments",
       "context": "independently of $\\theta$. Choose a nonnegative continuous cutoff $f\\ge\\ind_K$ supported in a fixed compact subdisk. Apply the center-hit bound of Corollary~\\ref{mp:level-moments} with $m=n$, $x_0=0$, $e_0=e^{-2a\\ell}$, and level weight $A_j(f)=M_\\infty^{(j),\\DD}(f)$. The proof of that corollary i"
     },
     {
       "from": "m1-mass-positive",
       "to": "m1-coef-positive-moments",
+      "label": "mass:positive",
       "context": "es a nontrivial time interval, contained in this finite stopped piece, whose trace lies in the interior of $K$. The positive-increment assertion of Proposition~\\ref{mass:positive} and the increment-support assertion of Proposition~\\ref{mass:construction} transfer to this stopped piece by its finite"
     },
     {
       "from": "m1-mass-construction",
       "to": "m1-coef-positive-moments",
+      "label": "mass:construction",
       "context": "whose trace lies in the interior of $K$. The positive-increment assertion of Proposition~\\ref{mass:positive} and the increment-support assertion of Proposition~\\ref{mass:construction} transfer to this stopped piece by its finite-level density. They give positive mass in $K$. Hence $L>0$ almost surely"
     },
     {
       "from": "m1-coef-recovery",
       "to": "m1-coef-explicit",
+      "label": "coef:recovery",
       "context": "Fix $\\theta,\\ell,u$. The function $f_u(x)=([x]_0^u)^n$ is bounded and continuous. Lemma~\\ref{coef:recovery} gives $f_u(D_h)\\to f_u(A_{\\tau_\\ell})$ in probability. This convergence passes through the fixed integrable density $P_"
     },
     {
       "from": "m1-op-mixing",
       "to": "m1-hd-bad-cells",
+      "label": "op:mixing",
       "context": "{2a}\\log\\frac{R_0(z)}{100r}. \\] Since \\(r_{ni}\\le e^{-n^2}\\), this tends uniformly to infinity for all the relevant \\(z\\) and entries as \\(n\\) increases. Lemma~\\ref{op:mixing} therefore bounds the restart-angle law by \\(2\\pi_a\\). The event in the right side of Equation~\\eqref{hd:palm} has proba"
     },
     {
       "from": "m1-gauge-multiplicity",
       "to": "m1-hd-bad-cells",
+      "label": "gauge:multiplicity",
       "context": "(G_0\\) over a fixed larger compact. Summing Equation~\\eqref{hd:bad-mass} over every non-cleanup entry, including all repetitions, is summable in \\(n\\) by Lemma~\\ref{gauge:multiplicity}. The cleanup entries are summable as well, since \\begin{equation} \\sum_{n=1}^{\\infty}\\PP^*_{\\mathrm{mix}}(L\\ge16n) =\\"
     },
     {
       "from": "m1-hd-bad-cells",
       "to": "m1-hd-lower",
+      "label": "hd:bad-cells",
       "context": "Apply Lemma~\\ref{hd:bad-cells} on a countable compact exhaustion of \\(\\HH\\), and work on the resulting probability-one event together with the conclus"
     },
     {
       "from": "m1-mass-construction",
       "to": "m1-hd-lower",
+      "label": "mass:construction",
       "context": "lls} on a countable compact exhaustion of \\(\\HH\\), and work on the resulting probability-one event together with the conclusions about the mass in Propositions~\\ref{mass:construction} and~\\ref{mass:positive}. Fix a nontrivial interval \\([u,v]\\) with rational endpoints, \\(0<u<v\\). The increment \\(\\mu_v-"
     },
     {
       "from": "m1-mass-positive",
       "to": "m1-hd-lower",
+      "label": "mass:positive",
       "context": "exhaustion of \\(\\HH\\), and work on the resulting probability-one event together with the conclusions about the mass in Propositions~\\ref{mass:construction} and~\\ref{mass:positive}. Fix a nontrivial interval \\([u,v]\\) with rational endpoints, \\(0<u<v\\). The increment \\(\\mu_v-\\mu_u\\) has positive mas"
     },
     {
       "from": "m1-gauge-admissible",
       "to": "m1-hd-lower",
+      "label": "gauge:admissible",
       "context": "1,(s/r_{ni})^2\\} \\qquad(n\\ge n_0). \\label{hd:retained-density} \\end{equation} To pass to the full gauge, apply the finite-exclusion assertion of Proposition~\\ref{gauge:admissible} to $F(s)=\\sup_{\\diam U\\le s}\\nu^*(U)$, bounded by $\\nu(\\HH)$. The constant supplied by that proposition is \\[ C_\\nu=\\m"
     },
     {
       "from": "m1-op-mixing",
       "to": "m1-hd-visit",
+      "label": "op:mixing",
       "context": "If \\(y/r\\) exceeds a sufficiently large constant depending on \\(a\\), the inner time to radius \\(8r\\) is \\(\\sigma=(2a)^{-1}\\log(y/(4r))\\), long enough for Lemma~\\ref{op:mixing}. At its hitting time \\(\\tau\\), Lemma~\\ref{op:finite-tilt} gives \\[ \\PP(\\tau<\\infty) =(8r)^\\alpha G_0(z)\\, \\EE_z^"
     },
     {
       "from": "m1-op-finite-tilt",
       "to": "m1-hd-visit",
+      "label": "op:finite-tilt",
       "context": "nding on \\(a\\), the inner time to radius \\(8r\\) is \\(\\sigma=(2a)^{-1}\\log(y/(4r))\\), long enough for Lemma~\\ref{op:mixing}. At its hitting time \\(\\tau\\), Lemma~\\ref{op:finite-tilt} gives \\[ \\PP(\\tau<\\infty) =(8r)^\\alpha G_0(z)\\, \\EE_z^*[\\sin^{-p}\\theta_\\tau(z)] \\le C_a r^\\alpha y^{-\\alpha}."
     },
     {
       "from": "m1-gauge-multiplicity",
       "to": "m1-hd-upper",
+      "label": "gauge:multiplicity",
       "context": ",\\qquad r_{\\mathrm f}=r_{n,I_n},\\qquad r_i=r_{ni},\\quad b_i=b_{ni}\\quad(1\\le i\\le J). \\] There is at least one test for all sufficiently large \\(n\\), by Lemma~\\ref{gauge:multiplicity}. Cover the box \\(B_m=[-m,m]+i[0,m]\\) by finitely many closed squares of side \\(r_{\\mathrm f}\\), beginning at \\(x=-m\\) a"
     },
     {
       "from": "m1-hd-visit",
       "to": "m1-hd-upper",
+      "label": "hd:visit",
       "context": "the probability that a cell is visited and has no candidate through finite stopped tests. Consider a center \\(z\\) with \\(y\\ge e^{-n}\\). For large \\(n\\), Lemma~\\ref{hd:visit} shows that a visit requires the finite hitting time \\(\\tau_{\\mathrm f}\\) of radius \\(8r_{\\mathrm f}\\). For each \\(i\\),"
     },
     {
       "from": "m1-mass-restart",
       "to": "m1-hd-upper",
+      "label": "mass:restart",
       "context": "st test has the same bound from its initial gap. Conditional on the history through \\(S_i\\), the disk law of \\(X_i\\) depends only on that angle, by Proposition~\\ref{mass:restart} and the finite conditional tilt. Thus, with \\[ q_i=\\PP^*_{\\mathrm{mix}}(L_{\\ell_n}\\ge b_i), \\] the conditional probabi"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-hd-upper",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] Equation~\\eqref{coef:formula} specifies the coefficients deterministically from \\(\\kappa\\), and Proposition~\\ref{gauge"
     },
     {
       "from": "m1-gauge-admissible",
       "to": "m1-hd-upper",
+      "label": "gauge:admissible",
       "context": "[Proof of Theorem~\\ref{thm:main}] Equation~\\eqref{coef:formula} specifies the coefficients deterministically from \\(\\kappa\\), and Proposition~\\ref{gauge:admissible} shows that Equation~\\eqref{gauge:definition} defines an admissible gauge. Intersect the probability-one events of Propo"
     },
     {
       "from": "m1-hd-lower",
       "to": "m1-hd-upper",
+      "label": "hd:lower",
       "context": "oposition~\\ref{gauge:admissible} shows that Equation~\\eqref{gauge:definition} defines an admissible gauge. Intersect the probability-one events of Propositions~\\ref{hd:lower} and~\\ref{hd:upper}. On this one event, the lower bound holds for every real \\(0<s<t<\\infty\\). The image of each finite"
     },
     {
       "from": "m2-geom-fresh-tip",
       "to": "m2-geom-first-hit-access",
+      "label": "geom:fresh-tip",
       "context": "visited: an earlier visit would have been an earlier hit of the circle. It is also disjoint from the initial hull by the hypothesis on the closed ball. Lemma~\\ref{geom:fresh-tip} therefore identifies the radial access with the tip prime end, proving continuity of its image at $0$. The other assert"
     },
     {
       "from": "m2-geom-fresh-tip",
       "to": "m2-geom-smooth-driver",
+      "label": "geom:fresh-tip",
       "context": "closed disk in the spherical metric. In particular their tip preimages converge: any cluster point maps to the limiting tip, whose preimage is unique by Lemma~\\ref{geom:fresh-tip}. Returning to hydrodynamic half-plane coordinates shows that the tip coordinate $U(s)$ is continuous. At $s=0$ the sam"
     },
     {
       "from": "m2-geom-extension",
       "to": "m2-geom-restart-support",
+      "label": "geom:extension",
       "context": "Lemma~\\ref{geom:extension} makes $N=F^{-1}(O)$ a relative open neighborhood of $\\alpha[0,1]$, including a relative half-disk at $0$. The path $\\al"
     },
     {
       "from": "m2-geom-slit-support",
       "to": "m2-geom-restart-support",
+      "label": "geom:slit-support",
       "context": "}(V)$. Removing loops and smoothing corners inside $N$ gives a regular smooth simple slit with an initially vertical segment and endpoint in $F^{-1}(V)$. Lemma~\\ref{geom:slit-support}, applied under the restarted Brownian Loewner law, gives the displayed event after mapping back by $F$. For passages th"
     },
     {
       "from": "m2-ll-inverse-angle",
       "to": "m2-ll-approach",
+      "label": "ll:inverse-angle",
       "context": "re legitimate. Under the centered law, $M_{\\tau_u}/M_0$ equals $e^{pu}\\sin^{a_0}\\theta_u/\\sin^{a_0}\\theta_0$. Untilting at this finite stop and applying Lemma~\\ref{ll:inverse-angle} gives \\eqref{ll:radius-approach}. At $S_\\varepsilon<\\infty$, \\eqref{ll:koebe} gives $R_{S_\\varepsilon}\\le4\\varepsilon$."
     },
     {
       "from": "m2-ll-finite-tilt",
       "to": "m2-ll-finite-clock",
+      "label": "ll:finite-tilt",
       "context": "d using $\\operatorname{Re}g_t(\\zeta)=U_t+X_t$. Uniqueness of the centered SDE now identifies the restriction through $s=u$ with the finite stopped law of Lemma~\\ref{ll:finite-tilt}, with $t_u=\\tau_u$. This gives one probability space for the limit $T^*(z)$ and the argument below, without using a den"
     },
     {
       "from": "m2-ll-inverse-angle",
       "to": "m2-ll-finite-clock",
+      "label": "ll:inverse-angle",
       "context": "l L^*V_{a_0}=pV_{a_0}$. Thus $e^{-ps}V_{a_0}(\\theta_s)$ is a nonnegative local martingale and hence a supermartingale. Its stopped maximal inequality and Lemma~\\ref{ll:inverse-angle} imply, for integers $n\\ge1$, \\[ \\mathbb P^*\\left\\{\\sup_{n\\le s\\le n+1} V_{a_0}(\\theta_s)>e^{a_0\\eta n}\\right\\}"
     },
     {
       "from": "m2-ll-near-real",
       "to": "m2-ll-localization",
+      "label": "ll:near-real",
       "context": "the exponential map, a dyadic level-$k$ rectangle in $Q_j$ lies in a Euclidean disk of radius $C2^{-k}e^j$ whose center has modulus comparable to $e^j$. Lemma~\\ref{ll:near-real} and Brownian scaling therefore bound its probability of being hit by the full SLE trace by $C2^{-\\alpha k}$, uniformly"
     },
     {
       "from": "m2-ll-rectangle",
       "to": "m2-ll-localization",
+      "label": "ll:rectangle",
       "context": "e full SLE trace by $C2^{-\\alpha k}$, uniformly in $j$. After increasing $H_0$ if necessary, \\eqref{ll:total-energy} also gives $E_j\\le2\\pi H\\le c_0H^2$. Lemma~\\ref{ll:rectangle} consequently bounds the probability of a hit on $\\{U=H\\}$ in $Q_j$ by $C(E_j/H^2)e^{-cH^2/E_j}$. The infinitely many sl"
     },
     {
       "from": "m2-geom-first-hit-access",
       "to": "m2-ll-disk-rule",
+      "label": "geom:first-hit-access",
       "context": "The first hit is a fresh interior tip. By Lemma~\\ref{geom:first-hit-access}, the radial physical segment from this tip to $z$ has its interior in $D_\\tau$ and approaches the tip's prime end. Map"
     },
     {
       "from": "m2-geom-extension",
       "to": "m2-ll-disk-rule",
+      "label": "geom:extension",
       "context": "approaches the tip's prime end. Map $D_\\tau$ to $\\mathbb H$, sending tip to zero, target to infinity, and normalize the image of $z$ to have modulus one. Lemma~\\ref{geom:extension} gives the continuous spherical boundary extension of its inverse $F$. The radial segment supplies exactly the path assu"
     },
     {
       "from": "m2-ll-localization",
       "to": "m2-ll-disk-rule",
+      "label": "ll:localization",
       "context": "ef{geom:extension} gives the continuous spherical boundary extension of its inverse $F$. The radial segment supplies exactly the path assumption of Proposition~\\ref{ll:localization}, with the physical ball $\\overline B(z,r)$. Increase $L_0$ so that Proposition~\\ref{ll:localization} applies and $L^b\\"
     },
     {
       "from": "m2-ll-swallowing",
       "to": "m2-ll-disk-rule",
+      "label": "ll:swallowing",
       "context": "c_1}$, the mapped future trace stays in $B(z,Lr)$ up to the parameter-plane modulus $L^b$. Except on an event of conditional probability $C(L^b)^{-c_2}$, Lemma~\\ref{ll:swallowing} swallows the normalized marked point before that modulus is reached. Outside their union, the physical point is swallow"
     },
     {
       "from": "m2-mesh-tail",
       "to": "m2-win-concentration",
+      "label": "mesh:tail",
       "context": "[Proof of Proposition~\\ref{mesh:tail} for $4<\\kappa<8$] Use the first approach times $\\tau_r(z)$, the densities $W_r(z)$, and the indicators $I_r(z)$ already"
     },
     {
       "from": "m2-ll-approach",
       "to": "m2-win-concentration",
+      "label": "ll:approach",
       "context": "se the first approach times $\\tau_r(z)$, the densities $W_r(z)$, and the indicators $I_r(z)$ already defined. The pointwise bound is $W_r\\le Cr^{-p}I_r$. Lemma~\\ref{ll:approach} gives, at a finite $\\tau_r(z)$ and for one fixed $0<q\\le1/(8\\mathrm e)$, \\begin{equation} \\mathbb P\\{I_{qr}(z)=1\\mid\\m"
     },
     {
       "from": "m2-ll-disk-rule",
       "to": "m2-win-concentration",
+      "label": "ll:disk-rule",
       "context": "onditional expected density at that finer approach is $W_r(z)$; requiring it to occur before an additional stop can only decrease this expectation. Proposition~\\ref{ll:disk-rule} gives constants $C_*,c_*,L_0>0$ for which a live exit from $B(z,Lr)$ has conditional probability at most $C_*L^{-c_*}$"
     },
     {
       "from": "m2-rc-step",
       "to": "m2-es-good-semicircle",
+      "label": "rc:step",
       "context": "[Proof of Lemma~\\ref{rc:step}] Suppose the uniform assertion were false. Then for each integer $n$ there would be admissible data and $0<v_n<1/n$ su"
     },
     {
       "from": "m2-es-guide-compactness",
       "to": "m2-es-good-semicircle",
+      "label": "es:guide-compactness",
       "context": "ith the centerline tangents, to a chart $Q$ with the same bi-Lipschitz bound. The limiting guide through relative coordinate $u=5/4$ is therefore simple. Lemma~\\ref{es:guide-compactness}, applied to this part of the guide, gives locally uniform convergence of the normalized inverse maps $F_n$ to a noncons"
     },
     {
       "from": "m2-geom-extension",
       "to": "m2-es-good-semicircle",
+      "label": "geom:extension",
       "context": "cal access ray. Let $G_n$ be the event that the physical image under $F_n$ of this initial trace stays in $B(a_n,r)$. It is $\\mathcal F_\\tau$-measurable. Lemma~\\ref{geom:extension} gives continuous boundary extensions of the inverse maps, so the short access curve and \\eqref{rc:localization-input} g"
     },
     {
       "from": "m2-rc-step",
       "to": "m2-rc-dense",
+      "label": "rc:step",
       "context": "oundary, requiring confinement and centered arrival only. It has a fixed positive probability by scaling. At each subsequent first front crossing apply Lemma~\\ref{rc:step} at this same prescribed mesh $\\eta$. Impose its passage-and-mass event determined at that crossing, although only the m"
     },
     {
       "from": "m2-lem-cover-charge",
       "to": "m2-prop-dense-cover-upper",
+      "label": "lem:cover-charge",
       "context": "\\(d+p=2\\). The maximal diameter of the cover is at most \\[ \\delta_n=\\max\\{6C_3r_{J_0},\\sqrt2r_n\\}\\longrightarrow0. \\] If \\(Z_n(K)\\) is its total cost, Lemma~\\ref{lem:cover-charge} and \\eqref{eq:cover-selected-charge}--\\eqref{eq:cover-cleanup} show that \\begin{equation} \\limsup_{n\\to\\infty}\\mathbb"
     },
     {
       "from": "m2-thm-main",
       "to": "m2-prop-dense-cover-upper",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] Section~\\ref{retain:positivity} gives positivity simultaneously on all real $0<s<t<\\infty$ for the fixed parameter $\\k"
     }
   ]

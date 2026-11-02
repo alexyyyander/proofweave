@@ -40,8 +40,8 @@ test("the coverage summary is truthful and statuses are explicit", () => {
   assert.equal(index.summary.leanFamilies, 242);
   assert.equal(index.summary.leanSolutionModules, 426);
   assert.equal(index.summary.leanTheoremNames, 536);
-  assert.deepEqual(index.statusCounts, { deep: 347, draft: 0, paper: 0, lean: 18, scaffold: 7 });
-  assert.equal(index.summary.paper, 0);
+  assert.deepEqual(index.statusCounts, { deep: 346, draft: 0, paper: 1, lean: 18, scaffold: 7 });
+  assert.equal(index.summary.paper, 1);
   assert.equal(index.summary.paperStatements, 13629);
   assert.equal(index.summary.paperEdges, 14401);
   assert.equal(index.summary.lean, 18);
@@ -66,6 +66,8 @@ test("the curated families have the expected routes and labels", () => {
   assert.equal(byNumber.get("001").statusLabel, "Deep argument map");
   assert.match(byNumber.get("001").nextStep, /Extend version coverage/);
   assert.deepEqual(byNumber.get("001").paper, { manuscripts: 1, sections: 6, statements: 21, edges: 20 });
+  assert.equal(byNumber.get("171").status, "paper");
+  assert.equal(byNumber.get("171").statusLabel, "Paper-derived structure");
   assert.equal(byNumber.get("068").status, "scaffold");
   assert.equal(byNumber.get("068").statusLabel, "Metadata scaffold");
   assert.match(byNumber.get("068").nextStep, /Extract theorem\/lemma statements/);
@@ -160,7 +162,7 @@ test("the index refuses to invent proof structure for scaffolds", () => {
 
 test("every generated deep map satisfies the deep contract and stays acyclic", async () => {
   const files = (await readdir(new URL("data/proof-maps/deep", base))).filter((name) => name.endsWith(".json"));
-  assert.equal(files.length, 346);
+  assert.equal(files.length, 345);
   for (const file of files) {
     const data = JSON.parse(await readFile(new URL(`data/proof-maps/deep/${file}`, base), "utf8"));
     validateDeepProofMap(data, collection, lean);

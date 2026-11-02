@@ -327,7 +327,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Scale-and-conformal-symmetry-in-four-dimensional-operational-quantum-field-theory-September-26-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Scale and conformal symmetry in four-dimensional operational quantum field theory; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Scale and conformal symmetry in four-dimensional operational quantum field theory.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -474,9 +474,7 @@
           "kind": "lemma",
           "source": "Two horizons and the scalar spectral comparison",
           "detail": "[The full-plane matrix] On the spacelike-transfer part of n k=0 , the full T_ nn matrix integrated along n is the matrix of b g(Y+z')( z') . Initially the assertion is a joint distributional…",
-          "dependsOn": [
-            "m1-d-causal-continuation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-d-causal-continuation",
@@ -518,9 +516,7 @@
           "kind": "lemma",
           "source": "Two horizons and the scalar spectral comparison",
           "detail": "[Plateau estimates] There are scalar functions f_L,u_L such that (g_L)=s_zf_L(M), (_i g_L)=M s_ zi u_L(M), and, writing D=M_M , & f_L-c_*1_ (1/L,1) _ L^2( M/M) =O(1), &&c_*0, \\\\ & D^a f_L_ L^2( M/M)…",
-          "dependsOn": [
-            "m1-d-exact-tail"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-d-critical-comparison",
@@ -697,8 +693,7 @@
           "detail": "The waves S_e agree for all future timelike unit vectors e . Their common value S is a purely timelike Lorentz scalar of dimension two, with physical real localization. It has the canonical null…",
           "dependsOn": [
             "m1-c-k-domains",
-            "m1-c-canonical-pi",
-            "m1-e-projection-localization"
+            "m1-c-canonical-pi"
           ]
         },
         {
@@ -709,10 +704,7 @@
           "kind": "corollary",
           "source": "Extraction of a localizable scalar wave and accessible products",
           "detail": "Put =l-S . Its insertion at imaginary infinity annihilates every compact physical vacuum polynomial: _ R R^4 (iRe) A =0.",
-          "dependsOn": [
-            "m1-e-projection-localization",
-            "m1-e-paley-selection"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-e-bounded-approximation",
@@ -801,7 +793,6 @@
           "detail": "[Conformal covariance of the short scalar functions] All scalar vacuum functions W of total length at most four obey the infinitesimal conformal Ward identities, with L,S,J,t primary of weights…",
           "dependsOn": [
             "m1-p-short-products",
-            "m1-p-interpolation",
             "m1-c-k-domains",
             "m1-c-canonical-pi"
           ]
@@ -874,9 +865,7 @@
           "kind": "theorem",
           "source": "Short products and the return to the accessible scalar",
           "detail": "[Return of the scalar wave] The formal scalar vacuum wave equals the accessible scalar: l=S, =0.",
-          "dependsOn": [
-            "m1-e-accessible-scalar"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-r-mixed-products",
@@ -942,9 +931,7 @@
           "kind": "lemma",
           "source": "Real-axis reconstruction and physical conformal currents",
           "detail": "Every coefficient C_j in has a local ordinary distribution boundary in the merged variables.",
-          "dependsOn": [
-            "m1-r-fbi-criterion"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-r-commutant-extension",
@@ -998,12 +985,9 @@
           "source": "Real-axis reconstruction and physical conformal currents",
           "detail": "[Extension to compatible physical families] Let G be a finite homogeneous finite-component family jointly admitted with the original fields under Assumption~ . The scalar L has all joint products…",
           "dependsOn": [
-            "m1-e-bounded-approximation",
             "m1-e-accessible-products",
-            "m1-r-mixed-products",
             "m1-c-low-energy",
-            "m1-r-ward-lie",
-            "m1-r-centered-families"
+            "m1-r-ward-lie"
           ]
         }
       ]
@@ -1023,7 +1007,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

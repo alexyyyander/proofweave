@@ -302,7 +302,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-ordinary-double-point-gap-in-every-dimension-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The ordinary-double-point gap in every dimension; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The ordinary-double-point gap in every dimension.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -457,9 +457,6 @@
           "source": "Small stabilizers",
           "detail": "[Character estimate] There is a constant \\(c>0\\) with the following property for all sufficiently close gradings in Equation~ . If a nonzero rank-\\(b\\) tensor on \\(C^\\) has integral-grading weight…",
           "dependsOn": [
-            "m1-small-tensor-bound",
-            "m1-small-classification",
-            "m1-small-deformation",
             "m1-small-finite-evaluation",
             "m1-small-norm-tensor"
           ]
@@ -551,8 +548,7 @@
           "source": "Jet cones and the canonical interior point",
           "detail": "[Canonical interior point] For every sufficiently large grading in the subsequence under consideration, c_0=(r,1) K in the original degree coordinates. Equivalently, f(1)<N . For an exact minimizing…",
           "dependsOn": [
-            "m1-jet-moments",
-            "m1-jet-setup"
+            "m1-jet-moments"
           ]
         },
         {
@@ -586,7 +582,6 @@
           "source": "Adjoint jets and the saturated semigroup",
           "detail": "[The saturated jet semigroup] Suppose c_0 K . Then the following statements hold: K is a rational polyhedral cone. Every facet has a primitive nonnegative support form ^* satisfying (c_0)=1 . The…",
           "dependsOn": [
-            "m1-adj-implication",
             "m1-jet-setup"
           ]
         },
@@ -734,7 +729,6 @@
           "detail": "[The upper bound] Assume the local ODP volume theorem in all dimensions smaller than n . Then M_n p_n . Equivalently, every singular boundary-zero klt n -dimensional germ satisfies \\[ (x,X) 2(n-1)^n.…",
           "dependsOn": [
             "m1-cone-reduction",
-            "m1-cone-approximation",
             "m1-small-classification",
             "m1-end-odp-value",
             "m1-boot-holder"
@@ -759,8 +753,7 @@
           "source": "The slice estimate and the supremum bootstrap",
           "detail": "[The distinguished section cannot have value greater than two] In the normalization of Lemma~ , the section v S_m used to define the two filtrations satisfies w(v)2 .",
           "dependsOn": [
-            "m1-filt-first-ring",
-            "m1-boot-equality-data"
+            "m1-filt-first-ring"
           ]
         },
         {
@@ -786,7 +779,6 @@
           "source": "The slice estimate and the supremum bootstrap",
           "detail": "[The equality cone] If a singular cone obtained in Proposition~ satisfies d(o,C)=p_n , then it is the standard ordinary double point cone.",
           "dependsOn": [
-            "m1-cone-approximation",
             "m1-boot-rounding",
             "m1-small-classification"
           ]
@@ -811,7 +803,6 @@
           "detail": "[Hypersurface equality] If \\(x X\\) is a singular klt hypersurface germ of dimension \\(n2\\), then \\[ (x,X)2(n-1)^n. \\] If equality holds, the quadratic part of a local equation is nondegenerate, and…",
           "dependsOn": [
             "m1-end-hypersurface-test",
-            "m1-thm-main",
             "m1-inp-fourfold",
             "m1-boot-upper",
             "m1-cone-reduction",
@@ -834,7 +825,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-normalized-volume-gap-in-dimension-four-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The normalized-volume gap in dimension four; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The normalized-volume gap in dimension four.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -900,7 +891,6 @@
           "source": "Stabilizers and discrepancies",
           "detail": "For all integral gradings sufficiently close to the minimizing ray in Proposition~ , every stabilizer order on \\(C\\ o\\ \\) satisfies m< r 5/2 . Consequently A_C(F)3 for every primitive prime divisor…",
           "dependsOn": [
-            "m2-lem-jet",
             "m2-lem-extraction"
           ]
         },
@@ -946,9 +936,7 @@
           "source": "The log canonical threshold",
           "detail": "At the vertex, \\[ _o(C;_o)>32. \\]",
           "dependsOn": [
-            "m2-prop-short",
-            "m2-lem-extraction",
-            "m2-lem-canonical-positive"
+            "m2-prop-short"
           ]
         },
         {
@@ -989,7 +977,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

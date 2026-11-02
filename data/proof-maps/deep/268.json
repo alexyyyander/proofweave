@@ -197,7 +197,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-periodic-spin-one-Haldane-gap-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The periodic spin-one Haldane gap; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The periodic spin-one Haldane gap.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -280,9 +280,7 @@
           "kind": "proposition",
           "source": "From two purities to a uniform gap",
           "detail": "[Uniform gap from two initial purities] For every even L4 , let H_L be a non-scalar finite-dimensional self-adjoint Hamiltonian. Suppose that a and, for each b>0 , a real finite or countable list…",
-          "dependsOn": [
-            "m1-lem-rounded-update"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-thermal-inputs",
@@ -324,8 +322,7 @@
           "detail": "At inverse temperature b=105/4 , \\[ S(60,b)>78, T(120,b)>78. \\]",
           "dependsOn": [
             "m1-lem-thermal-inputs",
-            "m1-lem-polynomial-filter",
-            "m1-lem-cappedmass"
+            "m1-lem-polynomial-filter"
           ]
         },
         {
@@ -337,7 +334,6 @@
           "source": "Two finite initializations",
           "detail": "At inverse temperature b=784 , \\[ 1-S(2304,b)84513 10^7 <1 100 , 1-T(4608,b)27493 510^6 <1 100 . \\]",
           "dependsOn": [
-            "m1-lem-polynomial-filter",
             "m1-lem-cappedmass",
             "m1-lem-rounded-update"
           ]
@@ -351,14 +347,10 @@
           "source": "Two finite initializations",
           "detail": "[Periodic inputs for boundary estimates] Let X_b be the spatial transfer operator of Proposition~ , with the shift a=700741/500000 , and put \\[ b_0=49/4, b_1=49/2,\\\\ =999/1000, U=100139/100000,…",
           "dependsOn": [
-            "m1-lem-sectors",
-            "m1-prop-seed2304",
-            "m1-lem-trial-inputs",
             "m1-thm-main",
             "m1-prop-transfer",
             "m1-prop-seed60",
-            "m1-prop-bootstrap",
-            "m1-lem-representation"
+            "m1-prop-bootstrap"
           ]
         },
         {
@@ -409,7 +401,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-boundary-field-gap-for-the-spin-one-Heisenberg-chain-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A boundary-field gap for the spin-one Heisenberg chain; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A boundary-field gap for the spin-one Heisenberg chain.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -473,7 +465,6 @@
           "source": "Periodic concentration estimates",
           "detail": "[Concentration at the doubling scales] For every j0 , X_ b_j has a unique simple eigenvalue of largest modulus. This eigenvalue is positive; denote it by _j=\\|X_ b_j \\| . Its eigenspace is fixed…",
           "dependsOn": [
-            "m2-per-purity",
             "m2-per-native",
             "m2-per-coupled"
           ]
@@ -555,8 +546,7 @@
           "detail": "For j5 and every integer n with M_j n2M_j , Y_n^ s (b_ j+1 ) Y_n^ s (b_j)^2 1-4x_j.",
           "dependsOn": [
             "m2-co-signed",
-            "m2-in-quadratic",
-            "m2-thm-main"
+            "m2-in-quadratic"
           ]
         },
         {
@@ -609,9 +599,7 @@
           "kind": "lemma",
           "source": "Exact trial vectors for opposite fields",
           "detail": "With the data above, the norm V_m=_m,_m and the scaled shifted energy numerator \\[ H_m^*=500000\\, _m,(H_m^ opp +am)_m \\] satisfy V_m&=L_mu, \\\\ H_m^*&=500000_ r=0 ^ m-2 L_0T_*^rO_*T_*^ m-2-r u…",
-          "dependsOn": [
-            "m2-apptr-bound"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -636,7 +624,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

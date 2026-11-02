@@ -417,7 +417,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Log-abundance-for-compact-Kahler-spaces-under-logarithmic-Iitaka-subadditivity-October-6-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Log abundance for compact Kähler spaces under logarithmic Iitaka subadditivity; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Log abundance for compact Kähler spaces under logarithmic Iitaka subadditivity.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -565,8 +565,6 @@
           "source": "Birational decompositions and the geometric reduction",
           "detail": "[Good divisorial decomposition] Under Assumption~ , the assertion \\(_n\\) holds for every finite \\(n\\).",
           "dependsOn": [
-            "m1-rank-fibration-case",
-            "m1-simple-case",
             "m1-bir-finite-norm",
             "m1-bir-finite-descent",
             "m1-thm-main",
@@ -689,12 +687,9 @@
           "source": "Programs with a fixed nef part and special termination",
           "detail": "[A semiample small comparison model] Let \\((S,)\\) be an effective rational dlt pair on a normal compact Kähler space of dimension \\(d<n\\). Suppose \\(J=K_S+\\) is a pseudo-effective rational line, and…",
           "dependsOn": [
-            "m1-bir-exceptional",
             "m1-bir-sections",
-            "m1-prog-relative-klt",
             "m1-prog-small-model",
-            "m1-bir-pullup",
-            "m1-prog-contract-negative"
+            "m1-bir-pullup"
           ]
         },
         {
@@ -852,9 +847,7 @@
           "dependsOn": [
             "m1-floor-top-form-scalar",
             "m1-floor-finite-base",
-            "m1-prog-terminal-kappa-zero",
-            "m1-prog-cohomology-transport",
-            "m1-floor-finite-action"
+            "m1-prog-terminal-kappa-zero"
           ]
         },
         {
@@ -868,7 +861,6 @@
           "dependsOn": [
             "m1-floor-restriction",
             "m1-floor-finite-action",
-            "m1-floor-adjunction",
             "m1-floor-transport",
             "m1-floor-generation"
           ]
@@ -882,7 +874,6 @@
           "source": "Descent along a fibration",
           "detail": "[The rank-one case] Assume Assumption~ . Fix \\(n>0\\) and assume \\(_d\\) for every \\(d<n\\). Let \\(X\\) be a smooth connected compact Kähler manifold of dimension \\(n\\), let \\(B\\) be a rational SNC…",
           "dependsOn": [
-            "m1-rank-fibration-case",
             "m1-bir-resolution-transfer",
             "m1-proj-good-models",
             "m1-bir-finite-norm"
@@ -920,7 +911,6 @@
           "source": "Descent along a fibration",
           "detail": "[A base of algebraic dimension zero] Under the assumptions of Lemma~ , if \\(a(W)=0\\), then, on \\(W\\), H_ E_W=N(H) with E_W0.",
           "dependsOn": [
-            "m1-rank-comparison",
             "m1-rank-base-psef",
             "m1-bir-finite-descent"
           ]
@@ -960,7 +950,6 @@
           "dependsOn": [
             "m1-floor-generation",
             "m1-bir-finite-norm",
-            "m1-rank-rank-one",
             "m1-bir-resolution-transfer",
             "m1-rank-comparison",
             "m1-rank-base-psef",
@@ -1020,10 +1009,7 @@
           "kind": "lemma",
           "source": "Meromorphic nonvanishing on simple spaces",
           "detail": "For these choices, \\(M\\) is big and c_nq(M) C_nq, (M,z):=\\ u0:b_z^*M-u\\ F_z\\ 0\\ C_nA_q at a very general point \\(z Z\\), where \\(b_z:_zZ Z\\) has exceptional divisor \\(F_z\\).",
-          "dependsOn": [
-            "m1-nv-pole-threshold",
-            "m1-nv-subvarieties"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-nv-direct-image",
@@ -1056,7 +1042,6 @@
           "source": "Meromorphic nonvanishing on simple spaces",
           "detail": "There are constants \\(c_n,C_n>0\\) such that, for every sufficiently large \\(q\\), one can choose a rational number \\[ c_nA_q s C_nA_q \\] and a Kähler current \\(T\\) in \\(C_s\\) with analytic…",
           "dependsOn": [
-            "m1-nv-direct-image",
             "m1-nv-slope",
             "m1-nv-two-slot-volume"
           ]
@@ -1070,8 +1055,6 @@
           "source": "Meromorphic nonvanishing on simple spaces",
           "detail": "The pole just defined satisfies b_V s-C_n .",
           "dependsOn": [
-            "m1-nv-slope",
-            "m1-nv-pole-threshold",
             "m1-nv-slope-descent"
           ]
         },
@@ -1085,8 +1068,7 @@
           "detail": "On a smooth projective modification \\(h_+:U^+ E^+\\) one can choose an approximation h_+^*(2p_+^*M+s)=^++\\ D^+\\ , ^+\\ Kähler, D^+0\\ rational, retaining the log-ideal orders of \\(T|_E\\), such that the…",
           "dependsOn": [
             "m1-nv-direct-image",
-            "m1-nv-incidence-pole",
-            "m1-nv-meromorphic"
+            "m1-nv-incidence-pole"
           ]
         },
         {
@@ -1151,7 +1133,6 @@
           "detail": "[All finite lifting orders] For every root chart, every \\(j\\), and every \\(k1\\), the map of sheaves of complex vector spaces on \\(U\\) g_* T_ j,k+1 g_* T_ j,k is surjective. The assertion holds on…",
           "dependsOn": [
             "m1-signed-localized-hodge",
-            "m1-signed-root-charts",
             "m1-signed-residue"
           ]
         },
@@ -1166,7 +1147,6 @@
           "dependsOn": [
             "m1-signed-root-charts",
             "m1-signed-all-orders",
-            "m1-signed-torsion",
             "m1-signed-boundary-geometry",
             "m1-bir-resolution-transfer",
             "m1-prog-signed-nef",
@@ -1189,7 +1169,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Uniform-indices-for-semi-log-canonical-log-Calabi-Yau-pairs-October-5-2026/uniform-slc-index.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Uniform indices for semi-log-canonical log Calabi–Yau pairs; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Uniform indices for semi-log-canonical log Calabi–Yau pairs.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1273,7 +1253,6 @@
           "source": "A diagonal estimate for the Hodge rank",
           "detail": "[Diagonal estimate] Fix an integer n2 and a real number c>0 . Let X be a normal projective complex n -fold with canonical singularities and K_X0 as an integral principal divisor. Suppose h is an…",
           "dependsOn": [
-            "m2-hodge-basic",
             "m2-lem-hodge-gap"
           ]
         },
@@ -1404,7 +1383,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Conditional-good-minimal-models-for-compact-Kahler-fourfolds-October-6-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Conditional good minimal models for compact Kähler fourfolds; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Conditional good minimal models for compact Kähler fourfolds.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1446,7 +1425,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

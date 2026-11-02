@@ -217,7 +217,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Weak-pure-infiniteness-and-O-infinity-absorption-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Weak pure infiniteness and O-infinity absorption; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Weak pure infiniteness and O-infinity absorption.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -340,7 +340,6 @@
           "source": "Four entries under individual proper infiniteness",
           "detail": "[Shrinking under individual proper infiniteness] Suppose \\(C\\) satisfies \\(\\). Let \\(a,y C\\) be positive contractions and let \\(c C\\) be a contraction. There are positive contractions \\(p_1(a)\\) and…",
           "dependsOn": [
-            "m1-prop-graph",
             "m1-prop-four-avoidance",
             "m1-lem-conditional-shrinking"
           ]
@@ -366,8 +365,7 @@
           "source": "Uniform separation and general diagonalization",
           "detail": "[A uniform support contraction] There exists \\((0,1)\\) such that for every \\(C^*\\)-algebra \\(C\\) satisfying \\(\\), every pair of positive contractions \\(a,y C\\), and every contraction \\(c C\\), there…",
           "dependsOn": [
-            "m1-lem-product-p",
-            "m1-prop-shrinking-p"
+            "m1-lem-product-p"
           ]
         },
         {
@@ -391,10 +389,8 @@
           "source": "Uniform separation and general diagonalization",
           "detail": "[Comparison with bounded coefficients] Suppose \\(C\\) satisfies \\(\\). Let \\(a,b C_+\\) be contractions and let \\(c C\\). Given \\[ 0<<1/2, 0<2, >0, \\] there exist \\(s,t C\\) such that \\|s^*as-a\\|,\\…",
           "dependsOn": [
-            "m1-prop-iterated-separation",
             "m1-lem-ideals-cutoffs",
-            "m1-lem-comparison-rules",
-            "m1-thm-individual-to-strong"
+            "m1-lem-comparison-rules"
           ]
         },
         {
@@ -426,7 +422,6 @@
           "source": "Removing amplification under nuclearity",
           "detail": "[Nuclear avoidance of the fixed measurements] Let \\(C\\) be nuclear and satisfy \\(\\) for a fixed \\(n1\\), and let \\(\\) be as in Lemma~ . For \\(X C_+\\) and fixed elements \\(B_ j,pq C\\), where \\(1 j\\)…",
           "dependsOn": [
-            "m1-lem-forbidden-tuple",
             "m1-lem-transport"
           ]
         },
@@ -468,8 +463,6 @@
             "m1-prop-shrinking-nuclear",
             "m1-thm-nuclear-to-individual",
             "m1-lem-local-rich",
-            "m1-lem-ideals-cutoffs",
-            "m1-cor-absorption",
             "m1-thm-individual-to-strong"
           ]
         },
@@ -512,9 +505,7 @@
           "source": "Uniform perturbation from exactness",
           "detail": "[A bound at every amplification] Let E be a finite-dimensional linear space consisting of * -polynomials in u,u^* . There is a finite constant C_E0 with the following property. Suppose v is a…",
           "dependsOn": [
-            "m1-lem-finite-matrix-tests",
-            "m1-prop-uniform-gap",
-            "m1-lem-nonexact-universal"
+            "m1-lem-finite-matrix-tests"
           ]
         },
         {
@@ -574,9 +565,7 @@
           "kind": "lemma",
           "source": "Exact localization and removal of amplification",
           "detail": "[Local common elements] Let C be an exact C^* -algebra satisfying for one fixed integer n1 , and let P(C) . [label=( *)] If h C_+ and h_P0 , then for every integer m1 there are m pairwise orthogonal…",
-          "dependsOn": [
-            "m1-lem-comparison-rules"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-purestateattainment",
@@ -609,7 +598,6 @@
           "source": "Exact localization and removal of amplification",
           "detail": "[Finite coupling] Let C be an exact C^* -algebra satisfying for one fixed integer n1 . Let K_0(C) be quasi-compact and let D C be hereditary. Suppose that at each P K_0 one can choose positive…",
           "dependsOn": [
-            "m1-lem-local-common-element",
             "m1-prop-perturbation"
           ]
         },
@@ -624,7 +612,6 @@
           "dependsOn": [
             "m1-lem-local-common-element",
             "m1-lem-finite-coupling",
-            "m1-thm-exact-infiniteness",
             "m1-lem-primitive-compactness",
             "m1-lem-ideals-cutoffs",
             "m1-lem-ideal-comparison",
@@ -640,8 +627,7 @@
           "source": "Exact localization and removal of amplification",
           "detail": "[Whole-ideal comparison] Let C be a C^* -algebra satisfying . For every h C_+ , c(h)_+ , and integer k1 , \\[ c^ k h. \\] If C is exact, Proposition~ may be applied with multiplicity n=1 , with the…",
           "dependsOn": [
-            "m1-lem-ideal-comparison",
-            "m1-prop-perturbation"
+            "m1-lem-ideal-comparison"
           ]
         },
         {
@@ -654,7 +640,6 @@
           "detail": "[Separation with a fixed quotient norm bound] Let C be an exact C^* -algebra satisfying , and let 0<<1 be the constant in Proposition~ with n=1 . Let a,b C_+ be contractions, and let 0<r<1 . Set \\[…",
           "dependsOn": [
             "m1-lem-cut-implementation",
-            "m1-prop-perturbation",
             "m1-cor-ideal-comparison",
             "m1-lem-comparison-rules"
           ]
@@ -678,7 +663,6 @@
           "source": "Direct quantitative separation under exactness",
           "detail": "[Direct exact proof] Let C be an exact C^* -algebra satisfying . For every a,b C_+ and every >0 , there are s,t C such that \\[ \\|s^*a^2s-a^2\\|<, \\|t^*b^2t-b^2\\|<, \\|s^*abt\\|<. \\] Consequently C is…",
           "dependsOn": [
-            "m1-prop-perturbation",
             "m1-lem-separating-positives",
             "m1-cor-ideal-comparison",
             "m1-lem-bounded-implementation"
@@ -701,7 +685,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

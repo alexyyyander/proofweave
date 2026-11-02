@@ -316,141 +316,169 @@
     {
       "from": "m1-thm-main",
       "to": "m1-cor-tree-cover",
+      "label": "thm:main",
       "context": "Put $r=q+1$ and take the hypergraph $H$ from Theorem~\\ref{thm:main}. Use its edges as the vertices of a complete graph. Color a pair $ef$ by any index $i$ for which $e$ and $f$ have the s"
     },
     {
       "from": "m1-prop-candidate-graph",
       "to": "m1-cor-tree-cover",
+      "label": "prop:candidate-graph",
       "context": "[Proof of Theorem~\\ref{thm:main}] Fix the candidate constants $c_*,C_*$ from Proposition~\\ref{prop:candidate-graph}, set $c_0=1/5$, and fix all the selection constants in the order given in \\eqref{sel:constants-one}--\\eqref{sel:constan"
     },
     {
       "from": "m1-sel-selection",
       "to": "m1-cor-tree-cover",
+      "label": "sel:selection",
       "context": "ts bounds hold and every constituent pair is distinct has probability $e^{-1}+o(1)$. Return failure outside that event. For an outcome in it, apply Proposition~\\ref{sel:selection} to the two slots for each direction. All its graph hypotheses hold with the fixed constants $c_*,C_*,c_0=1/5$. Its inde"
     },
     {
       "from": "m1-prop-deterministic-reduction",
       "to": "m1-cor-tree-cover",
+      "label": "prop:deterministic-reduction",
       "context": "ge $q$. Section~\\ref{sec:selection-application} verifies that \\eqref{sel:occupancy-conclusion} supplies the $R_0$ and $R$ line-occupancy bounds in Proposition~\\ref{prop:deterministic-reduction}. Thus those bounds fail jointly with $\\mathcal A$ with probability $o(1)$. The constituent multiplicity bound is alread"
     },
     {
       "from": "m1-sel-deletion-domination",
       "to": "m1-cor-tree-cover",
+      "label": "sel:deletion-domination",
       "context": "those bounds fail jointly with $\\mathcal A$ with probability $o(1)$. The constituent multiplicity bound is already included in the initial event. By Corollary~\\ref{sel:deletion-domination}, the law of the three deletion lines per direction, conditional on $\\mathcal A$, is bounded pointwise by $\\exp(K_0q)$ t"
     },
     {
       "from": "m1-cor-core-pencil",
       "to": "m1-cor-tree-cover",
+      "label": "cor:core-pencil",
       "context": "letion lines per direction, conditional on $\\mathcal A$, is bounded pointwise by $\\exp(K_0q)$ times the uniform law for a fixed constant $K_0$. Apply Corollary~\\ref{cor:core-pencil} with $k=3$ and $\\zeta=\\rho/4$. For prime $q$, concentration of all possible core covers therefore fails with conditiona"
     },
     {
       "from": "m1-prop-pencil-local",
       "to": "m1-cor-tree-cover",
+      "label": "prop:pencil-local",
       "context": "a given candidate graph, whose probability is zero. Together with compatibility and the constituent multiplicity cap, it supplies all hypotheses of Proposition~\\ref{prop:pencil-local}. The local condition thus fails jointly with $\\mathcal A$ with probability $o(1)$. Subtracting these three failure pro"
     },
     {
       "from": "m1-lem-affine-second-moment",
       "to": "m1-lem-profile-counting",
+      "label": "lem:affine-second-moment",
       "context": ". At a $C$-step the same bound follows from uniform sampling without replacement from $q(q+1)$ lines. At this point $U$ is fixed by the exposed history. Lemma~\\ref{lem:affine-second-moment} gives, for this arbitrary set, \\begin{equation}\\label{eq:affine-variance} \\sum_{\\ell\\in\\mathcal L} \\left(|\\ell\\"
     },
     {
       "from": "m1-thm-deletion",
       "to": "m1-lem-profile-counting",
+      "label": "thm:deletion",
       "context": "[Proof of Theorem~\\ref{thm:deletion}] Multiplication of the bound in Lemma~\\ref{lem:profile-counting} by $e^{Kq}$ still gives a probability tending to zero."
     },
     {
       "from": "m1-thm-deletion",
       "to": "m1-cor-core-pencil",
+      "label": "thm:deletion",
       "context": "Apply Theorem~\\ref{thm:deletion}\\textup{(iii)} with $\\delta=\\delta_\\zeta$, followed by Lemma~\\ref{lem:prime-stability}."
     },
     {
       "from": "m1-lem-prime-stability",
       "to": "m1-cor-core-pencil",
+      "label": "lem:prime-stability",
       "context": "Apply Theorem~\\ref{thm:deletion}\\textup{(iii)} with $\\delta=\\delta_\\zeta$, followed by Lemma~\\ref{lem:prime-stability}."
     },
     {
       "from": "m1-lem-bounded-drift-concentration",
       "to": "m1-lem-independent-trial-jumps",
+      "label": "lem:bounded-drift-concentration",
       "context": "econd moment, and hence its conditional variance, is at most $c_i^2$. The martingale starts at $\\E Y$, ends at $Y$, and has zero conditional drift. Apply Lemma~\\ref{lem:bounded-drift-concentration} at time $T$."
     },
     {
       "from": "m2-thm-main",
       "to": "m2-cor-tree-cover",
+      "label": "thm:main",
       "context": "Take the hypergraph $H$ from Theorem~\\ref{thm:main}, with parts $V_1,\\ldots,V_r$. For $e\\in E(H)$, let $x_i(e)$ be the unique vertex in $e\\cap V_i$. Form the complete grap"
     },
     {
       "from": "m2-inc-sumset-estimates",
       "to": "m2-inc-scalar-coverings",
+      "label": "inc-sumset-estimates",
       "context": "ng assertion by induction on expression length. To combine coverings at an induction step, we will need a fixed covering of $2H$ by translates of $H$. By Lemma~\\ref{inc-sumset-estimates}, \\[ |2H-B|=|2B-3B|\\le K^5|B|. \\] The covering statement of that lemma consequently supplies a set $T_*\\subseteq F$ wit"
     },
     {
       "from": "m2-inc-scalar-coverings",
       "to": "m2-inc-no-approximate-subfield",
+      "label": "inc-scalar-coverings",
       "context": "\\frac{|S-Z|\\,|Z-eS|}{|Z|} \\le\\frac{(Ks)^2}{s/(2K)}=2K^3s. \\] After scaling by $1/b$, we have \\[ |B-B|\\le Ks,\\qquad |B-eB|\\le2K^3s\\quad(e\\in E). \\] Thus Lemma~\\ref{inc-scalar-coverings} applies to $B$ and $E$. We have obtained uniform control for every scalar expressible using a bounded number of operati"
     },
     {
       "from": "m2-thm-incidence",
       "to": "m2-inc-no-approximate-subfield",
+      "label": "thm:incidence",
       "context": "[Proof of Theorem~\\ref{thm:incidence}] We argue by contradiction, allowing all quantitative losses to be subpower factors along a sequence of fields. Suppose"
     },
     {
       "from": "m2-inc-simultaneous-extraction",
       "to": "m2-inc-no-approximate-subfield",
+      "label": "inc-simultaneous-extraction",
       "context": "ess than $c_0q/(2U^{39})$. At least that many witnesses remain. Their joins to the four anchors will supply the graph and the four small sets required by Lemma~\\ref{inc-simultaneous-extraction}. \\paragraph{The four pencils as coordinates.} Choose projective coordinates in which \\[ p_1=(1:0:0),\\qquad p_2=(0:1:0"
     },
     {
       "from": "m2-thm-incidence",
       "to": "m2-lem-linecover",
+      "label": "thm:incidence",
       "context": "ep samples only within the fixed cover, with separate arguments according to its maximum concurrency. Fix the absolute constant $\\kappa\\in(0,1/10)$ of Theorem~\\ref{thm:incidence}, and put $\\epsilon=\\kappa/10$. All constants below may depend on the fixed parameters, but not on $q$, the particular d"
     },
     {
       "from": "m2-lem-martingale",
       "to": "m2-lem-linecover",
+      "label": "lem:martingale",
       "context": "d\\text{past}\\bigr) \\leq C_0^2\\frac{Dt^2}{q}. \\] The sum of conditional variances is at most $D^2C_0^2t^2$, since there are at most $Dq$ trials. Applying Lemma~\\ref{lem:martingale} at deviation $\\delta t^2/2$ yields \\begin{equation}\\label{eq:lc-tuple-tail} \\Pr\\left(Y_0<\\frac{\\delta t^2}{2}\\right)"
     },
     {
       "from": "m2-thm-selection",
       "to": "m2-sel-domination",
+      "label": "thm:selection",
       "context": "[Proof of Theorem~\\ref{thm:selection}] The case $n=0$ is immediate, so suppose $n\\ge1$. Fix $D$ and, for the moment, a constant integer $K\\ge6$. We will ch"
     },
     {
       "from": "m2-lem-linecover",
       "to": "m2-lem-gadget",
+      "label": "lem:linecover",
       "context": "ined by \\[ dx+z=mx^3+u, \\] a nonzero polynomial equation of degree three. In particular, no shape is itself a line when \\(s>5\\). All the hypotheses of Lemma~\\ref{lem:linecover} hold with field size \\(s\\), a fixed integer constant, for example \\(D=3\\), survival lower bound \\(\\delta=1/4\\), and \\(\\"
     },
     {
       "from": "m2-lem-gadget",
       "to": "m2-con-deletion-count",
+      "label": "lem:gadget",
       "context": "nct parallel ambient lines. Exactly one is the omitted line in the definition of \\(Y\\); the other \\(s-1\\) each contain at least five points of \\(Y\\), by Lemma~\\ref{lem:gadget}. These are precisely the lines meeting the candidate's retained configuration."
     },
     {
       "from": "m2-lem-linecover",
       "to": "m2-con-pool-properties",
+      "label": "lem:linecover",
       "context": "We verify the hypotheses of Lemma~\\ref{lem:linecover} for the full pool, which gives the first two assertions. The third follows from a separate union bound over finite poi"
     },
     {
       "from": "m2-thm-main",
       "to": "m2-con-label-action",
+      "label": "thm:main",
       "context": "[Completion of the proof of Theorem~\\ref{thm:main}] We prove that \\(H\\) has no vertex cover of size at most \\(q\\). Suppose to the contrary that \\(C\\) is such a cover. It"
     },
     {
       "from": "m2-con-pool-properties",
       "to": "m2-con-label-action",
+      "label": "con-pool-properties",
       "context": "ts ordinary vertices, regarded as affine lines, must cover \\(X\\): special vertices belong to no ordinary edge. These lines also cover \\(X_{\\rm pool}\\). Lemma~\\ref{con-pool-properties} therefore gives a projective point \\(p\\) such that at least \\((1-\\rho)q\\) ordinary vertices of \\(C\\) are lines through"
     },
     {
       "from": "m2-con-deletion-count",
       "to": "m2-con-label-action",
+      "label": "con-deletion-count",
       "context": "i\\in\\mathcal I:d\\in S_i\\}, \\qquad z=|I_d|\\in\\{1,2\\}. \\] Only these groups contribute deletion lines in direction \\(d\\), and each contributes \\(s-1\\), by Lemma~\\ref{con-deletion-count}. At most \\(z(s-1)\\) of the \\(q\\) lines in this parallel class belong to \\(B\\). Thus \\[ |C\\setminus F_p|\\le z(s-1). \\"
     },
     {
       "from": "m2-lem-gadget",
       "to": "m2-con-label-action",
+      "label": "lem:gadget",
       "context": "at most \\(s-1\\) additional vertices. By Lemma~\\ref{con-label-action}, their effects can be included in at most \\(s-1\\) subfield lines. This contradicts Lemma~\\ref{lem:gadget}. If \\(z=2\\), the two groups are \\(1,*\\), by \\eqref{con-double-directions}. An additional vertex can now meet both gro"
     },
     {
       "from": "m2-con-intersection",
       "to": "m2-con-label-action",
+      "label": "con-intersection",
       "context": "istinct points of \\(Y_i\\) on its contributing line, possible by Lemma~\\ref{con-deletion-count}. These give \\(5h_p\\) distinct exceptional edges, by Proposition~\\ref{con-intersection}. None is covered by a forced ordinary vertex: its unique join line to \\(p\\) is precisely its contributing deletion lin"
     }
   ]

@@ -227,7 +227,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Every-complex-K3-surface-is-Oka-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Every complex K3 surface is Oka; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Every complex K3 surface is Oka.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -278,10 +278,7 @@
           "kind": "lemma",
           "source": "Local approximation from complete directions",
           "detail": "Let U_A,U_B be bounded open sets with positively separated closed fringes, and put C=U_A U_B . For every open parameter polydisc P and every k , there are bounded linear operators \\[ R_A&:H^(C P,^k)…",
-          "dependsOn": [
-            "m1-loc-criterion",
-            "m1-loc-pieces"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-loc-spray",
@@ -382,8 +379,7 @@
           "dependsOn": [
             "m1-loc-planar",
             "m1-ana-concentration",
-            "m1-loc-spray",
-            "m1-glue-open"
+            "m1-loc-spray"
           ]
         },
         {
@@ -419,8 +415,7 @@
           "dependsOn": [
             "m1-loc-spray",
             "m1-glue-interval",
-            "m1-ana-parameter-disc",
-            "m1-ana-polydisc"
+            "m1-ana-parameter-disc"
           ]
         },
         {
@@ -444,7 +439,6 @@
           "dependsOn": [
             "m1-glue-linear-trace",
             "m1-ana-cap",
-            "m1-ana-polydisc",
             "m1-loc-spray",
             "m1-ana-face"
           ]
@@ -520,9 +514,7 @@
           "kind": "lemma",
           "source": "Exact symplectic sewing of annular chains",
           "detail": "[Splitting along the whole chain] Suppose the periodic functions H_j have mean zero, are holomorphic on S_j(s,) , and have norm at most e . Assume \\[ |Ima_j+L_j|<1/4. \\] There are periodic…",
-          "dependsOn": [
-            "m1-sew-chain"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-sew-centers",
@@ -627,7 +619,6 @@
           "dependsOn": [
             "m1-rat-safe",
             "m1-loc-criterion",
-            "m1-rat-open",
             "m1-rat-strips",
             "m1-loc-disc"
           ]
@@ -643,7 +634,6 @@
           "dependsOn": [
             "m1-thm-main",
             "m1-deg-open",
-            "m1-rat-open",
             "m1-prj-strips",
             "m1-ana-cap"
           ]
@@ -656,10 +646,7 @@
           "kind": "corollary",
           "source": "Interpolation and further consequences",
           "detail": "Let S be a complex K3 surface, R an open Riemann surface, K R a compact Runge set, and A=\\ a_j:j1\\ R a closed discrete set of distinct points. Let k_j1 be integers. For every continuous map h:R S…",
-          "dependsOn": [
-            "m1-thm-main",
-            "m1-cor-dense"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-surface-classification",
@@ -703,7 +690,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

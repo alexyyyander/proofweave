@@ -282,7 +282,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Gaussian-free-field-limit-of-the-balanced-six-vertex-model-with-variance-multiplier-1-over-arcsin-c-over-2-September-23-2026/The-Gaussian-free-field-limit-of-the-balanced-six-vertex-model-with-variance-multiplier-1-over-arcsin-c-over-2-September-23-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2); background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2).",
       "proofDetail": "section",
       "nodes": [
         {
@@ -346,7 +346,6 @@
           "source": "Finite rows and their scalar products",
           "detail": "[The Hilbert dual] For even L and real inhomogeneities, B(x)^*=- C( x). Thus for a distinct real on-shell list with G_Y0 , the physical unit vector _Y= P_L|Y \\| P_L|Y\\| is well defined, and \\[ \\|…",
           "dependsOn": [
-            "m1-lem-row-algebra",
             "m1-lem-scalar-product"
           ]
         },
@@ -383,8 +382,7 @@
           "source": "Thermodynamic row kernels",
           "detail": "[Gaudin and mixed-measure inverse bounds] In the limits specified above, \\|(I+K)^ -1 \\|_ C, (K)_ ij =K(y_i-y_j)_j. There is also a small a>0 for which the inverse has uniformly bounded row norm after…",
           "dependsOn": [
-            "m1-lem-root-limits",
-            "m1-lem-weighted-flags"
+            "m1-lem-root-limits"
           ]
         },
         {
@@ -477,8 +475,7 @@
           "detail": "[Physical law, both axes, and reflection] The row representation gives the local probabilities of the plane law _c in Theorem~ . In particular its prescribed iterated balanced-torus limit exists when…",
           "dependsOn": [
             "m1-prop-word-kernel",
-            "m1-lem-scalar-continuation",
-            "m1-lem-row-normalization"
+            "m1-lem-scalar-continuation"
           ]
         },
         {
@@ -816,8 +813,6 @@
           "source": "Moment bounds and convergence of the height field",
           "detail": "[Endpoint topology implication] At \\(c=2\\), suppose that the height pairings with every finite family of ordinary finite-energy neutral measures converge jointly to those of \\(\\). Then the commonly…",
           "dependsOn": [
-            "m1-prop-negative-regularity",
-            "m1-prop-intrinsic-dual",
             "m1-thm-main",
             "m1-prop-endpoint-completion",
             "m1-prop-physical-plane",
@@ -866,9 +861,7 @@
           "kind": "lemma",
           "source": "Completion of the proof",
           "detail": "[Homotopy coupling with dense marked clusters] Fix (0,) . As the mesh tends to zero, the construction of gives a coupling of two auxiliary loop samples. Their restrictions to a deterministic window…",
-          "dependsOn": [
-            "m1-thm-rr-rotation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-endpoint-completion",
@@ -880,8 +873,7 @@
           "detail": "[Completion at the endpoint] The conclusions of Theorem~ hold at c=2 , with squared multiplier 2/ .",
           "dependsOn": [
             "m1-lem-rr-bkw",
-            "m1-thm-rr-rotation",
-            "m1-thm-main"
+            "m1-thm-rr-rotation"
           ]
         }
       ]
@@ -901,7 +893,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

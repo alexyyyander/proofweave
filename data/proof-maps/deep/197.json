@@ -232,7 +232,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Torsion-Free-Group-Algebra-That-Is-Not-Directly-Finite-October-4-2026/direct-finiteness.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A Torsion-Free Group Algebra That Is Not Directly Finite; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A Torsion-Free Group Algebra That Is Not Directly Finite.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -400,9 +400,7 @@
           "detail": "[Picture representation] Every map S^2 X is homotopic to a cone picture. Every disk map whose boundary is the label of a specified edge path in is homotopic relative to that boundary to a cone…",
           "dependsOn": [
             "m1-thm-main",
-            "m1-thm-no-arrangements",
-            "m1-prop-types",
-            "m1-prop-parity"
+            "m1-thm-no-arrangements"
           ]
         }
       ]
@@ -419,7 +417,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Counterexample-to-Kaplanskys-Direct-Finiteness-Conjecture-in-Characteristic-Two-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A Counterexample to Kaplansky's Direct-Finiteness Conjecture in Characteristic Two; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A Counterexample to Kaplansky's Direct-Finiteness Conjecture in Characteristic Two.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -572,11 +570,7 @@
           "dependsOn": [
             "m2-lem-hypergraph-replacement-lines",
             "m2-lem-hypergraph-direction-spaces",
-            "m2-thm-hypergraph",
-            "m2-lem-hypergraph-holes",
-            "m2-thm-main",
-            "m2-prop-pairing",
-            "m2-thm-criterion"
+            "m2-lem-hypergraph-holes"
           ]
         },
         {
@@ -610,8 +604,7 @@
           "source": "An injective nonsurjective cellular automaton",
           "detail": "For the field K , group G , and outputs of Theorem~ , the cellular automaton T_ b_ out :K^G K^G is injective and not surjective. Its image is the fixed set of T_ b_ out a_ out . In particular, G is…",
           "dependsOn": [
-            "m2-prop-ca-transfer",
-            "m2-thm-main"
+            "m2-prop-ca-transfer"
           ]
         },
         {
@@ -623,7 +616,6 @@
           "source": "An injective nonsurjective cellular automaton",
           "detail": "For the finite characteristic-two field K of Theorem~ , there are a group U of type F_ and scalar elements A,B K[U] such that AB=1 and BA1 . The group U is nonsofic and nonsurjunctive.",
           "dependsOn": [
-            "m2-thm-main",
             "m2-prop-ca-transfer"
           ]
         }
@@ -641,7 +633,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Counterexample-to-the-Group-Ring-Determinant-Conjecture-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A Counterexample to the Group-Ring Determinant Conjecture; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A Counterexample to the Group-Ring Determinant Conjecture.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -735,7 +727,6 @@
           "source": "The trace calculation",
           "detail": "Let G be a discrete group, m,r1 , and let P=P^*=P^2_m() . Suppose an odd D>0 clears its denominators and P=uv with u_ m,r (_2[G]) and v_ r,m (_2[G]) . For every q=2^k>1 congruent to one modulo D ,…",
           "dependsOn": [
-            "m3-lem-integral",
             "m3-lem-shears",
             "m3-thm-main",
             "m3-thm-input",
@@ -772,7 +763,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

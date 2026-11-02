@@ -117,7 +117,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-singular-normal-affine-surface-with-free-tangent-sheaf-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A singular normal affine surface with free tangent sheaf; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A singular normal affine surface with free tangent sheaf.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -227,9 +227,7 @@
           "kind": "proposition",
           "source": "Gluing the vector-field jets",
           "detail": "[Finite compatible jets] For the data of Propositions~ and , there are finitely many holomorphic disk-to-outside transition germs, each a composition of flows of orders 1,,7 , together with…",
-          "dependsOn": [
-            "m1-jets-bracket"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-analytic-realization",
@@ -239,9 +237,7 @@
           "kind": "lemma",
           "source": "Analytic realization and contraction",
           "detail": "The overlap maps of Proposition~ define, after shrinking their domains, a smooth Hausdorff complex surface neighborhood Y of C . Its conormal bundle is L , and hence \\[ C^2=-10. \\] Writing =_Y(-C)…",
-          "dependsOn": [
-            "m1-prop-jets"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-analytic-graded-vanishing",
@@ -273,9 +269,7 @@
           "kind": "proposition",
           "source": "Analytic realization and contraction",
           "detail": "There is a normal complex surface germ (X,x) with an isolated singular point and free analytic derivation sheaf of rank two: \\[ _X=Hom_ _X (_X^1,_X) _X^ 2 . \\] It has a resolution :Y X whose…",
-          "dependsOn": [
-            "m1-analytic-actual-lifting"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-algebra-finite-determinacy",
@@ -309,9 +303,7 @@
           "kind": "corollary",
           "source": "Algebraization and the affine counterexample",
           "detail": "The smooth locus U of the affine surface X= A constructed in Theorem~ has (U)=2 .",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-algebra-derivation-blowups",
@@ -340,7 +332,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

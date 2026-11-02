@@ -97,7 +97,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Classical-capacity-and-entropy-inequalities-for-generalized-amplitude-damping-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Classical capacity and entropy inequalities for generalized amplitude damping; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Classical capacity and entropy inequalities for generalized amplitude damping.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -160,7 +160,6 @@
           "detail": "The function F is positively homogeneous of degree one and concave on the probability simplex. For every finite collection of nonnegative triples, _i F(x_i,y_i,z_i) F\\!(_i x_i,_i y_i,_i z_i).",
           "dependsOn": [
             "m1-lem-integral",
-            "m1-lem-logdet",
             "m1-thm-block"
           ]
         },
@@ -182,9 +181,7 @@
           "kind": "theorem",
           "source": "A thermal block entropy inequality",
           "detail": "Let X,Y be complex matrices of the same rectangular shape with (XX^*)=(YY^*)=1 . Suppose ,,,0 sum to one and -=K^2, K0. Set T= XX^*+ YY^*&KXY^*\\\\ KYX^*& XX^*+ YY^* , U_0=+, U_1=+, and u=U_0U_1-K^2 .…",
-          "dependsOn": [
-            "m1-thm-block"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-e-convex",
@@ -194,9 +191,7 @@
           "kind": "lemma",
           "source": "From the thermal inequality to channel outputs",
           "detail": "For every , , the function p g((1-)+(1-)(p-)^2) is convex on [0,1] .",
-          "dependsOn": [
-            "m1-lem-binary-spectrum"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-partner-branch",
@@ -218,10 +213,7 @@
           "kind": "proposition",
           "source": "From the thermal inequality to channel outputs",
           "detail": "For every , , put =_ , and e(p)=g(v_ , (p)) . For every integer n1 and every unit vector on n qubits, let p_j be the probability of outcome 1 at site j in the computational basis. Then (^ n ()) _ j=1…",
-          "dependsOn": [
-            "m1-lem-partner-branch",
-            "m1-lem-e-convex"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-mixed-bound",
@@ -234,7 +226,6 @@
           "dependsOn": [
             "m1-prop-pure-bound",
             "m1-lem-e-convex",
-            "m1-thm-main",
             "m1-cor-partner-additivity",
             "m1-lem-partner-branch",
             "m1-lem-binary-spectrum"
@@ -248,9 +239,7 @@
           "kind": "corollary",
           "source": "Ordinary damping, the unital case, and endpoints",
           "detail": "[Ordinary amplitude damping] For , let _ be the qubit channel with Kraus operators \\[ K_0=(1,1- ), K_1=\\,01. \\] For every integer n1 , \\[ (_^ n )=n C(_) = n 2 _ 0 p1 \\ h((1-)p)-g((1-)p^2)\\ . \\]",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-unital",
@@ -261,10 +250,7 @@
           "source": "Ordinary damping, the unital case, and endpoints",
           "detail": "[Unital midpoint] For every , \\[ C(_ ,1/2 ) =1-1 2 g(/4) =1-1 2 h\\!( 1+1- 2). \\] The pair (01)/2 attains the one-use Holevo information, and its independent products attain every finite-power Holevo…",
           "dependsOn": [
-            "m1-lem-e-convex",
-            "m1-thm-main",
-            "m1-lem-scalar",
-            "m1-lem-logdet"
+            "m1-thm-main"
           ]
         }
       ]
@@ -284,7 +270,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

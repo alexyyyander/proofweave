@@ -277,7 +277,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/QAOA-attains-the-SK-ground-state-energy-in-the-thermodynamic-first-limit-September-25-2026/QAOA-attains-the-SK-ground-state-energy-in-the-thermodynamic-first-limit-September-25-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from QAOA attains the SK ground-state energy in the thermodynamic-first limit; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from QAOA attains the SK ground-state energy in the thermodynamic-first limit.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -391,8 +391,7 @@
             "m1-lem-unitary-clt",
             "m1-lem-centered-sums",
             "m1-lem-commuting-substitution",
-            "m1-lem-ordinary-updates",
-            "m1-prop-energy"
+            "m1-lem-ordinary-updates"
           ]
         },
         {
@@ -405,7 +404,6 @@
           "detail": "[Additive cut responses] Fix a preceding finite sequence as in Theorem~ . Suppose a temporary Hamiltonian is diagonal in a common collection of site axes, with coefficients given by an exclusion…",
           "dependsOn": [
             "m1-thm-gate-calculus",
-            "m1-lem-unitary-clt",
             "m1-lem-commuting-substitution"
           ]
         },
@@ -577,8 +575,7 @@
           "source": "Removing the longitudinal seed controls",
           "detail": "[One echo] Under the invariant and the visibility conditions, the echo preserves the invariant. Up to a scalar of modulus one its low update is A_r W_Z(g_r)A_r, g_r=t r (v'_r-v_r)=-2t w_r+o(1), where…",
           "dependsOn": [
-            "m1-lem-seed-selective-accuracy",
-            "m1-lem-seed-low-insertions"
+            "m1-lem-seed-selective-accuracy"
           ]
         },
         {
@@ -604,13 +601,10 @@
           "source": "Removing the longitudinal seed controls",
           "detail": "[The huge-stage transverse projection] Immediately after a forward cost with fixed \\(t0\\), the actual \\(Y\\)-insertion has vanishing pairing with every bounded family in \\( S\\). In particular, its…",
           "dependsOn": [
-            "m1-thm-seed-simulation",
             "m1-lem-seed-gram-induction",
             "m1-prop-tree-transfer",
-            "m1-thm-main",
             "m1-prop-classical-near-optimum",
-            "m1-thm-classical-synthesis",
-            "m1-cor-regular-maxcut"
+            "m1-thm-classical-synthesis"
           ]
         },
         {
@@ -652,8 +646,7 @@
           "source": "The independent positive-temperature construction",
           "detail": "[The symmetric-power realization] Consider a fixed finite descendant formula whose pointwise functions are smooth with all derivatives of polynomial growth. Assume its leaf seeds have moments of…",
           "dependsOn": [
-            "m1-lem-eams-finite-step",
-            "m1-prop-energy"
+            "m1-lem-eams-finite-step"
           ]
         },
         {
@@ -665,8 +658,6 @@
           "source": "The independent positive-temperature construction",
           "detail": "[The independent positive-temperature construction] For every >0 and every _H>0 , there are a finite color partition with helper probability 0<p_H<_H , a finite number of helper types, and finite…",
           "dependsOn": [
-            "m1-lem-classical-strong-limit",
-            "m1-lem-classical-trigonometric-density",
             "m1-lem-classical-color-exclusion",
             "m1-prop-classical-near-optimum"
           ]
@@ -685,7 +676,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Full-support-of-the-zero-temperature-Sherrington-Kirkpatrick-order-parameter-September-27-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Full support of the zero-temperature Sherrington-Kirkpatrick order parameter; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Full support of the zero-temperature Sherrington-Kirkpatrick order parameter.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -728,10 +719,7 @@
           "kind": "lemma",
           "source": "Integrable coefficients and the controlled diffusion",
           "detail": "[Transfer on a constant interval] Suppose =c on an open interval I(0,1) . If c>0 , every point of I has a neighborhood on which one may choose positive, bounded, nondecreasing finite step…",
-          "dependsOn": [
-            "m2-lem-regularity",
-            "m2-lem-diffusion"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-tail-class",
@@ -776,10 +764,7 @@
           "kind": "lemma",
           "source": "Shape inequalities for finite step functions",
           "detail": "[Certificate signs and integration by parts] At a fixed positive time in a constant step, the functions R,K,v,b,j,L,B,S defined above are even and extend smoothly across zero. They satisfy \\[…",
-          "dependsOn": [
-            "m2-shape-backward",
-            "m2-shape-forward"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-cert-identity-lemma",
@@ -811,10 +796,6 @@
           "detail": "[Constant-interval curvature] Let U and suppose =c on an open interval I(0,1) . For its controlled diffusion, put q(t)=_ ,x (t,X_t)^2 . If c>0 , then q' is strictly convex on I ; more precisely, with…",
           "dependsOn": [
             "m2-lem-constant-transfer",
-            "m2-shape-backward",
-            "m2-shape-forward",
-            "m2-shape-ibp",
-            "m2-cert-coercivity",
             "m2-lem-regularity"
           ]
         },
@@ -852,7 +833,6 @@
           "source": "Full support and regularity",
           "detail": "[No terminal plateau] For a minimizer , there is no a<1 and finite c0 such that =c on (a,1) .",
           "dependsOn": [
-            "m2-lem-contact",
             "m2-thm-full-support",
             "m2-prop-gap-curvature",
             "m2-lem-diffusion"
@@ -870,7 +850,6 @@
             "m2-lem-regularity",
             "m2-lem-diffusion",
             "m2-thm-full-support",
-            "m2-cert-coercivity",
             "m2-shape-backward",
             "m2-shape-ibp"
           ]
@@ -936,7 +915,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -377,7 +377,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Determination-of-a-metric-and-a-unitary-connection-from-one-boundary-patch-October-5-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Determination of a metric and a unitary connection from one boundary patch; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Determination of a metric and a unitary connection from one boundary patch.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -430,9 +430,7 @@
           "kind": "lemma",
           "source": "Boundary data, exterior sources, and contact coordinates",
           "detail": "[The maximal match] All matches agree on overlaps and are injective on base points. Their union is a unique maximal match \\((,J)\\) on a connected open set \\(W N_2^\\). On this set, G_1((p),(q))…",
-          "dependsOn": [
-            "m1-bdy-evaluations"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-bdy-contact",
@@ -442,9 +440,7 @@
           "kind": "proposition",
           "source": "Boundary data, exterior sources, and contact coordinates",
           "detail": "[Contact data] If the maximal domain \\(W\\) has an interior frontier, there are a point \\(p W N_2^\\), a point \\(q N_1^\\), and charts about \\(p,q\\), both with coordinate range a neighborhood of \\(0…",
-          "dependsOn": [
-            "m1-bdy-evaluations"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cross-series",
@@ -476,9 +472,7 @@
           "kind": "lemma",
           "source": "Continuation of solutions in two variables",
           "detail": "[Propagation through a compact cylinder] Suppose a region in a product patch has smooth coordinates (z,a) near B , where B is a compact base, possibly with boundary or corners. A single product…",
-          "dependsOn": [
-            "m1-cross-criterion"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cross-initial",
@@ -489,8 +483,7 @@
           "source": "Continuation of solutions in two variables",
           "detail": "[Fixed-separation initialization] In this setting, let n3 and fix B>0 , d>0 and >0 . For all sufficiently small , the data have a product-solution continuation to a neighborhood of \\[ \\ (x,y):|x|,|y|…",
           "dependsOn": [
-            "m1-cross-series",
-            "m1-cross-propagation"
+            "m1-cross-series"
           ]
         },
         {
@@ -511,9 +504,7 @@
           "kind": "lemma",
           "source": "Shrinking spheres and harmonic transfer",
           "detail": "[Strict sphere geometry] Let r=r_ satisfy~ , , and~ . For p_* sufficiently large and sufficiently small, the hypersurface \\[ (x,y)=12(d_(x,y)^2-r(y)^2)=0 \\] satisfies the strict criterion of…",
-          "dependsOn": [
-            "m1-cross-criterion"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-sph-continuation",
@@ -547,7 +538,6 @@
           "source": "Shrinking spheres and harmonic transfer",
           "detail": "[Bounds where the cutoff varies] After the choices in Remark~ , for every fixed integer m the angular H^m norms of _ and its first base derivatives on supp(d) are bounded independently of admissible…",
           "dependsOn": [
-            "m1-sph-transfer",
             "m1-cross-initial"
           ]
         },
@@ -579,9 +569,7 @@
           "kind": "proposition",
           "source": "Uniform estimates for the matrix transfer density",
           "detail": "[Scalar coercivity] Fix uniform smooth bounds for the reference geometry and scalar comparison equations, and the constants in . Suppose P_0 is the scalar operator , with the scalar trace operators…",
-          "dependsOn": [
-            "m1-ang-raising"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ang-system-coercivity",
@@ -682,8 +670,6 @@
           "source": "Matrix moments and extension across the contact point",
           "detail": "[Local equality of the normalized equations] In the contact coordinates and harmonic frames of Proposition~ , there is a neighborhood of the origin on which the two metrics are smoothly conformal and…",
           "dependsOn": [
-            "m1-mat-interpolation",
-            "m1-ang-density",
             "m1-mat-improvement",
             "m1-mat-spanning"
           ]
@@ -711,9 +697,7 @@
           "dependsOn": [
             "m1-bdy-contact",
             "m1-mat-local",
-            "m1-glob-conformal",
-            "m1-bdy-evaluations",
-            "m1-bdy-matches"
+            "m1-glob-conformal"
           ]
         },
         {
@@ -726,12 +710,9 @@
           "detail": "[Completion and the measured patch] The interior maps \\((,J)\\) extend smoothly to the extended manifolds, with \\(:N_2 N_1\\) a diffeomorphism and \\(J\\) a unitary bundle map intertwining the…",
           "dependsOn": [
             "m1-bdy-jets",
-            "m1-thm-main",
-            "m1-bdy-cap",
             "m1-bdy-evaluations",
             "m1-bdy-matches",
             "m1-bdy-contact",
-            "m1-mat-local",
             "m1-glob-conformal",
             "m1-glob-interior"
           ]
@@ -750,7 +731,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Smooth-Anisotropic-Uniqueness-in-the-Calderon-Problem-from-One-Boundary-Patch-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Smooth anisotropic uniqueness in the Calderón problem from one boundary patch; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Smooth anisotropic uniqueness in the Calderón problem from one boundary patch.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -857,9 +838,7 @@
           "kind": "lemma",
           "source": "Local continuation and product solutions",
           "detail": "[Propagation through a compact cylinder] Suppose a region in a product patch has smooth coordinates (z,a) near B , where B is a compact base, possibly with boundary or corners. A product solution is…",
-          "dependsOn": [
-            "m2-cross-criterion"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-cross-initial",
@@ -870,8 +849,7 @@
           "source": "Local continuation and product solutions",
           "detail": "[Fixed-separation initialization] In this setting, let n3 and fix B>0 , d>0 and >0 . For all sufficiently small , the data have a product-solution continuation to a neighborhood of \\[ \\ (x,y):|x|,|y|…",
           "dependsOn": [
-            "m2-cross-series",
-            "m2-cross-propagation"
+            "m2-cross-series"
           ]
         },
         {
@@ -893,7 +871,6 @@
           "source": "Continuation to shrinking spheres",
           "detail": "[Continuation to the sphere family] Choose p sufficiently large and then >0 sufficiently small in terms of the fixed background bounds. Choose R_*>0 small enough that all the balls lie in normal…",
           "dependsOn": [
-            "m2-cross-criterion",
             "m2-balls-profiles",
             "m2-cross-initial",
             "m2-cross-propagation"
@@ -941,9 +918,7 @@
           "kind": "proposition",
           "source": "An estimate on the shrinking spheres",
           "detail": "[Coercivity for the moving trace equation] Fix a base region with bounded reference geometry and the constants in . Suppose P is the operator , with the trace operators of Lemma~ . There exist _0…",
-          "dependsOn": [
-            "m2-angular-raising"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-local-density",
@@ -1007,8 +982,7 @@
           "source": "The global isometry and the measured boundary",
           "detail": "[No interior frontier] There is an isometry \\[ :(M_2^e)^(M_1^e)^ \\] onto the first interior satisfying Equation~ .",
           "dependsOn": [
-            "m2-data-jet-family",
-            "m2-local-extension"
+            "m2-data-jet-family"
           ]
         },
         {
@@ -1024,8 +998,7 @@
             "m2-main-patch",
             "m2-data-cap",
             "m2-data-jet-family",
-            "m2-local-extension",
-            "m2-global-frontier"
+            "m2-local-extension"
           ]
         },
         {
@@ -1037,7 +1010,6 @@
           "source": "Scalar conductivities on a fixed Euclidean domain",
           "detail": "[Conformal rigidity at a boundary patch] Let R^n be a connected open set with smooth boundary, where n3 . Suppose F: is a smooth diffeomorphism through the boundary and \\[ F^*e=e^ 2b ein \\] for a…",
           "dependsOn": [
-            "m2-main-scalar",
             "m2-main-patch"
           ]
         }
@@ -1055,7 +1027,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Nonuniqueness-for-Bounded-Measurable-Scalar-Conductivities-in-Three-Dimensions-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Nonuniqueness for bounded measurable scalar conductivities in three dimensions; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Nonuniqueness for bounded measurable scalar conductivities in three dimensions.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1139,7 +1111,6 @@
           "source": "Exact scalarization of two Cauchy pairs",
           "detail": "[Weak approximation by scalar-near matrices] Given a subsolution, a weak L^2 neighborhood of its pair (E,F) , and >0 , there is a subsolution in that neighborhood whose matrix has distance less than…",
           "dependsOn": [
-            "m3-sc-open-class",
             "m3-sc-local-join"
           ]
         },
@@ -1152,7 +1123,6 @@
           "source": "Exact scalarization of two Cauchy pairs",
           "detail": "[Weak-to-strong continuity points] The identity from Z with its weak topology to H with its norm topology has a dense set of continuity points.",
           "dependsOn": [
-            "m3-thm-scalarization",
             "m3-sc-weak-approximation"
           ]
         },
@@ -1184,9 +1154,7 @@
           "kind": "lemma",
           "source": "Constructing the branching block",
           "detail": "[Two symmetric divergence columns] Suppose u,v are smooth with independent gradients on a connected open region. Let r^1,r^2 be smooth densities supported in a fixed compact subset of that region and…",
-          "dependsOn": [
-            "m3-bl-end-matching"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-nu-geometry",
@@ -1250,8 +1218,6 @@
             "m3-thm-main",
             "m3-nu-geometry",
             "m3-prop-branching-block",
-            "m3-nu-source-lemma",
-            "m3-nu-potential",
             "m3-cor-localized"
           ]
         }
@@ -1284,7 +1250,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

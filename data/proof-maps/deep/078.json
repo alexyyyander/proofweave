@@ -272,7 +272,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Bochner-Riesz-Multipliers-in-Three-Dimensions-September-24-2026/Bochner-Riesz-Multipliers-in-Three-Dimensions-September-24-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Bochner–Riesz multipliers in three dimensions; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Bochner–Riesz multipliers in three dimensions.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -433,8 +433,7 @@
           "source": "Extremal positive transport and its aspect",
           "detail": "[Greedy cap regularization] After a subpower splitting and removal of probability o(1) , a particle law can be restricted to classes with a bounded number h such that _T(cap(D)) ^ w(D)-h-o(1) ,…",
           "dependsOn": [
-            "m1-lem-classical-splitting",
-            "m1-lem-homogenization"
+            "m1-lem-classical-splitting"
           ]
         },
         {
@@ -456,8 +455,7 @@
           "source": "Extremal positive transport and its aspect",
           "detail": "[Least-aspect limiting extremizer] There exists a saturated sequence at duration one with b=0 , endpoint aspect e=m , and horizon 1+m , where m0 is the least aspect of any such saturated sequence.…",
           "dependsOn": [
-            "m1-lem-homogenization",
-            "m1-lem-profile-diagonal"
+            "m1-lem-homogenization"
           ]
         },
         {
@@ -483,7 +481,6 @@
           "source": "Extremal positive transport and its aspect",
           "detail": "[Tangent reduction] One of the following alternatives holds for the least aspect m . If m=0 , there is a saturated sequence of duration and horizon one, with isotropic endpoint (b,a)=(0,0) and…",
           "dependsOn": [
-            "m1-lem-profile-diagonal",
             "m1-lem-classical-splitting",
             "m1-lem-typical-conditioning",
             "m1-lem-classical-localization"
@@ -593,10 +590,7 @@
           "kind": "lemma",
           "source": "Closure of the classical growth argument",
           "detail": "[Contact tuples] At almost every u_0(0,1) , set \\[ b_0=b(u_0), p=-b'(u_0), s=S'(u_0). \\] The following assertions hold on each side of the contact curve that lies inward from the aperture boundary.…",
-          "dependsOn": [
-            "m1-lem-curve-traces",
-            "m1-prop-rate-transfer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-closure-positive-x",
@@ -607,8 +601,7 @@
           "source": "Closure of the classical growth argument",
           "detail": "[Positive X rate] At the contact points of Lemma~ , x^- if p>0 . If p=0 , an admissible plus tuple can be chosen with x>0 .",
           "dependsOn": [
-            "m1-thm-characteristic-trace",
-            "m1-lem-closure-contact-tuples"
+            "m1-thm-characteristic-trace"
           ]
         },
         {
@@ -620,7 +613,6 @@
           "source": "Closure of the classical growth argument",
           "detail": "[Algebraic rate bounds] Let m>0 , 0<s1 , and let a rate tuple obey the capacity bounds and the implications of Proposition~ . Put p_*=(1+m)/2 . Then x>0,\\ z<1& F(p_*)1+s, \\\\ x>0,\\ z=1& F(0)1+s, \\\\…",
           "dependsOn": [
-            "m1-thm-classical-growth",
             "m1-lem-closure-positive-x",
             "m1-prop-isotropic-exclusion"
           ]
@@ -663,9 +655,7 @@
           "kind": "lemma",
           "source": "Packet scores and finite decompositions",
           "detail": "[Greedy cap classes] In a geometric localizer, bin nonnegligible coefficients so that ||c_T|^2- m| on each bin. Each bin admits a partition into classes, with a count parameter \\(g\\) and fixed…",
-          "dependsOn": [
-            "m1-lem-packet-decomposition"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-local-root-comparison",
@@ -849,7 +839,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

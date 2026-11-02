@@ -417,7 +417,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-critical-logarithmic-correction-for-the-planar-XY-model-October-5-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The critical logarithmic correction for the planar XY model; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The critical logarithmic correction for the planar XY model.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -480,8 +480,7 @@
           "detail": "[Trial energy with a pinned rim] Let \\(U\\) be a bounded connected polygonal Lipschitz domain in the fixed-geometry class of Proposition~ . Its outer boundary and the boundaries of its two holes are…",
           "dependsOn": [
             "m1-prop-height-inputs",
-            "m1-prop-comparisons",
-            "m1-geo-comparison"
+            "m1-prop-comparisons"
           ]
         },
         {
@@ -534,9 +533,7 @@
           "kind": "lemma",
           "source": "A scale-dependent cutoff and entry",
           "detail": "[Face energy and changes at cuts] For the entry family just described, there is a number \\(D_s\\), the same at every full junction, and a symmetric matrix \\(H_G\\) such that Q_G(w)=D_s_ z V_4(G)…",
-          "dependsOn": [
-            "m1-ent-center-background"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ent-initialization",
@@ -561,7 +558,6 @@
             "m1-prop-height-inputs",
             "m1-ent-face-localization",
             "m1-ent-entry-regulator",
-            "m1-ent-initialization",
             "m1-ent-center-background"
           ]
         },
@@ -640,7 +636,6 @@
           "source": "The critical bulk trajectory",
           "detail": "[Comparison on an overlap] Fix \\(0<c<c'<3\\). Uniformly as \\((k_1,k_2)\\), for every common integer \\(j\\) satisfying \\(c2^ k_i j c'2^ k_i \\) for \\(i=1,2\\), put \\((u_i,Y_i)=(u_j^ (k_i) ,|Z_j^ (k_i)…",
           "dependsOn": [
-            "m1-trj-vanishing",
             "m1-trj-physical-torus"
           ]
         },
@@ -662,9 +657,7 @@
           "kind": "lemma",
           "source": "The center observable",
           "detail": "[Paired local maps] The local maps can be chosen in both squares with the following properties. Here \\(<1\\) and \\(C\\) depend only on the fixed parameters. Untwisted activities on wall-free supports…",
-          "dependsOn": [
-            "m1-ent-initialization"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ent-terminal-regulator",
@@ -686,7 +679,6 @@
           "detail": "[Terminal families and translated fields] Write \\[ W_u^(X,)=\\ U_u^ reg (X,)\\ . \\] Here \\(U_u^ reg \\) is the sum of gradient energy on \\(D_u(X)\\), the \\(u\\)-weighted boundary trace, and the…",
           "dependsOn": [
             "m1-ent-terminal-regulator",
-            "m1-thm-main",
             "m1-geo-comparison"
           ]
         }
@@ -704,7 +696,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Critical-Center-Magnetization-in-the-Planar-XY-Model-October-5-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Critical Center Magnetization in the Planar XY Model; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Critical Center Magnetization in the Planar XY Model.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -909,11 +901,7 @@
           "kind": "lemma",
           "source": "Joining finite histories and determining the critical trajectory",
           "detail": "[Comparison at a common scale] Consider two bulk histories with comparable window parameters J,J' . At an index j belonging to fixed positive-fraction windows of both histories, write (u,Z) and…",
-          "dependsOn": [
-            "m2-prop-bulk-readouts",
-            "m2-lem-bulk-window-vanishing",
-            "m2-lem-bulk-odd"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-bulk-window",
@@ -979,7 +967,6 @@
           "source": "Terminal integration and the normalization constant",
           "detail": "[First-order terminal comparison] With the running gradient coordinate t_h of Proposition~ , _j =t_h 2^2 (E_ LM -E_M) +O_L(D^2 j^2 +1 Dj ).",
           "dependsOn": [
-            "m2-prop-magnetic",
             "m2-prop-bulk-window"
           ]
         },
@@ -1002,12 +989,10 @@
           "source": "Terminal integration and the normalization constant",
           "detail": "[Summable enlargement ratio] For n_j=L^j/2 , there exists >0 such that a_ n_ j+1 - a_ n_j =- L 8 +1 16j +O_L(j^ -1- ).",
           "dependsOn": [
-            "m2-lem-terminal-scalar",
             "m2-lem-terminal-partition",
             "m2-lem-terminal-first-order",
             "m2-lem-terminal-green",
             "m2-prop-bulk-window",
-            "m2-thm-main",
             "m2-inp-regular-variation"
           ]
         }
@@ -1025,7 +1010,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Critical-Spin-Field-of-the-Planar-XY-Model-October-5-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Critical Spin Field of the Planar XY Model; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Critical Spin Field of the Planar XY Model.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1169,8 +1154,7 @@
             "m3-heights-cut-comparison",
             "m3-sectors-localization",
             "m3-sectors-single-lift",
-            "m3-heights-finite-comparisons",
-            "m3-sectors-positive-radius"
+            "m3-heights-finite-comparisons"
           ]
         },
         {
@@ -1239,7 +1223,6 @@
           "dependsOn": [
             "m3-kernels-bounds",
             "m3-kernels-average-loss",
-            "m3-kernels-stability",
             "m3-kernels-multiplication"
           ]
         },
@@ -1383,7 +1366,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

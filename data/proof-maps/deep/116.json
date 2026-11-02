@@ -167,7 +167,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Uniform-Matrix-Hitting-Points-in-Every-Positive-Characteristic-October-4-2026/uniform-matrix-hitting-points-positive-characteristic.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Uniform Matrix Hitting Points in Every Positive Characteristic; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Uniform Matrix Hitting Points in Every Positive Characteristic.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -285,7 +285,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/One-Rational-Matrix-Hitting-Point-for-Noncommutative-Formulas-September-24-2026/One-Rational-Matrix-Hitting-Point-for-Noncommutative-Formulas-September-24-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from One Rational Matrix Hitting Point for Noncommutative Formulas; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from One Rational Matrix Hitting Point for Noncommutative Formulas.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -380,7 +380,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Polynomial-Hitting-Lists-for-Noncommutative-Rational-Formulas-September-24-2026/Polynomial-Hitting-Lists-for-Noncommutative-Rational-Formulas-September-24-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Polynomial Hitting Lists for Noncommutative Rational Formulas; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Polynomial Hitting Lists for Noncommutative Rational Formulas.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -433,8 +433,7 @@
           "detail": "[Small-subspace expansion] For every k -dimensional subspace U P_N(F) with 1 k B , _F(_ i=0 ^n T_iU)>(w-1)k.",
           "dependsOn": [
             "m3-lem-integral-reduction",
-            "m3-lem-wronskian-orders",
-            "m3-prop-rectangular"
+            "m3-lem-wronskian-orders"
           ]
         },
         {
@@ -456,8 +455,7 @@
           "source": "Deformation inside a division algebra",
           "detail": "[Full-rank deformed pencils] Fix a primitive M th root of unity , and lift the padded matrices R_0(t),,R_n(t) by Lemma~ with d=M and K=()(t) . Let \\[ L(x)=A_0+_ i=1 ^n A_i x_i, A_i_q(), 1 q B, \\] be…",
           "dependsOn": [
-            "m3-prop-rectangular",
-            "m3-lem-division-lift"
+            "m3-prop-rectangular"
           ]
         },
         {
@@ -526,7 +524,6 @@
           "source": "A rational hitting list and its bit complexity",
           "detail": "The list H_ n,s can be constructed and written by one deterministic Turing machine in a number of bit operations bounded by a fixed polynomial in n+s+1 . Its entire binary encoding has length bounded…",
           "dependsOn": [
-            "m3-thm-main",
             "m3-prop-generator-hitting"
           ]
         },
@@ -572,7 +569,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

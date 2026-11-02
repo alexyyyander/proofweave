@@ -485,276 +485,331 @@
     {
       "from": "m1-lem-finite-supremum",
       "to": "m1-lem-slabs",
+      "label": "lem:finite-supremum",
       "context": "lable after every detected failure. Hence a true cut exists there almost surely. Under $\\widehat P_v$, the height supremum is infinite almost surely by Lemma~\\ref{lem:finite-supremum}: its alternative conclusion of escape to minus infinity is incompatible with $D_v$. In particular the first true cut i"
     },
     {
       "from": "m1-lem-slabs",
       "to": "m1-lem-mean-width",
+      "label": "lem:slabs",
       "context": "At a cut, its height is the maximum of the entire past. The subsequent ordinary records are therefore exactly the records of the translated suffix. By Lemma~\\ref{lem:slabs}, the successive true-record indices are sums of iid positive integers $S_1,S_2,\\ldots$ with the law of $S$. Let \\[ N("
     },
     {
       "from": "m1-lem-positive-nonbacktracking",
       "to": "m1-lem-sign-union",
+      "label": "lem:positive-nonbacktracking",
       "context": "Normalize $v$ as above. Lemma~\\ref{lem:positive-nonbacktracking} gives $p_v>0$. On infinite height supremum, Lemma~\\ref{lem:slabs} provides a first true cut followed by iid slabs. Th"
     },
     {
       "from": "m1-lem-slabs",
       "to": "m1-lem-sign-union",
+      "label": "lem:slabs",
       "context": "Normalize $v$ as above. Lemma~\\ref{lem:positive-nonbacktracking} gives $p_v>0$. On infinite height supremum, Lemma~\\ref{lem:slabs} provides a first true cut followed by iid slabs. Their positive widths have finite, strictly positive mean by Lemma~\\r"
     },
     {
       "from": "m1-lem-mean-width",
       "to": "m1-lem-sign-union",
+      "label": "lem:mean-width",
       "context": "ite height supremum, Lemma~\\ref{lem:slabs} provides a first true cut followed by iid slabs. Their positive widths have finite, strictly positive mean by Lemma~\\ref{lem:mean-width}, so the successive base heights tend to infinity. Every later slab stays at or above its base, and consequently $h(X_n"
     },
     {
       "from": "m1-lem-finite-supremum",
       "to": "m1-lem-sign-union",
+      "label": "lem:finite-supremum",
       "context": "heights tend to infinity. Every later slab stays at or above its base, and consequently $h(X_n)\\to+\\infty$. The finite-supremum implication is exactly Lemma~\\ref{lem:finite-supremum}. These two alternatives exhaust all paths and prove the sign union."
     },
     {
       "from": "m1-prop-radius",
       "to": "m1-lem-initial-averages",
+      "label": "prop:radius",
       "context": "[Proof of Proposition~\\ref{prop:radius}] The construction has two parts. A displacement allowance \\(a\\) and a number \\(N\\) of slabs will be chosen so that mos"
     },
     {
       "from": "m1-lem-mean-width",
       "to": "m1-lem-initial-averages",
+      "label": "lem:mean-width",
       "context": "denote the widths and radii of its iid slabs, and put \\(H_k=\\sum_{i=1}^kL_i\\), with \\(H_0=0\\). Write \\(E_\\sigma\\) for expectation in this slab sequence. Lemma~\\ref{lem:mean-width} gives \\(0<E_\\sigma L<\\infty\\). A point in slab \\(k+1\\) has signed height at least \\(H_k\\), and the displacement of any"
     },
     {
       "from": "m1-lem-departure-transfer",
       "to": "m1-lem-initial-averages",
+      "label": "lem:departure-transfer",
       "context": "(.8p_{-\\sigma v}\\). Every path in that event avoids all the old departure sites after translation to the script endpoint, by the preceding separations. Lemma~\\ref{lem:departure-transfer} therefore identifies its probability with the corresponding fresh-row probability after the prefix and script. More ex"
     },
     {
       "from": "m1-lem-sign-union",
       "to": "m1-prop-coordinate-reduction",
+      "label": "lem:sign-union",
       "context": "By Lemma~\\ref{lem:sign-union}, both signs of $v$ have positive probability and $P_0(A_v\\cup A_{-v})=1$. Normalize $\\|v\\|_\\infty=1$. For $\\sigma\\in\\{+"
     },
     {
       "from": "m1-prop-radius",
       "to": "m1-prop-coordinate-reduction",
+      "label": "prop:radius",
       "context": "1$. For $\\sigma\\in\\{+,-\\}$, let $D_j^\\sigma$ be the displacement of the $j$th slab of the $\\sigma v$ sequence, and let $R_j^\\sigma$ be its radius. Proposition~\\ref{prop:radius} and the bound $|D_j^\\sigma|\\le R_j^\\sigma$ give the mean vector \\[ b_\\sigma=E_\\sigma D_1^\\sigma, \\qquad b_\\sigma\\cdot"
     },
     {
       "from": "m1-lem-slabs",
       "to": "m1-prop-coordinate-reduction",
+      "label": "lem:slabs",
       "context": "d slabs tends to infinity. Thus the entire trajectory, after its first true cut, has limiting unit direction \\[ r_\\sigma=\\frac{b_\\sigma}{|b_\\sigma|}. \\] Lemma~\\ref{lem:slabs} transfers this conclusion to the raw law on $A_{\\sigma v}$. This argument uses slab count rather than elapsed time and"
     },
     {
       "from": "m1-lem-slabs",
       "to": "m1-lem-exact-bridge",
+      "label": "lem:slabs",
       "context": "boundary. Between two successive cuts all intermediate strict records are invalidated before the second cut. These are exactly the qualifying words of Lemma~\\ref{lem:slabs}. Conversely, concatenating any such list of total width $H$ gives one of these bridges. Distinct words have disjoint d"
     },
     {
       "from": "m1-lem-exact-bridge",
       "to": "m1-lem-reference-contact",
+      "label": "lem:exact-bridge",
       "context": "Fix $(H,Z)$ in its retained support; in particular $H_1,H_3\\ge n$. Write $N=N_*$. By list-reversal invariance in Lemma~\\ref{lem:exact-bridge}, the placed chronological chunks have their corresponding raw bridge laws. Retain the complete positive lower and midd"
     },
     {
       "from": "m1-lem-departure-transfer",
       "to": "m1-lem-reference-contact",
+      "label": "lem:departure-transfer",
       "context": "no departure site in $\\operatorname{Dep}(\\alpha)$: its terminal point is the first arrival there. Repeated sites within either path cause no difficulty. Lemma~\\ref{lem:departure-transfer} therefore identifies the product of their raw weights with the weight of the two paths sampled independently conditiona"
     },
     {
       "from": "m1-lem-renewal-tail",
       "to": "m1-lem-reference-contact",
+      "label": "lem:renewal-tail",
       "context": "H,Z)$, \\[ Q_n(E_{\\mathrm{mid}}\\mid H,Z) \\le C\\sum_{\\sigma\\in\\{+,-\\}}(u_n^\\sigma-u_N^\\sigma) \\le CN\\bigl(F_+(n)+F_-(n)\\bigr), \\] where the last step is Lemma~\\ref{lem:renewal-tail}. Finally $\\mathbf E N\\le12n\\mathbf E K$. Average over the retained joint marginal of $(H,Z)$ and take the minimum wit"
     },
     {
       "from": "m1-prop-entropy-upper",
       "to": "m1-lem-reference-contact",
+      "label": "prop:entropy-upper",
       "context": "[Proof of Proposition~\\ref{prop:entropy-upper}] For $l\\ge2$, take $n=2^{l-2}$ and abbreviate $\\delta_l=\\delta_n$. The event $E_{\\mathrm{mid}}$ contains the original c"
     },
     {
       "from": "m1-lem-entropy-comparison",
       "to": "m1-lem-reference-contact",
+      "label": "lem:entropy-comparison",
       "context": "=\\delta_n$. The event $E_{\\mathrm{mid}}$ contains the original contact event in common blocks $(2^l,2^{l+1}]$. If $\\delta_l=0$, absolute continuity from Lemma~\\ref{lem:entropy-comparison} makes its actual probability zero. Otherwise the binary relative-entropy inequality gives \\begin{equation}\\label{eq:bi"
     },
     {
       "from": "m1-lem-departure-transfer",
       "to": "m1-prop-contact-bound",
+      "label": "lem:departure-transfer",
       "context": "this set, before any row there is used. This remains valid for the infinite avoidance event by passage from finite paths. The departure-row identity of Lemma~\\ref{lem:departure-transfer} therefore gives \\begin{equation}\\label{eq:unclassified-lower-transfer} W(a)P_{(N-1,e)}(\\mathcal B(a)) =\\EE\\left[p_\\om"
     },
     {
       "from": "m1-lem-finite-supremum",
       "to": "m1-prop-contact-bound",
+      "label": "lem:finite-supremum",
       "context": "at $k-1$. Thus the equality includes the terminal arrival, as illustrated in Figure~\\ref{fig:fresh-strip}. The stopping time is almost surely finite by Lemma~\\ref{lem:finite-supremum}: a path that never leaves this finite height interval would have finite height supremum without tending to negative hei"
     },
     {
       "from": "m1-lem-posterior-maxima",
       "to": "m1-prop-contact-bound",
+      "label": "lem:posterior-maxima",
       "context": "fresh environment nor continue them through a departure below $k$. Put \\[ M(e)=\\sup_{0\\le i\\le\\sigma}w_i(e),\\qquad S_*=\\sum_{e\\in\\mathcal E_N}M(e). \\] Lemma~\\ref{lem:posterior-maxima} and~\\eqref{eq:endpoint-cardinality}, applied in the path filtration of the stopped comparison walk, imply uniformly in"
     },
     {
       "from": "m1-lem-exact-bridge",
       "to": "m1-prop-contact-lower",
+      "label": "lem:exact-bridge",
       "context": "bs through this cut and translate its bottom to the origin. Call the resulting chronological path $Y$, and let $T_a$ denote its first hit of height $a$. Lemma~\\ref{lem:exact-bridge} says that $Y$ has law $P_0(\\,\\cdot\\mid T_N<T_{-1})$, stopped at $T_N$. The steps within each slab retain their original"
     },
     {
       "from": "m1-prop-radius",
       "to": "m1-prop-contact-lower",
+      "label": "prop:radius",
       "context": "gers. The norm of their total lateral displacement is at most the sum of their radii, hence at most the sum of the first $N$ positive tape radii. Proposition~\\ref{prop:radius} and Markov's inequality give \\begin{equation}\\label{eq:lower-endpoint-tail} \\EE_{\\mathbf Q_N}|E| \\le \\frac{N E_+R}{p_"
     },
     {
       "from": "m1-prop-contact-bound",
       "to": "m1-prop-contact-lower",
+      "label": "prop:contact-bound",
       "context": "} $s\\in I_l$, let $\\mathcal A_{l,s}$ be the event in~\\eqref{eq:uncovered-first-contact}, together with $|E|\\le N^2$, whether or not $s$ is a cut. Proposition~ \\ref{prop:contact-bound}, with upper stopping height $N$, applies to this event. Its width-probability difference satisfies \\begin{align} \\Del"
     },
     {
       "from": "m1-lem-renewal-tail",
       "to": "m1-prop-contact-lower",
+      "label": "lem:renewal-tail",
       "context": "\\notag\\\\ &\\le 2^{l-G}F_+(s-2^{l-G}) \\le 2^{-G}a_l, \\qquad a_l:=2^l F_+(2^{l-1}), \\label{eq:lower-delta} \\end{align} because $s-2^{l-G}\\ge2^{l-1}$ and Lemma~\\ref{lem:renewal-tail} applies. The same Lemma gives \\begin{equation}\\label{eq:lower-summable-tail} A:=\\sum_{l\\ge1}a_l<\\infty. \\end{equation"
     },
     {
       "from": "m1-lem-common-blocks",
       "to": "m1-prop-contact-lower",
+      "label": "lem:common-blocks",
       "context": "r bound. \\paragraph{From depths to common-block indices.} Write $K_1,K_2,\\ldots$ for the common-block widths and $W_i=K_1+\\cdots+K_i$, with $W_0=0$. By Lemma~\\ref{lem:common-blocks}, $\\mu:=\\mathbf E K_1<\\infty$ and $W_i/i\\to\\mu$ almost surely. In particular, eventually \\[ \\frac\\mu2 i\\le W_i\\le2\\mu"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-prop-contact-lower",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] Fix any nonzero real direction $\\ell$. Suppose that $0<P_0(A_\\ell)<1$. Lemma~\\ref{lem:sign-union} implies that $P_0("
     },
     {
       "from": "m1-lem-sign-union",
       "to": "m1-prop-contact-lower",
+      "label": "lem:sign-union",
       "context": "[Proof of Theorem~\\ref{thm:main}] Fix any nonzero real direction $\\ell$. Suppose that $0<P_0(A_\\ell)<1$. Lemma~\\ref{lem:sign-union} implies that $P_0(A_{-\\ell})>0$. The spatial-radius estimate and Proposition~\\ref{prop:coordinate-reduction} then supp"
     },
     {
       "from": "m1-prop-coordinate-reduction",
       "to": "m1-prop-contact-lower",
+      "label": "prop:coordinate-reduction",
       "context": "al direction $\\ell$. Suppose that $0<P_0(A_\\ell)<1$. Lemma~\\ref{lem:sign-union} implies that $P_0(A_{-\\ell})>0$. The spatial-radius estimate and Proposition~\\ref{prop:coordinate-reduction} then supply a coordinate direction in which both signs have positive probability. Reflecting and relabeling that coord"
     },
     {
       "from": "m1-prop-entropy-upper",
       "to": "m1-prop-contact-lower",
+      "label": "prop:entropy-upper",
       "context": "then supply a coordinate direction in which both signs have positive probability. Reflecting and relabeling that coordinate gives the setting of Propositions~\\ref{prop:entropy-upper} and~\\ref{prop:contact-lower}. They imply simultaneously \\[ m(J)=O\\!\\left(\\frac{J}{\\log J}\\right) \\quad\\hbox{and}\\quad"
     },
     {
       "from": "m2-thm-main",
       "to": "m2-cor-positive-transience",
+      "label": "thm:main",
       "context": "icity assumed by the companion's directional zero--one law. It therefore upgrades $P_0(A_\\ell)>0$ to $P_0(A_\\ell)=1$. Since $A_\\ell=A_{\\ell/\\|\\ell\\|}$, Theorem~\\ref{thm:main} gives the stated velocity and positive projection. Fix this vector $v$ and a direction $u\\in S^{d-1}$. If $v\\cdot u>0$"
     },
     {
       "from": "m2-geom-radius",
       "to": "m2-geom-ray",
+      "label": "geom-radius",
       "context": "Word endpoints obey the vector strong law, with mean displacement \\(w\\) satisfying \\(h(w)=\\mathbb E L>0\\). Proposition~\\ref{geom-radius} also gives \\(R_k/k\\to0\\) almost surely: for each \\(\\varepsilon>0\\), the probabilities \\(\\Pr(R_k>\\varepsilon k)\\) are su"
     },
     {
       "from": "m2-geom-words",
       "to": "m2-geom-ray",
+      "label": "geom-words",
       "context": "interpolation inside each word gives the same limiting direction \\(r=w/\\|w\\|\\), without any duration moment. The completed-word count tends to infinity. Lemma~\\ref{geom-words} transfers the conclusion through the finite initial raw prefix. Some signed coordinate of \\(r\\) is positive. Relabel i"
     },
     {
       "from": "m2-geom-ray",
       "to": "m2-geom-speed",
+      "label": "geom-ray",
       "context": "stays in \\(\\|\\underline X\\|_\\infty\\le CN^2\\), except with probability at most \\(Ce^{-cN}\\). To prove this, fix a signed lateral coordinate \\(u\\). By Corollary~\\ref{geom-ray}, a sufficiently large fixed \\(b>0\\) makes \\(Y(x)=u\\cdot x+bx_1\\) transient in its positive direction. Thus the event of"
     },
     {
       "from": "m2-geom-words",
       "to": "m2-geom-speed",
+      "label": "geom-words",
       "context": "dot x+bx_1\\) transient in its positive direction. Thus the event of staying forever at \\(Y\\ge0\\) has positive raw probability, by the minimum argument of Lemma~\\ref{geom-words}. For a sufficiently large fixed \\(C_2\\), the path through its first relative height hit \\(N+1\\) has norm at most \\(C_2"
     },
     {
       "from": "m2-geom-radius",
       "to": "m2-geom-speed",
+      "label": "geom-radius",
       "context": "e launch overshoot is bounded, and absolute strip exit occurs no later than this relative height hit. The finite-prefix threshold recursion used in Proposition~\\ref{geom-radius}, now with spacing \\(C_3N\\), gives exponential decay through \\(N\\) thresholds. Since \\(u\\cdot X\\le Y\\) before exit, the"
     },
     {
       "from": "m2-fluct-common-words",
       "to": "m2-fluct-local-tightness",
+      "label": "fluct-common-words",
       "context": "tions in \\eqref{eq:6}. Finally, the first common boundary at or above \\(H\\) is a stopping index of the common-word chain, so its suffix rule follows from Lemma~\\ref{fluct-common-words}."
     },
     {
       "from": "m2-fluct-local-tightness",
       "to": "m2-fluct-conditioning-transfer",
+      "label": "fluct-local-tightness",
       "context": "ficiently large indices in the sequence. Indeed, each of \\(|Y_h-b_h|\\le z/10\\) and \\(|Y_{h+s}-b_{h+s}|\\le z/10\\) has probability greater than \\(0.7\\). By Lemma~\\ref{fluct-local-tightness}, the probability of \\(|Y_{h+s}-Y_h|\\le z/10\\) tends to one uniformly over these indices. The three events have a nonemp"
     },
     {
       "from": "m2-fluct-local-tightness",
       "to": "m2-fluct-endpoint-spread",
+      "label": "fluct-local-tightness",
       "context": ", put \\(H=\\lfloor sn(r)\\rfloor\\), and let \\(k=\\lfloor H/\\bar L\\rfloor\\). First we justify the approximation \\[ \\Delta_H-\\sum_{i=1}^kS_i=o_{\\Pr}(r). \\] By Lemma~\\ref{fluct-local-tightness}, the displacement from the preceding common boundary to the first-hit position at \\(H\\) is tight. The renewal strong la"
     },
     {
       "from": "m2-fluct-local-tightness",
       "to": "m2-gauss-independent",
+      "label": "fluct-local-tightness",
       "context": "e maximal normalized jump tends to zero as well, so the stated interpolation convention has the same limit. \\emph{Passing from cuts to every first hit.} Lemma~\\ref{fluct-local-tightness} makes \\(\\Delta_h-\\widehat\\Delta_h\\) tight uniformly at deterministic levels \\(h\\). This already gives the required fini"
     },
     {
       "from": "m2-gauss-independent",
       "to": "m2-gauss-medians",
+      "label": "gauss-independent",
       "context": "f \\(k\\) is fixed, its displacement and median are fixed random and deterministic quantities, respectively, and their normalized difference tends to zero. Lemma~\\ref{gauss-independent} therefore gives, under the conditional law, \\[ \\frac{Y_{k+j}-b_k-b_j}{r} \\ \\Longrightarrow\\ N(0,\\sigma_*^2(s+t)). \\]"
     },
     {
       "from": "m2-gauss-shared-marginals",
       "to": "m2-gauss-off-diagonal",
+      "label": "gauss-shared-marginals",
       "context": "In the top layer choose the windows \\[ I_1=\\{z:|z_2-x_2-k\\theta_r|<ar/3\\},\\qquad I_2=\\{z:|z_2-y_2-k\\theta_r|<ar/3\\}. \\] They are disjoint. Lemma~\\ref{gauss-shared-marginals} and the normal tail bound show that the shared conditioned probability of either endpoint error has limsup at most \\(Ce"
     },
     {
       "from": "m2-gauss-medians",
       "to": "m2-gauss-joint",
+      "label": "gauss-medians",
       "context": "t the initial endpoints this also follows directly from \\eqref{eq:6}; the centering correction is a tight integer times \\(\\theta_r/r\\), which vanishes by Lemma~\\ref{gauss-medians}. Test against bounded continuous functions of finitely many joint past coordinates, represented at floor grid times in"
     },
     {
       "from": "m2-gauss-shared-marginals",
       "to": "m2-gauss-joint",
+      "label": "gauss-shared-marginals",
       "context": "esented at floor grid times in the prelimit. Condition at the common boundary and test the fresh normalized increment of length \\(\\lfloor tn(r)\\rfloor\\). Lemma~\\ref{gauss-shared-marginals} makes its conditional bounded continuous test expectation converge to the normal value uniformly in the random terminal"
     },
     {
       "from": "m2-gauss-joint",
       "to": "m2-gauss-quenched",
+      "label": "gauss-joint",
       "context": "0)^2]}P(d\\omega). \\] Under this weighting, two conditionally independent quenched conditioned paths have exactly the annealed law \\(P_{0,0}^{++}\\). Proposition~\\ref{gauss-joint} and its marginal limits therefore give, with \\(b=E[F(B)]\\) for the limiting Brownian path, \\[ E_{\\widehat P}M_r\\longrig"
     },
     {
       "from": "m2-gauss-medians",
       "to": "m2-gauss-quenched",
+      "label": "gauss-medians",
       "context": "almost surely, \\(P\\) is absolutely continuous with respect to \\(\\widehat P\\); convergence in probability also holds under \\(P\\). For \\eqref{eq:23}, use Lemma~\\ref{gauss-medians} to replace the linear centering by the medians. Choose a nonnegative continuous path test below the desired event, with"
     },
     {
       "from": "m2-clip-clipping",
       "to": "m2-clip-moment-transfer",
+      "label": "clip-clipping",
       "context": "[Proof of Proposition~\\ref{clip-clipping}] We will concatenate a fixed number of short blocks. In each block we choose a probability law on a restricted set of s"
     },
     {
       "from": "m2-kernel-initial-clipping",
       "to": "m2-kernel-seeds",
+      "label": "kernel-initial-clipping",
       "context": "he \\(k\\) groups remains available. Each choice costs only its fixed positive group-mass lower bound. Averaging the favorable fraction over \\(\\pi\\), as in Lemma~\\ref{kernel-initial-clipping}, proves \\eqref{eq:30}."
     },
     {
       "from": "m2-kernel-inverse-moment",
       "to": "m2-kernel-rapid-loss",
+      "label": "kernel-inverse-moment",
       "context": "If the product integral is at least \\(2s\\) and the violating mass at most \\(s\\), enough mass satisfies the budget at every first hit to prevent a threat. Lemma~\\ref{kernel-inverse-moment} and Markov's inequality now give the claimed bound; the factor \\(\\kappa^{-k\\lambda}\\) is absorbed into \\(e^{Ck}\\). Neit"
     },
     {
       "from": "m2-kernel-initial-clipping",
       "to": "m2-stage-prop",
+      "label": "kernel-initial-clipping",
       "context": "0,m-i)\\) protection steps into a single kernel, ending at the same height as that last combined step. Its length is at most \\(3w_i=3C_*n(\\rho_i)\\). Apply Lemma~\\ref{kernel-initial-clipping} with \\[ T=3C_*,\\qquad \\eta=c_0/4,\\qquad p'=e^{-6kl_0}. \\] Except with probability at most \\(e^{-6kl_0}\\), this retains"
     },
     {
       "from": "m2-profile-sampling",
       "to": "m2-profile-classes",
+      "label": "profile-sampling",
       "context": "istinct finite-offset neighbor \\((j,b)\\), with offset \\(z\\), profile consistency would give \\(w_i^{jb}(-z)=w_i^{ia}(0)=0\\). Apply the second assertion of Lemma~\\ref{profile-sampling} with \\((j,b)\\) as the reference label and \\((i,a)\\) as the sampled target. This is impossible. Thus dust labels are sin"
     },
     {
       "from": "m2-profile-entropy",
       "to": "m2-profile-classes",
+      "label": "profile-entropy",
       "context": "dust indicators. On the invariant zero-frequency event, taking expectations shows that each indicator vanishes. Fix \\(i,m\\). Under the reference law of Lemma~\\ref{profile-entropy}, conditional on \\(\\mathcal A_i\\), the singleton dust classes have independent upper fields. Their values \\(q(0;\\Omega^{"
     },
     {
       "from": "m2-thm-main",
       "to": "m2-profile-no-growth",
+      "label": "thm:main",
       "context": "[Completion of the proof of Theorem~\\ref{thm:main}] Apply Proposition~\\ref{profile-no-growth} to $\\mathbb L_*$. The profile construction supplies its update and moment hy"
     },
     {
       "from": "m2-geom-speed",
       "to": "m2-profile-no-growth",
+      "label": "geom-speed",
       "context": "odic theorem gives $E_{\\mathbb L_*}c_0>\\zeta$. This contradicts the proposition and excludes the bad-event sequence $Q_N$. Thus \\eqref{eq:5} holds. Proposition~\\ref{geom-speed} gives finite mean regeneration duration and an almost-sure deterministic vector velocity with positive first coordinate"
     },
     {
       "from": "m2-geom-ray",
       "to": "m2-profile-no-growth",
+      "label": "geom-ray",
       "context": "n regeneration duration and an almost-sure deterministic vector velocity with positive first coordinate. This vector lies on the deterministic ray of Corollary~\\ref{geom-ray}, whose projection on the original transient direction $\\ell$ is positive. Undoing the signed permutation of the coordin"
     }
   ]

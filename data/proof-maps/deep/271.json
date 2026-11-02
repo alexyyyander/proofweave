@@ -417,7 +417,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Blochs-Law-for-Finite-Range-Heisenberg-Ferromagnets-in-Three-Dimensions-October-5-2026/bloch-law-heisenberg.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -511,7 +511,6 @@
           "source": "Exchange pictures and pinned returns",
           "detail": "[Fresh-walk identity] For almost every exposure under P_P and every i T , \\[ P_P( R_i(E,T) H)=q_i( a). \\] In particular, m_Tr(E,T)= E_P_ i T q_i( a).",
           "dependsOn": [
-            "m1-lem-exterior-moments",
             "m1-prop-next-pin-kernel",
             "m1-prop-exposure"
           ]
@@ -544,9 +543,7 @@
           "kind": "proposition",
           "source": "Kernels and the geometry of available slots",
           "detail": "[Energy of sparse sources] Let \\(R R_0\\), and let \\((z_i)_ i=1 ^m\\) be a sparse list of centers, counting repetitions. At a fixed slice let \\(I \\ 1,,m\\ \\) be any subset for which the slice is regular…",
-          "dependsOn": [
-            "m1-lem-routed-flow"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-near-flow",
@@ -700,8 +697,6 @@
           "source": "The long-return remainder",
           "detail": "[Uniform singleton sparsity] For every sufficiently large \\(\\), uniformly in all allowed pin sets \\(E\\), cubes, cuts, and slot-time points \\(i E\\), r(E,\\ i\\ ) C^ -3/2 . Consequently, for every…",
           "dependsOn": [
-            "m1-lem-return-expansion",
-            "m1-prop-long-tail",
             "m1-prop-diffusion",
             "m1-prop-pin-identities"
           ]
@@ -772,7 +767,6 @@
           "source": "From pinned returns to spontaneous magnetization",
           "detail": "[Extra-pin mixture] For h0 , the colored-picture law defining Z^+_(h) is a mixture of the zero-field pinned laws with pin sets E=D_0 F , where F consists of time-zero slots. Under the mixing law, (i…",
           "dependsOn": [
-            "m1-thm-main",
             "m1-prop-pressure-equivalence"
           ]
         }
@@ -790,7 +784,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-first-lattice-correction-to-Blochs-law-October-5-2026/first-lattice-correction-bloch-law.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The first lattice correction to Bloch's law; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The first lattice correction to Bloch's law.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -896,8 +890,7 @@
           "dependsOn": [
             "m2-prop-loopinputs",
             "m2-prop-snapshot",
-            "m2-prop-geometryinputs",
-            "m2-lem-isolatedpath"
+            "m2-prop-geometryinputs"
           ]
         },
         {
@@ -965,7 +958,6 @@
           "source": "Comparison sources and their cancellation",
           "detail": "[Block source bounds] On a picture in G , let a strand start above z B_ 4R (x) in a directed block of length between L and 2L . For the smooth profile part, take W=W . For a point-profile part,…",
           "dependsOn": [
-            "m2-prop-good",
             "m2-lem-freebounds",
             "m2-lem-signedsource"
           ]
@@ -1037,7 +1029,6 @@
             "m2-lem-localization",
             "m2-prop-geometryinputs",
             "m2-lem-cancellation",
-            "m2-lem-flowoverlap",
             "m2-prop-snapshot"
           ]
         },
@@ -1055,8 +1046,6 @@
             "m2-lem-localization",
             "m2-lem-heatbound",
             "m2-lem-flowoverlap",
-            "m2-prop-dualenergy",
-            "m2-prop-comparison",
             "m2-prop-good",
             "m2-prop-scalar",
             "m2-lem-freebounds"
@@ -1070,10 +1059,7 @@
           "kind": "lemma",
           "source": "From the pinned comparison to magnetization",
           "detail": "[Surface cost of boundary pins] For every finite >0 , every t0 , and every finite cube, 0 p_N(t)-p_N^+(t) (2)(+24^2) | _N| V_N . In particular p_N^+(t) p_ S, (t) for each fixed >0 and t0 .",
-          "dependsOn": [
-            "m2-thm-main",
-            "m2-cor-expansion"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -1089,7 +1075,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-spherical-magnetization-law-for-the-three-dimensional-quantum-Heisenberg-ferromagnet-October-5-2026/spherical-magnetization.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1195,9 +1181,7 @@
           "kind": "lemma",
           "source": "Sparse pins on the torus",
           "detail": "[Sparse-source pairing on the torus] At a fixed slice let \\((z_i)_ i=1 ^ m_T \\) be a sparse list, including repetitions. Retain any subset of its members at which the lifted graph is regular with…",
-          "dependsOn": [
-            "m3-lem-lattice-inputs"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-cor-positive-magnetization",
@@ -1262,8 +1246,7 @@
           "source": "Spatial comparison at a vanishing field",
           "detail": "[Bad-box tails] There are _0,c,C,_1>0 and, for each _0 , a number _0()>0 such that for every 0<_0() , uniformly in the admissible volumes and pin parameters of this section, \\ z is bad and its bad…",
           "dependsOn": [
-            "m3-lem-pin-inputs",
-            "m3-prop-sparse-pins"
+            "m3-lem-pin-inputs"
           ]
         },
         {
@@ -1299,7 +1282,6 @@
           "dependsOn": [
             "m3-lem-hull-comparison",
             "m3-lem-bad-box-tail",
-            "m3-prop-weak-field",
             "m3-lem-hole-cancellation"
           ]
         },
@@ -1324,8 +1306,7 @@
           "dependsOn": [
             "m3-lem-strip-maps",
             "m3-lem-trace-zero-free",
-            "m3-prop-weak-field",
-            "m3-lem-strip-curvature"
+            "m3-prop-weak-field"
           ]
         },
         {
@@ -1411,7 +1392,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

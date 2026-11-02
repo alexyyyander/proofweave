@@ -92,7 +92,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Subcritical-Henon-Lane-Emden-Conjecture-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Subcritical Hénon–Lane–Emden Conjecture; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Subcritical Hénon–Lane–Emden Conjecture.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -205,9 +205,7 @@
           "kind": "lemma",
           "source": "Pressure from weighted source layers",
           "detail": "[Averaged layer loss] For the cap weights and component weights , under the hypotheses of Proposition~ , every P1 satisfies E_e(L_f(e)+L_g(e)) (C_+C_ , P^ -1 )E+CP. The constants in the relative…",
-          "dependsOn": [
-            "m1-prop-pressure"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-energy",
@@ -219,8 +217,7 @@
           "detail": "[Uniform local energy bound] For the fixed equation parameters there is a constant \\(C\\), independent of the solution pair, such that _ B_1 (|x|^B u^ q+1 +|x|^A v^ p+1 ) x E C.",
           "dependsOn": [
             "m1-lem-localization",
-            "m1-prop-pressure",
-            "m1-thm-main"
+            "m1-prop-pressure"
           ]
         },
         {
@@ -252,7 +249,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

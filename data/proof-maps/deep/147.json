@@ -422,7 +422,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Continuous-Phase-Foliations-Create-Analytic-Caustic-Collars-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Continuous Phase Foliations Create Analytic Caustic Collars; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Continuous Phase Foliations Create Analytic Caustic Collars.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -473,9 +473,7 @@
           "kind": "proposition",
           "source": "From continuous leaves to periodic invariant graphs",
           "detail": "Every leaf in U is a graph p=g_b() . After reversing b if necessary, g_b is strictly decreasing in b , jointly continuous in (,b) , and converges uniformly to h as b0 . The induced angular lifts \\[…",
-          "dependsOn": [
-            "m1-geo-barrier"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-stationary-closure",
@@ -542,8 +540,6 @@
           "source": "Analyticity of the boundary",
           "detail": "Fix the bounds in Proposition~ with \\(m=2\\). The row formula extends to a bounded Fourier operator \\[ A(f)=_H+R(f), \\|R(f)\\| C/N, \\] on each Wiener space of width \\(\\). For two bounded inputs, \\[…",
           "dependsOn": [
-            "m1-thm-analytic-boundary",
-            "m1-ana-vanishing",
             "m1-prop-row-input"
           ]
         },
@@ -611,8 +607,7 @@
           "dependsOn": [
             "m1-joint-newton",
             "m1-joint-factorization",
-            "m1-joint-compatibility",
-            "m1-thm-joint"
+            "m1-joint-compatibility"
           ]
         },
         {
@@ -627,8 +622,7 @@
             "m1-thm-joint",
             "m1-thm-collar-regularity",
             "m1-thm-analytic-boundary",
-            "m1-thm-main",
-            "m1-thm-nb-rigidity"
+            "m1-thm-main"
           ]
         }
       ]
@@ -645,7 +639,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Rigidity-of-Smooth-Billiards-with-a-Continuous-Caustic-Collar-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Rigidity of Smooth Billiards with a Continuous Caustic Collar; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Rigidity of Smooth Billiards with a Continuous Caustic Collar.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -708,10 +702,7 @@
           "kind": "lemma",
           "source": "Rational caustics and analytic regularity",
           "detail": "For the function \\(u\\) associated with the actual table by , C_n(u)=0 for all sufficiently large |n|.",
-          "dependsOn": [
-            "m2-lem-rational-periodicity",
-            "m2-ana-mesh-lemma"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-ana-wiener-estimate",
@@ -722,8 +713,7 @@
           "source": "Rational caustics and analytic regularity",
           "detail": "Fix the bounds in for \\(m=2\\), and increase \\(N\\) if necessary. On the Wiener space of width \\(\\), the coefficient formula for \\( C(u)\\) defines a bounded operator \\(A(u)\\) satisfying A(u)=_ N +R(u),…",
           "dependsOn": [
-            "m2-thm-analytic",
-            "m2-prop-high-frequency-estimate"
+            "m2-thm-analytic"
           ]
         },
         {
@@ -734,9 +724,7 @@
           "kind": "corollary",
           "source": "Rational caustics and analytic regularity",
           "detail": "For the actual table, the normalized action in is holomorphic in a neighborhood of the real diagonal, diagonally \\(2\\)-periodic, and antisymmetric. It satisfies \\[ D(X,X+T)=-T^3/24+O(T^5),…",
-          "dependsOn": [
-            "m2-lem-rational-periodicity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-joint-parametrization",
@@ -776,9 +764,7 @@
           "kind": "lemma",
           "source": "A jointly analytic parametrization of the glancing collar",
           "detail": "[The two rational compatibility conditions] Under the hypotheses of , let \\(t_0=2 l/q0\\) be reduced, with \\(q N\\) and \\(|t_0|<d-2\\). There are holomorphic jets \\(w, w\\) on \\(Y_ 10 \\), real-symmetric…",
-          "dependsOn": [
-            "m2-lem-rational-periodicity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-joint-fourier-division",
@@ -788,11 +774,7 @@
           "kind": "lemma",
           "source": "A jointly analytic parametrization of the glancing collar",
           "detail": "[Buffered Fourier division] Let \\(\\ 1/2,1\\ \\), and suppose a mean-zero periodic function \\(F\\) is holomorphic on \\( D_ j_0 ^\\), with norm at most \\(M\\). Suppose, for \\(1 |n| N\\), its values at the…",
-          "dependsOn": [
-            "m2-prop-joint-newton",
-            "m2-joint-factorization",
-            "m2-joint-rational-jets"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-joint-formal-initialization",
@@ -802,10 +784,7 @@
           "kind": "lemma",
           "source": "A jointly analytic parametrization of the glancing collar",
           "detail": "[Arbitrarily accurate formal initial data] For every fixed integer \\(m1\\), there are real analytic periodic functions \\(u_1,,u_m\\) such that \\[ U^ (m) (y,t)=y+_ j=1 ^m u_j(y)t^ 2j \\] satisfies \\(E(U^…",
-          "dependsOn": [
-            "m2-thm-joint-parametrization",
-            "m2-prop-joint-newton"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-cont-width-relation",
@@ -835,9 +814,7 @@
           "kind": "theorem",
           "source": "Endpoint determination and meromorphic continuation",
           "detail": "[Line-endpoint determination] Fix an integer \\(k2\\), and put \\(L_i=L(y+it,t)\\). Every intermediate line \\(L_i\\), \\(0<i<k\\), is algebraic over the differential field generated by \\(L_0,L_k\\). For each…",
-          "dependsOn": [
-            "m2-cont-web-continuation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-lens-points",
@@ -869,9 +846,7 @@
           "kind": "corollary",
           "source": "Endpoint determination and meromorphic continuation",
           "detail": "[Continuation along a family of disks] Suppose a continuous path in one complex center variable has a neighborhood on which a family of analytic disks is holomorphic in the center and disk variables.…",
-          "dependsOn": [
-            "m2-lem-meromorphic-hartogs"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-width-superharmonic",
@@ -892,9 +867,7 @@
           "source": "Endpoint determination and meromorphic continuation",
           "detail": "[No-patch property] Let \\(F=L\\) or \\(F=X\\), and let \\(t_0 B\\). If \\(h_F(t_0)=H_1<\\), no joint meromorphic patch of the primary branch passes through any point of \\( y=H_1\\). The corresponding…",
           "dependsOn": [
-            "m2-thm-lens-lines",
-            "m2-thm-lens-points",
-            "m2-prop-width-superharmonic"
+            "m2-thm-lens-points"
           ]
         },
         {
@@ -905,9 +878,7 @@
           "kind": "corollary",
           "source": "Endpoint determination and meromorphic continuation",
           "detail": "[Natural boundary of the shape] Put \\(H=h_X(0)=h_L(0)\\). The parametrization \\((y)=X(y,0)\\) is meromorphic on \\[ D_H=\\ y:| y|<H\\ . \\] If \\(H<\\), it has no meromorphic continuation patch through any…",
-          "dependsOn": [
-            "m2-thm-no-patch"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-shape-isotropic-profile",
@@ -937,10 +908,7 @@
           "kind": "theorem",
           "source": "The shape strip and its intrinsic coordinate",
           "detail": "[Classification in the presence of isotropic centers] If \\(a\\) has a zero or a pole in \\(D_H\\), the boundary is an ellipse.",
-          "dependsOn": [
-            "m2-cor-shape-natural-boundary",
-            "m2-shape-simple-centers"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-shape-lift",
@@ -950,9 +918,7 @@
           "kind": "theorem",
           "source": "The shape strip and its intrinsic coordinate",
           "detail": "[The global shape lift] Unless the boundary is a circle, there is a single-valued holomorphic function \\( s\\) on the joint tube T=\\ (y,t):t is in the parameter disk, -h_X( t)< y<h_X(t)\\ such that…",
-          "dependsOn": [
-            "m2-cor-shape-natural-boundary"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-f-zeros",
@@ -962,9 +928,7 @@
           "kind": "lemma",
           "source": "The shape strip and its intrinsic coordinate",
           "detail": "[Simple zeros and a holomorphic potential] Every zero of \\(f\\) in \\(D_H\\) is simple. At each such zero, \\(f''=0\\). Consequently q=f'' f extends holomorphically throughout \\(D_H\\).",
-          "dependsOn": [
-            "m2-thm-shape-lift"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-shape-first-displacement",
@@ -1016,10 +980,7 @@
           "kind": "corollary",
           "source": "Normalized chord equations and passage through cones",
           "detail": "[Coarse bounds and quiet profiles] Let \\(d_n0\\), \\(b_n1\\), and \\(x_n\\). Suppose, on a sufficiently large fixed cone starting at depth \\(d_n\\), that d_n b_n M(s) C(d_n/_s)^, 12<<1. The following…",
-          "dependsOn": [
-            "m2-thm-cone",
-            "m2-thm-no-patch"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-subcritical-exclusion",
@@ -1041,9 +1002,7 @@
           "kind": "proposition",
           "source": "Normalized chord equations and passage through cones",
           "detail": "[A witness near every center] Suppose, for all sufficiently small \\(_s\\), that \\[ _s_ s=H-_s M(s) C(1+(1/_s))^A \\] for some fixed \\(C,A\\). Then there are constants \\(L,C_1,C_2,c_*>0\\) such that for…",
-          "dependsOn": [
-            "m2-cor-quiet-cone"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-finite-superlinear-exclusion",
@@ -1054,10 +1013,7 @@
           "source": "Normalized chord equations and passage through cones",
           "detail": "[Exclusion of finite superlinear growth] Suppose \\(H<\\), and define \\[ g(k)=_ s=H-e^ -k M(s). \\] In the nonisotropic alternative it is impossible that 1<_ k g(k) k <.",
           "dependsOn": [
-            "m2-lem-f-zeros",
-            "m2-cor-quiet-cone",
-            "m2-thm-shape-lift",
-            "m2-cone-profile-action-convergence"
+            "m2-lem-f-zeros"
           ]
         },
         {
@@ -1078,9 +1034,7 @@
           "kind": "lemma",
           "source": "Exponential profiles and exclusion of infinite growth",
           "detail": "[Deep passages] Assume the hypotheses in , without assuming its conclusion. Fix \\((1/2,_0)\\) and \\(T_0<\\). There are \\(D_0\\) and \\(C\\), independent of the fixed aperture \\(A\\), with the following…",
-          "dependsOn": [
-            "m2-thm-cone"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-profile-energy-model",
@@ -1090,10 +1044,7 @@
           "kind": "lemma",
           "source": "Exponential profiles and exclusion of infinite growth",
           "detail": "[Deep model and its uniqueness] On the deep domains of , the passages converge locally uniformly, with derivatives, to a unique holomorphic model \\(S_*(Y,T)\\). With \\(=Tc_0e^ - S_* \\) and \\(J=_Y…",
-          "dependsOn": [
-            "m2-cone-profile-action-convergence",
-            "m2-lem-kernel-division"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-profile-branch-model",
@@ -1115,11 +1066,7 @@
           "detail": "[Tracking a regular model corridor] Let a compact corridor of a continued branch of the model in have nonzero kernels and twist, and let \\(T\\) range over a compact set avoiding zero. Suppose two…",
           "dependsOn": [
             "m2-cone-profile-action-convergence",
-            "m2-thm-exponential-obstruction",
-            "m2-profile-deep-data",
-            "m2-thm-no-patch",
-            "m2-thm-shape-lift",
-            "m2-profile-branch-model"
+            "m2-thm-exponential-obstruction"
           ]
         },
         {
@@ -1140,9 +1087,7 @@
           "kind": "theorem",
           "source": "Exponential profiles and exclusion of infinite growth",
           "detail": "[Exclusion of entire and infinite-order growth] In the nonisotropic case, \\(H=\\) implies that the table is a circle. If \\(H<\\), then \\[ _ k _x M(x+(H-e^ -k )) k <. \\]",
-          "dependsOn": [
-            "m2-thm-exponential-obstruction"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-critical-lem-one-sided",
@@ -1198,9 +1143,7 @@
           "kind": "theorem",
           "source": "Critical estimates at a finite shape boundary",
           "detail": "[Exclusion of vanishing profiles at individual centers] Consider sequences of levels \\(k_n\\), scales \\(d_n=e^ -k_n \\), and amplitudes \\(B_n=(k_n)\\). Suppose there are envelopes \\(N_n\\) satisfying the…",
-          "dependsOn": [
-            "m2-thm-cone"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-critical-prop-power-saving",
@@ -1223,9 +1166,7 @@
           "kind": "corollary",
           "source": "Critical estimates at a finite shape boundary",
           "detail": "Assume that no sequence in exists. Then, for all \\(k k_0\\), (k) C(1+k), d_k_x M C(1+k)^2, d_k_x|P| C(1+k)^4. All fixed tile enlargements have the corresponding bounds.",
-          "dependsOn": [
-            "m2-critical-prop-power-saving"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-critical-lem-growth-charge",
@@ -1235,9 +1176,7 @@
           "kind": "lemma",
           "source": "Critical estimates at a finite shape boundary",
           "detail": "Assume that no sequence in exists, and fix \\(0<<1/2\\). Set \\[ G_f(j)=_x|f(x+(H-e^ -j ))|. \\] There are constants \\(C,c>0\\) and a sufficiently large \\(K_0\\) such that every \\( K_0\\) with \\(_f()^\\)…",
-          "dependsOn": [
-            "m2-lem-log-deficit"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-angle-budget-reduction",
@@ -1248,7 +1187,6 @@
           "source": "Critical estimates at a finite shape boundary",
           "detail": "[Conditional angle-budget reduction] If no sequence in exists, then for some \\(>0\\) and \\(C<\\), _ k_0 ^K_f(k)^2\\, k C(1+K)^ 2- (K k_0). In particular will establish this conclusion and in the…",
           "dependsOn": [
-            "m2-critical-lem-growth-charge",
             "m2-critical-prop-power-saving"
           ]
         },
@@ -1290,9 +1228,7 @@
           "kind": "lemma",
           "source": "The critical moment law and its first-field model",
           "detail": "Alternative (i) of is impossible for the moment law of a prohibited sequence.",
-          "dependsOn": [
-            "m2-thm-exponential-obstruction"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-model-selected-fields",
@@ -1303,8 +1239,7 @@
           "source": "The critical moment law and its first-field model",
           "detail": "[The second scale] There are depths \\(d'0\\), levels \\(K=- d'\\), normalizations \\(B'=(K)\\), and horizontal centers \\(_n\\) with the following properties. Set F_n(S)=d' B' f(_n+ H+d'S), Q_n(S)=(d' B'…",
           "dependsOn": [
-            "m2-prop-weighted-bootstrap",
-            "m2-thm-no-trivial-profile"
+            "m2-prop-weighted-bootstrap"
           ]
         },
         {
@@ -1316,7 +1251,6 @@
           "source": "The critical moment law and its first-field model",
           "detail": "[The pure first-field model] There is a limiting impact coordinate \\(S(T,Y)\\) with the following properties. [label=( *)] For every fixed aperture and every bounded complex parameter range, it is…",
           "dependsOn": [
-            "m2-thm-cone",
             "m2-lem-kernel-division",
             "m2-thm-no-patch"
           ]
@@ -1340,8 +1274,7 @@
           "source": "The critical moment law and its first-field model",
           "detail": "[Growth of the limiting first field] For every compact horizontal interval \\(I\\) and every \\(>0\\), there is a constant \\(C_ I, \\) such that |F(x- D)| C_ I, D^ -- (x I,\\ 0<D<1). Equivalently, _ x I…",
           "dependsOn": [
-            "m2-prop-pure-model",
-            "m2-model-graph-filling"
+            "m2-prop-pure-model"
           ]
         },
         {
@@ -1362,10 +1295,7 @@
           "kind": "proposition",
           "source": "The critical moment law and its first-field model",
           "detail": "[Witnesses near every horizontal center] There is a fixed sufficiently large aperture \\(L_0\\) with the following property. For every compact interval \\(I\\), there is an error function \\(_I(u)0\\), for…",
-          "dependsOn": [
-            "m2-thm-no-trivial-profile",
-            "m2-model-selected-fields"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -1390,7 +1320,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -474,231 +474,277 @@
     {
       "from": "m1-lem-first-tilt-noetherian",
       "to": "m1-lem-second-tilt",
+      "label": "lem:first-tilt-noetherian",
       "context": "\\eta(Q)\\leq0$. Its kernel would then be a high subobject with strictly smaller $p_b$, a contradiction. Thus $A\\in\\mathcal T_b^\\eta$ in either case. By Lemma~\\ref{lem:first-tilt-noetherian}, every object has a maximal $\\mathcal T_b^\\eta$ subobject; sums of such subobjects again belong to $\\mathcal T_b^\\eta$,"
     },
     {
       "from": "m1-lem-slope-input",
       "to": "m1-lem-compare-slope-cuts",
+      "label": "lem:slope-input",
       "context": "nd{split} \\] They include torsion cohomology sheaves: their ranks are zero and their contributions to $c$ are nonnegative. Also $d(S)\\leq0$, by applying Lemma~\\ref{lem:slope-input} to the ordinary slope factors of $S$. Set $C=c(Q)+c(U')$. By \\eqref{eq:overlap-rank-bound}, $C\\geq0$. If $C=0$, then"
     },
     {
       "from": "m1-lem-compare-slope-cuts",
       "to": "m1-lem-twist-aisle",
+      "label": "lem:compare-slope-cuts",
       "context": "\\geq2$, Serre duality and the heart orthogonality give \\[ \\Ext^j(\\OO_X,B) =\\Hom(B[j-1],\\OO_X[2])^*=0, \\] since $B[j-1]\\in\\mathcal U_+^\\alpha[1]$. Lemma~\\ref{lem:compare-slope-cuts} puts $B$ in $\\mathcal U_-^\\theta$. In the twist triangle \\[ B\\longrightarrow T_{\\OO_X}(B)\\longrightarrow \\o"
     },
     {
       "from": "m1-lem-twist-aisle",
       "to": "m1-prop-uniform-aisle",
+      "label": "lem:twist-aisle",
       "context": "air and aisle to those with this parameter $\\alpha$. If $\\eta\\in\\Omega$, then $\\alpha\\in B_\\delta$; also $\\theta\\in\\Omega$ implies $\\theta\\in B_\\delta$. Lemma~\\ref{lem:twist-aisle} now gives \\[ \\Phi U_\\eta=T_{\\OO_X}\\bigl(\\mathcal U_+^\\alpha\\bigr) \\subset U_\\the"
     },
     {
       "from": "m1-lem-second-tilt",
       "to": "m1-prop-uniform-aisle",
+      "label": "lem:second-tilt",
       "context": "ow gives \\[ \\Phi U_\\eta=T_{\\OO_X}\\bigl(\\mathcal U_+^\\alpha\\bigr) \\subset U_\\theta. \\] The remaining assertions are Lemma~\\ref{lem:second-tilt} and \\eqref{eq:imaginary-charge}. The parameter shear was used once, in proving this inclusion for the original family."
     },
     {
       "from": "m1-lem-periodicity",
       "to": "m1-prop-uniform-aisle",
+      "label": "lem:periodicity",
       "context": "bset\\Phi^iU_\\theta$ with the same $\\eta,\\theta\\in\\Omega$; it performs no further shear and requires no further shrinkage. Negative powers are allowed by Lemma~\\ref{lem:periodicity}."
     },
     {
       "from": "m1-lem-second-tilt",
       "to": "m1-prop-block-support",
+      "label": "lem:second-tilt",
       "context": "um of their operator norms gives one $C$ for every $k$. If $Z(E)=0$, the estimate gives $w=0$. The object $\\Phi^{-m}E[-j]$ belongs to $\\mathcal A_0$, so Lemma~\\ref{lem:second-tilt} forces $\\Phi^{-m}E[-j]=0$ and hence $E=0$. This excludes the origin for a nonzero block object and completes the proof."
     },
     {
       "from": "m1-lem-numerical",
       "to": "m1-lem-block-hn",
+      "label": "lem:numerical",
       "context": "Let $\\ell>0$ be a lower bound for the norms of nonzero elements of the full numerical lattice, supplied by Lemma~\\ref{lem:numerical}, and define \\[ q_k(z)=\\Re\\bigl(e^{-i\\pi(a+b)/2}z\\bigr),\\qquad d_* =\\frac{\\ell\\cos(\\pi/10)}{C}>0. \\] For every nonzero"
     },
     {
       "from": "m1-prop-block-support",
       "to": "m1-lem-block-hn",
+      "label": "prop:block-support",
       "context": "em:numerical}, and define \\[ q_k(z)=\\Re\\bigl(e^{-i\\pi(a+b)/2}z\\bigr),\\qquad d_* =\\frac{\\ell\\cos(\\pi/10)}{C}>0. \\] For every nonzero block object, Proposition~\\ref{prop:block-support} implies \\begin{equation}\\label{eq:block-mass} q_k(Z(E))\\ge\\cos(\\pi/10)|Z(E)|\\ge d_*. \\end{equation} This projection is"
     },
     {
       "from": "m1-lem-block-filtrations",
       "to": "m1-prop-slicing",
+      "label": "lem:block-filtrations",
       "context": "fferent blocks and the source has strictly larger phase, its block index is larger: for $j<k$ one has $(j+1)/5\\le k/5$. Thus their Hom group vanishes by Lemma~\\ref{lem:block-filtrations}. The case of a common block is Lemma~\\ref{lem:block-hom}. Induction along extensions in each variable now gives \\[ \\"
     },
     {
       "from": "m1-lem-block-hom",
       "to": "m1-prop-slicing",
+      "label": "lem:block-hom",
       "context": "index is larger: for $j<k$ one has $(j+1)/5\\le k/5$. Thus their Hom group vanishes by Lemma~\\ref{lem:block-filtrations}. The case of a common block is Lemma~\\ref{lem:block-hom}. Induction along extensions in each variable now gives \\[ \\Hom(\\mathcal P(\\varphi),\\mathcal P(\\psi))=0 \\qquad(\\varph"
     },
     {
       "from": "m1-lem-block-hn",
       "to": "m1-prop-slicing",
+      "label": "lem:block-hn",
       "context": "(E_j)|=C|Z(E)| \\] for any such extension filtration. This proves \\eqref{eq:semistable-support}. Refine the decreasing block filtration of any object by Lemma~\\ref{lem:block-hn}, splicing the resulting triangles by the octahedral axiom. The phases are weakly decreasing globally and strictly decr"
     },
     {
       "from": "m1-lem-block-hn",
       "to": "m1-prop-local-finiteness",
+      "label": "lem:block-hn",
       "context": "d put \\[ q_I(z)=\\Re\\bigl(e^{-i\\pi(a+b)/2}z\\bigr),\\qquad d_I=\\frac{\\ell}{C}\\cos(\\pi w/2)>0, \\] where $\\ell$ is the full-lattice norm lower bound used in Lemma~\\ref{lem:block-hn}. A nonzero semistable $F$ of phase in $I$ has nonzero numerical class, since its charge is nonzero. Therefore \\eqref{"
     },
     {
       "from": "m1-lem-interval-quasiabelian",
       "to": "m1-prop-local-finiteness",
+      "label": "lem:interval-quasiabelian",
       "context": "ite extension of nonzero semistable objects with phases in $I$. Additivity thus gives the same lower bound $q_I(Z(E))\\ge d_I$ for every such object. By Lemma~\\ref{lem:interval-quasiabelian}, a strict exact sequence in $\\mathcal P(I)$ is exact in its ambient heart, so the projection $q_I Z$ is additive on it."
     },
     {
       "from": "m1-lem-periodicity",
       "to": "m1-prop-local-finiteness",
+      "label": "lem:periodicity",
       "context": "[Proof of Lemma~\\ref{lem:periodicity}] Write $T_j=T_{\\OO_X(j)}$ and $L=(-\\otimes\\OO_X(1))$. We interpret the twist as the Fourier--Mukai transform whose kern"
     },
     {
       "from": "m2-lem-elliptic-scaled-support",
       "to": "m2-prop-weighted-ambient",
+      "label": "lem:elliptic-scaled-support",
       "context": "block construction and phase estimate in \\cite[Proposition~4.3 and Remark~4.4]{Cheng2026}. We apply the same quotient construction block by block, using Lemma~\\ref{lem:elliptic-scaled-support} to control all coordinates uniformly in the volume. First take $R$ and the positive weights $s_h$ rational. Put $n=\\s"
     },
     {
       "from": "m2-lem-uniform-ambient-deformation",
       "to": "m2-prop-geometric-prescribed-charges",
+      "label": "lem:uniform-ambient-deformation",
       "context": "A$ and $\\OO_Y(\\xi_h)$, in one finite list. This list is fixed before the parameters $B,H,t$ and the sections are chosen. Let $\\mathcal R$ be a lift from Lemma~\\ref{lem:uniform-ambient-deformation}. Tensoring is an isometry for slicing distance, so \\eqref{eq:ambient-twist-distance} gives, after increasing the singl"
     },
     {
       "from": "m2-lem-primitive-point",
       "to": "m2-prop-geometric-prescribed-charges",
+      "label": "lem:primitive-point",
       "context": "iEtAl2026} makes every point sheaf on $Y$ semistable throughout that open neighborhood. Its numerical class is primitive, because $\\chi(\\OO_Y,\\OO_y)=1$. Lemma~\\ref{lem:primitive-point} upgrades semistability to stability. At the charge \\eqref{eq:deformed-ambient-charge} its value is $-1$, and closeness"
     },
     {
       "from": "m2-lem-geometric-range",
       "to": "m2-prop-geometric-prescribed-charges",
+      "label": "lem:geometric-range",
       "context": "ability. At the charge \\eqref{eq:deformed-ambient-charge} its value is $-1$, and closeness to $\\mathcal R_t$ fixes its phase to be $1$. We can now apply Lemma~\\ref{lem:geometric-range} on $Y$. It supplies \\eqref{eq:restriction-hypotheses} with $n_1=-\\dim Y$ and $n_2=0$. Each resolution term $L[k]$, $k\\"
     },
     {
       "from": "m2-lem-full-numerical-embedding",
       "to": "m2-prop-geometric-prescribed-charges",
+      "label": "lem:full-numerical-embedding",
       "context": "the stable point on $Y$. The induced points are stable of phase $1$. If $E$ is semistable on $X$, the ambient support inequality and the injectivity in Lemma~\\ref{lem:full-numerical-embedding} give \\[ \\|[E]\\|\\le C\\|i_*[E]\\|\\le C'|U_t^{B,H}(i_*E)|. \\] This is support on the full Euler numerical group of $X$. F"
     },
     {
       "from": "m2-lem-geometric-range",
       "to": "m2-lem-surface-geometric-heart",
+      "label": "lem:geometric-range",
       "context": "Lemma~\\ref{lem:geometric-range} gives $\\mathcal R(0,1]\\subset D^{[-1,0]}(S)$ and $\\Coh(S)\\subset\\mathcal R(-1,1]$. The comparison of these two bounded"
     },
     {
       "from": "m2-lem-geometric-range",
       "to": "m2-lem-heart-cohomology-slopes",
+      "label": "lem:geometric-range",
       "context": "The range and torsion-freeness follow from Lemma~\\ref{lem:geometric-range}. Write $F=\\mathcal H^{-2}(E)$ and $G=\\mathcal H^0(E)$. For each $h$, choose a general smooth $S_h$ which is a nonzero"
     },
     {
       "from": "m2-lem-geometric-range",
       "to": "m2-lem-first-tilt-phase-range",
+      "label": "lem:geometric-range",
       "context": "Let $D\\in\\mathcal T_{H,B}$ be a sheaf with $m^-_{H,B}(D)>0$. Lemma~\\ref{lem:geometric-range} places all its phases in $(-2,1]$. If a last Harder--Narasimhan factor $G$ had phase in $(-2,-1]$, then $G[2]\\in\\mathca"
     },
     {
       "from": "m2-lem-geometric-range",
       "to": "m2-lem-phase-one-first-tilt",
+      "label": "lem:geometric-range",
       "context": "$E$ belong to the stated intersection. Its ordinary cohomology is $J=\\mathcal H^{-1}(E)\\in\\mathcal F_{H,B}$ and $U=\\mathcal H^0(E)\\in\\mathcal T_{H,B}$. Lemma~\\ref{lem:geometric-range} makes $U$ zero-dimensional. Choose the smooth sections $S_h$ to avoid its finite support and to restrict $J$ without To"
     },
     {
       "from": "m2-lem-first-tilt-phase-range",
       "to": "m2-prop-exact-double-tilt-heart",
+      "label": "lem:first-tilt-phase-range",
       "context": "Compare $(\\mathcal T',\\mathcal F')$ with the torsion pair $(\\mathcal T_0,\\mathcal F_0)$ of Lemma~\\ref{lem:first-tilt-phase-range}. For $D\\in\\mathcal T'$, take its latter torsion sequence $0\\to D_1\\to D\\to D_2\\to0$. A nonzero $D_2\\in\\mathcal F_0$ has"
     },
     {
       "from": "m2-lem-physical-zero-denominator",
       "to": "m2-prop-exact-double-tilt-heart",
+      "label": "lem:physical-zero-denominator",
       "context": "cal T'$, take its latter torsion sequence $0\\to D_1\\to D\\to D_2\\to0$. A nonzero $D_2\\in\\mathcal F_0$ has $\\Im Z(D_2)\\le0$. Its denominator cannot vanish: Lemma~\\ref{lem:physical-zero-denominator} would make it zero-dimensional, whereas zero-dimensional sheaves are in $\\mathcal P(1)$ and $\\mathcal F_0\\subset\\mathca"
     },
     {
       "from": "m2-lem-phase-one-first-tilt",
       "to": "m2-prop-exact-double-tilt-heart",
+      "label": "lem:phase-one-first-tilt",
       "context": "Z(D_1)\\le0$. But $D_1\\in\\mathcal T_0\\subset\\mathcal P(0,1]$ makes its imaginary charge nonnegative. It must therefore vanish, and $D_1\\in\\mathcal P(1)$. Lemma~\\ref{lem:phase-one-first-tilt} makes it zero-dimensional, whose second slope is $+\\infty$, a contradiction. Thus $\\mathcal F'\\subset\\mathcal F_0$. Th"
     },
     {
       "from": "m2-lem-tilt-zero-denominator",
       "to": "m2-lem-finite-tilt-factors",
+      "label": "lem:tilt-zero-denominator",
       "context": "\\RR$. If $E$ is not stable, there is a proper nonzero subobject $F$ with $\\nu(F)=\\nu(E/F)=u$ and positive denominators. The object $F$ is semistable by Lemma~\\ref{lem:tilt-zero-denominator}. To obtain a splitting into two semistable objects, we may have to absorb a zero-dimensional subobject of the quotient"
     },
     {
       "from": "m2-lem-tilt-support-bound",
       "to": "m2-lem-finite-tilt-factors",
+      "label": "lem:tilt-support-bound",
       "context": "e, and its quotient is now semistable as well. Repeated splitting cannot produce arbitrarily many nonzero factors. For a semistable factor of slope $u$, Lemma~\\ref{lem:tilt-support-bound} gives $|r|\\le C_a(1+|u|)d$. If $r\\ne0$, integrality of rank therefore bounds $d$ below by $1/(C_a(1+|u|))$. If $r=0$,"
     },
     {
       "from": "m2-lem-finite-tilt-factors",
       "to": "m2-lem-tilt-semicircle",
+      "label": "lem:finite-tilt-factors",
       "context": "argument also ensures membership in the limiting heart. It is open within the arc as well. At a semistable point take the finite stable filtration from Lemma~\\ref{lem:finite-tilt-factors}. Every factor has the same slope there and thus the same $c,R$ in \\eqref{eq:tilt-semicircle}. Openness of stability ke"
     },
     {
       "from": "m2-lem-finite-tilt-factors",
       "to": "m2-lem-tilt-duality",
+      "label": "lem:finite-tilt-factors",
       "context": "r still positive. Continuity of extremal phases therefore gives semistability of this fixed truncation in $\\mathcal B_{H,-B}$. For a semistable $E$, use Lemma~\\ref{lem:finite-tilt-factors} and induct on its number of stable factors. For an extension $0\\to E_1\\to E\\to E_2\\to0$, duality reverses the triangle"
     },
     {
       "from": "m2-lem-tilt-zero-denominator",
       "to": "m2-lem-tilt-duality",
+      "label": "lem:tilt-zero-denominator",
       "context": "imensional sheaf in this heart are zero-dimensional: additivity first forces both denominators to vanish, then both nonnegative numerators to vanish, and Lemma~\\ref{lem:tilt-zero-denominator} applies. Consequently the kernel of $\\widetilde E_1\\to T_{0,2}$ has the same positive denominator and the same slope as"
     },
     {
       "from": "m2-lem-uniform-heat",
       "to": "m2-lem-subsheaf-sections",
+      "label": "lem:uniform-heat",
       "context": "^2. \\] Scalar heat comparison consequently yields $|s(x)|^2\\le e^{C u\\mu(G)_+}(e^{-u\\Delta_{\\mathrm{sc}}}|s|^2)(x)$. Take $u=(1+\\mu(G)_+)^{-1}$ and apply Lemma~\\ref{lem:uniform-heat}. The evaluation operator, with the $L^2$ norm on $H^0(Y,W)$, satisfies \\begin{equation}\\label{eq:evaluation-operator}"
     },
     {
       "from": "m2-lem-uniform-heat",
       "to": "m2-lem-matrix-spectral",
+      "label": "lem:uniform-heat",
       "context": "e $p$ contributes $\\int_0^{\\eta/p}p\\,ds=\\eta$, and a zero eigenvalue contributes zero. Let $K_s$ be the kernel of $e^{-sL}$. The semigroup identity and Lemma~\\ref{lem:uniform-heat}, in real dimension four, imply \\begin{align*} \\|\\mathcal B_>\\|_{\\mathrm{HS}}^2 &=\\int_0^\\infty\\int_S \\operatorname"
     },
     {
       "from": "m2-lem-subsheaf-sections",
       "to": "m2-prop-negative-surface-cohomology",
+      "label": "lem:subsheaf-sections",
       "context": "argument is needed. Suppose first that $\\rho\\ge1$. The class $T$ is uniformly bounded once $A$ is fixed, so $1+\\|C_1^{\\mathrm{num}}\\|^2\\le C_A\\rho^2$. Lemma~\\ref{lem:subsheaf-sections}, applied to $G(tH)$, gives $h^0(G(tH))\\le Cr(1+\\|C_1^{\\mathrm{num}}\\|^2+t^2)$. Put $W=G^{**}$. Serre duality identifie"
     },
     {
       "from": "m2-lem-matrix-spectral",
       "to": "m2-prop-negative-surface-cohomology",
+      "label": "lem:matrix-spectral",
       "context": "_{\\mathrm{HS}}^2. \\end{equation} This uses the Hilbert--Schmidt norm of the matrices, without replacing them by their operator norms times the identity. Lemma~\\ref{lem:matrix-spectral}, followed by \\eqref{eq:tracefree-energy}, now proves $h^1(W(tH))=\\dim U\\le Cr\\xi_W$. Together with \\eqref{eq:hull-lengt"
     },
     {
       "from": "m2-lem-tilt-support-bound",
       "to": "m2-lem-restriction-image",
+      "label": "lem:tilt-support-bound",
       "context": "te factors. Denominator-zero factors have nonnegative numerator. Writing $d_i,n_i$ for the factors, we obtain \\[ \\sum_i|n_i|\\leq n(I)+2C_1d(I)=O(e). \\] Lemma~\\ref{lem:tilt-support-bound}, applied at the fixed side volume and summed over the filtration, now gives \\[ \\|c_{B_s}(I)\\|+|w_{B_s}(I)|=O(e). \\] Th"
     },
     {
       "from": "m2-lem-uniform-sections",
       "to": "m2-lem-restriction-image",
+      "label": "lem:uniform-sections",
       "context": "ons that all the sheaf sequences and filtrations used here restrict exactly, with torsion-free restrictions where required. Such choices are possible by Lemma~\\ref{lem:uniform-sections}. Intersect the refined restriction filtrations of $K'(t)$ with $V_I(t)$. The successive intersections are subsheaves o"
     },
     {
       "from": "m2-lem-restriction-variance",
       "to": "m2-lem-restriction-image",
+      "label": "lem:restriction-variance",
       "context": "ction filtrations of $K'(t)$ with $V_I(t)$. The successive intersections are subsheaves of the stable restriction factors and have total rank $O(e)$. By Lemma~\\ref{lem:restriction-variance}, the second slope moments on both $S$ and $C_m$ are $O(e)$. Applying Lemma~\\ref{lem:subsheaf-sections} to the intersec"
     },
     {
       "from": "m2-lem-subsheaf-sections",
       "to": "m2-lem-restriction-image",
+      "label": "lem:subsheaf-sections",
       "context": "iction factors and have total rank $O(e)$. By Lemma~\\ref{lem:restriction-variance}, the second slope moments on both $S$ and $C_m$ are $O(e)$. Applying Lemma~\\ref{lem:subsheaf-sections} to the intersections, after the additional fixed twist $m$, yields \\begin{equation}\\label{eq:evaluation-negative-sectio"
     },
     {
       "from": "m2-lem-restriction-image",
       "to": "m2-cor-residual-sections",
+      "label": "lem:restriction-image",
       "context": "For the positive decomposition, apply Lemma~\\ref{lem:restriction-image} to all of $H^0(P(t))$ and the triangle $P(t-1)\\to P(t)\\to P|_S(t)$. The increase in $h^0$ is at most the dimension of t"
     },
     {
       "from": "m2-lem-finite-tilt-factors",
       "to": "m2-prop-apex-transport",
+      "label": "lem:finite-tilt-factors",
       "context": "). \\end{equation} Thus a strict inequality $D_a(E)>k(a)S_a(E)$, with $k(a)\\ge0$, passes to at least one stable factor. Such a factorization is finite by Lemma~\\ref{lem:finite-tilt-factors}. Start with a violating stable factor and follow its branch \\eqref{eq:zero-branch} toward $A$ as long as it remains st"
     },
     {
       "from": "m2-thm-uniform-inequality",
       "to": "m2-prop-apex-transport",
+      "label": "thm:uniform-inequality",
       "context": "[Proof of Theorem~\\ref{thm:uniform-inequality}] First use the very-ample and transverse-twist reductions of Section~\\ref{sec:tilt}. Proposition~\\ref{prop:apex} suppl"
     },
     {
       "from": "m2-prop-apex",
       "to": "m2-prop-apex-transport",
+      "label": "prop:apex",
       "context": "[Proof of Theorem~\\ref{thm:uniform-inequality}] First use the very-ample and transverse-twist reductions of Section~\\ref{sec:tilt}. Proposition~\\ref{prop:apex} supplies $A>0$ and $C\\ge0$, chosen independently of $E$ and $b$, such that \\[ D_A(E)\\le C\\bigl(d_B(E)-A|r(E)|\\bigr). \\"
     },
     {
       "from": "m2-cor-quadratic-tail",
       "to": "m2-prop-apex-transport",
+      "label": "cor:quadratic-tail",
       "context": "[Proof of Corollary~\\ref{cor:quadratic-tail}] Take the threshold of Theorem~\\ref{thm:uniform-inequality} with $B_0=0$. Set $b=\\beta$ and $a=\\sqrt{2\\alpha-b^2}$. Th"
     },
     {
       "from": "m2-lem-tilt-semicircle",
       "to": "m2-prop-apex-transport",
+      "label": "lem:tilt-semicircle",
       "context": "is nonnegative by \\eqref{eq:tilt-discriminants}; it includes zero-dimensional objects. Otherwise put $u=\\nu_{a,b}(E)$, $c=b+u$, and $R=\\sqrt{a^2+u^2}$. Lemma~\\ref{lem:tilt-semicircle} makes $E$ semistable of slope zero at $(R,c)$, with $d_c>0$. Using $w_b=ud_b+a^2r/2$, \\[ d_c=d_b-ur,\\qquad z_c=z_b-uw"
     }
   ]

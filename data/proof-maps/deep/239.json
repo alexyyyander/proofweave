@@ -362,7 +362,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-sharp-exponential-rate-of-singularity-for-symmetric-Bernoulli-matrices-October-3-2026/symmetric-bernoulli-singularity.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The sharp exponential rate of singularity for symmetric Bernoulli matrices; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The sharp exponential rate of singularity for symmetric Bernoulli matrices.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -415,9 +415,7 @@
           "kind": "lemma",
           "source": "The binary model and the proof framework",
           "detail": "[Reduction to corank one] For the binary model in dimension \\(N\\), \\[ ( B_N=0) 2^ o(N) ( B_N=1) +2^ -(N^ 6/5 ) . \\]",
-          "dependsOn": [
-            "m1-lem-corank-tail"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-column-reduction",
@@ -641,9 +639,7 @@
           "source": "The discriminant pairing and admissible columns",
           "detail": "[Pairing index and determinant] Let \\(L\\) be a lattice, let \\(V= L\\), and let \\(q\\) be a symmetric bilinear form on \\(V\\) such that \\(q(L,L) Q\\). Write \\[ K=Lradq, S=V(radq)^, L=proj_S L. \\] Then…",
           "dependsOn": [
-            "m1-prop-admissible-potential",
             "m1-cor-inverse-rank",
-            "m1-prop-typical-spectrum",
             "m1-lem-robust-extraction",
             "m1-lem-robust-height",
             "m1-lem-colored-image-order"
@@ -733,10 +729,6 @@
           "detail": "[Witness pricing] Fix \\(D_0>0\\), and put \\(=^ -D_0 \\) and \\(=^3\\). Typically for nonsingular binary matrices \\(B\\) of size \\(m I_N\\), the following assertion holds simultaneously for every \\(B^m…",
           "dependsOn": [
             "m1-lem-robust-height",
-            "m1-prop-typical-ranks",
-            "m1-prop-prime-corank",
-            "m1-lem-exact-basis-count",
-            "m1-prop-cube-concentration",
             "m1-lem-det-minimizer",
             "m1-lem-gaussian-count",
             "m1-lem-robust-extraction"
@@ -774,8 +766,6 @@
           "source": "Paying for an increase of potential",
           "detail": "[Budget optimization] Let \\(c\\) and \\( E\\) be defined by Equations~ and , and let \\(=7/5\\). If \\(g,v_0,a_0,u0\\) satisfy \\[ 2g+3a_0+u12, g+v_0+2a_0+2u12, \\] then there are \\(x\\) and \\(y\\) for which…",
           "dependsOn": [
-            "m1-prop-potential-step",
-            "m1-prop-certificate-pricing",
             "m1-prop-admissible-potential"
           ]
         },
@@ -801,14 +791,7 @@
           "detail": "[Cost of heavy retained layers] Let \\( F\\) denote exposed information which fixes a nonsingular binary matrix \\(C\\) of size \\(m I_N\\) and a quotient map \\(:^m H\\) with \\(C^m\\). Suppose that,…",
           "dependsOn": [
             "m1-lem-retention-lattice",
-            "m1-prop-path-potential",
-            "m1-prop-prime-corank",
-            "m1-prop-retention-cost",
-            "m1-prop-admissible-potential",
-            "m1-prop-potential-step",
             "m1-lem-gated-deletion",
-            "m1-lem-tail-recursion",
-            "m1-thm-main",
             "m1-lem-corank-reduction",
             "m1-lem-column-reduction",
             "m1-lem-sign-bit"
@@ -828,7 +811,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-sharp-singularity-rate-for-biased-symmetric-sign-matrices-October-4-2026/biased-symmetric-sign-singularity.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The sharp singularity rate for biased symmetric sign matrices; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The sharp singularity rate for biased symmetric sign matrices.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -891,7 +874,6 @@
           "detail": "[Row counts] For every fixed \\(,w>0\\), with probability \\(1-(-_ ,w (n^2))\\), fewer than \\( n\\) rows of \\(A_n^ (p) \\) have a number of positive entries outside \\([pn-wn,pn+wn]\\).",
           "dependsOn": [
             "m2-thm-main",
-            "m2-prop-column-bound",
             "m2-lem-compressible",
             "m2-lem-corank-reduction",
             "m2-lem-anchor-congruence"
@@ -1076,8 +1058,6 @@
           "source": "Discriminant pairings and the number of admissible columns",
           "detail": "[Small-spectrum bound] For every fixed \\(>0\\), there is \\(w_>0\\), depending also on \\(p\\), such that typically a bit matrix \\(B\\) has at most \\( N\\) eigenvalues, counted with multiplicity, in \\[ [-w_…",
           "dependsOn": [
-            "m2-prop-static-column",
-            "m2-prop-inverse-rank",
             "m2-lem-graph-comparison"
           ]
         },
@@ -1109,10 +1089,7 @@
           "kind": "lemma",
           "source": "Two column constraints along a path of principal minors",
           "detail": "[Almost full cost of retention] Typically for nonsingular \\(C\\) with size in \\( I_N\\), conditional on \\(C\\), the probability that an independent principal extension of either width is costly is at…",
-          "dependsOn": [
-            "m2-thm-small-intersection",
-            "m2-prop-static-column"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-path-dissociation",
@@ -1159,7 +1136,6 @@
           "detail": "[The terminal-window alternative] Consider \\(5R\\) consecutive nonsingular principal extensions of widths one or two, satisfying their gates. Suppose all their nodes have \\(W_R\\) and the terminal node…",
           "dependsOn": [
             "m2-lem-path-algebra",
-            "m2-prop-column-bound",
             "m2-lem-path-high-tail",
             "m2-lem-path-retention-cost"
           ]
@@ -1187,7 +1163,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -417,7 +417,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Harmonic-heights-and-the-Artin-K-pi-1-conjecture-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Harmonic heights and the Artin K(pi,1) conjecture; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Harmonic heights and the Artin K(pi,1) conjecture.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -744,9 +744,7 @@
           "kind": "lemma",
           "source": "A two-point estimate on spherical cosets",
           "detail": "Let \\(R\\) be a minimal complex with a single simple \\(U_\\) at \\((0,0)\\) and shifted right projectives, and let \\(r-1\\) bound its normalized levels. Applying a right inverse twist, and then…",
-          "dependsOn": [
-            "m1-lem-positive-layer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-two-point-tensor-filtration",
@@ -820,7 +818,6 @@
           "dependsOn": [
             "m1-lem-top-divisor",
             "m1-lem-two-point-greedy",
-            "m1-prop-candidate-uniqueness",
             "m1-lem-right-duality"
           ]
         },
@@ -868,7 +865,6 @@
           "detail": "[Separation from the boundary] Let I S be nonempty and connected, and let c be zero off I and strictly positive on I , with C_Ic_I=0 . Let J I . Suppose M=(M_L)_L is a family of direct summands of…",
           "dependsOn": [
             "m1-lem-rigidity-hom-filtration",
-            "m1-prop-isolated-layer",
             "m1-lem-cap-accessibility",
             "m1-lem-family-proportionality",
             "m1-prop-convex-subobjects",
@@ -899,8 +895,7 @@
           "dependsOn": [
             "m1-prop-isolated-layer",
             "m1-lem-cap-accessibility",
-            "m1-lem-filtration-principle",
-            "m1-prop-candidate-uniqueness"
+            "m1-lem-filtration-principle"
           ]
         },
         {
@@ -966,9 +961,7 @@
           "kind": "lemma",
           "source": "The global harmonic filtration",
           "detail": "The all-eligible lower poset at P=A_Tx is a product of the residue sublevel posets of Proposition~ , each with a largest element adjoined, with the all-largest tuple deleted. More precisely, its…",
-          "dependsOn": [
-            "m1-prop-residue-sublevels"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-global-product-minus-top",
@@ -989,9 +982,7 @@
           "source": "The global harmonic filtration",
           "detail": "The earlier strict lower part of every P D is empty or contractible.",
           "dependsOn": [
-            "m1-lem-global-lower-comparison",
-            "m1-lem-global-residue-blocks",
-            "m1-lem-global-product-minus-top"
+            "m1-lem-global-residue-blocks"
           ]
         },
         {
@@ -1049,7 +1040,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-Artin-group-with-no-geometric-CAT-0-action-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from An Artin group with no geometric CAT(0) action; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from An Artin group with no geometric CAT(0) action.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1125,7 +1116,6 @@
           "detail": "The element L_j commutes with s_i for i j-2 , and Z_r commutes with every s_i for i<r . In particular, \\[ Z_2=s_1^2, Z_3=(s_1s_2)^3. \\] The element =s_1 s_ l-1 satisfies s_i^ -1 =s_ i+1 (1 i l-2). In…",
           "dependsOn": [
             "m2-lem-centralizer-character",
-            "m2-prop-braid-angle",
             "m2-lem-commuting-form"
           ]
         },
@@ -1230,8 +1220,7 @@
           "source": "Labelled triangular diagrams",
           "detail": "Suppose that T acts geometrically on Y and fix y Y . There is a constant C_1 , depending only on this action, y , and the fixed presentation, with the following property. Let be a triangulated…",
           "dependsOn": [
-            "m2-lem-orbit-control",
-            "m2-lem-triangular-presentation"
+            "m2-lem-orbit-control"
           ]
         },
         {
@@ -1254,7 +1243,6 @@
           "detail": "For all sufficiently large \\(n\\), every occurrence in the sphere diagram of a target triangle contributing to the winding count on \\(B\\) lies entirely in \\(intB\\).",
           "dependsOn": [
             "m2-lem-outer-cap",
-            "m2-prop-triangle-obstruction",
             "m2-prop-sphere-counts"
           ]
         },
@@ -1286,9 +1274,7 @@
           "kind": "lemma",
           "source": "The finite Artin matrix and the final contradiction",
           "detail": "For the elements d,e of G , \\[ C_G(d) C_G(e)=T. \\]",
-          "dependsOn": [
-            "m2-lem-amalgam-normal-form"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-geometric-centralizer",
@@ -1301,10 +1287,8 @@
           "dependsOn": [
             "m2-lem-comparison",
             "m2-thm-main",
-            "m2-lem-common-centralizer",
             "m2-lem-semisimple",
-            "m2-prop-braid-angle",
-            "m2-prop-triangle-obstruction"
+            "m2-prop-braid-angle"
           ]
         }
       ]
@@ -1321,7 +1305,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Parabolic-intersections-in-Artin-groups-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Parabolic intersections in Artin groups; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Parabolic intersections in Artin groups.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1403,7 +1387,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

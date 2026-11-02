@@ -247,7 +247,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Power-Saving-for-Polynomial-Differences-at-Prime-Arguments-October-5-2026/prime-argument-polynomial-differences.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A Power Saving for Polynomial Differences at Prime Arguments; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A Power Saving for Polynomial Differences at Prime Arguments.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -520,9 +520,7 @@
           "kind": "proposition",
           "source": "Descent to shorter intervals",
           "detail": "[Uniform power decay] There are constants a_0,b_0>0 and C_01 , depending only on h , such that for all integers l,N1 , Y_l(N) C_0l^ b_0 N^ -a_0 .",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -538,7 +536,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-power-saving-for-square-difference-free-sets-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A power saving for square-difference-free sets; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A power saving for square-difference-free sets.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -640,8 +638,7 @@
           "source": "Finite reflection-positive probability laws",
           "detail": "[Conditional mixing and pair marginals] For the fixed index set \\(V\\) and the measures constructed above, there is an absolute threshold \\(P\\) such that the following statements hold for every prime…",
           "dependsOn": [
-            "m2-lem-list-mixing",
-            "m2-prop-tuple-laws"
+            "m2-lem-list-mixing"
           ]
         },
         {
@@ -728,7 +725,6 @@
           "detail": "[Comparison with a shorter interval] There are constants \\(C_ tr <\\) and \\(N_ tr \\) with the following property. Let \\(N N_ tr \\), let \\(A\\) be square-difference-free, and let \\(B P_N\\) satisfy \\(q_B…",
           "dependsOn": [
             "m2-lem-lift-moments",
-            "m2-lem-lift-specialization",
             "m2-lem-conductor-decay",
             "m2-lem-exact-fiber",
             "m2-lem-functional-properties"
@@ -754,8 +750,7 @@
           "detail": "[Contraction for good residue assignments] There are absolute constants \\(C\\) and \\(N_0\\) such that, whenever \\(N N_0\\), \\(A\\) has no positive square difference, and \\( s\\) is good, one has |_ v V L_…",
           "dependsOn": [
             "m2-lem-lift-moments",
-            "m2-lem-conductor-decay",
-            "m2-prop-square-kernel"
+            "m2-lem-conductor-decay"
           ]
         },
         {
@@ -767,7 +762,6 @@
           "source": "Exceptional terms and the power-saving induction",
           "detail": "There are absolute constants K< and N_12 such that, for every integer N N_1 , Y(N) & K N^ -_0 +(1+u_N)((1-) Y(n_) +\\! _ B P_N\\ _B N^ _B Y(n_B)), \\\\ u_N&=(1+M_0^2N^ 2-1 )^d-1. In particular, u_N0 as N…",
           "dependsOn": [
-            "m2-lem-lift-moments",
             "m2-prop-scale-transfer",
             "m2-prop-nonexceptional-contraction"
           ]
@@ -781,7 +775,6 @@
           "source": "Exceptional terms and the power-saving induction",
           "detail": "There are absolute constants a_0>0 and C_0< such that, for every positive integer N and every square-difference-free set A , \\[ Y(N,A) C_0N^ -a_0 . \\]",
           "dependsOn": [
-            "m2-lem-good-residues",
             "m2-thm-main",
             "m2-lem-functional-properties"
           ]
@@ -809,7 +802,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

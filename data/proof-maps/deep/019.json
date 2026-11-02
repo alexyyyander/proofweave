@@ -137,7 +137,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Etale-covers-with-a-prescribed-exterior-sheet-September-24-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Étale covers with a prescribed exterior sheet; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Étale covers with a prescribed exterior sheet.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -198,7 +198,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-p-adic-section-conjecture-October-6-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The p-adic section conjecture; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The p-adic section conjecture.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -251,9 +251,7 @@
           "kind": "lemma",
           "source": "Replacing branch disks by trivial covers",
           "detail": "In Proposition~ , suppose that the composite V_ X_ is isomorphic, over X_ , to the base change of a finite morphism V X_ k from a smooth proper connected curve, and assume that U . If k(V) admits a…",
-          "dependsOn": [
-            "m2-prop-patching"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-horizontal-closure",
@@ -309,7 +307,6 @@
           "source": "Replacing branch disks by trivial covers",
           "detail": "[The first stage] The field L_ is contained in H .",
           "dependsOn": [
-            "m2-lem-local-normal-form",
             "m2-lem-etale-collars",
             "m2-prop-patching",
             "m2-lem-point-transfer"
@@ -338,7 +335,6 @@
             "m2-lem-division-roots",
             "m2-thm-completion",
             "m2-lem-horizontal-closure",
-            "m2-prop-patching",
             "m2-prop-first-stage",
             "m2-lem-point-transfer"
           ]
@@ -364,7 +360,6 @@
           "source": "From completion to point sections",
           "detail": "With k , X , K , and K as in Corollary~ , let w be any rank-one valuation of K extending the p -adic valuation and let w be any prolongation to K . The projection \\[ D_ w ( K/K) G_k \\] has no…",
           "dependsOn": [
-            "m2-cor-decomposition",
             "m2-thm-section"
           ]
         },
@@ -423,9 +418,7 @@
           "kind": "corollary",
           "source": "Global consequences via finite descent",
           "detail": "[Modular curves] For every positive integer N such that the smooth projective geometrically connected curve X_0(N)/ Q has genus at least two, the map _ X_0(N) is bijective. The same assertion holds…",
-          "dependsOn": [
-            "m2-thm-global-descent"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -450,7 +443,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

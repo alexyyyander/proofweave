@@ -422,7 +422,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-spacetime-Penrose-inequality-with-charge-and-original-data-rigidity-October-5-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The spacetime Penrose inequality with charge and original-data rigidity; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The spacetime Penrose inequality with charge and original-data rigidity.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -495,9 +495,7 @@
           "kind": "proposition",
           "source": "Full enclosing cuts and their minimizing frontiers",
           "detail": "[Equivalence with full cuts and obstacle regularity] The auxiliary minimum equals the intrinsic smooth-cut infimum: p_g(F)=a_g(S). Every minimizing set has a regular representative with compact…",
-          "dependsOn": [
-            "m1-ct-confinement"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ct-minimal-obstacle",
@@ -796,9 +794,7 @@
           "kind": "proposition",
           "source": "The elliptic construction and its physical end",
           "detail": "[The unrestricted trial trace problem] Fix a smooth compact truncation _ N,R , a , and (0,1) . For every Z C^ 1, ( _ N,R ) , including trials for which the implicit t is below - , there is a unique…",
-          "dependsOn": [
-            "m1-so-rough-gradient"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-so-filled-solver",
@@ -811,7 +807,6 @@
           "dependsOn": [
             "m1-so-trial-trace",
             "m1-so-coupled-regularity",
-            "m1-es-floor",
             "m1-sy-zero-trace-reduction"
           ]
         },
@@ -847,7 +842,6 @@
           "source": "Charged comparison and the numerical inequality",
           "detail": "[Curvature outside the high band] For all large N , on the part of the original exterior where |h| b_3 , ^2 2 R_ g I_g(w). The modification is compactly supported. After the coordinate dilation y'=e^…",
           "dependsOn": [
-            "m1-sy-scalar-identity",
             "m1-so-filled-solver",
             "m1-cp-mass-cost"
           ]
@@ -908,7 +902,6 @@
           "dependsOn": [
             "m1-cp-flux-projection",
             "m1-en-timelike-reduction",
-            "m1-thm-numerical",
             "m1-en-rest-preparation"
           ]
         },
@@ -920,9 +913,7 @@
           "kind": "lemma",
           "source": "Equality and multipliers on the original data",
           "detail": "For a smooth path with initial metric derivative \\(h\\), the right derivative of its enclosing-area infimum is a'_+(0)=_ M M_B a'_M(h).",
-          "dependsOn": [
-            "m1-ct-area-derivative"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-va-separation",
@@ -1036,9 +1027,7 @@
           "kind": "proposition",
           "source": "The communicating stationary region and a maximal hypersurface",
           "detail": "Let E= R\\ >R\\ , with R sufficiently large. Taking chronological past and future within R , one has \\[ I^-( E)= R=I^+( E). \\]",
-          "dependsOn": [
-            "m1-va-enlarged-obstacle"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-st-covariant-jets",
@@ -1069,7 +1058,6 @@
           "source": "The communicating stationary region and a maximal hypersurface",
           "detail": "There is a smooth time-oriented Lorentzian manifold ( R, G) containing R and a compact smooth spacelike surface B_0 naturally identified with S , such that the following properties hold. The Killing…",
           "dependsOn": [
-            "m1-st-covariant-jets",
             "m1-st-smooth-parity"
           ]
         },
@@ -1093,9 +1081,7 @@
           "kind": "lemma",
           "source": "The communicating stationary region and a maximal hypersurface",
           "detail": "There is a smooth function s_0 on R satisfying (s_0)=1 , whose differential is timelike, such that s_0=1 2 VU near the attachment and s_0=t+constant on the harmonic rest end of Proposition~ . Each…",
-          "dependsOn": [
-            "m1-st-attachment"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-st-attachment-causality",
@@ -1142,7 +1128,6 @@
           "source": "Staticity, recovery of the original data, and sharpness",
           "detail": "[The maximal hypersurface as an orbit section] Let ' be the maximal hypersurface of Proposition~ , and let B_0 be its bifurcation boundary. Projection along the Killing flow identifies int'…",
           "dependsOn": [
-            "m1-st-attachment",
             "m1-st-maximal-slice"
           ]
         },
@@ -1155,7 +1140,6 @@
           "source": "Staticity, recovery of the original data, and sharpness",
           "detail": "[Staticity and vanishing of matter] On ' one has \\[ K'=0, X'=0, B'=0. \\] The Killing field is strictly timelike throughout the open right wedge, and its metric and rotated Maxwell form have the…",
           "dependsOn": [
-            "m1-va-potentials",
             "m1-va-stationary-data"
           ]
         },
@@ -1171,8 +1155,6 @@
             "m1-st-maximal-slice",
             "m1-ri-orbit-graph",
             "m1-st-stationary-end",
-            "m1-ri-staticity",
-            "m1-en-adm-flux",
             "m1-va-stationary-data"
           ]
         },
@@ -1203,13 +1185,11 @@
             "m1-ri-orbit-graph",
             "m1-va-boundary",
             "m1-st-attachment",
-            "m1-thm-rigidity",
             "m1-va-stationary-data",
             "m1-st-maximal-slice",
             "m1-va-potentials",
             "m1-ri-staticity",
-            "m1-ri-static-mass",
-            "m1-thm-converse"
+            "m1-ri-static-mass"
           ]
         },
         {
@@ -1236,7 +1216,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Charged-Reduction-of-the-Spacetime-Penrose-Inequality-in-Spatial-Dimensions-at-Least-Four-October-5-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A Charged Reduction of the Spacetime Penrose Inequality in Spatial Dimensions at Least Four; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A Charged Reduction of the Spacetime Penrose Inequality in Spatial Dimensions at Least Four.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1385,7 +1365,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

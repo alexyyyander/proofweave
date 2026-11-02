@@ -142,7 +142,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-classification-of-finite-Euclidean-Ramsey-configurations-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A classification of finite Euclidean Ramsey configurations; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A classification of finite Euclidean Ramsey configurations.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -215,7 +215,6 @@
           "detail": "[Finite rational weights] Let =^k , and let _1,,_s be subgroups of . Suppose that a finitely supported function : has zero pushforward on each /_i , and satisfies \\[ _()=0, _()=0, _()^ T =C. \\] Let U…",
           "dependsOn": [
             "m1-pairs-bump",
-            "m1-pairs-two-scale",
             "m1-stencil-finite"
           ]
         },
@@ -268,7 +267,6 @@
           "source": "From paths to monochromatic copies",
           "detail": "[Simultaneous realization] Let q_ i,j S for 1 i s and 1 j M , where M1 . Suppose that every column j has one of the following specified forms: q_ i,j =q_j is independent of i ; q_ i,j =_ z_ i,j for…",
           "dependsOn": [
-            "m1-paths-criterion",
             "m1-paths-synchronization",
             "m1-paths-compactness"
           ]
@@ -314,7 +312,6 @@
           "dependsOn": [
             "m1-groups-averaging",
             "m1-groups-fractions",
-            "m1-thm-classification",
             "m1-alg-equivalence",
             "m1-paths-criterion"
           ]
@@ -388,9 +385,7 @@
           "kind": "proposition",
           "source": "Geometric consequences and examples",
           "detail": "Let t_1,,t_9 be algebraically independent real numbers over . The nine points \\[ a_i=(1-t_i^2 1+t_i^2 , 2t_i 1+t_i^2 ), 1 i9, \\] form a spherical set that is not Ramsey.",
-          "dependsOn": [
-            "m1-thm-classification"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cons-twelve",
@@ -419,7 +414,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

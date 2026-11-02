@@ -122,7 +122,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Grothendieck-homotopy-hypothesis-via-elementary-expansions-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Grothendieck homotopy hypothesis via elementary expansions; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Grothendieck homotopy hypothesis via elementary expansions.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -178,7 +178,6 @@
           "source": "Globular models and the weak-equivalence test",
           "detail": "[Closure properties] The class W has two-out-of-three, is closed under retracts, and is closed under filtered colimits of arrows. Consequently a transfinite composite of weak equivalences is a weak…",
           "dependsOn": [
-            "m1-lem-prelim-boundary-change",
             "m1-prop-weak-test"
           ]
         },
@@ -233,8 +232,6 @@
           "source": "Coskeletal cutoffs and contractible trees",
           "detail": "[Contractibility of free shapes] For every nonempty finite globular-sum shape S , the models F(S) and F_q(S) are contractible, for every q0 .",
           "dependsOn": [
-            "m1-lem-spine",
-            "m1-lem-high-cells",
             "m1-prop-weak-test",
             "m1-lem-cutoff"
           ]
@@ -248,8 +245,7 @@
           "source": "Coskeletal cutoffs and contractible trees",
           "detail": "[Top-dimensional base case] The assertion E(q,q) holds for every q0 .",
           "dependsOn": [
-            "m1-lem-high-cells",
-            "m1-prop-weak-test"
+            "m1-lem-high-cells"
           ]
         },
         {
@@ -273,8 +269,7 @@
           "source": "Coskeletal cutoffs and contractible trees",
           "detail": "[Contractibility of tree diagrams] Under the fixed-cutoff induction hypotheses above, F_q(K) is contractible for every tree diagram K at depth n .",
           "dependsOn": [
-            "m1-prop-shape-contractible",
-            "m1-lem-cutoff-base"
+            "m1-prop-shape-contractible"
           ]
         },
         {
@@ -329,7 +324,6 @@
             "m1-lem-upper-cell",
             "m1-lem-lifting-test",
             "m1-prop-tree-contractible",
-            "m1-thm-main",
             "m1-lem-cutoff",
             "m1-prop-weak-test"
           ]
@@ -379,7 +373,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

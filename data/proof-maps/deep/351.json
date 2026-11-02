@@ -382,7 +382,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-closed-Ricci-flow-with-bounded-scalar-curvature-and-finite-time-curvature-blowup-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A closed Ricci flow with bounded scalar curvature and finite-time curvature blowup; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A closed Ricci flow with bounded scalar curvature and finite-time curvature blowup.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -514,10 +514,7 @@
           "kind": "lemma",
           "source": "A dimension-explicit Ricci reaction bound",
           "detail": "For all sufficiently large \\(q\\), and sufficiently late times, |rz_r| Cq^ -1/2 , r^2|u_ rr | Cq^ 1/2 (0<r18), where \\(C\\) is independent of both \\(q\\) and \\(k\\).",
-          "dependsOn": [
-            "m1-lem-uniform",
-            "m1-lem-heat-perturbation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-reaction",
@@ -528,8 +525,6 @@
           "source": "A dimension-explicit Ricci reaction bound",
           "detail": "At late times on \\(0<r18\\), the reaction quotient \\[ c(x,t)=2 ( ), ||^2 where ||>0 \\] satisfies both bounds c2(q-1)+C q r^2 , cC_* ^2 . Here \\(C\\) is independent of \\(q,k\\); \\(C_*\\) may depend on the…",
           "dependsOn": [
-            "m1-lem-uniform",
-            "m1-lem-largeq-derivatives",
             "m1-prop-full-curvature"
           ]
         },
@@ -566,8 +561,6 @@
           "source": "Comparison and the scalar-curvature bound",
           "detail": "There is a constant \\(C\\) such that \\(|| C\\) on \\(r\\) at late times.",
           "dependsOn": [
-            "m1-prop-reaction",
-            "m1-lem-annuli",
             "m1-thm-main",
             "m1-prop-scalar-inner",
             "m1-lem-gradients",
@@ -601,7 +594,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Bounded-scalar-curvature-and-smooth-extension-of-four-dimensional-Ricci-flow-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Bounded scalar curvature and smooth extension of four-dimensional Ricci flow; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Bounded scalar curvature and smooth extension of four-dimensional Ricci flow.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -703,7 +696,6 @@
           "source": "Small-scale geometry and the outermost scale",
           "detail": "[Time required for a fixed scale change] Fix u>0 . Let s_i<t_i<T tend to T , where t_i is the first time after s_i for which |(a(t_i)/a(s_i))|=u . Then \\[ t_i-s_i a(s_i)^2 . \\]",
           "dependsOn": [
-            "m2-geom-slow-motion",
             "m2-prop-root-scale"
           ]
         },
@@ -783,8 +775,7 @@
           "source": "Concentration estimates for the Ricci equation",
           "detail": "[Exterior concentration bound] There are fixed N_01 , r_0>0 , and 0<<(,1) , and a choice of N_1 in Equation~ , such that V(r)& C, \\\\ A(r)& C for N_0a r r_0 , where _i0 and _i . The constants are…",
           "dependsOn": [
-            "m2-para-local-smoothing",
-            "m2-para-radial-lemma"
+            "m2-para-local-smoothing"
           ]
         },
         {
@@ -809,8 +800,7 @@
           "detail": "[Interior estimate with a neck weight] Take any sequence of times with (t)0 and extract a tree as in Theorem~ . On its true compact and half-neck pieces in B_t(x_t,D_0a) , let r be the physical…",
           "dependsOn": [
             "m2-para-local-smoothing",
-            "m2-para-radial-lemma",
-            "m2-para-mean-lemma"
+            "m2-para-radial-lemma"
           ]
         },
         {
@@ -853,8 +843,7 @@
           "detail": "[Position of a controlled material collar] Choose sufficiently small _0>0 and sufficiently large fixed N . At a time near , choose an exterior annular chart at scale b with domain, in collar units, \\…",
           "dependsOn": [
             "m2-prop-exterior-ricci",
-            "m2-thm-degeneration",
-            "m2-prop-root-scale"
+            "m2-thm-degeneration"
           ]
         },
         {
@@ -889,11 +878,7 @@
           "kind": "proposition",
           "source": "Functional change and the contradiction",
           "detail": "[Uniform functional smallness] For fixed N there are numbers _i0 such that, at every time in every active patch, |(t)E_j(t)| _i a^4. Here H_* uses a fixed enlargement depending on N .",
-          "dependsOn": [
-            "m2-thm-degeneration",
-            "m2-prop-root-scale",
-            "m2-thm-tree-inequality"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-final-energy-vanishes",
@@ -916,8 +901,7 @@
           "dependsOn": [
             "m2-prop-interior-ricci",
             "m2-final-energy-vanishes",
-            "m2-prop-exterior-ricci",
-            "m2-prop-root-scale"
+            "m2-prop-exterior-ricci"
           ]
         },
         {
@@ -961,7 +945,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Path-selection-and-an-elliptic-inequality-on-degenerating-Ricci-flat-trees-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Path selection and an elliptic inequality on degenerating Ricci-flat trees; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Path selection and an elliptic inequality on degenerating Ricci-flat trees.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1002,9 +986,7 @@
           "kind": "corollary",
           "source": "Selection of paths at several exponential ends",
           "detail": "[The variation consequence] Suppose admissible functions \\(F,J\\), with \\(J0\\), satisfy \\[ |dF| C J(_a|dz_a| +_i e^ -cL_i |dL_i|), c>0, \\] on real parameter domains. There cannot be a sequence with…",
-          "dependsOn": [
-            "m3-thm-path-selection"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-path-sector-uniqueness",
@@ -1161,9 +1143,7 @@
           "kind": "lemma",
           "source": "Augmented inverses and the analytic family",
           "detail": "[Gauge for the real sequence] After a diffeomorphism of the invariance class in Lemma~ , each sufficiently late metric in the sequence satisfies W_b(g)=m, where is the finite list of vector…",
-          "dependsOn": [
-            "m3-ell-functional"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-ell-analytic-family",
@@ -1174,8 +1154,7 @@
           "source": "Augmented inverses and the analytic family",
           "detail": "[Analytic small branch] On a fixed complex polydisc in z and the quadratic length domain of Equation~ , Equation~ has a unique small solution (U,d) . It obeys uniform bounds at both joining weights…",
           "dependsOn": [
-            "m3-ell-complex-inverse",
-            "m3-ell-disconnected-inverse"
+            "m3-ell-complex-inverse"
           ]
         },
         {
@@ -1198,9 +1177,7 @@
           "kind": "lemma",
           "source": "Tail expansions and prescribed growth",
           "detail": "[Constant-operator tail improvement] Let P be either flat operator above. Suppose a field has a finite growth bound and its source has an expansion to rate B , where the intermediate remainder…",
-          "dependsOn": [
-            "m3-ell-complex-inverse"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-ell-prescribed-tails",
@@ -1236,7 +1213,6 @@
           "dependsOn": [
             "m3-ell-prescribed-tails",
             "m3-ell-triangular",
-            "m3-ell-seam-inverse",
             "m3-ell-flat-tail"
           ]
         },
@@ -1249,8 +1225,7 @@
           "source": "Scalar expansions and the tree inequality",
           "detail": "[Finite-part integration] Integration of the coefficient fields constructed in Lemma~ preserves exponential-polynomial length expansions for F and J . Each resulting coefficient is a finite sum of…",
           "dependsOn": [
-            "m3-ell-analytic-family",
-            "m3-ell-one-length"
+            "m3-ell-analytic-family"
           ]
         },
         {
@@ -1265,8 +1240,7 @@
             "m3-ell-one-length",
             "m3-ell-finite-parts",
             "m3-ell-analytic-family",
-            "m3-ell-flat-tail",
-            "m3-thm-path-selection"
+            "m3-ell-flat-tail"
           ]
         },
         {
@@ -1278,8 +1252,6 @@
           "source": "Scalar expansions and the tree inequality",
           "detail": "[Differential of the scalar observable] On the real small family, for some c>0 , |dF| C J(_|dz_| +_e e^ -cL_e |dL_e|).",
           "dependsOn": [
-            "m3-thm-tree-inequality",
-            "m3-ell-functional",
             "m3-ell-comparison",
             "m3-ell-all-orders",
             "m3-path-variation"
@@ -1314,7 +1286,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

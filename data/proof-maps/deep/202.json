@@ -232,7 +232,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Blockwise-Alperin-Weight-Conjecture-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Blockwise Alperin Weight Conjecture; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Blockwise Alperin Weight Conjecture.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -283,9 +283,7 @@
           "kind": "lemma",
           "source": "From block counts to generating tuples",
           "detail": "[Finite chain inversion] The identity l=(1+T)z for all pairs (X,E) is equivalent to z(X,E)= _ C/X\\\\ C\\ normal (-1)^ | C| l(H_ C ,E_ C ), where C/X denotes one representative of each X -conjugacy…",
-          "dependsOn": [
-            "m1-lem-normalizer-projection"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-cocenter-ranks",
@@ -305,9 +303,7 @@
           "kind": "lemma",
           "source": "From block counts to generating tuples",
           "detail": "[Subsection formula and support] For every central idempotent E kX , k_ ord (X,E)= _ [u] an X-class\\ a p-element l(C_X(u),Br_ u (E)). Multiplication by E preserves the section decomposition of the…",
-          "dependsOn": [
-            "m1-lem-cocenter-ranks"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-nonnormal-cancellation",
@@ -327,10 +323,7 @@
           "kind": "lemma",
           "source": "From block counts to generating tuples",
           "detail": "[Alternating subsection cancellation] One has _ C/X\\\\ C\\ normal (-1)^ | C| l(H_ C ,E_ C ) = _ C/X\\\\ C\\ normal (-1)^ | C| k_ ord (H_ C ,E_ C ).",
-          "dependsOn": [
-            "m1-lem-nonnormal-cancellation",
-            "m1-lem-subsections"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-defect-zero-detection",
@@ -353,9 +346,7 @@
           "source": "From block counts to generating tuples",
           "detail": "[An element with zero-or-one residues] Let v=E(1-c_X) . It is central and supported on p -singular elements. For a normal chain C of positive length, its restriction to H_ C satisfies \\[ _b(s_ H_ C…",
           "dependsOn": [
-            "m1-lem-subsections",
-            "m1-lem-defect-zero-detection",
-            "m1-lem-normalizer-projection"
+            "m1-lem-subsections"
           ]
         },
         {
@@ -366,11 +357,7 @@
           "kind": "lemma",
           "source": "From block counts to generating tuples",
           "detail": "[The first trace limit] In the valuation topology of K , _ s _ p^s = _ C/X\\\\ C\\ normal (-1)^ | C| k_ ord (H_ C ,E_ C ) -z(X,E).",
-          "dependsOn": [
-            "m1-lem-nonnormal-cancellation",
-            "m1-lem-detecting-element",
-            "m1-lem-defect-zero-detection"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-tuple-trace",
@@ -401,11 +388,6 @@
           "source": "From block counts to generating tuples",
           "detail": "[Reduction to uniform tuple divisibility] If holds for every finite group with trivial p -core, then for every finite group X and central idempotent E kX one has l(X,E)=((1+T)z)(X,E) . In particular…",
           "dependsOn": [
-            "m1-lem-tuple-trace",
-            "m1-lem-pcore-cancellation",
-            "m1-thm-tuple-divisibility",
-            "m1-lem-trace-limit",
-            "m1-lem-alternating-subsections",
             "m1-lem-chain-transform"
           ]
         },
@@ -447,10 +429,7 @@
           "kind": "proposition",
           "source": "A genus-one curve with large index and independent labels",
           "detail": "Fix s1 , put n=p^s , and choose A_0/ and P A_0() of exact order n as in . There are finitely generated fields F_0 F' over , each of transcendence degree n , and a smooth projective geometrically…",
-          "dependsOn": [
-            "m1-lem-cycle-sum-rationality",
-            "m1-lem-constant-product-maps"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-index-base-change",
@@ -460,9 +439,7 @@
           "kind": "corollary",
           "source": "A genus-one curve with large index and independent labels",
           "detail": "Let h1 and s h , and let F/F_0 be a finite extension with [F:F_0]_p p^h . Every divisor on E_F has degree over F divisible by p^ s-h . More generally, if C/F is a regular projective integral curve…",
-          "dependsOn": [
-            "m1-prop-twist-index"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-label-rank",
@@ -523,10 +500,6 @@
           "source": "Absolute differentials and the inseparable genus estimate",
           "detail": "[Height-one kernels and cokernels] Let :C C' be a finite dominant morphism of regular integral projective curves over S such that (C)^p(C') . Put q=[(C):(C')]=p^a and \\[ F=(T_C^*T_ C' ),…",
           "dependsOn": [
-            "m1-prop-absolute-genus",
-            "m1-thm-inseparable-genus",
-            "m1-lem-curve-degrees",
-            "m1-lem-label-rank",
             "m1-cor-index-base-change"
           ]
         },
@@ -548,9 +521,7 @@
           "kind": "proposition",
           "source": "A valued lift and descent of marked covers",
           "detail": "There is an extension K_s/K_b with value group Q and residue field F_0 which is spherically complete. Every finite extension L/K_s , equipped with an extension of its valuation, has value group Q ,…",
-          "dependsOn": [
-            "m1-prop-mixed-lift"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-orthogonal-bases",
@@ -560,9 +531,7 @@
           "kind": "lemma",
           "source": "A valued lift and descent of marked covers",
           "detail": "Let K_* be a spherically complete field with value group Q , valuation ring R_* , maximal ideal m_* , and residue field k_* . Let V be a finite-dimensional K_* -vector space with a valuation norm :V…",
-          "dependsOn": [
-            "m1-prop-spherical-base"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-simultaneous-residues",
@@ -572,10 +541,7 @@
           "kind": "lemma",
           "source": "A valued lift and descent of marked covers",
           "detail": "[Simultaneous residue approximation] Let T be a nontrivially valued field with value group Q and infinite residue field k_T . Let U/T be finite and let w_1,,w_r be distinct prolongations of its…",
-          "dependsOn": [
-            "m1-prop-mixed-lift",
-            "m1-prop-spherical-base"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-marked-cover-classification",
@@ -585,9 +551,7 @@
           "kind": "lemma",
           "source": "A valued lift and descent of marked covers",
           "detail": "After choosing oriented handle and puncture generators on the complex punctured curve, isomorphism classes of marked J -covers branched only at _1,,_n correspond bijectively to \\[ \\ (x,y,u_1,,u_n) J^…",
-          "dependsOn": [
-            "m1-prop-mixed-lift"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-small-orbit-descent",
@@ -597,9 +561,7 @@
           "kind": "proposition",
           "source": "A valued lift and descent of marked covers",
           "detail": "[Descent from a small Sylow orbit] Assume O_p(J)=1 and fix a multiset C as in . There is a finite Galois extension M/K_s through which the action on T_ C factors. Let P_ be a Sylow p -subgroup of…",
-          "dependsOn": [
-            "m1-lem-marked-cover-classification"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-residue-permutations",
@@ -610,8 +572,7 @@
           "source": "A valued lift and descent of marked covers",
           "detail": "Let L/K_s be finite, with residue F , and set L'=LK_b' . In the residue field of L' , form S=FF' using the residues of its two subfields. Then L'/L and S/F are finite Galois extensions, the residue…",
           "dependsOn": [
-            "m1-prop-spherical-base",
-            "m1-prop-mixed-lift"
+            "m1-prop-spherical-base"
           ]
         },
         {
@@ -642,9 +603,7 @@
           "kind": "lemma",
           "source": "Specialization, connectedness, and the tuple count",
           "detail": "For all sufficiently large j , simultaneous residue gives an injection A_j/ m_R A_j _ w V H^0(C_w, O_ C_w (jD_w)). These maps respect products. If a section vanishes on the reduced inverse images of…",
-          "dependsOn": [
-            "m1-lem-gauss-section-rule"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-inseparable-residue-quotient",
@@ -678,12 +637,8 @@
           "detail": "Let R be a valuation ring of a characteristic-zero field L . If a flat projective R -scheme U of finite presentation has geometrically integral generic fiber, then its special fiber is geometrically…",
           "dependsOn": [
             "m1-prop-no-small-cover",
-            "m1-prop-specialization-model",
-            "m1-thm-tuple-divisibility",
             "m1-thm-main",
-            "m1-prop-group-reduction",
-            "m1-lem-normalizer-projection",
-            "m1-cor-block-consequences"
+            "m1-lem-normalizer-projection"
           ]
         },
         {
@@ -706,9 +661,7 @@
           "kind": "corollary",
           "source": "Further consequences",
           "detail": "[Functorial Alperin weight identity] Let b be a block idempotent of kG , where G is finite. Let S_p(G) consist of all strict chains =(1=P_0<P_1<<P_n) of p -subgroups, including (1) . Put \\[ ||=n,…",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -727,7 +680,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

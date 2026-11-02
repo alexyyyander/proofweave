@@ -162,7 +162,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Coulomb-Ground-State-Density-without-Kohn-Sham-Ensemble-Representation-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A Coulomb ground-state density without Kohn-Sham ensemble representation; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A Coulomb ground-state density without Kohn-Sham ensemble representation.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -203,9 +203,7 @@
           "kind": "proposition",
           "source": "The Coulomb system and its small-coupling limit",
           "detail": "[Small repulsive coupling] Fix \\(D100\\). For all sufficiently small \\(0\\), the ionic operator \\(H_ 2, \\) has a simple isolated ground state, and \\(H_ 3, \\) has a simple isolated ground state \\(_\\) in…",
-          "dependsOn": [
-            "m1-prop-two-centre-spectrum"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-density-regularity",
@@ -237,9 +235,7 @@
           "kind": "lemma",
           "source": "Exterior channels and the density near the median plane",
           "detail": "[Cutoff channel equation] There are an exterior \\(\\)-valued function \\(F\\), a nonnegative bounded multiplication operator \\(W(x)\\) on the ionic variables, and \\(>\\) such that (- _x 2 +k^2 2 +B+u(x)+…",
-          "dependsOn": [
-            "m1-prop-small-coupling"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-channel-expansion",
@@ -249,9 +245,7 @@
           "kind": "lemma",
           "source": "Exterior channels and the density near the median plane",
           "detail": "[Slow-channel expansion] Write \\(PF= f\\). With every fixed finite number of angular derivatives, \\|F\\|=O(A), \\|QF\\|=O(A/r^2). There are smooth real odd scalar functions \\(a_0,a_1,a_2\\) on \\( S^2\\)…",
-          "dependsOn": [
-            "m1-lem-channel-cutoff"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-plane-coefficient",
@@ -261,10 +255,7 @@
           "kind": "lemma",
           "source": "Exterior channels and the density near the median plane",
           "detail": "[Complementary expansion and plane coefficient] There are smooth exponentially localized \\(Q\\)-valued angular coefficients \\(T_2,T_3,T_4\\), bounded uniformly for small \\(\\), such that QF=bG+ A (T_2…",
-          "dependsOn": [
-            "m1-prop-density-properties",
-            "m1-lem-density-regularity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-fixed-parameter-channels",
@@ -274,9 +265,7 @@
           "kind": "proposition",
           "source": "Exterior channels and the density near the median plane",
           "detail": "[Channels at a fixed coupling] Suppose \\(D\\) satisfies and \\[ k_0>0.98, <49/45. \\] Fix \\(t(0,1]\\). Assume the two-electron ground level is isolated and simple with an even ionic singlet, and the…",
-          "dependsOn": [
-            "m1-lem-channel-cutoff"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-angle-minimizer",
@@ -309,9 +298,7 @@
           "kind": "proposition",
           "source": "An angle minimum and its spectral gap",
           "detail": "[The two orbital equations] For a folded minimizer define g= n, h= n. Then \\(g,h H^1(^3) H^2_ loc (^3)\\), \\(g\\) is even and strictly positive, and \\(h\\) is odd and strictly positive on \\(_+\\).…",
-          "dependsOn": [
-            "m1-prop-angle-minimizer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-strip-solution",
@@ -331,10 +318,7 @@
           "kind": "proposition",
           "source": "An angle minimum and its spectral gap",
           "detail": "[Uniform exterior gap] For sufficiently large \\(D\\), there are \\(_0>0\\) and \\(R_0<\\) such that every folded minimizing angle for \\(0<_0\\) satisfies 12_ _+ g^2||^2 0.03_ _+ g^2||^2 for tests supported…",
-          "dependsOn": [
-            "m1-lem-strip-solution",
-            "m1-prop-angle-convergence"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-weighted-gap",
@@ -345,7 +329,6 @@
           "source": "An angle minimum and its spectral gap",
           "detail": "[The gap at the second orbital] For sufficiently large \\(D\\) and all sufficiently small \\(0\\), every folded minimizing angle satisfies 12_ ^3 g^2||^2 d( _ ^3 g^2||^2 - |_ ^3 g^2|^2 _ ^3 g^2 ),…",
           "dependsOn": [
-            "m1-prop-two-centre-spectrum",
             "m1-prop-exterior-gap"
           ]
         },
@@ -357,9 +340,7 @@
           "kind": "lemma",
           "source": "An angle minimum and its spectral gap",
           "detail": "[A quantitative local test for the gap] Let \\(b,e,n_0,_*\\) be the zero-coupling data for a fixed \\(D\\) whose even gap satisfies \\(_ ev >0.2\\). Let \\(n\\) satisfy the hypotheses of , be axisymmetric,…",
-          "dependsOn": [
-            "m1-lem-strip-solution"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-ensemble-certificate",
@@ -369,10 +350,7 @@
           "kind": "proposition",
           "source": "Certification of the ensemble kinetic minimum",
           "detail": "[An ensemble kinetic certificate] Assume the density regularity of , the orbital hypotheses of , and the weighted gap . Then the formal potential V satisfies _ ^3 n|V|< . Every ensemble with density…",
-          "dependsOn": [
-            "m1-lem-density-regularity",
-            "m1-prop-orbital-equations"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-potential-identification",
@@ -382,9 +360,7 @@
           "kind": "proposition",
           "source": "Certification of the ensemble kinetic minimum",
           "detail": "[Transfer to a representing Hamiltonian] Assume the hypotheses of . Let v L^ 3/2 (^3)+L^(^3) be real and spin independent, and let h_v=-/2+v be its spatial one-particle operator, defined by the…",
-          "dependsOn": [
-            "m1-prop-ensemble-certificate"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-translated-orbital-compactness",
@@ -404,9 +380,7 @@
           "kind": "proposition",
           "source": "The obstruction from the median plane",
           "detail": "[The unique potential limit at infinity] Assume and the density translation limits . For every sequence \\(|y_j|\\), every local weak-star subsequential limit of \\(V_ b (y_j+)\\) is the constant…",
-          "dependsOn": [
-            "m1-lem-translated-orbital-compactness"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-exterior-form-limit",
@@ -427,7 +401,6 @@
           "source": "The obstruction from the median plane",
           "detail": "[A fixed-density obstruction] Let \\(n,,g,h,V,d\\) have the analytic properties stated at the beginning of this section, with \\(d>0\\). Suppose that hold with fixed \\(k>0\\) and \\(\\), and that the…",
           "dependsOn": [
-            "m1-prop-ensemble-certificate",
             "m1-prop-potential-identification"
           ]
         },
@@ -439,10 +412,7 @@
           "kind": "theorem",
           "source": "The obstruction from the median plane",
           "detail": "[A family of finite Coulombic counterexamples] For every sufficiently large fixed \\(D\\), there is an integer \\(Z_0(D)\\) such that, for every integer \\(Z Z_0(D)\\), the three-electron Coulomb…",
-          "dependsOn": [
-            "m1-thm-obstruction",
-            "m1-prop-scaling"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-parameter-radius",
@@ -453,7 +423,6 @@
           "source": "An exact choice of the charges and nuclear positions",
           "detail": "[Finiteness of the radius and positivity of the margin] The set in is nonempty. Consequently \\(M\\) is a finite integer, and the number \\(\\) in is strictly positive.",
           "dependsOn": [
-            "m1-prop-small-coupling",
             "m1-prop-two-centre-spectrum"
           ]
         },
@@ -465,16 +434,7 @@
           "kind": "lemma",
           "source": "An exact choice of the charges and nuclear positions",
           "detail": "[The charge is finite and passes all tests] The supremum in is finite. The resulting \\(Z\\) is a positive integer, and \\(t_*=1/Z\\) is regular and lies outside \\( B\\).",
-          "dependsOn": [
-            "m1-lem-parameter-radius",
-            "m1-prop-angle-convergence",
-            "m1-lem-strip-solution",
-            "m1-thm-main",
-            "m1-prop-fixed-parameter-channels",
-            "m1-lem-quantitative-gap",
-            "m1-thm-obstruction",
-            "m1-prop-scaling"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-hxc-first-variation",
@@ -506,7 +466,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -262,7 +262,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/quasi-isometric-recognition-of-virtually-polycyclic-groups-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Quasi-isometric recognition of virtually polycyclic groups; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Quasi-isometric recognition of virtually polycyclic groups.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -370,7 +370,6 @@
           "source": "Weighted boxes and path packing",
           "detail": "[Logarithmic distortion] There is a constant C such that \\[ |n|_G C(2+\\|_Nn\\|)(n N). \\] For fixed constants controlling |d|_D/r and the amplitude factor, if |d|_D=O(r) , |t| e^ rs_i(E)+o(r) , and _i(…",
           "dependsOn": [
-            "m1-lem-product-schemes",
             "m1-lem-canonical-height"
           ]
         },
@@ -521,9 +520,7 @@
           "kind": "lemma",
           "source": "Stationary height slopes",
           "detail": "[The inverse coupling] Let be an invariant probability on X and let A(W) . Suppose there are _j L^2(X,;W) satisfying with l=A . There is a finite nonzero U -invariant measure on Y and functions _j…",
-          "dependsOn": [
-            "m1-lem-pair-sections"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-stationary-slopes",
@@ -632,8 +629,7 @@
           "detail": "[Affine profile limits] For every fixed with 0<c<1/2 and every sequence in Definition~ , the profile laws are relatively compact. Every function in the support of every limiting law has the form…",
           "dependsOn": [
             "m1-lem-profile-convex-increments",
-            "m1-lem-profile-segment-volume",
-            "m1-lem-affinity-criterion"
+            "m1-lem-profile-segment-volume"
           ]
         },
         {
@@ -644,9 +640,7 @@
           "kind": "corollary",
           "source": "Affine limits of chart profiles",
           "detail": "[Distance to the affine class] Fix as above, a function (r)0 tending to zero, a nonempty compact set Z U_ , and >0 . Uniformly over the fixed family of map pairs, all x G , and all deterministic k_0…",
-          "dependsOn": [
-            "m1-prop-affine-profiles"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-neighbor-labels",
@@ -668,8 +662,6 @@
           "detail": "[Volume from endpoint tuples] Fix a positive integer h and compact sets E_1,,E_h W containing 0 . Suppose that, for each r , there are M_r tuples (y_1,,y_h) G^h , separated by a sufficiently large…",
           "dependsOn": [
             "m1-lem-d-scaling",
-            "m1-lem-lift-multiplicity",
-            "m1-prop-neighbor-labels",
             "m1-prop-affine-profiles",
             "m1-lem-log-distortion",
             "m1-lem-product-schemes",
@@ -708,11 +700,8 @@
           "source": "Comparing the offsets of neighboring sheets",
           "detail": "[Equality of neighboring offsets] There exists _2>0 such that, for every fixed 0<_2 , the following holds. Let r , let F range over the fixed family of smoothed quasi-isometries, let x G vary, and…",
           "dependsOn": [
-            "m1-prop-neighbor-labels",
             "m1-lem-strict-width-tiling",
             "m1-lem-product-schemes",
-            "m1-lem-log-distortion",
-            "m1-lem-support-switch-paths",
             "m1-lem-d-scaling",
             "m1-prop-affine-profiles",
             "m1-lem-cone-quotients",
@@ -729,7 +718,6 @@
           "detail": "[Suffix comparison and concentration] Let a be uniform on B_r( C) . Along every sequence r , with arbitrary maps F , basepoints x , and suffixes \\[ k_0 B_r((1+) C,e^ _r r ), _r0, \\] one has \\|f_…",
           "dependsOn": [
             "m1-lem-product-schemes",
-            "m1-prop-neighbor-offsets",
             "m1-lem-box-calculus",
             "m1-prop-affine-profiles",
             "m1-lem-log-distortion"
@@ -773,8 +761,7 @@
           "dependsOn": [
             "m1-prop-uniform-sublinear",
             "m1-lem-path-packing",
-            "m1-lem-cone-quotients",
-            "m1-lem-support-switch-paths"
+            "m1-lem-cone-quotients"
           ]
         },
         {
@@ -810,11 +797,8 @@
           "source": "Quotient boundaries and bounded height error",
           "detail": "[Averaging translates of a Radon measure] Let L be a connected simply connected nilpotent Lie group with Haar measure and a left invariant Riemannian metric. Let be a Radon measure on L . Suppose a…",
           "dependsOn": [
-            "m1-thm-bounded-height",
             "m1-lem-lipschitz-pairs",
             "m1-prop-uniform-sublinear",
-            "m1-lem-ray-boundaries",
-            "m1-lem-boundary-volume",
             "m1-lem-leaf-height"
           ]
         },
@@ -849,14 +833,12 @@
           "source": "From bounded heights to polycyclicity",
           "detail": "Let G be a connected simply connected real-triangulable unimodular Lie group with height homomorphism :G W . Let H be a finitely generated amenable group quasi-isometric to G . Assume the uniform…",
           "dependsOn": [
-            "m1-lem-height-kernel-growth",
             "m1-thm-recognition",
             "m1-lem-model-reduction",
             "m1-lem-canonical-height",
             "m1-lem-d-scaling",
             "m1-thm-bounded-height",
             "m1-cor-lattice-recognition",
-            "m1-lem-lipschitz-pairs",
             "m1-lem-cartan-model"
           ]
         }
@@ -877,7 +859,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

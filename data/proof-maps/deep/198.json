@@ -107,7 +107,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-algebra-of-infinite-little-finitistic-dimension-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from An algebra of infinite little finitistic dimension; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from An algebra of infinite little finitistic dimension.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -169,9 +169,7 @@
           "source": "A selection process with unbounded extinction",
           "detail": "For every m1 , there is a finite quotient F_m of G in which the images of z_0,,z_ m-1 generate a central subgroup isomorphic to (/2)^m .",
           "dependsOn": [
-            "m1-prop-selection",
-            "m1-lem-group-finite-presentation",
-            "m1-lem-central-shift"
+            "m1-prop-selection"
           ]
         },
         {
@@ -233,9 +231,7 @@
           "source": "Realization by a bimodule complex",
           "detail": "Let \\(D_0,D_1,D_2\\) be bounded complexes of finitely generated projective right \\(B\\)-modules. Suppose that each arrow \\(a:i j\\) of \\(B\\) is assigned a chain map \\(f_a:D_i D_j\\), and that each…",
           "dependsOn": [
-            "m1-thm-realization",
-            "m1-prop-lifted-diagram",
-            "m1-lem-directed-bound"
+            "m1-prop-lifted-diagram"
           ]
         },
         {
@@ -256,9 +252,7 @@
           "kind": "proposition",
           "source": "Simulation by an ordinary bimodule",
           "detail": "The algebra \\(D\\) has finite global dimension on both sides. Let \\(F=X_D-\\). For every complex \\(Z\\) of left \\(B\\)-modules, regarded as a complex on the first factor of \\(D\\), there is an isomorphism…",
-          "dependsOn": [
-            "m1-lem-directed-bound"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-bar-splitting",
@@ -279,10 +273,6 @@
           "source": "A square-zero extension and projective dimension",
           "detail": "In the setting of , suppose that \\(D\\) has finite global dimension on both sides and that \\(N\\) is finite-dimensional. If \\(F^tN0\\) for some \\(t1\\), then \\(_A N<\\). If \\(F^rN0\\), then \\(_A N r\\),…",
           "dependsOn": [
-            "m1-thm-main",
-            "m1-prop-selection",
-            "m1-thm-realization",
-            "m1-prop-ordinary-simulation",
             "m1-cor-left-right-asymmetry"
           ]
         }
@@ -303,7 +293,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

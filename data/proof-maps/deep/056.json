@@ -362,7 +362,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Termination-of-generalized-log-canonical-flips-on-compact-Kahler-fourfolds-October-7-2026/termination-generalized-lc-kahler-fourfolds.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Termination of generalized log canonical flips on compact Kähler fourfolds; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Termination of generalized log canonical flips on compact Kähler fourfolds.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -525,7 +525,6 @@
           "source": "Terminal junctions and surface centers",
           "detail": "[Finiteness above marked surfaces] In the setting of Proposition~ , there is a finite set \\[ A_ surf [,1] \\] such that a_i(E) A_ surf whenever E I and _ X_i (E) is a surface. After passing to a…",
           "dependsOn": [
-            "m1-lem-nef-defect",
             "m1-lem-small-comparison"
           ]
         },
@@ -602,7 +601,6 @@
           "source": "The branch inequality",
           "detail": "[Global places over a singular curve] For every irreducible curve component \\(T\\) of \\( Y\\), with \\(b_T\\) as in and the fixed resolution \\(g: Y Y\\), \\[ b_T\\ \\ \\#\\ c E a prime component of (g):\\\\…",
           "dependsOn": [
-            "m1-lem-link-quotient",
             "m1-thm-branch"
           ]
         },
@@ -651,8 +649,7 @@
           "detail": "[Change of the difficulty] The difficulty is nonincreasing under every coefficient change and every small step of the truncated terminal chain. More precisely: Suppose \\('\\) is a coefficient change…",
           "dependsOn": [
             "m1-lem-small-comparison",
-            "m1-prop-difficulty-finite",
-            "m1-lem-difficulty-ranks"
+            "m1-prop-difficulty-finite"
           ]
         },
         {
@@ -700,8 +697,7 @@
           "dependsOn": [
             "m1-lem-cycle-loss",
             "m1-thm-special-termination",
-            "m1-lem-small-comparison",
-            "m1-thm-strong-gklt"
+            "m1-lem-small-comparison"
           ]
         },
         {
@@ -714,12 +710,9 @@
           "detail": "[A nonempty gdlt lift] Let \\[ X\\ f\\ Z\\ f^+\\ X^+ \\] be any one of the small diagrams allowed in Theorem~ , with normal globally Weil \\(\\)-factorial compact K\\\"ahler fourfolds on the two sides,…",
           "dependsOn": [
             "m1-prop-relative-program",
-            "m1-thm-gdlt",
             "m1-lem-program-comparison",
             "m1-lem-small-comparison",
-            "m1-lem-nef-ample",
-            "m1-thm-main",
-            "m1-prop-gdlt-modification"
+            "m1-lem-nef-ample"
           ]
         }
       ]
@@ -736,7 +729,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Termination-for-projective-log-canonical-fourfolds-with-rational-boundary-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Termination for projective log canonical fourfolds with rational boundary; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Termination for projective log canonical fourfolds with rational boundary.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -787,9 +780,7 @@
           "kind": "corollary",
           "source": "Graph comparisons and cycle ranks",
           "detail": "To prove termination of a fourfold program it suffices to show that, on its small tail, positive-side bad surfaces occur only finitely often.",
-          "dependsOn": [
-            "m2-lem-cycle-rank"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-two-ends",
@@ -819,9 +810,7 @@
           "kind": "lemma",
           "source": "Terminal junctions and the coefficients that can vary",
           "detail": "For a fixed klt pair (X,B) there are finitely many exceptional divisorial valuations with a(;X,B)1 .",
-          "dependsOn": [
-            "m2-lem-snc-valuations"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-echoes",
@@ -933,7 +922,6 @@
             "m2-lem-restriction-purity",
             "m2-thm-branch",
             "m2-lem-conductor",
-            "m2-prop-local-valuations",
             "m2-lem-echoes"
           ]
         },
@@ -1012,8 +1000,6 @@
           "detail": "Let q:Y_e Y be a dominant \\'etale morphism of normal integral complex varieties, let Y , and fix ' Y_e above such that ()(') is an isomorphism. Suppose that Y is Q -Gorenstein. On normalized…",
           "dependsOn": [
             "m2-prop-local-valuations",
-            "m2-local-generic-lines",
-            "m2-local-etale-lines",
             "m2-local-degree-independence"
           ]
         },
@@ -1038,8 +1024,6 @@
           "dependsOn": [
             "m2-lem-ceiling-error",
             "m2-prop-codim-two",
-            "m2-thm-branch",
-            "m2-lem-echoes",
             "m2-lem-graph"
           ]
         },
@@ -1052,10 +1036,8 @@
           "source": "Descent of the difficulty and klt termination",
           "detail": "Every program in Definition~ starting with a projective klt fourfold pair over \\( C\\) with rational boundary has finitely many birational steps. No pseudo-effectivity hypothesis is needed.",
           "dependsOn": [
-            "m2-lem-cycle-rank",
             "m2-prop-terminal-chain",
             "m2-prop-codim-two",
-            "m2-difficulty-preparation",
             "m2-prop-difficulty",
             "m2-lem-graph"
           ]
@@ -1104,11 +1086,9 @@
           "source": "Log canonical pairs and continuation of the program",
           "detail": "Every program in Definition~ starting from a projective lc fourfold pair over C with rational boundary has finitely many birational steps.",
           "dependsOn": [
-            "m2-lem-cycle-rank",
             "m2-lem-vertical-ray",
             "m2-lem-dlt-elementary",
             "m2-thm-dlt-termination",
-            "m2-lem-graph",
             "m2-lem-two-ends"
           ]
         },
@@ -1141,7 +1121,6 @@
           "source": "Change of algebraically closed field",
           "detail": "Let k be any algebraically closed field of characteristic zero. A countable program of the kind in Definition~ , including all its prescribed ray choices, descends to a common countable algebraically…",
           "dependsOn": [
-            "m2-lem-snc-valuations",
             "m2-lem-numerical-extension"
           ]
         },
@@ -1154,11 +1133,7 @@
           "source": "Change of algebraically closed field",
           "detail": "Proposition~ holds over any algebraically closed characteristic-zero field, with exactly the contraction and mixed-step conventions stated there.",
           "dependsOn": [
-            "m2-lem-numerical-extension",
-            "m2-prop-continuation",
-            "m2-thm-main",
-            "m2-prop-field-transfer",
-            "m2-prop-lc-lift"
+            "m2-lem-numerical-extension"
           ]
         },
         {
@@ -1209,7 +1184,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

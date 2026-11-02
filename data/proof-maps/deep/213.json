@@ -142,7 +142,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/No-percolation-at-criticality-on-quasi-transitive-graphs-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from No percolation at criticality on quasi-transitive graphs; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from No percolation at criticality on quasi-transitive graphs.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -269,8 +269,7 @@
           "source": "A joint gluing inequality",
           "detail": "[Cluster-column positivity] For every nonnegative increasing F on D_k , v_k^F-( E_ _k F)h_k \\ _ l>k a_lh_l:a_l0\\ . In particular H^ -1 v_k^F has nonnegative coordinates.",
           "dependsOn": [
-            "m1-lem-deleted-residual",
-            "m1-thm-joint-gluing"
+            "m1-lem-deleted-residual"
           ]
         },
         {
@@ -322,8 +321,7 @@
           "source": "Nilpotent quotients and bounded projections",
           "detail": "[Exclusion of bounded projections] Let (G,,,N) satisfy the hypotheses of Theorem~ , with (G)<1 . Fix a cyclic series for N with h infinite factors and an epimorphism :N Z^2 . Let be given by . Assume…",
           "dependsOn": [
-            "m1-lem-rank",
-            "m1-thm-structured"
+            "m1-lem-rank"
           ]
         },
         {
@@ -345,8 +343,7 @@
           "source": "Two approximate coordinate moves",
           "detail": "[Uniqueness under subexponential growth] Let G be infinite, connected, locally finite and quasi-transitive, with V_+(r)=o(r) . If p(0,1) and Bernoulli bond percolation at p has an infinite cluster…",
           "dependsOn": [
-            "m1-prop-two-cluster",
-            "m1-prop-moves"
+            "m1-prop-two-cluster"
           ]
         },
         {
@@ -385,7 +382,6 @@
             "m1-thm-main",
             "m1-lem-orbit-growth",
             "m1-thm-exponential",
-            "m1-thm-superpoly",
             "m1-prop-nilpotent-model",
             "m1-thm-structured"
           ]
@@ -419,7 +415,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

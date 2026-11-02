@@ -212,7 +212,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Infinitely-many-closed-geodesic-images-on-every-Riemannian-sphere-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Infinitely many closed geodesic images on every Riemannian sphere; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Infinitely many closed geodesic images on every Riemannian sphere.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -330,8 +330,7 @@
           "detail": "[The normal shift] Put \\(s=(m,D_i)\\) and \\(k=m/s\\). The ordinary local rank at \\(c_i^m\\), in degree \\(j\\), equals the ordinary local rank of the corresponding root label at \\(c_i^s\\), in degree…",
           "dependsOn": [
             "m1-lem-local-iteration",
-            "m1-lem-local-lens",
-            "m1-thm-local-control"
+            "m1-lem-local-lens"
           ]
         },
         {
@@ -375,8 +374,7 @@
           "source": "Shortening families in a fixed degree",
           "detail": "[A fixed-dimensional family shortens by one] Let M be compact and simply connected. For each integer j0 there are a_j,H_j>0 such that every H^1 -continuous family :P A_a , where P is a finite…",
           "dependsOn": [
-            "m1-lem-arclength",
-            "m1-lem-shortening-block"
+            "m1-lem-arclength"
           ]
         },
         {
@@ -467,8 +465,7 @@
           "dependsOn": [
             "m1-lem-cj-public-comparison",
             "m1-thm-filtered-interchange",
-            "m1-lem-cj-operations",
-            "m1-prop-fixed-degree-death"
+            "m1-lem-cj-operations"
           ]
         },
         {
@@ -480,7 +477,6 @@
           "source": "One filling increment in every degree",
           "detail": "[Uniform ordinary death] For every smooth Riemannian metric on S^n , n3 , there is a constant D>0 such that, for every integer j0 and every real a>0 , (H_j(X_a) H_j()) & (H_j(X_a) H_j(X_ a+D )), \\\\…",
           "dependsOn": [
-            "m1-prop-sphere-powers",
             "m1-prop-fixed-degree-death",
             "m1-lem-cj-operations",
             "m1-prop-absolute-unit",
@@ -518,8 +514,7 @@
           "detail": "[Round attachment] The negative bundle of \\(C_m\\) has rank \\(a_m\\), and the kernel of the round Hessian is exactly \\(TC_m\\). For every closed subgroup \\(H G\\), the crossing has a Thom isomorphism…",
           "dependsOn": [
             "m1-lem-local-analytic",
-            "m1-lem-local-strips",
-            "m1-lem-local-lens"
+            "m1-lem-local-strips"
           ]
         },
         {
@@ -626,7 +621,6 @@
           "source": "Doubling and the first activation",
           "detail": "[Free rank and torsion at a finite cut] Suppose that 2L>0 is regular, and put H=_j H_G^j(X_ 2L ,M) . This is a finitely generated graded -module. Its torsion submodule T is finite-dimensional and…",
           "dependsOn": [
-            "m1-prop-gysin",
             "m1-bud-localization"
           ]
         },
@@ -642,9 +636,7 @@
             "m1-act-module-rank",
             "m1-thm-global-generators",
             "m1-bud-localization",
-            "m1-thm-spheres",
             "m1-thm-bounded-transients",
-            "m1-trans-degree-gaps",
             "m1-thm-local-control",
             "m1-cor-finite-cover",
             "m1-lem-local-prime-images"
@@ -667,7 +659,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

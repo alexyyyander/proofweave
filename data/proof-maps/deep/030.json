@@ -177,7 +177,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Modularity-of-elliptic-curves-over-imaginary-quadratic-fields-October-4-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Modularity of elliptic curves over imaginary quadratic fields; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Modularity of elliptic curves over imaginary quadratic fields.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -208,9 +208,7 @@
           "kind": "lemma",
           "source": "Cyclic covers and two degenerations",
           "detail": "In the constant- E family, blow up the surface at the collision point over either boundary parameter in , and normalize the resulting surface in Y^m=f_R . This gives a regular semistable model near…",
-          "dependsOn": [
-            "m1-geo-family"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-geo-compact-type",
@@ -265,8 +263,7 @@
           "source": "Integral homology and explicit monodromy",
           "detail": "After a cyclic indexing of the lifts, their homology classes are [_i]=(a_i-a_ i+1 ), i/m, or the same formula with i-1 in place of i+1 .",
           "dependsOn": [
-            "m1-mon-slit",
-            "m1-mon-integral-module"
+            "m1-mon-slit"
           ]
         },
         {
@@ -385,8 +382,7 @@
           "source": "Prescribing the local reduction type",
           "detail": "[Local constancy of the semistable type] Let L_0 be a local field, let X be a smooth L_0 -variety, and let A X be an abelian scheme of relative dimension g . For x_0 X(L_0) , there exist a finite…",
           "dependsOn": [
-            "m1-loc-torsion",
-            "m1-loc-frobenius"
+            "m1-loc-torsion"
           ]
         },
         {
@@ -433,9 +429,7 @@
           "kind": "lemma",
           "source": "One specialization with all residual properties",
           "detail": "For each pair in , the geometric monodromy of H^1(C_m,_) on every nontrivial rotation-character space is absolutely irreducible. Its image contains opposite nonidentity root unipotents on that space.…",
-          "dependsOn": [
-            "m1-mon-transvections"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-res-trivial-character",
@@ -468,7 +462,6 @@
           "source": "One specialization with all residual properties",
           "detail": "Let S_K be a finite set of finite places of K containing all places above 3p . For each v_0 S_K , prescribe a nonempty open subset _ v_0 U(K_ v_0 ) . There exists a single t U(K) lying in every _ v_0…",
           "dependsOn": [
-            "m1-res-geometric",
             "m1-res-finite-specialization",
             "m1-res-trivial-character",
             "m1-sys-elliptic"
@@ -506,7 +499,6 @@
           "source": "Propagation of automorphy and descent",
           "detail": "The elliptic curve B/F is modular. More precisely, H^1(B) is realized by a cuspidal weight-zero regular algebraic representation of _2(_F) .",
           "dependsOn": [
-            "m1-sys-elliptic",
             "m1-res-specialization",
             "m1-aut-seed",
             "m1-aut-lift",
@@ -544,7 +536,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

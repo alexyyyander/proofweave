@@ -82,7 +82,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Failure-of-Bounded-Approximation-in-a-Lipschitz-Free-Space-over-a-Uniformly-Discrete-Metric-Space-September-26-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A uniformly discrete counterexample to bounded approximation in Lipschitz-free spaces; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A uniformly discrete counterexample to bounded approximation in Lipschitz-free spaces.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -124,7 +124,6 @@
           "source": "From bounded blocks to AP without BAP",
           "detail": "Let (N,d,o) be a countable pointed metric space such that d(x,y)1 for distinct points and diamN B< . The map \\[ J:_1(N\\ o\\ )(N), Jc=_ x o c_x_x, \\] is a linear isomorphism onto (N) and satisfies…",
           "dependsOn": [
-            "m1-cor-renorming",
             "m1-thm-blocks"
           ]
         },
@@ -203,11 +202,8 @@
           "detail": "For every incidence e:x y of G , there is a 1 -Lipschitz function f_e:M_p such that \\[ f_e(j)=b_x(j)(j S E_e), f_e(j')=-b_y(j')(j' S E_ e ). \\]",
           "dependsOn": [
             "m1-lem-block-geometry",
-            "m1-lem-exceptional-directions",
             "m1-thm-blocks",
-            "m1-lem-finite-support",
-            "m1-lem-measure-bounds",
-            "m1-lem-rare-walks"
+            "m1-lem-finite-support"
           ]
         }
       ]
@@ -227,7 +223,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

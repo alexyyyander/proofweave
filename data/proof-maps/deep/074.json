@@ -422,7 +422,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Kakeya-maximal-conjecture-in-three-dimensions-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Kakeya maximal conjecture in three dimensions; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Kakeya maximal conjecture in three dimensions.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -463,9 +463,7 @@
           "kind": "lemma",
           "source": "Weighted configurations and critical exponents",
           "detail": "[Regularization and inherited branching] The following assertions hold. [label=()] Every sequence of indexed configurations has, after passage to a subsequence, an extensive refinement with a uniform…",
-          "dependsOn": [
-            "m1-lem-finite-cleaning"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-active-weight-cleaning",
@@ -654,9 +652,7 @@
           "kind": "lemma",
           "source": "Local bounds, planar filling, and positive temporal deficit",
           "detail": "[Positive flat delay] Every hybrid or exact equality with H>0 has a profile that is identically zero on an interval [0,] with >0 .",
-          "dependsOn": [
-            "m1-lem-prefix-extension"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-loc-flat-saturation",
@@ -679,8 +675,7 @@
           "source": "Local bounds, planar filling, and positive temporal deficit",
           "detail": "[Anisotropic normalization] Suppose that on an extensive regular graph, over larger blocks of K_1=N^ _1 bins, there are disjoint indexed-block assignments to saturated plates on a flat scale K=N^ K_1…",
           "dependsOn": [
-            "m1-cor-active-weight-cleaning",
-            "m1-lem-regularization"
+            "m1-cor-active-weight-cleaning"
           ]
         },
         {
@@ -693,7 +688,6 @@
           "detail": "[Positive-deficit equality] For h_0 h>0 , the total deficits =F(1) of hybrid equalities are bounded below by a positive constant, uniformly once h_0 is sufficiently close to h . Consequently there is…",
           "dependsOn": [
             "m1-loc-flat-saturation",
-            "m1-lem-anisotropic",
             "m1-lem-hybrid-equality"
           ]
         },
@@ -719,8 +713,7 @@
           "detail": "[Compatible finite cuts] Fix a nontrivial equality and a finite increasing mesh =_0<_1<<_J<1 . There is an extensive refinement with simultaneous saturated assignments at these physical prefixes.…",
           "dependsOn": [
             "m1-lem-derivative-capture",
-            "m1-prop-local-bound",
-            "m1-lem-regularization"
+            "m1-prop-local-bound"
           ]
         },
         {
@@ -733,7 +726,6 @@
           "detail": "[Packing and inner equality] For a nontrivial equality with delay , fix <<1 and set D_*()=_ s (s-F(s)/v). Then 0 D_*() . On an extensive refinement, the normals of the assigned initial plates used by…",
           "dependsOn": [
             "m1-lem-nested-cuts",
-            "m1-lem-derivative-capture",
             "m1-lem-anisotropic"
           ]
         },
@@ -747,8 +739,6 @@
           "detail": "[Canonical equality profile] There is an exact equality whose profile is F()=(-)_+, 0<<1, =1-, =v/1. Its deficit is v , and is the least initial delay among all equalities with deficit v .",
           "dependsOn": [
             "m1-lem-angle-packing",
-            "m1-lem-flat-delay",
-            "m1-lem-prefix-extension",
             "m1-lem-derivative-capture"
           ]
         },
@@ -799,7 +789,6 @@
           "source": "Two estimates for the stationary configuration",
           "detail": "[Angular Frostman bound] There is >0 , depending only on the fixed stationary parameters, with the following property. For every fixed 0<c<b1 , outside a set of index-- I_c fibers of event…",
           "dependsOn": [
-            "m1-prop-local-bound",
             "m1-lem-estimate-cleaning",
             "m1-lem-anisotropic"
           ]
@@ -884,9 +873,7 @@
           "kind": "lemma",
           "source": "Entropy increments in moving frames",
           "detail": "[Stripe limits of the demand] Fix J(0,1) . For sufficiently small >0 , the right stripe averages of g are at least d almost everywhere on J : 1_0^ g(c,a)\\,da d. If w<1 , the left stripe averages…",
-          "dependsOn": [
-            "m1-prop-entropy-demand"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-projection-rates",
@@ -942,9 +929,7 @@
           "kind": "lemma",
           "source": "Projection constraints from two frames",
           "detail": "[Pair information on the refinement gap] Let K=1+_ , and let J_f be the full observation in the E_0 -frame obtained by increasing every threshold of J_0 by Kb . Along a triangular subsequence as in…",
-          "dependsOn": [
-            "m1-lem-blowup-counts"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-robust-projection",
@@ -968,7 +953,6 @@
             "m1-lem-robust-projection",
             "m1-lem-blowup-counts",
             "m1-lem-pair-information",
-            "m1-prop-projection-rates",
             "m1-lem-pinning"
           ]
         },
@@ -1014,7 +998,6 @@
           "detail": "[Maximal reduction] Let \\(p>2\\) be in the parameter range of Definition~ , and suppose that \\(h(p,0)=0\\). For every \\(>0\\) there is a finite constant \\(C_ p, \\) such that, for all \\(0<<1\\) and all…",
           "dependsOn": [
             "m1-lem-regularization",
-            "m1-thm-main",
             "m1-prop-critical-vanishing"
           ]
         },
@@ -1054,7 +1037,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Every-four-dimensional-Kakeya-set-has-full-Hausdorff-dimension-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Every four-dimensional Kakeya set has full Hausdorff dimension; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Every four-dimensional Kakeya set has full Hausdorff dimension.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1096,7 +1079,6 @@
           "source": "Weighted models and the reduction from arbitrary Kakeya sets",
           "detail": "[Homogenization] After a tempered further selection of inverse-subpower mass and a subsequence, an exact problem has a homogeneous profile \\(f(r)\\) on every prescribed compact depth interval. It is…",
           "dependsOn": [
-            "m2-a01-flattening",
             "m2-a01-density-operations"
           ]
         },
@@ -1109,8 +1091,7 @@
           "source": "Weighted models and the reduction from arbitrary Kakeya sets",
           "detail": "[Angular caps under coarsening] Suppose holds. For \\(0 b<L\\) and \\(0<u L\\), the conditional probability \\[ \\ [V]_ a_u =v p_b\\ , v=[V]_ a_u , \\] under the selected incidence law has typical upper…",
           "dependsOn": [
-            "m2-a01-density-operations",
-            "m2-a01-flattening"
+            "m2-a01-density-operations"
           ]
         },
         {
@@ -1131,9 +1112,7 @@
           "kind": "lemma",
           "source": "Weighted models and the reduction from arbitrary Kakeya sets",
           "detail": "[Saturation and label knowledge] A true system may be restricted, retaining inverse-subpower total mass and enlarging subpower slacks, so that every used chart satisfies m_c q _ _c_ n(r)J_c, and its…",
-          "dependsOn": [
-            "m2-lem-quadratic-sublevel"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-a01-witness-budgets",
@@ -1163,9 +1142,7 @@
           "kind": "lemma",
           "source": "Weighted models and the reduction from arbitrary Kakeya sets",
           "detail": "[Chart normalization and lifting] Let a homogeneous exact problem of length \\(L\\) have a terminal-known atlas at depth \\(0 r<L\\). After discarding extremely light charts and homogenizing their…",
-          "dependsOn": [
-            "m2-a01-density-operations"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-weighted-planks",
@@ -1199,8 +1176,7 @@
           "detail": "[Reduction to a bad weighted problem] If a set \\(K^4\\), with no measurability or compactness assumption, contains a unit segment in every direction and satisfies \\(_ H K<4\\), then there are…",
           "dependsOn": [
             "m2-lem-weighted-planks",
-            "m2-a01-density-operations",
-            "m2-lem-quadratic-sublevel"
+            "m2-a01-density-operations"
           ]
         },
         {
@@ -1244,8 +1220,7 @@
           "source": "Comparison of algebraic sheets and extension of terminal time",
           "detail": "[Local matching of scalar graphs] Fix the base dimension, algebraic degrees, real comparison balls with fixed holomorphic margins, and \\(d_0<1\\). There is \\(_*>0\\) with the following property. Let…",
           "dependsOn": [
-            "m2-lem-algebraic-norm",
-            "m2-lem-two-color-matching"
+            "m2-lem-algebraic-norm"
           ]
         },
         {
@@ -1256,13 +1231,7 @@
           "kind": "lemma",
           "source": "Comparison of algebraic sheets and extension of terminal time",
           "detail": "[Terminal time extension] Fix \\(d_0<1\\) and angular parameters \\(S,>0\\). There are constants \\(C<\\) and \\(c>0\\), depending only on these fixed parameters and the fixed model dimensions and test…",
-          "dependsOn": [
-            "m2-a01-saturation",
-            "m2-lem-quadratic-sublevel",
-            "m2-lem-algebraic-norm",
-            "m2-a02-local-graph-matching",
-            "m2-a02-algebraic-path"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-a03-composition",
@@ -1273,7 +1242,6 @@
           "source": "Critical paths and actual improvements",
           "detail": "[Composition of horizon costs] Let \\(E C(d)\\) have length \\(L\\). If a known atlas at depth \\(r<L\\) has horizon exponent \\(h\\), and \\(F\\) is a homogeneous remaining problem in the original exponent…",
           "dependsOn": [
-            "m2-lem-normalization",
             "m2-a01-angular-coarsening"
           ]
         },
@@ -1296,7 +1264,6 @@
           "source": "Critical paths and actual improvements",
           "detail": "[Critical paths] Fix the model version and its parameters \\(j,S,\\), and suppose bad problems exist. With \\(d_*,k,\\) as above, the following conclusions hold. Every maximizing sequence of length-one…",
           "dependsOn": [
-            "m2-lem-terminal-extension",
             "m2-lem-normalization"
           ]
         },
@@ -1330,9 +1297,7 @@
           "kind": "lemma",
           "source": "Critical paths and actual improvements",
           "detail": "[The finite-sample exclusion] Fix this \\(n,i\\), exact path subsequence, and any finite original-coordinate complexity exponent \\(M^\\#\\). For all sufficiently late \\(N_0\\) there is no output known…",
-          "dependsOn": [
-            "m2-a03-excluded-improvements"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-tangent-palette",
@@ -1343,7 +1308,6 @@
           "source": "Critical paths and actual improvements",
           "detail": "[Prepared tangent data] Assume \\(<\\), and use the guarded diagonal constructed above. One can retain all but \\(o(1)\\) of the relative mass of the original final path and choose an interior parent…",
           "dependsOn": [
-            "m2-a01-largest-axis",
             "m2-lem-algebraic-norm"
           ]
         },
@@ -1386,11 +1350,7 @@
           "source": "Critical paths and actual improvements",
           "detail": "[Original-law recovery of finite lists] Let \\(\\) be an original unnormalized tempered path measure, and let \\(\\) be an arbitrary measurable submeasure. Fix a finite geometric output-label map \\(A\\),…",
           "dependsOn": [
-            "m2-prop-candidate-upgrade",
-            "m2-a02-local-graph-matching",
-            "m2-lem-algebraic-norm",
-            "m2-lem-normalization",
-            "m2-a03-finite-guard"
+            "m2-lem-algebraic-norm"
           ]
         }
       ]
@@ -1416,7 +1376,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

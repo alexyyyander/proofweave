@@ -417,7 +417,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Spectral-scalar-curvature-and-uniform-Urysohn-width-October-5-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Spectral scalar curvature and uniform Urysohn width; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Spectral scalar curvature and uniform Urysohn width.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -478,9 +478,7 @@
           "kind": "lemma",
           "source": "From spectral positivity to a quadratic reserve",
           "detail": "[Global prescribed graph] Let h be a complete smooth metric on a connected manifold M without boundary, and let w C^(M) . With c=10 , there is a smooth function u on M satisfying _ h,w ( _hu 1+|…",
-          "dependsOn": [
-            "m1-pre-angle"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-pre-graph-comparison",
@@ -525,9 +523,7 @@
           "detail": "[One round of separations] Let n4 , let 0<<\\ 1/10,1/(n+1)\\ , and let W,T be supplied by Lemma~ . Put V(t)=t^2+T^2 and L_*=1.004 . Let h_0 be a complete smooth metric on a connected smooth n -manifold…",
           "dependsOn": [
             "m1-stretch-local",
-            "m1-pre-reserve",
-            "m1-pre-supersolution",
-            "m1-interface-width"
+            "m1-pre-supersolution"
           ]
         }
       ]
@@ -544,7 +540,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Spectral-scalar-curvature-and-Urysohn-width-in-dimension-three-October-5-2026/spectral-urysohn-three-manifolds.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Spectral scalar curvature and Urysohn width in dimension three; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Spectral scalar curvature and Urysohn width in dimension three.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -631,9 +627,7 @@
           "kind": "lemma",
           "source": "Cutting to obtain separation",
           "detail": "Every closed connected embedded two-sided hypersurface in intP separates P .",
-          "dependsOn": [
-            "m2-lem-stable-exit"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-double-smoothing",
@@ -696,7 +690,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Positive-scalar-curvature-and-uniform-codimension-two-width-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Positive scalar curvature and uniform codimension-two width; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Positive scalar curvature and uniform codimension-two width.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -801,9 +795,7 @@
           "kind": "lemma",
           "source": "Wide separations at a fixed original scale",
           "detail": "[A complete round] Suppose that \\(h_0\\) is a complete metric, \\(t_0 T\\) is smooth, and \\[ D(h_0,t_0) c+t_0^2 \\] for a constant \\(c\\). Let \\((A_i,B_i)\\) be a finite or countable family of nonempty…",
-          "dependsOn": [
-            "m3-step-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-rounds-warp-identity",
@@ -823,10 +815,7 @@
           "kind": "theorem",
           "source": "Wide separations at a fixed original scale",
           "detail": "[Prescribed widths for a locally finite family] Let \\((M,g)\\) be complete, connected and smooth, with \\(_g1\\). There is a countable set of centers \\((x_i)\\) such that \\[ A_i= B_g(x_i,D), B_i=M…",
-          "dependsOn": [
-            "m3-rounds-round",
-            "m3-rounds-warp-identity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-packet-counts",
@@ -857,13 +846,7 @@
           "source": "Finite cuts with compatible ends",
           "detail": "[Finite compatible cutting] Fix a finite number N_* of labels and the stage constants in . Suppose a stage- r packet diagram is obtained by the regular splitting construction of , with compatible…",
           "dependsOn": [
-            "m3-cut-gmt",
             "m3-cut-generic-uniqueness",
-            "m3-cut-end-convergence",
-            "m3-cut-raw-domination",
-            "m3-shield-compactness",
-            "m3-shield-global",
-            "m3-regular-partition",
             "m3-regular-seam",
             "m3-regular-step",
             "m3-packet-counts",
@@ -888,10 +871,7 @@
           "kind": "lemma",
           "source": "Countably many compatible partitions",
           "detail": "[Consequences and directed dependencies] Suppose the packet geometry and hold at a finite stage. Then the following assertions hold. [label=(),leftmargin=*] The sum of potentials on a whole packet is…",
-          "dependsOn": [
-            "m3-packet-geometry",
-            "m3-cut-gmt"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-countable-step",
@@ -902,22 +882,10 @@
           "source": "Countably many compatible partitions",
           "detail": "[Preservation of the invariant] Suppose that all nonempty parents at stage r have base dimension at least two and satisfy -- . At r=0 use the compact radial blocks of ; at r1 suppose also that the…",
           "dependsOn": [
-            "m3-cut-pressure",
             "m3-countable-locality",
-            "m3-cut-generic-uniqueness",
-            "m3-cut-end-convergence",
-            "m3-cut-bv-compactness",
             "m3-cut-raw-domination",
-            "m3-packet-escape",
-            "m3-shield-maximum",
-            "m3-shield-extension",
-            "m3-shield-caps",
-            "m3-regular-transfer",
             "m3-regular-profiles",
-            "m3-regular-correction",
-            "m3-regular-step",
-            "m3-packet-split",
-            "m3-packet-geometry"
+            "m3-regular-step"
           ]
         },
         {
@@ -928,9 +896,7 @@
           "kind": "lemma",
           "source": "Countably many compatible partitions",
           "detail": "[The one-dimensional obstruction] No nonempty one-dimensional packet can satisfy the invariant at a finite stage of the construction.",
-          "dependsOn": [
-            "m3-packet-geometry"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-countable-construction",
@@ -940,12 +906,7 @@
           "kind": "proposition",
           "source": "Countably many compatible partitions",
           "detail": "[The countable compatible construction] All labels can be processed successively. At every finite stage the packet diagram has the invariant above and no nonempty packet of dimension at most one.…",
-          "dependsOn": [
-            "m3-countable-initial",
-            "m3-countable-step",
-            "m3-countable-dimension-one",
-            "m3-packet-reconstruction"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-topology-partitions",
@@ -955,10 +916,7 @@
           "kind": "proposition",
           "source": "Reconstruction and the map to a complex",
           "detail": "[Reconstructed partitions] The compatible cuts of give a continuous proper map q:M M , and for every color i closed sets P_i,N_i,W_i such that &d_0(q(x),x)<1, \\\\ &P_i N_i=M, P_i N_i=W_i, W_i q^ -1…",
-          "dependsOn": [
-            "m3-packet-reconstruction",
-            "m3-countable-construction"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-topology-thicken",
@@ -968,9 +926,7 @@
           "kind": "lemma",
           "source": "Reconstruction and the map to a complex",
           "detail": "[Simultaneous wall neighborhoods] There are locally finite open sets T_i W_i such that T_i q^ -1 (B_0(x_i,2D)) q^ -1 (A_i B_i), \\#\\ i:x T_i\\ k(x M).",
-          "dependsOn": [
-            "m3-topology-partitions"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-cover-uniform",
@@ -990,11 +946,7 @@
           "kind": "lemma",
           "source": "Universal covers and the uniform simplex metric",
           "detail": "[Level components of a proper Morse function] Let u:N be a proper Morse function on a connected smooth manifold without boundary. There is a locally finite simplicial graph K and a continuous map q:N…",
-          "dependsOn": [
-            "m3-cover-main",
-            "m3-thm-main",
-            "m3-cover-uniform"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-packet-split",
@@ -1014,10 +966,7 @@
           "kind": "lemma",
           "source": "Packets, finite horizons, and the induction invariant",
           "detail": "[Metric geometry of a packet] Equip a packet diagram after the radial stage with compatible smooth base metrics and finitely many compatible smooth positive warp functions. Each connected packet E ,…",
-          "dependsOn": [
-            "m3-packet-split",
-            "m3-packet-escape"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-packet-escape",
@@ -1049,11 +998,7 @@
           "kind": "proposition",
           "source": "Packets, finite horizons, and the induction invariant",
           "detail": "[Finite-horizon reconstruction] Starting with X , perform finitely many compatible regular splits as in . For the first split require locally finite compact radial wall and side components. At the…",
-          "dependsOn": [
-            "m3-packet-split",
-            "m3-packet-initialization",
-            "m3-rounds-wide"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-cut-pressure",
@@ -1085,9 +1030,7 @@
           "kind": "lemma",
           "source": "Weighted minimizing cuts and the forms on retained sides",
           "detail": "[Barriers hold for every minimizer] Every local absolute minimizer for a pressure of contains D^+ and excludes D^- . Its boundary support consequently misses a neighborhood of each current core…",
-          "dependsOn": [
-            "m3-packet-geometry"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-cut-generic-uniqueness",
@@ -1097,9 +1040,7 @@
           "kind": "proposition",
           "source": "Weighted minimizing cuts and the forms on retained sides",
           "detail": "[Generic uniqueness on all required products] After the radial split one common shift c , with |c|<c_* , can be chosen such that there is exactly one local absolute minimizer, modulo null sets, on…",
-          "dependsOn": [
-            "m3-cut-bv-compactness"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-cut-gmt",
@@ -1122,10 +1063,7 @@
           "source": "Weighted minimizing cuts and the forms on retained sides",
           "detail": "[True cuts converge at packet ends] For the common generic shift, let A_E be the true phase on each packet and let A_B be that on a face. On translated windows escaping in a product collar over a…",
           "dependsOn": [
-            "m3-cut-bv-compactness",
-            "m3-cut-generic-uniqueness",
-            "m3-cut-gmt",
-            "m3-packet-escape"
+            "m3-cut-generic-uniqueness"
           ]
         },
         {
@@ -1156,10 +1094,7 @@
           "kind": "proposition",
           "source": "Weighted minimizing cuts and the forms on retained sides",
           "detail": "[Raw scalar domination] Let V=R-1.02_ j_0 , restricted to the wall and pulled back to the cylinder when necessary. Then Q_S(v)&_S Vv^2\\,_S +1.99_S| v|^2\\,_S,\\\\ Q_(v)&_ Vv_b^2\\, +_0^\\!_S Vv_c^2\\,_S\\,…",
-          "dependsOn": [
-            "m3-cut-wall-stability",
-            "m3-cut-side-estimate"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-local-anchors",
@@ -1181,9 +1116,7 @@
           "kind": "lemma",
           "source": "Local shielding of singular sets",
           "detail": "[Compact pieces with one-sided flatness] Let O be an open subset of a parent packet and let >0 . The set O is covered by countably many compact sets F O , each contained in a buffered coordinate…",
-          "dependsOn": [
-            "m3-cut-gmt"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-local-shell",
@@ -1193,9 +1126,7 @@
           "kind": "lemma",
           "source": "Local shielding of singular sets",
           "detail": "[A shell forcing profile] Let F be a compact subset of \\ h_j>t_j\\ . For every sufficiently small >0 there is an extended-real profile u_ , equal to + for and - for R_ , where \\[ (x)=(x,F), R_=e^ 5 ,…",
-          "dependsOn": [
-            "m3-local-anchors"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-local-rough",
@@ -1205,9 +1136,7 @@
           "kind": "lemma",
           "source": "Local shielding of singular sets",
           "detail": "[Uniform rough Hardy coefficient] For each m8 there are numbers _0>0 and c_0>0 with the following property. Suppose F satisfies with _0 in a sufficiently accurate buffered chart. There are d_F>0 and…",
-          "dependsOn": [
-            "m3-cut-gmt"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-local-sharp",
@@ -1217,9 +1146,7 @@
           "kind": "proposition",
           "source": "Local shielding of singular sets",
           "detail": "[The local shielding estimate] There is a sufficiently small flatness number >0 , depending only on m and the fixed numerical coefficients, with the following property. Let F be any piece from for…",
-          "dependsOn": [
-            "m3-local-rough"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-shield-compactness",
@@ -1229,9 +1156,7 @@
           "kind": "lemma",
           "source": "Global shielding and extension to cofaces",
           "detail": "[Compactness on joined windows] Assume m8 . On any fixed compact window, a bounded sequence in H_Z has a strongly convergent L^2 subsequence. The following moving version also holds. Work in fixed…",
-          "dependsOn": [
-            "m3-cut-gmt"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-shield-maximum",
@@ -1241,9 +1166,7 @@
           "kind": "lemma",
           "source": "Global shielding and extension to cofaces",
           "detail": "[Maximum of successive form costs] Fix a packet and its true pieces. Let V0 be a fixed bounded potential, pulled back to cylinders, satisfying _Z Vv^2 h_Z(v) on its wall and both joined sides. Let F…",
-          "dependsOn": [
-            "m3-shield-compactness"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-shield-extension",
@@ -1253,9 +1176,7 @@
           "kind": "lemma",
           "source": "Global shielding and extension to cofaces",
           "detail": "[Extension with late fronts] Let B be a packet, let D0 be a fixed smooth compactly supported potential addition on B , and let V denote the old cumulative potential on every packet. Suppose these old…",
-          "dependsOn": [
-            "m3-shield-compactness"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-shield-caps",
@@ -1265,10 +1186,7 @@
           "kind": "lemma",
           "source": "Global shielding and extension to cofaces",
           "detail": "[Compatible caps and cores] A compact forcing update from extends to all its cofaces so as to satisfy , preserve the profile gradient inequality with coefficient a_r , and enlarge only the designated…",
-          "dependsOn": [
-            "m3-shield-extension",
-            "m3-local-anchors"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-shield-global",
@@ -1279,12 +1197,7 @@
           "source": "Global shielding and extension to cofaces",
           "detail": "[The global shielding output] At a fixed stage r , let j_0 be the current label and keep its true minimizers fixed. There are updates of every remaining profile and core, and compatible smooth…",
           "dependsOn": [
-            "m3-local-anchors",
-            "m3-shield-maximum",
-            "m3-shield-extension",
-            "m3-packet-escape",
-            "m3-cut-end-convergence",
-            "m3-local-flat-pieces"
+            "m3-packet-escape"
           ]
         },
         {
@@ -1296,8 +1209,7 @@
           "source": "Regularization and restoration of the curvature invariant",
           "detail": "[Uniform control on the guarded region] Fix a finite integer J4 . On each parent packet E , let _E be signed distance to the true boundary support, truncated at 1 , positive in the plus phase. If the…",
           "dependsOn": [
-            "m3-packet-escape",
-            "m3-cut-end-convergence"
+            "m3-packet-escape"
           ]
         },
         {
@@ -1308,9 +1220,7 @@
           "kind": "lemma",
           "source": "Regularization and restoration of the curvature invariant",
           "detail": "[Compatible smooth partitions] There are compatible smooth defining functions g_E with 0 a regular value, positive and negative on the respective current forced core closures, and with L_E=g_E^ -1…",
-          "dependsOn": [
-            "m3-regular-guards"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-regular-transfer",
@@ -1320,10 +1230,7 @@
           "kind": "lemma",
           "source": "Regularization and restoration of the curvature invariant",
           "detail": "[Counts and transfer of the raw form] The defining-function accuracies can be chosen so that on a uniform neighborhood of D_A in each new packet the raw scalar form controls _ r+1 +(1+3_r)b_ r+1 _ j…",
-          "dependsOn": [
-            "m3-shield-global",
-            "m3-regular-partition"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-regular-seam",
@@ -1333,9 +1240,7 @@
           "kind": "lemma",
           "source": "Regularization and restoration of the curvature invariant",
           "detail": "[Smoothing a seam with variable width] The raw joined metrics admit smooth compatible metrics with arbitrarily small C^0 error, and their scalar forms converge to the raw forms in the following…",
-          "dependsOn": [
-            "m3-cut-side-estimate"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-regular-constant-preservation",
@@ -1345,9 +1250,7 @@
           "kind": "lemma",
           "source": "Regularization and restoration of the curvature invariant",
           "detail": "[Approximation that reproduces constants] A continuous scalar function on a packet can be approximated by smooth functions, with any prescribed positive value error, by operators that reproduce…",
-          "dependsOn": [
-            "m3-regular-partition"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-regular-profiles",
@@ -1357,10 +1260,7 @@
           "kind": "lemma",
           "source": "Regularization and restoration of the curvature invariant",
           "detail": "[Restricted profiles and smooth potentials] After the seam smoothing the pulled-back profiles and cores satisfy the stage r+1 profile conditions with smooth compatible potentials _j^ new chosen so…",
-          "dependsOn": [
-            "m3-regular-constant-preservation",
-            "m3-regular-transfer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-regular-correction",
@@ -1380,9 +1280,7 @@
           "kind": "lemma",
           "source": "Regularization and restoration of the curvature invariant",
           "detail": "[The bounded gapped resolvent] Let A be one of the resulting complete packets, with its weighted base measure. Suppose W is smooth and bounded with bounded derivatives, and L=-C_+W has form gap g>0 .…",
-          "dependsOn": [
-            "m3-packet-geometry"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-regular-solutions",
@@ -1393,8 +1291,7 @@
           "source": "Regularization and restoration of the curvature invariant",
           "detail": "[Exact solutions and compatible approximations] Fix all the corrections of and let s_A denote the exact bounded solution L_As_A=1 . There exist positive smooth compatible functions v_A with L_Av_A12…",
           "dependsOn": [
-            "m3-regular-resolvent",
-            "m3-regular-partition"
+            "m3-regular-resolvent"
           ]
         },
         {
@@ -1406,8 +1303,7 @@
           "source": "Regularization and restoration of the curvature invariant",
           "detail": "[The full invariant step] Assume the stage r invariant and the conclusion of . For every nonempty parent packet of base dimension at least two, processing j_0 produces the compatible smooth split…",
           "dependsOn": [
-            "m3-regular-constant-preservation",
-            "m3-regular-partition"
+            "m3-regular-constant-preservation"
           ]
         }
       ]
@@ -1439,7 +1335,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

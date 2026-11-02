@@ -132,7 +132,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-finite-entropy-system-without-a-smooth-positive-volume-model-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A zero-entropy system without a smooth positive-volume model; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A zero-entropy system without a smooth positive-volume model.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -163,9 +163,7 @@
           "kind": "proposition",
           "source": "Stationary estimates for derivative growth",
           "detail": "[Good finite orbit segments] For each >0 there is a positive sequence (b_k)_ k1 with b_k 2^ -k/10 , _ k1 b_k^2<, and compact sets G_k F M and G_k=( G_k) M such that \\[ ( G_k)1-/100, ( G_k)1-/100. \\]…",
-          "dependsOn": [
-            "m1-lem-dyadic"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-finite-splitting",
@@ -185,9 +183,7 @@
           "kind": "lemma",
           "source": "Linear estimates on finite orbit segments",
           "detail": "[Common spaces in a bin] For all sufficiently large k , each spatial bin U meeting G_k has a number \\[ _U \\] such that every good witness frame over U has all its rates at most _U-g or at least _U+g…",
-          "dependsOn": [
-            "m1-prop-finite-splitting"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-relative-exterior",
@@ -217,9 +213,7 @@
           "kind": "lemma",
           "source": "Switching a past and a future with controlled volume",
           "detail": "For every sufficiently large k and every (x,y) G_k , the first two equations of have a solution z with _ 0 t n d_M(S^tz,S^tx) +_ -n t0 d_M(S^tz,S^ty) e^ Cgn r. In fixed regular coordinates along…",
-          "dependsOn": [
-            "m1-prop-finite-splitting"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-switch-jacobian",
@@ -230,7 +224,6 @@
           "source": "Switching a past and a future with controlled volume",
           "detail": "All four derivatives DH_ xx (x) , DH_ yy (y) , DH_ xy (z) , and DH_ yx (w) are nonsingular. Locally the equations define a smooth pair map (x,y)=(z,w) with J_ (x,y)=1+o(1), uniformly on the retained…",
           "dependsOn": [
-            "m1-prop-finite-splitting",
             "m1-lem-relative-exterior"
           ]
         },
@@ -243,8 +236,6 @@
           "source": "Switching a past and a future with controlled volume",
           "detail": "The map :G_k M M , (x,y)=(z,w) , is measurable and injective. Its restriction to countably many measurable pieces agrees with smooth local diffeomorphisms having the Jacobian in .",
           "dependsOn": [
-            "m1-lem-switch-jacobian",
-            "m1-lem-switch-orbits",
             "m1-thm-switching"
           ]
         },
@@ -266,9 +257,7 @@
           "kind": "lemma",
           "source": "Words with prescribed relations and recognizable boundaries",
           "detail": "[Averages of probability vectors] Let Y_1,,Y_q be independent random probability vectors on a set of cardinality A , all with mean p . Then \\[ \\,(1q_ b=1 ^qY_b,p) 12 Aq. \\] Coordinates within an…",
-          "dependsOn": [
-            "m1-prop-words"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-recognition",
@@ -278,9 +267,7 @@
           "kind": "lemma",
           "source": "Words with prescribed relations and recognizable boundaries",
           "detail": "[Recognition of words and alignment] For the families in , put \\[ d_i=_ j=1 ^ i-1 (1-_j), d_*=_ j=1 ^ (1-_j)>0. \\] Distinct v,w W_i satisfy \\[ d_ H (v,w) d_i m_i d_*m_i. \\] For all v,w,z W_i and…",
-          "dependsOn": [
-            "m1-prop-words"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-rates",
@@ -300,9 +287,7 @@
           "kind": "proposition",
           "source": "An invariant process and its window laws",
           "detail": "There is a T -invariant ergodic Borel probability on X . Every T -invariant Borel probability on X is nonatomic, is standard modulo null sets, and has zero Kolmogorov--Sinai entropy.",
-          "dependsOn": [
-            "m1-lem-rates"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-aligned-law",
@@ -322,10 +307,7 @@
           "kind": "proposition",
           "source": "An invariant process and its window laws",
           "detail": "For all sufficiently large i , for every power of two 2 D D_i^* , and every integer t , H_( L_ i,D (\\,\\,,t)) .996(D-1)_i, _i= L_i. The large- i threshold is independent of D,t and of the invariant…",
-          "dependsOn": [
-            "m1-lem-aligned-law",
-            "m1-prop-words"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-graph-windows",
@@ -336,7 +318,6 @@
           "source": "An invariant process and its window laws",
           "detail": "Let 2 D D_i^* be a power of two and set n=m_iD . For all sufficiently large i , with -probability at least \\[ 1-_ i,D , _ i,D =2D-2 H_i , \\] all corresponding entries of L_ i,D (x,-n) and L_ i,D…",
           "dependsOn": [
-            "m1-lem-aligned-law",
             "m1-prop-words"
           ]
         },
@@ -348,9 +329,7 @@
           "kind": "lemma",
           "source": "The obstruction to a smooth volume model",
           "detail": "Let (B_k)_ k1 be any positive sequence with _k B_k^ 16 < . There exist levels i and powers of two D satisfying \\[ 2^ K_i/16 D2^ K_i/8 \\] such that, for n=m_iD , B_ n R_i 0, R_i= _i m_i . In…",
-          "dependsOn": [
-            "m1-lem-rates"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-graph-independent",
@@ -394,7 +373,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

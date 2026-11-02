@@ -422,7 +422,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Filtered-chromatic-splitting-at-generic-primes-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Filtered chromatic splitting at generic primes; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Filtered chromatic splitting at generic primes.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -474,8 +474,7 @@
           "source": "Finite frame rings and Cartier transfers",
           "detail": "[Vanishing labels and higher starting height] At level one, for each nonzero label v^m there is a coordinate w_v such that x=a unit_ 0 v^m w_v. Each ideal (w_v) is P_n -stable. Its conormal is a…",
           "dependsOn": [
-            "m1-rings-full-sections-presentation",
-            "m1-prop-finite-rings"
+            "m1-rings-full-sections-presentation"
           ]
         },
         {
@@ -486,9 +485,7 @@
           "kind": "proposition",
           "source": "Finite frame rings and Cartier transfers",
           "detail": "[Frame and lift torsors] The rings B_U form a tower of finite \\'etale B -algebras. After passing to normal open levels, the maps in the tower are finite \\'etale torsors for the indicated finite deck…",
-          "dependsOn": [
-            "m1-prop-finite-rings"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-rings-dual-distribution",
@@ -518,10 +515,7 @@
           "kind": "lemma",
           "source": "Finite frame rings and Cartier transfers",
           "detail": "[Cartier transfer and its transpose] Fix one sufficiently divisible step with function-root exponent Q , and use the volume just constructed. The quotient transfers of the lift torsors can be…",
-          "dependsOn": [
-            "m1-rings-dual-distribution",
-            "m1-rings-coinduction"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-coefficient-finiteness",
@@ -598,10 +592,7 @@
           "kind": "theorem",
           "source": "The frame quotient and compact supports",
           "detail": "Let X be the full perfected joint frame space over E . There is a P_n U_0 -equivariant description of X as the space of exact sequences 0^m V_n V_t0 whose determinant comparison is a ^ -multiple of a…",
-          "dependsOn": [
-            "m1-support-tate-ball",
-            "m1-prop-finite-rings"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-solid-rows",
@@ -621,9 +612,7 @@
           "kind": "lemma",
           "source": "The frame quotient and compact supports",
           "detail": "These localization and support computations are compatible with compact profinite parameters and compact frame torsors. They apply to the rational-rank loci in N_t^m and to their flag incidences. On…",
-          "dependsOn": [
-            "m1-lem-solid-rows"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-support-affine",
@@ -714,7 +703,6 @@
           "source": "The frame quotient and compact supports",
           "detail": "For the stable lattice P and sufficiently deep finite frame level U specified above, there is a natural equivalence (_ S^ (P_n,P)^)_kR (U,_c(Z, A) )[m+n^2]. The dual of a compact cochain complex is…",
           "dependsOn": [
-            "m1-lem-compact-duality",
             "m1-support-principal-parts",
             "m1-support-positive-extension",
             "m1-thm-geometric-quotient",
@@ -788,8 +776,7 @@
           "detail": "[Compact coefficient finiteness] The first assertion of Theorem~ holds at (n,t) under the earlier compact assertions in . In addition, all finite-frame localized coefficients, and the localizations…",
           "dependsOn": [
             "m1-prop-frame-torsor",
-            "m1-lem-compact-duality",
-            "m1-prop-pole-removal"
+            "m1-lem-compact-duality"
           ]
         },
         {
@@ -846,9 +833,6 @@
           "source": "Removing the pole bound",
           "detail": "Let V be a torsion-free pro- p compact p -adic analytic group, and let C be a bounded complex of smooth k[V] -modules. If R(V,C) has finite-dimensional cohomology in each degree, then \\[…",
           "dependsOn": [
-            "m1-prop-pole-removal",
-            "m1-lem-artin-splitting",
-            "m1-lem-full-sections",
             "m1-boundary-translation-descent",
             "m1-lem-compact-norm-line",
             "m1-cor-compact-norm-filtration",
@@ -863,12 +847,7 @@
           "kind": "lemma",
           "source": "Full frames and completion of the coefficient induction",
           "detail": "[Finite stable images] At a sufficiently deep fixed frame level, let P=x^ -b L be a transfer-stable compact lattice as in Proposition~ . The map \\[ H^i(P_n,P) H^i(P_n,B_U) \\] identifies the stable…",
-          "dependsOn": [
-            "m1-prop-compact-finiteness",
-            "m1-prop-pole-removal",
-            "m1-lem-cartier-transfer",
-            "m1-prop-transpose-comparison"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-full-trace-descent",
@@ -891,9 +870,7 @@
           "source": "Full frames and completion of the coefficient induction",
           "detail": "[Full-frame support comparison] Let R=(_E/)^a , with =p^ , and let Z=(N_t^m)_ ind be the independent extension locus of Theorem~ . Use the geometric coefficient A=(^ ,+ /)^a of Section~ . There is an…",
           "dependsOn": [
-            "m1-prop-transpose-comparison",
-            "m1-full-stable-cutoff",
-            "m1-full-trace-descent"
+            "m1-prop-transpose-comparison"
           ]
         },
         {
@@ -929,7 +906,6 @@
             "m1-prop-full-frame-comparison",
             "m1-full-scalar-translation",
             "m1-support-finite-invariants",
-            "m1-full-corestriction",
             "m1-full-trace-descent"
           ]
         },
@@ -958,7 +934,6 @@
             "m1-full-joint-completion",
             "m1-support-finite-invariants",
             "m1-full-trace-descent",
-            "m1-full-corestriction",
             "m1-full-root-corestriction"
           ]
         },
@@ -972,8 +947,7 @@
           "detail": "[The remaining tame characters] The P_s -action on H^i(P_n,B_ conn,V ^ perf ) has only norm characters on _s , for every i and every compact open V G .",
           "dependsOn": [
             "m1-support-translation-quotient",
-            "m1-prop-full-frame-comparison",
-            "m1-full-perfected-connected-calculation"
+            "m1-prop-full-frame-comparison"
           ]
         },
         {
@@ -985,7 +959,6 @@
           "source": "Full frames and completion of the coefficient induction",
           "detail": "[Norm characters on the perfected individual rows] At the current induction pair (n,s) , for every compact open V_ n-s () and all a,i , the vector space \\[ Q=H^a\\!(V, H^i(P_n,B_ full ^ perf )) \\] is…",
           "dependsOn": [
-            "m1-full-perfected-support-characters",
             "m1-full-perfected-connected-calculation"
           ]
         },
@@ -1031,7 +1004,6 @@
           "detail": "[Transport of constants] The structural maps from identify H^*(P_n,)\\ \\ \\ H^*( M_n,)_ (1) \\ \\ H^*(J_n,), where (1) denotes generalized eigenvalue one for . These are identifications by the actual…",
           "dependsOn": [
             "m1-lem-solid-rows",
-            "m1-lem-const-building",
             "m1-lem-const-modification-stack"
           ]
         },
@@ -1073,9 +1045,7 @@
           "kind": "lemma",
           "source": "Integral primitive classes and stable representatives",
           "detail": "[Rational components of the additive class] For a p-2 and i a , the only possibly nonzero rational ordinary-cohomology component of z_ a,i is its component in degree 2i-1 . Moreover _ a,i is a scalar…",
-          "dependsOn": [
-            "m1-gen-k-continuity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-gen-sphere-representatives",
@@ -1098,9 +1068,7 @@
           "kind": "lemma",
           "source": "Integral primitive classes and stable representatives",
           "detail": "[Integral Soul\\'e coordinate] Let 2 i p-2 , d=2i-1 , and X=K()^_p . There is a -linear isomorphism \\[ c_i^ S :_dX ^1(,(i)) \\] whose value on the completion of x K_d() rationalizes to the Soul\\'e…",
-          "dependsOn": [
-            "m1-gen-local-k-coordinates"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-gen-exponential-lattice",
@@ -1146,8 +1114,6 @@
           "source": "Integral primitive classes and stable representatives",
           "detail": "[The top integral lattice] Assume a p-2 . In rational Lie algebra cohomology, \\[ b_1 b_a=u_a_a, u_a_ (p) ^. \\] For all sufficiently large integers r , the integral top cohomology lattice of…",
           "dependsOn": [
-            "m1-thm-stable-generators",
-            "m1-lem-regulator-lattice",
             "m1-thm-constant-cohomology",
             "m1-gen-sphere-representatives",
             "m1-prop-modification-transport"
@@ -1173,10 +1139,7 @@
           "kind": "lemma",
           "source": "The specified constant-cochain module",
           "detail": "[Equivariant top-edge insertion] There is a natural U_0 -equivariant map _k E_h^d[-d](T_h,). On a trivially acted-on cohomology row, it is insertion into translation degree d . The map is linear for…",
-          "dependsOn": [
-            "m1-prop-full-frame-comparison",
-            "m1-lem-weight-vanishing"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-full-surviving-module",
@@ -1203,8 +1166,6 @@
           "source": "The specified constant-cochain module",
           "detail": "[The actual constant-cochain module] For 1 t<n<p-1 , put m=n-t . The cup map _k(e_1,,e_m) H^*(P_n,B_ conn,G ), e_i _i1, |e_i|=2i-1, is an isomorphism of graded k -algebras. In particular, for I\\…",
           "dependsOn": [
-            "m1-thm-constant-cohomology",
-            "m1-thm-stable-generators",
             "m1-full-surviving-module",
             "m1-full-joint-completion"
           ]
@@ -1279,9 +1240,7 @@
           "detail": "[Barthel--Schlank--Stapleton--Weinstein] For every prime \\(p\\) and height \\(n1\\), the rational homotopy of the \\(K(n)\\)-local sphere is the exterior \\(\\)-algebra \\[ _*L_ K(n) S_ _ (_1,,_n),…",
           "dependsOn": [
             "m1-thm-main",
-            "m1-spec-global-classes",
-            "m1-thm-height-bases",
-            "m1-prop-assembly"
+            "m1-spec-global-classes"
           ]
         }
       ]
@@ -1298,7 +1257,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-height-three-chromatic-overlap-an-explicit-filtration-and-its-attachments-September-27-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The height-three chromatic overlap: an explicit filtration and its attachments; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The height-three chromatic overlap: an explicit filtration and its attachments.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1341,9 +1300,7 @@
           "kind": "theorem",
           "source": "A finite fracture construction",
           "detail": "[Attachment identification for the ordered fracture filtration] Fix the data \\(w,,r,b\\) and the compatibility homotopy of . Choose coherent inverse data for \\(L_ K(2) w\\), and carry out that…",
-          "dependsOn": [
-            "m2-prop-fracture"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-h3-lem-framework-groups",
@@ -1394,7 +1351,6 @@
           "source": "Tate coordinates and integral frames",
           "detail": "[Coordinate comparison] There is a natural P_3_r(_p) -equivariant isomorphism \\[ T_m\\ \\ (H_3^r)_ ind . \\] The map takes a compatible basis of generator lifts to z_i=_l t_ i,l ^ p^ 3l . It identifies…",
           "dependsOn": [
-            "m2-h3-geom-regular-levels",
             "m2-h3-geom-universal-cover"
           ]
         }
@@ -1421,7 +1377,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

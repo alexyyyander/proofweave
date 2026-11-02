@@ -202,7 +202,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Equality-cases-in-the-sharp-one-dimensional-matrix-Lieb-Thirring-inequality-October-5-2026/sharp-one-dimensional-lieb-thirring-inequalities-matrix-potentials.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Equality cases in the sharp one-dimensional matrix Lieb–Thirring inequality; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Equality cases in the sharp one-dimensional matrix Lieb–Thirring inequality.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -256,7 +256,6 @@
           "dependsOn": [
             "m1-field-positive",
             "m1-trace-deficit",
-            "m1-act-quantitative-action",
             "m1-path-connecting"
           ]
         },
@@ -360,7 +359,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Sharp-one-dimensional-Lieb-Thirring-inequalities-for-matrix-potentials-October-5-2026/sharp-matrix-lieb-thirring.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Sharp one-dimensional Lieb–Thirring inequalities for matrix potentials; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Sharp one-dimensional Lieb–Thirring inequalities for matrix potentials.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -401,9 +400,7 @@
           "kind": "lemma",
           "source": "An integrated matrix trace inequality",
           "detail": "For every v^n , equation has a unique H^1 solution on each half-line with boundary value v at zero. There are Hermitian matrices S=S(t) and T=T(t) such that these solutions satisfy (0+)=-Sv, (0-)=Tv,…",
-          "dependsOn": [
-            "m2-thm-trace"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-field-regularity",
@@ -433,9 +430,7 @@
           "kind": "proposition",
           "source": "A regularized matrix field",
           "detail": "For every B_n such that M_(B)0 , (M_(B)(K^2-B^2)) (M_(B)^q)-E_, E_=n(^ 2 +^(^2+)). In particular, E_0 as 0 for fixed K .",
-          "dependsOn": [
-            "m2-thm-trace"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-paths",
@@ -447,7 +442,6 @@
           "detail": "[Connecting paths] Let n,d1 , let =(x_-,x_+) be a bounded interval, and let K=diag(k_1,,k_n) with k_i>0 . Suppose U H^1_0(;^ n d ) satisfies \\[ _ UU^ T \\,dx=I_n. \\] For every >0 and >0 , there are C_…",
           "dependsOn": [
             "m2-lem-field-regularity",
-            "m2-thm-action",
             "m2-prop-field-comparison"
           ]
         },
@@ -477,7 +471,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Sharp-One-Dimensional-Lieb-Thirring-Constants-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Sharp one-dimensional Lieb–Thirring constants; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Sharp one-dimensional Lieb–Thirring constants.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -585,8 +579,7 @@
           "source": "The rank-one comparison",
           "detail": "With B,D and P as above, (M(B)D)(M(B) P(D)).",
           "dependsOn": [
-            "m3-lem-average",
-            "m3-prop-rankone"
+            "m3-lem-average"
           ]
         },
         {
@@ -608,9 +601,6 @@
           "source": "A matrix path with prescribed endpoints",
           "detail": "[Continuation modulo two] Let Q be a smooth d -dimensional manifold without boundary, and let E Q be a smooth real vector bundle of rank d . Suppose s_ , 01 , is a continuous homotopy of sections and…",
           "dependsOn": [
-            "m3-path-existence",
-            "m3-thm-action",
-            "m3-prop-rankone",
             "m3-lem-jensen"
           ]
         },
@@ -677,7 +667,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

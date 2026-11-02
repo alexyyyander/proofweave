@@ -427,7 +427,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Goldfelds-analytic-density-conjecture-and-the-2-converse-for-elliptic-curves-October-7-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Goldfeld's analytic density conjecture and the 2-converse for elliptic curves; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Goldfeld's analytic density conjecture and the 2-converse for elliptic curves.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -694,8 +694,7 @@
           "source": "Trace identities and prime substitutions",
           "detail": "[Insertion of a pair of simple primes] Suppose E()[2]0 and U has matching parity. Let a rational elementary label, relative to S and all existing split vertices, be realized by a simple prime q with…",
           "dependsOn": [
-            "m1-tc-trace-algebra",
-            "m1-tc-rational-rules"
+            "m1-tc-trace-algebra"
           ]
         },
         {
@@ -774,9 +773,7 @@
           "kind": "lemma",
           "source": "Prime graphs and simultaneous unit coefficients",
           "detail": "[Network expansion] A network satisfies f(z,1)= N P(z) , where N is a sum of terminal finite-difference operators indexed by forests. In each surviving forest term, every component containing an…",
-          "dependsOn": [
-            "m1-gr-forest"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-gr-programs",
@@ -870,7 +867,6 @@
           "detail": "[A bounded companion for a varying odd parameter] Fix a positive odd-sign filter and a negative genus partner h_* with L(E^ (h_*) ,1)0 , chosen using Proposition~ and then excluded from the variable…",
           "dependsOn": [
             "m1-pw-minimum-seeds",
-            "m1-prop-rough-nonvanishing",
             "m1-gr-realization",
             "m1-pw-reserves",
             "m1-pw-partitionable-even"
@@ -909,8 +905,7 @@
           "dependsOn": [
             "m1-thm-symbol-rules",
             "m1-prop-even-coefficients",
-            "m1-pw-recurrence",
-            "m1-gr-forest"
+            "m1-pw-recurrence"
           ]
         },
         {
@@ -935,9 +930,7 @@
             "m1-pw-reserves",
             "m1-pw-split-witness",
             "m1-pw-coinvariants",
-            "m1-gr-address",
-            "m1-cs-fixed-weight-uniformity",
-            "m1-thm-symbol-rules"
+            "m1-gr-address"
           ]
         },
         {
@@ -1000,9 +993,7 @@
           "kind": "lemma",
           "source": "Selmer matrices and three-state relations",
           "detail": "[The site relations] Fix the total parameter label at the fixed support and the diagonal choices at the other present sites. In each state choose aggregate roots restoring this label, compatibly with…",
-          "dependsOn": [
-            "m1-thm-symbol-rules"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-binary-tensor-span",
@@ -1056,7 +1047,6 @@
             "m1-lem-binary-tensor-span",
             "m1-lem-sa-profile",
             "m1-lem-lm-address-program",
-            "m1-thm-symbol-rules",
             "m1-tc-minimum-transfer",
             "m1-tc-irreducible-rules",
             "m1-lem-lm-arithmetic-realization",
@@ -1076,7 +1066,6 @@
           "dependsOn": [
             "m1-lem-lm-arithmetic-realization",
             "m1-thm-symbol-rules",
-            "m1-thm-irreducible-converse",
             "m1-pr-invariance",
             "m1-prop-unit-symbol-detection",
             "m1-lem-sa-punctured-cube",
@@ -1127,18 +1116,13 @@
           "source": "Selmer matrices and three-state relations",
           "detail": "[Alternating interface repair] Let U be an even-dimensional vector space over _2 , let N be symmetric and invertible on U , and let D be alternating. There are at most U linear maps b_i:U_2^2 such…",
           "dependsOn": [
-            "m1-prop-sa-bounded-companion",
             "m1-lem-sa-prefix",
-            "m1-lem-sa-root-calibration",
             "m1-lem-sa-punctured-cube",
             "m1-lem-sa-balanced-copies",
-            "m1-lem-lm-arithmetic-realization",
             "m1-prop-unit-symbol-detection",
             "m1-thm-irreducible-converse",
             "m1-lem-h-base-selmer-bound",
-            "m1-prop-heegner-comparison",
-            "m1-thm-heegner-interpolation",
-            "m1-prop-rough-nonvanishing"
+            "m1-prop-heegner-comparison"
           ]
         },
         {
@@ -1149,9 +1133,7 @@
           "kind": "lemma",
           "source": "Proof of auxiliary nonvanishing",
           "detail": "[Odd first moment] Let f be the weight-two newform of an elliptic curve of conductor N , with its L -function normalized to have center 1/2 . Fix H divisible by 8 and N , a reduced class a H , and \\…",
-          "dependsOn": [
-            "m1-prop-rough-nonvanishing"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-h-laurent-expansions",
@@ -1272,11 +1254,8 @@
             "m1-thm-cyclotomic-interpolation",
             "m1-prop-cy-specialization",
             "m1-lem-cy-residual-free",
-            "m1-lem-h-boolean-coefficients",
             "m1-lem-h-bounded-poles",
             "m1-lem-h-pivot-clearing",
-            "m1-lem-h-boolean-transfer",
-            "m1-prop-heegner-comparison",
             "m1-lem-h-base-selmer-bound"
           ]
         },
@@ -1318,9 +1297,7 @@
           "kind": "lemma",
           "source": "Heegner points and transfer",
           "detail": "[Acyclic relaxed local complexes] For a primitive character constituent, let C denote the limiting Selmer complex with full conditions at r and at its active good conductor primes, and the prescribed…",
-          "dependsOn": [
-            "m1-rl-evaluation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-h-central-valuation",
@@ -1381,7 +1358,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

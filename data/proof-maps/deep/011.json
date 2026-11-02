@@ -417,7 +417,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Weighted-Dilation-Graphs-Smooth-Shifted-Primes-and-Totient-Fibers-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Weighted dilation graphs, smooth shifted primes and totient fibers; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Weighted dilation graphs, smooth shifted primes and totient fibers.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -468,9 +468,7 @@
           "kind": "corollary",
           "source": "Notation and preliminary estimates",
           "detail": "[Harmonic character estimates] Fix c,C,B,A>0 . If is nonprincipal modulo r L^B , then, uniformly for real |t| L^B and intervals I , \\[ _ p I (p)p^ it p_ c,C,B,A L^ -A . \\] The same conclusion holds…",
-          "dependsOn": [
-            "m1-thm-sw"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-divisor-moments",
@@ -590,9 +588,7 @@
           "kind": "lemma",
           "source": "Transference for dilation graphs",
           "detail": "[Rare transfer] With the memory truncation in , the aggregate of all dirty terms of any edge has norm at most 2L^ C_a ( B D )^ 1/2 , after enlarging C_a independently of J if necessary.",
-          "dependsOn": [
-            "m1-lem-memory-absolute"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-clean-norm",
@@ -644,11 +640,7 @@
           "kind": "lemma",
           "source": "Small ideal kernels at every frequency",
           "detail": "[Comparison kernel] Fix m , A_0>0 , and C_40 . There are fixed powers Q,h^ -1 ,^ -1 of L , independent of J , such that the kernels in have the following property. Let A,B be nonempty sets of slots,…",
-          "dependsOn": [
-            "m1-thm-sw",
-            "m1-thm-ideal",
-            "m1-thm-transference"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-shift",
@@ -690,9 +682,7 @@
           "kind": "lemma",
           "source": "Lifted shifted correlations",
           "detail": "[Long rough-integer polynomial] Fix >0 , <1/4 , C>0 , and A>0 . Let x^/2 P' x^ , let J' be an interval, and let have modulus at most L^C . If || L^C , then, for a sufficiently large fixed B_0 ,…",
-          "dependsOn": [
-            "m1-lem-rough-sieve-polynomial"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-typeii",
@@ -703,7 +693,6 @@
           "source": "A Type II estimate",
           "detail": "[Type II] Fix D_*>0 , b_*>0 , and C>0 , and require _*<b_*/4 in . Let U,V be dyadic scales satisfying \\[ UV x, x^ b_* U,V x^ 1-b_* . \\] Let be a fixed smooth function with compact support in a fixed…",
           "dependsOn": [
-            "m1-lem-divisor-moments",
             "m1-thm-shift"
           ]
         },
@@ -727,8 +716,7 @@
           "detail": "[Type I distribution] For every fixed <1/2 and D>0 , _ d x^\\ odd and squarefree |r(d)| xL^ -D +X_AL^ -18 .",
           "dependsOn": [
             "m1-thm-large-sieve",
-            "m1-lem-divisor-moments",
-            "m1-thm-sw"
+            "m1-lem-divisor-moments"
           ]
         },
         {
@@ -739,10 +727,7 @@
           "kind": "lemma",
           "source": "Extracting primes with smooth predecessors",
           "detail": "[Proxy discrepancy] The denominators in are positive for large x . Moreover 0 B_I1 . Given any fixed discrepancy exponent B , taking S>2B+3 makes \\[ _m=(I(m)-B_I(m))_ m K \\] satisfy , uniformly for…",
-          "dependsOn": [
-            "m1-lem-sieve",
-            "m1-thm-sw"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-proxy-densities",
@@ -764,10 +749,7 @@
           "kind": "lemma",
           "source": "Large fibers of the totient function",
           "detail": "For each positive integer n , the set of positive integers m with (m)=n is finite. For every >0 , \\[ g(n)_ n^ 1+ . \\]",
-          "dependsOn": [
-            "m1-thm-totient",
-            "m1-thm-smooth"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -783,7 +765,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Poisson-Dirichlet-Law-for-Prime-Predecessors-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Poisson-Dirichlet law for prime predecessors; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Poisson-Dirichlet law for prime predecessors.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -894,9 +876,7 @@
           "kind": "lemma",
           "source": "A determinant estimate with marks on one side",
           "detail": "[Replacement of the root average] In the normalized path expansion of , one may replace the root average by \\[ 1 (2) _ [1,16] (u/U)\\,(v/V)\\, r \\] and by independent uniformly distributed lines in…",
-          "dependsOn": [
-            "m2-lem-root-residue"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-minor-moment",
@@ -943,10 +923,7 @@
           "detail": "[A small prime factor and sparse frequencies] Let P satisfy cL^ 0.1 P C_1L^ 0.2 , and let P be any set of primes in [P,2P] . For any real and any character , put \\[ P_s(t)=P^ -1 _ p P (p)p^ i(t+) .…",
           "dependsOn": [
             "m2-lem-log-phase",
-            "m2-prop-major-term",
-            "m2-maj-long-coefficient",
-            "m2-thm-type-ii",
-            "m2-prop-minor-moment"
+            "m2-maj-long-coefficient"
           ]
         },
         {
@@ -1017,9 +994,7 @@
           "kind": "lemma",
           "source": "Extraction of the prime statistic",
           "detail": "[Summed progression remainder] Choose 0<c_0</2 . Let H be a weight from a fixed finite collection of disjoint arrays, a product of two such weights (allowing a repeated array), a constant, or a…",
-          "dependsOn": [
-            "m2-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lp-prime-polynomial",
@@ -1094,9 +1069,7 @@
           "kind": "lemma",
           "source": "Prime polynomials and logarithmic phases",
           "detail": "[Local logarithmic derivative] Fix C>0 , let q L^C , and put s_0=1+r_*+iv , where 1|v|52x^3 . There is a radius R with 4r_* R5r_* , with no zero on its boundary, for which D' D (s,) =_ |-s_0|<R 1 s-…",
-          "dependsOn": [
-            "m2-lp-l-upper"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lp-zero-free",
@@ -1124,7 +1097,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Prime-Predecessors-with-an-Even-Number-of-Prime-Factors-September-17-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Prime Predecessors with an Even Number of Prime Factors; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Prime Predecessors with an Even Number of Prime Factors.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1230,9 +1203,7 @@
           "kind": "lemma",
           "source": "A long prime polynomial",
           "detail": "[Local logarithmic derivative] Fix C>0 , let q L^C , and put s_0=1+r_*+iv , where 1|v|52x^3 . There is a radius R with 4r_* R5r_* , with no zero on its boundary, for which D' D (s,) =_ |-s_0|<R 1 s-…",
-          "dependsOn": [
-            "m3-lp-l-upper"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-lp-zero-free",
@@ -1349,7 +1320,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

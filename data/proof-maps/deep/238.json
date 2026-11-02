@@ -417,7 +417,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Optimal-order-mixing-of-the-Thorp-shuffle-September-26-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Optimal-order mixing of the Thorp shuffle; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Optimal-order mixing of the Thorp shuffle.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -490,9 +490,7 @@
           "kind": "proposition",
           "source": "From eight large marginals to the whole group",
           "detail": "[Eight-block Fourier bound] Let \\(n\\) be a positive multiple of eight, and partition the labels of \\(G=S_n\\) into sets \\(M_1,,M_8\\) of size \\(n/8\\). For each \\(a\\), let \\(H_a\\) be the subgroup fixing…",
-          "dependsOn": [
-            "m1-thm-mixing"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -508,7 +506,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Random-coordinate-frames-and-partial-permutation-laws-September-26-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Random coordinate frames and partial permutation laws; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Random coordinate frames and partial permutation laws.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -591,7 +589,6 @@
           "detail": "[One partition with nearly complete marginals] There is a deterministic labeled partition M=(M_1,,M_k) into blocks of size m for which _ a=1 ^k_a( M) k_n=o(1)(d).",
           "dependsOn": [
             "m2-shear-lem-tuple",
-            "m2-lem-frames",
             "m2-cor-frames-marginals"
           ]
         },
@@ -695,8 +692,7 @@
           "source": "Fixed input laws and independent shears",
           "detail": "[Uniform large-marginal estimates] Let L2 be a fixed integer dividing N , and let 0 q N-N/L . For every ordered list C of q distinct labels, every periodic ordering of the standard axes, and every…",
           "dependsOn": [
-            "m2-shear-lem-tuple",
-            "m2-lem-frames"
+            "m2-shear-lem-tuple"
           ]
         },
         {
@@ -843,7 +839,6 @@
           "source": "Fourier amplification of partial permutation laws",
           "detail": "[Sixteen time blocks from averaged input lists] Let \\(d6\\), \\(b=64\\), \\(q=N(1-1/b)\\), \\(T=2048d\\), and \\(_T=q_d^ *T \\). The average over uniform ordered lists of \\(q\\) distinct input labels of the…",
           "dependsOn": [
-            "m2-frames-average-law",
             "m2-shear-prop-fourier-inputs"
           ]
         },
@@ -931,10 +926,7 @@
           "kind": "lemma",
           "source": "History events and conditional estimates",
           "detail": "[Balance supplied by an earlier crossing] Fix integers T d and r1 . For any fixed observed labels and any d<t T , if m positions remain unobserved, then \\[ \\ (|F_ t-1 J_t|,|F_ t-1 J_t|)<m/4\\ 2e^ -m/8…",
-          "dependsOn": [
-            "m2-shear-lem-fixed-balance",
-            "m2-frames-cross-energy"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-frames-backward-removal",
@@ -1005,8 +997,7 @@
           "source": "History events and conditional estimates",
           "detail": "[One typical event for all reservoir sizes] Define the event on cyclic histories by G_ ent =_ m=n/L ^ n \\ g: E_ F:\\,|F|=m Z_T^F(g) n^ -8 \\ , where each average is uniform over subsets of labels. Then…",
           "dependsOn": [
-            "m2-frames-matching-invariance",
-            "m2-frames-cross-energy"
+            "m2-frames-matching-invariance"
           ]
         },
         {
@@ -1030,8 +1021,7 @@
           "source": "History events and conditional estimates",
           "detail": "[Representation-coefficient tails from entropy] There is an absolute C such that for every irreducible unitary representation of G , of degree D , and unit vectors u,z , P\\ G_ ent , | z,(g_T)u| D^…",
           "dependsOn": [
-            "m2-frames-typical-history",
-            "m2-frames-shadow-entropy"
+            "m2-frames-typical-history"
           ]
         },
         {
@@ -1064,10 +1054,7 @@
           "kind": "lemma",
           "source": "An averaged application of deferred columns",
           "detail": "[Inverse-frame form of the shear law] Conditional on , the increments of X are independent uniform switches in the coordinate directions e_ _i . For every t T , the conditional law of (Y_i)_ i=0 ^t…",
-          "dependsOn": [
-            "m2-shear-lem-keys",
-            "m2-frames-conditional-interface"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-frames-aux-energy",
@@ -1091,7 +1078,6 @@
           "detail": "Let C=(a_1,,a_k) be a uniformly chosen ordered list of distinct initial cards, independent of X_T , and let _k be uniform on ordered k -tuples of distinct positions. Then E_C\\| L(X_T(C) C)-_k\\|_ TV…",
           "dependsOn": [
             "m2-frames-aux-directions",
-            "m2-shear-lem-tuple",
             "m2-frames-aux-energy"
           ]
         },
@@ -1162,9 +1148,7 @@
           "kind": "lemma",
           "source": "Character smoothing from half-deck information",
           "detail": "Let be the product of L=100d consecutive layers in a periodic coordinate order on n=2^d positions. Uniformly over ordered lists of q n/2 distinct inputs, the law of their images under has…",
-          "dependsOn": [
-            "m2-shear-prop-fixed-marginal"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-frames-char-one-pass",
@@ -1228,9 +1212,7 @@
           "kind": "lemma",
           "source": "Exact half-deck marginals and character amplification",
           "detail": "[Simultaneous marginal repair] Partition a set of size 2s into two ordered sets J_1,J_2 , each of size s . Let A_0 be a random permutation. Suppose the ordered image of J_i under A_0 has…",
-          "dependsOn": [
-            "m2-char-main"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -1246,7 +1228,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/From-partial-permutation-information-to-Fourier-bounds-September-26-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from From partial permutation information to Fourier bounds; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from From partial permutation information to Fourier bounds.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1343,7 +1325,6 @@
           "source": "The complete transfer from disjoint coset systems",
           "detail": "[Four convolutions by the orbit argument] Let n through multiples of eight. Suppose probabilities _n on S_n have sign mean o(1) and \\[ _ |M|=n/8 \\|_ n,H_M -U_ G/H_M \\|_ =o(1). \\] Then \\|_n^ *4…",
           "dependsOn": [
-            "m3-l-partition-selection",
             "m3-l-trim",
             "m3-l-orbit-span",
             "m3-l-amplification"
@@ -1388,7 +1369,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -367,7 +367,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Global-quantum-geometric-Langlands-at-irrational-level-October-4-2026/quantum-langlands.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Global quantum geometric Langlands at irrational level; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Global quantum geometric Langlands at irrational level.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -452,9 +452,7 @@
           "kind": "proposition",
           "source": "Twisted pseudo-identity",
           "detail": "On degree u , the continuous functor L_P=E_P[-2e] is a left adjoint of C_P : L_P=E_P[-2e]\\ \\ C_P. It computes the partially defined expression p_!q^* on every object.",
-          "dependsOn": [
-            "m1-pseudo-clean-noncharacteristic"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-pseudo-second-adjunction",
@@ -505,7 +503,6 @@
           "source": "Whittaker categories in families",
           "detail": "[Whittaker duality] The categories W_s^+(S) and W_ -s ^-(S) are dual, with the normalized pairing W,W'= _ dR (W^!W')[-2_N]. In a pole bound this formula uses the bounded-zero star-extension…",
           "dependsOn": [
-            "m1-foundations-categories",
             "m1-whittaker-strata-properties"
           ]
         },
@@ -552,9 +549,7 @@
           "kind": "lemma",
           "source": "Deformation of the Whittaker counit",
           "detail": "[Non-torsion rank test] Consider a finite geometric diagram as above. Assume that its q -dependence is introduced by Kummer factors M_q(r) for algebraic invertible functions r , and that the…",
-          "dependsOn": [
-            "m1-deform-fourier"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-deform-colimit",
@@ -683,7 +678,6 @@
           "source": "The finite Whittaker test and Plancherel identity",
           "detail": "[Plancherel identity] For s Q , the natural transformation is an isomorphism. Consequently \\[ J_sR_sId_ D_s , \\] as asserted in .",
           "dependsOn": [
-            "m1-deform-colimit",
             "m1-planch-zero-colimit",
             "m1-planch-weight-estimate",
             "m1-deform-stalks",
@@ -806,8 +800,6 @@
           "detail": "[Relative Skryabin comparison] Reduction induces an equivalence \\[ Q_S^0 W_R^ ren . \\] On compact objects its composite with the ordinary comparison to \\(D( H_R^W)\\) is . This comparison is fully…",
           "dependsOn": [
             "m1-walg-adolescent",
-            "m1-loop-hc-renormalization",
-            "m1-walg-vacua",
             "m1-walg-ext"
           ]
         },
@@ -820,8 +812,6 @@
           "source": "Loop categories over moving divisors",
           "detail": "[The ordinary vacuum is in the compact image] The image in \\(Q_S^0\\) of the spherical Kac--Moody vacuum is compact. Its ordinary comparison is \\(V_ 0,R ^W\\). Consequently adjoining \\(V_ 0,R ^W\\) to…",
           "dependsOn": [
-            "m1-whittaker-strata-properties",
-            "m1-whittaker-duality",
             "m1-loop-pairing-adjoints",
             "m1-walg-relative-skryabin",
             "m1-walg-vacua"
@@ -861,9 +851,7 @@
           "kind": "lemma",
           "source": "Local comparison in families",
           "detail": "Insertion of the unit defines t -exact functors C_T C_V and d_T d_V . They have continuous D(S) -linear right adjoints, commute with parameter operations and disjoint products, and use the vacuum…",
-          "dependsOn": [
-            "m1-local-heart"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-local-point-gap",
@@ -873,9 +861,7 @@
           "kind": "lemma",
           "source": "Local comparison in families",
           "detail": "The point pairing satisfies RHom_ Q (F(M_,D_),F(M_ ' ,D_ ' )) H^_ dR (G),& (,)=(','),\\\\ 0,&otherwise. The map induced from the input categories identifies cohomology in degrees at most two. Under the…",
-          "dependsOn": [
-            "m1-local-heart"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-local-one-slot",
@@ -902,7 +888,6 @@
           "dependsOn": [
             "m1-loop-pairing-adjoints",
             "m1-local-insertion",
-            "m1-loop-parameter-operations",
             "m1-local-one-slot",
             "m1-local-heart",
             "m1-local-point-gap"
@@ -951,10 +936,7 @@
           "kind": "proposition",
           "source": "Localization and finite-level periods",
           "detail": "With parameters retained, there are natural isomorphisms Loc_ G,U' ^ lv (M) Loc_ G,E ^ lv ( ins_G M), and the analogous isomorphisms for N . They respect transitivity, ordinary and crystalline…",
-          "dependsOn": [
-            "m1-loop-hc-renormalization",
-            "m1-loc-construction"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-loc-kernel",
@@ -1114,9 +1096,7 @@
           "kind": "lemma",
           "source": "The global equivalence and its central data",
           "detail": "There are continuous functors \\(f:A(B')^\\) and \\(f':A' B^\\), with natural isomorphisms R&(M')^ f,& (S')^& fL,\\\\ R'& M^ f',& S^& f'L'. They are uniquely determined, together with these isomorphisms,…",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-equivalence-compatibility",
@@ -1167,7 +1147,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -132,7 +132,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Open-Homomorphisms-of-Global-Solvably-Closed-Galois-Groups-October-5-2026/open-homomorphisms-solvably-closed-galois-groups.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Open Homomorphisms of Global Solvably Closed Galois Groups; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Open Homomorphisms of Global Solvably Closed Galois Groups.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -227,9 +227,7 @@
           "kind": "proposition",
           "source": "Additive characters and Frobenius detection",
           "detail": "[Frobenius detection] Let M be a number field, let be a rational prime, and let x M . If x(_v)=0 at infinitely many primes v of absolute residue degree one, then x=0 . Suppose that M/ is Galois, and…",
-          "dependsOn": [
-            "m1-lem-log-rank"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-signed-representation",
@@ -275,7 +273,6 @@
           "detail": "[Frobenius generation] Fix an odd prime , a finite quotient R_0 of P , and _0 R_0 . There are a quotient \\[ P R=(L/) R_0 \\] and a lift R of _0 with the following property. There are infinitely many…",
           "dependsOn": [
             "m1-lem-quotient-amplification",
-            "m1-thm-local-correspondence",
             "m1-prop-character-detection"
           ]
         },
@@ -288,7 +285,6 @@
           "source": "Normalizer extension and Frobenius generation",
           "detail": "The extension :G_k P is surjective. Put \\[ m_0=[k:]!, L=\\ : is an odd prime and 1m_0\\ . \\] The set L is infinite, and for every L , _=_ k, as additive characters on G_k. Here _ is the -adic…",
           "dependsOn": [
-            "m1-prop-frobenius-generation",
             "m1-lem-norm-identity",
             "m1-prop-character-detection"
           ]
@@ -327,7 +323,6 @@
           "detail": "For every L , \\[ \\#\\ w M_:w\\ 2[K:], \\# M_ 2[K:]+2. \\]",
           "dependsOn": [
             "m1-thm-normalized-map",
-            "m1-thm-local-correspondence",
             "m1-lem-kummer-unramified"
           ]
         },
@@ -352,8 +347,7 @@
           "dependsOn": [
             "m1-lem-finite-fibers",
             "m1-lem-power-separation",
-            "m1-lem-norm-identity",
-            "m1-prop-uniform-missed-primes"
+            "m1-lem-norm-identity"
           ]
         },
         {
@@ -381,7 +375,6 @@
           "dependsOn": [
             "m1-prop-identify-normalized",
             "m1-lem-centralizer",
-            "m1-thm-main",
             "m1-lem-solvable-closure",
             "m1-thm-hoshi"
           ]
@@ -403,7 +396,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

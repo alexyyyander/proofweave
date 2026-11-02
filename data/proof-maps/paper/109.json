@@ -202,111 +202,133 @@
     {
       "from": "m1-lem-elementary-streams",
       "to": "m1-lem-ordered-affine-streams",
+      "label": "lem:elementary-streams",
       "context": "ition of these integer multiplications, inverse multiplications, and possibly negation. Its description is fixed. The nested scan and reset analysis of Lemma~\\ref{lem:elementary-streams} applies to all these operations. In particular, copying a suffix-length counter at every target position costs $O(\\log"
     },
     {
       "from": "m1-lem-scalar-motifs",
       "to": "m1-prop-bit-motif-interface",
+      "label": "lem:scalar-motifs",
       "context": "Lemma~\\ref{lem:scalar-motifs} gives the scalar permutation, including all auxiliary roles. For $U\\subset V$ nondegenerate, $P_V-P_U$ is the identity"
     },
     {
       "from": "m1-lem-motif-residuals",
       "to": "m1-prop-bit-motif-interface",
+      "label": "lem:motif-residuals",
       "context": "on $X_a$ has label exactly $U_a$. Its first edge matrix is therefore $2P_{U_a}$, of rational rank one, where the corresponding dimension change was zero. Lemma~\\ref{lem:motif-residuals} consequently gives the stated rank sum. Its deficit from $W_{\\rm b}m$ is $N-2L_{\\rm b}>0$. For an input $X_a$ the endp"
     },
     {
       "from": "m1-lem-motif-residuals",
       "to": "m1-prop-complex-motif-interface",
+      "label": "lem:motif-residuals",
       "context": "racter $(-1)^{v\\cdot x}$ to translation $X_v$. The displayed phase therefore becomes $aI+bX_v$ or its inverse. The nonzero residuals have such bases by Lemma~\\ref{lem:motif-residuals}; for a zero residual use the empty basis. The same lemma gives the count $s_{\\rm c}$. The deficit is $2N-2L_{\\rm c}>0$"
     },
     {
       "from": "m1-lem-scalar-motifs",
       "to": "m1-prop-complex-motif-interface",
+      "label": "lem:scalar-motifs",
       "context": "such factors over the network. Let $\\rho$ denote the underlying permutation of the complex roles: it exchanges $X_a,Y_a$ and fixes each scratch role. By Lemma~\\ref{lem:scalar-motifs}, the pointwise scalar network sends an input array at $X_a$ to $Y_a$ with sign $+1$, an input at $Y_a$ to $X_a$ with si"
     },
     {
       "from": "m1-lem-lower-lower",
       "to": "m1-lem-matrix-shear",
+      "label": "lem:lower-lower",
       "context": "Choose the factorizations of Lemma~\\ref{lem:lower-lower} for all matrices in $\\mathcal A$ once and for all. Include their factors and inverses in a finite rational table. Cho"
     },
     {
       "from": "m1-lem-ordered-affine-streams",
       "to": "m1-lem-matrix-shear",
+      "label": "lem:ordered-affine-streams",
       "context": "tiply by its diagonal unit and add a fixed linear combination of earlier coordinates. These earlier coordinates still have their original values. Apply Lemma~\\ref{lem:ordered-affine-streams}; the number of coordinates is the fixed number $m$. Inverses are also lower triangular. For $A=E_1\\Pi E_2$, first tra"
     },
     {
       "from": "m1-lem-elementary-streams",
       "to": "m1-prop-power-interchange",
+      "label": "lem:elementary-streams",
       "context": "For $k=0$ apply the single-digit operation of Lemma~\\ref{lem:elementary-streams}. For $k>0$, write each chunk as $m$ consecutive $b=e/m$ digit fields, giving vectors $H,D$ over $\\mathbb Z/q^b\\mathbb"
     },
     {
       "from": "m1-lem-matrix-shear",
       "to": "m1-prop-power-interchange",
+      "label": "lem:matrix-shear",
       "context": "address map. Its inverse is $\\Phi_{-M}$ and $\\Phi_{M'}\\Phi_M=\\Phi_{M'+M}$. On every circuit edge apply $\\Phi_{A_e}$ to that role stream; implement it by Lemma~\\ref{lem:matrix-shear}, recursively interchanging each pivot pair of $b$-digit fields. Execute each circuit gate pointwise at matching addres"
     },
     {
       "from": "m1-lem-elementary-streams",
       "to": "m1-lem-chunk-swap",
+      "label": "lem:elementary-streams",
       "context": "ining chunks. The joining moves preserve the order of the remaining digits and the gap field. Exchanging and joining the high parts costs $O(V\\rho)$ by Lemma~\\ref{lem:elementary-streams}. Append zero rows, separately within each preceding prefix, until the row count is \\[ R'=W^k\\left\\lceil R/W^k\\right\\r"
     },
     {
       "from": "m1-prop-power-interchange",
       "to": "m1-lem-chunk-swap",
+      "label": "prop:power-interchange",
       "context": "=0}^{k} a_jm^j,\\qquad 0\\le a_j<m. \\] Partition each remaining chunk into corresponding consecutive pieces, with $a_j$ pieces of width $m^j$. Apply Proposition~\\ref{prop:power-interchange} to each corresponding pair. All these calls use the same row field of length $R'$, which is divisible by each required"
     },
     {
       "from": "m1-lem-chunk-swap",
       "to": "m1-lem-packed-selected-bit-rectangle",
+      "label": "lem:chunk-swap",
       "context": "imes[2^L]\\times[B^{\\rm sw}]. \\] The third chunk lies inside one collapsed spectator interval. Pass only $L$ and these three positive canonical lengths to Lemma~\\ref{lem:chunk-swap}. Each length is at most $V$, so the local descriptor has $O(A_{\\rm rect})$ bits. The swap costs $O(VL^\\tau)$, including"
     },
     {
       "from": "m1-lem-ordered-affine-streams",
       "to": "m1-lem-packed-selected-bit-rectangle",
+      "label": "lem:ordered-affine-streams",
       "context": "scan of at most $f\\le L$ selected positions evaluates \\eqref{eq:packed-cyclic-shift} in $L^{O(1)}$ time, without reading the target or spectator values. Lemma~\\ref{lem:ordered-affine-streams} therefore gives an $O(V)$ rotation: its offset work is absorbed by the $2^L$ nonempty target blocks in each fiber. Undo"
     },
     {
       "from": "m1-lem-elementary-streams",
       "to": "m1-lem-packed-selected-bit-rectangle",
+      "label": "lem:elementary-streams",
       "context": "e forward full-stream scan reinserts the sorted records. This implements $T_0$ everywhere. Finally apply the two-bit XOR to $x_{j_{f-1}},y_{j_{f-1}}$ by Lemma~\\ref{lem:elementary-streams}, splitting those chunks at the selected positions and collapsing the other intervals. Its descriptor again has a fixed"
     },
     {
       "from": "m1-lem-packed-selected-bit-rectangle",
       "to": "m1-prop-simultaneous-layer",
+      "label": "lem:packed-selected-bit-rectangle",
       "context": "rm g}}\\right) &\\le80C_Ap^2 2^{-K}\\left(1+\\frac{C_A}{2r}\\right). \\end{aligned} \\] Both bounds tend to zero uniformly over all current allowed $d,r$. Thus Lemma~\\ref{lem:packed-selected-bit-rectangle} has the required $O(M_{\\rm child}R_{\\rm g}(L^\\tau+1))$ cost for every packed call, with one common time constant. The r"
     },
     {
       "from": "m1-prop-simultaneous-layer",
       "to": "m1-lem-synthetic-transform-cost",
+      "label": "prop:simultaneous-layer",
       "context": "m parameters supply $p,d,r,K,w$, and the round determines $D,P,S$ and the selected offset $\\rho$. Encode these values as the header $\\mathcal E$ of Proposition~\\ref{prop:simultaneous-layer}. The same fixed descriptor bound covers every axis choice and round. Indeed $|\\Gamma(v)|\\leq2\\log_2v+1$, and $\\ell+n_P+"
     },
     {
       "from": "m1-lem-signed-ring-product",
       "to": "m1-prop-synthetic-convolution",
+      "label": "lem:signed-ring-product",
       "context": "Perform both forward transforms and retain their common $LB$ order. Pass the supplied $p,r,w$ to Lemma~\\ref{lem:signed-ring-product} for corresponding polynomial records. Its output keeps that record order and uses the component format required by the"
     },
     {
       "from": "m1-lem-chunk-swap",
       "to": "m1-lem-tensor-resampling",
+      "label": "lem:chunk-swap",
       "context": "but not the validity conditions above. To move an axis past its neighbor, interchange their $\\ell$-bit or $(\\ell-1)$-bit address fields. Equal widths use Lemma~\\ref{lem:chunk-swap}. For unequal widths, write the longer field as a leading bit $e$ followed by $\\ell-1$ bits. If it comes first, the orde"
     },
     {
       "from": "m1-lem-elementary-streams",
       "to": "m1-lem-tensor-resampling",
+      "label": "lem:elementary-streams",
       "context": "$. If the longer field comes second, first move its leading bit left of the shorter field, then interchange the two equal-width pieces. The bit move uses Lemma~\\ref{lem:elementary-streams}. Each adjacent interchange therefore costs $O(Tp(1+\\ell^\\tau))$. Exposing and restoring one axis needs $O(d)$ adjacent"
     },
     {
       "from": "m1-cor-exact-arithmetic",
       "to": "m1-lem-chirp-permutation",
+      "label": "cor:exact-arithmetic",
       "context": "[Proof of Corollary~\\ref{cor:exact-arithmetic}] We use the classical Newton reductions as presented by Brent~\\cite[Lemmas 2.1--2.4]{Brent1976}, with their tape costs"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-lem-chirp-permutation",
+      "label": "thm:main",
       "context": "ch retained significand has $t+O(1)$ bits, including the fixed additional precision of the inner reciprocal, and each exact product has $2t+O(1)$ bits. Theorem~\\ref{thm:main} applies to the padded significands. The streaming conventions give $O(t)$ cost for additions, shifts, copying, truncati"
     },
     {
       "from": "m1-lem-packed-selected-bit-rectangle",
       "to": "m1-lem-packed-selected-bit-addition",
+      "label": "lem:packed-selected-bit-rectangle",
       "context": "as length one. The resulting four positive lengths $N_0,N_1,N_2,N_3$, together with the current order of the names $x,y,z$, give exactly the rectangle in Lemma~\\ref{lem:packed-selected-bit-rectangle}, with $M_\\nu$ records and volume $V_\\nu$. Fixing a collapsed coordinate fixes every one of its mixed-radix factors. Hen"
     }
   ]

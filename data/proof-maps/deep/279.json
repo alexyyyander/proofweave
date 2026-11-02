@@ -87,7 +87,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Exact-quantum-factoring-over-a-fixed-finite-gate-set-September-25-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Exact quantum factoring over a fixed finite gate set; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Exact quantum factoring over a fixed finite gate set.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -159,7 +159,6 @@
           "source": "An order trial with prescribed success probability",
           "detail": "For every \\(1 d<B\\) and \\(0 j<d\\) with \\((j,d)=1\\), there are nonnegative dyadic numbers \\(U(d,j,u)\\), \\(0 u<d\\), such that 0& U(d,j,jt d)-P(d,j,t) 128 Q &&(0 t<d), \\\\ 1 128d & S(d,j):=12_ u=0 ^ d-1…",
           "dependsOn": [
-            "m1-prop-order-trial",
             "m1-lem-bins"
           ]
         },
@@ -209,7 +208,6 @@
           "source": "From verified runs to certain output",
           "detail": "[Quarter-success preparation] There is a polynomial-size uniform unitary preparation V_N whose flag is 1 with probability exactly 1/4 and whose flagged output is always the fixed encoding of the…",
           "dependsOn": [
-            "m1-prop-known-probability",
             "m1-lem-records",
             "m1-thm-main"
           ]
@@ -241,7 +239,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -257,7 +257,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Codimension-One-Bound-for-the-Singular-Set-of-a-Stationary-Integral-Varifold-October-5-2026/varifold-singular-dimension.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A Codimension-One Bound for the Singular Set of a Stationary Integral Varifold; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A Codimension-One Bound for the Singular Set of a Stationary Integral Varifold.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -342,9 +342,7 @@
           "kind": "lemma",
           "source": "Fitting intervals and frequency control",
           "detail": "[Inward control] There is a fixed large K such that, writing v_0= A/H , |P| K q_*/|P| c(|P|,^ -1 ), v_0 cq_*. When K P T^4 , P-C(rP+gP^2). A lower bound for P at the smaller-radius endpoint of a…",
-          "dependsOn": [
-            "m1-lem-interval-frequency"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-target-frequency",
@@ -416,7 +414,6 @@
           "detail": "[No open zero-height region] For the nonzero measure on the connected set in Proposition~ , equations -- imply H(l)>0 whenever B_l(x) and l>0 .",
           "dependsOn": [
             "m1-prop-measure-reduction",
-            "m1-thm-main",
             "m1-prop-flat-scales",
             "m1-prop-centered-blowup",
             "m1-prop-linearized",
@@ -437,7 +434,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Almost-everywhere-regularity-of-stationary-integral-varifolds-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Almost-everywhere regularity of stationary integral varifolds; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Almost-everywhere regularity of stationary integral varifolds.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -509,9 +506,7 @@
           "source": "Local first variation and height estimates",
           "detail": "[Scalar mass and propagation of the integer] Fix a bound for Q and fixed concentric interior enlargements of a ball B_s . Suppose the normalized projected mass on the outer enlargement is bounded,…",
           "dependsOn": [
-            "m2-lt-curvedvariation",
-            "m2-lt-potential",
-            "m2-lt-jacobian"
+            "m2-lt-curvedvariation"
           ]
         },
         {
@@ -532,9 +527,7 @@
           "kind": "corollary",
           "source": "Local first variation and height estimates",
           "detail": "[Gaussian weights and polynomial dilations] Define \\[ G_s(y)=(2 s^2)^ -m/2 (-|y|^2/(2s^2)) \\] and fix a center x . On the region |y-x| Rs , cover the base by balls of radii comparable to…",
-          "dependsOn": [
-            "m2-lt-config"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lt-gaussian",
@@ -544,9 +537,7 @@
           "kind": "lemma",
           "source": "Local first variation and height estimates",
           "detail": "[Gaussian mass identity] Set u=(y-x)/s , A(s)=s^2M_s(x) , and \\[ R_s(x)= G_s(y-x)B[u,u]\\,. \\] In flat coordinates, apart from T_s , A=s^2L_s+s^2R_s, = s . In the curved coordinates fixed above,…",
-          "dependsOn": [
-            "m2-lt-curvedvariation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lt-heighttests",
@@ -556,9 +547,7 @@
           "kind": "lemma",
           "source": "Local first variation and height estimates",
           "detail": "[Height tests and geometric errors] In flat coordinates, for a base test , a scalar height function f , a horizontal field X , and a normal vector function v , stationarity gives f X\\, &= f B:DX\\,-…",
-          "dependsOn": [
-            "m2-lt-curvedvariation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-sx-signed",
@@ -599,11 +588,6 @@
           "source": "Heat-potential contacts and separated configurations",
           "detail": "[Separated configurations] Fix Q>1 and assume for every integer 1 q<Q . For each fixed P>0 there are constants C_Q,C_S and a function b=b_Q satisfying b(T)( T)^ 200 , b(T)=T^ o(1) , F_ Q-1 (b(T)/2)(…",
           "dependsOn": [
-            "m2-lt-config",
-            "m2-lt-scalar",
-            "m2-sx-signed",
-            "m2-ct-contact",
-            "m2-ct-localization",
             "m2-lt-gaussian"
           ]
         },
@@ -628,8 +612,6 @@
           "source": "The outward envelope and the low-frequency barrier",
           "detail": "[Future envelope] Set I(s)=\\ _ s v (s/v)^K A(v),\\, (s/)^K^2d^ -2m-4 \\ , a(s)=s^2 I(s) . Starting at a threshold scale \\(s_0\\), stop at the first scale \\(s_*\\) with \\(a(s_*)=T/2\\). This scale exists,…",
           "dependsOn": [
-            "m2-lt-scalar",
-            "m2-lt-weightedballs",
             "m2-lt-gaussian"
           ]
         },
@@ -642,10 +624,7 @@
           "source": "The outward envelope and the low-frequency barrier",
           "detail": "[Initialization at a threshold or a side] At \\(s_0\\) one can choose at most \\(Q\\) wells and a small parameter \\(k_0>0\\) so that the barrier of holds initially. If more than one well is used, one may…",
           "dependsOn": [
-            "m2-lt-scalar",
-            "m2-lt-config",
             "m2-lt-weightedballs",
-            "m2-ct-separated",
             "m2-lt-heighttests"
           ]
         },
@@ -657,13 +636,7 @@
           "kind": "proposition",
           "source": "The outward envelope and the low-frequency barrier",
           "detail": "[Low-frequency barrier] Along every path in , the wells can be chosen piecewise constantly, with at most \\(Q-1\\) mergers. There is a positive piecewise smooth parameter \\(k\\), bounded above by a…",
-          "dependsOn": [
-            "m2-ex-bands",
-            "m2-lt-config",
-            "m2-ct-separated",
-            "m2-lt-heighttests",
-            "m2-ex-initialization"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-ex-bands",
@@ -683,9 +656,7 @@
           "kind": "lemma",
           "source": "Witness scales and the signed estimate",
           "detail": "[Ordered witness scales] Consider a contact path and a merger-free traversal of [B,2B] provided by , with k B^ -_0 throughout the traversal. Given a sufficiently small fixed number >0 , there are at…",
-          "dependsOn": [
-            "m2-ex-barrier"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-pk-reverse",
@@ -695,13 +666,7 @@
           "kind": "lemma",
           "source": "Witness scales and the signed estimate",
           "detail": "[A controlled-density fraction] Fix a finite family of nested dyadic grids with the property that every sufficiently small ball is contained in a cube of one of the grids with comparable diameter.…",
-          "dependsOn": [
-            "m2-ex-barrier",
-            "m2-pk-witnesses",
-            "m2-sx-signed",
-            "m2-lt-scalar",
-            "m2-lt-config"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-pk-packing",
@@ -711,9 +676,7 @@
           "kind": "lemma",
           "source": "Witness scales and the signed estimate",
           "detail": "[Dyadic packing] Let be a finite positive measure on the union X of disjoint roots of a dyadic forest. For a cube R put d(R)=(R)/|R| . Suppose that a family of marked cubes has densities in [_-,_+] ,…",
-          "dependsOn": [
-            "m2-pk-reverse"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-pk-contact-charge",
@@ -724,8 +687,6 @@
           "source": "Witness scales and the signed estimate",
           "detail": "[Charging the contact measure] Let h and be finite positive measures on ^m , and let C be a set of contact centers. For each of its contacts suppose there are radii 0<u_x s_x with _ s_x (x) c, _ 2s_x…",
           "dependsOn": [
-            "m2-sx-signed",
-            "m2-ex-bottom",
             "m2-pk-packing",
             "m2-ex-bands"
           ]
@@ -751,11 +712,7 @@
           "source": "A center adapted to the multiplicity defects",
           "detail": "[A failed fit forces separation] Fix 0<c_0<1/10 and a tilt threshold _0>0 . By reducing the admissible upper bound for m_0 in , there is a constant c>0 with the following property. If the first…",
           "dependsOn": [
-            "m2-lt-monotonicity",
-            "m2-sx-signed",
-            "m2-lt-curvedvariation",
-            "m2-lt-scalar",
-            "m2-lt-potential"
+            "m2-lt-monotonicity"
           ]
         },
         {
@@ -766,10 +723,7 @@
           "kind": "proposition",
           "source": "A center adapted to the multiplicity defects",
           "detail": "[The glued center and its influence region] Fix the desired output order J6 , apply with derivative order J+1 , and then choose its corresponding k_0 and initial parameters. There is a C^J graph S on…",
-          "dependsOn": [
-            "m2-ce-fit",
-            "m2-ce-failed"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-ce-weights",
@@ -780,8 +734,7 @@
           "source": "A center adapted to the multiplicity defects",
           "detail": "[Weights up to the boundary of the ball] Either the support lies on S in a neighborhood of 0 , or there exist r_0>0 , c,C>0 , and a finite J_0 such that, for every 0<r<r_0 , 0<(r) Cr, c(r)^ J_0 H(r)…",
           "dependsOn": [
-            "m2-ce-failed",
-            "m2-ce-center"
+            "m2-ce-failed"
           ]
         },
         {
@@ -802,12 +755,7 @@
           "kind": "lemma",
           "source": "Inward comparison and the conclusion",
           "detail": "[The signed estimate up to the outer collar] For a C^1(B_r) put \\[ \\|a\\|_ 1,r =_ B_r (|a|+r|_Sa|). \\] There is a radius r_ c >0 , depending only on the fixed center data, such that for every 0<r<r_ c…",
-          "dependsOn": [
-            "m2-lt-scalar",
-            "m2-lt-potential",
-            "m2-sx-signed",
-            "m2-lt-curvedvariation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-in-frequency",
@@ -829,9 +777,7 @@
           "kind": "proposition",
           "source": "Inward comparison and the conclusion",
           "detail": "[The inward bootstrap] On all sufficiently small radii, P is bounded above and below. For each fixed (0,1) there are constants C_,c_>0 such that c_ H(r) H( r) C_ H(r), _ r ^ r q_*(v)\\, v v C_. There…",
-          "dependsOn": [
-            "m2-in-frequency"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-in-finish",
@@ -842,14 +788,8 @@
           "source": "Inward comparison and the conclusion",
           "detail": "[Vanishing height at a typical point] The positive-height alternative at the origin is impossible. Consequently every point satisfying the typical-point hypotheses is regular.",
           "dependsOn": [
-            "m2-in-bootstrap",
-            "m2-lt-config",
-            "m2-lt-scalar",
-            "m2-ce-center",
             "m2-ce-constancy",
-            "m2-thm-main",
-            "m2-lt-monotonicity",
-            "m2-cor-round-spheres"
+            "m2-lt-monotonicity"
           ]
         }
       ]
@@ -875,7 +815,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

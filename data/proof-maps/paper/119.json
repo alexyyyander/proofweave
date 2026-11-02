@@ -365,196 +365,235 @@
     {
       "from": "m1-reserve-geometry",
       "to": "m1-reserve-corner",
+      "label": "reserve:geometry",
       "context": "0$, so these identities hold across the seam; no second derivative of the zero extension is needed. Now $\\eta\\ge1$, \\eqref{reserve:intercept-bound}, and Lemma~\\ref{reserve:geometry} give the whole comparison: \\begin{equation} A\\frac{dW}{dA}-W \\ge2\\kappa-MA^2\\log\\frac\\alpha\\beta \\ge(2-3M)\\kappa\\ge0"
     },
     {
       "from": "m1-capacity-onebit",
       "to": "m1-reserve-joining",
+      "label": "capacity:onebit",
       "context": "lower bound gives $e_0\\ge\\beta_0L$ and \\[ [L-e_0/\\alpha_0]_+\\le J_0/\\alpha_0<L. \\] The last strict inequality and the variance-refined one-bit bound are Lemma~\\ref{capacity:onebit}. Hence \\begin{equation} \\begin{aligned} W(m_0,\\delta_0,e_0) &=2J_0+\\alpha_0S(L-e_0/\\alpha_0)\\\\ &\\le2J_0+\\alpha_0S("
     },
     {
       "from": "m1-canonical-coverage",
       "to": "m1-reserve-joining",
+      "label": "canonical:coverage",
       "context": ")\\\\ &\\le2J_0+\\alpha_0S(J_0/\\alpha_0) =\\alpha_0F(J_0/\\alpha_0)\\le c(x,y). \\end{aligned} \\label{reserve:capacity} \\end{equation} For $\\delta>0$, Proposition~\\ref{canonical:coverage} supplies an exact optimizer with interior core $(x,y)$ of mass $k>0$ and equal-corner masses $\\pi_+,\\pi_-$, where $k+\\p"
     },
     {
       "from": "m1-reserve-corner",
       "to": "m1-reserve-joining",
+      "label": "reserve:corner",
       "context": "with retention factor $k/(k+\\pi_+)$, then the negative corner with retention factor $k+\\pi_+$. These two operations produce exactly the canonical law. Lemma~\\ref{reserve:corner} and \\eqref{reserve:capacity} give \\begin{equation} W(m,\\delta,e) \\le(k+\\pi_+)\\frac{k}{k+\\pi_+}W(m_0,\\delta_0,e_0) \\l"
     },
     {
       "from": "m1-scalar-entropy-bounds",
       "to": "m1-thinning-window",
+      "label": "scalar:entropy-bounds",
       "context": "his is a consequence of the oriented common-output path; it is not an assertion about every pair law with the same means. The bound $H(r)\\ge L(1-r^2)$ in Lemma~\\ref{scalar:entropy-bounds} now yields \\begin{equation} \\label{thinning:quadratic-floor} q\\ge e\\ge L\\left(\\sigma-\\frac{d^2}{\\sigma}\\right). \\end{e"
     },
     {
       "from": "m1-thinning-interval",
       "to": "m1-thinning-window",
+      "label": "thinning:interval",
       "context": "le $h=Lv$. With $\\beta=b/L$ the integrand becomes $k_\\beta(v)\\,dv$, with no additional factor of $L$. The lower endpoint $q_*/L$ and length $z$ satisfy Lemma~\\ref{thinning:interval} for this $x$ and $\\gamma=\\sigma/p$. Hence \\[ \\int_q^s\\frac{(h-b)_+}{h^2}\\,dh \\le-\\frac32\\log(1-\\gamma z) =-\\frac32\\"
     },
     {
       "from": "m1-thinning-payment",
       "to": "m1-thinning-window",
+      "label": "thinning:payment",
       "context": "[Proof of Theorem~\\ref{thinning:payment}] Combine the derivative reduction \\eqref{thinning:derivative-loss} with Lemma~\\ref{thinning:window}: \\begin{align*} \\l"
     },
     {
       "from": "m1-capacity-onebit",
       "to": "m1-thinning-high-value",
+      "label": "capacity:onebit",
       "context": "closed high-entropy branch by \\eqref{thinning:path}, with a nonnegative core center and $\\mathcal K(x,d,e)=\\lambda c(a_c,b_c)$. Put $\\alpha_c=1-x_c^2$. Lemma~\\ref{capacity:onebit} and convexity of $F$, with $F(0)=0$, give \\[ c(a_c,b_c)\\ge\\alpha_c F(J_c/\\alpha_c)\\ge F(J_c). \\] Theorem~\\ref{thinning"
     },
     {
       "from": "m1-thinning-payment",
       "to": "m1-thinning-high-value",
+      "label": "thinning:payment",
       "context": "Put $\\alpha_c=1-x_c^2$. Lemma~\\ref{capacity:onebit} and convexity of $F$, with $F(0)=0$, give \\[ c(a_c,b_c)\\ge\\alpha_c F(J_c/\\alpha_c)\\ge F(J_c). \\] Theorem~\\ref{thinning:payment} therefore implies \\[ J_0(x,d,e)=F(\\nu+J)-F(\\nu) \\le\\lambda F(J_c) \\le\\lambda c(a_c,b_c)=\\mathcal K(x,d,e). \\]"
     },
     {
       "from": "m1-scalar-curvature-growth",
       "to": "m1-upgrade-high-information",
+      "label": "scalar:curvature-growth",
       "context": "nce $S(0)=S'(0)=0$ and $S''=F''$ on this interval, \\begin{equation} \\Xi(I)=\\int_0^I(s-k_0)F''(s)\\,ds. \\label{upgrade:centered-curvature} \\end{equation} Lemma~\\ref{scalar:curvature-growth} says that $w(s)=e^{-2s}F''(s)$ strictly increases. Also $0<k_0<L/2$, and the binary identity $e^L=2$ gives the exact ba"
     },
     {
       "from": "m1-scalar-scaled-curvature",
       "to": "m1-wall-monotonicity",
+      "label": "scalar:scaled-curvature",
       "context": "c{F''(u)}{F'(u)}<2\\qquad(0\\le u\\le L/2). \\label{wall:rate-slope} \\end{equation} Indeed, set $h=L-u\\ge L/2$. The lower bound $F''(u)\\ge1/[2(L-u)^2]$ from Lemma~\\ref{scalar:scaled-curvature} gives \\[ F'(u)\\ge2+\\frac12\\left(\\frac1h-\\frac1L\\right). \\] Using the upper bound from the same lemma, we get \\[ 2h^2F"
     },
     {
       "from": "m1-reserve-joining",
       "to": "m1-upgrade-joining",
+      "label": "reserve:joining",
       "context": "ropy concavity makes all the profile arguments physical. If the parent maximum is attained by $\\mathcal B_m(I)$, apply the local reserve inequality of Theorem~\\ref{reserve:joining} and enlarge the two child terms to their $\\widehat{\\mathcal B}$ values. This includes every tie at the parent. It rema"
     },
     {
       "from": "m1-canonical-coverage",
       "to": "m1-upgrade-joining",
+      "label": "canonical:coverage",
       "context": "is enough to prove \\begin{equation} \\mathcal K(m,d,e)\\ge J_0(m,d,e). \\label{upgrade:pure-increment} \\end{equation} Use the exact optimizer from Proposition~\\ref{canonical:coverage}. In its one-positive-corner geometry, the entropy is at least the transition value \\eqref{canonical:transition}; Theore"
     },
     {
       "from": "m1-thinning-high-value",
       "to": "m1-upgrade-joining",
+      "label": "thinning:high-value",
       "context": "m Proposition~\\ref{canonical:coverage}. In its one-positive-corner geometry, the entropy is at least the transition value \\eqref{canonical:transition}; Theorem~\\ref{thinning:high-value} therefore proves \\eqref{upgrade:pure-increment}. In the reflected geometry \\eqref{canonical:reflected}, write \\[ d=kr"
     },
     {
       "from": "m1-upgrade-high-information",
       "to": "m1-upgrade-joining",
+      "label": "upgrade:high-information",
       "context": "$(1-k-x)/2$ at the equal corners makes every $x\\in[m,\\ell]$ physical at the same entropy and cost. Its means remain interior, since $\\ell+d=1-k(1-r)<1$. Lemma~\\ref{upgrade:high-information} gives $H(m)-e<L/2$. The function $H(x)-e$ decreases along this interval, so Lemma~\\ref{wall:monotonicity} applies throu"
     },
     {
       "from": "m1-wall-monotonicity",
       "to": "m1-upgrade-joining",
+      "label": "wall:monotonicity",
       "context": "in interior, since $\\ell+d=1-k(1-r)<1$. Lemma~\\ref{upgrade:high-information} gives $H(m)-e<L/2$. The function $H(x)-e$ decreases along this interval, so Lemma~\\ref{wall:monotonicity} applies throughout. Consequently \\[ J_0(m,d,e)\\le J_0(\\ell,d,e). \\] At $x=\\ell$, the negative-corner mass is zero, and"
     },
     {
       "from": "m1-upgrade-production",
       "to": "m1-upgrade-joining",
+      "label": "upgrade:production",
       "context": "[Proof of Theorem~\\ref{upgrade:production}] Induct on dimension. At dimension zero, a constant field has $D=I=0$ and $\\widehat{\\mathcal B}_m(0)=0$. For a coordina"
     },
     {
       "from": "m1-main-soft",
       "to": "m1-upgrade-joining",
+      "label": "main:soft",
       "context": "[Proof of Theorem~\\ref{main:soft}] Write $g=u$ for the field in the theorem. First suppose $0<\\rho<1$, and write $\\rho=e^{-t}$ with $t>0$. If $g$ is cons"
     },
     {
       "from": "m1-main-ck",
       "to": "m1-upgrade-joining",
+      "label": "main:ck",
       "context": "[Proof of Corollary~\\ref{main:ck}] Since $f$ is Boolean, $H(f(x))=0$ at every input, so $I(f)=H(m)$. Also $I(f(X);Y)=I(T_\\rho f)$. The first inequality"
     },
     {
       "from": "m2-lem-scalar",
       "to": "m2-ind-prop-asymmetric",
+      "label": "lem:scalar",
       "context": "Induct on the number of active coordinates. Lemma~\\ref{lem:scalar}(4) provides the cases with at most three. Otherwise choose the coordinate in Lemma~\\ref{ind:lem:coordinate}, and denot"
     },
     {
       "from": "m2-ind-lem-coordinate",
       "to": "m2-ind-prop-asymmetric",
+      "label": "ind:lem:coordinate",
       "context": "Induct on the number of active coordinates. Lemma~\\ref{lem:scalar}(4) provides the cases with at most three. Otherwise choose the coordinate in Lemma~\\ref{ind:lem:coordinate}, and denote its increasing sections by $f_-$ and $f_+$, with means $m-x$ and $m+x$. On the smaller cube let \\[ p_0=\\f"
     },
     {
       "from": "m2-thm-induction",
       "to": "m2-ind-prop-asymmetric",
+      "label": "thm:induction",
       "context": "[Proof of Theorem~\\ref{thm:induction}] By Lemma~\\ref{ind:lem:compression}, it suffices to consider increasing $f$. Its dual $f^*(x)=-f(-x)$ is also increasi"
     },
     {
       "from": "m2-ind-lem-compression",
       "to": "m2-ind-prop-asymmetric",
+      "label": "ind:lem:compression",
       "context": "[Proof of Theorem~\\ref{thm:induction}] By Lemma~\\ref{ind:lem:compression}, it suffices to consider increasing $f$. Its dual $f^*(x)=-f(-x)$ is also increasing and has mean $-m$. Noise commutes"
     },
     {
       "from": "m2-cen-edge",
       "to": "m2-cen-constants",
+      "label": "cen:edge",
       "context": "As $b$ decreases, $M$ increases. Lemma~\\ref{cen:edge} therefore reduces the first three upper bounds to $b_0=.839$. Set $\\alpha_0=F(\\sqrt{1-b_0^2})/\\sqrt{1-b_0^2}$. At this"
     },
     {
       "from": "m2-cen-k-bounds",
       "to": "m2-cen-pointwise",
+      "label": "cen:k-bounds",
       "context": "the triangle of that base and height is a lower bound for its integral. Thus \\[ 4\\int_u^y(k(t)-\\alpha)\\,dt\\ge\\lambda^2. \\] The lower derivative bound in Lemma~\\ref{cen:k-bounds} gives $\\lambda\\ge L$, so \\eqref{cen:D-integral} implies \\begin{equation}\\label{cen:D-lower} D(u)\\ge\\left(\\frac{2\\alpha"
     },
     {
       "from": "m2-lem-fourier-bounds",
       "to": "m2-cen-strict-variance",
+      "label": "lem:fourier-bounds",
       "context": "Write $T=\\E(u^2-y^2)^2=\\E(H(d)-b)^2$. Since $\\E d=m$ and $H(d)^2=1-d^2$, $T=h^2-b^2-\\Var d$. Lemma~\\ref{lem:fourier-bounds}, using $w\\le1-m$, therefore gives \\[ T\\ge(1-r^2)h^2-b^2-rs^2(1-m). \\] The crossing identity implies $sh-b=(1-s)(1-h)\\g"
     },
     {
       "from": "m2-cen-pointwise",
       "to": "m2-cen-strict-variance",
+      "label": "cen:pointwise",
       "context": "positive-margin}. For $m=0$ one has $b=s$ and $\\Delta=0$; the same averaged inequality proves \\eqref{cen:variance-gain}. If any cube point has $u\\ne y$, Lemma~\\ref{cen:pointwise} makes the averaged inequality strict. Since $k>0$ in \\eqref{cen:k-ode}, the condition $u=y$ is equivalent to $g^2=M$, c"
     },
     {
       "from": "m2-prop-central",
       "to": "m2-cen-strict-variance",
+      "label": "prop:central",
       "context": "[Proof of Proposition~\\ref{prop:central}] Recall that $q$ is the total degree-one Fourier weight of $g$, $l$ is its largest coordinate weight, and $H_0=\\Var g-q"
     },
     {
       "from": "m2-cen-constants",
       "to": "m2-cen-strict-variance",
+      "label": "cen:constants",
       "context": "more yields \\[ q\\ge M-\\Phi(M)+2C_0V_0+\\frac{p_*-1}{1+p_*}\\Delta \\ge M-\\Phi(M)-\\Delta. \\] Thus the second inequality retains the full calibration loss; Lemma~\\ref{cen:constants} gives $1-.0063-.008=.9857>.985$. Let \\[ L_1(x)=\\sum_i a_i x_i,\\qquad P=L_1^2-q,\\qquad W=\\E P^2=2\\left(q^2-\\sum_i a_i"
     },
     {
       "from": "m2-cen-k-bounds",
       "to": "m2-cen-strict-variance",
+      "label": "cen:k-bounds",
       "context": "$2\\E(L_1PZ)$, $2\\mu\\E(PZ)$, and $\\E(Z^2P)$, bounded below by $-2\\sqrt{3qWH_0}$, $-2|\\mu|\\sqrt{WH_0}$, and $-qH_0$ respectively. The mean term is small. Lemma~\\ref{cen:k-bounds} and \\eqref{cen:k-ode} give \\[ |g-\\alpha d|\\le2|u-y|\\le\\tfrac12|g^2-M|. \\] Together with \\eqref{cen:resources} this pro"
     },
     {
       "from": "m2-prop-intermediate",
       "to": "m2-mid-pointwise",
+      "label": "prop:intermediate",
       "context": "[Proof of Proposition~\\ref{prop:intermediate}] Assume \\(b=h-1+s\\). Since \\(s\\ge21/25\\), \\begin{equation}\\label{mid:r-bound} r^2\\le(184/625)^2<87/1000. \\end{equation"
     },
     {
       "from": "m2-lb-log-sobolev",
       "to": "m2-lb-norm-bounds",
+      "label": "lb:log-sobolev",
       "context": "left[ \\frac2{\\theta^2}\\operatorname{Ent}(u^\\theta) -\\frac{\\E u^{\\theta-1}\\mathcal Nu}{\\theta-1} \\right].\\label{lb:norm-derivative} \\end{align} Lemma~\\ref{lb:log-sobolev}, applied to $u^{\\theta/2}$, and \\eqref{lb:power-energy} show that the bracket is nonpositive. Thus the derivative is no"
     },
     {
       "from": "m2-prop-large-bias",
       "to": "m2-lb-norm-bounds",
+      "label": "prop:large-bias",
       "context": "[Proof of Proposition~\\ref{prop:large-bias}] We first use the norm inequalities to bound a positive series of moments. We then bound its terms and tail uniformly o"
     },
     {
       "from": "m2-thm-main",
       "to": "m2-lb-norm-bounds",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] The endpoint and symmetry reductions in Section~\\ref{sec:preliminaries} reduce the problem to \\(0<\\rho<1\\) and a nonco"
     },
     {
       "from": "m2-thm-induction",
       "to": "m2-lb-norm-bounds",
+      "label": "thm:induction",
       "context": "~\\ref{thm:main}] The endpoint and symmetry reductions in Section~\\ref{sec:preliminaries} reduce the problem to \\(0<\\rho<1\\) and a nonconstant function. Theorem~\\ref{thm:induction} proves Equation~\\eqref{eq:main} when \\(0<s\\le .84\\). For larger \\(s\\), replace \\(f\\) by \\(-f\\) if necessary so that \\(m"
     },
     {
       "from": "m2-lem-crossing",
       "to": "m2-lb-norm-bounds",
+      "label": "lem:crossing",
       "context": "that \\(m\\ge0\\). Proposition~\\ref{prop:large-bias} gives the desired inequality whenever \\(m\\ge .74\\). If \\(m<.74\\) and the inequality were ever to fail, Lemma~\\ref{lem:crossing} would provide a parameter satisfying Equation~\\eqref{eq:crossing}. At that parameter, either \\(m\\le r^2/2\\) or \\(m\\ge r"
     },
     {
       "from": "m2-prop-central",
       "to": "m2-lb-norm-bounds",
+      "label": "prop:central",
       "context": "~\\ref{lem:crossing} would provide a parameter satisfying Equation~\\eqref{eq:crossing}. At that parameter, either \\(m\\le r^2/2\\) or \\(m\\ge r^2/2\\). Propositions~\\ref{prop:central} and~\\ref{prop:intermediate} exclude these possibilities unless \\(f\\) is a signed coordinate, for which equality is alre"
     },
     {
       "from": "m2-prop-intermediate",
       "to": "m2-lb-norm-bounds",
+      "label": "prop:intermediate",
       "context": "ld provide a parameter satisfying Equation~\\eqref{eq:crossing}. At that parameter, either \\(m\\le r^2/2\\) or \\(m\\ge r^2/2\\). Propositions~\\ref{prop:central} and~\\ref{prop:intermediate} exclude these possibilities unless \\(f\\) is a signed coordinate, for which equality is already known. This proves the t"
     },
     {
       "from": "m2-thm-main",
       "to": "m2-cor-ck",
+      "label": "thm:main",
       "context": "]$, and Jensen's inequality therefore imply \\[ I(f(X);Y)=\\varphi(h)-\\E\\varphi(H(d)) \\le\\varphi(h)-\\varphi(b). \\] Concavity of $H$ gives $b\\le h$, and Theorem~\\ref{thm:main} gives $\\delta:=h-b\\le1-s$. For a convex function its increments over intervals of fixed length are increasing with the"
     }
   ]

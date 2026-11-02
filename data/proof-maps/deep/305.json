@@ -417,7 +417,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-boundary-only-obstruction-to-four-dimensional-disk-embedding-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A boundary-only obstruction to four-dimensional disk embedding; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A boundary-only obstruction to four-dimensional disk embedding.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -438,9 +438,7 @@
           "kind": "corollary",
           "source": "Introduction",
           "detail": "[Nongoodness of the free group] The free group F_2 on two generators is not good in the sense of Freedman--Quinn. Every group containing a subgroup isomorphic to F_2 is likewise not good.",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-surgery-conjunction",
@@ -482,9 +480,7 @@
           "kind": "lemma",
           "source": "A finite geometric test for disc embedding",
           "detail": "[Simultaneous capped stages] For every r R there is a punctured torus B_r properly embedded in V , with boundary a knot in intQ . The B_r are mutually disjoint. They have intersecting basis curves…",
-          "dependsOn": [
-            "m1-geo-framing"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-geo-dual-candidates",
@@ -494,9 +490,7 @@
           "kind": "lemma",
           "source": "A finite geometric test for disc embedding",
           "detail": "[Embedded framed dual candidates] Each g_r is individually embedded and has trivial normal bundle. It follows that \\[ (g_r,g_r)=0, (g_r)=0. \\] The compression leaves the single product-torus…",
-          "dependsOn": [
-            "m1-geo-stages"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-geo-labels",
@@ -516,10 +510,7 @@
           "kind": "corollary",
           "source": "A finite geometric test for disc embedding",
           "detail": "[The exact algebraic input] There are orientations and whiskers for the discs and spheres such that, for all r,s R and R= Z[_1(M)] , (f_r,g_s)=_ rs \\,1 R, (g_r,g_s)=0 R, (g_r)=0. In particular the…",
-          "dependsOn": [
-            "m1-geo-dual-candidates",
-            "m1-geo-labels"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-geo-topological-cuts",
@@ -540,7 +531,6 @@
           "source": "A finite geometric test for disc embedding",
           "detail": "[The geometric input and the forced cut data] For every d5 , with the finite word set H defined above, the preceding construction produces a compact connected oriented smooth four-manifold M with…",
           "dependsOn": [
-            "m1-geo-input-invariants",
             "m1-geo-topological-cuts",
             "m1-geo-graph"
           ]
@@ -563,9 +553,7 @@
           "kind": "lemma",
           "source": "Deformations of the cut data",
           "detail": "[Slopes and internal directions] The ends of each cut can be designated \\(+\\) and \\(-\\), and torus coordinates \\((_i,_i)\\) of period one can be chosen, so that the image of \\[ H^1(J_i; C) H^1( J_i;…",
-          "dependsOn": [
-            "m1-def-paired-mv"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-def-equation-chart",
@@ -664,8 +652,7 @@
           "detail": "[Generation of the full defect ideal] In \\(B= C[[a,t]]\\), (_C(a,Y(a,t)))= r.",
           "dependsOn": [
             "m1-conn-vertex-connection",
-            "m1-def-paired-mv",
-            "m1-def-equation-chart"
+            "m1-def-paired-mv"
           ]
         },
         {
@@ -696,10 +683,7 @@
           "kind": "proposition",
           "source": "Formal connections and the two ideal identities",
           "detail": "[All gradient jets in one complex algebraic ring] For each wall there is one fixed algebraic chart ring \\(A_i^*\\), with completion \\( C[[a_i,y_i]]\\), containing the original transition germs and \\(…",
-          "dependsOn": [
-            "m1-conn-image-bundle",
-            "m1-conn-wall-collar"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-conn-output",
@@ -776,7 +760,6 @@
           "source": "Algebraic replacement and specialization",
           "detail": "[Formal data after algebraic replacement] The input in Definition~ yields a finitely generated Z -subalgebra R C , separated potentials \\[ P_i(a_i,y_i)^3R[[a_i,y_i]], p_i(y_i)=_ a_ i,1 P_i(0,y_i),\\\\…",
           "dependsOn": [
-            "m1-alg-replacement-preserves",
             "m1-alg-finite-ring",
             "m1-alg-remainder"
           ]
@@ -830,14 +813,9 @@
           "source": "A Frobenius--Koszul obstruction to the formal data",
           "detail": "[Joint kernels in a tensor product] For finite-dimensional vector spaces V_i and endomorphisms S_i , put N_i= S_i , and let W be an additional tensor factor on which all S_i act as the identity. On…",
           "dependsOn": [
-            "m1-frob-no-data",
             "m1-frob-normal-cycle",
             "m1-frob-retraction",
-            "m1-thm-main",
-            "m1-geo-construction",
             "m1-geo-input-invariants",
-            "m1-conn-output",
-            "m1-alg-formal-data",
             "m1-alg-specialization"
           ]
         }
@@ -855,7 +833,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-marked-tensor-obstruction-to-four-dimensional-disk-embedding-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A marked tensor obstruction to four-dimensional disk embedding; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A marked tensor obstruction to four-dimensional disk embedding.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -896,9 +874,7 @@
           "kind": "lemma",
           "source": "The geometric reduction",
           "detail": "[Algebraic duals in the exterior] There are proper generically immersed disks \\(f_j\\) in \\(E\\), with disjoint boundary circles and with the bottom-surgery framings, and framed spheres \\(g_j\\) in…",
-          "dependsOn": [
-            "m2-lem-marked-body"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-connected-tree-cuts",
@@ -921,7 +897,6 @@
           "dependsOn": [
             "m2-prop-geometric-reduction",
             "m2-lem-marked-body",
-            "m2-lem-exterior-duals",
             "m2-lem-connected-tree-cuts"
           ]
         },
@@ -995,9 +970,7 @@
           "kind": "lemma",
           "source": "A finite tensor obstruction",
           "detail": "[Projection preserving kernel representatives] Let \\((H,)\\) be a finite-dimensional graded complex over a field, and let \\(K H\\) be any graded subspace. There is a chain projection \\(P:H H\\),…",
-          "dependsOn": [
-            "m2-thm-tensor-obstruction"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-edge-cohomology",
@@ -1117,7 +1090,6 @@
           "source": "Matching the edge potentials at the vertices",
           "detail": "At the joint origin the tangent images of H_A and H_B , with the external parameters fixed, are complementary. For each vertex, S_P(H_P) I_P^2, (_h S_P)(H_P)=M_P r_P, where M_P is an actual…",
           "dependsOn": [
-            "m2-lem-vertex-linear",
             "m2-prop-edge-potential"
           ]
         },
@@ -1163,7 +1135,6 @@
           "source": "Matching the edge potentials at the vertices",
           "detail": "[Correction over the full parameter algebra] Let \\(I\\) be a finite set of cardinality \\(m\\), put \\(T=K[t_i:i I]/(t_i^2:i I)\\), let \\(J=(t_i:i I)\\), and work in \\(T[[x]]\\). Fix a finite residual list…",
           "dependsOn": [
-            "m2-prop-vertex-data",
             "m2-lem-vertex-linear",
             "m2-lem-vertex-offshell-identities",
             "m2-lem-vertex-correction",
@@ -1179,10 +1150,7 @@
           "source": "Matching the edge potentials at the vertices",
           "detail": "The cut data of Proposition~ , with m5 and the indicated finite law list, supply all the hypotheses of Theorem~ .",
           "dependsOn": [
-            "m2-prop-vertex-data",
-            "m2-thm-main",
             "m2-lem-exterior-duals",
-            "m2-prop-geometric-reduction",
             "m2-prop-edge-potential",
             "m2-thm-edge-algebraicity"
           ]
@@ -1201,7 +1169,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-PD4-group-without-an-aspherical-manifold-model-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A PD4 group without an aspherical manifold model; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A PD4 group without an aspherical manifold model.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1379,7 +1347,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

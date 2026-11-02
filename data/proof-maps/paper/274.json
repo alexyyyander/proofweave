@@ -226,131 +226,157 @@
     {
       "from": "m1-lem-propagation",
       "to": "m1-lem-small-support",
+      "label": "lem:propagation",
       "context": ", with \\[ B_1=VP_{\\mathrm{left}}V^\\dagger,\\qquad B_2=VA'V^\\dagger,\\qquad B_3=VP_{\\mathrm{right}}V^\\dagger. \\] Each $B_j$ is therefore a contraction to which \\Cref{lem:propagation} applies. No commutation between these three factors is asserted or needed. Choose fixed exponents \\[ \\max\\{w,u\\}<w'<\\"
     },
     {
       "from": "m1-lem-polynomial",
       "to": "m1-lem-backward",
+      "label": "lem:polynomial",
       "context": "counts \\(M,D\\), and put \\[ P=[M=0],\\qquad H=[M\\ge N^t],\\qquad C=UDU^\\dagger,\\qquad Q=[C=0]=U[D=0]U^\\dagger. \\] Let \\(p(x)=\\sum_kc_kx^k\\) be the polynomial in \\Cref{lem:polynomial} for \\(a,b,u\\). We will first control $Hp(C)P$ by small-support localization. Squaring the desired norm will then place"
     },
     {
       "from": "m1-lem-small-support",
       "to": "m1-lem-backward",
+      "label": "lem:small-support",
       "context": "mials, each a product projection on at most \\(k\\) qubits: repeated indices collapse by idempotence, while different indices commute. For \\(k\\le\\deg p\\le N^u\\), \\Cref{lem:small-support} applies to every such monomial with the same fixed exponents \\(u,w,t\\). Since \\(p(C)=Up(D)U^\\dagger\\), its coefficient"
     },
     {
       "from": "m1-thm-localization",
       "to": "m1-lem-backward",
+      "label": "thm:localization",
       "context": "[Proof of \\Cref{thm:localization}] The case \\(d=0\\) is \\Cref{lem:base}. Fix \\(d\\ge1\\), and assume the theorem at depth \\(d-1\\) for every fixed exponent p"
     },
     {
       "from": "m1-lem-base",
       "to": "m1-lem-backward",
+      "label": "lem:base",
       "context": "[Proof of \\Cref{thm:localization}] The case \\(d=0\\) is \\Cref{lem:base}. Fix \\(d\\ge1\\), and assume the theorem at depth \\(d-1\\) for every fixed exponent pair. It remains to prove \\(\\cB_d(s,t)"
     },
     {
       "from": "m1-thm-parity",
       "to": "m1-lem-backward",
+      "label": "thm:parity",
       "context": "[Proof of \\Cref{thm:parity}] Suppose that a circuit as in the theorem exists on \\(n\\) input qubits and \\(N-n\\) initially zero ancillas, with \\(n\\le"
     },
     {
       "from": "m1-thm-parity",
       "to": "m1-cor-quantum-lmn",
+      "label": "thm:parity",
       "context": "d let $Q=C^\\dagger O_0C$, where $O_0$ projects its output qubit onto $\\ket0$. For $h\\in\\{0,1\\}^n$, let $\\xi_h$ be the Hadamard product vector from the proof of \\Cref{thm:parity}, and let $M_h$ count mismatches from its factors on the $n$ input qubits. For $S\\subseteq[n]$, write $\\mathbf 1_S$ for"
     },
     {
       "from": "m1-thm-localization",
       "to": "m1-cor-quantum-lmn",
+      "label": "thm:localization",
       "context": "1_S},0}Q\\ket{\\xi_h,0}\\right|^2 \\notag\\\\ &\\le4\\sup_h\\norm{[M_h\\ge k]Q[M_h=0]}^2. \\label{eq:fourier-localization} \\end{align} For any fixed $0<\\sigma<\\tau$, \\Cref{thm:localization} bounds this by $4e^{-2N^\\sigma}$ whenever $N$ is sufficiently large and $k\\ge N^\\tau$. The threshold depends only on $d"
     },
     {
       "from": "m1-thm-parity",
       "to": "m1-cor-symmetric-functions",
+      "label": "thm:parity",
       "context": "h and polynomial total qubits. Hadamard conjugation on the fanout data wires gives the exact parity unitary; a zero target and its final measurement contradict \\Cref{thm:parity}. Finite exceptional input lengths do not affect this circuit-family contradiction."
     },
     {
       "from": "m1-cor-quantum-lmn",
       "to": "m1-cor-majority-average",
+      "label": "cor:quantum-lmn",
       "context": "_n}]} \\ge \\sqrt{W_{\\ge k_n}[g_n]}-\\|f_{C_n}-g_n\\|_2 > (2-\\sqrt2)n^{-\\delta_0/2}. \\] On the other hand, $k_n\\ge\\lceil n^{\\delta_0}\\rceil$ eventually. Applying \\Cref{cor:quantum-lmn} at the latter cutoff, with $B=\\delta_0+1$, yields $W_{\\ge k_n}[f_{C_n}]\\le n^{-(\\delta_0+1)}$, a contradiction."
     },
     {
       "from": "m2-lem-zero-filter",
       "to": "m2-prop-propagation",
+      "label": "lem:zero-filter",
       "context": "{H_Q>m^L}\\xi} \\le \\norm{\\one_{H_{\\mathcal T}\\ge m^L}\\xi} \\le \\exp(-m^{p_2}). \\] Here the reference vector is exactly $F\\zeta$, before applying $M$. By Lemma~\\ref{lem:zero-filter}, choose a real polynomial $f$ of degree at most $m^r$, bounded in absolute value by $\\exp(m^r)$ on $[0,m]$, whose error"
     },
     {
       "from": "m2-lem-tail-transport",
       "to": "m2-lem-exponent-budget",
+      "label": "lem:tail-transport",
       "context": "[Proof of Lemma~\\ref{lem:tail-transport}] Fix target exponents $b<h_*<1$ and $0<p_*<h_*$. Set \\[ \\delta=\\frac{h_*-p_*}{4}, \\qquad N=\\left\\lceil\\frac{2(1-h_*"
     },
     {
       "from": "m2-lem-tail-filter",
       "to": "m2-lem-exponent-budget",
+      "label": "lem:tail-filter",
       "context": "ts exponents once for this step. All subsequent estimates are for sufficiently large $m$. \\emph{Forward propagation on the trajectory of $\\chi$.} Apply Lemma~\\ref{lem:tail-filter} with parameters $v,h,u,s,k$, and write $T=T(H_A)$ for its polynomial evaluated at the initial count. It is self-adjoint"
     },
     {
       "from": "m2-prop-propagation",
       "to": "m2-lem-exponent-budget",
+      "label": "prop:propagation",
       "context": "\\\\ &\\le 1+\\exp\\bigl(m^k-m^{u-\\alpha}\\bigr) \\le2. \\end{align*} This is the first use of a global polynomial norm; it is paid for by $k<u-\\alpha$. Proposition~\\ref{prop:propagation}, applied with exponents $k<K$ to the regular reference trajectory from $\\chi$, gives an operator $E$ such that \\[ \\nor"
     },
     {
       "from": "m2-lem-degree-shift",
       "to": "m2-lem-exponent-budget",
+      "label": "lem:degree-shift",
       "context": "\\norm{VT\\chi-EV\\chi}\\le\\exp(-m^k), \\qquad \\deg E\\le m^K, \\qquad \\norm{E}\\le\\exp(m^K). \\] The endpoint $V\\chi=P_BV\\psi$ has exactly zero $H_B$ count. By Lemma~\\ref{lem:degree-shift}, $\\one_{H_B>m^K}EV\\chi=0$. Therefore the filtered vector has the effective-range bound \\[ \\norm{\\one_{H_B>m^K}VT\\chi}"
     },
     {
       "from": "m2-lem-zero-filter",
       "to": "m2-lem-exponent-budget",
+      "label": "lem:zero-filter",
       "context": "tor has the effective-range bound \\[ \\norm{\\one_{H_B>m^K}VT\\chi}\\le\\exp(-m^k). \\] \\emph{Approximating the final projection on the controlled side.} Use Lemma~\\ref{lem:zero-filter} with precision exponent $q$, range exponent $K$, and degree exponent $r$. These satisfy $0<q<K<1$ and $r>(K+q)/2$. Wr"
     },
     {
       "from": "m2-lem-tail-transport",
       "to": "m2-prop-projection-insertion",
+      "label": "lem:tail-transport",
       "context": "nal trajectory at layer $j$ also gives, for every fixed $b<h<1$ and $0<p<h$, \\[ \\norm{\\one_{H_A\\ge m^h}\\psi_j}\\le \\exp(-m^p) \\quad\\text{eventually}. \\] Lemma~\\ref{lem:tail-transport} therefore gives the same estimate for $\\chi_j$. The count $H_S$ commutes with every reflection of layer $j$, so this e"
     },
     {
       "from": "m2-lem-uniformization",
       "to": "m2-prop-projection-insertion",
+      "label": "lem:uniformization",
       "context": "of layer $j$, so this estimate holds on $\\chi_{j-1}$ as well. The chosen sets $S$ may vary with the circuit sequence. For each fixed triple $(b,h,p)$, Lemma~\\ref{lem:uniformization} consequently makes the estimate eventual and uniform over all eligible $S$. This proves regularity at layer $j$ and co"
     },
     {
       "from": "m2-prop-projection-insertion",
       "to": "m2-cor-product-tail",
+      "label": "prop:projection-insertion",
       "context": "The original trajectory is regular by assumption and the projected trajectory is regular by Proposition~\\ref{prop:projection-insertion}. Since $H_0\\psi_0=0$, the input-tail hypothesis of Lemma~\\ref{lem:tail-transport} holds with $b=0$. Applying that lemm"
     },
     {
       "from": "m2-lem-tail-transport",
       "to": "m2-cor-product-tail",
+      "label": "lem:tail-transport",
       "context": "r by assumption and the projected trajectory is regular by Proposition~\\ref{prop:projection-insertion}. Since $H_0\\psi_0=0$, the input-tail hypothesis of Lemma~\\ref{lem:tail-transport} holds with $b=0$. Applying that lemma to $V=W$ proves the claim."
     },
     {
       "from": "m2-lem-tail-transport",
       "to": "m2-cor-overlap-tail",
+      "label": "lem:tail-transport",
       "context": "Put $\\chi_t=P_B\\psi_t$ and $q_B=\\norm{P_B\\psi_t}^2$. Apply Lemma~\\ref{lem:tail-transport} to the reverse circuit $V=W^{\\dagger}$, starting at $\\chi_t$, with initial count $H_B$ and final projection $P_0$. The"
     },
     {
       "from": "m2-prop-projection-insertion",
       "to": "m2-cor-overlap-tail",
+      "label": "prop:projection-insertion",
       "context": "starting at $\\chi_t$, with initial count $H_B$ and final projection $P_0$. The starting vector has zero $H_B$ count. Its trajectory is regular by Proposition~\\ref{prop:projection-insertion} and reversal. The projected-and-returned vector is exactly \\begin{align*} W P_0 W^{\\dagger}\\chi_t &=\\psi_t\\,\\ip{\\psi_"
     },
     {
       "from": "m2-cor-overlap-tail",
       "to": "m2-lem-retained-layer",
+      "label": "cor:overlap-tail",
       "context": "nting these outcomes yields one of sufficiently large probability; recentering the test there changes every count by at most the outcome's weight, so Corollary~\\ref{cor:overlap-tail} supplies the required tail estimate. We first bound the mean count of each retained gate. Fix $\\epsilon>0$ and choose"
     },
     {
       "from": "m2-lem-retained-layer",
       "to": "m2-prop-pruning",
+      "label": "lem:retained-layer",
       "context": "The empty prefix is regular. Appending a one-qubit layer adds no regularity condition, and Lemma~\\ref{lem:retained-layer} applies at each reflection layer. Induction therefore gives regularity of the whole pruned trajectory. The retention"
     },
     {
       "from": "m2-thm-parity",
       "to": "m2-prop-pruning",
+      "label": "thm:parity",
       "context": "[Proof of Theorem~\\ref{thm:parity}] Fix positive integers $d,k,C$ and $0<\\varepsilon\\le1/2$, where $k$ is now the resource exponent in the theorem. Suppos"
     },
     {
       "from": "m2-cor-product-tail",
       "to": "m2-prop-pruning",
+      "label": "cor:product-tail",
       "context": "resources}, $m^h=O(n^{kh})=o(n)$, so $m^h<n$ eventually. The vector $\\psi'_0$ then belongs to the range of $\\one_{H_0\\ge m^h}$. Cauchy--Schwarz and Corollary~\\ref{cor:product-tail}, applied to the regular trajectory of $W$, show that \\[ \\left|\\ip{\\Omega}{Z_RP_B\\Omega}\\right| \\le\\norm{\\one_{H_0\\ge"
     }
   ]

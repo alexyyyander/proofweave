@@ -472,306 +472,367 @@
     {
       "from": "m1-lem-interior-characterization",
       "to": "m1-lem-radial-comparison",
+      "label": "lem:interior-characterization",
       "context": "Both $sa$ and $s'a$ belong to $I(x)$ by \\cref{lem:interior-characterization}. Time rescaling in \\eqref{eq:hessian-index-minimum} gives, along $\\gamma_{x,a}$, \\[ \\frac1s A_x(sa)(\\xi,\\xi) =\\min_{"
     },
     {
       "from": "m1-lem-hessian-index",
       "to": "m1-lem-radial-comparison",
+      "label": "lem:hessian-index",
       "context": "']$. It is an admissible field for the corresponding minimum on $[0,s']$ and has the same index-form value. If $\\xi\\ne0$, it cannot be that minimum: otherwise \\cref{lem:hessian-index}, with time rescaled, would make the extension Jacobi, although it vanishes on $(s,s')$ and is nonzero at $0$. Thus $A_"
     },
     {
       "from": "m1-lem-hessian-index",
       "to": "m1-prop-segment-nonconjugacy",
+      "label": "lem:hessian-index",
       "context": "onconjugacy. At $a=z$, integration by parts gives \\[ Q_z(E_z,J_z) =[\\langle E_z,D_\\tau J_z\\rangle]_0^1 =-\\langle\\xi,k\\rangle_x. \\] For $a\\in I(x)$ near $z$, \\cref{lem:hessian-index} can be tested on $E_a+\\lambda J_a$. Minimizing the resulting quadratic polynomial in $\\lambda\\in\\R$ gives \\begin{equat"
     },
     {
       "from": "m1-lem-transverse-concavity",
       "to": "m1-prop-segment-nonconjugacy",
+      "label": "lem:transverse-concavity",
       "context": "_a)$ from above and bounds $Q_a(E_a,J_a)^2$ away from zero there. \\medskip\\noindent \\emph{Reduction to a one-dimensional kernel.} For each fixed $\\xi\\perp e$, \\cref{lem:transverse-concavity} on the contracted segment gives \\[ A_x(rz)(\\xi,\\xi) \\geq \\frac{l_1}{l_0+l_1}A_x(rb_0)(\\xi,\\xi) +\\frac{l_0}{l_0+l"
     },
     {
       "from": "m1-prop-segment-nonconjugacy",
       "to": "m1-geo-first-cut",
+      "label": "prop:segment-nonconjugacy",
       "context": "ta_i}{1-\\theta_k}a_i. \\] The vector $w'$ is nonconjugate by induction, and $a_k$ is nonconjugate by hypothesis. Their entire segment lies in $K\\subset G_x$, so \\cref{prop:segment-nonconjugacy} makes $w$ nonconjugate as well. Discarding zero weights gives the assertion for every point of $K$."
     },
     {
       "from": "m1-geo-radial-index",
       "to": "m1-geo-slack",
+      "label": "geo:radial-index",
       "context": "fore perpendicular to $\\xi$. Jensen's inequality therefore gives $H_t(p)(\\xi,\\xi)\\geq\\sum_i m_iH_t(p_i)(\\xi,\\xi)$. Subtract $\\sum_i m_iH_s(p_i)$ and use Lemma~\\ref{geo:radial-index} on each original minimizing ray. The limiting assertion follows by applying this argument to the contracted hull and pa"
     },
     {
       "from": "m1-geo-slack",
       "to": "m1-geo-local-injectivity",
+      "label": "geo:slack",
       "context": "{a_i:i\\in P\\}$ lies in $r\\partial u(x)\\subset I(x)$. At time $t$ all its velocities are nonconjugate by hypothesis. The limiting transverse-slack inequality of \\cref{geo:slack} therefore gives \\begin{equation} \\delta_*:= [H_t(p)-\\sum_{i\\in P}m_iH_s(a_i)](e,e) \\geq\\kappa_g(s-t)>0. \\label{geo:"
     },
     {
       "from": "m1-geo-first-cut",
       "to": "m1-geo-support",
+      "label": "geo:first-cut",
       "context": "tion of active velocities $a_i\\in G_x$. The hull of the $t_*a_i$ lies in $t_*\\partial u(x)\\subset G_x$. Its generators are in $I(x)$ because $t_*<1$. Corollary~\\ref{geo:first-cut} therefore makes its entire hull nonconjugate. Thus every scaled graph vector at time $t_*$ is nonconjugate, and \\cref{g"
     },
     {
       "from": "m1-geo-local-injectivity",
       "to": "m1-geo-support",
+      "label": "geo:local-injectivity",
       "context": "because $t_*<1$. Corollary~\\ref{geo:first-cut} therefore makes its entire hull nonconjugate. Thus every scaled graph vector at time $t_*$ is nonconjugate, and \\cref{geo:local-injectivity} makes $F_{t_*}$ locally injective. Choose $\\epsilon\\in(0,t_*)$ small enough for \\cref{geo:short-time}. Then $\\Gamma_u$"
     },
     {
       "from": "m1-geo-short-time",
       "to": "m1-geo-support",
+      "label": "geo:short-time",
       "context": "d graph vector at time $t_*$ is nonconjugate, and \\cref{geo:local-injectivity} makes $F_{t_*}$ locally injective. Choose $\\epsilon\\in(0,t_*)$ small enough for \\cref{geo:short-time}. Then $\\Gamma_u$ is a connected compact topological $n$-manifold, and \\[ (\\lambda,(x,p))\\longmapsto \\exp_x\\bigl(((1-\\"
     },
     {
       "from": "m1-lem-covering-homeomorphism",
       "to": "m1-geo-support",
+      "label": "lem:covering-homeomorphism",
       "context": "psto \\exp_x\\bigl(((1-\\lambda)\\epsilon+\\lambda t_*)p\\bigr), \\qquad 0\\leq\\lambda\\leq1, \\] is a homotopy from the homeomorphism $F_\\epsilon$ to $F_{t_*}$. Lemma~\\ref{lem:covering-homeomorphism} shows that $F_{t_*}$ is a homeomorphism. Fix $(x,p)\\in\\Gamma_u$ and set $z=F_{t_*}(x,p)$. A global minimizer $x'$ of $"
     },
     {
       "from": "m1-geo-minimizer-capture",
       "to": "m1-geo-support",
+      "label": "geo:minimizer-capture",
       "context": "_u$ and set $z=F_{t_*}(x,p)$. A global minimizer $x'$ of $u+c_{t_*}(\\cdot,z)$ exists. Every minimizing log $w\\in L_{x'}(z)$ gives a graph point $(x',w/t_*)$ by \\cref{geo:minimizer-capture}; its image under $F_{t_*}$ is $z$. Injectivity forces $x'=x$ and $w=t_*p$. Thus $x$ is the unique global minimizing pol"
     },
     {
       "from": "m1-lem-interior-characterization",
       "to": "m1-geo-support",
+      "label": "lem:interior-characterization",
       "context": "nder $F_{t_*}$ is $z$. Injectivity forces $x'=x$ and $w=t_*p$. Thus $x$ is the unique global minimizing pole and $L_x(z)=\\{t_*p\\}$. Together with nonconjugacy, \\cref{lem:interior-characterization} gives $t_*p\\in I(x)$ for every graph point, contradicting the attained failure. No scaled graph vector therefore reache"
     },
     {
       "from": "m1-geo-support",
       "to": "m1-geo-convexity",
+      "label": "geo:support",
       "context": "G_x$, put $y_i=\\exp_xp_i$ and consider \\[ w(z)=\\max_{i=0,1}\\{c(x,y_i)-c(z,y_i)\\}. \\] Both $p_i$ belong to $\\partial w(x)$, so their segment does also. Theorem~\\ref{geo:support} puts that segment in $G_x$. Finally $I(x)$ is the interior of $G_x$: it is open, while a radial cut-boundary vector has"
     },
     {
       "from": "m1-geo-support",
       "to": "m1-geo-sections",
+      "label": "geo:support",
       "context": "Write $m_p(z)=|p|^2/2-c(z,\\exp_xp)$ for $p\\in G_x$. Theorem~\\ref{geo:support}, applied to $\\max\\{m_{p_0},m_{p_1}\\}$ at $x$, gives \\[ m_{(1-\\theta)p_0+\\theta p_1}(z) \\leq\\max\\{m_{p_0}(z),m_{p_1}(z"
     },
     {
       "from": "m1-geo-support",
       "to": "m1-geo-intermediate",
+      "label": "geo:support",
       "context": "Let $(x,p)=F_t^{-1}(z)$, set $\\gamma(s)=\\exp_x(sp)$, and put $y=\\gamma(1)$, $w=\\dot\\gamma(t)$. Theorem~\\ref{geo:support} makes $y$ a supporting endpoint for $u$ at $x$. Since $v$ is the dual transform, this gives \\[ u(x)+c(x,y)+v(y)=0. \\]"
     },
     {
       "from": "m1-geo-slack",
       "to": "m1-geo-local-growth",
+      "label": "geo:slack",
       "context": "ntracted active hulls lie in $I(x)$ by hypothesis, and their limits at time $t$ are minimizing. The branch at $tp$ is nonconjugate. Thus the limiting form of \\cref{geo:slack} gives \\[ \\left.\\sum_i m_iB_i\\right|_{E^\\perp} \\geq\\kappa_g(s-t)\\Id. \\] Only the individual active rays are evaluated"
     },
     {
       "from": "m1-geo-short-time",
       "to": "m1-geo-degree",
+      "label": "geo:short-time",
       "context": "Choose a sufficiently small $\\eps\\in(0,t)$ as in \\cref{geo:short-time}. That result makes $F_\\eps$ a homeomorphism with locally Lipschitz inverse. Since $F_\\eps$ is the restriction of a sm"
     },
     {
       "from": "m1-geo-minimizer-capture",
       "to": "m1-geo-degree",
+      "label": "geo:minimizer-capture",
       "context": "us $F_t$ is injective in either case; surjectivity and compactness make it a homeomorphism. Finally, take any global minimizing pole of $Q_tu$ at an endpoint. \\Cref{geo:minimizer-capture} places that pole and every one of its minimizing logs divided by $t$ in the graph fiber. Its uniqueness identifies the"
     },
     {
       "from": "m1-lem-interior-characterization",
       "to": "m1-geo-degree",
+      "label": "lem:interior-characterization",
       "context": "d graph pole and identifies every minimizing log with $tp$. Thus $tp$ is the unique minimizing velocity to its endpoint. It is nonconjugate by hypothesis, so \\cref{lem:interior-characterization} places it in $I(x)$ and proves the remaining assertions."
     },
     {
       "from": "m2-spec-identities",
       "to": "m2-spec-radial",
+      "label": "spec:identities",
       "context": "amma(h)$ and $d(y_T,\\exp_{y_T}(a_Tw_T))=a_T|w_T|$, so $w_T\\in I(y_T)$. The reversed suffix is therefore before cut; reversal preserves uniqueness and, by Lemma~\\ref{spec:identities}, nonconjugacy. The parameter family is compact and its image lies in the open injectivity domain. Thus both piece diffe"
     },
     {
       "from": "m2-spec-radial",
       "to": "m2-spec-pullback",
+      "label": "spec:radial",
       "context": "e Jacobi matrix based at $y$ with unit initial derivative. By reversal, \\begin{equation}\\label{spec:pullback-transpose} L=J(1)^*. \\end{equation} Apply Lemma~\\ref{spec:radial} to the minimizing vector $T_*r$, with shortening factor $1/T_*$. Since $\\delta=(T_*-1)/T_*\\ge(T_*-1)/2$, its lower bou"
     },
     {
       "from": "m2-spec-identities",
       "to": "m2-spec-pullback",
+      "label": "spec:identities",
       "context": "lit} \\|J(s)J(1)^{-1}\\| &\\le 1+\\|J(s)-J(1)\\|\\,\\|J(1)^{-1}\\|\\\\ &\\le 1+C\\frac{s-1}{T_*-1}\\le C. \\end{split} \\end{equation} Write $S(s)=A_y(sr)/s$. Lemma~\\ref{spec:identities} and \\eqref{spec:pullback-transpose} give \\begin{equation}\\label{spec:noncommuting-positive} L^*[-S'(s)]L =J(1)J(s"
     },
     {
       "from": "m2-spec-radial",
       "to": "m2-spec-comparison",
+      "label": "spec:radial",
       "context": "_\\delta(t)=-\\delta\\bigl(A_x((1-\\delta)p(t))-\\Id\\bigr), \\qquad F_\\delta(t)=L(t)^*N_\\delta(t)L(t). \\end{equation} These matrices are uniformly bounded by Lemma~\\ref{spec:radial} and \\eqref{spec:L-bounds}, and $F_\\delta(t)\\succeq-C\\delta\\Id$. We next prove full matrix convexity of $F_\\delta$. Fo"
     },
     {
       "from": "m2-spec-comparison",
       "to": "m2-spec-outward",
+      "label": "spec:comparison",
       "context": "=p-\\frac{m_i}{1-m_i}q. \\] The coefficient $m_i/(1-m_i)$ is at least $m_i\\ge\\mu$. Convexity therefore puts $p+s q$ in $G_x$ for every $s\\in[-\\mu,1]$. Lemma~\\ref{spec:comparison} applies with $a_0=\\mu$ and $B=L_0/(2\\kappa)$ and proves the result. No upper bound on $m_i/(1-m_i)$ is needed: a shorte"
     },
     {
       "from": "m2-geo-sections",
       "to": "m2-sc-power",
+      "label": "geo:sections",
       "context": "Write \\[ h_x(p)=u(x)+\\frac12|p|^2+v(\\exp_xp),\\qquad p\\in G_x. \\] By Corollary~\\ref{geo:sections}, the lifted section $\\{p\\in G_x:h_x(p)\\leq r\\}$ is convex. If $p,q$ belong to it and $m=(p+q)/2$, the squared-norm iden"
     },
     {
       "from": "m2-sc-switch",
       "to": "m2-sc-excess",
+      "label": "sc:switch",
       "context": "Use the two active logs at the switch supplied by Lemma~\\ref{sc:switch}. Equation~\\eqref{sc:switch-norms} and their level bounds show that their squared norms lie on opposite sides of $P-D/2"
     },
     {
       "from": "m2-geo-support",
       "to": "m2-sc-excess",
+      "label": "geo:support",
       "context": "that their squared norms lie on opposite sides of $P-D/2$. By continuity along their segment, choose $p\\in\\partial g_b(x_b)$ with \\[ |p|^2=P-D/2. \\] Theorem~\\ref{geo:support} says that $p$ is minimizing and that $y=\\exp_{x_b}p$ is a contact endpoint for $g_b$. Thus \\[ E_b(y)=v(y)+bB_c(s_y)+c"
     },
     {
       "from": "m2-geo-intermediate",
       "to": "m2-sc-maximum",
+      "label": "geo:intermediate",
       "context": ",b}\\leq w_{c,b}. \\] Thus $\\Phi_t\\to E_b-\\pi$ uniformly in $(b,z)$, preserving the positive interior maximum when $t$ is sufficiently close to one. Proposition~\\ref{geo:intermediate} gives the asserted regularity and unique pole for $Q_tg_b$. To check the other term, the scalar function $q\\mapsto q+b"
     },
     {
       "from": "m2-geo-support",
       "to": "m2-sc-maximum",
+      "label": "geo:support",
       "context": "geodesic from $x$ to $z$, continued for the remaining time $1-t$ with the same velocity, reaches $y$. The pole minimum gives $p\\in\\partial g_b(x)$. By Theorem~\\ref{geo:support}, this full vector is minimizing and its endpoint is a support for $g_b$. Splitting its energy at time $t$ proves \\eqre"
     },
     {
       "from": "m2-geo-intermediate",
       "to": "m2-sc-parameter",
+      "label": "geo:intermediate",
       "context": "r $A(b-h)$. Because $0\\leq g_{b-h}-g_b\\leq hH_o$, compactness and uniqueness of the old pole imply $x_h\\to x$. The strict local quadratic growth in Proposition~\\ref{geo:intermediate} gives, in normal coordinates $\\Delta_h=\\exp_x^{-1}x_h$, \\begin{equation} |\\Delta_h|=O(\\sqrt h),\\qquad 0\\leq A(b-h)-A(b"
     },
     {
       "from": "m2-geo-slack",
       "to": "m2-sc-parameter",
+      "label": "geo:slack",
       "context": "On $E^\\perp$, MTW concavity on the simplex of the $qp_i$ gives \\[ A_x(qp)\\geq\\sum_i m_iA_x(qp_i). \\] Radial monotonicity of divided action, equivalently Lemma~\\ref{geo:slack}, then gives \\begin{equation} \\sum_i m_iQ_i =\\frac1t A_x(tp)-\\sum_i\\frac{m_i}qA_x(qp_i)\\geq0 \\quad\\text{on }E^\\perp."
     },
     {
       "from": "m2-sc-levels",
       "to": "m2-sc-outward",
+      "label": "sc:levels",
       "context": "Write $p_i=p+d_i e$. The level inequality gives total right mass at least $c_1$, as in Lemma~\\ref{sc:levels}. A right point has $s_i-s>1/4-\\eta$, hence \\[ |p_i|^2-|p|^2=2qd_i+d_i^2\\leq-D/4. \\] It follows that $d_i<0$ and $|d_i|"
     },
     {
       "from": "m2-geo-support",
       "to": "m2-jet-viscosity",
+      "label": "geo:support",
       "context": ")-m_x(z)<h$. The minimum of $v-m_x$ on $\\overline{\\Omega_h}$ is therefore attained at an interior point $z'$. Thus $\\grad m_x(z')\\in\\partial v(z')$. By Theorem~\\ref{geo:support}, the corresponding local contact is a global cost contact. Its endpoint is $x$. This proves \\[ S(\\Omega_h)\\subset\\math"
     },
     {
       "from": "m2-jet-contact-volume",
       "to": "m2-jet-viscosity",
+      "label": "jet:contact-volume",
       "context": "oves \\[ S(\\Omega_h)\\subset\\mathcal C(\\Omega_h). \\] Use the area formula for the diffeomorphism $S$ \\cite[Chapter~2, Theorem~3.3]{Simon2018}, followed by Lemma~\\ref{jet:contact-volume}, to obtain \\[ \\inf_{\\Omega_h}|\\det DS|\\,\\vol(\\Omega_h) \\le \\vol(S(\\Omega_h)) \\le(\\Lambda/\\lambda)\\vol(\\Omega_h). \\]"
     },
     {
       "from": "m2-geo-support",
       "to": "m2-jet-transfer",
+      "label": "geo:support",
       "context": "j$, followed by divided-action monotonicity, gives \\[ Q_s\\ge \\frac1tA_x(tp)-\\frac1s A_x(sp)>0. \\] All points used in this inequality are before cut by Theorem~\\ref{geo:support}; equivalently one may invoke Lemma~\\ref{geo:slack}. Notice that unsplit endpoints may still be conjugate. Fix $i$ and"
     },
     {
       "from": "m2-geo-slack",
       "to": "m2-jet-transfer",
+      "label": "geo:slack",
       "context": "Q_s\\ge \\frac1tA_x(tp)-\\frac1s A_x(sp)>0. \\] All points used in this inequality are before cut by Theorem~\\ref{geo:support}; equivalently one may invoke Lemma~\\ref{geo:slack}. Notice that unsplit endpoints may still be conjugate. Fix $i$ and write $m=m_i$. Given $d$, choose any linear map $U:"
     },
     {
       "from": "m2-geo-support",
       "to": "m2-jet-semibound",
+      "label": "geo:support",
       "context": "minimum gives a smooth local lower test for $w_c$ with gradient $r_j$. Inverting $\\varphi_c$ gives a local lower test for $v$ with gradient $r_j/l_j$. Theorem~\\ref{geo:support} therefore implies that \\[ \\zeta_j=\\exp_{y_j}(r_j/l_j) \\] is a true contact endpoint of $v$, joined by the indicated mi"
     },
     {
       "from": "m2-spec-pullback",
       "to": "m2-jet-semibound",
+      "label": "spec:pullback",
       "context": "statement are uniform for the fixed-scale family just described. Let $\\widehat p=\\log_{\\widehat x}y$ and $\\widehat L=(d\\exp_{\\widehat x})_{\\widehat p}$. Lemma~\\ref{spec:pullback}, applied to the minimizing ray through duration $1/l$, gives \\[ \\widehat L^* \\{A_y(r)-\\theta^{-1}A_y(\\theta r)\\}\\wide"
     },
     {
       "from": "m2-geo-support",
       "to": "m2-jet-outer-conjugacy",
+      "label": "geo:support",
       "context": "smooth lower test for $v$ with gradient $r/l$. That log is strictly before cut because it shortens a minimizing ray. It also gives a global contact by Theorem~\\ref{geo:support}, but its before-cut property does not depend on a density equation. The scaled true relative Hessian of this test is \\"
     },
     {
       "from": "m2-spec-radial",
       "to": "m2-jet-outer-conjugacy",
+      "label": "spec:radial",
       "context": "f $s$. The last term is positive semidefinite. If the endpoint at duration one were conjugate, the index-form characterization of conjugacy, equivalently Lemma~\\ref{spec:radial}, would force an eigenvalue of $s^{-1}A_y(sr)$ to tend to $-\\infty$ as $s\\uparrow1$. Thus $\\det W_s\\to\\infty$, while $W_"
     },
     {
       "from": "m2-jet-viscosity",
       "to": "m2-jet-outer-conjugacy",
+      "label": "jet:viscosity",
       "context": "force an eigenvalue of $s^{-1}A_y(sr)$ to tend to $-\\infty$ as $s\\uparrow1$. Thus $\\det W_s\\to\\infty$, while $W_s$ retains a positive definite baseline. Lemma~\\ref{jet:viscosity}, at the fixed true log $r/l$, instead gives \\[ \\det W_s\\le l^n(\\Lambda/\\lambda)/\\sigma_y(r/l)<\\infty. \\] This is a con"
     },
     {
       "from": "m2-jet-outer-conjugacy",
       "to": "m2-jet-outer-test",
+      "label": "jet:outer-conjugacy",
       "context": "Lemma~\\ref{jet:outer-conjugacy} makes the endpoint coordinate map locally invertible. Its smooth cost branch has endpoint Hessian $A_y(r)$, and the zer"
     },
     {
       "from": "m2-jet-viscosity",
       "to": "m2-jet-outer-test",
+      "label": "jet:viscosity",
       "context": "n durations $1/l$ and $1$ is strictly positive definite, so $V_o>0$. Decrease the lower Taylor Hessian by $\\eps\\Id$ to obtain a genuine lower test, apply Lemma~\\ref{jet:viscosity}, and let $\\eps\\downarrow0$. Taking the determinant of the scaling and pullback gives \\eqref{jet:outer-det}. For the un"
     },
     {
       "from": "m2-sc-maximum",
       "to": "m2-jet-determinants",
+      "label": "sc:maximum",
       "context": "th templates are fixed. Constants used only to pass limits may depend on all of them. Choose $t_k\\uparrow1$ and interior maxima $(z_k^0,b_k)$ supplied by Lemma~\\ref{sc:maximum}, for \\[ F_k(z)=Q_{t_k}g_{b_k}(z),\\qquad G_k(z)=Q_{1-t_k}w_{c,b_k}(z). \\] The functions are $C^{1,1}$ in space: Propos"
     },
     {
       "from": "m2-geo-intermediate",
       "to": "m2-jet-determinants",
+      "label": "geo:intermediate",
       "context": "supplied by Lemma~\\ref{sc:maximum}, for \\[ F_k(z)=Q_{t_k}g_{b_k}(z),\\qquad G_k(z)=Q_{1-t_k}w_{c,b_k}(z). \\] The functions are $C^{1,1}$ in space: Proposition~\\ref{geo:intermediate} applies to the first, and Lemma~\\ref{geo:short-time} to the second. At an exact maximum the velocities align. If $x_k^0"
     },
     {
       "from": "m2-geo-short-time",
       "to": "m2-jet-determinants",
+      "label": "geo:short-time",
       "context": "_k}g_{b_k}(z),\\qquad G_k(z)=Q_{1-t_k}w_{c,b_k}(z). \\] The functions are $C^{1,1}$ in space: Proposition~\\ref{geo:intermediate} applies to the first, and Lemma~\\ref{geo:short-time} to the second. At an exact maximum the velocities align. If $x_k^0$ and $y_k^0$ are its two minimizers and $p_k^0=t_k^{"
     },
     {
       "from": "m2-sc-parameter",
       "to": "m2-jet-determinants",
+      "label": "sc:parameter",
       "context": "^0=\\exp_{x_k^0}p_k^0$ along the concatenated minimizing ray. Every finite positive active representation of $p_k^0$ satisfies the parameter inequality of Lemma~\\ref{sc:parameter}. The level relations and common section bounds of Lemma~\\ref{sc:levels} hold for these representations. \\emph{Step 2:"
     },
     {
       "from": "m2-sc-levels",
       "to": "m2-jet-determinants",
+      "label": "sc:levels",
       "context": "ositive active representation of $p_k^0$ satisfies the parameter inequality of Lemma~\\ref{sc:parameter}. The level relations and common section bounds of Lemma~\\ref{sc:levels} hold for these representations. \\emph{Step 2: null sets are removed before Jensen sampling.} Let $N$ be the null set f"
     },
     {
       "from": "m2-jet-transfer",
       "to": "m2-jet-determinants",
+      "label": "jet:transfer",
       "context": "d{equation} in the fixed chart. At every such point choose a representation with at most $n+1$ active logs, padding by zero weights only for compactness. Lemma~\\ref{jet:transfer} applies at each point. Its matrices $L_{k,\\nu}$ are positive semidefinite and annihilate the active differences, exactl"
     },
     {
       "from": "m2-jet-semibound",
       "to": "m2-jet-determinants",
+      "label": "jet:semibound",
       "context": "{jet:fixed-prefix-limits} L_k\\ge0,\\qquad L_kE_k=0,\\qquad H_k\\le L_k, \\quad E_k=\\Span\\{p_{i,k}-p_k:m_{i,k}>0\\}. \\end{equation} The quantitative proof of Lemma~\\ref{jet:semibound} has an error bounded by a fixed-scale constant times $1-t_k+|\\grad(F_k+G_k)(z_{k,\\nu})|$. Passing $\\nu\\to\\infty$ theref"
     },
     {
       "from": "m2-sc-outward",
       "to": "m2-jet-determinants",
+      "label": "sc:outward",
       "context": "el, contradicting the strict parameter inequality. Thus $E_k=\\R e_k$. Orient $e_k$ so $q_k=p_k\\cdot e_k>0$; the same two inequalities give $q_k^2\\ge cD$. Lemma~\\ref{sc:outward} now supplies an index with $m_{i,k}\\ge m_*$, a strict outward displacement, and a bounded template value. We choose an"
     },
     {
       "from": "m2-jet-outer-conjugacy",
       "to": "m2-jet-determinants",
+      "label": "jet:outer-conjugacy",
       "context": "lightly larger fixed cap, the limiting slope and curvature conditions have strict margins: $B_o'>0$ and $B_o''<-K$. The limiting selected pair is active. Lemma~\\ref{jet:outer-conjugacy} excludes conjugacy of its modified branch, using only this activity and the original contact-volume bound. Its shortene"
     },
     {
       "from": "m2-jet-outer-test",
       "to": "m2-jet-determinants",
+      "label": "jet:outer-test",
       "context": "njugacy} excludes conjugacy of its modified branch, using only this activity and the original contact-volume bound. Its shortened true log is before cut. Lemma~\\ref{jet:outer-test} consequently supplies a neighborhood of this configuration with constants $\\delta>0$ and $M<\\infty$ such that its divid"
     },
     {
       "from": "m2-jet-subgradient-differential",
       "to": "m2-jet-determinants",
+      "label": "jet:subgradient-differential",
       "context": "es a proximal subgradient \\[ \\xi(z)=-(K_k)_y(z,Y_k(z))\\in\\partial w_c(Y_k(z)) \\] at every nearby point, even if $w_c$ is not differentiable there. Apply Lemma~\\ref{jet:subgradient-differential} at the Alexandrov point $y_k=Y_k(z_k)$. Since $Y_k$ is Lipschitz and differentiable at $z_k$, it gives, in normal coord"
     },
     {
       "from": "m2-spec-pullback",
       "to": "m2-jet-determinants",
+      "label": "spec:pullback",
       "context": "\\widehat p_k\\widehat p_k^* . \\label{jet:center-exact} \\end{align} All vectors on the last line are understood after the same isometric identification. Lemma~\\ref{spec:pullback} bounds the middle term below by $c(1-l_k)\\Id$. Equation~\\eqref{jet:undo-short} and the vanishing pole mismatch show tha"
     },
     {
       "from": "m2-jet-determinants",
       "to": "m2-jet-contradiction",
+      "label": "jet:determinants",
       "context": "pplied by that Lemma. Fix all center and weight constants, then choose $K$ and its outer template, and then take sufficiently small scales to apply Proposition~\\ref{jet:determinants}. Lemma~\\ref{jet:matrix} and \\eqref{jet:limiting-determinants} imply \\[ cK\\,\\frac{\\sigma_x(p)^2}{\\sigma_y(r/l)} \\le \\d"
     },
     {
       "from": "m2-jet-matrix",
       "to": "m2-jet-contradiction",
+      "label": "jet:matrix",
       "context": "center and weight constants, then choose $K$ and its outer template, and then take sufficiently small scales to apply Proposition~\\ref{jet:determinants}. Lemma~\\ref{jet:matrix} and \\eqref{jet:limiting-determinants} imply \\[ cK\\,\\frac{\\sigma_x(p)^2}{\\sigma_y(r/l)} \\le \\det V_i \\le C\\,\\frac{\\si"
     },
     {
       "from": "m2-spec-radial-determinants",
       "to": "m2-jet-contradiction",
+      "label": "spec:radial-determinants",
       "context": "s} imply \\[ cK\\,\\frac{\\sigma_x(p)^2}{\\sigma_y(r/l)} \\le \\det V_i \\le C\\,\\frac{\\sigma_x(p_i)^2}{\\sigma_{y_i}(r_i/l_i)}. \\] The radial comparison of Corollary~\\ref{spec:radial-determinants} gives \\[ \\sigma_y(r/l)\\le C\\sigma_x(p),\\qquad \\sigma_{y_i}(r_i/l_i)\\ge c\\sigma_x(p_i). \\] For the selected outward en"
     },
     {
       "from": "m2-sc-outward",
       "to": "m2-jet-contradiction",
+      "label": "sc:outward",
       "context": "oint, \\eqref{jet:limiting-geometry}--\\eqref{jet:limiting-outward} give $m_i\\ge m_*$ and $q^2\\ge cD$. Its norm increment satisfies $|p_i|^2-|p|^2\\le3D$ by Lemma~\\ref{sc:outward}. Corollary~\\ref{spec:outward} therefore applies with $\\mu=m_*$, $\\kappa=c$, and $L_0=3$, and gives $\\sigma_x(p)\\ge c'\\s"
     },
     {
       "from": "m2-spec-outward",
       "to": "m2-jet-contradiction",
+      "label": "spec:outward",
       "context": "ometry}--\\eqref{jet:limiting-outward} give $m_i\\ge m_*$ and $q^2\\ge cD$. Its norm increment satisfies $|p_i|^2-|p|^2\\le3D$ by Lemma~\\ref{sc:outward}. Corollary~\\ref{spec:outward} therefore applies with $\\mu=m_*$, $\\kappa=c$, and $L_0=3$, and gives $\\sigma_x(p)\\ge c'\\sigma_x(p_i)$. These parameters"
     }
   ]

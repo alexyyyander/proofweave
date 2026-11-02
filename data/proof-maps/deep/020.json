@@ -157,7 +157,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Squarefree-values-of-quartics-and-power-free-values-of-polynomials-September-24-2026/manuscript.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Squarefree values of quartics and power-free values of polynomials; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Squarefree values of quartics and power-free values of polynomials.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -179,8 +179,7 @@
           "source": "Introduction",
           "detail": "Let f be irreducible over of degree d4 , and put k=d-2 . If f has no fixed prime k th-power divisor, then \\[ S_ f,k (X)=c_ f,k X+o_f(X), c_ f,k =_p(1- _f(p^k) p^k )>0. \\]",
           "dependsOn": [
-            "m1-thm-density",
-            "m1-lem-density-content"
+            "m1-thm-density"
           ]
         },
         {
@@ -222,7 +221,6 @@
           "source": "From a large-prime tail to the exact density",
           "detail": "[Removing sign and content] Let f be irreducible over , of degree at least two, and let k2 . Suppose that _f(p^k)<p^k for every prime p , and write f=s c g , where s\\ -1,1\\ , c is the positive…",
           "dependsOn": [
-            "m1-cor-separable-products",
             "m1-prop-large-prime-tail"
           ]
         },
@@ -392,8 +390,7 @@
           "source": "Curve alternatives",
           "detail": "[Curve alternatives] Put \\[ g=(d-1)(k-1)+ 1_ d=4 , _1(U,V)=\\ U/2,(U,V/g)\\ . \\] Fix a degree bound E , and let C be a geometrically irreducible curve of degree at most E , defined over , in the…",
           "dependsOn": [
-            "m1-lem-rational-values",
-            "m1-prop-quintic-discard"
+            "m1-lem-rational-values"
           ]
         },
         {
@@ -427,7 +424,6 @@
           "source": "The cyclotomic quartic as a worked example",
           "detail": "With _0=10^ -6 , there exists _0>0 such that \\[ \\#\\ n:N n2N,\\ p^2 n^4+1 for some prime N^ 1-_0 p N^ 3/2+_0 \\ N^ 1-_0 . \\]",
           "dependsOn": [
-            "m1-prop-large-prime-tail",
             "m1-lem-balanced-factorization"
           ]
         },
@@ -458,7 +454,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

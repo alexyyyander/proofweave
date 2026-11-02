@@ -157,7 +157,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Riesz-transforms-and-uniform-rectifiability-in-higher-codimension-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Riesz transforms and uniform rectifiability in higher codimension; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Riesz transforms and uniform rectifiability in higher codimension.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -266,7 +266,6 @@
           "source": "Analytic oscillation and flat seeds",
           "detail": "[Annuli and differences of averages] Let 0<r R , let S be a bounded measurable set containing B(a,2R) , and let A B be measurable sets of positive finite measure satisfying \\[ A B(a,r/2), B B(a,R/2),…",
           "dependsOn": [
-            "m1-prop-flat-seeds",
             "m1-lem-annular-alternative"
           ]
         },
@@ -302,7 +301,6 @@
           "detail": "[Rigidity of a planar reflectionless measure] Let 1 n d , let L be an affine n -plane, and let be a nonzero Radon measure on R^d supported in L . Suppose that c,G>0 and \\[ (B(x,r)) Gr^n(x R^d,\\ r>0),…",
           "dependsOn": [
             "m1-lem-pairings",
-            "m1-lem-weak-compactness",
             "m1-lem-fractional-rigidity"
           ]
         },
@@ -315,7 +313,6 @@
           "source": "Analytic oscillation and flat seeds",
           "detail": "[The flat limit] Fix 1 n<d , c>0 , 0<G< , 0 D_0< , and 0<<1/2 . Let _j be Radon measures on ^d with 0 E_j=_j , global upper n -growth G , and \\[ _j(B(x,r)) cr^n (x E_j,\\ 0<r E_j). \\] Assume every…",
           "dependsOn": [
-            "m1-lem-fixed-plane-moments",
             "m1-lem-weak-compactness",
             "m1-lem-planar-rigidity"
           ]
@@ -351,7 +348,6 @@
           "source": "Fractional energy compactness on moving measures",
           "detail": "[The limiting height equation] Assume the hypotheses and conclusions of Lemmas~ and~ for a scalar height. We retain their notation and record the conditions used below. Let _j converge on compact…",
           "dependsOn": [
-            "m1-lem-moving-compactness",
             "m1-lem-height-energy"
           ]
         },
@@ -413,7 +409,6 @@
           "source": "Relative excess improvement at every scale",
           "detail": "[Uniform excess propagation] Fix 1 n<d , c,G>0 , D_00 , 0<<1/2 , and >0 . For every integer J_00 , there is an integer J J_0 , depending only on these fixed data, with the following property. Set =2^…",
           "dependsOn": [
-            "m1-prop-normalized-excess-limit",
             "m1-lem-pairings"
           ]
         },
@@ -452,7 +447,6 @@
           "source": "Relative excess improvement at every scale",
           "detail": "[David--Semmes bilateral criterion] Let E^d be closed, of positive diameter, and n -AD regular with respect to ^n . Suppose that for every >0 there is C_< such that \\[ _ E B(a,R) _0^R 1_ \\ b_E(x,t)>\\…",
           "dependsOn": [
-            "m1-thm-main",
             "m1-prop-beta-packing"
           ]
         },
@@ -466,8 +460,7 @@
           "detail": "[Consequences of Mas--Tolsa] Let d4 and 2 n d-2 be integers, and let be an n -Ahlfors--David regular Radon measure satisfying . Fix >2 and a real odd C^2 convolution kernel K satisfying . For every…",
           "dependsOn": [
             "m1-thm-main",
-            "m1-lem-global-growth",
-            "m1-thm-bwgl"
+            "m1-lem-global-growth"
           ]
         }
       ]
@@ -487,7 +480,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

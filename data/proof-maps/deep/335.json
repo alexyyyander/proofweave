@@ -242,7 +242,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-integral-scalar-curvature-bound-for-real-simplicial-volume-October-5-2026/v126-proof.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from An integral scalar curvature bound for real simplicial volume; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from An integral scalar curvature bound for real simplicial volume.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -313,9 +313,7 @@
           "kind": "lemma",
           "source": "Weighted graph deformations and a sweep",
           "detail": "[Localization of the positive graph] Let \\(X,h,\\) satisfy the hypotheses of Lemma~ , with \\(X\\) connected, and let \\(h_ ref h\\) be a complete second metric. Require the coefficients of \\(h_ ref \\),…",
-          "dependsOn": [
-            "m1-lem-graph-prescription"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-sweep",
@@ -347,9 +345,7 @@
           "kind": "lemma",
           "source": "Entropy metrics with controlled labels",
           "detail": "[Conformal bootstrap] There are constants \\(_*>0\\) and \\(C_ boot <4\\), depending only on \\(n\\), with the following property. Starting with the input of Theorem~ , finitely many sweeps without boost,…",
-          "dependsOn": [
-            "m1-prop-sweep"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-entropy-increment",
@@ -394,8 +390,7 @@
           "dependsOn": [
             "m1-thm-entropy",
             "m1-lem-entropy-bootstrap",
-            "m1-prop-sweep",
-            "m1-lem-entropy-accumulation"
+            "m1-prop-sweep"
           ]
         },
         {
@@ -416,9 +411,7 @@
           "kind": "lemma",
           "source": "A measured degree estimate",
           "detail": "[One step of measured descent] Assume the hypotheses of Theorem~ with d1 , put p=d-1 , and put \\[ =( -(h,)+_ i=1 ^dH_i(G) 2). \\] There is a Borel family of oriented regular hypersurface portions _s…",
-          "dependsOn": [
-            "m1-thm-degree"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-scalar-volume",
@@ -460,9 +453,7 @@
           "kind": "lemma",
           "source": "From bounded cohomology to comparison degree",
           "detail": "[Measured resolution] For the diagram \\( P\\) there is a standard Borel measured family \\( A\\) of oriented smooth \\(m\\)-manifolds and a smooth map \\(X: A U_\\), equivariant and Borel in all the data.…",
-          "dependsOn": [
-            "m1-thm-degree"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-transfer-degree",
@@ -474,8 +465,6 @@
           "detail": "[Comparison degree] The band in satisfies the chart and integration control assumptions of Theorem~ , for each fixed instance, the product metric \\(h+L^2k\\) with any fixed \\(L>0\\), and the pullback…",
           "dependsOn": [
             "m1-thm-entropy",
-            "m1-thm-degree",
-            "m1-thm-scalar-volume",
             "m1-thm-main",
             "m1-prop-yamabe-reduction"
           ]
@@ -494,7 +483,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Positive-scalar-curvature-forces-rational-inessentiality-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Positive scalar curvature forces rational inessentiality; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Positive scalar curvature forces rational inessentiality.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -617,9 +606,7 @@
           "kind": "lemma",
           "source": "Compact pairings and comparison coordinates",
           "detail": "[A controlled cap operation] There are equivariant linear maps with finite output T_j:C_j( K_L;) C_ j-n ^ dual ( C;), j0,\\\\ T_j=(-1)^nT_ j-1 , j1, where chain groups in negative degrees are zero. For…",
-          "dependsOn": [
-            "m2-lem-dual-carrier"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-compact-pairing",
@@ -630,8 +617,7 @@
           "source": "Compact pairings and comparison coordinates",
           "detail": "[Compact diagonal pairing] There are a compact set K_* D_L and a class \\[ u H^ n+d (D_L,D_L K_*;) \\] such that if [t,o] K_* , every label of t is within 7L of every label of r(o) ; the compactly…",
           "dependsOn": [
-            "m2-lem-controlled-cap",
-            "m2-lem-probability-map"
+            "m2-lem-controlled-cap"
           ]
         },
         {
@@ -652,9 +638,7 @@
           "kind": "lemma",
           "source": "Compact pairings and comparison coordinates",
           "detail": "[A transverse parameter cycle] There is a compact oriented smooth (q-n) -manifold A_+ with boundary, together with a smooth map \\[ (o_0,y_0):A_+ C^q, \\] such that y_0_ p_R <T_0 everywhere,…",
-          "dependsOn": [
-            "m2-thm-comparison-data"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-scalar-update",
@@ -719,8 +703,7 @@
           "source": "Shortening all comparison coordinates",
           "detail": "[Logarithmic shortening] Suppose _M>0 . On the above bundle Z , let G:Z^q be smooth and bounded with all mixed derivatives bounded, and suppose L_0>0 and \\[ _ 1 i q d_ M G_i L_0, q2. \\] There is a…",
           "dependsOn": [
-            "m2-lem-one-pass",
-            "m2-lem-parameter-scaling"
+            "m2-lem-one-pass"
           ]
         },
         {
@@ -731,9 +714,7 @@
           "kind": "corollary",
           "source": "Shortening all comparison coordinates",
           "detail": "[Stabilized contraction at a fixed scale] Assume _M>0 and take the comparison data of at scale R , so that \\[ L_0=J/R, q JR. \\] For all sufficiently large R , fix these data once and for all. Then…",
-          "dependsOn": [
-            "m2-thm-shortening"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-torical-obstruction",
@@ -744,12 +725,7 @@
           "source": "The stabilized obstruction from the torical theorem",
           "detail": "[Stabilized torical obstruction] For every integer d2 and every >0 there is a number (d,)>0 for which the following data do not exist: a smooth oriented d -manifold Y without boundary, possibly…",
           "dependsOn": [
-            "m2-thm-main",
             "m2-cor-aspherical",
-            "m2-cor-aspherical-flat",
-            "m2-lem-scalar-reduction",
-            "m2-cor-degree-aspherical",
-            "m2-cor-simplicial",
             "m2-lem-essentiality"
           ]
         }
@@ -776,7 +752,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

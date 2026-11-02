@@ -233,76 +233,91 @@
     {
       "from": "m1-lem-binary-fusion",
       "to": "m1-lem-critical-information",
+      "label": "lem:binary-fusion",
       "context": "st for cylinder events and then for the sigma-fields they generate. There are at least two child signals because \\(b\\ge2\\). Combine two of them first. Lemma~\\ref{lem:binary-fusion} subtracts at least \\(2(1-\\theta^2)\\theta^4M(t)^2\\). Add the other \\(b-2\\) child signals and the own signal by subaddit"
     },
     {
       "from": "m1-lem-path-attenuation",
       "to": "m1-prop-row-energy",
+      "label": "lem:path-attenuation",
       "context": "A_v(t)\\le1+\\sum_{r\\ge1}db^{r-1}\\theta^{2r} =1+\\frac{d\\theta^2}{1-b\\theta^2}. \\] At equality, \\(db^{r-1}\\theta^{2r}=d/b\\). Tonelli's theorem and Lemma~\\ref{lem:path-attenuation} give, for \\(t>0\\), \\[ \\E A_v(t) \\le1+\\frac db\\sum_{r\\ge1}e^{-c_0\\omega(t)r} =1+\\frac{d/b}{e^{c_0\\omega(t)}-1} \\l"
     },
     {
       "from": "m1-lem-continuous-augmentation",
       "to": "m1-lem-finite-energy",
+      "label": "lem:continuous-augmentation",
       "context": "$. It is a bounded continuous martingale in the raw filtration, since it is a version of $\\E[\\sigma_v\\mid\\mathcal F_t^D]$. It is continuous in $L^2$, so Lemma~\\ref{lem:continuous-augmentation} also makes it a martingale in the augmented finite observation filtration. Apply finite-dimensional It\\^o's formula to"
     },
     {
       "from": "m1-lem-posterior",
       "to": "m1-lem-gaussian-path-tail",
+      "label": "lem:posterior",
       "context": "ch is used here. For fixed $v,u,s$, exhaust the tree by finite connected subtrees containing the path. Bounded conditional-expectation convergence from Lemma~\\ref{lem:posterior} gives $C_{vu}^D(s)\\to C_{vu}(s)$ in $L^2$. Passing to the limit proves the whole-tree inequality."
     },
     {
       "from": "m1-lem-posterior",
       "to": "m1-lem-observation-step-approximation",
+      "label": "lem:posterior",
       "context": "se \\[ c_{vu}^{D_R}=\\theta^{\\dist(v,u)} \\prod_{i=1}^{\\dist(v,u)} a(h_{v_i\\to v_{i-1}}^{D_R}). \\] The component convergence in Lemma~\\ref{lem:posterior} gives fixed-time convergence to $c_{vu}$; the common bound $|c_{vu}^{D_R}|\\le\\theta^{\\dist(v,u)}\\le1$ again gives conve"
     },
     {
       "from": "m1-prop-innovations",
       "to": "m1-prop-compatible-copies",
+      "label": "prop:innovations",
       "context": "quad s\\ge0. \\] In the original law $\\mathsf Q$, $Z^t$ is independent of the raw observation past $\\mathcal F_t^0$. Indeed, the Brownian property in Proposition~\\ref{prop:innovations} gives the assertion for every finite set of sites and future times. Rational times generate the Borel sigma field of a"
     },
     {
       "from": "m1-lem-continuous-augmentation",
       "to": "m1-prop-compatible-copies",
+      "label": "lem:continuous-augmentation",
       "context": "Each $W_v$ is a continuous square-integrable martingale in the raw joined filtration and is $L^2$-continuous because its marginal law is Wiener measure. Lemma~\\ref{lem:continuous-augmentation} therefore makes it a martingale in $(\\mathcal H_t)$. The quadratic covariations, determined by the Brownian paths, rema"
     },
     {
       "from": "m1-lem-observation-step-approximation",
       "to": "m1-prop-compatible-copies",
+      "label": "lem:observation-step-approximation",
       "context": "ed across filtrations from a formal equality of pair laws. For either coefficient $k_{vu}=c_{vu}$ or $k_{vu}=C_{vu}$, fix $v,u$ and a finite horizon $T$. Lemma~\\ref{lem:observation-step-approximation}, applied to the $X$-marginal of $\\mathsf Q$, supplies bounded causal Borel elementary processes \\[ G_n(t,X)=\\sum_i \\ga"
     },
     {
       "from": "m1-lem-path-attenuation",
       "to": "m1-lem-cut-continuation",
+      "label": "lem:path-attenuation",
       "context": "mathrm{cut}}$, independent of the length and time. The outward inequality in~\\eqref{eq:cut-continuation-attenuation} is the conditional path estimate of Lemma~\\ref{lem:path-attenuation}, applied to $w_0,\\ldots,w_L$. We prove the modified inward inequality by integrating intact side components from the f"
     },
     {
       "from": "m1-prop-path-variance",
       "to": "m1-prop-weighted-paths",
+      "label": "prop:path-variance",
       "context": "=\\frac{H_T}{1-\\theta},\\qquad |D_e|\\le D_{\\max,T}. \\label{eq:path-discrepancy-bound} \\end{equation} Dropping $P_r^2,(P'_r)^2\\le1$ and applying Proposition~\\ref{prop:path-variance} gives the first bound in \\eqref{eq:unweighted-bounds}; dropping $P_r^2$ gives the second. For the longer paths, set \\["
     },
     {
       "from": "m1-lem-component-spin-tilts",
       "to": "m1-lem-critical-tail",
+      "label": "lem:component-spin-tilts",
       "context": "id\\sigma_w=\\eta] &=\\E[f(Y)(1+\\eta\\theta\\tanh Y)], \\qquad \\eta\\in\\{-1,1\\}. \\end{align*} These are the identities \\eqref{eq:component-field-tilts} from Lemma~\\ref{lem:component-spin-tilts}. Because $Y$ has a symmetric marginal law, the term containing $\\tanh Y$ integrates to zero against every even function"
     },
     {
       "from": "m1-lem-cutoff-sums",
       "to": "m1-prop-critical-uniqueness",
+      "label": "lem:cutoff-sums",
       "context": "ge1}L_r(t) +\\sqrt{V(t)}\\sum_{r\\ge1}\\sqrt{Q_r(t)}\\right) \\label{eq:variance-path-reduction} \\end{equation} for almost every $t$. The sums in Lemma~\\ref{lem:cutoff-sums} are finite at the positive times with $V(t)>0$ where we now use this inequality. Insert those three bounds into \\eqref"
     },
     {
       "from": "m1-lem-small-log-loss",
       "to": "m1-prop-critical-uniqueness",
+      "label": "lem:small-log-loss",
       "context": "identifies the worst drift contribution explicitly: $\\sqrt{VS}\\,\\omega^{-3/2}\\le CV\\omega^{-3/2}$. For $0<t\\le\\min\\{t_*,T\\}$, we have $\\omega=\\sqrt t$. Lemma~\\ref{lem:small-log-loss} gives the remaining estimate \\[ S\\omega^{-2} \\le C_TV\\left(t^{-3/4} +\\frac{I}{t\\log^2(1/t)}\\right). \\] Tog"
     },
     {
       "from": "m1-lem-pointwise-spin-factor",
       "to": "m1-prop-factor-extraction",
+      "label": "lem:pointwise-spin-factor",
       "context": "intwise with every vertex permutation. Thus $\\Phi$ is Borel, has law $\\mu_{d,\\beta}$, and satisfies $\\Phi(gU)=g\\Phi(U)$ almost surely for each fixed $g$. Lemma~\\ref{lem:pointwise-spin-factor} replaces $\\Phi$ by a Borel map with the same law that is equivariant on every label input. When $\\theta=0$, the broadc"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-prop-factor-extraction",
+      "label": "thm:main",
       "context": "for every input. All choices above are for the fixed pair $(d,\\beta)$. Together with the known converse in Section~\\ref{sec:introduction}, this proves Theorem~\\ref{thm:main}."
     }
   ]

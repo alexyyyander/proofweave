@@ -147,7 +147,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Lechs-multiplicity-conjecture-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Lech's multiplicity conjecture; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Lech's multiplicity conjecture.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -229,8 +229,6 @@
           "detail": "Given integers r_1>>r_ h-1 , there is a vector bundle V of rank (h-1)! on _^ h-1 with the following property. For every ring A and every integer a , V(a) on _A^ h-1 is acyclic if a=r_j for some j .…",
           "dependsOn": [
             "m1-lem-complex-graded-comparison",
-            "m1-thm-complex",
-            "m1-lem-acyclicity",
             "m1-lem-complex-twist-maps",
             "m1-lem-complex-euler-comparison"
           ]
@@ -331,9 +329,7 @@
           "dependsOn": [
             "m1-lem-reduction",
             "m1-prop-setup",
-            "m1-thm-length-inputs",
-            "m1-thm-complex",
-            "m1-lem-ma-hk"
+            "m1-thm-length-inputs"
           ]
         },
         {
@@ -430,9 +426,7 @@
           "dependsOn": [
             "m1-lem-reduction",
             "m1-lem-charzero-finite-free",
-            "m1-lem-charzero-certificate",
-            "m1-lem-charzero-specialization",
-            "m1-thm-positive-characteristic"
+            "m1-lem-charzero-specialization"
           ]
         }
       ]
@@ -452,7 +446,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -177,7 +177,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Almost-everywhere-Fourier-convergence-in-L-log-L-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Almost-everywhere Fourier convergence in L log L; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Almost-everywhere Fourier convergence in L log L.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -229,7 +229,6 @@
           "source": "Entropy foundations for compression",
           "detail": "[Selection of a conditional marginal] Under the hypotheses of , there is a probability law on S and a joint law of an exchangeable T_0 -tuple with common marginal and an error TS-TS such that,…",
           "dependsOn": [
-            "m1-entropy-foundations-variational",
             "m1-entropy-foundations-cost-rules"
           ]
         },
@@ -241,9 +240,7 @@
           "kind": "lemma",
           "source": "Entropy foundations for compression",
           "detail": "[Monotonicities and uniform entropy bounds] Let , be as in , and define G_s,I_r by . There is a constant C'_0(D_0) such that, with D_*=C'_0(D_0)d, every finite refinement of the initial constant…",
-          "dependsOn": [
-            "m1-entropy-foundations-cost-rules"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-entropy-foundations-block-cost",
@@ -263,10 +260,7 @@
           "kind": "lemma",
           "source": "Entropy foundations for compression",
           "detail": "[The low-end noisy cost] Under the hypotheses of , fix the law from . Let m,r be positive integers satisfying \\[ m m_*, 2mr T_0, r 12 T e^ -w^2 . \\] For the constant context and for every finite…",
-          "dependsOn": [
-            "m1-entropy-foundations-block-cost",
-            "m1-entropy-foundations-cost-rules"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-entropy-refinement-gluing",
@@ -286,10 +280,7 @@
           "kind": "proposition",
           "source": "Refinement and common phase volume",
           "detail": "[Finite refinement search] Under the hypotheses of , there is a finite sequence of context refinements from empty context to W , and an index j , such that G_1()-G_1(W)&CD_*^2 Eh^2 ,\\\\ K_ m_ j,1…",
-          "dependsOn": [
-            "m1-entropy-refinement-gluing",
-            "m1-lemma-compression"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lemma-thermal-monotonicity",
@@ -309,9 +300,7 @@
           "kind": "lemma",
           "source": "Thermal labels and the spectral update",
           "detail": "[Spectral update] Fix C_0,C_*1 . Let the current form A arise from the initial form zero by fewer than C_0h additions of spatial and metric forms, each metric satisfying . Let p p_* , where p_* is…",
-          "dependsOn": [
-            "m1-lemma-compression"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-thermal-evidence",
@@ -342,8 +331,7 @@
           "source": "The finite dyadic procedure and its budgets",
           "detail": "[Live budgets] There are fixed absolute choices of the constants in the procedure and in such that, for all sufficiently large d , the procedure is finite in every finite spatial tree and preserves…",
           "dependsOn": [
-            "m1-lemma-spectral-update",
-            "m1-prop-thermal-evidence"
+            "m1-lemma-spectral-update"
           ]
         },
         {
@@ -374,10 +362,7 @@
           "kind": "lemma",
           "source": "Capture, edge charges, and snapshots",
           "detail": "[Edge charges] With the bad-jump convention , the following bounds hold. [label=( *)] Across all live jumping pieces, the sum of U(p)_e e_ p,b 1_ bad is at most Cd if a single scalar level b is…",
-          "dependsOn": [
-            "m1-prop-live-budgets",
-            "m1-lemma-07-local-budget"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lemma-07-snapshots",
@@ -399,10 +384,7 @@
           "kind": "lemma",
           "source": "Capture, edge charges, and snapshots",
           "detail": "[Activation and localization before activation] On a capped scheme, declare a high u activated at a jump p if there is v such that |u-v||p| in the main case, or |u-v||p| c_8b^4 in the scalar case. A…",
-          "dependsOn": [
-            "m1-lemma-07-snapshots",
-            "m1-prop-capture"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lemma-paths-sign",
@@ -422,9 +404,7 @@
           "kind": "proposition",
           "source": "Delayed transforms along a plateau path",
           "detail": "[Scalar plateau paths] Let 0<b1 be a scalar level, and let s be a representative selected at a predictable snapshot birth on a live or static plateau. At a jumping post state put \\[ f_p= E_p[a _s] ,…",
-          "dependsOn": [
-            "m1-lemma-paths-sign"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lemma-paths-innovation",
@@ -434,9 +414,7 @@
           "kind": "lemma",
           "source": "Delayed transforms along a plateau path",
           "detail": "[Energy drift and innovations] Put \\[ g_z=12(M_+|v_+-v|^2+M_-|v_--v|^2), g= g_z\\,dz, U_p=G_+-G_-2. \\] Then &g_z=M_+|v_+|^2+M_-|v_-|^2 2 -M|v|^20, &| a-vD|^2& M g_z, \\\\ &G_ actual\\ pre =G+g+r_ j+1…",
-          "dependsOn": [
-            "m1-lemma-07-local-budget"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lemma-paths-run-drift",
@@ -446,9 +424,7 @@
           "kind": "lemma",
           "source": "Delayed transforms along a plateau path",
           "detail": "[Drift on a run] Start predictably at an outer-valid jump, and stop before the first outer-invalid jump or at plateau end. For t0 , outside conditional probability e^ -t , every prefix P of this run…",
-          "dependsOn": [
-            "m1-lemma-paths-sign"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lemma-paths-run-norm",
@@ -458,9 +434,7 @@
           "kind": "lemma",
           "source": "Delayed transforms along a plateau path",
           "detail": "[Delayed norm estimate on a run] Under the hypotheses of , set =b^ 1/2 and W_P(z)=_ p P a_p(z)_ j(p) r_ j(p)+2 . With conditional failure probability at most Ce^ -t , simultaneously for every run…",
-          "dependsOn": [
-            "m1-lemma-paths-sign"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-vector-path",
@@ -471,8 +445,7 @@
           "source": "Delayed transforms along a plateau path",
           "detail": "[Vector estimates on arbitrary inner-valid intervals] Fix a live plateau, a main level b , and a representative s at its snapshot birth. There is a family of predictable estimate origins, containing…",
           "dependsOn": [
-            "m1-lemma-07-edge-charges",
-            "m1-lemma-paths-run-norm"
+            "m1-lemma-07-edge-charges"
           ]
         },
         {
@@ -484,12 +457,7 @@
           "source": "Delayed transforms along a plateau path",
           "detail": "[Parameters for all representatives at a level] On each plateau and at each permitted level there are nonnegative random parameters t_b,H_b , independent of the actual frequency later being…",
           "dependsOn": [
-            "m1-lemma-07-snapshots",
             "m1-prop-vector-path",
-            "m1-lemma-07-activation",
-            "m1-prop-dyadic",
-            "m1-prop-capture",
-            "m1-prop-scalar-path",
             "m1-prop-live-budgets"
           ]
         },
@@ -514,8 +482,7 @@
           "source": "Fourier sums and the endpoint summation",
           "detail": "Every bounded complex-valued periodic function has almost-everywhere convergence of its symmetric Fourier partial sums along the full sequence.",
           "dependsOn": [
-            "m1-thm-good-set",
-            "m1-thm-main"
+            "m1-thm-good-set"
           ]
         },
         {
@@ -526,9 +493,7 @@
           "kind": "corollary",
           "source": "Fourier sums and the endpoint summation",
           "detail": "[Weak- L^1 maximal bound] On T= R/(2 Z) with d=dx/(2) , set (t)=t(2+t) and define the Luxemburg norm by \\[ \\|f\\|_ =\\ b>0:_ T (|f|/b)\\,d1\\ . \\] For the ordinary symmetric partial sums of , put S^*f=_…",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -547,7 +512,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

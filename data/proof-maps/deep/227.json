@@ -422,7 +422,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Universality-of-critical-quench-autocorrelations-in-the-Sherrington-Kirkpatrick-model-October-5-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -519,9 +519,7 @@
           "kind": "lemma",
           "source": "Gaussian estimates at the bottom edge scales",
           "detail": "[A Haar second moment at the low scales] On the spectral restrictions above, for every fixed spectral field in a prescribed ball and every \\(K k_p\\), \\(p C_1r_n\\), E_U(L_p(h)-1)^2 C_Rn^ -1/4 . The…",
-          "dependsOn": [
-            "m1-edge-spherical-tails"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-edge-cube-caps",
@@ -556,8 +554,7 @@
           "source": "Gaussian estimates at the bottom edge scales",
           "detail": "[Integrated score and covariance error] Let \\(I=[q,2q]\\), with a prescribed fixed multiplicative enlargement inside the scale range. At path fields write \\[ a_p=P_p(m_p-m_p^ sp ), D_p=p^2K_p-I_ _p .…",
           "dependsOn": [
-            "m1-edge-replica-comparison",
-            "m1-edge-path-annuli"
+            "m1-edge-replica-comparison"
           ]
         },
         {
@@ -581,7 +578,6 @@
           "source": "Gaussian estimates at the bottom edge scales",
           "detail": "[Positive covariance error] For some \\(a,c,C>0\\), uniformly at every deterministic scale \\(K k_p\\), \\(p r_n\\), apart from activation points, P( G \\ p^2K_p(1+Ck_p^ -a )I_ _p \\ ) C e^ -c k_p^a . The…",
           "dependsOn": [
-            "m1-edge-annular-extension",
             "m1-prop-edge-estimates",
             "m1-edge-spectral",
             "m1-edge-norm-density",
@@ -619,7 +615,6 @@
           "source": "Warming at the critical time scale",
           "detail": "[Entropy between two observation scales] Fix \\(C_ lev <\\). For every fixed \\(>0\\), there are tight \\(K_0\\) and \\(>0\\) such that every \\(f\\) satisfying with \\(L n^\\) satisfies \\, (f) N c_ L^ 5/3- .",
           "dependsOn": [
-            "m1-prop-edge-estimates",
             "m1-edge-cube-caps",
             "m1-edge-path-annuli"
           ]
@@ -652,10 +647,7 @@
           "kind": "lemma",
           "source": "Warming at the critical time scale",
           "detail": "[Retention at order-\\(n\\) entropy] Fix \\(0<<C_ lev <\\), \\(C_E<\\), and \\(0<<1\\). On Gaussian disorder events of probability tending to one, every test with \\( n L C_ lev n\\) and (f)N C_E n^ 1- has an…",
-          "dependsOn": [
-            "m1-warm-posterior-mean",
-            "m1-warm-profiles"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-warm-log-layer",
@@ -688,8 +680,6 @@
           "source": "Warming at the critical time scale",
           "detail": "[A support profile] With the constants and \\(\\) of Proposition~ , every nonnegative \\(g\\), supported on a set of \\(\\)-mass \\(e^ -L_ supp \\) with \\(L_ supp K_0\\), satisfies (g) c\\,_n(L_ supp ), _n(L)=…",
           "dependsOn": [
-            "m1-thm-warming",
-            "m1-warm-entropy-profile",
             "m1-warm-log-layer"
           ]
         },
@@ -724,10 +714,8 @@
           "source": "Positive-time Gaussian limits and the uniform start",
           "detail": "[An escape estimate from the uniform start] There is a measurable admissible choice \\(b=b(g)\\) such that, almost surely, r_a:=g_a+b>0, D_g(b)>0, c_g(1+a)^ 2/3 r_a C_g(1+a)^ 2/3 (a1) for finite…",
           "dependsOn": [
-            "m1-thm-warming",
             "m1-prop-edge-estimates",
             "m1-edge-spectral",
-            "m1-prop-gaussian-subsequence",
             "m1-edge-limit-growth"
           ]
         },
@@ -871,9 +859,7 @@
           "kind": "lemma",
           "source": "Smooth truncation of clock histories",
           "detail": "[Coarse coefficients and moments] On the size support in , for all nodes, boundaries and e , and 1 l K , \\[ |[u^l] k_I^u k_I | +|[u^l]k_I^u k_I | +|[u^l]w_I^u w_I | +|[u^l]1-w_I^u 1-w_I | n^ C_K . \\]…",
-          "dependsOn": [
-            "m1-hist-cutoff-hazards"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-score-hellinger",
@@ -919,7 +905,6 @@
           "detail": "[Representations after compensating the last score] Fix an admissible oriented law Q , its oriented filtration, and any permitted auxiliary-data augmentation. Fix a dyadic subtree H of length d in…",
           "dependsOn": [
             "m1-score-one-insertion",
-            "m1-hist-crude-ratios",
             "m1-score-hellinger"
           ]
         },
@@ -961,10 +946,8 @@
             "m1-prop-clock-scores",
             "m1-hist-crude-ratios",
             "m1-score-raw-projection",
-            "m1-hist-static-support",
             "m1-hist-conditional-interior",
-            "m1-hist-cutoff-hazards",
-            "m1-score-hellinger"
+            "m1-hist-cutoff-hazards"
           ]
         },
         {
@@ -991,11 +974,9 @@
           "dependsOn": [
             "m1-thm-main",
             "m1-prop-edge-estimates",
-            "m1-thm-warming",
             "m1-prop-gaussian-subsequence",
             "m1-prop-uniform-seed-escape",
-            "m1-thm-entrance-selection",
-            "m1-prop-universality"
+            "m1-thm-entrance-selection"
           ]
         }
       ]
@@ -1012,7 +993,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Functional-universality-of-critical-SK-autocorrelations-October-5-2026/critical-sk-autocorrelations.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Functional universality of critical SK autocorrelations; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Functional universality of critical SK autocorrelations.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -1095,10 +1076,7 @@
           "kind": "lemma",
           "source": "Quantitative estimates for the observations",
           "detail": "[The observation annulus] There are a,>0 and a sufficiently small fixed upper scale p_ top >0 such that |_p(h_p)| C k_p^ -a p^2 (r p p_ top ) outside a set of P -probability at most C(-n^) . On…",
-          "dependsOn": [
-            "m2-prop-edge-conditioned-law",
-            "m2-lem-edge-biased-law"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-observations-replicas",
@@ -1131,7 +1109,6 @@
           "source": "Quantitative estimates for the observations",
           "detail": "[Mean moments and the initial score] For every fixed j< , after reducing the fixed upper scale if needed, E(\\|m_p\\|/M_p)^j + E(\\|m_p^ sp \\|/M_p)^j C_j. At the smallest scale, E \\|m_r-m_r^ sp \\|^2…",
           "dependsOn": [
-            "m2-lem-observations-annulus",
             "m2-lem-observations-replicas"
           ]
         },
@@ -1156,7 +1133,6 @@
           "source": "Quantitative estimates for the observations",
           "detail": "[Integrated covariance error] Put D_p^K=p^2K_p- on H_p . After decreasing >0 if necessary, _q^ 2q \\|D_p^K\\|_ F ^2 k_p \\,d p C(q^+k_q^ - ) outside an event whose intersection with G_n has P…",
           "dependsOn": [
-            "m2-lem-observations-annulus",
             "m2-lem-observations-score"
           ]
         },
@@ -1168,9 +1144,7 @@
           "kind": "lemma",
           "source": "Quantitative estimates for the observations",
           "detail": "[Angular score] For a cap field h , write h=U^ T h and _p( h)=_p(U h) . Let A be a fixed skew-symmetric matrix supported on finitely many leading spectral coordinates, and set R=(A h)_ h . There is…",
-          "dependsOn": [
-            "m2-lem-observations-annulus"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-variance-main",
@@ -1223,8 +1197,7 @@
           "source": "Conditional variance at the exact cap scale",
           "detail": "[Compression by the unused frame] For x=c/p , \\|P_cE_pP_c\\| C( E_p k_p +x^3\\|E_p\\|) outside a set of P -probability at most C(-a_ k_p) . This is an unconditional assertion with respect to the unused…",
           "dependsOn": [
-            "m2-prop-variance-curvature",
-            "m2-lem-observations-annulus"
+            "m2-prop-variance-curvature"
           ]
         },
         {
@@ -1236,7 +1209,6 @@
           "source": "Conditional variance at the exact cap scale",
           "detail": "[The fixed-scale starting bound] On disorder events of probability tending to one, for a sufficiently small fixed p_ top >0 and every real function f on the cube, \\[ V_ p_ top (f) C(f)+Ce^ -a n…",
           "dependsOn": [
-            "m2-prop-variance-main",
             "m2-prop-variance-curvature",
             "m2-lem-edge-biased-law"
           ]
@@ -1260,7 +1232,6 @@
           "source": "The gradient on the conditioned edge measure",
           "detail": "[Approximation with a compensated derivative] Let =_ i1 N(0,l_i) , where l_i>0 , _i l_i= and _i l_i^2< , and let S_y=_i(y_i^2-l_i) . Suppose that f,a L^2() and G L^2(;^2) satisfy, coordinatewise in…",
           "dependsOn": [
-            "m2-prop-gradient-domain",
             "m2-prop-edge-conditioned-law"
           ]
         },
@@ -1325,8 +1296,7 @@
           "source": "Microscopic relaxation and the effective coefficient",
           "detail": "[Determination by moments and polynomial density] Let the matrices and normalized linear functions above vary with n , and suppose the moments of the finite measures \\[ _ n,a (B)= Y_a,H1_B(H)Y_a_…",
           "dependsOn": [
-            "m2-prop-micro-moment-measure",
-            "m2-lem-micro-weighted-recursion"
+            "m2-prop-micro-moment-measure"
           ]
         },
         {
@@ -1372,9 +1342,7 @@
           "dependsOn": [
             "m2-prop-gradient-observation",
             "m2-lem-gradient-smoothing",
-            "m2-lem-micro-divergence",
-            "m2-lem-micro-recovery",
-            "m2-lem-micro-positivity"
+            "m2-lem-micro-divergence"
           ]
         }
       ]
@@ -1400,7 +1368,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

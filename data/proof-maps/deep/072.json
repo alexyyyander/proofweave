@@ -212,7 +212,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Brennans-conjecture-and-sharp-inverse-square-integral-means-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Brennan's conjecture and sharp inverse-square integral means; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Brennan's conjecture and sharp inverse-square integral means.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -336,7 +336,6 @@
           "source": "Escape estimates and compact superlevels",
           "detail": "[Escape and trace bounds] Let F satisfy I(F)< . Then y^k |F(x+iy)| 0 as |x|+y. For every compact K and >0 , F^ -1 (K)\\ z\\ is compact in , and \\[ H_ F,K :=\\ z:F(z) K\\ <, \\] where the supremum of an…",
           "dependsOn": [
-            "m1-prop-proper-superlevels",
             "m1-lem-classical-univalence",
             "m1-lem-compact-class",
             "m1-lem-weighted-inverse-area"
@@ -432,7 +431,6 @@
           "source": "Transport between saddles and maxima",
           "detail": "[Transfer bound] The dyadic transfer operator satisfies 2 .",
           "dependsOn": [
-            "m1-lem-root-exception",
             "m1-lem-jacobian-moments",
             "m1-thm-main"
           ]
@@ -479,8 +477,7 @@
           "source": "Integral means and the full integrability range",
           "detail": "[Homogeneous Sobolev pullback] Let be a simply connected domain whose boundary in the Riemann sphere has at least two points, and let : be a conformal bijection. For 2<p< and 4/3<s<4 , put…",
           "dependsOn": [
-            "m1-thm-main",
-            "m1-cor-sharp-endpoints"
+            "m1-thm-main"
           ]
         }
       ]
@@ -497,7 +494,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-strict-inverse-first-power-bound-for-univalent-functions-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A strict inverse-first-power bound for univalent functions; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A strict inverse-first-power bound for univalent functions.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -593,8 +590,6 @@
           "source": "Compact superlevels for almost every target",
           "detail": "[Escape at infinity and horizontal length] If \\(I(F)<\\), then y^k |F(x+iy)| 0 as |x|+y. For every compact target set \\(K\\), its preimage restricted to \\(y>0\\) is compact, its whole preimage has…",
           "dependsOn": [
-            "m2-prop-compact-levels",
-            "m2-lem-area-tail",
             "m2-lem-compact"
           ]
         },
@@ -606,9 +601,7 @@
           "kind": "lemma",
           "source": "Critical points and strict pairing",
           "detail": "[Generic targets and Borel goodness] Goodness is Borel in \\((F,)\\). For \\(P\\)-almost every \\(F\\), area-almost every \\(\\) is good.",
-          "dependsOn": [
-            "m2-prop-compact-levels"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-count",
@@ -693,7 +686,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

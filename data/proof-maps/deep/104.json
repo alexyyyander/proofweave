@@ -72,7 +72,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Mean-payoff-parity-games-in-quasipolynomial-time-October-5-2026/mean-payoff-parity.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Mean-payoff parity games in quasipolynomial time; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Mean-payoff parity games in quasipolynomial time.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -103,9 +103,7 @@
           "kind": "lemma",
           "source": "Mean-payoff input and arena restrictions",
           "detail": "[Uniform prefix bound] If Max wins ordinary mean payoff from every vertex of a nonempty arena H of size N , then a single positional strategy guarantees \\[ () -(N-1)W_H \\] for every finite consistent…",
-          "dependsOn": [
-            "m1-prop-mp-interface"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-arena-facts",
@@ -138,8 +136,7 @@
           "source": "Combining strategies and extracting dominions",
           "detail": "In every finite arena, each vertex is winning for exactly one of \\ and . From each vertex winning for , there is a conjunction-winning strategy satisfying .",
           "dependsOn": [
-            "m1-prop-mp-interface",
-            "m1-lem-combine"
+            "m1-prop-mp-interface"
           ]
         },
         {
@@ -165,8 +162,7 @@
           "source": "Recursion with bounded-dominion guarantees",
           "detail": "[Bounded-dominion guarantee] For every subarena H of the original game and every b\\ 0,,n\\ ^2 , the procedure (H, b) terminates and returns a partition satisfying for both players.",
           "dependsOn": [
-            "m1-lem-arena-facts",
-            "m1-lem-extract"
+            "m1-lem-arena-facts"
           ]
         },
         {
@@ -178,9 +174,7 @@
           "source": "Complexity in the full binary input length",
           "detail": "[Cost of the reduction] For an arena with n1 vertices and complete binary input length L , the call (G,(n,n)) makes \\[ 2^ O((_2(n+2))^2) \\] calls to the ordinary mean-payoff winning-set subroutine.…",
           "dependsOn": [
-            "m1-thm-main",
-            "m1-thm-labels",
-            "m1-prop-mp-interface"
+            "m1-thm-labels"
           ]
         }
       ]
@@ -200,7 +194,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

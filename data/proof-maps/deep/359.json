@@ -292,7 +292,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-negatively-pinched-Kahler-threefold-without-bounded-holomorphic-coordinates-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A negatively pinched Kähler threefold without bounded holomorphic coordinates; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A negatively pinched Kähler threefold without bounded holomorphic coordinates.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -434,7 +434,6 @@
           "source": "Positive representing densities",
           "detail": "[Normalized correction estimate] Write \\[ F=\\|f\\|_, B=\\|b\\|_, F_1=\\|f'\\|_, B_1=\\|b'\\|_. \\] On a degree-\\(k\\) patch suppose \\(W_ j-1 >0\\), \\(S_p>0\\), and \\[ e^ 2y/k S_p W_ j-1 2, r_1=|S_p'| kS_p 1,…",
           "dependsOn": [
-            "m1-density-main",
             "m1-density-moments"
           ]
         },
@@ -510,9 +509,7 @@
           "source": "The controlled base potential",
           "detail": "[Uniform chart estimates] For every fixed finite L>0 , the potential~ has uniformly bounded positive-order derivatives through order four at the origins of all centered ball charts. Consequently its…",
           "dependsOn": [
-            "m1-peaks-bounds",
             "m1-base-convergence",
-            "m1-tests-later",
             "m1-base-minorant",
             "m1-metric-transfer"
           ]
@@ -587,8 +584,6 @@
           "detail": "Fix \\(0<c C<\\) and \\(0 C_ e <\\). There is a finite \\(_0=_0(c,C,C_ e )>0\\) with the following property. Let \\(_0\\), \\(x0\\), and let \\(h\\) be a horizontal Hermitian form with \\(cI h CI\\). Put \\[…",
           "dependsOn": [
             "m1-pinch-algebra",
-            "m1-metric-transfer",
-            "m1-metric-complete",
             "m1-curv-tensor"
           ]
         }
@@ -606,7 +601,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/One-sided-negative-sectional-curvature-and-the-holomorphic-Liouville-property-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from One-sided negative sectional curvature and the holomorphic Liouville property; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from One-sided negative sectional curvature and the holomorphic Liouville property.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -678,8 +673,7 @@
           "source": "Polynomial tests for bounded holomorphic functions",
           "detail": "[A testing criterion for the holomorphic Liouville property] Fix constants p_0,p_10 and m_0>p_1 . Choose an integer k and a finite dimension n2 so that 0.99k>p_0+p_1+1, _ r=1 ^ k-1 r^ n-1 (n-1)!…",
           "dependsOn": [
-            "m2-grid-phases",
-            "m2-grid-frequency"
+            "m2-grid-phases"
           ]
         },
         {
@@ -741,7 +735,6 @@
           "source": "A spatially varying quiet fiber profile",
           "detail": "[Quiet profile criterion] There exist positive constants \\(,\\) and a lower threshold \\(E_ \\), depending on the fixed profile constants but not on \\(n\\), with the following property. Let \\(E\\) be a…",
           "dependsOn": [
-            "m2-fiber-blocks",
             "m2-fiber-perturbation",
             "m2-fiber-metric"
           ]
@@ -755,7 +748,6 @@
           "source": "A spatially varying quiet fiber profile",
           "detail": "[Localized shear perturbations] Under the hypotheses of Proposition~ , suppose \\(E\\) and the center are constant on the spatial region under consideration. Assume also that the first and pure second…",
           "dependsOn": [
-            "m2-fiber-blocks",
             "m2-fiber-metric",
             "m2-fiber-perturbation"
           ]
@@ -825,11 +817,8 @@
           "detail": "[Curvature during interpolation] During either profile switch above, keep the center constant and set =_ old +w^(()) , also including the already frozen offset when making the reverse switch. If and…",
           "dependsOn": [
             "m2-radial-curvature",
-            "m2-fiber-blocks",
             "m2-radial-scaled",
-            "m2-fiber-ranktwo",
-            "m2-radial-aligned",
-            "m2-center-change"
+            "m2-radial-aligned"
           ]
         },
         {
@@ -935,7 +924,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

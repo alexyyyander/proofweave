@@ -102,7 +102,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Foulkes-Conjecture-for-the-Sixth-Symmetric-Power-September-25-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Foulkes' conjecture for the sixth symmetric power; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Foulkes' conjecture for the sixth symmetric power.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -153,9 +153,7 @@
           "kind": "corollary",
           "source": "The large-degree range and finite reductions",
           "detail": "[First-row certificate] For every integer \\(b1\\) and partition \\(\\) of \\(6b\\) with \\(_ i2 _i b\\), one has \\[ [s_]h_6[h_b] [s_]h_b[h_6]. \\]",
-          "dependsOn": [
-            "m1-lem-chart"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-polarization",
@@ -189,7 +187,6 @@
           "detail": "[Independent chart bound] For \\(a2\\), one has \\(R_b=A_b\\) whenever \\(b a(a-1)^2\\).",
           "dependsOn": [
             "m1-lem-chart",
-            "m1-cor-module-generation",
             "m1-lem-polarization"
           ]
         },
@@ -211,9 +208,7 @@
           "kind": "proposition",
           "source": "An upper bound and two exact recurrences",
           "detail": "The function \\(U\\) is nondecreasing in every gap. For every nonnegative gap vector \\(d\\) with \\(6 w(d)\\), one has \\(F(d) U(d)\\).",
-          "dependsOn": [
-            "m1-lem-strips"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-sumset",
@@ -235,8 +230,6 @@
           "detail": "[Power certificate] Suppose \\(Q(x) C>0\\), where \\(C\\) is an integer and \\(w(x)=6d_0\\) with \\(d_0>0\\). Put \\[ z=(18,\\ \\ h0: d_0+h h C\\ ). \\] Then for all \\(k1\\), Q(kx) f(C,z,k).",
           "dependsOn": [
             "m1-lem-sumset",
-            "m1-thm-main",
-            "m1-cor-quadratic-range",
             "m1-lem-rectangles"
           ]
         }
@@ -254,7 +247,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Quadratic-Stabilization-of-the-Canonical-Foulkes-Howe-Map-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Quadratic stabilization of the canonical Foulkes--Howe map; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Quadratic stabilization of the canonical Foulkes--Howe map.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -298,9 +291,7 @@
           "kind": "corollary",
           "source": "Representation comparison and scope",
           "detail": "For every finite-dimensional complex vector space V , every integer a2 , and every integer b a(a-1) , there exists a GL(V) -equivariant embedding \\[ ^a(^b V)^b(^a V). \\] In particular, this gives the…",
-          "dependsOn": [
-            "m2-thm-main"
-          ]
+          "dependsOn": []
         }
       ]
     }
@@ -325,7 +316,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

@@ -162,7 +162,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Finite-angular-cylinder-covers-below-the-half-area-bound-September-27-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Finite angular cylinder covers below the half-area bound; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Finite angular cylinder covers below the half-area bound.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -226,8 +226,6 @@
           "source": "The strict area decrease",
           "detail": "For the construction -- and 0<1 , \\[ |S( )H-12- (2-1 240 )^2| 2^4. \\]",
           "dependsOn": [
-            "m1-thm-counterexample",
-            "m1-lem-projection-minimum",
             "m1-prop-coverage"
           ]
         },
@@ -260,7 +258,6 @@
           "source": "A vanishing radial margin",
           "detail": "For every 0<1 , the tetrahedron K admits a cover by 28/^2 cylinders with compact, nondegenerate triangular perpendicular bases. Their total base area C_ satisfies |C_ H -12+ ^2 240 -25 2 ^3|…",
           "dependsOn": [
-            "m1-cor-quantitative-coverage",
             "m1-cor-variable-margin-area"
           ]
         }
@@ -278,7 +275,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Finite-cylinder-approximation-of-ruled-sets-September-27-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Finite cylinder approximation of ruled sets; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Finite cylinder approximation of ruled sets.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -364,8 +361,7 @@
           "source": "Product cells and logarithmic packing",
           "detail": "[One cell and its cylinder] Assume the hypotheses of Theorem~ , with D nonempty. For each p D , let L_p have unit eigenvectors for _p,-_p as its columns. Fix >0 , 0<<1 , and >0 such that (1+)<1 and…",
           "dependsOn": [
-            "m2-b-projection",
-            "m2-b-product"
+            "m2-b-projection"
           ]
         },
         {
@@ -377,8 +373,6 @@
           "source": "Product cells and logarithmic packing",
           "detail": "[Approximation by logarithmic cells] Let X,k>0 , let U R^2 be compact with | U|=0 , and let v be C^2 on an open rectangle containing U . Suppose that, for every p U , \\[ trDv(p)=0, Dv(p)<0, kX-…",
           "dependsOn": [
-            "m2-b-product",
-            "m2-b-cell-geometry",
             "m2-b-product-local"
           ]
         }
@@ -396,7 +390,7 @@
       "color": "#c98b5c",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Slope-field-perturbations-of-the-two-cylinder-covering-September-27-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Slope-field perturbations of the two-cylinder covering; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Slope-field perturbations of the two-cylinder covering.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -490,7 +484,6 @@
           "source": "Angular fields with square-zero differential",
           "detail": "The tetrahedron K_2 admits a finite cylinder cover with compact convex parallelogram perpendicular bases whose total area is less than 12_ |u|=1 |_ u^ K_2| .",
           "dependsOn": [
-            "m3-c-nil-apex-net",
             "m3-c-nil-sweep-cover"
           ]
         },
@@ -543,7 +536,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

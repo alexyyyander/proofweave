@@ -237,7 +237,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/primitive-roots-all-integer-bases.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Primitive roots for every admissible integer base; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Primitive roots for every admissible integer base.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -299,7 +299,6 @@
           "source": "Reduction to controlled predecessors and complete splitting",
           "detail": "[A progression of quadratic nonresidues] Let a be neither -1 nor an integer square, and set \\[ M=8_ a\\\\ odd prime . \\] There are c\\ 2,4\\ and an integer u satisfying such that every prime p u M…",
           "dependsOn": [
-            "m1-prop-splitting",
             "m1-alg-splitting-test"
           ]
         },
@@ -321,9 +320,7 @@
           "kind": "lemma",
           "source": "S-integers, residue symbols, and Gauss sums",
           "detail": "[Generators with fixed power classes] The pairing \\(H_S\\) on \\( V\\) is nondegenerate and alternating. The map \\(U_S/U_S^6 V\\) is injective, its image \\(E\\) satisfies \\(E^=E\\), and there is an…",
-          "dependsOn": [
-            "m1-lem-s-lattice"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-kummer-characters",
@@ -343,9 +340,7 @@
           "kind": "lemma",
           "source": "S-integers, residue symbols, and Gauss sums",
           "detail": "[The Gauss correction characters] There are a unitary Hecke character \\(\\), unramified outside \\(S\\), and a finite-order Hecke character \\(G\\), unramified outside \\(S\\), such that for every exterior…",
-          "dependsOn": [
-            "m1-lem-kummer-characters"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-reflection",
@@ -405,9 +400,7 @@
           "kind": "lemma",
           "source": "The normalized cubic theta input and its radial profiles",
           "detail": "[Exact Gaussian smoothing] For \\(V\\) in , there are constants \\(C_0>0\\) and \\(A_0>0\\) such that V(s) =C_0 A_0^s ^r ( s>-5/6). There is a smooth function \\( K:(0,)\\) such that, for every \\(N>0\\) and…",
-          "dependsOn": [
-            "m1-lem-sheet-profile"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-reflection-theta-representation",
@@ -439,10 +432,7 @@
           "kind": "lemma",
           "source": "Reflection and the quadratic large sieve",
           "detail": "[The reflected expansion] For every nonzero \\(m R\\) and \\(Z>0\\), let \\((m)_S= h d\\) and \\(=_m\\). Then B_m(Z) = &_ f F( h) _ a'_ f A( f)\\\\ n'\\\\( n', f)=1 _ u U_6\\ _d,s_c B _ , t q_ n' \\\\ & _ , t,s_d (…",
-          "dependsOn": [
-            "m1-lem-sheet-profile",
-            "m1-lem-reflection-local-weyl"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-reflection-quadratic-sieve",
@@ -477,7 +467,6 @@
           "source": "The Poisson probe and its Euler product",
           "detail": "For the weights above, for every \\(>0\\) and \\(Z2\\), I(Z^a,Z^b,Z)_ F,S,,W_0,W_1, Z^ (2M_0-1-b)/2+ =Z^ 933/2000+ .",
           "dependsOn": [
-            "m1-lem-additive-sieve",
             "m1-prop-reflection"
           ]
         },
@@ -500,8 +489,6 @@
           "source": "Zero detection and Mellin continuation",
           "detail": "[Primitive conductor large sieve] Fix \\(C_0>0\\) and a finite set \\( L_S\\) of possible local components at \\(S\\). Let \\( X(U)\\) be any family of distinct primitive finite-order Hecke characters of…",
           "dependsOn": [
-            "m1-lem-s-lattice",
-            "m1-lem-balanced-generators",
             "m1-lem-additive-sieve"
           ]
         },
@@ -513,9 +500,7 @@
           "kind": "proposition",
           "source": "Zero detection and Mellin continuation",
           "detail": "For the fixed \\(F,S,\\) there are \\(>0\\) and \\(U_0\\) with the following property. For every \\(U U_0\\), there is a set \\( E(U)\\ u U:U q_u<2U\\ \\) of cardinality \\[ | E(U)|_ F,S, U^ 1/2 \\] which contains…",
-          "dependsOn": [
-            "m1-lem-conductor-sieve"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-spl-field-bounds",
@@ -538,7 +523,6 @@
           "source": "A uniform estimate for complete splitting",
           "detail": "Fix 0<<1/2 and a nonnegative function f C_c^((0,)) . Let K be a number field of degree n and absolute discriminant D whose Dedekind zeta function has no zero in Res>1- . For every real x2 , _ K,f (x)…",
           "dependsOn": [
-            "m1-prop-splitting",
             "m1-spl-field-bounds"
           ]
         },
@@ -570,9 +554,7 @@
           "kind": "proposition",
           "source": "Marked Type II estimates and rough factors",
           "detail": "[A rough-factor Type II estimate] Retain the marked data and all the hypotheses on \\(F,,H_m,H_n\\) of . Fix real numbers \\(0<<w_-<w_+<1\\), and suppose \\[ [ H_m/L,(2H_m)/L]. \\] On an arbitrary interval…",
-          "dependsOn": [
-            "m1-lem-marked-coefficient-transfer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-block",
@@ -638,7 +620,6 @@
           "source": "Primes with a controlled predecessor in a fixed progression",
           "detail": "[Mass conditioned on a divisor] For any fixed \\(b<'1/2-\\), _ x^<n x^ ' \\ prime _ n d\\ ^-(d)>W w(d) = S_M X_0 V(W) ( '+o(1)).",
           "dependsOn": [
-            "m1-lem-block",
             "m1-con-harmonic"
           ]
         },
@@ -651,8 +632,6 @@
           "source": "Primes with a controlled predecessor in a fixed progression",
           "detail": "[An upper bound for rough pairs] Let \\( B=[M_1,2M_1)[M_2,2M_2)\\) be any dyadic box such that x/4 M_1M_22x, x^ 0.46 /2 M_i2x^ 0.54 (i=1,2). Then _ (m,n) B\\ ^-(m)>W,\\ P^-(n)>W w(mn) C_1X_0V(W)^2, where…",
           "dependsOn": [
-            "m1-lem-block",
-            "m1-prop-controlled",
             "m1-lem-marked-coefficient-transfer",
             "m1-prop-rough-type-ii",
             "m1-con-type-ii"
@@ -672,7 +651,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Simultaneous-primitive-roots-a-conditional-lower-bound-for-prime-bases-October-4-2026/simultaneous-primitive-roots-conditional-lower-bound-prime-bases.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Simultaneous primitive roots: a conditional lower bound for prime bases; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Simultaneous primitive roots: a conditional lower bound for prime bases.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -761,7 +740,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

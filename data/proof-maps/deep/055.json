@@ -297,7 +297,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Gepner-stability-condition-on-every-smooth-quintic-threefold-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from A Gepner stability condition on every smooth quintic threefold; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from A Gepner stability condition on every smooth quintic threefold.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -404,7 +404,6 @@
           "detail": "[Uniform independent-parameter inclusion] There is a fixed open square =\\ =(_0,_1):|_0|,|_1|<510^ -6 \\ and bounded aisles U_= U_-^ , with hearts A_=U_(U_)^ , such that U_ U_ (,). Moreover…",
           "dependsOn": [
             "m1-lem-twist-aisle",
-            "m1-lem-second-tilt",
             "m1-lem-periodicity"
           ]
         },
@@ -473,7 +472,6 @@
           "detail": "The categories P() form a slicing of with finite Harder--Narasimhan filtrations. They satisfy P(+1)= P()[1], P()= P(+2/5) (), and every nonzero E P() satisfies Z(E)_ >0 e^ i , [E] C|Z(E)|.",
           "dependsOn": [
             "m1-lem-block-filtrations",
-            "m1-lem-block-hom",
             "m1-lem-block-hn"
           ]
         },
@@ -506,9 +504,7 @@
           "source": "From uniform aisle inclusions to a slicing",
           "detail": "[Local finiteness] Every phase interval of width less than one generates a finite-length quasi-abelian category. Hence the slicing in Proposition~ is locally finite.",
           "dependsOn": [
-            "m1-lem-block-hn",
-            "m1-lem-interval-quasiabelian",
-            "m1-lem-periodicity"
+            "m1-lem-interval-quasiabelian"
           ]
         }
       ]
@@ -525,7 +521,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Prescribed-large-volume-charges-on-threefolds-with-trivial-canonical-bundle-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Prescribed large-volume charges on threefolds with trivial canonical bundle; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Prescribed large-volume charges on threefolds with trivial canonical bundle.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -630,7 +626,6 @@
           "detail": "For either factor in , the choices in Lemma~ can be made so that every B V,H W,t T gives a locally finite geometric stability condition on X , with charge and full numerical support. Every point…",
           "dependsOn": [
             "m2-lem-uniform-ambient-deformation",
-            "m2-lem-primitive-point",
             "m2-lem-geometric-range",
             "m2-lem-full-numerical-embedding"
           ]
@@ -918,7 +913,6 @@
           "detail": "[Transport from a fixed apex] Fix a smooth projective complex threefold X , an integral ample class H , and B_0 N^1(X)_ . Suppose that there are A>0 and C0 such that every finite-slope…",
           "dependsOn": [
             "m2-lem-finite-tilt-factors",
-            "m2-thm-uniform-inequality",
             "m2-prop-apex",
             "m2-cor-quadratic-tail",
             "m2-lem-tilt-semicircle"
@@ -957,7 +951,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

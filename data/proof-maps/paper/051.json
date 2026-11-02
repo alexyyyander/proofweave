@@ -228,106 +228,127 @@
     {
       "from": "m1-ex-brody",
       "to": "m1-ex-maximizer",
+      "label": "ex:brody",
       "context": "2\\log(1/|z|)b_f(z) \\] satisfies \\begin{equation} T_f(z)\\geq\\frac\\delta2 a_f(z)\\geq0. \\label{eq:negative-tail-density} \\end{equation} On the inner disc, Lemma~\\ref{ex:brody} and comparison of $h$ with $k$ give a uniform bound for $a_f$ and $|b_f|$. Since $\\log(1/|z|)$ is integrable there, the"
     },
     {
       "from": "m1-var-initial-frame",
       "to": "m1-var-frame",
+      "label": "var:initial-frame",
       "context": "Choose $e$ by Lemma~\\ref{var:initial-frame} and set \\[ M(z)=e(z)^*h(f(z))e(z). \\] This is a continuous, positive definite $W^{1,p}$ matrix on the closed disc. In"
     },
     {
       "from": "m1-var-initial-frame",
       "to": "m1-var-spray",
+      "label": "var:initial-frame",
       "context": "\\textbf{Fiber coordinates.} Choose a frame $e$ from Lemma~\\ref{var:initial-frame} and write $B=eS$. The matrix $S=e^{-1}B$ is holomorphic on $\\D$ and belongs to $W^{1,p_0}$ on $\\overline\\D$. We first c"
     },
     {
       "from": "m1-pre-green",
       "to": "m1-hes-determinant",
+      "label": "pre:green",
       "context": "rst equality follows because $\\log|\\det B|^2$ is harmonic; the formula is independent of the target chart. The right-hand side lies in $L^{p_0/2}$. Apply Lemma~\\ref{pre:green} and use $\\log\\det N=0$ on the boundary."
     },
     {
       "from": "m1-pre-green",
       "to": "m1-hes-trace",
+      "label": "pre:green",
       "context": "ongs to $L^{p_0/2}$ by the preceding differentiability argument. The scalar function in parentheses is continuous on $\\overline\\D$ and vanishes at zero. Lemma~\\ref{pre:green} therefore computes its Poisson integral from its boundary values. On the boundary, the columns of $B$ are an $h$-orthon"
     },
     {
       "from": "m1-hes-determinant",
       "to": "m1-hes-trace",
+      "label": "hes:determinant",
       "context": "rror} and \\eqref{eq:radial-trace-estimate} show that the two circular derivative means differ by $o(1)$. On the other hand, the curvature calculation in Lemma~\\ref{hes:determinant} and Equation~\\eqref{eq:green-area} give, for every interior radius, \\[ \\frac r2\\langle(\\log\\det N)_r\\rangle_r=-A_{R_h,"
     },
     {
       "from": "m1-hes-trace",
       "to": "m1-hes-maximum",
+      "label": "hes:trace",
       "context": "ite-area disc with the same center. Hence the real-valued twice differentiable function $J(F_t)$ has a local maximum at zero, and $\\cL J(F_t)\\le0$. Proposition~\\ref{hes:trace} gives the displayed inequality. The remaining assertions are Lemma~\\ref{hes:determinant} and the dilation inequality of"
     },
     {
       "from": "m1-hes-determinant",
       "to": "m1-hes-maximum",
+      "label": "hes:determinant",
       "context": "tion $J(F_t)$ has a local maximum at zero, and $\\cL J(F_t)\\le0$. Proposition~\\ref{hes:trace} gives the displayed inequality. The remaining assertions are Lemma~\\ref{hes:determinant} and the dilation inequality of Lemma~\\ref{ex:dilation}."
     },
     {
       "from": "m1-ex-dilation",
       "to": "m1-hes-maximum",
+      "label": "ex:dilation",
       "context": "le0$. Proposition~\\ref{hes:trace} gives the displayed inequality. The remaining assertions are Lemma~\\ref{hes:determinant} and the dilation inequality of Lemma~\\ref{ex:dilation}."
     },
     {
       "from": "m1-ex-maximizer",
       "to": "m1-nef-disc-bound",
+      "label": "ex:maximizer",
       "context": "For $0<\\delta\\leq 1$ and a prescribed center $x$, let $f$ maximize \\[ J_\\delta(f)=d(f)+P_{R_k}(f)-\\delta A_k(f). \\] Such a maximizer exists by Proposition~\\ref{ex:maximizer}. Use the boundary-normalized holomorphic frame $B$ associated to this maximizer and put $N(z)=B(z)^*k(f(z))B(z)$. Set"
     },
     {
       "from": "m1-nef-disc-bound",
       "to": "m1-nef-bounded-potentials",
+      "label": "nef:disc-bound",
       "context": "mula and Equation~\\eqref{eq:nef-total-space-curvature} give \\[ \\frac{1}{2\\pi}\\int_0^{2\\pi}\\ell(G(e^{i\\theta}))\\,\\dd\\theta =\\ell(s)-P_{R_k}(f). \\] Proposition~\\ref{nef:disc-bound} bounds every such mean below by $\\ell(s)-C$, while the constant disc has mean $\\ell(s)$. Thus \\begin{equation} \\ell-C"
     },
     {
       "from": "m1-nef-bounded-smoothing",
       "to": "m1-nef-nef",
+      "label": "nef:bounded-smoothing",
       "context": "Apply Lemma~\\ref{nef:bounded-smoothing} with $M=X$, $\\alpha=-R_k$, and the bounded function $u$ of Proposition~\\ref{nef:bounded-potentials}. The resulting func"
     },
     {
       "from": "m1-nef-bounded-potentials",
       "to": "m1-nef-nef",
+      "label": "nef:bounded-potentials",
       "context": "Apply Lemma~\\ref{nef:bounded-smoothing} with $M=X$, $\\alpha=-R_k$, and the bounded function $u$ of Proposition~\\ref{nef:bounded-potentials}. The resulting functions $u_\\eps$ give smooth canonical metrics with local squared norms $\\exp(-(a_i+u_\\eps))$ in the d"
     },
     {
       "from": "m1-ex-maximizer",
       "to": "m1-prop-volume-lower-bound",
+      "label": "ex:maximizer",
       "context": "Fix $x\\in X$. Use the maximizer from Proposition~\\ref{ex:maximizer} with $q=-h$ and $\\delta=1$, so that its functional is \\[ J(f)=d(f)-P_h(f)-A_h(f). \\] The constant disc centered at $x$"
     },
     {
       "from": "m1-nef-nef",
       "to": "m1-prop-positive-top-intersection",
+      "label": "nef:nef",
       "context": "Write \\[ \\alpha=[-R_k]=2\\pi c_1(K_X). \\] The nefness proved in Proposition~\\ref{nef:nef} means that, for each $t>0$, there is a smooth real function $a_t$ for which \\[ -R_k+\\ddc a_t\\ge-\\frac t2 k. \\] It foll"
     },
     {
       "from": "m1-thm-negative-cma",
       "to": "m1-prop-positive-top-intersection",
+      "label": "thm:negative-cma",
       "context": "function $a_t$ for which \\[ -R_k+\\ddc a_t\\ge-\\frac t2 k. \\] It follows that \\[ \\gamma_t=-R_k+tk+\\ddc a_t\\ge\\frac t2 k>0 \\] is a K\\\"ahler form. Apply Theorem~\\ref{thm:negative-cma} with this form and with the smooth positive volume form $\\Omega_t=e^{a_t}k^n$. The resulting K\\\"ahler form \\[ h_t=\\ga"
     },
     {
       "from": "m1-prop-volume-lower-bound",
       "to": "m1-prop-positive-top-intersection",
+      "label": "prop:volume-lower-bound",
       "context": "shows, with our Ricci convention, that \\begin{equation} \\label{eq:twisted-ricci-equation} R_{h_t}=R_k-\\ddc(a_t+w_t)=-h_t+tk\\ge-h_t. \\end{equation} Proposition~\\ref{prop:volume-lower-bound} therefore applies, with the same constant for every $t>0$: \\[ \\int_Xh_t^n\\ge c_{n,D}\\int_Xk^n. \\] On the other hand $["
     },
     {
       "from": "m1-thm-main",
       "to": "m1-prop-no-rational-ample",
+      "label": "thm:main",
       "context": "[Completion of the proof of Theorem~\\ref{thm:main}] A rational curve in $X$ would give a nonconstant holomorphic map $\\mathbb P^1\\to X$ through its normalization. Its re"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-cor-pluricanonical-freeness",
+      "label": "thm:main",
       "context": "Theorem~\\ref{thm:main} makes $X$ smooth projective with $K_X$ ample. Apply Fujita freeness in its all-powers form \\cite[Corollary~6.3]{OpenAIF"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-cor-semialgebraic-product",
+      "label": "thm:main",
       "context": "Theorem~\\ref{thm:main} makes $X$ projective. The semialgebraic-cover classification \\cite[Theorem~1.1]{OpenAISemialgebraicCovers2026} gives $\\"
     },
     {
       "from": "m1-nef-bounded-smoothing",
       "to": "m1-nef-radius-comparison",
+      "label": "nef:bounded-smoothing",
       "context": "[Proof of Lemma~\\ref{nef:bounded-smoothing}] \\textbf{Local potentials and regularization.} Choose finitely many coordinate patches $U_i$, smooth real functions $a_"
     }
   ]

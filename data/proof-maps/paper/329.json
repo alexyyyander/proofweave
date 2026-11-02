@@ -94,41 +94,49 @@
     {
       "from": "m1-prop-compression",
       "to": "m1-cor-signed-compression",
+      "label": "prop:compression",
       "context": "$, where $\\lambda_y^+=\\max\\{\\lambda_y,0\\}$ and $\\lambda_y^-=\\max\\{-\\lambda_y,0\\}$. Each part is nonnegative and has total mass at most one. Apply Proposition~\\ref{prop:compression} to choose $A^+,A^-\\in\\mathcal A$ with \\[ \\|f_{\\lambda^+}-A^+\\|_{\\infty,X}\\le3\\theta, \\qquad \\|f_{\\lambda^-}-A^-\\|"
     },
     {
       "from": "m1-lem-polynomial-zero",
       "to": "m1-prop-robust-directions",
+      "label": "lem:polynomial-zero",
       "context": "bf i)$, has total degree $h$ and is nonzero: setting all those vector variables equal to $z$ gives the nonzero polynomial \\eqref{eq:diagonal-polynomial}. Lemma~\\ref{lem:polynomial-zero} therefore gives \\begin{equation} \\Pr\\bigl(Z(t_{i_1},\\ldots,t_{i_h})=0\\bigr)\\le\\frac hp. \\label{eq:tuple-zero-probab"
     },
     {
       "from": "m1-prop-robust-directions",
       "to": "m1-prop-separated-rows",
+      "label": "prop:robust-directions",
       "context": "a space of cardinality $p^{D_{h-1}}$. This bounds the realized labels even if a contraction is not surjective. Fix distinct $x,y\\in X$, and apply Proposition~\\ref{prop:robust-directions} to $Z=y-x$. Let $T\\in\\mathcal T$ be the resulting nonempty set. Recall that distinct vertices are adjacent in the gra"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-prop-separated-rows",
+      "label": "thm:main",
       "context": "[Proof of Theorem~\\ref{thm:main}] Fix $a,b\\ge1$. Put \\[ \\theta=\\frac1{1000a}, \\qquad s=\\lceil1/\\theta\\rceil, \\] and choose a positive integer $h$ wit"
     },
     {
       "from": "m1-prop-compression",
       "to": "m1-prop-separated-rows",
+      "label": "prop:compression",
       "context": "e nonempty set. The finite field serves only to construct the indices and label maps; the matrix entries and the convex bodies below are real. By Proposition~\\ref{prop:compression}, the positive column class has a uniform $3\\theta$ approximation list of cardinality $Q$ satisfying \\[ \\log Q\\le hs\\lo"
     },
     {
       "from": "m1-cor-signed-compression",
       "to": "m1-prop-separated-rows",
+      "label": "cor:signed-compression",
       "context": "sitive column class has a uniform $3\\theta$ approximation list of cardinality $Q$ satisfying \\[ \\log Q\\le hs\\log q+C =hsD_{h-1}\\log p+C. \\] Corollary~\\ref{cor:signed-compression} gives a uniform $6\\theta$ approximation list of at most $Q^2$ functions for the absolutely convex column hull. Thus Le"
     },
     {
       "from": "m1-lem-matrix-to-bodies",
       "to": "m1-prop-separated-rows",
+      "label": "lem:matrix-to-bodies",
       "context": "rollary~\\ref{cor:signed-compression} gives a uniform $6\\theta$ approximation list of at most $Q^2$ functions for the absolutely convex column hull. Thus Lemma~\\ref{lem:matrix-to-bodies} applies with $\\varepsilon=6\\theta$ and $t=\\theta$. It gives admissible bodies in dimension $n=|Y|$, \\begin{equation} \\"
     },
     {
       "from": "m1-thm-main",
       "to": "m1-cor-convexified-separation",
+      "label": "thm:main",
       "context": "\\circ,K^\\circ/(2A))^2\\\\ &\\le N(L^\\circ,K^\\circ/(8A))^2. \\end{split} \\] Here the equality uses simultaneous dilation of both arguments. Choose $K,L$ by Theorem~\\ref{thm:main} with $a=8A$ and $b=2C$. Taking logarithms in the displayed bound proves the corollary."
     }
   ]

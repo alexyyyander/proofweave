@@ -207,7 +207,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-FPRAS-for-Common-Integer-Polymatroid-Bases-with-Binary-Capacities-October-5-2026/polymatroid-fpras.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from An FPRAS for Common Integer Polymatroid Bases with Binary Capacities; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from An FPRAS for Common Integer Polymatroid Bases with Binary Capacities.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -301,7 +301,6 @@
           "source": "Integer signatures and difference counts",
           "detail": "[Root-direction log-concavity] Let f_1,f_2 be integral normalized submodular functions on E , not necessarily nondecreasing, and define \\[ Y(d)=\\#\\ (x_1,x_2)(B(f_1)^E) (B(f_2)^E):x_1-x_2=d\\ . \\] For…",
           "dependsOn": [
-            "m1-lem-rank-signatures",
             "m1-lem-balanced-summation"
           ]
         },
@@ -323,9 +322,7 @@
           "kind": "lemma",
           "source": "Partitions, shift averages, and controlled expansion",
           "detail": "[Computable partitions and compatible orders] Each part of \\( D_i\\) is contained in a superblock. The three partitions can be found with polynomially many oracle calls and bit operations. Each has a…",
-          "dependsOn": [
-            "m1-lem-generator-prefixes"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-shift-average",
@@ -350,8 +347,7 @@
           "detail": "[Refinement witnesses] Fix integer \\(w\\) for which both \\(Q_i(w)\\) are nonempty. For each system separately, its lattice points and those of its expanded slice can be partitioned by fixing integer…",
           "dependsOn": [
             "m1-lem-generator-prefixes",
-            "m1-lem-polyhedral-controls",
-            "m1-lem-center"
+            "m1-lem-polyhedral-controls"
           ]
         },
         {
@@ -505,7 +501,6 @@
           "detail": "The implemented experiment has deterministic polynomial bounds on oracle calls, bit operations, and output length, on every execution. It can be coupled to the capped reference experiment so that,…",
           "dependsOn": [
             "m1-prop-weight-evaluator",
-            "m1-thm-main",
             "m1-prop-counting-reference"
           ]
         }
@@ -523,7 +518,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Approximate-counting-of-common-bases-of-two-matroids-September-23-2026/main.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Approximate counting of common bases of two matroids; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Approximate counting of common bases of two matroids.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -575,8 +570,7 @@
           "source": "A chain and its observable Poincar\\'e bound",
           "detail": "For good multipliers and every H: , _ H C_ p D(H) c_0 , C_ p =n(1+8n).",
           "dependsOn": [
-            "m2-lem-coefficient",
-            "m2-lem-transport"
+            "m2-lem-coefficient"
           ]
         },
         {
@@ -588,7 +582,6 @@
           "source": "A chain and its observable Poincar\\'e bound",
           "detail": "Assume the multipliers are good, and let H: . For each defect type ij there is an event A_0 obtained by prescribing the selected elements in pairs i,j , with ( A)1/4 . Its conditional mean H'=_…",
           "dependsOn": [
-            "m2-lem-transport",
             "m2-lem-coefficient"
           ]
         },
@@ -659,7 +652,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

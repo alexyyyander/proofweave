@@ -172,7 +172,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Cyclic-Length-and-Chromatic-Fixed-Point-Loss-September-24-2026/Cyclic-Length-and-Chromatic-Fixed-Point-Loss-September-24-2026.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Cyclic length and chromatic fixed-point loss; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Cyclic length and chromatic fixed-point loss.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -235,9 +235,7 @@
           "kind": "theorem",
           "source": "Rational characters from finite groups",
           "detail": "[Pro-character construction] Suppose P is a finite group with (U_P())_ 0 . There is a tower of occurring finite p -groups \\[ L_2 L_1 L_0=P, =_i L_i, \\] with the following properties. [label=( *)]…",
-          "dependsOn": [
-            "m1-prop-occurrence-sections"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-cover-evaluation",
@@ -257,9 +255,7 @@
           "kind": "proposition",
           "source": "Integration and subgroup congruences",
           "detail": "[Integration weights] In the coordinates , the D -linear extension of integration _Y:A_Y is the map (x_)_ [] _ [] x_ a_ . For a map f:Y Z , its pushforward has coordinate formula (f_!(x))_ =_…",
-          "dependsOn": [
-            "m1-lem-cover-evaluation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-scalar-integrality",
@@ -279,10 +275,7 @@
           "kind": "lemma",
           "source": "Integration and subgroup congruences",
           "detail": "[Integrality of homomorphism counts] For every finite group F , |_ (,F)| |F| _ (p) .",
-          "dependsOn": [
-            "m1-prop-relative-weights",
-            "m1-lem-scalar-integrality"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-subgroup-congruence",
@@ -292,11 +285,7 @@
           "kind": "theorem",
           "source": "Integration and subgroup congruences",
           "detail": "[Congruences for open subgroups] For every open subgroup U_o , every finite continuous U -set X , and every h0 , _ V_o U\\\\ [U:V]=p^h (|X^V|-|X|) p^ h+1 _ (p) . The sum is over all open subgroups of…",
-          "dependsOn": [
-            "m1-thm-pro-characters",
-            "m1-prop-relative-weights",
-            "m1-lem-scalar-integrality"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-procyclic",
@@ -326,9 +315,7 @@
           "kind": "lemma",
           "source": "From subgroup congruences to procyclic length",
           "detail": "[Shrinking an action] Let K be a pro- p group and let d,l0 . Suppose K_p^d satisfies the subgroup congruences and all its finite sections have generator number at most l . If K_p has kernel N , then…",
-          "dependsOn": [
-            "m1-lem-profinite-elementary"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-lattice-limit",
@@ -349,8 +336,6 @@
           "source": "From subgroup congruences to procyclic length",
           "detail": "Let K be a nontrivial finitely generated pro- p group and d1 . If K_p^d satisfies the subgroup congruences, then K has infinite abelianization.",
           "dependsOn": [
-            "m1-lem-lattice-limit",
-            "m1-thm-procyclic",
             "m1-lem-profinite-elementary",
             "m1-lem-shrinking-action"
           ]
@@ -365,7 +350,6 @@
           "detail": "[Rational gluing estimate] For every finite p -group P and every l0 , \\[ (U_P(L_ T(l) S))_ 0 (P,1) l. \\]",
           "dependsOn": [
             "m1-thm-pro-characters",
-            "m1-thm-procyclic",
             "m1-lem-occurrence-fixed-points"
           ]
         },
@@ -377,9 +361,7 @@
           "kind": "lemma",
           "source": "From subgroup congruences to procyclic length",
           "detail": "Let P be a finite p -group, and let k,l0 . If \\[ (P(C_ p^r )^k,1) l for every r1, \\] then k+(P,1) l .",
-          "dependsOn": [
-            "m1-lem-profinite-elementary"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-ring-detection",
@@ -410,8 +392,7 @@
           "source": "Gluing at every chromatic height",
           "detail": "[Surjective characters survive base change] Let \\(B\\) be a nonzero commutative \\(E\\)-algebra in \\(_ K(k) \\). For every \\(r1\\), put \\(C=(C_ p^r )^k\\). Then \\[ (U_C(B))_ 0. \\]",
           "dependsOn": [
-            "m1-lem-occurrence-fixed-points",
-            "m1-lem-rational-unit"
+            "m1-lem-occurrence-fixed-points"
           ]
         },
         {
@@ -433,10 +414,8 @@
           "source": "Gluing at every chromatic height",
           "detail": "[Height gluing] For a finite \\(p\\)-group \\(P\\) and integers \\(k,l0\\), T(k) U_P(L_ T(l) S)0 k+(P,1) l.",
           "dependsOn": [
-            "m1-cor-rational-gluing",
             "m1-lem-ring-detection",
             "m1-lem-product-comparison",
-            "m1-prop-abelian-full-mark",
             "m1-lem-product-series"
           ]
         },
@@ -448,9 +427,7 @@
           "kind": "corollary",
           "source": "Gluing at every chromatic height",
           "detail": "[Finite gluing] For every finite \\(p\\)-group \\(P\\) and all \\(m,k0\\), m<k+(P,1) T(k) U_P(L_m^fS)=0.",
-          "dependsOn": [
-            "m1-thm-height-gluing"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-layer-adjunction",
@@ -483,8 +460,7 @@
           "source": "Separation of subgroup supports",
           "detail": "[Chromatic orthogonality] Let \\(z C_m^G\\) be the image of a finite genuine \\(G\\)-spectrum, and let \\(n m\\). Suppose that \\(B G\\) satisfies \\[ m-n<(G,B), \\] and that every \\((K,k)(z)\\) with \\(k<m\\)…",
           "dependsOn": [
-            "m1-cor-finite-gluing",
-            "m1-prop-finite-local"
+            "m1-cor-finite-gluing"
           ]
         },
         {
@@ -496,9 +472,6 @@
           "source": "Separation of subgroup supports",
           "detail": "[Relative specialization bound] For a finite \\(p\\)-group \\(G\\), a subgroup \\(H G\\), and \\(m,n0\\), \\[ (H,m) \\ (G,n)\\ m n+(G,H). \\] The closure is taken in the tensor-triangular spectrum of finite…",
           "dependsOn": [
-            "m1-prop-finite-local",
-            "m1-lem-layer-orthogonality",
-            "m1-thm-main",
             "m1-prop-cyclic-upper"
           ]
         },
@@ -529,7 +502,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

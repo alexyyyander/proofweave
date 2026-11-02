@@ -157,7 +157,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Mezard-Parisi-formula-for-diluted-spin-glasses-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from The Mézard–Parisi formula for diluted spin glasses; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from The Mézard–Parisi formula for diluted spin glasses.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -346,8 +346,7 @@
           "dependsOn": [
             "m1-tree-charging",
             "m1-decor-depth-continuity",
-            "m1-tree-reference-total",
-            "m1-decor-overlap-concentration"
+            "m1-tree-reference-total"
           ]
         },
         {
@@ -398,9 +397,7 @@
           "kind": "lemma",
           "source": "Normalization, truncation, and completion of the proof",
           "detail": "[Stability] Couple two interaction laws ,' and two field laws h,h' , each satisfying for the fixed p and , and put D=_s|(s)-'(s)| and d=|h-h'| . Then |F_N-F_N'|& D+d, \\\\ |_r(, m)-_r'(, m)| &(2p-1)D+d…",
-          "dependsOn": [
-            "m1-main-theorem"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-corollary-24",
@@ -410,9 +407,7 @@
           "kind": "corollary",
           "source": "Named models and the zero-temperature limit",
           "detail": "[Viana--Bray and diluted even-spin models] models:spin Fix an even integer p2 , >0 , and independent real random variables J,H such that J has a symmetric distribution and |J|+|H|< . For every >0 ,…",
-          "dependsOn": [
-            "m1-main-theorem"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-corollary-25",
@@ -453,7 +448,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

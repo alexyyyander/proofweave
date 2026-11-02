@@ -367,7 +367,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Entropy-equality-and-local-symmetry-in-negative-curvature-September-23-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Entropy equality and local symmetry in negative curvature; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Entropy equality and local symmetry in negative curvature.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -381,10 +381,8 @@
           "dependsOn": [
             "m1-pre-smooth-rigidity",
             "m1-pre-entropy-forms",
-            "m1-hull-main",
             "m1-sym-effective",
             "m1-alg-dichotomy",
-            "m1-real-infinite-excluded",
             "m1-smooth-splitting"
           ]
         },
@@ -468,9 +466,7 @@
           "kind": "lemma",
           "source": "Contracting plaque jets and exact normal coordinates",
           "detail": "[Exact compatible normal coordinates] For the raw towers in Lemma~ , at every finite level there are measurable smooth germ coordinates _ v,j , tangent to the identity, and weight-preserving…",
-          "dependsOn": [
-            "m1-nf-homological"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-nf-fiber-analyticity",
@@ -491,7 +487,6 @@
           "source": "Contracting plaque jets and exact normal coordinates",
           "detail": "[Finite arrays and higher kernels] In either normalized tower, the independent coordinates introduced at level j have weights at least j_* for a fixed _*>0 . A prescribed upper weight bound…",
           "dependsOn": [
-            "m1-nf-raw-dynamics",
             "m1-nf-normalization"
           ]
         },
@@ -640,7 +635,6 @@
           "detail": "[Coherence on both axes] The full ambient jets of A^u have smooth holonomic representatives along both entire typical strong axes. They agree with the regular construction almost everywhere and are…",
           "dependsOn": [
             "m1-hull-recenter",
-            "m1-hull-rank",
             "m1-hull-transport"
           ]
         },
@@ -653,7 +647,6 @@
           "source": "Algebraic hulls and coherent formal fields",
           "detail": "[Measurable finite-order bounds] The construction and the representatives in Lemma~ admit measurable finite-order norm and radius tests. Smooth flow transport supplies coherent representatives on…",
           "dependsOn": [
-            "m1-hull-main",
             "m1-hull-rank",
             "m1-hull-coherence",
             "m1-hull-pairing"
@@ -679,9 +672,7 @@
           "kind": "proposition",
           "source": "Formal symmetries and coherent transport",
           "detail": "[Dilation in the symmetry algebra] In the coordinates of Lemma~ , H=-T+_0(D), Z_H=D-T_ belongs to k h . The operator H on formal Hamiltonians is D and is semisimple on every finite Taylor quotient,…",
-          "dependsOn": [
-            "m1-nf-blocks"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-sym-trace",
@@ -704,10 +695,7 @@
           "kind": "lemma",
           "source": "Formal symmetries and coherent transport",
           "detail": "[Full-solution projection bundles] Refine the regular set by a countable conull intersection. For every finite order r , the projections of h and k to the Hamiltonian r -jets have smooth extensions…",
-          "dependsOn": [
-            "m1-hull-coherence",
-            "m1-hull-measurability"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-sym-transitivity",
@@ -753,8 +741,7 @@
           "detail": "[Intrinsic transport on an actual axis] On either entire typical strong axis there are local smooth formal identifications of ( h, k,) , induced by strict contact coordinate changes. They may be…",
           "dependsOn": [
             "m1-sym-transitivity",
-            "m1-sym-full-projections",
-            "m1-sym-homogeneous-fields"
+            "m1-sym-full-projections"
           ]
         },
         {
@@ -808,7 +795,6 @@
           "source": "The algebraic consequence of the entropy trace identity",
           "detail": "[Origin stabilizers] The set l is the intersection of the subalgebras l_i . In particular it is open and intrinsic, contains H , and has arbitrarily small open ideals for its induced topology.",
           "dependsOn": [
-            "m1-alg-derivation-realization",
             "m1-alg-translation-test",
             "m1-alg-coisotropic"
           ]
@@ -864,7 +850,6 @@
           "source": "The algebraic consequence of the entropy trace identity",
           "detail": "The algebra u' is reductive. Its center on the semisimple summand of g' is toral. The restriction to u' of every irreducible g' -module is semisimple, and g'/ u' is a semisimple u' -module.",
           "dependsOn": [
-            "m1-alg-signs",
             "m1-alg-radical-action"
           ]
         },
@@ -892,9 +877,6 @@
           "source": "The algebraic consequence of the entropy trace identity",
           "detail": "[Algebraic dichotomy] At typical centers exactly one of the following alternatives holds, with the same alternative almost everywhere. [label=()] The symmetry algebra is finite dimensional. There are…",
           "dependsOn": [
-            "m1-alg-coisotropic",
-            "m1-alg-signs",
-            "m1-alg-axis-coherence",
             "m1-sym-homogeneous-fields"
           ]
         },
@@ -1006,8 +988,7 @@
           "source": "Realization of characteristic rectangles",
           "detail": "For each fixed k there is A_k0 , independent of the stable derivative order j , such that \\|D_s^jG_ n,k \\| C_ j,k e^ A_kn (j0) on the moving patches, in uniform stable charts.",
           "dependsOn": [
-            "m1-real-iterate-bounds",
-            "m1-real-product-derivatives"
+            "m1-real-iterate-bounds"
           ]
         },
         {
@@ -1057,10 +1038,7 @@
           "source": "Realization of characteristic rectangles",
           "detail": "Suppose the frame Y is parallel along the P^s slices of the base patch. Then, for every finite y , D_aF(a,y)[P^s_a]_ F(a,y) . Consequently a path obtained by translating a P^s -tangent base path by a…",
           "dependsOn": [
-            "m1-real-formal-affine",
-            "m1-real-normal-extension",
-            "m1-real-decay",
-            "m1-real-actualization"
+            "m1-real-decay"
           ]
         },
         {
@@ -1123,8 +1101,7 @@
           "source": "From formal sign fields to a smooth splitting",
           "detail": "[A derivative-order-independent exponential bound] For each angular degree l there is A_l< such that, for every j0 and every L B , \\|q_l\\|_ C^j(L_n) C_ L,l,j e^ A_ln . The exponent A_l is independent…",
           "dependsOn": [
-            "m1-smooth-formal-labels",
-            "m1-real-product-derivatives"
+            "m1-smooth-formal-labels"
           ]
         },
         {
@@ -1148,7 +1125,6 @@
           "source": "From formal sign fields to a smooth splitting",
           "detail": "[Propagation from the axis] The actual endpoint label q: U^m is smooth.",
           "dependsOn": [
-            "m1-smooth-backward-geometry",
             "m1-smooth-subexponential"
           ]
         },
@@ -1192,7 +1168,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

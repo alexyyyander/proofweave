@@ -72,7 +72,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Polynomial-removal-fails-for-ordered-binary-matrices-September-25-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Polynomial removal fails for ordered binary matrices; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Polynomial removal fails for ordered binary matrices.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -161,7 +161,6 @@
           "detail": "For every integer h 1 , every ordered copy of H in A_h maps the pattern entry (s+1,s+1) into \\[ L_h =_ p=0 ^ m-1 R_h^+(p) C_h^+(p). \\] In particular, | L_h|=m and N_H(A_h) m n^ 2k-2 , N_H(A_h) n^ 2k…",
           "dependsOn": [
             "m1-cor-body-roles",
-            "m1-thm-main",
             "m1-prop-distance"
           ]
         },
@@ -194,7 +193,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [

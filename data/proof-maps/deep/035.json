@@ -222,7 +222,7 @@
       "color": "#8b75c9",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Log-abundance-in-numerical-dimension-one-for-threefolds-in-positive-characteristic-October-5-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Log abundance in numerical dimension one for threefolds in positive characteristic; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Log abundance in numerical dimension one for threefolds in positive characteristic.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -295,9 +295,7 @@
           "kind": "corollary",
           "source": "Isolating a log canonical component",
           "detail": "With the notation of Proposition~ , there is a projective crepant Q -factorial dlt modification \\[ f:(Y_d,) (Y,S_Y) \\] such that is reduced, Supp=Suppf^*S_Y, and f is an isomorphism off S_Y . On a…",
-          "dependsOn": [
-            "m1-prop-isolation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-torsion",
@@ -331,11 +329,7 @@
           "detail": "Let (X,B,N_0) be the data of Proposition~ in the maximal-nef-dimension case. There exist a smooth projective threefold V , a very ample divisor H_V , and a nonzero effective Cartier divisor \\[ D=_ m_…",
           "dependsOn": [
             "m1-prop-separation",
-            "m1-prop-isolation",
-            "m1-lem-dlt-boundary",
             "m1-prop-boundary-torsion",
-            "m1-thm-obstruction",
-            "m1-thm-main",
             "m1-prop-reduction"
           ]
         }
@@ -353,7 +347,7 @@
       "color": "#5c8fd6",
       "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Abundance-in-numerical-dimension-one-for-terminal-threefolds-in-positive-characteristic-September-24-2026/paper.pdf",
       "sourceLabel": "paper",
-      "note": "Statements and proof references extracted from Abundance in numerical dimension one for terminal threefolds in positive characteristic; background citations removed.",
+      "note": "Statements and proof-dependency references extracted from Abundance in numerical dimension one for terminal threefolds in positive characteristic.",
       "proofDetail": "section",
       "nodes": [
         {
@@ -449,8 +443,6 @@
           "source": "Slopes, foliations, and polar parts",
           "detail": "The tangent bundle T_V is strongly semistable for the slope c_1(-)HD/(-) . Moreover, c_2(V)D0.",
           "dependsOn": [
-            "m2-lem-destabilizing-foliation",
-            "m2-lem-foliation-quotient",
             "m2-lem-connection-destabilization"
           ]
         },
@@ -561,9 +553,7 @@
           "kind": "lemma",
           "source": "Laurent cohomology of vector bundles",
           "detail": "Let G be a vector bundle that is semistable of slope zero for the degree c_1(-) H D . There is a constant A_G such that, for every sufficiently large e , \\[ g^0_ c_0M_e (i;G)>0 (i,M_e) A_G. \\]",
-          "dependsOn": [
-            "m2-prop-polar-bounds"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-laurent-vanishing",
@@ -574,7 +564,6 @@
           "source": "Laurent cohomology of vector bundles",
           "detail": "For the prepared data and periods fixed above, let E be a vector bundle on V with the following properties: [label=( *)] (P_i^1(E))=0 for every integer i . For J=E,E^! , the spaces H^0(V,J(nD)/J)…",
           "dependsOn": [
-            "m2-lem-page-calculus",
             "m2-prop-scalar-widths"
           ]
         },
@@ -600,7 +589,6 @@
             "m2-prop-strong-semistability",
             "m2-prop-polar-bounds",
             "m2-lem-phase-bound",
-            "m2-thm-laurent-vanishing",
             "m2-prop-scalar-widths",
             "m2-lem-laurent-cartier-algebra"
           ]
@@ -694,9 +682,7 @@
           "detail": "The prepared cycle of Proposition~ cannot satisfy the conclusions of Corollary~ .",
           "dependsOn": [
             "m2-lem-laurent-unit-orders",
-            "m2-prop-picard-divisibility",
-            "m2-thm-main",
-            "m2-cor-form-vanishing"
+            "m2-prop-picard-divisibility"
           ]
         }
       ]
@@ -722,7 +708,7 @@
   "relatedManuscripts": [],
   "leanAlignments": [],
   "caveats": [
-    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
   ],
   "sources": [
