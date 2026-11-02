@@ -463,7 +463,10 @@
           "kind": "lemma",
           "source": "Finite rational tests for integer solvability",
           "detail": "[Local comparison] Let \\(K1\\) be an ordinary integer. Let \\(q\\) be a prime of the ambient integer sort \\( ^*\\), possibly nonordinary, with \\(q S_E\\) and \\(q>K+1\\), and let \\(v_*\\) be a place of \\(…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-ell-formal"
+          ]
         },
         {
           "id": "m1-hei-height",
@@ -619,6 +622,10 @@
           "detail": "For ,,B,J as in Lemma~ , there is a positive squarefree integer n , prime to 6 , whose support P contains B and at least one auxiliary prime outside B , such that the following statements hold for…",
           "dependsOn": [
             "m1-par-soundness"
+          ],
+          "objectUses": [
+            "m1-par-pole-parity",
+            "m1-par-global-point"
           ]
         },
         {
@@ -681,6 +688,9 @@
           "detail": "There are fixed constants C,a>0 such that N C M^a.",
           "dependsOn": [
             "m1-hei-compatibility"
+          ],
+          "objectUses": [
+            "m1-hei-sign-splitting"
           ]
         },
         {
@@ -717,6 +727,9 @@
           "dependsOn": [
             "m1-ell-formal",
             "m1-pri-pattern"
+          ],
+          "objectUses": [
+            "m1-red-local-comparison"
           ]
         },
         {
@@ -1010,7 +1023,9 @@
             "m2-rl-finite-limits",
             "m2-rl-kummer",
             "m2-rl-characters",
-            "m2-rl-local-acyclic"
+            "m2-rl-local-acyclic",
+            "m2-rl-residual-bound",
+            "m2-rl-kernel"
           ]
         },
         {
@@ -1021,7 +1036,9 @@
           "kind": "lemma",
           "source": "Ring-class switches, determinant lattices, and transfer",
           "detail": "[The split local model] Let a sequence of inert good primes \\(\\) have rational Frobenius lifts tending on \\(T\\) to a fixed complex conjugation \\(J\\). At the unique prime of \\(K\\) above \\(\\), the…",
-          "dependsOn": []
+          "dependsOn": [
+            "m2-rl-finite-limits"
+          ]
         },
         {
           "id": "m2-rd-derivative",
@@ -1033,6 +1050,10 @@
           "detail": "[Descent and the switch at \\(2\\)] Perform each finite ring-class construction and its weighted transfer before retaining its target-side data by the construction following Lemma~ . There is one…",
           "dependsOn": [
             "m2-rl-finite-limits"
+          ],
+          "objectUses": [
+            "m2-rd-local-model",
+            "m2-rl-kernel"
           ]
         },
         {
@@ -1130,7 +1151,8 @@
             "m2-rd-ring-lower",
             "m2-rd-derivative",
             "m2-rl-residual-bound",
-            "m2-rd-away-two"
+            "m2-rd-away-two",
+            "m2-rd-outer-bound"
           ]
         },
         {
@@ -1188,6 +1210,13 @@
           "dependsOn": [
             "m2-rd-outer-bound",
             "m2-rl-residual-bound"
+          ],
+          "objectUses": [
+            "m2-rd-away-two",
+            "m2-rd-active-local",
+            "m2-rd-central-formula",
+            "m2-rd-family-clearing",
+            "m2-rd-clearing"
           ]
         },
         {

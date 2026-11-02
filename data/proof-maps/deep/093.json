@@ -354,7 +354,10 @@
           "kind": "lemma",
           "source": "Critical laws after Gaussian regularization",
           "detail": "[Existence and positivity of an optimizer] Let =_s , where s>0 and is compactly supported. Suppose its logarithmic Sobolev and Poincar\\'e constants R=R() and P=R^P() satisfy >R>(P,s) . Then there is…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-critical-defect"
+          ]
         },
         {
           "id": "m1-lem-critical-change-reference",
@@ -680,7 +683,10 @@
           "kind": "lemma",
           "source": "Covariance observations and the contradiction",
           "detail": "[Conditional Ornstein--Uhlenbeck score] Let N be a standard Gaussian vector conditional on D , and let Z be any observation for which (N;Z D)< . With independent standard Gaussian G' set \\[ N_u= N+1-…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-entropy-calculus"
+          ]
         },
         {
           "id": "m1-lem-obs-block-tests",
@@ -692,6 +698,9 @@
           "detail": "[Block tests and the scale Jacobian] Fix compact intervals J, X(0,) , and write (u)=^2/(1-^2)^2 , where =e^ -u . Let P(u,x,a,b) be a real polynomial, evaluated on matrices with any one fixed ordering…",
           "dependsOn": [
             "m1-lem-matrix-gaussian-moments"
+          ],
+          "objectUses": [
+            "m1-lem-obs-ou-score"
           ]
         },
         {
@@ -759,7 +768,8 @@
             "m1-prop-regularized-constants",
             "m1-prop-critical-sequence",
             "m1-prop-prediction",
-            "m1-prop-hierarchy"
+            "m1-prop-hierarchy",
+            "m1-prop-information-lower"
           ]
         }
       ]

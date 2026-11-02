@@ -397,6 +397,9 @@
           "detail": "[Small mass of bad directions] Fix the parameters of Theorem~ . There are c_1,_1>0 such that the following holds at sufficiently small . Let be a bounded point probability satisfying the t -ball…",
           "dependsOn": [
             "m1-ang-linear-gain"
+          ],
+          "objectUses": [
+            "m1-ang-slice-selection"
           ]
         },
         {
@@ -432,7 +435,10 @@
           "kind": "proposition",
           "source": "Preparation of the pair measures",
           "detail": "[Thin-tube upgrade] Let k2 and k-12<s<k . Let , be bounded, separated s -Frostman probabilities in ^ k+1 . Suppose that the two directional measures of G_N have plate bounds Cu^ , uniformly for 2^ -N…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prep-one-scale"
+          ]
         },
         {
           "id": "m1-prep-classical-plane",
@@ -682,6 +688,10 @@
             "m1-rec-binning",
             "m1-osc-shell-conversion",
             "m1-graph-estimate"
+          ],
+          "objectUses": [
+            "m1-test-smooth-masks",
+            "m1-graph-separated-form"
           ]
         },
         {
@@ -780,6 +790,10 @@
           "dependsOn": [
             "m1-prep-classical-plane",
             "m1-prep-starting-pairs"
+          ],
+          "objectUses": [
+            "m1-asm-monotone-shell",
+            "m1-prep-integer-caps"
           ]
         }
       ]

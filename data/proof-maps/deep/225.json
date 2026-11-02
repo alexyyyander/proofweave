@@ -347,6 +347,9 @@
           "detail": "[The Hilbert dual] For even L and real inhomogeneities, B(x)^*=- C( x). Thus for a distinct real on-shell list with G_Y0 , the physical unit vector _Y= P_L|Y \\| P_L|Y\\| is well defined, and \\[ \\|…",
           "dependsOn": [
             "m1-lem-scalar-product"
+          ],
+          "objectUses": [
+            "m1-lem-row-algebra"
           ]
         },
         {
@@ -383,6 +386,9 @@
           "detail": "[Gaudin and mixed-measure inverse bounds] In the limits specified above, \\|(I+K)^ -1 \\|_ C, (K)_ ij =K(y_i-y_j)_j. There is also a small a>0 for which the inverse has uniformly bounded row norm after…",
           "dependsOn": [
             "m1-lem-root-limits"
+          ],
+          "objectUses": [
+            "m1-lem-weighted-flags"
           ]
         },
         {
@@ -405,6 +411,9 @@
           "detail": "[Finite-chain weighted flags] Let E=^m be the coefficient space of the fixed column list. For each admissible >0 there is a subspace F_ ,L E of codimension at most r_ such that |W(c)(u)| C_ e^ - u…",
           "dependsOn": [
             "m1-lem-root-limits"
+          ],
+          "objectUses": [
+            "m1-lem-gaudin-inverse"
           ]
         },
         {
@@ -476,6 +485,9 @@
           "dependsOn": [
             "m1-prop-word-kernel",
             "m1-lem-scalar-continuation"
+          ],
+          "objectUses": [
+            "m1-lem-row-normalization"
           ]
         },
         {
@@ -821,6 +833,10 @@
             "m1-prop-offdiagonal",
             "m1-prop-finite-energy",
             "m1-prop-normalization"
+          ],
+          "objectUses": [
+            "m1-prop-negative-regularity",
+            "m1-prop-intrinsic-dual"
           ]
         },
         {

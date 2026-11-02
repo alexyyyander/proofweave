@@ -409,7 +409,8 @@
           "detail": "[A section with different end limits] Let E be one of the data in Lemma~ , and write e^2=K_Y e=-m with m>0 . Given any finite >0 , E admits a holomorphic structure whose Dolbeault operator, in its…",
           "dependsOn": [
             "m1-weighted-holomorphic",
-            "m1-weighted-index"
+            "m1-weighted-index",
+            "m1-weighted-tail"
           ]
         },
         {
@@ -442,7 +443,10 @@
           "kind": "proposition",
           "source": "Divisor growth and residue currents",
           "detail": "[Residue obstruction] Fix F\\ ,E\\ and rates (-,b) as in Theorem~ . For distinct closed irreducible curves B_i Y bounded above in height, let _i be nonzero holomorphic differentials on their…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-weighted-currents"
+          ]
         },
         {
           "id": "m1-curve-genus",
@@ -499,6 +503,9 @@
           "detail": "If a component of D is noncompact, its normalization is biholomorphic to .",
           "dependsOn": [
             "m1-curve-genus"
+          ],
+          "objectUses": [
+            "m1-curve-residue"
           ]
         },
         {
@@ -526,6 +533,9 @@
             "m1-compact-section",
             "m1-weighted-currents",
             "m1-curve-residue"
+          ],
+          "objectUses": [
+            "m1-cylinder-estimate"
           ]
         },
         {
@@ -546,7 +556,10 @@
           "kind": "lemma",
           "source": "Counting rational curves and obtaining the shell",
           "detail": "[Nonsingularity of the compact classes] For the classes e_1,,e_d of Lemma~ , the matrix P(t)=(P(e_i,e_j))_ i,j=1 ^d has nonzero determinant in . Their -span is free of rank d , and P is nonsingular…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-compact-classes"
+          ]
         },
         {
           "id": "m1-conclusion-curves",

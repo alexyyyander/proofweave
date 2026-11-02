@@ -295,7 +295,10 @@
           "kind": "corollary",
           "source": "Isolating a log canonical component",
           "detail": "With the notation of Proposition~ , there is a projective crepant Q -factorial dlt modification \\[ f:(Y_d,) (Y,S_Y) \\] such that is reduced, Supp=Suppf^*S_Y, and f is an isomorphism off S_Y . On a…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prop-isolation"
+          ]
         },
         {
           "id": "m1-lem-torsion",
@@ -331,6 +334,10 @@
             "m1-prop-separation",
             "m1-prop-boundary-torsion",
             "m1-prop-reduction"
+          ],
+          "objectUses": [
+            "m1-prop-isolation",
+            "m1-lem-dlt-boundary"
           ]
         }
       ]
@@ -443,6 +450,7 @@
           "source": "Slopes, foliations, and polar parts",
           "detail": "The tangent bundle T_V is strongly semistable for the slope c_1(-)HD/(-) . Moreover, c_2(V)D0.",
           "dependsOn": [
+            "m2-lem-foliation-quotient",
             "m2-lem-connection-destabilization"
           ]
         },
@@ -565,6 +573,9 @@
           "detail": "For the prepared data and periods fixed above, let E be a vector bundle on V with the following properties: [label=( *)] (P_i^1(E))=0 for every integer i . For J=E,E^! , the spaces H^0(V,J(nD)/J)…",
           "dependsOn": [
             "m2-prop-scalar-widths"
+          ],
+          "objectUses": [
+            "m2-lem-page-calculus"
           ]
         },
         {
@@ -683,6 +694,10 @@
           "dependsOn": [
             "m2-lem-laurent-unit-orders",
             "m2-prop-picard-divisibility"
+          ],
+          "objectUses": [
+            "m2-thm-main",
+            "m2-cor-form-vanishing"
           ]
         }
       ]

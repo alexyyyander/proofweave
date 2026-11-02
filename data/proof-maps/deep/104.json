@@ -103,7 +103,10 @@
           "kind": "lemma",
           "source": "Mean-payoff input and arena restrictions",
           "detail": "[Uniform prefix bound] If Max wins ordinary mean payoff from every vertex of a nonempty arena H of size N , then a single positional strategy guarantees \\[ () -(N-1)W_H \\] for every finite consistent…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prop-mp-interface"
+          ]
         },
         {
           "id": "m1-lem-arena-facts",
@@ -137,6 +140,9 @@
           "detail": "In every finite arena, each vertex is winning for exactly one of \\ and . From each vertex winning for , there is a conjunction-winning strategy satisfying .",
           "dependsOn": [
             "m1-prop-mp-interface"
+          ],
+          "objectUses": [
+            "m1-lem-combine"
           ]
         },
         {
@@ -163,6 +169,9 @@
           "detail": "[Bounded-dominion guarantee] For every subarena H of the original game and every b\\ 0,,n\\ ^2 , the procedure (H, b) terminates and returns a partition satisfying for both players.",
           "dependsOn": [
             "m1-lem-arena-facts"
+          ],
+          "objectUses": [
+            "m1-lem-extract"
           ]
         },
         {

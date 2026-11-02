@@ -409,7 +409,10 @@
           "kind": "theorem",
           "source": "Positive wall transport and change of chart",
           "detail": "[Positive sections] Every _m has coefficients in ((v^ -1 )) in every chamber. More generally, the same is true of a section F all of whose incoming coefficients belong to ((v^ -1 )) .",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-wall-factors"
+          ]
         },
         {
           "id": "m1-wall-product",
@@ -443,6 +446,9 @@
           "detail": "[Change of chart] The wall system for C , with simple data D_c , is carried to the wall system for C' , with simple data D_ c' , as follows. Off the cut p^ , use the covector map T from and act on…",
           "dependsOn": [
             "m1-wall-fiber-bound"
+          ],
+          "objectUses": [
+            "m1-wall-unit"
           ]
         },
         {
@@ -525,7 +531,8 @@
           "source": "The triangular chart and monomial sections",
           "detail": "[Monomial sections] For every partition with at most D parts, padded by zeroes to length D , one has in the all-negative chamber m_(Y)=_ _ i=1 ^D_i d_i . In particular, E_k=_ d_1++d_k (0 k D).",
           "dependsOn": [
-            "m1-tri-domination"
+            "m1-tri-domination",
+            "m1-tri-pure"
           ]
         },
         {
@@ -541,6 +548,9 @@
             "m1-graph-reciprocity",
             "m1-tri-monomial",
             "m1-wall-positivity"
+          ],
+          "objectUses": [
+            "m1-tri-embedding"
           ]
         },
         {
@@ -616,6 +626,9 @@
             "m1-graph-kernel",
             "m1-graph-digits",
             "m1-graph-reciprocity"
+          ],
+          "objectUses": [
+            "m1-tri-embedding"
           ]
         }
       ]

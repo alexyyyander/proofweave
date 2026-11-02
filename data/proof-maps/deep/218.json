@@ -520,7 +520,9 @@
           "kind": "proposition",
           "source": "From decaying potentials to crossing comparisons",
           "detail": "[Expected total variation for torus tests] Assume the same array hypotheses and~ . Fix finitely many buffered tests T in a common planar chart, now in physical units. Let 0 and choose tori of lattice…",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-lem-crossing-bootstrap"
+          ]
         },
         {
           "id": "m1-cor-four-passages",
@@ -553,7 +555,10 @@
           "kind": "lemma",
           "source": "Identification of the physical critical point",
           "detail": "[Rapid annealed decay of dual arms] For every '>_* and A>0 there is a finite constant C_ ',A such that, on the dual lattice, __ B_ 2N (x),', ^ w,* (x B_N(x) inside B_N(x)) C_ ',A N^ -A . The estimate…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-fk-barriers"
+          ]
         },
         {
           "id": "m1-prop-physical-criticality",
@@ -565,6 +570,9 @@
           "detail": "[Physical criticality] For the original iid bond law and every sufficiently small fixed >0 , the temperature in Proposition~ satisfies _* = _c^(). The environmental mean of the infinite-volume plus…",
           "dependsOn": [
             "m1-lem-fk-barriers"
+          ],
+          "objectUses": [
+            "m1-lem-dual-arms"
           ]
         },
         {
@@ -608,6 +616,9 @@
           "dependsOn": [
             "m1-thm-main",
             "m1-lem-ordered-chords"
+          ],
+          "objectUses": [
+            "m1-cor-four-passages"
           ]
         }
       ]
@@ -856,7 +867,10 @@
           "kind": "proposition",
           "source": "A variance coordinate and its marginal decay",
           "detail": "[Marginal variance flow] Fix the scale-step parameters and finite constants A,B . For every sufficiently large fixed H , the polynomial coordinate of Definition~ satisfies, whenever 0<z1 , X Az , and…",
-          "dependsOn": []
+          "dependsOn": [
+            "m2-var-shell",
+            "m2-var-compatibility"
+          ]
         },
         {
           "id": "m2-traj-initialization",
@@ -883,6 +897,9 @@
             "m2-var-near-w",
             "m2-var-flow",
             "m2-map-step"
+          ],
+          "objectUses": [
+            "m2-mom-one-step"
           ]
         },
         {
@@ -903,7 +920,10 @@
           "kind": "proposition",
           "source": "Crossing comparisons along the random trajectory",
           "detail": "[Uniform conditional check bounds] Fix the preceding geometry and step constants. There is _*>0 such that if the tuned trajectory satisfies _jX_j_* , then, for every check T_i of ratio a and inner…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-cross-single-level"
+          ]
         },
         {
           "id": "m2-cross-torus-comparison",
@@ -995,6 +1015,10 @@
           "detail": "[Physical critical point] For every sufficiently small fixed >0 , \\[ m_(h)=0(h0), m_(h)>0(h>0). \\] Consequently, for every sufficiently small >0 , the critical inverse temperature in Theorem~ is the…",
           "dependsOn": [
             "m2-crit-ring-barrier"
+          ],
+          "objectUses": [
+            "m2-crit-subcritical-arms",
+            "m2-thm-main"
           ]
         },
         {
@@ -1027,7 +1051,10 @@
           "kind": "lemma",
           "source": "From bulk comparisons to quenched curves",
           "detail": "[Finite strips and limiting barriers] For either sign of displacement, the continuum laws SLE_3(A_h^;a_h^,b_h^) converge in d_ curv , as h0 , to SLE_3(D;a,b) . Given errors _j0 , one can choose…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-curv-strip-transfer"
+          ]
         },
         {
           "id": "m2-curv-ordered-chords",
@@ -1050,6 +1077,10 @@
           "dependsOn": [
             "m2-curv-strip-transfer",
             "m2-curv-ordered-chords"
+          ],
+          "objectUses": [
+            "m2-thm-main",
+            "m2-curv-geometric-input"
           ]
         }
       ]
@@ -1198,6 +1229,9 @@
           "detail": "[Finite-volume implementation] The preceding transformation and partition identity apply to finite boxes with fixed or free boundary data, and to tori whose side is an integer multiple of the working…",
           "dependsOn": [
             "m3-block-diameter"
+          ],
+          "objectUses": [
+            "m3-block-exact"
           ]
         },
         {

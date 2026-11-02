@@ -404,7 +404,8 @@
           "source": "A local calculus in the lowest Landau level",
           "detail": "[The physical interactions] The unperturbed Hamiltonian H_q and the Fock lift of any bounded real scalar symbol have physical, neutral, Hermitian rapid interactions of uniform sizes C_D and C_D\\|\\|_…",
           "dependsOn": [
-            "m1-locality-frame"
+            "m1-locality-frame",
+            "m1-locality-calculus"
           ]
         },
         {
@@ -496,6 +497,9 @@
           "dependsOn": [
             "m1-locality-filters",
             "m1-locality-difference"
+          ],
+          "objectUses": [
+            "m1-locality-row-symbols"
           ]
         },
         {
@@ -541,7 +545,10 @@
           "kind": "corollary",
           "source": "Pinning zeros and transporting weighted observables",
           "detail": "[Cost of changing a calibration state] Let q^0=3 q/3 and r=q-q^0\\ 0,1,2\\ . Consider the interaction K_ q,3 (f) on F_ q-3 and its common-frame comparison with K_ q^0,3 (f) . Embed a unit vector Z_…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-pinning-weighted-transport"
+          ]
         },
         {
           "id": "m1-lem-flags-branch-algebra",
@@ -573,7 +580,10 @@
           "kind": "proposition",
           "source": "Reading zero modes by orthogonal branches",
           "detail": "[Weighted observable at one branch] Fix p(0,2) , L2 , and f(j)=f_ L,p (j) . In the orthogonal coordinates , (J_ q,F J_ q,E )^*D_q(f)(J_ q,F J_ q,E ) = & D_ q-1 (f)+K_ q,1 (f)&0\\\\ 0&D_ q-3 (f)+f(q)+K_…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-flags-polar"
+          ]
         },
         {
           "id": "m1-lem-flags-northern-step",
@@ -605,6 +615,9 @@
           "detail": "[Local observables in history coordinates] For every fixed a(0,2) there are B,C< such that the following holds uniformly in n,q and in the allowed slot frames. Let O=O^* be a neutral slot observable…",
           "dependsOn": [
             "m1-lem-flags-reference-compatibility"
+          ],
+          "objectUses": [
+            "m1-lem-flags-northern-step"
           ]
         },
         {
@@ -660,6 +673,9 @@
             "m1-prop-charge-pooled",
             "m1-lem-charge-sums",
             "m1-pinning-one-sided"
+          ],
+          "objectUses": [
+            "m1-thm-flags-local-readout"
           ]
         },
         {
@@ -746,6 +762,9 @@
           "dependsOn": [
             "m1-locality-calculus",
             "m1-lem-zero-modes"
+          ],
+          "objectUses": [
+            "m1-thm-local-energy-descent"
           ]
         },
         {

@@ -543,7 +543,10 @@
           "kind": "proposition",
           "source": "Kernels and the geometry of available slots",
           "detail": "[Energy of sparse sources] Let \\(R R_0\\), and let \\((z_i)_ i=1 ^m\\) be a sparse list of centers, counting repetitions. At a fixed slice let \\(I \\ 1,,m\\ \\) be any subset for which the slice is regular…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-routed-flow"
+          ]
         },
         {
           "id": "m1-lem-near-flow",
@@ -891,6 +894,9 @@
             "m2-prop-loopinputs",
             "m2-prop-snapshot",
             "m2-prop-geometryinputs"
+          ],
+          "objectUses": [
+            "m2-lem-isolatedpath"
           ]
         },
         {
@@ -960,6 +966,9 @@
           "dependsOn": [
             "m2-lem-freebounds",
             "m2-lem-signedsource"
+          ],
+          "objectUses": [
+            "m2-prop-good"
           ]
         },
         {
@@ -1030,6 +1039,9 @@
             "m2-prop-geometryinputs",
             "m2-lem-cancellation",
             "m2-prop-snapshot"
+          ],
+          "objectUses": [
+            "m2-lem-flowoverlap"
           ]
         },
         {
@@ -1181,7 +1193,10 @@
           "kind": "lemma",
           "source": "Sparse pins on the torus",
           "detail": "[Sparse-source pairing on the torus] At a fixed slice let \\((z_i)_ i=1 ^ m_T \\) be a sparse list, including repetitions. Retain any subset of its members at which the lifted graph is regular with…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m3-lem-lattice-inputs"
+          ]
         },
         {
           "id": "m3-cor-positive-magnetization",
@@ -1247,6 +1262,9 @@
           "detail": "[Bad-box tails] There are _0,c,C,_1>0 and, for each _0 , a number _0()>0 such that for every 0<_0() , uniformly in the admissible volumes and pin parameters of this section, \\ z is bad and its bad…",
           "dependsOn": [
             "m3-lem-pin-inputs"
+          ],
+          "objectUses": [
+            "m3-prop-sparse-pins"
           ]
         },
         {

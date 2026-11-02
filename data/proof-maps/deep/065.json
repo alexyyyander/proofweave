@@ -516,6 +516,9 @@
           "dependsOn": [
             "m1-spec-gauge",
             "m1-spec-calculus"
+          ],
+          "objectUses": [
+            "m1-loc-factorization"
           ]
         },
         {
@@ -539,6 +542,9 @@
           "dependsOn": [
             "m1-spec-calculus",
             "m1-spec-gauge"
+          ],
+          "objectUses": [
+            "m1-spec-zero"
           ]
         },
         {
@@ -588,6 +594,9 @@
             "m1-cont-polynomiality",
             "m1-spec-modes",
             "m1-spec-zero"
+          ],
+          "objectUses": [
+            "m1-fixed-equivalence"
           ]
         },
         {
@@ -940,6 +949,7 @@
           "source": "Transport by capped chains",
           "detail": "[Equality at an idle switch] Fix a local operation pattern and a switch j outside its busy set. Keep its recorded component assignments and all data off the surgery region at j . Sum all relative-map…",
           "dependsOn": [
+            "m2-ev-restriction",
             "m2-sew-preparation"
           ]
         },

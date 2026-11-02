@@ -446,7 +446,9 @@
           "kind": "lemma",
           "source": "A boundary from finite-energy functions",
           "detail": "For every x B and every open neighborhood W of x in X , there is an open neighborhood V W of x such that any two vertices in V can be joined by a finite graph path whose vertices all lie in W .…",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-compact-good-boxes"
+          ]
         },
         {
           "id": "m1-dyn-length",
@@ -652,6 +654,9 @@
             "m1-block-retraction",
             "m1-pret-parabolic-cuts",
             "m1-dyn-parabolic"
+          ],
+          "objectUses": [
+            "m1-block-graph"
           ]
         },
         {
@@ -784,6 +789,9 @@
           "dependsOn": [
             "m1-push-majority",
             "m1-push-component-labels"
+          ],
+          "objectUses": [
+            "m1-block-setting"
           ]
         },
         {
@@ -796,6 +804,9 @@
           "detail": "In the setting of Proposition~ , the continuum L is locally connected.",
           "dependsOn": [
             "m1-push-component-labels"
+          ],
+          "objectUses": [
+            "m1-push-refinement"
           ]
         },
         {
@@ -844,7 +855,10 @@
           "kind": "corollary",
           "source": "Euler characteristic, signature, and finite covers",
           "detail": "Let Q be a finite connected aspherical integral Poincar\\'e complex of formal dimension four, with arbitrary orientation character. Then \\[ (Q)=b_2^ (2) ( Q)0. \\] Moreover, (Q)=0 if and only if every…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-found-model"
+          ]
         },
         {
           "id": "m1-cor-signature",

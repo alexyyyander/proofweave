@@ -525,6 +525,9 @@
           "detail": "[Holomorphic proxies and Cauchy correction] On a coupled level- p domain, the rates of indices l p have holomorphic proxies Z_l=Z_l+o(1) , uniformly on a slightly smaller domain. Their logarithms…",
           "dependsOn": [
             "m1-lem-flags-contours"
+          ],
+          "objectUses": [
+            "m1-lem-separation-source-ratios"
           ]
         },
         {
@@ -673,7 +676,10 @@
           "kind": "lemma",
           "source": "Differentiated packet calculus and regular ordinary charts",
           "detail": "[Uniform separation for a controlled family] For one controlled family and one fixed finite coupled calculation, the coupled growth and zero-subtree upgrade constants of Section~ are common to the…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-separation-family-uniformity"
+          ]
         },
         {
           "id": "m1-lem-calculus-positive-bounds",
@@ -971,7 +977,10 @@
           "kind": "lemma",
           "source": "Passages with two logarithmic scales",
           "detail": "[Meromorphic losses and their derivatives] Suppose a fixed outer formula has only finite-order poles on lattices of finitely many positive multiples of C_ , with fixed polynomial factors in C_ and…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-flags-safe-columns"
+          ]
         },
         {
           "id": "m1-lem-mixed-small-formal",
@@ -1013,7 +1022,10 @@
           "kind": "lemma",
           "source": "Passages with two logarithmic scales",
           "detail": "[Gevrey estimates for full charts] For each fixed output fiber order, the full charts and their bounded analytic endpoint operations have consistent Gevrey-- 1 formal expansions in h=1/C_ . On the…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-additive-gevrey-operations"
+          ]
         },
         {
           "id": "m1-lem-mixed-controlled-uniformity",
@@ -1028,6 +1040,9 @@
             "m1-thm-calculus",
             "m1-lem-calculus-source-pullback",
             "m1-lem-calculus-refinement"
+          ],
+          "objectUses": [
+            "m1-lem-mixed-tree"
           ]
         },
         {
@@ -1039,11 +1054,21 @@
           "source": "Passages with two logarithmic scales",
           "detail": "[Quantitative primitive input bounds] For the primitive constructions in Sections~ , , and~ , the family requirement in Assumption~ follows from the estimates on common argument boxes proved in those…",
           "dependsOn": [
+            "m1-lem-additive-primitives",
+            "m1-lem-additive-gevrey-operations",
+            "m1-prop-additive-dispersal",
             "m1-lem-additive-controlled-family",
+            "m1-lem-mixed-fast-gevrey",
             "m1-lem-mixed-charts",
             "m1-lem-mixed-poles",
             "m1-lem-flags-background",
             "m1-lem-calculus-source-pullback"
+          ],
+          "objectUses": [
+            "m1-lem-regular-charges",
+            "m1-lem-mixed-actual",
+            "m1-lem-mixed-tree",
+            "m1-lem-calculus-uniform-separation"
           ]
         },
         {
@@ -1165,6 +1190,9 @@
             "m1-lem-terminal-ambient-extension",
             "m1-thm-calculus",
             "m1-lem-terminal-tied-endpoints"
+          ],
+          "objectUses": [
+            "m1-thm-additive-packets"
           ]
         },
         {
@@ -1205,7 +1233,10 @@
           "kind": "lemma",
           "source": "Projection, matching, and the cycle count",
           "detail": "[Cleared finite differential closure] Consider one fixed finite collection of primitive functions, their argument graphs, and a finite differential and algebraic construction from them. Assume that,…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-counting-jet-lift"
+          ]
         },
         {
           "id": "m1-lem-counting-graph-recovery",
@@ -1219,7 +1250,15 @@
             "m1-thm-projection-count",
             "m1-lem-counting-cleared-closure",
             "m1-lem-terminal-ambient-extension",
-            "m1-lem-terminal-boundary-corners"
+            "m1-lem-terminal-boundary-corners",
+            "m1-thm-regular-packets",
+            "m1-thm-mixed-packets"
+          ],
+          "objectUses": [
+            "m1-thm-absolute-zero",
+            "m1-thm-matching-system",
+            "m1-thm-terminal-reduction",
+            "m1-thm-calculus"
           ]
         },
         {
@@ -1311,6 +1350,9 @@
           "detail": "[Periodic-orbit matching] For the system x=y-F(x), y=-x, the images of nonconstant periodic solutions are in one-to-one correspondence with the zeros of (r)=M_+(0,r)-M_-(0,r) on the single open…",
           "dependsOn": [
             "m2-lem-arc-data"
+          ],
+          "objectUses": [
+            "m2-lem-axis-extension"
           ]
         },
         {

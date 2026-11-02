@@ -459,6 +459,9 @@
           "dependsOn": [
             "m1-small-finite-evaluation",
             "m1-small-norm-tensor"
+          ],
+          "objectUses": [
+            "m1-small-deformation"
           ]
         },
         {
@@ -549,6 +552,9 @@
           "detail": "[Canonical interior point] For every sufficiently large grading in the subsequence under consideration, c_0=(r,1) K in the original degree coordinates. Equivalently, f(1)<N . For an exact minimizing…",
           "dependsOn": [
             "m1-jet-moments"
+          ],
+          "objectUses": [
+            "m1-jet-setup"
           ]
         },
         {
@@ -732,6 +738,9 @@
             "m1-small-classification",
             "m1-end-odp-value",
             "m1-boot-holder"
+          ],
+          "objectUses": [
+            "m1-cone-approximation"
           ]
         },
         {
@@ -781,6 +790,9 @@
           "dependsOn": [
             "m1-boot-rounding",
             "m1-small-classification"
+          ],
+          "objectUses": [
+            "m1-cone-approximation"
           ]
         },
         {
@@ -892,6 +904,9 @@
           "detail": "For all integral gradings sufficiently close to the minimizing ray in Proposition~ , every stabilizer order on \\(C\\ o\\ \\) satisfies m< r 5/2 . Consequently A_C(F)3 for every primitive prime divisor…",
           "dependsOn": [
             "m2-lem-extraction"
+          ],
+          "objectUses": [
+            "m2-lem-jet"
           ]
         },
         {
@@ -937,6 +952,10 @@
           "detail": "At the vertex, \\[ _o(C;_o)>32. \\]",
           "dependsOn": [
             "m2-prop-short"
+          ],
+          "objectUses": [
+            "m2-lem-extraction",
+            "m2-lem-canonical-positive"
           ]
         },
         {

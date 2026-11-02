@@ -163,7 +163,10 @@
           "kind": "lemma",
           "source": "From bounded patterns to spherical arrangements",
           "detail": "[A linear bound on comparison intervals] Suppose an arrangement with N disk boundaries is divided into N' N pieces by cutting each original path into consecutive segments, without crossing an…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prop-bounded-pattern"
+          ]
         },
         {
           "id": "m1-lem-planar-separation",
@@ -185,6 +188,9 @@
           "detail": "[Absence of reduced spherical arrangements] With probability 1-o(1) , admits no reduced spherical arrangement. In particular, for all sufficiently large admissible n there exist graphs of the…",
           "dependsOn": [
             "m1-lem-planar-intervals"
+          ],
+          "objectUses": [
+            "m1-lem-planar-separation"
           ]
         },
         {

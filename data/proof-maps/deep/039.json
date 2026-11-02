@@ -420,7 +420,9 @@
           "kind": "lemma",
           "source": "Interpolation on the exponent set",
           "detail": "[Integer row counts] If q(1-)m1 , then the exponent set satisfies N_K& m &&(K),\\\\ \\#\\ K:N_K t\\ & q(m-t+1) &&(1 t m,\\ t).",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-lem-slice-profile"
+          ]
         },
         {
           "id": "m1-prop-full-rank",
@@ -437,6 +439,9 @@
             "m1-lem-universal",
             "m1-prop-necessary-w",
             "m1-lem-collision"
+          ],
+          "objectUses": [
+            "m1-thm-main"
           ]
         },
         {
@@ -449,6 +454,9 @@
           "detail": "Let k be an uncountable algebraically closed field of characteristic zero, and let r10 . There is a countable union of proper Zariski-closed subsets of the space of distinct ordered r -tuples in ^2_k…",
           "dependsOn": [
             "m1-thm-main"
+          ],
+          "objectUses": [
+            "m1-lem-universal"
           ]
         },
         {
@@ -670,6 +678,9 @@
           "dependsOn": [
             "m2-thm-main",
             "m2-lem-jet-open"
+          ],
+          "objectUses": [
+            "m2-lem-positive-square"
           ]
         }
       ]

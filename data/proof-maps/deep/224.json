@@ -468,7 +468,10 @@
           "kind": "proposition",
           "source": "Critical estimates and their geometric consequences",
           "detail": "[Quenched scalar Cardy convergence] For every fixed polygon quad Q , \\[ ^ _e (C_Q)Cardy(Q) in probability over the Poisson geometry. \\] The assertion holds simultaneously for every member of any…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-pivotal-arms"
+          ]
         },
         {
           "id": "m1-lem-good-sequences",
@@ -609,7 +612,10 @@
           "kind": "lemma",
           "source": "Critical explorations and oriented loops",
           "detail": "[Contact rules] In a subsequential curve limit, the exploration has no interior triple point, no double point on the original boundary, and no second visit to either switch. Its interior double…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-color-arms"
+          ]
         },
         {
           "id": "m1-lem-face-convergence",
@@ -731,6 +737,9 @@
             "m1-lem-exploration-tightness",
             "m1-lem-color-arms",
             "m1-lem-boundary-arms"
+          ],
+          "objectUses": [
+            "m1-lem-rectangle-colors"
           ]
         },
         {
@@ -741,7 +750,10 @@
           "kind": "lemma",
           "source": "Joint crossings and prescribed regions",
           "detail": "[Transfer by polygon witnesses] Let two deterministic good sequences be coupled so that their ordinary critical polygon crossing indicators converge jointly to the same indicators for a countable…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-free-segments"
+          ]
         },
         {
           "id": "m1-prop-critical-tests",
@@ -766,6 +778,9 @@
           "detail": "[Uniform bound for the site expansion] Fix a box B , finitely many polygonal crossing tests, and R2 replica labels. Let g(1,2) be an exponent in the lower four-arm bound of Lemma~ . There is a…",
           "dependsOn": [
             "m1-lem-pivotal-arms"
+          ],
+          "objectUses": [
+            "m1-lem-localization"
           ]
         },
         {
@@ -847,6 +862,9 @@
           "detail": "[One-trial comparison] For the preceding fixed layouts and tolerances, there is C_*< , independent of the number of trials, their scales, and sufficiently small mesh, such that (E N B_J^c) C_*\\, (E…",
           "dependsOn": [
             "m1-lem-necklace-bit"
+          ],
+          "objectUses": [
+            "m1-lem-necklace-sleeve"
           ]
         },
         {
@@ -890,6 +908,9 @@
             "m1-lem-common-calibration",
             "m1-lem-square-normalization",
             "m1-lem-pivotal-scale"
+          ],
+          "objectUses": [
+            "m1-prop-expansion-bound"
           ]
         }
       ]
@@ -1032,6 +1053,9 @@
           "detail": "[Modulus equation] The functions T^ are smooth on (0,) X and satisfy _pT=(L+B_p)T, L=18_ w=x,y (3_ i=1 ^4_ w_iw_i +_ i=1 ^4_ j i w_i-w_j 2 \\,_ w_i ). For every p_0>0 and every fixed finite derivative…",
           "dependsOn": [
             "m2-an-back-lobes"
+          ],
+          "objectUses": [
+            "m2-an-limit"
           ]
         },
         {
@@ -1088,6 +1112,9 @@
           "detail": "[Separated-end transmission] There are constants _1,_2>0 and C< , depending only on the fixed constants in , such that the transmission probabilities of every such marked annulus satisfy |T^- K\\,l_i^…",
           "dependsOn": [
             "m2-an-limit"
+          ],
+          "objectUses": [
+            "m2-sh-comparison"
           ]
         },
         {
@@ -1164,7 +1191,10 @@
           "kind": "corollary",
           "source": "Uniform transfer of signed connection states",
           "detail": "[Contraction of antisymmetric products] There are '>0 , s_0< , and a fixed ratio L>1 such that, for r s_0 and s/r=L^N , the transfer \\[ M=M_ s/L,s M_ r,Lr \\] with all intermediate seam successes…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-tr-insertion"
+          ]
         },
         {
           "id": "m2-cl-derivative",
@@ -1209,7 +1239,8 @@
           "source": "The intensity derivative and the pivotal amplitude",
           "detail": "[Summable logarithmic error] There are constants >0 and C< such that |Rf'(R) f(R) +| CR^ - for all sufficiently large R .",
           "dependsOn": [
-            "m2-cl-derivative"
+            "m2-cl-derivative",
+            "m2-cl-determinant"
           ]
         }
       ]

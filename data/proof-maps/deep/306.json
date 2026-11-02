@@ -510,7 +510,10 @@
           "kind": "lemma",
           "source": "Ordinary instanton theory and the handle units",
           "detail": "[Topological and determinant data for the unit families] The single steps r r+1 for r=0,1 , and their composite 012 , have H_1=0 and b^+=0 . A determinant on a single step with the prescribed end…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-thm-ordinary-units"
+          ]
         },
         {
           "id": "m1-lem-ordinary-perturbations",
@@ -599,6 +602,9 @@
           "dependsOn": [
             "m1-lem-ordinary-perturbations",
             "m1-lem-ordinary-regular-gluing"
+          ],
+          "objectUses": [
+            "m1-lem-ordinary-central-cost"
           ]
         },
         {
@@ -612,6 +618,10 @@
           "dependsOn": [
             "m1-lem-ordinary-polygon",
             "m1-lem-ordinary-regular-gluing"
+          ],
+          "objectUses": [
+            "m1-lem-ordinary-harmonic-caps",
+            "m1-lem-ordinary-perturbations"
           ]
         },
         {
@@ -624,6 +634,10 @@
           "detail": "[Minimum-charge harmonic caps] Let N be either hard cap of Lemma~ , with one of its specified determinants c . At charge 1/4 the only possible unordered split difference is \\ c,-c\\ . For each metric…",
           "dependsOn": [
             "m1-lem-ordinary-perturbations"
+          ],
+          "objectUses": [
+            "m1-lem-ordinary-cap-shifts",
+            "m1-lem-ordinary-regular-gluing"
           ]
         },
         {
@@ -655,6 +669,9 @@
             "m1-lem-ordinary-metric-families",
             "m1-lem-ordinary-unit-topology",
             "m1-lem-ordinary-cap-shifts"
+          ],
+          "objectUses": [
+            "m1-lem-ordinary-holonomy-degree"
           ]
         },
         {
@@ -667,6 +684,9 @@
           "detail": "[The ordinary bridge] Fix an orientation-preserving diffeomorphism :Y_ -2 Y_2 , with fixed bundle and collar identifications. The stacked cobordism and its rigid count T=f_-\\,^ -1 \\,f_+:Y_0 Y_0…",
           "dependsOn": [
             "m1-thm-ordinary-units"
+          ],
+          "objectUses": [
+            "m1-lem-ordinary-central-cost"
           ]
         },
         {
@@ -734,6 +754,9 @@
           "detail": "[The other associahedron facets] In the boundary relation at index i=-2 for the family , the M_ 04 ,M_ 03 ,M_ 14 ,Z_1,Z_3 facets and all their degenerations contribute nothing. The M_ 02 ,M_ 24…",
           "dependsOn": [
             "m1-lem-ordinary-central-cost"
+          ],
+          "objectUses": [
+            "m1-lem-negative-four-topology"
           ]
         },
         {
@@ -756,6 +779,10 @@
           "detail": "[The surviving pentagon count] At index i_ total =-2 the face P consists of isolated regular exterior matches at the selected center with a flat N_U . Their count induces a mod-two isomorphism. It is…",
           "dependsOn": [
             "m1-lem-ordinary-neck-decay"
+          ],
+          "objectUses": [
+            "m1-lem-negative-faces",
+            "m1-lem-ordinary-regular-gluing"
           ]
         },
         {
@@ -772,6 +799,9 @@
             "m1-prop-negative-local-sign",
             "m1-lem-negative-four-topology",
             "m1-lem-negative-faces"
+          ],
+          "objectUses": [
+            "m1-prop-negative-invariance"
           ]
         },
         {
@@ -835,7 +865,11 @@
           "dependsOn": [
             "m1-prop-caps-nonvanishing",
             "m1-lem-caps-pencil",
-            "m1-lem-caps-extreme"
+            "m1-lem-caps-extreme",
+            "m1-lem-caps-closed-comparison"
+          ],
+          "objectUses": [
+            "m1-lem-caps-labelled-compactness"
           ]
         },
         {
@@ -920,7 +954,10 @@
           "kind": "lemma",
           "source": "The stack, its lifts, and the nonzero instanton count",
           "detail": "[Existence and restrictions of the lifts] These choices define integral classes on the closed stack, and \\(l=_0-c_0\\) is characteristic. For every bit vector \\(e=(e_1,,e_n)\\ 0,1\\ ^n\\), set c_e=c_0+_…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prop-stack-lattice"
+          ]
         },
         {
           "id": "m1-lem-stack-telescope",
@@ -952,6 +989,9 @@
           "detail": "[Compatible sphere representatives] The sphere tests can be chosen with the following properties, preserving the integral map \\(B\\) on homology and its mod-two unit property. For a commuting…",
           "dependsOn": [
             "m1-prop-negative-local-sign"
+          ],
+          "objectUses": [
+            "m1-lem-negative-cap"
           ]
         },
         {
@@ -976,7 +1016,11 @@
           "detail": "[The relative macro] The two-parameter, two-test family on the chronological cobordism \\(B\\,H\\,B\\), with the above data and irreducible outer limits, defines an integral map on Floer homology at…",
           "dependsOn": [
             "m1-lem-stack-charge-costs",
-            "m1-prop-negative-local-sign"
+            "m1-prop-negative-local-sign",
+            "m1-thm-negative-unit"
+          ],
+          "objectUses": [
+            "m1-lem-stack-tests"
           ]
         },
         {
@@ -1025,9 +1069,13 @@
           "source": "The stack, its lifts, and the nonzero instanton count",
           "detail": "[A nonzero family with positive coupled index] Fix the old caps and their compact probes. Prescribe any lower bounds on the two outside pad lengths, and prescribe any odd evaluations of \\(\\) on their…",
           "dependsOn": [
+            "m1-thm-negative-unit",
             "m1-lem-stack-finite-lattice",
             "m1-prop-stack-macro",
             "m1-prop-stack-composition"
+          ],
+          "objectUses": [
+            "m1-thm-caps-pairing"
           ]
         },
         {
@@ -1048,7 +1096,10 @@
           "kind": "lemma",
           "source": "A simultaneous family of metrics",
           "detail": "[Placement of the interfaces] The neighborhoods in can be placed strictly inside the macro so that U is disjoint from J_1 J_2 , C_ 1,i is disjoint from J_i , N_ 3-i C_ 1,i , and C_0 C_ 1,1 C_ 1,2 .…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prop-stack-lattice"
+          ]
         },
         {
           "id": "m1-lem-geometry-toric",
@@ -1058,7 +1109,10 @@
           "kind": "lemma",
           "source": "A simultaneous family of metrics",
           "detail": "[The toric model and its periods] The toric space associated to the punctured polygon is C_2 . With w=a+b_0 and normalized coordinates =x/w, y'=y/w, L=1/w, r_1=a/w, r_2=b_0/w, r_1+r_2=1, it has a…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-geometry-plumbing"
+          ]
         },
         {
           "id": "m1-lem-geometry-scalar",
@@ -1115,7 +1169,10 @@
           "kind": "lemma",
           "source": "A simultaneous family of metrics",
           "detail": "[The tube and the corner replacement] The family of Proposition~ extends across w_03 to the low-low corner, with exactly the true cuts J_1,J_2 . Every macro in this region contains a tube of fiber…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prop-geometry-assembly"
+          ]
         },
         {
           "id": "m1-lem-geometry-period-support",
@@ -1257,6 +1314,9 @@
           "detail": "[Order of finite choices] The constants C_W can be fixed before choosing the delays, exceptional evaluations and repetition count in the stack. After those choices have specified a finite problem P ,…",
           "dependsOn": [
             "m1-cor-estimates-tube"
+          ],
+          "objectUses": [
+            "m1-thm-estimates-clamp"
           ]
         },
         {
@@ -1301,7 +1361,10 @@
           "kind": "corollary",
           "source": "Spinor indices and exclusion of unwanted strata",
           "detail": "At the minimal trace reducer, the framed tangential ASD index is zero, the normal ASD index is one complex dimension, and the coupled Dirac operator is invertible. Its normalized eigenline sphere…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prop-indices-lens-index"
+          ]
         },
         {
           "id": "m1-lem-indices-virtual-sums",

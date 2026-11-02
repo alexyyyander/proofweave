@@ -282,7 +282,10 @@
           "kind": "lemma",
           "source": "Free-product geometry and invariant tensors",
           "detail": "[Word structure] The symmetrized operator G preserves every level H_k in . There are operators B_k B(J_k) , with \\|B_k\\|\\|G\\| , such that, for all d_0 E , x E^ , and J_k , G(d_0 x^ k ) &=d_0 x^ k…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-invariant-intertwiners"
+          ]
         },
         {
           "id": "m1-lem-full-column",
@@ -342,6 +345,9 @@
           "detail": "[Free compression] For b=b^* p C p with _p(b)=0 , E_ C (ebe)=u^2b, \\|ebe\\|2 u\\,\\|b\\|_ 2,_p +u\\|b\\|, u=_p(e). Here E_ C is the trace-preserving conditional expectation from onto C .",
           "dependsOn": [
             "m1-lem-free-symmetrization"
+          ],
+          "objectUses": [
+            "m1-thm-free-corner"
           ]
         },
         {
@@ -376,6 +382,9 @@
           "detail": "[Finite standard multiplicities] Let \\(M\\) be a separable-predual \\(II_1\\) factor, and let \\(M\\) act on \\(H_r=L^2(M)^r\\) by common left multiplication, where \\(r1\\) is finite. For every \\(Y B(H_r)\\),…",
           "dependsOn": [
             "m1-lem-irreducible-hyperfinite"
+          ],
+          "objectUses": [
+            "m1-thm-free-corner"
           ]
         },
         {

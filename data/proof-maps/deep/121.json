@@ -292,7 +292,10 @@
           "kind": "lemma",
           "source": "A comparison tree and cost-weighted curvature",
           "detail": "[Comparison-band coverage] At a non-bad comparison node with | v|1- , the action ^* belongs to C_ b,r . Its representative is not skipped: the band is nonempty, h_64Fb , and the rounded action (b,r)…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-comparison-tree"
+          ]
         },
         {
           "id": "m1-lem-generic-regret",
@@ -406,6 +409,9 @@
           "dependsOn": [
             "m1-thm-seed",
             "m1-lem-local-work"
+          ],
+          "objectUses": [
+            "m1-lem-unconditional-sizes"
           ]
         }
       ]

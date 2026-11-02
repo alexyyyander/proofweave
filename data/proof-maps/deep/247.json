@@ -582,6 +582,9 @@
           "detail": "Under the hypotheses of Lemma~ , W_z(C_L)=z^L.",
           "dependsOn": [
             "m1-lem-long-commutator"
+          ],
+          "objectUses": [
+            "m1-lem-relocation"
           ]
         },
         {
@@ -778,6 +781,7 @@
           "source": "A hierarchy defined by finite local rules",
           "detail": "The substitution E_h simulates every elementary next-parameter replacement and zero declaration. Moreover, if w is a nonzero word at parameter Dh , no sequence of lower-parameter replacements…",
           "dependsOn": [
+            "m2-fr-palette-soundness",
             "m2-fr-verification"
           ]
         },
@@ -824,6 +828,9 @@
           "detail": "[Direct cancellation] Fix j,d,b . If q_j 100 >b(d^2+3), then every dimension- d chunk test of label bound b at level j eventually vanishes over every field of characteristic two.",
           "dependsOn": [
             "m2-ca-alternating"
+          ],
+          "objectUses": [
+            "m2-prop-hierarchy"
           ]
         },
         {
@@ -981,6 +988,9 @@
           "detail": "The group _n(R) is normal in H_n . For n5 , inclusion induces an isomorphism \\[ H_n/_n(R) H_ n+1 /_ n+1 (R). \\]",
           "dependsOn": [
             "m2-st-linear-algebra"
+          ],
+          "objectUses": [
+            "m2-st-small-presentation"
           ]
         },
         {
@@ -1097,7 +1107,10 @@
           "kind": "lemma",
           "source": "Torsion in the Steinberg kernel",
           "detail": "The block roots satisfy X_ ij (A+B)&=X_ ij (A)X_ ij (B),\\\\ [X_ ij (A),X_ kl (B)]&=1 &&(j k,\\ i l),\\\\ [X_ ij (A),X_ jk (B)]&=X_ ik (AB) &&(i,j,k distinct). Moreover, an elementary change of basis…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-kt-permutations"
+          ]
         },
         {
           "id": "m2-kt-triangular-faithfulness",

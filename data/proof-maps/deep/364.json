@@ -531,6 +531,9 @@
             "m1-pre-duration",
             "m1-pre-envelopes",
             "m1-pre-operator"
+          ],
+          "objectUses": [
+            "m1-pre-scattering"
           ]
         },
         {
@@ -588,7 +591,11 @@
           "kind": "proposition",
           "source": "Finite history integrals",
           "detail": "[Finite-term bound with its time factors] Fix A< and the finite number L of layers. There is a numerical exponent d in the cell estimates such that, if J= P^Q with Q>2dA , all the following bounds…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-hist-gaussian",
+            "m1-cor-cell-factorial"
+          ]
         },
         {
           "id": "m1-hist-irregular",
@@ -665,6 +672,9 @@
           "dependsOn": [
             "m1-hist-basic",
             "m1-exp-rerouting"
+          ],
+          "objectUses": [
+            "m1-hist-irregular"
           ]
         },
         {
@@ -687,6 +697,11 @@
           "detail": "[Causal exposure for mixed prescriptions] Fix an admissible mixed whole-cell prescription with p P^a labels and a total energy budget K Rp . Fix a collection of k disjoint regular terminal trees as…",
           "dependsOn": [
             "m1-hist-gaussian"
+          ],
+          "objectUses": [
+            "m1-hist-pinning",
+            "m1-exp-terminal",
+            "m1-exp-tube"
           ]
         },
         {
@@ -698,9 +713,14 @@
           "source": "Terminal trees and exposure of first defects",
           "detail": "[An extensive-defect gain] Fix 0<1 , A>0 , the layer count, and the polynomial size exponent a>0 . There exist fixed constants =(,A)>0 , p_0< , and sufficiently small _0>0 such that, after the…",
           "dependsOn": [
+            "m1-hist-crowding",
             "m1-exp-rerouting",
             "m1-exp-exposure",
             "m1-exp-tube"
+          ],
+          "objectUses": [
+            "m1-exp-terminal",
+            "m1-cent-charges"
           ]
         },
         {
@@ -714,6 +734,9 @@
           "dependsOn": [
             "m1-hist-basic",
             "m1-pre-scattering"
+          ],
+          "objectUses": [
+            "m1-exp-tube"
           ]
         },
         {
@@ -754,6 +777,10 @@
             "m1-exp-terminal",
             "m1-exp-defects",
             "m1-exp-finite"
+          ],
+          "objectUses": [
+            "m1-cent-residual",
+            "m1-close-energy"
           ]
         },
         {

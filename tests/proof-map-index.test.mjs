@@ -160,9 +160,10 @@ test("the index refuses to invent proof structure for scaffolds", () => {
   }
 });
 
-test("every generated deep map satisfies the deep contract and stays acyclic", async () => {
+test("every generated deep map satisfies the deep contract and keeps both edge kinds resolvable", async () => {
   const files = (await readdir(new URL("data/proof-maps/deep", base))).filter((name) => name.endsWith(".json"));
   assert.equal(files.length, 345);
+  let objectUses = 0;
   for (const file of files) {
     const data = JSON.parse(await readFile(new URL(`data/proof-maps/deep/${file}`, base), "utf8"));
     validateDeepProofMap(data, collection, lean);
@@ -172,7 +173,12 @@ test("every generated deep map satisfies the deep contract and stays acyclic", a
         for (const dependency of node.dependsOn) {
           assert.ok(ids.has(dependency), `${file}: node ${node.id} depends on an unknown node`);
         }
+        for (const object of node.objectUses ?? []) {
+          objectUses += 1;
+          assert.ok(ids.has(object), `${file}: node ${node.id} uses an unknown object node`);
+        }
       }
     }
   }
+  assert.ok(objectUses > 500, `expected recorded object relations, found ${objectUses}`);
 });

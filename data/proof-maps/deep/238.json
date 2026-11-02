@@ -490,7 +490,10 @@
           "kind": "proposition",
           "source": "From eight large marginals to the whole group",
           "detail": "[Eight-block Fourier bound] Let \\(n\\) be a positive multiple of eight, and partition the labels of \\(G=S_n\\) into sets \\(M_1,,M_8\\) of size \\(n/8\\). For each \\(a\\), let \\(H_a\\) be the subgroup fixing…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-thm-mixing"
+          ]
         }
       ]
     },
@@ -693,6 +696,9 @@
           "detail": "[Uniform large-marginal estimates] Let L2 be a fixed integer dividing N , and let 0 q N-N/L . For every ordered list C of q distinct labels, every periodic ordering of the standard axes, and every…",
           "dependsOn": [
             "m2-shear-lem-tuple"
+          ],
+          "objectUses": [
+            "m2-lem-frames"
           ]
         },
         {
@@ -926,7 +932,10 @@
           "kind": "lemma",
           "source": "History events and conditional estimates",
           "detail": "[Balance supplied by an earlier crossing] Fix integers T d and r1 . For any fixed observed labels and any d<t T , if m positions remain unobserved, then \\[ \\ (|F_ t-1 J_t|,|F_ t-1 J_t|)<m/4\\ 2e^ -m/8…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-shear-lem-fixed-balance"
+          ]
         },
         {
           "id": "m2-frames-backward-removal",
@@ -998,6 +1007,9 @@
           "detail": "[One typical event for all reservoir sizes] Define the event on cyclic histories by G_ ent =_ m=n/L ^ n \\ g: E_ F:\\,|F|=m Z_T^F(g) n^ -8 \\ , where each average is uniform over subsets of labels. Then…",
           "dependsOn": [
             "m2-frames-matching-invariance"
+          ],
+          "objectUses": [
+            "m2-frames-cross-energy"
           ]
         },
         {
@@ -1054,7 +1066,10 @@
           "kind": "lemma",
           "source": "An averaged application of deferred columns",
           "detail": "[Inverse-frame form of the shear law] Conditional on , the increments of X are independent uniform switches in the coordinate directions e_ _i . For every t T , the conditional law of (Y_i)_ i=0 ^t…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-shear-lem-keys"
+          ]
         },
         {
           "id": "m2-frames-aux-energy",
@@ -1079,6 +1094,9 @@
           "dependsOn": [
             "m2-frames-aux-directions",
             "m2-frames-aux-energy"
+          ],
+          "objectUses": [
+            "m2-shear-lem-tuple"
           ]
         },
         {

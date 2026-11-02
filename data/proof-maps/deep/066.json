@@ -590,7 +590,10 @@
           "kind": "lemma",
           "source": "Leading forms and compatible further filtrations",
           "detail": "[Canonical specialization] In Lemma~ , suppose further that \\(R_b\\) is normal and that \\(U\\) has a canonical generator \\(_U\\). Then \\((_U)_b\\) generates the canonical divisor of \\( R_b\\): its divisor…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-a-adapted-presentation"
+          ]
         },
         {
           "id": "m1-a-boundary-specialization",
@@ -640,6 +643,9 @@
             "m1-a-gauss-lifts",
             "m1-a-canonical-specialization",
             "m1-a-flattening"
+          ],
+          "objectUses": [
+            "m1-a-exact-penalization"
           ]
         },
         {
@@ -743,6 +749,9 @@
           "detail": "At a collapsing level there are a projective -factorial Fano type model Y of K , a contraction :Y V with V< S , an effective ample rational Cartier divisor H_V on V , and a rational x s^ -1 with the…",
           "dependsOn": [
             "m1-b-ordinary-approximation"
+          ],
+          "objectUses": [
+            "m1-b-scale-birationality"
           ]
         },
         {
@@ -876,6 +885,7 @@
           "source": "Bounded axes and specialization of effectivity",
           "detail": "[A bounded guard model] After passing to a subsequence, there are bounded projective \\(\\)-factorial varieties of Fano type \\(F' F\\) and labelled prime divisors on \\(F'\\), of bounded number and…",
           "dependsOn": [
+            "m1-b-controlled-extraction",
             "m1-b-scale-bad-primes"
           ]
         },
@@ -1003,6 +1013,7 @@
           "source": "Real valuations and a finite constrained optimization",
           "detail": "[Compact optimization and continuation] The optimization in is a finite polyhedral optimization with compact sublevels, and attains its minimum whenever feasible. Every optimizer lies on the fixed…",
           "dependsOn": [
+            "m1-c-skeleton",
             "m1-c-invariantization",
             "m1-c-flattening"
           ]
@@ -1081,7 +1092,10 @@
           "kind": "lemma",
           "source": "Cartier trace and controlled lifting",
           "detail": "[Simultaneous finite-data reduction] For each single application of the preceding trace constructions one may retain simultaneously the following data on a sufficiently general spread: the specified…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-c-trace-existence"
+          ]
         },
         {
           "id": "m1-c-trace-budget",
@@ -1304,6 +1318,9 @@
           "dependsOn": [
             "m2-lem-a-lc-place-tools",
             "m2-lem-a-function-slopes"
+          ],
+          "objectUses": [
+            "m2-prop-a-uniform-charts"
           ]
         },
         {

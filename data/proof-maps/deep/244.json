@@ -263,7 +263,10 @@
           "kind": "lemma",
           "source": "A monoid of diagrams",
           "detail": "Let M satisfy the algebraic and margin hypotheses, and let a finite nonempty overlap prescription on copies of M be valid. There is a conservative extension realizing it by left translations. The…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-mono-probe-heights"
+          ]
         },
         {
           "id": "m1-lem-mono-simulation",
@@ -466,6 +469,9 @@
           "detail": "[Countable stabilizer quotient] In the ground model, |G_C/K_C|_0 .",
           "dependsOn": [
             "m1-lem-mono-descent"
+          ],
+          "objectUses": [
+            "m1-thm-monoid"
           ]
         },
         {

@@ -329,6 +329,9 @@
           "detail": "lem:approximant-inverse Each h_N:M U is a continuously differentiable bijection with continuously differentiable inverse, and (1-4c)\\|x-x'\\|\\|h_N(x)-h_N(x')\\| (1+4c)\\|x-x'\\|.",
           "dependsOn": [
             "m1-thm-main"
+          ],
+          "objectUses": [
+            "m1-thm-hilbert-map"
           ]
         }
       ]
@@ -470,7 +473,10 @@
           "kind": "lemma",
           "source": "Molecules and the lifted correction",
           "detail": "[Dual tests and pointwise limits] Every test in \\( T_h\\) or \\( V_h\\) defines a bounded linear functional on \\(Z\\) by its molecule pairing. For each fixed class \\( L\\), there is a finite common bound…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-lem-class-bounds"
+          ]
         },
         {
           "id": "m2-lem-q",

@@ -545,6 +545,9 @@
             "m2-prop-computation",
             "m2-prop-global-offsets",
             "m2-prop-isomorphism"
+          ],
+          "objectUses": [
+            "m2-thm-special-twist"
           ]
         },
         {
@@ -561,6 +564,9 @@
             "m2-thm-main",
             "m2-prop-upper",
             "m2-prop-acceptance"
+          ],
+          "objectUses": [
+            "m2-thm-special-twist"
           ]
         },
         {
@@ -620,7 +626,10 @@
           "kind": "lemma",
           "source": "Weisfeiler--Leman conventions and the bijective game",
           "detail": "[Pure tuples in a disjoint union] Suppose k3 and G,H are connected graphs of diameter at most two. Run either convention on D=G H , including mixed tuples. The stable color histograms restricted to…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m3-game-wl"
+          ]
         },
         {
           "id": "m3-comp-reduction",
@@ -702,7 +711,10 @@
           "kind": "lemma",
           "source": "Encoding computations by short consistency instances",
           "detail": "[Constructing padded graphs] Fix r3 and a short consistency template with bounded numbers of types and schemas and bounded vector dimensions. Suppose its one-coordinate domains and maps are supplied…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m3-comp-reduction"
+          ]
         },
         {
           "id": "m3-circ-computation",

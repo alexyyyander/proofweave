@@ -352,6 +352,9 @@
           "detail": "There is a deterministic exact algorithm applying C^ k to an arbitrary complex array of length 2^k in \\[ O(2^k(k+1)^) \\] time, for every integer k0 . The bound includes fixed-table construction, all…",
           "dependsOn": [
             "m1-net-finite-interface"
+          ],
+          "objectUses": [
+            "m1-net-indexing"
           ]
         },
         {
@@ -428,6 +431,9 @@
           "dependsOn": [
             "m1-loc-compiler",
             "m1-net-tensor-bound"
+          ],
+          "objectUses": [
+            "m1-lem-sector-address"
           ]
         },
         {

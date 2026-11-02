@@ -522,6 +522,9 @@
             "m2-lem-dust-disks",
             "m2-lem-path-coding",
             "m2-lem-trace-null"
+          ],
+          "objectUses": [
+            "m2-lem-level-continua"
           ]
         },
         {
@@ -633,7 +636,10 @@
           "kind": "lemma",
           "source": "The first selection and path--level intersections",
           "detail": "[Generic level intersections of a path law] Fix a countable prior compatible list with flag set , possibly containing period coordinates, and let be a law from Theorem~ . For every prior coordinate i…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-lem-dust-disks"
+          ]
         },
         {
           "id": "m2-lem-compact-arcs",
@@ -643,7 +649,10 @@
           "kind": "lemma",
           "source": "Period coordinates and the marked components",
           "detail": "[Compact simple-arc reduction] Let be an endpoint law supplied by Theorem~ , with target b and prescribed collars C_j(b)= U_j(b) . For every sufficiently deep prescribed collar C= U , there is a…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-lem-law-levels"
+          ]
         },
         {
           "id": "m2-lem-stream",
@@ -656,6 +665,9 @@
           "dependsOn": [
             "m2-lem-point-avoidance",
             "m2-lem-level-continua"
+          ],
+          "objectUses": [
+            "m2-lem-trace-null"
           ]
         },
         {
@@ -684,6 +696,9 @@
             "m2-thm-positive-law",
             "m2-lem-compact-arcs",
             "m2-lem-stream"
+          ],
+          "objectUses": [
+            "m2-lem-stream-stokes"
           ]
         },
         {

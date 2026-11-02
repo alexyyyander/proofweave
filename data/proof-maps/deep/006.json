@@ -695,6 +695,9 @@
           "detail": "[Insertion of a pair of simple primes] Suppose E()[2]0 and U has matching parity. Let a rational elementary label, relative to S and all existing split vertices, be realized by a simple prime q with…",
           "dependsOn": [
             "m1-tc-trace-algebra"
+          ],
+          "objectUses": [
+            "m1-tc-rational-rules"
           ]
         },
         {
@@ -870,6 +873,9 @@
             "m1-gr-realization",
             "m1-pw-reserves",
             "m1-pw-partitionable-even"
+          ],
+          "objectUses": [
+            "m1-prop-rough-nonvanishing"
           ]
         },
         {
@@ -906,6 +912,9 @@
             "m1-thm-symbol-rules",
             "m1-prop-even-coefficients",
             "m1-pw-recurrence"
+          ],
+          "objectUses": [
+            "m1-gr-forest"
           ]
         },
         {
@@ -993,7 +1002,10 @@
           "kind": "lemma",
           "source": "Selmer matrices and three-state relations",
           "detail": "[The site relations] Fix the total parameter label at the fixed support and the diagonal choices at the other present sites. In each state choose aggregate roots restoring this label, compatibly with…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-thm-symbol-rules"
+          ]
         },
         {
           "id": "m1-lem-binary-tensor-span",
@@ -1053,6 +1065,9 @@
             "m1-cs-fixed-weight-uniformity",
             "m1-prop-selmer-matrix-bound",
             "m1-prop-unit-symbol-detection"
+          ],
+          "objectUses": [
+            "m1-thm-symbol-rules"
           ]
         },
         {
@@ -1123,6 +1138,10 @@
             "m1-thm-irreducible-converse",
             "m1-lem-h-base-selmer-bound",
             "m1-prop-heegner-comparison"
+          ],
+          "objectUses": [
+            "m1-lem-sa-root-calibration",
+            "m1-thm-heegner-interpolation"
           ]
         },
         {
@@ -1257,6 +1276,9 @@
             "m1-lem-h-bounded-poles",
             "m1-lem-h-pivot-clearing",
             "m1-lem-h-base-selmer-bound"
+          ],
+          "objectUses": [
+            "m1-lem-h-boolean-coefficients"
           ]
         },
         {

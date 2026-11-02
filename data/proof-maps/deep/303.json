@@ -391,6 +391,9 @@
           "dependsOn": [
             "m1-lem-ideals-cutoffs",
             "m1-lem-comparison-rules"
+          ],
+          "objectUses": [
+            "m1-prop-iterated-separation"
           ]
         },
         {
@@ -423,6 +426,9 @@
           "detail": "[Nuclear avoidance of the fixed measurements] Let \\(C\\) be nuclear and satisfy \\(\\) for a fixed \\(n1\\), and let \\(\\) be as in Lemma~ . For \\(X C_+\\) and fixed elements \\(B_ j,pq C\\), where \\(1 j\\)…",
           "dependsOn": [
             "m1-lem-transport"
+          ],
+          "objectUses": [
+            "m1-lem-forbidden-tuple"
           ]
         },
         {
@@ -565,7 +571,10 @@
           "kind": "lemma",
           "source": "Exact localization and removal of amplification",
           "detail": "[Local common elements] Let C be an exact C^* -algebra satisfying for one fixed integer n1 , and let P(C) . [label=( *)] If h C_+ and h_P0 , then for every integer m1 there are m pairwise orthogonal…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-comparison-rules"
+          ]
         },
         {
           "id": "m1-lem-purestateattainment",
@@ -628,6 +637,9 @@
           "detail": "[Whole-ideal comparison] Let C be a C^* -algebra satisfying . For every h C_+ , c(h)_+ , and integer k1 , \\[ c^ k h. \\] If C is exact, Proposition~ may be applied with multiplicity n=1 , with the…",
           "dependsOn": [
             "m1-lem-ideal-comparison"
+          ],
+          "objectUses": [
+            "m1-prop-perturbation"
           ]
         },
         {
@@ -666,6 +678,9 @@
             "m1-lem-separating-positives",
             "m1-cor-ideal-comparison",
             "m1-lem-bounded-implementation"
+          ],
+          "objectUses": [
+            "m1-prop-perturbation"
           ]
         }
       ]

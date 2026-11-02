@@ -401,6 +401,9 @@
           "dependsOn": [
             "m1-seed-chain",
             "m1-bg-orlik"
+          ],
+          "objectUses": [
+            "m1-seed-product"
           ]
         },
         {
@@ -524,7 +527,10 @@
           "kind": "lemma",
           "source": "From local isometries to an integral isometry",
           "detail": "[Spectral properties of the added factors] Every eigenvalue of _j has odd order divisible by both 11 and 13 . On every complex eigenspace, the hermitian form \\[ (x,y)_j(x, y) \\] is nondegenerate and…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-bg-ts"
+          ]
         },
         {
           "id": "m1-global-integral",
@@ -600,6 +606,9 @@
           "detail": "[Initial-form Milnor-fibre counterexamples] In the single ambient dimension N+1 , put \\[ f_j(z,t)=f_j(z)+t^2, j=1,2. \\] The germs f_1, f_2:(^ N+1 ,0)(,0) are topologically right equivalent and have…",
           "dependsOn": [
             "m1-topo-analytic"
+          ],
+          "objectUses": [
+            "m1-topo-right-equivalence"
           ]
         }
       ]
@@ -670,6 +679,9 @@
           "dependsOn": [
             "m2-lem-plane-data",
             "m2-lem-simultaneous-parameters"
+          ],
+          "objectUses": [
+            "m2-lem-isolation"
           ]
         },
         {
@@ -690,7 +702,10 @@
           "kind": "lemma",
           "source": "Boundary geometry and the Milnor representative",
           "detail": "[Outer boundary regularity] For every sufficiently small fixed \\(s>0\\), the map \\(f_s\\) on the compact outer lateral boundary of \\(X_s\\) over \\(\\ |v|\\ \\) is proper, and its restriction to every…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-lem-isolation"
+          ]
         },
         {
           "id": "m2-lem-continuations",
@@ -724,6 +739,9 @@
           "detail": "[inner homology and acyclic total] There are natural identifications H_3(W)=K, H_2(W)=H/_*D, :H_3(W;/k) D/kD. The large total \\(_s\\) is acyclic.",
           "dependsOn": [
             "m2-lem-continuations"
+          ],
+          "objectUses": [
+            "m2-thm-tube"
           ]
         },
         {
@@ -735,6 +753,7 @@
           "source": "Circle collapse and integral homology",
           "detail": "[The large tube computes the local page] The middle homology and filling pairing of the page of are naturally those of a sufficiently small ordinary Milnor representative of \\(f_s\\).",
           "dependsOn": [
+            "m2-lem-isolation",
             "m2-lem-acyclic"
           ]
         },
@@ -746,7 +765,10 @@
           "kind": "lemma",
           "source": "Circle collapse and integral homology",
           "detail": "[Mayer--Vietoris boundary] The full page has an exact sequence 0 K H_3(_s) H E 1 H/_*D. The image of the exterior page in \\(H_3(_s)\\) maps isomorphically under \\(\\) to \\(H\\).",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-lem-boundary"
+          ]
         },
         {
           "id": "m2-lem-bock",
@@ -758,6 +780,9 @@
           "detail": "[Bockstein equals finite-map transfer] For \\(b H/kH=H_2(J)\\), and any \\( H_3(J;/k)\\) with \\(_ Bock =b\\), (i_*)=^!bkD, with the orientation of \\(\\) fixed after .",
           "dependsOn": [
             "m2-lem-mv"
+          ],
+          "objectUses": [
+            "m2-lem-continuations"
           ]
         },
         {
@@ -847,6 +872,9 @@
           "detail": "[Real signs] The quadratic form B_|F_ ,1 is indefinite and has dimension at least five. The Hermitian form on F_ ,5 has dimension at least two over L and is indefinite at the real place of L^+…",
           "dependsOn": [
             "m2-lem-plane-data"
+          ],
+          "objectUses": [
+            "m2-lem-parameter-indices"
           ]
         },
         {

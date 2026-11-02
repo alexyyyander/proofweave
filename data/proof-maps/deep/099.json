@@ -352,7 +352,10 @@
           "kind": "proposition",
           "source": "Binary encoding and the lower bound",
           "detail": "For all sufficiently large k , every _1 embedding of \\[ W_k=\\ (W_ k,p (z)):z G_ k,p \\ \\ 0,1\\ ^ N_k \\] has distortion at least (h/24)^k 16w (c_0k k) for an absolute constant c_0>0 .",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prop-family"
+          ]
         },
         {
           "id": "m1-thm-or",
@@ -493,7 +496,10 @@
           "kind": "lemma",
           "source": "Excluded-coordinate translations on a finite circle",
           "detail": "[Separation under arbitrary alignments] For every node a at height 0 h , every v G , and every ,z L^ -1 Z/ Z , r_ N_ (W_a(v,),W_a(v,+z)) N_ 3^ - _(z).",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-pre-tagged-rows"
+          ]
         },
         {
           "id": "m2-lem-exc-annihilator",
@@ -699,6 +705,9 @@
           "detail": "[Finite obstruction] For all sufficiently large k , the word image \\ G(x):x A\\ , with ordinary edit distance, has distortion at least C_1^ -1 (k/4)^k , for an absolute constant C_1 .",
           "dependsOn": [
             "m3-lem-finite-fourier"
+          ],
+          "objectUses": [
+            "m3-lem-finite-cost"
           ]
         },
         {

@@ -280,7 +280,10 @@
           "kind": "proposition",
           "source": "From two purities to a uniform gap",
           "detail": "[Uniform gap from two initial purities] For every even L4 , let H_L be a non-scalar finite-dimensional self-adjoint Hamiltonian. Suppose that a and, for each b>0 , a real finite or countable list…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-rounded-update"
+          ]
         },
         {
           "id": "m1-lem-thermal-inputs",
@@ -323,6 +326,9 @@
           "dependsOn": [
             "m1-lem-thermal-inputs",
             "m1-lem-polynomial-filter"
+          ],
+          "objectUses": [
+            "m1-lem-cappedmass"
           ]
         },
         {
@@ -336,6 +342,9 @@
           "dependsOn": [
             "m1-lem-cappedmass",
             "m1-lem-rounded-update"
+          ],
+          "objectUses": [
+            "m1-lem-polynomial-filter"
           ]
         },
         {
@@ -351,6 +360,9 @@
             "m1-prop-transfer",
             "m1-prop-seed60",
             "m1-prop-bootstrap"
+          ],
+          "objectUses": [
+            "m1-prop-seed2304"
           ]
         },
         {

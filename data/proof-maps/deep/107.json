@@ -699,7 +699,10 @@
           "kind": "proposition",
           "source": "Banked constructions and attainable values",
           "detail": "[Banked marginal matching] Let ( S) , and let _X,_Y,_Z be its three canonical local-grade marginals. For every 0<3 , F_() H_ marg () :=H( _X)+H( _Y)+H( _Z)3. The constructions proving this bound are…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-val-ap-set"
+          ]
         },
         {
           "id": "m2-prop-face",
@@ -732,7 +735,10 @@
           "kind": "lemma",
           "source": "Arithmetic-progression restrictions and differential comparison",
           "detail": "For all sufficiently large integers \\(L\\), there is a set \\(J\\ 1,,L\\ \\) with no nonconstant three-term arithmetic progression and \\[ |J| L-O( L). \\]",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-val-ap-set"
+          ]
         },
         {
           "id": "m2-lem-compile",
@@ -833,7 +839,10 @@
           "kind": "lemma",
           "source": "A rational certificate for the comparison bound",
           "detail": "[Complex covariance normalization] For =(p_0,p_1,p_2,E_0,E_1,E_2) , set \\[ r_i=1-_i, z=x+iy=3r_0-1+i3(r_2-r_1), D_i=r_i(1-r_i)+2p_i. \\] Then D_i=Var(g_i) . In the (x,y) coordinates the covariance…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-thm-ap"
+          ]
         },
         {
           "id": "m2-cert-interior-lemma",
@@ -982,6 +991,9 @@
           "dependsOn": [
             "m2-thm-main",
             "m2-lem-rank-exponent"
+          ],
+          "objectUses": [
+            "m2-cor-characteristic-transfer"
           ]
         }
       ]
@@ -1059,7 +1071,10 @@
           "kind": "lemma",
           "source": "Recovering the ideal outputs and composing extractions",
           "detail": "[Uniform loss from inherited masks] The total number of G_e -orbits of variables on the three sides is polynomial in N , uniformly over target triples e . Suppose every inherited or global mask is…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m3-thm-joint-step"
+          ]
         },
         {
           "id": "m3-lem-hole-repair",
@@ -1071,6 +1086,9 @@
           "detail": "[Exact repair by presence masks] Let Q_N be a tensor over an arbitrary field, with at most (bN) nonzero monomials for a fixed b>0 . Let G_N be a finite group of coefficient-preserving permutations of…",
           "dependsOn": [
             "m3-lem-orbit-masks"
+          ],
+          "objectUses": [
+            "m3-thm-joint-step"
           ]
         },
         {
@@ -1117,7 +1135,10 @@
           "kind": "proposition",
           "source": "Exact parameters and numerical certification",
           "detail": "[Numerical certificate] The exact parameters above satisfy every positivity and balance condition used in Proposition~ . All thirty partial capacity entries in Table~ are positive. In particular,…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m3-thm-main"
+          ]
         }
       ]
     }

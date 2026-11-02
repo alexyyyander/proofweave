@@ -278,7 +278,10 @@
           "kind": "lemma",
           "source": "Local approximation from complete directions",
           "detail": "Let U_A,U_B be bounded open sets with positively separated closed fringes, and put C=U_A U_B . For every open parameter polydisc P and every k , there are bounded linear operators \\[ R_A&:H^(C P,^k)…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-loc-pieces"
+          ]
         },
         {
           "id": "m1-loc-spray",
@@ -380,6 +383,9 @@
             "m1-loc-planar",
             "m1-ana-concentration",
             "m1-loc-spray"
+          ],
+          "objectUses": [
+            "m1-glue-open"
           ]
         },
         {
@@ -636,6 +642,9 @@
             "m1-deg-open",
             "m1-prj-strips",
             "m1-ana-cap"
+          ],
+          "objectUses": [
+            "m1-rat-open"
           ]
         },
         {

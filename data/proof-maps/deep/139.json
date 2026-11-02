@@ -354,6 +354,9 @@
           "detail": "[Derivatives along transported paths] For each fixed integer m1 , \\| D^mM_\\|_ L^2(_) (d)L d\\,a^ -m . For fixed integers q1 , m0 , and fixed real 2 p< , every nontrivial split satisfies \\|\\,| D^mU_q|_…",
           "dependsOn": [
             "m1-lem-divergence-l2"
+          ],
+          "objectUses": [
+            "m1-thm-tensor-divergence"
           ]
         },
         {
@@ -446,7 +449,9 @@
           "kind": "proposition",
           "source": "Finite formulas for the two flows",
           "detail": "[Kernel-action circuit] On the stationary product input law, the RMS error of v=( v_Y, v_G) relative to is bounded by (d) times & L d \\\\ &12mm+^ -4t-w (C_ml)^ N_p-1 r L D. It is globally Lipschitz,…",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-lem-kernel-endpoint-quadrature"
+          ]
         },
         {
           "id": "m1-prop-mean-circuit",
@@ -468,7 +473,10 @@
           "kind": "corollary",
           "source": "Finite formulas for the two flows",
           "detail": "[Accuracy without increasing dependency depth] Fix J1 . In all the probability, harmonic, and centering integrations above, one may take at most \\[ N=10(J+2) \\] Picard layers. After any fixed w(0,t)…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prop-kernel-circuit"
+          ]
         },
         {
           "id": "m1-thm-numerical-interface",
@@ -563,6 +571,9 @@
             "m1-lem-compiler-absorption",
             "m1-lem-compiler-sizes",
             "m1-lem-compiler-count"
+          ],
+          "objectUses": [
+            "m1-thm-numerical-interface"
           ]
         },
         {
@@ -659,7 +670,9 @@
           "kind": "lemma",
           "source": "A logarithmic oracle lower bound",
           "detail": "Let U N(0,^ -1 ) , with from , and suppose n=2q+1<d . Then _ d,q := &= d 2 (-)^n+R_ d,q , & |R_ d,q |& 2\\,d\\,^ 2d-n 1- , \\\\ (U^TD_pU)&2d, & |U|^2& d, (|U|^2)2d.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-lem-lower-span-statistic"
+          ]
         }
       ]
     }

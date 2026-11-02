@@ -488,6 +488,9 @@
           "detail": "[Finite arrays and higher kernels] In either normalized tower, the independent coordinates introduced at level j have weights at least j_* for a fixed _*>0 . A prescribed upper weight bound…",
           "dependsOn": [
             "m1-nf-normalization"
+          ],
+          "objectUses": [
+            "m1-nf-raw-dynamics"
           ]
         },
         {
@@ -636,6 +639,9 @@
           "dependsOn": [
             "m1-hull-recenter",
             "m1-hull-transport"
+          ],
+          "objectUses": [
+            "m1-hull-rank"
           ]
         },
         {
@@ -695,7 +701,9 @@
           "kind": "lemma",
           "source": "Formal symmetries and coherent transport",
           "detail": "[Full-solution projection bundles] Refine the regular set by a countable conull intersection. For every finite order r , the projections of h and k to the Hamiltonian r -jets have smooth extensions…",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-hull-measurability"
+          ]
         },
         {
           "id": "m1-sym-transitivity",
@@ -797,6 +805,9 @@
           "dependsOn": [
             "m1-alg-translation-test",
             "m1-alg-coisotropic"
+          ],
+          "objectUses": [
+            "m1-alg-derivation-realization"
           ]
         },
         {
@@ -877,6 +888,7 @@
           "source": "The algebraic consequence of the entropy trace identity",
           "detail": "[Algebraic dichotomy] At typical centers exactly one of the following alternatives holds, with the same alternative almost everywhere. [label=()] The symmetry algebra is finite dimensional. There are…",
           "dependsOn": [
+            "m1-alg-signs",
             "m1-sym-homogeneous-fields"
           ]
         },
@@ -989,6 +1001,9 @@
           "detail": "For each fixed k there is A_k0 , independent of the stable derivative order j , such that \\|D_s^jG_ n,k \\| C_ j,k e^ A_kn (j0) on the moving patches, in uniform stable charts.",
           "dependsOn": [
             "m1-real-iterate-bounds"
+          ],
+          "objectUses": [
+            "m1-real-product-derivatives"
           ]
         },
         {
@@ -1039,6 +1054,11 @@
           "detail": "Suppose the frame Y is parallel along the P^s slices of the base patch. Then, for every finite y , D_aF(a,y)[P^s_a]_ F(a,y) . Consequently a path obtained by translating a P^s -tangent base path by a…",
           "dependsOn": [
             "m1-real-decay"
+          ],
+          "objectUses": [
+            "m1-real-formal-affine",
+            "m1-real-normal-extension",
+            "m1-real-actualization"
           ]
         },
         {

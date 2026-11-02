@@ -225,7 +225,10 @@
           "kind": "proposition",
           "source": "Dyadic vector masses and common prices",
           "detail": "[Common discounted prices] For p V_k , 1 k m , define D_ Q_p =_ c C _ q R(Q_p) _ l=k ^m2^ -(l-k) _ s V_l _ qs d_s^c, =1 100 . These nonnegative prices satisfy _ k=1 ^m_ p V_k D_ Q_p 41^2 2(1-2^ - ) _…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-local"
+          ]
         },
         {
           "id": "m1-lem-labels-neighbors",
@@ -288,6 +291,9 @@
           "dependsOn": [
             "m1-prop-finite-band",
             "m1-prop-prices"
+          ],
+          "objectUses": [
+            "m1-lem-good-label"
           ]
         },
         {
@@ -303,6 +309,9 @@
             "m1-lem-appendix-vector-measure",
             "m1-thm-main",
             "m1-lem-appendix-planar-embedding"
+          ],
+          "objectUses": [
+            "m1-lem-appendix-square"
           ]
         },
         {

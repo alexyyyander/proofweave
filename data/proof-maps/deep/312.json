@@ -232,6 +232,7 @@
           "source": "Coskeletal cutoffs and contractible trees",
           "detail": "[Contractibility of free shapes] For every nonempty finite globular-sum shape S , the models F(S) and F_q(S) are contractible, for every q0 .",
           "dependsOn": [
+            "m1-lem-high-cells",
             "m1-prop-weak-test",
             "m1-lem-cutoff"
           ]
@@ -246,6 +247,9 @@
           "detail": "[Top-dimensional base case] The assertion E(q,q) holds for every q0 .",
           "dependsOn": [
             "m1-lem-high-cells"
+          ],
+          "objectUses": [
+            "m1-prop-weak-test"
           ]
         },
         {
@@ -270,6 +274,9 @@
           "detail": "[Contractibility of tree diagrams] Under the fixed-cutoff induction hypotheses above, F_q(K) is contractible for every tree diagram K at depth n .",
           "dependsOn": [
             "m1-prop-shape-contractible"
+          ],
+          "objectUses": [
+            "m1-lem-cutoff-base"
           ]
         },
         {

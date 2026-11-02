@@ -302,6 +302,9 @@
           "detail": "[Root-direction log-concavity] Let f_1,f_2 be integral normalized submodular functions on E , not necessarily nondecreasing, and define \\[ Y(d)=\\#\\ (x_1,x_2)(B(f_1)^E) (B(f_2)^E):x_1-x_2=d\\ . \\] For…",
           "dependsOn": [
             "m1-lem-balanced-summation"
+          ],
+          "objectUses": [
+            "m1-lem-rank-signatures"
           ]
         },
         {
@@ -348,6 +351,9 @@
           "dependsOn": [
             "m1-lem-generator-prefixes",
             "m1-lem-polyhedral-controls"
+          ],
+          "objectUses": [
+            "m1-lem-center"
           ]
         },
         {

@@ -596,6 +596,9 @@
           "dependsOn": [
             "m1-tor-norm-approximation",
             "m1-arith-closure"
+          ],
+          "objectUses": [
+            "m1-approx-power-factor"
           ]
         },
         {
@@ -693,7 +696,8 @@
           "source": "Additive recurrence and the exclusion of simple colors",
           "detail": "In odd characteristic, \\(\\)-almost every palette satisfies . In fact, for each \\(h H\\), membership in \\( S\\) is constant on all positions \\(xh\\), \\(x A\\).",
           "dependsOn": [
-            "m1-pal-translation-obstruction"
+            "m1-pal-translation-obstruction",
+            "m1-rec-quadric-orthogonality"
           ]
         },
         {
@@ -1133,6 +1137,9 @@
           "detail": "Let E D be a * -stable maximal subfield, Galois over L . Let d E^ have n distinct L -conjugates t_1,,t_n whose set is disjoint from \\ t_1,, t_n\\ , where z=z^* on E . Then, whenever b,bd D ,…",
           "dependsOn": [
             "m2-lem-chars-additive-span"
+          ],
+          "objectUses": [
+            "m2-lem-chars-pure-shears"
           ]
         },
         {
@@ -1246,6 +1253,9 @@
           "detail": "Let p3 be an odd prime, let H=_p(q) be the full isometry group of a nondegenerate Hermitian form over _ q^2 , and let T H be an irreducible torus of order q^p+1 . If w T has field degree p over _ q^2…",
           "dependsOn": [
             "m2-lem-finite-abelian-test"
+          ],
+          "objectUses": [
+            "m2-lem-finite-obstruction"
           ]
         },
         {

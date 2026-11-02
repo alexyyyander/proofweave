@@ -217,7 +217,12 @@
           "kind": "proposition",
           "source": "Integral Lie algebras and the special identity",
           "detail": "[Saturated reduction] Let \\[ K_n=_R x,y_n, L_n=W_n K_n. \\] Then \\(L_n\\) is a saturated finite free \\(R\\)-submodule of \\(K_n\\), and its reduction embeds in \\(K_n/2K_n\\). Writing its image as \\( L_n\\),…",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-lem-free-fiber"
+          ],
+          "objectUses": [
+            "m1-lem-special"
+          ]
         },
         {
           "id": "m1-lem-abc-free",
@@ -314,7 +319,10 @@
           "kind": "lemma",
           "source": "The image of the leading projection",
           "detail": "[Polynomial shift invariance] For every f obtained as above and every polynomial s(C) , f(C,B+s(C))=f(C,B). The identity holds after adjoining any finite collection of commuting scalar indeterminates…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-even-indices"
+          ]
         },
         {
           "id": "m1-prop-image-bound",
@@ -406,7 +414,10 @@
           "kind": "proposition",
           "source": "Holonomy and odd depth-one values",
           "detail": "For every odd n3 there exists _n V_n for which the coefficient of x^ n-1 y is nonzero. Equivalently, its ordinary y -depth-one part is a nonzero multiple of _x^ n-1 y .",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-rational-descent"
+          ]
         },
         {
           "id": "m1-lem-depth-addition",

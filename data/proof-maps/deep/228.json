@@ -275,7 +275,10 @@
           "kind": "proposition",
           "source": "A stable class with four-particle clusters",
           "detail": "[Canonical and grand-canonical limits] For every >0 and d0 there is a finite limit H_(,d) =-_ L \\ /L^3 d Z_ L,n () tL^3 , H_(,0)=0. Extend H_(,d) by + for d<0 . It is closed and convex in d , and…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-elementary-conjugacy"
+          ]
         },
         {
           "id": "m1-prop-transform",
@@ -320,7 +323,8 @@
           "detail": "[Physical Kac approximation] Let \\[ =_t-t_ j=1 ^k_jw_ R_j \\] have finitely many attractive summands, with the empty sum allowed. Fix \\(0\\) such that \\(_ j=1 ^k_j+ A+1\\). Then Q_ -t w_R _ Q_ as R…",
           "dependsOn": [
             "m1-prop-tail",
-            "m1-prop-moments"
+            "m1-prop-moments",
+            "m1-prop-transform"
           ]
         },
         {

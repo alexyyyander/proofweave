@@ -489,7 +489,10 @@
           "kind": "proposition",
           "source": "The radical and extension of scalars",
           "detail": "For every field extension K/ , the algebra _K=K_ and module Z_K=K_ Z satisfy all conclusions of Theorem~ over K .",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prop-radical"
+          ]
         }
       ]
     },
@@ -600,7 +603,10 @@
           "kind": "lemma",
           "source": "Homological preliminaries",
           "detail": "[Finite shifts and evaluation] Every stable shift of a finite side-projective bimodule has a finite side-projective representative. Evaluation at a finite E -module X sends stable maps between these…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-h-stable-image"
+          ]
         },
         {
           "id": "m2-tr-trivial-symmetric",
@@ -698,7 +704,10 @@
           "kind": "proposition",
           "source": "Polynomial stable endomorphisms and twists",
           "detail": "For every \\(H k^\\) and every \\(m0\\), the action of \\(U_H(-)\\) on the groups in is .U_H|_ ^ 3m =H^ -m \\,1_ P_m , .U_H|_ ^ -3m-1 =H^ m+2 \\,1_ D P_m . In particular, the negative action is the stated…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-e-socle"
+          ]
         },
         {
           "id": "m2-b-bimodule",
@@ -789,6 +798,9 @@
             "m2-b-stable-adjunction",
             "m2-b-bimodule",
             "m2-b-profile"
+          ],
+          "objectUses": [
+            "m2-b-bar-model"
           ]
         },
         {
@@ -827,6 +839,9 @@
           "dependsOn": [
             "m2-t-comparison-maps",
             "m2-t-finite-module"
+          ],
+          "objectUses": [
+            "m2-tr-transfer"
           ]
         },
         {

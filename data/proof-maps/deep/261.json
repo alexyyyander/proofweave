@@ -443,7 +443,10 @@
           "kind": "corollary",
           "source": "Introduction",
           "detail": "[Spectral coexistence] For every fixed d3 and every fixed 0<<_d , there is a deterministic number _ d, (0,/2] such that the open interval \\[ J_ d, =(-2d-,-2d-+_ d, ) \\] is disjoint from I_d and,…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-thm-main"
+          ]
         },
         {
           "id": "m1-prop-certificate",
@@ -614,7 +617,9 @@
           "source": "The algebra and estimates of an ordinary sweep",
           "detail": "[Ordinary-sweep increment estimates] Consider a current numerical prefix of a sweep whose initial physical state satisfies the bounds at a stage boundary in Section~ , including self-consistency, and…",
           "dependsOn": [
-            "m1-lem-sweep-laplacian"
+            "m1-lem-sweep-laplacian",
+            "m1-lem-sweep-lag",
+            "m1-lem-sweep-fourth"
           ]
         },
         {
@@ -650,6 +655,9 @@
           "dependsOn": [
             "m1-lem-inverse-row",
             "m1-lem-locality"
+          ],
+          "objectUses": [
+            "m1-prop-sweep-increments"
           ]
         },
         {
@@ -698,6 +706,9 @@
             "m1-lem-local-prospective",
             "m1-prop-sweep-increments",
             "m1-lem-local-pullback"
+          ],
+          "objectUses": [
+            "m1-lem-matrix-concentration"
           ]
         },
         {
@@ -834,6 +845,10 @@
             "m1-lem-duplication",
             "m1-lem-clearing-locality",
             "m1-lem-inverse-row"
+          ],
+          "objectUses": [
+            "m1-prop-committed-assembly",
+            "m1-prop-clearing-trial"
           ]
         },
         {
@@ -879,6 +894,9 @@
           "detail": "[Spectral readout] Fix d3 , >0 and a nonempty bounded open interval I . Let H_m be the true Anderson operator on T_m=(/L_m)^d , L_m=4^ 20m , with independent uniform diagonal values in [-,] at every…",
           "dependsOn": [
             "m1-prop-certificate"
+          ],
+          "objectUses": [
+            "m1-prop-threshold"
           ]
         }
       ]

@@ -432,7 +432,9 @@
           "kind": "proposition",
           "source": "Signs between the interpolation nodes",
           "detail": "[Global signs] The exact interpolation functions satisfy \\[ J_1(s) G(s), J_2(s)0(s0). \\]",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-lem-gaussian-divided-difference"
+          ]
         },
         {
           "id": "m1-lem-sine-barrier",
@@ -445,6 +447,9 @@
           "dependsOn": [
             "m1-lem-finite-certificate",
             "m1-lem-curvature-envelopes"
+          ],
+          "objectUses": [
+            "m1-prop-global-signs"
           ]
         }
       ]
@@ -647,7 +652,10 @@
           "kind": "proposition",
           "source": "Shifted moments and positive mixtures",
           "detail": "[Positive-mixture transfer] Let C^2 be locally finite with centered disk density one. Suppose that, for every >0 , \\[ _ R 1 N_R _ x,y C_R\\ y e^ -|x-y|^2 _ a A\\ 0\\ e^ -|a|^2 . \\] Then every smooth…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-thm-universal"
+          ]
         },
         {
           "id": "m2-cor-riesz-jellium",
@@ -947,6 +955,9 @@
           "detail": "[Two conditional Taylor budgets] The following choices give sufficient rational error enclosures for the same finite quantities used in Appendix~ . For a basis input at n J=\\ 1,3,4\\ , a row m J , y=1…",
           "dependsOn": [
             "m3-ind-taylor-average"
+          ],
+          "objectUses": [
+            "m3-cert-moment-error"
           ]
         },
         {

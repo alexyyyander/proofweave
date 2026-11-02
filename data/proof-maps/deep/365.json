@@ -430,7 +430,10 @@
           "kind": "lemma",
           "source": "Boundary data, exterior sources, and contact coordinates",
           "detail": "[The maximal match] All matches agree on overlaps and are injective on base points. Their union is a unique maximal match \\((,J)\\) on a connected open set \\(W N_2^\\). On this set, G_1((p),(q))…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-bdy-evaluations"
+          ]
         },
         {
           "id": "m1-bdy-contact",
@@ -504,7 +507,10 @@
           "kind": "lemma",
           "source": "Shrinking spheres and harmonic transfer",
           "detail": "[Strict sphere geometry] Let r=r_ satisfy~ , , and~ . For p_* sufficiently large and sufficiently small, the hypersurface \\[ (x,y)=12(d_(x,y)^2-r(y)^2)=0 \\] satisfies the strict criterion of…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-cross-criterion"
+          ]
         },
         {
           "id": "m1-sph-continuation",
@@ -539,6 +545,9 @@
           "detail": "[Bounds where the cutoff varies] After the choices in Remark~ , for every fixed integer m the angular H^m norms of _ and its first base derivatives on supp(d) are bounded independently of admissible…",
           "dependsOn": [
             "m1-cross-initial"
+          ],
+          "objectUses": [
+            "m1-sph-transfer"
           ]
         },
         {
@@ -569,7 +578,10 @@
           "kind": "proposition",
           "source": "Uniform estimates for the matrix transfer density",
           "detail": "[Scalar coercivity] Fix uniform smooth bounds for the reference geometry and scalar comparison equations, and the constants in . Suppose P_0 is the scalar operator , with the scalar trace operators…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-ang-raising"
+          ]
         },
         {
           "id": "m1-ang-system-coercivity",
@@ -698,6 +710,9 @@
             "m1-bdy-contact",
             "m1-mat-local",
             "m1-glob-conformal"
+          ],
+          "objectUses": [
+            "m1-bdy-matches"
           ]
         },
         {
@@ -918,7 +933,10 @@
           "kind": "proposition",
           "source": "An estimate on the shrinking spheres",
           "detail": "[Coercivity for the moving trace equation] Fix a base region with bounded reference geometry and the constants in . Suppose P is the operator , with the trace operators of Lemma~ . There exist _0…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-angular-raising"
+          ]
         },
         {
           "id": "m2-local-density",
@@ -983,6 +1001,9 @@
           "detail": "[No interior frontier] There is an isometry \\[ :(M_2^e)^(M_1^e)^ \\] onto the first interior satisfying Equation~ .",
           "dependsOn": [
             "m2-data-jet-family"
+          ],
+          "objectUses": [
+            "m2-local-extension"
           ]
         },
         {
@@ -1112,6 +1133,9 @@
           "detail": "[Weak approximation by scalar-near matrices] Given a subsolution, a weak L^2 neighborhood of its pair (E,F) , and >0 , there is a subsolution in that neighborhood whose matrix has distance less than…",
           "dependsOn": [
             "m3-sc-local-join"
+          ],
+          "objectUses": [
+            "m3-sc-open-class"
           ]
         },
         {

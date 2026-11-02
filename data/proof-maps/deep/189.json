@@ -408,6 +408,9 @@
           "detail": "[One-vertex detours] For every orientation of the chains, no outside path relative to S with one internal vertex joins two distinct representatives. Nor can such a path join consecutive vertices of…",
           "dependsOn": [
             "m1-grow-replacement"
+          ],
+          "objectUses": [
+            "m1-path-interval"
           ]
         },
         {
@@ -608,6 +611,9 @@
             "m1-finite-labels",
             "m1-size-test",
             "m1-clq-bound"
+          ],
+          "objectUses": [
+            "m1-finite-packing"
           ]
         }
       ]

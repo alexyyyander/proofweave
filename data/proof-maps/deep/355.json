@@ -374,6 +374,9 @@
           "detail": "[Gaussian solutions on a conical tail] Let J H^2_G(S) solve LJ=f_c with f_c L^2_G compactly supported. On a conical tail outside that support, its link displacement belongs to X^ con _h for every…",
           "dependsOn": [
             "m1-lin-conical"
+          ],
+          "objectUses": [
+            "m1-lin-rates"
           ]
         },
         {
@@ -407,6 +410,10 @@
           "dependsOn": [
             "m1-lin-observations",
             "m1-lin-gaussian-conical"
+          ],
+          "objectUses": [
+            "m1-lin-gaussian",
+            "m1-lin-conical"
           ]
         },
         {
@@ -427,7 +434,10 @@
           "kind": "lemma",
           "source": "A normalized family and its formal Gaussian action",
           "detail": "[Finite Taylor graphs] For every fixed M1 , let v^ (M) (b,x) be the coefficientwise real normal-height polynomial through degree M in the opening variables, let _M be the multiplier polynomial, and…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lin-family"
+          ]
         },
         {
           "id": "m1-ref-real-comparison",
@@ -493,6 +503,9 @@
           "detail": "[Exponential backward shielding] On a fixed log-length overlap suppose the hypotheses of Lemma~ hold with E B^ -2 . A solution of the homogeneous difference equation with zero entrance value and…",
           "dependsOn": [
             "m1-gauge-radial"
+          ],
+          "objectUses": [
+            "m1-gauge-mixed"
           ]
         },
         {
@@ -539,7 +552,10 @@
           "kind": "lemma",
           "source": "Two lateral stationary actions",
           "detail": "[Geometric telescoping] For any sufficiently high real-coefficient polynomial path \\(p_0(s)\\) with the specified opening jet and any sufficiently large fixed \\(\\), the arrays \\(G_(s,p_0(s)+s^ h)\\),…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-arr-real-stops"
+          ]
         },
         {
           "id": "m1-arr-division",
@@ -572,6 +588,9 @@
           "dependsOn": [
             "m1-arr-division",
             "m1-arr-formal-replacement"
+          ],
+          "objectUses": [
+            "m1-arr-gevrey"
           ]
         },
         {
@@ -592,7 +611,10 @@
           "kind": "proposition",
           "source": "Two lateral stationary actions",
           "detail": "[The common-parameter action upper bound] The formal critical arc implies that there are common parameters \\(p(s)\\), having a formal expansion with real coefficients, such that…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-arr-flatness-upgrade"
+          ]
         },
         {
           "id": "m1-jump-jump",
@@ -700,6 +722,9 @@
           "dependsOn": [
             "m1-arr-preliminary-solves",
             "m1-gauge-mixed"
+          ],
+          "objectUses": [
+            "m1-phase-inner-evaluation"
           ]
         },
         {
@@ -746,6 +771,9 @@
           "dependsOn": [
             "m1-ref-finite-taylor",
             "m1-ref-real-comparison"
+          ],
+          "objectUses": [
+            "m1-jet-finite-power"
           ]
         },
         {
@@ -756,7 +784,10 @@
           "kind": "lemma",
           "source": "Propagation and convergence of the rescaled flow",
           "detail": "[Improvement on a smaller ball] Fix a spatial loss (0,1) . Suppose the hypotheses of Proposition~ hold to radius R , and d C_0e^ -R^2/8 . Suppose also that, on each fixed interior fraction of the…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-flow-localized"
+          ]
         },
         {
           "id": "m1-flow-propagation",
@@ -803,6 +834,9 @@
             "m1-flow-propagation",
             "m1-flow-finite-length",
             "m1-geo-tangent"
+          ],
+          "objectUses": [
+            "m1-geo-representative"
           ]
         }
       ]

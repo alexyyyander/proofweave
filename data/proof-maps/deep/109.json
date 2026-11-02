@@ -248,6 +248,9 @@
           "detail": "[The cost of a rational matrix shear] Let A be a fixed finite collection of rational m m matrices. There is a fixed odd prime q such that the following holds. Let H=(H_1,,H_m) and D=(D_1,,D_m) be two…",
           "dependsOn": [
             "m1-lem-ordered-affine-streams"
+          ],
+          "objectUses": [
+            "m1-lem-lower-lower"
           ]
         },
         {
@@ -317,7 +320,10 @@
           "kind": "lemma",
           "source": "Synthetic transforms and their tape layout",
           "detail": "[Transform layout and cost] Fix the rational parameters and positive comparison constants a_d b_d , a_r b_r of Proposition~ . Fix constants C_>0 and C_w>1 , and choose the layer constants once as \\[…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prop-simultaneous-layer"
+          ]
         },
         {
           "id": "m1-lem-signed-ring-product",
@@ -382,7 +388,10 @@
           "kind": "lemma",
           "source": "Packed additions on grouped rectangles",
           "detail": "[Packed selected-bit addition for grouped rectangles] Let a valid grouped packed stream of Definition~ be supplied, and let A2 bound the actual total bit length of its descriptor D , including the…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-packed-selected-bit-rectangle"
+          ]
         }
       ]
     }

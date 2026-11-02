@@ -192,7 +192,10 @@
           "kind": "theorem",
           "source": "The equality case gives a simplicial cycle",
           "detail": "[Supports at equality] Let k3 and m=N_k . Suppose f: P( R^k)^ m-1 is a smooth admissible map. Its support complex K has every pair of labels as an edge, every facet has k vertices, and \\[ _ I a facet…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-local-degree"
+          ]
         },
         {
           "id": "m1-lem-six-from-map",
@@ -278,6 +281,7 @@
           "detail": "There is no admissible map RP^3^9 .",
           "dependsOn": [
             "m1-lem-partner-blocks",
+            "m1-lem-six-properties",
             "m1-thm-main",
             "m1-lem-projector-geometry",
             "m1-lem-cover-to-map"

@@ -572,7 +572,10 @@
           "kind": "lemma",
           "source": "A Cartan bound for fixed root data",
           "detail": "Let \\( I\\) be any set of at most \\(K\\) ordinary irreducible characters of \\(\\), and let \\(pr_ I \\) be their orthogonal coordinate projection. Then \\[ \\|pr_ I _ x, \\|^2 K|W|^3, \\|pr_ I _ P_ x, \\|^2…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-geom-projective-images"
+          ]
         },
         {
           "id": "m1-thm-quasisimple-cartan",
@@ -696,7 +699,10 @@
           "kind": "proposition",
           "source": "Ordinary labels, single cycles, and block cores",
           "detail": "[Labels and ordinary branching] The following conventions and formulas apply to the unipotent factors of the ordinary Jordan labels in the groups just specified. For _n^(q) , where =1 or -1 ,…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lab-sparse"
+          ]
         },
         {
           "id": "m1-lab-fingerprints",
@@ -920,6 +926,9 @@
             "m1-thm-geometric-cartan",
             "m1-lem-row-projection",
             "m1-lem-central-transfer"
+          ],
+          "objectUses": [
+            "m1-prop-triangle-cartan"
           ]
         },
         {
@@ -964,7 +973,10 @@
           "kind": "lemma",
           "source": "The cuspidal triangle endpoint",
           "detail": "[Inertia] The stabilizer quotient W_=N_G( L,)/L is the relative rational Weyl group of C_L in C . On a packet outside the even-sign case its factor is _b W(B_ r_ i,b ) . On an even-sign packet it is…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prop-single-cycle"
+          ]
         },
         {
           "id": "m1-end-head",
@@ -1045,7 +1057,10 @@
           "kind": "lemma",
           "source": "The cuspidal triangle endpoint",
           "detail": "[Exact total count] Sum the numbers of simple endomorphism-algebra types over all size choices~ . The result is | T| .",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-end-even-algebra"
+          ]
         },
         {
           "id": "m1-end-exhaustion",
@@ -1146,6 +1161,9 @@
             "m1-lem-ext-reduced-structure",
             "m1-lem-ext-based-sylow",
             "m1-lem-ext-kernel-removal"
+          ],
+          "objectUses": [
+            "m1-lem-ext-dual-recovery"
           ]
         },
         {
@@ -1220,6 +1238,9 @@
           "detail": "[Projective extension of the transports] For the Lie-component orbit above there is an integral Morita bimodule M_J between ^m(b') and b' on which I has covariance transports defined up to scalars in…",
           "dependsOn": [
             "m1-per-row-return"
+          ],
+          "objectUses": [
+            "m1-per-br"
           ]
         },
         {
@@ -1233,6 +1254,9 @@
           "dependsOn": [
             "m1-per-scalar-overlap",
             "m1-per-algebraic-action"
+          ],
+          "objectUses": [
+            "m1-per-row-return"
           ]
         },
         {
@@ -1247,6 +1271,9 @@
             "m1-thm-donovan",
             "m1-prop-sylow-comparison",
             "m1-thm-quasisimple-cartan"
+          ],
+          "objectUses": [
+            "m1-thm-extension-finiteness"
           ]
         }
       ]

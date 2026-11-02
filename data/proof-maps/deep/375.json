@@ -433,6 +433,11 @@
           "dependsOn": [
             "m1-lem-finite-green",
             "m1-lem-finite-gap"
+          ],
+          "objectUses": [
+            "m1-lem-finite-critical",
+            "m1-thm-finite",
+            "m1-lem-diffuse-mean"
           ]
         },
         {
@@ -489,6 +494,9 @@
             "m1-thm-finite",
             "m1-cor-finite-subcritical",
             "m1-lem-reach-half-line-barrier"
+          ],
+          "objectUses": [
+            "m1-lem-reach-density-window"
           ]
         },
         {
@@ -535,7 +543,11 @@
           "kind": "lemma",
           "source": "Interface stability and exact interactions",
           "detail": "[Sharp means] For each >0 there exist P_< and, for each fixed P P_ , a number _ ,P >0 such that every zero with 0<D(z)<_ ,P is regular and satisfies cD(z) I_P(z) C_P D(z), I_P(z)(1-)|A(z)|^2,…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-diffuse-mean",
+            "m1-lem-diffuse-compactness"
+          ]
         },
         {
           "id": "m1-lem-interface-mean-gradient",
@@ -602,7 +614,10 @@
           "kind": "lemma",
           "source": "Interface stability and exact interactions",
           "detail": "[Uniform area on good pieces] For 0<1/4 , the area of X in any unit ball is bounded by a dimensional constant, independently of . Consequently its area in an ambient ball of radius r1 is at most…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-diffuse-local"
+          ]
         },
         {
           "id": "m1-lem-interface-integral",

@@ -543,6 +543,9 @@
             "m1-lem-projected-witness",
             "m1-thm-shortcode",
             "m1-lem-good-row-advice"
+          ],
+          "objectUses": [
+            "m1-lem-projected-tv"
           ]
         },
         {
@@ -594,6 +597,9 @@
             "m1-prop-matrix-decoding",
             "m1-thm-parity",
             "m1-lem-distinct-parity"
+          ],
+          "objectUses": [
+            "m1-lem-good-row-advice"
           ]
         },
         {
@@ -641,7 +647,10 @@
           "kind": "lemma",
           "source": "Finite formulations of the consequences",
           "detail": "[Simple strong-left games] Fix \\(0<,<1\\) and integers \\(d,H1\\). There are integers \\(h,R1\\), with \\(h H\\) and \\(d h\\), and a deterministic polynomial-time reduction from \\(3SAT\\) to nonempty explicit…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-thm-ugc"
+          ]
         },
         {
           "id": "m1-prop-finite-ordering-transfer",
@@ -685,6 +694,9 @@
             "m1-lem-ordering-local-data",
             "m1-lem-ordering-collision",
             "m1-thm-ugc"
+          ],
+          "objectUses": [
+            "m1-lem-simple-strong-left"
           ]
         }
       ]

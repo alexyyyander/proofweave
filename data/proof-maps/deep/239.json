@@ -415,7 +415,10 @@
           "kind": "lemma",
           "source": "The binary model and the proof framework",
           "detail": "[Reduction to corank one] For the binary model in dimension \\(N\\), \\[ ( B_N=0) 2^ o(N) ( B_N=1) +2^ -(N^ 6/5 ) . \\]",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-corank-tail"
+          ]
         },
         {
           "id": "m1-lem-column-reduction",
@@ -643,6 +646,9 @@
             "m1-lem-robust-extraction",
             "m1-lem-robust-height",
             "m1-lem-colored-image-order"
+          ],
+          "objectUses": [
+            "m1-prop-typical-spectrum"
           ]
         },
         {
@@ -767,6 +773,9 @@
           "detail": "[Budget optimization] Let \\(c\\) and \\( E\\) be defined by Equations~ and , and let \\(=7/5\\). If \\(g,v_0,a_0,u0\\) satisfy \\[ 2g+3a_0+u12, g+v_0+2a_0+2u12, \\] then there are \\(x\\) and \\(y\\) for which…",
           "dependsOn": [
             "m1-prop-admissible-potential"
+          ],
+          "objectUses": [
+            "m1-prop-certificate-pricing"
           ]
         },
         {
@@ -791,6 +800,8 @@
           "detail": "[Cost of heavy retained layers] Let \\( F\\) denote exposed information which fixes a nonsingular binary matrix \\(C\\) of size \\(m I_N\\) and a quotient map \\(:^m H\\) with \\(C^m\\). Suppose that,…",
           "dependsOn": [
             "m1-lem-retention-lattice",
+            "m1-prop-retention-cost",
+            "m1-prop-potential-step",
             "m1-lem-gated-deletion",
             "m1-lem-corank-reduction",
             "m1-lem-column-reduction",

@@ -744,7 +744,10 @@
           "kind": "lemma",
           "source": "A two-point estimate on spherical cosets",
           "detail": "Let \\(R\\) be a minimal complex with a single simple \\(U_\\) at \\((0,0)\\) and shifted right projectives, and let \\(r-1\\) bound its normalized levels. Applying a right inverse twist, and then…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-positive-layer"
+          ]
         },
         {
           "id": "m1-lem-two-point-tensor-filtration",
@@ -896,6 +899,9 @@
             "m1-prop-isolated-layer",
             "m1-lem-cap-accessibility",
             "m1-lem-filtration-principle"
+          ],
+          "objectUses": [
+            "m1-prop-candidate-uniqueness"
           ]
         },
         {
@@ -961,7 +967,10 @@
           "kind": "lemma",
           "source": "The global harmonic filtration",
           "detail": "The all-eligible lower poset at P=A_Tx is a product of the residue sublevel posets of Proposition~ , each with a largest element adjoined, with the all-largest tuple deleted. More precisely, its…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prop-residue-sublevels"
+          ]
         },
         {
           "id": "m1-lem-global-product-minus-top",
@@ -983,6 +992,9 @@
           "detail": "The earlier strict lower part of every P D is empty or contractible.",
           "dependsOn": [
             "m1-lem-global-residue-blocks"
+          ],
+          "objectUses": [
+            "m1-lem-global-product-minus-top"
           ]
         },
         {
@@ -1221,6 +1233,9 @@
           "detail": "Suppose that T acts geometrically on Y and fix y Y . There is a constant C_1 , depending only on this action, y , and the fixed presentation, with the following property. Let be a triangulated…",
           "dependsOn": [
             "m2-lem-orbit-control"
+          ],
+          "objectUses": [
+            "m2-lem-triangular-presentation"
           ]
         },
         {
@@ -1274,7 +1289,10 @@
           "kind": "lemma",
           "source": "The finite Artin matrix and the final contradiction",
           "detail": "For the elements d,e of G , \\[ C_G(d) C_G(e)=T. \\]",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-lem-amalgam-normal-form"
+          ]
         },
         {
           "id": "m2-lem-geometric-centralizer",

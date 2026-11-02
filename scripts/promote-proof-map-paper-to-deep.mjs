@@ -28,7 +28,11 @@ const only = option("--family", null);
 const machineMarker = "Machine-promoted from the paper structure";
 
 const backgroundPattern = /(cf\.|see also|compare|recall|as discussed|mentioned|independent of|does not (?:use|depend)|apart from|analogous|similarly|\bas in\b|in the same way)/i;
-const identificationPattern = /(?:\bthe case of[^.;]{0,60}\bis\b|\bthe remaining assertions are\b|\bthe other (?:case )?is\b|\bthe (?:vanishing |first |second )?alternative is\b)\s*$/i;
+const identificationPattern = /(?:\bthe case of[^.;]{0,60}\bis\b|\bthe remaining assertions are\b|\bthe other (?:case )?is\b|\bthe (?:vanishing |first |second )?alternative is\b|\bis\s+(?:Lemma|Proposition|Theorem|Corollary))\s*~?\s*$/i;
+const objectPattern = /(?:\b(?:the|a|an|its|their|this|these|those|such)\s+[^.;]{0,90}(?:of|in|from)\s+(?:the\s+)?(?:proof of\s+)?(?:Lemma|Proposition|Theorem|Corollary)|\b(?:constructed|defined|introduced|proved|stated|obtained|given|established|produced|described|used)\s+in\s+(?:the\s+)?(?:proof of\s+)?(?:Lemma|Proposition|Theorem|Corollary))\s*~?\s*$/i;
+const listContinuation = /(?:and|,|&)\s*~?\s*$/;
+const listReference = /(?:Lemmas?|Propositions?|Theorems?|Corollary|Corollaries)\s*~?\s*\\(?:c|C|auto)?ref\{[^}]+\}/;
+const passiveDependency = /^\s*(?:\([^)]{0,24}\))?\s*(?:is|are|was|were)\s+(?:used|applied|cited|invoked|required|needed|employed|quoted|recalled)\b/i;
 const beforeDependency = /(?:by|using|via|from|apply|applying|through|thanks to|in view of|as a consequence of|consequence of|combining|combine|combined with|invoking|appeal(?:ing)? to|utiliz\w*|rel(?:y|ies|ying) on|based on|uses?|use)\s+(?:the\s+)?[^.;]{0,100}(?:Lemma|Proposition|Theorem|Corollary)\s*~?\s*$/i;
 const afterDependency = /^\s*(?:\([^)]{0,24}\))?\s*(?:(?:then|now|also|therefore|thus|consequently|hence|further|finally)\s+)?(?:[^.;]{0,120}?)\b(applies?|apply|gives?|give|shows?|show|yields?|yield|implies?|imply|provides?|provide|supplies?|supply|guarantees?|guarantee|ensures?|ensure|forces?|force|makes?|make|identifies?|identify|places?|place|bounds?|bound|permits?|permit|allows?|allow|says?|say|states? that|state that|establishes?|establish|confirms?|confirm|proves?|prove|reduces?|reduce|extends?|extend|determines?|determine|recovers?|recover|controls?|control|characteri[sz]es?|expresses?|preserves?|transports?|takes?|handles?|lets?)\b/i;
 const listDependency = /^\s*(?:,|and|&)\s+(?:Lemma|Proposition|Theorem|Corollary)\s*~?\s*\\(?:c|C|auto)?ref\{[^}]+\}[^.;]{0,80}?\b(?:applies|give|gives|show|shows|yield|yields|imply|implies|provide|provides|supply|supplies|guarantee|guarantees|ensure|ensures|force|forces|make|makes|identify|identifies|place|places|bound|bounds|permit|permits|allow|allows|establish|establishes|confirm|confirms|prove|proves|reduce|reduces|extend|extends|determine|determines|recover|recovers|control|controls)\b/i;
@@ -45,11 +49,14 @@ function classifyEdge(edge) {
   const match = pattern.exec(edge.context);
   if (!match) return "unclear";
   const start = match.index;
-  const before = edge.context.slice(Math.max(0, start - 160), start);
+  const before = edge.context.slice(Math.max(0, start - 200), start);
   const after = edge.context.slice(start + match[0].length, start + match[0].length + 140);
   if (backgroundPattern.test(before) || backgroundPattern.test(after)) return "background";
   if (identificationPattern.test(before)) return "mention";
   if (beforeDependency.test(before) || afterDependency.test(after) || listDependency.test(after)) return "dependency";
+  if (listContinuation.test(before) && listReference.test(before)) return "dependency";
+  if (passiveDependency.test(after)) return "dependency";
+  if (objectPattern.test(before)) return "object";
   return "mention";
 }
 
@@ -97,13 +104,15 @@ function acyclic(nodes, dependencies) {
 function buildDeep(structure, family) {
   const nodes = structure.nodes;
   const strategies = [];
-  const counts = { background: 0, mention: 0, unclear: 0, cycles: 0 };
+  const counts = { background: 0, mention: 0, object: 0, unclear: 0, cycles: 0 };
   for (const manuscript of structure.manuscripts) {
     const manuscriptNodes = nodes.filter((node) => node.manuscript === manuscript.title);
     if (manuscriptNodes.length === 0) continue;
     const ids = new Set(manuscriptNodes.map((node) => node.id));
     const dependencies = new Map(manuscriptNodes.map((node) => [node.id, []]));
+    const objectUses = new Map(manuscriptNodes.map((node) => [node.id, []]));
     const seen = new Set();
+    const seenObjects = new Set();
     for (const edge of structure.edges) {
       if (!ids.has(edge.from) || !ids.has(edge.to)) continue;
       const verdict = classifyEdge(edge);
@@ -115,6 +124,15 @@ function buildDeep(structure, family) {
         counts.mention += 1;
         continue;
       }
+      if (verdict === "object") {
+        counts.object += 1;
+        const objectKey = `${edge.from}|${edge.to}`;
+        if (!seenObjects.has(objectKey)) {
+          seenObjects.add(objectKey);
+          objectUses.get(edge.to).push(edge.from);
+        }
+        continue;
+      }
       if (verdict === "unclear") {
         counts.unclear += 1;
         continue;
@@ -124,7 +142,7 @@ function buildDeep(structure, family) {
       seen.add(key);
       dependencies.get(edge.to).push(edge.from);
     }
-    strategies.push({ manuscript, nodes: manuscriptNodes, dependencies });
+    strategies.push({ manuscript, nodes: manuscriptNodes, dependencies, objectUses });
   }
   if (strategies.length === 0) return { error: "no strategies" };
   const dependencyCount = strategies.reduce((total, strategy) => total + [...strategy.dependencies.values()].reduce((sum, list) => sum + list.length, 0), 0);
@@ -154,6 +172,7 @@ function buildDeep(structure, family) {
       source: node.section ?? strategy.manuscript.title,
       detail: node.statement || node.label,
       dependsOn: dependencies.get(node.id) ?? [],
+      ...(strategy.objectUses.get(node.id)?.length ? { objectUses: strategy.objectUses.get(node.id) } : {}),
     }));
     strategiesOut.push({
       id: strategyId,
@@ -274,6 +293,7 @@ process.stdout.write(`${JSON.stringify({
   edges: results.filter((entry) => entry.edges !== undefined).reduce((total, entry) => total + entry.edges, 0),
   droppedBackground: results.reduce((total, entry) => total + (entry.background ?? 0), 0),
   droppedMentions: results.reduce((total, entry) => total + (entry.mention ?? 0), 0),
+  objectUses: results.reduce((total, entry) => total + (entry.object ?? 0), 0),
   droppedUnclear: results.reduce((total, entry) => total + (entry.unclear ?? 0), 0),
   droppedCycles: results.reduce((total, entry) => total + (entry.cycles ?? 0), 0),
   demotedSample: tally("demoted").slice(0, 8),

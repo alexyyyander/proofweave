@@ -412,6 +412,9 @@
           "detail": "[Subject reduction] If M:A and M_^*M' , then M':A , with the exact original expected type.",
           "dependsOn": [
             "m1-pts-context-conversion"
+          ],
+          "objectUses": [
+            "m1-pts-correctness"
           ]
         },
         {
@@ -422,7 +425,10 @@
           "kind": "lemma",
           "source": "Structural properties",
           "detail": "[Uniqueness for neutral expressions] If H is neutral and H:A and H:B , then A=_ B . If H:s for a literal sort s , then s itself is sorted in . Every normal typable application is neutral.",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-pts-correctness"
+          ]
         },
         {
           "id": "m1-pts-normalizing-judgments",
@@ -817,7 +823,10 @@
           "kind": "lemma",
           "source": "Relational coding of the diagonal argument",
           "detail": "[Evaluation, validity, and response] The relation \\(\\) is an equivalence relation, with the congruence builder of Lemma~ , and \\[ RoundRel_X(x):xRound_Xx. \\] Data cancellation supplies \\[ LP(i,a):…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-rel-equivalence"
+          ]
         },
         {
           "id": "m1-rel-tags",
@@ -827,7 +836,10 @@
           "kind": "lemma",
           "source": "Relational coding of the diagonal argument",
           "detail": "[Tagged observations] For \\(t=0,,r\\) there are proofs of the signed bits \\(H_a(x^t)\\) if \\(b_a(t)=1\\), and \\( H_a(x^t)\\) if \\(b_a(t)=0\\), and proofs \\[ O_i(x^t) le(i,x). \\] Each \\(H_a\\) and \\(O_i\\)…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-rel-equivalence"
+          ]
         },
         {
           "id": "m1-rel-query-realization",

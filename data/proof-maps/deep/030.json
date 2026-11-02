@@ -208,7 +208,10 @@
           "kind": "lemma",
           "source": "Cyclic covers and two degenerations",
           "detail": "In the constant- E family, blow up the surface at the collision point over either boundary parameter in , and normalize the resulting surface in Y^m=f_R . This gives a regular semistable model near…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-geo-family"
+          ]
         },
         {
           "id": "m1-geo-compact-type",
@@ -264,6 +267,9 @@
           "detail": "After a cyclic indexing of the lifts, their homology classes are [_i]=(a_i-a_ i+1 ), i/m, or the same formula with i-1 in place of i+1 .",
           "dependsOn": [
             "m1-mon-slit"
+          ],
+          "objectUses": [
+            "m1-mon-integral-module"
           ]
         },
         {
@@ -383,6 +389,9 @@
           "detail": "[Local constancy of the semistable type] Let L_0 be a local field, let X be a smooth L_0 -variety, and let A X be an abelian scheme of relative dimension g . For x_0 X(L_0) , there exist a finite…",
           "dependsOn": [
             "m1-loc-torsion"
+          ],
+          "objectUses": [
+            "m1-loc-frobenius"
           ]
         },
         {
@@ -429,7 +438,10 @@
           "kind": "lemma",
           "source": "One specialization with all residual properties",
           "detail": "For each pair in , the geometric monodromy of H^1(C_m,_) on every nontrivial rotation-character space is absolutely irreducible. Its image contains opposite nonidentity root unipotents on that space.…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-mon-transvections"
+          ]
         },
         {
           "id": "m1-res-trivial-character",
@@ -465,6 +477,9 @@
             "m1-res-finite-specialization",
             "m1-res-trivial-character",
             "m1-sys-elliptic"
+          ],
+          "objectUses": [
+            "m1-res-geometric"
           ]
         },
         {
@@ -507,6 +522,9 @@
             "m1-aut-transport",
             "m1-loc-characters",
             "m1-aut-automorphic-local"
+          ],
+          "objectUses": [
+            "m1-sys-elliptic"
           ]
         },
         {

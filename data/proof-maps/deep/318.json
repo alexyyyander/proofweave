@@ -475,6 +475,9 @@
           "detail": "[Vanishing labels and higher starting height] At level one, for each nonzero label v^m there is a coordinate w_v such that x=a unit_ 0 v^m w_v. Each ideal (w_v) is P_n -stable. Its conormal is a…",
           "dependsOn": [
             "m1-rings-full-sections-presentation"
+          ],
+          "objectUses": [
+            "m1-prop-finite-rings"
           ]
         },
         {
@@ -485,7 +488,10 @@
           "kind": "proposition",
           "source": "Finite frame rings and Cartier transfers",
           "detail": "[Frame and lift torsors] The rings B_U form a tower of finite \\'etale B -algebras. After passing to normal open levels, the maps in the tower are finite \\'etale torsors for the indicated finite deck…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prop-finite-rings"
+          ]
         },
         {
           "id": "m1-rings-dual-distribution",
@@ -515,7 +521,11 @@
           "kind": "lemma",
           "source": "Finite frame rings and Cartier transfers",
           "detail": "[Cartier transfer and its transpose] Fix one sufficiently divisible step with function-root exponent Q , and use the volume just constructed. The quotient transfers of the lift torsors can be…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-rings-dual-distribution",
+            "m1-rings-coinduction"
+          ]
         },
         {
           "id": "m1-thm-coefficient-finiteness",
@@ -592,7 +602,11 @@
           "kind": "theorem",
           "source": "The frame quotient and compact supports",
           "detail": "Let X be the full perfected joint frame space over E . There is a P_n U_0 -equivariant description of X as the space of exact sequences 0^m V_n V_t0 whose determinant comparison is a ^ -multiple of a…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-support-tate-ball",
+            "m1-prop-finite-rings"
+          ]
         },
         {
           "id": "m1-lem-solid-rows",
@@ -707,6 +721,9 @@
             "m1-support-positive-extension",
             "m1-thm-geometric-quotient",
             "m1-support-parameters"
+          ],
+          "objectUses": [
+            "m1-lem-compact-duality"
           ]
         },
         {
@@ -777,6 +794,9 @@
           "dependsOn": [
             "m1-prop-frame-torsor",
             "m1-lem-compact-duality"
+          ],
+          "objectUses": [
+            "m1-prop-pole-removal"
           ]
         },
         {
@@ -833,6 +853,7 @@
           "source": "Removing the pole bound",
           "detail": "Let V be a torsion-free pro- p compact p -adic analytic group, and let C be a bounded complex of smooth k[V] -modules. If R(V,C) has finite-dimensional cohomology in each degree, then \\[…",
           "dependsOn": [
+            "m1-lem-full-sections",
             "m1-boundary-translation-descent",
             "m1-lem-compact-norm-line",
             "m1-cor-compact-norm-filtration",
@@ -847,7 +868,10 @@
           "kind": "lemma",
           "source": "Full frames and completion of the coefficient induction",
           "detail": "[Finite stable images] At a sufficiently deep fixed frame level, let P=x^ -b L be a transfer-stable compact lattice as in Proposition~ . The map \\[ H^i(P_n,P) H^i(P_n,B_U) \\] identifies the stable…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-cartier-transfer"
+          ]
         },
         {
           "id": "m1-full-trace-descent",
@@ -871,6 +895,9 @@
           "detail": "[Full-frame support comparison] Let R=(_E/)^a , with =p^ , and let Z=(N_t^m)_ ind be the independent extension locus of Theorem~ . Use the geometric coefficient A=(^ ,+ /)^a of Section~ . There is an…",
           "dependsOn": [
             "m1-prop-transpose-comparison"
+          ],
+          "objectUses": [
+            "m1-full-trace-descent"
           ]
         },
         {
@@ -935,6 +962,9 @@
             "m1-support-finite-invariants",
             "m1-full-trace-descent",
             "m1-full-root-corestriction"
+          ],
+          "objectUses": [
+            "m1-full-corestriction"
           ]
         },
         {
@@ -960,6 +990,10 @@
           "detail": "[Norm characters on the perfected individual rows] At the current induction pair (n,s) , for every compact open V_ n-s () and all a,i , the vector space \\[ Q=H^a\\!(V, H^i(P_n,B_ full ^ perf )) \\] is…",
           "dependsOn": [
             "m1-full-perfected-connected-calculation"
+          ],
+          "objectUses": [
+            "m1-full-perfected-support-characters",
+            "m1-boundary-row-finiteness"
           ]
         },
         {
@@ -1068,7 +1102,10 @@
           "kind": "lemma",
           "source": "Integral primitive classes and stable representatives",
           "detail": "[Integral Soul\\'e coordinate] Let 2 i p-2 , d=2i-1 , and X=K()^_p . There is a -linear isomorphism \\[ c_i^ S :_dX ^1(,(i)) \\] whose value on the completion of x K_d() rationalizes to the Soul\\'e…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-gen-local-k-coordinates"
+          ]
         },
         {
           "id": "m1-gen-exponential-lattice",
@@ -1166,6 +1203,7 @@
           "source": "The specified constant-cochain module",
           "detail": "[The actual constant-cochain module] For 1 t<n<p-1 , put m=n-t . The cup map _k(e_1,,e_m) H^*(P_n,B_ conn,G ), e_i _i1, |e_i|=2i-1, is an isomorphism of graded k -algebras. In particular, for I\\…",
           "dependsOn": [
+            "m1-thm-stable-generators",
             "m1-full-surviving-module",
             "m1-full-joint-completion"
           ]
@@ -1241,6 +1279,9 @@
           "dependsOn": [
             "m1-thm-main",
             "m1-spec-global-classes"
+          ],
+          "objectUses": [
+            "m1-prop-assembly"
           ]
         }
       ]

@@ -520,7 +520,10 @@
           "kind": "lemma",
           "source": "Stationary height slopes",
           "detail": "[The inverse coupling] Let be an invariant probability on X and let A(W) . Suppose there are _j L^2(X,;W) satisfying with l=A . There is a finite nonzero U -invariant measure on Y and functions _j…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-pair-sections"
+          ]
         },
         {
           "id": "m1-prop-stationary-slopes",
@@ -669,6 +672,9 @@
             "m1-lem-fixed-sheet-packing",
             "m1-lem-path-packing",
             "m1-lem-polynomial-image"
+          ],
+          "objectUses": [
+            "m1-lem-lift-multiplicity"
           ]
         },
         {
@@ -702,10 +708,14 @@
           "dependsOn": [
             "m1-lem-strict-width-tiling",
             "m1-lem-product-schemes",
+            "m1-lem-support-switch-paths",
             "m1-lem-d-scaling",
             "m1-prop-affine-profiles",
             "m1-lem-cone-quotients",
             "m1-lem-fixed-sheet-packing"
+          ],
+          "objectUses": [
+            "m1-prop-neighbor-labels"
           ]
         },
         {
@@ -721,6 +731,9 @@
             "m1-lem-box-calculus",
             "m1-prop-affine-profiles",
             "m1-lem-log-distortion"
+          ],
+          "objectUses": [
+            "m1-prop-neighbor-offsets"
           ]
         },
         {
@@ -762,6 +775,9 @@
             "m1-prop-uniform-sublinear",
             "m1-lem-path-packing",
             "m1-lem-cone-quotients"
+          ],
+          "objectUses": [
+            "m1-lem-support-switch-paths"
           ]
         },
         {
@@ -799,6 +815,7 @@
           "dependsOn": [
             "m1-lem-lipschitz-pairs",
             "m1-prop-uniform-sublinear",
+            "m1-lem-boundary-volume",
             "m1-lem-leaf-height"
           ]
         },
@@ -840,6 +857,9 @@
             "m1-thm-bounded-height",
             "m1-cor-lattice-recognition",
             "m1-lem-cartan-model"
+          ],
+          "objectUses": [
+            "m1-lem-height-kernel-growth"
           ]
         }
       ]

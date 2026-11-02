@@ -243,7 +243,10 @@
           "kind": "lemma",
           "source": "Diagrams and linear filling",
           "detail": "A null letter word has a picture of minimum total top perimeter and, subject to this, minimum number of remaining interior faces, with the following properties. The same assertion holds for a fixed…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-diagram-existence"
+          ]
         },
         {
           "id": "m1-diagram-weighted-rank",
@@ -288,7 +291,11 @@
           "source": "Diagrams and linear filling",
           "detail": "For every D< and >0 there is an integer K=K(D,) such that the vertices of any finite planar multigraph of maximum degree at most D can be partitioned into sets of size at most K , with at most times…",
           "dependsOn": [
-            "m1-diagram-rank"
+            "m1-diagram-rank",
+            "m1-diagram-normal-form"
+          ],
+          "objectUses": [
+            "m1-diagram-fragment"
           ]
         },
         {
@@ -481,7 +488,10 @@
           "kind": "lemma",
           "source": "The geometric obstruction",
           "detail": "The unit vectors M_C,M_D are antipodal in T : \\[ d_T(M_C,M_D)=2, M_C M_D =-1. \\]",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-geom-exceptional"
+          ]
         },
         {
           "id": "m1-prop-no-configuration",

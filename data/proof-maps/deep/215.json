@@ -563,7 +563,10 @@
           "kind": "lemma",
           "source": "Block observations and the free kernels",
           "detail": "[Ambient core and tail estimates] The core factor retains the reserve e^ -c_Lp^2s_c of app:explicit-core, apart from the additional envelope \\ e_0(M^Ds_c+ _ x I_c |Z_x|^2)\\ , e_0=C_Lgpoly(M,p). The…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-rg-ambient"
+          ]
         },
         {
           "id": "m1-prop-rg-joint",
@@ -573,7 +576,10 @@
           "kind": "proposition",
           "source": "Block observations and the free kernels",
           "detail": "[Joint integration and comparison] For every finite admissible selection A of prepared factors in a fixed pattern, including the compulsory cores, there are nonnegative majorants a_ such that \\[…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-rg-reserves"
+          ]
         },
         {
           "id": "m1-lem-rg-canonical-contraction",
@@ -883,6 +889,9 @@
           "detail": "[Canonical increments and comparison estimates] For every type P\\ r,+,-\\ , initialize the nearest-neighbor model as in Section~ . As long as the input couplings lie in their admitted bands, the exact…",
           "dependsOn": [
             "m1-thm-rg-step"
+          ],
+          "objectUses": [
+            "m1-prop-endpoint-matching"
           ]
         },
         {
@@ -955,6 +964,9 @@
           "dependsOn": [
             "m1-lem-editable-regions",
             "m1-cor-terminal-alignment"
+          ],
+          "objectUses": [
+            "m1-prop-integrated-comparison"
           ]
         },
         {
@@ -970,6 +982,9 @@
             "m1-thm-rg-step",
             "m1-lem-band-endpoints",
             "m1-prop-integrated-comparison"
+          ],
+          "objectUses": [
+            "m1-prop-endpoint-matching"
           ]
         },
         {
@@ -983,6 +998,9 @@
           "dependsOn": [
             "m1-lem-retuning",
             "m1-prop-endpoint-comparison"
+          ],
+          "objectUses": [
+            "m1-prop-preliminary"
           ]
         },
         {
@@ -1057,6 +1075,10 @@
           "dependsOn": [
             "m1-lem-moment-bound",
             "m1-prop-matching"
+          ],
+          "objectUses": [
+            "m1-prop-uniform-volume",
+            "m1-lem-inclined-periods"
           ]
         },
         {
@@ -1132,6 +1154,9 @@
             "m1-prop-offset-limits",
             "m1-prop-normalization",
             "m1-lem-shooting-normalization"
+          ],
+          "objectUses": [
+            "m1-thm-main"
           ]
         }
       ]
@@ -1231,7 +1256,10 @@
           "kind": "proposition",
           "source": "Transfer spectra and volume comparison",
           "detail": "[Comparison for three-quarter supports] Let w=w_k be sufficiently large. If the support of a bounded observable F has a lift contained in a rectangle of extent at most 3w/4 in each coordinate, then…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-inp-contracts"
+          ]
         },
         {
           "id": "m2-tra-moments",

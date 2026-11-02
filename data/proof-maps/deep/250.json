@@ -510,6 +510,10 @@
             "m1-thm-algebra-package",
             "m1-thm-envelope",
             "m1-lem-affine-limit"
+          ],
+          "objectUses": [
+            "m1-lem-group-input",
+            "m1-thm-zaremsky"
           ]
         },
         {
@@ -675,6 +679,9 @@
           "detail": "Under the assumptions of Theorem~ , for every finite bound A and every n0 there are an integer k0 and a finite bound B such that f^k sends every reduced integral n -cycle of C_*^A(U) to a boundary in…",
           "dependsOn": [
             "m2-lem-controlled-additivity"
+          ],
+          "objectUses": [
+            "m2-lem-idempotents"
           ]
         },
         {
@@ -851,6 +858,9 @@
             "m2-thm-stage-kernel",
             "m2-lem-diagonal",
             "m2-lem-encoding-finite-presentation"
+          ],
+          "objectUses": [
+            "m2-thm-ring-data"
           ]
         },
         {
@@ -864,6 +874,10 @@
           "dependsOn": [
             "m2-lem-stage-faithful-transitive",
             "m2-lem-stage-stabilizer-torus"
+          ],
+          "objectUses": [
+            "m2-lem-steinberg-lift",
+            "m2-thm-torus"
           ]
         },
         {
@@ -1013,6 +1027,9 @@
           "dependsOn": [
             "m3-thm-torus",
             "m3-lem-idempotents"
+          ],
+          "objectUses": [
+            "m3-lem-controlled-additivity"
           ]
         },
         {
@@ -1027,6 +1044,9 @@
             "m3-thm-main",
             "m3-lem-universal",
             "m3-prop-self-map"
+          ],
+          "objectUses": [
+            "m3-thm-torus"
           ]
         }
       ]

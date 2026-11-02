@@ -633,7 +633,8 @@
           "source": "Weighted comparison budgets",
           "detail": "[Closure for the modified constraints] Along any fixed sequence of optimizers with the strong-removal hypotheses above and fixed outer-comparability constants, the following estimate holds for…",
           "dependsOn": [
-            "m1-bud-common-star"
+            "m1-bud-common-star",
+            "m1-bud-outer-second"
           ]
         },
         {
@@ -686,7 +687,10 @@
           "kind": "lemma",
           "source": "Weighted comparison budgets",
           "detail": "[Integrated errors at free forks] Uniformly, \\[ _0^ c_Hu D_v dv&_ u^2 T_1, T_1=A+B_f+y_c^2,\\\\ _0^ c_Hu D_v^2dv&_ u^3 T_2, T_2=A^2+B_f^2+A^ 3/2 y_c+A y_c^ 5/3 ,\\\\ (avg_ v w D_v^2)^ 1/2 &_ u A (w…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-bud-box-moments"
+          ]
         },
         {
           "id": "m1-bud-high-primitive",

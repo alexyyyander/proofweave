@@ -370,6 +370,9 @@
           "detail": "[Outer reduction] Proposition~ implies Theorem~ , and Theorem~ implies Theorem~ .",
           "dependsOn": [
             "m1-prop-normalized"
+          ],
+          "objectUses": [
+            "m1-thm-main"
           ]
         },
         {
@@ -623,6 +626,9 @@
           "dependsOn": [
             "m1-cor-predictor-list",
             "m1-lem-two-accuracy-expansion"
+          ],
+          "objectUses": [
+            "m1-lem-predictor-replacement"
           ]
         },
         {
@@ -783,7 +789,10 @@
           "kind": "lemma",
           "source": "Short depth blocks and side terms",
           "detail": "[Variation on certified endpoint cells] Let Z_ G,s be a basic coarse output in Equation~ . Consider a common collection of disjoint, or boundedly overlapping, depth intervals [r,t] . At each right…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-usable-bessel"
+          ]
         },
         {
           "id": "m1-lem-sides-stacks",

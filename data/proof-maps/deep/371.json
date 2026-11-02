@@ -558,6 +558,9 @@
           "detail": "[Interface conditions and the limiting determinant] The limiting kernel in consists of free slow exterior modes satisfying f(R)=0, g(R+)=g(R-), g'(R+)=g'(R-), g(r)=c r^(r<R). It is nonzero exactly…",
           "dependsOn": [
             "m1-free-columns"
+          ],
+          "objectUses": [
+            "m1-free-main"
           ]
         },
         {
@@ -574,6 +577,9 @@
             "m1-spec-real-bound",
             "m1-spec-high-exclusion",
             "m1-spec-slow-basis"
+          ],
+          "objectUses": [
+            "m1-profile-existence"
           ]
         },
         {
@@ -616,7 +622,10 @@
           "kind": "theorem",
           "source": "Linear decay and transfer to expanding tori",
           "detail": "[Stable whole-space evolution] There is a bounded real-linear map :Y R^ 14 such that E=I, S(s)E=Ee^ s , S(s)=e^ s (s R). For some C_S< and >0 , \\|S(s)v\\|_Y C_Se^ - s \\|v\\|_Y, s0, v=0. Thus E is the…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-spectrum-classification"
+          ]
         },
         {
           "id": "m1-linear-torus",
@@ -660,6 +669,9 @@
           "detail": "[Parameter expansion] For |d'| with fixed and small, uniformly as T_00 , v_0(d';u_ ref ) =E_L C d'+r(d'), C d'=(-+b,,), and \\[ \\|r(d')\\|_ Y_L C(|d'|^2+T_0|d'|). \\] For fixed T_0 , replacing u_ ref by…",
           "dependsOn": [
             "m1-cor-gaussian"
+          ],
+          "objectUses": [
+            "m1-nl-graph"
           ]
         }
       ]

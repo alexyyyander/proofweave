@@ -629,6 +629,9 @@
           "detail": "[Additional invariant limiting variables] Adjoin to the compact spectral data any bounded limiting tests which are asymptotically unchanged by fixed left and right Fourier shifts. The corresponding…",
           "dependsOn": [
             "m1-prop-links-link"
+          ],
+          "objectUses": [
+            "m1-lem-links-gram-transport"
           ]
         },
         {
@@ -745,6 +748,9 @@
           "dependsOn": [
             "m1-prop-transfer-transverse",
             "m1-lem-transfer-disjointness"
+          ],
+          "objectUses": [
+            "m1-lem-links-relative-boundedness"
           ]
         },
         {
@@ -758,6 +764,9 @@
           "dependsOn": [
             "m1-lem-links-relative-boundedness",
             "m1-lem-links-matrix-data"
+          ],
+          "objectUses": [
+            "m1-prop-links-link"
           ]
         },
         {
@@ -831,7 +840,10 @@
           "kind": "corollary",
           "source": "Transverse Fourier products and geometric transfer",
           "detail": "[Fibrewise links and polynomial fullness] Disintegrate over the two sharp endpoint faces and use genuine source amplifications if necessary. For product-almost every pair of endpoint fibres, the…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prop-transfer-incidence"
+          ]
         },
         {
           "id": "m1-prop-finite-frame",
@@ -928,6 +940,7 @@
           "detail": "[Dimensions and shrinking stabilizers] Matched finite-place panel groups have equal Lie dimension over their common prime field. The target stabilizers of the blocks of D_n shrink to the identity…",
           "dependsOn": [
             "m1-lem-finite-limit-kernel",
+            "m1-cor-finite-primes",
             "m1-lem-finite-blocks"
           ]
         },
@@ -1045,6 +1058,9 @@
           "detail": "[Ray lift] Consider any sequence of finite tracial coefficient algebras, twists, and countable group homomorphisms into \\(Isom(X)\\). Let \\( d_1 \\), \\(l/ d_1 \\), and let \\(Y D\\) have Fourier support…",
           "dependsOn": [
             "m1-lem-ray-geometry"
+          ],
+          "objectUses": [
+            "m1-lem-ray-angular"
           ]
         },
         {
@@ -1058,6 +1074,9 @@
           "dependsOn": [
             "m1-lem-ray-unary",
             "m1-prop-ray-radial"
+          ],
+          "objectUses": [
+            "m1-prop-ray-lift"
           ]
         },
         {
@@ -1131,7 +1150,10 @@
           "kind": "lemma",
           "source": "Linear subsequences and heights for isolated components",
           "detail": "[Entropy lower bound] Suppose an isolated source type \\(i\\), with factor \\(S\\), is matched to the measured type \\(p(i)\\), with factor \\(T\\). Let \\(Q_S\\) and \\(Q_T\\) be the homogeneous dimensions of…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-scale-original-model"
+          ]
         },
         {
           "id": "m1-lem-scale-tight-factor",
@@ -1157,6 +1179,9 @@
             "m1-lem-scale-tight-factor",
             "m1-prop-ray-lift",
             "m1-cor-ray-small-change"
+          ],
+          "objectUses": [
+            "m1-prop-ray-radial"
           ]
         },
         {
@@ -1233,6 +1258,9 @@
           "detail": "[Integrated opposite-pair estimate] There is a dense linear subspace E H such that, for each fixed set of mask controls and each E , there is a finite constant C_ with _ B_S^ (2) ,p_(x,y)\\,dm(x,y)…",
           "dependsOn": [
             "m1-prop-scale-linear-subsequence"
+          ],
+          "objectUses": [
+            "m1-lem-scale-complement-isometry"
           ]
         },
         {
@@ -1290,7 +1318,10 @@
           "kind": "proposition",
           "source": "Linear subsequences and heights for isolated components",
           "detail": "[Height at an isolated type] For a matched isolated pair the homogeneous dimensions agree, Q_S=Q_T=Q . There is a family of positive injective self-adjoint operators b_x , affiliated to A_1 , for…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-scale-closed-covariance"
+          ]
         },
         {
           "id": "m1-prop-panels-upper",
@@ -1352,6 +1383,9 @@
           "detail": "[The defect and the good subspace] For a range W of Lemma~ , put \\[ _0=c_Sr- W. \\] Then _00 . There is a sum G_W W_1 of optimal source-module copies whose codimension in W is at most C_0 . Each copy…",
           "dependsOn": [
             "m1-lem-panels-riesz"
+          ],
+          "objectUses": [
+            "m1-lem-panels-optimal-modules"
           ]
         }
       ]

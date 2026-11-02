@@ -542,6 +542,7 @@
           "source": "Choosing the parameters",
           "detail": "For every fixed nonempty finite alphabet, finite monoid \\(M\\), and finite representation space \\(V\\), all parameters in the two outer splits and the five aligned stages can be chosen to satisfy their…",
           "dependsOn": [
+            "m1-lem-bad-histories",
             "m1-lem-clock",
             "m1-lem-markers",
             "m1-lem-periodic-split",
@@ -567,7 +568,10 @@
           "kind": "proposition",
           "source": "Expressions, the final suffix, and the uniform bound",
           "detail": "[Component expressions] Every single-episode domain used in the construction, including \\(E\\), \\(S_1,S_2,D_i,D_i'\\) and the full sets, has height at most one. Every prefix component \\(P_x\\) has…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-total-tables"
+          ]
         },
         {
           "id": "m1-lem-final-suffix",
@@ -696,6 +700,9 @@
           "detail": "[Inner ambiguity] On any two-sided word and for any integers t,q , \\#\\ (p,p') P_0^2:p p',\\ A_0(t+p-p',q)\\ C_0. The same bound holds on finite words whenever all the indicated inspection windows are…",
           "dependsOn": [
             "m2-lem-periodic-extension"
+          ],
+          "objectUses": [
+            "m2-lem-clock"
           ]
         },
         {
@@ -844,6 +851,9 @@
             "m2-prop-components",
             "m2-prop-aligned-splits",
             "m2-prop-main-split"
+          ],
+          "objectUses": [
+            "m2-lem-split"
           ]
         }
       ]

@@ -565,6 +565,7 @@
           "source": "Birational decompositions and the geometric reduction",
           "detail": "[Good divisorial decomposition] Under Assumption~ , the assertion \\(_n\\) holds for every finite \\(n\\).",
           "dependsOn": [
+            "m1-simple-case",
             "m1-bir-finite-norm",
             "m1-bir-finite-descent",
             "m1-thm-main",
@@ -690,6 +691,9 @@
             "m1-bir-sections",
             "m1-prog-small-model",
             "m1-bir-pullup"
+          ],
+          "objectUses": [
+            "m1-prog-contract-negative"
           ]
         },
         {
@@ -913,6 +917,9 @@
           "dependsOn": [
             "m1-rank-base-psef",
             "m1-bir-finite-descent"
+          ],
+          "objectUses": [
+            "m1-rank-comparison"
           ]
         },
         {
@@ -1055,6 +1062,7 @@
           "source": "Meromorphic nonvanishing on simple spaces",
           "detail": "The pole just defined satisfies b_V s-C_n .",
           "dependsOn": [
+            "m1-nv-pole-threshold",
             "m1-nv-slope-descent"
           ]
         },
@@ -1069,6 +1077,9 @@
           "dependsOn": [
             "m1-nv-direct-image",
             "m1-nv-incidence-pole"
+          ],
+          "objectUses": [
+            "m1-nv-meromorphic"
           ]
         },
         {
@@ -1134,6 +1145,9 @@
           "dependsOn": [
             "m1-signed-localized-hodge",
             "m1-signed-residue"
+          ],
+          "objectUses": [
+            "m1-signed-root-charts"
           ]
         },
         {

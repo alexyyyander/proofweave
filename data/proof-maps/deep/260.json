@@ -794,7 +794,10 @@
           "kind": "proposition",
           "source": "The elliptic construction and its physical end",
           "detail": "[The unrestricted trial trace problem] Fix a smooth compact truncation _ N,R , a , and (0,1) . For every Z C^ 1, ( _ N,R ) , including trials for which the implicit t is below - , there is a unique…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-so-rough-gradient"
+          ]
         },
         {
           "id": "m1-so-filled-solver",
@@ -844,6 +847,9 @@
           "dependsOn": [
             "m1-so-filled-solver",
             "m1-cp-mass-cost"
+          ],
+          "objectUses": [
+            "m1-sy-scalar-identity"
           ]
         },
         {
@@ -913,7 +919,10 @@
           "kind": "lemma",
           "source": "Equality and multipliers on the original data",
           "detail": "For a smooth path with initial metric derivative \\(h\\), the right derivative of its enclosing-area infimum is a'_+(0)=_ M M_B a'_M(h).",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-ct-area-derivative"
+          ]
         },
         {
           "id": "m1-va-separation",
@@ -1081,7 +1090,10 @@
           "kind": "lemma",
           "source": "The communicating stationary region and a maximal hypersurface",
           "detail": "There is a smooth function s_0 on R satisfying (s_0)=1 , whose differential is timelike, such that s_0=1 2 VU near the attachment and s_0=t+constant on the harmonic rest end of Proposition~ . Each…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-st-attachment"
+          ]
         },
         {
           "id": "m1-st-attachment-causality",
@@ -1129,6 +1141,9 @@
           "detail": "[The maximal hypersurface as an orbit section] Let ' be the maximal hypersurface of Proposition~ , and let B_0 be its bifurcation boundary. Projection along the Killing flow identifies int'…",
           "dependsOn": [
             "m1-st-maximal-slice"
+          ],
+          "objectUses": [
+            "m1-st-attachment"
           ]
         },
         {
@@ -1141,6 +1156,9 @@
           "detail": "[Staticity and vanishing of matter] On ' one has \\[ K'=0, X'=0, B'=0. \\] The Killing field is strictly timelike throughout the open right wedge, and its metric and rotated Maxwell form have the…",
           "dependsOn": [
             "m1-va-stationary-data"
+          ],
+          "objectUses": [
+            "m1-va-potentials"
           ]
         },
         {
@@ -1156,6 +1174,10 @@
             "m1-ri-orbit-graph",
             "m1-st-stationary-end",
             "m1-va-stationary-data"
+          ],
+          "objectUses": [
+            "m1-ri-staticity",
+            "m1-en-adm-flux"
           ]
         },
         {

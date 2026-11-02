@@ -589,6 +589,9 @@
             "m1-discrete-online",
             "m1-lem-buffer-circuits",
             "m1-prop-history-order"
+          ],
+          "objectUses": [
+            "m1-lem-cell-cut"
           ]
         },
         {
@@ -851,6 +854,9 @@
             "m1-lem-collar-switch",
             "m1-lem-midpoint-amplification",
             "m1-prop-plane-moments"
+          ],
+          "objectUses": [
+            "m1-thm-midpoint"
           ]
         },
         {
@@ -876,6 +882,9 @@
           "dependsOn": [
             "m1-pins-side-norm",
             "m1-spectra-analytic"
+          ],
+          "objectUses": [
+            "m1-spectra-transfer"
           ]
         },
         {
@@ -960,6 +969,9 @@
           "dependsOn": [
             "m1-boundary-synthetic-trace",
             "m1-lem-buffer-circuits"
+          ],
+          "objectUses": [
+            "m1-lem-collar-switch"
           ]
         },
         {
@@ -1048,7 +1060,10 @@
           "kind": "lemma",
           "source": "Identification of the limiting field",
           "detail": "[Vanishing references] There are finite averages \\(R_m\\) of unit radial pairings of \\(H\\), supported arbitrarily near the boundary, such that \\[ \\|R_m\\|_ L^p 0 for every p<. \\] Each \\(R_m\\) uses…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prop-boundary-moments"
+          ]
         },
         {
           "id": "m1-prop-harmonic-moments",
@@ -1117,6 +1132,11 @@
             "m1-prop-collision",
             "m1-limit-puncture",
             "m1-lem-no-diagonal"
+          ],
+          "objectUses": [
+            "m1-prop-tightness",
+            "m1-prop-plane-covariance",
+            "m1-thm-main"
           ]
         },
         {
@@ -1237,7 +1257,10 @@
           "kind": "lemma",
           "source": "The weighted annulus estimate",
           "detail": "[Equalities on a fixed plus layer] In the law of Lemma~ , fix a permitted history and an equality set E_0 . Let F be a set of edges both of whose endpoints are pinned B=+ . Adding the equalities…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prop-history-order"
+          ]
         },
         {
           "id": "m1-annulus-straight-short",
@@ -1250,6 +1273,9 @@
           "dependsOn": [
             "m1-annulus-plus-equalities",
             "m1-annulus-ports"
+          ],
+          "objectUses": [
+            "m1-annulus-patch"
           ]
         },
         {
@@ -1277,6 +1303,9 @@
           "dependsOn": [
             "m1-annulus-duality",
             "m1-annulus-one-white"
+          ],
+          "objectUses": [
+            "m1-annulus-slide"
           ]
         },
         {

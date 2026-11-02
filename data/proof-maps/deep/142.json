@@ -420,6 +420,9 @@
             "m1-div-compression",
             "m1-geom-descent",
             "m1-norm-solve"
+          ],
+          "objectUses": [
+            "m1-div-arithmetic"
           ]
         },
         {
@@ -434,6 +437,10 @@
             "m1-norm-solve",
             "m1-geom-lifts",
             "m1-div-trace"
+          ],
+          "objectUses": [
+            "m1-div-compression",
+            "m1-geom-separation"
           ]
         },
         {
@@ -501,6 +508,9 @@
           "dependsOn": [
             "m1-analytic-hecke",
             "m1-thm-reduction"
+          ],
+          "objectUses": [
+            "m1-analytic-explicit"
           ]
         }
       ]

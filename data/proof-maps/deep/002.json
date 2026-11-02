@@ -495,7 +495,10 @@
           "kind": "lemma",
           "source": "Arithmetic inputs and exact normalizations",
           "detail": "[Compatible auxiliary fields] Let E/ have conductor N and analytic rank r\\ 0,1\\ . There exist coprime negative odd fundamental discriminants D,D'<-4 such that, for \\[ K=( D), F=(DD'), L=( D,D'), \\]…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-classical-twist-density"
+          ]
         },
         {
           "id": "m1-classical-gross-zagier",
@@ -537,7 +540,10 @@
           "kind": "lemma",
           "source": "Integral cohomology and determinant comparisons",
           "detail": "[Exact local complements] Let paired perfect local maps U_v L_v and U'_v L'_v have a specified nullhomotopy of their cup restriction. Suppose the induced morphism \\[ L'_v/U'_v U_v^ \\] is an…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-models-finite-models"
+          ]
         },
         {
           "id": "m1-models-evaluations",
@@ -657,7 +663,10 @@
           "kind": "lemma",
           "source": "Auxiliary primes and residual concentration",
           "detail": "[Scalar localization] For the constant roots coefficient, global degree-two localization is injective on these residual tests. In particular a cup of two paired classes which is locally zero has a…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-models-finite-models"
+          ]
         },
         {
           "id": "m1-vertical-parity",
@@ -830,6 +839,9 @@
           "detail": "[Spectral-height identity] For the horizontal sequence just constructed, C_0_0L(f,1)Z' d_0 =(2-a_*) h_^ K_b (Q_X,Q_X) _ .",
           "dependsOn": [
             "m1-single-height-direction"
+          ],
+          "objectUses": [
+            "m1-classical-gross-zagier"
           ]
         },
         {
@@ -1027,6 +1039,9 @@
           "dependsOn": [
             "m1-pair-primitive",
             "m1-theta-fourier-measure"
+          ],
+          "objectUses": [
+            "m1-pair-interpolation"
           ]
         },
         {
@@ -1097,6 +1112,9 @@
           "detail": "[The cyclotomic corner] The corner modules satisfy D_ xy =D_ xf D_ fy .",
           "dependsOn": [
             "m1-extraction-binary"
+          ],
+          "objectUses": [
+            "m1-theta-test-point"
           ]
         },
         {
@@ -1133,6 +1151,9 @@
           "detail": "[Equality of the two quotient ideals] For every auxiliary tuple satisfying the preceding requirements, (U_w)=(U_ w ) in R .",
           "dependsOn": [
             "m1-pair-finite-divisibility"
+          ],
+          "objectUses": [
+            "m1-models-series-division"
           ]
         },
         {
@@ -1153,7 +1174,10 @@
           "kind": "lemma",
           "source": "Removing the divisors of the integral quotient",
           "detail": "[First-order tests and formal codimension] Let (A, m,k) be a regular local ring with chark=0 . Let D:A^s A^r , r s1 , have entries in m , and let D_1 be its linear part on the tangent space T_A=_k(…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-unit-augmented-alternating"
+          ]
         },
         {
           "id": "m1-unit-simultaneous-jumps",
@@ -1168,6 +1192,13 @@
             "m1-vertical-parity",
             "m1-models-evaluations",
             "m1-pair-trace"
+          ],
+          "objectUses": [
+            "m1-vertical-horizontal-directions",
+            "m1-vertical-lift-test",
+            "m1-unit-tangent-minors",
+            "m1-unit-augmented-alternating",
+            "m1-vertical-obstruction-span"
           ]
         },
         {
@@ -1181,6 +1212,9 @@
           "dependsOn": [
             "m1-pair-integral-quotient",
             "m1-unit-quotient-regularity"
+          ],
+          "objectUses": [
+            "m1-unit-simultaneous-jumps"
           ]
         },
         {
@@ -1207,7 +1241,10 @@
           "kind": "corollary",
           "source": "The central value and the exact formula",
           "detail": "For every elliptic curve of analytic rank zero or one, including CM curves, and for the imaginary twist in Lemma~ , X(E)+X(E^D)=0.",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-classical-discrepancy-identity"
+          ]
         },
         {
           "id": "m1-center-cm-zero",

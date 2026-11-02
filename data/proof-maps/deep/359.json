@@ -435,6 +435,9 @@
           "detail": "[Normalized correction estimate] Write \\[ F=\\|f\\|_, B=\\|b\\|_, F_1=\\|f'\\|_, B_1=\\|b'\\|_. \\] On a degree-\\(k\\) patch suppose \\(W_ j-1 >0\\), \\(S_p>0\\), and \\[ e^ 2y/k S_p W_ j-1 2, r_1=|S_p'| kS_p 1,…",
           "dependsOn": [
             "m1-density-moments"
+          ],
+          "objectUses": [
+            "m1-density-main"
           ]
         },
         {
@@ -512,6 +515,10 @@
             "m1-base-convergence",
             "m1-base-minorant",
             "m1-metric-transfer"
+          ],
+          "objectUses": [
+            "m1-peaks-bounds",
+            "m1-tests-later"
           ]
         },
         {
@@ -585,6 +592,9 @@
           "dependsOn": [
             "m1-pinch-algebra",
             "m1-curv-tensor"
+          ],
+          "objectUses": [
+            "m1-metric-complete"
           ]
         }
       ]
@@ -674,6 +684,9 @@
           "detail": "[A testing criterion for the holomorphic Liouville property] Fix constants p_0,p_10 and m_0>p_1 . Choose an integer k and a finite dimension n2 so that 0.99k>p_0+p_1+1, _ r=1 ^ k-1 r^ n-1 (n-1)!…",
           "dependsOn": [
             "m2-grid-phases"
+          ],
+          "objectUses": [
+            "m2-grid-frequency"
           ]
         },
         {
@@ -737,6 +750,9 @@
           "dependsOn": [
             "m2-fiber-perturbation",
             "m2-fiber-metric"
+          ],
+          "objectUses": [
+            "m2-fiber-blocks"
           ]
         },
         {
@@ -750,6 +766,9 @@
           "dependsOn": [
             "m2-fiber-metric",
             "m2-fiber-perturbation"
+          ],
+          "objectUses": [
+            "m2-fiber-blocks"
           ]
         },
         {
@@ -819,6 +838,9 @@
             "m2-radial-curvature",
             "m2-radial-scaled",
             "m2-radial-aligned"
+          ],
+          "objectUses": [
+            "m2-fiber-blocks"
           ]
         },
         {

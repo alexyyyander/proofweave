@@ -582,6 +582,9 @@
           "detail": "[Linear remainder bound] Every feasible completion associated to the cell satisfies Z- J(s,)_F E_r, E_r= e_ off ^2+ ( 6 42 2h^2+p)^2 , where e_ off = R_s^2(L+A_0+1) 2m +zR_s m .",
           "dependsOn": [
             "m1-completion-l-bound"
+          ],
+          "objectUses": [
+            "m1-completion-comparison-pieces"
           ]
         },
         {
@@ -837,7 +840,9 @@
           "kind": "proposition",
           "source": "Refining the phase-ball cover",
           "detail": "Suppose Stage B is run on a finite list of records with valid Root certificates, under the arithmetic assumptions and error bounds of Section~ . On a completed run, let A be its final atlas of…",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-refine-atlas-assignment"
+          ]
         },
         {
           "id": "m1-refine-batch-cover",
@@ -1113,6 +1118,9 @@
           "detail": "Every permutation of the rows of T can be completed to a symmetry of T by column permutations, row and column phase factors, and, if necessary, complex conjugation. Consequently |G(b)| is constant on…",
           "dependsOn": [
             "m2-prop-cubic-classification"
+          ],
+          "objectUses": [
+            "m2-prop-cubic-exclusion"
           ]
         },
         {

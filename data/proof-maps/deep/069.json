@@ -452,7 +452,10 @@
           "kind": "proposition",
           "source": "Twisted pseudo-identity",
           "detail": "On degree u , the continuous functor L_P=E_P[-2e] is a left adjoint of C_P : L_P=E_P[-2e]\\ \\ C_P. It computes the partially defined expression p_!q^* on every object.",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-pseudo-clean-noncharacteristic"
+          ]
         },
         {
           "id": "m1-pseudo-second-adjunction",
@@ -504,6 +507,9 @@
           "detail": "[Whittaker duality] The categories W_s^+(S) and W_ -s ^-(S) are dual, with the normalized pairing W,W'= _ dR (W^!W')[-2_N]. In a pole bound this formula uses the bounded-zero star-extension…",
           "dependsOn": [
             "m1-whittaker-strata-properties"
+          ],
+          "objectUses": [
+            "m1-foundations-categories"
           ]
         },
         {
@@ -549,7 +555,10 @@
           "kind": "lemma",
           "source": "Deformation of the Whittaker counit",
           "detail": "[Non-torsion rank test] Consider a finite geometric diagram as above. Assume that its q -dependence is introduced by Kummer factors M_q(r) for algebraic invertible functions r , and that the…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-deform-fourier"
+          ]
         },
         {
           "id": "m1-deform-colimit",
@@ -682,6 +691,9 @@
             "m1-planch-weight-estimate",
             "m1-deform-stalks",
             "m1-planch-finite-test"
+          ],
+          "objectUses": [
+            "m1-deform-colimit"
           ]
         },
         {
@@ -801,6 +813,10 @@
           "dependsOn": [
             "m1-walg-adolescent",
             "m1-walg-ext"
+          ],
+          "objectUses": [
+            "m1-loop-hc-renormalization",
+            "m1-walg-vacua"
           ]
         },
         {
@@ -812,6 +828,7 @@
           "source": "Loop categories over moving divisors",
           "detail": "[The ordinary vacuum is in the compact image] The image in \\(Q_S^0\\) of the spherical Kac--Moody vacuum is compact. Its ordinary comparison is \\(V_ 0,R ^W\\). Consequently adjoining \\(V_ 0,R ^W\\) to…",
           "dependsOn": [
+            "m1-whittaker-duality",
             "m1-loop-pairing-adjoints",
             "m1-walg-relative-skryabin",
             "m1-walg-vacua"
@@ -861,7 +878,10 @@
           "kind": "lemma",
           "source": "Local comparison in families",
           "detail": "The point pairing satisfies RHom_ Q (F(M_,D_),F(M_ ' ,D_ ' )) H^_ dR (G),& (,)=(','),\\\\ 0,&otherwise. The map induced from the input categories identifies cohomology in degrees at most two. Under the…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-local-heart"
+          ]
         },
         {
           "id": "m1-local-one-slot",
@@ -891,6 +911,9 @@
             "m1-local-one-slot",
             "m1-local-heart",
             "m1-local-point-gap"
+          ],
+          "objectUses": [
+            "m1-loop-parameter-operations"
           ]
         },
         {
@@ -936,7 +959,11 @@
           "kind": "proposition",
           "source": "Localization and finite-level periods",
           "detail": "With parameters retained, there are natural isomorphisms Loc_ G,U' ^ lv (M) Loc_ G,E ^ lv ( ins_G M), and the analogous isomorphisms for N . They respect transitivity, ordinary and crystalline…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-loop-hc-renormalization",
+            "m1-loc-construction"
+          ]
         },
         {
           "id": "m1-loc-kernel",
@@ -1096,7 +1123,10 @@
           "kind": "lemma",
           "source": "The global equivalence and its central data",
           "detail": "There are continuous functors \\(f:A(B')^\\) and \\(f':A' B^\\), with natural isomorphisms R&(M')^ f,& (S')^& fL,\\\\ R'& M^ f',& S^& f'L'. They are uniquely determined, together with these isomorphisms,…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-thm-main"
+          ]
         },
         {
           "id": "m1-equivalence-compatibility",

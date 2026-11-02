@@ -396,6 +396,9 @@
           "dependsOn": [
             "m1-lemma-pencil-coefficients",
             "m1-lem-early-near-reference"
+          ],
+          "objectUses": [
+            "m1-lem-early-index-words"
           ]
         },
         {
@@ -418,7 +421,10 @@
           "kind": "lemma",
           "source": "Pairing down to a sparse boundary",
           "detail": "[Linearization and its residual] For every surviving output pair, decompose its actual increment as \\( E_ ij =B_e L_ ij + N_ ij \\), where \\( L\\) is linear in \\(z\\) and evaluated on the old output…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-early-index-words"
+          ]
         },
         {
           "id": "m1-lem-early-high-moments",
@@ -582,6 +588,9 @@
             "m1-prop-cleanup",
             "m1-lem-repair-projector",
             "m1-lem-repair-bulk"
+          ],
+          "objectUses": [
+            "m1-thm-exact-repair"
           ]
         }
       ]

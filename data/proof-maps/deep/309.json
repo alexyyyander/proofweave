@@ -405,6 +405,9 @@
           "detail": "[label=( *)] There are homotopy equivalences of H-spaces \\[ S^ 163 \\ 3\\ T^ 163 (3) T^ 487 (3), BW_ 81 T^ 487 (3). \\] Consequently, W_ 81 ^2T^ 487 (3) . For every integer n>1 , the underlying space S^…",
           "dependsOn": [
             "m1-thm-classification"
+          ],
+          "objectUses": [
+            "m1-cube-strong-criterion"
           ]
         },
         {
@@ -449,6 +452,9 @@
           "detail": "[Integral CM evaluation] For \\(j2\\), every \\[ x N_2^ 2,\\,43^ j+1 with (x)_3^ b_j \\] has nonzero image in \\(H^2(G;E_ 43^ j+1 )\\).",
           "dependsOn": [
             "m1-det-filtration-comparison"
+          ],
+          "objectUses": [
+            "m1-det-two-line-basis"
           ]
         },
         {
@@ -503,7 +509,10 @@
           "kind": "proposition",
           "source": "The detector and a finite Euler bound",
           "detail": "For every \\(n\\), the group \\(_ -2n (E^ hG )\\) contains an element of infinite additive order. In particular, \\(_ -2 (E^ hG )0\\).",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-det-semilinear-trace"
+          ]
         },
         {
           "id": "m1-det-conditional-repair",
@@ -601,7 +610,10 @@
           "kind": "lemma",
           "source": "The coefficient action and its fixed geometry",
           "detail": "[Scalar cycles] On every nonzero topological Tate page, \\[ A=qb^ -2 \\] is a permanent-cycle unit, and every element of \\(K\\) is a cycle.",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-coef-h-cohomology"
+          ]
         },
         {
           "id": "m1-coef-rigidity",
@@ -625,6 +637,9 @@
             "m1-coef-rigidity",
             "m1-coef-h-cohomology",
             "m1-coef-tangent"
+          ],
+          "objectUses": [
+            "m1-coef-model"
           ]
         },
         {
@@ -681,7 +696,10 @@
           "kind": "lemma",
           "source": "The topological Tate calculation for the subgroup of order three",
           "detail": "With compatible nonzero scalar normalizations, the images of the indicated Greek-letter classes are \\[ _1=, _1=bJ, _ 3/3 =bJ^3, _4= bJ^5. \\] In particular, d_5(b)= b^3, d_5()=0.",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-coef-fixed-geometry"
+          ]
         },
         {
           "id": "m1-h-normalized-d9",
@@ -731,7 +749,10 @@
           "kind": "proposition",
           "source": "The topological Tate calculation for the subgroup of order three",
           "detail": "The only possible differential between E_ 34 (H) and E_ 105 (H) is d_ 53 (C)=e_ 53 A^ -8 C^2U, d_ 53 (U)=0, e_ 53 k. The class A^ 18 C^ -2 U survives to E_ 105 (H) , and d_ 105 (A^ 18 C^ -2 U) k^ .…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-h-d17-d33"
+          ]
         },
         {
           "id": "m1-h-differentials",
@@ -771,7 +792,10 @@
           "kind": "lemma",
           "source": "Ascent to the group of order nine",
           "detail": "Suppressing powers of b and the orientation twist u' , the scalar and exterior-degree-three groups at G have a common description P_n . Restriction fits into \\[ 0 k_n P_n res P_n^Q 0, k_n= k,&3…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-coef-model"
+          ]
         },
         {
           "id": "m1-g-early-pages",
@@ -854,6 +878,9 @@
           "dependsOn": [
             "m1-h-unit-death",
             "m1-g-d17"
+          ],
+          "objectUses": [
+            "m1-det-euler-bound"
           ]
         },
         {
@@ -1042,6 +1069,9 @@
             "m1-cube-primary-invariant",
             "m1-cube-primary-detection",
             "m1-cube-strong-criterion"
+          ],
+          "objectUses": [
+            "m1-cube-endomorphisms"
           ]
         },
         {

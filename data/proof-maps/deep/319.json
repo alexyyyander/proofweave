@@ -363,7 +363,10 @@
           "kind": "proposition",
           "source": "Law charts and the height-two quotient",
           "detail": "There is a flat affine groupoid stack N and a map r: M_k N that quotients the vertical central Z -action on arrows. Its pullback is exact and identifies sheaves on N with sheaves on M_k having…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-geom-torsor"
+          ]
         },
         {
           "id": "m1-geom-open",
@@ -462,6 +465,9 @@
           "dependsOn": [
             "m1-geom-sections-resolution",
             "m1-geom-group-cohomology"
+          ],
+          "objectUses": [
+            "m1-geom-open"
           ]
         },
         {
@@ -506,6 +512,9 @@
           "detail": "[Complete operations and their representatives] There is an identification of graded algebras E_ sD =(x^ -s )^(s), E_n=0(n D). Products use left-coefficient skew convolution in , with degrees added.…",
           "dependsOn": [
             "m1-complete-fracture"
+          ],
+          "objectUses": [
+            "m1-geom-thickened-charts"
           ]
         },
         {
@@ -551,7 +560,10 @@
           "kind": "lemma",
           "source": "Completion, operations, and the overlap",
           "detail": "[The tower is the reduction tower] For a finite-cell realization Y=_eY_e there are natural equivalences \\[ Y/t^d Y_d(d1). \\] Under these equivalences, the tower projection is the intrinsic reduction…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-complete-fracture"
+          ]
         },
         {
           "id": "m1-complete-topology",
@@ -828,6 +840,9 @@
           "dependsOn": [
             "m1-geom-sections-resolution",
             "m1-geom-group-cohomology"
+          ],
+          "objectUses": [
+            "m1-geom-cohomological-bounds"
           ]
         },
         {

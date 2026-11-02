@@ -493,7 +493,10 @@
           "kind": "proposition",
           "source": "Ultraproducts, gradings, and finite cells",
           "detail": "The functor h_ induces a symmetric monoidal equivalence between _ cell and the category of finite-cell graded A -modules. For X,Y , the natural comparison h_(X)_A h_(Y) h_(X Y) is an equivalence…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-found-mapping-pairings"
+          ]
         },
         {
           "id": "m1-found-koszul-realization",
@@ -637,6 +640,9 @@
             "m1-power-prime-to-p",
             "m1-layer-even-trivializations",
             "m1-layer-acyclic-sphere"
+          ],
+          "objectUses": [
+            "m1-layer-partial-thom"
           ]
         },
         {
@@ -719,6 +725,9 @@
           "dependsOn": [
             "m1-universal-associated-graded",
             "m1-universal-filtered-cells"
+          ],
+          "objectUses": [
+            "m1-universal-triangular"
           ]
         },
         {
@@ -857,6 +866,7 @@
           "dependsOn": [
             "m1-universal-primewise-models",
             "m1-conn-k-test",
+            "m1-norm-normalization",
             "m1-norm-naturality",
             "m1-norm-attachment"
           ]
@@ -1011,6 +1021,9 @@
           "dependsOn": [
             "m1-thm-main",
             "m1-cob-regularity"
+          ],
+          "objectUses": [
+            "m1-real-hurewicz"
           ]
         }
       ]
@@ -1170,6 +1183,9 @@
             "m2-fw-anss",
             "m2-fw-coordinates",
             "m2-low-finite-localization"
+          ],
+          "objectUses": [
+            "m2-low-algebraic-vanishing"
           ]
         },
         {
@@ -1327,7 +1343,9 @@
           "kind": "corollary",
           "source": "Eliminating two obstruction degrees by Frobenius",
           "detail": "The obstruction groups in bidegrees \\[ (s,w)=(2q+1,u_4+2), (s,w)=(q(p-1)+1,u_4+p-1) \\] vanish in the additive cobar calculation of Table~ . Among its rows with k2 , only the row k=p remains to be…",
-          "dependsOn": []
+          "dependsOn": [
+            "m2-frob-kpminus1"
+          ]
         },
         {
           "id": "m2-top-small-stems",

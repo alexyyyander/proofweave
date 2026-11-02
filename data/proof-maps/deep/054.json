@@ -449,6 +449,9 @@
             "m1-gw-k3-center",
             "m1-pre-mrc-fibration",
             "m1-pre-cocycle"
+          ],
+          "objectUses": [
+            "m1-pre-weak-factorization"
           ]
         },
         {
@@ -562,6 +565,9 @@
           "dependsOn": [
             "m1-bd-cartier-strata",
             "m1-bd-contractions"
+          ],
+          "objectUses": [
+            "m1-bd-snc-places"
           ]
         },
         {
@@ -587,6 +593,10 @@
           "dependsOn": [
             "m1-bd-diagrams",
             "m1-bd-coefficient"
+          ],
+          "objectUses": [
+            "m1-bd-terminalization",
+            "m1-bd-exclusions"
           ]
         },
         {
@@ -703,7 +713,10 @@
           "kind": "lemma",
           "source": "An intrinsic correction on conic-bundle nodes",
           "detail": "[Residues in a bounded diagram] Suppose that a normal projective model of a genus-zero presentation L/k occurs in a bounded family of diagrams \\[ Y S, \\] where S is a normal projective surface model…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-bd-pencil"
+          ]
         },
         {
           "id": "m1-sf-unique",
@@ -789,6 +802,9 @@
           "dependsOn": [
             "m1-gw-k3-center",
             "m1-gw-net-center"
+          ],
+          "objectUses": [
+            "m1-sf-vanishing"
           ]
         },
         {

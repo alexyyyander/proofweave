@@ -357,7 +357,10 @@
           "kind": "lemma",
           "source": "A differential inequality for the disc envelope",
           "detail": "[Symplectic cost and the Schur complement] In a cotangent vector space with canonical bivector J=_i e_i f_i , let H>0 be Hermitian, and suppose H W , where the vertical block C of W is positive. Then…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prop-disc-inequality"
+          ]
         },
         {
           "id": "m1-ell-optimizer-contacts",
@@ -436,6 +439,9 @@
           "dependsOn": [
             "m1-prop-harnack-completeness",
             "m1-lem-static-distortion"
+          ],
+          "objectUses": [
+            "m1-chart-local-charts"
           ]
         },
         {
@@ -448,6 +454,9 @@
           "detail": "The manifold M is simply connected.",
           "dependsOn": [
             "m1-prop-harnack-completeness"
+          ],
+          "objectUses": [
+            "m1-prop-ricci-windows"
           ]
         },
         {

@@ -604,7 +604,10 @@
           "kind": "proposition",
           "source": "Completed forms and their local parameters",
           "detail": "The residual Hecke summand belongs to the product block just specified. The exact projective-generator functor gives \\[ L=_ cts,G_2 (P,M), \\] taken in the compact dual category of the specified…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-prop-completed-forms"
+          ]
         },
         {
           "id": "m2-lem-simple-growth",
@@ -637,7 +640,10 @@
           "kind": "lemma",
           "source": "Completed forms and their local parameters",
           "detail": "Assume that \\(\\) is unramified at the auxiliary primes. Localize at a characteristic-two point of the completed Hecke spectrum at which their Frobenii have distinct eigenvalues. The point may be the…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-prop-completed-forms"
+          ]
         },
         {
           "id": "m2-lem-forward-basechange",
@@ -669,7 +675,10 @@
           "kind": "lemma",
           "source": "Propagation from a characteristic-two curve",
           "detail": "[Auxiliary-prime bound] There is a sufficiently large integer h , independent of n , and sets Q_n of h primes outside S such that: every prime in Q_n splits in F(_ 2^n ,2^ 1/2^n ) and has residue…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-lem-curve-cohomology"
+          ]
         },
         {
           "id": "m2-lem-twist-rank",
@@ -797,6 +806,9 @@
           "detail": "Let \\(F\\), the marked set, and the fixed-determinant representation scheme \\(Y\\) be as above, with the degree inequalities . Let \\(y\\) be a transverse closed residual point of \\(Y\\), with finite…",
           "dependsOn": [
             "m2-lem-marked-local-base"
+          ],
+          "objectUses": [
+            "m2-prop-relative-presentation"
           ]
         },
         {
@@ -813,6 +825,9 @@
             "m2-prop-rep-space",
             "m2-lem-inertia-basechange",
             "m2-lem-forward-basechange"
+          ],
+          "objectUses": [
+            "m2-lem-pseudo-bad-loci"
           ]
         },
         {
@@ -855,6 +870,9 @@
             "m2-lem-dimension-comparison",
             "m2-thm-potential-promodularity",
             "m2-prop-block-comparison"
+          ],
+          "objectUses": [
+            "m2-prop-relative-presentation"
           ]
         },
         {

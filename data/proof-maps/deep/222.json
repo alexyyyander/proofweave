@@ -486,6 +486,9 @@
           "dependsOn": [
             "m1-var-variation",
             "m1-var-continuity-order"
+          ],
+          "objectUses": [
+            "m1-var-folded-kernel"
           ]
         },
         {
@@ -540,7 +543,10 @@
           "kind": "lemma",
           "source": "Overlap arrays and probability cascades",
           "detail": "[Marked cascade transformation] Let X_ k-1 be a terminal log factor depending on the marked path. For i1 , let E_i integrate the original level- i child-mark kernel, conditional on the marked…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-arr-cascade"
+          ]
         },
         {
           "id": "m1-arr-limit",
@@ -620,7 +626,10 @@
           "kind": "lemma",
           "source": "The upper bound by enriched affine comparison",
           "detail": "[Derivatives of the comparison function] The function F_N is continuous on the parameter region above. For every nonnegative nondecreasing direction on the fixed partition, its right directional…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-arr-calculus"
+          ]
         },
         {
           "id": "m1-upper-coercive",
@@ -681,6 +690,7 @@
           "dependsOn": [
             "m1-bulk-good-parameters",
             "m1-arr-ultrametric",
+            "m1-arr-cascade",
             "m1-arr-tilt"
           ]
         },
@@ -982,7 +992,11 @@
           "kind": "lemma",
           "source": "The Gaussian pressure",
           "detail": "[Deleting and reinserting finitely many rows] Consider any convergent deleted-row overlap-array subsequence satisfying the preceding lemmas. Reinsert finitely many independent Gaussian rows, with…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-lem-hier-array-continuity",
+            "m2-lem-hier-cascade-tilt"
+          ]
         },
         {
           "id": "m2-lem-press-empirical",

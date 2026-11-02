@@ -349,7 +349,10 @@
           "kind": "proposition",
           "source": "A distributional local law on the finite graph",
           "detail": "[Empirical recursion] For each fixed j1 there are c,C,y_0>0 such that, when y y_0 , \\ W_2(P_H,_j(P_H))>y^ -c \\ Cy^ -c . The same assertion holds with P_H^0 on the left and _j^0(P_H) on the right.…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prop-tree-stability"
+          ]
         },
         {
           "id": "m1-cor-local-consequences",
@@ -362,6 +365,9 @@
           "dependsOn": [
             "m1-prop-tree-stability",
             "m1-cor-tree-density"
+          ],
+          "objectUses": [
+            "m1-prop-empirical-recursion"
           ]
         },
         {
@@ -415,7 +421,10 @@
           "kind": "lemma",
           "source": "Conditional Gaussian rigidity",
           "detail": "[Tree logarithmic potential] At positive height, with all tree Green functions evaluated at \\(\\), -U()=_|m_o| + d2_|1-g_i g'|. Both sides have finite limits as \\(=E+i\\), \\(0\\). Denote the limit of…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-tree-log"
+          ]
         },
         {
           "id": "m1-prop-gaussian-marks",
@@ -689,7 +698,12 @@
           "kind": "lemma",
           "source": "Gaussian moments at sampled edges",
           "detail": "[Entropy criterion for Gaussian moments] Fix an integer \\(q2\\). Let \\(B_n\\) be random vectors in \\(D\\) with \\(\\|B_n\\| K_n\\) almost surely, where \\(K_n=n^ o(1) \\) is deterministic. Suppose that for…",
-          "dependsOn": []
+          "dependsOn": [
+            "m2-ent-projected-entropy"
+          ],
+          "objectUses": [
+            "m2-ent-tensor"
+          ]
         },
         {
           "id": "m2-prop-endpoint-control",

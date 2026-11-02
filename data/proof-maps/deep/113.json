@@ -1006,6 +1006,9 @@
           "dependsOn": [
             "m2-cons-legacy-defect",
             "m2-cons-regular"
+          ],
+          "objectUses": [
+            "m2-cons-structural"
           ]
         },
         {
@@ -1016,7 +1019,10 @@
           "kind": "corollary",
           "source": "Alternative geometric and entropy arguments",
           "detail": "[An exact partition of the ambient edges] If the entire edge set of a loopless labelled graph on 2m>0 vertices is partitioned by k1 perfect matchings, then \\[ N(G)^m(e^ -8 k)^m. \\] When k=1 the count…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-cons-legacy-counts"
+          ]
         },
         {
           "id": "m2-b-thm-nonlinear",
@@ -1030,6 +1036,9 @@
             "m2-ent-continuity",
             "m2-a-prop-supported-codimension",
             "m2-geom-lem-face"
+          ],
+          "objectUses": [
+            "m2-ent-exponential"
           ]
         },
         {

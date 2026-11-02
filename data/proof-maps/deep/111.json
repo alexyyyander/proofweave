@@ -235,6 +235,9 @@
           "dependsOn": [
             "m1-lem-exit",
             "m1-lem-paths"
+          ],
+          "objectUses": [
+            "m1-lem-generators"
           ]
         },
         {
@@ -288,7 +291,10 @@
           "kind": "lemma",
           "source": "Rank and payoff for every arrival order",
           "detail": "[Telescoping rank cost] For each listed group h , the nominal statistic z_h satisfies _b(S_ h,b F(b-2)+K_ h,b ) z_h-c_h, c_h=|C_h|+_ j>h (|C_j|+|D_j|/).",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-generators"
+          ]
         },
         {
           "id": "m1-lem-thinning",
@@ -311,7 +317,10 @@
           "kind": "corollary",
           "source": "An order-oblivious secretary consequence",
           "detail": "[Order-oblivious selection with full-seed visibility] For each known finite labeled matroid M=(E, I) , there is one measurable randomized online rule S_M with the following property. Fix any vector w…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prop-hidden"
+          ]
         }
       ]
     }

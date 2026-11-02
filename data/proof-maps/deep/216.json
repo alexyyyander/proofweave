@@ -533,7 +533,10 @@
           "kind": "lemma",
           "source": "A scale-dependent cutoff and entry",
           "detail": "[Face energy and changes at cuts] For the entry family just described, there is a number \\(D_s\\), the same at every full junction, and a symmetric matrix \\(H_G\\) such that Q_G(w)=D_s_ z V_4(G)…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-ent-center-background"
+          ]
         },
         {
           "id": "m1-ent-initialization",
@@ -637,6 +640,9 @@
           "detail": "[Comparison on an overlap] Fix \\(0<c<c'<3\\). Uniformly as \\((k_1,k_2)\\), for every common integer \\(j\\) satisfying \\(c2^ k_i j c'2^ k_i \\) for \\(i=1,2\\), put \\((u_i,Y_i)=(u_j^ (k_i) ,|Z_j^ (k_i)…",
           "dependsOn": [
             "m1-trj-physical-torus"
+          ],
+          "objectUses": [
+            "m1-trj-vanishing"
           ]
         },
         {
@@ -657,7 +663,10 @@
           "kind": "lemma",
           "source": "The center observable",
           "detail": "[Paired local maps] The local maps can be chosen in both squares with the following properties. Here \\(<1\\) and \\(C\\) depend only on the fixed parameters. Untwisted activities on wall-free supports…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-ent-initialization"
+          ]
         },
         {
           "id": "m1-ent-terminal-regulator",
@@ -901,7 +910,12 @@
           "kind": "lemma",
           "source": "Joining finite histories and determining the critical trajectory",
           "detail": "[Comparison at a common scale] Consider two bulk histories with comparable window parameters J,J' . At an index j belonging to fixed positive-fraction windows of both histories, write (u,Z) and…",
-          "dependsOn": []
+          "dependsOn": [
+            "m2-lem-bulk-odd"
+          ],
+          "objectUses": [
+            "m2-prop-bulk-readouts"
+          ]
         },
         {
           "id": "m2-prop-bulk-window",
@@ -968,6 +982,9 @@
           "detail": "[First-order terminal comparison] With the running gradient coordinate t_h of Proposition~ , _j =t_h 2^2 (E_ LM -E_M) +O_L(D^2 j^2 +1 Dj ).",
           "dependsOn": [
             "m2-prop-bulk-window"
+          ],
+          "objectUses": [
+            "m2-prop-magnetic"
           ]
         },
         {
@@ -994,6 +1011,9 @@
             "m2-lem-terminal-green",
             "m2-prop-bulk-window",
             "m2-inp-regular-variation"
+          ],
+          "objectUses": [
+            "m2-lem-terminal-scalar"
           ]
         }
       ]
@@ -1224,6 +1244,9 @@
             "m3-kernels-bounds",
             "m3-kernels-average-loss",
             "m3-kernels-multiplication"
+          ],
+          "objectUses": [
+            "m3-kernels-stability"
           ]
         },
         {

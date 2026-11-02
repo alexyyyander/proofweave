@@ -208,7 +208,10 @@
           "kind": "lemma",
           "source": "A strict spectral surplus",
           "detail": "[Spectral surplus] There is an odd m=2s-17 for which the following choices are possible. The parameters a_*(0,1) and q_*>1 can be taken arbitrarily close to 1 , with holding at a=a_* for every q .…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-hopf-distribution"
+          ]
         },
         {
           "id": "m1-prop-control",
@@ -274,7 +277,10 @@
           "kind": "lemma",
           "source": "Exact transmission on the regular harmonic subspaces",
           "detail": "[Pulse limit with one parameter derivative] For the fixed compact ball and pulse family, e^ -_ l,j B_ l,j (h) &=H_l(1,h)+O_ C^1 (_j),\\\\ P_ l,e (h)&=_lI+O_ C^1 (_j). Here \\(O_ C^1 (_j)\\) means that…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-regular"
+          ]
         },
         {
           "id": "m1-lem-leg",
@@ -284,7 +290,10 @@
           "kind": "lemma",
           "source": "Exact transmission on the regular harmonic subspaces",
           "detail": "[Exact normalization of the full leg and dwell growth] The matrices \\(U_ l,j \\), \\(V_ l,j \\), and \\(D_ l,j \\) have positive diagonal entries, and 0 K_ l,j _l^ -1 I. They depend only on the prescribed…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-regular"
+          ]
         },
         {
           "id": "m1-prop-transmission",
@@ -297,6 +306,9 @@
           "dependsOn": [
             "m1-lem-pulse",
             "m1-lem-regular"
+          ],
+          "objectUses": [
+            "m1-prop-metric"
           ]
         },
         {

@@ -465,6 +465,9 @@
           "dependsOn": [
             "m1-lem-profile-curvature",
             "m1-thm-extrinsic-sobolev"
+          ],
+          "objectUses": [
+            "m1-lem-capacity-cutoffs"
           ]
         },
         {
@@ -686,6 +689,9 @@
           "dependsOn": [
             "m2-lem-euclidean-density",
             "m2-thm-current-background"
+          ],
+          "objectUses": [
+            "m2-prop-radial"
           ]
         },
         {
@@ -825,6 +831,9 @@
           "detail": "[Admissibility of the chord tests] Fix a>0 and put \\[ w(t)=(1+at^2)^ -(n-2)/2 (t). \\] Then vw(s) and vw(s)^2 belong to , and D(vw(s))&=w(s)Dv+w'(s),\\\\ D(vw(s)^2)&=w(s)^2Dv+2w(s)w'(s). If f:[0,) is…",
           "dependsOn": [
             "m2-prop-sobolev-space"
+          ],
+          "objectUses": [
+            "m2-lem-composites"
           ]
         },
         {
@@ -835,7 +844,10 @@
           "kind": "lemma",
           "source": "Conformally weighted chords",
           "detail": "[A consequence of the radial inequality] For every center y Y , with r=d(y,) , and every nonnegative g , _Y(ngDr^2+rDr Dg ) n4_Y r^2g.",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-prop-sobolev-space"
+          ]
         },
         {
           "id": "m2-prop-chord-transform",
@@ -878,7 +890,11 @@
             "m2-prop-radial",
             "m2-prop-almost-sobolev",
             "m2-prop-compact-embedding",
+            "m2-lem-composites",
             "m2-lem-compact-reduction"
+          ],
+          "objectUses": [
+            "m2-prop-minimizer"
           ]
         },
         {

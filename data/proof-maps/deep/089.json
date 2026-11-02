@@ -442,7 +442,10 @@
           "kind": "lemma",
           "source": "Columns and thin bands",
           "detail": "[Successive portal levels] Fix a step >1000a . At depth n1 take the components of \\ b_i n\\ and give each its entrance portals from Lemma~ . The depth-zero node is the whole component, with its sole…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-geo-cells"
+          ]
         },
         {
           "id": "m1-sets-vertical",
@@ -588,6 +591,9 @@
             "m1-geo-chord-separation",
             "m1-main-ray",
             "m1-geo-padding"
+          ],
+          "objectUses": [
+            "m1-geo-skipping"
           ]
         },
         {
@@ -948,6 +954,9 @@
           "detail": "[A youngest crossing anchor] There are at most n_0+1 distinct crossing anchor sequences. The set is nonempty and has a youngest member A_* .",
           "dependsOn": [
             "m2-lem-finite-limiting-rules"
+          ],
+          "objectUses": [
+            "m2-lem-cache-defined"
           ]
         },
         {
@@ -971,7 +980,9 @@
           "kind": "lemma",
           "source": "Uniform lower comparison",
           "detail": "[A geometric obstruction at every early sequence] Let B be any selected early sequence of bags from S to X and let p B be nearest to x . Put =d(x,B) . There is a sequence q B such that, eventually, 4…",
-          "dependsOn": []
+          "dependsOn": [
+            "m2-lem-old-distant-anchor"
+          ]
         },
         {
           "id": "m2-lem-protected-successor",

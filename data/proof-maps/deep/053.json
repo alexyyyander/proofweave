@@ -303,6 +303,9 @@
           "dependsOn": [
             "m1-prop-known-relations",
             "m1-lem-detector-cutoff"
+          ],
+          "objectUses": [
+            "m1-lem-detector-unit"
           ]
         },
         {
@@ -415,7 +418,10 @@
           "kind": "proposition",
           "source": "A surface relation from determinant-fixed Quot schemes",
           "detail": "[Localization relation] Under the hypotheses of Theorem~ , the scalar \\(a_ N,t_0 \\) satisfies \\[ a_ N,t_0 \\,T_^ \\,t_0 =0 in B_ S,b-1 . \\]",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prop-tensor-test"
+          ]
         },
         {
           "id": "m1-prop-scalar",
@@ -457,6 +463,9 @@
           "detail": "[Arbitrary color products] Let a smooth curve family of genus \\(b5\\), with a section, be over a smooth irreducible quasi-projective base \\(S\\) satisfying \\( S<(b-1)^2-1\\). Put \\[ t_b=25(b-1)^2-1. \\]…",
           "dependsOn": [
             "m1-prop-tensor-test"
+          ],
+          "objectUses": [
+            "m1-thm-surface"
           ]
         },
         {

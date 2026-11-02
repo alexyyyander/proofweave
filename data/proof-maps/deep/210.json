@@ -153,7 +153,10 @@
           "kind": "corollary",
           "source": "The large-degree range and finite reductions",
           "detail": "[First-row certificate] For every integer \\(b1\\) and partition \\(\\) of \\(6b\\) with \\(_ i2 _i b\\), one has \\[ [s_]h_6[h_b] [s_]h_b[h_6]. \\]",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-chart"
+          ]
         },
         {
           "id": "m1-lem-polarization",
@@ -188,6 +191,9 @@
           "dependsOn": [
             "m1-lem-chart",
             "m1-lem-polarization"
+          ],
+          "objectUses": [
+            "m1-cor-module-generation"
           ]
         },
         {
@@ -291,7 +297,10 @@
           "kind": "corollary",
           "source": "Representation comparison and scope",
           "detail": "For every finite-dimensional complex vector space V , every integer a2 , and every integer b a(a-1) , there exists a GL(V) -equivariant embedding \\[ ^a(^b V)^b(^a V). \\] In particular, this gives the…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-thm-main"
+          ]
         }
       ]
     }

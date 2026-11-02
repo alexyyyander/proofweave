@@ -687,7 +687,10 @@
           "kind": "lemma",
           "source": "Projection tests and correlated parameters",
           "detail": "[Weighted projection test] Let be a planar Frostman k probability law and let be a Frostman law of directions, where 0<k2 and 0<1 . Let E be a set of point--direction pairs of dense measure. For a…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-proj-furstenberg"
+          ]
         },
         {
           "id": "m1-proj-radial",
@@ -697,7 +700,10 @@
           "kind": "lemma",
           "source": "Projection tests and correlated parameters",
           "detail": "[Radial nonconcentration away from strips] Let 0<s_01 and let be a planar Frostman s_0 law at resolution m^ -1 . Suppose that, for every fixed >0 , every strip of width m^ - has power-small mass,…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-proj-furstenberg"
+          ]
         },
         {
           "id": "m1-proj-scalar",
@@ -752,6 +758,9 @@
             "m1-proj-scalar",
             "m1-ent-regularization",
             "m1-ent-tangent-realization"
+          ],
+          "objectUses": [
+            "m1-proj-product"
           ]
         },
         {
@@ -793,6 +802,9 @@
           "detail": "[Longitudinal comparisons] The following two comparisons are available locally, and in inherited path tangents, under the stated derivative and conditional-time bounds. [label=()] Low longitudinal…",
           "dependsOn": [
             "m1-asp-scalar"
+          ],
+          "objectUses": [
+            "m1-ent-regularization"
           ]
         },
         {
@@ -844,7 +856,11 @@
           "detail": "There is no calibrated profile satisfying with \\(<0\\).",
           "dependsOn": [
             "m1-ent-control",
-            "m1-geo-main"
+            "m1-geo-main",
+            "m1-asp-increasing-zero"
+          ],
+          "objectUses": [
+            "m1-ent-signed-envelope"
           ]
         },
         {
@@ -927,7 +943,10 @@
           "kind": "proposition",
           "source": "Propagation of oscillatory packets",
           "detail": "[Discrete fourth-power propagation] Consider one consecutive transition in an admissible family, with scale ratio =m_+/m_-=m^ +o(1) , where >0 is fixed. Fix finite retained parent and child…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-pkt-refined-decoupling"
+          ]
         },
         {
           "id": "m1-ext-time-dimension",
@@ -1036,7 +1055,13 @@
           "detail": "[Terminal mass] The same kept output satisfies r w^2_ b\\ kept |c_b|^2 m^ o_i(1) (m^ -2(1-s) ,h_1^ -1 ) ^2\\# R .",
           "dependsOn": [
             "m1-pkt-quartic",
-            "m1-ext-leaves"
+            "m1-ext-leaves",
+            "m1-ext-represented"
+          ],
+          "objectUses": [
+            "m1-pkt-frame",
+            "m1-pkt-composition",
+            "m1-pkt-main"
           ]
         },
         {
@@ -1217,6 +1242,9 @@
           "detail": "[Sparse balls] There is a constant _0(0,1) depending only on the fixed graph setup with the following property. Suppose that h is supported in Q_0 , \\|h\\|_31 , and 0<_0 . Let B be a finite family of…",
           "dependsOn": [
             "m2-lem-packet-frame"
+          ],
+          "objectUses": [
+            "m2-prop-discrete"
           ]
         },
         {

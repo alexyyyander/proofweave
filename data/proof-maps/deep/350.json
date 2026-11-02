@@ -482,7 +482,10 @@
           "kind": "lemma",
           "source": "Descent and stability",
           "detail": "[One step of descent] There is a fixed \\(L>0\\) such that, at any nonterminal square \\(Q\\), if \\(N(Q)>L\\) or \\(b>L\\), one can assign a tilt \\(b_q\\) to each child \\(q\\) so that, writing \\(m=m(Q,b)\\),…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prop-subdivision"
+          ]
         },
         {
           "id": "m1-lem-stopped-descent",
@@ -506,6 +509,9 @@
           "detail": "[Large slope forces large growth] For the fixed \\(L\\) in Lemma~ , there are constants \\(B_*1\\) and \\(_*>0\\) such that every admissible square with \\(s(Q)1\\) and \\(K_Q a_0\\) satisfies b B_*, m(Q,b)_*b…",
           "dependsOn": [
             "m1-lem-profile-extraction"
+          ],
+          "objectUses": [
+            "m1-thm-subharmonic-profile"
           ]
         },
         {
@@ -571,6 +577,9 @@
             "m1-prop-persistence",
             "m1-lem-stopped-descent",
             "m1-lem-entry-bound"
+          ],
+          "objectUses": [
+            "m1-lem-descent"
           ]
         },
         {
@@ -752,6 +761,9 @@
           "dependsOn": [
             "m2-prop-sign-functional",
             "m2-lem-wave-sign-expectation"
+          ],
+          "objectUses": [
+            "m2-lem-wave-noncancellation"
           ]
         },
         {

@@ -780,6 +780,9 @@
           "detail": "[A branch seed for every passing test] If d A(O,B) , then there is w O whose first runout from P_d is one of the two branches in Equation~ . After exchanging the optical labels and preparing the…",
           "dependsOn": [
             "m2-test-comparison"
+          ],
+          "objectUses": [
+            "m2-test-corner-null"
           ]
         },
         {
@@ -1015,6 +1018,10 @@
             "m2-test-closed",
             "m2-phase-baire",
             "m2-test-exit-cover"
+          ],
+          "objectUses": [
+            "m2-holo-signal",
+            "m2-holo-loops"
           ]
         },
         {
@@ -1200,7 +1207,9 @@
           "kind": "lemma",
           "source": "Kerr geometry and spatial microlocal separation",
           "detail": "[Zero-energy directions at spatial fiber infinity] The zero-temporal-energy characteristic set has no photon trapping away from the horizon radial set. Strictly outside the horizon, its spatial…",
-          "dependsOn": []
+          "dependsOn": [
+            "m3-geo-horizon-source"
+          ]
         },
         {
           "id": "m3-st-hhv",
@@ -1252,7 +1261,10 @@
           "kind": "lemma",
           "source": "Stationary gauges and causal modulation",
           "detail": "[Profiles and mode-preserving corrections] There are smooth stationary tensors H_i for 1 i4 and J_i,H_i^1 for 1 i3 , with stationary vector fields V_i,W_i , such that J_i= L_ V_i b, H_i^1= L_ W_i…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m3-st-hhv"
+          ]
         },
         {
           "id": "m3-st-families",
@@ -1262,7 +1274,10 @@
           "kind": "proposition",
           "source": "Stationary gauges and causal modulation",
           "detail": "[Exact stationary families and supplements] For small p=(m,v) R^4 R^3 there is a smooth family G_p of exact diffeomorphic stationary Kerr metrics with G_0=b , tangent directions H, L_Wb , and symbol…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m3-st-profiles"
+          ]
         },
         {
           "id": "m3-st-adjoint-tails",

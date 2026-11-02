@@ -422,7 +422,10 @@
           "kind": "lemma",
           "source": "Feasible bases",
           "detail": "[Additional boundary equalities have probability zero] Let F: D D be the lens map of Lemma~ . Assume that the nonzero spanning rows b_1,,b_m are pairwise nonproportional. For every I B and j I , \\[…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-planar-lens"
+          ]
         },
         {
           "id": "m1-prop-simplex-integral",
@@ -616,6 +619,9 @@
             "m2-prop-scalar-input",
             "m2-lem-cone-reduction",
             "m2-lem-projection-tails"
+          ],
+          "objectUses": [
+            "m2-lem-biased-projections"
           ]
         },
         {
@@ -862,6 +868,9 @@
           "dependsOn": [
             "m2-lem-scalar-layer",
             "m2-lem-scalar-certificates"
+          ],
+          "objectUses": [
+            "m2-lem-scalar-ranges"
           ]
         },
         {
@@ -895,6 +904,9 @@
           "dependsOn": [
             "m2-lem-scalar-certificates",
             "m2-lem-scalar-layer"
+          ],
+          "objectUses": [
+            "m2-lem-scalar-interpolation"
           ]
         }
       ]
@@ -964,6 +976,10 @@
           "detail": "Let n2 be an integer, let b_1,,b_m^n span ^n , and set \\[ K=\\ x^n: |b_j x| 1, 1 j m\\ . \\] For every 0<c<4 there is a smooth symplectic embedding \\[ B^ 2n (c) (K)(K^). \\]",
           "dependsOn": [
             "m3-prop-uniform-slice"
+          ],
+          "objectUses": [
+            "m3-lem-planar-map",
+            "m3-thm-holomorphic-ball"
           ]
         },
         {

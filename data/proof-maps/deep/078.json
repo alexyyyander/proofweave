@@ -434,6 +434,9 @@
           "detail": "[Greedy cap regularization] After a subpower splitting and removal of probability o(1) , a particle law can be restricted to classes with a bounded number h such that _T(cap(D)) ^ w(D)-h-o(1) ,…",
           "dependsOn": [
             "m1-lem-classical-splitting"
+          ],
+          "objectUses": [
+            "m1-lem-homogenization"
           ]
         },
         {
@@ -484,6 +487,9 @@
             "m1-lem-classical-splitting",
             "m1-lem-typical-conditioning",
             "m1-lem-classical-localization"
+          ],
+          "objectUses": [
+            "m1-lem-profile-diagonal"
           ]
         },
         {
@@ -590,7 +596,10 @@
           "kind": "lemma",
           "source": "Closure of the classical growth argument",
           "detail": "[Contact tuples] At almost every u_0(0,1) , set \\[ b_0=b(u_0), p=-b'(u_0), s=S'(u_0). \\] The following assertions hold on each side of the contact curve that lies inward from the aperture boundary.…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-curve-traces"
+          ]
         },
         {
           "id": "m1-lem-closure-positive-x",
@@ -602,6 +611,9 @@
           "detail": "[Positive X rate] At the contact points of Lemma~ , x^- if p>0 . If p=0 , an admissible plus tuple can be chosen with x>0 .",
           "dependsOn": [
             "m1-thm-characteristic-trace"
+          ],
+          "objectUses": [
+            "m1-lem-closure-contact-tuples"
           ]
         },
         {
@@ -615,6 +627,9 @@
           "dependsOn": [
             "m1-lem-closure-positive-x",
             "m1-prop-isotropic-exclusion"
+          ],
+          "objectUses": [
+            "m1-thm-classical-growth"
           ]
         },
         {
@@ -655,7 +670,10 @@
           "kind": "lemma",
           "source": "Packet scores and finite decompositions",
           "detail": "[Greedy cap classes] In a geometric localizer, bin nonnegligible coefficients so that ||c_T|^2- m| on each bin. Each bin admits a partition into classes, with a count parameter \\(g\\) and fixed…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-packet-decomposition"
+          ]
         },
         {
           "id": "m1-prop-local-root-comparison",

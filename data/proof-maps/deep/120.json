@@ -451,7 +451,10 @@
           "kind": "lemma",
           "source": "Local projection and the perfect-matching bound",
           "detail": "[Recovering the full residual cut] Suppose \\(>0\\), and let \\(v\\) be the full unscaled exchange maximum. Suppose a true explored region of maximum \\(v\\) is available when \\(v>0\\), and an unlocked…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-phase-guard-adequacy"
+          ]
         },
         {
           "id": "m1-phase-accounting",
@@ -465,6 +468,9 @@
             "m1-match-deletion",
             "m1-match-exchange-projection",
             "m1-match-bottom-surplus"
+          ],
+          "objectUses": [
+            "m1-match-top-maintenance"
           ]
         },
         {
@@ -499,6 +505,10 @@
           "detail": "[Fixed-parameter subcubic perfect-matching search] For the integers \\(a1000\\) and fixed reliability parameters \\(0 a+1\\), the construction defines a uniform randomized algorithm on loopless subcubic…",
           "dependsOn": [
             "m1-phase-guard-adequacy"
+          ],
+          "objectUses": [
+            "m1-match-pair-action",
+            "m1-lem-priced-steps"
           ]
         },
         {
@@ -738,7 +748,9 @@
           "kind": "lemma",
           "source": "Maintaining and exposing the cycle backend",
           "detail": "[Compressed graph edits] The single child graph J can be initialized nonempty. Throughout an epoch it uses at most h_ib times a logarithmic factor many active slots and edges, including slots…",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-update-support"
+          ]
         },
         {
           "id": "m1-update-flat-lift",
@@ -780,7 +792,10 @@
           "kind": "lemma",
           "source": "Maintaining and exposing the cycle backend",
           "detail": "[Recursive work bounds] For a prefix of s graph operations, counting queries and edits and including an operation that terminates partway through, level i has total work and explicit public-log size…",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-update-compressed-edits",
+            "m1-update-recourse"
+          ]
         },
         {
           "id": "m1-update-reliability",
@@ -854,7 +869,10 @@
           "kind": "lemma",
           "source": "Explicit output and one uniform program",
           "detail": "[Halting and one physical word constant] The schedule is realizable by one finite program with a fixed physical word constant c_0 . On every path, including failed paths, it halts after polynomially…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-uniform-fixed-branch"
+          ]
         },
         {
           "id": "m1-cor-f-factor",
@@ -877,6 +895,9 @@
           "dependsOn": [
             "m1-cor-f-factor",
             "m1-thm-main"
+          ],
+          "objectUses": [
+            "m1-uniform-network"
           ]
         }
       ]

@@ -526,6 +526,9 @@
           "detail": "[Finiteness above marked surfaces] In the setting of Proposition~ , there is a finite set \\[ A_ surf [,1] \\] such that a_i(E) A_ surf whenever E I and _ X_i (E) is a surface. After passing to a…",
           "dependsOn": [
             "m1-lem-small-comparison"
+          ],
+          "objectUses": [
+            "m1-lem-nef-defect"
           ]
         },
         {
@@ -602,6 +605,9 @@
           "detail": "[Global places over a singular curve] For every irreducible curve component \\(T\\) of \\( Y\\), with \\(b_T\\) as in and the fixed resolution \\(g: Y Y\\), \\[ b_T\\ \\ \\#\\ c E a prime component of (g):\\\\…",
           "dependsOn": [
             "m1-thm-branch"
+          ],
+          "objectUses": [
+            "m1-lem-link-quotient"
           ]
         },
         {
@@ -698,6 +704,9 @@
             "m1-lem-cycle-loss",
             "m1-thm-special-termination",
             "m1-lem-small-comparison"
+          ],
+          "objectUses": [
+            "m1-thm-strong-gklt"
           ]
         },
         {
@@ -780,7 +789,10 @@
           "kind": "corollary",
           "source": "Graph comparisons and cycle ranks",
           "detail": "To prove termination of a fourfold program it suffices to show that, on its small tail, positive-side bad surfaces occur only finitely often.",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-lem-cycle-rank"
+          ]
         },
         {
           "id": "m2-lem-two-ends",
@@ -810,7 +822,10 @@
           "kind": "lemma",
           "source": "Terminal junctions and the coefficients that can vary",
           "detail": "For a fixed klt pair (X,B) there are finitely many exceptional divisorial valuations with a(;X,B)1 .",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-lem-snc-valuations"
+          ]
         },
         {
           "id": "m2-lem-echoes",
@@ -1000,6 +1015,7 @@
           "detail": "Let q:Y_e Y be a dominant \\'etale morphism of normal integral complex varieties, let Y , and fix ' Y_e above such that ()(') is an isomorphism. Suppose that Y is Q -Gorenstein. On normalized…",
           "dependsOn": [
             "m2-prop-local-valuations",
+            "m2-local-etale-lines",
             "m2-local-degree-independence"
           ]
         },
@@ -1025,6 +1041,10 @@
             "m2-lem-ceiling-error",
             "m2-prop-codim-two",
             "m2-lem-graph"
+          ],
+          "objectUses": [
+            "m2-thm-branch",
+            "m2-lem-echoes"
           ]
         },
         {
@@ -1122,6 +1142,9 @@
           "detail": "Let k be any algebraically closed field of characteristic zero. A countable program of the kind in Definition~ , including all its prescribed ray choices, descends to a common countable algebraically…",
           "dependsOn": [
             "m2-lem-numerical-extension"
+          ],
+          "objectUses": [
+            "m2-lem-snc-valuations"
           ]
         },
         {

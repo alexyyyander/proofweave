@@ -474,7 +474,10 @@
           "kind": "lemma",
           "source": "Two horizons and the scalar spectral comparison",
           "detail": "[The full-plane matrix] On the spacelike-transfer part of n k=0 , the full T_ nn matrix integrated along n is the matrix of b g(Y+z')( z') . Initially the assertion is a joint distributional…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-d-causal-continuation"
+          ]
         },
         {
           "id": "m1-d-causal-continuation",
@@ -484,7 +487,10 @@
           "kind": "lemma",
           "source": "Two horizons and the scalar spectral comparison",
           "detail": "[Fixed-spacelike-virtuality dispersion] Test [T_ (x),T_ (0)] against the spin-one output wave, with output measure ^4p on the open timelike cone. At fixed X>0 , the contracted matrix in is the jump…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-d-plane-matrix"
+          ]
         },
         {
           "id": "m1-d-subtractions",
@@ -516,7 +522,10 @@
           "kind": "lemma",
           "source": "Two horizons and the scalar spectral comparison",
           "detail": "[Plateau estimates] There are scalar functions f_L,u_L such that (g_L)=s_zf_L(M), (_i g_L)=M s_ zi u_L(M), and, writing D=M_M , & f_L-c_*1_ (1/L,1) _ L^2( M/M) =O(1), &&c_*0, \\\\ & D^a f_L_ L^2( M/M)…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-d-exact-tail"
+          ]
         },
         {
           "id": "m1-d-critical-comparison",
@@ -694,6 +703,9 @@
           "dependsOn": [
             "m1-c-k-domains",
             "m1-c-canonical-pi"
+          ],
+          "objectUses": [
+            "m1-e-projection-localization"
           ]
         },
         {
@@ -704,7 +716,9 @@
           "kind": "corollary",
           "source": "Extraction of a localizable scalar wave and accessible products",
           "detail": "Put =l-S . Its insertion at imaginary infinity annihilates every compact physical vacuum polynomial: _ R R^4 (iRe) A =0.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-e-paley-selection"
+          ]
         },
         {
           "id": "m1-e-bounded-approximation",
@@ -795,6 +809,9 @@
             "m1-p-short-products",
             "m1-c-k-domains",
             "m1-c-canonical-pi"
+          ],
+          "objectUses": [
+            "m1-p-interpolation"
           ]
         },
         {
@@ -865,7 +882,10 @@
           "kind": "theorem",
           "source": "Short products and the return to the accessible scalar",
           "detail": "[Return of the scalar wave] The formal scalar vacuum wave equals the accessible scalar: l=S, =0.",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-e-accessible-scalar"
+          ]
         },
         {
           "id": "m1-r-mixed-products",
@@ -988,6 +1008,9 @@
             "m1-e-accessible-products",
             "m1-c-low-energy",
             "m1-r-ward-lie"
+          ],
+          "objectUses": [
+            "m1-r-centered-families"
           ]
         }
       ]

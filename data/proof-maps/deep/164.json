@@ -332,6 +332,9 @@
           "detail": "[Weighted additive elimination] With the rows, good-tuple law, and modulus of Lemma~ , fix J_0 and put L( p)=R J_0M( p) . Independently conditional on the primes, let every u_R^0,u_R^1 be uniform on…",
           "dependsOn": [
             "m1-prop-linear-forms"
+          ],
+          "objectUses": [
+            "m1-lem-row-directions"
           ]
         },
         {
@@ -343,6 +346,7 @@
           "source": "Removing multiplicative masks and detecting a shifted error",
           "detail": "[Uniform correlation test] For every m2 and every nonsingleton target support J_* , the construction above determines a finite family of integer polynomial templates D , with good prime-tuple laws,…",
           "dependsOn": [
+            "m1-lem-additive-elimination",
             "m1-lem-sampling"
           ]
         },
@@ -369,6 +373,9 @@
           "detail": "[Bounded dense models] There are functions F_ B,a,c : such that, for every fixed J_0 and every dual test at B , _ _i (-F_ B,a,c ) D=o(1) uniformly over its inputs and over the finitely many master…",
           "dependsOn": [
             "m1-lem-dual-pseudorandomness"
+          ],
+          "objectUses": [
+            "m1-lem-master-scales"
           ]
         },
         {

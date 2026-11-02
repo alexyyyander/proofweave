@@ -660,6 +660,9 @@
           "dependsOn": [
             "m1-lem-classical-color-exclusion",
             "m1-prop-classical-near-optimum"
+          ],
+          "objectUses": [
+            "m1-lem-classical-trigonometric-density"
           ]
         }
       ]
@@ -719,7 +722,9 @@
           "kind": "lemma",
           "source": "Integrable coefficients and the controlled diffusion",
           "detail": "[Transfer on a constant interval] Suppose =c on an open interval I(0,1) . If c>0 , every point of I has a neighborhood on which one may choose positive, bounded, nondecreasing finite step…",
-          "dependsOn": []
+          "dependsOn": [
+            "m2-lem-diffusion"
+          ]
         },
         {
           "id": "m2-tail-class",
@@ -764,7 +769,9 @@
           "kind": "lemma",
           "source": "Shape inequalities for finite step functions",
           "detail": "[Certificate signs and integration by parts] At a fixed positive time in a constant step, the functions R,K,v,b,j,L,B,S defined above are even and extend smoothly across zero. They satisfy \\[…",
-          "dependsOn": []
+          "dependsOn": [
+            "m2-shape-forward"
+          ]
         },
         {
           "id": "m2-cert-identity-lemma",
@@ -796,6 +803,8 @@
           "detail": "[Constant-interval curvature] Let U and suppose =c on an open interval I(0,1) . For its controlled diffusion, put q(t)=_ ,x (t,X_t)^2 . If c>0 , then q' is strictly convex on I ; more precisely, with…",
           "dependsOn": [
             "m2-lem-constant-transfer",
+            "m2-shape-forward",
+            "m2-shape-ibp",
             "m2-lem-regularity"
           ]
         },
@@ -852,6 +861,9 @@
             "m2-thm-full-support",
             "m2-shape-backward",
             "m2-shape-ibp"
+          ],
+          "objectUses": [
+            "m2-cert-coercivity"
           ]
         },
         {

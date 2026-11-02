@@ -412,6 +412,9 @@
             "m1-pre-approximation",
             "m1-fwd-curvature",
             "m1-fwd-coefficients"
+          ],
+          "objectUses": [
+            "m1-pre-tensor-continuity"
           ]
         },
         {
@@ -642,7 +645,10 @@
           "kind": "lemma",
           "source": "Frames along geodesics and Hessian comparison",
           "detail": "[Terminal gradient trace] For the radial calibrated paths just described, the terminal representative supplied by Proposition~ satisfies v(1)= q(_1) almost surely. In particular | q|=r almost…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-frames-countable-frames"
+          ]
         },
         {
           "id": "m1-frames-hessian",
@@ -655,6 +661,9 @@
           "dependsOn": [
             "m1-heat-index",
             "m1-frames-trial-density"
+          ],
+          "objectUses": [
+            "m1-frames-terminal-trace"
           ]
         },
         {
@@ -691,6 +700,9 @@
             "m1-heat-index",
             "m1-frames-hessian",
             "m1-weight-every-geodesic"
+          ],
+          "objectUses": [
+            "m1-weight-distance-modification"
           ]
         }
       ]

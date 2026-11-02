@@ -237,7 +237,10 @@
           "kind": "lemma",
           "source": "Reduction to a smooth link and its suspension",
           "detail": "[Selection of a nonflat component] There is a component _o in Proposition~ such that T_o:=^2_ S^ m_o g_o+g_o0 on _o. Here denotes the spherical metric, viewed as a symmetric two-tensor.",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-red-original-link"
+          ]
         },
         {
           "id": "m1-red-suspension",
@@ -309,7 +312,10 @@
           "kind": "corollary",
           "source": "Spherical geometry and the stability inequality",
           "detail": "[Spherical stability] For every real function v smooth up to the regular boundary of the working component S^5 , with compact support in its closure away from the tips if present, _ H v^2\\,d _(|…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-geo-euclidean-stability"
+          ]
         },
         {
           "id": "m1-cert-universal",
@@ -404,7 +410,10 @@
           "kind": "lemma",
           "source": "Exact verification of the algebraic certificate",
           "detail": "For the constrained matrix A and symmetric trace-free tensor X , \\|A\\|_ op ^2&,& |A^k|^2&^ k-1 (k1), \\\\ | A^k|^2&^ k-2 (k2),& | A^3|^2&9 20 , \\\\ |X:A|^2&57|X|^2,& (X:A)_i&=X_ ijk A_ jk . If h,b>0 and…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-cert-positive-projections"
+          ]
         },
         {
           "id": "m1-cert-graph-bound",
@@ -456,6 +465,9 @@
           "dependsOn": [
             "m1-cor-singular-set",
             "m1-red-suspension"
+          ],
+          "objectUses": [
+            "m1-red-regularity"
           ]
         }
       ]

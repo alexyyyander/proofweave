@@ -495,6 +495,9 @@
           "detail": "[Strong PL smoothing] The conclusion of Theorem~ holds if H is replaced by a locally finite PL homeomorphism h:' in W^ 1,p (;^3) .",
           "dependsOn": [
             "m1-sm-proper-degree"
+          ],
+          "objectUses": [
+            "m1-pre-local-tolerances"
           ]
         },
         {
@@ -531,6 +534,10 @@
             "m1-sm-relative-pl",
             "m1-sm-smoothing",
             "m1-sm-pl-smoothing"
+          ],
+          "objectUses": [
+            "m1-sm-mesh",
+            "m1-sm-insertion"
           ]
         },
         {
@@ -754,6 +761,9 @@
             "m1-lt-relative-germs",
             "m1-lt-budget-transfer",
             "m1-lt-trace-slicing"
+          ],
+          "objectUses": [
+            "m1-lt-budget-expectation"
           ]
         },
         {
@@ -792,11 +802,16 @@
             "m1-lt-collapse",
             "m1-lt-disk",
             "m1-lt-budget-transfer",
+            "m1-lt-curve-probability",
+            "m1-lt-sharp-grid",
             "m1-pre-local-tolerances",
             "m1-la-radial-blocks",
             "m1-la-kernel-selection",
             "m1-sm-smoothing",
             "m1-sm-proper-degree"
+          ],
+          "objectUses": [
+            "m1-la-jet-selection"
           ]
         }
       ]
@@ -934,7 +949,10 @@
           "kind": "lemma",
           "source": "Retained rank data and an exact carrier",
           "detail": "[Relative opening] Let F: be a continuous proper onto map obtained by locally finite image-preserving applications of Lemma~ in genuine homeomorphic neighborhoods. Assume that subsequent applications…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-hp-cutoff"
+          ]
         },
         {
           "id": "m2-hp-exceptional-boxes",
@@ -974,6 +992,9 @@
             "m2-hp-regular-implant",
             "m2-hp-flattening",
             "m2-hp-opening"
+          ],
+          "objectUses": [
+            "m2-hp-cutoff"
           ]
         },
         {
@@ -996,7 +1017,10 @@
           "kind": "proposition",
           "source": "Retained rank data and an exact carrier",
           "detail": "[Postponed full-rank correction] Let p>2 and let f: be an orientation-preserving Sobolev homeomorphism between bounded domains. Let R be the set of its regular differentiation points at which Df has…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-hp-smooth-cutoff"
+          ]
         },
         {
           "id": "m2-hp-hide-cubes",
@@ -1106,6 +1130,9 @@
           "dependsOn": [
             "m2-hp-opening",
             "m2-hp-immersed-skeleton"
+          ],
+          "objectUses": [
+            "m2-hp-cutoff"
           ]
         },
         {
@@ -1317,6 +1344,9 @@
           "detail": "[Uniform weak templates] After the separate-colour normalizations, all normal disks can be thickened into pre-stacks satisfying Definition~ , with the boundary data of Lemma~ . On a physical…",
           "dependsOn": [
             "m2-ms-boundary-collar"
+          ],
+          "objectUses": [
+            "m2-wl-pattern"
           ]
         },
         {

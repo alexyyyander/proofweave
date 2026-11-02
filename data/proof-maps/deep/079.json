@@ -868,6 +868,9 @@
           "dependsOn": [
             "m1-low-classical-names",
             "m1-low-likelihood"
+          ],
+          "objectUses": [
+            "m1-low-conditional-incidence"
           ]
         },
         {
@@ -1054,7 +1057,10 @@
           "kind": "proposition",
           "source": "Canonical names and conditional observations",
           "detail": "[Radial dichotomy] Let _i=(_i,r_i) and _j=(_j,r_j) be conditionally independent, identically distributed planar marks given Z . Suppose their bounded-depth records obey the preceding score calculus,…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-names-radial-finite"
+          ]
         },
         {
           "id": "m1-names-parent-direction-transfer",
@@ -1087,7 +1093,10 @@
           "kind": "proposition",
           "source": "Canonical names and conditional observations",
           "detail": "[Pin-product alternatives] In addition to the hypotheses of Proposition~ , assume the following. The score calculus and the preceding conditional projection rule apply to all fixed finite queries…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-names-radial-low-product"
+          ]
         },
         {
           "id": "m1-int-differential-cost",
@@ -1197,7 +1206,10 @@
           "kind": "proposition",
           "source": "Interior phase inequalities",
           "detail": "[Binary time estimate] Assume quadratic admissible data, m>0 , c>3 , and line avoidance. At a binary layer p2p , freeze contact coefficients at F_p , and let \\[ b_ miss (p)=p^ -1 H_ (F_ 2p F_ p,2p ,…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-int-differential-cost"
+          ]
         },
         {
           "id": "m1-int-actions",
@@ -1231,6 +1243,9 @@
           "detail": "[The stationary equality boundary] In the classical equality configuration q=c_2=1 , J=0 , the exact-side quadratic replica construction has the radial spreading property at almost every strong time…",
           "dependsOn": [
             "m1-cyl-borel-paths"
+          ],
+          "objectUses": [
+            "m1-act-line-test"
           ]
         },
         {
@@ -1243,6 +1258,9 @@
           "detail": "[Strict affine boundary] Suppose c_2=1 and q<1 , with no lower bound on q . Use the artificial quadratic template ending at D , and set v_0=u(D) ; in the hybrid case take D=1 . If the boundary prefix…",
           "dependsOn": [
             "m1-cyl-borel-paths"
+          ],
+          "objectUses": [
+            "m1-act-line-test"
           ]
         },
         {

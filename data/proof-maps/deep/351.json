@@ -514,7 +514,10 @@
           "kind": "lemma",
           "source": "A dimension-explicit Ricci reaction bound",
           "detail": "For all sufficiently large \\(q\\), and sufficiently late times, |rz_r| Cq^ -1/2 , r^2|u_ rr | Cq^ 1/2 (0<r18), where \\(C\\) is independent of both \\(q\\) and \\(k\\).",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-uniform"
+          ]
         },
         {
           "id": "m1-prop-reaction",
@@ -525,6 +528,7 @@
           "source": "A dimension-explicit Ricci reaction bound",
           "detail": "At late times on \\(0<r18\\), the reaction quotient \\[ c(x,t)=2 ( ), ||^2 where ||>0 \\] satisfies both bounds c2(q-1)+C q r^2 , cC_* ^2 . Here \\(C\\) is independent of \\(q,k\\); \\(C_*\\) may depend on the…",
           "dependsOn": [
+            "m1-lem-largeq-derivatives",
             "m1-prop-full-curvature"
           ]
         },
@@ -565,6 +569,10 @@
             "m1-prop-scalar-inner",
             "m1-lem-gradients",
             "m1-lem-pole-size"
+          ],
+          "objectUses": [
+            "m1-prop-reaction",
+            "m1-lem-annuli"
           ]
         },
         {
@@ -776,6 +784,9 @@
           "detail": "[Exterior concentration bound] There are fixed N_01 , r_0>0 , and 0<<(,1) , and a choice of N_1 in Equation~ , such that V(r)& C, \\\\ A(r)& C for N_0a r r_0 , where _i0 and _i . The constants are…",
           "dependsOn": [
             "m2-para-local-smoothing"
+          ],
+          "objectUses": [
+            "m2-para-radial-lemma"
           ]
         },
         {
@@ -844,6 +855,9 @@
           "dependsOn": [
             "m2-prop-exterior-ricci",
             "m2-thm-degeneration"
+          ],
+          "objectUses": [
+            "m2-prop-root-scale"
           ]
         },
         {
@@ -878,7 +892,10 @@
           "kind": "proposition",
           "source": "Functional change and the contradiction",
           "detail": "[Uniform functional smallness] For fixed N there are numbers _i0 such that, at every time in every active patch, |(t)E_j(t)| _i a^4. Here H_* uses a fixed enlargement depending on N .",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-thm-tree-inequality"
+          ]
         },
         {
           "id": "m2-final-energy-vanishes",
@@ -1177,7 +1194,10 @@
           "kind": "lemma",
           "source": "Tail expansions and prescribed growth",
           "detail": "[Constant-operator tail improvement] Let P be either flat operator above. Suppose a field has a finite growth bound and its source has an expansion to rate B , where the intermediate remainder…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m3-ell-complex-inverse"
+          ]
         },
         {
           "id": "m3-ell-prescribed-tails",
@@ -1214,6 +1234,9 @@
             "m3-ell-prescribed-tails",
             "m3-ell-triangular",
             "m3-ell-flat-tail"
+          ],
+          "objectUses": [
+            "m3-ell-seam-inverse"
           ]
         },
         {
@@ -1241,6 +1264,9 @@
             "m3-ell-finite-parts",
             "m3-ell-analytic-family",
             "m3-ell-flat-tail"
+          ],
+          "objectUses": [
+            "m3-thm-path-selection"
           ]
         },
         {

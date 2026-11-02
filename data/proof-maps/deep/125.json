@@ -407,7 +407,11 @@
           "kind": "theorem",
           "source": "Completing sampled prefixes and recovering the budget",
           "detail": "[Single-exponential recovery] Suppose |S|=|O|=h1 , P=cost(O)>0 , and O has an injective proxy map into S for its good centers such that \\[ _ i good _ p C_i d(p,_i) P_g+0.01P. \\] Assume the number m…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-sam-successful-prefix",
+            "m1-comp-completion"
+          ]
         },
         {
           "id": "m1-ref-two-stage",
@@ -421,6 +425,9 @@
             "m1-sam-radius-budget",
             "m1-sam-near-clients",
             "m1-sam-computable-radius"
+          ],
+          "objectUses": [
+            "m1-sam-probability"
           ]
         },
         {
@@ -432,7 +439,8 @@
           "source": "Sharper recovery when few clusters are unanchored",
           "detail": "[Refined charge bound] For the endpoint above, the cost bound in Equation~ is at most (1+2 a_1++11+ q)P (1+2/e+6)P.",
           "dependsOn": [
-            "m1-comp-completion"
+            "m1-comp-completion",
+            "m1-sam-radius-budget"
           ]
         },
         {
@@ -478,6 +486,9 @@
             "m1-imp-surplus-history",
             "m1-str-strictness",
             "m1-loc-swap"
+          ],
+          "objectUses": [
+            "m1-loc-anchoring"
           ]
         },
         {
@@ -503,6 +514,10 @@
             "m1-loc-swap",
             "m1-comp-recovery",
             "m1-asm-sensitive"
+          ],
+          "objectUses": [
+            "m1-sur-low-sensitivity",
+            "m1-loc-anchoring"
           ]
         }
       ]
@@ -642,7 +657,10 @@
           "kind": "lemma",
           "source": "Tapered iterative rounding",
           "detail": "[Averaged ideal drift] Conditional on the pre-round history, the ideal expression satisfies f+_ graph B BgV+12 V.",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-thm-finite-inequality"
+          ]
         },
         {
           "id": "m2-lem-rnd-survival",
@@ -674,7 +692,12 @@
           "kind": "theorem",
           "source": "Deterministic implementation and completion",
           "detail": "[Deterministic additive approximation] For every fixed \\(>0\\), there is an instance-independent integer \\(c0\\) and a deterministic polynomial-time algorithm for metric \\(k\\)-median that opens at most…",
-          "dependsOn": []
+          "dependsOn": [
+            "m2-thm-grid-rounding"
+          ],
+          "objectUses": [
+            "m2-thm-li-svensson"
+          ]
         }
       ]
     }

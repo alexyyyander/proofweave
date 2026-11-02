@@ -483,7 +483,10 @@
           "kind": "lemma",
           "source": "Polynomial interpolation, regularity, and multiplicity",
           "detail": "[Regularity for a whole component family] Let V be a pure k -dimensional family of total degree a as in the lower-bound part of Lemma~ , with equation bound L . The union-of-systems version is…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-poly-hilbert"
+          ]
         },
         {
           "id": "m1-poly-pooling",
@@ -593,6 +596,9 @@
           "detail": "[Terminal-curve deletion] Assign sample points to finitely many irreducible physical curves Y_i , each containing its assigned points. Pool repetitions of a curve, and require every line member to be…",
           "dependsOn": [
             "m1-poly-separators"
+          ],
+          "objectUses": [
+            "m1-geo-secants"
           ]
         },
         {
@@ -679,6 +685,9 @@
           "detail": "[Retained products and their image degree] Fix a common positive-dimensional plateau after j cuts, of dimension k=d-j<d-1 , and choose an interior time on that plateau. Write n_x,n_y for the original…",
           "dependsOn": [
             "m1-prof-regularity"
+          ],
+          "objectUses": [
+            "m1-geo-generic-depth"
           ]
         },
         {
@@ -716,7 +725,10 @@
           "kind": "lemma",
           "source": "The sparse-cones assertion",
           "detail": "[Strict rank margin on target plateaux] At typical centers, ranks of directions to arbitrary dense remaining target subsets satisfy H(T_s(b)) (b)T_s(b)A(c s) with a fixed c>0 through all plateaux up…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prof-regularity"
+          ]
         },
         {
           "id": "m1-mot-rich",
@@ -974,7 +986,10 @@
           "kind": "lemma",
           "source": "Real incidence estimates",
           "detail": "[Concentration of planar Cayley lines] For two finite planar sets U,V of sizes u,v , the uv lines have at most (u,v) members in a plane and at most 6u+2v members in a regulus.",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-ci-planar-motions"
+          ]
         },
         {
           "id": "m1-ci-planar-distances",

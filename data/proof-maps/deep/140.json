@@ -503,7 +503,10 @@
           "kind": "lemma",
           "source": "Exact Gaussian projection",
           "detail": "[Gaussian smoothing with the full mass factor] Under the assumptions of Theorem~ , use the scale \\( B\\) from . Let \\(_\\) be the \\(N(0,^2I_m)\\) density and put \\[ F_(A,y)=_(y-As)\\,d(s), >0. \\] Then…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-h-dv-ambient-gram"
+          ]
         },
         {
           "id": "m1-h-proj-density-by-tests",
@@ -595,6 +598,9 @@
           "detail": "[Reflection with full data] Let \\(d1\\) be an integer and \\(T0\\). Let \\(S\\) be uniform on \\(S^ d-1 \\). Let a matrix \\(A\\) with \\(d\\) columns, independent of \\(S\\), have row span \\(U\\) of dimension at…",
           "dependsOn": [
             "m1-h-stream-borel"
+          ],
+          "objectUses": [
+            "m1-h-stream-success"
           ]
         },
         {
@@ -776,6 +782,10 @@
           "detail": "[Backward coefficient step] Assume . Let \\(H>0\\) and let \\(N1\\) be an integer. Let \\(h_1,,h_N:S^ d-1 \\) be Borel functions satisfying \\[ _ B(x,r) h_w\\,d H r^ (x R^d,\\ r>0,\\ 1 w N). \\] Let…",
           "dependsOn": [
             "m1-h-alt-selection"
+          ],
+          "objectUses": [
+            "m1-h-ev-density",
+            "m1-h-ev-ellipsoid"
           ]
         },
         {
@@ -945,6 +955,9 @@
           "detail": "[A raw-sample endpoint] Let 0<1/10 , and let an estimator use all exact measurements (G,GS) from b d/2 independent Gaussian rows, together with independent randomness, when S_d . Its angular success…",
           "dependsOn": [
             "m2-lem-residual-information"
+          ],
+          "objectUses": [
+            "m2-lem-residual-sphere"
           ]
         },
         {
@@ -1075,6 +1088,10 @@
             "m2-lem-conditional-priors",
             "m2-lem-raw-sample-bound",
             "m2-prop-gaussian-streaming"
+          ],
+          "objectUses": [
+            "m2-haar-streaming",
+            "m2-syn-streaming"
           ]
         },
         {
@@ -1118,7 +1135,8 @@
           "source": "Haar projections and posterior replica information",
           "detail": "[Lower projected correlation] For the replica law above and every 0<a<1 , J_Z a_ i=1 ^r +r(1-a), where C_1 is an absolute constant, independent of P,K,d,a .",
           "dependsOn": [
-            "m2-haar-upper-correlation"
+            "m2-haar-upper-correlation",
+            "m2-haar-maximal"
           ]
         },
         {
@@ -1131,6 +1149,9 @@
           "detail": "[Haar block information bound] Let S , let V be a finite-valued state, and let a block consist of k= d/16 fresh independent standard Gaussian designs, independent of (S,V) and the past, with their…",
           "dependsOn": [
             "m2-haar-upper-correlation"
+          ],
+          "objectUses": [
+            "m2-lem-replica-information"
           ]
         },
         {
@@ -1156,6 +1177,9 @@
             "m2-lem-residual-sphere",
             "m2-lem-raw-sample-bound",
             "m2-lem-early-clock"
+          ],
+          "objectUses": [
+            "m2-haar-terminal"
           ]
         },
         {
@@ -1293,6 +1317,9 @@
           "detail": "[Maximal average at an actual label] For every full-rank \\(A\\), p_A^*(As) p_A(As) \\,d(s) Cd+C(1+ F). The integrand is nonnegative almost surely.",
           "dependsOn": [
             "m2-inc-kernel"
+          ],
+          "objectUses": [
+            "m2-inc-densities"
           ]
         },
         {
@@ -1342,7 +1369,8 @@
             "m2-lem-residual-information",
             "m2-lem-residual-sphere",
             "m2-lem-raw-sample-bound",
-            "m2-inc-precision"
+            "m2-inc-precision",
+            "m2-inc-history"
           ]
         }
       ]

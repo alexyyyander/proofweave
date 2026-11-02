@@ -603,7 +603,10 @@
           "kind": "lemma",
           "source": "Additive estimation and conditional prefix bounds",
           "detail": "[Scale and domain comparison] Compare a budget- m sample term with the same term using true stochastic inputs. For a first-channel mean contribution use its clipped relative error against 1+d_y . In…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-est-loss"
+          ]
         },
         {
           "id": "m1-lem-est-omission",
@@ -768,6 +771,9 @@
             "m1-lem-ctrl-replay",
             "m1-lem-env-gap",
             "m1-lem-env-variants"
+          ],
+          "objectUses": [
+            "m1-prop-est-clean"
           ]
         },
         {
@@ -811,7 +817,8 @@
           "source": "Adaptive fingerprints within budget blocks",
           "detail": "[Direct cost of collisions] The direct collision contribution to any final pre-incoming output has norm at most 2^ -p \\,2^ C h_* B^ -1/(2s) , for a fixed C independent of D_1,D_2, introduced below.…",
           "dependsOn": [
-            "m1-lem-est-raw-difference"
+            "m1-lem-est-raw-difference",
+            "m1-lem-buf-clamping"
           ]
         },
         {
@@ -824,6 +831,10 @@
           "detail": "[Uniform block coupling] The fixed constants can be chosen so that, for every task of budget M I_b and precision p , each prescribed actual--clean output discrepancy, including every pre-incoming…",
           "dependsOn": [
             "m1-lem-fp-clean"
+          ],
+          "objectUses": [
+            "m1-prop-est-clean",
+            "m1-lem-fp-hash"
           ]
         },
         {
@@ -947,6 +958,9 @@
             "m1-lem-arith-sums-scales",
             "m1-lem-arith-buffered-test",
             "m1-lem-arith-gate-evaluation"
+          ],
+          "objectUses": [
+            "m1-lem-arith-reciprocal"
           ]
         },
         {
@@ -1011,7 +1025,10 @@
           "kind": "lemma",
           "source": "Uniform controller implementation",
           "detail": "[Ordered terminal paths and excursions] Every unbalanced path required by the estimator has the following ordered form: restoring selection and validity tests; local label maps and, if necessary, a…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-est-paths"
+          ]
         },
         {
           "id": "m1-lem-ctrl-equality",
@@ -1038,6 +1055,12 @@
             "m1-lem-buf-clamping",
             "m1-lem-atom-margins",
             "m1-lem-ctrl-cap"
+          ],
+          "objectUses": [
+            "m1-lem-ctrl-paths",
+            "m1-lem-fp-buckets",
+            "m1-lem-buf-update",
+            "m1-lem-atom-ports"
           ]
         },
         {
@@ -1052,7 +1075,14 @@
             "m1-thm-ctrl-realization",
             "m1-lem-ctrl-local-graph",
             "m1-lem-ctrl-paths",
-            "m1-lem-ctrl-equality"
+            "m1-lem-ctrl-equality",
+            "m1-lem-ctrl-score-rank"
+          ],
+          "objectUses": [
+            "m1-lem-atom-ports",
+            "m1-thm-arith-interface",
+            "m1-lem-ctrl-recipes",
+            "m1-lem-ctrl-tour"
           ]
         },
         {
@@ -1092,7 +1122,10 @@
           "kind": "corollary",
           "source": "Derandomization and quantitative consequences",
           "detail": "Under these conventions, PromiseBPL=PromiseL .",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-thm-fixed-precision"
+          ]
         },
         {
           "id": "m1-cor-certified-search",
@@ -1124,6 +1157,9 @@
           "detail": "[A total resource-capped interpreter] There is one fixed randomized Turing machine U with polynomial worst-case running time and O((m+2)) counted work bits on every binary input of length m , with…",
           "dependsOn": [
             "m1-thm-effective-simulation"
+          ],
+          "objectUses": [
+            "m1-thm-fixed-precision"
           ]
         }
       ]

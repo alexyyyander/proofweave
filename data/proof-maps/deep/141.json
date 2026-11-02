@@ -205,7 +205,9 @@
           "kind": "proposition",
           "source": "Counting and controlled polynomial families",
           "detail": "[Closure of controlled families] Controlled families are preserved by each of the following operations, applied a fixed number of times: sums and products over short index sets, with uniform bounds…",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-lem-field-product"
+          ]
         },
         {
           "id": "m1-prop-crt-sign",
@@ -285,6 +287,9 @@
           "dependsOn": [
             "m1-lem-monomial-basis",
             "m1-prop-char-coeff"
+          ],
+          "objectUses": [
+            "m1-prop-controlled-closure"
           ]
         },
         {
@@ -379,6 +384,9 @@
             "m1-prop-controlled-closure",
             "m1-prop-multiplication-determinant",
             "m1-cor-controlled-sign"
+          ],
+          "objectUses": [
+            "m1-thm-controlled-existential"
           ]
         },
         {
@@ -411,6 +419,9 @@
           "detail": "[Candidate coordinates] Let W be nonnegative on ^k , where k1 , and let C be a nonempty subset of Z=\\ W=0\\ that is both open and closed in Z . Choose an odd integer 3 with > W , and put \\[ G(c)=_ i=1…",
           "dependsOn": [
             "m1-prop-multiplication-determinant"
+          ],
+          "objectUses": [
+            "m1-lem-monomial-basis"
           ]
         },
         {

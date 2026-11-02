@@ -521,7 +521,8 @@
           "dependsOn": [
             "m1-lem-marking",
             "m1-lem-decoupling",
-            "m1-lem-flat-levels"
+            "m1-lem-flat-levels",
+            "m1-lem-pivot-compression"
           ]
         },
         {
@@ -534,6 +535,9 @@
           "detail": "[A stream with no long consistent subsequence] For every fixed 0<<1/10 and every sufficiently large prime q , there is a stream of N= q^4 q flags whose ordered flag graph is K_5 -free and has…",
           "dependsOn": [
             "m1-lem-stream-entropy"
+          ],
+          "objectUses": [
+            "m1-lem-rectangles"
           ]
         },
         {
@@ -579,6 +583,9 @@
           "dependsOn": [
             "m1-thm-stream",
             "m1-thm-upper"
+          ],
+          "objectUses": [
+            "m1-thm-main"
           ]
         }
       ]
@@ -853,6 +860,11 @@
           "dependsOn": [
             "m2-learn-short-row",
             "m2-geom-projection"
+          ],
+          "objectUses": [
+            "m2-learn-row-success",
+            "m2-geom-description",
+            "m2-geom-preparation"
           ]
         },
         {

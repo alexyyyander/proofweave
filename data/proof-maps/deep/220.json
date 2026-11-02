@@ -427,7 +427,10 @@
           "kind": "lemma",
           "source": "Rays and a common renewal arrangement",
           "detail": "[Exact-cut bridges] For either sign, the probability under P_ of a slab cut at height H0 is u_H . The numbers u_H satisfy \\[ u_0=1, 1 u_H u_ H+1 p_. \\] Conditional on a cut at H , the list of slabs…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-slabs"
+          ]
         },
         {
           "id": "m1-lem-renewal-tail",
@@ -933,6 +936,9 @@
           "detail": "[Finitely many persistent profiles] On \\( E\\), there is no dust. The proper classes form the same finite nonempty set at every time, and the profile of each class has full support on horizontal space.",
           "dependsOn": [
             "m2-profile-sampling"
+          ],
+          "objectUses": [
+            "m2-profile-entropy"
           ]
         },
         {
@@ -946,6 +952,9 @@
           "dependsOn": [
             "m2-thm-main",
             "m2-geom-speed"
+          ],
+          "objectUses": [
+            "m2-geom-ray"
           ]
         }
       ]

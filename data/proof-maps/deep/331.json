@@ -485,7 +485,10 @@
           "kind": "lemma",
           "source": "A paired extension of segment tests",
           "detail": "Let H F be finite and ancestral. If x,y X satisfy x=P_Hx and y=Q_Hy , then \\|x+y\\|+\\|x-y\\| 2 \\|x\\|^2+\\|y\\|^2/12. More generally, for all s,t>0 , \\|x+ty\\|+\\|x-ty\\| 2 \\|x\\|+st\\|y\\| 1+12s^2 .",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-thm-main"
+          ]
         },
         {
           "id": "m1-lem-lens",
@@ -1054,6 +1057,9 @@
             "m2-lem-opposite-crossing",
             "m2-stab-coef-tail-assembly",
             "m2-presentation-subtrees"
+          ],
+          "objectUses": [
+            "m2-presentation-identity"
           ]
         },
         {
@@ -1129,6 +1135,9 @@
             "m2-stab-coef-pointwise",
             "m2-stab-coef-head-conflict",
             "m2-stab-coef-tail-assembly"
+          ],
+          "objectUses": [
+            "m2-stab-coef-original-products"
           ]
         },
         {
@@ -1207,6 +1216,9 @@
           "dependsOn": [
             "m2-binf-projections",
             "m2-binf-finite-hull"
+          ],
+          "objectUses": [
+            "m2-stab-coef-head-conflict"
           ]
         },
         {

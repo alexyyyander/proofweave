@@ -423,6 +423,9 @@
           "dependsOn": [
             "m1-lem-triple-convergence",
             "m1-lem-relative-norm"
+          ],
+          "objectUses": [
+            "m1-prop-structure"
           ]
         },
         {
@@ -534,7 +537,10 @@
           "kind": "lemma",
           "source": "The square argument",
           "detail": "[Parameter independence] Under _Z , the random variables p and E_b are conditionally independent given w .",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-thm-main"
+          ]
         },
         {
           "id": "m1-thm-packing",
@@ -637,6 +643,9 @@
           "dependsOn": [
             "m2-prop-structure",
             "m2-lem-lower-length"
+          ],
+          "objectUses": [
+            "m2-lem-relative-norm"
           ]
         },
         {
@@ -691,7 +700,10 @@
           "kind": "proposition",
           "source": "Channels and preservation of independence",
           "detail": "[Closure under selected laws] Let Y be a channel and b I . On M_b(Y) use _Y(y_b) as original factor. For each j\\ 1,2,3\\ , let the new group j contain the outputs D_(y_i) with D_j and i I . With these…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-thm-packing"
+          ]
         },
         {
           "id": "m2-cor-channel-array-distal",
@@ -886,6 +898,9 @@
           "detail": "[A real-line test] Let \\(0 k_- k_+\\), and partition \\(\\ k_-,,k_+\\ \\) into \\(w\\) nonempty consecutive blocks. Suppose that bounded Borel functions \\(h_1,h_2,h_3\\) and \\(h_ 0,k \\) are supported in a…",
           "dependsOn": [
             "m3-lem-tr-kernel"
+          ],
+          "objectUses": [
+            "m3-thm-local"
           ]
         },
         {
@@ -952,7 +967,10 @@
           "kind": "lemma",
           "source": "From the local estimate to pointwise convergence",
           "detail": "[Profiles approximate interval indicators] For every \\(c\\) and \\(>0\\), there is an averaging profile \\(\\) with \\[ \\|-h_c\\|_ L^1() <, h_c=c^ -1 1_ (0,c] . \\]",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m3-thm-main"
+          ]
         },
         {
           "id": "m3-lem-local-absolute",
@@ -985,6 +1003,9 @@
           "dependsOn": [
             "m3-lem-local-absolute",
             "m3-lem-progression-separation"
+          ],
+          "objectUses": [
+            "m3-lem-algebra"
           ]
         },
         {

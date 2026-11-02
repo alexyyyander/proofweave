@@ -533,7 +533,11 @@
           "detail": "[Weighted local free-energy penalty] There are c,C>0 , independent of b , such that for every 0 J N , every bounded measurable 0 W1 , and every finite-energy symmetric trace-one state , F_J^ (-W)…",
           "dependsOn": [
             "m1-prop-increments",
-            "m1-lem-entropy"
+            "m1-lem-entropy",
+            "m1-lem-close"
+          ],
+          "objectUses": [
+            "m1-lem-localization"
           ]
         },
         {
@@ -638,7 +642,8 @@
             "m1-cor-field-density",
             "m1-prop-increments",
             "m1-prop-certificates",
-            "m1-prop-purification"
+            "m1-prop-purification",
+            "m1-prop-close-count"
           ]
         },
         {
@@ -706,7 +711,10 @@
           "kind": "lemma",
           "source": "Exposing the environment and retaining movable groups",
           "detail": "[Exact conditional law] For almost every exposed datum the normalizers in Equation~ are positive, and the conditional law of the unexposed trajectories is _ I (_ I ) =1 Z_ I _ \\ all pairs in I avoid…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prop-purification"
+          ]
         },
         {
           "id": "m1-prop-group-supply",
@@ -716,7 +724,10 @@
           "kind": "proposition",
           "source": "Exposing the environment and retaining movable groups",
           "detail": "[Unconditional supply of good cells] For any prescribed p>0 , the constants before M can be chosen as above, and then M can be chosen sufficiently large, so that for sufficiently large D and K , _ B…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-useful-labels"
+          ]
         },
         {
           "id": "m1-prop-group-comparison",
@@ -800,6 +811,9 @@
           "detail": "[Cancellation away from an overlap] Consider two changes S,T of the preceding kind, with G1 , and put U=S T . Suppose that the following conditions hold. There is There are decompositions S=C_S F_S…",
           "dependsOn": [
             "m1-lem-tag-normalization"
+          ],
+          "objectUses": [
+            "m1-prop-good-paths"
           ]
         }
       ]
@@ -1084,6 +1098,9 @@
           "detail": "[Cost of omissions] For every indicated cell v , the mass in P_ aug,v of tags outside I is at most C_ x,j D^ -1-1/8 , uniformly in v . The mass lost by a failure of the required good neighborhood is…",
           "dependsOn": [
             "m2-lp-good-probability"
+          ],
+          "objectUses": [
+            "m2-palm-counts"
           ]
         },
         {
@@ -1198,6 +1215,9 @@
             "m2-palm-omissions",
             "m2-rt-routes",
             "m2-lp-good-probability"
+          ],
+          "objectUses": [
+            "m2-lp-insertion"
           ]
         },
         {

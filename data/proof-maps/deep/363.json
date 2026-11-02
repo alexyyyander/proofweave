@@ -571,6 +571,9 @@
           "detail": "[Control of every active color] There is a fixed constant \\(C_*\\) such that, with \\[ _s=C_*L_sd_s/s, U_i=f_i+_s m_i, \\] and sufficiently small \\(s_0\\), every finite colored evolution obeys 0…",
           "dependsOn": [
             "m1-cold-barrier"
+          ],
+          "objectUses": [
+            "m1-con-finite-evolution"
           ]
         },
         {
@@ -654,6 +657,9 @@
           "dependsOn": [
             "m1-cold-control",
             "m1-ker-parameter-sheets"
+          ],
+          "objectUses": [
+            "m1-cold-core-amplitude"
           ]
         },
         {
@@ -666,6 +672,9 @@
           "detail": "[Uniform early continuation] Fix >0 and (0,1) . There are s_0>0 and T_0(0,t_1) , depending on and and on the fixed jet parameters, such that for every 0<s_0 s_0 , every finite approximation, and…",
           "dependsOn": [
             "m1-early-path-source"
+          ],
+          "objectUses": [
+            "m1-early-cap-selection"
           ]
         },
         {
@@ -775,6 +784,10 @@
             "m1-ker-parameter-sheets",
             "m1-lem-sheet-bound",
             "m1-lem-kernel-tightness"
+          ],
+          "objectUses": [
+            "m1-cold-geometry",
+            "m1-lem-carleman"
           ]
         },
         {
@@ -868,6 +881,10 @@
             "m1-nc-plane-parameters",
             "m1-nc-uniform-pullback",
             "m1-nc-two-axial-gains"
+          ],
+          "objectUses": [
+            "m1-nc-endpoint-tightness",
+            "m1-lem-five-gain-rank"
           ]
         },
         {
@@ -1064,6 +1081,9 @@
           "detail": "[Uniform tightness and axis estimates] Fix L< . The following conclusions hold uniformly for c S_L and for outgoing velocities off the axis. [label=( *)] The tails in |p|+|-v| are uniformly…",
           "dependsOn": [
             "m2-lem-sheet-bound"
+          ],
+          "objectUses": [
+            "m2-ker-geometric-slice"
           ]
         },
         {
@@ -1133,6 +1153,9 @@
             "m2-lem-hot-bound",
             "m2-ker-parameter-sheets",
             "m2-lem-kernel-tightness"
+          ],
+          "objectUses": [
+            "m2-lem-sheet-bound"
           ]
         },
         {
@@ -1211,7 +1234,11 @@
           "dependsOn": [
             "m2-lem-sheet-bound",
             "m2-lem-hot-bound",
+            "m2-lem-kernel-tightness",
             "m2-ker-parameter-sheets"
+          ],
+          "objectUses": [
+            "m2-lem-carleman"
           ]
         },
         {
@@ -1293,6 +1320,10 @@
             "m2-nc-plane-parameters",
             "m2-nc-uniform-pullback",
             "m2-nc-two-axial-gains"
+          ],
+          "objectUses": [
+            "m2-nc-endpoint-tightness",
+            "m2-lem-five-gain-rank"
           ]
         },
         {

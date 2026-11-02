@@ -408,7 +408,10 @@
           "kind": "corollary",
           "source": "Assembly of the classification",
           "detail": "[Remmert reduction of semialgebraic covers] Let \\(X\\) be a connected normal projective complex variety whose ordinary universal cover \\(U\\) has a semialgebraic projective-open presentation. Write \\(U…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-cmp-affine-base"
+          ]
         },
         {
           "id": "m1-cor-singer-semialgebraic",
@@ -657,7 +660,10 @@
           "kind": "lemma",
           "source": "Successive faces and projective windows",
           "detail": "[Algebraicity of the null plaques] Let M be a regular patch of a real algebraic hypersurface in a smooth complex algebraic n -fold. Suppose one side is locally pseudoconvex and the Levi form has…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prep-projective-models"
+          ]
         },
         {
           "id": "m1-win-period",
@@ -804,6 +810,9 @@
           "dependsOn": [
             "m1-quo-cutoff-normal",
             "m1-quo-guard"
+          ],
+          "objectUses": [
+            "m1-loc-theorem"
           ]
         },
         {
@@ -923,6 +932,9 @@
           "detail": "After the finite-cover replacement of Lemma~ , let K=() . The group K is finitely generated and virtually abelian. For each m M , it acts on f^ -1 (m) as the deck group of a connected regular…",
           "dependsOn": [
             "m1-quo-projection"
+          ],
+          "objectUses": [
+            "m1-grp-compactifiable-cover"
           ]
         },
         {
@@ -1030,7 +1042,10 @@
           "kind": "corollary",
           "source": "Quasi-projective covering spaces",
           "detail": "[Projective affine-space uniformization] Let \\(X\\) be a connected smooth projective complex \\(n\\)-fold, where \\(n0\\). If its ordinary universal cover is biholomorphic to \\(^n\\), then there is a…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-cor-quasiprojective"
+          ]
         }
       ]
     },
@@ -1143,7 +1158,10 @@
           "kind": "proposition",
           "source": "Boundary preparation and independent supports",
           "detail": "[A good supported point] There are a boundary cell S in the first alternative of Lemma~ , a good point p S , and k=2n-_ S entire functions h_1,,h_k on ^N such that h_j(p)=1, |h_j(q)|(-|q-p|^2)(q U),…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-lem-rank-dichotomy"
+          ]
         },
         {
           "id": "m2-lem-disc-family",
@@ -1202,6 +1220,9 @@
           "detail": "[Vey] Let D^m^k be a connected domain biholomorphic to a bounded domain. Suppose that D contains a point (0,w) and is invariant under \\[ (z,w)(z,w+a), (z,w)(e^ i z,w), (z,w)(r^ 1/2 z,rw) \\] for every…",
           "dependsOn": [
             "m2-thm-quadratic-model"
+          ],
+          "objectUses": [
+            "m2-thm-main"
           ]
         }
       ]

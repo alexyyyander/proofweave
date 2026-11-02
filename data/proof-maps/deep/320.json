@@ -364,9 +364,13 @@
           "source": "Reflected cyclic covers",
           "detail": "[Parity chamber data] There are chamber data (D,P,S,H) satisfying the chamber hypotheses of Theorem~ , with H a finitely generated nonabelian free group, and a distinguished epimorphism w H Z with…",
           "dependsOn": [
+            "m1-ch-poincare-chamber",
             "m1-ch-cover-data",
             "m1-ch-even-filling",
             "m1-for-odd-nonfilling"
+          ],
+          "objectUses": [
+            "m1-refl-input"
           ]
         },
         {
@@ -389,6 +393,9 @@
           "detail": "For every odd integer d3 , the space Q^0_d has no closed topological four-manifold model.",
           "dependsOn": [
             "m1-refl-cover-comparison"
+          ],
+          "objectUses": [
+            "m1-refl-input"
           ]
         },
         {
@@ -534,6 +541,10 @@
           "dependsOn": [
             "m1-mod-models",
             "m1-mod-odd-models"
+          ],
+          "objectUses": [
+            "m1-ext-development",
+            "m1-cyc-criterion"
           ]
         },
         {
@@ -860,6 +871,9 @@
           "dependsOn": [
             "m1-ten-specialization",
             "m1-ten-nonzero"
+          ],
+          "objectUses": [
+            "m1-ten-projection"
           ]
         },
         {
@@ -922,6 +936,10 @@
           "detail": "[Vertex identities with both endpoint signs] The flat edge restrictions lift to a formal parametrization M_v^ form over R_v satisfying S_v^ form (M_v^ form ) I_v^2, (_h S_v^ form )(M_v^ form )…",
           "dependsOn": [
             "m1-for-odd-nonfilling"
+          ],
+          "objectUses": [
+            "m1-for-cuts",
+            "m1-for-formal-data"
           ]
         }
       ]

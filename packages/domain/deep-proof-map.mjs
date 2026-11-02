@@ -157,6 +157,13 @@ export function validateDeepProofMap(data, collection, leanCoverage = null) {
       expectEnum(node.kind, STEP_KINDS, `${nodeLabel}.kind`);
       expectArray(node.dependsOn, `${nodeLabel}.dependsOn`);
       for (const dependency of node.dependsOn) expectId(dependency, `${nodeLabel}.dependsOn entry`);
+      if (node.objectUses !== undefined) {
+        expectArray(node.objectUses, `${nodeLabel}.objectUses`);
+        for (const target of node.objectUses) {
+          expectId(target, `${nodeLabel}.objectUses entry`);
+          if (target === node.id) fail(`${nodeLabel}.objectUses must not reference itself`);
+        }
+      }
       if (node.role === "result") resultNodeCount += 1;
       const fullId = qualified(strategy.id, node.id);
       if (nodeByQualifiedId.has(fullId)) fail(`duplicate qualified node id ${fullId}`);
@@ -165,6 +172,11 @@ export function validateDeepProofMap(data, collection, leanCoverage = null) {
     if (resultNodeCount === 0) fail(`${label} must contain at least one node with role "result"`);
     resultNodesByStrategy.set(strategy.id, resultNodeCount);
     assertAcyclic(nodes, strategy.id);
+    for (const node of nodes) {
+      for (const target of node.objectUses ?? []) {
+        if (!nodeIds.has(target)) fail(`${label}: node ${node.id} uses an object from unknown node ${target}`);
+      }
+    }
   }
 
   const finalEdges = expectArray(data.finalEdges, "finalEdges");

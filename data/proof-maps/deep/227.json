@@ -519,7 +519,10 @@
           "kind": "lemma",
           "source": "Gaussian estimates at the bottom edge scales",
           "detail": "[A Haar second moment at the low scales] On the spectral restrictions above, for every fixed spectral field in a prescribed ball and every \\(K k_p\\), \\(p C_1r_n\\), E_U(L_p(h)-1)^2 C_Rn^ -1/4 . The…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-edge-spherical-tails"
+          ]
         },
         {
           "id": "m1-edge-cube-caps",
@@ -647,7 +650,10 @@
           "kind": "lemma",
           "source": "Warming at the critical time scale",
           "detail": "[Retention at order-\\(n\\) entropy] Fix \\(0<<C_ lev <\\), \\(C_E<\\), and \\(0<<1\\). On Gaussian disorder events of probability tending to one, every test with \\( n L C_ lev n\\) and (f)N C_E n^ 1- has an…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-warm-posterior-mean"
+          ]
         },
         {
           "id": "m1-warm-log-layer",
@@ -681,6 +687,9 @@
           "detail": "[A support profile] With the constants and \\(\\) of Proposition~ , every nonnegative \\(g\\), supported on a set of \\(\\)-mass \\(e^ -L_ supp \\) with \\(L_ supp K_0\\), satisfies (g) c\\,_n(L_ supp ), _n(L)=…",
           "dependsOn": [
             "m1-warm-log-layer"
+          ],
+          "objectUses": [
+            "m1-warm-entropy-profile"
           ]
         },
         {
@@ -717,6 +726,10 @@
             "m1-prop-edge-estimates",
             "m1-edge-spectral",
             "m1-edge-limit-growth"
+          ],
+          "objectUses": [
+            "m1-thm-warming",
+            "m1-prop-gaussian-subsequence"
           ]
         },
         {
@@ -859,7 +872,10 @@
           "kind": "lemma",
           "source": "Smooth truncation of clock histories",
           "detail": "[Coarse coefficients and moments] On the size support in , for all nodes, boundaries and e , and 1 l K , \\[ |[u^l] k_I^u k_I | +|[u^l]k_I^u k_I | +|[u^l]w_I^u w_I | +|[u^l]1-w_I^u 1-w_I | n^ C_K . \\]…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-hist-cutoff-hazards"
+          ]
         },
         {
           "id": "m1-score-hellinger",
@@ -906,6 +922,9 @@
           "dependsOn": [
             "m1-score-one-insertion",
             "m1-score-hellinger"
+          ],
+          "objectUses": [
+            "m1-hist-crude-ratios"
           ]
         },
         {
@@ -947,7 +966,11 @@
             "m1-hist-crude-ratios",
             "m1-score-raw-projection",
             "m1-hist-conditional-interior",
-            "m1-hist-cutoff-hazards"
+            "m1-hist-cutoff-hazards",
+            "m1-score-hellinger"
+          ],
+          "objectUses": [
+            "m1-hist-static-support"
           ]
         },
         {
@@ -977,6 +1000,9 @@
             "m1-prop-gaussian-subsequence",
             "m1-prop-uniform-seed-escape",
             "m1-thm-entrance-selection"
+          ],
+          "objectUses": [
+            "m1-thm-warming"
           ]
         }
       ]
@@ -1076,7 +1102,10 @@
           "kind": "lemma",
           "source": "Quantitative estimates for the observations",
           "detail": "[The observation annulus] There are a,>0 and a sufficiently small fixed upper scale p_ top >0 such that |_p(h_p)| C k_p^ -a p^2 (r p p_ top ) outside a set of P -probability at most C(-n^) . On…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-prop-edge-conditioned-law"
+          ]
         },
         {
           "id": "m2-lem-observations-replicas",
@@ -1134,6 +1163,9 @@
           "detail": "[Integrated covariance error] Put D_p^K=p^2K_p- on H_p . After decreasing >0 if necessary, _q^ 2q \\|D_p^K\\|_ F ^2 k_p \\,d p C(q^+k_q^ - ) outside an event whose intersection with G_n has P…",
           "dependsOn": [
             "m2-lem-observations-score"
+          ],
+          "objectUses": [
+            "m2-lem-observations-annulus"
           ]
         },
         {
@@ -1233,6 +1265,9 @@
           "detail": "[Approximation with a compensated derivative] Let =_ i1 N(0,l_i) , where l_i>0 , _i l_i= and _i l_i^2< , and let S_y=_i(y_i^2-l_i) . Suppose that f,a L^2() and G L^2(;^2) satisfy, coordinatewise in…",
           "dependsOn": [
             "m2-prop-edge-conditioned-law"
+          ],
+          "objectUses": [
+            "m2-prop-gradient-domain"
           ]
         },
         {
@@ -1297,6 +1332,9 @@
           "detail": "[Determination by moments and polynomial density] Let the matrices and normalized linear functions above vary with n , and suppose the moments of the finite measures \\[ _ n,a (B)= Y_a,H1_B(H)Y_a_…",
           "dependsOn": [
             "m2-prop-micro-moment-measure"
+          ],
+          "objectUses": [
+            "m2-lem-micro-weighted-recursion"
           ]
         },
         {
@@ -1342,7 +1380,8 @@
           "dependsOn": [
             "m2-prop-gradient-observation",
             "m2-lem-gradient-smoothing",
-            "m2-lem-micro-divergence"
+            "m2-lem-micro-divergence",
+            "m2-lem-micro-positivity"
           ]
         }
       ]

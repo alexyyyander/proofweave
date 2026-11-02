@@ -553,7 +553,10 @@
           "kind": "theorem",
           "source": "Outer index groups and systematic square codes",
           "detail": "[Outer-code interface] There exist fixed constants d , _1>0 , C_0< , >0 , _ out >0 , and K_ out < , with \\ (8C_0)^ -1 ,_1/16\\ , having the following uniform properties for every input length N and…",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-oc-systematic",
+            "m1-oc-near-code"
+          ]
         },
         {
           "id": "m1-lem-outer-uncertainty",
@@ -645,6 +648,9 @@
             "m1-thm-outer-codes",
             "m1-lem-outer-wiring",
             "m1-lem-outer-fill"
+          ],
+          "objectUses": [
+            "m1-op-scratch-restoration"
           ]
         },
         {
@@ -655,7 +661,11 @@
           "kind": "theorem",
           "source": "A locally evolving outer representation",
           "detail": "[Outer representation interface] There are fixed positive constants _ raw ,_ raw , fixed integers C_L,c_ raw , and uniform deterministic algorithms with the following properties for every End-of-Line…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-oe-preparation",
+            "m1-lem-outer-uncertainty"
+          ]
         },
         {
           "id": "m1-thm-port-gadget",
@@ -949,6 +959,7 @@
           "source": "The inner path and its algebraic representation",
           "detail": "[Inner algebra interface] Fix c_ allow . The field and grid parameters -- , the common domain K^u , and the one-port positive family templates can be chosen before the port count and the function.…",
           "dependsOn": [
+            "m1-ia-path-endpoints",
             "m1-ia-stacks",
             "m1-ia-exact-validator",
             "m1-ia-evolution",
@@ -1008,6 +1019,9 @@
           "dependsOn": [
             "m1-ib-vector-ld",
             "m1-ib-row-extension"
+          ],
+          "objectUses": [
+            "m1-lem-inner-algebra-interface"
           ]
         },
         {
@@ -1053,7 +1067,8 @@
           "source": "Binary testing and average correction at a fixed radius",
           "detail": "[Consistent bit simulation] Fix a finite cone of one- or two-axis row decoding, a reference satisfying the corresponding row constraints, and a requested bit of the output symbol. For analysis,…",
           "dependsOn": [
-            "m1-ib-inner-table-prediction"
+            "m1-ib-inner-table-prediction",
+            "m1-ib-two-axis-support"
           ]
         },
         {
@@ -1076,7 +1091,10 @@
           "kind": "lemma",
           "source": "Binary testing and average correction at a fixed radius",
           "detail": "[All hypothetical read slots are smooth] For the tester, the corrector of Proposition~ , and the finite linear compositions used below, use their stated bounded outer-index request laws, with joint…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-ib-bit-simulation"
+          ]
         },
         {
           "id": "m1-ib-neighbors",
@@ -1089,6 +1107,10 @@
           "dependsOn": [
             "m1-ib-average-correction",
             "m1-ib-all-branch-density"
+          ],
+          "objectUses": [
+            "m1-ib-tester",
+            "m1-lem-inner-algebra-interface"
           ]
         },
         {
@@ -1109,7 +1131,10 @@
           "kind": "lemma",
           "source": "Binary testing and average correction at a fixed radius",
           "detail": "[Inner binary interface] For the inner algebraic families of Lemma~ , there is a deterministic polynomial-time binary encoding with the following properties, uniform over the circuits in each fixed…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-inner-algebra-interface"
+          ]
         },
         {
           "id": "m1-prop-dummy-port",
@@ -1282,7 +1307,10 @@
           "kind": "lemma",
           "source": "Consequences for games and markets",
           "detail": "[The input-once Pure-Circuit interface] There are a fixed positive rational _F and a deterministic polynomial-time reduction from End-of-Line to NAND/PURIFY circuits of the form just defined. Every…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-application-circuits"
+          ]
         },
         {
           "id": "m1-cor-market-hardness",

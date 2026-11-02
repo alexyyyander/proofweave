@@ -644,6 +644,9 @@
           "detail": "[Finite alternation and a full-to-empty jump] Almost surely E agrees modulo null sets with a finite union of intervals and has an interior transition from an interval of full measure to an interval…",
           "dependsOn": [
             "m1-lem-transverse-block-test"
+          ],
+          "objectUses": [
+            "m1-lem-transverse-hills"
           ]
         },
         {
@@ -693,6 +696,10 @@
             "m1-lem-transverse-product",
             "m1-prop-sparse",
             "m1-lem-sparse-layers"
+          ],
+          "objectUses": [
+            "m1-lem-packets",
+            "m1-lem-fractal"
           ]
         },
         {
@@ -874,7 +881,11 @@
           "kind": "lemma",
           "source": "The dyadic distribution estimate",
           "detail": "[Frame estimate for one tuple] For every tuple remaining after , M_0 _0^ -C mh B_1^2B_2^2 A_ _1 ^2A_ _2 ^2 (h^3E_1 A_ _1 ^2 +h^3E_2 A_ _2 ^2 ). In particular, ^6M_0^3 _0^ -C (1+_1+_2)^C m^3h^ 10…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-thm-frame",
+            "m1-thm-distribution"
+          ]
         },
         {
           "id": "m1-prop-shortmax",
@@ -931,7 +942,10 @@
           "kind": "theorem",
           "source": "Endpoint square summation and the order of limits",
           "detail": "[Local strong maximal estimate] There is a constant C such that, for every f H^ 1/3 (^2) whose Fourier transform has compact support and every x_0^2 , _ B(x_0,1) _ 0 t<1 |S(t)f(x)|\\,dx C\\|f\\|_ H^ 1/3…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-endpoint-square-sum"
+          ]
         },
         {
           "id": "m1-lem-endpoint-heat-envelope",
@@ -1148,7 +1162,10 @@
           "kind": "lemma",
           "source": "The transverse frame estimate",
           "detail": "[Restricted path law] For the selected tree, and for each of the directional restrictions constructed below, one can draw a uniform root point Z from a subpower fraction of Y and then a path to a…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-f-selection"
+          ]
         },
         {
           "id": "m2-f-conditioning",
@@ -1168,7 +1185,11 @@
           "kind": "lemma",
           "source": "The transverse frame estimate",
           "detail": "[Angular test and original broad witnesses] Fix one field, a cap parameter l away from the endpoints and the transition seam, and a finite mesh of 0<v u with l+Cu<e_i . Suppose that \\[…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-p-weighted",
+            "m2-f-paths"
+          ]
         },
         {
           "id": "m2-f-inflation",

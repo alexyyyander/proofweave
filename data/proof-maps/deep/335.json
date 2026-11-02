@@ -313,7 +313,9 @@
           "kind": "lemma",
           "source": "Weighted graph deformations and a sweep",
           "detail": "[Localization of the positive graph] Let \\(X,h,\\) satisfy the hypotheses of Lemma~ , with \\(X\\) connected, and let \\(h_ ref h\\) be a complete second metric. Require the coefficients of \\(h_ ref \\),…",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-lem-graph-prescription"
+          ]
         },
         {
           "id": "m1-prop-sweep",
@@ -345,7 +347,10 @@
           "kind": "lemma",
           "source": "Entropy metrics with controlled labels",
           "detail": "[Conformal bootstrap] There are constants \\(_*>0\\) and \\(C_ boot <4\\), depending only on \\(n\\), with the following property. Starting with the input of Theorem~ , finitely many sweeps without boost,…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prop-sweep"
+          ]
         },
         {
           "id": "m1-lem-entropy-increment",
@@ -453,7 +458,10 @@
           "kind": "lemma",
           "source": "From bounded cohomology to comparison degree",
           "detail": "[Measured resolution] For the diagram \\( P\\) there is a standard Borel measured family \\( A\\) of oriented smooth \\(m\\)-manifolds and a smooth map \\(X: A U_\\), equivariant and Borel in all the data.…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-thm-degree"
+          ]
         },
         {
           "id": "m1-lem-transfer-degree",
@@ -467,6 +475,9 @@
             "m1-thm-entropy",
             "m1-thm-main",
             "m1-prop-yamabe-reduction"
+          ],
+          "objectUses": [
+            "m1-thm-degree"
           ]
         }
       ]

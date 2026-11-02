@@ -34,6 +34,7 @@ type MapNode = {
   color: string;
   isResult: boolean;
   dependencies: string[];
+  objectUses?: string[];
 };
 
 type MapEdge = {
@@ -58,6 +59,7 @@ type StrategyModel = {
 
 const edgeTypeKeys: Record<ArgumentMapEdge["type"], TranslationKey> = {
   depends: "proofMaps.edgeType.depends",
+  object: "proofMaps.edgeType.object",
   proves: "proofMaps.edgeType.proves",
   implies: "proofMaps.edgeType.implies",
   "same-role": "proofMaps.edgeType.same-role",
@@ -118,6 +120,7 @@ function buildModel(data: ProofEvolutionData, argumentMap: ArgumentMapData, t: T
       color: strategy.color,
       isResult: roleMap[step.id] === "result",
       dependencies: step.dependsOn.map((dependency) => `${strategy.versionId}:${dependency}`),
+      ...(step.objectUses && step.objectUses.length > 0 ? { objectUses: step.objectUses.map((object) => `${strategy.versionId}:${object}`) } : {}),
     }));
     for (const extra of argumentMap.extraNodes.filter((node) => node.versionId === strategy.versionId)) {
       nodes.push({
@@ -142,6 +145,10 @@ function buildModel(data: ProofEvolutionData, argumentMap: ArgumentMapData, t: T
       for (const dependency of step.dependsOn) {
         const sourceId = `${strategy.versionId}:${dependency}`;
         if (nodeById.has(sourceId)) edges.push({ from: sourceId, to: targetId, type: "depends", label: "uses", cross: false, strategyId: strategy.versionId });
+      }
+      for (const object of step.objectUses ?? []) {
+        const sourceId = `${strategy.versionId}:${object}`;
+        if (nodeById.has(sourceId)) edges.push({ from: sourceId, to: targetId, type: "object", label: t("proofMaps.argument.edgeObject"), cross: false, strategyId: strategy.versionId });
       }
     }
     for (const edge of argumentMap.finalEdges) {
@@ -276,7 +283,7 @@ export function ArgumentMapView({ data, argumentMap, lean }: { data: ProofEvolut
         edges.push({
           source: edge.from,
           target: edge.to,
-          type: edge.type === "depends" ? "depends" : edge.type === "proves" || edge.type === "implies" ? "final" : "depends",
+          type: edge.type === "object" ? "object" : edge.type === "depends" ? "depends" : edge.type === "proves" || edge.type === "implies" ? "final" : "depends",
           label: edge.label,
         });
       }
@@ -373,6 +380,7 @@ export function ArgumentMapView({ data, argumentMap, lean }: { data: ProofEvolut
 
     {view === "matrix" && <div className="argument-map-legend" aria-label={t("proofMaps.argument.legendAria")}>
       <span><i className="is-depends" />{t("proofMaps.argument.legendDepends")}</span>
+      <span><i className="is-object" />{t("proofMaps.argument.legendObject")}</span>
       <span><i className="is-proves" />{t("proofMaps.argument.legendProves")}</span>
       <span><i className="is-same-role" />{t("proofMaps.argument.legendSameRole")}</span>
       <span><i className="is-replaces" />{t("proofMaps.argument.legendReplaces")}</span>
@@ -597,6 +605,7 @@ function NodeDrawer({ node, argumentMap, model, lean, onClose, onSelectNode, t }
   const baseEdges = node.isResult ? model.strategies.flatMap((entry) => entry.edges) : strategy?.edges ?? [];
   const dependencies = node.dependencies.map((id) => model.nodesById.get(id)).filter((entry): entry is MapNode => Boolean(entry));
   const usedBy = baseEdges.filter((edge) => edge.from === node.id);
+  const objects = (node.objectUses ?? []).map((id) => model.nodesById.get(id)).filter((entry): entry is MapNode => Boolean(entry));
   const crossRelations = model.crossEdges.filter((edge) => edge.from === node.id || edge.to === node.id);
   const path = pathToResult(node, model, strategy);
   const alignment = node.versionId && node.stepId ? lean.paperAlignments.find((candidate) => candidate.versionId === node.versionId && candidate.stepId === node.stepId) : undefined;
@@ -651,6 +660,11 @@ function NodeDrawer({ node, argumentMap, model, lean, onClose, onSelectNode, t }
         })}</div> : <p>{t("proofMaps.argument.noDownstream")}</p>}
       </section>
     </div>
+
+    {objects.length > 0 && <section className="argument-drawer-section">
+      <span>{t("proofMaps.argument.drawerObjects")}</span>
+      <div className="argument-drawer-links">{objects.map((entry) => <button type="button" key={entry.id} onClick={() => onSelectNode(entry.id)}>{entry.label}</button>)}</div>
+    </section>}
 
     <section className="argument-drawer-section">
       <span>{t("proofMaps.argument.crossRelations")}</span>

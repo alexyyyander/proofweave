@@ -463,7 +463,10 @@
           "kind": "lemma",
           "source": "Weighted configurations and critical exponents",
           "detail": "[Regularization and inherited branching] The following assertions hold. [label=()] Every sequence of indexed configurations has, after passage to a subsequence, an extensive refinement with a uniform…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-finite-cleaning"
+          ]
         },
         {
           "id": "m1-cor-active-weight-cleaning",
@@ -676,6 +679,9 @@
           "detail": "[Anisotropic normalization] Suppose that on an extensive regular graph, over larger blocks of K_1=N^ _1 bins, there are disjoint indexed-block assignments to saturated plates on a flat scale K=N^ K_1…",
           "dependsOn": [
             "m1-cor-active-weight-cleaning"
+          ],
+          "objectUses": [
+            "m1-lem-regularization"
           ]
         },
         {
@@ -689,6 +695,9 @@
           "dependsOn": [
             "m1-loc-flat-saturation",
             "m1-lem-hybrid-equality"
+          ],
+          "objectUses": [
+            "m1-lem-anisotropic"
           ]
         },
         {
@@ -714,6 +723,9 @@
           "dependsOn": [
             "m1-lem-derivative-capture",
             "m1-prop-local-bound"
+          ],
+          "objectUses": [
+            "m1-lem-regularization"
           ]
         },
         {
@@ -727,6 +739,9 @@
           "dependsOn": [
             "m1-lem-nested-cuts",
             "m1-lem-anisotropic"
+          ],
+          "objectUses": [
+            "m1-lem-derivative-capture"
           ]
         },
         {
@@ -791,6 +806,9 @@
           "dependsOn": [
             "m1-lem-estimate-cleaning",
             "m1-lem-anisotropic"
+          ],
+          "objectUses": [
+            "m1-prop-local-bound"
           ]
         },
         {
@@ -929,7 +947,10 @@
           "kind": "lemma",
           "source": "Projection constraints from two frames",
           "detail": "[Pair information on the refinement gap] Let K=1+_ , and let J_f be the full observation in the E_0 -frame obtained by increasing every threshold of J_0 by Kb . Along a triangular subsequence as in…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-blowup-counts"
+          ]
         },
         {
           "id": "m1-lem-robust-projection",

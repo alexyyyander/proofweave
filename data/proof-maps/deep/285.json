@@ -499,6 +499,7 @@
           "detail": "[The deterministic labeled tower] For every fixed finite type set and every sufficiently large s as above, the construction has the following properties. The auxiliary state sizes are . In a fixed…",
           "dependsOn": [
             "m1-lem-incidence-inversion",
+            "m1-lem-separation-deletions",
             "m1-lem-tower-recovery"
           ]
         },
@@ -789,6 +790,9 @@
             "m1-lem-repeated-edge-count",
             "m1-prop-pruning",
             "m1-lem-polynomial-avoidance"
+          ],
+          "objectUses": [
+            "m1-lem-product-sampler"
           ]
         },
         {
@@ -979,6 +983,9 @@
             "m1-lem-no-prime-torsion",
             "m1-prop-graphical-realization",
             "m1-lem-explicit-heisenberg-detector"
+          ],
+          "objectUses": [
+            "m1-lem-degree-two-restriction"
           ]
         },
         {
@@ -1129,7 +1136,10 @@
           "kind": "proposition",
           "source": "From a small matrix projection to a scalar projection",
           "detail": "[Scalar compression after a free product] Let \\(\\) be a discrete group and \\(p M_N(C_r^*())\\) a projection with \\[ 0<a:=_ ,N (p)<12. \\] Put \\(K= F_N\\), where \\(t_1,,t_N\\) freely generate \\( F_N\\),…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-scalar-subgroup"
+          ]
         },
         {
           "id": "m2-setup-matrix-target",
@@ -1179,7 +1189,10 @@
           "kind": "lemma",
           "source": "Uniform expansion before pruning",
           "detail": "[Uniform gap for the mean] For every height pair, and every fixed choice of its lower-cutoff tables, the mean incidence M satisfies \\[ \\|M:1_B^ 1_A^\\| 1610^ -3 +0.55 <0.8. \\] The bound is uniform in…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-exp-fourier"
+          ]
         },
         {
           "id": "m2-exp-cut-tail",

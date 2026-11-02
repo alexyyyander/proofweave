@@ -358,7 +358,10 @@
           "kind": "lemma",
           "source": "Marginal tails and an initial box estimate",
           "detail": "[Conditional entropy in a buffered rectangle] There are integers C_ pad 1 and a constant C_ buf , depending only on q,R,J, , with the following property. Let Q be safe, let r1 be an integer, and let…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-tail"
+          ]
         },
         {
           "id": "m1-prop-initial-box",
@@ -368,7 +371,10 @@
           "kind": "proposition",
           "source": "Marginal tails and an initial box estimate",
           "detail": "[Initial safe-box estimate] There are constants C< and e_0(0,1) , depending only on q,R,J, , such that F_ box (r) Cr^ 1+e_0 (r1).",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-initial-buffer"
+          ]
         },
         {
           "id": "m1-lem-quasilocal-lr",
@@ -486,7 +492,10 @@
           "kind": "lemma",
           "source": "Symmetric replicas and entropy metrics",
           "detail": "[Relative coherent pin] Let P,x,Y_0,F partition the fixed finite system V , put Y=xY_0 , and let \\[ A_k=A_k(P,xY_0,F), B_k=A_k(Px,Y_0,F), C_ x,k =A_k^ -1/2 B_kA_k^ -1/2 . \\] Suppose 0<t<1/4 , a=2t ,…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-movement"
+          ]
         },
         {
           "id": "m1-lem-symbol",
@@ -544,6 +553,9 @@
             "m1-transport-means",
             "m1-lem-relative-pin",
             "m1-lem-skew"
+          ],
+          "objectUses": [
+            "m1-lem-symbol"
           ]
         },
         {
@@ -580,6 +592,11 @@
             "m1-lem-continuity",
             "m1-scanner-histories",
             "m1-transport-means"
+          ],
+          "objectUses": [
+            "m1-lem-tail",
+            "m1-prop-transport",
+            "m1-lem-symbol"
           ]
         },
         {
@@ -603,6 +620,9 @@
           "dependsOn": [
             "m1-prop-initial-box",
             "m1-scanner-templates"
+          ],
+          "objectUses": [
+            "m1-prop-scanner"
           ]
         },
         {
@@ -643,6 +663,9 @@
           "dependsOn": [
             "m1-lem-tail",
             "m1-lem-continuity"
+          ],
+          "objectUses": [
+            "m1-lem-amplification-local-products"
           ]
         },
         {
@@ -848,6 +871,9 @@
           "dependsOn": [
             "m2-lem-group-tensor",
             "m2-thm-compression"
+          ],
+          "objectUses": [
+            "m2-prop-patch"
           ]
         },
         {

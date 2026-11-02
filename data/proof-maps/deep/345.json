@@ -375,6 +375,9 @@
           "detail": "[A fixed-dimensional family shortens by one] Let M be compact and simply connected. For each integer j0 there are a_j,H_j>0 such that every H^1 -continuous family :P A_a , where P is a finite…",
           "dependsOn": [
             "m1-lem-arclength"
+          ],
+          "objectUses": [
+            "m1-lem-shortening-block"
           ]
         },
         {
@@ -482,6 +485,9 @@
             "m1-prop-absolute-unit",
             "m1-thm-filtered-interchange",
             "m1-lem-arclength"
+          ],
+          "objectUses": [
+            "m1-prop-sphere-powers"
           ]
         },
         {
@@ -515,6 +521,9 @@
           "dependsOn": [
             "m1-lem-local-analytic",
             "m1-lem-local-strips"
+          ],
+          "objectUses": [
+            "m1-lem-local-lens"
           ]
         },
         {
@@ -622,6 +631,9 @@
           "detail": "[Free rank and torsion at a finite cut] Suppose that 2L>0 is regular, and put H=_j H_G^j(X_ 2L ,M) . This is a finitely generated graded -module. Its torsion submodule T is finite-dimensional and…",
           "dependsOn": [
             "m1-bud-localization"
+          ],
+          "objectUses": [
+            "m1-prop-gysin"
           ]
         },
         {
@@ -640,6 +652,10 @@
             "m1-thm-local-control",
             "m1-cor-finite-cover",
             "m1-lem-local-prime-images"
+          ],
+          "objectUses": [
+            "m1-thm-spheres",
+            "m1-trans-degree-gaps"
           ]
         }
       ]

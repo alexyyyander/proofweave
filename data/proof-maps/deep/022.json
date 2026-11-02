@@ -415,6 +415,9 @@
           "dependsOn": [
             "m1-cen-density",
             "m1-cen-kernel"
+          ],
+          "objectUses": [
+            "m1-ar-cycle"
           ]
         },
         {
@@ -575,7 +578,10 @@
           "kind": "corollary",
           "source": "Projected tables and the second-moment reduction",
           "detail": "[Upper fields on an intermediate projection] Fix an admissible realized table history and a row whose current projected grid is (z+a)/(L_i/d) , where I is the remaining prime-power part and a I . On…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-tab-virtual-marginals"
+          ]
         },
         {
           "id": "m1-tab-equidistribution",
@@ -599,6 +605,7 @@
           "detail": "[Finite-block reduction] Assume the selections and birth prescriptions of Sections~ and~ , and Propositions~ -- . Then no measurable set of positive measure can avoid the original approximation…",
           "dependsOn": [
             "m1-tab-virtual-marginals",
+            "m1-tab-partition-input",
             "m1-tab-energy-bound",
             "m1-tab-equidistribution"
           ]
@@ -611,7 +618,10 @@
           "kind": "lemma",
           "source": "Arithmetic estimates for close pairs",
           "detail": "[Small-prime exclusions] For every fixed C>0 there is an absolute sufficiently small >0 with the following property. Suppose =[v,w](r_1,r_2)2 . At any chosen primes p^ , impose one forbidden…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-ar-cycle"
+          ]
         },
         {
           "id": "m1-ar-rotation",
@@ -645,7 +655,10 @@
           "kind": "proposition",
           "source": "Arithmetic estimates for close pairs",
           "detail": "[Small-scale extraction] Fix positive constants c_-,c_+ . Suppose F,G1 and every positive edge satisfies \\[ c_-/r_+' c_+/r_+', 0<<1. \\] Given any sufficiently small fixed >0 , there are u(1/2,1) , >0…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-ar-pivot"
+          ]
         },
         {
           "id": "m1-ar-box-sampling",
@@ -689,7 +702,10 @@
           "kind": "lemma",
           "source": "Direct comparisons at simultaneous births",
           "detail": "[Tag arrangements and folding] Apart from the exceptions of Lemma~ , tag masks in each bin may be restricted to the following arrangements: they are identical, or they are disjoint. There are only…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-dir-ultra-switch"
+          ]
         },
         {
           "id": "m1-dir-exact-equalities",
@@ -701,6 +717,9 @@
           "detail": "[Exact equality bound] The total folded comparison count with exact modeled equality, using all recognized tiers and either the broad or narrow outer-mask law, is O(W) .",
           "dependsOn": [
             "m1-pre-model-uniqueness"
+          ],
+          "objectUses": [
+            "m1-dir-tag-fold"
           ]
         },
         {
@@ -777,7 +796,8 @@
             "m1-dir-holes",
             "m1-dir-ultra-count",
             "m1-dir-exact-equalities",
-            "m1-dir-row-kernel"
+            "m1-dir-row-kernel",
+            "m1-dir-shallow-box"
           ]
         },
         {
@@ -901,6 +921,9 @@
             "m1-tab-partition-input",
             "m1-join-remaining-first-joins",
             "m1-tab-energy-bound"
+          ],
+          "objectUses": [
+            "m1-tab-first-join-input"
           ]
         }
       ]

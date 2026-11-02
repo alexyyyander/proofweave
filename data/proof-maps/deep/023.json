@@ -295,6 +295,9 @@
             "m1-lem-cubic-extensions",
             "m1-lem-ordinary-sieve",
             "m1-prop-typei"
+          ],
+          "objectUses": [
+            "m1-prop-dual"
           ]
         },
         {
@@ -426,6 +429,9 @@
           "detail": "[Angular Type I estimates] Suppose RU X , 1 R X^ .51 , and (a_r) is divisor-bounded on Nr R . If W_r has common fixed compact support in (0,) and each fixed derivative is bounded by a fixed…",
           "dependsOn": [
             "m1-lem-angular-completed-height"
+          ],
+          "objectUses": [
+            "m1-prop-typei"
           ]
         },
         {
@@ -438,6 +444,10 @@
           "detail": "[Fixed-angular exceptional moments] Proposition~ holds with replaced by _ . The constants , and the implied constant may additionally depend on the fixed integer .",
           "dependsOn": [
             "m1-prop-dual"
+          ],
+          "objectUses": [
+            "m1-lem-smooth-character-duality",
+            "m1-lem-character-gram"
           ]
         },
         {
@@ -448,7 +458,11 @@
           "kind": "lemma",
           "source": "Fixed angular twists",
           "detail": "[The angular sequence condition] Every nonsparse ordinary coefficient _0 constructed in Proposition~ satisfies (SW) after replacement by _=__0 .",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-decomposition-sw",
+            "m1-lem-angular-hecke"
+          ]
         },
         {
           "id": "m1-prop-angular-dispersion",

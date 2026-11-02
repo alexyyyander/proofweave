@@ -438,7 +438,10 @@
           "kind": "corollary",
           "source": "Introduction",
           "detail": "[Nongoodness of the free group] The free group F_2 on two generators is not good in the sense of Freedman--Quinn. Every group containing a subgroup isomorphic to F_2 is likewise not good.",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-thm-main"
+          ]
         },
         {
           "id": "m1-cor-surgery-conjunction",
@@ -480,7 +483,10 @@
           "kind": "lemma",
           "source": "A finite geometric test for disc embedding",
           "detail": "[Simultaneous capped stages] For every r R there is a punctured torus B_r properly embedded in V , with boundary a knot in intQ . The B_r are mutually disjoint. They have intersecting basis curves…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-geo-framing"
+          ]
         },
         {
           "id": "m1-geo-dual-candidates",
@@ -490,7 +496,10 @@
           "kind": "lemma",
           "source": "A finite geometric test for disc embedding",
           "detail": "[Embedded framed dual candidates] Each g_r is individually embedded and has trivial normal bundle. It follows that \\[ (g_r,g_r)=0, (g_r)=0. \\] The compression leaves the single product-torus…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-geo-stages"
+          ]
         },
         {
           "id": "m1-geo-labels",
@@ -510,7 +519,9 @@
           "kind": "corollary",
           "source": "A finite geometric test for disc embedding",
           "detail": "[The exact algebraic input] There are orientations and whiskers for the discs and spheres such that, for all r,s R and R= Z[_1(M)] , (f_r,g_s)=_ rs \\,1 R, (g_r,g_s)=0 R, (g_r)=0. In particular the…",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-geo-labels"
+          ]
         },
         {
           "id": "m1-geo-topological-cuts",
@@ -553,7 +564,10 @@
           "kind": "lemma",
           "source": "Deformations of the cut data",
           "detail": "[Slopes and internal directions] The ends of each cut can be designated \\(+\\) and \\(-\\), and torus coordinates \\((_i,_i)\\) of period one can be chosen, so that the image of \\[ H^1(J_i; C) H^1( J_i;…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-def-paired-mv"
+          ]
         },
         {
           "id": "m1-def-equation-chart",
@@ -683,7 +697,9 @@
           "kind": "proposition",
           "source": "Formal connections and the two ideal identities",
           "detail": "[All gradient jets in one complex algebraic ring] For each wall there is one fixed algebraic chart ring \\(A_i^*\\), with completion \\( C[[a_i,y_i]]\\), containing the original transition germs and \\(…",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-conn-wall-collar"
+          ]
         },
         {
           "id": "m1-conn-output",
@@ -817,6 +833,9 @@
             "m1-frob-retraction",
             "m1-geo-input-invariants",
             "m1-alg-specialization"
+          ],
+          "objectUses": [
+            "m1-conn-output"
           ]
         }
       ]
@@ -874,7 +893,10 @@
           "kind": "lemma",
           "source": "The geometric reduction",
           "detail": "[Algebraic duals in the exterior] There are proper generically immersed disks \\(f_j\\) in \\(E\\), with disjoint boundary circles and with the bottom-surgery framings, and framed spheres \\(g_j\\) in…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-lem-marked-body"
+          ]
         },
         {
           "id": "m2-lem-connected-tree-cuts",
@@ -1153,6 +1175,10 @@
             "m2-lem-exterior-duals",
             "m2-prop-edge-potential",
             "m2-thm-edge-algebraicity"
+          ],
+          "objectUses": [
+            "m2-prop-vertex-data",
+            "m2-prop-geometric-reduction"
           ]
         }
       ]

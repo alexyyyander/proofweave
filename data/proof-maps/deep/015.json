@@ -363,7 +363,10 @@
           "kind": "proposition",
           "source": "Adelic formulation and choices",
           "detail": "The adelic torus quotient is compact. Its packet and canonical probability agree with P_ K,M(g_f),' and _ K,M(g_f),' for an ordering ' of the real embeddings. Every prescribed local homothety type…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-packet-model"
+          ]
         }
       ]
     },
@@ -673,6 +676,9 @@
           "detail": "Fix finitely many atoms S of P , with their VA charts, and an interior transverse depth l_i R_i . Suppose that probabilities _i C_i satisfy A_ J,i \\,_i0 . Condition on one of these symbols S and on…",
           "dependsOn": [
             "m2-prop-bowen"
+          ],
+          "objectUses": [
+            "m2-lem-entropy-partition"
           ]
         },
         {
@@ -705,7 +711,10 @@
           "kind": "lemma",
           "source": "Combining the root orientations",
           "detail": "If fails for some root, there is a subsequence and a deterministic choice of arrays (G_ ,i )_ , each taken from , with the following properties: G_ ,i F_ weak-* on bounded intervals, and the…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-lem-root-line-laws"
+          ]
         },
         {
           "id": "m2-lem-positive-root-intervals",

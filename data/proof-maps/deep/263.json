@@ -543,7 +543,10 @@
           "kind": "lemma",
           "source": "Common localization and quantum comparisons",
           "detail": "[Global atomic density at an energy offset] For one nucleus of charge Z1 , every -state in a sector n3Z satisfies _^ 5/3 C(Z^ 7/3 +).",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-loc-kinetic"
+          ]
         },
         {
           "id": "m1-lem-loc-identity",
@@ -628,6 +631,9 @@
           "detail": "[Local second moments] For every normalized -state in any finite sector and every y Y , n_y^2 C((a_y^ -6 ,1)+ a_y). In particular the number P in is at most a universal constant.",
           "dependsOn": [
             "m1-lem-loc-coulomb"
+          ],
+          "objectUses": [
+            "m1-m-lem-screen-patch"
           ]
         },
         {
@@ -739,6 +745,9 @@
             "m1-m-lem-screen-scale",
             "m1-m-lem-screen-count",
             "m1-lem-sector-multiplier"
+          ],
+          "objectUses": [
+            "m1-m-lem-screen-positive-field"
           ]
         },
         {
@@ -858,6 +867,9 @@
           "detail": "[Spatial cap and its exceptional cost] There are universal thresholds C'_ cap ,C_ cap with the following properties. Define \\[ Q is bad& _QH_j>C'_ cap a_Q^ -4 ,\\\\ B_Q&=\\1_ \\ Q bad\\ _Q(H_j)_+,…",
           "dependsOn": [
             "m1-lem-obs-data"
+          ],
+          "objectUses": [
+            "m1-m-lem-cond-tail"
           ]
         },
         {
@@ -874,6 +886,9 @@
             "m1-m-lem-screen-density",
             "m1-lem-loc-coulomb",
             "m1-m-lem-barrier-oscillation"
+          ],
+          "objectUses": [
+            "m1-lem-obs-data"
           ]
         },
         {
@@ -913,6 +928,9 @@
           "detail": "[Forgetting the current observations] Set \\[ u_ j+1 =, d_ j+1 =. \\] Then u_ j+1 ,d_ j+1 satisfy -- at scale r_ j+1 , with conditional density _ j+1 . They retain continuity and local H^1 regularity…",
           "dependsOn": [
             "m1-lem-obs-data"
+          ],
+          "objectUses": [
+            "m1-m-prop-outward-step"
           ]
         },
         {
@@ -961,8 +979,12 @@
           "source": "Outward propagation and an electron deficit",
           "detail": "[Intermediate atomic subsolutions] There are universal constants ,B,C_ inv >0 and L_1>2 with the following property. Fix D_0< , then take s>0 sufficiently small and integer Z sufficiently large as in…",
           "dependsOn": [
+            "m1-a-prop-prop-deficit",
             "m1-lem-obs-tilt",
             "m1-lem-maximum"
+          ],
+          "objectUses": [
+            "m1-a-prop-cond-comparison"
           ]
         },
         {
@@ -973,7 +995,10 @@
           "kind": "lemma",
           "source": "Returning to the neutral sector",
           "detail": "[Conditional fields on annuli] Fix positive constants <'<'< and _0<_0 . Let u>0 , 0<h u/2 , and let be a normalized -state with n3Z , where < is arbitrary. Let Y be the data from a cut whose out…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-a-prop-screen-local"
+          ]
         },
         {
           "id": "m1-a-lem-tail-deficit-upper",
@@ -1000,6 +1025,9 @@
             "m1-a-prop-prop-deficit",
             "m1-a-lem-tail-deficit-upper",
             "m1-a-lem-tail-harmonic"
+          ],
+          "objectUses": [
+            "m1-lem-obs-tilt"
           ]
         },
         {

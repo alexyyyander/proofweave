@@ -387,6 +387,10 @@
           "detail": "[Finite, positive disk moments] For every integer n1 , the deterministic numbers m_n():=_ mix ^*L_^n, m_n:=_ mix ^*L^n =_ m_n() satisfy 0<m_n<. Moreover L>0 almost surely, and, for each fixed angle,…",
           "dependsOn": [
             "m1-mp-level-moments"
+          ],
+          "objectUses": [
+            "m1-mass-positive",
+            "m1-mass-construction"
           ]
         },
         {
@@ -454,6 +458,7 @@
           "detail": "[The lower Hausdorff bound] Almost surely, \\[ ^h(([s,t]))>0 for every real 0<s<t<. \\]",
           "dependsOn": [
             "m1-hd-bad-cells",
+            "m1-mass-positive",
             "m1-gauge-admissible"
           ]
         },
@@ -687,6 +692,9 @@
           "dependsOn": [
             "m2-geom-first-hit-access",
             "m2-geom-extension"
+          ],
+          "objectUses": [
+            "m2-ll-localization"
           ]
         },
         {

@@ -218,7 +218,10 @@
           "kind": "lemma",
           "source": "Folded Gaussian blocks",
           "detail": "[Usable anchors] There are absolute constants A,B>0 with the following property. Let b B be an integer, and use the objects in Lemma~ . Suppose that H is a finite abelian group, |H| b^4 , and g_0:H…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-sampler"
+          ]
         },
         {
           "id": "m1-lem-block-cell",
@@ -264,6 +267,9 @@
             "m1-prop-vertical",
             "m1-lem-horizontal",
             "m1-lem-shear"
+          ],
+          "objectUses": [
+            "m1-lem-sections"
           ]
         }
       ]
@@ -386,6 +392,9 @@
           "dependsOn": [
             "m2-lem-caps",
             "m2-cor-caps-disjoint"
+          ],
+          "objectUses": [
+            "m2-prop-blocks"
           ]
         },
         {
@@ -406,7 +415,10 @@
           "kind": "lemma",
           "source": "Many targets for each finite pattern",
           "detail": "[Separated targets] Fix H>0 and k_0>0 . For all sufficiently large n , let P=(p_1,,p_N) be a deterministic list satisfying \\[ N n^ k_0 (_0n), \\] and let G B_D\\ p_1,,p_N\\ be measurable with |G|_nD^n/4…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-lem-cylinder"
+          ]
         },
         {
           "id": "m2-prop-pattern-tail",
@@ -447,6 +459,9 @@
           "detail": "With the same c and n_0 as in Theorem~ , for every n n_0 there is a centrally symmetric polytope P_n R^n with rational vertices such that \\[ _T(P_n)>c n n. \\]",
           "dependsOn": [
             "m2-prop-periodization"
+          ],
+          "objectUses": [
+            "m2-thm-main"
           ]
         },
         {

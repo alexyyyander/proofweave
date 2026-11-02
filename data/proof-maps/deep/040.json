@@ -414,6 +414,7 @@
           "source": "Fixed virtual classes and the divisor cosection",
           "detail": "Assume \\(p_g=q=1\\), \\(K\\) ample, and \\(D=3K\\). Every fixed contribution vanishes except those obtained from a low divisor equal to the empty divisor or to the canonical divisor. In either surviving…",
           "dependsOn": [
+            "m1-fix-excess",
             "m1-lem-rank-one-family",
             "m1-fix-smooth-euler"
           ]
@@ -436,7 +437,10 @@
           "kind": "lemma",
           "source": "A Chow relation and its universal diagonal coefficient",
           "detail": "[Reduction to decorated equality diagonals] Fix a finite list of line bundles on X . Consider a finite polynomial of Chern characters of universal point ideals and their derived duals, together with…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-rel-hilbert-recursion"
+          ]
         },
         {
           "id": "m1-prop-universal",
@@ -563,6 +567,9 @@
             "m1-lem-birational",
             "m1-cor-bloch-pg-zero",
             "m1-cor-tate-motives"
+          ],
+          "objectUses": [
+            "m1-thm-chow-relation"
           ]
         }
       ]

@@ -752,6 +752,7 @@
           "detail": "If \\(H K\\) has countable base, its canonical point \\(p_H\\) does not factor through \\(Sh( C_0^ op ,J_ )\\). This applies, in particular, to every model on the categoricity tail \\(\\|H\\|\\).",
           "dependsOn": [
             "m1-bool-extension",
+            "m1-aec-size",
             "m1-cat-bounded",
             "m1-cat-tail"
           ]
@@ -1111,6 +1112,9 @@
             "m2-found-order-template",
             "m2-lev-stabilization",
             "m2-lev-closure-categoricity"
+          ],
+          "objectUses": [
+            "m2-lev-amalgamation"
           ]
         },
         {
@@ -1156,7 +1160,10 @@
           "kind": "lemma",
           "source": "The one-dimensional calculus",
           "detail": "[Parameter orbits for a scheme] Fix an infinite . If >b+ and ^= , then, at every sufficiently closed level greater than , there are at most diagrams of -tuples over a fixed parameter tuple of length…",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-lev-block-transpositions"
+          ]
         },
         {
           "id": "m2-calc-testing",
@@ -1168,6 +1175,9 @@
           "detail": "[Uniform testing for natural layouts] For each fixed natural layout there is a monotone cardinal function g() with the following property. Two placed comparison types of tuples of length at most over…",
           "dependsOn": [
             "m2-lev-ordinal-vectors"
+          ],
+          "objectUses": [
+            "m2-lev-testing"
           ]
         },
         {
@@ -1227,6 +1237,7 @@
           "source": "The one-dimensional calculus",
           "detail": "[Uniform majority approximations] Let |v| and let _0 be bounded. At sufficiently closed levels there are approximation sequences for p=(v/A) at size , of every prescribed bounded infinite length .…",
           "dependsOn": [
+            "m2-lev-directed-unions",
             "m2-calc-placed-comparisons",
             "m2-calc-parameter-orbits"
           ]
@@ -1242,6 +1253,9 @@
           "dependsOn": [
             "m2-calc-compact-placement",
             "m2-calc-scheme-amalgamation"
+          ],
+          "objectUses": [
+            "m2-calc-approximations"
           ]
         },
         {

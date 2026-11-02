@@ -36,6 +36,7 @@ export type ProofStep = {
   detail: string;
   source: string;
   dependsOn: string[];
+  objectUses?: string[];
 };
 
 export type ProofVersion = {
@@ -154,7 +155,7 @@ export type ArgumentMapExtraNode = {
   statement: string;
 };
 
-export type ArgumentMapEdgeType = "depends" | "proves" | "implies" | "same-role" | "replaces" | "bypasses";
+export type ArgumentMapEdgeType = "depends" | "object" | "proves" | "implies" | "same-role" | "replaces" | "bypasses";
 
 export type ArgumentMapEdge = {
   from: string;
