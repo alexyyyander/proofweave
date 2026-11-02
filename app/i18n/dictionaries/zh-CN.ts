@@ -3726,6 +3726,7 @@ export const zhCN: Dictionary = {
   "proofMaps.label.detailLevelNote.section": "这是较长证明的章节级地图，不是完整引理 DAG。",
   "proofMaps.label.kind.theorem": "定理",
   "proofMaps.label.kind.lemma": "引理",
+  "proofMaps.label.kind.proposition": "命题",
   "proofMaps.label.kind.corollary": "推论",
   "proofMaps.label.kind.construction": "构造",
   "proofMaps.label.kind.bound": "界",

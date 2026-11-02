@@ -572,295 +572,368 @@
   "edges": [
     {
       "from": "m1-lem-commutant-cb",
-      "to": "m1-lem-paired"
+      "to": "m1-lem-paired",
+      "context": "ms of $P$. The commutator of $S$ with $\\pi$ has cb norm at most $e$, hence the same is true on $\\pi(P)$ by quotient lifts with arbitrarily small norm slack. By \\Cref{lem:commutant-cb} choose $D\\in\\pi(P)'$ with $\\norm{D-S}<2e$. Its lower off-diagonal block $T$ satisfies \\[ T\\rho(x)=\\theta(x)T,\\qquad \\n"
     },
     {
       "from": "m1-lem-paired",
-      "to": "m1-prop-ucp"
+      "to": "m1-prop-ucp",
+      "context": "*$-isomorphism between von Neumann algebras is an order isomorphism on their selfadjoint parts, so it preserves bounded increasing suprema and is normal. Apply \\Cref{lem:paired}, since $32e<1/4$. When $e=0$, the preceding range argument gives $Q=\\rho(P)$ directly."
     },
     {
       "from": "m1-lem-finite-ball-tests",
-      "to": "m1-lem-tracial-conjugations"
+      "to": "m1-lem-tracial-conjugations",
+      "context": "\\in N_1$ with $\\norm{x-y}<b$. Then \\[ \\norm{Tx\\Omega} =\\norm{J_Nx^*\\Omega-x\\Omega} \\le\\norm{(x^*-y^*)\\Omega}+\\norm{(x-y)\\Omega}<2b. \\] Thus the supremum in \\Cref{lem:finite-ball-tests} is at most $2b$. That lemma gives $\\norm{T}\\le768b$, and $\\norm{T}=\\norm{J_M-J_N}$."
     },
     {
       "from": "m1-lem-boundary-correction",
-      "to": "m1-prop-finite-standard-isomorphism"
+      "to": "m1-prop-finite-standard-isomorphism",
+      "context": "e3b$: a contraction approximant to $g$ is invertible for $b<1$, and its polar part has this bound. Thus \\[ \\sup_{g,h\\in G}\\norm{v_gv_h-v_{gh}}\\le9b. \\] Apply \\Cref{lem:boundary-correction} to these constant fields on the boundary space $(D,\\nu)$ of \\Cref{lem:boundary-mean}. For sufficiently small absolute"
     },
     {
       "from": "m1-lem-boundary-mean",
-      "to": "m1-prop-finite-standard-isomorphism"
+      "to": "m1-prop-finite-standard-isomorphism",
+      "context": "bound. Thus \\[ \\sup_{g,h\\in G}\\norm{v_gv_h-v_{gh}}\\le9b. \\] Apply \\Cref{lem:boundary-correction} to these constant fields on the boundary space $(D,\\nu)$ of \\Cref{lem:boundary-mean}. For sufficiently small absolute $b$ it gives measurable unitary fields $W_g:D\\to\\U(N)$ satisfying \\begin{equation} W"
     },
     {
       "from": "m1-lem-tracial-conjugations",
-      "to": "m1-prop-finite-standard-isomorphism"
+      "to": "m1-prop-finite-standard-isomorphism",
+      "context": ",y)=W_g(x)J_NW_h(y)J_N, \\qquad U_{g,h}=gJ_MhJ_M. \\] The left and right $N$ actions commute, so $\\Sigma$ is an exact cocycle for the separate $G^2$ action. By \\Cref{lem:tracial-conjugations}, \\[ \\sup_{g,h}\\norm{\\Sigma_{g,h}-U_{g,h}}_\\infty \\le(2C_1+2C_J)b. \\] The product version of \\Cref{lem:boundary-intert"
     },
     {
       "from": "m1-lem-boundary-intertwiner",
-      "to": "m1-prop-finite-standard-isomorphism"
+      "to": "m1-prop-finite-standard-isomorphism",
+      "context": "or the separate $G^2$ action. By \\Cref{lem:tracial-conjugations}, \\[ \\sup_{g,h}\\norm{\\Sigma_{g,h}-U_{g,h}}_\\infty \\le(2C_1+2C_J)b. \\] The product version of \\Cref{lem:boundary-intertwiner} gives a measurable unitary field $L:D^2\\to\\U(K)$, with $\\norm{L-I}_\\infty\\le C_2b$, such that \\begin{equation} L(x,y)U"
     },
     {
       "from": "m1-lem-boundary-diagonal-unitary",
-      "to": "m1-prop-finite-standard-isomorphism"
+      "to": "m1-prop-finite-standard-isomorphism",
+      "context": "Equation~\\eqref{eq:finite-boundary-cocycle} gives \\[ \\sup_g\\mathop{\\rm ess\\,sup}_{x,y\\in D} \\norm{W_g(x)W_g(y)^*-I}\\le2C_1b. \\] For sufficiently small $b$, \\Cref{lem:boundary-diagonal-unitary} therefore gives a measurable $a:D^2\\to\\U(N)$ with $\\norm{a-I}_\\infty\\le C_3b$ and \\begin{equation} a(x,y)=W_g(x)a(g^{-"
     },
     {
       "from": "m1-lem-double-ergodicity",
-      "to": "m1-prop-finite-standard-isomorphism"
+      "to": "m1-prop-finite-standard-isomorphism",
+      "context": "on trace vectors is $J_NW_g(y)J_N$, so \\eqref{eq:finite-diagonal-unitary} and \\eqref{eq:finite-product-intertwiner} give $f(x,y)=U_{g,g}f(g^{-1}x,g^{-1}y)$. By \\Cref{lem:double-ergodicity}, $f$ is a constant invariant vector. The invariant vectors for $g\\mapsto gJ_MgJ_M$ are exactly $\\C\\Omega$. To see this,"
     },
     {
       "from": "m1-lem-jordan-orientation",
-      "to": "m1-prop-finite-standard-isomorphism"
+      "to": "m1-prop-finite-standard-isomorphism",
+      "context": "ound}. For $(1+2C_4)b<1$ the range must be all of $N$: otherwise the quotient map by this proper closed linear subspace has norm one, contrary to that bound. \\Cref{lem:jordan-orientation} shows that this surjective Jordan map is either multiplicative or antimultiplicative. The latter possibility is exclud"
     },
     {
       "from": "m1-thm-finite",
-      "to": "m1-prop-finite-standard-isomorphism"
+      "to": "m1-prop-finite-standard-isomorphism",
+      "context": "[Proof of \\Cref{thm:finite}] Choose $t> d(M,N)$ below the absolute thresholds specified below. By \\Cref{lem:finite-neighbor}, $N$ is a finite facto"
     },
     {
       "from": "m1-lem-finite-neighbor",
-      "to": "m1-prop-finite-standard-isomorphism"
+      "to": "m1-prop-finite-standard-isomorphism",
+      "context": "[Proof of \\Cref{thm:finite}] Choose $t> d(M,N)$ below the absolute thresholds specified below. By \\Cref{lem:finite-neighbor}, $N$ is a finite factor. If either factor is a matrix algebra, \\Cref{thm:amenable} for the mutual near inclusions give"
     },
     {
       "from": "m1-thm-amenable",
-      "to": "m1-prop-finite-standard-isomorphism"
+      "to": "m1-prop-finite-standard-isomorphism",
+      "context": "Choose $t> d(M,N)$ below the absolute thresholds specified below. By \\Cref{lem:finite-neighbor}, $N$ is a finite factor. If either factor is a matrix algebra, \\Cref{thm:amenable} for the mutual near inclusions gives the required near-identity conjugacy, with an absolute linear bound. We may there"
     },
     {
       "from": "m1-lem-irreducible-hyperfinite",
-      "to": "m1-prop-finite-standard-isomorphism"
+      "to": "m1-prop-finite-standard-isomorphism",
+      "context": "es the required near-identity conjugacy, with an absolute linear bound. We may therefore suppose both factors are of type $\\II_1$. Choose $R\\subseteq M$ from \\Cref{lem:irreducible-hyperfinite}. By \\Cref{thm:amenable}, there is a unitary $w$ with $\\norm{w-I}\\le150t$ and $wRw^*\\subseteq N$. Replacing $N$ by $N_0"
     },
     {
       "from": "m1-prop-finite-common-position",
-      "to": "m1-prop-finite-standard-isomorphism"
+      "to": "m1-prop-finite-standard-isomorphism",
+      "context": "unitary $w$ with $\\norm{w-I}\\le150t$ and $wRw^*\\subseteq N$. Replacing $N$ by $N_0=w^*Nw$ makes $R$ common, and \\[ d(M,N_0)<301t. \\] Take $g=302t$ and apply \\Cref{prop:finite-common-position}, provided $g<1.74\\cdot10^{-13}$. Write $M_s=\\pi(M)$, $N_s=\\rho(N_0)$. Their common subfactor remains irreducible in $M"
     },
     {
       "from": "m1-lem-finite-right-action",
-      "to": "m1-prop-finite-standard-isomorphism"
+      "to": "m1-prop-finite-standard-isomorphism",
+      "context": "common-position}, provided $g<1.74\\cdot10^{-13}$. Write $M_s=\\pi(M)$, $N_s=\\rho(N_0)$. Their common subfactor remains irreducible in $M_s$ by faithfulness. By \\Cref{lem:finite-right-action} its right actions agree, and $d(M_s,N_s)\\le2\\beta$, with $\\beta<50948\\sqrt g$. Choose a strict standard-gap bound $b=3\\"
     },
     {
       "from": "m1-thm-amplification",
-      "to": "m1-prop-finite-standard-isomorphism"
+      "to": "m1-prop-finite-standard-isomorphism",
+      "context": "ntation $x\\mapsto x\\oplus\\theta(x)$ of $M$, and the selfadjoint switch $s(\\xi,\\eta)=(\\eta,\\xi)$. Its scalar commutator norm on that factor is at most $e(t)$. \\Cref{thm:amplification} therefore gives \\[ \\norm{\\ad_s|_{\\{x\\oplus\\theta(x):x\\in M\\}}}_{\\cb} \\le C_{\\mathrm{amp}}e(t). \\] At each matrix leve"
     },
     {
       "from": "m1-lem-paired",
-      "to": "m1-prop-finite-standard-isomorphism"
+      "to": "m1-prop-finite-standard-isomorphism",
+      "context": "tator has off-diagonal block $[x_{ij}-\\theta(x_{ij})]$, so equivalently $\\norm{\\theta-\\id}_{\\cb}\\le C_{\\mathrm{amp}}e(t)$. For sufficiently small absolute $t$, \\Cref{lem:paired} gives a unitary $v\\in\\B(H)$ with $vMv^*=N_0$ and $\\norm{v-I}\\le C_{\\mathrm{pair}}C_{\\mathrm{amp}}e(t)$, for an absolute"
     },
     {
       "from": "m1-thm-amenable",
-      "to": "m1-prop-prepared-pair"
+      "to": "m1-prop-prepared-pair",
+      "context": "ntity into countably many equivalent projections and choose corresponding matrix units \\cite[III.1.3.5 and III.1.5.1, pp.~243, 247]{BlackadarOperatorAlgebras}. \\Cref{thm:amenable} embeds this amenable subfactor of $M_0$ into $N_0$ by a unitary of norm distance at most $150t$ from 1. Conjugating $N"
     },
     {
       "from": "m1-lem-common-infinite-amplification",
-      "to": "m1-prop-prepared-pair"
+      "to": "m1-prop-prepared-pair",
+      "context": "$ in the inverse direction gives $u_0$ for which the subfactor is common. This also proves that $N_0$ is infinite. The adjusted ordinary gap is at most $301t$. \\Cref{lem:common-infinite-amplification} makes this also a cb gap. \\Cref{lem:tensor-gap} transfers it to the tensor pair because $D'$ is hyperfinite. By \\Cref{"
     },
     {
       "from": "m1-lem-tensor-gap",
-      "to": "m1-prop-prepared-pair"
+      "to": "m1-prop-prepared-pair",
+      "context": "ommon. This also proves that $N_0$ is infinite. The adjusted ordinary gap is at most $301t$. \\Cref{lem:common-infinite-amplification} makes this also a cb gap. \\Cref{lem:tensor-gap} transfers it to the tensor pair because $D'$ is hyperfinite. By \\Cref{lem:fixed-tensor-factor}, both tensor factors ar"
     },
     {
       "from": "m1-lem-fixed-tensor-factor",
-      "to": "m1-prop-prepared-pair"
+      "to": "m1-prop-prepared-pair",
+      "context": "01t$. \\Cref{lem:common-infinite-amplification} makes this also a cb gap. \\Cref{lem:tensor-gap} transfers it to the tensor pair because $D'$ is hyperfinite. By \\Cref{lem:fixed-tensor-factor}, both tensor factors are of type $\\III_1$ and absorb $R_\\lambda$. For the moment write $N_1=(u_0N_0u_0^*)\\barotimes D$"
     },
     {
       "from": "m1-lem-commutant-cb",
-      "to": "m1-prop-prepared-pair"
+      "to": "m1-prop-prepared-pair",
+      "context": "\\norm{v_1-1}=O(t)$. Put $N_2=v_1^*N_1v_1$, so $R\\subseteq M\\cap N_2$. Cb gaps change by at most twice the norm distance of the adjusting unitary from 1. Thus \\Cref{lem:commutant-cb} gives $d(M',N_2')=O(t)$. Apply \\Cref{thm:amenable} to $S\\subseteq M'$ and its near inclusion in $N_2'$. It gives a un"
     },
     {
       "from": "m1-prop-modular-graphs",
-      "to": "m1-cor-modular-cuts"
+      "to": "m1-cor-modular-cuts",
+      "context": "rojection onto a closed operator graph is $(1+A^*A)^{-1}$. Applied to \\eqref{eq:rescaled-graph}, this gives $(1+c^2\\Delta_P)^{-1}$. With $g(s)=(1+e^s)^{-1}$, \\Cref{prop:modular-graphs} consequently yields \\[ \\norm{g(L_M-a)-g(L_N-a)}\\leq C\\gamma\\qquad(a\\in\\R). \\] Let $p=1_{(-\\infty,a-1/2]}(L_N)$ and $q="
     },
     {
       "from": "m1-lem-commutant-cb",
-      "to": "m1-lem-infinite-commutant-bound"
+      "to": "m1-lem-infinite-commutant-bound",
+      "context": "itary $V:H^k\\to H$, $V(\\xi_i)=\\sum_i s_i\\xi_i$, identifies $M_k(P)$ with $P$ and $h_0^{(k)}$ with $h_0$. Consequently \\[ \\norm{\\ad_{h_0}|_P}_{\\cb}\\le d. \\] By \\Cref{lem:commutant-cb}, $\\dist(h_0,P')\\le d$, so in fact $\\dist(h,P')\\le2d$. The stated larger constant will be convenient."
     },
     {
       "from": "m1-lem-infinite-commutant-bound",
-      "to": "m1-lem-local-normalizer-linear"
+      "to": "m1-lem-local-normalizer-linear",
+      "context": "ons witnessing a fixed positive commutator norm could be selected at each coordinate of an ultrafilter-large set, contradicting equality on their class in $A$. \\Cref{lem:infinite-commutant-bound} now gives \\[ 1=\\dist(h_j,P_j+P_j') \\le\\dist(h_j-a_j,P_j') \\le4\\norm{\\ad_{h_j-a_j}|_{P_j}}\\longrightarrow_\\omega0, \\]"
     },
     {
       "from": "m1-lem-local-normalizer-linear",
-      "to": "m1-lem-local-normalizer-path"
+      "to": "m1-lem-local-normalizer-path",
+      "context": "ugation formula gives \\[ \\norm{e^{ih}xe^{-ih}-x-i[h,x]}\\le2\\norm{h}^2\\norm{x}. \\] It follows that \\[ \\sup_{x\\in P_1}\\dist([h,x],P)\\le e+2\\norm{h}^2. \\] Apply \\Cref{lem:local-normalizer-linear} and approximate $h$ by a self-adjoint sum $a+b'$ with $a\\in P$, $b'\\in P'$. Since $a$ and $b'$ commute, $e^{i(a+b')}=e^"
     },
     {
       "from": "m1-cor-modular-cuts",
-      "to": "m1-lem-modular-near-normalizers"
+      "to": "m1-lem-modular-near-normalizers",
+      "context": "fiber \\[ 1_{(-\\infty,a-1-\\xi]}(L_N) 1_{(a-\\xi,\\infty)}(L_M). \\] Its two thresholds have separation one, with midpoint $a-\\tfrac12-\\xi$. The cut estimate of \\Cref{cor:modular-cuts} bounds its norm by $C\\gamma$, uniformly in $a$ and $\\xi$. The same argument with $M,N$ interchanged applies to $C_1\\ma"
     },
     {
       "from": "m1-lem-invariant-mean",
-      "to": "m1-lem-modular-near-normalizers"
+      "to": "m1-lem-modular-near-normalizers",
+      "context": "serves the frequency nest algebra on $L^2(\\mathbb T)$ \\cite[Proposition~5.1, pp.~228--229]{Arveson1975}. Use the invariant mean on the discrete group $\\R$ from \\Cref{lem:invariant-mean}. For $T\\in\\B(\\mathcal K)$ put \\[ \\mathcal E(T)=m_s C_sTC_s^*. \\] This UCP map has range in the commutant of the scalar"
     },
     {
       "from": "m1-lem-analytic-multiplier",
-      "to": "m1-lem-modular-near-normalizers"
+      "to": "m1-lem-modular-near-normalizers",
+      "context": "s\\,sup}_s\\norm{B(s)-e^{is}W(s)}\\leq\\delta, \\qquad \\mathop{\\rm ess\\,sup}_s\\norm{S(s)-e^{is}W(s)^*}\\leq\\delta. \\end{equation} They preserve $P_0\\mathcal K$, so \\Cref{lem:analytic-multiplier} applies. Write their extensions as $B(z),S(z)$. \\paragraph{Analytic products retain the approximate algebra relations."
     },
     {
       "from": "m1-lem-local-normalizer-path",
-      "to": "m1-lem-modular-near-normalizers"
+      "to": "m1-lem-modular-near-normalizers",
+      "context": "0)$ by an $m\\in M$ with $\\norm{m}\\leq1+C\\gamma$, and apply the corresponding estimate for $V_r(t)$ to $m$; the sum of the two errors is still $C\\gamma$. Apply \\Cref{lem:local-normalizer-path} to the portion of this path joining $0$ to $t$, in either time direction. For each $r,t$ it gives $a_r(t)\\in\\U(M)$ and"
     },
     {
       "from": "m1-prop-ucp",
-      "to": "m1-lem-modular-near-normalizers"
+      "to": "m1-lem-modular-near-normalizers",
+      "context": "ithful and normal, and its range has two-sided cb gap at most $2\\gamma$ from $M$ by \\eqref{eq:W-range-gap}. In particular the reverse ordinary gap required by \\Cref{prop:ucp} is small. That proposition supplies a unitary $q_t$ with \\[ \\norm{q_t-I}\\leq C\\gamma,\\qquad q_t\\rho_t(M)q_t^*=M. \\]"
     },
     {
       "from": "m1-lem-local-normalizer-linear",
-      "to": "m1-lem-small-exact-normalizer"
+      "to": "m1-lem-small-exact-normalizer",
+      "context": "$vPv^*=P$. Hence $i\\ad_h$ restricts to a bounded $*$-derivation of $P$. The factor $P$ is a simple unital $C^*$-algebra, by the same projection argument as in \\Cref{lem:local-normalizer-linear}. Sakai's theorem therefore gives a self-adjoint $a_0\\in P$ such that $h-a_0\\in P'$. A scalar may be subtracted from $a_"
     },
     {
       "from": "m1-lem-small-exact-normalizer",
-      "to": "m1-lem-normalizer-representation-correction"
+      "to": "m1-lem-normalizer-representation-correction",
+      "context": "$4e^2$. Taking polar parts in $\\B(H)$ alone would not ensure membership in $\\mathcal N_P$. We instead use the local product structure of exact normalizers. By \\Cref{lem:small-exact-normalizer}, choose, for every $s,t$, \\[ F_t(s)v_t^*=a_{t,s}b_{t,s}', \\quad a_{t,s}\\in\\U(P),\\quad b_{t,s}'\\in\\U(P'), \\quad \\nor"
     },
     {
       "from": "m1-prop-modular-alignment",
-      "to": "m1-lem-normalizer-representation-correction"
+      "to": "m1-lem-normalizer-representation-correction",
+      "context": "[Proof of \\Cref{prop:modular-alignment}] Put $U_t=\\Delta_N^{it}$ and $W(t)=\\Delta_N^{it}\\Delta_M^{-it}$. \\Cref{lem:modular-near-normalizers} supplies $n_t\\in\\m"
     },
     {
       "from": "m1-lem-modular-near-normalizers",
-      "to": "m1-lem-normalizer-representation-correction"
+      "to": "m1-lem-normalizer-representation-correction",
+      "context": "[Proof of \\Cref{prop:modular-alignment}] Put $U_t=\\Delta_N^{it}$ and $W(t)=\\Delta_N^{it}\\Delta_M^{-it}$. \\Cref{lem:modular-near-normalizers} supplies $n_t\\in\\mathcal N_M$ with $\\sup_t\\norm{n_t-W(t)}\\le C\\gamma$. Set $v_t=n_t\\Delta_M^{it}$, so $v_t\\in\\mathcal N"
     },
     {
       "from": "m1-lem-tensor-gap",
-      "to": "m1-lem-core-gap"
+      "to": "m1-lem-core-gap",
+      "context": "By \\Cref{lem:tensor-gap}, tensoring the pair with $\\B(L^2(\\R))$ preserves the upper bound. Average on the common ambient operator algebra using"
     },
     {
       "from": "m1-lem-invariant-mean",
-      "to": "m1-lem-core-gap"
+      "to": "m1-lem-core-gap",
+      "context": "m:tensor-gap}, tensoring the pair with $\\B(L^2(\\R))$ preserves the upper bound. Average on the common ambient operator algebra using $V_s=U_s\\otimes\\rho_s$ in \\Cref{lem:invariant-mean}. For a contraction $X$ in any matrix level of $C(P,U)$, choose a contraction $Y$ in the same matrix level of $Q\\barotim"
     },
     {
       "from": "m1-lem-core-fixed-points",
-      "to": "m1-lem-core-gap"
+      "to": "m1-lem-core-gap",
+      "context": "$Y$ in the same matrix level of $Q\\barotimes\\B(L^2(\\R))$ within the chosen gap bound. The matrix amplification of $E_V$ fixes $X$, takes $Y$ into $C(Q,U)$ by \\Cref{lem:core-fixed-points}, and preserves both the norm bound and the approximation error. Reverse $P,Q$. This proves the assertion at every mat"
     },
     {
       "from": "m1-lem-core-gap",
-      "to": "m1-prop-core-descent"
+      "to": "m1-prop-core-descent",
+      "context": "Write $\\mathcal A=C(P,U)$ and $\\mathcal B=C(Q,U)$. Use a slightly smaller gap bound if necessary so that \\Cref{lem:core-gap} gives $\\dcb(\\mathcal A,\\mathcal B)<\\gamma$. The semifinite factor $\\mathcal B$ contains matrix units $(e_{ij})_{i,j\\ge1"
     },
     {
       "from": "m1-thm-amenable",
-      "to": "m1-prop-core-descent"
+      "to": "m1-prop-core-descent",
+      "context": "ing exhausts $I$. Equal-trace comparison gives the required matrix units. Their weak closed span $S$ is a unital copy of $\\B(\\ell^2)$, hence amenable. Apply \\Cref{thm:amenable} to $S\\subset_\\gamma\\mathcal A$. For $\\gamma<1/100$ it gives a unitary $w$ with \\[ wSw^*\\subseteq\\mathcal A,\\qquad \\nor"
     },
     {
       "from": "m1-lem-finite-neighbor",
-      "to": "m1-prop-core-descent"
+      "to": "m1-prop-core-descent",
+      "context": "hcal A_1e|_{e\\mathcal K},\\qquad B_0=e\\mathcal Be|_{e\\mathcal K},\\qquad d(A_0,B_0)<\\kappa. \\] The algebra $B_0$ is a type $\\II_1$ factor. When $\\kappa<1/10$, \\Cref{lem:finite-neighbor} first makes $A_0$ finite and then makes it a factor. Thus \\Cref{thm:finite} applies to this pair on the separable Hilb"
     },
     {
       "from": "m1-thm-finite",
-      "to": "m1-prop-core-descent"
+      "to": "m1-prop-core-descent",
+      "context": "appa. \\] The algebra $B_0$ is a type $\\II_1$ factor. When $\\kappa<1/10$, \\Cref{lem:finite-neighbor} first makes $A_0$ finite and then makes it a factor. Thus \\Cref{thm:finite} applies to this pair on the separable Hilbert space $e\\mathcal K$. Choosing its orientation appropriately gives a unit"
     },
     {
       "from": "m1-lem-invariant-mean",
-      "to": "m1-prop-core-descent"
+      "to": "m1-prop-core-descent",
+      "context": "It remains to descend to $H$. Average the character action $\\beta$ on the entire $\\B(\\mathcal K)$, obtaining a unital completely positive map $E_\\beta$ from \\Cref{lem:invariant-mean}, with $V_a=Q_a$. By \\Cref{lem:core-fixed-points}, it maps $\\mathcal B$ into $\\pi(Q)$ and fixes $\\pi(x)$ for every $x\\in"
     },
     {
       "from": "m1-lem-core-fixed-points",
-      "to": "m1-prop-core-descent"
+      "to": "m1-prop-core-descent",
+      "context": "haracter action $\\beta$ on the entire $\\B(\\mathcal K)$, obtaining a unital completely positive map $E_\\beta$ from \\Cref{lem:invariant-mean}, with $V_a=Q_a$. By \\Cref{lem:core-fixed-points}, it maps $\\mathcal B$ into $\\pi(Q)$ and fixes $\\pi(x)$ for every $x\\in\\B(H)$. Therefore \\begin{equation}\\label{eq:core"
     },
     {
       "from": "m1-prop-ucp",
-      "to": "m1-prop-core-descent"
+      "to": "m1-prop-core-descent",
+      "context": "\\le300\\gamma+2\\eta_{\\rm fin}(301\\gamma). \\] Here $\\id_P$ denotes the original inclusion into $\\B(H)$. The ordinary gap $d(P,Q)$ is less than $\\gamma$. Apply \\Cref{prop:ucp}. Its absolute thresholds hold for all sufficiently small $\\gamma$, because $\\eta_{\\rm fin}(t)\\to0$. Its displacement"
     },
     {
       "from": "m1-thm-finite",
-      "to": "m1-thm-factors"
+      "to": "m1-thm-factors",
+      "context": "If either factor is finite, \\Cref{thm:finite} applies, with the roles reversed if necessary. Its finite-neighbor conclusion also shows that for a sufficiently small"
     },
     {
       "from": "m1-prop-prepared-pair",
-      "to": "m1-thm-factors"
+      "to": "m1-thm-factors",
+      "context": "te-neighbor conclusion also shows that for a sufficiently small gap both factors are finite in that case. We may therefore suppose that both are infinite. Use \\Cref{prop:prepared-pair}, retaining its changes of representation explicitly. On $H\\otimes K$ it gives the fixed hyperfinite tensor factor $D\\s"
     },
     {
       "from": "m1-prop-modular-alignment",
-      "to": "m1-thm-factors"
+      "to": "m1-thm-factors",
+      "context": "An enlargement of $C_2$ absorbs strict upper-bound slack. Let $U_s=\\Delta_N^{is}$ be the modular group belonging to the common vector in that preparation. By \\Cref{prop:modular-alignment}, a unitary $q$ satisfies \\[ \\norm{q-I}\\le C_3t,\\qquad P=qMq^*\\text{ is normalized by every }U_s, \\qquad\\dcb(P,N)<C_4"
     },
     {
       "from": "m1-prop-core-descent",
-      "to": "m1-thm-factors"
+      "to": "m1-thm-factors",
+      "context": "ts modular group have not changed. Consequently $C(N,U)$ is its type $\\II_\\infty$ modular core. No modular claim about the action on $P$ is necessary. Apply \\Cref{prop:core-descent} with $\\gamma=C_4t$ to obtain \\[ aPa^*=N,\\qquad \\norm{a-I}\\le\\zeta(C_4t). \\] All these operations have taken place on"
     },
     {
       "from": "m1-prop-ucp",
-      "to": "m1-thm-factors"
+      "to": "m1-thm-factors",
+      "context": "s I_K$ gives at every matrix level \\[ \\norm{F_0-\\id_{M_0}}_{\\cb}\\le2\\norm{b-I}\\le2r(t). \\] The reverse ordinary gap is less than $t$. A second application of \\Cref{prop:ucp} therefore gives the desired conjugating unitary on the original $H$, with displacement at most an absolute constant tim"
     },
     {
       "from": "m1-thm-amenable",
-      "to": "m1-lem-centers-close"
+      "to": "m1-lem-centers-close",
+      "context": "hin $3g$ of $z$. Interchanging $M,N$ and then letting $g\\downarrow d(M,N)$ proves the gap estimate. The centers are amenable. Apply the mutual conclusion of \\Cref{thm:amenable}, with near-inclusion bound $3g$, to obtain $w$. Finally, conjugation by $w$ changes an ordinary gap by at most $2\\norm{"
     },
     {
       "from": "m1-thm-factors",
-      "to": "m1-thm-separable-algebras"
+      "to": "m1-thm-separable-algebras",
+      "context": "The zero Hilbert space is immediate. By \\Cref{thm:factors}, choose $\\tau>0$ such that any pair of factors on a separable Hilbert space at distance less than $\\tau$ has an impleme"
     },
     {
       "from": "m1-lem-centers-close",
-      "to": "m1-thm-separable-algebras"
+      "to": "m1-thm-separable-algebras",
+      "context": "s on a separable Hilbert space at distance less than $\\tau$ has an implementer within $a/2$ of the identity. Choose $\\delta_{\\mathrm{sep}}(a)>0$ so small that \\Cref{lem:centers-close} applies with $g=\\delta_{\\mathrm{sep}}(a)$ and \\[ 450\\delta_{\\mathrm{sep}}(a)<a/2, \\qquad 901\\delta_{\\mathrm{sep}}(a)<"
     },
     {
       "from": "m1-lem-fiber-gap",
-      "to": "m1-thm-separable-algebras"
+      "to": "m1-thm-separable-algebras",
+      "context": "ing the hypothesis, align the centers by the unitary $w$ in that lemma, and set $N_0=w^*Nw$. The common-center pair $M,N_0$ has distance less than $\\tau$. By \\Cref{lem:fiber-gap}, almost every fiber pair has distance less than $\\tau$ as well. Apply the factor theorem on each fiber and then \\Cref{"
     },
     {
       "from": "m1-lem-measurable-implementers",
-      "to": "m1-thm-separable-algebras"
+      "to": "m1-thm-separable-algebras",
+      "context": "nce less than $\\tau$. By \\Cref{lem:fiber-gap}, almost every fiber pair has distance less than $\\tau$ as well. Apply the factor theorem on each fiber and then \\Cref{lem:measurable-implementers}, with bound $a/2$. The resulting unitary $v$ satisfies \\[ vMv^*=N_0,\\qquad\\norm{v-I}\\leq a/2. \\] Now $u=wv$ implement"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-separable-tests"
+      "to": "m1-lem-separable-tests",
+      "context": "[Proof of \\Cref{thm:main}] Let $\\eps>0$. The conclusion of \\Cref{prop:ucp} is uniform in the algebras and the Hilbert space, and its implementin"
     },
     {
       "from": "m1-prop-ucp",
-      "to": "m1-lem-separable-tests"
+      "to": "m1-lem-separable-tests",
+      "context": "[Proof of \\Cref{thm:main}] Let $\\eps>0$. The conclusion of \\Cref{prop:ucp} is uniform in the algebras and the Hilbert space, and its implementing-unitary bound tends to zero with the cb error."
     },
     {
       "from": "m1-thm-separable-algebras",
-      "to": "m1-lem-separable-tests"
+      "to": "m1-lem-separable-tests",
+      "context": ". Set \\[ P_i=(A_i|_{K_i})'',\\qquad Q_i=(B_i|_{K_i})''. \\] These are unital von Neumann algebras on the nonzero separable space $K_i$, and $d(P_i,Q_i)<g$. By \\Cref{thm:separable-algebras}, there is a unitary $u_i\\in\\B(K_i)$ with \\[ u_iP_iu_i^*=Q_i,\\qquad\\norm{u_i-I}<a. \\] Extend it by the identity on $K_i"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-cor-uniform-matrix-commutant"
+      "to": "m1-cor-uniform-matrix-commutant",
+      "context": "Choose $\\delta$ from \\Cref{thm:main} with unitary displacement $\\eps/2$. The resulting unitary satisfies $uMu^*=N$ and $\\norm{u-I}<\\eps/2$. Conjugation by i"
     },
     {
       "from": "m2-thm-main",
-      "to": "m2-lem-corner"
+      "to": "m2-lem-corner",
+      "context": "[Proof of Theorem~\\ref{thm:main}] We show that no infinite subsequence admits unitaries $u_n$ with \\begin{equation}\\label{eq:assumed-embedding} u_nM_nu"
     },
     {
       "from": "m2-prop-near",
-      "to": "m2-lem-corner"
+      "to": "m2-lem-corner",
+      "context": "qref{eq:assumed-embedding}. Thus the two representations being multiplied have commuting ranges, and $\\Sigma_n$ is a unitary representation of $G$. Proposition~\\ref{prop:near} gives the uniform estimate \\begin{equation}\\label{eq:sigma-bound} \\sup_{g\\in G} \\bigl\\|\\Sigma_n(g)-\\lambda(g)\\rho(g)\\"
     },
     {
       "from": "m2-lem-clock",
-      "to": "m2-lem-corner"
+      "to": "m2-lem-corner",
+      "context": "e two commuting algebras. Lemma~\\ref{lem:corner} now produces commuting unitary matrices on $\\mathbb C^n$ approaching $U_n,V_n$ in norm. This contradicts Lemma~\\ref{lem:clock}, proving that \\eqref{eq:assumed-embedding} cannot hold on any infinite subsequence. It follows that some $\\epsilon_0>0"
     },
     {
       "from": "m3-prop-sequences",
-      "to": "m3-cor-obstruction"
+      "to": "m3-cor-obstruction",
+      "context": "A spatial conjugacy would give the unitaries in Proposition~\\ref{prop:sequences}(ii), contradicting Lemma~\\ref{lem:invariant}. For the distance bound, $p\\mapsto WpW^*$ bijects the closed unit balls an"
     },
     {
       "from": "m3-lem-invariant",
-      "to": "m3-cor-obstruction"
+      "to": "m3-cor-obstruction",
+      "context": "A spatial conjugacy would give the unitaries in Proposition~\\ref{prop:sequences}(ii), contradicting Lemma~\\ref{lem:invariant}. For the distance bound, $p\\mapsto WpW^*$ bijects the closed unit balls and \\[ \\norm{WpW^*-p}\\le2\\norm{p}\\norm{W-\\id_L}"
     },
     {
       "from": "m3-lem-absorption",
-      "to": "m3-lem-ambient"
+      "to": "m3-lem-ambient",
+      "context": "lta_e=\\alpha\\delta_e$. Commuting with left translations gives $Y\\delta_x=\\alpha\\delta_x$ for every $x$, proving $Z(D)=\\C\\id_L$. For the final assertion, Lemma~\\ref{lem:absorption} shows that $W=W_{\\pi_t}W_{\\pi_0}^*$ sends every $Q_0(g)$ to $Q_t(g)$ by conjugation. Moreover, the direct-sum descripti"
     },
     {
       "from": "m3-lem-absorption",
-      "to": "m3-lem-bad-inclusion"
+      "to": "m3-lem-bad-inclusion",
+      "context": ". \\end{equation} On the other hand, the tensor sum on $L\\otimes L$ is \\[ \\sum_{i=1}^m\\lambda(s_i)\\otimes\\pi_t(s_i) \\otimes\\rho(s_i)\\otimes\\id_K. \\] Apply Lemma~\\ref{lem:absorption} to the representation $\\sigma=\\pi_t\\otimes\\rho\\otimes1$ on $K^{\\otimes3}$, where $1$ is the trivial representation on t"
     },
     {
       "from": "m3-lem-free-norm",
-      "to": "m3-lem-bad-inclusion"
+      "to": "m3-lem-bad-inclusion",
+      "context": "to the representation $\\sigma=\\pi_t\\otimes\\rho\\otimes1$ on $K^{\\otimes3}$, where $1$ is the trivial representation on the last copy of $K$. Together with Lemma~\\ref{lem:free-norm}, it gives \\begin{equation}\\label{eq:small-norm} \\norm{\\sum_i p_i\\otimes z_i} =\\norm{\\sum_{i=1}^m\\lambda(s_i)}\\le2\\sqrt"
     },
     {
       "from": "m3-thm-main",
-      "to": "m3-lem-bad-inclusion"
+      "to": "m3-lem-bad-inclusion",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Given $\\varepsilon>0$, choose $0<t<1$ so small that $2c(t)<\\varepsilon$. Use the algebras $P_0,P_t\\subseteq D\\subseteq"
     },
     {
       "from": "m3-lem-ambient",
-      "to": "m3-lem-bad-inclusion"
+      "to": "m3-lem-bad-inclusion",
+      "context": "D\\subseteq\\B(L)$ from Section~\\ref{sec:inclusions}, and put \\[ H=\\bigoplus_{n\\ge1}L,\\qquad A=\\E_D(P_0),\\qquad B=\\E_D(P_t). \\] The space $H$ is separable. Lemma~\\ref{lem:ambient} supplies the scalar center of $D$, so Proposition~\\ref{prop:sequences} shows that $A,B$ are unital norm-separable $C^*$"
     },
     {
       "from": "m3-prop-sequences",
-      "to": "m3-lem-bad-inclusion"
+      "to": "m3-lem-bad-inclusion",
+      "context": "goplus_{n\\ge1}L,\\qquad A=\\E_D(P_0),\\qquad B=\\E_D(P_t). \\] The space $H$ is separable. Lemma~\\ref{lem:ambient} supplies the scalar center of $D$, so Proposition~\\ref{prop:sequences} shows that $A,B$ are unital norm-separable $C^*$-algebras with common identity and that $A''=B''$. The same lemma suppl"
     },
     {
       "from": "m3-cor-obstruction",
-      "to": "m3-lem-bad-inclusion"
+      "to": "m3-lem-bad-inclusion",
+      "context": "ble $C^*$-algebras with common identity and that $A''=B''$. The same lemma supplies a unitary $W$ with $WP_0W^*=P_t$ and $\\norm{W-\\id_L}\\le c(t)$. By Corollary~\\ref{cor:obstruction}, \\[ \\KK(A,B)\\le2c(t)<\\varepsilon. \\] Finally, Lemmas~\\ref{lem:good-inclusion} and~\\ref{lem:bad-inclusion} show that the"
     },
     {
       "from": "m3-lem-good-inclusion",
-      "to": "m3-lem-bad-inclusion"
+      "to": "m3-lem-bad-inclusion",
+      "context": "supplies a unitary $W$ with $WP_0W^*=P_t$ and $\\norm{W-\\id_L}\\le c(t)$. By Corollary~\\ref{cor:obstruction}, \\[ \\KK(A,B)\\le2c(t)<\\varepsilon. \\] Finally, Lemmas~\\ref{lem:good-inclusion} and~\\ref{lem:bad-inclusion} show that the relative tensor-norm identity holds for $P_0$ but not for $P_t$. Corollary~\\r"
     }
   ]
 }

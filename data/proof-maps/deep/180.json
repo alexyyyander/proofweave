@@ -1,0 +1,250 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "180",
+  "title": "Barnette’s Hamiltonian-cycle conjecture",
+  "result": {
+    "id": "paper-result",
+    "label": "Barnette’s Hamiltonian-cycle conjecture",
+    "statement": "Proves that every finite simple cubic bipartite planar 3-vertex-connected graph has a Hamiltonian cycle, resolving Barnette's conjecture. Equivalently, every three-edge path in a finite simple cubic 3-vertex-connected bipartite Pfaffian graph lies in a Hamiltonian cycle.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "plane-trees-and-the-triangulation-statement",
+      "label": "Plane trees and the triangulation statement",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "plane-trees-and-the-triangulation-statement-2",
+      "label": "Plane trees and the triangulation statement",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-disjoint-states",
+      "label": "Two disjoint states",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-disk-identity",
+      "label": "The disk identity",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-weighted-cancellation-argument",
+      "label": "A weighted cancellation argument",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-weighted-cancellation-argument-2",
+      "label": "A weighted cancellation argument",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-weighted-cancellation-argument-3",
+      "label": "A weighted cancellation argument",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "recovering-the-two-induced-trees",
+      "label": "Recovering the two induced trees",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "recovering-the-two-induced-trees-2",
+      "label": "Recovering the two induced trees",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "separating-triangles-and-the-hamiltonian-cycle",
+      "label": "Separating triangles and the Hamiltonian cycle",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "separating-triangles-and-the-hamiltonian-cycle-2",
+      "label": "Separating triangles and the Hamiltonian cycle",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Paired states and Hamiltonian cycles in cubic bipartite planar graphs",
+      "title": "Paired states and Hamiltonian cycles in cubic bipartite planar graphs",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Paired-states-and-Hamiltonian-cycles-in-cubic-bipartite-planar-graphs-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Paired states and Hamiltonian cycles in cubic bipartite planar graphs; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "Every finite simple undirected graph that is cubic, bipartite, planar, and…",
+          "fullLabel": "Every finite simple undirected graph that is cubic, bipartite, planar, and…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "Every finite simple undirected graph that is cubic, bipartite, planar, and \\(3\\)-vertex-connected has a Hamiltonian cycle.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-duality",
+          "role": "plane-trees-and-the-triangulation-statement",
+          "label": "Let \\(M\\) be a connected graph embedded on the sphere. The duals of the edges…",
+          "fullLabel": "Let \\(M\\) be a connected graph embedded on the sphere. The duals of the edges…",
+          "kind": "lemma",
+          "source": "Plane trees and the triangulation statement",
+          "detail": "Let \\(M\\) be a connected graph embedded on the sphere. The duals of the edges complementary to a spanning tree of \\(M\\) form a spanning tree of \\(M^*\\). More generally, the duals of the edges…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-partition",
+          "role": "plane-trees-and-the-triangulation-statement-2",
+          "label": "Let \\(T\\) be a sphere triangulation whose faces are colored black and white so…",
+          "fullLabel": "Let \\(T\\) be a sphere triangulation whose faces are colored black and white so…",
+          "kind": "theorem",
+          "source": "Plane trees and the triangulation statement",
+          "detail": "Let \\(T\\) be a sphere triangulation whose faces are colored black and white so that each edge has one incident face of each color. For any facial triangle \\(t_0\\) and any edge \\(e_0\\) of \\(t_0\\), the…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-pairs",
+          "role": "two-disjoint-states",
+          "label": "If \\(T\\) has no separating triangle, then a pair of states exists.",
+          "fullLabel": "If \\(T\\) has no separating triangle, then a pair of states exists.",
+          "kind": "proposition",
+          "source": "Two disjoint states",
+          "detail": "If \\(T\\) has no separating triangle, then a pair of states exists.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-disk",
+          "role": "the-disk-identity",
+          "label": "Disk identity",
+          "fullLabel": "Disk identity",
+          "kind": "lemma",
+          "source": "The disk identity",
+          "detail": "[Disk identity] Let \\(r\\) be a state. In each \\(t A\\), choose one edge directed from \\(r(t)\\) to another vertex of \\(t\\). Every simple directed cycle in the chosen edges avoids the roots. Its…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-forest-state",
+          "role": "a-weighted-cancellation-argument",
+          "label": "Whenever at least one pair exists, some pair \\((r,s)\\) has \\(Q_s\\) a forest.",
+          "fullLabel": "Whenever at least one pair exists, some pair \\((r,s)\\) has \\(Q_s\\) a forest.",
+          "kind": "proposition",
+          "source": "A weighted cancellation argument",
+          "detail": "Whenever at least one pair exists, some pair \\((r,s)\\) has \\(Q_s\\) a forest.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-cancel",
+          "role": "a-weighted-cancellation-argument-2",
+          "label": "For fixed \\(s\\) with cyclic \\(Q_s\\), the terms of having second state \\(s\\) sum…",
+          "fullLabel": "For fixed \\(s\\) with cyclic \\(Q_s\\), the terms of having second state \\(s\\) sum…",
+          "kind": "lemma",
+          "source": "A weighted cancellation argument",
+          "detail": "For fixed \\(s\\) with cyclic \\(Q_s\\), the terms of having second state \\(s\\) sum to zero.",
+          "dependsOn": [
+            "m1-lem-disk"
+          ]
+        },
+        {
+          "id": "m1-lem-circulation",
+          "role": "a-weighted-cancellation-argument-3",
+          "label": "There are real numbers \\(a(t,v)\\) on the spokes of \\(H_0\\) such that every…",
+          "fullLabel": "There are real numbers \\(a(t,v)\\) on the spokes of \\(H_0\\) such that every…",
+          "kind": "lemma",
+          "source": "A weighted cancellation argument",
+          "detail": "There are real numbers \\(a(t,v)\\) on the spokes of \\(H_0\\) such that every counterclockwise simple spoke cycle has strictly positive weight, where center-to-vertex traversal has weight \\(a(t,v)\\) and…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-root-components",
+          "role": "recovering-the-two-induced-trees",
+          "label": "For a pair \\((r,s)\\) with \\(Q_s\\) a forest, every component of \\(Q_s\\) contains…",
+          "fullLabel": "For a pair \\((r,s)\\) with \\(Q_s\\) a forest, every component of \\(Q_s\\) contains…",
+          "kind": "lemma",
+          "source": "Recovering the two induced trees",
+          "detail": "For a pair \\((r,s)\\) with \\(Q_s\\) a forest, every component of \\(Q_s\\) contains exactly one of the three roots.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-p-forest",
+          "role": "recovering-the-two-induced-trees-2",
+          "label": "The selected set \\(P\\) is a forest.",
+          "fullLabel": "The selected set \\(P\\) is a forest.",
+          "kind": "lemma",
+          "source": "Recovering the two induced trees",
+          "detail": "The selected set \\(P\\) is a forest.",
+          "dependsOn": [
+            "m1-thm-partition",
+            "m1-thm-main",
+            "m1-lem-duality"
+          ]
+        },
+        {
+          "id": "m1-cor-edge-avoidance",
+          "role": "separating-triangles-and-the-hamiltonian-cycle",
+          "label": "For every graph \\(G\\) satisfying Theorem~ and every edge \\(e E(G)\\), there is a…",
+          "fullLabel": "For every graph \\(G\\) satisfying Theorem~ and every edge \\(e E(G)\\), there is a…",
+          "kind": "corollary",
+          "source": "Separating triangles and the Hamiltonian cycle",
+          "detail": "For every graph \\(G\\) satisfying Theorem~ and every edge \\(e E(G)\\), there is a Hamiltonian cycle of \\(G\\) avoiding \\(e\\).",
+          "dependsOn": [
+            "m1-thm-partition"
+          ]
+        },
+        {
+          "id": "m1-cor-pfaffian-paths",
+          "role": "separating-triangles-and-the-hamiltonian-cycle-2",
+          "label": "Prescribed paths in Pfaffian graphs",
+          "fullLabel": "Prescribed paths in Pfaffian graphs",
+          "kind": "corollary",
+          "source": "Separating triangles and the Hamiltonian cycle",
+          "detail": "[Prescribed paths in Pfaffian graphs] Let \\(G\\) be a finite simple undirected graph that is cubic, \\(3\\)-vertex-connected, Pfaffian, and bipartite. Every path on four vertices (three edges) in \\(G\\)…",
+          "dependsOn": [
+            "m1-thm-main"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "Paired states and Hamiltonian cycles in cubic bipartite planar graphs",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Paired-states-and-Hamiltonian-cycles-in-cubic-bipartite-planar-graphs-September-24-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

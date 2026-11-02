@@ -286,163 +286,203 @@
   "edges": [
     {
       "from": "m1-lem-birational",
-      "to": "m1-prop-reduction"
+      "to": "m1-prop-reduction",
+      "context": "ernel \\cite[p.~135]{BKL}. Since \\(q=0\\), this is the full degree-zero Chow group. For a surface of general type, pass to a smooth minimal model and apply Lemma~\\ref{lem:birational}. On the minimal model, \\(K_{X_0}\\) is nef and big, so \\(k_0>0\\). The vanishing of \\(p_g\\) and \\(q\\) gives \\(\\chi(\\math"
     },
     {
       "from": "m1-der-arrow",
-      "to": "m1-prop-quot-pot"
+      "to": "m1-prop-quot-pot",
+      "context": "gives \\eqref{eq:quot-tangent} as an identity of perfect complexes. Both its input and target have Tor-amplitude $[0,1]$; the input has this amplitude by Lemma~\\ref{der:arrow}. Their fiber has no negative cohomology and has no cohomology above degree two. Its degree-two cohomology vanishes ex"
     },
     {
       "from": "m1-der-trace-surjectivity",
-      "to": "m1-prop-quot-pot"
+      "to": "m1-prop-quot-pot",
+      "context": "ly when \\[ \\Ext^1(S',Q)\\longrightarrow H^2(\\mathcal O_X) \\] is surjective at every geometric point. In setting~(i) its target is zero. In setting~(ii), Lemma~\\ref{der:trace-surjectivity} applies with $r=2$, since $KD=3K^2>2K^2$. The geometric-fiber criterion for perfect complexes now gives amplitude $[0,"
     },
     {
       "from": "m1-der-truncation",
-      "to": "m1-prop-quot-pot"
+      "to": "m1-prop-quot-pot",
+      "context": "\\ref{der:trace-surjectivity} applies with $r=2$, since $KD=3K^2>2K^2$. The geometric-fiber criterion for perfect complexes now gives amplitude $[0,1]$. Lemma~\\ref{der:truncation} therefore supplies the specified obstruction morphism. Postcomposition with the given $G$-action on $V$ defines an act"
     },
     {
       "from": "m1-der-truncation",
-      "to": "m1-prop-fixed-pot"
+      "to": "m1-prop-fixed-pot",
+      "context": "mmands are exactly \\eqref{der:moving-normal}. In particular \\eqref{der:fixed-tangent} has Tor-amplitude $[0,1]$, as a direct summand of $Lk^*E_B^\\vee$. Lemma~\\ref{der:truncation} makes $E_W\\to L_W$ a perfect obstruction theory. Dualizing the fiber-triangle comparison gives \\eqref{der:fixed-compar"
     },
     {
       "from": "m1-fix-smooth-euler",
-      "to": "m1-prop-fixed-pg0"
+      "to": "m1-prop-fixed-pg0",
+      "context": "(1)\\). The Euler sequence and \\eqref{fix:arrow-class} therefore give \\[ [T_{|P|\\times X^{[r]}}]-[T_U^\\vir] = [H^1(P)\\otimes\\mathcal O(1)]+[F]. \\] Apply Lemma~\\ref{fix:smooth-euler}. Equality of these vector bundle classes gives equality of their Chern classes, and hence \\eqref{fix:pg0-class}; it do"
     },
     {
       "from": "m1-prop-fixed-pot",
-      "to": "m1-fix-relative-pot"
+      "to": "m1-fix-relative-pot",
+      "context": "Use the actual projection of enhancements \\(\\mathfrak W\\to\\mathfrak U_b\\) from Proposition~\\ref{prop:fixed-pot}. The tangent of its determinant fiber in the high direction is \\eqref{fix:relative-tangent}. The map there is the high"
     },
     {
       "from": "m1-der-trace-surjectivity",
-      "to": "m1-fix-relative-pot"
+      "to": "m1-fix-relative-pot",
+      "context": "inant fiber in the high direction is \\eqref{fix:relative-tangent}. The map there is the high arrow's boundary followed by trace and based normalization. Lemma~\\ref{der:trace-surjectivity}, with rank one and \\(KD_a>K^2\\), makes its degree-one map onto \\(H^2(\\mathcal O_X)\\) surjective, so the fiber has ampli"
     },
     {
       "from": "m1-der-truncation",
-      "to": "m1-fix-relative-pot"
+      "to": "m1-fix-relative-pot",
+      "context": "htarrow&L_{W/U_b}. \\end{array} \\] Each row continues by a shift of its first term. Here the absolute comparisons have cones in degrees at most \\(-2\\), by Lemma~\\ref{der:truncation}. If these cones are \\(C_{U_b}\\) and \\(C_W\\), and the relative comparison cone is \\(C_f\\), the diagram gives a triangle"
     },
     {
       "from": "m1-lem-rank-one-family",
-      "to": "m1-fix-excess"
+      "to": "m1-fix-excess",
+      "context": "its smooth enhancement, and its universal ideal is perfect. Tensoring and composing perfect families define the displayed map on derived bases as well. Lemma~\\ref{lem:rank-one-family} identifies its truncation with the identity of \\(U_b\\). To compute its differential, first forget the arrows and compa"
     },
     {
       "from": "m1-fix-trace",
-      "to": "m1-fix-excess"
+      "to": "m1-fix-excess",
+      "context": "\\RHom(\\mathcal I_b,\\mathcal I_b)[1]. \\end{equation} The first summand acts by scalars and the second is the Kodaira--Spencer map of the ideal, so Lemma~\\ref{fix:trace} makes this a quasi-isomorphism. Indeed, on each geometric fiber the scalar map identifies the trace summands, and the H"
     },
     {
       "from": "m1-fix-smooth-euler",
-      "to": "m1-fix-canonical-sign"
+      "to": "m1-fix-canonical-sign",
+      "context": "r, and hence is \\(V\\) itself. Thus the divisor scheme is a smooth curve in a neighborhood of \\(z\\). The divisor theory has virtual dimension \\(m_K=0\\). Lemma~\\ref{fix:smooth-euler} makes its obstruction sheaf an obstruction line \\(\\mathcal E\\) on this neighborhood. At \\(z\\) the map \\(H^2(\\mathcal O_"
     },
     {
       "from": "m1-fix-cosection-support",
-      "to": "m1-fix-canonical-sign"
+      "to": "m1-fix-canonical-sign",
+      "context": "equence is an isomorphism: its dual maps \\(1\\) to the nonzero canonical section. Hence the cosection \\(\\mathcal E\\to\\mathcal O_V\\) vanishes at \\(z\\). By Lemma~\\ref{fix:cosection-support} it is nonzero at every other point nearby. On the smooth curve its germ is multiplication by a unit times a uniformize"
     },
     {
       "from": "m1-fix-relative-pot",
-      "to": "m1-prop-fixed-auxiliary"
+      "to": "m1-prop-fixed-auxiliary",
+      "context": "By Lemmas~\\ref{fix:relative-pot} and \\ref{fix:excess}, the fixed class is obtained by applying \\(f^!\\) to \\[ \\eu(F_b)\\cap \\bigl([\\Div^{D_b}(X)]^\\vir\\t"
     },
     {
       "from": "m1-fix-excess",
-      "to": "m1-prop-fixed-auxiliary"
+      "to": "m1-prop-fixed-auxiliary",
+      "context": "By Lemmas~\\ref{fix:relative-pot} and \\ref{fix:excess}, the fixed class is obtained by applying \\(f^!\\) to \\[ \\eu(F_b)\\cap \\bigl([\\Div^{D_b}(X)]^\\vir\\times[X^{[n_b]}]\\bigr)"
     },
     {
       "from": "m1-lem-rank-one-family",
-      "to": "m1-prop-fixed-auxiliary"
+      "to": "m1-prop-fixed-auxiliary",
+      "context": "al low line to obtain the based high line as \\(D-D_b\\). Its pushforward is a vector bundle of rank \\(\\chi(D_a)=1+m_{D_a}\\), with arbitrary base change. Lemma~\\ref{lem:rank-one-family} consequently expresses \\(f\\) here as its relative projective bundle of high divisors, followed by the product with the"
     },
     {
       "from": "m1-fix-smooth-euler",
-      "to": "m1-prop-fixed-auxiliary"
+      "to": "m1-prop-fixed-auxiliary",
+      "context": "actly one scalar. Higher cohomology vanishes for the high line, and the relative projective Euler sequence now identifies \\[ [T_f^\\vir]=[T_f]-[F_a]. \\] Lemma~\\ref{fix:smooth-euler} proves, on all base cycles, \\begin{equation}\\label{fix:high-operation} f^!\\gamma=\\eu(F_a)\\cap f^*\\gamma. \\end{equation"
     },
     {
       "from": "m1-rel-hilbert-recursion",
-      "to": "m1-rel-marked-reduction"
+      "to": "m1-rel-marked-reduction",
+      "context": "We induct on $n_1+n_2$. When this sum is positive, choose a positive length $r$ in a fixed order of the Hilbert factors and pull back along $\\psi$ of Lemma~\\ref{rel:hilbert-recursion}, with all other factors unchanged. All spaces used here are smooth, so Chow pullbacks are defined. Projection formula"
     },
     {
       "from": "m1-rel-marked-reduction",
-      "to": "m1-prop-universal"
+      "to": "m1-prop-universal",
+      "context": "We first put the integrand into the form required by Lemma~\\ref{rel:marked-reduction}. For the surface projection $\\pi_X:M\\times X\\to M$, Grothendieck--Riemann--Roch gives \\begin{align} \\ch\\bigl(\\RHom(\\m"
     },
     {
       "from": "m1-prop-fixed-pg0",
-      "to": "m1-thm-chow-relation"
+      "to": "m1-thm-chow-relation",
+      "context": "The finite-type fixed locus has only finitely many discrete decompositions and Hilbert polynomials, as in Section~\\ref{sec:fixed}. Proposition~\\ref{prop:fixed-pg0} gives the first list and discards negative $m_i$. Proposition~\\ref{prop:fixed-auxiliary} gives the second list, its fi"
     },
     {
       "from": "m1-prop-fixed-auxiliary",
-      "to": "m1-thm-chow-relation"
+      "to": "m1-thm-chow-relation",
+      "context": "sitions and Hilbert polynomials, as in Section~\\ref{sec:fixed}. Proposition~\\ref{prop:fixed-pg0} gives the first list and discards negative $m_i$. Proposition~\\ref{prop:fixed-auxiliary} gives the second list, its fiber restrictions, and its multiplicities. The moving factor and insertions were computed"
     },
     {
       "from": "m1-nr-positive-pairing",
-      "to": "m1-nr-surviving-numerics"
+      "to": "m1-nr-surviving-numerics",
+      "context": "Since $\\alpha T=-\\alpha H\\ne0$, Lemma~\\ref{nr:positive-pairing} applies to both $H$ and $T$. It gives \\[ r>k,\\qquad dk-r>k,\\qquad r\\leq s<\\frac{r^2}{k}. \\] Furthermore $s-r$ is even"
     },
     {
       "from": "m1-lem-rank-one-family",
-      "to": "m1-nr-effective-pair"
+      "to": "m1-nr-effective-pair",
+      "context": "e. Finally $\\alpha H=\\alpha h'=\\alpha^2<0$ by \\eqref{nr:alpha-identities}. Thus this pair occurs in the fixed locus with both point subschemes empty, by Lemma~\\ref{lem:rank-one-family}."
     },
     {
       "from": "m1-prop-nonrank",
-      "to": "m1-nr-effective-pair"
+      "to": "m1-nr-effective-pair",
+      "context": "[Proof of Proposition~\\ref{prop:nonrank}] Use the data \\eqref{nr:data} and pair the Chow relation of Theorem~\\ref{thm:chow-relation} with $\\alpha\\boxtimes\\alpha"
     },
     {
       "from": "m1-thm-chow-relation",
-      "to": "m1-nr-effective-pair"
+      "to": "m1-nr-effective-pair",
+      "context": "[Proof of Proposition~\\ref{prop:nonrank}] Use the data \\eqref{nr:data} and pair the Chow relation of Theorem~\\ref{thm:chow-relation} with $\\alpha\\boxtimes\\alpha$ in cohomology. We compute the contributions using \\eqref{rel:fiber-contribution} and \\eqr"
     },
     {
       "from": "m1-prop-universal",
-      "to": "m1-nr-effective-pair"
+      "to": "m1-nr-effective-pair",
+      "context": "ha H=0$, the class $\\alpha$ is orthogonal to $K,L_1,L_2,T,H$. Thus its external-product part has zero pairing, and it contributes $c_*\\alpha^2$ by Proposition~\\ref{prop:universal}. For every remaining contribution, Lemma~\\ref{nr:surviving-numerics} gives $n_1=n_2=0$. Its chosen diagonal coefficie"
     },
     {
       "from": "m1-nr-surviving-numerics",
-      "to": "m1-nr-effective-pair"
+      "to": "m1-nr-effective-pair",
+      "context": "Thus its external-product part has zero pairing, and it contributes $c_*\\alpha^2$ by Proposition~\\ref{prop:universal}. For every remaining contribution, Lemma~\\ref{nr:surviving-numerics} gives $n_1=n_2=0$. Its chosen diagonal coefficient $c_*$ is therefore zero by Proposition~\\ref{prop:universal}. Its p"
     },
     {
       "from": "m1-rel-correspondence",
-      "to": "m1-nr-effective-pair"
+      "to": "m1-nr-effective-pair",
+      "context": "0$, and the first group accounts for its entire sum. The strict positivity follows from $\\alpha^2<0$ and the nonempty sum of positive real squares. Corollary~\\ref{rel:correspondence} now gives the rational degree isomorphism on $X$. Lemma~\\ref{lem:birational} passes it to $X_0$, proving the Propositi"
     },
     {
       "from": "m1-lem-birational",
-      "to": "m1-nr-effective-pair"
+      "to": "m1-nr-effective-pair",
+      "context": "s from $\\alpha^2<0$ and the nonempty sum of positive real squares. Corollary~\\ref{rel:correspondence} now gives the rational degree isomorphism on $X$. Lemma~\\ref{lem:birational} passes it to $X_0$, proving the Proposition."
     },
     {
       "from": "m1-prop-fixed-auxiliary",
-      "to": "m1-r1-auxiliary-comparison"
+      "to": "m1-r1-auxiliary-comparison",
+      "context": "Apply the construction on $Y$ with the data \\eqref{r1:data}. Proposition~\\ref{prop:fixed-auxiliary} first replaces the low divisor virtual class by the empty-divisor point with coefficient $1$, or by the canonical-divis"
     },
     {
       "from": "m1-prop-universal",
-      "to": "m1-r1-auxiliary-comparison"
+      "to": "m1-r1-auxiliary-comparison",
+      "context": "by numerical invariants. After that restriction, the equality of the numerical data in \\eqref{r1:auxiliary-invariants} with those for $X$ permits Proposition~\\ref{prop:universal} to identify the chosen coefficients. The resulting Chow relation on $Y^2$ has diagonal coefficient $c_{\\mathrm{out}}-s"
     },
     {
       "from": "m1-prop-rankone",
-      "to": "m1-lem-middle-coefficient"
+      "to": "m1-lem-middle-coefficient",
+      "context": "[Proof of Proposition~\\ref{prop:rankone}] Combine Equations~\\eqref{r1:target-coefficient} and \\eqref{r1:comparison} with Lemma~\\ref{lem:middle-coefficient}. On"
     },
     {
       "from": "m1-thm-bloch",
-      "to": "m1-lem-middle-coefficient"
+      "to": "m1-lem-middle-coefficient",
+      "context": "[Proof of Theorem~\\ref{thm:bloch}] For a surface of Kodaira dimension below two, the assertion follows from Bloch--Kas--Lieberman as in Proposition~\\ref{"
     },
     {
       "from": "m1-prop-reduction",
-      "to": "m1-lem-middle-coefficient"
+      "to": "m1-lem-middle-coefficient",
+      "context": "[Proof of Theorem~\\ref{thm:bloch}] For a surface of Kodaira dimension below two, the assertion follows from Bloch--Kas--Lieberman as in Proposition~\\ref{prop:reduction}. For a surface of general type, pass to a smooth minimal model \\(X_0\\). If \\(K_{X_0}^2\\le8\\), Proposition~\\ref{prop:non"
     },
     {
       "from": "m1-prop-nonrank",
-      "to": "m1-lem-middle-coefficient"
+      "to": "m1-lem-middle-coefficient",
+      "context": "Kas--Lieberman as in Proposition~\\ref{prop:reduction}. For a surface of general type, pass to a smooth minimal model \\(X_0\\). If \\(K_{X_0}^2\\le8\\), Proposition~\\ref{prop:nonrank} gives a nonzero diagonal coefficient in Theorem~\\ref{thm:chow-relation} on a point blowup of \\(X_0\\). If \\(K_{X_0}^2=9\\"
     },
     {
       "from": "m1-thm-chow-relation",
-      "to": "m1-lem-middle-coefficient"
+      "to": "m1-lem-middle-coefficient",
+      "context": "e of general type, pass to a smooth minimal model \\(X_0\\). If \\(K_{X_0}^2\\le8\\), Proposition~\\ref{prop:nonrank} gives a nonzero diagonal coefficient in Theorem~\\ref{thm:chow-relation} on a point blowup of \\(X_0\\). If \\(K_{X_0}^2=9\\), Proposition~\\ref{prop:rankone} gives such a coefficient on \\(X_0\\) it"
     },
     {
       "from": "m1-rel-correspondence",
-      "to": "m1-lem-middle-coefficient"
+      "to": "m1-lem-middle-coefficient",
+      "context": "relation} on a point blowup of \\(X_0\\). If \\(K_{X_0}^2=9\\), Proposition~\\ref{prop:rankone} gives such a coefficient on \\(X_0\\) itself. In either case Corollary~\\ref{rel:correspondence} and Lemma~\\ref{lem:birational} yield \\[ \\CH_0(S)^0\\otimes_{\\mathbb Z}\\mathbb Q=0. \\] Let \\(z\\in\\CH_0(S)^0\\). Vanishing"
     },
     {
       "from": "m1-lem-birational",
-      "to": "m1-lem-middle-coefficient"
+      "to": "m1-lem-middle-coefficient",
+      "context": "0\\). If \\(K_{X_0}^2=9\\), Proposition~\\ref{prop:rankone} gives such a coefficient on \\(X_0\\) itself. In either case Corollary~\\ref{rel:correspondence} and Lemma~\\ref{lem:birational} yield \\[ \\CH_0(S)^0\\otimes_{\\mathbb Z}\\mathbb Q=0. \\] Let \\(z\\in\\CH_0(S)^0\\). Vanishing after tensoring with \\(\\mathbb"
     },
     {
       "from": "m1-cor-bloch-pg-zero",
-      "to": "m1-lem-middle-coefficient"
+      "to": "m1-lem-middle-coefficient",
+      "context": "[Proof of Corollary~\\ref{cor:bloch-pg-zero}] If \\(S\\) is not of general type, Bloch, Kas, and Lieberman prove that the kernel of \\(\\operatorname{alb}_S\\) vanishes"
     },
     {
       "from": "m1-cor-tate-motives",
-      "to": "m1-lem-middle-coefficient"
+      "to": "m1-lem-middle-coefficient",
+      "context": "[Proof of Corollary~\\ref{cor:tate-motives}] Let \\(T(S)\\) be the kernel of the rational Albanese map \\[ \\CH_0(S)^0\\otimes_{\\mathbb Z}\\mathbb Q \\longrightarrow \\Alb"
     }
   ]
 }

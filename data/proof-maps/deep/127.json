@@ -1,0 +1,142 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "127",
+  "title": "Average sensitivity of polynomial threshold functions",
+  "result": {
+    "id": "paper-result",
+    "label": "Average sensitivity of polynomial threshold functions",
+    "statement": "Proves that a degree-at-most- d polynomial threshold function on the uniform n -dimensional Boolean cube has average sensitivity at most 8d n, uniformly for 1 d n. Average sensitivity counts expected output changes under single-bit flips. This establishes the asymptotic Gotsman–Linial conjecture, allowing polynomial zeros with sign (0)=1.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "a-one-sided-coupling-estimate",
+      "label": "A one-sided coupling estimate",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "recovering-edges-from-the-anticommutator",
+      "label": "Recovering edges from the anticommutator",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "noise-sensitivity-and-agnostic-learning",
+      "label": "Noise sensitivity and agnostic learning",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "noise-sensitivity-and-agnostic-learning-2",
+      "label": "Noise sensitivity and agnostic learning",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Average sensitivity of polynomial threshold functions",
+      "title": "Average sensitivity of polynomial threshold functions",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Average-Sensitivity-of-Polynomial-Threshold-Functions-September-25-2026/main.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Average sensitivity of polynomial threshold functions; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "Let n1 and 1 d n be integers. Let p be a real multilinear polynomial of degree…",
+          "fullLabel": "Let n1 and 1 d n be integers. Let p be a real multilinear polynomial of degree…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "Let n1 and 1 d n be integers. Let p be a real multilinear polynomial of degree at most d , and define f:\\ -1,1\\ ^n\\ -1,1\\ by f(x)=(p(x)) , with (0)=1 . Then, for average sensitivity under the uniform…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-coupling",
+          "role": "a-one-sided-coupling-estimate",
+          "label": "Let U,V be real random variables with the same distribution, finite mean m ,…",
+          "fullLabel": "Let U,V be real random variables with the same distribution, finite mean m ,…",
+          "kind": "lemma",
+          "source": "A one-sided coupling estimate",
+          "detail": "Let U,V be real random variables with the same distribution, finite mean m , and finite variance ^2 . If V-U a almost surely, where a0 , then \\[ (U-V)^2 8a. \\]",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-edges",
+          "role": "recovering-edges-from-the-anticommutator",
+          "label": "Recovering edges from the grading",
+          "fullLabel": "Recovering edges from the grading",
+          "kind": "lemma",
+          "source": "Recovering edges from the anticommutator",
+          "detail": "[Recovering edges from the grading] Let n1 , =\\ -1,1\\ ^n , and w:(0,) . Let M be the centered grading operator constructed from w . For h:\\ -1,1\\ , let H be multiplication by h and set \\[ E_h=\\…",
+          "dependsOn": [
+            "m1-thm-main",
+            "m1-lem-coupling"
+          ]
+        },
+        {
+          "id": "m1-cor-noise-sensitivity",
+          "role": "noise-sensitivity-and-agnostic-learning",
+          "label": "Boolean noise sensitivity",
+          "fullLabel": "Boolean noise sensitivity",
+          "kind": "corollary",
+          "source": "Noise sensitivity and agnostic learning",
+          "detail": "[Boolean noise sensitivity] Let n1 and d0 be integers. If f=(p) on \\ -1,1\\ ^n for a real polynomial p of degree at most d , with (0)=1 , then \\[ NS_ (f) C d (0<1/2), \\] where C is an absolute…",
+          "dependsOn": [
+            "m1-thm-main"
+          ]
+        },
+        {
+          "id": "m1-cor-agnostic-learning",
+          "role": "noise-sensitivity-and-agnostic-learning-2",
+          "label": "Uniform-marginal agnostic learning",
+          "fullLabel": "Uniform-marginal agnostic learning",
+          "kind": "corollary",
+          "source": "Noise sensitivity and agnostic learning",
+          "detail": "[Uniform-marginal agnostic learning] Let n,d1 be integers, and let C_ n,d be the class of functions (p) on \\ -1,1\\ ^n with p d . Let D be any distribution on \\ -1,1\\ ^n\\ -1,1\\ whose first marginal is…",
+          "dependsOn": [
+            "m1-cor-noise-sensitivity"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "Average sensitivity of polynomial threshold functions",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Average-Sensitivity-of-Polynomial-Threshold-Functions-September-25-2026/main.pdf",
+      "kind": "paper"
+    }
+  ]
+}

@@ -459,299 +459,373 @@
   "edges": [
     {
       "from": "m1-thm-main",
-      "to": "m1-cor-smooth-type"
+      "to": "m1-cor-smooth-type",
+      "context": "Give $X$ the orientation induced by the triple. The normalization above and \\Cref{thm:main} give a global hyperk\\\"ahler triple on $X$. Choosing one of its complex structures makes $X$ a compact K\\\"ahler surface"
     },
     {
       "from": "m1-lem-definite-pair",
-      "to": "m1-prop-topology"
+      "to": "m1-prop-topology",
+      "context": "By \\Cref{lem:definite-pair}, one member of the triple is a symplectic form taming an almost-complex structure whose canonical bundle is trivial. Th"
     },
     {
       "from": "m1-lem-definite-pair",
-      "to": "m1-lem-complex-symplectic"
+      "to": "m1-lem-complex-symplectic",
+      "context": "Set $\\Omega=A+iD$ and use its kernel as $T^{0,1}$ as in \\Cref{lem:definite-pair}. For vector fields $U,V$ in that kernel, Cartan's formula and $\\dd\\Omega=0$ give \\[ \\mathcal L_U\\Omega=0,\\qquad \\iota"
     },
     {
       "from": "m1-lem-current-radial-operator",
-      "to": "m1-lem-quadratic-mass"
+      "to": "m1-lem-quadratic-mass",
+      "context": "cu_s|\\le C_j(s+t)^{-1-j},\\qquad |\\nabla^jR\\dd\\dd_J^ch_s|\\le C_j(s+t)^{-j}. \\] On the cutoff annulus these inputs and their derivatives are uniformly bounded. \\Cref{lem:current-radial-operator} applied to $D$ therefore bounds the two correction terms by $C/(s+t)$ and $C(1+|\\log(s+t)|)$ respectively. For clarity"
     },
     {
       "from": "m1-lem-density-planar-tangents",
-      "to": "m1-cor-density-transverse"
+      "to": "m1-cor-density-transverse",
+      "context": "At the positive-density points covered by \\Cref{lem:density-planar-tangents}, divide the inner integral by \\(s^2\\) and pass to the planar tangent measure. The integrand vanishes on that plane, an"
     },
     {
       "from": "m1-cor-density-transverse",
-      "to": "m1-prop-density-weights"
+      "to": "m1-prop-density-weights",
+      "context": "e radial kernel then supplies a transverse displacement factor, multiplied by the difference between nearby complex-line directions. The transverse estimate of \\Cref{cor:density-transverse} and the angular-energy bound will control these two factors together. Fix a center and line \\((y,\\ell)\\). Choose an o"
     },
     {
       "from": "m1-thm-tamed-compatible",
-      "to": "m1-lem-density-diffuse-error"
+      "to": "m1-lem-density-diffuse-error",
+      "context": "[Proof of \\Cref{thm:tamed-compatible}] Suppose that no compatible symplectic form exists. The separator in \\Cref{lem:current-separators} gives a nonzero posi"
     },
     {
       "from": "m1-lem-current-separators",
-      "to": "m1-lem-density-diffuse-error"
+      "to": "m1-lem-density-diffuse-error",
+      "context": "[Proof of \\Cref{thm:tamed-compatible}] Suppose that no compatible symplectic form exists. The separator in \\Cref{lem:current-separators} gives a nonzero positive current \\(N\\), normalized to have trace mass one, and an anti-invariant \\(Q\\) such that \\(T=N+"
     },
     {
       "from": "m1-prop-density-weights",
-      "to": "m1-lem-density-diffuse-error"
+      "to": "m1-lem-density-diffuse-error",
+      "context": "\\(T=N+Q\\) annihilates all smooth closed two-forms. In particular \\(T\\) is closed and \\(\\mathfrak c(T)=0\\). The preceding results apply to this separator. By \\Cref{prop:density-weights}, \\(T^d=N^d+Q\\) is closed. Equation \\eqref{eq:density-smoothed-intersection} gives \\begin{align} 0 &=\\langle S_sT,*S_"
     },
     {
       "from": "m1-prop-angular-energy",
-      "to": "m1-lem-density-diffuse-error"
+      "to": "m1-lem-density-diffuse-error",
+      "context": "^2 . \\label{eq:density-compatibility-pairing} \\end{align} The self-duality of \\(Q\\) accounts for the signs in this expansion. Both mixed terms tend to zero by \\Cref{prop:angular-energy}. The positive-current lower bound of \\Cref{lem:current-positive-pairing}, applied with second submeasure \\(\\lambda^d=\\m"
     },
     {
       "from": "m1-lem-current-positive-pairing",
-      "to": "m1-lem-density-diffuse-error"
+      "to": "m1-lem-density-diffuse-error",
+      "context": "elf-duality of \\(Q\\) accounts for the signs in this expansion. Both mixed terms tend to zero by \\Cref{prop:angular-energy}. The positive-current lower bound of \\Cref{lem:current-positive-pairing}, applied with second submeasure \\(\\lambda^d=\\mathbf1_{\\{\\vartheta=0\\}}\\lambda\\), gives \\[ \\langle S_sN,*S_sN^d\\rangle"
     },
     {
       "from": "m1-prop-density-weights",
-      "to": "m1-lem-density-diffuse-square"
+      "to": "m1-lem-density-diffuse-square",
+      "context": "Closedness follows from \\Cref{prop:density-weights}. By \\Cref{eq:density-smoothed-intersection,lem:current-positive-pairing}, \\[ \\mathfrak c(N^d)^2 =\\langle S_sN^d,*S_s"
     },
     {
       "from": "m1-lem-density-diffuse-error",
-      "to": "m1-lem-density-diffuse-square"
+      "to": "m1-lem-density-diffuse-square",
+      "context": "ntersection,lem:current-positive-pairing}, \\[ \\mathfrak c(N^d)^2 =\\langle S_sN^d,*S_sN^d\\rangle \\ge -C\\int_X B_s\\,d\\mu^d. \\] The right side tends to zero by \\Cref{lem:density-diffuse-error}."
     },
     {
       "from": "m1-lem-density-planar-tangents",
-      "to": "m1-lem-density-integral-thresholds"
+      "to": "m1-lem-density-integral-thresholds",
+      "context": "\\). At \\(\\mu^+\\)-almost every \\(p\\), Euclidean coordinate-ball differentiation of \\(\\mathbf1_{E_+}\\) gives value one. The coordinate-ball enclosure argument in \\Cref{lem:density-planar-tangents}, applied to this bounded function, gives \\[ s^{-2}(\\mu-\\mu^+)(B_{Rs}(p))\\longrightarrow0 \\qquad(R<\\infty\\text{ fixed}"
     },
     {
       "from": "m1-prop-density-weights",
-      "to": "m1-lem-density-integral-thresholds"
+      "to": "m1-lem-density-integral-thresholds",
+      "context": "plicity: \\(I_a\\) is integration with integer multiplicity one over \\(E\\cap\\{\\vartheta>a\\}\\). Its mass is at most \\(\\pi\\mu(X)/a\\), and its boundary vanishes by \\Cref{prop:density-weights}. It is consequently an integral current: it is integer rectifiable, has finite mass, and has the zero integral current"
     },
     {
       "from": "m1-thm-tamed-compatible",
-      "to": "m1-lem-density-integral-thresholds"
+      "to": "m1-lem-density-integral-thresholds",
+      "context": "urrent: it is integer rectifiable, has finite mass, and has the zero integral current as its boundary. Suppose now that \\(J\\) is tamed. By the already proved \\Cref{thm:tamed-compatible}, a compatible symplectic form exists. In particular, the local compatibility hypothesis of the Rivi\\`ere--Tian regulari"
     },
     {
       "from": "m1-thm-taming-cone",
-      "to": "m1-lem-density-integral-thresholds"
+      "to": "m1-lem-density-integral-thresholds",
+      "context": "[Proof of \\Cref{thm:taming-cone}] Assume that the class \\(H\\) has no taming representative. The class separator of \\Cref{lem:current-separators} gives a"
     },
     {
       "from": "m1-lem-current-separators",
-      "to": "m1-lem-density-integral-thresholds"
+      "to": "m1-lem-density-integral-thresholds",
+      "context": "[Proof of \\Cref{thm:taming-cone}] Assume that the class \\(H\\) has no taming representative. The class separator of \\Cref{lem:current-separators} gives a nonzero closed positive current \\(N\\), with \\(Q=0\\), satisfying \\begin{equation}\\label{eq:density-cone-separato"
     },
     {
       "from": "m1-lem-density-diffuse-square",
-      "to": "m1-lem-density-integral-thresholds"
+      "to": "m1-lem-density-integral-thresholds",
+      "context": "A,C\\) implies \\[ \\mathfrak c(N^d)\\cdot[A]=N^d(A)=0,\\qquad \\mathfrak c(N^d)\\cdot[C]=N^d(C)=0. \\] Thus \\(w=\\mathfrak c(N^d)\\) lies in \\(V\\), and \\(w^2\\ge0\\) by \\Cref{lem:density-diffuse-square}. If \\(N^d\\ne0\\), choose a taming form \\(\\eta\\) in \\(U\\). Strict taming on the compact bundle of unit complex lines gi"
     },
     {
       "from": "m1-lem-closed-lift",
-      "to": "m1-lem-compatible-family"
+      "to": "m1-lem-compatible-family",
+      "context": "ell}}=R_v\\dd\\dd^* \\quad\\text{on the anti-invariant forms}, \\] where the adjoint is taken with respect to \\(g_0\\). This is the nonnegative elliptic operator in \\Cref{lem:closed-lift}. Its kernel consists exactly of the closed anti-invariant forms: its quadratic form is \\(\\|\\dd^*\\xi\\|_2^2\\), and an an"
     },
     {
       "from": "m1-thm-tamed-compatible",
-      "to": "m1-lem-compatible-family"
+      "to": "m1-lem-compatible-family",
+      "context": "eq:families-closed-correction} D_v=\\dd\\dd^*G_v+H_v, \\qquad R_vD_v=\\Id, \\qquad \\dd D_v=0 \\end{equation} is a smooth family of closed lifts. For any \\(v_0\\), \\Cref{thm:tamed-compatible} supplies a compatible form \\(\\eta\\) for \\(J_{v_0}\\). For \\(v\\) near \\(v_0\\), set \\(\\eta_v^{(v_0)}=\\eta-D_vR_v\\eta\\)."
     },
     {
       "from": "m1-lem-compatible-family",
-      "to": "m1-lem-families-wall-crossing"
+      "to": "m1-lem-families-wall-crossing",
+      "context": "\\(P\\). For the perturbation in \\Cref{eq:families-taubes-equations}, its wall section has leading term \\((r/4)[\\eta_v]\\), with a bounded shift from \\(2E\\). By \\Cref{lem:compatible-family}, it is nonzero for all sufficiently large \\(r\\) and its normalization has degree one. The same is true after sufficien"
     },
     {
       "from": "m1-lem-twistor-degree",
-      "to": "m1-lem-families-evaluation-line"
+      "to": "m1-lem-families-evaluation-line",
+      "context": "enspaces give the tautological line in the projective spinor sphere, pulled back by the coefficient sphere map. The latter has degree of absolute value one by \\Cref{lem:twistor-degree}, proving \\(|e|=1\\). The evaluation transforms with the same gauge weight as the spinor. Its sign can also be checked"
     },
     {
       "from": "m1-lem-families-taubes-compactness",
-      "to": "m1-prop-cup-product"
+      "to": "m1-prop-cup-product",
+      "context": "First take \\(E=0\\). Taubes's canonical nonvanishing theorem \\cite{Taubes1994} gives \\(|\\operatorname{SW}_X(0)|=1\\), since \\(b^+>1\\). By \\Cref{lem:families-taubes-compactness}, the exact symplectic family has no first-component zeros for all sufficiently large \\(r\\). Fixed-\\(r\\) compactness tr"
     },
     {
       "from": "m1-lem-families-wall-crossing",
-      "to": "m1-prop-cup-product"
+      "to": "m1-prop-cup-product",
+      "context": "ence to sufficiently small regular perturbations. Applying \\Cref{eq:families-evaluation-identity} gives \\(|\\operatorname{FSW}_0(U_p)|=1\\). On the other hand, \\Cref{lem:families-wall-crossing} and \\Cref{eq:families-index-character,eq:families-segre-two} identify this number, up to sign, with \\[ \\int_{\\Pic^0(X)"
     },
     {
       "from": "m1-prop-topology",
-      "to": "m1-prop-cup-product"
+      "to": "m1-prop-cup-product",
+      "context": "X;\\R)\\) induced by this nonzero volume element is nondegenerate. Thus the cup-product map into \\(H^2(X;\\R)\\) is injective. Both spaces have dimension six, by \\Cref{prop:topology}, so it is an isomorphism. We may consequently write \\(E=\\sum_{i<j}e_{ij}a_ia_j\\). The graded-product signs give \\begin"
     },
     {
       "from": "m1-thm-family-curves",
-      "to": "m1-prop-cup-product"
+      "to": "m1-prop-cup-product",
+      "context": "[Proof of \\Cref{thm:family-curves}] The projection \\(F^+\\) is nonzero: otherwise \\(F\\) would be a nonzero square-zero vector in the negative definite spac"
     },
     {
       "from": "m1-lem-families-evaluation-line",
-      "to": "m1-prop-cup-product"
+      "to": "m1-prop-cup-product",
+      "context": "=0\\), this follows directly from \\Cref{lem:families-wall-crossing}; for \\(b_1=4\\), use \\Cref{prop:cup-product} as well. Since the ordinary invariant vanishes, \\Cref{lem:families-evaluation-line} forces a first-component zero over \\(p\\) in the exact family for each sufficiently large \\(r\\). Extracting a convergen"
     },
     {
       "from": "m1-lem-families-wall-crossing",
-      "to": "m1-prop-root-exclusion"
+      "to": "m1-prop-root-exclusion",
+      "context": "Lift \\(E\\) to an integral line-bundle class. Its ordinary expected dimension is \\(-2\\), and its spherical family has dimension zero. By \\Cref{lem:families-wall-crossing}, its large-parameter unmarked family invariant is \\(\\pm1\\). For each sufficiently large \\(r\\), take small regular pert"
     },
     {
       "from": "m1-lem-families-taubes-compactness",
-      "to": "m1-prop-root-exclusion"
+      "to": "m1-prop-root-exclusion",
+      "context": "ixed-\\(r\\) limit to obtain an actual solution of \\Cref{eq:families-taubes-equations} at some parameter \\(v_r\\). Pass to a sequence with \\(v_r\\to v\\), and apply \\Cref{lem:families-taubes-compactness}. The limit is a nonempty positive \\(J_v\\)-holomorphic configuration of class \\(E\\). Every nonconstant component has po"
     },
     {
       "from": "m1-lem-definite-pair",
-      "to": "m1-cor-curve-signs"
+      "to": "m1-cor-curve-signs",
+      "context": "ent accumulation off the diagonal. Compactness therefore makes the critical and noninjective sets finite. The definite pair trivializes the canonical bundle by \\Cref{lem:definite-pair}, so \\(c_1(TX,J)=0\\) for either sign of \\(J\\). In particular, \\(d^2\\geq-2\\). Both members of the pair vanish on complex"
     },
     {
       "from": "m1-prop-root-exclusion",
-      "to": "m1-cor-curve-signs"
+      "to": "m1-cor-curve-signs",
+      "context": "\\), the nonzero integral class \\(d\\) lies in \\(P^\\perp\\). Evenness, negative definiteness, and \\(d^2\\geq-2\\) force \\(d^2=-2\\). When \\(b_1=0\\), this contradicts \\Cref{prop:root-exclusion}. When \\(b_1=4\\), \\Cref{eq:lattice-adjunction} gives \\(g(\\Sigma)=\\delta(u)=0\\), so \\(d\\) is the class of an embedded sph"
     },
     {
       "from": "m1-prop-cup-product",
-      "to": "m1-cor-curve-signs"
+      "to": "m1-cor-curve-signs",
+      "context": "q:lattice-adjunction} gives \\(g(\\Sigma)=\\delta(u)=0\\), so \\(d\\) is the class of an embedded sphere. This contradicts the vanishing of spherical real classes in \\Cref{prop:cup-product}. Thus \\(c\\ne0\\). Suppose first that \\(c>0\\). By \\Cref{prop:chamber-class}, \\(d\\cdot F<0\\) is impossible. If \\(d\\cdo"
     },
     {
       "from": "m1-prop-chamber-class",
-      "to": "m1-cor-curve-signs"
+      "to": "m1-cor-curve-signs",
+      "context": "s of an embedded sphere. This contradicts the vanishing of spherical real classes in \\Cref{prop:cup-product}. Thus \\(c\\ne0\\). Suppose first that \\(c>0\\). By \\Cref{prop:chamber-class}, \\(d\\cdot F<0\\) is impossible. If \\(d\\cdot F>0\\), alternative \\textup{(i)} holds. If \\(d\\cdot F=0\\), the same proposi"
     },
     {
       "from": "m1-cor-curve-signs",
-      "to": "m1-prop-nonsplitting"
+      "to": "m1-prop-nonsplitting",
+      "context": "\\qquad n_i\\in\\Z_{>0}, \\] where the \\(d_i\\) are the classes of its distinct irreducible images. Taming excludes zero real component classes. In the notation of \\Cref{cor:curve-signs}, \\[ 0<\\int_{d_i}\\widetilde B=[B]\\cdot d_i=\\beta c_i, \\] so \\(c_i>0\\). The corollary gives \\(m_i=d_i\\cdot F\\geq0\\), w"
     },
     {
       "from": "m1-thm-family-curves",
-      "to": "m1-prop-nonsplitting"
+      "to": "m1-prop-nonsplitting",
+      "context": "nd{equation} There is exactly one summand, with \\(n_1=c_1=1\\). This proves \\textup{(i)}, including the exclusion of a nontrivial covering multiplicity. Apply \\Cref{thm:family-curves} to the present triple. Its period plane is still \\(P\\), and \\Cref{eq:lattice-adapted-periods} forces the direction of"
     },
     {
       "from": "m1-prop-nonsplitting",
-      "to": "m1-lem-pencil-compactness"
+      "to": "m1-lem-pencil-compactness",
+      "context": "heorem are consequently satisfied. The nonconstant components in the stable limit give a positive configuration of total class $F$ for the limiting triple. By \\Cref{prop:nonsplitting}, there is exactly one simple image and its total multiplicity is one. In particular, the surviving map is not a nontri"
     },
     {
       "from": "m1-lem-pencil-compactness",
-      "to": "m1-lem-pencil-jets"
+      "to": "m1-lem-pencil-jets",
+      "context": "ntably many map-space charts and homotopy components, so the regular parameter choices can be made simultaneously for all of them. The conclusions are open by \\Cref{lem:pencil-compactness}. Approximation in the defining closures by smooth primitives therefore gives smooth perturbations with the same conclus"
     },
     {
       "from": "m1-lem-pencil-compactness",
-      "to": "m1-cor-pencil-node-count"
+      "to": "m1-cor-pencil-node-count",
+      "context": "The unparametrized sphere space is compact by \\Cref{lem:pencil-compactness} and discrete by \\Cref{lem:pencil-normal}, so it is finite. Over a path, the total space of such spheres is compact and"
     },
     {
       "from": "m1-lem-pencil-normal",
-      "to": "m1-cor-pencil-node-count"
+      "to": "m1-cor-pencil-node-count",
+      "context": "The unparametrized sphere space is compact by \\Cref{lem:pencil-compactness} and discrete by \\Cref{lem:pencil-normal}, so it is finite. Over a path, the total space of such spheres is compact and, by the parameter version of \\Cref{lem:p"
     },
     {
       "from": "m1-thm-nodal-model",
-      "to": "m1-lem-pencil-insertion"
+      "to": "m1-lem-pencil-insertion",
+      "context": "le retaining the positive interpolation. Use $x,y,\\Omega$ from \\Cref{eq:pencil-volume-normalization} on a neighborhood of $K$. Choose the qualitative model of \\Cref{thm:nodal-model}; write its normalization as $u_Y:S^2\\to Y$ with node preimages $q_+,q_-$. Uniformization supplies a biholomorphism $f$"
     },
     {
       "from": "m1-thm-pencil",
-      "to": "m1-lem-pencil-insertion"
+      "to": "m1-lem-pencil-insertion",
+      "context": "[Proof of \\Cref{thm:pencil}] First apply \\Cref{lem:pencil-jets} to make a small exact perturbation with $B$ fixed so that all $F$-spheres are immer"
     },
     {
       "from": "m1-lem-pencil-jets",
-      "to": "m1-lem-pencil-insertion"
+      "to": "m1-lem-pencil-insertion",
+      "context": "[Proof of \\Cref{thm:pencil}] First apply \\Cref{lem:pencil-jets} to make a small exact perturbation with $B$ fixed so that all $F$-spheres are immersed. Connect it to the starting pai"
     },
     {
       "from": "m1-cor-pencil-node-count",
-      "to": "m1-lem-pencil-insertion"
+      "to": "m1-lem-pencil-insertion",
+      "context": "immersed. Connect it to the starting pair by a small straight segment of positive pairs. There is no assertion about immersion along this initial segment. By \\Cref{cor:pencil-node-count} the perturbed pair has finitely many nodal spheres $K_1,\\ldots,K_N$, all disjoint. If $N=0$, the torus argument below"
     },
     {
       "from": "m1-prop-nonsplitting",
-      "to": "m1-lem-pencil-insertion"
+      "to": "m1-lem-pencil-insertion",
+      "context": "ust the endpoint spheres. This argument is needed to exclude additional immersed spheres outside the inserted model regions. We now work at the endpoint. By \\Cref{prop:nonsplitting}, every point of $X$ lies on a unique simple $F$-curve image. Each is an embedded torus or one of the $K_i$. Define $S"
     },
     {
       "from": "m1-lem-pencil-normal",
-      "to": "m1-lem-pencil-insertion"
+      "to": "m1-lem-pencil-insertion",
+      "context": "a unique simple $F$-curve image. Each is an embedded torus or one of the $K_i$. Define $S$ as the set of these images, with quotient map $p_X$. For a torus, \\Cref{lem:pencil-normal} supplies an open tube diffeomorphic to $T^2\\times\\Delta$. It is saturated: any other $F$-curve meeting a torus in this"
     },
     {
       "from": "m1-thm-nodal-model",
-      "to": "m1-lem-nodal-annular-periods"
+      "to": "m1-lem-nodal-annular-periods",
+      "context": "[Completion of the proof of \\Cref{thm:nodal-model}] The construction and \\Cref{lem:nodal-fixed-family} give the fixed holomorphic nodal disk. For general \\(h=|h|e^{i\\phi"
     },
     {
       "from": "m1-lem-nodal-fixed-family",
-      "to": "m1-lem-nodal-annular-periods"
+      "to": "m1-lem-nodal-annular-periods",
+      "context": "[Completion of the proof of \\Cref{thm:nodal-model}] The construction and \\Cref{lem:nodal-fixed-family} give the fixed holomorphic nodal disk. For general \\(h=|h|e^{i\\phi}\\), rotate \\(\\gamma_1+i\\gamma_2\\) by \\(e^{i\\phi}\\),"
     },
     {
       "from": "m1-lem-definite-pair",
-      "to": "m1-lem-regular-mixed-cone"
+      "to": "m1-lem-regular-mixed-cone",
+      "context": "rus. Their compact average remains strictly inside that convex component, as does the segment to the average. The common Lagrangian plane is a complex line by \\Cref{lem:definite-pair}. Continuing the choice of sign of the almost complex structure along the path keeps its orientation on this plane, and"
     },
     {
       "from": "m1-lem-pencil-insertion",
-      "to": "m1-lem-regular-tamer-path"
+      "to": "m1-lem-regular-tamer-path",
+      "context": "ames for one sufficiently large $K>0$. On the unchanged nodal neighborhoods, $B_0$ already tames and $p^*\\nu_S$ is semipositive. Indeed, the model matching in \\Cref{lem:pencil-insertion} chooses its complex structure with the sign tamed by $B_0$, and its projection is holomorphic for that sign. The same $"
     },
     {
       "from": "m1-thm-taming-cone",
-      "to": "m1-lem-regular-tamer-path"
+      "to": "m1-lem-regular-tamer-path",
+      "context": "belongs to $V$, and \\[ H_K^2=1+2K[B_0]F>0,\\qquad H_K[B_0]=1+K[B_0]F>0. \\] Consequently $H_K$ and $[B_0]$ lie in the same timelike component of $V$. To apply \\Cref{thm:taming-cone}, let $d$ be the class, identified with its Poincar\\'e dual, of a nonconstant irreducible $J_t$-curve. It has $H_Kd>0$."
     },
     {
       "from": "m1-cor-curve-signs",
-      "to": "m1-lem-regular-tamer-path"
+      "to": "m1-lem-regular-tamer-path",
+      "context": "V$. To apply \\Cref{thm:taming-cone}, let $d$ be the class, identified with its Poincar\\'e dual, of a nonconstant irreducible $J_t$-curve. It has $H_Kd>0$. By \\Cref{cor:curve-signs}, either $Fd\\ne0$ and its sign is the sign of the coefficient $c$ in $d^+=cF^+$, or $d=cF$. Also $[B_0]d=c[B_0]F$, with"
     },
     {
       "from": "m1-lem-smooth-tamers",
-      "to": "m1-lem-regular-tamer-path"
+      "to": "m1-lem-regular-tamer-path",
+      "context": "s of \\Cref{thm:taming-cone} hold with the already tamed class $H_K$, and that theorem supplies a tamer in $[B_0]$. When the initial pair is $(A_0,C_0)$, apply \\Cref{lem:smooth-tamers} to the family $J_t$ and the fixed class $[B_0]$, using $B_0$ at the initial endpoint and any prescribed endpoint tamer."
     },
     {
       "from": "m1-lem-definite-pair",
-      "to": "m1-lem-regular-tamer-path"
+      "to": "m1-lem-regular-tamer-path",
+      "context": "y $J_t$ and the fixed class $[B_0]$, using $B_0$ at the initial endpoint and any prescribed endpoint tamer. This gives the asserted smooth representatives. By \\Cref{lem:definite-pair}, their triples with $(A_t,C_t)$ are positive."
     },
     {
       "from": "m1-prop-regular-preparation",
-      "to": "m1-lem-regular-tamer-path"
+      "to": "m1-lem-regular-tamer-path",
+      "context": "[Proof of \\Cref{prop:regular-preparation}] We first average the pair and construct a closed invariant form of unit fiber area. We then adjust its two total pair"
     },
     {
       "from": "m1-lem-regular-averaging",
-      "to": "m1-lem-regular-tamer-path"
+      "to": "m1-lem-regular-tamer-path",
+      "context": "$ on every model disk, so it extends smoothly over $X$. The difference $\\overline C-C_0$ is supported over a compact subset of $S^\\circ$ and is exact on $X$ by \\Cref{lem:regular-averaging}. The path \\[ (A_0,(1-t)C_0+t\\overline C) \\] is a definite pair path by \\Cref{lem:regular-mixed-cone}, with the same p"
     },
     {
       "from": "m1-lem-regular-mixed-cone",
-      "to": "m1-lem-regular-tamer-path"
+      "to": "m1-lem-regular-tamer-path",
+      "context": "over a compact subset of $S^\\circ$ and is exact on $X$ by \\Cref{lem:regular-averaging}. The path \\[ (A_0,(1-t)C_0+t\\overline C) \\] is a definite pair path by \\Cref{lem:regular-mixed-cone}, with the same periods and the same oriented fiber planes. It admits a completion in $[B_0]$ by \\Cref{lem:regular-tame"
     },
     {
       "from": "m1-thm-nodal-model",
-      "to": "m1-lem-regular-tamer-path"
+      "to": "m1-lem-regular-tamer-path",
+      "context": "r and the invariant part of its first homology contributes one more. The second generator bounds a three-chain in the full nodal neighborhood, as described in \\Cref{thm:nodal-model}. The smooth closed form $B_0/q_0$ consequently has periods $1$ and $0$ on these generators. Averaging does not change"
     },
     {
       "from": "m1-thm-nodal-model",
-      "to": "m1-lem-auxiliary-geometry"
+      "to": "m1-lem-auxiliary-geometry",
+      "context": "\\eps$ is the local parallel K\\\"ahler form. The model metric has volume $A^2/2$. Consequently it is exactly $g_\\eps$ there. The intrinsic charts and bounds of \\Cref{thm:nodal-model} therefore apply. This argument transports the metric, forms, and charts together through the holomorphic identificatio"
     },
     {
       "from": "m1-prop-topology",
-      "to": "m1-lem-auxiliary-inverse"
+      "to": "m1-lem-auxiliary-inverse",
+      "context": "uation} \\langle\\phi,E_i\\rangle_{L^2}=\\int_X f_i=0. \\label{eq:auxiliary-cokernel-moments} \\end{equation} Each $E_i$ is closed and self-dual, hence harmonic. \\Cref{prop:topology} gives $b^+(X)=3$, so these three linearly independent forms are a basis of the harmonic self-dual forms. Thus \\Cref{eq:"
     },
     {
       "from": "m1-lem-auxiliary-geometry",
-      "to": "m1-lem-auxiliary-inverse"
+      "to": "m1-lem-auxiliary-inverse",
+      "context": "j,\\eps}\\|h\\|_{H^j}, \\] where $K_{j,\\eps}$ is a polynomial in finitely many suprema of curvature and its derivatives. Those suprema are polynomially bounded by \\Cref{lem:auxiliary-geometry}. Induction starting with \\Cref{eq:auxiliary-exact-ltwo} thus bounds $\\|h\\|_{H^k}$ by a polynomial multiple of $\\|\\phi\\"
     },
     {
       "from": "m1-thm-auxiliary-solution",
-      "to": "m1-lem-auxiliary-inverse"
+      "to": "m1-lem-auxiliary-inverse",
+      "context": "[Proof of \\Cref{thm:auxiliary-solution}] Fix once and for all an integer $k\\ge6$. Every constant and exponent in the following argument uses only finitely man"
     },
     {
       "from": "m1-prop-auxiliary-class",
-      "to": "m1-lem-auxiliary-inverse"
+      "to": "m1-lem-auxiliary-inverse",
+      "context": "[Proof of \\Cref{prop:auxiliary-class}] We identify integral curve classes with their Poincar\\'e duals. Choose disjoint closed nodal neighborhoods $N_i$ whose"
     },
     {
       "from": "m1-cor-curve-signs",
-      "to": "m1-lem-auxiliary-inverse"
+      "to": "m1-lem-auxiliary-inverse",
+      "context": "ions follow with $u_\\eps=[\\Psi]$, $r_\\eps=1$, and the coefficient computed by \\Cref{eq:auxiliary-lambda}. It remains to establish the uniform implication. By \\Cref{cor:curve-signs}, every curve class under consideration with $[D_\\eps]d>0$ satisfies $d^2\\ge-2$ and the following exhaustive alternative"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-endpoint-hodge-type"
+      "to": "m1-lem-endpoint-hodge-type",
+      "context": "[Proof of \\Cref{thm:main}] We trace the actual form paths and then construct the endpoint; \\Cref{fig:endpoint-path} summarizes the final stages."
     },
     {
       "from": "m1-prop-chamber-class",
-      "to": "m1-lem-endpoint-hodge-type"
+      "to": "m1-lem-endpoint-hodge-type",
+      "context": "ent changes below are constant orthogonal changes, and will be undone at the end. \\paragraph{\\emph{The prepared pair.}} Choose the primitive null class $F$ of \\Cref{prop:chamber-class} and rotate the coefficient basis so that $[B]$ points in the direction of $F^+$ and the pair $[A],[C]$ spans its orthog"
     },
     {
       "from": "m1-prop-regular-preparation",
-      "to": "m1-lem-endpoint-hodge-type"
+      "to": "m1-lem-endpoint-hodge-type",
+      "context": "lt and \\Cref{prop:nonsplitting,thm:pencil} give an exact pair deformation to a torus fibration with the stated standard nodal neighborhoods, keeping $B$ fixed. \\Cref{prop:regular-preparation} then gives a further path of positive closed triples to invariant regular data with the auxiliary form $\\Psi$. Both st"
     },
     {
       "from": "m1-prop-auxiliary-class",
-      "to": "m1-lem-endpoint-hodge-type"
+      "to": "m1-lem-endpoint-hodge-type",
+      "context": "auxiliary} AD=CD=0,\\qquad D^2=A^2>0. \\end{equation} The triple with forms $A,C,D$ is positive. The same choice of $\\epsilon$ gives the numerical conclusion of \\Cref{prop:auxiliary-class} for every later definite pair with the classes $[A],[C]$. These choices precede the K\\\"ahler constructions that follow."
     },
     {
       "from": "m1-lem-complex-symplectic",
-      "to": "m1-lem-endpoint-hodge-type"
+      "to": "m1-lem-endpoint-hodge-type",
+      "context": "y later definite pair with the classes $[A],[C]$. These choices precede the K\\\"ahler constructions that follow. \\paragraph{\\emph{The first K\\\"ahler step.}} By \\Cref{lem:complex-symplectic}, $A\\pm iD$ is a nowhere-zero holomorphic two-form for an integrable complex structure $I$; choose the sign so that $C$"
     },
     {
       "from": "m1-lem-definite-pair",
-      "to": "m1-lem-endpoint-hodge-type"
+      "to": "m1-lem-endpoint-hodge-type",
+      "context": "mplectic}, $A\\pm iD$ is a nowhere-zero holomorphic two-form for an integrable complex structure $I$; choose the sign so that $C$ tames $I$. This is possible by \\Cref{lem:definite-pair} and positivity of $(A,D,C)$. \\Cref{prop:topology} gives even $b_1$, so the surface is K\\\"ahler. The period relations \\e"
     },
     {
       "from": "m1-prop-topology",
-      "to": "m1-lem-endpoint-hodge-type"
+      "to": "m1-lem-endpoint-hodge-type",
+      "context": "-form for an integrable complex structure $I$; choose the sign so that $C$ tames $I$. This is possible by \\Cref{lem:definite-pair} and positivity of $(A,D,C)$. \\Cref{prop:topology} gives even $b_1$, so the surface is K\\\"ahler. The period relations \\eqref{eq:endpoint-periods} and \\eqref{eq:endpoint-a"
     },
     {
       "from": "m1-lem-endpoint-kahler-class",
-      "to": "m1-lem-endpoint-hodge-type"
+      "to": "m1-lem-endpoint-hodge-type",
+      "context": "eq:endpoint-periods} and \\eqref{eq:endpoint-auxiliary} give $[C][A]=[C][D]=0$. Therefore \\Cref{lem:endpoint-hodge-type} puts $[C]$ in real type $(1,1)$. Apply \\Cref{lem:endpoint-kahler-class} with $H=[C]$ and $\\nu=A^2$. Its integral condition holds by \\eqref{eq:endpoint-periods}. We obtain a K\\\"ahler represent"
     },
     {
       "from": "m1-thm-taming-cone",
-      "to": "m1-lem-endpoint-hodge-type"
+      "to": "m1-lem-endpoint-hodge-type",
+      "context": "class} implies $[B]d>0$, and places $[B]$ and $[D]$ in the same open timelike cone of the fixed space $V$ from \\eqref{eq:pair-lorentz-space}. The hypotheses of \\Cref{thm:taming-cone} therefore hold with $U=[D]$ and $H=[B]$. Thus $[B]$ contains a tamer for every $J_t$. At $t=0$ this sign of $J_t$ agre"
     },
     {
       "from": "m1-lem-smooth-tamers",
-      "to": "m1-lem-endpoint-hodge-type"
+      "to": "m1-lem-endpoint-hodge-type",
+      "context": "ahler representative $B_1\\in[B]$ such that \\begin{equation}\\label{eq:endpoint-final-identities} AB_1=C_1B_1=0,\\qquad B_1^2=A^2=C_1^2. \\end{equation} Now apply \\Cref{lem:smooth-tamers} to the family $J_t$, prescribing the actual prepared form $B$ at $t=0$ and the newly constructed $B_1$ at $t=1$. It gi"
     }
   ]
 }

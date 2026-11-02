@@ -1,0 +1,293 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "149",
+  "title": "Classwise permanence for weakly reversible mass-action systems",
+  "result": {
+    "id": "paper-result",
+    "label": "Classwise permanence for weakly reversible mass-action systems",
+    "statement": "Proves the permanence conjecture for every finite weakly reversible mass-action system with fixed positive rate constants. Every positive stoichiometric compatibility class, even an unbounded one, has a common compact convex forward-invariant absorbing set. All positive trajectories in that class therefore eventually share positive lower and finite upper concentration bounds.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "affine-minima-with-arbitrary-tolerance",
+      "label": "Affine minima with arbitrary tolerance",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "affine-minima-with-arbitrary-tolerance-2",
+      "label": "Affine minima with arbitrary tolerance",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "compact-plateaux-and-strict-increase",
+      "label": "Compact plateaux and strict increase",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "compact-plateaux-and-strict-increase-2",
+      "label": "Compact plateaux and strict increase",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "compact-plateaux-and-strict-increase-3",
+      "label": "Compact plateaux and strict increase",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "affine-labels-with-a-prescribed-tolerance",
+      "label": "Affine labels with a prescribed tolerance",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "affine-labels-with-a-prescribed-tolerance-2",
+      "label": "Affine labels with a prescribed tolerance",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-affine-labels-to-persistent-trajectories",
+      "label": "From affine labels to persistent trajectories",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-affine-labels-to-persistent-trajectories-2",
+      "label": "From affine labels to persistent trajectories",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-affine-labels-to-persistent-trajectories-3",
+      "label": "From affine labels to persistent trajectories",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-affine-labels-to-persistent-trajectories-4",
+      "label": "From affine labels to persistent trajectories",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Uniform Permanence in Weakly Reversible Mass-Action Systems",
+      "title": "Uniform Permanence in Weakly Reversible Mass-Action Systems",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Uniform-Permanence-in-Weakly-Reversible-Mass-Action-Systems-October-5-2026/permanence.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Uniform Permanence in Weakly Reversible Mass-Action Systems; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "Let C_ 0 ^d be finite, let R C C be weakly reversible, and fix positive rate…",
+          "fullLabel": "Let C_ 0 ^d be finite, let R C C be weakly reversible, and fix positive rate…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "Let C_ 0 ^d be finite, let R C C be weakly reversible, and fix positive rate constants in . For every positive stoichiometric class P there is a nonempty compact convex set K_P P with the following…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-affine",
+          "role": "affine-minima-with-arbitrary-tolerance",
+          "label": "Affine approximation with arbitrary tolerance",
+          "fullLabel": "Affine approximation with arbitrary tolerance",
+          "kind": "lemma",
+          "source": "Affine minima with arbitrary tolerance",
+          "detail": "[Affine approximation with arbitrary tolerance] Let m1 be an integer, let a<b be real numbers, and let E:[a,b]^m(0,) be any function. There is a finite nonempty family of labels with \\[ r_^m,…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-activity",
+          "role": "affine-minima-with-arbitrary-tolerance-2",
+          "label": "Uniform activity bound",
+          "fullLabel": "Uniform activity bound",
+          "kind": "corollary",
+          "source": "Affine minima with arbitrary tolerance",
+          "detail": "[Uniform activity bound] Let m1 , a<b , and E:[a,b]^m(0,) be as in Lemma~ . Fix a family supplied by that lemma. There is h_0(0,1) such that, for every 0<h<h_0 and every p^m , each label active at…",
+          "dependsOn": [
+            "m1-lem-affine"
+          ]
+        },
+        {
+          "id": "m1-prop-plateau",
+          "role": "compact-plateaux-and-strict-increase",
+          "label": "The compact plateau",
+          "fullLabel": "The compact plateau",
+          "kind": "proposition",
+          "source": "Compact plateaux and strict increase",
+          "detail": "[The compact plateau] For 0<h h_P , let \\[ M_h=F_h(c), K_h=\\ x^d:F_h(x)=M_h\\ . \\] There is a constant label with value M_h , and F_h M_h on ^d . The set K_h is nonempty, compact, and convex, and…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-increase",
+          "role": "compact-plateaux-and-strict-increase-2",
+          "label": "Increase of active affine functions",
+          "fullLabel": "Increase of active affine functions",
+          "kind": "proposition",
+          "source": "Compact plateaux and strict increase",
+          "detail": "[Increase of active affine functions] Fix 0<h h_P . For every x B_h and every A_h(x) , r_ f(x)0, r_ f(x)>0if r_ S^. Moreover, there is a number _h>0 such that r_ f(x)_h whenever x B_h,\\ A_h(x), \\ r_…",
+          "dependsOn": [
+            "m1-prop-plateau"
+          ]
+        },
+        {
+          "id": "m1-lem-trapping",
+          "role": "compact-plateaux-and-strict-increase-3",
+          "label": "Trapping and finite entry",
+          "fullLabel": "Trapping and finite entry",
+          "kind": "lemma",
+          "source": "Compact plateaux and strict increase",
+          "detail": "[Trapping and finite entry] Fix 0<h h_P . Along any solution segment contained in B_h , the function t F_h(x(t)) is nondecreasing. If the segment x([s,t]) is contained in B_h(P K_h) , then…",
+          "dependsOn": [
+            "m1-prop-increase",
+            "m1-prop-plateau",
+            "m1-thm-main"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Boundedness and persistence of weakly reversible mass-action systems",
+      "title": "Boundedness and persistence of weakly reversible mass-action systems",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Boundedness-and-persistence-of-weakly-reversible-mass-action-systems-September-25-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Boundedness and persistence of weakly reversible mass-action systems; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "result",
+          "label": "Let d1 , let C Z_ 0 ^d be finite, let R be weakly reversible, and let all…",
+          "fullLabel": "Let d1 , let C Z_ 0 ^d be finite, let R be weakly reversible, and let all…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "Let d1 , let C Z_ 0 ^d be finite, let R be weakly reversible, and let all reaction rates be positive constants. For every x^0_ >0 ^d , the solution of with x(0)=x^0 exists for every t0 . There is a…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-affine",
+          "role": "affine-labels-with-a-prescribed-tolerance",
+          "label": "Affine approximation with arbitrary tolerance",
+          "fullLabel": "Affine approximation with arbitrary tolerance",
+          "kind": "lemma",
+          "source": "Affine labels with a prescribed tolerance",
+          "detail": "[Affine approximation with arbitrary tolerance] Let m 1 be an integer, let a<b be real numbers, and let E:[a,b]^m(0,) be any function. There is a finite nonempty family of labels =(r_,c_) , with r_^m…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-uniform-affine",
+          "role": "affine-labels-with-a-prescribed-tolerance-2",
+          "label": "Uniform activity bound",
+          "fullLabel": "Uniform activity bound",
+          "kind": "corollary",
+          "source": "Affine labels with a prescribed tolerance",
+          "detail": "[Uniform activity bound] Let m1 , a<b , and E:[a,b]^m(0,) be as in Lemma~ . Fix a finite nonempty family \\ (r_,c_):\\ supplied by that Lemma. There is h_0>0 such that, for every 0<h<h_0 and every p^m…",
+          "dependsOn": [
+            "m2-lem-affine"
+          ]
+        },
+        {
+          "id": "m2-lem-cut-flux",
+          "role": "from-affine-labels-to-persistent-trajectories",
+          "label": "Flux across level cuts",
+          "fullLabel": "Flux across level cuts",
+          "kind": "lemma",
+          "source": "From affine labels to persistent trajectories",
+          "detail": "[Flux across level cuts] Let V be a finite set and E a finite set of directed edges with source and target maps s,t: E V . Suppose that for every edge there is a directed path from its target back to…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-minimum-derivative",
+          "role": "from-affine-labels-to-persistent-trajectories-2",
+          "label": "Right derivative of a finite affine minimum",
+          "fullLabel": "Right derivative of a finite affine minimum",
+          "kind": "lemma",
+          "source": "From affine labels to persistent trajectories",
+          "detail": "[Right derivative of a finite affine minimum] Let I be a finite nonempty index set, let b_i^d and d_i for i I , and define \\[ (x)=_ i I (b_i x+d_i), A(x)=\\ i I:b_i x+d_i=(x)\\ . \\] For a continuously…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-polytope",
+          "role": "from-affine-labels-to-persistent-trajectories-3",
+          "label": "For every finite weakly reversible mass-action network with positive constant…",
+          "fullLabel": "For every finite weakly reversible mass-action network with positive constant…",
+          "kind": "proposition",
+          "source": "From affine labels to persistent trajectories",
+          "detail": "For every finite weakly reversible mass-action network with positive constant rates, and every x^0_ >0 ^d , there is a compact convex polytope K_ >0 ^d containing x^0 and forward invariant for the…",
+          "dependsOn": [
+            "m2-lem-minimum-derivative",
+            "m2-thm-main"
+          ]
+        },
+        {
+          "id": "m2-cor-positive-equilibrium",
+          "role": "from-affine-labels-to-persistent-trajectories-4",
+          "label": "For every finite weakly reversible mass-action network with positive constant…",
+          "fullLabel": "For every finite weakly reversible mass-action network with positive constant…",
+          "kind": "corollary",
+          "source": "From affine labels to persistent trajectories",
+          "detail": "For every finite weakly reversible mass-action network with positive constant rates and every x^0_ >0 ^d , there is an equilibrium x^*(x^0+S)_ >0 ^d .",
+          "dependsOn": [
+            "m2-prop-polytope"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    },
+    {
+      "from": "m2:m2-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "Uniform Permanence in Weakly Reversible Mass-Action Systems",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Uniform-Permanence-in-Weakly-Reversible-Mass-Action-Systems-October-5-2026/permanence.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Boundedness and persistence of weakly reversible mass-action systems",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Boundedness-and-persistence-of-weakly-reversible-mass-action-systems-September-25-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

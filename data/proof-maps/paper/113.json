@@ -539,263 +539,328 @@
   "edges": [
     {
       "from": "m1-thm-logical-hole-bound",
-      "to": "m1-lem-hole-relocation"
+      "to": "m1-lem-hole-relocation",
+      "context": "[Proof of \\cref{thm:logical-hole-bound}] Temporarily add a distinguished parallel edge of activity $tB_{ij}/D_0$ to every pair $ij$, where $0\\le t\\le1$. Colla"
     },
     {
       "from": "m1-lem-subdivision",
-      "to": "m1-prop-marked-laws"
+      "to": "m1-prop-marked-laws",
+      "context": "and virtual activities were collapsed. The all-real matchings have total weight $Z'=C_0Z_\\lambda$, and their normalized law is transported to $\\pi_\\lambda$ by \\cref{lem:subdivision}. Now require the probe on the path for $uv$ and real edges everywhere else. The probe matches $x_{2p}$ to $x_{2p+1}$."
     },
     {
       "from": "m1-lem-subdivision",
-      "to": "m1-lem-lifted-hole-bound"
+      "to": "m1-lem-lifted-hole-bound",
+      "context": "even when $A$ has odd cardinality. The threshold partitions remain those of the undeleted graphs throughout this proof; only the sets of holes are changed. By \\cref{lem:subdivision}, an internal vertex $x_j$ is isolated in the threshold partition precisely when $T_j<t$; otherwise it is connected to i"
     },
     {
       "from": "m1-lem-deletion-accounting",
-      "to": "m1-lem-lifted-hole-bound"
+      "to": "m1-lem-lifted-hole-bound",
+      "context": "ty, and an away mapping retained by the rule has $\\lambda_e\\ge t$. Together with explicitly deleted terminals, these maps are injective, by the distinctness in \\cref{lem:deletion-accounting}. Inactive internal holes lie in singleton classes and contribute no floor. Hence the floor sum remaining after the remo"
     },
     {
       "from": "m1-lem-ultrametric-pairing",
-      "to": "m1-lem-lifted-hole-bound"
+      "to": "m1-lem-lifted-hole-bound",
+      "context": "tribute no floor. Hence the floor sum remaining after the removals and discards is at most $S_t(R)$. Integrate these bounds against $dt/t$ on $(1,\\infty)$. By \\cref{lem:ultrametric-pairing}, the integral of $S'_t(U)$ is $\\log\\Phi_{B'}(U)$, and that of $S_t(R)$ is $\\log\\Phi_B(R)$. For a same-side neutral pair"
     },
     {
       "from": "m1-prop-bag-inflation",
-      "to": "m1-lem-lifted-hole-bound"
+      "to": "m1-lem-lifted-hole-bound",
+      "context": "[Proof of \\cref{prop:bag-inflation}] Expand the partition function before collapsing real and virtual portions. A nonempty partial matching $Q$ of $a$ colo"
     },
     {
       "from": "m1-lem-quadrangulation",
-      "to": "m1-lem-encoding"
+      "to": "m1-lem-encoding",
+      "context": "retain the edges of $I_2$ outside $C$, start with all four through patterns, and apply the preceding repair operation to a good opposite pair, which exists by \\cref{lem:quadrangulation}(i). Call the result $B$. Before these modifications, the original multiset union contains exactly one $T_J$ and one $N"
     },
     {
       "from": "m1-lem-cell-comparability",
-      "to": "m1-lem-encoding"
+      "to": "m1-lem-encoding",
+      "context": "l added and dropped edges are among the chords, boundary edges, and good-side leaf repairs of this one cell. They have pairwise activity ratio at most $A_0$ by \\cref{lem:cell-comparability}. Since the two lists have equal length at most four, the input product weight is at most $A_0^4$ times the output prod"
     },
     {
       "from": "m1-thm-pair-energy",
-      "to": "m1-lem-swap-sum"
+      "to": "m1-lem-swap-sum",
+      "context": "[Proof of \\cref{thm:pair-energy}] Take independent $I_1,I_2$ with law $\\pi$. Toggle their discrepancy cycles in the order of their least vertices, conv"
     },
     {
       "from": "m1-lem-cell-comparability",
-      "to": "m1-lem-swap-sum"
+      "to": "m1-lem-swap-sum",
+      "context": "2N^2A_0+324N^4A_0^6\\calT\\bigr)E \\le1000N^4A_0^6\\calT E. \\] Finally \\[ 1000N^4A_0^6\\calT =10^{51}N^{34}D^6 \\le(10^4ND)^{100}=L. \\] All comparisons used only \\cref{lem:cell-comparability} and the adjacent-label comparison for color changes. Both hold under any common clamp, proving the final assertion as"
     },
     {
       "from": "m1-lem-replica-gap",
-      "to": "m1-thm-bag-sampler"
+      "to": "m1-thm-bag-sampler",
+      "context": "te-state spectral argument gives a direct mixing bound. Reversibility makes $P$ self-adjoint on $L^2(\\nu)$. Its laziness makes its eigenvalues nonnegative, and \\cref{lem:replica-gap} bounds every eigenvalue on the centered subspace above by $1-\\gamma$, where $\\gamma=1/(20LM)$. Starting from a point $z"
     },
     {
       "from": "m1-lem-base-refresh",
-      "to": "m1-thm-bag-sampler"
+      "to": "m1-thm-bag-sampler",
+      "context": "top-tier coordinate cannot increase total variation. It remains to specify the computation represented by this chain. The unit-activity tables are supplied by \\cref{lem:base-refresh}; a positive table supplies an initial matching if one has not already been constructed. There are at most $N^2$ colored"
     },
     {
       "from": "m1-lem-finite-random-choice",
-      "to": "m1-thm-bag-sampler"
+      "to": "m1-thm-bag-sampler",
+      "context": "ese fit the displayed draw bound. Every choice has at most $R_{\\rm opt}$ options. Take a fixed integer $k$ with $2^k\\ge2R_{\\rm draw}^{\\rm gen}R_{\\rm opt}/\\xi$. \\Cref{lem:finite-random-choice} and successive coupling then bound the cumulative simulation discrepancy by $\\xi$. This precision and the resulting bit"
     },
     {
       "from": "m1-prop-bag-inflation",
-      "to": "m1-lem-successful-stage"
+      "to": "m1-lem-successful-stage",
+      "context": "By \\cref{prop:bag-inflation} and \\eqref{eq:bounded-reweighting}, \\[ \\E a\\ge\\frac12,\\qquad \\E d\\ge\\frac14, \\qquad\\frac12\\le R\\le1. \\] Reweighting b"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-cor-prescribed-degree"
+      "to": "m1-cor-prescribed-degree",
+      "context": "[Proof of \\cref{cor:prescribed-degree}\\textup{(i)}] Apply \\cref{thm:main} to the appropriate gadget and divide its nonnegative rational output by the corresponding positive integer $C_f$ or $C_"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-deletion-sampler"
+      "to": "m1-lem-deletion-sampler",
+      "context": "u-v$. Test both child graphs for feasibility exactly. At least one is feasible. If only one is feasible, take it. If both are feasible, make two fresh calls to \\cref{thm:main}, with relative error $\\eta$ and failure probability $\\gamma$, obtaining nonnegative rational estimates $A$ for $Z(H-u-v"
     },
     {
       "from": "m1-cor-prescribed-degree",
-      "to": "m1-lem-deletion-sampler"
+      "to": "m1-lem-deletion-sampler",
+      "context": "[Proof of \\cref{cor:prescribed-degree}\\textup{(ii)}] For sampling, apply \\cref{lem:deletion-sampler} to $H_f$ or $H_k$ and decode by keeping the original edge"
     },
     {
       "from": "m2-geom-lem-gluing",
-      "to": "m2-geom-thm-polytope"
+      "to": "m2-geom-thm-polytope",
+      "context": "system in Equation~\\eqref{geom:eq-polytope}. By induction, it is the mean of a law on perfect matchings of \\(G_i\\). Their crossing coordinates agree, so Lemma~\\ref{geom:lem-gluing} gives $x\\in P(G)$. It remains to consider an extreme point at which every such nontrivial odd cut is slack. A nonzero"
     },
     {
       "from": "m2-geom-lem-face",
-      "to": "m2-geom-prop-rank"
+      "to": "m2-geom-prop-rank",
+      "context": "rallel edges. A positive point has dimension $|E|-1$, giving codimension one as required. Let $n\\ge4$. If no nontrivial odd cut is tight, positivity and Lemma~\\ref{geom:lem-face} show that only the $n$ degree equations restrict $T(x)$. Thus $|E|-d(x)\\le n\\le3n/2-2$. Otherwise choose a tight nontri"
     },
     {
       "from": "m2-geom-thm-polytope",
-      "to": "m2-geom-prop-rank"
+      "to": "m2-geom-prop-rank",
+      "context": "wise choose a tight nontrivial cut $C=\\delta(S)$, and let $x_i$ be the restricted means in the two contracted graphs $G_i$. The feasibility argument in Theorem~\\ref{geom:thm-polytope} gives $x_i\\in P(G_i)$, and every retained coordinate is positive. Put \\[ n_i=|V(G_i)|,\\qquad s_i=|E(G_i)|,\\qquad d_i=\\"
     },
     {
       "from": "m2-geom-lem-gluing",
-      "to": "m2-geom-prop-rank"
+      "to": "m2-geom-prop-rank",
+      "context": "uch pair, choose $\\varepsilon>0$ so that $x_i+th_i\\in P(G_i)$ for both $i$ and every $|t|<\\varepsilon$. Their crossing coordinates agree for each $t$, so Lemma~\\ref{geom:lem-gluing} yields $x+th\\in P(G)$. Thus $h\\in T(x)$ and $d(x)\\ge\\dim W$. In particular every parent cut tight at $x$ is preserved,"
     },
     {
       "from": "m2-geom-lem-face",
-      "to": "m2-geom-lem-reduction"
+      "to": "m2-geom-lem-reduction",
+      "context": "ve interiors. The image of the minimal face at \\(\\bar x\\) is thus a face of \\(Q_x\\), and hence of \\(P(G)\\), containing \\(x\\) in its relative interior. By Lemma~\\ref{geom:lem-face}, it is exactly \\(F_x\\). In particular, their dimensions are equal. One can also see this directly on directions: a two-"
     },
     {
       "from": "m2-geom-prop-rank",
-      "to": "m2-geom-lem-reduction"
+      "to": "m2-geom-lem-reduction",
+      "context": "s a two-sided direction at \\(\\bar x\\); extension gives the inverse correspondence. If \\(m_f\\ge1\\), every coordinate of \\(\\bar x\\) is positive, and Proposition~\\ref{geom:prop-rank} applied to \\(G_f\\) gives \\[ d(x)=\\dim F_{\\bar x}\\ge |E_f(x)|-3m_f+2. \\] If \\(m_f=0\\), all coordinates of \\(x\\) are int"
     },
     {
       "from": "m2-ent-exponential",
-      "to": "m2-ent-trace"
+      "to": "m2-ent-trace",
+      "context": "Let $p$ and $\\theta$ be supplied by Lemma~\\ref{ent:exponential}, and write $T=\\operatorname{span}(F_x-x)$. For $v\\in\\R^E$ and real $t$, set \\[ \\Phi(t)=\\log\\sum_{a\\in\\mathcal A_x}e^{("
     },
     {
       "from": "m2-ent-main",
-      "to": "m2-ent-trace"
+      "to": "m2-ent-trace",
+      "context": "[Lower bound in Theorem~\\ref{ent:main}] Write the original vertex count as $2M\\ge2$, and fix $c=2-2/M+\\varepsilon$ with $\\varepsilon>0$. By Lemma~\\ref{ent:con"
     },
     {
       "from": "m2-ent-continuity",
-      "to": "m2-ent-trace"
+      "to": "m2-ent-trace",
+      "context": "[Lower bound in Theorem~\\ref{ent:main}] Write the original vertex count as $2M\\ge2$, and fix $c=2-2/M+\\varepsilon$ with $\\varepsilon>0$. By Lemma~\\ref{ent:continuity}, $J_c-H$ attains a maximum on $P(G)$. Suppose that this maximum is positive, at $x$. Delete its zero edges and the endp"
     },
     {
       "from": "m2-geom-lem-reduction",
-      "to": "m2-ent-trace"
+      "to": "m2-ent-trace",
+      "context": "$P(G)$. Suppose that this maximum is positive, at $x$. Delete its zero edges and the endpoints of its value-one edges. The exact fractional reduction in Lemma~\\ref{geom:lem-reduction} identifies all laws of mean $x$ with laws of the reduced mean and preserves $F,B,H$. An empty reduction would give $F=B"
     },
     {
       "from": "m2-ent-main",
-      "to": "m2-ent-components"
+      "to": "m2-ent-components",
+      "context": "imizing laws realizes the prescribed mean and the sum of their entropies. Thus $H$, like $F$ and $B$, is additive at these fixed component means. Apply Theorem~\\ref{ent:main} separately to each component."
     },
     {
       "from": "m2-cons-defect",
-      "to": "m2-cons-entropy-count"
+      "to": "m2-cons-entropy-count",
+      "context": "erefore have \\(H(\\bar x)=\\ln N\\). Equation~\\eqref{cons:input} gives \\(\\ln N\\le F(\\bar x)\\le H_{\\mathrm{bin}}(\\bar x)\\), proving both lower estimates. Corollary~\\ref{cons:defect} gives \\(F(x)\\le H(x)+2m-2\\le\\ln N+2m-2\\) at every \\(x\\in P\\). Also, \\[ H_{\\mathrm{bin}}(x)-H(x) \\le\\left(3-\\frac2m\\ri"
     },
     {
       "from": "m2-ent-main",
-      "to": "m2-cons-structural"
+      "to": "m2-cons-structural",
+      "context": "matching already gives \\(N(G)\\ge1\\). For \\(k\\ge2\\), direct evaluation yields \\[ B(x)=-m(k-1)\\ln(1-1/k). \\] Since \\(H(x)\\le\\ln N(G)\\), Theorem~\\ref{ent:main} now gives \\[ \\ln N(G)\\ge m\\ln k+2(m-1)(k-1)\\ln(1-1/k). \\] Exponentiating proves the first inequality in Equation~\\eqre"
     },
     {
       "from": "m2-geom-thm-polytope",
-      "to": "m2-cons-regular"
+      "to": "m2-cons-regular",
+      "context": "The vector \\(x_e=1/k\\) has unit degree sums, and the cut hypothesis gives \\(x(\\delta(S))\\ge1\\) for every odd \\(S\\). Theorem~\\ref{geom:thm-polytope} implies \\(x\\in P(G)\\); in particular, \\(G\\) has a perfect matching. Since \\(|E|=km\\), the evaluations of \\(F(x)\\) and \\"
     },
     {
       "from": "m2-ex-lem-expansion-face",
-      "to": "m2-ex-prop-klee-face"
+      "to": "m2-ex-prop-klee-face",
+      "context": "the three coordinate vectors in \\(\\mathbb R^3\\), and \\(P(G_1)\\) is their simplex. Its uniform point is in its relative interior. Repeated application of Lemma~\\ref{ex:lem-expansion-face} shows that the minimal face at \\(x^{(m)}\\) is the image of this simplex, with vertices \\(a(M_1),a(M_2),a(M_3)\\). In par"
     },
     {
       "from": "m2-cons-defect",
-      "to": "m2-cons-weighted"
+      "to": "m2-cons-weighted",
+      "context": "re yields \\begin{equation} \\label{cons:variational} \\log_2 Z_\\beta =\\max_{x\\in P}\\left[\\frac{H(x)}{\\ln2}+\\beta\\cdot x\\right]. \\end{equation} Corollary~\\ref{cons:defect} says \\(F(x)-(2m-2)\\le H(x)\\le F(x)\\). Divide by \\(\\ln2\\), add \\(\\beta\\cdot x\\), and maximize to obtain Equation~\\eqref{"
     },
     {
       "from": "m2-cons-weighted",
-      "to": "m2-d-coarse-weighted"
+      "to": "m2-d-coarse-weighted",
+      "context": "With \\(n=2m\\), Corollary~\\ref{cons:weighted} gives \\[ q^*-\\frac{n-2}{\\ln2}\\le\\log_2Z_\\beta\\le q^*. \\] Since \\(\\ln2=\\int_1^2t^{-1}\\,dt\\ge1/2\\), we have \\((n-2)/\\ln2"
     },
     {
       "from": "m2-geom-thm-polytope",
-      "to": "m2-d-lem-feasibility-repair"
+      "to": "m2-d-lem-feasibility-repair",
+      "context": "nontrivial odd cut, \\[ y(\\delta(S)) \\ge 1-(1-t)(1+2p)w+\\frac{A_0w}{2} \\ge1. \\] The degree sums remain one, so the trivial odd cuts also have value one. Theorem~\\ref{geom:thm-polytope} now yields \\(y\\in P\\) in this branch as well. For either branch, use the identity \\[ y-x=(1-t)(x'-x)+t(u-x). \\] Both \\"
     },
     {
       "from": "m2-d-lem-dyadic-entropy",
-      "to": "m2-d-lem-exact-penalty"
+      "to": "m2-d-lem-exact-penalty",
+      "context": "By Lemma~\\ref{d:lem-dyadic-entropy}, the slopes of \\(\\psi\\) are integers of absolute value at most \\(K\\). Since \\(|\\beta_e|\\le L\\), it follows that \\begin"
     },
     {
       "from": "m2-d-lem-feasibility-repair",
-      "to": "m2-d-lem-exact-penalty"
+      "to": "m2-d-lem-exact-penalty",
+      "context": "itz} |f(x)-f(y)|\\le (K+L)\\sum_e|x_e-y_e| \\le p(K+L)\\|x-y\\|_\\infty \\qquad (x,y\\in[0,1]^p). \\end{equation} For the point \\(y\\in P\\) supplied by Lemma~\\ref{d:lem-feasibility-repair}, Equation~\\eqref{d:eq-objective-lipschitz} gives \\[ \\Phi(x) \\le f(y)+p(K+L)\\|x-y\\|_\\infty-M_0w(x) \\le f(y)\\le f^*. \\] C"
     },
     {
       "from": "m2-d-lem-exact-penalty",
-      "to": "m2-d-lem-projected-ascent"
+      "to": "m2-d-lem-projected-ascent",
+      "context": "Choose \\(z\\in P\\) with \\(f(z)=f^*\\); then \\(\\Phi(z)=f^*\\) by Lemma~\\ref{d:lem-exact-penalty}. Clipping cannot increase distance to \\(z\\in[0,1]^p\\). Expanding the squared distance and using the supergradient ine"
     },
     {
       "from": "m2-d-lem-unit-mincut",
-      "to": "m2-d-lem-odd-cut-oracle"
+      "to": "m2-d-lem-odd-cut-oracle",
+      "context": "Call a cut \\emph{terminal-separating} if both sides meet \\(U\\). Compute a minimum cut for every pair of distinct terminals using Lemma~\\ref{d:lem-unit-mincut}, and take the least-capacity result, with sides \\(A\\) and \\(\\overline A=W\\setminus A\\). This is a minimum terminal-sepa"
     },
     {
       "from": "m2-d-lem-projected-ascent",
-      "to": "m2-d-lem-odd-cut-oracle"
+      "to": "m2-d-lem-odd-cut-oracle",
+      "context": "orem~\\ref{thm:algorithm-guarantee}] The elementary cases return the exact count, so suppose \\(n\\ge4\\) is even and the algorithm reaches the optimization. Lemma~\\ref{d:lem-projected-ascent}, Lemma~\\ref{d:lem-dyadic-entropy}, and Corollary~\\ref{d:coarse-weighted} give, respectively, \\[ R\\le f^*\\le R+2,\\qquad"
     },
     {
       "from": "m2-d-lem-dyadic-entropy",
-      "to": "m2-d-lem-odd-cut-oracle"
+      "to": "m2-d-lem-odd-cut-oracle",
+      "context": "The elementary cases return the exact count, so suppose \\(n\\ge4\\) is even and the algorithm reaches the optimization. Lemma~\\ref{d:lem-projected-ascent}, Lemma~\\ref{d:lem-dyadic-entropy}, and Corollary~\\ref{d:coarse-weighted} give, respectively, \\[ R\\le f^*\\le R+2,\\qquad f^*\\le q^*\\le f^*+n,\\qquad q^*-"
     },
     {
       "from": "m2-d-coarse-weighted",
-      "to": "m2-d-lem-odd-cut-oracle"
+      "to": "m2-d-lem-odd-cut-oracle",
+      "context": "t, so suppose \\(n\\ge4\\) is even and the algorithm reaches the optimization. Lemma~\\ref{d:lem-projected-ascent}, Lemma~\\ref{d:lem-dyadic-entropy}, and Corollary~\\ref{d:coarse-weighted} give, respectively, \\[ R\\le f^*\\le R+2,\\qquad f^*\\le q^*\\le f^*+n,\\qquad q^*-4n\\le\\log_2 Z_\\beta\\le q^*+n. \\] Combin"
     },
     {
       "from": "m2-d-lem-penalized-count",
-      "to": "m2-d-lem-odd-cut-oracle"
+      "to": "m2-d-lem-odd-cut-oracle",
+      "context": "ields \\begin{equation} \\label{d:eq-algorithm-partition-bracket} R-4n\\le\\log_2 Z_\\beta \\le R+2n+2\\le R+3n. \\end{equation} If \\(N=0\\), Lemma~\\ref{d:lem-penalized-count} gives \\(\\log_2 Z_\\beta\\le-20n\\), hence \\(R\\le-16n<-10n\\). If \\(N>0\\), the same lemma gives \\(Z_\\beta\\ge1\\), hence \\(R\\g"
     },
     {
       "from": "m2-d-lem-unit-mincut",
-      "to": "m2-d-prop-bit-complexity"
+      "to": "m2-d-prop-bit-complexity",
+      "context": "internal edges are discarded. Every original edge contributes to at most one surviving pair, so the same total bound holds throughout the recursion. By Lemma~\\ref{d:lem-unit-mincut}, each terminal-pair computation uses at most \\(pD_0\\) unit augmentations. Lemma~\\ref{d:lem-odd-cut-oracle} uses \\(O(n)"
     },
     {
       "from": "m2-d-lem-odd-cut-oracle",
-      "to": "m2-d-prop-bit-complexity"
+      "to": "m2-d-prop-bit-complexity",
+      "context": "e total bound holds throughout the recursion. By Lemma~\\ref{d:lem-unit-mincut}, each terminal-pair computation uses at most \\(pD_0\\) unit augmentations. Lemma~\\ref{d:lem-odd-cut-oracle} uses \\(O(n)\\) recursive calls, each with \\(O(n^2)\\) terminal-pair computations. Dense residual path searches take \\(O("
     },
     {
       "from": "m2-d-lem-projected-ascent",
-      "to": "m2-d-prop-bit-complexity"
+      "to": "m2-d-prop-bit-complexity",
+      "context": "egers of \\(O(\\log\\tau)\\) bits. Standard integer arithmetic gives a polynomial bit bound. It remains to bound the length of the explicit integer output. Lemma~\\ref{d:lem-projected-ascent} gives \\(R\\le f^*\\). Since \\(\\psi(t)\\le -t\\log_2t\\le1\\) on \\([0,1]\\), \\(\\beta_e\\le b_{\\max}\\), and \\(\\sum_e x_e=n/2\\) on"
     },
     {
       "from": "m2-geom-prop-rank",
-      "to": "m2-geom-lem-laminar"
+      "to": "m2-geom-lem-laminar",
+      "context": "[Laminar proof of Proposition~\\ref{geom:prop-rank}] Take the laminar spanning family from Lemma~\\ref{geom:lem-laminar}. Adjoin all singleton sets, if missing, and then ad"
     },
     {
       "from": "m2-geom-thm-polytope",
-      "to": "m2-a-prop-supported-codimension"
+      "to": "m2-a-prop-supported-codimension",
+      "context": "(A_i=\\{e:(x_i)_e>0\\}\\), and direction spaces \\(U_i=T(x_i)\\subseteq\\mathbb R^{A_i}\\). The restrictions are feasible by the odd-cut check in the proof of Theorem~\\ref{geom:thm-polytope}. The orders satisfy \\(4\\le n_i<n\\) and \\(n_1+n_2=n+2\\). Let \\(C=A\\cap\\delta(S)\\); this set is nonempty since \\(x(C)=1\\)"
     },
     {
       "from": "m2-geom-lem-gluing",
-      "to": "m2-a-prop-supported-codimension"
+      "to": "m2-a-prop-supported-codimension",
+      "context": "rections. Choose a common positive radius such that \\(x_i+t r_i(u)\\in P(G_i)\\) in both signs of \\(t\\). The perturbed means agree on every cut coordinate. Lemma~\\ref{geom:lem-gluing} glues them to give \\(x+tu\\in P(G)\\), so \\(\\ker\\mathcal Q\\subseteq U_x\\). In particular, all tight parent cuts are prese"
     },
     {
       "from": "m2-a-prop-supported-codimension",
-      "to": "m2-a-cor-fractional-dimension"
+      "to": "m2-a-cor-fractional-dimension",
+      "context": ") into \\(P(G)\\) sends \\(\\bar x\\) to \\(x\\), and its linear part injects the two-sided direction space at \\(\\bar x\\) into \\(T(x)\\). If \\(s_f\\ge 4\\), Proposition~\\ref{a:prop-supported-codimension} now gives \\[ d(x)\\ge \\dim T(\\bar x) \\ge |E_f(x)|-2(s_f-2). \\] If \\(s_f=2\\), the residual graph consists of \\(k="
     },
     {
       "from": "m2-ent-continuity",
-      "to": "m2-a-thm-separable"
+      "to": "m2-a-thm-separable",
+      "context": "rily fixed at that value under both laws. Equation~\\eqref{ent:comparison} now gives the upper bound. For the lower bound, fix either \\(c=3\\) or \\(c=4\\). Lemma~\\ref{ent:continuity} and continuity of \\(J_c\\) imply that \\( H-J_c\\) attains its minimum on the compact set \\(P\\). At an integral mean the o"
     },
     {
       "from": "m2-ent-exponential",
-      "to": "m2-a-thm-separable"
+      "to": "m2-a-thm-separable",
+      "context": "o rule out a fractional minimizer. Suppose, then, that \\(x\\) is such a minimizer. Take its positive maximizing law \\(p\\) and a parameter \\(\\theta\\) from Lemma~\\ref{ent:exponential}. For any \\(v\\in\\mathbb R^E\\) and \\(t\\in\\mathbb R\\), define \\[ p_a(t)= \\frac{\\exp((\\theta+tv)\\cdot a)} {\\sum_"
     },
     {
       "from": "m2-a-cor-fractional-dimension",
-      "to": "m2-a-thm-separable"
+      "to": "m2-a-thm-separable",
+      "context": "(D\\), is needed. Each matching coordinate is Boolean, so \\(C_{ee}=x_e(1-x_e)\\). Writing \\(s_f\\) for the number of vertices incident with \\(E_f(x)\\), Corollary~\\ref{a:cor-fractional-dimension} gives \\begin{equation}\\label{a:eq-covariance-trace-c} \\begin{aligned} \\operatorname{tr}(C(-D)) &=\\sum_{e\\in E_f(x)}x_"
     },
     {
       "from": "m2-a-thm-separable",
-      "to": "m2-cons-legacy-defect"
+      "to": "m2-cons-legacy-defect",
+      "context": "Theorem~\\ref{a:thm-separable} proves $F-3B\\le H\\le F+B$ by the contraction and covariance route; its coefficient-four proof gives $F-4B\\le H$ as well"
     },
     {
       "from": "m2-b-thm-nonlinear",
-      "to": "m2-cons-legacy-defect"
+      "to": "m2-cons-legacy-defect",
+      "context": "us $\\min\\{t,3\\}\\le f(t)$, proving the nonlinear inequality including $t=0$. This deduction is independent of the normalized inverse-covariance proof of Theorem~\\ref{b:thm-nonlinear}. For the optimized bound, $H\\le\\ln N$ and $(F+B)-(F-3B)=4B\\le4m=2n$ give the upper error $2n$. Using $F-4B$ instead gi"
     },
     {
       "from": "m2-cons-entropy-count",
-      "to": "m2-cons-legacy-defect"
+      "to": "m2-cons-legacy-defect",
+      "context": "ng $F-4B$ instead gives the separate original comparison $(F+B)-(F-4B)=5B\\le5m=5n/2$. The uniform matching law supplies the lower bound exactly as in Corollary~\\ref{cons:entropy-count}. The sharper error $3m-2$ in that corollary improves both comparisons on the same domain."
     },
     {
       "from": "m2-cons-structural",
-      "to": "m2-cons-legacy-counts"
+      "to": "m2-cons-legacy-counts",
+      "context": "For the selected matching mixture in Theorem~\\ref{cons:structural}, $F(x)=m\\ln k$ and $x$ vanishes outside their labelled union. For $k\\ge2$, $F(x)-3B(x)=m\\ln k+3m(k-1)\\ln(1-1/k)$. Using"
     },
     {
       "from": "m2-cons-legacy-defect",
-      "to": "m2-cons-legacy-counts"
+      "to": "m2-cons-legacy-counts",
+      "context": "hes outside their labelled union. For $k\\ge2$, $F(x)-3B(x)=m\\ln k+3m(k-1)\\ln(1-1/k)$. Using $H(x)\\le\\ln N(G)$ and the coefficient-three inequality in Corollary~\\ref{cons:legacy-defect}, then exponentiating, gives the first bound. The inequality $(k-1)\\ln(1-1/k)\\ge-1$ from the proof of Theorem~\\ref{cons:"
     },
     {
       "from": "m2-cons-regular",
-      "to": "m2-cons-legacy-counts"
+      "to": "m2-cons-legacy-counts",
+      "context": "ln k-8m(1-1/k)$, including $k=1$. Exponentiating and using $1-1/k\\le1$ proves the second line. For a regular graph satisfying the odd-cut hypothesis, Corollary~\\ref{cons:regular} proves that the uniform vector is feasible; the same evaluations then prove both statements without requiring a partiti"
     },
     {
       "from": "m2-cons-legacy-counts",
-      "to": "m2-cons-legacy-partition"
+      "to": "m2-cons-legacy-partition",
+      "context": "The partition provides the hypothesis of Corollary~\\ref{cons:legacy-counts}; its uniform law has marginal $1/k$ on every ambient edge. Thus the nonlinear proof just given applies verbatim. For $k"
     },
     {
       "from": "m2-ent-continuity",
-      "to": "m2-b-thm-nonlinear"
+      "to": "m2-b-thm-nonlinear",
+      "context": "~\\ref{b:thm-nonlinear}] Define \\[ f(t)=8(1-e^{-t}), \\qquad \\Psi(y)=F(y)-H(y)-mf\\bigl(F(y)/m\\bigr). \\] Suppose that \\(\\Psi\\) is positive somewhere. By Lemma~\\ref{ent:continuity}, it has a positive maximum at some \\(x\\in P\\). Let \\(F_x\\) be the minimal face containing \\(x\\), and put \\[ A=\\{e\\in"
     },
     {
       "from": "m2-a-prop-supported-codimension",
-      "to": "m2-b-thm-nonlinear"
+      "to": "m2-b-thm-nonlinear",
+      "context": "), so \\(f(t)\\ge t\\). Since \\(H(x)\\ge0\\), positivity of \\(\\Psi(x)\\) therefore forces \\(t>\\ln8\\), and hence \\(s>8m\\). The supported-face estimate of Proposition~\\ref{a:prop-supported-codimension} now yields \\begin{equation} d\\ge s-4m>\\frac{s}{2}>0. \\label{b:eq-large-dimension} \\end{equation} Thus all integral an"
     },
     {
       "from": "m2-geom-lem-face",
-      "to": "m2-b-thm-nonlinear"
+      "to": "m2-b-thm-nonlinear",
+      "context": "{span}\\bigl(D^{-1/2}(F_x-x)\\bigr) \\subseteq\\mathbb R^A. \\label{b:eq-normalization} \\end{equation} All diagonal entries of \\(D\\) are positive. By Lemma~\\ref{geom:lem-face}, \\(x\\) is relatively interior to \\(F_x\\). Therefore \\[ z=D^{-1/2}(y-x),\\qquad y=x+D^{1/2}z \\] identifies a relative ne"
     },
     {
       "from": "m2-ent-exponential",
-      "to": "m2-b-thm-nonlinear"
+      "to": "m2-b-thm-nonlinear",
+      "context": "ity on this space. \\subsection{A finite exponential family on the normalized tangent space} \\label{b:exponential-family} We now express the face law of Lemma~\\ref{ent:exponential} in the normalized coordinates. Let \\(p\\) be the positive maximizing law at \\(x\\), and write its parameter as \\(\\theta\\i"
     },
     {
       "from": "m2-d-prop-bit-complexity",
-      "to": "m2-c-prop-loops"
+      "to": "m2-c-prop-loops",
+      "context": "If \\(b_{\\max}\\) is the largest binary exponent of any positive pair or loop multiplicity, taking \\(b_{\\max}=0\\) when all multiplicities are zero, Proposition~\\ref{d:prop-bit-complexity} bounds each call and gives \\(O(n^2+nb_{\\max}+1)\\) bits for \\(A_j\\). There are only \\(n+1\\) calls. The rational sum can"
     }
   ]
 }

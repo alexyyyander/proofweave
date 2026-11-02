@@ -629,395 +629,493 @@
   "edges": [
     {
       "from": "m1-lem-uniform",
-      "to": "m1-lem-annuli"
+      "to": "m1-lem-annuli",
+      "context": "ator is not a boundary. Thus \\(\\phi/r\\ge A/B\\) on the exterior. On \\(1\\le\\gamma\\le\\Gamma_0\\), profile control bounds \\(\\Ut\\) below; on \\(\\gamma\\le1\\) use Lemma~\\ref{lem:uniform}. Earlier compact time intervals have a positive lower ratio by smoothness, positivity of \\(\\phi\\), and boundedness of \\"
     },
     {
       "from": "m1-lem-annuli",
-      "to": "m1-lem-r-curvature"
+      "to": "m1-lem-r-curvature",
+      "context": "that ball. In the final rescaled metric the warping functions are \\(F_1=\\sqrt{Q_i}\\phi\\) and \\(F_2=\\sqrt{Q_i}r\\). Both tend to infinity at the center by Lemma~\\ref{lem:annuli}. Their derivatives with respect to rescaled arclength are the original \\(\\phi_s,r_s\\), hence uniformly bounded. Therefo"
     },
     {
       "from": "m1-lem-gap",
-      "to": "m1-lem-pole-size"
+      "to": "m1-lem-pole-size",
+      "context": "The upper bound follows from Lemma~\\ref{lem:gap} and \\(f=ru_r\\ge0\\). For the lower bound, the scalar curvature computed from \\eqref{eq:sectional} is \\begin{equation}\\la"
     },
     {
       "from": "m1-lem-gradients",
-      "to": "m1-lem-pole-size"
+      "to": "m1-lem-pole-size",
+      "context": "kappa>0\\). The term involving \\(f_r\\) is nonpositive. The uniform error \\(f-1=o(1)\\) is harmless with the flow and dimension fixed. Using \\(R\\ge-C\\) from Lemma~\\ref{lem:gradients}, we conclude, after reducing \\(\\kappa\\) if necessary, that \\[ (pf+q)rz_r\\le-\\kappa+C\\theta^2\\le-\\kappa/2 \\quad(r_*\\le r"
     },
     {
       "from": "m1-lem-pole-size",
-      "to": "m1-lem-cap-slope"
+      "to": "m1-lem-cap-slope",
+      "context": "{q-1-z}{r}\\partial_r +\\frac{(q-1)v(1+v)}{r^2}\\right)w =pv^3u_r^2\\le C\\theta^{-2}. \\end{equation} The last inequality uses \\(u_r=\\phi_s/(\\phi v)\\), Lemma~\\ref{lem:pole-size}, and \\(B\\le v\\le1\\). Applying this operator to \\(r/\\theta\\) gives exactly \\[ \\frac{\\sigma r}{\\delta\\theta} +\\frac{(q-1)"
     },
     {
       "from": "m1-prop-full-curvature",
-      "to": "m1-lem-cap-slope"
+      "to": "m1-lem-cap-slope",
+      "context": "[Proof of Proposition~\\ref{prop:full-curvature}] It remains to bound \\(\\theta^2|\\Rm|\\). If this were unbounded, choose record points with \\(Q_i=|\\Rm|(x_i,t_i)\\) such t"
     },
     {
       "from": "m1-lem-r-curvature",
-      "to": "m1-lem-cap-slope"
+      "to": "m1-lem-cap-slope",
+      "context": "at the final time after rescaling by \\(Q_i\\), uniformly in \\(i\\). For all large \\(i\\), a fixed backward interval in rescaled time lies inside the flow. Lemma~\\ref{lem:r-curvature} gives \\(r_i\\sqrt{Q_i}\\le C\\), whereas \\(\\theta_i\\sqrt{Q_i}\\to\\infty\\). Any fixed short outward radial interval from the"
     },
     {
       "from": "m1-lem-uniform",
-      "to": "m1-lem-largeq-derivatives"
+      "to": "m1-lem-largeq-derivatives",
+      "context": "t least \\(t_c-\\delta_c/(16q)\\). Thus a single sufficiently late threshold for \\(t_c\\), for the chosen flow, puts every such cylinder inside the region of Lemma~\\ref{lem:uniform}. The moving center in~\\eqref{eq:moving-cylinder} follows the radial drift. Figure~\\ref{fig:drift} depicts the resultin"
     },
     {
       "from": "m1-lem-heat-perturbation",
-      "to": "m1-lem-largeq-derivatives"
+      "to": "m1-lem-largeq-derivatives",
+      "context": "e drawing is not to scale.} \\label{fig:drift} \\end{figure} Since \\(R_c'=-(q-1)/R_c\\), the function \\(H=q(v-1)\\), pulled back to this cylinder, satisfies Lemma~\\ref{lem:heat-perturbation} with \\begin{equation}\\label{eq:H-coefficients} \\begin{aligned} a&=z,\\\\ b&=h_c\\left[(q-1)\\left(\\frac1r-\\frac1{R_c}\\right"
     },
     {
       "from": "m1-lem-uniform",
-      "to": "m1-prop-reaction"
+      "to": "m1-prop-reaction",
+      "context": "} h=-z(u_{rr}+u_r^2)-\\tfrac12z_ru_r, \\qquad h_q=-z_r/(2r),\\qquad \\mu=-zu_r/r,\\\\ j=e^{-2u}-zu_r^2,\\qquad \\ell=(1-z)/r^2. \\end{gathered} \\end{equation} By Lemmas~\\ref{lem:uniform} and~\\ref{lem:largeq-derivatives}, after multiplication by \\(r^2\\) the diagonal entries of \\eqref{eq:reaction-matrix} ar"
     },
     {
       "from": "m1-lem-largeq-derivatives",
-      "to": "m1-prop-reaction"
+      "to": "m1-prop-reaction",
+      "context": "tfrac12z_ru_r, \\qquad h_q=-z_r/(2r),\\qquad \\mu=-zu_r/r,\\\\ j=e^{-2u}-zu_r^2,\\qquad \\ell=(1-z)/r^2. \\end{gathered} \\end{equation} By Lemmas~\\ref{lem:uniform} and~\\ref{lem:largeq-derivatives}, after multiplication by \\(r^2\\) the diagonal entries of \\eqref{eq:reaction-matrix} are bounded above by \\(0,q-1+C_0,C_"
     },
     {
       "from": "m1-prop-full-curvature",
-      "to": "m1-prop-reaction"
+      "to": "m1-prop-reaction",
+      "context": "cci-norm} proves the first bound. The curvature contraction is bounded in absolute value by a dimension-dependent constant times \\(|\\Rm||\\Ric|^2\\). Proposition~\\ref{prop:full-curvature} gives the other two bounds, including the bound at a pole by continuity of the geometric curvature tensor."
     },
     {
       "from": "m1-lem-annuli",
-      "to": "m1-prop-ricci-barrier"
+      "to": "m1-prop-ricci-barrier",
+      "context": "q:b0-choice}. On the moving lateral boundary \\(r=\\xi\\sqrt\\delta\\), \\[ H=\\delta^{L-a/2} (\\xi^2+b_0\\delta^{2\\sigma-1})^{-a/2} \\asymp\\delta^{L-a/2}. \\] Lemma~\\ref{lem:annuli} and \\(\\nu=k-d/2\\) give \\begin{equation}\\label{eq:lateral-ratio} \\frac{|\\Ric|}{H}\\le C\\delta^{\\nu-1-(L-a/2)} =C\\delta^{("
     },
     {
       "from": "m1-prop-ricci-barrier",
-      "to": "m1-prop-scalar-inner"
+      "to": "m1-prop-scalar-inner",
+      "context": "l{eq:scalar-powers} \\D(-r^{\\ell_0})=\\ell_0(q-1+\\ell_0z)r^{-2e}, \\qquad \\D(r^{-1})=(q-1-z)r^{-3}. \\end{equation} Write \\(|\\Ric|\\le K_Rr^{-e}\\) as in Proposition~\\ref{prop:ricci-barrier}. Choose \\[ C_2\\ge\\frac{2K_R^2}{\\ell_0(q-1)}. \\] Since \\(0\\le z\\le2<q-1\\), every function \\begin{equation}\\label{eq:scal"
     },
     {
       "from": "m1-lem-annuli",
-      "to": "m1-prop-scalar-inner"
+      "to": "m1-prop-scalar-inner",
+      "context": "t_0\\) and let \\(\\rho_0=\\xi\\sqrt{T-t_0}\\). Smoothness bounds scalar curvature on the starting slice by a constant \\(K_0\\). On the moving lateral boundary, Lemma~\\ref{lem:annuli}, \\(\\nu>1\\), and \\(|R|\\le\\sqrt{m+1}|\\Ric|\\) give a uniform upper bound \\(K_\\partial\\). The choice \\begin{equation}\\label"
     },
     {
       "from": "m1-prop-reaction",
-      "to": "m1-prop-exterior"
+      "to": "m1-prop-exterior",
+      "context": "Choose \\(b_1>2D_1+1\\), where \\(D_1\\) is the global reaction constant in Proposition~\\ref{prop:reaction}, and choose \\begin{equation}\\label{eq:exterior-choices} \\Gamma>\\xi,\\qquad \\Gamma^2\\ge\\max\\{2b_1,4(q-1)\\}. \\end{equation"
     },
     {
       "from": "m1-lem-annuli",
-      "to": "m1-prop-exterior"
+      "to": "m1-prop-exterior",
+      "context": "tion} Here only \\(z\\ge0\\) was needed; no global smallness of \\(z-1\\) is required. The fixed parabolic radius \\(\\Gamma\\) eventually lies in the region of Lemma~\\ref{lem:annuli}. The annular estimate and \\(\\nu>1\\) bound \\(|\\Ric|\\) on the moving lateral boundary uniformly. On a sufficiently late s"
     },
     {
       "from": "m1-prop-ricci-barrier",
-      "to": "m1-prop-exterior"
+      "to": "m1-prop-exterior",
+      "context": "ciently late starting slice, compactness and \\(H_o\\ge1/2\\) allow one multiplier to dominate the initial data. The same first-contact argument as in Proposition~\\ref{prop:ricci-barrier} proves \\(|\\Ric|\\le CH_o\\le C\\) throughout the exterior. The equator is interior, since both hemispheres are included. O"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-prop-exterior"
+      "to": "m1-prop-exterior",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Take the single flow selected at the start of Section~\\ref{sec:barriers}. Propositions~\\ref{prop:scalar-inner} and~\\re"
     },
     {
       "from": "m1-prop-scalar-inner",
-      "to": "m1-prop-exterior"
+      "to": "m1-prop-exterior",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Take the single flow selected at the start of Section~\\ref{sec:barriers}. Propositions~\\ref{prop:scalar-inner} and~\\ref{prop:exterior} give a uniform scalar upper bound on all of \\(M\\) for sufficiently late times. There are only f"
     },
     {
       "from": "m1-lem-gradients",
-      "to": "m1-prop-exterior"
+      "to": "m1-prop-exterior",
+      "context": "parameter and constant has already been fixed, so a common such time exists. Earlier times form a compact smooth interval and contribute a finite bound. Lemma~\\ref{lem:gradients} supplies the scalar lower bound. Thus \\(\\sup_{M\\times[0,T)}|R|<\\infty\\). By Lemma~\\ref{lem:pole-size}, \\(\\phi(0,t)\\le"
     },
     {
       "from": "m1-lem-pole-size",
-      "to": "m1-prop-exterior"
+      "to": "m1-prop-exterior",
+      "context": "act smooth interval and contribute a finite bound. Lemma~\\ref{lem:gradients} supplies the scalar lower bound. Thus \\(\\sup_{M\\times[0,T)}|R|<\\infty\\). By Lemma~\\ref{lem:pole-size}, \\(\\phi(0,t)\\le C\\theta(t)\\to0\\). At a pole orbit, smoothness gives \\(\\phi_s=0\\). Since \\(p=2\\), a two-plane tangent to"
     },
     {
       "from": "m1-prop-input",
-      "to": "m1-cor-rates"
+      "to": "m1-cor-rates",
+      "context": "on is independent of \\(k\\). Once such a \\(q\\) is fixed, all sufficiently large even \\(k\\) satisfy the requirements in \\eqref{eq:barrier-exponents}; Proposition~\\ref{prop:input} then permits the remaining choices. The preceding comparisons apply to each resulting flow, with constants that may dep"
     },
     {
       "from": "m1-prop-full-curvature",
-      "to": "m1-cor-rates"
+      "to": "m1-cor-rates",
+      "context": "hoices. The preceding comparisons apply to each resulting flow, with constants that may depend on it. Here \\(d=d_q\\) and \\(\\theta=(T-t)^{k/d_q}\\). Proposition~\\ref{prop:full-curvature} gives \\(\\max_M|\\Rm|\\le C\\theta^{-2}\\). At either pole orbit, Lemma~\\ref{lem:pole-size} gives \\(\\phi(0,t)\\le C\\theta\\),"
     },
     {
       "from": "m1-lem-pole-size",
-      "to": "m1-cor-rates"
+      "to": "m1-cor-rates",
+      "context": "d on it. Here \\(d=d_q\\) and \\(\\theta=(T-t)^{k/d_q}\\). Proposition~\\ref{prop:full-curvature} gives \\(\\max_M|\\Rm|\\le C\\theta^{-2}\\). At either pole orbit, Lemma~\\ref{lem:pole-size} gives \\(\\phi(0,t)\\le C\\theta\\), and the tangential sectional curvature is \\(j(0,t)=\\phi(0,t)^{-2}\\). Hence \\(\\max_M|\\Rm"
     },
     {
       "from": "m2-geom-slow-motion",
-      "to": "m2-geom-scale-change-time"
+      "to": "m2-geom-scale-change-time",
+      "context": "therwise a subsequence of these intervals has duration $O(a^2)$, where $a=a(s_i)$. Rescale lengths by $a$. Their duration is $o(a)$ in physical units, so Lemma~\\ref{geom:slow-motion} freezes the pointed root metric and its regular curvature in the limit. The radius in the definition of $a$ converges o"
     },
     {
       "from": "m2-prop-root-scale",
-      "to": "m2-geom-scale-change-time"
+      "to": "m2-geom-scale-change-time",
+      "context": "unters a genuine concentration tip; in either case it is inadmissible in the approximations. Maximizers at both times are regular on this scale by Proposition~\\ref{prop:root-scale}. They remain in a common bounded root range: a nonflat patch at the first time persists at the other, and uniqueness ma"
     },
     {
       "from": "m2-geom-scale-change-time",
-      "to": "m2-prop-buffered-intervals"
+      "to": "m2-prop-buffered-intervals",
+      "context": "alue at $t_{j-1}$. Positivity, continuity, and $a(t)\\to0$ ensure infinitely many such times with $t_j\\uparrow T$. Put $d_j=t_{j+1}-t_j$ and $a_j=a(t_j)$. Lemma~\\ref{geom:scale-change-time} gives $d_j/a_j^2\\to\\infty$. Also $a_j\\geq a_0e^{-uj}$, so eventually \\[ d_j\\geq c e^{-2uj}. \\] Choose $0<\\theta<\\min(1"
     },
     {
       "from": "m2-geom-slow-motion",
-      "to": "m2-geom-rescaled-motion"
+      "to": "m2-geom-rescaled-motion",
+      "context": "The corresponding physical duration divided by physical length is $d_i\\Delta t/(\\sqrt{d_i}h)=\\epsilon_i\\Delta t/h$, so Lemma~\\ref{geom:slow-motion} applies. At root scale a nonflat regular patch persists, and uniqueness identifies the corresponding entry at both time"
     },
     {
       "from": "m2-geom-neck",
-      "to": "m2-geom-exterior-geometry"
+      "to": "m2-geom-exterior-geometry",
+      "context": "{geo}}+2,r}\\leq C\\epsilon_i r \\leq C\\epsilon_iR_i^{\\mathrm{out}} (r/R_i^{\\mathrm{out}})^\\sigma. \\] Apply the ordinary two-boundary proof of Lemma~\\ref{geom:neck} with $r_-=N_{\\mathrm{geom}}a_i$, $r_+=R_i^{\\mathrm{out}}$, and the fixed exponent $\\mu$. Its constant is uniform in tim"
     },
     {
       "from": "m2-geom-rescaled-motion",
-      "to": "m2-geom-exterior-geometry"
+      "to": "m2-geom-exterior-geometry",
+      "context": "t reconstruct the neck estimate with a new constant depending on $N$. At scale one the regular charts persist through the entire buffered interval by Corollary~\\ref{geom:rescaled-motion}; their quotient group is therefore fixed after subsequence extraction. Widened overlapping annuli identify that group a"
     },
     {
       "from": "m2-para-local-smoothing",
-      "to": "m2-prop-exterior-ricci"
+      "to": "m2-prop-exterior-ricci",
+      "context": "he enlarged windows near $\\supp\\eta$ remain in $I$. Let $\\mathcal R(r)$ be the dyadic radii in $[r/(c'H),c'Hr]$, for another fixed ample $c'$. Applying Lemma~\\ref{para:local-smoothing} on bounded-width regular patches and integrating sliding windows bounds true-field derivatives through any prescribed f"
     },
     {
       "from": "m2-para-radial-lemma",
-      "to": "m2-prop-exterior-ricci"
+      "to": "m2-prop-exterior-ricci",
+      "context": "nded overlap and $|\\partial_t\\chi_\\ell|\\le C/(T_0r^2)$. Their smaller windows have an additional time margin of order $r^2$. In the Hilbert direct sum of Lemma~\\ref{para:radial-lemma}, use $Z_\\ell=\\chi_\\ell PG$ in each chart. Time norms can be measured in $I$-time: its constant factor relative to $r^2"
     },
     {
       "from": "m2-para-mean-lemma",
-      "to": "m2-prop-exterior-ricci"
+      "to": "m2-prop-exterior-ricci",
+      "context": "tants are independent of $H,T_0$. Higher derivatives of the forcing are bounded by Equation~\\eqref{para:true-field-bound} at higher fixed orders. Finally Lemma~\\ref{para:mean-lemma} supplies the positive derivatives of the spherical mean. We have proved \\begin{equation} \\begin{split} V(r)\\le{}&C\\b"
     },
     {
       "from": "m2-prop-exterior-ricci",
-      "to": "m2-para-maximal-lemma"
+      "to": "m2-para-maximal-lemma",
+      "context": "complement in the larger ball uses finitely many dyadic shells, with number and radius factors depending only on $D_1,N_1$. Volume upper bounds and Proposition~\\ref{prop:exterior-ricci} bound each shell's contribution by \\[ C(r/a)^2A(r)\\le C(a/r)^\\alpha K +C(r/a)^2\\widetilde\\delta"
     },
     {
       "from": "m2-para-local-smoothing",
-      "to": "m2-prop-interior-ricci"
+      "to": "m2-prop-interior-ricci",
+      "context": "For a regular patch of radius $r\\lesssim a$, apply Lemma~\\ref{para:local-smoothing} over a past window of length $cr^2$. The patch lies in the larger ball defining $f$ at its respective times, by Section"
     },
     {
       "from": "m2-para-radial-lemma",
-      "to": "m2-prop-interior-ricci"
+      "to": "m2-prop-interior-ricci",
+      "context": "e a time cutoff $\\chi$ supported in the large window, equal to one on an ample middle window, with $|\\partial_\\tau\\chi|\\le CB^{-2}$ in $r^2$-time. Apply Lemma~\\ref{para:radial-lemma} to $Z=\\chi PT_1$, using time measure normalized by a constant times $B^2$. The metric and curvature operator errors co"
     },
     {
       "from": "m2-para-mean-lemma",
-      "to": "m2-prop-interior-ricci"
+      "to": "m2-prop-interior-ricci",
+      "context": "ocal estimate in Lemma~\\ref{para:local-smoothing}. The operator errors and their spatial derivatives are controlled by Equation~\\eqref{para:rough-neck}. Lemma~\\ref{para:mean-lemma} then restores the positive derivatives of the mean, with additional error $CQe^{-\\delta D}s^{-2}$, already bounded by t"
     },
     {
       "from": "m2-prop-exterior-ricci",
-      "to": "m2-final-collar-position"
+      "to": "m2-final-collar-position",
+      "context": "The initial chart has these properties by the exterior annular convergence in Proposition~\\ref{prop:exterior-ricci}. In particular, a middle sphere separates: every path from a sufficiently small ball to outside a sufficiently large c"
     },
     {
       "from": "m2-thm-degeneration",
-      "to": "m2-final-collar-position"
+      "to": "m2-final-collar-position",
+      "context": "ice. The chart lies in the material neighborhood of the same isolated point of the limiting space $Z$. At scale $b$, based at an interior chart point, Theorem~\\ref{thm:degeneration} gives a complete flat quotient limit: a nonflat limit at this scale, which is much larger than $a$, would contradict th"
     },
     {
       "from": "m2-prop-root-scale",
-      "to": "m2-final-collar-position"
+      "to": "m2-final-collar-position",
+      "context": "ives a complete flat quotient limit: a nonflat limit at this scale, which is much larger than $a$, would contradict the outermost-scale property in Proposition~\\ref{prop:root-scale}. On each compact subannulus the controlled chart supplies curvature bounds on balls with a definite margin. Indeed a"
     },
     {
       "from": "m2-prop-exterior-ricci",
-      "to": "m2-final-collar-bound"
+      "to": "m2-final-collar-bound",
+      "context": "o interval units by $b^{-2}$. Writing $\\rho=br$ for a shell's interval radius, its positive-order terms are bounded in time $L^2$ by $V(\\rho)$ from Proposition~\\ref{prop:exterior-ricci}; its zero-order term is bounded by $\\theta_r A(\\rho)$. The initial collar term is $A(b)$ up to fixed-width changes. C"
     },
     {
       "from": "m2-final-collar-position",
-      "to": "m2-final-variation"
+      "to": "m2-final-variation",
+      "context": "On the retained true part, \\[ \\left\\langle \\tfrac12 Rg-\\Ric,\\partial_tg\\right\\rangle =2|\\Ric|^2-R^2. \\] That part contains $B_t(x_t,N_1a)$ by Lemma~\\ref{final:collar-position}, and its volume is at most $Cb^4$. The scalar-square loss integrated in time is therefore at most $C\\epsilon_i^4b^4=o_i"
     },
     {
       "from": "m2-thm-degeneration",
-      "to": "m2-final-functional-smallness"
+      "to": "m2-final-functional-smallness",
+      "context": "ses hold after an arbitrary choice of indices, times $t_i$ with $\\eta(t_i)>0$, and active patches $j_i$. Rescale their extensions by the length $a_i$. Theorem~\\ref{thm:degeneration} and Proposition~\\ref{prop:root-scale} extract one finite rooted tree, with the outermost nonflat entry represented at u"
     },
     {
       "from": "m2-prop-root-scale",
-      "to": "m2-final-functional-smallness"
+      "to": "m2-final-functional-smallness",
+      "context": "ndices, times $t_i$ with $\\eta(t_i)>0$, and active patches $j_i$. Rescale their extensions by the length $a_i$. Theorem~\\ref{thm:degeneration} and Proposition~\\ref{prop:root-scale} extract one finite rooted tree, with the outermost nonflat entry represented at unit scale. Every smaller concentratio"
     },
     {
       "from": "m2-thm-tree-inequality",
-      "to": "m2-final-functional-smallness"
+      "to": "m2-final-functional-smallness",
+      "context": "cement collar and all its overlaps are uniformly regular and leave a detecting nonflat root patch in the retained body. For clarity, the hypotheses of Theorem~\\ref{thm:tree-inequality} are supplied as follows. The original compact pieces and joining regions have the sequential identifications from Theo"
     },
     {
       "from": "m2-prop-interior-ricci",
-      "to": "m2-final-ricci-envelope"
+      "to": "m2-final-ricci-envelope",
+      "context": "Inside a fixed large multiple of $a$, use the ordinary local parabolic estimate underlying Proposition~\\ref{prop:interior-ricci} on a patch of scale a small fixed multiple of $\\min(a,l(y,t))$. The enlarged energy balls contain these patches and the"
     },
     {
       "from": "m2-final-energy-vanishes",
-      "to": "m2-final-ricci-envelope"
+      "to": "m2-final-ricci-envelope",
+      "context": "timate and Equation~\\eqref{eq:maximal-ricci} give an envelope bounded by $C(H_*+\\epsilon_i)$ times $1+(a/l)^2$. Its time $L^2$ norm tends to zero by Corollary~\\ref{final:energy-vanishes}. On the exterior annular range, an envelope for the magnitude on all shells is obtained from a fixed outer shell and t"
     },
     {
       "from": "m2-prop-exterior-ricci",
-      "to": "m2-final-ricci-envelope"
+      "to": "m2-final-ricci-envelope",
+      "context": "s. Dividing the estimates for $G=\\eta\\Ric$ by the fixed positive lower bound of $\\eta$ is legitimate on this interval. Minkowski's inequality and Proposition~\\ref{prop:exterior-ricci} bound the time $L^2$ norm of that envelope by \\[ C\\left[K+\\widetilde\\delta_i+ \\widetilde\\delta_i\\sum_{r\\in[N_0a,r_0]}"
     },
     {
       "from": "m2-prop-root-scale",
-      "to": "m2-final-ricci-envelope"
+      "to": "m2-final-ricci-envelope",
+      "context": "e same argument applies when that distance tends to infinity in interval units but tends to zero originally, by rescaling with the distance itself. Proposition~\\ref{prop:root-scale} excludes this alternative. Equation~\\eqref{eq:ricci-improvement} thus bounds Ricci in the remaining region by $C\\epsilo"
     },
     {
       "from": "m2-geom-geodesic-radius",
-      "to": "m2-final-good-points"
+      "to": "m2-final-good-points",
+      "context": "s in the region where that equation applies. For such a segment $\\gamma:[0,L]\\to M$ parametrized by arclength, the geodesic curvature-radius estimate of Lemma~\\ref{geom:geodesic-radius} and spatial $1$-Lipschitzness of $l$ imply, on its first half, \\[ l(\\gamma(s))\\ge \\max\\{l(x)-s,cs\\}"
     },
     {
       "from": "m2-thm-degeneration",
-      "to": "m2-final-good-points"
+      "to": "m2-final-good-points",
+      "context": "for each fixed smooth flow the distance is locally Lipschitz in time, so these imply the almost-everywhere inequality. The scale-sublevel covering in Theorem~\\ref{thm:degeneration} gives $\\Vol_t\\{l<s\\}\\le Cs^4$ at these scales. Decomposing $\\{l<a\\}$ into the sets $2^{-k-1}a\\le l<2^{-k}a$ proves \\be"
     },
     {
       "from": "m2-final-good-points",
-      "to": "m2-final-root-fixed"
+      "to": "m2-final-root-fixed",
+      "context": "Choose a good material anchor within $o(a)$ of a maximizing point at time $0$. Extract pointed limits at the two endpoints with length unit $a$. Lemma~\\ref{final:good-points} identifies these limits isometrically. Here is the metric argument in detail. On a fixed bounded ball choose a finite"
     },
     {
       "from": "m2-thm-degeneration",
-      "to": "m2-final-root-fixed"
+      "to": "m2-final-root-fixed",
+      "context": "used here lie near the same isolated point of $Z$ in original units. Every exceptional point of either limit is a genuine nontrivial orbifold point by Theorem~\\ref{thm:degeneration}, so the regular part is determined by the metric space itself. The isometry is smooth there and preserves its Riemanni"
     },
     {
       "from": "m2-prop-root-scale",
-      "to": "m2-final-root-fixed"
+      "to": "m2-final-root-fixed",
+      "context": "t, because $\\mathfrak a_i(t)/a_i$ is bounded below and $\\psi$ is bounded. It is also bounded above by the detection and outermost-scale property of Proposition~\\ref{prop:root-scale}. Maximizers at time $1$ stay at bounded scaled distance from the common anchor. Indeed the persistent nonflat root pa"
     },
     {
       "from": "m3-thm-path-selection",
-      "to": "m3-path-variation"
+      "to": "m3-path-variation",
+      "context": "Theorem~\\ref{thm:path-selection} realizes all these conditions on one path with monotone actual coordinates. Along it, \\[ |d\\log|F||\\le\\frac C{\\sqrt{c"
     },
     {
       "from": "m3-path-sector-uniqueness",
-      "to": "m3-path-clock"
+      "to": "m3-path-clock",
+      "context": "ric terms. A zero expansion is bounded on the sector supplied by any one of its remainder estimates and superexponentially small on the central sector. Lemma~\\ref{path:sector-uniqueness} then makes the germ zero. Thus the leading-term test is valid also after cancellation. Cauchy's formula on successive"
     },
     {
       "from": "m3-path-clock",
-      "to": "m3-path-family-limits"
+      "to": "m3-path-family-limits",
+      "context": "nt families; their inductive bounds and the prescribed remainder bound control the family by an exponential in its last clock. After passing to \\(x_j\\), Lemma~\\ref{path:clock} makes the real parts of all these earlier clocks \\(o(\\Re x_j)\\); its modulus comparability treats the polynomial factor"
     },
     {
       "from": "m3-path-prepared-contours",
-      "to": "m3-path-roots"
+      "to": "m3-path-roots",
+      "context": "ishing degree-\\(d-1\\) coefficient forces \\(c=0\\). Choose disjoint small fixed circles around the distinct limiting roots. The contour power sums used in Lemma~\\ref{path:prepared-contours} give monic factors for the corresponding clusters. Their coefficients are in the system, and all their degrees are str"
     },
     {
       "from": "m3-path-roots",
-      "to": "m3-path-adjoin-p"
+      "to": "m3-path-adjoin-p",
+      "context": "We give the chart construction, the normalization argument, and the path argument separately. Real closedness of the lower field is available from Lemma~\\ref{path:roots}. \\emph{Charts and their common refinements.} For a real center \\(c\\in K_{\\R}\\), let \\(s=|p-c|\\); fix its sign on the d"
     },
     {
       "from": "m3-path-prepared-contours",
-      "to": "m3-path-adjoin-p"
+      "to": "m3-path-adjoin-p",
+      "context": "it is nonzero, choose a Taylor coefficient \\(b(u)\\) in \\(\\zeta\\) whose standard limit is a nonzero germ in \\(u\\). Preparation and division in \\(u\\), by Lemma~\\ref{path:prepared-contours}, give \\begin{equation}\\label{path:eq-disc-division} H(u,\\zeta)=b(u)G(u,\\zeta)+S(u,\\zeta), \\end{equation} where \\(G\\) i"
     },
     {
       "from": "m3-path-adjoin-p",
-      "to": "m3-path-centers"
+      "to": "m3-path-centers",
+      "context": "r even a bounded ultrafilter value of \\(|p-c|/p^2\\), would give \\(c/p\\to1\\) and \\[ X-1/c=\\frac{c-p}{pc}=O(1), \\] contrary to the case distinction. Thus Lemma~\\ref{path:adjoin-p} applies. In both cases call the resulting coefficient system \\(\\mathcal A'\\). Every nonzero scalar of \\(\\mathcal A'\\)"
     },
     {
       "from": "m3-path-clock",
-      "to": "m3-path-centers"
+      "to": "m3-path-centers",
+      "context": "lower path property; it again gives \\(x_{\\rm prev}=o(X)\\). Thus in either case \\(X\\) belongs to the lower path field and is an admissible next clock by Lemma~\\ref{path:clock}. Declare it to be the last clock of the new hierarchy. All fastest-block centers are \\(c_iX+o(X)\\), the other centers"
     },
     {
       "from": "m3-path-prepared-contours",
-      "to": "m3-path-centers"
+      "to": "m3-path-centers",
+      "context": "each contour or segment integral record a finite cover of the fixed integration set. At a preparation or division node use the fixed-circle formulas of Lemma~\\ref{path:prepared-contours}. Call these finitely many records the preparation data of the expression. They are constructed from the bottom of the"
     },
     {
       "from": "m3-path-family-limits",
-      "to": "m3-path-centers"
+      "to": "m3-path-centers",
+      "context": "ts on lower paths. Such chart substitutions are regular lower operations. In the empty lower case they are meromorphic ramified functions of \\(1/x_1\\). Lemma~\\ref{path:family-limits} gives sectorial convergence of each of the finitely many bounded normalized lower families in the preparation data, loc"
     },
     {
       "from": "m3-path-sector-uniqueness",
-      "to": "m3-path-centers"
+      "to": "m3-path-centers",
+      "context": "pansion. One remainder estimate gives boundedness on a sector, while estimates of arbitrary order give superexponential decay on the central subsector. Lemma~\\ref{path:sector-uniqueness} makes the expression zero on every such path. The path families are submersive by Lemma~\\ref{path:adjoin-p} and the in"
     },
     {
       "from": "m3-path-detection",
-      "to": "m3-path-centers"
+      "to": "m3-path-centers",
+      "context": "or-uniqueness} makes the expression zero on every such path. The path families are submersive by Lemma~\\ref{path:adjoin-p} and the induction hypothesis; Lemma~\\ref{path:detection} consequently makes the expression zero as a domain germ. This proves the alternative used to classify inputs before fu"
     },
     {
       "from": "m3-path-roots",
-      "to": "m3-path-centers"
+      "to": "m3-path-centers",
+      "context": "risons just identified. The preceding path argument proves \\textup{(R4)} and the claimed clock membership, while the closure rules prove \\textup{(R3)}. Lemma~\\ref{path:roots} then supplies scalar roots at the new level for the next induction step. The exponential growth bounds have maximum cen"
     },
     {
       "from": "m3-path-roots",
-      "to": "m3-path-sign-elimination"
+      "to": "m3-path-sign-elimination",
+      "context": "ctions of the coefficients. Clearing denominators with their recorded signs gives polynomial sign tests. For scalar germs, factor the polynomials using Lemma~\\ref{path:roots}, fix the order and real or conjugate status of the finitely many roots, and restrict the domain base accordingly. At e"
     },
     {
       "from": "m3-thm-path-selection",
-      "to": "m3-path-sign-elimination"
+      "to": "m3-path-sign-elimination",
+      "context": "[Proof of Theorem~\\ref{thm:path-selection}] Apply Proposition~\\ref{path:centers} to the given lengths. Add the bounded differences between the original lengths a"
     },
     {
       "from": "m3-path-centers",
-      "to": "m3-path-sign-elimination"
+      "to": "m3-path-sign-elimination",
+      "context": "[Proof of Theorem~\\ref{thm:path-selection}] Apply Proposition~\\ref{path:centers} to the given lengths. Add the bounded differences between the original lengths and their centers to the ordinary varia"
     },
     {
       "from": "m3-path-prepared-contours",
-      "to": "m3-path-sign-elimination"
+      "to": "m3-path-sign-elimination",
+      "context": "exhaust the space of directions. Complete this direction to a fixed real linear coordinate change. Use the last coordinate \\(y\\) in that direction. By Lemma~\\ref{path:prepared-contours}, each remaining condition is the sign condition of a monic polynomial in \\(y\\), multiplied by a unit of fixed sign. At"
     },
     {
       "from": "m3-path-clock",
-      "to": "m3-path-sign-elimination"
+      "to": "m3-path-sign-elimination",
+      "context": "tes are sums and linear combinations of scalar-system elements on the path, so they, and each specified additional function, lie in a real Hardy field by Lemma~\\ref{path:clock}. Their derivatives either vanish or have fixed eventual sign. Hence these actual coordinates and functions are eventu"
     },
     {
       "from": "m3-ell-disconnected-inverse",
-      "to": "m3-ell-seam-inverse"
+      "to": "m3-ell-seam-inverse",
+      "context": "Extend the source from each finite half boundedly across its endpoint to the corresponding infinite end, and apply Lemma~\\ref{ell:disconnected-inverse}. We correct the resulting seam errors by all nondecaying modes, not just strictly growing ones. In a noncritical metr"
     },
     {
       "from": "m3-ell-seam-inverse",
-      "to": "m3-ell-complex-inverse"
+      "to": "m3-ell-complex-inverse",
+      "context": "uniformity for such bends. Extend finite-half data through the seam and apply this disconnected construction. Correct traces by the incoming modes from Lemma~\\ref{ell:seam-inverse}. They have polynomially bounded norms relative to their weighted seam amplitudes. Their leading trace matrices are un"
     },
     {
       "from": "m3-ell-functional",
-      "to": "m3-ell-gauge"
+      "to": "m3-ell-gauge",
+      "context": "es a genuine solution across the seam; the smooth equation then supplies the higher compatibility. At infinity $V=O(r^{1-q_0})$, which is admissible for Lemma~\\ref{ell:functional}. Small scaled coordinate changes preserve the end estimates after decreasing exponents."
     },
     {
       "from": "m3-ell-complex-inverse",
-      "to": "m3-ell-analytic-family"
+      "to": "m3-ell-analytic-family",
+      "context": "ves with polynomial coefficients in the unit Cartesian coordinates. Consequently finite angular harmonic sums remain finite at each Taylor order. Apply Lemma~\\ref{ell:complex-inverse} to the equation and all tests. A quadratic term has one additional factor of decay relative to the source weight. Its"
     },
     {
       "from": "m3-ell-disconnected-inverse",
-      "to": "m3-ell-analytic-family"
+      "to": "m3-ell-analytic-family",
+      "context": "the fixed core portions it also preserves the core tests. This variation belongs to $X^{k-1}_\\nu=X^7_\\nu$. The lower-order inverse already supplied by Lemmas~\\ref{ell:disconnected-inverse}--\\ref{ell:complex-inverse} uses the same sources and tests, with value and critical traces in $H^{13/2}$ and normal tra"
     },
     {
       "from": "m3-ell-functional",
-      "to": "m3-ell-comparison"
+      "to": "m3-ell-comparison",
+      "context": "n Equation~\\eqref{ell:first-variation} costs integrals of $\\rho^2$ against products of the joining weights; these are bounded by the scale calculation in Lemma~\\ref{ell:functional}. On the root the radial integral is $\\int r^{1-2q_0}\\,dr<\\infty$. Integrating the first variation proves the third est"
     },
     {
       "from": "m3-ell-complex-inverse",
-      "to": "m3-ell-flat-tail"
+      "to": "m3-ell-flat-tail",
+      "context": "al root gap and summing their squared coefficients. This proves both the improvement and its estimate. The kernel calculation on contours is the one in Lemma~\\ref{ell:complex-inverse}; polynomial losses are absorbed by decreasing the remainder weight within its strict gap. No parameter-dependent globa"
     },
     {
       "from": "m3-ell-flat-tail",
-      "to": "m3-ell-prescribed-tails"
+      "to": "m3-ell-prescribed-tails",
+      "context": "lution. Its initial positive-weight estimate and Equation~\\eqref{ell:flat-equation} give a source at twice a slightly weaker positive decay rate. Apply Lemma~\\ref{ell:flat-tail}. Suppose finitely many powers have already been extracted and the remainder has positive rate $B$. In the difference b"
     },
     {
       "from": "m3-ell-analytic-family",
-      "to": "m3-ell-prescribed-tails"
+      "to": "m3-ell-prescribed-tails",
+      "context": "noncritical weights when needed. This improves indefinitely. The initial roots are integers; Taylor products add their degrees. The angular property in Lemma~\\ref{ell:analytic-family} makes each resulting coefficient a finite harmonic sum. The original positive decay excludes all nonpositive degrees."
     },
     {
       "from": "m3-ell-prescribed-tails",
-      "to": "m3-ell-one-length"
+      "to": "m3-ell-one-length",
+      "context": "disconnected linearized inverse, with zero free incoming constants on the two new ends. A source assigned order $s$ has growth at most $p-s$ there; by Lemmas~\\ref{ell:prescribed-tails} and~\\ref{ell:triangular} its correction has the same upper growth bound. When this bound is negative the inverse may a"
     },
     {
       "from": "m3-ell-triangular",
-      "to": "m3-ell-one-length"
+      "to": "m3-ell-one-length",
+      "context": "e, with zero free incoming constants on the two new ends. A source assigned order $s$ has growth at most $p-s$ there; by Lemmas~\\ref{ell:prescribed-tails} and~\\ref{ell:triangular} its correction has the same upper growth bound. When this bound is negative the inverse may also contribute decaying h"
     },
     {
       "from": "m3-ell-seam-inverse",
-      "to": "m3-ell-one-length"
+      "to": "m3-ell-one-length",
+      "context": "w-end components decay. Multiply this variation by $e^{-(s+b)L}$ times a polynomial in $L$. Its leading seam data have order $s$. The block matrices in Lemma~\\ref{ell:seam-inverse} solve every leading seam residual. Their lower tails contribute only later orders. Matching at all other finite seams"
     },
     {
       "from": "m3-ell-flat-tail",
-      "to": "m3-ell-one-length"
+      "to": "m3-ell-one-length",
+      "context": "the difference equation has flat principal operator, decaying coefficients with integer tails, and the residual just bounded to higher precision. Apply Lemma~\\ref{ell:flat-tail} repeatedly. It upgrades the initial small error to the same exponential accuracy for any specified tail coefficients a"
     },
     {
       "from": "m3-ell-analytic-family",
-      "to": "m3-ell-finite-parts"
+      "to": "m3-ell-finite-parts",
+      "context": "lly uniform dominated integration; the coefficients themselves are analytic. On complex contours, use $d\\tau$ and the contour-independence argument from Lemma~\\ref{ell:analytic-family}. A strict exponential margin pays the polynomial length of the contour. Apply this formula to each Taylor coefficient"
     },
     {
       "from": "m3-ell-one-length",
-      "to": "m3-ell-finite-parts"
+      "to": "m3-ell-finite-parts",
+      "context": "of a finite part or tail coefficient on an older opened end has no loss in the new length: it is continuous in a fixed sufficient finite tail norm, where Lemma~\\ref{ell:one-length} retained that new-length factor. To reach a scalar cutoff $B$, choose a tag cutoff strictly greater than $B+\\nu+2+\\del"
     },
     {
       "from": "m3-ell-one-length",
-      "to": "m3-ell-all-orders"
+      "to": "m3-ell-all-orders",
+      "context": "Lemmas~\\ref{ell:one-length} and~\\ref{ell:finite-parts} give an expansion in one length. Its coefficients are finite constructions of the same kind:"
     },
     {
       "from": "m3-ell-finite-parts",
-      "to": "m3-ell-all-orders"
+      "to": "m3-ell-all-orders",
+      "context": "Lemmas~\\ref{ell:one-length} and~\\ref{ell:finite-parts} give an expansion in one length. Its coefficients are finite constructions of the same kind: triangular field equations"
     },
     {
       "from": "m3-ell-analytic-family",
-      "to": "m3-ell-all-orders"
+      "to": "m3-ell-all-orders",
+      "context": "every finite order would not imply it. For each of the finitely many partial disconnections, fix its small solution and its augmented basic inverse from Lemma~\\ref{ell:analytic-family}. Take once the minimum of their parameter radii and the maximum of their length thresholds, and restrict to a smaller"
     },
     {
       "from": "m3-ell-flat-tail",
-      "to": "m3-ell-all-orders"
+      "to": "m3-ell-all-orders",
+      "context": "growing coefficient never becomes the input of a new nonlinear contraction. Its correction is an unrestricted-size linear solve. Increasing weights in Lemma~\\ref{ell:flat-tail} uses only constant root kernels to identify tails; it does not introduce a new parameter-dependent global inverse. Tai"
     },
     {
       "from": "m3-thm-path-selection",
-      "to": "m3-ell-all-orders"
+      "to": "m3-ell-all-orders",
+      "context": "ions with strictly better remainders, including after previous coefficients have been taken. These are precisely the remaining expansion conditions in Theorem~\\ref{thm:path-selection}."
     },
     {
       "from": "m3-thm-tree-inequality",
-      "to": "m3-ell-differential"
+      "to": "m3-ell-differential",
+      "context": "[Proof of Theorem~\\ref{thm:tree-inequality}] The case $M=0$ is Lemma~\\ref{ell:functional}. Suppose the assertion fails on a subsequence with $M>0$. Then $|E(g)|\\"
     },
     {
       "from": "m3-ell-functional",
-      "to": "m3-ell-differential"
+      "to": "m3-ell-differential",
+      "context": "[Proof of Theorem~\\ref{thm:tree-inequality}] The case $M=0$ is Lemma~\\ref{ell:functional}. Suppose the assertion fails on a subsequence with $M>0$. Then $|E(g)|\\ge\\epsilon M$ for some fixed $\\epsilon>0$. By"
     },
     {
       "from": "m3-ell-comparison",
-      "to": "m3-ell-differential"
+      "to": "m3-ell-differential",
+      "context": "M=0$ is Lemma~\\ref{ell:functional}. Suppose the assertion fails on a subsequence with $M>0$. Then $|E(g)|\\ge\\epsilon M$ for some fixed $\\epsilon>0$. By Lemma~\\ref{ell:comparison} and Equation~\\eqref{ell:J-small}, late terms satisfy \\[ F\\ne0,\\qquad F^2\\ge c_2J,\\qquad F\\longrightarrow0, \\] for some"
     },
     {
       "from": "m3-ell-all-orders",
-      "to": "m3-ell-differential"
+      "to": "m3-ell-differential",
+      "context": "it: all the earlier smallness choices can be strict inside the parameter polydisc. On real parameters, $J\\ge0$ by Equation~\\eqref{ell:observables}. Proposition~\\ref{ell:all-orders} supplies admissibility, and Lemma~\\ref{ell:differential} supplies Equation~\\eqref{ell:dF}. The resulting sequence there"
     },
     {
       "from": "m3-path-variation",
-      "to": "m3-ell-differential"
+      "to": "m3-ell-differential",
+      "context": "ssibility, and Lemma~\\ref{ell:differential} supplies Equation~\\eqref{ell:dF}. The resulting sequence therefore satisfies every hypothesis excluded by Corollary~\\ref{path:variation}, a contradiction. This proves Equation~\\eqref{ell:little-oh}."
     }
   ]
 }

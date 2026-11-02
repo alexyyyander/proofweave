@@ -497,279 +497,348 @@
   "edges": [
     {
       "from": "m1-ci-planar-occupancy",
-      "to": "m1-red-flat-caps"
+      "to": "m1-red-flat-caps",
+      "context": "ius about that point has at most two points. These observations include the sample point itself after using \\(M=1+|\\Delta(P)|\\). The planar bound is Corollary~\\ref{ci:planar-occupancy}. The other bounds follow by applying the lower-dimensional assertion to the points in the flat, whose pairwise distance"
     },
     {
       "from": "m1-ci-st",
-      "to": "m1-red-directions"
+      "to": "m1-red-directions",
+      "context": "ficiently large fixed constant. A generic planar projection preserves the relevant distinct points, lines, and incidences. The rich-line consequence of Theorem~\\ref{ci:st} therefore bounds the number of physical lines with at least \\(t\\) points by \\[ C(N^2/t^3+N/t),\\qquad t\\ge2. \\] If \\(L_"
     },
     {
       "from": "m1-sc-theorem",
-      "to": "m1-red-directions"
+      "to": "m1-red-directions",
+      "context": "ould then cover all but \\(o(N^2)\\) pairs from one endpoint or the other and have total degree at most \\(N/(KA)=o(N/A)\\) in every star. This contradicts Theorem~\\ref{sc:theorem}. Fix such \\(H,K\\) and a positive-density subsequence. We prove~\\eqref{eq:direction-count} by induction on \\(a\\). For \\"
     },
     {
       "from": "m1-red-flat-caps",
-      "to": "m1-red-directions"
+      "to": "m1-red-directions",
+      "context": "/2})\\), contradicting \\(N/M^{d/2}\\to\\infty\\). Thus this alternative is impossible when \\(\\ell\\ge4\\). It remains to consider \\(\\ell\\le3\\). For \\(a\\ge2\\), Lemma~\\ref{red:flat-caps} bounds the counted partners by \\(O(A^2)\\), which is sufficient. If the span is the entire space, then \\(d=3\\) and the t"
     },
     {
       "from": "m1-red-directions",
-      "to": "m1-red-independent-stars"
+      "to": "m1-red-independent-stars",
+      "context": "ection to an irreducible component containing it, and group these components by dimension. For a group of total degree \\(a_j\\) and dimension \\(j\\), Proposition~\\ref{red:directions} bounds the assigned physical partners by \\(C a_j A^j\\). The component Hilbert lower bound in Lemma~\\ref{poly:hilbert},"
     },
     {
       "from": "m1-poly-hilbert",
-      "to": "m1-red-independent-stars"
+      "to": "m1-red-independent-stars",
+      "context": "(a_j\\) and dimension \\(j\\), Proposition~\\ref{red:directions} bounds the assigned physical partners by \\(C a_j A^j\\). The component Hilbert lower bound in Lemma~\\ref{poly:hilbert}, applied at the defining degree \\(D\\), gives \\[ H_S(D)=H_{\\Env_D(S)}(D)\\ge c_d a_jD^j. \\] There are at most \\(d\\) grou"
     },
     {
       "from": "m1-conc-theorem",
-      "to": "m1-red-global-concentration"
+      "to": "m1-red-global-concentration",
+      "context": "In Theorem~\\ref{conc:theorem}, take \\(e=d+1\\), so \\(r=d\\). Physical separators from Lemma~\\ref{poly:separators}, one in \\(p\\) and one in \\(q\\), have"
     },
     {
       "from": "m1-poly-separators",
-      "to": "m1-red-global-concentration"
+      "to": "m1-red-global-concentration",
+      "context": "In Theorem~\\ref{conc:theorem}, take \\(e=d+1\\), so \\(r=d\\). Physical separators from Lemma~\\ref{poly:separators}, one in \\(p\\) and one in \\(q\\), have a product of degree \\(O(M)\\). Express them in the coordinates \\(v_0,y_0\\) and homo"
     },
     {
       "from": "m1-conc-theorem",
-      "to": "m1-red-local-concentration"
+      "to": "m1-red-local-concentration",
+      "context": "aces. Each component has excess dimension \\(h=d-2=r-1\\) above a neighbor flat, and lies in a hypersurface of degree at most \\(A\\). Specification (b) of Theorem~\\ref{conc:theorem} applies to it; that specification has no total-count hypothesis. Summing its bound \\(C\\deg(V)A^{d-2}\\) over components"
     },
     {
       "from": "m1-red-local-concentration",
-      "to": "m1-red-main-contradiction"
+      "to": "m1-red-main-contradiction",
+      "context": "\\(F\\cap F'\\) inside \\(F\\). These neighbor flats are distinct by the local parameter check above. There are more than \\(C A^{d-1}\\) of them, contradicting Lemma~\\ref{red:local-concentration} applied to the nonzero restriction \\(f|_F\\)."
     },
     {
       "from": "m1-poly-socle",
-      "to": "m1-poly-interpolation"
+      "to": "m1-poly-interpolation",
+      "context": "_z. \\] This works for every such $y$, whether or not it is isolated. On setting $Y=z$ in \\eqref{poly:divided-difference}, we obtain $f(Z)=Q(z,Z)(Z-z)$. Lemma~\\ref{poly:socle}, after translation, says that $\\det Q(z,Z)$ is nonzero in $A_z$. Choose an $F$-linear functional $\\lambda:A_z\\longrigh"
     },
     {
       "from": "m1-poly-interpolation",
-      "to": "m1-poly-union-interpolation"
+      "to": "m1-poly-union-interpolation",
+      "context": "oint $z\\in S$, treat each list separately. If $z\\in S_\\nu$, take its normalized separator in that list. If $z\\notin S_\\nu$, the exact-isolation part of Lemma~\\ref{poly:interpolation} supplies an equation for $S_\\nu$ which does not vanish at $z$; normalize its value there to $1$. The product over the"
     },
     {
       "from": "m1-poly-interpolation",
-      "to": "m1-poly-hilbert"
+      "to": "m1-poly-hilbert",
+      "context": "eric fibers may be positive-dimensional, but they do not contain the selected sheets. The equations on the generic fiber have degree at most $L$ in $y$. Lemma~\\ref{poly:interpolation} says that evaluation on its $a$ selected points is surjective from $F[y]_{\\le q}$ for some $q\\le C_nL$. Since ordinary"
     },
     {
       "from": "m1-poly-union-interpolation",
-      "to": "m1-poly-hilbert"
+      "to": "m1-poly-hilbert",
+      "context": "union-of-systems assertion, take a generic base projection simultaneously for the finitely many systems and components. On its geometric generic fiber, Lemma~\\ref{poly:union-interpolation} supplies the same surjectivity at degree $C_nL_*$. The monomial argument and \\eqref{poly:rank-rescaling} are unchanged"
     },
     {
       "from": "m1-poly-hilbert",
-      "to": "m1-poly-envelope"
+      "to": "m1-poly-envelope",
+      "context": "For the lower bound, $H_V(L)$ is at least the rank of each pure dimensional subfamily. Lemma~\\ref{poly:hilbert} bounds each of those below by $c_na_kL^k$; taking a maximum loses at most the fixed factor $n+1$. For the upper bound,"
     },
     {
       "from": "m1-poly-hilbert",
-      "to": "m1-poly-regularity"
+      "to": "m1-poly-regularity",
+      "context": "the only possible nonempty family is the full ambient space, with codimension zero. Otherwise choose the generic base and transverse coordinates used in Lemma~\\ref{poly:hilbert}, and keep the notation $K=\\C(t)$ and $F=\\overline K$. Let $b$ be the total degree of the components on which the asser"
     },
     {
       "from": "m1-poly-hilbert",
-      "to": "m1-poly-pooling"
+      "to": "m1-poly-pooling",
+      "context": "inclusion $I(C)_{\\le D}\\subset I(\\bigcup_{i\\text{ forced}}V_i)_{\\le D}$ implies \\[ H_{\\bigcup_{i\\text{ forced}}V_i}(D)\\le H_C(D). \\] The lower bound of Lemma~\\ref{poly:hilbert} applies to this subfamily with the same $L$. For $D\\ge C_nL$ it bounds the left side below by $c_n bD^k$, proving \\eqr"
     },
     {
       "from": "m1-poly-projection",
-      "to": "m1-poly-high-multiplicity"
+      "to": "m1-poly-high-multiplicity",
+      "context": "For a zero-dimensional irreducible variety, $X$ is one reduced point, and a linear polynomial suffices. In positive dimension apply Lemma~\\ref{poly:projection}(ii) to the projective closure, the finite set $S$, and $x_*$. Compose a homogeneous defining equation of the image wit"
     },
     {
       "from": "m1-poly-compression",
-      "to": "m1-poly-high-multiplicity"
+      "to": "m1-poly-high-multiplicity",
+      "context": "der at every $p\\in S$ is at least $\\mult_pX$: composition does not decrease order, and hypersurface multiplicity equals the order of its equation. Apply Lemma~\\ref{poly:compression} with $r=\\lfloor a/2\\rfloor+1$."
     },
     {
       "from": "m1-geo-secants",
-      "to": "m1-geo-generic-depth"
+      "to": "m1-geo-generic-depth",
+      "context": "proper flat containing the other member's assigned points. The same flat bound and weighted averaging show that these pairs have product weight $o(1)$. Lemma~\\ref{geo:secants} now rules out a third moving root except when $k=l$ and the source and first target are flats in a common $(k+1)$-flat"
     },
     {
       "from": "m1-ci-st",
-      "to": "m1-geo-generic-depth"
+      "to": "m1-geo-generic-depth",
+      "context": "c_0}. \\] Choose $\\eta<c_0/4$. Since $w\\le\\log B$, the last bound is at most $eB^{-c_0/2}$ for large $B$. By the rich-line form of Szemer\\'edi--Trotter, Theorem~\\ref{ci:st}, the number of these lines at dyadic occupancy $t$ is \\[ O\\!\\left(\\frac{e^2\\exp(o(w))}{t^3} +\\frac{e\\exp(o"
     },
     {
       "from": "m1-prof-budget",
-      "to": "m1-geo-generic-depth"
+      "to": "m1-geo-generic-depth",
+      "context": "Removing targets cannot increase this number. This proves the assertion. For the announced applications, the degree and per-degree mass bounds of Proposition~\\ref{prof:budget} give the common-window hypotheses. In subpower windows all testing degrees are $B^{1+o(1)}$, so the number of $l$-flat"
     },
     {
       "from": "m1-poly-separators",
-      "to": "m1-geo-terminal"
+      "to": "m1-geo-terminal",
+      "context": "Write $n_i$ for the assigned mass of $Y_i$ and $d_i=\\deg Y_i$. Lemma~\\ref{poly:separators} gives \\[ \\sum_i n_i\\le N,\\qquad n_i\\le C M d_i. \\label{geo:curve-mass}\\tag{\\ref*{geo:terminal}.1} \\] We treat lines f"
     },
     {
       "from": "m1-poly-projection",
-      "to": "m1-geo-terminal"
+      "to": "m1-geo-terminal",
+      "context": "ers for each curve. To see this, take a generic birational plane projection, preserving or increasing multiplicities at this finite list of points, as in Lemma~\\ref{poly:projection}. For a reduced plane curve of degree $D$, intersection with a general polar derivative gives \\begin{equation}\\label{geo"
     },
     {
       "from": "m1-geo-secants",
-      "to": "m1-geo-terminal"
+      "to": "m1-geo-terminal",
+      "context": "ther endpoint. Otherwise, after fixing the tangent endpoint, the other nonlinear curve would lie in its tangent line. Thus the non-tangency hypothesis of Lemma~\\ref{geo:secants} holds. Failure of birationality would give a further point on the same target curve over a general joining direction."
     },
     {
       "from": "m1-poly-separators",
-      "to": "m1-prof-partition"
+      "to": "m1-prof-partition",
+      "context": "he unresolved set is isolated by equations of degree \\begin{equation}\\label{prof:entry-upper} B\\exp((1+o(1))s). \\end{equation} This is true initially by Lemma~\\ref{poly:separators}, since $M=o(B^2)$. Except at the initial step, the unresolved set also has no nonzero polynomial of degree at most $B\\"
     },
     {
       "from": "m1-poly-interpolation",
-      "to": "m1-prof-partition"
+      "to": "m1-prof-partition",
+      "context": "e is at least $N\\exp(-s^{1/3})$, and otherwise is discarded. There are at most $\\exp(\\sqrt{s})$ batches of either kind. Isolated point interpolation in Lemma~\\ref{poly:interpolation} gives equations of degree $O(B\\exp(s/2))$ for precisely each batch of the second kind. Indeed, from normalized separato"
     },
     {
       "from": "m1-prof-partition",
-      "to": "m1-prof-budget"
+      "to": "m1-prof-budget",
+      "context": "is at most $N$, it gives $\\prod_iD_i\\le N\\exp(o(s))$, proving the reverse inequality $\\sum_i b_i\\le0$. The profile is nonzero by the imbalance in Proposition~\\ref{prof:partition}. Its monotonicity and zero sum give $b_1<0<b_d$. If $b_1+b_2\\ge0$, then $b_2>0$ and the $d-2$ later entries are at le"
     },
     {
       "from": "m1-poly-pooling",
-      "to": "m1-prof-regularity"
+      "to": "m1-prof-regularity",
+      "context": "same plateau. The carrier components are therefore isolated components of their cut system, whose equations have degree at most $B\\exp((\\beta+o(1))s)$. Lemma~\\ref{poly:pooling}, used at degree $T_s(b')$, pools proper component cuts of degree $O(T_s(b))$ into one polynomial. It is nonidentically"
     },
     {
       "from": "m1-poly-regularity",
-      "to": "m1-prof-regularity"
+      "to": "m1-prof-regularity",
+      "context": "ve mass $o(n)$. At every remaining counted point the pooled polynomial is proper on every local carrier. No-capture at $b'$ proves the assertion. Apply Lemma~\\ref{poly:regularity} at degree $T_s(b')$. Since the cut-system equations have degree at most $B\\exp((\\beta+o(1))s)$, the components on whic"
     },
     {
       "from": "m1-poly-union-interpolation",
-      "to": "m1-prof-regularity"
+      "to": "m1-prof-regularity",
+      "context": "ersions of Lemmas~\\ref{poly:pooling} and~\\ref{poly:regularity}. Each carrier remains a component of its own path system. On a generic transverse fiber, Lemma~\\ref{poly:union-interpolation} interpolates the selected isolated lists, including first jets, with an effective bound equal to the sum of the individ"
     },
     {
       "from": "m1-prof-regularity",
-      "to": "m1-prof-product-testing"
+      "to": "m1-prof-product-testing",
+      "context": "For an actual source point $p$, apply the individual-cut conclusion of Proposition~\\ref{prof:regularity} on every target carrier $Y$ on which the specialization is nonidentically zero. For the other case, fix $Y$. If the po"
     },
     {
       "from": "m1-geo-terminal",
-      "to": "m1-prof-pair-selection"
+      "to": "m1-prof-pair-selection",
+      "context": "1}\\exp(o(s))=o(1), \\] using~\\eqref{prof:balance}. This is uniform over pieces. Every point is assigned at most once; pool repeated curves. Apply Proposition~\\ref{geo:terminal} once to this global assignment. It removes only $o(N^2)$ ordered incidences, and hence leaves the required almost-comp"
     },
     {
       "from": "m1-prof-regularity",
-      "to": "m1-prof-pair-selection"
+      "to": "m1-prof-pair-selection",
+      "context": "xp(-o(s))$ uniformly, so there are only $\\exp(o(s))$ of them. Their profiles differ by $o(1)$, and the conclusions for pooled families follow from Proposition~\\ref{prof:regularity} and Lemma~\\ref{prof:product-testing}. Finally, Szemer\\'edi--Trotter, with a generic planar projection, makes the fract"
     },
     {
       "from": "m1-prof-product-testing",
-      "to": "m1-prof-pair-selection"
+      "to": "m1-prof-pair-selection",
+      "context": "re only $\\exp(o(s))$ of them. Their profiles differ by $o(1)$, and the conclusions for pooled families follow from Proposition~\\ref{prof:regularity} and Lemma~\\ref{prof:product-testing}. Finally, Szemer\\'edi--Trotter, with a generic planar projection, makes the fraction of ordered pairs on lines of occu"
     },
     {
       "from": "m1-prof-regularity",
-      "to": "m1-sc-retained-products"
+      "to": "m1-sc-retained-products",
+      "context": "\\tau_{\\rm eq}<\\tau_{\\rm test}<\\tau$ between the start of the plateau and $\\tau$. Use the earlier part of this interval for the equation choices in Proposition~\\ref{prof:regularity}, leaving the strict gap up to $\\tau_{\\rm test}$ for its minor and proper-cut tests at the sample points. Apply its uni"
     },
     {
       "from": "m1-geo-generic-depth",
-      "to": "m1-sc-retained-products"
+      "to": "m1-sc-retained-products",
+      "context": "p(o(s))$. The remaining point counts are still $N\\exp(-o(s))$. A flat has degree one, so its number and its normalized weight satisfy the hypotheses of Lemma~\\ref{geo:generic-depth} with $w=s$ and $e=e_j$. The flat members are real by the preceding deletion. Apply that lemma now with the fixed $\\va"
     },
     {
       "from": "m1-prof-product-testing",
-      "to": "m1-sc-common-rank"
+      "to": "m1-sc-common-rank",
+      "context": "On the initial full-dimensional interval, Lemma~\\ref{prof:product-testing}, or its two successive full-dimensional no-capture arguments, forces the testing-degree envelope of a dense label graph"
     },
     {
       "from": "m1-sc-retained-products",
-      "to": "m1-sc-common-rank"
+      "to": "m1-sc-common-rank",
+      "context": "fter $j\\ge1$ cuts put $k=d-j$. Choose a physical regularity time between the start of this plateau and the current testing time $b$. When $k<d-1$, apply Lemma~\\ref{sc:retained-products} with any fixed $\\varepsilon>0$. When $k=d-1$, apply Proposition~\\ref{prof:regularity} to the union of the two physical"
     },
     {
       "from": "m1-prof-regularity",
-      "to": "m1-sc-common-rank"
+      "to": "m1-sc-common-rank",
+      "context": "plateau and the current testing time $b$. When $k<d-1$, apply Lemma~\\ref{sc:retained-products} with any fixed $\\varepsilon>0$. When $k=d-1$, apply Proposition~\\ref{prof:regularity} to the union of the two physical families, discard its rank-failure and nonreal-flat points, and assign each survivor t"
     },
     {
       "from": "m1-sc-common-rank",
-      "to": "m1-sc-outer-regularity"
+      "to": "m1-sc-outer-regularity",
+      "context": "l has at most $n$ pairs. Thus $\\Lambda_h$ is dense in $S\\times S$. This graph is independent of the covered graph $\\Gamma$; the arbitrary-graph scope of Lemma~\\ref{sc:common-rank} applies to it. Every label of $\\Lambda_h$ lies in the chosen dimension-$h$ component containing its complete product im"
     },
     {
       "from": "m1-poly-regularity",
-      "to": "m1-sc-outer-regularity"
+      "to": "m1-sc-outer-regularity",
+      "context": "ations of degree at most $T_0$; larger components elsewhere in $V$ are kept in those equations. Also $\\deg\\mathcal I\\le\\deg U\\le e_j^2\\exp(o(s))$. Apply Lemma~\\ref{poly:regularity} to this pure component family at degree $T_1$. Its equations vanish on the whole family $\\mathcal I$. The exceptional"
     },
     {
       "from": "m1-geo-secants",
-      "to": "m1-sc-outer-regularity"
+      "to": "m1-sc-outer-regularity",
+      "context": "preceding carrier deletion. Equality of the two projected tangent spaces at a general retained pair would put both carriers in a common $(k+1)$-flat by Lemma~\\ref{geo:secants}, which is impossible. This inequality also has a bounded-degree test using the same physical equations. Put $c'=d-k$"
     },
     {
       "from": "m1-prof-regularity",
-      "to": "m1-sc-separated-rank"
+      "to": "m1-sc-separated-rank",
+      "context": "interior time for the fixed pullback and pooling costs. Every counted target on such a carrier lies in the cut. The individual-cut conclusion of Proposition~\\ref{prof:regularity} therefore removes only $o(|P_y|)$ such targets, uniformly in the center and the envelope. Hence the complete projectio"
     },
     {
       "from": "m1-sc-theorem",
-      "to": "m1-sc-separated-rank"
+      "to": "m1-sc-separated-rank",
+      "context": "[Proof of Theorem~\\ref{sc:theorem}] The profile-pair selection exhausts the possibilities. A positive core is impossible by its isolation degree. The comm"
     },
     {
       "from": "m1-ci-st",
-      "to": "m1-mot-beck"
+      "to": "m1-mot-beck",
+      "context": "r projection preserves the distinct points and all noncollinear triples of a finite affine configuration. It therefore suffices to work in the plane. Theorem~\\ref{ci:st} gives \\begin{equation} \\label{mot:st-rich} \\#\\{L:|L\\cap X|\\ge u\\} \\le C_0\\left(\\frac{n^2}{u^3}+\\frac nu\\right), \\qqu"
     },
     {
       "from": "m1-mot-beck",
-      "to": "m1-mot-local"
+      "to": "m1-mot-local",
+      "context": "d of \\(n_g\\in[\\ell/4,2\\ell)\\) retained points. Affine invertibility preserves all line and plane occupancy bounds. Since \\(\\eta_1\\ell\\le\\delta_0 n_g\\), Lemma~\\ref{mot:beck} gives at least \\(\\gamma_0\\ell/4\\) anchor points, each with at least \\(\\gamma_0\\ell/4\\) distinct outgoing projective dir"
     },
     {
       "from": "m1-ci-planar-motions",
-      "to": "m1-mot-local"
+      "to": "m1-mot-local",
+      "context": "he general-type bound \\(O(m^3/\\ell^{3/2})\\) for each orientation class. \\subsubsection{Planar type} For two finite planar clouds of sizes \\(a,a'\\), Corollary~\\ref{ci:planar-motions} bounds the number of planar isometries giving at least \\(u\\) matches, for an integer \\(u\\ge3\\), by \\begin{equation} \\la"
     },
     {
       "from": "m1-mot-effective-planes",
-      "to": "m1-mot-local"
+      "to": "m1-mot-local",
+      "context": "here \\(h,h'\\) run dyadically from \\(\\eta_0\\ell\\). Choose \\(C_{\\mathrm{loc}}\\) also large enough that \\(\\eta_0\\ell\\ge C_2m^{2/3}\\) and \\(\\eta_0\\ell\\ge3\\). Lemma~\\ref{mot:effective-planes} supplies at most \\(O(m^4/(h^2(h')^2))\\) ordered supporting plane pairs in these buckets. For each fixed pair, choose t"
     },
     {
       "from": "m1-mot-rich",
-      "to": "m1-mot-parallel-pairs"
+      "to": "m1-mot-parallel-pairs",
+      "context": "[Proof of Theorem~\\ref{mot:rich}] We prove the stronger assertion stated at the start of the section. Let \\(X,Y\\) be clouds of at most \\(N\\) points, put"
     },
     {
       "from": "m1-mot-partition",
-      "to": "m1-mot-parallel-pairs"
+      "to": "m1-mot-parallel-pairs",
+      "context": "=t^{1+\\alpha},\\qquad m=8N/r,\\qquad b=\\beta k/r=\\beta A t^{-\\alpha}. \\end{equation} Since \\(t\\le N^{1/3}\\) and \\(\\alpha<2\\), we have \\(1\\le r\\le N\\), so Lemma~\\ref{mot:partition} applies to both clouds. It supplies at most \\(19r\\) regions in each partition, each with at most \\(m\\) points. For th"
     },
     {
       "from": "m1-mot-local",
-      "to": "m1-mot-parallel-pairs"
+      "to": "m1-mot-parallel-pairs",
+      "context": "ches remain. Bucket each remaining local count into \\(\\ell\\le n_{R,R'}(g)<2\\ell\\), with \\(\\ell=2^i b\\), and use the line/planar/general classification of Lemma~\\ref{mot:local} for the clouds \\(X_R,Y_{R'}\\) in that local bucket. A single global motion may contribute different local types in dif"
     },
     {
       "from": "m1-mot-line-images",
-      "to": "m1-mot-parallel-pairs"
+      "to": "m1-mot-parallel-pairs",
+      "context": "maining motions. For nonparallel source line pairs, there are at most \\(L_*^4\\) prescriptions of an ordered source pair and its ordered target pair. By Lemma~\\ref{mot:line-images}, each prescription has at most eight motions, and each product of weights is at most \\((2A)^2\\). Their total contributi"
     },
     {
       "from": "m1-conc-regularity",
-      "to": "m1-conc-rulings"
+      "to": "m1-conc-rulings",
+      "context": "Use Lemma~\\ref{conc:regularity} to choose $g_1,\\ldots,g_c$ and an initial smooth open set in $V$. In the construction below we remove zeros of a bound"
     },
     {
       "from": "m1-conc-rulings",
-      "to": "m1-conc-degree"
+      "to": "m1-conc-degree",
+      "context": "ell^j\\xi^k \\le C_e\\deg V. \\label{conc:deg-bound} \\end{equation} \\paragraph{The tangent constraint in the affine-line case.} Suppose now that \\(j=1\\). Lemma~\\ref{conc:rulings} gives \\(\\operatorname{codim}_S V=1\\), so \\(h=r-1\\) and \\(\\dim\\Lambda=r\\). We first show that the tangent space of \\(\\L"
     },
     {
       "from": "m1-conc-theorem",
-      "to": "m1-conc-degree"
+      "to": "m1-conc-degree",
+      "context": "[Proof of Theorem~\\ref{conc:theorem}] Fix the sample, $A$, and one of Specifications (a) and (b). For $0\\leq h<r$, let $R_h$ be the supremum of \\[ \\frac{\\"
     },
     {
       "from": "m1-ci-crossing",
-      "to": "m1-ci-st"
+      "to": "m1-ci-st",
+      "context": "I-L$. Edges on the same line have disjoint interiors. Edges on two different lines cross at most once, so their crossing count is at most $\\binom L2$. Lemma~\\ref{ci:crossing} gives either $e<4n$ or $e^3\\le32n^2L^2$, proving the incidence bound. Concurrent crossings cause no problem: count pai"
     },
     {
       "from": "m1-ci-st",
-      "to": "m1-ci-rich-lines"
+      "to": "m1-ci-rich-lines",
+      "context": "e may assume \\begin{equation}\\label{ci:large-s} s>A\\left(L^{3/2}k^{-2}+Lk^{-1}\\right), \\end{equation} where $A$ will be chosen sufficiently large. By Theorem~\\ref{ci:st}, this assumption implies $s\\le C L^2k^{-3}$. Choose \\[ r=\\left\\lfloor\\theta L^2s^{-1}k^{-3}\\right\\rfloor, \\] where the"
     },
     {
       "from": "m1-ci-partition",
-      "to": "m1-ci-rich-lines"
+      "to": "m1-ci-rich-lines",
+      "context": "2s^{-1}k^{-3}\\right\\rfloor, \\] where the constant $\\theta$ is sufficiently large. Thus $r\\ge1$ and $r$ is comparable to the expression inside the floor. Lemma~\\ref{ci:partition} gives a polynomial $f$ of degree $D\\le Cr$. We claim that at most $\\varepsilon s$ points of $S$ lie outside $Z(f)$. O"
     },
     {
       "from": "m1-ci-flat",
-      "to": "m1-ci-rich-lines"
+      "to": "m1-ci-rich-lines",
+      "context": "il to contain $sk/(200L)$ points of $S_*$. With $\\varepsilon$ small enough, at least $L/200$ lines succeed. All points of $S_*$ are critical or flat by Lemma~\\ref{ci:flat}. On each successful line one of these two kinds occurs at least $sk/(400L)$ times. By \\eqref{ci:small-degree} this is"
     },
     {
       "from": "m1-ci-rich-lines",
-      "to": "m1-ci-planar-motions"
+      "to": "m1-ci-planar-motions",
+      "context": "d these determine $y$ uniquely, because $a$ and $J^Ta$ are independent; the same holds with $y$ fixed. Thus the plane cap is $B_0\\le\\min(u,v)$. Apply Theorem~\\ref{ci:rich-lines}. Its middle term is bounded by its first because $B_0\\le\\sqrt{uv}\\le k\\sqrt{uv}$, and its last is bounded by its first"
     },
     {
       "from": "m1-ci-ruled-structure",
-      "to": "m1-ci-ruled-count"
+      "to": "m1-ci-ruled-count",
+      "context": "either a plane nor a smooth projective quadric. Across all the components there are at most $d$ exceptional points and at most $2d$ exceptional lines by Lemma~\\ref{ci:ruled-structure}. Intersections involving an exceptional line cost at most $2dM$ points. The exceptional points themselves cost at mos"
     },
     {
       "from": "m1-ci-flecnode",
-      "to": "m1-ci-two-rich"
+      "to": "m1-ci-two-rich",
+      "context": "hbb C$. Retain the real, absolutely irreducible, geometrically ruled factors. At most $b\\le18D^2$ of the $M$ lines fail to lie on their union. Indeed, Lemma~\\ref{ci:flecnode} bounds the lines on each nonruled factor of degree $d_i$ by $17d_i^2$. A real line on a factor which is not real up to"
     },
     {
       "from": "m1-ci-ruled-count",
-      "to": "m1-ci-two-rich"
+      "to": "m1-ci-two-rich",
+      "context": "\\[ b\\le36864m/K\\le m/4. \\] Every one of these $b$ lines meets the retained ruled union in at most $D$ points, since it is not contained in that union. Lemma~\\ref{ci:ruled-count} bounds intersections among the ruled lines by $5Dm+sm/2$. The induction hypothesis, with the original cap $s$, bounds"
     },
     {
       "from": "m1-ci-planar-motions",
-      "to": "m1-ci-cayley-caps"
+      "to": "m1-ci-cayley-caps",
+      "context": "Distinctness and the plane bound were proved in Corollary~\\ref{ci:planar-motions}. Fix $x\\in U$ and allow the other endpoint $y$ to range over all of $\\mathbb R^2$. These lines partition $(t,c)$-spac"
     },
     {
       "from": "m1-ci-cayley-caps",
-      "to": "m1-ci-planar-distances"
+      "to": "m1-ci-planar-distances",
+      "context": "ie in the Cayley chart used in \\eqref{ci:cayley-line}. Translations lie in this chart as well. Use the $n^2$ lines for the pairs $(x,y)\\in Q\\times Q'$. Lemma~\\ref{ci:cayley-caps} gives plane cap $n$ and regulus cap $8n$. Theorem~\\ref{ci:two-rich} bounds the two-rich points by $Cn^3$. For $3\\le k"
     },
     {
       "from": "m1-ci-two-rich",
-      "to": "m1-ci-planar-distances"
+      "to": "m1-ci-planar-distances",
+      "context": "in this chart as well. Use the $n^2$ lines for the pairs $(x,y)\\in Q\\times Q'$. Lemma~\\ref{ci:cayley-caps} gives plane cap $n$ and regulus cap $8n$. Theorem~\\ref{ci:two-rich} bounds the two-rich points by $Cn^3$. For $3\\le k\\le n$, Theorem~\\ref{ci:rich-lines} bounds the $k$-rich points by \\["
     },
     {
       "from": "m1-ci-rich-lines",
-      "to": "m1-ci-planar-distances"
+      "to": "m1-ci-planar-distances",
+      "context": "mma~\\ref{ci:cayley-caps} gives plane cap $n$ and regulus cap $8n$. Theorem~\\ref{ci:two-rich} bounds the two-rich points by $Cn^3$. For $3\\le k\\le n$, Theorem~\\ref{ci:rich-lines} bounds the $k$-rich points by \\[ C\\left(\\frac{n^3}{k^2}+\\frac{n^3}{k^3}+\\frac{n^2}{k}\\right) \\le C'\\frac{n^3}{k^2}. \\"
     },
     {
       "from": "m1-ci-planar-distances",
-      "to": "m1-ci-planar-occupancy"
+      "to": "m1-ci-planar-occupancy",
+      "context": "For an occupancy $n\\ge2$, Theorem~\\ref{ci:planar-distances} gives $n\\le CM\\log(2n)$. The elementary inequality $\\log(2n)\\le C\\sqrt n$ first yields $n\\le C'M^2$; substitute this b"
     }
   ]
 }

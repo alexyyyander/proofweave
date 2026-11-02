@@ -109,39 +109,48 @@
   "edges": [
     {
       "from": "m1-thm-main",
-      "to": "m1-cor-ratios"
+      "to": "m1-cor-ratios",
+      "context": "The displayed inequality is equivalent to $p_{n+1}-p_n>p_n/n$. The prime number theorem gives $p_n/n\\sim\\log p_n$. Apply Theorem~\\ref{thm:main} with $C=2$ and discard the finitely many indices for which $p_n/n\\ge2\\log p_n$."
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-adjacent-gaps"
+      "to": "m1-lem-adjacent-gaps",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Fix $C>0$ and choose $\\lambda>\\max\\{C,1\\}$. Take $\\varepsilon=\\lambda^2/(2K_\\lambda)$ in Proposition~\\ref{prop:weights"
     },
     {
       "from": "m1-prop-weights",
-      "to": "m1-lem-adjacent-gaps"
+      "to": "m1-lem-adjacent-gaps",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Fix $C>0$ and choose $\\lambda>\\max\\{C,1\\}$. Take $\\varepsilon=\\lambda^2/(2K_\\lambda)$ in Proposition~\\ref{prop:weights}, and fix the resulting weight family. There is a finite constant $M>0$ such that $\\mathbb E_XW_X^2\\le M$ for every suff"
     },
     {
       "from": "m1-lem-small-first-moment",
-      "to": "m1-prop-dimension-cancellation"
+      "to": "m1-prop-dimension-cancellation",
+      "context": "Fix $0<\\beta<\\gamma<\\tau$ and choose $g$ from Lemma~\\ref{lem:small-first-moment}. Write $d=\\beta-\\mu_g>0$. Let $B$ be an upper endpoint of the support of $g$, and let $s_g^2$ be the variance of the p"
     },
     {
       "from": "m1-prop-weights",
-      "to": "m1-prop-dimension-cancellation"
+      "to": "m1-prop-dimension-cancellation",
+      "context": "[Proof of Proposition~\\ref{prop:weights}] Fix $\\lambda>0$ and one function $G$ as in Proposition~\\ref{prop:weight-moments}. Set \\[ K_\\lambda=C_*=\\lambda+\\lambd"
     },
     {
       "from": "m1-prop-weight-moments",
-      "to": "m1-prop-dimension-cancellation"
+      "to": "m1-prop-dimension-cancellation",
+      "context": "[Proof of Proposition~\\ref{prop:weights}] Fix $\\lambda>0$ and one function $G$ as in Proposition~\\ref{prop:weight-moments}. Set \\[ K_\\lambda=C_*=\\lambda+\\lambda^2c_G^2. \\] This choice is independent of $\\varepsilon$. Given $\\varepsilon>0$, c"
     },
     {
       "from": "m1-lem-arithmetic-1",
-      "to": "m1-lem-arithmetic-2"
+      "to": "m1-lem-arithmetic-2",
+      "context": "e total normalized error is at most \\[ \\frac{\\prod_r\\|F_r\\|_\\infty}{X} \\sum_{q\\le X^\\sigma}\\mu^2(q)(2^M)^{\\omega(q)}E_X(q), \\] which is $O_A(L^{-A})$ by Lemma~\\ref{lem:arithmetic-1}. This proves the marked case, including all scalar factors and the wholly zero-dimensional case."
     },
     {
       "from": "m1-prop-mixed-moments",
-      "to": "m1-lem-arithmetic-2"
+      "to": "m1-lem-arithmetic-2",
+      "context": "[Proof of Proposition~\\ref{prop:mixed-moments}] Let $M=|\\Gamma|$. By Lemma~\\ref{lem:arithmetic-2}, it remains to evaluate $\\mathcal A_\\delta$ from \\eqref{eq:arithmeti"
     },
     {
       "from": "m1-prop-weight-moments",
-      "to": "m1-lem-singular-average"
+      "to": "m1-lem-singular-average",
+      "context": "[Proof of Proposition~\\ref{prop:weight-moments}] First we check the smoothness and support needed by the moment formula. Extend $f_j$ by zero to $\\mathbb R^j$. Its c"
     }
   ]
 }

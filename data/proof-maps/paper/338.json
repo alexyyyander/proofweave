@@ -281,103 +281,128 @@
   "edges": [
     {
       "from": "m1-prop-scalar-comparison",
-      "to": "m1-lem-scalar-majorant"
+      "to": "m1-lem-scalar-majorant",
+      "context": "[Proof of Proposition~\\ref{prop:scalar-comparison}] The Ricci identity $\\Ric(h_t)=\\Ric(g)+\\dd\\rho$, traced with $h_t$, proves \\eqref{flow:rho-source}, since $\\rho_t=R_{h_"
     },
     {
       "from": "m1-flow-cutoff-lemma",
-      "to": "m1-lem-scalar-majorant"
+      "to": "m1-lem-scalar-majorant",
+      "context": "(t)$ on each compact. The difference $z=\\rho-\\rho_{\\min}$ satisfies \\[ 0\\le z\\le\\rho,\\qquad z_t=\\Delta_{h_t}z, \\qquad z(\\cdot,0)=0. \\] Use $\\chi$ from Lemma~\\ref{flow:cutoff-lemma}, with $k>2n+3$, and a cutoff $p_N=p(u/N)$ which is one on $u\\le N$ and zero on $u\\ge2N$. Set \\[ I_N(t)=\\int_M z\\chi p"
     },
     {
       "from": "m1-prop-disc-compactness",
-      "to": "m1-lem-psh-compactness-bridge"
+      "to": "m1-lem-psh-compactness-bridge",
+      "context": "[Proof of Proposition~\\ref{prop:disc-compactness}] We first control centers of discs $f_l$ in $M$. The maximum principle gives uniform bounds \\begin{equation}\\label{dis"
     },
     {
       "from": "m1-lem-extra-integrability",
-      "to": "m1-lem-psh-compactness-bridge"
+      "to": "m1-lem-psh-compactness-bridge",
+      "context": "$E=f^*T^{1,0}M$ has Griffiths nonnegative curvature, $A=dF:E\\to\\C^N$ is bounded and injective, and the holomorphic section $a=f'$ has finite $L^2$ norm. Lemma~\\ref{lem:extra-integrability} applies. Fubini then gives an angle $\\theta$ with \\[ \\int_0^{r_0}|a(re^{i\\theta})|_g^2r^{1-\\sigma}\\,dr<\\infty. \\] Sin"
     },
     {
       "from": "m1-prop-initial-data",
-      "to": "m1-lem-psh-compactness-bridge"
+      "to": "m1-lem-psh-compactness-bridge",
+      "context": "This proves the first assertion. For the cotangent assertion take global holomorphic fields $X_1,\\ldots,X_m$ spanning $T^{1,0}M$, as supplied by Proposition~\\ref{prop:initial-data}. The base images are compact by the first part. The functions $\\xi(X_i)$ along each disc are bounded by their boundar"
     },
     {
       "from": "m1-lem-disc-frames",
-      "to": "m1-lem-boundary-factorization"
+      "to": "m1-lem-boundary-factorization",
+      "context": "[Proof of Lemma~\\ref{lem:disc-frames}] We first construct a preliminary frame on a neighborhood of the closed disc. The bundle $E=f^*TY$ is embedded by $dG$"
     },
     {
       "from": "m1-lem-disc-frames",
-      "to": "m1-lem-disc-deformation"
+      "to": "m1-lem-disc-deformation",
+      "context": "l)\\rangle -|\\alpha(0)|^2h(0)^2\\varphi_{E,c}(l(0),\\overline{l(0)}). \\] The center frames and their inverses are bounded independently of interior area by Lemma~\\ref{lem:disc-frames}. Thus the test term is bounded, as is the boundary symbol by \\eqref{var:symbol-bounds}. Removing $\\alpha$ changes thes"
     },
     {
       "from": "m1-prop-disc-inequality",
-      "to": "m1-lem-symplectic-schur"
+      "to": "m1-lem-symplectic-schur",
+      "context": "[Completion of the proof of Proposition~\\ref{prop:disc-inequality}] Combine \\eqref{var:center-majorant}, \\eqref{var:clock-comparison}, \\eqref{var:backward-test}, \\eqref{var:positive-repl"
     },
     {
       "from": "m1-prop-ellipsoid-comparison",
-      "to": "m1-thm-joint-positivity"
+      "to": "m1-thm-joint-positivity",
+      "context": "\\Delta_{h_t}\\ell=R_{h_t}. \\] If $\\varphi$ is an upper test of $F_0=\\ell-\\mathcal L$, then $\\lambda=\\ell-\\varphi$ is a lower test of $\\mathcal L$. Proposition~\\ref{prop:ellipsoid-comparison} therefore says \\begin{equation}\\label{ell:scalar-gap-equation} \\partial_t\\varphi \\le e^{-F_0}\\Delta_{h_t}\\varphi"
     },
     {
       "from": "m1-prop-scalar-comparison",
-      "to": "m1-thm-joint-positivity"
+      "to": "m1-thm-joint-positivity",
+      "context": "nd between zero and $\\rho$. Since $\\rho$ is smooth and vanishes initially, extending $F_0$ by zero at $t=0$ preserves upper semicontinuity. Apply Proposition~\\ref{prop:scalar-comparison} to \\eqref{ell:scalar-gap-equation} on each interval $[0,T']$ with $T'<T$. Since $T'$ is arbitrary, $F_0=0$ for every $"
     },
     {
       "from": "m1-thm-joint-positivity",
-      "to": "m1-prop-harnack-completeness"
+      "to": "m1-prop-harnack-completeness",
+      "context": "By Theorem~\\ref{thm:joint-positivity}, the dual squared norm of the tangent metric pulled back to $(x,w)$, where $t=e^{w+\\bar w}$, is plurisubharmonic. Comp"
     },
     {
       "from": "m1-thm-localized-flow",
-      "to": "m1-prop-harnack-completeness"
+      "to": "m1-prop-harnack-completeness",
+      "context": "proves the asserted power contraction. Applied to the trace, the same inequality gives monotonicity of $tR(o,t)$. The linear bound for $\\rho(o,t)$ in Theorem~\\ref{thm:localized-flow} implies, for $t\\ge1$, \\[ tR(o,t)\\log2 \\le\\int_t^{2t}R(o,v)\\,dv =\\rho(o,2t)-\\rho(o,t)\\le C(1+2t). \\] Smoothness on co"
     },
     {
       "from": "m1-prop-harnack-completeness",
-      "to": "m1-prop-ricci-windows"
+      "to": "m1-prop-ricci-windows",
+      "context": "Proposition~\\ref{prop:harnack-completeness} gives monotonicity and the positive lower bound for $q$, together with $q\\le Ce^\\tau$. Hence $s\\to\\infty$. If $q(s)>2s"
     },
     {
       "from": "m1-chart-local-charts",
-      "to": "m1-prop-ricci-windows"
+      "to": "m1-prop-ricci-windows",
+      "context": "(x,t)}$. Thus every $\\lambda_j\\ge e^{-\\rho(x,t)}$, which proves the lower bound of \\eqref{chart:metric-decay}. Choose the instantaneous unitary chart of Lemma~\\ref{chart:local-charts} at $x$. Its initial-metric singular lengths are $\\lambda_j^{-1/2}$, whose product is $e^{\\rho(x,t)/2}$. Lemma~\\ref{le"
     },
     {
       "from": "m1-lem-static-distortion",
-      "to": "m1-prop-ricci-windows"
+      "to": "m1-prop-ricci-windows",
+      "context": "unitary chart of Lemma~\\ref{chart:local-charts} at $x$. Its initial-metric singular lengths are $\\lambda_j^{-1/2}$, whose product is $e^{\\rho(x,t)/2}$. Lemma~\\ref{lem:static-distortion} bounds their largest value by a fixed power of their smallest, uniformly for $x$ in the compact set. Since all these l"
     },
     {
       "from": "m1-prop-ricci-windows",
-      "to": "m1-prop-simple-connectivity"
+      "to": "m1-prop-simple-connectivity",
+      "context": "Take the rescaled flows in Proposition~\\ref{prop:ricci-windows}. Their pointed pullbacks on tangent balls have a smooth local subsequential limit, denoted $g(z)$. Pass to a further s"
     },
     {
       "from": "m1-prop-harnack-completeness",
-      "to": "m1-prop-simple-connectivity"
+      "to": "m1-prop-simple-connectivity",
+      "context": "ite collection of paths from $o$ lie in a fixed compact set. Their $h_{t_i}$ lengths tend to zero by \\eqref{chart:metric-decay}, and $R_i\\le C$ by Proposition~\\ref{prop:harnack-completeness}. Thus this loop lies inside $B_{g_i(0)}(o,r_*/4)$ for sufficiently large $i$. Fix one such $i$. The compact trapping"
     },
     {
       "from": "m1-chart-local-charts",
-      "to": "m1-prop-shrinking-charts"
+      "to": "m1-prop-shrinking-charts",
+      "context": "Take the charts of Lemma~\\ref{chart:local-charts} at $o$. We use the elementary short-path lifting property of these possibly noninjective charts; compare \\cite[Lemmas~2"
     },
     {
       "from": "m1-prop-simple-connectivity",
-      "to": "m1-prop-shrinking-charts"
+      "to": "m1-prop-shrinking-charts",
+      "context": "borhood it extends the inverse germ at $o$ by path lifting. For each nonempty overlap, use one point in the overlap to form the two-path loop. By Proposition~\\ref{prop:simple-connectivity} this loop bounds a fixed piecewise smooth homotopy. There are only finitely many paths and homotopies; their images li"
     },
     {
       "from": "m1-lem-psh-compactness-bridge",
-      "to": "m1-prop-shrinking-charts"
+      "to": "m1-prop-shrinking-charts",
+      "context": "e compact. The functions $v_s=s^{-1}\\log|f_s|$ are plurisubharmonic on their exhausting domains and locally bounded above. For any sequence $s\\to\\infty$, Lemma~\\ref{lem:psh-compactness-bridge} and diagonal extraction give either convergence to $-\\infty$ locally uniformly from above, or local $L^1$ convergence t"
     },
     {
       "from": "m1-chart-psh-liouville",
-      "to": "m1-prop-shrinking-charts"
+      "to": "m1-prop-shrinking-charts",
+      "context": "ergence to a plurisubharmonic function on $M$. In the second case the upper-regularized limit is at most zero everywhere by \\eqref{chart:local-exponent}. Lemma~\\ref{chart:psh-liouville} makes it constant. On one fixed neighborhood of $o$, \\eqref{chart:local-exponent} bounds this constant by a fixed nega"
     },
     {
       "from": "m1-lem-unif-backward-limit",
-      "to": "m1-prop-global-coordinates"
+      "to": "m1-prop-global-coordinates",
+      "context": "On a fixed exhaustion compact choose an index $k$ after which regime (i) is available. Lemma~\\ref{lem:unif:backward-limit} gives $\\xi_k$ there, and composing it with the single fixed polynomial automorphism $G_{0,k}^{-1}$ gives the limit \\eqr"
     },
     {
       "from": "m1-prop-ricci-windows",
-      "to": "m1-prop-global-coordinates"
+      "to": "m1-prop-global-coordinates",
+      "context": "stays in the uniform chart ball. Up to its first exit from the fixed ball about $x$, the compact metric comparison $e^{-2s_k}g\\le h_{t(s_k)}$ from Proposition~\\ref{prop:ricci-windows}, and the uniform chart upper bound $\\Phi_{s_k}^*h_{t(s_k)}\\le Cg_{\\mathrm{Eucl}}$, bound its initial-metric length by $"
     },
     {
       "from": "m1-thm-uniformization",
-      "to": "m1-prop-global-coordinates"
+      "to": "m1-prop-global-coordinates",
+      "context": "[Proof of Theorem~\\ref{thm:uniformization}] The preceding analytic and chart constructions, followed by Propositions~\\ref{prop:polynomial-models} and \\ref{prop:gl"
     },
     {
       "from": "m1-prop-polynomial-models",
-      "to": "m1-prop-global-coordinates"
+      "to": "m1-prop-global-coordinates",
+      "context": "[Proof of Theorem~\\ref{thm:uniformization}] The preceding analytic and chart constructions, followed by Propositions~\\ref{prop:polynomial-models} and \\ref{prop:global-coordinates}, give a biholomorphism $\\Psi:M\\to\\Omega$ onto an open set containing zero, with the f"
     }
   ]
 }

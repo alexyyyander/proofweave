@@ -274,75 +274,93 @@
   "edges": [
     {
       "from": "m1-thm-counterexample",
-      "to": "m1-cor-normalized-covering"
+      "to": "m1-cor-normalized-covering",
+      "context": "For the regular tetrahedron $K$, each denominator is at least $A_{\\min}(K)>0$, so the sum is at most $\\sum_i|B_i|/A_{\\min}(K)<1/2$ by Theorem~\\ref{thm:counterexample} with $\\eps=1/2000$. The directionwise ratios are invariant under invertible affine maps~\\cite[arXiv v1, Section~3]{BL2"
     },
     {
       "from": "m1-thm-counterexample",
-      "to": "m1-prop-area-expansion"
+      "to": "m1-prop-area-expansion",
+      "context": "[Proof of \\cref{thm:counterexample}] The projection minimum is \\cref{lem:projection-minimum}. The construction in \\cref{sec:construction} has exactly $2n$"
     },
     {
       "from": "m1-lem-projection-minimum",
-      "to": "m1-prop-area-expansion"
+      "to": "m1-prop-area-expansion",
+      "context": "[Proof of \\cref{thm:counterexample}] The projection minimum is \\cref{lem:projection-minimum}. The construction in \\cref{sec:construction} has exactly $2n$ compact triangular perpendicular bases, and \\cref{prop:co"
     },
     {
       "from": "m1-prop-coverage",
-      "to": "m1-prop-area-expansion"
+      "to": "m1-prop-area-expansion",
+      "context": "e projection minimum is \\cref{lem:projection-minimum}. The construction in \\cref{sec:construction} has exactly $2n$ compact triangular perpendicular bases, and \\cref{prop:coverage} proves that its cylinders cover $K$ for $0<\\eps\\le\\eta/2=1/2000$. Since $\\eta=1/1000$, \\cref{prop:area-expansion} gives"
     },
     {
       "from": "m1-cor-quantitative-coverage",
-      "to": "m1-prop-angular-cubic"
+      "to": "m1-prop-angular-cubic",
+      "context": "xis is one, so their perpendicular bases are compact nondegenerate triangles as before. \\emph{Coverage.} For $0<\\tau\\le1/2$, take $\\eta=25\\tau/4$ in Corollary~\\ref{cor:quantitative-coverage}. Its sufficient budget is \\[ 2\\eta-(2+2\\eta)\\tau-\\frac{\\tau^2}{4} =\\tau\\left(\\frac{21}{2}-\\frac{51}{4}\\tau\\right) \\g"
     },
     {
       "from": "m1-cor-variable-margin-area",
-      "to": "m1-prop-angular-cubic"
+      "to": "m1-prop-angular-cubic",
+      "context": "p conditions, so they cover the closed body, including its boundary. \\emph{Area.} For $0<\\tau\\le1/50$, the margin $\\eta=25\\tau/4$ lies in $[0,1/8]$. Corollary~\\ref{cor:variable-margin-area} consequently gives \\[ \\left|\\frac{C_\\tau}{H}-\\frac12- \\left(\\frac{25}{2}\\tau-\\frac1{240}\\right)\\tau^2\\right| \\"
     },
     {
       "from": "m2-b-zero-diagonal",
-      "to": "m2-b-affine-cover"
+      "to": "m2-b-affine-cover",
+      "context": "Choose the basis from Lemma~\\ref{b:zero-diagonal}. After subtracting $p_0+sv_0$ and using this basis in units of $\\tau$, the centers are \\[ (i+sbj,\\,sci+j). \\] Their tw"
     },
     {
       "from": "m2-b-lattice",
-      "to": "m2-b-affine-cover"
+      "to": "m2-b-affine-cover",
+      "context": "0+sv_0$ and using this basis in units of $\\tau$, the centers are \\[ (i+sbj,\\,sci+j). \\] Their two parameters have product $s^2bc=-s^2\\det A\\in[0,1)$, so Lemma~\\ref{b:lattice} applies. The distance from a point of a square to its center is at most $\\tau/\\sqrt2$, giving the stated bound. Cayley-"
     },
     {
       "from": "m2-b-approximation",
-      "to": "m2-b-affine-cover"
+      "to": "m2-b-affine-cover",
+      "context": "[Proof of Theorem~\\ref{b:approximation}] If $D=\\varnothing$, take the empty collection. Otherwise fix $L,h>0$ as in the theorem. Compactness and the strict det"
     },
     {
       "from": "m2-b-projection",
-      "to": "m2-b-affine-cover"
+      "to": "m2-b-affine-cover",
+      "context": "ta$. This includes $|D|=0$, when the total weighted cost tends to zero. The finitely many lists together cover $E(D,V,L)$ at every height. Finally, Proposition~\\ref{b:projection} gives compact nondegenerate parallelogram perpendicular bases under $F_h$ and their exact physical areas $h|T_l|J_h(V_S"
     },
     {
       "from": "m2-b-projection",
-      "to": "m2-b-product-local"
+      "to": "m2-b-product-local",
+      "context": "o^2 <(1+\\gamma)\\tau. \\] Thus all the intercepts lie in $U_{p,\\rho}$, uniformly in the center and the segment parameter. Set $j(p)=J_h(V(p))$. By Proposition~\\ref{b:projection}, the perpendicular base obtained from this intercept patch has area \\[ h j(p)|U_{p,\\rho}| =h j(p)R(\\tau,\\gamma)|G| \\"
     },
     {
       "from": "m2-b-product",
-      "to": "m2-b-product-local"
+      "to": "m2-b-product-local",
+      "context": "[Proof of Theorem~\\ref{b:product}] For $D=\\varnothing$ use no cylinders. Otherwise choose $\\eta>0$ so that \\[ h[(1+\\eta)^2-1]\\int_D J_h(V)<e/2, \\] and"
     },
     {
       "from": "m2-b-product",
-      "to": "m2-b-logarithmic"
+      "to": "m2-b-logarithmic",
+      "context": "Set $V=kv$, $h=1$ and $M=X$ in Theorem~\\ref{b:product}. The eigenvalues of $DV(p)$ are $\\pm k\\sqrt{-\\det Dv(p)}$, so that theorem gives the stated conclusion. We record the"
     },
     {
       "from": "m2-b-cell-geometry",
-      "to": "m2-b-logarithmic"
+      "to": "m2-b-logarithmic",
+      "context": "rithmic parametrization and its finite stopping rule. Put $j(p)=(1+k^2|v(p)|^2)^{-1/2}$ and choose $\\eta>0$ with $[(1+\\eta)^2-1]\\int_U j<e/2$. As after Lemma~\\ref{b:cell-geometry}, choose $m>1$ and then $\\gamma>0$ with $R(m^{-2},\\gamma)<1+\\eta$ and $(1+\\gamma)m^{-2}<1$. For the unit-eigenvector mat"
     },
     {
       "from": "m2-b-product-local",
-      "to": "m2-b-logarithmic"
+      "to": "m2-b-logarithmic",
+      "context": "L_p$, the cells \\[ G=p+tL_pS_m,\\qquad U_{p,t}=p+tL_pS'_{m,\\gamma} \\] are exactly the product cell and its open patch under $\\tau=m^{-2}$ and $\\rho=mt$. Lemma~\\ref{b:product-local} therefore supplies an open cylinder with axis parallel to $(1,kv(p))$ and cost at most $(1+\\eta)^2\\int_G j$ whenever $G"
     },
     {
       "from": "m3-c-main",
-      "to": "m3-c-affine-tetrahedra"
+      "to": "m3-c-affine-tetrahedra",
+      "context": "lative cost is unchanged, and the stated base classes are preserved. Every nondegenerate tetrahedron is an invertible affine image of a regular one, so Theorem~\\ref{c:main} proves the corollary."
     },
     {
       "from": "m3-c-nil-apex-net",
-      "to": "m3-c-nil-finite-counterexample"
+      "to": "m3-c-nil-finite-counterexample",
+      "context": "$0<k<1$ with $I(k)<c^2$, and then choose $0<\\epsilon<c^2-I(k)$. Next fix \\[ 0<\\rho<\\min\\left\\{c,\\frac{\\epsilon}{32(1+kc)^2}\\right\\}. \\] The apex net of Lemma~\\ref{c:nil-apex-net} costs less than $\\epsilon/2$ in weighted tile area, for each sign. Only now form the truncated label set \\[ D_\\rho=\\{("
     },
     {
       "from": "m3-c-nil-sweep-cover",
-      "to": "m3-c-nil-finite-counterexample"
+      "to": "m3-c-nil-finite-counterexample",
+      "context": "r of each entire sweep at cost at most $h(I(k)+\\epsilon)$. All its perpendicular bases are compact convex parallelograms by \\eqref{c:nil-physical-maps}. Lemma~\\ref{c:nil-sweep-cover} now proves that the two lists together cover the whole tetrahedron, and their total area is at most \\[ 2h(I(k)+\\epsilo"
     }
   ]
 }

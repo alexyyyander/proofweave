@@ -533,275 +533,343 @@
   "edges": [
     {
       "from": "m1-loc-factorization",
-      "to": "m1-spec-zero"
+      "to": "m1-spec-zero",
+      "context": "lgebra} with full labels $d=(\\beta,l)$, $q^d=Q^\\beta y^l$, and coefficients holomorphic in the chosen $\\lambda$ germ. The rationality assertion in Proposition~\\ref{loc:factorization} puts the expansion of $S_W$ at $z=0$ in this algebra: a rational function has a finite-order pole at zero. Since its z"
     },
     {
       "from": "m1-spec-gauge",
-      "to": "m1-spec-zero"
+      "to": "m1-spec-zero",
+      "context": "o, and its initial $X$ block is multiplication by $\\lambda+p$, whose nilpotent part is the ordinary class $p|_X$. Equation~\\eqref{shift:calibration} and Lemma~\\ref{spec:gauge} now identify the actual resolvents in the two frames. In the descendant frame the contour about zero selects exactly t"
     },
     {
       "from": "m1-spec-calculus",
-      "to": "m1-spec-zero"
+      "to": "m1-spec-zero",
+      "context": "ects exactly the whole $X$ summand. Indeed the reduced spectra have this property; within each summand the contour function is identically $1$ or $0$, so Lemma~\\ref{spec:calculus} gives respectively the identity or zero also for the formal perturbation. Integration proves \\eqref{spec:zero-conjugat"
     },
     {
       "from": "m1-spec-calculus",
-      "to": "m1-fixed-classical"
+      "to": "m1-fixed-classical",
+      "context": "in $t$ gives $H$ times that side and its value at $t=0$ is the identity. This is also the exponential defined by the holomorphic functional calculus of Lemma~\\ref{spec:calculus}: coefficientwise differentiation of its contour formula gives the same evolution equation. The constant term of $H$ in"
     },
     {
       "from": "m1-spec-gauge",
-      "to": "m1-fixed-classical"
+      "to": "m1-fixed-classical",
+      "context": "alar. The composition rule in Lemma~\\ref{spec:calculus} then identifies $\\log(e^H)$ with $H$. Conjugation of the resolvents by $\\Delta_F$ is allowed by Lemma~\\ref{spec:gauge}. For $F=B$, apply this argument to the divided shift $y^{-1}T_F$ and then restore $\\log y$; for $F=X$, apply it direct"
     },
     {
       "from": "m1-spec-zero",
-      "to": "m1-fixed-classical"
+      "to": "m1-fixed-classical",
+      "context": "o the divided shift $y^{-1}T_F$ and then restore $\\log y$; for $F=X$, apply it directly to $T_F$. These are exactly the logarithm prescriptions of Proposition~\\ref{spec:zero}. This proves \\eqref{fixed:log-conjugation}, with the stated freedom in its scalar constant."
     },
     {
       "from": "m1-fixed-equivalence",
-      "to": "m1-fixed-rank-scaling"
+      "to": "m1-fixed-rank-scaling",
+      "context": "[Proof of Proposition~\\ref{fixed:equivalence}] Let $F'$ be the other fixed component. Up to invertible scalar factors, the comparison of potentials follows the chai"
     },
     {
       "from": "m1-fixed-classical",
-      "to": "m1-fixed-rank-scaling"
+      "to": "m1-fixed-rank-scaling",
+      "context": "iring as in Lemma~\\ref{fixed:rank-scaling}. The final row first adjoins the other fixed potential and then applies the upper symplectic transformation. Lemma~\\ref{fixed:classical}, the binomial identity, quantum Riemann--Roch, and Lemma~\\ref{fixed:rank-scaling} identify projective satisfaction of a"
     },
     {
       "from": "m1-conv-covariance",
-      "to": "m1-fixed-rank-scaling"
+      "to": "m1-fixed-rank-scaling",
+      "context": "he spectral construction. Pass next from descendants on $F$ to ancestors at $u_F$. The ancestor--descendant identity of Section~\\ref{geo:ancestors} and Lemma~\\ref{conv:covariance} conjugate the mode matrices by \\[ S_f=S_{F,\\mathrm{tw}}(u_F,z) \\] and transport their projective equations to $\\mathca"
     },
     {
       "from": "m1-loc-factorization",
-      "to": "m1-fixed-rank-scaling"
+      "to": "m1-fixed-rank-scaling",
+      "context": "factor; its projective equation is consequently equivalent to the equation on the single factor. Finally apply the upper transformation $R(z)$ of Proposition~\\ref{loc:factorization}. Its two identities \\[ S_W=R(z)\\bigoplus_F S_f, \\qquad \\mathcal A_W=(\\text{scalar})\\, U_R\\prod_F\\mathcal A_{F"
     },
     {
       "from": "m1-spec-zero",
-      "to": "m1-fixed-rank-scaling"
+      "to": "m1-fixed-rank-scaling",
+      "context": "\\mathcal A_W=(\\text{scalar})\\, U_R\\prod_F\\mathcal A_{F,\\mathrm{tw}}(u_F) \\] show that the resulting classical modes are exactly $A_{k,F}$, by Proposition~\\ref{spec:zero}, and that their quantum equations are the projective equations on $\\mathcal A_W$. Each change is invertible, so the im"
     },
     {
       "from": "m1-cont-polynomiality",
-      "to": "m1-cont-finite-tests"
+      "to": "m1-cont-finite-tests",
+      "context": "plication term occurs only at $\\hbar^{-1}$. For a fixed output monomial, the connected potentials which can occur have at most $N+2$ distinguished marks. Lemma~\\ref{cont:polynomiality} therefore bounds every differentiated descendant index uniformly, independently of the fiber degree. There is also a f"
     },
     {
       "from": "m1-spec-modes",
-      "to": "m1-cont-finite-tests"
+      "to": "m1-cont-finite-tests",
+      "context": "tiated descendant index uniformly, independently of the fiber degree. There is also a finite bound on the relevant matrix entries of $A_{k,i}$. By Proposition~\\ref{spec:modes} it has loop powers at least $-1$ and finite order in $z\\partial_z$. In the second-derivative part, both negative-mode i"
     },
     {
       "from": "m1-spec-zero",
-      "to": "m1-cont-finite-tests"
+      "to": "m1-cont-finite-tests",
+      "context": "rse are fixed rational matrices in $\\lambda$; we work at a nonzero $\\lambda$ germ. This proves the finite-sum assertion and continuation. Finally, Proposition~\\ref{spec:zero} gives holomorphic coefficients at zero for the $X$ cluster and a polynomial dependence on $\\log y$ for each $B$-branch"
     },
     {
       "from": "m1-fixed-equivalence",
-      "to": "m1-cont-finite-tests"
+      "to": "m1-cont-finite-tests",
+      "context": "efficient test have just been shown to be finite. Taylor expansion therefore commutes with that test and yields exactly the formal identity used in Proposition~\\ref{fixed:equivalence}."
     },
     {
       "from": "m1-fixed-equivalence",
-      "to": "m1-cont-projective-transfer"
+      "to": "m1-cont-projective-transfer",
+      "context": "By Proposition~\\ref{fixed:equivalence}, the hypothesis gives all the projective equations for $A_{k,B}$ on $\\mathcal A_W$ near $y=0$. Lemma~\\ref{cont:finite-t"
     },
     {
       "from": "m1-cont-finite-tests",
-      "to": "m1-cont-projective-transfer"
+      "to": "m1-cont-projective-transfer",
+      "context": "By Proposition~\\ref{fixed:equivalence}, the hypothesis gives all the projective equations for $A_{k,B}$ on $\\mathcal A_W$ near $y=0$. Lemma~\\ref{cont:finite-tests} turns their formal coefficient identities into identities of germs on a punctured sector. Their infinitesimal symplecti"
     },
     {
       "from": "m1-cont-monodromy",
-      "to": "m1-cont-projective-transfer"
+      "to": "m1-cont-projective-transfer",
+      "context": "nged, because at fixed base class they are polynomials in $y$. The only change is in the continued spectral branch and logarithm of its mode operator. By Lemma~\\ref{cont:monodromy}, the continued $B$ branch can be any of the $r+1$ branches. The projective equations and infinitesimal symplecticity th"
     },
     {
       "from": "m1-spec-modes",
-      "to": "m1-cont-projective-transfer"
+      "to": "m1-cont-projective-transfer",
+      "context": "ojective equations and infinitesimal symplecticity therefore hold on each branch. Continuing a logarithm may add $2\\pi\\mathrm i$ times an integer. Proposition~\\ref{spec:modes} gives an invertible triangular binomial change among all modes when this happens. Consequently the simultaneous equatio"
     },
     {
       "from": "m1-spec-zero",
-      "to": "m1-cont-projective-transfer"
+      "to": "m1-cont-projective-transfer",
+      "context": "of quantities independent of the insertion variables is again independent of them. Hence $\\mathcal A_W$ satisfies all cluster modes projectively. Proposition~\\ref{spec:zero} extends the cluster operators holomorphically through $y=0$. Taking Taylor coefficients in the equations is legitimate"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-cont-exact"
+      "to": "m1-cont-exact",
+      "context": "[Proof of Theorem~\\ref{thm:main}] The hypothesis $\\V(B)$ gives projective satisfaction on $B$. By Proposition~\\ref{cont:projective-transfer}, it passes"
     },
     {
       "from": "m1-cont-projective-transfer",
-      "to": "m1-cont-exact"
+      "to": "m1-cont-exact",
+      "context": "[Proof of Theorem~\\ref{thm:main}] The hypothesis $\\V(B)$ gives projective satisfaction on $B$. By Proposition~\\ref{cont:projective-transfer}, it passes to $X$. Corollary~\\ref{cont:exact} gives the prescribed ordinary Virasoro equations. All constructions used"
     },
     {
       "from": "m2-fp-trace-normalization",
-      "to": "m2-fp-pairing"
+      "to": "m2-fp-pairing",
+      "context": "and first follows in the same way, and all other cases vanish. This proves the chain identity. We specify the compatibility with nearby integration below, in \\cref{fp:trace-normalization}; it uses the multiplicative comparison and trace of Fujisawa. The residue calculation identifying that trace pairing w"
     },
     {
       "from": "m2-fp-pairing",
-      "to": "m2-fp-trace-normalization"
+      "to": "m2-fp-trace-normalization",
+      "context": "ison identifies cup products. Applying the identical traces to cup products identifies the pairings. Equivalently, the explicit residue calculation quoted in \\cref{fp:pairing} gives component integration and opposite-column integration on the same double stratum, with no cross-stratum terms. T"
     },
     {
       "from": "m2-fp-scalar-limit",
-      "to": "m2-fp-local-algebra"
+      "to": "m2-fp-local-algebra",
+      "context": "First use \\cref{fp:scalar-limit} to pass to the Hodge and weight gradeds of nearby cohomology. For every coevaluation use the cycle $\\Delta_{C_Y}$ in t"
     },
     {
       "from": "m2-fp-first-index",
-      "to": "m2-fp-local-algebra"
+      "to": "m2-fp-local-algebra",
+      "context": "of nearby cohomology. For every coevaluation use the cycle $\\Delta_{C_Y}$ in the small complex \\eqref{fp:total-complex}; first-index factors are chain maps by \\cref{fp:first-index}. Extending cup classes give chain maps with their usual bidegree shifts. For a tensor with $r$ exposed evaluation slo"
     },
     {
       "from": "m2-fp-pullback",
-      "to": "m2-fp-local-algebra"
+      "to": "m2-fp-local-algebra",
+      "context": "shifts. For a tensor with $r$ exposed evaluation slots, use its own ordered configuration model. Transfer each input by $\\phi_Y$ and pull it to that model by \\cref{fp:pullback}. Multiply the inputs in $K_Z$, multiply by the specialization from \\cref{fp:leading-class}, and apply $\\Theta_Z$. All"
     },
     {
       "from": "m2-fp-leading-class",
-      "to": "m2-fp-local-algebra"
+      "to": "m2-fp-local-algebra",
+      "context": "ion model. Transfer each input by $\\phi_Y$ and pull it to that model by \\cref{fp:pullback}. Multiply the inputs in $K_Z$, multiply by the specialization from \\cref{fp:leading-class}, and apply $\\Theta_Z$. All these operations induce chain maps on first pages, and $\\Theta_Z$ is a chain functional by"
     },
     {
       "from": "m2-fp-trace-normalization",
-      "to": "m2-fp-local-algebra"
+      "to": "m2-fp-local-algebra",
+      "context": "s, and $\\Theta_Z$ is a chain functional by \\eqref{fp:theta}. The construction represents the desired cohomological evaluation by multiplicative comparison and \\cref{fp:trace-normalization}. Use separate models for separate evaluation tensors; only their exposed slots are linked. For a classical cup tensor"
     },
     {
       "from": "m2-fp-chain-contraction",
-      "to": "m2-fp-local-algebra"
+      "to": "m2-fp-local-algebra",
+      "context": "ts inputs there, and apply $\\Theta_Y$. The resulting closed diagram is therefore a finite tensor contraction of chain functionals and cycle coevaluations. By \\cref{fp:chain-contraction} it equals the original weight-graded contraction. An isomorphism on second pages in \\eqref{fp:comparison} is sufficien"
     },
     {
       "from": "m2-ev-restriction",
-      "to": "m2-fp-local-algebra"
+      "to": "m2-fp-local-algebra",
+      "context": "changes the coefficient correspondence rather than its exposed arity. Its actual extending class and its component restrictions are still the ones supplied by \\cref{ev:restriction}. Applying a new cohomological operation to one of its markings requires exposing that slot; it then contributes one fu"
     },
     {
       "from": "m2-ev-configuration",
-      "to": "m2-ev-restriction"
+      "to": "m2-ev-restriction",
+      "context": "ormalized cut divisor to $Q_\\epsilon$ is obtained by cutting the expansion and stabilizing the recorded positions on its two sides. The uniqueness argument in \\cref{ev:configuration} shows that this is the map occurring in \\eqref{ev:component-product}. Refined Cartier pullback commutes with proper pu"
     },
     {
       "from": "m2-ev-aligned-cut",
-      "to": "m2-ev-restriction"
+      "to": "m2-ev-restriction",
+      "context": "ch intersection with the matching relative virtual classes and their refined root diagonal. The required identity for disconnected sources and an empty side is \\cref{ev:aligned-cut}, applied before evaluation pushforward. The additional assertion beyond the numerical degeneration formulas \\cite[Sect"
     },
     {
       "from": "m2-ev-groups",
-      "to": "m2-cap-span"
+      "to": "m2-cap-span",
+      "context": "Write $Z_{\\mathrm{cl}}(\\mathbf t,\\h)$ for the disconnected factor formed by connected components without relative markings. The relative product rule in \\cref{ev:groups} gives the same factor at every profile, so it may be divided out before selecting rows. In fiber degree, a component wi"
     },
     {
       "from": "m2-cap-linearization",
-      "to": "m2-cap-span"
+      "to": "m2-cap-span",
+      "context": "e-root series associated with the entries of $\\lambda$. Let these single-root coordinates be $f_1(\\mathbf t),\\ldots, f_s(\\mathbf t)$ in homogeneous bases. By \\cref{cap:linearization}, choose $s$ auxiliary variables with invertible super Jacobian and set the others to zero. The formal inverse function"
     },
     {
       "from": "m2-cap-span",
-      "to": "m2-cap-q"
+      "to": "m2-cap-q",
+      "context": "in the ordinary configuration and $S$ in the blowdown configuration, and the counting class there is ample. Choose the finite invertible fiber matrix $M_0$ of \\cref{cap:span}. Apply the same rows at all counting degrees to obtain \\[ M(q)=M_0+qM_1+\\cdots+q^d M_d \\pmod{q"
     },
     {
       "from": "m2-cap-bounded-rows",
-      "to": "m2-cap-q"
+      "to": "m2-cap-q",
+      "context": "pply the same rows at all counting degrees to obtain \\[ M(q)=M_0+qM_1+\\cdots+q^d M_d \\pmod{q^{d+1}}. \\] Its entries are well defined by \\cref{cap:bounded-rows}. If $B=M_0^{-1}(M(q)-M_0)$, then \\begin{equation}\\label{cap:Qinverse} M(q)^{-1}=\\left(\\sum_{j=0}^{d}(-B)^j\\right)M_0^"
     },
     {
       "from": "m2-cap-span",
-      "to": "m2-cap-p"
+      "to": "m2-cap-p",
+      "context": "First take projected class $\\alpha=0$. Then \\eqref{cap:flux} says $a=h$. The rank-one case of \\cref{cap:span}, restricted to total contact $h$, supplies an invertible block of ordinary rows, with no output at other contact totals"
     },
     {
       "from": "m2-cap-bounded-rows",
-      "to": "m2-cap-p"
+      "to": "m2-cap-p",
+      "context": "$h=a$ and the already inverted $q=0$ triangular block to remove it. Any new error of positive additional counting degree $k$ has contact at most $a+C_0k$, by \\cref{cap:bounded-rows}. Starting with contact at most $H$ at order zero proves inductively the sharper bound \\begin{equation}\\label{cap:weigh"
     },
     {
       "from": "m2-cap-q",
-      "to": "m2-cap-identity"
+      "to": "m2-cap-identity",
+      "context": "\\qquad x\\in\\mathcal F_{\\leq H}(D), \\] understood as a categorical contraction in the displayed order. If another order is chosen, insert its Koszul sign. By \\cref{cap:Q}, finite $Q$ tests realize each $\\epsilon_i$ on the incoming bounded domain, with the new seam gluing included. By \\cref"
     },
     {
       "from": "m2-cap-p",
-      "to": "m2-cap-identity"
+      "to": "m2-cap-identity",
+      "context": "osen, insert its Koszul sign. By \\cref{cap:Q}, finite $Q$ tests realize each $\\epsilon_i$ on the incoming bounded domain, with the new seam gluing included. By \\cref{cap:P}, finite $P$ tests realize the state $u_i$ on the entire outgoing space: in particular they cancel every extraneous outg"
     },
     {
       "from": "m2-cap-bounded-rows",
-      "to": "m2-cap-identity"
+      "to": "m2-cap-identity",
+      "context": "its square. The stated formula proves the desired identity. All inversions and products used are finite at the given bounds, with the completions justified in \\cref{cap:bounded-rows}. The outgoing estimate is the summandwise estimate of \\cref{cap:P}. Equality before contraction with any outside state"
     },
     {
       "from": "m2-cap-identity",
-      "to": "m2-cap-uniform"
+      "to": "m2-cap-uniform",
+      "context": "$d$. Choose the incoming bound for the first switch accordingly. If that switch is retained, flux continues under the same neck estimate. If it is replaced, \\cref{cap:identity} gives a bound on the new outgoing flux before cancellation, depending only on the chosen incoming bound and $d$. Take"
     },
     {
       "from": "m2-cap-bounded-rows",
-      "to": "m2-cap-uniform"
+      "to": "m2-cap-uniform",
+      "context": "alue $k_r$ and bounded incoming $k_l$, even if the recorded value is negative. On inserted ends it uses the imposed $h$ or the bounded relative contact, as in \\cref{cap:bounded-rows}. Ordinary ends are bounded by their ample counting degree. This exhausts the pieces and proves the effective-degree a"
     },
     {
       "from": "m2-ev-restriction",
-      "to": "m2-sew-geometry"
+      "to": "m2-sew-geometry",
+      "context": "tor the base generator at the same double divisors. Units in these local equations do not change the graded residue maps. The ordered configuration spaces in \\cref{ev:restriction} are constructed from these same divisors and normal bundles. Their projected incidence neighborhoods, and the pullback"
     },
     {
       "from": "m2-fp-local-algebra",
-      "to": "m2-sew-geometry"
+      "to": "m2-sew-geometry",
+      "context": "me divisors and normal bundles. Their projected incidence neighborhoods, and the pullback, cup and trace operations on those neighborhoods, therefore agree by \\cref{fp:local-algebra}. This assertion concerns the local operations before passage to cohomology and makes no choice of global representativ"
     },
     {
       "from": "m2-cap-identity",
-      "to": "m2-sew-preparation"
+      "to": "m2-sew-preparation",
+      "context": "$ and $\\int_\\alpha c_1(N)<0$. Such terms strictly lower the outgoing contact. They are included in the decreasing-contact part of the inverse construction in \\cref{cap:identity}. In the final $V$ of the blowup configuration, let $e$ be its recorded nonjoining section degree and let $a$ be the in"
     },
     {
       "from": "m2-cap-uniform",
-      "to": "m2-sew-preparation"
+      "to": "m2-sew-preparation",
+      "context": "bound at inserted ends. At a $Q$ end, bounded incoming contact and bounded base degree bound the fiber degree. These are precisely the end conditions used in \\cref{cap:uniform} to bound the effective degrees on all intervening pieces. Extra divisor fugacities consequently have finite support in"
     },
     {
       "from": "m2-conv-positive-rule",
-      "to": "m2-sew-busy-bound"
+      "to": "m2-sew-busy-bound",
+      "context": "Expand the fixed operator coefficient by \\cref{conv:positive-rule}. There are finitely many tensor operation patterns. Record the fixed original slots and every additional special GW sl"
     },
     {
       "from": "m2-ev-restriction",
-      "to": "m2-sew-busy-bound"
+      "to": "m2-sew-busy-bound",
+      "context": "nary insertions from constant cap sources. Integrate them into the GW correspondence, retaining only the exposed evaluations just listed. The construction of \\cref{ev:restriction} applies with precisely that retained list; \\cref{ev:groups} permits the other group of labels to be preintegrated witho"
     },
     {
       "from": "m2-ev-groups",
-      "to": "m2-sew-busy-bound"
+      "to": "m2-sew-busy-bound",
+      "context": "he GW correspondence, retaining only the exposed evaluations just listed. The construction of \\cref{ev:restriction} applies with precisely that retained list; \\cref{ev:groups} permits the other group of labels to be preintegrated without altering it. The dimensions of the recorded products thu"
     },
     {
       "from": "m2-fp-local-algebra",
-      "to": "m2-sew-busy-bound"
+      "to": "m2-sew-busy-bound",
+      "context": "ded products thus have a bound determined by the original expression and the two exceptional slots, independently of the number of auxiliary labels. Now apply \\cref{fp:local-algebra}. Every first-page Casimir summand has a single local vertex or edge support, even when its two legs enter different re"
     },
     {
       "from": "m2-sew-geometry",
-      "to": "m2-sew-idle-equality"
+      "to": "m2-sew-idle-equality",
+      "context": "At an idle switch there is no recorded position on either inserted cap, and no auxiliary label there is modified by $L_k$. By \\cref{sew:geometry}, all retained local component and stratum data agree on the two sides of the comparison. The component restriction for"
     },
     {
       "from": "m2-ev-restriction",
-      "to": "m2-sew-idle-equality"
+      "to": "m2-sew-idle-equality",
+      "context": "y $L_k$. By \\cref{sew:geometry}, all retained local component and stratum data agree on the two sides of the comparison. The component restriction formula of \\cref{ev:restriction} is applied with these assignments fixed. Each color is a disjoint union of ends, necks, and caps, so every connected c"
     },
     {
       "from": "m2-ev-groups",
-      "to": "m2-sew-idle-equality"
+      "to": "m2-sew-idle-equality",
+      "context": "e group, with all of that color's recorded positions. Use separate groups for the cap pieces at $j$. The retained group is allowed to be disconnected. Apply \\cref{ev:groups} with this grouping. Its common-refinement comparison preserves the full joint evaluation of the retained group into it"
     },
     {
       "from": "m2-cap-identity",
-      "to": "m2-sew-idle-equality"
+      "to": "m2-sew-idle-equality",
+      "context": "n each replica. The only remaining difference is the bilinear kernel contracting these states. With $j$ uncut it is the ordinary contact kernel $G_{\\h_r}$ of \\cref{cap:identity}. With $j$ cut it is the sum of the two cap kernels with their prepared coefficients and degree conditions. By \\cref{c"
     },
     {
       "from": "m2-sew-preparation",
-      "to": "m2-sew-idle-equality"
+      "to": "m2-sew-idle-equality",
+      "context": "ed coefficients and degree conditions. By \\cref{cap:identity}, these kernels are equal on every allowed incoming state and on every compatible outgoing state. \\Cref{sew:preparation} ensures that those domains include all terms under consideration, including histories in which other switches are busy."
     },
     {
       "from": "m2-det-operations",
-      "to": "m2-det-norm"
+      "to": "m2-det-norm",
+      "context": "rleaving sign in the numerical coefficient makes the contraction equal to \\eqref{eq:error-norm}, the ordinary positive tensor norm rather than a supertrace. By \\cref{det:operations}, \\(K_J\\) uses only admissible propagators and first-index functions, since \\(q=n-p\\) on \\(J\\). Thus it remains to reali"
     },
     {
       "from": "m2-conv-positive-rule",
-      "to": "m2-det-norm"
+      "to": "m2-det-norm",
+      "context": "only admissible propagators and first-index functions, since \\(q=n-p\\) on \\(J\\). Thus it remains to realize the conjugate coefficient tensor. Expand \\(E\\) by \\cref{conv:positive-rule}. The ordinary Gromov--Witten correspondence is a real cohomology class: it is obtained from a rational virtual cycle an"
     },
     {
       "from": "m2-det-norm",
-      "to": "m2-det-detection"
+      "to": "m2-det-detection",
+      "context": ". In any summand put specified basis vectors of \\(B_0\\) into its \\(B_0\\)-slots. The remaining error is a tensor \\(E\\) on a power of \\(J\\). Every scalar test in \\cref{det:norm} vanishes by hypothesis; hence \\(\\|E\\|^2=0\\). Positivity gives \\(E=0\\). Since the fixed coefficients and all choices of"
     },
     {
       "from": "m2-sew-transport",
-      "to": "m2-ind-blowup-data"
+      "to": "m2-ind-blowup-data",
+      "context": "ment containing that end, and is zero on segments from which the end was removed. Thus all retained component restrictions agree in the comparisons required by \\cref{sew:transport}."
     },
     {
       "from": "m2-sew-transport",
-      "to": "m2-ind-degrees"
+      "to": "m2-ind-degrees",
+      "context": "e it very general; if it is exceptional we retain all its divisor degrees. The hyperplane degree and these additional tests are among the compatible degrees of \\cref{sew:transport}. Finiteness at a fixed hyperplane and exceptional bound is part of that theorem. This proves the claim."
     },
     {
       "from": "m2-det-detection",
-      "to": "m2-ind-deformation"
+      "to": "m2-ind-deformation",
+      "context": "a zero-dimensional center may be labelled locally; their possible global permutation is irrelevant. Fix a coefficient error and its Hermitian-square test from \\cref{det:detection}. All contractions in that test have balanced Hodge type. The only nonflat ingredients in its expression in a flat cohom"
     },
     {
       "from": "m2-sew-transport",
-      "to": "m2-ind-deformation"
+      "to": "m2-ind-deformation",
+      "context": "ll applies. Coefficient extraction for the disconnected potential is legitimate at each fixed polarized degree and genus power by the finiteness conventions of \\cref{sew:transport}."
     },
     {
       "from": "m2-thm-main",
-      "to": "m2-ind-deformation"
+      "to": "m2-ind-deformation",
+      "context": "[Proof of \\cref{thm:main}] A zero-dimensional smooth complete intersection is a disjoint union of points. The point constraints are the Witten--K"
     },
     {
       "from": "m2-ind-toric",
-      "to": "m2-ind-deformation"
+      "to": "m2-ind-deformation",
+      "context": "imension $n$, induct on \\eqref{ind:complexity}. Complexity zero is projective space after eliminating linear equations. This is a toric bundle over a point, so \\cref{ind:toric} proves the base case. At positive complexity choose $d_r\\ge2$ and a splitting $d_r=a+b$. Use \\eqref{ind:resolved-splitt"
     },
     {
       "from": "m2-ind-degrees",
-      "to": "m2-ind-deformation"
+      "to": "m2-ind-deformation",
+      "context": "ew:transport} to obtain every tested positive constraint on $\\widetilde M$. Use the hyperplane degree pulled back from $M$ and retain the additional degrees in \\cref{ind:degrees}, including individual exceptional degrees when the center is disconnected. The coherent subspace in \\cref{ind:blowup-da"
     },
     {
       "from": "m2-ind-blowup-data",
-      "to": "m2-ind-deformation"
+      "to": "m2-ind-deformation",
+      "context": "$M$ and retain the additional degrees in \\cref{ind:degrees}, including individual exceptional degrees when the center is disconnected. The coherent subspace in \\cref{ind:blowup-data} meets all the hypotheses of \\cref{det:detection}. Detection proves every positive constraint for $\\widetilde M$, with a"
     }
   ]
 }

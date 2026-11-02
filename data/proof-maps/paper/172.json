@@ -207,83 +207,103 @@
   "edges": [
     {
       "from": "m1-pairs-bump",
-      "to": "m1-pairs-rational"
+      "to": "m1-pairs-rational",
+      "context": "Take $b$ from Lemma~\\ref{pairs:bump}. For each positive integer $n$, set \\[ d_n(\\lambda)=n^{2-k}b(\\lambda/n), \\qquad \\mu_n(\\lambda)=(\\nu*d_n)(\\lambda)"
     },
     {
       "from": "m1-pairs-two-scale",
-      "to": "m1-pairs-rational"
+      "to": "m1-pairs-rational",
+      "context": "[Proof of Lemma~\\ref{pairs:two-scale}] Use the notation preceding Lemma~\\ref{stencil:finite} and the function $\\nu$ supplied by that lemma: $w_j=(v_j,u_j)$,"
     },
     {
       "from": "m1-stencil-finite",
-      "to": "m1-pairs-rational"
+      "to": "m1-pairs-rational",
+      "context": "[Proof of Lemma~\\ref{pairs:two-scale}] Use the notation preceding Lemma~\\ref{stencil:finite} and the function $\\nu$ supplied by that lemma: $w_j=(v_j,u_j)$, $w(\\lambda)=\\sum_j\\lambda_jw_j$, $U=(u_1\\ \\cdots\\ u_k)$"
     },
     {
       "from": "m1-paths-criterion",
-      "to": "m1-paths-realization"
+      "to": "m1-paths-realization",
+      "context": "[Proof of Proposition~\\ref{paths:criterion}] Fix $r\\ge2$ and an arbitrary coloring $c:\\mathcal E\\to\\{1,\\ldots,r\\}$. Choose $n$ such that every $r$-coloring of $\\{1"
     },
     {
       "from": "m1-paths-synchronization",
-      "to": "m1-paths-realization"
+      "to": "m1-paths-realization",
+      "context": "on, ordinary Hales--Jewett applies. Here we allow the line to choose that number and prepare all the required path weights in advance. The hypothesis and Lemma~\\ref{paths:synchronization} give an endpoint $w=(w_1,\\ldots,w_s)\\in K^s$ and a path of weight $1/t$ ending at $w$ for every $1\\le t\\le n$. Color $"
     },
     {
       "from": "m1-paths-corner-group",
-      "to": "m1-paths-realization"
+      "to": "m1-paths-realization",
+      "context": "ight $1/t$ ending at $w$ for every $1\\le t\\le n$. Color $\\mathcal S$ by $c\\circ\\Phi$, and write its color classes as $B_1,\\ldots,B_r$. Choose $p$ as in Lemma~\\ref{paths:corner-group}. The freeness of $K$ gives a homomorphism \\[ \\psi:K\\longrightarrow p(\\beta\\mathcal S)p, \\qquad \\psi(\\xi_z)=p\\delta_{(z)"
     },
     {
       "from": "m1-paths-compactness",
-      "to": "m1-paths-realization"
+      "to": "m1-paths-realization",
+      "context": "s \\[ \\|\\Phi(z^{(i)})-\\Phi(z^{(j)})\\|^2 =t\\frac1t\\|a_i-a_j\\|^2 =\\|a_i-a_j\\|^2. \\] Their images form a monochromatic congruent copy of $A$ in $\\mathcal E$. Lemma~\\ref{paths:compactness} now supplies a finite forcing dimension for this $r$. Since $r$ was arbitrary, $A$ is Euclidean Ramsey."
     },
     {
       "from": "m1-groups-averaging",
-      "to": "m1-groups-endpoints"
+      "to": "m1-groups-endpoints",
+      "context": "ing coordinates, and let $Z$ be the union of the $H$-orbits of the $f_i$ and $g_i$. It is finite, and $f_i,g_i$ lie in the same orbit for each $i$. Apply Lemma~\\ref{groups:averaging} with the given $\\delta$ and let $m>0$ be the degree of its represented tuple $w$. Restricting the same expression to t"
     },
     {
       "from": "m1-groups-fractions",
-      "to": "m1-groups-endpoints"
+      "to": "m1-groups-endpoints",
+      "context": "The $i$th component of $D_+^{-1}D_-$ is \\[ w_{f_i}^{-1}w_{g_i}=w_{f_i}^{-1}r_i^{-1}w_{f_i}, \\] so it too belongs to $L$ and has cost at most $\\delta m$. Lemma~\\ref{groups:fractions} supplies represented $u,v\\in M$ such that \\[ D_+^{-1}D_-=uv^{-1},\\qquad \\deg u+\\deg v\\le s\\delta m. \\] Thus $D_+u=D_-"
     },
     {
       "from": "m1-thm-classification",
-      "to": "m1-groups-endpoints"
+      "to": "m1-groups-endpoints",
+      "context": "[Completion of the sufficiency implication in Theorem~\\ref{thm:classification}] Assume the matrix condition of the theorem. By Proposition~\\ref{alg:equivalence}, the tensor condition \\eqref{alg:tens"
     },
     {
       "from": "m1-alg-equivalence",
-      "to": "m1-groups-endpoints"
+      "to": "m1-groups-endpoints",
+      "context": "[Completion of the sufficiency implication in Theorem~\\ref{thm:classification}] Assume the matrix condition of the theorem. By Proposition~\\ref{alg:equivalence}, the tensor condition \\eqref{alg:tensor} holds. For every integer $n\\ge1$, Lemma~\\ref{pairs:two-scale} supplies two ima"
     },
     {
       "from": "m1-pairs-two-scale",
-      "to": "m1-groups-endpoints"
+      "to": "m1-groups-endpoints",
+      "context": "sume the matrix condition of the theorem. By Proposition~\\ref{alg:equivalence}, the tensor condition \\eqref{alg:tensor} holds. For every integer $n\\ge1$, Lemma~\\ref{pairs:two-scale} supplies two images as in Proposition~\\ref{groups:endpoints} with $0<q<1/(2n)$. Apply that proposition with $\\delta=1/"
     },
     {
       "from": "m1-paths-criterion",
-      "to": "m1-groups-endpoints"
+      "to": "m1-groups-endpoints",
+      "context": "s} with $0<q<1/(2n)$. Apply that proposition with $\\delta=1/(2sn)$. It gives equal-endpoint paths whose weight ratio is strictly less than $1/n$. Proposition~\\ref{paths:criterion} now implies that $A$ is Ramsey. All choices are made after fixing $n$; no bound uniform in $n$ on the degrees or the nu"
     },
     {
       "from": "m1-thm-classification",
-      "to": "m1-cons-spherical"
+      "to": "m1-cons-spherical",
+      "context": "A singleton is spherical. Otherwise use the notation and a matrix $P$ from Theorem~\\ref{thm:classification}, and put $H=m_F(P)$, entrywise. Multiplying the evaluation equations gives \\[ \\|a_i\\|^2+\\ell\\cdot a_i+c=0, \\qquad c=H"
     },
     {
       "from": "m1-alg-equivalence",
-      "to": "m1-cons-transitive"
+      "to": "m1-cons-transitive",
+      "context": "ly $|H|/|Y|$ times. Consequently \\[ \\sum_{h,j}(h(y_i))_j\\otimes(h(y_i))_j =\\sum_{h,j}(h(y_1))_j\\otimes(h(y_1))_j, \\] and $(e_i\\otimes e_i)(T)=0$. Proposition~\\ref{alg:equivalence} and Theorem~\\ref{thm:classification} now give the Ramsey property."
     },
     {
       "from": "m1-thm-classification",
-      "to": "m1-cons-transitive"
+      "to": "m1-cons-transitive",
+      "context": "[ \\sum_{h,j}(h(y_i))_j\\otimes(h(y_i))_j =\\sum_{h,j}(h(y_1))_j\\otimes(h(y_1))_j, \\] and $(e_i\\otimes e_i)(T)=0$. Proposition~\\ref{alg:equivalence} and Theorem~\\ref{thm:classification} now give the Ramsey property."
     },
     {
       "from": "m1-thm-classification",
-      "to": "m1-cons-quadratic"
+      "to": "m1-cons-quadratic",
+      "context": "] Since $m_F(D)h=0$, multiplication gives $m_F(z)=\\delta h$. Multiplying $z$ by $\\delta^{-1}\\otimes1$ therefore produces a solution of the criterion in Theorem~\\ref{thm:classification}. This argument does not require $\\det M$ to be a unit of $B$."
     },
     {
       "from": "m1-cons-quadratic",
-      "to": "m1-cons-quadrilateral"
+      "to": "m1-cons-quadrilateral",
+      "context": "F$. Rescaling the five resulting polynomials shows that quadratic evaluation onto $F^5$ is surjective. Its five rows are therefore independent, and Proposition~\\ref{cons:quadratic} makes the five-point set Ramsey. A monochromatic copy of that set contains a copy of the original set."
     },
     {
       "from": "m1-cons-quadrilateral",
-      "to": "m1-cons-kites"
+      "to": "m1-cons-kites",
+      "context": "The four points are distinct and lie on the unit circle, so Corollary~\\ref{cons:quadrilateral} makes $K_a$ Ramsey. Leader, Russell and Walters proved that $K_a$ does not embed in any finite transitive Euclidean set"
     },
     {
       "from": "m1-thm-classification",
-      "to": "m1-cons-nine"
+      "to": "m1-cons-nine",
+      "context": "on field is $P=0$. Injectivity of the embedding of $B$ shows that the same holds over $B$. Such a matrix cannot have multiplied spatial block $I_2$, so Theorem~\\ref{thm:classification} excludes the Ramsey property."
     }
   ]
 }

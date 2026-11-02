@@ -1,0 +1,265 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "005",
+  "title": "Irrationality of Catalan’s constant",
+  "result": {
+    "id": "paper-result",
+    "label": "Irrationality of Catalan’s constant",
+    "statement": "Proves that Catalan's constant G= j 0 (-1)^j/(2j+1)^2 is irrational.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "polynomial-rows-and-mixed-moments",
+      "label": "Polynomial rows and mixed moments",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "polynomial-rows-and-mixed-moments-2",
+      "label": "Polynomial rows and mixed moments",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "odd-primes-and-the-finite-place-lower-bound",
+      "label": "Odd primes and the finite-place lower bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "odd-primes-and-the-finite-place-lower-bound-2",
+      "label": "Odd primes and the finite-place lower bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "odd-primes-and-the-finite-place-lower-bound-3",
+      "label": "Odd primes and the finite-place lower bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "odd-primes-and-the-finite-place-lower-bound-4",
+      "label": "Odd primes and the finite-place lower bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "nonvanishing-along-the-prime-sequence",
+      "label": "Nonvanishing along the prime sequence",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-real-place-determinant-estimates",
+      "label": "The real-place determinant estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-real-place-determinant-estimates-2",
+      "label": "The real-place determinant estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-real-place-determinant-estimates-3",
+      "label": "The real-place determinant estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-uniform-energy-bound",
+      "label": "A uniform energy bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-exact-certificate-for-the-two-barriers",
+      "label": "An exact certificate for the two barriers",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Catalan's constant is irrational",
+      "title": "Catalan's constant is irrational",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Catalans-constant-is-irrational-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Catalan's constant is irrational; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "Catalan's constant is irrational.",
+          "fullLabel": "Catalan's constant is irrational.",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "Catalan's constant is irrational.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-rationality",
+          "role": "polynomial-rows-and-mixed-moments",
+          "label": "Each raw entry F_j(r) lies in Q+ QG . Consequently, if G Q , then _N Q for…",
+          "fullLabel": "Each raw entry F_j(r) lies in Q+ QG . Consequently, if G Q , then _N Q for…",
+          "kind": "proposition",
+          "source": "Polynomial rows and mixed moments",
+          "detail": "Each raw entry F_j(r) lies in Q+ QG . Consequently, if G Q , then _N Q for every positive integer N .",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-two-adic",
+          "role": "polynomial-rows-and-mixed-moments-2",
+          "label": "With =(q+g+h)/n=5/24 , one has, for every positive integer N , v_2(_N) -( 2 +…",
+          "fullLabel": "With =(q+g+h)/n=5/24 , one has, for every positive integer N , v_2(_N) -( 2 +…",
+          "kind": "proposition",
+          "source": "Polynomial rows and mixed moments",
+          "detail": "With =(q+g+h)/n=5/24 , one has, for every positive integer N , v_2(_N) -( 2 + ^2 8 )n^2 -O_G(n(n+2)) =-505 4608 n^2-O_G(n(n+2)). The same bound holds for every full minor of the raw column matrix.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-odd-digit-reductions",
+          "role": "odd-primes-and-the-finite-place-lower-bound",
+          "label": "Digit reductions",
+          "fullLabel": "Digit reductions",
+          "kind": "lemma",
+          "source": "Odd primes and the finite-place lower bound",
+          "detail": "[Digit reductions] For 0 i,j<H , let \\[ =j p, d=(j-i-1) p, i'=i+1+d- p -1, j'= jp, 0,d<p. \\] Then i'-1 , and, with the convention M^0(-1,j')=k^+_ j'+1 , p^2M^0(i,j)& E_dM^0(i',j') p,\\\\ p^2Z^0(i,j)&…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-odd-central-layer",
+          "role": "odd-primes-and-the-finite-place-lower-bound-2",
+          "label": "Central layer",
+          "fullLabel": "Central layer",
+          "kind": "lemma",
+          "source": "Odd primes and the finite-place lower bound",
+          "detail": "[Central layer] Suppose H/2<p H , and write K=L-p and J=H-p . For every central column, by which we mean \\[ b j<(p,L), j J, \\] one has pF_j Z_p^n, pF_j-_ 0<J V_ j- p. All denominators j- occurring…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-odd-local-elimination",
+          "role": "odd-primes-and-the-finite-place-lower-bound-3",
+          "label": "Elimination over the local integers",
+          "fullLabel": "Elimination over the local integers",
+          "kind": "lemma",
+          "source": "Odd primes and the finite-place lower bound",
+          "detail": "[Elimination over the local integers] For H/2<p H , define R&=K_++(K-A)_++(J-(b,K))_+,\\\\ S&=((A,K)-b)_+ +((b,J)-(0,K))_+. Then every full raw minor, and hence the filtered determinant, satisfies…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-finite-lower",
+          "role": "odd-primes-and-the-finite-place-lower-bound-4",
+          "label": "Finite-place bound",
+          "fullLabel": "Finite-place bound",
+          "kind": "proposition",
+          "source": "Odd primes and the finite-place lower bound",
+          "detail": "[Finite-place bound] Assume G Q . Along any sequence of positive integers N for which _N0 , one has _ N ( | _N| n^2 -122) -8609 4608 -(12+505 4608 )2 >-2.29084.",
+          "dependsOn": [
+            "m1-lem-odd-local-elimination",
+            "m1-prop-two-adic"
+          ]
+        },
+        {
+          "id": "m1-prop-nonvanishing",
+          "role": "nonvanishing-along-the-prime-sequence",
+          "label": "Assume that G Q . For every sufficiently large prime p , the determinant with…",
+          "fullLabel": "Assume that G Q . For every sufficiently large prime p , the determinant with…",
+          "kind": "proposition",
+          "source": "Nonvanishing along the prime sequence",
+          "detail": "Assume that G Q . For every sufficiently large prime p , the determinant with scale parameter N=p satisfies v_p(_p)=-96p. In particular, _p0 for every sufficiently large prime p .",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-real-uniform-interpolation",
+          "role": "the-real-place-determinant-estimates",
+          "label": "Let x_1,,x_n be distinct nonzero real numbers in (-1,1) satisfying Equation~ .…",
+          "fullLabel": "Let x_1,,x_n be distinct nonzero real numbers in (-1,1) satisfying Equation~ .…",
+          "kind": "lemma",
+          "source": "The real-place determinant estimates",
+          "detail": "Let x_1,,x_n be distinct nonzero real numbers in (-1,1) satisfying Equation~ . There is a function h_* holomorphic on a neighborhood of the closed unit disk such that \\[ h_*(x_i)=c_i x_i^ D_* , c_i=…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-first-sheet-bound",
+          "role": "the-real-place-determinant-estimates-2",
+          "label": "Interpolation estimate",
+          "fullLabel": "Interpolation estimate",
+          "kind": "proposition",
+          "source": "The real-place determinant estimates",
+          "detail": "[Interpolation estimate] Under Equation~ , | R_n(x)|(1+K_0n)^n V(1/x)_i|x_i|^g. In particular, the prefactor is (O(n n)) uniformly in the nodes.",
+          "dependsOn": [
+            "m1-lem-real-uniform-interpolation"
+          ]
+        },
+        {
+          "id": "m1-prop-second-sheet-bound",
+          "role": "the-real-place-determinant-estimates-3",
+          "label": "Hadamard estimate",
+          "fullLabel": "Hadamard estimate",
+          "kind": "proposition",
+          "source": "The real-place determinant estimates",
+          "detail": "[Hadamard estimate] For every distinct nonzero real list in (-1,1) , and in particular when Equation~ fails, | R_n(x)| (3/2)^n n^ n/2 2^ - n2 _i(1+x_i^2)^ (n-1)/2 |x_i|^ g-(n-1) . The factor (3/2)^n…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-energy-reduction",
+          "role": "a-uniform-energy-bound",
+          "label": "Let p,v be two such sequences, and take =0 in case =2 or any fixed 0 in case =1…",
+          "fullLabel": "Let p,v be two such sequences, and take =0 in case =2 or any fixed 0 in case =1…",
+          "kind": "proposition",
+          "source": "A uniform energy bound",
+          "detail": "Let p,v be two such sequences, and take =0 in case =2 or any fixed 0 in case =1 . Uniformly over configurations in the indicated case, &_ N \\ _ case ( I_ ,n n^2 -122)\\\\ & (-1++)2…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-real-upper",
+          "role": "an-exact-certificate-for-the-two-barriers",
+          "label": "For the determinants of Equation~ , _ N ( | _N| n^2 -122) -2.290939875<-2.2909.…",
+          "fullLabel": "For the determinants of Equation~ , _ N ( | _N| n^2 -122) -2.290939875<-2.2909.…",
+          "kind": "proposition",
+          "source": "An exact certificate for the two barriers",
+          "detail": "For the determinants of Equation~ , _ N ( | _N| n^2 -122) -2.290939875<-2.2909. The separate bounds for the majorants in cases =2 and =1 are -2.290939875 and -2.296789875 , respectively.",
+          "dependsOn": [
+            "m1-thm-main",
+            "m1-prop-rationality",
+            "m1-prop-nonvanishing",
+            "m1-prop-finite-lower"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "Catalan's constant is irrational",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Catalans-constant-is-irrational-September-24-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

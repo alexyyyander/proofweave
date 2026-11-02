@@ -86,12 +86,14 @@ function parseFile(name, text) {
     });
   }
   for (const match of source.matchAll(/\\begin\{proof\}([\s\S]*?)\\end\{proof\}/g)) {
-    events.push({
-      at: match.index,
-      type: "proof",
-      refs: [...match[1].matchAll(/\\(?:c|C|auto)?ref\{([^}]+)\}/g)].map((ref) => ref[1]),
-      file: name,
-    });
+    const proofText = match[1];
+    const refs = [];
+    for (const ref of proofText.matchAll(/\\(?:c|C|auto)?ref\{([^}]+)\}/g)) {
+      const start = Math.max(0, ref.index - 160);
+      const end = Math.min(proofText.length, ref.index + ref[0].length + 120);
+      refs.push({ ref: ref[1], context: proofText.slice(start, end).replace(/\s+/g, " ").trim() });
+    }
+    events.push({ at: match.index, type: "proof", refs, file: name });
   }
   events.sort((left, right) => left.at - right.at);
   return { name, events };
@@ -153,11 +155,11 @@ function assemble(files) {
       lastStatement = event.nodeId;
     } else if (event.type === "proof" && lastStatement) {
       for (const ref of event.refs) {
-        const from = labelToId.get(ref);
+        const from = labelToId.get(ref.ref);
         const key = `${from}|${lastStatement}`;
         if (!from || from === lastStatement || seen.has(key)) continue;
         seen.add(key);
-        edges.push({ from, to: lastStatement });
+        edges.push({ from, to: lastStatement, context: ref.context });
       }
     }
   }
@@ -237,7 +239,7 @@ const extracted = await mapWithConcurrency(families, async (family) => {
   const known = new Set(nodes.map((node) => node.id));
   const edges = manuscripts.flatMap((manuscript, index) => {
     const prefix = `m${index + 1}-`;
-    return manuscript.edges.map((edge) => ({ from: prefix + edge.from, to: prefix + edge.to }));
+    return manuscript.edges.map((edge) => ({ from: prefix + edge.from, to: prefix + edge.to, context: edge.context }));
   })
     .filter((edge) => known.has(edge.from) && known.has(edge.to))
     .slice(0, maxEdgesPerFamily);

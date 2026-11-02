@@ -266,99 +266,123 @@
   "edges": [
     {
       "from": "m1-geom-filtration",
-      "to": "m1-geom-frobenius"
+      "to": "m1-geom-frobenius",
+      "context": "On $T_m$, let $F_j=\\ker(\\lambda^j)$ for $0\\le j\\le m$, and put $F_j=0$ for negative $j$. By Lemma~\\ref{geom:filtration}, $F_1=T_1$. For $1\\le j\\le m$ and $v\\in F_j$, \\[ \\lambda^{j-1}(\\Pi-1)v =(\\Pi-1)\\lambd"
     },
     {
       "from": "m1-geom-frobenius",
-      "to": "m1-geom-lifts"
+      "to": "m1-geom-lifts",
+      "context": "overline K$. The identity $\\lambda d_{i,1}=[e]$ and induction give the last equation in~\\eqref{geom:lift-chain}. Thus $(d_{i,t},e)$ qualifies for $T_t$. Lemma~\\ref{geom:frobenius} fixes $d_{i,t}$ over $k$, and Lemma~\\ref{geom:descent} supplies its divisor representative over $k$. The argument appli"
     },
     {
       "from": "m1-geom-descent",
-      "to": "m1-geom-lifts"
+      "to": "m1-geom-lifts",
+      "context": "ction give the last equation in~\\eqref{geom:lift-chain}. Thus $(d_{i,t},e)$ qualifies for $T_t$. Lemma~\\ref{geom:frobenius} fixes $d_{i,t}$ over $k$, and Lemma~\\ref{geom:descent} supplies its divisor representative over $k$. The argument applies to every chosen division, not merely to a special co"
     },
     {
       "from": "m1-geom-descent",
-      "to": "m1-geom-separation"
+      "to": "m1-geom-separation",
+      "context": "1$, it follows from $\\lambda^m d_m=[Ne]$. Suppose that test $t$ is reached with this invariant. Then $(1-\\sigma)D_t-W_t$ is a principal divisor over $k$. Lemma~\\ref{geom:descent} supplies $h_t\\in k(C)^*$ with this divisor. Lemma~\\ref{geom:ramification} shows that $h_t$ is a unit at every $P_i$ and"
     },
     {
       "from": "m1-geom-ramification",
-      "to": "m1-geom-separation"
+      "to": "m1-geom-separation",
+      "context": "ached with this invariant. Then $(1-\\sigma)D_t-W_t$ is a principal divisor over $k$. Lemma~\\ref{geom:descent} supplies $h_t\\in k(C)^*$ with this divisor. Lemma~\\ref{geom:ramification} shows that $h_t$ is a unit at every $P_i$ and that \\[ \\operatorname{Norm}(h_t)=h_t(P_i)^q\\in k^*. \\]"
     },
     {
       "from": "m1-div-compression",
-      "to": "m1-div-divide"
+      "to": "m1-div-divide",
+      "context": "Lemma~\\ref{div:compression} gives $j=h^+/h^-\\in k(X)^*$ with \\begin{equation}\\label{div:dividej} \\operatorname{div}_C(j)=\\sum_{a=0}^{q-1}\\sigma^aD"
     },
     {
       "from": "m1-geom-descent",
-      "to": "m1-div-divide"
+      "to": "m1-div-divide",
+      "context": "l L=k(C)$ to $k(X)$, which is the promise needed by the norm algorithm. Choose a rational divisor $D_0$ representing a class with $(1-\\sigma)[D_0]=[D]$. Lemma~\\ref{geom:descent} supplies rational representatives and rational functions for rational principal divisors. There is therefore an $a_0\\i"
     },
     {
       "from": "m1-norm-solve",
-      "to": "m1-div-divide"
+      "to": "m1-div-divide",
+      "context": "Lemma~\\ref{div:compression} bounds the numerator and denominator degrees of $G$ by $\\|D\\|$, so the stated characteristic hypothesis implies the one in Theorem~\\ref{norm:solve}. Apply Theorem~\\ref{norm:solve} to obtain $a\\in\\mathcal L^*$ with $\\operatorname{Norm}(a)=G$, and put \\[ E=D-\\operato"
     },
     {
       "from": "m1-div-arithmetic",
-      "to": "m1-div-divide"
+      "to": "m1-div-divide",
+      "context": "iv:maximum} is at most $q^2\\|E\\|$. The maximum and final reduction consequently have polynomial size. Their ideal operations are precisely those of Proposition~\\ref{div:arithmetic}. Scalar pivots, valuations, and all other choices are determined by zero tests. If an instruction differs between roo"
     },
     {
       "from": "m1-norm-solve",
-      "to": "m1-odd-split"
+      "to": "m1-odd-split",
+      "context": "\\ref{odd:split}] Suppose that no earlier scalar test has returned a factor. The elements $\\zeta$ and $\\omega$ supply the primary-group data required by Theorem~\\ref{norm:solve}. In every division, its norm input is a constant multiple of the function $j$ in Lemma~\\ref{div:compression}. Since th"
     },
     {
       "from": "m1-div-compression",
-      "to": "m1-odd-split"
+      "to": "m1-odd-split",
+      "context": "ega$ supply the primary-group data required by Theorem~\\ref{norm:solve}. In every division, its norm input is a constant multiple of the function $j$ in Lemma~\\ref{div:compression}. Since the input divisor has absolute degree at most $2g$, the reduced numerator and denominator of $j$ have degrees at"
     },
     {
       "from": "m1-geom-lifts",
-      "to": "m1-odd-split"
+      "to": "m1-odd-split",
+      "context": "ed numerator and denominator of $j$ have degrees at most $2g$. The norm solver's characteristic hypothesis therefore follows from $(N+4g+1)^2<B^6<p$. Corollary~\\ref{geom:lifts}, with the $r,m,k$ of \\eqref{odd:parameters}--\\eqref{odd:working-field}, proves the promise for every invocation of $\\ma"
     },
     {
       "from": "m1-div-trace",
-      "to": "m1-odd-split"
+      "to": "m1-odd-split",
+      "context": "degree at most $2g$ and uses at most $b=4qg+1$ generators. Thus \\[ N(b-1)\\le 4Nqg =2Nq(q-1)(N-2)<B^6<p, \\] as required by Lemma~\\ref{div:trace}. Summing the equalities $\\lambda^m d_{i,m}=[e]$ gives \\begin{equation} \\lambda^m d_m=[Ne]"
     },
     {
       "from": "m1-geom-separation",
-      "to": "m1-odd-split"
+      "to": "m1-odd-split",
+      "context": "uation} \\lambda^m d_m=[Ne]. \\label{odd:sum-lifts} \\end{equation} Equation~\\eqref{odd:sum-lifts} is the hypothesis of Proposition~\\ref{geom:separation}. The classes in \\eqref{odd:downward-chain}, their reduced representatives $D_t$, and the lattice divisors in~\\eqref{od"
     },
     {
       "from": "m1-div-circuits",
-      "to": "m1-odd-split"
+      "to": "m1-odd-split",
+      "context": "at every reached test, the divisor in \\eqref{odd:h} is principal over $k$, the function is a unit at all $P_i$, and its norm is a $q$-th power in $k^*$. Lemma~\\ref{div:circuits} computes $h_t$ and its values, and Lemma~\\ref{ff:unitroot} computes $\\gamma_t$ with its promise thus verified. The log"
     },
     {
       "from": "m1-ff-unitroot",
-      "to": "m1-odd-split"
+      "to": "m1-odd-split",
+      "context": "cipal over $k$, the function is a unit at all $P_i$, and its norm is a $q$-th power in $k^*$. Lemma~\\ref{div:circuits} computes $h_t$ and its values, and Lemma~\\ref{ff:unitroot} computes $\\gamma_t$ with its promise thus verified. The logarithms in~\\eqref{odd:labels} require only the stated $q$ c"
     },
     {
       "from": "m1-driver-separator",
-      "to": "m1-driver-correctness"
+      "to": "m1-driver-correctness",
+      "context": "f F_p^r$. Taking $a$ equal to one of its coordinate values makes $\\gcd(h,b-a)$ nonconstant and proper, so the scalar search succeeds. Step~6 succeeds by Lemma~\\ref{driver:separator} and the two splitting propositions. Both final recursive arguments again have smaller positive degree and product $h$."
     },
     {
       "from": "m1-ff-simultaneous",
-      "to": "m1-complexity-bound"
+      "to": "m1-complexity-bound",
+      "context": "oolbook arithmetic and linear algebra. The algebra $A=k[T]/F$ has dimension $N$ over $k$; its zero tests with split detection use polynomial gcds, as in Lemma~\\ref{ff:simultaneous}. Allowing these tests and inversions, we may charge $O(B^{40})$ bit operations to each scalar instruction over $k$ or"
     },
     {
       "from": "m1-norm-solve",
-      "to": "m1-complexity-bound"
+      "to": "m1-complexity-bound",
+      "context": "erpolation, with the grid sizes verified at the end of the proof. \\smallskip \\noindent\\emph{One norm equation.} Each call to $\\mathsf{NormSolve}$ from Theorem~\\ref{norm:solve} arises from a divisor of absolute degree at most $2g$, or from the initial divisor $P_i-\\infty_0$. Compression express"
     },
     {
       "from": "m1-ff-unitroot",
-      "to": "m1-complexity-bound"
+      "to": "m1-complexity-bound",
+      "context": "er of groups of places. The root computations in these residue algebras also have bounded sizes. Their square-free moduli have degree at most $B^4$. In Lemma~\\ref{ff:unitroot}, every extension degree $d$ is at most $B^4$, so the bit length of $|k|^d$, and hence the number of primary digits, is"
     },
     {
       "from": "m1-analytic-hecke",
-      "to": "m1-analytic-auxiliary"
+      "to": "m1-analytic-auxiliary",
+      "context": "a factorization~\\cite[Chapter~VII]{Neukirch99} writes $\\zeta_M$ as the product of the $q$ Hecke $L$-functions corresponding to its characters over $K$. Theorem~\\ref{analytic:hecke} therefore supplies the strip required in Lemma~\\ref{analytic:explicit} for both $K$ and $M$. We have $[K:\\Q]\\le12q$ an"
     },
     {
       "from": "m1-analytic-explicit",
-      "to": "m1-analytic-auxiliary"
+      "to": "m1-analytic-auxiliary",
+      "context": "he product of the $q$ Hecke $L$-functions corresponding to its characters over $K$. Theorem~\\ref{analytic:hecke} therefore supplies the strip required in Lemma~\\ref{analytic:explicit} for both $K$ and $M$. We have $[K:\\Q]\\le12q$ and $[M:\\Q]\\le12q^2$. The cyclotomic discriminant formula gives $\\log D_K"
     },
     {
       "from": "m1-thm-factorization",
-      "to": "m1-analytic-auxiliary"
+      "to": "m1-analytic-auxiliary",
+      "context": "[Proof of Theorem~\\ref{thm:factorization}] For each prime $q\\le n$ in the large-characteristic branch, search upward for $\\ell_q$, testing primality by trial div"
     },
     {
       "from": "m1-thm-reduction",
-      "to": "m1-analytic-auxiliary"
+      "to": "m1-analytic-auxiliary",
+      "context": "ular exponentiation. The search does not need the value of $c_0$. Proposition~\\ref{analytic:auxiliary} bounds its length. Construct the table and apply Theorem~\\ref{thm:reduction}. The refined estimates in Section~\\ref{sec:complexity} bound the full sequential bit cost by $O(B^{400000100})$. Since"
     }
   ]
 }

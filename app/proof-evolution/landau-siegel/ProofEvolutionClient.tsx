@@ -88,6 +88,7 @@ const detailLevelNoteKeys: Record<ProofDetailLevel, TranslationKey> = {
 const stepKindKeys: Record<ProofStepKind, TranslationKey> = {
   theorem: "proofMaps.label.kind.theorem",
   lemma: "proofMaps.label.kind.lemma",
+  proposition: "proofMaps.label.kind.proposition",
   corollary: "proofMaps.label.kind.corollary",
   construction: "proofMaps.label.kind.construction",
   bound: "proofMaps.label.kind.bound",

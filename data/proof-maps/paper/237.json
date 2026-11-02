@@ -692,179 +692,223 @@
   "edges": [
     {
       "from": "m1-prop-one-mark-ratio",
-      "to": "m1-cor-polygon-means"
+      "to": "m1-cor-polygon-means",
+      "context": "4:Tail}. Subtracting the larger-diameter tails gives the power-separated annulus. For cylinder windings, use $NE_N/A_N$ with \\eqref{c4:Press-6} and Proposition~\\ref{prop:one-mark-ratio}."
     },
     {
       "from": "m1-cor-length-cutoffs",
-      "to": "m1-c4-prop-polygon-second-moment"
+      "to": "m1-c4-prop-polygon-second-moment",
+      "context": "[Proof of Corollary~\\ref{cor:length-cutoffs}] Use the functions $A$, $P$ and $M_2$ of Theorem~\\ref{thm:polygon-tails}, whose bounds have now been proved. All sums b"
     },
     {
       "from": "m1-thm-polygon-tails",
-      "to": "m1-c4-prop-polygon-second-moment"
+      "to": "m1-c4-prop-polygon-second-moment",
+      "context": "[Proof of Corollary~\\ref{cor:length-cutoffs}] Use the functions $A$, $P$ and $M_2$ of Theorem~\\ref{thm:polygon-tails}, whose bounds have now been proved. All sums below use the same positive polygon weights, and all exponent estimates ho"
     },
     {
       "from": "m2-c-finite",
-      "to": "m2-c-connectors"
+      "to": "m2-c-connectors",
+      "context": "s normal $n_j$, the \\emph{arriving} direction. The next leg starts with inward normal $n_j$ and travels toward a cut with outward normal $n_{j+1}$. Proposition~\\ref{c:finite}(iii) therefore keeps the incoming leg before the junction cut and the outgoing leg after it. Restrict each leg to a suf"
     },
     {
       "from": "m2-c-main",
-      "to": "m2-c-connectors"
+      "to": "m2-c-connectors",
+      "context": "tric choices have positive clearances. They persist in a neighborhood of the scaled endpoint data, including the small support perturbations allowed in Theorem~\\ref{c:main}. Compactness gives uniform choices of the number of segments and their relative tolerances. \\paragraph{One list and tw"
     },
     {
       "from": "m2-c-finite",
-      "to": "m2-c-positive-projection"
+      "to": "m2-c-positive-projection",
+      "context": "t $T=dh$. First travel to an $n'$-normal cut at distance near $3T/2$ from the source, then travel in direction $n$ to the top cut of the $n$-strip. Proposition~\\ref{c:finite}(iii) guides the first leg along $n'$, even though its initial inward normal is $n$. At the intermediate position, both"
     },
     {
       "from": "m2-c-fixed-height-window",
-      "to": "m2-c-positive-projection"
+      "to": "m2-c-positive-projection",
+      "context": "{-3/4}$. Cauchy--Schwarz gives mass at least $ch^{-1/4}$ with the stated geometric restrictions. In both angular cases this is a fixed fraction of $B_h$. Lemma~\\ref{c:fixed-height-window}, used with slightly smaller exponent slack, removes the atypical lengths without changing the lower constant for all su"
     },
     {
       "from": "m2-c-positive-projection",
-      "to": "m2-c-attachment-proposition"
+      "to": "m2-c-attachment-proposition",
+      "context": "acement exactly $v$. Let $\\mathcal V_s$ be all translations in the size and positive-projection ranges above, with ranges wide enough to include those in Lemma~\\ref{c:positive-projection}. At each of order $s$ heights, that lemma supplies restricted bridge mass at least $c_0s^{-1/4}$ after summing over its"
     },
     {
       "from": "m2-c-mixed-displacement",
-      "to": "m2-c-attachment-proposition"
+      "to": "m2-c-attachment-proposition",
+      "context": "v_{\\rm out}) \\le C\\sum_{h\\le Cs}B_h\\le Cs^{3/4}. \\] These upper bounds may be multiplied after dropping avoidance constraints between the five portions. Lemma~\\ref{c:mixed-displacement} sums the two difference factors. The complete accounting is \\[ \\int N_s^2\\,d\\mu_a \\le C\\underbrace{s^{3/4}}_{\\substac"
     },
     {
       "from": "m2-c-window-law",
-      "to": "m2-c-attachment-proposition"
+      "to": "m2-c-attachment-proposition",
+      "context": "[Proof of Theorem~\\ref{c:window-law}] It suffices to prove the length bounds for $0<\\epsilon<1$. The normalizing mass is comparable to $R^{-1/4}$, as shown"
     },
     {
       "from": "m2-c-fixed-height-window",
-      "to": "m2-c-attachment-proposition"
+      "to": "m2-c-attachment-proposition",
+      "context": "above. If the two inward normals are opposite, the chords are a restriction of height-$h$ bridges with $h\\asymp R$, retaining a fixed fraction of $B_h$. Lemma~\\ref{c:fixed-height-window} gives the result. Otherwise use Proposition~\\ref{c:attachment-proposition}. For an input event of mass $E=p_0R^{-1/4}$"
     },
     {
       "from": "m2-c-finite",
-      "to": "m2-c-attachment-proposition"
+      "to": "m2-c-attachment-proposition",
+      "context": "ngs. Equation~\\eqref{c:free-attachment-moments} gives output mass at least \\[ c\\frac{R^3E^2}{R^{7/4}}=cp_0^2R^{3/4}. \\] Every output remains long. Proposition~\\ref{c:finite}(iv) bounds its mass in the encompassing convex domain by \\[ R^{-4/3-\\epsilon}R^{25/12+o(1)}=o(R^{3/4}). \\] Thus $p_0\\t"
     },
     {
       "from": "m2-c-finite",
-      "to": "m2-c-pair-block-estimates"
+      "to": "m2-c-pair-block-estimates",
+      "context": "to that direction at distance near \\((3/2)d h\\) from the start, then vertically to the top, in small tolerances by the turned crossing estimate in Proposition~\\ref{c:finite}(iii). The two legs lie on opposite sides of their joining cut. The first stays below the top, the second above the base"
     },
     {
       "from": "m2-c-pair-block-estimates",
-      "to": "m2-c-arch-kernel-regularity"
+      "to": "m2-c-arch-kernel-regularity",
+      "context": "th \\(1\\le w=o(l)\\). For large integer scales \\(q\\) set \\(m=\\lfloor\\sqrt q\\rfloor\\); then \\(\\Pr(Y^{(m)}\\le -b q)\\ge1/4\\) with some small fixed \\(b>0\\), by Lemma~\\ref{c:pair-block-estimates} and symmetry. Also \\(\\Pr(|Y^{(m)}|>Aq)=O(A^{-1/2})\\) by the pair diameter tail and truncation. Fix \\(A\\) large. Choose"
     },
     {
       "from": "m2-c-same-side-law",
-      "to": "m2-c-arch-kernel-regularity"
+      "to": "m2-c-arch-kernel-regularity",
+      "context": "[Proof of Theorem~\\ref{c:same-side-law}] Lemma~\\ref{c:arch-kernel-regularity} shows that sublinear perturbations preserve the joining mass. It remains to trans"
     },
     {
       "from": "m2-c-renewal",
-      "to": "m2-c-arch-kernel-regularity"
+      "to": "m2-c-arch-kernel-regularity",
+      "context": "In the independent pair process the height after \\(m\\) grows as \\(m^{2+o(1)}\\) almost surely by the height transform and the power-sum argument of Proposition~\\ref{c:renewal}. Each of the two individual cumulative lengths there grows as \\((m^2)^{4/3+o(1)}\\) by the almost sure individual irredu"
     },
     {
       "from": "m2-c-connectors",
-      "to": "m2-c-arch-kernel-regularity"
+      "to": "m2-c-arch-kernel-regularity",
+      "context": "e then $o(l^{-5/4})$. This proves the half-plane length concentration. For the hexagon, the prescribed same-side separation satisfies $l\\asymp R$. Proposition~\\ref{c:connectors} gives normalizing mass at least $cl^{-5/4}$ inside the hexagon. The absolute exceptional mass there is at most the full"
     },
     {
       "from": "m2-c-strip-smoothness",
-      "to": "m2-c-height-atom"
+      "to": "m2-c-height-atom",
+      "context": "ro on this circle, as also follows from its renewal representation. For every fixed integer $k\\ge0$ and every $\\delta>0$, the strip differences of Proposition~\\ref{c:strip-smoothness} imply \\begin{equation}\\label{c:b-angular-derivatives} \\left|\\partial_\\theta^k b(re^{i\\theta})\\right| \\le C_{k,\\delta}"
     },
     {
       "from": "m2-c-height-atom",
-      "to": "m2-c-parallel"
+      "to": "m2-c-parallel",
+      "context": "these probabilities over $k\\le K$ is smaller than every inverse power of $h$. If some $H_i\\ge a$, fix its index and condition on the other pieces. Proposition~\\ref{c:height-atom}, followed by the heightwise bound of Proposition~\\ref{c:planar-atoms}, gives \\begin{align*} &\\Pr\\{S_k=w,\\ H_i\\ge a\\}\\\\"
     },
     {
       "from": "m2-c-planar-atoms",
-      "to": "m2-c-parallel"
+      "to": "m2-c-parallel",
+      "context": "of $h$. If some $H_i\\ge a$, fix its index and condition on the other pieces. Proposition~\\ref{c:height-atom}, followed by the heightwise bound of Proposition~\\ref{c:planar-atoms}, gives \\begin{align*} &\\Pr\\{S_k=w,\\ H_i\\ge a\\}\\\\ &\\quad\\le \\sup_{n\\ge a}p(H=n) \\sum_m\\sup_{H(v)=m}\\Pr(S_{k-1}=v) \\"
     },
     {
       "from": "m2-c-arch-mean",
-      "to": "m2-c-bottom-survival"
+      "to": "m2-c-bottom-survival",
+      "context": "[Proof of Theorem~\\ref{c:arch-mean}] We now have the two different survival tests needed for an arch: the shared-turn test at its top and Lemma~\\ref{c:bott"
     },
     {
       "from": "m2-c-truncated-reward",
-      "to": "m2-c-bottom-survival"
+      "to": "m2-c-bottom-survival",
+      "context": "ump costs have budget, on the two sides combined, \\[ C_\\eta H^{d_*-2a+O(\\eta)} \\prod_{i=1}^2\\min(I_i,J_i). \\] Indeed for a given length piece use Lemma~\\ref{c:truncated-reward}; the jump costs \\(C H^{-a+O(\\eta)}\\), and the number of choices on each side is at most a constant times its smaller di"
     },
     {
       "from": "m2-c-calibrated-inputs",
-      "to": "m2-c-bottom-survival"
+      "to": "m2-c-bottom-survival",
+      "context": "error by height damping if \\(S_I\\ge2\\); similarly at \\(S_J=J^{1/a}H^{-C_0\\eta}\\). Both thresholds are far below \\(h\\). On valid arms we thus impose Proposition~\\ref{c:calibrated-inputs}(ii) up to \\(S_I\\) (rounded down), by the shared-turn crosscut argument in \\cite[Section 7.3]{Renewal}, with the common"
     },
     {
       "from": "m2-c-calibrated-inputs",
-      "to": "m2-c-confined-arch-mean"
+      "to": "m2-c-confined-arch-mean",
+      "context": "athbb E L\\le C_C h^{4/3}$ and the upper probability tail by Markov's inequality. Every retained arch has diameter at least a fixed multiple of $h$. Proposition~\\ref{c:calibrated-inputs}(iii), summed over the finitely many diameter bins through $Ch$, makes its short-length mass superpolynomially small. Th"
     },
     {
       "from": "m2-c-arch-mean",
-      "to": "m2-c-confined-arch-mean"
+      "to": "m2-c-confined-arch-mean",
+      "context": "and hence the mean lower bound. The law in this corollary sums over terminal ports before normalization; it is distinct from the individual-gap law of Theorem~\\ref{c:arch-mean}."
     },
     {
       "from": "m3-prop-02-critical",
-      "to": "m3-lem-02-periodic-slab"
+      "to": "m3-lem-02-periodic-slab",
+      "context": "A cylinder path lifts to a planar self-avoiding path and uses at most $O(NM)$ vertices. Proposition~\\ref{prop:02-critical} therefore bounds $b_M(i,j)$ and all same-side path sums by $\\exp(o(M))$, with $N$ fixed. A finite transfer on partial m"
     },
     {
       "from": "m3-lem-02-periodic-slab",
-      "to": "m3-prop-02-cylinder-vacuum"
+      "to": "m3-prop-02-cylinder-vacuum",
+      "context": "path segments is bounded at fixed $N$. Discarding their mutual avoidance bounds their weights by a product of an exponentially decaying spanning sum from Lemma~\\ref{lem:02-periodic-slab} and subexponential same-side sums. Therefore the transfer on the subspace of zero empty component has spectral radius s"
     },
     {
       "from": "m3-lem-02-characterization",
-      "to": "m3-thm-02-finite-formula"
+      "to": "m3-thm-02-finite-formula",
+      "context": "We verify the characterization in Lemma~\\ref{lem:02-characterization}. The arrays satisfy \\[ \\sum_jm^e_{lr}[j]=2+2elr,\\qquad \\sum_jj\\,m^e_{lr}[j]\\equiv e(v_lr-v_rl)\\pmod8, \\] and their ex"
     },
     {
       "from": "m3-thm-02-finite-formula",
-      "to": "m3-thm-02-contour-sectors"
+      "to": "m3-thm-02-contour-sectors",
+      "context": "m_i l_i^2}. \\] Indeed the per-site ratio of the right-hand weight to $(2d)^a r_a$ is $(-2c)^{1-a}$, whose product is one. Taking $\\tau=q^3e^{i\\eta}$ in Theorem~\\ref{thm:02-finite-formula} now proves Equation~\\eqref{eq:02-contour-sectors}. \\emph{Confluent physical limits.} Return the far contours to the fi"
     },
     {
       "from": "m3-prop-03-trial-bounds",
-      "to": "m3-cor-03-counts"
+      "to": "m3-cor-03-counts",
+      "context": "L))\\): far variables have effective volume \\(O(L)\\), and exterior main variables have effective volume \\(O(1)\\). This is the coarse cost; part 4 of Proposition~\\ref{prop:03-trial-bounds} will improve it for the configurations needed by the exponent."
     },
     {
       "from": "m3-cor-03-counts",
-      "to": "m3-prop-03-trial-bounds"
+      "to": "m3-prop-03-trial-bounds",
+      "context": "\\eqref{eq:G-4}. The remaining linear term satisfies \\[ |b_1\\textstyle\\int r|\\le C_h\\sqrt{L(B(x)+1)} \\le \\tfrac14B(x)+C_hL \\] by Corollary~\\ref{cor:03-counts}; choose \\(h\\) so that the smoothing loss consumes at most another fixed fraction of \\(B(x)\\). This proves the first bou"
     },
     {
       "from": "m3-lem-03-coercivity",
-      "to": "m3-lem-03-spectral"
+      "to": "m3-lem-03-spectral",
+      "context": "s the upper comparison. For the lower comparison, push the primitive forward to physical coordinate \\(u=W(s)\\) and extend it by zero outside \\([-L,L]\\). Lemma~\\ref{lem:03-coercivity} bounds its Fourier seminorm with multiplier \\(k^2/(1+|k|)\\). For any fixed sufficiently large \\(C_0\\), this multiplier"
     },
     {
       "from": "m3-lem-03-spectral",
-      "to": "m3-lem-03-core"
+      "to": "m3-lem-03-core",
+      "context": "We first approximate \\(\\mathscr K\\) on \\(L^2(ds)\\). Truncate the cosine basis in each unit-scale cell at frequency \\(J\\). The coefficient estimate in Lemma~\\ref{lem:03-spectral} gives trace-norm error at most \\(CL/J\\), since \\(\\sum_{n>J}(1+n^2)^{-1}\\le C/J\\) and the sum over cell separations conv"
     },
     {
       "from": "m3-lem-03-circle",
-      "to": "m3-e-reference-source"
+      "to": "m3-e-reference-source",
+      "context": "Cauchy--Schwarz in the unnormalized integral and $w_0=\\sqrt{w_+w_-}$ bound the tilted integral by the geometric mean of the two tilted $w_\\pm$ integrals. Lemma~\\ref{lem:03-circle} bounds that mean after subtracting $\\nu_\\sigma f_{\\sigma,0}$. Divide by $J_{\\nu_\\sigma}(w_0)$ and multiply the two esti"
     },
     {
       "from": "m3-lem-03-kernel-regularity",
-      "to": "m3-thm-03-uniform-source"
+      "to": "m3-thm-03-uniform-source",
+      "context": "remainder \\(r_\\epsilon\\) has the same bound up to a polynomial factor: subtract the diagonal logarithm and transfer derivatives to \\(r_\\epsilon\\), as in Lemma~\\ref{lem:03-kernel-regularity}. The assumptions \\(\\|Q\\|_{-2,A}\\le L^D\\) and fixed polynomial source bounds thus make every error in the preceding form"
     },
     {
       "from": "m3-lem-04-quadratic",
-      "to": "m3-lem-04-contour"
+      "to": "m3-lem-04-contour",
+      "context": ". These bounds are independent of the cutoff exponent \\(D\\). Choose \\(E\\) once so large that subtracting \\(L^{-E}\\|Q\\|_{-2,A}^2\\) preserves half the gap. Lemma~\\ref{lem:04-quadratic} and the elementary inequality \\(\\mathbf1_{\\{\\|Q\\|>L^D\\}}\\le \\exp(L^{-E}\\|Q\\|^2-L^{2D-E})\\) yield \\[ \\E_0[\\mathbf1_{\\{"
     },
     {
       "from": "m3-prop-04-integer-bounds",
-      "to": "m3-lem-04-contour"
+      "to": "m3-lem-04-contour",
+      "context": "[Proof of Proposition~\\ref{prop:04-integer-bounds}] For the estimates without a shift, take absolute values, use \\(0\\le A\\le1\\), and apply Lemma~\\ref{lem:04-quadratic} wi"
     },
     {
       "from": "m3-prop-04-interpolation",
-      "to": "m3-lem-04-hermite"
+      "to": "m3-lem-04-hermite",
+      "context": "[Proof of Proposition~\\ref{prop:04-interpolation}] Use the polynomial and endpoint-subset approximations just constructed. In each retained subset integral, replace the"
     },
     {
       "from": "m3-prop-04-interpolation",
-      "to": "m3-lem-04-grid"
+      "to": "m3-lem-04-grid",
+      "context": "int gives \\[ S\\le \\max_{\\text{integer square}}|P|+CK^3S/R. \\] Since \\(R\\) is exponential and \\(K\\) polynomial, the second coefficient is \\(o(1)\\). Proposition~\\ref{prop:04-interpolation} and \\(b>b'\\) then give \\(S\\le(1+o(1))B\\). The tensor Chebyshev coefficients are at most \\(4S\\), and there are at most"
     },
     {
       "from": "m3-prop-04-integer-bounds",
-      "to": "m3-prop-04-sector-sum"
+      "to": "m3-prop-04-sector-sum",
+      "context": "oved to the height selected by its trial bound. \\paragraph{Truncation and holomorphic replacement.} First the untruncated real bound in part 1 of Proposition~\\ref{prop:04-integer-bounds} lets us restrict \\(n_e,\\ell_e\\le L^3\\) and \\(|M|<T\\), with \\(T\\) a half-integer of a sufficiently large fixed polynomia"
     },
     {
       "from": "m3-prop-04-integer-bounds",
-      "to": "m3-e-all-fugacity-bound"
+      "to": "m3-e-all-fugacity-bound",
+      "context": "o for a fused double. The frozen prefactor has modulus at most \\(\\exp(C_hn_e)\\). It is independent of \\(\\eta\\) and \\(M\\). At \\(\\eta=0\\), part 1 of Proposition~\\ref{prop:04-integer-bounds} gives \\begin{equation} |F_{m'(M)}(M)| \\le\\exp\\!\\left(C_hL+C_hn_e -c_h\\left(\\frac{M^2+n_e^2}{L}+\\ell_e\\right)\\r"
     },
     {
       "from": "m3-thm-02-denominator",
-      "to": "m3-e-all-fugacity-bound"
+      "to": "m3-e-all-fugacity-bound",
+      "context": "n \\eqref{eq:G-22}, uniformly for all \\(v\\ge0\\). Finally divide by the \\(\\eta\\)-independent denominator \\(\\Delta_N\\). The balanced denominator theorem, Theorem~\\ref{thm:02-denominator}, gives \\(\\log|\\Delta_N|=(5/24)\\log N+o(\\log N)\\). In particular it is nonzero and \\(|\\Delta_N|^{-1}\\le e^{C\\log N}\\) fo"
     },
     {
       "from": "m3-e-all-fugacity-bound",
-      "to": "m3-e-all-count-tail"
+      "to": "m3-e-all-count-tail",
+      "context": "For every \\(v\\ge0\\), positivity in \\eqref{eq:06-positive-coefficients} gives \\[ w_N(a)(2\\cosh v)^a\\le Z_N(2\\cosh v). \\] Since \\(\\log(2\\cosh v)\\ge v\\), Theorem~\\ref{E:all-fugacity-bound} yields \\[ w_N(a)\\le\\exp\\!\\left(C\\log N(1+v^2)-av\\right). \\] Take \\(v=a/(2C\\log N)\\). The exponent becomes \\(C\\log N-a^"
     },
     {
       "from": "m3-lem-05-winding-data",
-      "to": "m3-lem-05-hardy-interpolation"
+      "to": "m3-lem-05-hardy-interpolation",
+      "context": "d divide out the prescribed zeros to estimate the residual. \\paragraph{The jet equation and coercivity.} Partial fractions for the rational functions in Lemma~\\ref{lem:05-winding-data} use derivatives of \\((1+e^{w-i\\theta})^{-1}\\), up to the specified pole orders, and a constant determined by the limit"
     }
   ]
 }

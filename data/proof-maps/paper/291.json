@@ -687,315 +687,393 @@
   "edges": [
     {
       "from": "m1-lem-factor-independence",
-      "to": "m1-prop-joint-clt"
+      "to": "m1-prop-joint-clt",
+      "context": "quality of their row labels \\(i_a\\). Since distinct rows commute, we may group the factors belonging to each row, preserving their order within that row. Lemma~\\ref{lem:factor-independence} then factors the expectation over the distinct rows. A singleton block gives zero by Equation~\\eqref{eq:row-normalizati"
     },
     {
       "from": "m1-lem-gaussian-quadratic",
-      "to": "m1-lem-quadratic-moment-transfer"
+      "to": "m1-lem-quadratic-moment-transfer",
+      "context": "K\\) tend to infinity and using Equation~\\eqref{eq:spectral-moment-tail} shows that \\[ \\int x^d\\,d\\mu(x)=\\mathbb E(q_B^d). \\] This holds for every \\(d\\). Lemma~\\ref{lem:gaussian-quadratic} therefore identifies \\(\\mu\\) with the law of \\(q_B\\). Tightness now shows that the whole sequence \\(\\mu_j\\) converges w"
     },
     {
       "from": "m1-prop-uniform-unitaries",
-      "to": "m1-lem-quadratic-moment-transfer"
+      "to": "m1-lem-quadratic-moment-transfer",
+      "context": "[Proof of Proposition~\\ref{prop:uniform-unitaries}] \\textbf{Step 1. Choice of parameters.} Fix \\(H,\\eps,m\\) as in the statement. Choose \\(t>0\\) so that \\begin{equation}\\l"
     },
     {
       "from": "m1-lem-square-root-trace",
-      "to": "m1-lem-quadratic-moment-transfer"
+      "to": "m1-lem-quadratic-moment-transfer",
+      "context": "on} The summands indexed by \\(F\\cap hF\\) cancel when subtracting \\(P_F\\) and \\(P_{hF}\\). Each remaining \\(v_gv_g^{\\mathsf T}\\) has trace norm one. Hence Lemma~\\ref{lem:square-root-trace} implies \\[ \\|P_F^{1/2}-P_{hF}^{1/2}\\|_{\\HS}^2 \\leq\\|P_F-P_{hF}\\|_1 \\leq\\frac{|F\\mathbin{\\triangle}hF|}{n}<\\delta. \\]"
     },
     {
       "from": "m1-prop-joint-clt",
-      "to": "m1-lem-quadratic-moment-transfer"
+      "to": "m1-lem-quadratic-moment-transfer",
+      "context": "ence \\(N_j\\to\\infty\\) and extreme traces \\(\\varphi_j\\in\\T(C)\\) such that \\[ \\varphi_j(k_{N_j;g,g'})\\longrightarrow R_{g,g'} \\qquad(g,g'\\in J). \\] Proposition~\\ref{prop:joint-clt} gives convergence of every ordered mixed moment of the empirical variables. Any moment of the polynomials in Equations~"
     },
     {
       "from": "m1-prop-uniform-unitaries",
-      "to": "m1-prop-haar"
+      "to": "m1-prop-haar",
+      "context": "inite sets \\(H_m\\subset G\\) whose union is \\(G\\), and a sequence \\(a_1,a_2,\\ldots\\) dense in the positive unit ball of \\(A\\), with \\(a_1=1\\). Apply Proposition~\\ref{prop:uniform-unitaries} with \\((H,\\eps,m)=(H_m,1/m,m)\\), and denote its exponential unitary by \\(V^{(m)}\\in C\\). It has a representative \\((v^{"
     },
     {
       "from": "m1-lem-coordinate",
-      "to": "m1-prop-haar"
+      "to": "m1-prop-haar",
+      "context": "ounds for these self-adjoint lifts may depend on \\(m\\), whereas the unitary representatives always have norm one. Since \\(V^{(m)}\\) commutes with \\(A\\), Lemma~\\ref{lem:coordinate}, Equation~\\eqref{eq:weighted-small-moments}, and the invariance estimates allow a coordinate \\(j(m)\\geq m\\) at which \\("
     },
     {
       "from": "m1-prop-haar",
-      "to": "m1-prop-gamma"
+      "to": "m1-prop-gamma",
+      "context": "Fix \\(k\\geq2\\) and let \\(w=[(w_j)]\\) be the unitary of Proposition~\\ref{prop:haar}, represented by unitaries \\(w_j\\in A\\). Partition \\(\\mathbb T\\) into \\(k\\) half-open arcs \\(I_1,\\ldots,I_k\\) of Haar me"
     },
     {
       "from": "m1-lem-coordinate",
-      "to": "m1-prop-gamma"
+      "to": "m1-prop-gamma",
+      "context": "} Represent \\(y_i^{(r)}\\) by \\(f_i^{(r)}(w_j)\\). Use \\(H_r\\) and \\(a_1,\\ldots,a_r\\) from the proof of Proposition~\\ref{prop:haar}. For this fixed \\(r\\), Lemma~\\ref{lem:coordinate} gives a coordinate \\(j(r)\\geq r\\) such that the positive contractions \\(y_{i,r}=f_i^{(r)}(w_{j(r)})\\) satisfy, simultan"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-prop-gamma"
+      "to": "m1-prop-gamma",
+      "context": "[Proof of Theorem~\\ref{thm:main}] The trace hypotheses were checked in Section~\\ref{sec:preliminaries}, and Proposition~\\ref{prop:gamma} supplies equiva"
     },
     {
       "from": "m1-thm-absorption",
-      "to": "m1-prop-gamma"
+      "to": "m1-prop-gamma",
+      "context": "heses were checked in Section~\\ref{sec:preliminaries}, and Proposition~\\ref{prop:gamma} supplies equivariant uniform property Gamma. All assumptions of Theorem~\\ref{thm:absorption} hold. It follows that \\(\\alpha\\) and \\(\\beta=\\alpha\\otimes\\operatorname{id}_{\\Zalg}\\) are cocycle conjugate. We spell o"
     },
     {
       "from": "m2-lem-pre-cut-placement",
-      "to": "m2-lem-comparison-convention"
+      "to": "m2-lem-comparison-convention",
+      "context": "z^*z$ belongs to it exactly when $zz^*$ does, and the ideal is norm closed. Its rank functional vanishes at $y$, so the first inequality forces $a\\in I$. Lemma~\\ref{lem:pre:cut-placement}(2) now gives $x\\le\\sup_{n\\ge1}ny$. For every functional normalized by $\\varphi(y)=1$, the second inequality gives $\\var"
     },
     {
       "from": "m2-lem-pre-cut-placement",
-      "to": "m2-ext-lem-trichotomy"
+      "to": "m2-ext-lem-trichotomy",
+      "context": "Every nonzero $b\\in B_+$ is full. Lemma~\\ref{lem:pre:cut-placement} therefore bounds each positive cut of any $c\\in B_+$ by finitely many copies of $[b]$. If $\\varphi([b])=0$, preservatio"
     },
     {
       "from": "m2-lem-pre-cut-placement",
-      "to": "m2-ext-lem-transfer"
+      "to": "m2-ext-lem-transfer",
+      "context": "Fullness of $h$ and Lemma~\\ref{lem:pre:cut-placement} give $[(a-\\delta/4)_+]\\le m[h]$ for some finite $m\\ge1$. Apply that lemma in $M_m(B)$, with cut parameter $\\epsilon=\\de"
     },
     {
       "from": "m2-ext-lem-small",
-      "to": "m2-ext-thm-divisibility"
+      "to": "m2-ext-thm-divisibility",
+      "context": "$j\\ge1$, such that \\begin{equation} \\label{ext:eq:budget} \\frac1{N+1}<s<\\frac1N,\\qquad E:=\\sum_{j=1}^{\\infty}\\frac1{M_j}<s-\\frac1{N+1}. \\end{equation} Lemma~\\ref{ext:lem:small} supplies nonzero $h_j\\in B_+$ with $M_j[h_j]\\le[e]$. To recover the full rank of $a$ from functions vanishing near zer"
     },
     {
       "from": "m2-ext-lem-transfer",
-      "to": "m2-ext-thm-divisibility"
+      "to": "m2-ext-thm-divisibility",
+      "context": "\\{1,\\max\\{0,2^jt-1\\}\\},\\qquad r_j=s(F_j-F_{j-1})\\quad(j\\ge1). \\] The functions $F_j$ increase, and $r_j\\ge0$ vanishes on $[0,2^{-j}]$. Put $p_j=r_j(a)$. Lemma~\\ref{ext:lem:transfer} gives $c_j\\in\\her(h_j)_+$ satisfying \\begin{equation} \\label{ext:eq:transferred} \\tau(c_j)=\\tau(p_j)\\quad\\text{for all"
     },
     {
       "from": "m2-ext-thm-divisibility",
-      "to": "m2-ext-cor-condition-c"
+      "to": "m2-ext-cor-condition-c",
+      "context": "Theorem~\\ref{ext:thm:divisibility} gives the full almost-divisibility sandwich, and Lemma~\\ref{lem:comparison-convention} gives almost unperforation."
     },
     {
       "from": "m2-lem-comparison-convention",
-      "to": "m2-ext-cor-condition-c"
+      "to": "m2-ext-cor-condition-c",
+      "context": "Theorem~\\ref{ext:thm:divisibility} gives the full almost-divisibility sandwich, and Lemma~\\ref{lem:comparison-convention} gives almost unperforation."
     },
     {
       "from": "m2-ext-lem-rounding",
-      "to": "m2-prop-unital-approx"
+      "to": "m2-prop-unital-approx",
+      "context": "] therefore satisfies $\\tau(c)=\\tau(p)$ and $d_\\tau(c)\\le1/N$ for every $\\tau\\in T(A)$. Choose an integer $L>\\|c\\|$ and let $w=\\bigoplus_{j=1}^L(c-j)_+$. Lemma~\\ref{ext:lem:rounding}, applied in the stabilization, gives \\[ d_\\tau(w)\\le\\tau(c)\\le d_\\tau(w)+d_\\tau(c) \\le d_\\tau(w"
     },
     {
       "from": "m2-lem-comparison-convention",
-      "to": "m2-lem-g"
+      "to": "m2-lem-g",
+      "context": "\\varphi([v])\\le\\tfrac12\\varphi([w])\\le\\varphi([w]). \\] The inequality is strict whenever $0<\\varphi([w])<\\infty$. Since $\\Cu(A)$ is almost unperforated, Lemma~\\ref{lem:comparison-convention} applies and gives $[v]\\le[w]$."
     },
     {
       "from": "m2-lem-pre-cut-placement",
-      "to": "m2-lem-placement"
+      "to": "m2-lem-placement",
+      "context": "ose \\(u=[r]\\) with \\(N[r]\\le[b]\\le(N+1)[r]\\). By \\eqref{eq:pre:cuts}, a sufficiently small \\(\\eta>0\\) gives \\[ [(b-\\epsilon)_+]\\le(N+1)[(r-2\\eta)_+]. \\] Lemma~\\ref{lem:pre:cut-placement} places the hereditary algebra of \\(\\operatorname{diag}((r-\\eta)_+,\\ldots,(r-\\eta)_+)\\), with \\(N\\) diagonal entries, in"
     },
     {
       "from": "m2-lem-shrinking",
-      "to": "m2-lem-transfer"
+      "to": "m2-lem-transfer",
+      "context": "[Proof of Lemma~\\ref{lem:shrinking}] Suppose that no such constant exists. Fix numbers $c_n\\in(0,1)$ increasing to $1$. For each $n$, choose an algebra s"
     },
     {
       "from": "m2-lem-placement",
-      "to": "m2-lem-transfer"
+      "to": "m2-lem-transfer",
+      "context": "vide a representation in which both constructed positives vanish. \\medskip \\noindent\\textbf{Step 1: a matrix corner and two prospective supports.} Apply Lemma~\\ref{lem:placement}, with seven slots and a cut of $a$ below $1/2$, to obtain a c.p.c.\\ order-zero map $M_7\\to\\her(a)$ with weight $d$ sati"
     },
     {
       "from": "m2-lem-support",
-      "to": "m2-lem-transfer"
+      "to": "m2-lem-transfer",
+      "context": "They are contractions: $0\\le L\\le1$, and the selfadjoint operator inside the positive part in the second expression is bounded above by $c_n^2t\\,1$. By Lemma~\\ref{lem:support}, the compression of $z^*Lz$ to the support of $b'$ is at most $c_n^2t$. Since $L\\ge t p_{a'}$, this implies \\[ t p_{b"
     },
     {
       "from": "m2-norm-excision",
-      "to": "m2-norm-prototype"
+      "to": "m2-norm-prototype",
+      "context": "Apply Lemma~\\ref{norm:excision} in \\(\\widetilde A\\) to \\(x\\), all \\(b_i^*b_j\\), and all \\(r_i(a)^*r_j(a)\\). Their state values are respectively \\(\\lam"
     },
     {
       "from": "m2-lem-shrinking",
-      "to": "m2-norm-separated-cover"
+      "to": "m2-norm-separated-cover",
+      "context": "If \\(\\mathcal K(x,\\gamma)\\) is empty, take every \\(t_i=0\\). Otherwise proceed as follows. Let \\(c<1\\) be the constant in Lemma~\\ref{lem:shrinking}. Before each shrinking operation, apply the last assertion of Lemma~\\ref{norm:finite-cover} to the current finite famil"
     },
     {
       "from": "m2-norm-finite-cover",
-      "to": "m2-norm-separated-cover"
+      "to": "m2-norm-separated-cover",
+      "context": "0\\). Otherwise proceed as follows. Let \\(c<1\\) be the constant in Lemma~\\ref{lem:shrinking}. Before each shrinking operation, apply the last assertion of Lemma~\\ref{norm:finite-cover} to the current finite family. This leaves every support unchanged and ensures that each representation in \\(\\mathcal K("
     },
     {
       "from": "m2-norm-prototype",
-      "to": "m2-norm-finite-stage"
+      "to": "m2-norm-finite-stage",
+      "context": "If \\(\\mathcal K(x,\\gamma)\\) is empty, take \\(V=0\\). Otherwise construct the preceding word model and the seed in Lemma~\\ref{norm:prototype} for each representation in that set. The seeds cover the set. Lemma~\\ref{norm:finite-cover} therefore retains finitely"
     },
     {
       "from": "m2-norm-finite-cover",
-      "to": "m2-norm-finite-stage"
+      "to": "m2-norm-finite-stage",
+      "context": ". Otherwise construct the preceding word model and the seed in Lemma~\\ref{norm:prototype} for each representation in that set. The seeds cover the set. Lemma~\\ref{norm:finite-cover} therefore retains finitely many models, indexed by \\(i=1,\\ldots,m\\). Write \\(n_i\\) for their basis sizes, \\(b_j^{(i)}\\)"
     },
     {
       "from": "m2-norm-separated-cover",
-      "to": "m2-norm-finite-stage"
+      "to": "m2-norm-finite-stage",
+      "context": "esentatives, \\(l_j^{(i)}\\) for their levels, and \\(M_a^{(i)}\\) and \\(r_j^{(i)}(a)\\) for their model matrices and residuals. Set \\(N=\\sum_i n_i\\). Apply Lemma~\\ref{norm:separated-cover} with \\(\\delta=\\eta^2/(2N)\\) to all coefficients \\[ (b_j^{(i)})^*b_l^{(h)} \\quad\\text{and}\\quad (r_j^{(i)}(a))^*r_l^{"
     },
     {
       "from": "m2-lem-placement",
-      "to": "m2-norm-finite-stage"
+      "to": "m2-norm-finite-stage",
+      "context": "ma~\\ref{norm:prototype} remain valid. The number of models and their sizes have already been fixed before this cross-compression tolerance is chosen. By Lemma~\\ref{lem:placement}, choose \\cpc order-zero maps \\(\\phi_i:M_k\\to\\her(s_i)\\) such that \\begin{equation}\\label{norm:cone-norm-one} \\|\\sigma("
     },
     {
       "from": "m2-prop-norm",
-      "to": "m2-norm-finite-stage"
+      "to": "m2-norm-finite-stage",
+      "context": "[Proof of Proposition~\\ref{prop:norm}] Choose increasing finite sets \\(F_n\\) of selfadjoint contractions whose union is dense in the selfadjoint unit ball of"
     },
     {
       "from": "m2-prop-bounded-trace",
-      "to": "m2-tr-lipschitz"
+      "to": "m2-tr-lipschitz",
+      "context": "[Proof of Proposition~\\ref{prop:bounded-trace}] We will combine small matrix cones chosen in the commutants of the nuclear approximation maps. Their supports are chos"
     },
     {
       "from": "m2-lem-support",
-      "to": "m2-tr-lipschitz"
+      "to": "m2-tr-lipschitz",
+      "context": "rst-pencil-bounds} 0\\leq b_l\\leq g_l^2\\leq z_l,\\qquad b_l\\geq g_l^4-g_l^2K_lg_l^2. \\end{equation} The second inequality follows from $(X_l)_+\\geq X_l$. Lemma~\\ref{lem:support}, applied to the pencil in \\eqref{tr:first-pencil}, gives \\begin{equation}\\label{tr:first-support} p_{b_l}K_lp_{b_l}\\le"
     },
     {
       "from": "m2-lem-placement",
-      "to": "m2-tr-lipschitz"
+      "to": "m2-tr-lipschitz",
+      "context": "in \\eqref{tr:first-pencil}, gives \\begin{equation}\\label{tr:first-support} p_{b_l}K_lp_{b_l}\\leq p_{b_l}. \\end{equation} Use the tracial conclusion of Lemma~\\ref{lem:placement} in $C_l$, which has the form \\eqref{tr:commutant-corners}, with $q=\\delta\\lambda_l$ and positive contraction $b_l$. It"
     },
     {
       "from": "m2-prop-bounded-trace",
-      "to": "m2-loc-bounded-fill"
+      "to": "m2-loc-bounded-fill",
+      "context": "mega}\\sigma_n(z_n) \\] on $D_\\omega$, which factors through $B$ by Cauchy--Schwarz. These choices are allowed to depend on $n$. Fix $0<\\delta<1$. Proposition~\\ref{prop:bounded-trace}, applied at coordinate $n$ with its auxiliary error tending to zero, has the following consequence. Given finitely man"
     },
     {
       "from": "m2-lem-join",
-      "to": "m2-loc-bounded-fill"
+      "to": "m2-loc-bounded-fill",
+      "context": "l P$. Prescribe commutation with the preceding map and with the fixed tests. Apply \\eqref{loc:fraction} and join the new map to the preceding one using Lemma~\\ref{lem:join}. The new weight commutes with $r$, and hence, for any trace $\\sigma_\\omega$, the defect \\[ D_j(a)=\\sigma_\\omega\\bigl("
     },
     {
       "from": "m2-loc-bounded-fill",
-      "to": "m2-prop-localized-trace"
+      "to": "m2-prop-localized-trace",
+      "context": "ite $d_\\tau(b)$, dividing it by $L_i d_\\tau(b)$ gives an element of $T_{\\leq1}(D_i)$. Choose a dense sequence $(x_j)$ in the unit ball of $A$, and apply Lemma~\\ref{loc:bounded-fill} inside $D_i$, with tests \\[ p_i,\\quad q_i x_j q_i\\ (j\\le i) \\quad\\text{and their real and imaginary parts}, \\] and po"
     },
     {
       "from": "m2-loc-sigma-ideal",
-      "to": "m2-prop-localized-trace"
+      "to": "m2-prop-localized-trace",
+      "context": "=p_i\\mu_i(z)[p_i,x_j](1-q_i)$ for $\\|z\\|\\le1$; the other term is its analogous left-sided expression. Density gives the assertion for all of $A$. Apply Lemma~\\ref{loc:sigma-ideal} to $C_0=C^*(A,\\theta(M_k))$, and let $e$ be its absorbing positive contraction. Define \\[ \\phi(z)=(1-e)\\theta(z). \\]"
     },
     {
       "from": "m2-prop-norm",
-      "to": "m2-prop-idealvisibility"
+      "to": "m2-prop-idealvisibility",
+      "context": "First consider finitely many tests. For one of them apply Proposition~\\ref{prop:norm} with \\[ x=(a-\\eps/16)_+, \\qquad \\gamma=\\eps/64. \\] It gives a norm-central order-zero map with positive contractive w"
     },
     {
       "from": "m2-lem-join",
-      "to": "m2-prop-idealvisibility"
+      "to": "m2-prop-idealvisibility",
+      "context": "over all representations at the selected index, so it is retained without choosing representations during reindexing. Join the reparametrized maps using Lemma~\\ref{lem:join}. Let $\\nu$ denote this finite join for the moment, and choose \\cpc coordinate lifts with weights $h_n^\\nu$. We claim"
     },
     {
       "from": "m2-lem-diagonal",
-      "to": "m2-prop-idealvisibility"
+      "to": "m2-prop-idealvisibility",
+      "context": "cations \\eqref{cmp:visibility-implication} hold exactly. Include $\\{n\\ge l\\}$ in the $l$th set, and use its largest admissible stage at coordinate $n$. Lemma~\\ref{lem:diagonal} applies, since all these maps and weights are contractions. The diagonal defines a single norm-central order-zero $\\nu"
     },
     {
       "from": "m2-prop-idealvisibility",
-      "to": "m2-prop-rankgap"
+      "to": "m2-prop-rankgap",
+      "context": "Apply Proposition~\\ref{prop:idealvisibility} for this $k$. \\emph{Fix its coordinate maps $\\nu_n$, their weights, and every integer $L_{a,\\eps,n}$ before making any"
     },
     {
       "from": "m2-prop-localized-trace",
-      "to": "m2-prop-rankgap"
+      "to": "m2-prop-rankgap",
+      "context": "ot be reindexed in this proof. For a test $(a,\\eps)$ retain $b=(a-\\eps/8)_+$ and put $d=(a-\\eps/4)_+$. Then $d\\in\\Ideal_A(b)$ and $[d]\\le[b]$, so Proposition~\\ref{prop:localized-trace} applies to $(d,b)$ with relative rank constant one. Let $E_r$ be the good sets in \\eqref{cmp:I} for the enumerated tes"
     },
     {
       "from": "m2-lem-g",
-      "to": "m2-prop-rankgap"
+      "to": "m2-prop-rankgap",
+      "context": "osen uniformly over the trace families; thus their intersection proves \\eqref{cmp:R} simultaneously for every lower semicontinuous extended trace. Apply Lemma~\\ref{lem:G} in $A$ at each coordinate of this common good set. It gives \\[ (u_n-\\eps)_+\\precsim (y_n-s)_+, \\qquad s=\\eps/32. \\]"
     },
     {
       "from": "m2-prop-rankgap",
-      "to": "m2-prop-slots"
+      "to": "m2-prop-slots",
+      "context": "For fixed $m\\ge1$, apply Proposition~\\ref{prop:rankgap} with $k=pm$ and identify $M_{pm}=M_p\\otimes M_m$. Define \\[ \\alpha_m(z)=f(\\zeta^{pm})(z\\otimes1_m),\\qquad s_j^{(m)}="
     },
     {
       "from": "m2-lem-diagonal",
-      "to": "m2-prop-slots"
+      "to": "m2-prop-slots",
+      "context": ", and the witness for a fixed test has its individual bound $\\sqrt{64/\\eps}$ independently of the row. These are precisely the boundedness hypotheses of Lemma~\\ref{lem:diagonal}. The selected maps therefore define a \\cpc norm-central order-zero $\\alpha$, and the selected slots and witnesses defin"
     },
     {
       "from": "m2-norm-excision",
-      "to": "m2-cen-elementary-tensor"
+      "to": "m2-cen-elementary-tensor",
+      "context": "t. The resulting pure state does not annihilate $D$. Its GNS representation is therefore nondegenerate on $D$; write $\\xi$ for its unit cyclic vector. Lemma~\\ref{norm:excision} gives, on any prescribed finite set of coefficients in $D^{\\sim}$, positive contractions $g\\in D^{\\sim}$ with \\[ \\lamb"
     },
     {
       "from": "m2-cen-elementary-tensor",
-      "to": "m2-cen-nuclear-tensor-ideals"
+      "to": "m2-cen-nuclear-tensor-ideals",
+      "context": "ntradiction. The leg representations of $D/I$ and $C/L$ are faithful, so the induced tensor representation kills no nonzero positive elementary tensor. Lemma~\\ref{cen:elementary-tensor} applied to its kernel proves faithfulness. The nonzero ideal $q(J)$ therefore contains a nonzero positive tensor $\\bar"
     },
     {
       "from": "m2-cen-nuclear-tensor-ideals",
-      "to": "m2-cen-weighted-domination"
+      "to": "m2-cen-weighted-domination",
+      "context": "a^*a)c^*c=0$. This says $\\pi(a\\otimes c)\\sigma(v)^{1/2}=0$, and, by density of the range of $\\sigma(v)^{1/2}$ in $p_vH$, gives $a\\otimes c\\in\\ker\\pi_v$. Lemma~\\ref{cen:nuclear-tensor-ideals} says that the elementary tensors in $\\ker\\pi_w$ generate that kernel, and proves \\eqref{cen:support-kernel}. Let $K=\\k"
     },
     {
       "from": "m2-prop-slots",
-      "to": "m2-prop-central-filler"
+      "to": "m2-prop-central-filler",
+      "context": "Fix the map and slots from Proposition~\\ref{prop:slots}. Thus $P=s_1\\ge0$, all $s_j$ are central contractions, \\begin{equation}\\label{cen:slot-recall} s_i^*s_j=\\delta_{ij}P^"
     },
     {
       "from": "m2-cen-weighted-domination",
-      "to": "m2-prop-central-filler"
+      "to": "m2-prop-central-filler",
+      "context": "\\subset\\Ideal_E(\\Psi(a)). \\] Taking the norm limit proves the ideal hypothesis for $a$; scaling proves it for every positive element. Apply Lemma~\\ref{cen:weighted-domination}. Any resulting sum packs into a single element $z=\\sum_{j=1}^N s_jv_j\\in E$, because, for $a\\in A$, \\begin{equation}\\l"
     },
     {
       "from": "m2-lem-diagonal",
-      "to": "m2-prop-central-filler"
+      "to": "m2-prop-central-filler",
+      "context": "resented by a sequence bounded by $2$. Fix representatives of the finitely many matrix entries of $\\alpha$ throughout. The countable diagonalization of Lemma~\\ref{lem:diagonal}, applied to these fixed representatives and the norm tests \\eqref{cen:first-test}, \\eqref{cen:commutator-bound}, and $\\"
     },
     {
       "from": "m2-prop-dimensiondrop",
-      "to": "m2-prop-z-map"
+      "to": "m2-prop-z-map",
+      "context": "Realize $\\Z$ as the closure of an increasing sequence of its injectively included prime dimension-drop stages $D_l$. By Proposition~\\ref{prop:dimensiondrop} and Lemma~\\ref{abs:prime-block-map}, every $D_l$ has a unital homomorphism $\\chi_l:D_l\\to F_\\omega(A)$. Let $\\mathcal"
     },
     {
       "from": "m2-abs-prime-block-map",
-      "to": "m2-prop-z-map"
+      "to": "m2-prop-z-map",
+      "context": "$\\Z$ as the closure of an increasing sequence of its injectively included prime dimension-drop stages $D_l$. By Proposition~\\ref{prop:dimensiondrop} and Lemma~\\ref{abs:prime-block-map}, every $D_l$ has a unital homomorphism $\\chi_l:D_l\\to F_\\omega(A)$. Let $\\mathcal Z_0$ be a countable dense $*$-subalg"
     },
     {
       "from": "m2-abs-approximate-retraction",
-      "to": "m2-prop-z-map"
+      "to": "m2-prop-z-map",
+      "context": "it by finite sets. For any finite set of contractions $F\\subset\\mathcal Z_0$ and any $\\eps>0$, approximate $F\\cup F^2\\cup\\{1\\}$ by one stage, and apply Lemma~\\ref{abs:approximate-retraction} to those stage approximants. With the errors chosen sufficiently small, the resulting \\cpc map $R:\\Z\\to D_l$, viewed i"
     },
     {
       "from": "m2-abs-connected-unitaries",
-      "to": "m2-abs-finite-unitary-criterion"
+      "to": "m2-abs-finite-unitary-criterion",
+      "context": "$, there is a unitary $V\\in\\Z\\otimes\\Z$ with \\begin{equation}\\label{abs:half-flip} \\|V^*(1\\otimes z)V-z\\otimes1\\|<\\delta\\quad(z\\in H). \\end{equation} By Lemma~\\ref{abs:connected-unitaries}, $V$ is connected to $1$. Thus $\\Theta(V)$ is connected to $1$ in $Q$, and the same lemma lifts it to a unitary $W\\in C"
     },
     {
       "from": "m2-abs-finite-unitary-criterion",
-      "to": "m2-prop-absorption"
+      "to": "m2-prop-absorption",
+      "context": "e $A\\ne0$. Set $B=A\\otimes\\Z$ and let $\\iota(a)=a\\otimes1$. The algebra $A^{\\sim}\\otimes\\Z$ acts by multipliers on its ideal $B$, so all the unitaries in Lemma~\\ref{abs:finite-unitary-criterion} act as automorphisms of $B$ by conjugation. Choose sequences $(a_j)$ and $(b_j)$ dense in $A$ and $B$, respectively, a"
     },
     {
       "from": "m2-thm-condition-c",
-      "to": "m2-prop-absorption"
+      "to": "m2-prop-absorption",
+      "context": "[Proof of Theorem~\\ref{thm:condition-C}] Fix the free ultrafilter in the theorem. Proposition~\\ref{prop:Z-map}, through the support, norm-cone, tracial-cone, c"
     },
     {
       "from": "m2-prop-z-map",
-      "to": "m2-prop-absorption"
+      "to": "m2-prop-absorption",
+      "context": "[Proof of Theorem~\\ref{thm:condition-C}] Fix the free ultrafilter in the theorem. Proposition~\\ref{prop:Z-map}, through the support, norm-cone, tracial-cone, comparison, and packing constructions above, supplies a unital $*$-homom"
     },
     {
       "from": "m2-ext-thm-main",
-      "to": "m2-prop-absorption"
+      "to": "m2-prop-absorption",
+      "context": "[Proof of Theorem~\\ref{ext:thm:main}] The zero algebra, if admitted by the convention for simplicity, is immediate. Nuclearity implies exactness, so Corolla"
     },
     {
       "from": "m2-ext-cor-condition-c",
-      "to": "m2-prop-absorption"
+      "to": "m2-prop-absorption",
+      "context": "[Proof of Theorem~\\ref{ext:thm:main}] The zero algebra, if admitted by the convention for simplicity, is immediate. Nuclearity implies exactness, so Corollary~\\ref{ext:cor:condition-C} shows that $A$ satisfies condition \\textup{(C)}. Theorem~\\ref{thm:condition-C} then gives $A\\cong A\\otimes_{\\min}\\Z$."
     },
     {
       "from": "m2-cor-canonical",
-      "to": "m2-prop-absorption"
+      "to": "m2-prop-absorption",
+      "context": "[Proof of Corollary~\\ref{cor:canonical}] Again the zero algebra is immediate. Lemma~\\ref{lem:C} derives (C) from the canonical induced map $\\Cu(\\iota)$, using"
     },
     {
       "from": "m2-lem-c",
-      "to": "m2-prop-absorption"
+      "to": "m2-prop-absorption",
+      "context": "[Proof of Corollary~\\ref{cor:canonical}] Again the zero algebra is immediate. Lemma~\\ref{lem:C} derives (C) from the canonical induced map $\\Cu(\\iota)$, using that $\\Cu(\\iota)([b])=[b\\otimes1_\\Z]$. Theorem~\\ref{thm:"
     },
     {
       "from": "m2-cor-abstract-cu",
-      "to": "m2-prop-absorption"
+      "to": "m2-prop-absorption",
+      "context": "[Proof of Corollary~\\ref{cor:abstract-cu}] The forward implication follows from functoriality of $\\Cu$ under $*$-isomorphisms. For the converse, let $\\Phi:\\Cu(A)"
     },
     {
       "from": "m2-lem-pre-cut-placement",
-      "to": "m2-prop-absorption"
+      "to": "m2-prop-absorption",
+      "context": "u$. Indeed, after stabilization, norm approximation by unitary conjugates gives comparison of every positive cut of either image with the other image, by Lemma~\\ref{lem:pre:cut-placement}(1); approximate units place the comparison witnesses in the algebra when the conjugating unitaries are multipliers. Tak"
     },
     {
       "from": "m3-prelim-comparison",
-      "to": "m3-prelim-half-comparison"
+      "to": "m3-prelim-half-comparison",
+      "context": "12\\overline d([v])\\\\ &\\le\\tfrac12<1=d([v]). \\end{split} \\] The strict inequality is against $d([v])$, so it remains valid when $\\overline d([v])=0$. Theorem~\\ref{prelim:comparison} now compares every $(u-\\eta)_+$ with $v$. Taking the supremum over cuts gives $u\\precsim v$. Finally, comparisons bet"
     },
     {
       "from": "m3-model-slicing",
-      "to": "m3-model-finite-stage"
+      "to": "m3-model-finite-stage",
+      "context": "\\emph{Fixing the corners.} Choose $N$ so large that $m/N<\\varepsilon/4$, and use Lemma~\\ref{model:slicing}. Write \\[ l_{S,t,i}(a)=P_{S,t,i}^{1/2}aP_{S,t,i}^{1/2}. \\] Asymptotic centrality implies, for $(c,d)\\in\\mathcal O$, \\"
     },
     {
       "from": "m3-prelim-bcw",
-      "to": "m3-model-finite-stage"
+      "to": "m3-model-finite-stage",
+      "context": "hin $D_P$ is chosen. \\emph{Approximating within the corners.} Each $D_P$ is separable and nuclear. The Brown--Carri\\'on--White approximation theorem, Theorem~\\ref{prelim:bcw}, supplies finite-dimensional approximations with asymptotically order-zero first maps and return maps which are finite"
     },
     {
       "from": "m3-model-corner-traces",
-      "to": "m3-model-finite-stage"
+      "to": "m3-model-finite-stage",
+      "context": "emph{The uniform relative trace estimate.} Fix $j$ and a lower semicontinuous extended trace $\\tau$ with $d_\\tau(b_j)<\\infty$. In every retained corner, Lemma~\\ref{model:corner-traces} applies with the already fixed constant $K_{P,j}$. Thus \\eqref{model:inner-approx} implies \\[ \\tau(\\varphi_P\\zeta_Pl_"
     },
     {
       "from": "m3-model-construction",
-      "to": "m3-model-finite-stage"
+      "to": "m3-model-finite-stage",
+      "context": "[Proof of Lemma~\\ref{model:construction}] Fix a countable dense subset $(c_l)_{l\\geq1}$ of the unit ball of $A$. The space \\[ \\{(c,d)\\in A_+\\times A_+:"
     },
     {
       "from": "m3-supplies-order-zero",
-      "to": "m3-supplies-copies"
+      "to": "m3-supplies-copies",
+      "context": "Take $\\iota\\colon M_m\\to\\Z$ from Lemma~\\ref{supplies:order-zero}, and set \\[ D_m=\\iota(e_{11}),\\qquad v_{m,r}=\\iota^{1/2}(e_{r1}). \\] Order-zero functional calculus and the product id"
     },
     {
       "from": "m3-prelim-full-compressions",
-      "to": "m3-supplies-copies"
+      "to": "m3-supplies-copies",
+      "context": "er-zero} give the first identity in \\eqref{supplies:copy-relations}. The element $(D_m-1/2)_+$ is nonzero, hence full in the simple unital algebra $\\Z$. Lemma~\\ref{prelim:full-compressions} supplies the second identity."
     },
     {
       "from": "m3-prelim-epsilon-test",
-      "to": "m3-setup-common"
+      "to": "m3-setup-common",
+      "context": ")-\\pi(a))\\longrightarrow0 \\qquad(a\\in A). \\] Lift the $f_l$ to positive contractive sequences in $A\\otimes\\Z_1$. Apply the countable diagonalization of Lemma~\\ref{prelim:epsilon-test} to the preceding equations on dense countable subsets, together with the coordinate test $\\|L(f_{l,n})\\|$. The latter"
     },
     {
       "from": "m3-prelim-matrix-traces",
-      "to": "m3-trace-rank"
+      "to": "m3-trace-rank",
+      "context": "; its lower semicontinuity follows from continuity of $T_n$. Furthermore, \\[ \\sigma_n(s) =\\lambda(s\\otimes\\iota_n(1))\\leq\\lambda(s\\otimes1)=\\tau(s). \\] Lemma~\\ref{prelim:matrix-traces}, applied to $\\rho_n$, gives \\begin{equation}\\label{trace:matrix-formula} \\rho_n(Y)=\\sigma_n(L_{k_n}(Y)) \\qquad(Y\\in(A"
     },
     {
       "from": "m3-prelim-domination",
-      "to": "m3-trace-rank"
+      "to": "m3-trace-rank",
+      "context": "on}. First, \\begin{equation}\\label{trace:expectation-ideal} L(t_n)\\otimes1\\in\\Ideal_R(t_n). \\end{equation} To see this, apply the domination theorem, Theorem~\\ref{prelim:domination}, on $\\Z_1$ to $v\\mapsto\\tau_{\\Z}(v)1$ and the identity map. The source is exact, the maps are nuclear, the identity ha"
     },
     {
       "from": "m3-prelim-half-comparison",
-      "to": "m3-trace-comparison"
+      "to": "m3-trace-comparison",
+      "context": "(u_{n,0})_\\omega=e\\pi(x_j),\\qquad (u_{n,1})_\\omega=e\\theta(x_j),\\qquad (z_nP_n)_\\omega=\\Psi(a_j). \\end{equation} Since $R$ is exact and $\\Z$-stable, Lemma~\\ref{prelim:half-comparison} applies to \\eqref{trace:uniform-gap}. Thus, on an $\\omega$-large set, \\[ (u_{n,i}-\\eta)_+ \\precsim(z_nP_n-2c_j)_+."
     },
     {
       "from": "m3-prelim-bounded-witness",
-      "to": "m3-trace-comparison"
+      "to": "m3-trace-comparison",
+      "context": "m bound on witnesses is essential. Fix $j$, a positive rational $\\eta$, $i\\in\\{0,1\\}$, and an accuracy $\\epsilon>0$, and let $u_i=(u_{n,i})_\\omega$. By Lemma~\\ref{prelim:bounded-witness}, choose witnesses $r_n\\in R$ on this large set such that \\[ \\begin{split} \\bigl\\|r_n^*(z_nP_n-c_j)_+r_n-(u_{n,i}-\\eta"
     }
   ]
 }

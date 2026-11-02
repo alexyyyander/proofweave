@@ -84,31 +84,38 @@
   "edges": [
     {
       "from": "m1-lem-labelling",
-      "to": "m1-prop-recurrences"
+      "to": "m1-prop-recurrences",
+      "context": "zero. The unique failed target in row $j$ is at position $m_j$, forcing $a(i,j)=m_j$. Consequently a set of $t$ vertices in $\\mathcal T$ would violate Lemma~\\ref{lem:labelling}. Thus $|\\mathcal T|<t$. Repairing a clause in this list requires changing its unique failed target from zero to one, a"
     },
     {
       "from": "m1-prop-recurrences",
-      "to": "m1-lem-quantitative-profiles"
+      "to": "m1-lem-quantitative-profiles",
+      "context": "\\max(r,t)}{M}. \\] The base bounds in~\\eqref{eq:base-profile} give $u_0\\leq L$ and $v_0=0$. For $1\\leq\\ell\\leq d$, dividing the four inequalities in Proposition~\\ref{prop:recurrences} by the corresponding powers of~$M$ gives \\begin{align*} \\frac{S_{\\ell,1}}{M^{\\ell+1}} &\\leq \\left(1+\\frac rM\\right)"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-quantitative-profiles"
+      "to": "m1-lem-quantitative-profiles",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Fix any integer $d\\geq1$ and choose an integer $M\\geq9^{d+1}$. Lemma~\\ref{lem:labelling} provides the required tournam"
     },
     {
       "from": "m1-lem-labelling",
-      "to": "m1-lem-quantitative-profiles"
+      "to": "m1-lem-quantitative-profiles",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Fix any integer $d\\geq1$ and choose an integer $M\\geq9^{d+1}$. Lemma~\\ref{lem:labelling} provides the required tournament labels. Following the OR-balancing principle of Ambainis and Sun \\cite[Section~4, Lemm"
     },
     {
       "from": "m1-lem-blocks",
-      "to": "m1-lem-quantitative-profiles"
+      "to": "m1-lem-quantitative-profiles",
+      "context": "ch copy has dimension $LM(kr)^d$, so $f$ is a total Boolean function on \\begin{equation} \\label{eq:final-dimension} n=LM^2(kr)^d \\end{equation} bits. By Lemma~\\ref{lem:blocks}, every copy is zero at its zero input, and a block from its stated family makes that copy one. Thus $f(0)=0$ and $f$ is"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-cor-power-separation"
+      "to": "m1-cor-power-separation",
+      "context": "Fix $d=9$, choose an integer $M\\geq9^{10}$, and choose any admissible labelling. Let $f$ be the function constructed in the proof of Theorem~\\ref{thm:main} for these fixed parameters. Put \\[ A=22M^{10},\\qquad B=M^2k^9. \\] Here $L=11$, so~\\eqref{eq:final-sensitivity} and \\eq"
     },
     {
       "from": "m1-lem-composition",
-      "to": "m1-cor-power-separation"
+      "to": "m1-cor-power-separation",
+      "context": "pies of $F_m$. Inductively, $F_m$ is a total function on $n^m$ bits, where $n$ is the fixed seed dimension in~\\eqref{eq:final-dimension}, and $F_m(0)=0$. Lemma~\\ref{lem:composition} gives \\[ s(F_m)\\leq A^m, \\qquad \\bs(F_m,0)\\geq B^m. \\] The latter bound proves nonconstancy and tends to infinity. S"
     }
   ]
 }

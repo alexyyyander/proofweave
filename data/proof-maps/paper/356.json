@@ -383,167 +383,208 @@
   "edges": [
     {
       "from": "m1-fwd-flow",
-      "to": "m1-fwd-configuration"
+      "to": "m1-fwd-configuration",
+      "context": "ity at degenerate triangles and zero sides. We first identify the leading distances. By integration of the speed and the composition convergence used in Lemma~\\ref{fwd:flow}, \\[ \\left(\\frac{a^h_A}{h}-|A|\\right)_+ \\longrightarrow0\\quad\\text{in }L^1(fm). \\] There is a countable collection of"
     },
     {
       "from": "m1-fwd-density",
-      "to": "m1-fwd-dual"
+      "to": "m1-fwd-dual",
+      "context": "} \\label{fwd:residual} \\partial_sp_s+\\frac12|\\nabla p_s|^2 =h^3\\langle D,Q_s\\rangle+\\frac{h^4}{2}|Q_s|^2. \\end{equation} For the optimal interpolation, Lemma~\\ref{fwd:density} gives \\begin{align*} \\int_0^1\\int\\sigma^h_s\\langle D,Q_s\\rangle\\dd s ={}&\\int_0^1\\int f\\langle D,Q_s\\rangle\\dd s +h\\"
     },
     {
       "from": "m1-fwd-flow",
-      "to": "m1-fwd-dual"
+      "to": "m1-fwd-dual",
+      "context": "} proves \\eqref{fwd:dual-expansion}. \\emph{The radial defect.} For the radial flow use its actual velocity from \\eqref{fwd:prescribed-velocity}, and use Lemma~\\ref{fwd:flow} in place of Lemma~\\ref{fwd:density}. Here \\(D=A\\), \\(C_s=sA\\), and \\(Q_s=-s\\nabla_AA\\). The last term of \\eqref{fwd:you"
     },
     {
       "from": "m1-fwd-dual",
-      "to": "m1-fwd-defect"
+      "to": "m1-fwd-defect",
+      "context": "First keep all endpoint corrections \\(S_A\\) fixed. In twice the expected radial expansion from Lemma~\\ref{fwd:dual}, minus the expected pair lower bound, every term displayed before order four cancels. Indeed independence and \\(\\mathbb"
     },
     {
       "from": "m1-fwd-configuration",
-      "to": "m1-fwd-defect"
+      "to": "m1-fwd-defect",
+      "context": "}{2},\\nabla_{B-A}(B-A)\\right\\rangle, \\] which is odd under simultaneous sign reversal of both choices. Their expectations therefore vanish. Together with Lemma~\\ref{fwd:configuration}, this proves \\begin{equation} \\label{fwd:fixed-correction-bound} \\frac\\kappa6\\int f\\,\\mathbb E|A\\wedge B|^2 \\leq 2\\ma"
     },
     {
       "from": "m1-fwd-algebra",
-      "to": "m1-fwd-defect"
+      "to": "m1-fwd-defect",
+      "context": "ing \\(j\\to\\infty\\) in \\eqref{fwd:fixed-correction-bound} gives \\[ \\frac\\kappa6\\int f\\,\\mathbb E|A\\wedge B|^2 \\leq2\\mathbb E K_{0A}-\\mathbb E K_{AB}. \\] Lemma~\\ref{fwd:algebra} is exactly \\eqref{fwd:defective-curvature}."
     },
     {
       "from": "m1-pre-tensor-continuity",
-      "to": "m1-fwd-weight-approximation"
+      "to": "m1-fwd-weight-approximation",
+      "context": "eqref{fwd:defective-curvature}, the two terms without curvature are integrals against fixed locally integrable functions. The curvature term converges by Lemma~\\ref{pre:tensor-continuity}. Passing to the limit proves the last assertion."
     },
     {
       "from": "m1-fwd-gradient-selection",
-      "to": "m1-fwd-gradient-bound"
+      "to": "m1-fwd-gradient-bound",
+      "context": "First retain an arbitrary finite sign-symmetric law as above. Apply Lemma~\\ref{fwd:gradient-selection} to the finite list \\[ V_{AB}:=-\\nabla_A(B-A). \\] For each \\(\\ell\\), apply \\eqref{fwd:defective-curvature}, as extended"
     },
     {
       "from": "m1-fwd-weight-approximation",
-      "to": "m1-fwd-gradient-bound"
+      "to": "m1-fwd-gradient-bound",
+      "context": "a~\\ref{fwd:gradient-selection} to the finite list \\[ V_{AB}:=-\\nabla_A(B-A). \\] For each \\(\\ell\\), apply \\eqref{fwd:defective-curvature}, as extended in Lemma~\\ref{fwd:weight-approximation}, with weight \\(f\\alpha_\\ell\\) and potentials \\(q_{AB,\\ell}\\). Sum over \\(\\ell\\). The curvature functional and its model"
     },
     {
       "from": "m1-fwd-gradient-bound",
-      "to": "m1-fwd-coefficients"
+      "to": "m1-fwd-coefficients",
+      "context": "For constant coefficient vectors \\(a,b\\in\\mathbb R^N\\), put \\(E(a)=\\sum_i a_iE_i\\). This is again in \\(\\mathcal G\\). Proposition~\\ref{fwd:gradient-bound} says that \\[ T_{a,b}(f):= R(E(a),E(b),E(b),E(a))(f) -\\kappa\\int f|E(a)\\wedge E(b)|^2 \\] is nonnegative on nonnegativ"
     },
     {
       "from": "m1-pre-approximation",
-      "to": "m1-fwd-field-approximation"
+      "to": "m1-fwd-field-approximation",
+      "context": "Choose a fixed compact neighborhood \\(E'\\) of \\(E\\) and apply Lemma~\\ref{pre:approximation}\\textup{(iii)} on \\(E'\\). It gives the uniform gradient bound and all the asserted scalar convergences on this fixed nei"
     },
     {
       "from": "m1-fwd-curvature",
-      "to": "m1-fwd-field-approximation"
+      "to": "m1-fwd-field-approximation",
+      "context": "[Proof of Theorem~\\ref{fwd:curvature}] It remains to extend Proposition~\\ref{fwd:gradient-bound}; the RCD and support conclusions were noted at the beginning"
     },
     {
       "from": "m1-fwd-gradient-bound",
-      "to": "m1-fwd-field-approximation"
+      "to": "m1-fwd-field-approximation",
+      "context": "[Proof of Theorem~\\ref{fwd:curvature}] It remains to extend Proposition~\\ref{fwd:gradient-bound}; the RCD and support conclusions were noted at the beginning of the section. Fix a nonnegative compactly supported test"
     },
     {
       "from": "m1-fwd-coefficients",
-      "to": "m1-fwd-field-approximation"
+      "to": "m1-fwd-field-approximation",
+      "context": "weight \\(f\\) and arbitrary \\(X,Y\\in\\TestV(M)\\). Lemma~\\ref{fwd:field-approximation} gives approximating fields \\(X_j,Y_j\\) near \\(\\operatorname{supp}f\\). Lemma~\\ref{fwd:coefficients} proves \\eqref{fwd:target} for every pair \\(X_j,Y_j\\). The field-continuity assertion of Lemma~\\ref{pre:tensor-continui"
     },
     {
       "from": "m1-pre-tensor-continuity",
-      "to": "m1-fwd-field-approximation"
+      "to": "m1-fwd-field-approximation",
+      "context": "_j\\) near \\(\\operatorname{supp}f\\). Lemma~\\ref{fwd:coefficients} proves \\eqref{fwd:target} for every pair \\(X_j,Y_j\\). The field-continuity assertion of Lemma~\\ref{pre:tensor-continuity} passes the curvature evaluation to the limit on the fixed compact support of \\(f\\). The wedge term converges by dominat"
     },
     {
       "from": "m1-heat-analytic-inputs",
-      "to": "m1-heat-regularity"
+      "to": "m1-heat-regularity",
+      "context": "The first heat datum is a constant plus a compactly supported \\(W^{1,2}\\cap L^\\infty\\) function. Constants are preserved by the heat flow, so Lemma~\\ref{heat:analytic-inputs} applies. Since \\(u\\) is bounded, \\(H_t\\) has positive global lower and upper bounds for fixed \\(c\\). Thus \\(g=f/H_1\\) b"
     },
     {
       "from": "m1-heat-kernel-ratio",
-      "to": "m1-heat-density-laplacian"
+      "to": "m1-heat-density-laplacian",
+      "context": "endpoint bound let \\(r=1-t\\), \\(g=f/H_1\\), and \\(s=cr\\). When \\(r\\le c\\), the logarithmic Lipschitz bound for \\(g\\) is at most \\(C/c\\), and \\(s\\le c^2\\). Lemma \\ref{heat:kernel-ratio} and \\eqref{heat:laplacian-estimate} consequently give \\[ \\frac{|\\Delta P_sg|}{P_sg} \\le C s^{-1/2}c^{-1},\\qquad c|\\Delt"
     },
     {
       "from": "m1-heat-weighted-estimates",
-      "to": "m1-heat-error-cancellation"
+      "to": "m1-heat-error-cancellation",
+      "context": "e \\(E\\) contains the common support and \\(T_0\\) is a fixed \\(L^2\\) coefficient formed from \\(\\nabla Y,D\\) and bounded trial fields. This tends to zero by Lemma \\ref{heat:weighted-estimates}. The remaining terms involving \\(H_b\\) or \\(\\Delta b\\), one factor \\(w\\), and derivatives of \\(Y\\) are bounded the same"
     },
     {
       "from": "m1-heat-error-cancellation",
-      "to": "m1-heat-viscous-index"
+      "to": "m1-heat-viscous-index",
+      "context": "ring vanishes. Apply \\textup{(B)} to its curvature term and use \\[ 2H_\\theta(D_cY,Y)-|H_\\theta Y|^2\\le|D_cY|^2, \\qquad D_cY=\\partial_tY+\\nabla_{v_c}Y. \\] Lemma~\\ref{heat:error-cancellation} bounds the last term uniformly in \\(T\\). The resulting right-hand side is integrable up to one, by boundedness of \\(\\rh"
     },
     {
       "from": "m1-heat-kernel-ratio",
-      "to": "m1-heat-laplace-principle"
+      "to": "m1-heat-laplace-principle",
+      "context": "Indeed the integral of the reserved Gaussian, divided by \\(m(B_{\\sqrt{ct}}(x))\\), is uniformly bounded by the annular volume-comparison estimate used in Lemma~\\ref{heat:kernel-ratio}. For the lower kernel bound, choose a minimizer for the corresponding modified quadratic cost and integrate over a smal"
     },
     {
       "from": "m1-heat-weighted-estimates",
-      "to": "m1-heat-action-limit"
+      "to": "m1-heat-action-limit",
+      "context": "ts; no Laplacian bound at exactly time one is needed. The difference between the actions of \\(a\\) and \\(v_c\\) tends to zero on bounded spatial regions by Lemma~\\ref{heat:weighted-estimates}. On their complement it is bounded by a constant times the density mass, uniformly small by \\eqref{heat:uniform-moment-"
     },
     {
       "from": "m1-heat-index",
-      "to": "m1-heat-common-paths"
+      "to": "m1-heat-common-paths",
+      "context": "[Proof of Theorem~\\ref{heat:index}] First take \\(f\\in\\mathcal F\\). On the common compact support of the trial, Lemma~\\ref{heat:laplace-principle} and the"
     },
     {
       "from": "m1-heat-laplace-principle",
-      "to": "m1-heat-common-paths"
+      "to": "m1-heat-common-paths",
+      "context": "[Proof of Theorem~\\ref{heat:index}] First take \\(f\\in\\mathcal F\\). On the common compact support of the trial, Lemma~\\ref{heat:laplace-principle} and the uniform gradient bounds imply \\[ H_{\\phi_1^c+c\\log f}(Z,Z)(f) \\longrightarrow H_{\\Phi_1}(Z,Z)(f). \\] Indeed \\eq"
     },
     {
       "from": "m1-heat-viscous-index",
-      "to": "m1-heat-common-paths"
+      "to": "m1-heat-common-paths",
+      "context": ". Lemma~\\ref{heat:common-paths} identifies the limiting expression with the path integral in \\eqref{heat:index-inequality}. Let \\(c\\downarrow0\\) in Proposition~\\ref{heat:viscous-index}. Finally, for the desired compact datum \\(f_0\\), use \\(f_\\lambda=f_0+\\lambda\\bar f\\). The common prescription gives \\("
     },
     {
       "from": "m1-frames-countable-frames",
-      "to": "m1-frames-energy-content"
+      "to": "m1-frames-energy-content",
+      "context": "[Proof of Proposition~\\ref{frames:countable-frames}] \\textbf{Selection at all dyadic scales.} Put $r_k=2^{-k}$, and choose a countable $r_k$-net $N_k$ in $M$. For each"
     },
     {
       "from": "m1-frames-content-null",
-      "to": "m1-frames-energy-content"
+      "to": "m1-frames-energy-content",
+      "context": "ery regular $x$ and every $s>n-2$ this gives \\[ \\mathcal H^s_\\infty(S\\cap B(x,r_k))=o(r_k^s). \\] The constants are uniform on each bounded region. Lemma~\\ref{frames:content-null}, followed by a bounded exhaustion, gives $\\mathcal H^s(S)=0$. In particular we take $s=n-1$. When $n=2$ this is $s=1"
     },
     {
       "from": "m1-frames-path-avoidance",
-      "to": "m1-frames-path-calculus"
+      "to": "m1-frames-path-calculus",
+      "context": "\\textbf{Fibers and connection.} Lemmas~\\ref{frames:path-avoidance} and \\ref{frames:regular-paths} ensure that, along almost every entire path, the common Gram representatives have rank"
     },
     {
       "from": "m1-frames-regular-paths",
-      "to": "m1-frames-path-calculus"
+      "to": "m1-frames-path-calculus",
+      "context": "\\textbf{Fibers and connection.} Lemmas~\\ref{frames:path-avoidance} and \\ref{frames:regular-paths} ensure that, along almost every entire path, the common Gram representatives have rank $n$ at every time. Sobolev di"
     },
     {
       "from": "m1-frames-path-calculus",
-      "to": "m1-frames-trial-density"
+      "to": "m1-frames-trial-density",
+      "context": "al A, \\] with arbitrary finite lists of indices. This is countable and has the required global endpoint identities. Work on a path satisfying Proposition~\\ref{frames:path-calculus}. Subtract $\\eta Z$ from $W$. In a global parallel frame the resulting field has $W^{1,2}_0$ coefficients. Cutting i"
     },
     {
       "from": "m1-frames-countable-frames",
-      "to": "m1-frames-terminal-trace"
+      "to": "m1-frames-terminal-trace",
+      "context": "ne{B(p,R_\\kappa)}$, and compact test functions $h_j\\to\\widetilde q$ in $W^{1,2}$. Include this deterministic countable sequence in the family of Proposition~\\ref{frames:countable-frames} before applying the pathwise statements. Test-function density here follows from heat regularization and good cutoff"
     },
     {
       "from": "m1-frames-terminal-trace",
-      "to": "m1-frames-hessian"
+      "to": "m1-frames-hessian",
+      "context": "Use the radial data \\eqref{frames:radial-data}. For the fixed $Z$, adjoin its potential and the approximations in Lemma~\\ref{frames:terminal-trace} to the countable family. Fix $0<\\delta<1$. For every trial \\eqref{heat:trial-class} satisfying the global endpoint i"
     },
     {
       "from": "m1-heat-index",
-      "to": "m1-frames-hessian"
+      "to": "m1-frames-hessian",
+      "context": "he countable family. Fix $0<\\delta<1$. For every trial \\eqref{heat:trial-class} satisfying the global endpoint identities $Y_\\delta=0$ and $Y_1=Z$, Theorem~\\ref{heat:index} gives \\begin{equation}\\label{frames:index-terminal} \\Hess q(Z,Z)(f)\\leq\\int_{B(p,R_\\kappa)} f(x)E_Y(x)\\dd m(x), \\en"
     },
     {
       "from": "m1-frames-trial-density",
-      "to": "m1-frames-hessian"
+      "to": "m1-frames-hessian",
+      "context": "athrm s}$ for its Lebesgue decomposition. Apply \\eqref{frames:index-terminal} to each member of the countable collection $\\mathcal Y_{\\delta,Z}$ from Lemma~\\ref{frames:trial-density}. Each inequality says that $E_Ym-\\mu$ is a positive Radon measure. Consequently \\begin{equation}\\label{frames:count"
     },
     {
       "from": "m1-frames-hessian",
-      "to": "m1-weight-distance-modification"
+      "to": "m1-weight-distance-modification",
+      "context": "\\nabla q,Z\\rangle/r\\); then \\(|Z_r|\\le|Z|\\), since the Lipschitz bound for \\(r\\) gives \\(|\\nabla q|\\le r\\) almost everywhere. The Hessian comparison of Theorem~\\ref{frames:hessian} and \\(\\chi'\\ge0\\) bound \\eqref{weight:weak-chain} above by \\[ \\int h\\left[A(r)|Z_r|^2 +B(r)(|Z|^2-|Z_r"
     },
     {
       "from": "m1-heat-index",
-      "to": "m1-weight-alexandrov"
+      "to": "m1-weight-alexandrov",
+      "context": "Theorems~\\ref{heat:index} and \\ref{frames:hessian} supply the hypothesis of Lemma~\\ref{weight:distance-modification}. Apply Theorem~\\ref{weight:e"
     },
     {
       "from": "m1-frames-hessian",
-      "to": "m1-weight-alexandrov"
+      "to": "m1-weight-alexandrov",
+      "context": "Theorems~\\ref{heat:index} and \\ref{frames:hessian} supply the hypothesis of Lemma~\\ref{weight:distance-modification}. Apply Theorem~\\ref{weight:every-geodesic} to \\(F_p,G"
     },
     {
       "from": "m1-weight-distance-modification",
-      "to": "m1-weight-alexandrov"
+      "to": "m1-weight-alexandrov",
+      "context": "Theorems~\\ref{heat:index} and \\ref{frames:hessian} supply the hypothesis of Lemma~\\ref{weight:distance-modification}. Apply Theorem~\\ref{weight:every-geodesic} to \\(F_p,G_p\\). For every geodesic \\(\\sigma\\colon[0,1]\\to B_a(p)\\) of length"
     },
     {
       "from": "m1-weight-every-geodesic",
-      "to": "m1-weight-alexandrov"
+      "to": "m1-weight-alexandrov",
+      "context": "Theorems~\\ref{heat:index} and \\ref{frames:hessian} supply the hypothesis of Lemma~\\ref{weight:distance-modification}. Apply Theorem~\\ref{weight:every-geodesic} to \\(F_p,G_p\\). For every geodesic \\(\\sigma\\colon[0,1]\\to B_a(p)\\) of length \\(\\ell\\), \\eqref{weight:local-modification"
     },
     {
       "from": "m2-weight-resolvent",
-      "to": "m2-weight-variable-cd"
+      "to": "m2-weight-variable-cd",
+      "context": "ore identity.} Fix \\(\\lambda>0\\), and write \\(V=\\lambda F\\), \\(w=e^V\\), \\(k=K-\\lambda G\\). Take a nonnegative \\(\\xi\\) in \\eqref{weight:multiplier-class}. Lemma~\\ref{weight:resolvent} makes \\(\\xi\\) Lipschitz. Initially let \\(g\\in\\Test\\) be compactly supported, and set \\(q=\\Gamma(g)/2\\), \\(b=\\Gamma(V,g)"
     },
     {
       "from": "m2-pre-approximation",
-      "to": "m2-weight-variable-cd"
+      "to": "m2-weight-variable-cd",
+      "context": "ph norm. Indeed, graph convergence implies strong \\(L^2\\) convergence of gradients; use the boundedness of \\(\\xi,\\Delta_V\\xi,|\\nabla\\xi|\\), and \\(k\\). By Lemma~\\ref{pre:approximation} and graph-norm equivalence, compact original test functions form a core for \\(\\Delta_V\\). Consequently \\eqref{weight:co"
     },
     {
       "from": "m2-weight-every-geodesic",
-      "to": "m2-weight-variable-cd"
+      "to": "m2-weight-variable-cd",
+      "context": "[Proof of Theorem~\\ref{weight:every-geodesic}] The case \\(\\ell=0\\) is immediate. A finite-dimensional \\(\\RCD\\) space is nonbranching \\cite[Theorem~1.3]{Deng2020}. Ev"
     }
   ]
 }

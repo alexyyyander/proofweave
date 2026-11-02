@@ -266,115 +266,143 @@
   "edges": [
     {
       "from": "m1-lem-nonconstant-roots",
-      "to": "m1-lem-stable-multiplicity"
+      "to": "m1-lem-stable-multiplicity",
+      "context": "Specialize a size-$pN$ point to a diagonal sum of $N$ independent size-$p$ points. Lemma~\\ref{lem:nonconstant-roots} gives $Ne_p$ distinct eigenvalues there. The generic bound on minimal-polynomial degree survives this specialization:"
     },
     {
       "from": "m1-lem-admissible-evaluation",
-      "to": "m1-lem-stable-multiplicity"
+      "to": "m1-lem-stable-multiplicity",
+      "context": "g of all $(e_{pN}+1)$-minors of the matrix whose columns are the vectorizations of $1,W,\\ldots,W^{e_{pN}}$. These are formal entry identities covered by Lemma~\\ref{lem:admissible-evaluation}. Consequently $e_{pN}\\ge Ne_p$. Minimality of $t$ gives the opposite inequality, $e_{pN}=dpN/t_{pN}\\le dpN/t=Ne_p$."
     },
     {
       "from": "m1-lem-stable-multiplicity",
-      "to": "m1-lem-paired-scalar"
+      "to": "m1-lem-paired-scalar",
+      "context": "At $x=y=0$, disjointness and Lemma~\\ref{lem:stable-multiplicity} give $e_n+e_{n'}=e_{n+n'}$ roots. Thus Lemma~\\ref{lem:scalar-branches} applies. Either arrow alone leaves the spectru"
     },
     {
       "from": "m1-lem-scalar-branches",
-      "to": "m1-lem-paired-scalar"
+      "to": "m1-lem-paired-scalar",
+      "context": "At $x=y=0$, disjointness and Lemma~\\ref{lem:stable-multiplicity} give $e_n+e_{n'}=e_{n+n'}$ roots. Thus Lemma~\\ref{lem:scalar-branches} applies. Either arrow alone leaves the spectrum unchanged, so the chosen branch has no terms depending on $x$ alone or"
     },
     {
       "from": "m1-lem-generic-detection",
-      "to": "m1-lem-active-specialization"
+      "to": "m1-lem-active-specialization",
+      "context": "s; its auxiliary coefficients have a uniform valuation bound. Its formal identity is therefore equivalent to its identity at a small generic partner, by Lemma~\\ref{lem:generic-detection}. It persists under the admissible specializations of Lemma~\\ref{lem:admissible-evaluation}. Divide by the specialized"
     },
     {
       "from": "m1-lem-admissible-evaluation",
-      "to": "m1-lem-active-specialization"
+      "to": "m1-lem-active-specialization",
+      "context": "erefore equivalent to its identity at a small generic partner, by Lemma~\\ref{lem:generic-detection}. It persists under the admissible specializations of Lemma~\\ref{lem:admissible-evaluation}. Divide by the specialized determinants when they are nonzero. The same argument, entry by entry, proves the scalar id"
     },
     {
       "from": "m1-lem-active-specialization",
-      "to": "m1-prop-active-partition"
+      "to": "m1-prop-active-partition",
+      "context": "uation} (a,b)\\longmapsto \\left(\\frac{a_hb_h}{D_h(P;v)}\\right)_h. \\label{eq:weighted-product} \\end{equation} Choose two finite spanning sets supplied by Lemma~\\ref{lem:active-specialization}, using independent partner points for the two sets. It suffices to prove the assertion for a column $a$ in the first s"
     },
     {
       "from": "m1-lem-killed-pole",
-      "to": "m1-prop-word-transfer"
+      "to": "m1-prop-word-transfer",
+      "context": "gular in this identification, with every diagonal block equal to $D_h(P;v)I_t$. It is therefore invertible. This verifies the simple-pole hypothesis of Lemma~\\ref{lem:killed-pole}, including the effect of all internal triangular arrows. Let $T(\\xi)$ be the corresponding full cropped input and use"
     },
     {
       "from": "m1-lem-active-specialization",
-      "to": "m1-prop-word-transfer"
+      "to": "m1-prop-word-transfer",
+      "context": "are small blocks with a Taylor shift, and its strictly upper entries are fixed finite matrices. Clear the target resolvent determinants first and apply Lemma~\\ref{lem:active-specialization}; restore the inverses over $E((\\xi))$, where the preceding argument proves they exist. No specialization of an undefin"
     },
     {
       "from": "m1-prop-word-transfer",
-      "to": "m1-prop-functional-linkage"
+      "to": "m1-prop-functional-linkage",
+      "context": "t the moved input $P+\\eta v$, with the moved eigenvalues, projections, and $D$-factors. They remain valid in the triangular specializations used in Proposition~\\ref{prop:word-transfer}. More explicitly, first clear the finitely many auxiliary resolvent determinants. At each Taylor degree, the number o"
     },
     {
       "from": "m1-lem-active-specialization",
-      "to": "m1-prop-functional-linkage"
+      "to": "m1-prop-functional-linkage",
+      "context": "nts in $\\eta$, while the diagonal entries are expanded at the original small inputs. Coefficientwise convergence and specialization are then supplied by Lemma~\\ref{lem:active-specialization}. Thus the transfer argument applies over $E((\\eta))$ with the transported response relation. Write $v_R$ for $v$ supp"
     },
     {
       "from": "m1-lem-scalar-branches",
-      "to": "m1-prop-functional-linkage"
+      "to": "m1-prop-functional-linkage",
+      "context": "is fixed as well: \\[ \\Lambda_h^{R(\\eta)}(H)=\\lambda_h(P+\\eta v) \\] on the quotient. For clarity, the implication from $S_h=0$ uses the scalar blocks of Lemma~\\ref{lem:scalar-branches}: the complementary block at the fixed root is invertible, and the determinant of the full matrix at that root is a unit"
     },
     {
       "from": "m1-prop-functional-linkage",
-      "to": "m1-prop-active-replication"
+      "to": "m1-prop-active-replication",
+      "context": "h,h'$ in one member of $\\mathcal P_{P_i}$. Choose a constant direction $v_i$ supported in that block, nonzero under every $D_h(P_i;\\cdot)$. Apply Proposition~\\ref{prop:functional-linkage} first at $R_1$. Differentiating its identity gives proportional loop responses at $x$. Now adjoin an independent gener"
     },
     {
       "from": "m1-lem-admissible-evaluation",
-      "to": "m1-prop-active-replication"
+      "to": "m1-prop-active-replication",
+      "context": "e ordinary matrix series with two prescribed arrow steps and a fixed number of Taylor insertions. Their path expansions give precisely this bound, as in Lemma~\\ref{lem:admissible-evaluation}. Evaluation at small generic $Q$ therefore detects every coefficient. Equation~\\eqref{eq:replicated-pair-relation} is c"
     },
     {
       "from": "m1-lem-active-specialization",
-      "to": "m1-prop-active-replication"
+      "to": "m1-prop-active-replication",
+      "context": "$. These partitions have $Na_p$ members in total, and all their normalizing factors are nonzero. Thus $a_n\\leq Na_p$. For the opposite inequality, use Lemma~\\ref{lem:active-specialization} for each $P_i$, choosing all partners jointly independent. At $R_1$, support each loop direction, and both arrows of e"
     },
     {
       "from": "m1-lem-active-specialization",
-      "to": "m1-cor-equal-size-partners"
+      "to": "m1-cor-equal-size-partners",
+      "context": "Choose a finite witness list at size $p$ from Lemma~\\ref{lem:active-specialization}, and let its partner sizes be $q_1,\\ldots,q_M\\in\\mathcal S$. Choose $r=pN$ with $r\\geq q_j$ for every $j$. Specialize"
     },
     {
       "from": "m1-prop-active-replication",
-      "to": "m1-cor-equal-size-partners"
+      "to": "m1-cor-equal-size-partners",
+      "context": "remains the original size-$p$ witness on its chosen base block and is zero on the other base blocks. The resulting columns have rank $Na_p=a_r$ by Proposition~\\ref{prop:active-replication}. All inputs at this specialization have maximal spectral count, and the partner spectra are disjoint from the base spe"
     },
     {
       "from": "m1-lem-star-derivatives",
-      "to": "m1-lem-tail-defect"
+      "to": "m1-lem-tail-defect",
+      "context": "_{rN}\\leq a_{rN}\\) show that \\(g_N\\geq0\\). For \\(N\\geq K_0\\), take \\(K_0\\) of \\(N\\) independent size-\\(r\\) blocks as hubs and the remainder as leaves. By Lemma~\\ref{lem:star-derivatives} and the attainability property, the projection of the derivative image onto the leaf active spaces is surjective. Rever"
     },
     {
       "from": "m1-lem-pair-quotient-surjectivity",
-      "to": "m1-lem-common-tangent"
+      "to": "m1-lem-common-tangent",
+      "context": "\\(\\bigoplus_i L_{P_i}\\), of dimension \\(M(a-g)\\). Modulo that space, reverse derivatives project surjectively onto each of the \\(M-1\\) leaf quotients by Lemma~\\ref{lem:pair-quotient-surjectivity}. These projections vary independently. The derivative rank at this star is therefore at least \\[ M(a-g)+(M-1)g=R. \\] T"
     },
     {
       "from": "m1-lem-tail-defect",
-      "to": "m1-lem-common-tangent"
+      "to": "m1-lem-common-tangent",
+      "context": "ctivity}. These projections vary independently. The derivative rank at this star is therefore at least \\[ M(a-g)+(M-1)g=R. \\] The generic upper bound in Lemma~\\ref{lem:tail-defect} is \\(R\\). Thus at a generic strictly upper-arrow array \\(\\mathcal U\\) the selected-root derivative rank equals \\(R\\)."
     },
     {
       "from": "m1-lem-star-derivatives",
-      "to": "m1-lem-common-tangent"
+      "to": "m1-lem-common-tangent",
+      "context": "Loop columns occur at the diagonal input. A paired column supported on two blocks occurs at the base with just the corresponding single upper arrow, by Lemma~\\ref{lem:star-derivatives}. Allowing both arrows to vary makes the collection independent of which orientation is called forward. All these column"
     },
     {
       "from": "m1-lem-common-tangent",
-      "to": "m1-prop-compatible-relations"
+      "to": "m1-prop-compatible-relations",
+      "context": "Define \\(\\mathcal G\\) as the annihilator of all loop and joint paired columns in the selected coordinate space. By Lemma~\\ref{lem:common-tangent}, it has dimension \\(g\\); annihilation of loops identifies it with a subspace of \\(\\bigoplus_i H_{P_i}^*\\). If an elemen"
     },
     {
       "from": "m1-lem-star-derivatives",
-      "to": "m1-lem-limiting-columns"
+      "to": "m1-lem-limiting-columns",
+      "context": "Over the Laurent field, apply Lemma~\\ref{lem:star-derivatives} with the whole leaf array as one block. For loop derivatives, the bounded leaf projection tends to \\(\\pi_{i,h}\\otimes\\P"
     },
     {
       "from": "m1-lem-repeated-splitting",
-      "to": "m1-lem-limiting-columns"
+      "to": "m1-lem-limiting-columns",
+      "context": "l these limits coefficientwise. The curve column lies in the span of input derivative columns over the Laurent field by the chain rule. The expansion in Lemma~\\ref{lem:repeated-splitting} gives \\[ \\delta^{1-\\ell}\\frac{d}{d\\delta} \\lambda_{i,h,j}(\\delta) =\\ell\\theta_{i,h,j}+O(\\delta). \\] Hub roots"
     },
     {
       "from": "m1-prop-compatible-relations",
-      "to": "m1-lem-hub-nullspace"
+      "to": "m1-lem-hub-nullspace",
+      "context": ",h}\\) is diagonal. When \\(r=p\\), the corresponding diagonal-entry functional and the hub functional \\(\\nu_p\\) are exactly a pair in the relation of Proposition~\\ref{prop:compatible-relations}. For the common hub, the leaf expression is \\[ \\operatorname{tr}\\left(T_{i,h}\\sum_pE_{pr}\\right) =\\sum_p(T_{i,h})_"
     },
     {
       "from": "m1-thm-cyclic-compatibility",
-      "to": "m1-lem-hub-nullspace"
+      "to": "m1-lem-hub-nullspace",
+      "context": "[Proof of Theorem~\\ref{thm:cyclic-compatibility}] Apply Lemma~\\ref{lem:hub-nullspace} to arbitrary \\(S_1,S_2\\) and to the auxiliary loops chosen in Lemma~\\ref{lem:repea"
     },
     {
       "from": "m1-lem-repeated-splitting",
-      "to": "m1-lem-hub-nullspace"
+      "to": "m1-lem-hub-nullspace",
+      "context": "[Proof of Theorem~\\ref{thm:cyclic-compatibility}] Apply Lemma~\\ref{lem:hub-nullspace} to arbitrary \\(S_1,S_2\\) and to the auxiliary loops chosen in Lemma~\\ref{lem:repeated-splitting}. The added-loop contribution to \\eqref{eq:error-matrix-trace} is zero. Indeed, write \\(Y_i=\\sum_\\alpha Y_{i,\\alpha}\\oti"
     },
     {
       "from": "m1-lem-derivatives-of-relations",
-      "to": "m1-lem-generic-generating-blocks"
+      "to": "m1-lem-generic-generating-blocks",
+      "context": "((\\varepsilon))$-algebra generated by $X(P_i)$. Their reductions modulo $\\varepsilon$ contain $M_d(E)\\otimes1$, because $X_0$ generates the old algebra. Lemma~\\ref{lem:derivatives-of-relations} also gives \\[ \\varepsilon^{-1}f_j(X(P_i)) \\equiv I_d\\otimes P_{i,j}^{\\circ}\\pmod\\varepsilon. \\] A generic pair genera"
     }
   ]
 }

@@ -1,0 +1,174 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "321",
+  "title": "A counterexample to Wall's finite D(2) problem",
+  "result": {
+    "id": "paper-result",
+    "label": "A counterexample to Wall's finite D(2) problem",
+    "statement": "Constructs a finite connected three-dimensional CW complex whose universal cover has no integral homology above degree two and whose third cohomology vanishes for every local coefficient module, but which has no finite two-dimensional homotopy model. This disproves Wall's finite D(2) conjecture; the example has infinite fundamental group.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "a-tower-obstruction-in-dimension-two",
+      "label": "A tower obstruction in dimension two",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-tower-obstruction-in-dimension-two-2",
+      "label": "A tower obstruction in dimension two",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-tower-obstruction-in-dimension-two-3",
+      "label": "A tower obstruction in dimension two",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-finite-plus-construction",
+      "label": "A finite plus construction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-counterexample",
+      "label": "The counterexample",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-counterexample-2",
+      "label": "The counterexample",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "A Counterexample to Wall's D(2) Problem",
+      "title": "A Counterexample to Wall's D(2) Problem",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-06",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Counterexample-to-Walls-D2-Problem-October-6-2026/wall-d2-counterexample.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from A Counterexample to Wall's D(2) Problem; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "There is a finite connected three-dimensional CW complex X such that \\[ H_i(…",
+          "fullLabel": "There is a finite connected three-dimensional CW complex X such that \\[ H_i(…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "There is a finite connected three-dimensional CW complex X such that \\[ H_i( X;)=0(i>2), H^3(X;M)=0for every -module M, \\] but X is not homotopy equivalent to any finite CW complex of dimension at…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-cyclic-cover",
+          "role": "a-tower-obstruction-in-dimension-two",
+          "label": "Infinite cyclic covers",
+          "fullLabel": "Infinite cyclic covers",
+          "kind": "lemma",
+          "source": "A tower obstruction in dimension two",
+          "detail": "[Infinite cyclic covers] Let A be a finite connected CW complex of dimension at most two, let L be a rank-one complex local system on A , and let p: A A be a connected infinite cyclic cover. If…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-tower",
+          "role": "a-tower-obstruction-in-dimension-two-2",
+          "label": "Tower obstruction",
+          "fullLabel": "Tower obstruction",
+          "kind": "theorem",
+          "source": "A tower obstruction in dimension two",
+          "detail": "[Tower obstruction] Let Y be a finite connected CW complex of dimension at most two, and let L be a rank-one complex local system on Y with H_2(Y;L)=0 . There is no map f:F Y from a finite connected…",
+          "dependsOn": [
+            "m1-lem-cyclic-cover"
+          ]
+        },
+        {
+          "id": "m1-cor-torsion",
+          "role": "a-tower-obstruction-in-dimension-two-3",
+          "label": "Characters and torsion",
+          "fullLabel": "Characters and torsion",
+          "kind": "corollary",
+          "source": "A tower obstruction in dimension two",
+          "detail": "[Characters and torsion] Let Y be a finite connected CW complex of dimension at most two. If a character :_1(Y)^ satisfies H_2(Y;_)=0 , then (g)=1 for every finite-order element g_1(Y) .",
+          "dependsOn": [
+            "m1-thm-tower"
+          ]
+        },
+        {
+          "id": "m1-prop-plus",
+          "role": "a-finite-plus-construction",
+          "label": "Finite plus construction",
+          "fullLabel": "Finite plus construction",
+          "kind": "proposition",
+          "source": "A finite plus construction",
+          "detail": "[Finite plus construction] Let B be a finite connected CW complex of dimension at most two, with _1(B)=P . Suppose that the normal closure K of elements t_1,,t_r P is perfect, and put G=P/K . There…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-perfect",
+          "role": "the-counterexample",
+          "label": "The normal subgroup K is perfect.",
+          "fullLabel": "The normal subgroup K is perfect.",
+          "kind": "lemma",
+          "source": "The counterexample",
+          "detail": "The normal subgroup K is perfect.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-twisted-vanishing",
+          "role": "the-counterexample-2",
+          "label": "The local system L_ satisfies H_2(X;L_)=0 .",
+          "fullLabel": "The local system L_ satisfies H_2(X;L_)=0 .",
+          "kind": "lemma",
+          "source": "The counterexample",
+          "detail": "The local system L_ satisfies H_2(X;L_)=0 .",
+          "dependsOn": [
+            "m1-prop-plus",
+            "m1-thm-main",
+            "m1-cor-torsion",
+            "m1-thm-tower"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "A Counterexample to Wall's D(2) Problem",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Counterexample-to-Walls-D2-Problem-October-6-2026/wall-d2-counterexample.pdf",
+      "kind": "paper"
+    }
+  ]
+}

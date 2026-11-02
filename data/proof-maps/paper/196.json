@@ -117,47 +117,58 @@
   "edges": [
     {
       "from": "m1-lem-prescriptions",
-      "to": "m1-lem-diameter"
+      "to": "m1-lem-diameter",
+      "context": ")\\); choosing an unordered \\(r\\)-subset costs at most \\((C_1k)^r\\). Decrease \\(\\rho\\) so that \\(r\\le np/3\\) throughout the range. For sufficiently large \\(n\\), \\Cref{lem:prescriptions} then bounds the probability of all \\(r\\) prescriptions by \\((2/(np))^r\\). Hence the probability of a failure of size \\("
     },
     {
       "from": "m1-lem-squared-words",
-      "to": "m1-prop-bounded-pattern"
+      "to": "m1-prop-bounded-pattern",
+      "context": "entation, specify the integer \\[ d_i=\\lfloor-\\log P(W_i)\\rfloor. \\] We need only consider positive weights, since feasible block words are immersed. By Lemma~\\ref{lem:squared-words}, every such word of length \\(h\\) has \\(P(W)\\le e^{-\\delta h}\\) for all sufficiently large \\(h\\). The smallest positive"
     },
     {
       "from": "m1-lem-prescriptions",
-      "to": "m1-prop-bounded-pattern"
+      "to": "m1-prop-bounded-pattern",
+      "context": "he same matching pair in either direction, because injectivity and the immersion condition would then identify their outgoing letters at an endpoint. By Lemma~\\ref{lem:prescriptions}, the probability of all these prescriptions is at most \\[ \\left(\\frac{1+o(1)}{np}\\right)^{E_j}, \\] uniformly since \\(E"
     },
     {
       "from": "m1-prop-bounded-pattern",
-      "to": "m1-lem-planar-intervals"
+      "to": "m1-lem-planar-intervals",
+      "context": "ir in distinct twos, giving at most $J/2\\le6N'$ interval pairs. Inverse letters and reversed order are exactly the signed comparison convention of Proposition~\\ref{prop:bounded-pattern}."
     },
     {
       "from": "m1-prop-bounded-pattern",
-      "to": "m1-prop-no-arrangements"
+      "to": "m1-prop-no-arrangements",
+      "context": "Let $\\varepsilon>0$ be supplied by Proposition~\\ref{prop:bounded-pattern}; it is independent of the fixed pattern bounds. Fix $d$ for the diameter event and then the integer $D$ from Lemma~\\re"
     },
     {
       "from": "m1-lem-short-closure",
-      "to": "m1-prop-no-arrangements"
+      "to": "m1-prop-no-arrangements",
+      "context": "d by Proposition~\\ref{prop:bounded-pattern}; it is independent of the fixed pattern bounds. Fix $d$ for the diameter event and then the integer $D$ from Lemma~\\ref{lem:short-closure}. Splitting at length about $UL$ will make each closure cost of at most $DL$ a small proportion of the original length."
     },
     {
       "from": "m1-lem-planar-separation",
-      "to": "m1-prop-no-arrangements"
+      "to": "m1-prop-no-arrangements",
+      "context": "label{eq:planar-parameters}\\\\ a&=6,\\qquad C_2=32a, &C&=K(U+D),\\qquad I=\\lceil C_2C\\rceil. \\notag \\end{align} Here $C_{\\mathrm{sep}}$ is the constant in Lemma~\\ref{lem:planar-separation}. These choices imply \\begin{equation} \\frac{3D}{U}\\le\\frac{\\varepsilon}{32},\\qquad 2\\eta U\\le\\frac1{16},\\qquad 2\\eta"
     },
     {
       "from": "m1-lem-planar-intervals",
-      "to": "m1-prop-no-arrangements"
+      "to": "m1-prop-no-arrangements",
+      "context": "been closed and there is no remaining interval path. Otherwise the entire exceptional path remains, with its original prescribed initial vertex. Apply Lemma~\\ref{lem:planar-intervals} to the original positions in these pieces. It represents their pairing by at most $aN'$ interval pairs, each contained"
     },
     {
       "from": "m1-prop-topology",
-      "to": "m1-cor-torsion-free"
+      "to": "m1-cor-torsion-free",
+      "context": "The simply connected two-dimensional cover \\(\\widetilde X\\) has \\(H_2=0\\) by \\Cref{prop:topology} and Hurewicz, has \\(H_1=0\\), and has no cellular homology above dimension two. It is therefore contractible by the homo"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-cor-torsion-free"
+      "to": "m1-cor-torsion-free",
+      "context": "[Proof of \\Cref{thm:main}] Use the graphs of \\Cref{prop:no-arrangements} and the complex \\(X\\) constructed in \\Cref{sec:topology}. It is finite a"
     },
     {
       "from": "m1-prop-no-arrangements",
-      "to": "m1-cor-torsion-free"
+      "to": "m1-cor-torsion-free",
+      "context": "[Proof of \\Cref{thm:main}] Use the graphs of \\Cref{prop:no-arrangements} and the complex \\(X\\) constructed in \\Cref{sec:topology}. It is finite and two-dimensional. By \\Cref{cor:torsion-free},"
     }
   ]
 }

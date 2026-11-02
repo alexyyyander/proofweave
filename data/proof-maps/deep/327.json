@@ -1,0 +1,190 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "327",
+  "title": "Markov type characterizes superreflexivity",
+  "result": {
+    "id": "paper-result",
+    "label": "Markov type characterizes superreflexivity",
+    "statement": "Proves that every real Banach space with Markov type p for some p > 1 admits an equivalent uniformly convex norm, answering Naor's renorming question. Together with the known converse, this characterizes superreflexivity by nontrivial Markov type.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "reduction-to-a-finite-walk",
+      "label": "Reduction to a finite walk",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "reduction-to-a-finite-walk-2",
+      "label": "Reduction to a finite walk",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "reduction-to-a-finite-walk-3",
+      "label": "Reduction to a finite walk",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-charts-for-ordered-motion",
+      "label": "Finite charts for ordered motion",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-charts-for-ordered-motion-2",
+      "label": "Finite charts for ordered motion",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-levels-from-reduced-words",
+      "label": "Two levels from reduced words",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-levels-from-reduced-words-2",
+      "label": "Two levels from reduced words",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Nontrivial Markov Type Forces Superreflexivity",
+      "title": "Nontrivial Markov Type Forces Superreflexivity",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Nontrivial-Markov-Type-Forces-Superreflexivity-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Nontrivial Markov Type Forces Superreflexivity; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "Every real Banach space with Markov type p for at least one p>1 is…",
+          "fullLabel": "Every real Banach space with Markov type p for at least one p>1 is…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "Every real Banach space with Markov type p for at least one p>1 is superreflexive.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-ordered-norm",
+          "role": "reduction-to-a-finite-walk",
+          "label": "If a real Banach space X is not superreflexive, there is a norm N on c_ 00 such…",
+          "fullLabel": "If a real Banach space X is not superreflexive, there is a norm N on c_ 00 such…",
+          "kind": "lemma",
+          "source": "Reduction to a finite walk",
+          "detail": "If a real Banach space X is not superreflexive, there is a norm N on c_ 00 such that: [label=( *),leftmargin=*] N is spreading invariant; merging two adjacent entries is contractive: N(a_1,,a_ i-1…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-walks",
+          "role": "reduction-to-a-finite-walk-2",
+          "label": "A finite walk with linear displacement",
+          "fullLabel": "A finite walk with linear displacement",
+          "kind": "proposition",
+          "source": "Reduction to a finite walk",
+          "detail": "[A finite walk with linear displacement] Let N be a spreading invariant norm on c_ 00 for which merging adjacent entries is contractive. For every integer n1 , there are a finite stationary…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-edge-labels",
+          "role": "reduction-to-a-finite-walk-3",
+          "label": "Odd edge labels",
+          "fullLabel": "Odd edge labels",
+          "kind": "lemma",
+          "source": "Reduction to a finite walk",
+          "detail": "[Odd edge labels] Suppose V is a normed space of Markov type p with constant K . For a finite marked chain satisfying , let g: E V satisfy g(e^*)=-g(e) . If E_1,,E_n are its first n edges, with…",
+          "dependsOn": [
+            "m1-thm-main",
+            "m1-lem-ordered-norm",
+            "m1-prop-walks"
+          ]
+        },
+        {
+          "id": "m1-lem-order-averaging",
+          "role": "finite-charts-for-ordered-motion",
+          "label": "Finite order averaging",
+          "fullLabel": "Finite order averaging",
+          "kind": "lemma",
+          "source": "Finite charts for ordered motion",
+          "detail": "[Finite order averaging] For every finite ordered set and every >0 , there are an integer B and a probability distribution on charts such that, whenever A,A' are increasing subtuples of of the same…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-chart-transport",
+          "role": "finite-charts-for-ordered-motion-2",
+          "label": "Reversible chart transport",
+          "fullLabel": "Reversible chart transport",
+          "kind": "proposition",
+          "source": "Finite charts for ordered motion",
+          "detail": "[Reversible chart transport] Let be a finite ordered set, and let T_s:D_s R_s be order-preserving bijections between its subsets, indexed by a nonempty finite set with a fixed-point-free involution s…",
+          "dependsOn": [
+            "m1-lem-order-averaging"
+          ]
+        },
+        {
+          "id": "m1-lem-action",
+          "role": "two-levels-from-reduced-words",
+          "label": "There are increasing homeomorphisms h_s: such that h_s(y+1)&=h_s(y)+1, & h_ s^…",
+          "fullLabel": "There are increasing homeomorphisms h_s: such that h_s(y+1)&=h_s(y)+1, & h_ s^…",
+          "kind": "lemma",
+          "source": "Two levels from reduced words",
+          "detail": "There are increasing homeomorphisms h_s: such that h_s(y+1)&=h_s(y)+1, & h_ s^ -1 &=h_s^ -1 , \\\\ h_s(_ s^ -1 )&=_s, & |h_s(y)-y|&<2. For a word w=s_1 s_k , write h_w=h_ s_1 h_ s_k , with h_ the…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-two-levels",
+          "role": "two-levels-from-reduced-words-2",
+          "label": "Two levels",
+          "fullLabel": "Two levels",
+          "kind": "lemma",
+          "source": "Two levels from reduced words",
+          "detail": "[Two levels] Let the reduced form of w have length >0 , with n_+ positive letters and n_- negative letters. For every j , c_w(j)=-n_-, c_w(h_w(0)+j)=n_+.",
+          "dependsOn": [
+            "m1-lem-action",
+            "m1-prop-chart-transport",
+            "m1-lem-ordered-norm"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "Nontrivial Markov Type Forces Superreflexivity",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Nontrivial-Markov-Type-Forces-Superreflexivity-September-23-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

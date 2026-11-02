@@ -1,0 +1,503 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "184",
+  "title": "Correspondence coloring with a fixed forbidden subgraph",
+  "result": {
+    "id": "paper-result",
+    "label": "Correspondence coloring with a fixed forbidden subgraph",
+    "statement": "Proves the Alon–Krivelevich–Sudakov coloring conjecture in correspondence-coloring form: graphs avoiding any fixed subgraph F need OF( / ) colors when their maximum degree Δ is sufficiently large. Also proves the Ajtai–Erdős–Komlós–Szemerédi independence conjecture: for fixed r ≥ 4, every n -vertex K r -free graph of average degree d ≥ 2 has an independent set of size (n d/d).",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "local-weight-adjustment-with-bounded-participation",
+      "label": "Local weight adjustment with bounded participation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "local-weight-adjustment-with-bounded-participation-2",
+      "label": "Local weight adjustment with bounded participation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "local-weight-adjustment-with-bounded-participation-3",
+      "label": "Local weight adjustment with bounded participation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "local-weight-adjustment-with-bounded-participation-4",
+      "label": "Local weight adjustment with bounded participation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "local-weight-adjustment-with-bounded-participation-5",
+      "label": "Local weight adjustment with bounded participation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "controlling-triangles-by-splitting-vertices",
+      "label": "Controlling triangles by splitting vertices",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "controlling-triangles-by-splitting-vertices-2",
+      "label": "Controlling triangles by splitting vertices",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "coloring-rounds-with-dependent-entry-weights",
+      "label": "Coloring rounds with dependent entry weights",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "coloring-rounds-with-dependent-entry-weights-2",
+      "label": "Coloring rounds with dependent entry weights",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "coloring-rounds-with-dependent-entry-weights-3",
+      "label": "Coloring rounds with dependent entry weights",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "coloring-rounds-with-dependent-entry-weights-4",
+      "label": "Coloring rounds with dependent entry weights",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-extremal-weight-and-its-cross-mass-bound",
+      "label": "An extremal weight and its cross-mass bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-extremal-weight-and-its-cross-mass-bound-2",
+      "label": "An extremal weight and its cross-mass bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-extremal-weight-and-its-cross-mass-bound-3",
+      "label": "An extremal weight and its cross-mass bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-cross-mass-to-triangle-mass",
+      "label": "From cross mass to triangle mass",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-cross-mass-to-triangle-mass-2",
+      "label": "From cross mass to triangle mass",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-cross-mass-to-triangle-mass-3",
+      "label": "From cross mass to triangle mass",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "local-walks-and-entropy",
+      "label": "Local walks and entropy",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "splitting-vertices-and-bounding-triangle-mass",
+      "label": "Splitting vertices and bounding triangle mass",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "splitting-vertices-and-bounding-triangle-mass-2",
+      "label": "Splitting vertices and bounding triangle mass",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "splitting-vertices-and-bounding-triangle-mass-3",
+      "label": "Splitting vertices and bounding triangle mass",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "splitting-vertices-and-bounding-triangle-mass-4",
+      "label": "Splitting vertices and bounding triangle mass",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-triangle-mass-to-independent-sets",
+      "label": "From triangle mass to independent sets",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Correspondence coloring graphs with a forbidden clique",
+      "title": "Correspondence coloring graphs with a forbidden clique",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Correspondence-Coloring-Graphs-with-a-Forbidden-Clique-October-5-2026/correspondence-coloring-forbidden-clique.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Correspondence coloring graphs with a forbidden clique; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "For every integer r4 there are constants C_r>0 and _r3 such that every K_r…",
+          "fullLabel": "For every integer r4 there are constants C_r>0 and _r3 such that every K_r…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "For every integer r4 there are constants C_r>0 and _r3 such that every K_r -free graph G of maximum degree _r satisfies \\[ _ DP (G) C_r . \\] The constants depend only on r .",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-forbidden",
+          "role": "introduction",
+          "label": "For every finite graph F there are constants C_F>0 and _F3 such that every F…",
+          "fullLabel": "For every finite graph F there are constants C_F>0 and _F3 such that every F…",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "For every finite graph F there are constants C_F>0 and _F3 such that every F -free graph G of maximum degree _F satisfies \\[ _ DP (G) C_F . \\]",
+          "dependsOn": [
+            "m1-thm-main"
+          ]
+        },
+        {
+          "id": "m1-lem-adjustment",
+          "role": "local-weight-adjustment-with-bounded-participation",
+          "label": "Local weight adjustment",
+          "fullLabel": "Local weight adjustment",
+          "kind": "lemma",
+          "source": "Local weight adjustment with bounded participation",
+          "detail": "[Local weight adjustment] For every integer r4 there are constants A=A(r)>0 , B=B(r)1 , and _r1 with the following property. Let _r , and let H be a finite K_r -free graph whose vertex set has a…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sparse-multipliers",
+          "role": "local-weight-adjustment-with-bounded-participation-2",
+          "label": "Sparse multipliers",
+          "fullLabel": "Sparse multipliers",
+          "kind": "lemma",
+          "source": "Local weight adjustment with bounded participation",
+          "detail": "[Sparse multipliers] For every integer r2 there is a constant D_r1 such that the following holds. Let F be a finite K_r -free graph with positive vertex weights q_i of total mass s . For every 0<1/2…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-local-cross",
+          "role": "local-weight-adjustment-with-bounded-participation-3",
+          "label": "Local cross estimate",
+          "fullLabel": "Local cross estimate",
+          "kind": "lemma",
+          "source": "Local weight adjustment with bounded participation",
+          "detail": "[Local cross estimate] Assume the prices satisfy , and fix a level b . Let S,D V(H_b) , where S D is contained in a ball of radius R_0 in H and meets every part of D in at most P_0 vertices. Suppose…",
+          "dependsOn": [
+            "m1-lem-sparse-multipliers"
+          ]
+        },
+        {
+          "id": "m1-lem-local-cross-transfer",
+          "role": "local-weight-adjustment-with-bounded-participation-4",
+          "label": "Transfer under vertex splitting",
+          "fullLabel": "Transfer under vertex splitting",
+          "kind": "corollary",
+          "source": "Local weight adjustment with bounded participation",
+          "detail": "[Transfer under vertex splitting] Let F be a graph with a homomorphism p:F H_b that is injective on directed edges. Give every vertex of F the weight, prices, coefficients, and part of its image.…",
+          "dependsOn": [
+            "m1-lem-local-cross"
+          ]
+        },
+        {
+          "id": "m1-prop-triangle-bound",
+          "role": "local-weight-adjustment-with-bounded-participation-5",
+          "label": "Triangle bound",
+          "fullLabel": "Triangle bound",
+          "kind": "proposition",
+          "source": "Local weight adjustment with bounded participation",
+          "detail": "[Triangle bound] For the graphs H_b , weights q , and prices constructed above from , with A chosen as in Lemma~ , the quantities in and satisfy \\[ T_0 O_r(M_x). \\] The implicit constant depends only…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-triangle-splitting",
+          "role": "controlling-triangles-by-splitting-vertices",
+          "label": "Splitting a level graph",
+          "fullLabel": "Splitting a level graph",
+          "kind": "lemma",
+          "source": "Controlling triangles by splitting vertices",
+          "detail": "[Splitting a level graph] Let 32_0 , and let F be a nonempty finite graph with no isolated vertices, with a homomorphism into some H_b injective on directed edges. Give its vertices the inherited…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-walk-entropy-bound",
+          "role": "controlling-triangles-by-splitting-vertices-2",
+          "label": "With the above definitions, H_0-, H_R O_r().",
+          "fullLabel": "With the above definitions, H_0-, H_R O_r().",
+          "kind": "lemma",
+          "source": "Controlling triangles by splitting vertices",
+          "detail": "With the above definitions, H_0-, H_R O_r().",
+          "dependsOn": [
+            "m1-lem-triangle-splitting",
+            "m1-prop-triangle-bound",
+            "m1-lem-adjustment"
+          ]
+        },
+        {
+          "id": "m1-prop-one-round",
+          "role": "coloring-rounds-with-dependent-entry-weights",
+          "label": "One coloring round",
+          "fullLabel": "One coloring round",
+          "kind": "proposition",
+          "source": "Coloring rounds with dependent entry weights",
+          "detail": "[One coloring round] For all sufficiently large depending only on r , suppose that a proper partial correspondence coloring and entry weights satisfy availability, , and K/2 W_v2K(v V(G')). There is…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-round-expectation",
+          "role": "coloring-rounds-with-dependent-entry-weights-2",
+          "label": "Expected changes",
+          "fullLabel": "Expected changes",
+          "kind": "lemma",
+          "source": "Coloring rounds with dependent entry weights",
+          "detail": "[Expected changes] For the random update just defined, W_v& W_v+o(),\\\\ F_v& F_v+(B+1)D_v+o(),\\\\ D_ vu &12D_ vu (vu E(G')).",
+          "dependsOn": [
+            "m1-lem-adjustment"
+          ]
+        },
+        {
+          "id": "m1-lem-read-concentration",
+          "role": "coloring-rounds-with-dependent-entry-weights-3",
+          "label": "Bounded input participation",
+          "fullLabel": "Bounded input participation",
+          "kind": "lemma",
+          "source": "Coloring rounds with dependent entry weights",
+          "detail": "[Bounded input participation] Let X_1,,X_m be bounded real functions of finitely many independent inputs. Suppose that X_j has range of length at most b_j , and that each input is used by at most p…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-activation-collisions",
+          "role": "coloring-rounds-with-dependent-entry-weights-4",
+          "label": "Collision bound",
+          "fullLabel": "Collision bound",
+          "kind": "lemma",
+          "source": "Coloring rounds with dependent entry weights",
+          "detail": "[Collision bound] Let E_v be the set of edges of H with an endpoint hosted at a neighbor of v in G' , and let X_v count the edges of E_v whose two endpoints activate. Then (4K^ -0.99 X_v>) O(^3)e^…",
+          "dependsOn": [
+            "m1-prop-one-round",
+            "m1-lem-round-expectation",
+            "m1-thm-main"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "A logarithmic independence bound for clique-free graphs",
+      "title": "A logarithmic independence bound for clique-free graphs",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Logarithmic-Independence-Bound-for-Clique-Free-Graphs-September-25-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from A logarithmic independence bound for clique-free graphs; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "result",
+          "label": "For every integer r4 , there is a constant c_r>0 such that every finite simple…",
+          "fullLabel": "For every integer r4 , there is a constant c_r>0 such that every finite simple…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "For every integer r4 , there is a constant c_r>0 such that every finite simple K_r -free graph G with n vertices and average degree d2 satisfies \\[ (G) c_rn d d . \\]",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-optimizer",
+          "role": "an-extremal-weight-and-its-cross-mass-bound",
+          "label": "For every nonempty finite simple graph G , the function F_G attains its…",
+          "fullLabel": "For every nonempty finite simple graph G , the function F_G attains its…",
+          "kind": "lemma",
+          "source": "An extremal weight and its cross-mass bound",
+          "detail": "For every nonempty finite simple graph G , the function F_G attains its maximum. Every maximizer w has positive coordinates and satisfies (1/w_v)=w(N_G(v)) (v V(G)). In particular, w_v1 . For every…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-sparse-multipliers",
+          "role": "an-extremal-weight-and-its-cross-mass-bound-2",
+          "label": "Let r2 be an integer, let G be a finite K_r -free graph with positive vertex…",
+          "fullLabel": "Let r2 be an integer, let G be a finite K_r -free graph with positive vertex…",
+          "kind": "lemma",
+          "source": "An extremal weight and its cross-mass bound",
+          "detail": "Let r2 be an integer, let G be a finite K_r -free graph with positive vertex weights w , and put s=w(V(G)) . For every 0<1/2 there are jointly distributed random variables (m_v)_ v V(G) such that 0…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-cross-mass",
+          "role": "an-extremal-weight-and-its-cross-mass-bound-3",
+          "label": "Let r2 be an integer and let w maximize F_G on a nonempty finite K_r -free…",
+          "fullLabel": "Let r2 be an integer and let w maximize F_G on a nonempty finite K_r -free…",
+          "kind": "lemma",
+          "source": "An extremal weight and its cross-mass bound",
+          "detail": "Let r2 be an integer and let w maximize F_G on a nonempty finite K_r -free graph G . For every x1 and all vertex sets S,D with w(S),w(D) e^x , e_w(S,D) C_r g_x(w(S)), C_r=16r^2. The sets S and D need…",
+          "dependsOn": [
+            "m2-lem-sparse-multipliers"
+          ]
+        },
+        {
+          "id": "m2-thm-weighted-triangles",
+          "role": "from-cross-mass-to-triangle-mass",
+          "label": "Triangle mass from cross mass",
+          "fullLabel": "Triangle mass from cross mass",
+          "kind": "theorem",
+          "source": "From cross mass to triangle mass",
+          "detail": "[Triangle mass from cross mass] For every C1 there is a constant C_ (C) with the following property. If G is a finite simple graph with positive vertex weights w satisfying , then \\[ T_G(w) C_…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-invariant-preservation",
+          "role": "from-cross-mass-to-triangle-mass-2",
+          "label": "Preservation under splitting",
+          "fullLabel": "Preservation under splitting",
+          "kind": "lemma",
+          "source": "From cross mass to triangle mass",
+          "detail": "[Preservation under splitting] Let (G,w) satisfy with constant C . Let H be a finite simple graph and let :V(H) V(G) satisfy the following conditions: every edge \\ a,b\\ of H maps to the edge \\…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-triangle-peeling",
+          "role": "from-cross-mass-to-triangle-mass-3",
+          "label": "Triangle normalization and peeling",
+          "fullLabel": "Triangle normalization and peeling",
+          "kind": "lemma",
+          "source": "From cross mass to triangle mass",
+          "detail": "[Triangle normalization and peeling] For a positive-weighted finite simple graph G , put \\[ s_u=w(N_G(u)), c_ uv =w(N_G(u) N_G(v)), h_u=_ v N_G(u) w_vc_ uv . \\] Thus h_u=2M_ G[N_G(u)] (w) is twice…",
+          "dependsOn": [
+            "m2-lem-invariant-preservation"
+          ]
+        },
+        {
+          "id": "m2-lem-entropy-smoothing",
+          "role": "local-walks-and-entropy",
+          "label": "Smoothing the local walks",
+          "fullLabel": "Smoothing the local walks",
+          "kind": "lemma",
+          "source": "Local walks and entropy",
+          "detail": "[Smoothing the local walks] Under and , put \\[ E_C=42C^2+2C, A_C=10+E_C, B_C=2A_C+1, R= x. \\] Each K_u^j is reversible with stationary measure _u , and K_u^j(v,y) xw_y(j0). Moreover, - x H_0 H_1 H_R…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-shared-rejection",
+          "role": "splitting-vertices-and-bounding-triangle-mass",
+          "label": "Shared rejection sampling",
+          "fullLabel": "Shared rejection sampling",
+          "kind": "lemma",
+          "source": "Splitting vertices and bounding triangle mass",
+          "detail": "[Shared rejection sampling] Let I and J be finite nonempty sets, and let (p_i)_ i I be probability distributions on J . There are jointly distributed random variables (Y_i)_ i I such that Y_i has law…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-reverse-admissibility",
+          "role": "splitting-vertices-and-bounding-triangle-mass-2",
+          "label": "The probability that Y_ u,v is inadmissible, averaged over (u,v) , is at most…",
+          "fullLabel": "The probability that Y_ u,v is inadmissible, averaged over (u,v) , is at most…",
+          "kind": "lemma",
+          "source": "Splitting vertices and bounding triangle mass",
+          "detail": "The probability that Y_ u,v is inadmissible, averaged over (u,v) , is at most _x:=(A_C+1) x x+ x .",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-weighted-splitting",
+          "role": "splitting-vertices-and-bounding-triangle-mass-3",
+          "label": "There is a choice of these labels for which the projection (u,y) u preserves…",
+          "fullLabel": "There is a choice of these labels for which the projection (u,y) u preserves…",
+          "kind": "lemma",
+          "source": "Splitting vertices and bounding triangle mass",
+          "detail": "There is a choice of these labels for which the projection (u,y) u preserves weights, maps directed edges injectively to directed edges of H , and satisfies _ a V(H') w(N_ H' (a))& e^ x , \\\\ T_ H'…",
+          "dependsOn": [
+            "m2-lem-reverse-admissibility"
+          ]
+        },
+        {
+          "id": "m2-prop-neighborhood-reduction",
+          "role": "splitting-vertices-and-bounding-triangle-mass-4",
+          "label": "Let G be a finite positive-vertex-weighted graph satisfying the cross-mass…",
+          "fullLabel": "Let G be a finite positive-vertex-weighted graph satisfying the cross-mass…",
+          "kind": "proposition",
+          "source": "Splitting vertices and bounding triangle mass",
+          "detail": "Let G be a finite positive-vertex-weighted graph satisfying the cross-mass condition~ with constant C1 , and suppose that _vw(N_G(v)) e^x for some x>X(C) . There is a finite positive-vertex-weighted…",
+          "dependsOn": [
+            "m2-lem-triangle-peeling",
+            "m2-lem-weighted-splitting",
+            "m2-lem-invariant-preservation",
+            "m2-thm-weighted-triangles"
+          ]
+        },
+        {
+          "id": "m2-prop-maximum-degree",
+          "role": "from-triangle-mass-to-independent-sets",
+          "label": "For every integer r4 , every real number 3 , and every finite K_r -free graph G…",
+          "fullLabel": "For every integer r4 , every real number 3 , and every finite K_r -free graph G…",
+          "kind": "proposition",
+          "source": "From triangle mass to independent sets",
+          "detail": "For every integer r4 , every real number 3 , and every finite K_r -free graph G with n vertices and maximum degree at most , \\[ (G) F_G^* D_r and (G) n 4D_r . \\]",
+          "dependsOn": [
+            "m2-lem-optimizer",
+            "m2-thm-main"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    },
+    {
+      "from": "m2:m2-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "Correspondence coloring graphs with a forbidden clique",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Correspondence-Coloring-Graphs-with-a-Forbidden-Clique-October-5-2026/correspondence-coloring-forbidden-clique.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "A logarithmic independence bound for clique-free graphs",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Logarithmic-Independence-Bound-for-Clique-Free-Graphs-September-25-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

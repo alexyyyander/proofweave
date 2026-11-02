@@ -1,0 +1,218 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "187",
+  "title": "Snaky in 21 Maker moves",
+  "result": {
+    "id": "paper-result",
+    "label": "Snaky in 21 Maker moves",
+    "statement": "Settles the Snaky achievement problem: Maker can force the six-cell Snaky shape within 21 of its own moves on the initially empty infinite square board. Maker moves first, each player claims one free cell per turn, and translations, rotations and reflections count as wins.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "conditional-winning-positions",
+      "label": "Conditional winning positions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "conditional-winning-positions-2",
+      "label": "Conditional winning positions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-certificate-and-its-final-condition",
+      "label": "The certificate and its final condition",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "one-strategy-against-every-continuation",
+      "label": "One strategy against every continuation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "four-stones-in-a-row",
+      "label": "Four stones in a row",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-reduced-envelope-25-move-construction",
+      "label": "The reduced-envelope 25-move construction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-reduced-envelope-25-move-construction-2",
+      "label": "The reduced-envelope 25-move construction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-35-move-construction-and-its-conditional-interfaces",
+      "label": "The 35-move construction and its conditional interfaces",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-35-move-construction-and-its-conditional-interfaces-2",
+      "label": "The 35-move construction and its conditional interfaces",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Snaky in 21 Maker moves",
+      "title": "Snaky in 21 Maker moves",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Snaky-in-21-Maker-moves-September-25-2026/article.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Snaky in 21 Maker moves; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "In this game, there is one globally legal Maker policy that completes an…",
+          "fullLabel": "In this game, there is one globally legal Maker policy that completes an…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "In this game, there is one globally legal Maker policy that completes an allowed copy of S within at most 21 actual Maker claims against every legal continuation of Breaker. Equivalently, extend the…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-combination",
+          "role": "conditional-winning-positions",
+          "label": "Combination rule",
+          "fullLabel": "Combination rule",
+          "kind": "lemma",
+          "source": "Conditional winning positions",
+          "detail": "[Combination rule] Let (A_i,T_i,h_i) , 1 i r , be valid claims, where 1 r< , and let p^2 . Define T=\\ p\\ _ i=1 ^rT_i, A=(_ i=1 ^r A_i\\ \\ _ i=1 ^rT_i)\\ p\\ , h=1+_i h_i. Then (A,T,h) is valid. Also, at…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-bases",
+          "role": "conditional-winning-positions-2",
+          "label": "Six bases",
+          "fullLabel": "Six bases",
+          "kind": "lemma",
+          "source": "Conditional winning positions",
+          "detail": "[Six bases] Write the points of S in the order in as s_0,,s_5 . The claims (A_j,T_j,h_j)=(S\\ s_j\\ ,S,1), 0 j<6, are valid.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-certificate",
+          "role": "the-certificate-and-its-final-condition",
+          "label": "The data in Appendix~ have exactly 722 numbered lines, with indices 6,,727 .…",
+          "fullLabel": "The data in Appendix~ have exactly 722 numbered lines, with indices 6,,727 .…",
+          "kind": "proposition",
+          "source": "The certificate and its final condition",
+          "detail": "The data in Appendix~ have exactly 722 numbered lines, with indices 6,,727 . Every line has a nonempty child list, every reference uses an allowed placement of an earlier card, and every…",
+          "dependsOn": [
+            "m1-lem-combination",
+            "m1-lem-bases",
+            "m1-thm-main"
+          ]
+        },
+        {
+          "id": "m1-cor-finite-board",
+          "role": "one-strategy-against-every-continuation",
+          "label": "A finite board",
+          "fullLabel": "A finite board",
+          "kind": "corollary",
+          "source": "One strategy against every continuation",
+          "detail": "[A finite board] Maker wins the weak Maker--Breaker game within 21 actual Maker claims on the initially empty 251 -cell board T_ 727 , and also on the initially empty 1717 board \\ 0,,16\\ ^2 . In each…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-four-row",
+          "role": "four-stones-in-a-row",
+          "label": "Suppose it is Maker's turn at an arbitrary finite position, Maker owns the four…",
+          "fullLabel": "Suppose it is Maker's turn at an arbitrary finite position, Maker owns the four…",
+          "kind": "proposition",
+          "source": "Four stones in a row",
+          "detail": "Suppose it is Maker's turn at an arbitrary finite position, Maker owns the four cells \\[ \\ (0,0),(1,0),(2,0),(3,0)\\ , \\] and Breaker owns at most three cells in \\[ Q=([-3,6])^2. \\] Then Maker has…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-r25-composition",
+          "role": "the-reduced-envelope-25-move-construction",
+          "label": "Reduced composition",
+          "fullLabel": "Reduced composition",
+          "kind": "proposition",
+          "source": "The reduced-envelope 25-move construction",
+          "detail": "[Reduced composition] Let (P_j,E_j,h_j) , 1 j m , be valid reduced cards already placed in one coordinate plane, where 1 m< . Given an attack cell x , put U&=_jP_j,& V&=_jE_j,& I&=_jE_j,\\\\ H&=U I,&…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-r25-bound",
+          "role": "the-reduced-envelope-25-move-construction-2",
+          "label": "The 25 -move strategy",
+          "fullLabel": "The 25 -move strategy",
+          "kind": "proposition",
+          "source": "The reduced-envelope 25-move construction",
+          "detail": "[The 25 -move strategy] There is one ordinary Maker policy on the infinite square board that, from the empty position, completes a copy of S within 25 actual fresh Maker claims against every legal…",
+          "dependsOn": [
+            "m1-r25-composition"
+          ]
+        },
+        {
+          "id": "m1-r35-conditional",
+          "role": "the-35-move-construction-and-its-conditional-interfaces",
+          "label": "The 35-move certificate has 616 cards, including its six base cards, and 1,837…",
+          "fullLabel": "The 35-move certificate has 616 cards, including its six base cards, and 1,837…",
+          "kind": "proposition",
+          "source": "The 35-move construction and its conditional interfaces",
+          "detail": "The 35-move certificate has 616 cards, including its six base cards, and 1,837 placement terms. Every card satisfies \\(A_i^ 35 T_i^ 35 \\), \\(o T_i^ 35 A_i^ 35 \\), and \\(h_i^ 35 34\\). Four of its…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-r35-theorem",
+          "role": "the-35-move-construction-and-its-conditional-interfaces-2",
+          "label": "There is one ordinary Maker policy on the initially empty infinite square board…",
+          "fullLabel": "There is one ordinary Maker policy on the initially empty infinite square board…",
+          "kind": "theorem",
+          "source": "The 35-move construction and its conditional interfaces",
+          "detail": "There is one ordinary Maker policy on the initially empty infinite square board that completes an allowed copy of \\(S\\) within 35 actual Maker claims against every legal Breaker play. Equivalently,…",
+          "dependsOn": [
+            "m1-r35-conditional"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "Snaky in 21 Maker moves",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Snaky-in-21-Maker-moves-September-25-2026/article.pdf",
+      "kind": "paper"
+    }
+  ]
+}

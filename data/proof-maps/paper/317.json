@@ -240,211 +240,263 @@
   "edges": [
     {
       "from": "m1-prop-strict-presentability",
-      "to": "m1-lem-filtered"
+      "to": "m1-lem-filtered",
+      "context": "on involving finitely many cells. In the $\\omega$-case there are countably many sorts, but all operations and equations still involve finite data. Proposition~\\ref{prop:strict-presentability} proves local finite presentability, completeness, cocompleteness and a common regular presentability bound directly fro"
     },
     {
       "from": "m1-lem-internal-truncation",
-      "to": "m1-lem-relative-prism"
+      "to": "m1-lem-relative-prism",
+      "context": "that proves stationarity. \\smallskip\\noindent\\emph{Finite-dimensional reflection.} For finite $n$, let $q_E:\\Uinf{E}\\to\\U{E}$ be the reflection unit. By Lemma~\\ref{lem:internal-truncation}, the composite $q_E P^\\infty_{f,g}$ factors uniquely as \\[ \\Uinf{E}\\otimes\\Disk{1} \\xrightarrow{q_E\\otimes\\id}\\U{E}\\"
     },
     {
       "from": "m1-lem-gray-nerve",
-      "to": "m1-lem-relative-prism"
+      "to": "m1-lem-relative-prism",
+      "context": "y$ no reflection is needed. If $E$ or $A$ is empty, the corresponding colimit is empty and the same statements hold with the unique maps from it. Finally Lemma~\\ref{lem:gray-nerve} gives the stated simplicial homotopy and its stationarity."
     },
     {
       "from": "m1-lem-internal-truncation",
-      "to": "m1-lem-pushout-cylinder"
+      "to": "m1-lem-pushout-cylinder",
+      "context": "Let $H(Y)$ be the right internal hom representing strict functors $(-)\\otimes\\Disk{1}\\to Y$. It is an $n$-category by Lemma~\\ref{lem:internal-truncation}; for $n=\\infty$ this is automatic. The cylinders \\[ bP:B\\otimes\\Disk{1}\\to Y, \\qquad j\\pi_X:X\\otimes\\Disk{1}\\to Y \\]"
     },
     {
       "from": "m1-lem-gray-nerve",
-      "to": "m1-lem-pushout-cylinder"
+      "to": "m1-lem-pushout-cylinder",
+      "context": "p $Y\\to Y'$ carries this cylinder to the corresponding cylinder: the two maps $Y\\to H(Y')$ agree on $X$ and $B$ and hence agree. This proves naturality. Lemma~\\ref{lem:gray-nerve} proves the final homotopy assertion. No injectivity, freeness, or cofibrancy hypothesis on $i$, $a$, or $X$ entered thi"
     },
     {
       "from": "m1-lem-fibers",
-      "to": "m1-lem-poset-pieces"
+      "to": "m1-lem-poset-pieces",
+      "context": "nical simplex presentation \\begin{equation}\\label{eq:poset-simplex-colimit} \\U{P}=\\colim_{\\sigma:\\Delta[m]\\to\\OrdN P}\\trunc\\Orient{m}. \\end{equation} By Lemma~\\ref{lem:fibers}, its object set is the colimit of the vertex sets $[m]$. Sending the $j$th vertex of a simplex $\\sigma$ to $\\sigma(j)$"
     },
     {
       "from": "m1-lem-oriental-segments",
-      "to": "m1-lem-poset-pieces"
+      "to": "m1-lem-poset-pieces",
+      "context": "well: slice colimits have the underlying colimits in $\\nCat$. In its $\\sigma$-piece the vertices mapping to $S$ form an initial segment $I_\\sigma$. By Lemma~\\ref{lem:oriental-segments}, the $0$-fiber of that piece is its truncated segment oriental. Taking fibers commutes with the colimit by Lemma~\\ref{l"
     },
     {
       "from": "m1-lem-fibers",
-      "to": "m1-prop-labelled-pushout"
+      "to": "m1-prop-labelled-pushout",
+      "context": "The compatibility assumption makes the defining pushout a pushout in $\\nCat/\\Disk{1}$. Applying $F_\\epsilon$ and then Lemmas~\\ref{lem:fibers} and~\\ref{lem:poset-pieces} gives \\eqref{eq:pushout-fiber}. This identifies the canonical map from the displayed pushou"
     },
     {
       "from": "m1-lem-poset-pieces",
-      "to": "m1-prop-labelled-pushout"
+      "to": "m1-prop-labelled-pushout",
+      "context": "The compatibility assumption makes the defining pushout a pushout in $\\nCat/\\Disk{1}$. Applying $F_\\epsilon$ and then Lemmas~\\ref{lem:fibers} and~\\ref{lem:poset-pieces} gives \\eqref{eq:pushout-fiber}. This identifies the canonical map from the displayed pushout to $Y$ with the inclusion"
     },
     {
       "from": "m1-prop-labelled-pushout",
-      "to": "m1-cor-attachment-covers"
+      "to": "m1-cor-attachment-covers",
+      "context": "For (i), label membership in each $P_i$ by $0$ and label every object of $X$ by $0$. Apply Proposition~\\ref{prop:labelled-pushout} to the two labels and their maximum. For (ii), label membership in each $T_i$ by $1$; use constant label $1$ on $X$ fo"
     },
     {
       "from": "m1-lem-simplicial-gluing",
-      "to": "m1-lem-nerve-cover"
+      "to": "m1-lem-nerve-cover",
+      "context": "ion of simplicial subsets is their ordinary pushout over the intersection. Since its legs are monomorphisms, the homotopy-pushout assertion follows from Lemma~\\ref{lem:simplicial-gluing}."
     },
     {
       "from": "m1-lem-relative-prism",
-      "to": "m1-lem-greatest-new"
+      "to": "m1-lem-greatest-new",
+      "context": "e g,\\qquad k\\le g, \\end{equation} and all three maps restrict to $\\id_A$. The common upper map $g$ is constant on $E\\setminus A$, exactly as required in Lemma~\\ref{lem:relative-prism}. Figure~\\ref{fig:local-diamond} shows why this common upper map is useful: $\\id_E$ and $k$ need not be pointwise compar"
     },
     {
       "from": "m1-lem-pushout-cylinder",
-      "to": "m1-lem-greatest-new"
+      "to": "m1-lem-greatest-new",
+      "context": "~\\ref{fig:local-diamond} shows why this common upper map is useful: $\\id_E$ and $k$ need not be pointwise comparable, although both lie below $g$. Apply Lemma~\\ref{lem:pushout-cylinder} to the two comparisons in \\eqref{eq:local-zigzag}. Let $G,K:Y\\to Y$ be the pushout endomorphisms whose restrictions to"
     },
     {
       "from": "m1-lem-gray-nerve",
-      "to": "m1-lem-greatest-new"
+      "to": "m1-lem-greatest-new",
+      "context": "respectively. The resulting right Gray cylinders, both stationary on $X$, have endpoint pattern \\[ \\id_Y\\ \\longrightarrow\\ G\\ \\longleftarrow\\ K. \\] By Lemma~\\ref{lem:gray-nerve}, these give simplicial homotopies with the same endpoint pattern on Street nerves. The image of $k$ lies in $A$, so $k"
     },
     {
       "from": "m1-lem-greatest-new",
-      "to": "m1-thm-couniversal"
+      "to": "m1-thm-couniversal",
+      "context": "attaching targets $X$ and all attaching functors $a$. When this cardinality is zero, $j$ is an isomorphism. When the complement has a greatest element, Lemma~\\ref{lem:greatest-new} applies. Otherwise the nonempty finite poset $E\\setminus A$ has at least two distinct maximal elements $x_1,x_2$: a fi"
     },
     {
       "from": "m1-cor-attachment-covers",
-      "to": "m1-thm-couniversal"
+      "to": "m1-thm-couniversal",
+      "context": "smaller. Define \\[ Y_T=X\\amalg_{\\U{A}}\\U{E_T},\\qquad j_T:X\\longrightarrow Y_T. \\] By induction every $\\Street j_T$ is a weak homotopy equivalence. Corollary~\\ref{cor:attachment-covers}(i), applied to the sieves $E_1,E_2$ containing $A$ and covering $E$, identifies the canonical maps $Y_i\\to Y$ as full s"
     },
     {
       "from": "m1-lem-nerve-cover",
-      "to": "m1-thm-couniversal"
+      "to": "m1-thm-couniversal",
+      "context": "full intersection is canonically $Y_{12}$, and they cover the objects of $Y$. These identifications hold for the given arbitrary attaching functor $a$. Lemma~\\ref{lem:nerve-cover} now identifies the bottom pushout in the following diagram with $\\Street Y$: \\begin{equation}\\label{eq:couniversal-cove"
     },
     {
       "from": "m1-lem-simplicial-gluing",
-      "to": "m1-thm-couniversal"
+      "to": "m1-thm-couniversal",
+      "context": "$X$, so this is a strictly commuting map of spans. All three are weak equivalences by induction, and the indicated legs in both rows are monomorphisms. Lemma~\\ref{lem:simplicial-gluing} proves that the induced map on pushouts is a weak equivalence. The top pushout is $\\Street X$, and its map to the bott"
     },
     {
       "from": "m1-lem-filtered",
-      "to": "m1-thm-couniversal"
+      "to": "m1-thm-couniversal",
+      "context": "agreeing on each $\\U{A_F}$. These are exactly maps from the pushout on the right. Under this identification the colimit of the arrows $j_F$ is $j$. By Lemma~\\ref{lem:filtered}, $\\Street$ preserves these filtered colimits and simplicial weak homotopy equivalences are closed under filtered colimi"
     },
     {
       "from": "m1-lem-relative-prism",
-      "to": "m1-prop-poset-unit"
+      "to": "m1-prop-poset-unit",
+      "context": "ts are empty and the unit is an isomorphism. If $S$ has a greatest element $x$, the pointwise inequality $\\id_S\\le\\mathrm{const}_x$ contracts $\\OrdN S$. Lemma~\\ref{lem:relative-prism}, with old sieve $\\varnothing$, gives a right cylinder from $\\id_{\\U{S}}$ to $c_n\\OrdN(\\mathrm{const}_x)$. The latter f"
     },
     {
       "from": "m1-lem-gray-nerve",
-      "to": "m1-prop-poset-unit"
+      "to": "m1-prop-poset-unit",
+      "context": "ylinder from $\\id_{\\U{S}}$ to $c_n\\OrdN(\\mathrm{const}_x)$. The latter functor factors through $\\U{\\{x\\}}=\\Orient{0}$, the terminal strict $n$-category. Lemma~\\ref{lem:gray-nerve} therefore contracts $\\Street\\U{S}$. Both realizations are nonempty and contractible, so $\\eta_S$ is a weak homotopy eq"
     },
     {
       "from": "m1-lem-poset-pieces",
-      "to": "m1-prop-poset-unit"
+      "to": "m1-prop-poset-unit",
+      "context": "etions cover $S$, and all three posets are smaller. Their ordinary nerves cover $\\OrdN S$: a simplex belongs to a sieve containing its last vertex. By Lemmas~\\ref{lem:poset-pieces} and~\\ref{lem:nerve-cover}, their $\\U{\\,\\cdot\\,}$ images give a full sieve cover of $\\U{S}$ and the analogous cover of i"
     },
     {
       "from": "m1-lem-nerve-cover",
-      "to": "m1-prop-poset-unit"
+      "to": "m1-prop-poset-unit",
+      "context": "hree posets are smaller. Their ordinary nerves cover $\\OrdN S$: a simplex belongs to a sieve containing its last vertex. By Lemmas~\\ref{lem:poset-pieces} and~\\ref{lem:nerve-cover}, their $\\U{\\,\\cdot\\,}$ images give a full sieve cover of $\\U{S}$ and the analogous cover of its Street nerve. The join"
     },
     {
       "from": "m1-lem-simplicial-gluing",
-      "to": "m1-prop-poset-unit"
+      "to": "m1-prop-poset-unit",
+      "context": "cd} \\] The vertical maps are weak equivalences by induction; all horizontal legs are monomorphisms. The induced map on pushouts is a weak equivalence by Lemma~\\ref{lem:simplicial-gluing}. Under the cover identifications it is exactly $\\eta_S$: its restriction to either $\\OrdN S_i$ agrees with that unit b"
     },
     {
       "from": "m1-lem-filtered",
-      "to": "m1-prop-poset-unit"
+      "to": "m1-prop-poset-unit",
+      "context": "erve preserves this union because each simplex has finite support, $c_n$ preserves its colimit, and $\\Street$ preserves the resulting filtered colimit by Lemma~\\ref{lem:filtered}. Naturality identifies $\\eta_S$ with the filtered colimit of the units on those finite subposets. Filtered-colimit clo"
     },
     {
       "from": "m1-thm-couniversal",
-      "to": "m1-prop-attachment-comparison"
+      "to": "m1-prop-attachment-comparison",
+      "context": "First set \\[ V_Z(X)=X\\amalg_{\\U{A}}\\U{Z},\\qquad P_Z(X)=\\Street X\\amalg_{\\Street\\U{A}}\\Street\\U{Z}. \\] Theorem~\\ref{thm:couniversal}, applied to $A\\hookrightarrow Z$, says that $X\\to V_Z(X)$ belongs to $W_n$. Applying it with old target $\\U{A}$ also s"
     },
     {
       "from": "m1-lem-poset-pieces",
-      "to": "m1-prop-attachment-comparison"
+      "to": "m1-prop-attachment-comparison",
+      "context": "s that $X\\to V_Z(X)$ belongs to $W_n$. Applying it with old target $\\U{A}$ also says that $\\U{A}\\to\\U{Z}$ belongs to $W_n$. Since $A$ is a sieve in $Z$, Lemma~\\ref{lem:poset-pieces} identifies $\\U{A}\\to\\U{Z}$ with an actual full inclusion. Its Street nerve is therefore a monomorphism and a weak equi"
     },
     {
       "from": "m1-cor-attachment-covers",
-      "to": "m1-prop-attachment-comparison"
+      "to": "m1-prop-attachment-comparison",
+      "context": "bset Z$. Their intersection is $T$. Lemma~\\ref{lem:poset-pieces} therefore gives cosieves $\\U{Z},\\U{C}\\subset\\U{B}$ with intersection $\\U{T}$. Apply Corollary~\\ref{cor:attachment-covers}(ii) with $P=B$, $T_1=Z$, and $T_2=C$. Its remaining hypotheses hold because $A\\subset Z$ and $A\\cap C=\\varnothing$. T"
     },
     {
       "from": "m1-lem-nerve-cover",
-      "to": "m1-prop-attachment-comparison"
+      "to": "m1-prop-attachment-comparison",
+      "context": "cover all objects of $V_B(X)$. The corollary applies to the given arbitrary functor $a$, including its identifications of old objects and cells. Apply Lemma~\\ref{lem:nerve-cover} to the two cosieve covers just obtained. It gives ordinary simplicial pushouts \\begin{align} \\Street\\U{B} &=\\Stree"
     },
     {
       "from": "m1-lem-simplicial-gluing",
-      "to": "m1-prop-attachment-comparison"
+      "to": "m1-prop-attachment-comparison",
+      "context": "equation} \\Street\\U{T}\\hookrightarrow\\Street\\U{C}. \\label{eq:comparison-monomorphism} \\end{equation} Left properness of simplicial sets, as recorded in Lemma~\\ref{lem:simplicial-gluing}, now makes $\\gamma_{B,X}$ a weak equivalence. Neither the map $\\Street\\U{A}\\to\\Street X$ nor the map $\\Street\\U{T}\\to"
     },
     {
       "from": "m1-lem-subdivision-posets",
-      "to": "m1-cor-horn-acyclic"
+      "to": "m1-cor-horn-acyclic",
+      "context": "Use the pair $A\\subset B$ from Lemma~\\ref{lem:subdivision-posets}, so that $L_n d$ is $\\U{A}\\to\\U{B}$. The inclusion $\\OrdN A\\to\\OrdN B$ is a weak equivalence: the horn inclusion is a s"
     },
     {
       "from": "m1-prop-poset-unit",
-      "to": "m1-cor-horn-acyclic"
+      "to": "m1-cor-horn-acyclic",
+      "context": "rdN A \\arrow[r] \\arrow[d] & \\OrdN B \\arrow[d]\\\\ \\Street\\U{A} \\arrow[r] & \\Street\\U{B}. \\end{tikzcd} \\] The vertical maps are weak equivalences by Proposition~\\ref{prop:poset-unit}. Two-out-of-three makes the lower map a weak equivalence, and it is monic by Proposition~\\ref{prop:attachment-comparis"
     },
     {
       "from": "m1-prop-attachment-comparison",
-      "to": "m1-cor-horn-acyclic"
+      "to": "m1-cor-horn-acyclic",
+      "context": "tical maps are weak equivalences by Proposition~\\ref{prop:poset-unit}. Two-out-of-three makes the lower map a weak equivalence, and it is monic by Proposition~\\ref{prop:attachment-comparison}. Thus it is a simplicial trivial cofibration. For any attaching functor $\\U{A}\\to X$, its pushout $\\Street X\\to P_B(X"
     },
     {
       "from": "m1-prop-attachment-comparison",
-      "to": "m1-cor-attachment-invariance"
+      "to": "m1-cor-attachment-invariance",
+      "context": "nce, since $\\Street f$ is one. In the naturality square of Equation~\\eqref{eq:attachment-naturality}, both horizontal maps are weak equivalences by Proposition~\\ref{prop:attachment-comparison}. Two-out-of-three implies that its right vertical map is a weak equivalence. This is the nerve of the asserted functo"
     },
     {
       "from": "m1-cor-horn-acyclic",
-      "to": "m1-lem-transfinite-horns"
+      "to": "m1-lem-transfinite-horns",
+      "context": "Corollary~\\ref{cor:horn-acyclic} proves the assertion for one attachment, with an arbitrary attaching target. A set of simultaneous attachments may be"
     },
     {
       "from": "m1-lem-filtered",
-      "to": "m1-lem-transfinite-horns"
+      "to": "m1-lem-transfinite-horns",
+      "context": "quivalence supplied by Corollary~\\ref{cor:horn-acyclic}. If $\\beta$ is a nonzero limit ordinal, the ordinal of stages $\\alpha<\\beta$ is filtered. Apply Lemma~\\ref{lem:filtered} to the diagram of arrows $X_0\\to X_\\alpha$. Its colimit is $X_0\\to\\colim_{\\alpha<\\beta}X_\\alpha=X_\\beta$, because the"
     },
     {
       "from": "m1-lem-filtered",
-      "to": "m1-prop-model-structure"
+      "to": "m1-prop-model-structure",
+      "context": "The underlying category is locally presentable, and hence complete and cocomplete, by Lemma~\\ref{lem:filtered}. We describe the small object argument to make clear that the factorizations have no restriction on their sources. Fo"
     },
     {
       "from": "m1-lem-transfinite-horns",
-      "to": "m1-prop-model-structure"
+      "to": "m1-prop-model-structure",
+      "context": "tion system is consequently $(C_n,F_n\\cap W_n)$. Let $\\mathcal D=(L_nJ)\\text{-cof}$. As $F_n\\cap W_n\\subseteq F_n$, one has $\\mathcal D\\subseteq C_n$. Lemma~\\ref{lem:transfinite-horns} and retract closure give $\\mathcal D\\subseteq W_n$ as well. To prove the reverse inclusion, take $u:A\\to B$ in $C_n\\ca"
     },
     {
       "from": "m1-lem-transfinite-horns",
-      "to": "m1-prop-properness"
+      "to": "m1-prop-properness",
+      "context": "gives $Y\\times_Z Z'\\to Y$ in $W_n$. For left properness, first let $i:X\\to Y$ be a relative $L_nI$-cell map and let $w:X\\to X'$ belong to $W_n$. As in Lemma~\\ref{lem:transfinite-horns}, write $i$ as a continuous sequence of individual boundary attachments $X_\\alpha$ starting at $X$. Put $X'_\\alpha=X'\\a"
     },
     {
       "from": "m1-cor-attachment-invariance",
-      "to": "m1-prop-properness"
+      "to": "m1-prop-properness",
+      "context": "o $W_n$. This is $w$ at stage zero. At a successor stage, the second attachment has the first attaching map followed by $X_\\alpha\\to X'_\\alpha$, so Corollary~\\ref{cor:attachment-invariance} proves the induction step. At a nonzero limit ordinal, both sequences are their colimits, and Lemma~\\ref{lem:filtered}"
     },
     {
       "from": "m1-lem-filtered",
-      "to": "m1-prop-properness"
+      "to": "m1-prop-properness",
+      "context": "o X'_\\alpha$, so Corollary~\\ref{cor:attachment-invariance} proves the induction step. At a nonzero limit ordinal, both sequences are their colimits, and Lemma~\\ref{lem:filtered} gives the assertion. Hence $Y\\to X'\\amalg_XY$ belongs to $W_n$. For a general $i:X\\to Y$ in $C_n$, the first small ob"
     },
     {
       "from": "m1-prop-model-structure",
-      "to": "m1-prop-properness"
+      "to": "m1-prop-properness",
+      "context": "ence $Y\\to X'\\amalg_XY$ belongs to $W_n$. For a general $i:X\\to Y$ in $C_n$, the first small object factorization and its lifting retract, used in Proposition~\\ref{prop:model-structure}, express $i$ as a retract of a relative $L_nI$-cell map $j:X\\to Z$ with the same source. Explicitly there are $s:Y\\to Z"
     },
     {
       "from": "m1-lem-subdivision-posets",
-      "to": "m1-prop-subdivided-unit"
+      "to": "m1-prop-subdivided-unit",
+      "context": "For $K=\\Delta[m]$ and $K=\\partial\\Delta[m]$, Lemma~\\ref{lem:subdivision-posets} identifies $\\Sd^2K$ with the ordinary nerve of a poset. The assertion is therefore Proposition~\\ref{prop:poset-unit}."
     },
     {
       "from": "m1-prop-poset-unit",
-      "to": "m1-prop-subdivided-unit"
+      "to": "m1-prop-subdivided-unit",
+      "context": "$ and $K=\\partial\\Delta[m]$, Lemma~\\ref{lem:subdivision-posets} identifies $\\Sd^2K$ with the ordinary nerve of a poset. The assertion is therefore Proposition~\\ref{prop:poset-unit}. It also holds for the empty simplicial set: $c_n\\varnothing$ is the empty strict category, whose Street nerve is empt"
     },
     {
       "from": "m1-lem-poset-pieces",
-      "to": "m1-prop-subdivided-unit"
+      "to": "m1-prop-subdivided-unit",
+      "context": "o B$ is a simplicial monomorphism. Writing $A=\\OrdN E$ and $B=\\OrdN F$ as in Lemma~\\ref{lem:subdivision-posets}, the inclusion $E\\subseteq F$ is a sieve; Lemma~\\ref{lem:poset-pieces} makes $c_nA\\to c_nB$ a sieve inclusion. Consequently $\\Street c_nA\\to\\Street c_nB$ is also a monomorphism. Lemma~\\ref{"
     },
     {
       "from": "m1-lem-simplicial-gluing",
-      "to": "m1-prop-subdivided-unit"
+      "to": "m1-prop-subdivided-unit",
+      "context": "q F$ is a sieve; Lemma~\\ref{lem:poset-pieces} makes $c_nA\\to c_nB$ a sieve inclusion. Consequently $\\Street c_nA\\to\\Street c_nB$ is also a monomorphism. Lemma~\\ref{lem:simplicial-gluing}, applied with these two specified monomorphic legs, proves that $q$ is a weak equivalence. It requires no monomorphism"
     },
     {
       "from": "m1-prop-attachment-comparison",
-      "to": "m1-prop-subdivided-unit"
+      "to": "m1-prop-subdivided-unit",
+      "context": "applied with these two specified monomorphic legs, proves that $q$ is a weak equivalence. It requires no monomorphism condition on $A\\to V$. Apply Proposition~\\ref{prop:attachment-comparison} to the arbitrary attaching functor $c_nA\\to c_nV$. It says that \\begin{equation}\\label{eq:unit-attachment-comparison}"
     },
     {
       "from": "m1-lem-filtered",
-      "to": "m1-prop-subdivided-unit"
+      "to": "m1-prop-subdivided-unit",
+      "context": "to the argument. At a nonzero limit ordinal, $\\Sd^2$ and $L_n$ preserve the colimit as left adjoints, while $\\Street$ preserves the filtered colimit by Lemma~\\ref{lem:filtered}. Therefore the unit at that stage is the filtered colimit of the previous units; it is a weak equivalence by the same"
     },
     {
       "from": "m1-prop-subdivided-unit",
-      "to": "m1-thm-quillen-equivalence"
+      "to": "m1-thm-quillen-equivalence",
+      "context": "ed first. The unit of the composite adjunction $L_n\\dashv R_n$ is \\[ u_K=T^2(\\theta_K)b_K: K\\longrightarrow T^2\\Street c_nS^2K=R_nL_nK. \\] Proposition~\\ref{prop:subdivided-unit}, preservation of weak equivalences by $T$, and the preceding calculation show that $u_K$ is a weak equivalence for ever"
     },
     {
       "from": "m1-prop-model-structure",
-      "to": "m1-thm-quillen-equivalence"
+      "to": "m1-thm-quillen-equivalence",
+      "context": "holds for every $K$ and $Y$. In particular it holds for cofibrant $K$ and fibrant $Y$, which is the Quillen-equivalence criterion. Together with Propositions~\\ref{prop:model-structure} and~\\ref{prop:properness}, this proves all the asserted model-categorical conclusions for each finite $n\\geq1$ and for"
     },
     {
       "from": "m1-prop-properness",
-      "to": "m1-thm-quillen-equivalence"
+      "to": "m1-thm-quillen-equivalence",
+      "context": "n particular it holds for cofibrant $K$ and fibrant $Y$, which is the Quillen-equivalence criterion. Together with Propositions~\\ref{prop:model-structure} and~\\ref{prop:properness}, this proves all the asserted model-categorical conclusions for each finite $n\\geq1$ and for $n=\\infty$."
     },
     {
       "from": "m1-lem-strict-presentations",
-      "to": "m1-prop-strict-presentability"
+      "to": "m1-prop-strict-presentability",
+      "context": "tion is included for every defined composite. For each arrow $f:i\\to j$ also impose $[i,a]=[j,X(f)(a)]$. All these generators and equations form sets. By Lemma~\\ref{lem:strict-presentations}, maps from this presentation to $Y$ are exactly compatible families of strict functors $X_i\\to Y$. It is therefore the"
     }
   ]
 }

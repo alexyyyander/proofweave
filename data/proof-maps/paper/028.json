@@ -144,51 +144,63 @@
   "edges": [
     {
       "from": "m1-lem-differences",
-      "to": "m1-lem-enrichment"
+      "to": "m1-lem-enrichment",
+      "context": "cal Q,\\mathcal S,j}H(h_j\\mid B_x,B_y) \\ge (1-O_D(g))L_*. \\end{equation} Fix an exact base time \\(\\tau=t\\) with positive probability, and use \\(A\\) from Lemma~\\ref{lem:differences} for its segment. That lemma gives \\[ gU-O_D(1)\\le\\log A\\le2gU+O_D(1). \\] Put \\[ r=\\left\\lceil(1+10g)\\frac{\\log A}{L_*"
     },
     {
       "from": "m1-lem-rectangle",
-      "to": "m1-lem-enrichment"
+      "to": "m1-lem-enrichment",
+      "context": "oduct-concentration}, writing \\(P=\\prod_{p\\in\\mathcal J}p\\), we have \\[ P^{1-g}\\ge A^{(1+5g)(1-g)}\\ge A^{1+3g}>16A \\] for sufficiently large parameters. Lemma~\\ref{lem:rectangle}, with \\(d=g\\), shows that reduction in the coordinates \\(\\mathcal J\\) is injective on the difference set, except with a"
     },
     {
       "from": "m1-lem-displacement",
-      "to": "m1-lem-enrichment"
+      "to": "m1-lem-enrichment",
+      "context": "Q}(X)\\) and \\(X-Z\\), so \\[ f_X(q)\\ge f_Z(q)-H(X-Z). \\] Both \\(h\\) and \\(X-Z\\) are lattice displacements of length at most \\(Dn\\). The counting bound of Lemma~\\ref{lem:displacement} gives \\[ H(h)+H(X-Z)\\le4\\log(n+1)+O_D(1)=O_D(gU). \\] Consequently the average contribution of the subtracted term in \\"
     },
     {
       "from": "m1-lem-list",
-      "to": "m1-thm-transfer"
+      "to": "m1-thm-transfer",
+      "context": "eq:small-list} imply that its mean $\\overline a$ over the deficient coordinates satisfies \\[ \\overline a\\ge\\delta-\\delta/100-\\eta'/\\theta\\ge\\delta/2. \\] Lemma~\\ref{lem:list} gives, for each of these coordinates, \\[ \\log p_c-H(\\phi_c(Y)\\mid\\calH) \\ge a_c(\\beta'/2)\\log p_c-h(a_c). \\] Concavit"
     },
     {
       "from": "m1-lem-conditioning",
-      "to": "m1-thm-transfer"
+      "to": "m1-thm-transfer",
+      "context": "the mean over all coordinates is strictly greater than \\[ \\frac{\\eta\\delta\\beta'}8\\log T \\ge\\frac{\\eta\\delta\\beta'}{16}\\overline L. \\] This contradicts Lemma~\\ref{lem:conditioning} and \\eqref{eq:transfer-budget}. Thus $\\theta\\le\\eta$."
     },
     {
       "from": "m1-lem-displacement",
-      "to": "m1-lem-future-shift"
+      "to": "m1-lem-future-shift",
+      "context": "M^{20}, \\] so \\(X_M=o(gV)\\), uniformly. Taking the logarithm of the sum of all remaining lengths adds only \\(O_{g_0}(M)\\). The bound \\(2gV\\) follows, and Lemma~\\ref{lem:displacement} gives the entropy assertion. Write \\(t_*=\\widetilde t+U_N\\), where \\(U_N\\) is the final uniform offset, independent of"
     },
     {
       "from": "m1-thm-transfer",
-      "to": "m1-prop-coverage"
+      "to": "m1-prop-coverage",
+      "context": "We begin at \\(A_J\\) using the particularly accurate marginal estimate, then verify every numerical hypothesis of Theorem~\\ref{thm:transfer} for the passage from \\(A_{i+1}\\) to \\(A_i\\). \\paragraph{The terminal base.} Fix any exact start at \\(A_J\\). By \\eqref{"
     },
     {
       "from": "m1-lem-conditioning",
-      "to": "m1-prop-coverage"
+      "to": "m1-prop-coverage",
+      "context": "{i+1}=2\\beta_i\\), and \\(\\beta_i\\log T>M^{20}\\) for \\(i<J\\). The exponent \\(4\\beta_i/5\\) is the margin left after paying for all \\(n_i\\) continuations. By Lemma~\\ref{lem:conditioning}, the joint entropy bound and this common cost imply \\begin{equation}\\label{eq:coverage-conditional-deficit} \\E_{p,\\pi}"
     },
     {
       "from": "m1-prop-coverage",
-      "to": "m1-prop-information-rate"
+      "to": "m1-prop-information-rate",
+      "context": "raph{Coverage after conditioning on residue data.} The packages just constructed are independent given \\((O,X)\\), whereas the continuations used in Proposition~\\ref{prop:coverage} were sampled from an exact checkpoint time. To connect these two experiments, fix \\(\\mathcal C\\) and a value of \\((O,X)"
     },
     {
       "from": "m1-lem-continuity",
-      "to": "m1-lem-telescope"
+      "to": "m1-lem-telescope",
+      "context": "T k_T\\log(2T)=O(T_+), \\] by \\eqref{eq:prime-count} and geometric spacing of the batches. The block alphabet contributes at most \\(L_j\\log K_D=O_D(T_+)\\). Lemma~\\ref{lem:continuity} therefore gives, uniformly in the block and in \\(\\mathcal C\\), \\[ \\begin{aligned} H(W_{L_j}(t_*+a)\\mid Q_j(t_*+a)) &"
     },
     {
       "from": "m1-thm-sieve",
-      "to": "m1-lem-telescope"
+      "to": "m1-lem-telescope",
+      "context": "[Proof of Theorem~\\ref{thm:sieve}] Fix \\(D\\) and all schedule constants. Suppose that, for a given sufficiently large \\(M\\), an infinite self-avoiding \\("
     },
     {
       "from": "m1-prop-information-rate",
-      "to": "m1-lem-telescope"
+      "to": "m1-lem-telescope",
+      "context": "n infinite self-avoiding \\(D\\)-step walk lies in \\(\\mathcal A(\\mathcal P_M)\\). Averaging Lemma~\\ref{lem:telescope} over \\(\\mathcal C\\) and applying Proposition~\\ref{prop:information-rate} gives \\begin{equation} c_1\\sum_T\\frac1{\\log T}\\le\\log K_D+o(1). \\label{eq:final-information-bound} \\end{equation} Fo"
     }
   ]
 }

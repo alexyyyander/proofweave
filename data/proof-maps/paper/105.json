@@ -296,139 +296,173 @@
   "edges": [
     {
       "from": "m1-thm-main",
-      "to": "m1-cor-max-k-colorable"
+      "to": "m1-cor-max-k-colorable",
+      "context": "Theorem~\\ref{thm:main} supplies the exact-two, perfect-completeness premise of Guruswami and Sinop's reduction \\cite[Conjecture~3.4 and Theore"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-cor-not-two-pcp"
+      "to": "m1-cor-not-two-pcp",
+      "context": "he uniform distribution on the explicit edge occurrences, and choose a fixed rational $\\delta\\in(0,1)$ smaller than their required soundness threshold. Theorem~\\ref{thm:main} supplies this premise with perfect completeness. Their folded verifier allows all eight literal-sign variants of Not-Tw"
     },
     {
       "from": "m1-thm-prelim-grassmann",
-      "to": "m1-lem-prelim-matrix-set"
+      "to": "m1-lem-prelim-matrix-set",
+      "context": "bors of every chart vertex therefore remain in the chart. The set $\\widetilde S=\\{L_M:M\\in S\\}$ has full Grassmann retention at least $\\eta/4$. Apply Theorem~\\ref{thm:prelim-grassmann} with $\\zeta=\\eta/4$. It supplies an interval $[A_0,B_0]$ of bounded co-order on which $\\widetilde S$ has density at le"
     },
     {
       "from": "m1-lem-prelim-matrix-set",
-      "to": "m1-thm-inverse"
+      "to": "m1-thm-inverse",
+      "context": "Use the constants of Lemma~\\ref{lem:prelim-matrix-set} for $\\eta$. Add a dummy space $D$ so that $\\dim(H\\oplus D)$ meets its column threshold, and define $\\widetilde f(X,Y)=f"
     },
     {
       "from": "m1-lem-padding",
-      "to": "m1-thm-inverse"
+      "to": "m1-thm-inverse",
+      "context": "er of fibers. Lemma~\\ref{lem:prelim-matrix-set} supplies a padded slice on which that fixed value has density at least $\\alpha$. Project the slice using Lemma~\\ref{lem:padding}. Its uniform measure projects uniformly, and $\\widetilde f$ depends only on the projected matrix. The same value ther"
     },
     {
       "from": "m1-thm-inverse",
-      "to": "m1-lem-many-fibers"
+      "to": "m1-lem-many-fibers",
+      "context": "tationarity of the matrix step gives \\[ \\Pr[f_0(M)=f_0(M+ah)\\ne\\bot] \\geq \\Pr[f(M)=f(M+ah)\\ne\\bot] -\\Pr[M\\in T]-\\Pr[M+ah\\in T] >\\eta/2. \\] Theorem~\\ref{thm:inverse} gives a defined value of $f_0$ of density at least $\\alpha$ on a nonempty slice with at most $r$ row and $r$ column spe"
     },
     {
       "from": "m1-lem-canonical-support",
-      "to": "m1-lem-canonical-sharing"
+      "to": "m1-lem-canonical-sharing",
+      "context": "cted slot, unusedness is likewise equivalent by surjectivity. If the slot is used by $f$, then $f\\pi$ factors through its selected position and is used. Lemma~\\ref{lem:canonical-support} makes that position its unique singleton reduction. Both representations consequently retain the same formal location"
     },
     {
       "from": "m1-lem-construction-two-fibers",
-      "to": "m1-prop-completeness"
+      "to": "m1-prop-completeness",
+      "context": "er endpoint. The restored outputs are therefore $f(x_\\xi)$ and $g(x_\\xi)$, respectively. Their equality through $Q_{D,a}$ follows from $g=Q_{D,a}f$, so Lemma~\\ref{lem:construction-two-fibers} shows that the edge accepts. Every constraint therefore accepts, proving the assertion."
     },
     {
       "from": "m1-lem-construction-space-properties",
-      "to": "m1-lem-folding"
+      "to": "m1-lem-folding",
+      "context": "By Lemma~\\ref{lem:construction-space-properties}, every term in \\eqref{eq:folding-shift} lies in $H_D(Q)$, proving validity. On the full output product, define a transf"
     },
     {
       "from": "m1-lem-canonical-support",
-      "to": "m1-lem-folding"
+      "to": "m1-lem-folding",
+      "context": "and the new joint function is this bijection composed with the old joint function. The two functions have identical equality relations on $\\Omega(Q)$. Lemma~\\ref{lem:canonical-support} gives the same coordinate reduction and the same unordered partition. Thus a fixed part represents precisely the same s"
     },
     {
       "from": "m1-lem-cut-tv",
-      "to": "m1-lem-sparse-tv"
+      "to": "m1-lem-sparse-tv",
+      "context": "g therefore proves their bounds, without conditioning on their realized values. The comparison with $\\mathsf A$ is the triangle through $\\mathsf U_i$ and Lemma~\\ref{lem:cut-tv}. For \\eqref{eq:two-cut-triangle}, take the common observation just specified. First average the preceding $i$-cut com"
     },
     {
       "from": "m1-lem-stopped-calls",
-      "to": "m1-lem-bias"
+      "to": "m1-lem-bias",
+      "context": "information, every hidden bucket retains its own fresh tape, independently of the other hidden buckets. This follows directly from the call indexing in Lemma~\\ref{lem:stopped-calls}; higher matrices use distinct calls even where they visit the same spaces. Consequently \\[ \\E(-1)^{\\Phi(X)}= \\prod_{"
     },
     {
       "from": "m1-lem-cut-tv",
-      "to": "m1-lem-useful-equality"
+      "to": "m1-lem-useful-equality",
+      "context": "tables. It records neither the selected descendant below $D_j$ nor the projection metadata. Apply the modified-$i$ to unrestricted-$j$ comparison from Lemmas~\\ref{lem:cut-tv} and~\\ref{lem:sparse-tv}, including the additional bucket call. Own buckets at $D_j$, pending calls used in its ancesto"
     },
     {
       "from": "m1-lem-sparse-tv",
-      "to": "m1-lem-useful-equality"
+      "to": "m1-lem-useful-equality",
+      "context": "either the selected descendant below $D_j$ nor the projection metadata. Apply the modified-$i$ to unrestricted-$j$ comparison from Lemmas~\\ref{lem:cut-tv} and~\\ref{lem:sparse-tv}, including the additional bucket call. Own buckets at $D_j$, pending calls used in its ancestors, and descendant matri"
     },
     {
       "from": "m1-lem-heavy-list",
-      "to": "m1-prop-upper"
+      "to": "m1-prop-upper",
+      "context": "This is the sole use of the finer exposure: we have not asserted that usefulness persists upon conditioning on it. Fix any such favorable $\\mathcal D$. Lemma~\\ref{lem:heavy-list} supplies at least one nonannihilating $\\sigma$ and one \\[ \\Phi\\in\\mathcal H_\\sigma\\cap \\bigl((\\sigma|_W)\\otimes"
     },
     {
       "from": "m1-lem-padding",
-      "to": "m1-prop-upper"
+      "to": "m1-prop-upper",
+      "context": "oosing $R_j$ large enough; below $j$ it uses only the common absolute balance minimum. The inverse statement applies to $H/B$ even in small dimension by Lemma~\\ref{lem:padding}. Thus none of these choices depends on the later lower row count or source and branching dimensions."
     },
     {
       "from": "m1-lem-posterior",
-      "to": "m1-lem-resampling"
+      "to": "m1-lem-resampling",
+      "context": "not be. Write $F_0=f(S)$ and $F_1=f(S+a_i l)$. On inputs where either value is undefined, assign that output the zero bilinear form solely for applying Lemma~\\ref{lem:posterior}. The resulting two forms are functions of the permitted lifted data $\\mathcal D$. That lemma applies with the enlarge"
     },
     {
       "from": "m1-lem-sparse-tv",
-      "to": "m1-lem-resampling"
+      "to": "m1-lem-resampling",
+      "context": "obability at least $h^2-2\\beta_i L_i/(1-\\beta_i)$. Full defined equality depends only on $E$, the lifted raw data and the independent exterior choices. Lemma~\\ref{lem:sparse-tv}, applied with the extra row $l$, therefore transfers this event at loss at most $\\upsilon_i$ to the unrestricted cut la"
     },
     {
       "from": "m1-lem-resampling",
-      "to": "m1-prop-low-rank"
+      "to": "m1-prop-low-rank",
+      "context": "ss, and erase the left outputs as above. Since the original left decoder is admissible, this leaves nonerased agreement probability $h\\geq\\gamma/2$. By Lemma~\\ref{lem:resampling} and Equation~\\ref{eq:lower-error-conditions}, the unrestricted experiment satisfies \\[ \\Pr_{\\mathrm{unif}}[f(S)=f(S+a_"
     },
     {
       "from": "m1-thm-inverse",
-      "to": "m1-prop-low-rank"
+      "to": "m1-prop-low-rank",
+      "context": "by the inverse theorem. The output alphabet is the finite set of bilinear forms on this fixed $H_i$; its size has no effect on the inverse constants. Theorem~\\ref{thm:inverse} now selects one \\emph{fixed} defined output $F$ and a nonempty affine row/column slice, with at most $r'$ constraints o"
     },
     {
       "from": "m1-lem-rank-slice",
-      "to": "m1-prop-low-rank"
+      "to": "m1-prop-low-rank",
+      "context": "$\\rank\\operatorname{Gram}_F(S)\\leq1$, by the pointwise definition of the partial table. Only after fixing this output do we apply the row operations in Lemma~\\ref{lem:rank-slice}. That lemma and Equation~\\ref{eq:lower-parameter-conditions} show that the latter rank event has density strictly less"
     },
     {
       "from": "m1-lem-sparse-tv",
-      "to": "m1-prop-low-rank"
+      "to": "m1-prop-low-rank",
+      "context": "he source alphabet, upper row and product counts, and lower branching numbers have been fixed; the extra resampling row changes only this finite bound. Lemmas~\\ref{lem:sparse-tv} and~\\ref{lem:posterior} then make both losses in \\eqref{eq:lower-error-conditions} arbitrarily small by increasing $n_i"
     },
     {
       "from": "m1-lem-posterior",
-      "to": "m1-prop-low-rank"
+      "to": "m1-prop-low-rank",
+      "context": "r row and product counts, and lower branching numbers have been fixed; the extra resampling row changes only this finite bound. Lemmas~\\ref{lem:sparse-tv} and~\\ref{lem:posterior} then make both losses in \\eqref{eq:lower-error-conditions} arbitrarily small by increasing $n_i$. For the finitely man"
     },
     {
       "from": "m1-lem-parity-game",
-      "to": "m1-lem-reconstruction"
+      "to": "m1-lem-reconstruction",
+      "context": "even on inputs on which the original decoder chooses a default, produces a high-rank form, or fails the diagonal test. On normalized low-rank agreement, Lemma~\\ref{lem:parity-game} says that the left supports are valid odd lists and their right supports are their parity pushforwards. Both diagonal"
     },
     {
       "from": "m1-lem-parity-game",
-      "to": "m1-prop-clean-bound"
+      "to": "m1-prop-clean-bound",
+      "context": "Lemma~\\ref{lem:parity-game} gives $\\val(G_{\\mathrm{odd},s})<1/2$. Fix a public record $\\mathcal D_{\\mathrm{pub}}=d_0$, and put $k=|\\mathcal C|$."
     },
     {
       "from": "m1-lem-clean-law",
-      "to": "m1-prop-clean-bound"
+      "to": "m1-prop-clean-bound",
+      "context": "Lemma~\\ref{lem:parity-game} gives $\\val(G_{\\mathrm{odd},s})<1/2$. Fix a public record $\\mathcal D_{\\mathrm{pub}}=d_0$, and put $k=|\\mathcal C|$. By Lemma~\\ref{lem:clean-law}, its designated edge records have exactly the independent product distribution of $k$ source samples. By Lemma~\\ref{le"
     },
     {
       "from": "m1-lem-reconstruction",
-      "to": "m1-prop-clean-bound"
+      "to": "m1-prop-clean-bound",
+      "context": "$k=|\\mathcal C|$. By Lemma~\\ref{lem:clean-law}, its designated edge records have exactly the independent product distribution of $k$ source samples. By Lemma~\\ref{lem:reconstruction}, the original decoders and the total extraction rules give local strategies for the corresponding odd-list game. Theor"
     },
     {
       "from": "m1-thm-repetition",
-      "to": "m1-prop-clean-bound"
+      "to": "m1-prop-clean-bound",
+      "context": "s. By Lemma~\\ref{lem:reconstruction}, the original decoders and the total extraction rules give local strategies for the corresponding odd-list game. Theorem~\\ref{thm:repetition}, with gap $1/2$, bounds their probability of accepting all $k$ edges by $(63/64)^k$. For $k=0$ the bound is interpreted"
     },
     {
       "from": "m1-lem-construction-two-fibers",
-      "to": "m1-prop-preliminary-soundness"
+      "to": "m1-prop-preliminary-soundness",
+      "context": "The structural assertions follow from Lemma~\\ref{lem:construction-two-fibers} and Proposition~\\ref{prop:completeness}. Suppose that a labeling on an unsatisfiable input has value at least $\\eps$. P"
     },
     {
       "from": "m1-prop-completeness",
-      "to": "m1-prop-preliminary-soundness"
+      "to": "m1-prop-preliminary-soundness",
+      "context": "The structural assertions follow from Lemma~\\ref{lem:construction-two-fibers} and Proposition~\\ref{prop:completeness}. Suppose that a labeling on an unsatisfiable input has value at least $\\eps$. Pair counting and the selected comparison"
     },
     {
       "from": "m1-prop-upper",
-      "to": "m1-prop-preliminary-soundness"
+      "to": "m1-prop-preliminary-soundness",
+      "context": "e that a labeling on an unsatisfiable input has value at least $\\eps$. Pair counting and the selected comparison errors give levels $i<j$ for which Proposition~\\ref{prop:upper} supplies agreement at least $\\gamma_j$. The lower row requirements and error schedule give, by Proposition~\\ref{prop:lo"
     },
     {
       "from": "m1-prop-low-rank",
-      "to": "m1-prop-preliminary-soundness"
+      "to": "m1-prop-preliminary-soundness",
+      "context": "levels $i<j$ for which Proposition~\\ref{prop:upper} supplies agreement at least $\\gamma_j$. The lower row requirements and error schedule give, by Proposition~\\ref{prop:low-rank}, agreement at least $\\gamma_j/2$ with a normalized full form of rank at most $s$. By \\eqref{eq:source-value-choice} and"
     },
     {
       "from": "m1-lem-parity-game",
-      "to": "m1-prop-preliminary-soundness"
+      "to": "m1-prop-preliminary-soundness",
+      "context": "y Proposition~\\ref{prop:low-rank}, agreement at least $\\gamma_j/2$ with a normalized full form of rank at most $s$. By \\eqref{eq:source-value-choice} and Lemma~\\ref{lem:parity-game}, the parity-list game has value less than $1/2$. Proposition~\\ref{prop:clean-bound} bounds the same agreement by a quan"
     },
     {
       "from": "m1-prop-clean-bound",
-      "to": "m1-prop-preliminary-soundness"
+      "to": "m1-prop-preliminary-soundness",
+      "context": "d full form of rank at most $s$. By \\eqref{eq:source-value-choice} and Lemma~\\ref{lem:parity-game}, the parity-list game has value less than $1/2$. Proposition~\\ref{prop:clean-bound} bounds the same agreement by a quantity less than $\\gamma_j/4$, by our choice of $n_i$. This is impossible."
     }
   ]
 }

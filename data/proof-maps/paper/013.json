@@ -152,39 +152,48 @@
   "edges": [
     {
       "from": "m1-lem-shifted-sieve",
-      "to": "m1-lem-finite-factor"
+      "to": "m1-lem-finite-factor",
+      "context": "Suppose $A$ is finite. Two distinct elements of $A$ give two shifts of $B$ to which Lemma~\\ref{lem:shifted-sieve} applies. Hence $B(Y)\\ll Y/(\\log Y)^2$. On the other hand, every sufficiently large prime at most $Y$ is represented usi"
     },
     {
       "from": "m1-lem-shifted-sieve",
-      "to": "m1-lem-size"
+      "to": "m1-lem-size",
+      "context": "Coverage and the prime number theorem give $A(Y)B(Y)\\gg Y/\\log Y$. Infinitude and Lemma~\\ref{lem:shifted-sieve} give, for every fixed positive integer $j$, \\[ A(Y),B(Y)\\ll_j\\frac{Y}{(\\log Y)^j}, \\qquad A(Y),B(Y)\\gg_j(\\log Y)^{j-1"
     },
     {
       "from": "m1-lem-size",
-      "to": "m1-prop-quadratic"
+      "to": "m1-prop-quadratic",
+      "context": "c35,\\qquad \\mu_0=10^{-6},\\qquad \\gamma=10^{-7},\\qquad X=\\exp(T^{1+\\rho}), \\] and define \\[ A_X=A\\cap[X^{9/10},X],\\qquad D_X=D\\cap[-X,-X^{9/10}]. \\] By Lemma~\\ref{lem:size}, both tails have size $\\gg \\sqrt X/(\\log X)^3$. Their uniform measures satisfy Lemma~\\ref{lem:collision}, for example"
     },
     {
       "from": "m1-lem-collision",
-      "to": "m1-prop-quadratic"
+      "to": "m1-prop-quadratic",
+      "context": "p[X^{9/10},X],\\qquad D_X=D\\cap[-X,-X^{9/10}]. \\] By Lemma~\\ref{lem:size}, both tails have size $\\gg \\sqrt X/(\\log X)^3$. Their uniform measures satisfy Lemma~\\ref{lem:collision}, for example with its fixed exponent $b=4$. The prime bands used below lie below the corresponding cutoff $\\sqrt X/(\\lo"
     },
     {
       "from": "m1-lem-collision",
-      "to": "m1-prop-characters"
+      "to": "m1-prop-characters",
+      "context": "et \\(\\mathcal A_X=A\\cap[X^{9/10},X]\\). For any subset \\(\\mathcal A'\\subset\\mathcal A_X\\) with \\[ |\\mathcal A'|\\ge\\frac{\\sqrt X}{(\\log X)^{10}}, \\] apply Lemma~\\ref{lem:collision} to its uniform measure and the uniform measure on the full \\(D\\)-tail. Every tested prime is below the cutoff in that l"
     },
     {
       "from": "m1-lem-size",
-      "to": "m1-prop-characters"
+      "to": "m1-prop-characters",
+      "context": "p f_p(a)\\ge\\delta/2\\) for one of the tested prime sets, their uniform measure would contradict this estimate and Cauchy--Schwarz over that set of primes. Lemma~\\ref{lem:size} shows that \\(|\\mathcal A_X|\\gg\\sqrt X/(\\log X)^3\\). Consequently, outside a negligible fraction of \\(\\mathcal A_X\\), al"
     },
     {
       "from": "m1-lem-collision",
-      "to": "m1-cor-mixed-flatness"
+      "to": "m1-cor-mixed-flatness",
+      "context": "Apply Lemma~\\ref{lem:collision} at, for example, \\(\\log X=\\exp((\\beta+1)L)\\). Its prime cutoff contains the whole band. The nonnegative imbalance term"
     },
     {
       "from": "m1-prop-quadratic",
-      "to": "m1-cor-mixed-flatness"
+      "to": "m1-cor-mixed-flatness",
+      "context": "actors on the last line have modulus 1. The constant part of \\(F_p\\) has vanished because the character is nonprincipal. For quadratic \\(\\lambda\\), Proposition~\\ref{prop:quadratic} and its harmonic-band consequence give a maximal translated bias tending to zero in harmonic probability. For order gre"
     },
     {
       "from": "m1-prop-characters",
-      "to": "m1-cor-mixed-flatness"
+      "to": "m1-cor-mixed-flatness",
+      "context": "prop:quadratic} and its harmonic-band consequence give a maximal translated bias tending to zero in harmonic probability. For order greater than 2, Proposition~\\ref{prop:characters} gives the same conclusion, already with a maximum over the character. On the balanced primes the displayed scale factor"
     }
   ]
 }

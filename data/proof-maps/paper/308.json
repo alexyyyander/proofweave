@@ -677,331 +677,413 @@
   "edges": [
     {
       "from": "m1-found-mapping-pairings",
-      "to": "m1-found-finite-cell-morita"
+      "to": "m1-found-finite-cell-morita",
+      "context": "t its attaching maps by full faithfulness and take the corresponding cofibers in $\\cC$. This gives precisely the stated essential image. The pairings of Lemma~\\ref{found:mapping-pairings} are balanced over $A$. Their coherent balanced comparison is obtained from the tensor bar construction: use the pairin"
     },
     {
       "from": "m1-found-finite-cell-morita",
-      "to": "m1-found-koszul-realization"
+      "to": "m1-found-koszul-realization",
+      "context": "ss than $h$ decreases this order; terms with a repeated index vanish. The differential therefore provides a finite-cell filtration on this basis. Proposition~\\ref{found:finite-cell-morita} transports the algebra and its unit to $Y_j$. A degree-zero cycle at weight $w_j$ represents a class in $\\pi_0\\map_{\\c"
     },
     {
       "from": "m1-found-free-null",
-      "to": "m1-found-koszul-realization"
+      "to": "m1-found-koszul-realization",
+      "context": "resents a class in $\\pi_0\\map_{\\cC}(S(w_j),Y_j)$. Its product with the identity of $Y_j$ corresponds to multiplication by $b_j$ on the algebraic module. Lemma~\\ref{found:free-null} identifies the extension by $e_j$, through its specified null, with the cofiber of this multiplication map. This proves"
     },
     {
       "from": "m1-found-picard-grading",
-      "to": "m1-power-localizations"
+      "to": "m1-power-localizations",
+      "context": "iplication by $a_2$ is an equivalence: it translates the telescope by one stage. The interchanges of the $T^2$ factors may be taken coherently trivial by Lemma~\\ref{found:picard-grading}, since $T^2$ is a square. Equivalently, one can verify the translation equivalence on maps from compact objects using t"
     },
     {
       "from": "m1-power-prime-to-p",
-      "to": "m1-power-exactness"
+      "to": "m1-power-exactness",
+      "context": "ize a nonempty proper subset. On an orbit cell, the target mapping spectrum is a homotopy fixed point spectrum of a sphere of underlying degree $2(p-1)$. Lemma~\\ref{power:prime-to-p} preserves that connectivity. A cell of dimension $k$ shifts the lower bound to $2(p-1)-k$. Since $k\\leq p-2$, the cellu"
     },
     {
       "from": "m1-power-localizations",
-      "to": "m1-power-graded-localization"
+      "to": "m1-power-graded-localization",
+      "context": "e of $B(X)_{i+s\\tau}$. Moving the factor $T^{-2s}$ from the source to the target identifies it with the mapping telescope into $T^{2s}$ times the target. Lemma~\\ref{power:localizations} and compactness identify this with the mapping spectrum in $\\cEp$. These identifications respect multiplication by the"
     },
     {
       "from": "m1-power-exactness",
-      "to": "m1-power-operation"
+      "to": "m1-power-operation",
+      "context": "Apply the exact functor of Lemma~\\ref{power:exactness} to mapping spectra out of $S(\\lambda)$, and then use \\[ N\\bigl(X_p(\\lambda)\\bigr)\\longrightarrow \\Tr X_p(p\\lambda). \\"
     },
     {
       "from": "m1-layer-acyclic-sphere",
-      "to": "m1-layer-even-trivializations"
+      "to": "m1-layer-even-trivializations",
+      "context": "classifying space of sphere automorphisms lifts to the simply connected cover. All higher homotopy groups of this cover are $p$-local abelian groups. By Lemma~\\ref{layer:acyclic-sphere}, reduced cohomology of $Z_p^{\\mathrm{orb}}$ with every such constant coefficient group vanishes. Induction along the Ei"
     },
     {
       "from": "m1-found-picard-grading",
-      "to": "m1-layer-even-trivializations"
+      "to": "m1-layer-even-trivializations",
+      "context": "ors. In $W_i$, the twisting exponent of $V$ is $d(\\lambda)-2m$, which is even, and its total underlying dimension is Equation~\\eqref{layer:degree}. Apply Lemma~\\ref{found:picard-grading} in the rational category of $J^\\vee$-modules in $\\Ind(\\cG)$ to extend the generator equivalences coherently over $I$. A"
     },
     {
       "from": "m1-layer-acyclic-sphere",
-      "to": "m1-layer-partial-thom"
+      "to": "m1-layer-partial-thom",
+      "context": "consist only of degree zero when $r_p$ is even, and vanish in this range when $r_p$ is odd. To see this, use the cyclic-group generators $\\eta,\\xi$ from Lemma~\\ref{layer:acyclic-sphere} and take multiplier invariants; the corresponding homology calculation is its degreewise dual. The sign of the multipli"
     },
     {
       "from": "m1-layer-partial-thom",
-      "to": "m1-layer-coefficient-algebra"
+      "to": "m1-layer-coefficient-algebra",
+      "context": "Dualizing the first Euler triangle gives \\[ T^{-1}\\longrightarrow\\one\\longrightarrow J^\\vee. \\] Lemma~\\ref{layer:partial-thom} and exactness identify $\\operatorname{Part}(J^\\vee\\Tr Z)$ with $\\mathcal H(Z)$, using the fiber point and the unit of $"
     },
     {
       "from": "m1-layer-acyclic-sphere",
-      "to": "m1-layer-coefficient-algebra"
+      "to": "m1-layer-coefficient-algebra",
+      "context": "he fiber point and the unit of $J^\\vee$. On the other hand, \\[ (J_p^\\vee\\otimes\\Tr Z_p)^{hG_p} \\simeq\\map\\bigl(S(V)_{hG_p+},Z_p\\bigr) \\simeq Z_p \\] by Lemma~\\ref{layer:acyclic-sphere}. Evaluation at a point is the inverse of the constant-class equivalence. By Lemma~\\ref{layer:norm-model}, norm followed"
     },
     {
       "from": "m1-layer-norm-model",
-      "to": "m1-layer-coefficient-algebra"
+      "to": "m1-layer-coefficient-algebra",
+      "context": "igl(S(V)_{hG_p+},Z_p\\bigr) \\simeq Z_p \\] by Lemma~\\ref{layer:acyclic-sphere}. Evaluation at a point is the inverse of the constant-class equivalence. By Lemma~\\ref{layer:norm-model}, norm followed by this evaluation on the constant-unit copy sums all group actions. It is therefore multiplication by $"
     },
     {
       "from": "m1-power-prime-to-p",
-      "to": "m1-layer-odd-vanishing"
+      "to": "m1-layer-odd-vanishing",
+      "context": "tion simplex: a subgroup with $p$-torsion has no fixed point in $S(V)$. Induction from each such stabilizer is $p$-locally a retract of free induction by Lemma~\\ref{power:prime-to-p}. The ordinary full orbit-to-fixed-point norm on $T^{r-1}J\\Tr Z$ is therefore an equivalence, by its finite equivariant"
     },
     {
       "from": "m1-layer-even-trivializations",
-      "to": "m1-layer-odd-vanishing"
+      "to": "m1-layer-odd-vanishing",
+      "context": "ion. Its full homotopy orbit spectrum is identified with the underlying fiber by inclusion of a fiber point: $r-1$ is even, so use the trivialization of Lemma~\\ref{layer:even-trivializations}, followed by the acyclic augmentation of Lemma~\\ref{layer:acyclic-sphere}. Its partial orbit spectrum is identified by"
     },
     {
       "from": "m1-layer-acyclic-sphere",
-      "to": "m1-layer-odd-vanishing"
+      "to": "m1-layer-odd-vanishing",
+      "context": "y inclusion of a fiber point: $r-1$ is even, so use the trivialization of Lemma~\\ref{layer:even-trivializations}, followed by the acyclic augmentation of Lemma~\\ref{layer:acyclic-sphere}. Its partial orbit spectrum is identified by the same point. Indeed projection $J\\to\\one$ and the Euler triangle reduce"
     },
     {
       "from": "m1-layer-partial-thom",
-      "to": "m1-layer-odd-vanishing"
+      "to": "m1-layer-odd-vanishing",
+      "context": "eed projection $J\\to\\one$ and the Euler triangle reduce that assertion to the even calculation for $T^{r-1}\\Tr Z$ and the odd vanishing for $T^r\\Tr Z$ in Lemma~\\ref{layer:partial-thom}. The projection from partial to full orbits respects these fiber-point maps, so it is an equivalence. Composing with th"
     },
     {
       "from": "m1-layer-even-trivializations",
-      "to": "m1-layer-comparison"
+      "to": "m1-layer-comparison",
+      "context": "For the right-hand equivalence, replace $W_i$ coherently by $\\Tr S(Fi)$ using Lemma~\\ref{layer:even-trivializations} and free-module adjunction. Apply Equation~\\eqref{layer:external-product} with the target shifted by $S(-Fi)$. Multipli"
     },
     {
       "from": "m1-found-free-null",
-      "to": "m1-layer-comparison"
+      "to": "m1-layer-comparison",
+      "context": "s $J_2^\\vee$ mapping algebra. We verify its underlying map with the null specified, since the existence of some module equivalence would not suffice. By Lemma~\\ref{found:free-null}, its source is the cofiber of multiplication by $t$, and the map on the added module cell is the chosen null multiplied"
     },
     {
       "from": "m1-layer-odd-vanishing",
-      "to": "m1-layer-comparison"
+      "to": "m1-layer-comparison",
+      "context": "restriction therefore has an extra factor $T^{-1}J^\\vee$. Every $W_i$ has even twisting exponent in $V$, so moving it to the target leaves an odd twist. Lemma~\\ref{layer:odd-vanishing} makes this fiber zero, including any ordinary sphere shift. Restriction is thus an equivalence. Its composite with Equa"
     },
     {
       "from": "m1-found-finite-cell-morita",
-      "to": "m1-layer-first-koszul"
+      "to": "m1-layer-first-koszul",
+      "context": "0$. Its quotient is base change by $D//\\varpi$: send the null of $b_0$ to $u_0$ times the null of $\\varpi$. The chosen-null cofiber description and Proposition~\\ref{found:finite-cell-morita} give this identification also after tensoring with $M$. Scalar base change supported in weight zero is componentwise te"
     },
     {
       "from": "m1-layer-comparison",
-      "to": "m1-layer-first-koszul"
+      "to": "m1-layer-first-koszul",
+      "context": ". Scalar base change supported in weight zero is componentwise tensor on the other input, so it commutes with the pullback of weights by $F$. Apply Proposition~\\ref{layer:comparison} and its unit compatibility."
     },
     {
       "from": "m1-universal-triangular",
-      "to": "m1-universal-filtered-cells"
+      "to": "m1-universal-filtered-cells",
+      "context": "The differential of a coefficient generator increases length, by Lemma~\\ref{universal:triangular}. The summand $z_{j,S}e_S$ of $\\partial e_j$ has length $1+|S|$, so only $S=\\emptyset$ contributes at the original lengt"
     },
     {
       "from": "m1-universal-triangular",
-      "to": "m1-universal-primewise-models"
+      "to": "m1-universal-primewise-models",
+      "context": "We first construct the algebras in the triangular generator order of Lemma~\\ref{universal:triangular}. Start at the unit, in weight and filtration order zero. Suppose that the preceding generators have been constructed, a"
     },
     {
       "from": "m1-universal-associated-graded",
-      "to": "m1-universal-primewise-models"
+      "to": "m1-universal-primewise-models",
+      "context": "tion bounds are preserved. After taking associated graded, the attaching map in order one is null by its specified factorization through $\\mathcal F_2$. Lemma~\\ref{universal:associated-graded} identifies the result with free adjunction of the sphere $S^{d(\\gamma)-r}$ in weight $\\gamma$ and order one. Repeating"
     },
     {
       "from": "m1-universal-filtered-cells",
-      "to": "m1-universal-primewise-models"
+      "to": "m1-universal-primewise-models",
+      "context": "ts chosen compatibility, which proves the assertion about diagrams across stages. Finally, construct $K_p^a$ using the finite filtered module cells from Lemma~\\ref{universal:filtered-cells}. A free module cell over $R_p^a$ with generator of weight $\\gamma$, order $s$, and ordinary degree $d(\\gamma)+u$, for f"
     },
     {
       "from": "m1-universal-filtered-cells",
-      "to": "m1-universal-whole-module"
+      "to": "m1-universal-whole-module",
+      "context": "and extends by finite cofibers. This is the Koszul module with differential $\\partial e_j=z_{j,\\emptyset}$, hence agrees with the normalized left side by Lemma~\\ref{universal:filtered-cells}. A change in a sphere identification can multiply a chosen basis element by a unit and does not change this equivalence"
     },
     {
       "from": "m1-conn-stable-elements",
-      "to": "m1-conn-symmetric"
+      "to": "m1-conn-symmetric",
+      "context": "\\geq0$ is a base-cell degree. This proves the first bound, including for virtual bundles. Since $p>C$ and $k\\leq Cp$, we have $k<p^2$ and $l\\leq C<p$, so Lemma~\\ref{conn:stable-elements} applies. The two-periodic cyclic-group resolution, together with its periodicity class and Bockstein, gives \\[ H^*(C_"
     },
     {
       "from": "m1-conn-symmetric",
-      "to": "m1-conn-estimate"
+      "to": "m1-conn-estimate",
+      "context": "0\\leq k_{j,S}\\leq\\sigma(\\gamma) =p\\sigma(\\lambda)+\\sigma(\\delta)\\leq Cp. \\] This also proves finiteness of the sum at each prime. For $p>C$, Proposition~\\ref{conn:symmetric} applies to every factor. Since $d(\\gamma_{j,S})$ is even, the odd-degree improvement applies exactly when $r$ is odd. F"
     },
     {
       "from": "m1-conn-estimate",
-      "to": "m1-conn-degree-gap"
+      "to": "m1-conn-degree-gap",
+      "context": "omputed by maps from the sphere of ordinary degree $d(Fi)+s$ to $K_p^a(p\\lambda+\\delta)$. Subtracting this requested degree from the lower bound of Proposition~\\ref{conn:estimate} gives \\begin{align*} &d(p\\lambda+\\delta)+2\\nu(p\\lambda+\\delta)-E -\\big(d(Fi)+s\\big)\\\\ &\\hspace{1cm}= 2p\\big(\\"
     },
     {
       "from": "m1-conn-degree-gap",
-      "to": "m1-conn-k-test"
+      "to": "m1-conn-k-test",
+      "context": "the mapping constructions are exact componentwise. Induction over the finitely many cells now proves the equivalence for $K_p^a$. If $m>-\\nu(\\lambda)$, Lemma~\\ref{conn:degree-gap} shows that the right side is zero at every fixed $\\delta$. Finally, Equation~\\eqref{eq:layer} identifies $B(R_p^a)//t$"
     },
     {
       "from": "m1-norm-amitsur",
-      "to": "m1-norm-target-locality"
+      "to": "m1-norm-target-locality",
+      "context": "se limits. Since $L_a$ is derived $t$-complete, it is the inverse limit of these local finite quotients and is itself local. The conclusion follows from Lemma~\\ref{norm:amitsur}. This proof uses the already attached cells, and makes no assumption about any Hurewicz image."
     },
     {
       "from": "m1-found-free-null",
-      "to": "m1-norm-attachment"
+      "to": "m1-norm-attachment",
+      "context": "mega(Y_{a+1})_{F(i)}. \\] Their cofiber is $h_\\Omega(Y_{a+2})_{F(i)}$. The map on the new cell is the chosen null $e_{a+1}$ multiplied by the base input. Lemma~\\ref{found:free-null} therefore identifies the constructed map with this cofiber equivalence. This argument uses only the additivity of $F$"
     },
     {
       "from": "m1-layer-completion",
-      "to": "m1-norm-attachment"
+      "to": "m1-norm-attachment",
+      "context": ", so it also preserves the initial-layer and tower maps. The new attachment is a finite perfect-module extension of its base. Completeness follows from Lemma~\\ref{layer:completion}, for both the sphere tower and its $M$-base change."
     },
     {
       "from": "m1-universal-primewise-models",
-      "to": "m1-norm-construction"
+      "to": "m1-norm-construction",
+      "context": "The initial layer was established at the beginning of the section. Given stage $a<n$, Propositions~\\ref{universal:primewise-models} and \\ref{conn:k-test} supply the universal models and Equation~\\eqref{eq:k-test}. Lemmas~\\ref{norm:target-locality} an"
     },
     {
       "from": "m1-conn-k-test",
-      "to": "m1-norm-construction"
+      "to": "m1-norm-construction",
+      "context": "The initial layer was established at the beginning of the section. Given stage $a<n$, Propositions~\\ref{universal:primewise-models} and \\ref{conn:k-test} supply the universal models and Equation~\\eqref{eq:k-test}. Lemmas~\\ref{norm:target-locality} and \\ref{norm:normalizat"
     },
     {
       "from": "m1-norm-target-locality",
-      "to": "m1-norm-construction"
+      "to": "m1-norm-construction",
+      "context": "ion. Given stage $a<n$, Propositions~\\ref{universal:primewise-models} and \\ref{conn:k-test} supply the universal models and Equation~\\eqref{eq:k-test}. Lemmas~\\ref{norm:target-locality} and \\ref{norm:normalization} define $P^a$; Lemma~\\ref{norm:naturality} and the older attached nulls extend it to $f^a$."
     },
     {
       "from": "m1-norm-normalization",
-      "to": "m1-norm-construction"
+      "to": "m1-norm-construction",
+      "context": "tions~\\ref{universal:primewise-models} and \\ref{conn:k-test} supply the universal models and Equation~\\eqref{eq:k-test}. Lemmas~\\ref{norm:target-locality} and \\ref{norm:normalization} define $P^a$; Lemma~\\ref{norm:naturality} and the older attached nulls extend it to $f^a$. Equation~\\eqref{norm:next-ce"
     },
     {
       "from": "m1-norm-naturality",
-      "to": "m1-norm-construction"
+      "to": "m1-norm-construction",
+      "context": "ef{conn:k-test} supply the universal models and Equation~\\eqref{eq:k-test}. Lemmas~\\ref{norm:target-locality} and \\ref{norm:normalization} define $P^a$; Lemma~\\ref{norm:naturality} and the older attached nulls extend it to $f^a$. Equation~\\eqref{norm:next-cell} defines $g_a$, and Lemma~\\ref{norm:att"
     },
     {
       "from": "m1-norm-attachment",
-      "to": "m1-norm-construction"
+      "to": "m1-norm-construction",
+      "context": "malization} define $P^a$; Lemma~\\ref{norm:naturality} and the older attached nulls extend it to $f^a$. Equation~\\eqref{norm:next-cell} defines $g_a$, and Lemma~\\ref{norm:attachment} constructs the next cycle and preserves the invariant. There are exactly $n$ such steps."
     },
     {
       "from": "m1-found-finite-cell-morita",
-      "to": "m1-norm-recovery"
+      "to": "m1-norm-recovery",
+      "context": "on the left of Equation~\\eqref{eq:recovery}. Its identification with $h_\\Lambda(M\\otimes Y_a)$ follows from the finite-module tensor comparison of Proposition~\\ref{found:finite-cell-morita}. Only the finite Koszul module is used here, so the same comparison applies after restriction from $\\Omega$ to $\\Lambd"
     },
     {
       "from": "m1-cob-cohomology",
-      "to": "m1-cob-euler-divisibility"
+      "to": "m1-cob-euler-divisibility",
+      "context": "rage $z$ over $\\F_p^\\times$. Both $y|_{C_p}$ and $\\epsilon$ are invariant, so the averaged divisor still has product $y|_{C_p}$ with $\\epsilon^2$. By Lemma~\\ref{cob:cohomology}, this invariant divisor comes from $H_G^*$. Notice that this argument neither asserts that $\\epsilon$ is a nonzerodiv"
     },
     {
       "from": "m1-cob-cohomology",
-      "to": "m1-cob-power-rules"
+      "to": "m1-cob-power-rules",
+      "context": "multiplication by classes from the larger group. For the last assertion, use the finite $M_p$-module splitting of the cochains of $\\mathbb CP^r$ from Lemma~\\ref{cob:cohomology}. Coefficient extraction is the projection onto one of its summands. Taking cochains from a space with trivial group a"
     },
     {
       "from": "m1-cob-power-rules",
-      "to": "m1-cob-coefficient-relation"
+      "to": "m1-cob-coefficient-relation",
+      "context": "Alternatively, expand $[p](Z)$ as in Equation~\\eqref{cob:p-series}. Each summand $k_uZ^u$ has cohomological degree two, so the additivity assertion of Lemma~\\ref{cob:power-rules} applies. Repeated use of its product rule gives \\begin{equation} \\label{cob:series-comparison} h([p](Z))\\equiv"
     },
     {
       "from": "m1-cob-cohomology",
-      "to": "m1-cob-coefficient-relation"
+      "to": "m1-cob-coefficient-relation",
+      "context": "Equation~\\eqref{cob:euler-product} becomes $h(Z)=U(Z)Z^p$. Consequently \\[ A_{p^a}|_{\\mathrm{pt}}=U(0)|_{\\mathrm{pt}}^{\\,p^a}, \\] a scalar unit. Lemma~\\ref{cob:cohomology} shows that $A_{p^a}$ is a unit of $H_G^0$. Multiplication by $\\alpha_{p^a}$ gives the coefficient $C$ of $\\Pi_p(x_a)"
     },
     {
       "from": "m1-cob-euler-divisibility",
-      "to": "m1-cob-coefficient-relation"
+      "to": "m1-cob-coefficient-relation",
+      "context": "an be checked using any power-series lifts before quotienting by $[p](x)$; all exponents of $x$ and $Z$ are nonnegative. Since $A_u$ comes from $BG$, Lemma~\\ref{cob:euler-divisibility} gives $A_u\\in\\epsilon^2H_G^*$. After multiplication by $\\alpha_u\\Pi_p(k_u)$ and summation, all such terms contribute"
     },
     {
       "from": "m1-cob-regularity",
-      "to": "m1-cob-coefficient-relation"
+      "to": "m1-cob-coefficient-relation",
+      "context": "A_u\\in\\epsilon^2H_G^*$. After multiplication by $\\alpha_u\\Pi_p(k_u)$ and summation, all such terms contribute to $\\epsilon^2D_*$. For $1\\leq u<p^a$, Lemma~\\ref{cob:regularity} gives a finite homogeneous expression \\[ k_u=\\sum_{0\\leq j<a}c_{u,j}x_j \\quad\\text{in }(M_p)_*. \\] All sum"
     },
     {
       "from": "m1-norm-recovery",
-      "to": "m1-real-raw-powers"
+      "to": "m1-real-raw-powers",
+      "context": "Apply Proposition~\\ref{norm:recovery} and Equation~\\eqref{eq:recovery}. The classes \\(x_j\\) for \\(j<a\\) vanish in its source \\(h_\\Lambda(M\\otimes Y_a)\\), an"
     },
     {
       "from": "m1-real-t-injectivity",
-      "to": "m1-real-raw-powers"
+      "to": "m1-real-raw-powers",
+      "context": "Since it is a map of rational graded algebras and that Hurewicz image is \\(u x_a\\), its value is the localization of \\(\\mathcal P(u)\\mathcal P(x_a)\\). Lemma~\\ref{real:t-injectivity} now proves both equalities before inversion. No linearity over \\(D\\) is required of the powered comparison. Raw power"
     },
     {
       "from": "m1-cob-regularity",
-      "to": "m1-real-hurewicz"
+      "to": "m1-real-hurewicz",
+      "context": "assertions hold because \\(Y_0=\\one\\), and the Hurewicz assertion holds because \\(b_0=\\varpi u_0\\) represents the sequence \\(p=x_0\\) at weight \\(w_0\\). Lemmas~\\ref{cob:regularity} and \\ref{real:cofiber-quotient}, applied to Equation~\\eqref{real:primewise-cofibers}, give both quotient assertions for"
     },
     {
       "from": "m1-real-cofiber-quotient",
-      "to": "m1-real-hurewicz"
+      "to": "m1-real-hurewicz",
+      "context": "\\(Y_0=\\one\\), and the Hurewicz assertion holds because \\(b_0=\\varpi u_0\\) represents the sequence \\(p=x_0\\) at weight \\(w_0\\). Lemmas~\\ref{cob:regularity} and \\ref{real:cofiber-quotient}, applied to Equation~\\eqref{real:primewise-cofibers}, give both quotient assertions for \\(Y_1\\). Suppose now that \\(0\\"
     },
     {
       "from": "m1-real-t-injectivity",
-      "to": "m1-real-hurewicz"
+      "to": "m1-real-hurewicz",
+      "context": "s for \\(Y_1\\). Suppose now that \\(0\\leq a<n\\), that the Hurewicz assertions hold through \\(a\\), and that the quotient assertions hold through \\(a+1\\). Lemmas~\\ref{real:t-injectivity} and \\ref{real:raw-powers} apply. We will use Proposition~\\ref{cob:coefficient-relation} to identify the reduction of \\"
     },
     {
       "from": "m1-real-raw-powers",
-      "to": "m1-real-hurewicz"
+      "to": "m1-real-hurewicz",
+      "context": "hat \\(0\\leq a<n\\), that the Hurewicz assertions hold through \\(a\\), and that the quotient assertions hold through \\(a+1\\). Lemmas~\\ref{real:t-injectivity} and \\ref{real:raw-powers} apply. We will use Proposition~\\ref{cob:coefficient-relation} to identify the reduction of \\(g_a\\), which by construct"
     },
     {
       "from": "m1-cob-coefficient-relation",
-      "to": "m1-real-hurewicz"
+      "to": "m1-real-hurewicz",
+      "context": "hrough \\(a\\), and that the quotient assertions hold through \\(a+1\\). Lemmas~\\ref{real:t-injectivity} and \\ref{real:raw-powers} apply. We will use Proposition~\\ref{cob:coefficient-relation} to identify the reduction of \\(g_a\\), which by construction is the Hurewicz image of \\(b_{a+1}\\). Map Equation~\\eqref{"
     },
     {
       "from": "m1-real-thom-comparisons",
-      "to": "m1-real-hurewicz"
+      "to": "m1-real-hurewicz",
+      "context": "sequence in the source of the appropriate \\(\\theta_i\\). There is no requirement that these coefficients themselves have formulas independent of \\(p\\). Lemma~\\ref{real:thom-comparisons} and Equation~\\eqref{eq:before-inversion} now account for every term. The earlier powered coefficients \\(\\mathcal P(x_j)"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-real-finite-descent"
+      "to": "m1-real-finite-descent",
+      "context": "[Proof of Theorem~\\ref{thm:main}] For \\(n=0\\), choose any prime \\(p\\) and take the cofiber of \\(p:S_{(p)}\\to S_{(p)}\\). Multiplication by \\(p\\) is inje"
     },
     {
       "from": "m1-real-hurewicz",
-      "to": "m1-real-finite-descent"
+      "to": "m1-real-finite-descent",
+      "context": "the sphere. This is a finite \\(p\\)-local spectrum. For \\(n\\geq1\\), fix the construction above and choose a prime in the common \\(\\U\\)-large set of Proposition~\\ref{real:hurewicz}. Set \\(X=Y_{n+1,p}\\). Equations~\\eqref{real:primewise-cofibers} and Lemma~\\ref{real:finite-descent} show that \\(X\\) is"
     },
     {
       "from": "m1-cob-regularity",
-      "to": "m1-real-finite-descent"
+      "to": "m1-real-finite-descent",
+      "context": "\\(p\\)-localization of a finite CW spectrum, and hence is finite \\(p\\)-local in the sense of the theorem. By Equation~\\eqref{real:homology-quotients} and Lemma~\\ref{cob:regularity}, its actual unit map from the \\(p\\)-local sphere induces a surjection \\[ \\BP_*\\longrightarrow\\BP_*X \\quad\\text{with k"
     },
     {
       "from": "m2-fw-coordinates",
-      "to": "m2-fw-range-comparison"
+      "to": "m2-fw-range-comparison",
+      "context": "the entire weight budget. Thus these cochain groups have scalar coefficients and only $t_1,\\ldots,t_m$ in their bars. Their coproducts are additive by Lemma~\\ref{fw:coordinates}. This identifies the two groups adjacent to the desired cohomology group as well as the group itself, so both kernels"
     },
     {
       "from": "m2-fw-coordinates",
-      "to": "m2-fw-additive-comparison"
+      "to": "m2-fw-additive-comparison",
+      "context": "ight for the other $d-1\\geq qk-1>k$ bars, and likewise cannot occur. Higher generators exceed the weight bound. The remaining coproducts are additive by Lemma~\\ref{fw:coordinates}; equivalently, apply Lemma~\\ref{fw:range-comparison}. This identifies both adjacent differentials and proves the cohom"
     },
     {
       "from": "m2-fw-range-comparison",
-      "to": "m2-fw-additive-comparison"
+      "to": "m2-fw-additive-comparison",
+      "context": "kewise cannot occur. Higher generators exceed the weight bound. The remaining coproducts are additive by Lemma~\\ref{fw:coordinates}; equivalently, apply Lemma~\\ref{fw:range-comparison}. This identifies both adjacent differentials and proves the cohomology assertion."
     },
     {
       "from": "m2-fw-normalized-bound",
-      "to": "m2-low-algebraic-vanishing"
+      "to": "m2-low-algebraic-vanishing",
+      "context": "second by setting $U=u_n$ and $\\rho=0$, while retaining its indicated coefficient comodule. If the normalized cochain group in degree $(s,w)$ is nonzero, Lemma~\\ref{fw:normalized-bound} gives \\begin{equation} 2015k\\leq U+\\rho-1. \\label{low:normalized-cutoff} \\end{equation} The exact values \\[ (u_0,u_1"
     },
     {
       "from": "m2-fw-range-comparison",
-      "to": "m2-low-algebraic-vanishing"
+      "to": "m2-low-algebraic-vanishing",
+      "context": "no positive coefficient or coordinate $t_i$ with $i\\geq n+1$ can occur. The retained coproducts are additive modulo $I_{n+1}$, and the last assertion of Lemma~\\ref{fw:range-comparison} applies in every degree. For a remaining $v_n$ target, a positive coefficient costs at least $u_n$, leaving at most $k"
     },
     {
       "from": "m2-low-algebraic-vanishing",
-      "to": "m2-low-v3"
+      "to": "m2-low-v3",
+      "context": "ts of $\\{0,\\ldots,n\\}$. If $e_i$ counts occurrences of $i$ in that pair, its dimension is $qU+\\rho$, with precisely the parameters in the second part of Lemma~\\ref{low:algebraic-vanishing}. The obstruction to extending across the cell lies in $\\pi_{qU+\\rho-1}V(n)$. An Adams--Novikov term in that stem has"
     },
     {
       "from": "m2-fw-anss",
-      "to": "m2-low-v3"
+      "to": "m2-low-v3",
+      "context": "requires $k\\geq1$. Every corresponding $E_2$ group is zero by Lemma~\\ref{low:algebraic-vanishing}. Strong convergence and finite filtration, from Proposition~\\ref{fw:anss}, give $\\pi_{qU+\\rho-1}V(n)=0$. Extending cell by cell therefore produces $\\mu_n$, agreeing with both identity maps on"
     },
     {
       "from": "m2-fw-coordinates",
-      "to": "m2-low-v3"
+      "to": "m2-low-v3",
+      "context": "This constructs the initial product on $V(0)$ as well. Suppose now that $V(n-1)$, including its product, has been constructed, where $1\\leq n\\leq3$. By Lemma~\\ref{fw:coordinates}, $v_n$ is a primitive element of $BP_*V(n-1)=R/I_n$. It defines a filtration-zero $E_2$ class. Its possible positive d"
     },
     {
       "from": "m2-low-finite-localization",
-      "to": "m2-low-v3"
+      "to": "m2-low-v3",
+      "context": "duct-extension argument already proved then constructs $\\mu_n$. This completes the induction. All attachments are finite $p$-local cell attachments, and Lemma~\\ref{low:finite-localization} gives finiteness in the sense of the stated realization problem. No associativity of any $\\mu_n$ has been asserted or"
     },
     {
       "from": "m2-fw-normalized-bound",
-      "to": "m2-may-target-bound"
+      "to": "m2-may-target-bound",
+      "context": "ps for both $Y$ and $P$ are zero, as is the May page, and all the conclusions are immediate. We may therefore suppose $w\\geq s$. The normalized bound in Lemma~\\ref{fw:normalized-bound} then gives $(q-1)k\\leq u_4-1$. Consequently \\[ w\\leq u_4+\\frac{u_4-1}{q-1} <\\frac q{q-1}u_4<4p^3<p^4 \\quad (p=1009)"
     },
     {
       "from": "m2-fw-additive-comparison",
-      "to": "m2-may-target-bound"
+      "to": "m2-may-target-bound",
+      "context": "ngths $s-1,s,s+1$ are all greater than $k$, because $s-1=qk>k$. Higher coefficient generators are excluded by $w<u_5$. The adjacent-chain comparison of Lemma~\\ref{fw:additive-comparison} therefore identifies the required cohomology with that of $P$. There are ten possible exterior intervals on positions"
     },
     {
       "from": "m2-may-page",
-      "to": "m2-may-injectivity"
+      "to": "m2-may-injectivity",
+      "context": "Use the filtration in Lemma~\\ref{may:page} with the explicit choice $M=3p$. If the source cohomology is nonzero, any nonzero class has leading detector a nonzero"
     },
     {
       "from": "m2-may-first-list",
-      "to": "m2-may-injectivity"
+      "to": "m2-may-injectivity",
+      "context": "the explicit choice $M=3p$. If the source cohomology is nonzero, any nonzero class has leading detector a nonzero scalar multiple of $acybz B^{p-3}$, by Lemma~\\ref{may:first-list}. Its filtration is \\[ F_0=3p^2-9p+13+M(2+p(p-3)). \\] The cocycle $[t_1^{p^4}]$ represents $h_{1,4}$, with degree, wei"
     },
     {
       "from": "m2-may-injectivity",
-      "to": "m2-may-first-differential"
+      "to": "m2-may-first-differential",
+      "context": "Equation~\\eqref{may:specialized-obstruction} and Proposition~\\ref{may:injectivity} give $\\sigma(d_{q+1}(v_4))=0$. Lemma~\\ref{may:target-bound} identifies this specialization with the original target gro"
     },
     {
       "from": "m2-may-target-bound",
-      "to": "m2-may-first-differential"
+      "to": "m2-may-first-differential",
+      "context": "Equation~\\eqref{may:specialized-obstruction} and Proposition~\\ref{may:injectivity} give $\\sigma(d_{q+1}(v_4))=0$. Lemma~\\ref{may:target-bound} identifies this specialization with the original target group. Hence $d_{q+1}(v_4)=0$."
     },
     {
       "from": "m2-may-target-bound",
-      "to": "m2-may-remaining-list"
+      "to": "m2-may-remaining-list",
+      "context": "Lemma~\\ref{may:target-bound} allows only positions $0,1,2$ and $2\\leq k\\leq p+2$. Thus \\eqref{may:three-position-weight} applies. There are six ext"
     },
     {
       "from": "m2-may-page",
-      "to": "m2-frob-quotient-groups"
+      "to": "m2-frob-quotient-groups",
+      "context": "are $p^2$ and $p^2+p$; the third-coordinate weight, if present, is $p^2+p+1$. The next polynomial weight is $p^2$. All are outside the asserted range. Lemma~\\ref{may:page} therefore gives exactly \\eqref{frob:small-monomials}. To verify the table, first reduce its weight equation modulo $p$"
     },
     {
       "from": "m2-frob-quotient-groups",
-      "to": "m2-frob-k2"
+      "to": "m2-frob-k2",
+      "context": "p-2}]. \\end{equation} The target has quotient degree $2p-3$ and weight $p(p-1)$. Both source and target are nonzero actual quotient-cohomology classes by Lemma~\\ref{frob:quotient-groups}; they are present on this page because all earlier coefficient differentials vanish. Thus \\eqref{frob:k2-differential}"
     },
     {
       "from": "m2-frob-quotient-groups",
-      "to": "m2-frob-kpminus1"
+      "to": "m2-frob-kpminus1",
+      "context": "three. The first coefficient differential comes from the term $2D\\xi^p$ in \\[ (D+\\xi^p)^2-D^2=2D\\xi^p+\\xi^{2p}. \\] Using the actual class $\\upsilon$ of Lemma~\\ref{frob:quotient-groups}, it is \\begin{equation}\\label{frob:h3-differential} D^2\\upsilon\\longmapsto\\pm2D\\upsilon z. \\end{equation} The coeffici"
     },
     {
       "from": "m2-frob-k2",
-      "to": "m2-frob-vanishing"
+      "to": "m2-frob-vanishing",
+      "context": "Apply Propositions~\\ref{frob:k2} and~\\ref{frob:kpminus1}, and the exhaustive list in Table~\\ref{may:remaining-table}."
     },
     {
       "from": "m2-frob-kpminus1",
-      "to": "m2-frob-vanishing"
+      "to": "m2-frob-vanishing",
+      "context": "Apply Propositions~\\ref{frob:k2} and~\\ref{frob:kpminus1}, and the exhaustive list in Table~\\ref{may:remaining-table}."
     },
     {
       "from": "m2-fw-normalized-bound",
-      "to": "m2-top-small-stems"
+      "to": "m2-top-small-stems",
+      "context": ",\\\\ \\delta=1,&j\\geq0. \\end{cases} \\end{equation} First we give explicit bounds permitting the additive calculation. The normalized-cobar inequality of Lemma~\\ref{fw:normalized-bound} implies \\[ (q-1)j\\leq W+\\delta-6. \\] At the specified prime, \\[ q-1=2015,\\quad W=2{,}040{,}199,\\quad 2015\\cdot1013=2"
     },
     {
       "from": "m2-fw-range-comparison",
-      "to": "m2-top-small-stems"
+      "to": "m2-top-small-stems",
+      "context": "icient of $R/I_4$ occurs, in any cobar degree at these weights. The only possible digit positions are $0,1,2$, and the cooperation formulas are additive. Lemma~\\ref{fw:range-comparison} therefore identifies the relevant cobar calculation with the indicated range of $P$. Use the six exterior letters $x,a"
     },
     {
       "from": "m2-fw-anss-pairing",
-      "to": "m2-top-sphere-classes"
+      "to": "m2-top-sphere-classes",
+      "context": "s,w)=(1,1)$, so there is no extension ambiguity and $\\pi_{q-1}S^0_{(p)}=\\mathbb Z/p\\{\\alpha\\}$. Finally, the sphere action and its cobar pairing in Proposition~\\ref{fw:anss-pairing} identify the detector of multiplication by $\\beta$ with $b_{1,0}=A$."
     }
   ]
 }

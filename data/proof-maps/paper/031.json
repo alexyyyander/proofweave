@@ -190,123 +190,153 @@
   "edges": [
     {
       "from": "m1-thm-uchida-isomorphism",
-      "to": "m1-lem-centralizer"
+      "to": "m1-lem-centralizer",
+      "context": "ng $P_M$ is a field automorphism of $\\Q^s$ implementing the identity automorphism of $P_M$. The identity field map also implements it, so uniqueness in Theorem~\\ref{thm:uchida-isomorphism} gives the assertion."
     },
     {
       "from": "m1-thm-local-correspondence",
-      "to": "m1-lem-norm-identity"
+      "to": "m1-lem-norm-identity",
+      "context": "tame factor then gives \\eqref{eq:norm-identity} by the target tame conjugation relation. The target residue characteristic is different from $\\ell$ by Theorem~\\ref{thm:local-correspondence}."
     },
     {
       "from": "m1-lem-log-rank",
-      "to": "m1-prop-character-detection"
+      "to": "m1-prop-character-detection",
+      "context": "}\\in(E^\\times)^n. \\] All coordinates are algebraic integers and are units at every place of $E$ above $\\ell$. We verify the multiplicative hypothesis of Lemma~\\ref{lem:log-rank} by valuations. Put $G=\\Gal(E/\\Q)$ and $H=\\Gal(E/M)$. For a selected degree-one prime $v_i$ and a prime $\\mathfrak p_i"
     },
     {
       "from": "m1-thm-uchida-isomorphism",
-      "to": "m1-lem-normalizer-extension"
+      "to": "m1-lem-normalizer-extension",
+      "context": "Conjugation by $t\\in T$ induces a continuous automorphism of $U/N=A$. By Theorem~\\ref{thm:uchida-isomorphism}, applied to $\\Q^s/(\\Q^s)^A$, this automorphism is conjugation by a unique element $\\beta(t)$ of $P$. Indeed, the implem"
     },
     {
       "from": "m1-prop-signed-representation",
-      "to": "m1-lem-quotient-amplification"
+      "to": "m1-lem-quotient-amplification",
+      "context": "$c$; thus \\begin{equation}\\label{eq:large-conjugacy-class} |c^R|\\geq 2^{mn/2}. \\end{equation} Set $\\eta=2^{-mn/2}$ and write $X=\\X{\\ell}{L}$. By Proposition~\\ref{prop:signed-representation}, $X$ embeds in the regular $\\Q_\\ell[R]$-representation and contains \\[ W=\\Ind_{\\langle c\\rangle}^{R}(\\operatorname{sig"
     },
     {
       "from": "m1-lem-quotient-amplification",
-      "to": "m1-prop-frobenius-generation"
+      "to": "m1-prop-frobenius-generation",
+      "context": "Choose $R$ by Lemma~\\ref{lem:quotient-amplification} and choose any lift $\\gamma$ of $\\gamma_0$. Put $C=\\langle\\gamma\\rangle$. Take an open normal subgroup $U'\\triangleleft"
     },
     {
       "from": "m1-thm-local-correspondence",
-      "to": "m1-prop-frobenius-generation"
+      "to": "m1-prop-frobenius-generation",
+      "context": "rev's theorem supplies infinitely many primes $w'$ of $L$, over distinct rational primes $q\\ne\\ell$ unramified in $L$, with Frobenius exactly $\\gamma$. Theorem~\\ref{thm:local-correspondence} applied to $\\beta|_{U'}$ pairs all but finitely many of them with $\\ell$-active primes $v'$ of $F'$, away from $\\ell$."
     },
     {
       "from": "m1-prop-character-detection",
-      "to": "m1-prop-frobenius-generation"
+      "to": "m1-prop-frobenius-generation",
+      "context": "o this equality says that it vanishes on the entire decomposition group there. It follows that $y(\\Fr_{v'})=0$ for every prime in our infinite set. Proposition~\\ref{prop:character-detection}(ii) now gives \\begin{equation}\\label{eq:source-average-zero} E_{\\langle\\delta\\rangle}y=0. \\end{equation} To see why t"
     },
     {
       "from": "m1-prop-frobenius-generation",
-      "to": "m1-thm-normalized-map"
+      "to": "m1-thm-normalized-map",
+      "context": "Let $R_0$ be any finite quotient of $P$ and let $\\gamma_0\\in R_0$. Proposition~\\ref{prop:frobenius-generation} produces an element $d$ in the image of $\\beta$ in a further quotient $R$ such that $\\langle d\\rangle=\\langle\\gamma\\ran"
     },
     {
       "from": "m1-lem-norm-identity",
-      "to": "m1-thm-normalized-map"
+      "to": "m1-thm-normalized-map",
+      "context": "the corresponding target rational prime and let $f=[\\kappa(v):\\mathbb F_p]$, so $Nv=p^f$. If $a(\\sigma_v)\\in\\widehat{\\Z}$ is the target residue exponent, Lemma~\\ref{lem:norm-identity} gives \\begin{equation}\\label{eq:generating-norm} p^f=q^{a(\\sigma_v)}\\quad\\text{in }\\Z_\\ell^\\times. \\end{equation} Its"
     },
     {
       "from": "m1-prop-character-detection",
-      "to": "m1-thm-normalized-map"
+      "to": "m1-thm-normalized-map",
+      "context": "=\\log\\chi_{k,\\ell}(\\sigma_v). \\] The difference is an element of $\\X{\\ell}{k}$ vanishing at infinitely many primes of absolute residue degree one. Proposition~\\ref{prop:character-detection}(i) proves \\eqref{eq:cyclotomic-logarithms}."
     },
     {
       "from": "m1-prop-signed-representation",
-      "to": "m1-lem-finite-fibers"
+      "to": "m1-lem-finite-fibers",
+      "context": "Fix $r\\in\\mathcal L$. Proposition~\\ref{prop:signed-representation} supplies a nonzero character $\\psi\\in\\X{r}{B}$ on which $\\Gal(B/\\Q)$ acts by its nontrivial character. By Proposition~\\"
     },
     {
       "from": "m1-prop-character-detection",
-      "to": "m1-lem-finite-fibers"
+      "to": "m1-lem-finite-fibers",
+      "context": "position~\\ref{prop:signed-representation} supplies a nonzero character $\\psi\\in\\X{r}{B}$ on which $\\Gal(B/\\Q)$ acts by its nontrivial character. By Proposition~\\ref{prop:character-detection}(i), $\\psi(\\Fr_w)$ is nonzero at all but finitely many degree-one primes $w\\nmid r$. Fix such a $w$ above a split ration"
     },
     {
       "from": "m1-thm-normalized-map",
-      "to": "m1-lem-finite-fibers"
+      "to": "m1-lem-finite-fibers",
+      "context": "estriction back to $K$ gives the sum of the two translates, and restriction is injective for additive characters with characteristic-zero coefficients. Theorem~\\ref{thm:normalized-map} identifies $\\beta_B^*x_0$ with $\\log\\chi_{K,r}$. Consequently \\[ \\cor_{K/\\Q}(y) =-z[K:\\Q]\\log\\chi_{\\Q,r}\\ne0. \\] For"
     },
     {
       "from": "m1-thm-normalized-map",
-      "to": "m1-prop-uniform-missed-primes"
+      "to": "m1-prop-uniform-missed-primes",
+      "context": "at every finite prime other than $w$ and the primes above $\\ell$. Write \\[ \\rho=\\chi_\\ell\\circ\\beta_B,\\qquad \\epsilon=\\rho\\chi_{K,\\ell}^{-1}. \\] By Theorem~\\ref{thm:normalized-map}, $\\epsilon$ takes values in $\\mu_{\\ell-1}\\subset\\Q_\\ell^\\times$. Let $K'/K$ be the cyclic extension fixed by its kernel"
     },
     {
       "from": "m1-thm-local-correspondence",
-      "to": "m1-prop-uniform-missed-primes"
+      "to": "m1-prop-uniform-missed-primes",
+      "context": "et I_u$ on which it is nonzero, and a pro-$\\ell$ Sylow subgroup $J_v\\subset I_v$ containing $J_u$. Then $\\beta_B(J_v)\\ne1$, so $v$ is active at $\\ell$. Theorem~\\ref{thm:local-correspondence} sends $J_v$ into inertia at a corresponding prime $t\\nmid\\ell$ of $B$. Since $t$ occurs in an active pair, $t\\notin J$,"
     },
     {
       "from": "m1-lem-kummer-unramified",
-      "to": "m1-prop-uniform-missed-primes"
+      "to": "m1-prop-uniform-missed-primes",
+      "context": "k therefore vanishes on $J_u$, a contradiction. This proves the claim. Let $S$ consist of the archimedean places of $K'$ and its primes above $\\ell$. By Lemma~\\ref{lem:kummer-unramified}, the classes $c_w$ give independent elements of the $\\epsilon^{-1}$ eigenspace in $\\mathcal O_{K',S}^{\\times}\\otimes\\Q_"
     },
     {
       "from": "m1-lem-finite-fibers",
-      "to": "m1-prop-same-characteristic"
+      "to": "m1-prop-same-characteristic",
+      "context": "Suppose that there are infinitely many exceptions. Lemma~\\ref{lem:finite-fibers} allows us to choose \\[ w_1,\\ldots,w_n,\\qquad n>2[K:\\Q]+2, \\] among them, above distinct split rational primes $q_1,\\ld"
     },
     {
       "from": "m1-lem-power-separation",
-      "to": "m1-prop-same-characteristic"
+      "to": "m1-prop-same-characteristic",
+      "context": "set of rational residue characteristics of the primes in $\\mathcal V_{w_j}$. The failure of the asserted conclusion means $q_j\\notin\\mathcal P_j$. Apply Lemma~\\ref{lem:power-separation} with $m=m_0$ and $d=[K:\\Q]$. It gives $\\ell\\in\\mathcal L$, away from all the primes involved, such that \\begin{equation"
     },
     {
       "from": "m1-lem-norm-identity",
-      "to": "m1-prop-same-characteristic"
+      "to": "m1-prop-same-characteristic",
+      "context": "$p\\in\\mathcal P_j$ and $1\\le f\\le[K:\\Q]$. If $w_j$ occurred in an active pair at this $\\ell$, its source prime would lie in $\\mathcal V_{w_j}$. Applying Lemma~\\ref{lem:norm-identity} to a lift of source Frobenius and reducing modulo $\\ell$ would give \\[ Nv\\bmod\\ell\\in\\langle Nw_j\\bmod\\ell\\rangle =\\l"
     },
     {
       "from": "m1-prop-uniform-missed-primes",
-      "to": "m1-prop-same-characteristic"
+      "to": "m1-prop-same-characteristic",
+      "context": "=\\langle q_j\\bmod\\ell\\rangle, \\] contrary to \\eqref{eq:norm-separation}. All $n$ primes $w_j$ therefore belong to $\\mathcal M_\\ell$, contradicting Proposition~\\ref{prop:uniform-missed-primes}."
     },
     {
       "from": "m1-prop-same-characteristic",
-      "to": "m1-prop-identify-normalized"
+      "to": "m1-prop-identify-normalized",
+      "context": "of $P_L$ act trivially on additive characters. \\emph{Frobenius evaluations.} Let $q\\ne r$ range over rational primes split completely in $F'$. By Proposition~\\ref{prop:same-characteristic}, for all but finitely many such $q$ there is a prime $v$ of $K$ above $q$ whose decomposition group maps into a decompo"
     },
     {
       "from": "m1-prop-character-detection",
-      "to": "m1-prop-identify-normalized"
+      "to": "m1-prop-identify-normalized",
+      "context": "stinct $q$ uses one fixed choice. For each $x$, the difference $i_\\beta(x)-i_a(x)$ therefore vanishes at infinitely many degree-one primes of $F'$. Proposition~\\ref{prop:character-detection} gives \\begin{equation}\\label{eq:equal-pullbacks} i_\\beta=i_a. \\end{equation} \\emph{From characters to the finite grou"
     },
     {
       "from": "m1-prop-signed-representation",
-      "to": "m1-prop-identify-normalized"
+      "to": "m1-prop-identify-normalized",
+      "context": "i\\bigl(\\beta(t)\\cdot x\\bigr) =t\\cdot i(x) =i\\bigl(\\sigma_a(t)\\cdot x\\bigr). \\] The field $L$ is totally imaginary because it contains $B$. By Proposition~\\ref{prop:signed-representation}, $R$ acts faithfully on $\\X rL$. Hence \\[ \\beta(t)\\bmod P_L=\\sigma_a(t)\\bmod P_L\\qquad(t\\in T). \\] \\emph{One conjugat"
     },
     {
       "from": "m1-lem-normalizer-extension",
-      "to": "m1-thm-prosolvable-rigidity"
+      "to": "m1-thm-prosolvable-rigidity",
+      "context": "As in Lemma~\\ref{lem:normalizer-extension}, choose an open normal subgroup $U$ of $\\mathcal G$ contained in $G_F$, and extend $\\varphi|_U$ to the normalizer of it"
     },
     {
       "from": "m1-prop-identify-normalized",
-      "to": "m1-thm-prosolvable-rigidity"
+      "to": "m1-thm-prosolvable-rigidity",
+      "context": "malizer-extension}, choose an open normal subgroup $U$ of $\\mathcal G$ contained in $G_F$, and extend $\\varphi|_U$ to the normalizer of its kernel. Proposition~\\ref{prop:identify-normalized} shows that, after one conjugation of $\\varphi$, it agrees on $U$ with ordinary restriction $\\sigma:G_F\\to P$. For $g\\i"
     },
     {
       "from": "m1-lem-centralizer",
-      "to": "m1-thm-prosolvable-rigidity"
+      "to": "m1-thm-prosolvable-rigidity",
+      "context": "}) =\\sigma(gug^{-1}) =\\sigma(g)\\sigma(u)\\sigma(g)^{-1}. \\] Thus $\\sigma(g)^{-1}\\varphi(g)$ centralizes $\\sigma(U)=\\varphi(U)$, an open subgroup of $P$. Lemma~\\ref{lem:centralizer} makes this element trivial. The equality holds for every $g\\in G_F$."
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-thm-prosolvable-rigidity"
+      "to": "m1-thm-prosolvable-rigidity",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Choose copies of the given fields inside $\\overline{\\Q}$. By Lemma~\\ref{lem:solvable-closure}, each $E_i$ contains $\\Q"
     },
     {
       "from": "m1-lem-solvable-closure",
-      "to": "m1-thm-prosolvable-rigidity"
+      "to": "m1-thm-prosolvable-rigidity",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Choose copies of the given fields inside $\\overline{\\Q}$. By Lemma~\\ref{lem:solvable-closure}, each $E_i$ contains $\\Q^s$. Form the composite \\begin{equation}\\label{eq:final-composite} G_{F_1}\\longrightarrow G_1\\"
     },
     {
       "from": "m1-thm-hoshi",
-      "to": "m1-thm-prosolvable-rigidity"
+      "to": "m1-thm-prosolvable-rigidity",
+      "context": "nal-composite}. Surjectivity of the first arrow therefore yields \\[ \\chi_{E_2/F_2}\\circ\\alpha=\\chi_{E_1/F_1} \\quad\\text{in }\\widehat{\\Z}^{\\times}. \\] Theorem~\\ref{thm:hoshi} gives an equivariant embedding $E_2\\hookrightarrow E_1$. Its uniqueness is Uchida's theorem cited after Theorem~\\ref{th"
     }
   ]
 }

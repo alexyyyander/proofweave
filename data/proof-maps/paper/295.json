@@ -157,71 +157,88 @@
   "edges": [
     {
       "from": "m1-lem-popa-special",
-      "to": "m1-lem-finite-path-tests"
+      "to": "m1-lem-finite-path-tests",
+      "context": "First suppose that $M=P$ is a factor. The constant coefficient algebra $W^*(F)\\subset P^\\omega$ has separable predual. Apply Lemma~\\ref{lem:popa-special} and then Lemma~\\ref{lem:distinguished-letters}. The same free $d$-tuple makes every prescribed trace exactly zero in $"
     },
     {
       "from": "m1-lem-distinguished-letters",
-      "to": "m1-lem-finite-path-tests"
+      "to": "m1-lem-finite-path-tests",
+      "context": "se that $M=P$ is a factor. The constant coefficient algebra $W^*(F)\\subset P^\\omega$ has separable predual. Apply Lemma~\\ref{lem:popa-special} and then Lemma~\\ref{lem:distinguished-letters}. The same free $d$-tuple makes every prescribed trace exactly zero in $P^\\omega$, even though different tests can desi"
     },
     {
       "from": "m1-thm-walk",
-      "to": "m1-lem-finite-path-tests"
+      "to": "m1-lem-finite-path-tests",
+      "context": "[Proof of Theorem~\\ref{thm:walk}] Choose a $2$-norm dense sequence $(v_j)_{j\\geq1}$ in $\\U(M)$ and put \\[ \\mu_0=\\sum_{j\\geq1}2^{-j-1}(\\delta_{v_j}+\\del"
     },
     {
       "from": "m1-thm-walk",
-      "to": "m1-thm-liouville"
+      "to": "m1-thm-liouville",
+      "context": "on gives $Z_0=Z_1=c$ almost surely. Hence $c=T(1)$ and $D(u)=c$ at every atom $u$ of $\\mu$. These atoms contain a $2$-norm-dense subset of $\\U(M)$ by Theorem~\\ref{thm:walk}. For any $u\\in\\U(M)$, choose atoms $u_j$ with $\\norm{u_j-u}_2\\to0$. Bounded-ball continuity gives $T(u_j)\\to T(u)$ in"
     },
     {
       "from": "m1-lem-ultrapower",
-      "to": "m1-thm-liouville"
+      "to": "m1-thm-liouville",
+      "context": "ex $m$. Set $u_i^{(m)}=1$ when $m<i$, and define \\[ N=M^{\\omega_1},\\qquad g_i=[(u_i^{(m)})_{m\\ge1}]_{\\omega_1}\\quad(i\\ge1), \\qquad R=T^{\\omega_1}. \\] Lemma~\\ref{lem:ultrapower} makes $R$ a bounded linear map on $N$, with $\\norm{R}\\le C$, and supplies its bounded-ball $2$-continuity. Each $g_i$ i"
     },
     {
       "from": "m1-thm-rigidity",
-      "to": "m1-thm-liouville"
+      "to": "m1-thm-liouville",
+      "context": "l{eq:first-letter-multipliers} R(w)= \\begin{cases} aw,&\\sigma_1=1,\\\\ bw,&\\sigma_1=-1. \\end{cases} \\end{equation} These are all the hypotheses of Theorem~\\ref{thm:rigidity}, applied to $(N,\\tau^{\\omega_1})$ and $R$. That theorem yields $a=b$ in $N$. The constant embedding preserves the fait"
     },
     {
       "from": "m1-lem-rigidity-length",
-      "to": "m1-lem-rigidity-blocks"
+      "to": "m1-lem-rigidity-blocks",
+      "context": "ficient-bound}, \\begin{equation}\\label{eq:rigidity-discard-ltwo} \\norm{E_{r,q}}_2^2 \\leq C_L^2 2^q\\binom q2 r^{-1}\\qquad(2\\leq q\\leq L). \\end{equation} Lemma~\\ref{lem:rigidity-length} now yields the aggregate operator norm estimate \\begin{equation}\\label{eq:rigidity-discard-norm} E_r=\\sum_{q=1}^L E_{r"
     },
     {
       "from": "m1-lem-rigidity-blocks",
-      "to": "m1-lem-rigidity-polar"
+      "to": "m1-lem-rigidity-polar",
+      "context": "ion} [sp(A)]^k =\\sum_{d_1,\\ldots,d_k=0}^D c_{d_1}\\cdots c_{d_k} [sA^{d_1}]\\cdots[sA^{d_k}]. \\end{equation} Every summand is a product covered by Lemma~\\ref{lem:rigidity-blocks}. That lemma and complex linearity yield \\[ S([sp(A)]^k)=a[sp(A)]^k, \\qquad S(([sp(A)]^k)^*)=b([sp(A)]^k)^*. \\] For th"
     },
     {
       "from": "m1-thm-rigidity",
-      "to": "m1-lem-rigidity-unitary"
+      "to": "m1-lem-rigidity-unitary",
+      "context": "[Proof of Theorem~\\ref{thm:rigidity}] Construct $s\\in\\widehat N$ and $S=R^{\\omega_2}$ as in \\eqref{eq:rigidity-second-ultrapower}. Lemma~\\ref{lem:rigidity-b"
     },
     {
       "from": "m1-lem-rigidity-blocks",
-      "to": "m1-lem-rigidity-unitary"
+      "to": "m1-lem-rigidity-unitary",
+      "context": "[Proof of Theorem~\\ref{thm:rigidity}] Construct $s\\in\\widehat N$ and $S=R^{\\omega_2}$ as in \\eqref{eq:rigidity-second-ultrapower}. Lemma~\\ref{lem:rigidity-blocks} propagates the first-letter identities to every ordered block product. Lemma~\\ref{lem:rigidity-polar} then provides a"
     },
     {
       "from": "m1-lem-rigidity-polar",
-      "to": "m1-lem-rigidity-unitary"
+      "to": "m1-lem-rigidity-unitary",
+      "context": "_2}$ as in \\eqref{eq:rigidity-second-ultrapower}. Lemma~\\ref{lem:rigidity-blocks} propagates the first-letter identities to every ordered block product. Lemma~\\ref{lem:rigidity-polar} then provides a unitary $V$ satisfying the positive and negative power identities. Lemma~\\ref{lem:rigidity-unitary} gi"
     },
     {
       "from": "m1-thm-liouville",
-      "to": "m1-prop-separable-primitive"
+      "to": "m1-prop-separable-primitive",
+      "context": "$-cochain, and averaging the original equation $df=0$ will identify its differential. Choose the symmetric countably supported measure $\\mu$ for which Theorem~\\ref{thm:liouville} applies, and write $\\mu=\\sum_{s\\ge1}p_s\\delta_{u_s}$. For a bounded $k$-cochain $\\Phi$, define \\begin{equation}\\label{"
     },
     {
       "from": "m1-lem-normal-two-continuity",
-      "to": "m1-prop-separable-primitive"
+      "to": "m1-prop-separable-primitive",
+      "context": "t limit satisfies $PF=F$. Fix $\\mathbf a$, and put $B(x)=f(\\mathbf a,x)$. This is a bounded normal linear map. For any $R<\\infty$ and $\\varepsilon>0$, Lemma~\\ref{lem:normal-two-continuity} provides $\\delta>0$ such that \\[ \\norm{x}\\le R,\\quad \\norm{x}_2<\\delta \\quad\\Longrightarrow\\quad \\norm{B(xv)v^*}_2<\\"
     },
     {
       "from": "m1-prop-separable-primitive",
-      "to": "m1-prop-tracial-primitive"
+      "to": "m1-prop-tracial-primitive",
+      "context": "map is separately normal and has norm at most $\\norm{f}$. For inputs in $N_E$, bimodularity of $\\mathcal E_E$ gives $df_E=\\mathcal E_E(df)=0$. By Proposition~\\ref{prop:separable-primitive}, choose $g_E\\in C_b^{k-1}(N_E,N_E)$ such that $dg_E=f_E$ and $\\norm{g_E}\\le\\norm{f}$. Extend it to a cochain on $M$ by"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-central-homotopy"
+      "to": "m1-lem-central-homotopy",
+      "context": "[Proof of Theorem~\\ref{thm:main}] The zero algebra is immediate, so assume $M\\ne0$. Fix $k\\ge2$ and an arbitrary bounded cocycle $f_{\\mathrm{orig}}\\in C"
     },
     {
       "from": "m1-prop-classical",
-      "to": "m1-lem-central-homotopy"
+      "to": "m1-lem-central-homotopy",
+      "context": "lgebra is immediate, so assume $M\\ne0$. Fix $k\\ge2$ and an arbitrary bounded cocycle $f_{\\mathrm{orig}}\\in C_b^k(M,M)$. By the normal reduction in Proposition~\\ref{prop:classical}, there are a separately normal cocycle $f$ and a bounded $(k-1)$-cochain $b$ such that \\[ f_{\\mathrm{orig}}=f+db. \\] L"
     },
     {
       "from": "m1-prop-tracial-primitive",
-      "to": "m1-lem-central-homotopy"
+      "to": "m1-lem-central-homotopy",
+      "context": "M. \\] Multiplication by a central projection is a bimodule map, so $f_i$ is a separately normal cocycle and $\\norm{f_i}\\le\\norm{f}$. For $i\\in I$, Proposition~\\ref{prop:tracial-primitive} supplies a primitive $b_i\\in C_b^{k-1}(z_iM,z_iM)$ with \\[ db_i=f_i,\\qquad \\norm{b_i}\\le\\norm{f}. \\] If $z_0\\ne0$, the"
     }
   ]
 }

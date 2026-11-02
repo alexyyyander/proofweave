@@ -423,171 +423,213 @@
   "edges": [
     {
       "from": "m1-red-carleson",
-      "to": "m1-red-commutator"
+      "to": "m1-red-commutator",
+      "context": "ht)^{1/2} \\left(\\sum_k\\norm{(\\Delta_kb')S_{k+c_1}g}_2^2\\right)^{1/2}\\\\ &\\le C L_b \\left(\\sum_k\\norm{H_k}_2^2\\right)^{1/2}\\norm g_2, \\end{split} \\] by \\Cref{red:carleson}. Since \\(\\norm T_{2\\to2}\\le A(\\mathfrak m)\\), this bounds \\(T\\sum_k b_k'H_k\\). Replacing \\(H_k\\) by \\(TH_k\\) in the sam"
     },
     {
       "from": "m1-red-fixed-time",
-      "to": "m1-red-composition-commutator"
+      "to": "m1-red-composition-commutator",
+      "context": "quation}\\label{red:conjugation-derivative} \\frac{\\dd}{\\dd s}(C_sTC_s^{-1}) =C_s[b_s,T]\\partial_y C_s^{-1}. \\end{equation} The bi-Lipschitz estimates in \\Cref{red:fixed-time} imply \\[ \\norm{C_s}_{2\\to2}+\\norm{C_s^{-1}}_{2\\to2}\\le C, \\qquad \\Lip(b_s)\\le \\frac{C_{\\rm Lip}}{1-|s|C_{\\rm Lip"
     },
     {
       "from": "m1-red-commutator",
-      "to": "m1-red-composition-commutator"
+      "to": "m1-red-composition-commutator",
+      "context": "\\Cref{red:fixed-time} imply \\[ \\norm{C_s}_{2\\to2}+\\norm{C_s^{-1}}_{2\\to2}\\le C, \\qquad \\Lip(b_s)\\le \\frac{C_{\\rm Lip}}{1-|s|C_{\\rm Lip}}\\le C. \\] Apply \\Cref{red:commutator} inside \\eqref{red:conjugation-derivative}, integrate from \\(0\\) to \\(t\\), and multiply by \\(C_t\\). The estimate is unif"
     },
     {
       "from": "m1-red-restricted-strong",
-      "to": "m1-red-band-implies-main"
+      "to": "m1-red-band-implies-main",
+      "context": "Apply \\Cref{red:restricted-strong} to the localized band form. It gives a uniform local \\(L^2\\) bound for \\(H_{u,a}^{\\epsilon}\\widetilde P_w\\), where \\(\\w"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-red-band-implies-main"
+      "to": "m1-red-band-implies-main",
+      "context": "it field. Finally, for a Schwartz input the symmetric principal value exists pointwise; Fatou gives its \\(L^2\\) bound, and Chebyshev gives the weak estimate in \\Cref{thm:main}."
     },
     {
       "from": "m1-red-fixed-time",
-      "to": "m1-red-time-reduction"
+      "to": "m1-red-time-reduction",
+      "context": "The first assertion follows from \\Cref{red:fixed-time}, the uniform \\(L^1\\) norm of the convolution kernel of \\(P_w\\), and \\[ \\int_{\\tau<|t|<a}\\frac{\\dd t}{|t|} =2\\lo"
     },
     {
       "from": "m1-red-restricted-strong",
-      "to": "m1-red-bin-levels"
+      "to": "m1-red-bin-levels",
+      "context": "th tails are \\(O(e^{-cL})\\). The remaining level sets occupy at most \\(C(1+L)\\) dyadic measure classes. Within a class, the geometric estimate in the proof of \\Cref{red:restricted-strong} bounds the sum of \\(a_i\\) by a constant times its square sum. Cauchy--Schwarz over the classes and \\(\\sum_i a_i^2\\le4C_"
     },
     {
       "from": "m1-thm-band-restricted",
-      "to": "m1-red-model-suffices"
+      "to": "m1-red-model-suffices",
+      "context": "We apply the assumed bounds to the local field and sets of \\Cref{thm:band-restricted}, for which \\(\\abs u\\le1\\), \\(\\Lip(u)\\le C_{\\rm Lip}\\), and \\(F,E\\subset I\\times\\R\\) with \\(\\abs I\\le b_0\\). Suppose fir"
     },
     {
       "from": "m1-red-bin-levels",
-      "to": "m1-red-model-suffices"
+      "to": "m1-red-model-suffices",
+      "context": "L^{-1}\\), by \\eqref{red:bin-error-small}. It remains to estimate the diagonal form in \\eqref{red:bin-diagonalization}. Apply the amplitude decompositions from \\Cref{red:bin-levels} to \\(F^0,G^0\\). The projections defining these vectors preserve horizontal support. After omitting levels of measure ze"
     },
     {
       "from": "m1-red-packet-representation",
-      "to": "m1-red-model-suffices"
+      "to": "m1-red-model-suffices",
+      "context": "n \\(I\\times\\R\\); the normalized slices satisfy the stated indicator bounds. First use finite decompositions. Each pair of slices has a packet representation by \\Cref{red:packet-representation}; its cutoff is \\(\\widetilde Q_j\\), so the slice itself need not have narrow spectrum. Summing the common series coeffic"
     },
     {
       "from": "m1-tile-lem-synthesis",
-      "to": "m1-tile-lem-size"
+      "to": "m1-tile-lem-size",
+      "context": "tack{q\\in\\mathcal Q_T\\\\\\ell_q>r}} v_q\\Phi_q(z)\\right|. \\] The coefficient bound \\(|v_s|\\leq C\\sigma\\), \\eqref{tile:eq-short-envelopes}, and \\Cref{tile:lem-synthesis} show that all such cross terms for this top have sum at most \\[ C\\sigma\\int\\left(\\sum_{s\\in\\mathcal A_T}B_s^*\\right)U_"
     },
     {
       "from": "m1-tile-lem-synthesis",
-      "to": "m1-tile-lem-tree"
+      "to": "m1-tile-lem-tree",
+      "context": "For all the present cells \\(|x|\\leq Cl\\), and \\(\\mathfrak p_{T,J_0}\\asymp (1+|k|)^{2J_0}\\) there. Taking \\(4J_0\\geq N_2\\), \\eqref{tile:eq-strong-maximal} and \\Cref{tile:lem-synthesis} prove \\eqref{tile:eq-cell-suprema}. The intervals admitting longer tiles have total length \\(O(l)\\), by their parent w"
     },
     {
       "from": "m1-tile-prop-model",
-      "to": "m1-tile-lem-tree"
+      "to": "m1-tile-lem-tree",
+      "context": "[Proof of \\Cref{tile:prop-model}] We first prove the scalar part of \\eqref{eq:src-4}. If \\(\\norm{f}_2=0\\) or \\(|E|=0\\), the form is zero; assume otherw"
     },
     {
       "from": "m1-tile-lem-density",
-      "to": "m1-tile-lem-tree"
+      "to": "m1-tile-lem-tree",
+      "context": "s \\(\\eta=2^{-n}\\) in decreasing order, starting high enough that no density or size condition fails. At each step first remove densities exceeding \\(\\eta\\) by \\Cref{tile:lem-density}, then lower size to \\[ \\sigma_\\eta=\\sqrt\\eta\\, \\norm{f}_2/|E|^{1/2} \\] by \\Cref{tile:lem-size}. A"
     },
     {
       "from": "m1-tile-lem-size",
-      "to": "m1-tile-lem-tree"
+      "to": "m1-tile-lem-tree",
+      "context": "t remove densities exceeding \\(\\eta\\) by \\Cref{tile:lem-density}, then lower size to \\[ \\sigma_\\eta=\\sqrt\\eta\\, \\norm{f}_2/|E|^{1/2} \\] by \\Cref{tile:lem-size}. At the start of the step, the remaining collection has density at most \\(2\\eta\\), as well as the original bound \\(\\ga"
     },
     {
       "from": "m1-red-kakeya",
-      "to": "m1-forest-prop-count"
+      "to": "m1-forest-prop-count",
+      "context": "least a \\(\\delta\\) fraction of the rectangle. The arc is centered at the long-side direction and has total length equal to the short-to-long side ratio, as in \\Cref{red:kakeya}. \\Cref{red:kakeya}, namely \\cite[Theorem~1.4]{LLKakeya}, gives \\begin{equation}\\label{forest:eq-kakeya-input} \\norm{M_"
     },
     {
       "from": "m1-tile-lem-synthesis",
-      "to": "m1-conc-coefficient-carleson"
+      "to": "m1-conc-coefficient-carleson",
+      "context": "s nonzero component frequencies satisfy \\eqref{conc:main-annuli}. Write $r=\\mathrm{length}(Q)>0$. Apply the proof of the Hilbert-valued synthesis estimate in \\Cref{tile:lem-synthesis}, including a fixed polynomial growth weight $P_Q$ about $Q$. This proof applies to the present reference box even if $"
     },
     {
       "from": "m1-conc-annular-variation",
-      "to": "m1-conc-line-moments"
+      "to": "m1-conc-line-moments",
+      "context": "s componentwise multiplication. The bound follows from \\eqref{eq:src-10} as above, retaining transverse decay while integrating the horizontal envelope. Apply \\Cref{conc:annular-variation} with the length index reversed; this preserves the interval-sum variation. The support hypotheses hold by \\eqref{conc:"
     },
     {
       "from": "m1-conc-line-moments",
-      "to": "m1-conc-top-good"
+      "to": "m1-conc-top-good",
+      "context": "Use \\Cref{conc:line-moments} on assigned top tiles, with $t=s_T$ and $l=l_T$. These satisfy \\eqref{eq:src-9} with a fixed angular constant. Write"
     },
     {
       "from": "m1-conc-top-good",
-      "to": "m1-conc-mask-removal"
+      "to": "m1-conc-mask-removal",
+      "context": "First fix, for example, $J_*=10$ in \\Cref{conc:top-good}, and fix the resulting $C_{\\mathrm{top}}$ before making any choice of $A$. Its exceptional area is smaller than any pre"
     },
     {
       "from": "m1-phase-finite-fourier",
-      "to": "m1-phase-quantile-gap"
+      "to": "m1-phase-quantile-gap",
+      "context": "[Proof of \\Cref{phase:finite-fourier}] \\emph{The ordinary fourth-moment bound.} Write \\(Ta(t)=\\sum_i a_i e^{i\\lambda_i t}\\) and \\(s=4/3\\). The Fourier suppor"
     },
     {
       "from": "m1-hier-weight-variation",
-      "to": "m1-hier-moving-weights"
+      "to": "m1-hier-moving-weights",
+      "context": "mass is used only at the snapshot in this inequality; its spatial derivative is not needed. Let $L_k=\\log\\omega_k$ be the specified logarithm in the proof of \\Cref{hier:weight-variation}, and put $q_k=\\partial_x L_k$. Equation~\\eqref{hier:log-weight-increment} and the mass derivative bound imply \\begin{al"
     },
     {
       "from": "m1-conc-top-good",
-      "to": "m1-hier-amplitude-motion"
+      "to": "m1-hier-amplitude-motion",
+      "context": "\\le G^{-1/2}L^Ch_T(z_0)^8. \\] Next move from $z_1$ to $z'$ along slope $s_T$ by horizontal distance $b$. The nonexceptional horizontal derivative estimate in \\Cref{conc:top-good}, applied to lengths at least $l_*$, bounds this change by \\[ L^Ch_T(z_0)^8\\frac{|b|}{l_*} \\le G^{-1/2}L^Ch_T(z_0)^8."
     },
     {
       "from": "m1-conc-line-moments",
-      "to": "m1-hier-good-paths"
+      "to": "m1-hier-good-paths",
+      "context": "Fix $R$, a line of slope $s_R$, and any horizontal interval $I$ of length $l_R$ on that line. By \\Cref{conc:line-moments}, the normalized $L^b(I)$ norm of each indicated quantity is at most $C b^C(1+\\log B)^C$. The same bound holds for $\\ma"
     },
     {
       "from": "m1-hier-mass-motion",
-      "to": "m1-hier-marking"
+      "to": "m1-hier-marking",
+      "context": "e positive sums of weights of tops eligible at $J_j$, except that the difference can be identically zero. In the last possible block it is simply $n_j$. Thus \\Cref{hier:mass-motion} gives relative variation $1+O(G^{-1/2})$ across the whole $H_j$ cell. A marked cell has positive supremum of $h_j^*$,"
     },
     {
       "from": "m1-count-simultaneous",
-      "to": "m1-pred-fourier-average"
+      "to": "m1-pred-fourier-average",
+      "context": "arated, their precisions satisfy \\[ d_T\\le\\rho_{j+1}/B^2\\le Q/B^2, \\] and their diameter is at most \\(\\rho_j\\le B\\rho_{j+1}\\le BQ\\). The simultaneous count in \\Cref{count:simultaneous}, with \\(D\\) as chosen in \\Cref{count:choice-D}, bounds this list by \\(D/100\\). Adding the possible retained path child"
     },
     {
       "from": "m1-pred-marked-comparison",
-      "to": "m1-pred-fourier-average"
+      "to": "m1-pred-fourier-average",
+      "context": "[Proof of \\Cref{pred:marked-comparison}] Perform the construction on each marked cell meeting \\(Z\\). Equations~\\eqref{pred:blended-domination}, \\eqref{pred:ste"
     },
     {
       "from": "m1-res-path-product",
-      "to": "m1-pred-fourier-average"
+      "to": "m1-pred-fourier-average",
+      "context": "vant cell, use \\eqref{pred:gamma-normalization} there, and set \\(\\Gamma_j=1\\) elsewhere. This is a measurable step function of the line parameter. The proof of \\Cref{res:path-product} integrates the original integrand on lines where its slice is measurable, as holds for almost every transverse paramete"
     },
     {
       "from": "m1-hier-good-paths",
-      "to": "m1-res-block-square"
+      "to": "m1-res-block-square",
+      "context": "ace every residual packet with $\\ell_s\\le l_R$ in this family, so its absolute envelopes are included in these positive sums. Goodness of $R$, as specified in \\Cref{hier:good-paths}, gives \\[ \\sum_{\\ell\\le l_R}e_\\ell\\le L^C, \\qquad \\left(\\sum_{\\ell\\le l_R}a_\\ell^2\\right)^{1/2}\\le L^C. \\] The co"
     },
     {
       "from": "m1-conc-single-scale",
-      "to": "m1-res-block-square"
+      "to": "m1-res-block-square",
+      "context": "occur only in the last possible block. At each of its at most $N_{\\mathrm{len}}$ lengths, the total absolute coefficient envelope is bounded by a constant, by \\Cref{conc:single-scale}, applied with reference length equal to that scale. To recall the reason this bound has no factor counting the availab"
     },
     {
       "from": "m1-hier-weight-variation",
-      "to": "m1-res-common-weight-variation"
+      "to": "m1-res-common-weight-variation",
+      "context": "expression defining the coefficient, so no branch of a complex logarithm is being chosen. The first sum of absolute increments telescopes. For the second use \\Cref{hier:weight-variation} on the entire root-to-endpoint path. All its summands are nonnegative, whence \\begin{align*} \\sum_{k=i_j}^{i_f-2}"
     },
     {
       "from": "m1-pred-marked-comparison",
-      "to": "m1-res-path-product"
+      "to": "m1-res-path-product",
+      "context": "Fix a line of slope $s_R$, and on that line use the functions $\\Gamma_j$ constructed in \\Cref{pred:marked-comparison}. At a point of $Z$ where $R$ is good, the active indices fall into the marked indices, the unary indices, and at most o"
     },
     {
       "from": "m1-hier-marking",
-      "to": "m1-res-path-product"
+      "to": "m1-res-path-product",
+      "context": "$CLG^{-c}$, which is bounded. The unary factors have bounded log product by \\eqref{res:unary-cost} and \\eqref{res:choice-M}. At the possible remaining index, \\Cref{hier:marking} gives $M<n_j<M+1$. From \\eqref{eq:src-17} and the baseline $n_j$ in the denominator of $\\beta_{J_j}$, \\[ \\beta_{J_j}"
     },
     {
       "from": "m1-hier-path-expansion",
-      "to": "m1-assembly-vertices"
+      "to": "m1-assembly-vertices",
+      "context": "gives \\[ V_v\\le L^{Cp}(1+M)^{\\alpha-1}n_v. \\] Here and below the bound on the imaginary parts is absorbed into \\(L^{Cp}\\). On the remaining set, apply Lemma~\\ref{hier:path-expansion}. At least half of the root amount is carried by good paths, and the terminal amount of a path ending at \\(R\\) is at mo"
     },
     {
       "from": "m1-res-path-product",
-      "to": "m1-assembly-vertices"
+      "to": "m1-assembly-vertices",
+      "context": ". \\end{align*} The root and its descendants contain only their eligible tops; sums over tops here and subsequently are understood with that convention. Theorem~\\ref{res:path-product}, namely Equation~\\eqref{eq:src-22}, bounds each integral in the second line by \\(L^{Cp}(1+M)^C\\int h_R\\). Moreover, \\["
     },
     {
       "from": "m1-assembly-vertices",
-      "to": "m1-assembly-interpolation"
+      "to": "m1-assembly-interpolation",
+      "context": "On the tube under consideration, \\[ |\\mathcal D(a+i\\eta)| =\\exp(\\|a\\|_2^2-\\|\\eta\\|_2^2) \\le\\exp(\\mu^2-\\|\\eta\\|_2^2). \\] At a vertex, Proposition~\\ref{assembly:vertices} controls \\(\\mathcal D\\mathcal F_v\\) whenever \\(\\|\\eta\\|_2\\le L^2\\). For \\(\\|\\eta\\|_2>L^2\\), Equation~\\eqref{assembly:cr"
     },
     {
       "from": "m1-conc-mask-removal",
-      "to": "m1-assembly-improved-model"
+      "to": "m1-assembly-improved-model",
+      "context": "t comparison explicit because the good set depends on the grid. Write \\(\\|P\\|_2\\le L^{C_P}\\sqrt{|E|}\\), as supplied by Equation~\\eqref{eq:src-4}. Proposition~\\ref{conc:mask-removal} and Proposition~\\ref{count:simultaneous} allow the fixed polynomial thresholds to be chosen so that \\begin{equation}\\la"
     },
     {
       "from": "m1-count-simultaneous",
-      "to": "m1-assembly-improved-model"
+      "to": "m1-assembly-improved-model",
+      "context": "et depends on the grid. Write \\(\\|P\\|_2\\le L^{C_P}\\sqrt{|E|}\\), as supplied by Equation~\\eqref{eq:src-4}. Proposition~\\ref{conc:mask-removal} and Proposition~\\ref{count:simultaneous} allow the fixed polynomial thresholds to be chosen so that \\begin{equation}\\label{assembly:fixed-exceptions} \\int_{F\\s"
     },
     {
       "from": "m1-assembly-boundary-loss",
-      "to": "m1-assembly-improved-model"
+      "to": "m1-assembly-improved-model",
+      "context": "tral-power-gain} with \\(Q=30\\). Average the remaining term over translations. It is nonnegative and \\(Z_\\vartheta\\subset Z_0\\), so Tonelli's theorem and Lemma~\\ref{assembly:boundary-loss} yield \\begin{align*} \\E_\\vartheta\\int_{Z_\\vartheta} \\|P_q-\\mathcal W_\\vartheta\\| &\\le\\int_{Z_0}\\E_\\vartheta"
     },
     {
       "from": "m1-assembly-improved-model",
-      "to": "m1-assembly-all-model-estimates"
+      "to": "m1-assembly-all-model-estimates",
+      "context": "adjoint sum is \\(P\\), and the coefficient convention in Equation~\\eqref{eq:src-3} gives \\[ |\\Lambda_{\\mathrm{popular}}(f,g)| \\le\\int_F\\|P\\|. \\] Theorem~\\ref{assembly:improved-model} bounds this by \\(L^{-20}N|F|=L^{-20}\\sqrt{|F||E|}\\). Adding the deleted contribution proves the second assertion. All"
     },
     {
       "from": "m1-red-model-suffices",
-      "to": "m1-assembly-all-model-estimates"
+      "to": "m1-assembly-all-model-estimates",
+      "context": "ompletion of the proofs of \\Cref{thm:band-restricted,thm:main}] Theorem~\\ref{assembly:all-model-estimates} supplies exactly the three hypotheses of Proposition~\\ref{red:model-suffices}. That proposition therefore proves the band restricted estimate \\eqref{eq:src-1}. The dependence here is forward: the"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-assembly-all-model-estimates"
+      "to": "m1-assembly-all-model-estimates",
+      "context": "-value operator, which extends by density. For the already chosen outer length \\(a=a_*\\), Chebyshev's inequality gives the weak \\((2,2)\\) assertion of Theorem~\\ref{thm:main}. The constants are independent of the vector field, the input, and the level in that inequality. The dilation calculat"
     }
   ]
 }

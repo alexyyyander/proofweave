@@ -1,0 +1,175 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "091",
+  "title": "Logarithmic and <i>L</i><sub><i>p</i></sub> Brunn–Minkowski inequalities and the B-conjecture",
+  "result": {
+    "id": "paper-result",
+    "label": "Logarithmic and <i>L</i><sub><i>p</i></sub> Brunn–Minkowski inequalities and the B-conjecture",
+    "statement": "Proves the logarithmic Brunn–Minkowski inequality for origin-symmetric convex bodies in every dimension, and the scalar-dilation B-conjecture for all even log-concave Radon measures. For Lebesgue volume it also proves the additive L p Brunn–Minkowski inequality for full-dimensional origin-symmetric convex bodies throughout 0 p 1.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-a-variance-bound-to-volume",
+      "label": "From a variance bound to volume",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "moment-coordinates-on-the-whole-space",
+      "label": "Moment coordinates on the whole space",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "density-of-the-even-tests",
+      "label": "Density of the even tests",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-tensor-estimate-for-the-divergence-tests",
+      "label": "A tensor estimate for the divergence tests",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "volume-and-measure-consequences",
+      "label": "Volume and measure consequences",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "The logarithmic Brunn–Minkowski conjecture",
+      "title": "The logarithmic Brunn–Minkowski conjecture",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-logarithmic-Brunn-Minkowski-conjecture-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from The logarithmic Brunn–Minkowski conjecture; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "Even logarithmic Brunn--Minkowski inequality",
+          "fullLabel": "Even logarithmic Brunn--Minkowski inequality",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "[Even logarithmic Brunn--Minkowski inequality] Let n1 and let K,L^n be convex bodies satisfying K=-K and L=-L . For every 01 , | W[h_K^ 1- h_L^]| |K|^ 1- |L|^.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-lp",
+          "role": "introduction",
+          "label": "Symmetric L_p Brunn--Minkowski inequality",
+          "fullLabel": "Symmetric L_p Brunn--Minkowski inequality",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "[Symmetric L_p Brunn--Minkowski inequality] Let n1 , let K,L^n be full-dimensional origin-symmetric convex bodies, and let 0<p<1 . For every 01 , | W\\!|^ p/n (1-)|K|^ p/n +|L|^ p/n .",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-variance",
+          "role": "from-a-variance-bound-to-volume",
+          "label": "Variance bound",
+          "fullLabel": "Variance bound",
+          "kind": "proposition",
+          "source": "From a variance bound to volume",
+          "detail": "[Variance bound] Let n2 , N1 , q2 be an even integer, and >0 . Let p_1,,p_N^n\\ 0\\ and h_1,,h_N>0 . Set _i(x)=( p_i,x h_i )^q, V(x)= 2 |x|^2+_ i=1 ^N_i(x), d=Z^ -1 e^ -V(x) \\,dx, where Z=_ ^n e^ -V(x)…",
+          "dependsOn": [
+            "m1-thm-main"
+          ]
+        },
+        {
+          "id": "m1-lem-moment",
+          "role": "moment-coordinates-on-the-whole-space",
+          "label": "Moment coordinates",
+          "fullLabel": "Moment coordinates",
+          "kind": "lemma",
+          "source": "Moment coordinates on the whole space",
+          "detail": "[Moment coordinates] Let n2 , >0 , and let V C^(^n) be even with D^2V I . Set \\[ Z=_ ^n e^ -V(x) \\,dx, d(x)=Z^ -1 e^ -V(x) \\,dx. \\] There is an even C^(^n) such that d(z)=e^ -(z) \\,dz is a…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-density",
+          "role": "density-of-the-even-tests",
+          "label": "Density of even tests",
+          "fullLabel": "Density of even tests",
+          "kind": "lemma",
+          "source": "Density of the even tests",
+          "detail": "[Density of even tests] Let d=(x)\\,dx be a probability measure on ^n with a smooth, strictly positive, even density. Let be a smooth even symmetric matrix field with 0<(x) I for some finite , and set…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-tensor",
+          "role": "a-tensor-estimate-for-the-divergence-tests",
+          "label": "Moment-coordinate tensor estimate",
+          "fullLabel": "Moment-coordinate tensor estimate",
+          "kind": "lemma",
+          "source": "A tensor estimate for the divergence tests",
+          "detail": "[Moment-coordinate tensor estimate] Let d=Z^ -1 e^ -V dx and d=e^ - dz be smooth probability measures on ^n . Suppose D_z^2 is positive definite and x=(z) is a smooth diffeomorphism pushing to . For…",
+          "dependsOn": [
+            "m1-prop-variance",
+            "m1-lem-moment",
+            "m1-lem-density",
+            "m1-thm-main",
+            "m1-cor-lp"
+          ]
+        },
+        {
+          "id": "m1-cor-measure",
+          "role": "volume-and-measure-consequences",
+          "label": "Measure inequality and scalar (B) -conjecture",
+          "fullLabel": "Measure inequality and scalar (B) -conjecture",
+          "kind": "corollary",
+          "source": "Volume and measure consequences",
+          "detail": "[Measure inequality and scalar (B) -conjecture] Let n1 , let be an even log-concave Radon measure on ^n , and let K,L^n be origin-symmetric convex bodies. Then, for every 01 , ( W[h_K^ 1- h_L^]) (K)^…",
+          "dependsOn": [
+            "m1-thm-main"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "The logarithmic Brunn–Minkowski conjecture",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-logarithmic-Brunn-Minkowski-conjecture-September-23-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

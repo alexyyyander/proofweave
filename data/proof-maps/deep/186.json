@@ -1,0 +1,259 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "186",
+  "title": "Uniform influence and sharp thresholds for graph and hypergraph properties",
+  "result": {
+    "id": "paper-result",
+    "label": "Uniform influence and sharp thresholds for graph and hypergraph properties",
+    "statement": "Proves the Friedgut–Kalai threshold-width conjectures for graphs and fixed-uniformity hypergraphs. For fixed 0 1/2, every nontrivial increasing relabeling-invariant property crosses from probability ε to 1- within width O(( n)^ -2 ) for graphs and Or(( n)^ -r/(r-1) ) for r -uniform hypergraphs, r ≥ 3. The hypergraph influence bound also applies to nonmonotone properties.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "a-fourier-estimate-for-small-individual-influences",
+      "label": "A Fourier estimate for small individual influences",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "restriction-to-a-vertex-block",
+      "label": "Restriction to a vertex block",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "restriction-to-a-vertex-block-2",
+      "label": "Restriction to a vertex block",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-uniform-bound-and-its-threshold-consequence",
+      "label": "The uniform bound and its threshold consequence",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-low-degree-estimate-on-biased-products",
+      "label": "A low-degree estimate on biased products",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "restricting-to-the-edges-incident-with-a-vertex-block",
+      "label": "Restricting to the edges incident with a vertex block",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "restricting-to-the-edges-incident-with-a-vertex-block-2",
+      "label": "Restricting to the edges incident with a vertex block",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "restricting-to-the-edges-incident-with-a-vertex-block-3",
+      "label": "Restricting to the edges incident with a vertex block",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "A uniform influence bound for hypergraph properties",
+      "title": "A uniform influence bound for hypergraph properties",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-uniform-influence-bound-for-hypergraph-properties-October-5-2026/hypergraph-influences.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from A uniform influence bound for hypergraph properties; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "For every integer r3 there is a finite constant C_r such that, for every…",
+          "fullLabel": "For every integer r3 there is a finite constant C_r such that, for every…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "For every integer r3 there is a finite constant C_r such that, for every integer n r , every 0<p<1 , and every hypergraph property f:\\ 0,1\\ ^ E_ n,r \\ 0,1\\ , _p(f) C_r ( n)^ r/(r-1) I_p(f). No…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-low",
+          "role": "a-fourier-estimate-for-small-individual-influences",
+          "label": "Low-degree mass",
+          "fullLabel": "Low-degree mass",
+          "kind": "lemma",
+          "source": "A Fourier estimate for small individual influences",
+          "detail": "[Low-degree mass] Let m2 be real and let h:\\ 0,1\\ ^J\\ 0,1\\ satisfy I_i(h) I(h)/m for every i J . With k= m/64 , one has _ 1 |S| k h(S)^2 m^ -1/4 I(h). The sum is empty when k<1 .",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-block",
+          "role": "restriction-to-a-vertex-block",
+          "label": "Averaged restriction estimate",
+          "fullLabel": "Averaged restriction estimate",
+          "kind": "lemma",
+          "source": "Restriction to a vertex block",
+          "detail": "[Averaged restriction estimate] Let r+1 m n be integers and set k= m/64 . For B chosen uniformly among the m -subsets of [n] , _ S E _B(1|S F_B| k) f(S)^2 m^ -1/4 rm n I_p(f).",
+          "dependsOn": [
+            "m1-lem-low"
+          ]
+        },
+        {
+          "id": "m1-lem-capture",
+          "role": "restriction-to-a-vertex-block-2",
+          "label": "Capturing a support at one vertex",
+          "fullLabel": "Capturing a support at one vertex",
+          "kind": "lemma",
+          "source": "Restriction to a vertex block",
+          "detail": "[Capturing a support at one vertex] Let n r3 and 1 m n be integers, let k>0 , and put \\[ = r r-1 , L=(k/r)^. \\] Suppose rLm-1 n-1 12. For a uniform m -subset B of [n] and every S E_ n,r with 1|S| L ,…",
+          "dependsOn": [
+            "m1-thm-main"
+          ]
+        },
+        {
+          "id": "m1-cor-threshold",
+          "role": "the-uniform-bound-and-its-threshold-consequence",
+          "label": "For a nontrivial increasing property of r -uniform hypergraphs on n r vertices,…",
+          "fullLabel": "For a nontrivial increasing property of r -uniform hypergraphs on n r vertices,…",
+          "kind": "corollary",
+          "source": "The uniform bound and its threshold consequence",
+          "detail": "For a nontrivial increasing property of r -uniform hypergraphs on n r vertices, where r3 , and every 0<<1/2 , \\[ p_ 1- -p_ 2C_r ( n)^ r/(r-1) 1- . \\]",
+          "dependsOn": [
+            "m1-thm-main"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "A Sharp Threshold Bound for Monotone Graph Properties",
+      "title": "A Sharp Threshold Bound for Monotone Graph Properties",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Sharp-Threshold-Bound-for-Monotone-Graph-Properties-September-25-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from A Sharp Threshold Bound for Monotone Graph Properties; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-threshold",
+          "role": "result",
+          "label": "Friedgut--Kalai sharp-threshold conjecture",
+          "fullLabel": "Friedgut--Kalai sharp-threshold conjecture",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "[Friedgut--Kalai sharp-threshold conjecture] For every integer n2 , every nontrivial increasing family P of graphs on n vertices invariant under all vertex permutations, and every 0<<1/2 , p_ 1- (…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-variance",
+          "role": "introduction",
+          "label": "Variance and influence",
+          "fullLabel": "Variance and influence",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "[Variance and influence] For every integer n2 , every Boolean function f on E_n invariant under vertex permutations, and every 0<p<1 , _p(f) 2^ 17 ( n)^2 I_p(f). No monotonicity assumption is needed.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-low-degree",
+          "role": "a-low-degree-estimate-on-biased-products",
+          "label": "Let m2 be real and let h:\\ 0,1\\ ^J\\ 0,1\\ satisfy I_i(h) I(h)/m for every i J .…",
+          "fullLabel": "Let m2 be real and let h:\\ 0,1\\ ^J\\ 0,1\\ satisfy I_i(h) I(h)/m for every i J .…",
+          "kind": "lemma",
+          "source": "A low-degree estimate on biased products",
+          "detail": "Let m2 be real and let h:\\ 0,1\\ ^J\\ 0,1\\ satisfy I_i(h) I(h)/m for every i J . If \\[ k= m 64 , \\] then _ 1 |S| k h(S)^2 m^ -1/4 I(h). Every degree cutoff is interpreted literally for integer degrees…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-restriction",
+          "role": "restricting-to-the-edges-incident-with-a-vertex-block",
+          "label": "Exact averaging over a restriction",
+          "fullLabel": "Exact averaging over a restriction",
+          "kind": "lemma",
+          "source": "Restricting to the edges incident with a vertex block",
+          "detail": "[Exact averaging over a restriction] Let F E_n , put H=E_n F , and, for y\\ 0,1\\ ^ H , let f_y(x)=f(x,y) for x\\ 0,1\\ ^ F . If y has the Bernoulli- p product law, then, for every real k>0 , _y_ A F\\\\1…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-block",
+          "role": "restricting-to-the-edges-incident-with-a-vertex-block-2",
+          "label": "The block estimate",
+          "fullLabel": "The block estimate",
+          "kind": "proposition",
+          "source": "Restricting to the edges incident with a vertex block",
+          "detail": "[The block estimate] Let 3 m n be an integer, let B be uniform among the m -element subsets of [n] , and set \\[ F_B=\\ e E_n:e B\\ , k= m 64 . \\] Then _ S E_n _B\\ 1 |S F_B| k\\ f(S)^2 2m n \\,m^ -1/4…",
+          "dependsOn": [
+            "m2-lem-low-degree",
+            "m2-lem-restriction"
+          ]
+        },
+        {
+          "id": "m2-lem-block-capture",
+          "role": "restricting-to-the-edges-incident-with-a-vertex-block-3",
+          "label": "Capturing low Fourier levels",
+          "fullLabel": "Capturing low Fourier levels",
+          "kind": "lemma",
+          "source": "Restricting to the edges incident with a vertex block",
+          "detail": "[Capturing low Fourier levels] Suppose t= n16 , and put \\[ m= n, k= m 64 . \\] Then _ S E_n\\\\1 |S| k^2/2 f(S)^2 4m^ -1/4 I(f).",
+          "dependsOn": [
+            "m2-thm-threshold"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    },
+    {
+      "from": "m2:m2-thm-threshold",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "A uniform influence bound for hypergraph properties",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-uniform-influence-bound-for-hypergraph-properties-October-5-2026/hypergraph-influences.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "A Sharp Threshold Bound for Monotone Graph Properties",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Sharp-Threshold-Bound-for-Monotone-Graph-Properties-September-25-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

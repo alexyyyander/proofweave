@@ -151,75 +151,93 @@
   "edges": [
     {
       "from": "m1-thm-main",
-      "to": "m1-cor-eulerian-cycles"
+      "to": "m1-cor-eulerian-cycles",
+      "context": "For the first claim, let the partition from \\Cref{thm:main} have \\(r\\) cycle parts and \\(s\\) single-edge parts, with \\(r+s\\le Cn\\). The graph formed by the latter edges has even d"
     },
     {
       "from": "m1-thm-lovasz",
-      "to": "m1-cor-endpoint-paths"
+      "to": "m1-cor-endpoint-paths",
+      "context": "vertices. Every old vertex now has odd degree. In a path-and-cycle partition its number of path-endpoint occurrences must therefore be odd and positive. Apply \\Cref{thm:lovasz} to the augmented graph, and let \\(p\\) be the number of path parts. The old vertices force \\(2p\\ge n\\), whereas the theo"
     },
     {
       "from": "m1-thm-aharoni-haxell",
-      "to": "m1-lem-routing"
+      "to": "m1-lem-routing",
+      "context": "ite. A choice of pairwise disjoint representatives from the $\\mathcal H_p$ gives exactly the three required properties. We verify the sufficient condition of \\Cref{thm:aharoni-haxell} with $s=2\\ell$. Suppose, for a contradiction, that it fails for a nonempty $I\\subseteq\\mathcal D$. Let $\\mathcal M$ b"
     },
     {
       "from": "m1-lem-chernoff",
-      "to": "m1-lem-edge-split"
+      "to": "m1-lem-edge-split",
+      "context": "x a cut whose smaller side has size $u\\ge1$, and let $e$ be its number of edges in $P$. In any fixed class its size is binomial with mean $e/l\\ge h_0u/l$. By \\Cref{lem:chernoff}, the probability that this class has fewer than $h_0u/(2l)$ cut edges is at most \\[ \\exp\\bigl(-h_0u/(8l)\\bigr). \\] Th"
     },
     {
       "from": "m1-lem-chernoff",
-      "to": "m1-lem-vertex-sampling"
+      "to": "m1-lem-vertex-sampling",
+      "context": "ampled-degree bounds fail with total probability at most \\begin{equation}\\label{eq:residue-size-degree-error} \\exp(-pr/3)+r\\exp(-ph/8)=o(1) \\end{equation} by \\Cref{lem:chernoff}. We prove the expansion assertion by first controlling a deterministic family of cuts and then approximating any hypot"
     },
     {
       "from": "m1-lem-edge-split",
-      "to": "m1-lem-small-residue"
+      "to": "m1-lem-small-residue",
+      "context": "Write $c_0=\\min\\{c,1\\}$, and fix \\[ p=\\min\\{\\eta/12,1/12\\},\\qquad h=(c_0/6)\\sigma. \\] In particular, $3p<1$, $6p\\le\\eta$, and $2p<1$. By \\Cref{lem:edge-split}, the edges of the given spanning expanding subgraph can be partitioned into three spanning subgraphs $P_1,P_2,P_3$, eac"
     },
     {
       "from": "m1-lem-vertex-sampling",
-      "to": "m1-lem-small-residue"
+      "to": "m1-lem-small-residue",
+      "context": "$V_i$ be the vertices with label $i$. These three sets are pairwise disjoint, and each marginal $V_i$ is a Bernoulli-$p$ sample for the fixed graph $P_i$. By \\Cref{lem:vertex-sampling} and a union bound over the three marginal failure probabilities, we can choose the labels so that, for each $i$, \\begin"
     },
     {
       "from": "m1-cor-endpoint-paths",
-      "to": "m1-lem-small-residue"
+      "to": "m1-lem-small-residue",
+      "context": "osing just one index if several are available. This gives edge-disjoint graphs $G_i$ on $V(G)\\setminus V_i$ whose edge sets partition all nonreserved edges. By \\Cref{cor:endpoint-paths}, each $G_i$ has a partition into positive-length simple paths, with each vertex an endpoint at most twice. Since each"
     },
     {
       "from": "m1-lem-routing",
-      "to": "m1-lem-small-residue"
+      "to": "m1-lem-small-residue",
+      "context": "erent reserved edge at its representative. Hence the total demand load at each vertex of $V_i$ is at most $k_0$. \\paragraph{Routing and simple cycles.} Apply \\Cref{lem:routing} separately in each $P_i[V_i]$, with expansion parameter $\\tau$, endpoint load $k=k_0$, singleton teams ($b=1$), and no"
     },
     {
       "from": "m1-lem-scale-split",
-      "to": "m1-lem-split-vertex-expansion"
+      "to": "m1-lem-split-vertex-expansion",
+      "context": "[Proof of \\Cref{lem:scale-split}] We prove the two operations in order. All lower bounds imposed on $D$ in this proof are absolute and hold simultaneou"
     },
     {
       "from": "m1-cor-endpoint-paths",
-      "to": "m1-lem-batch-resolution"
+      "to": "m1-lem-batch-resolution",
+      "context": "ndpoint in its specified active set and its other endpoint outside every active set, so it cannot belong to the set specified by a different active set. Apply \\Cref{cor:endpoint-paths} to the bipartite graph with parts $X,H_X$ and edge set $E_X$. It gives at most $\\abs X+\\abs{H_X}\\le2\\abs X$ positive-l"
     },
     {
       "from": "m1-lem-pair-folding",
-      "to": "m1-lem-batch-resolution"
+      "to": "m1-lem-batch-resolution",
+      "context": "d, or it originally had at most $a$ neighbors in $X$. Hence $\\abs{N_{J_W^0}(v)\\cap X}\\le a$ in both cases. For large $D$ we have $L_0\\ge\\max\\{8,a^2\\}$. Apply \\Cref{lem:pair-folding} to $J_W^0$ and its active sets. Count its error edges singly in their original form and call the simple resulting quot"
     },
     {
       "from": "m1-lem-routing",
-      "to": "m1-lem-batch-resolution"
+      "to": "m1-lem-batch-resolution",
+      "context": "at most $s\\le q_W\\le B_0$ demands, and $\\abs{Z_C}\\le2s\\le2B_0$. A heavy-neighbor remnant has at most $\\abs W\\le B_0$ vertices; its team has size one. Thus in \\Cref{lem:routing} we may use \\[ r=r_R,\\qquad h=\\sigma/4,\\qquad k=a,\\qquad b=B_0,\\qquad z=2B_0. \\] With that lemma's definitions of $g$"
     },
     {
       "from": "m1-lem-scale-split",
-      "to": "m1-prop-induction-bound"
+      "to": "m1-prop-induction-bound",
+      "context": "and the scales \\(D_0,\\ldots,D_{m-1}\\) all satisfy the cutoff. \\paragraph{Prospective layers.} Starting with the given graph \\(G\\), perform both operations of \\Cref{lem:scale-split} at each successive scale \\(D_0,\\ldots,D_{m-1}\\). The inputs at stage \\(j\\) have average degree at most \\(D_j\\): this ho"
     },
     {
       "from": "m1-lem-prefix-choice",
-      "to": "m1-prop-induction-bound"
+      "to": "m1-prop-induction-bound",
+      "context": "ir total number of edges is at most \\(N_{m-1}D_m/2<D_*n\\). By \\eqref{eq:prefix-cycle-cost}, the total cost is at most \\((20+D_*)n\\). Otherwise choose \\(i\\) by \\Cref{lem:prefix-choice}. If \\(i+K\\ge m-1\\), again keep every stage. Retain all long cycles as completed parts and take every edge of the final"
     },
     {
       "from": "m1-lem-small-residue",
-      "to": "m1-prop-induction-bound"
+      "to": "m1-prop-induction-bound",
+      "context": "the final boundary graphs singly, at cost at most \\((20+D_*)n\\) as above. The zero extension of \\((S_j)\\) ensures that \\(\\sum_{j=0}^{m-1}S_j\\le P_0S_i\\). Apply \\Cref{lem:small-residue} to each piece at its own scale, with \\(c=1\\) and the fixed \\(\\eta\\). This completes at most \\(9P_0S_i\\) parts and leave"
     },
     {
       "from": "m1-lem-edge-split",
-      "to": "m1-prop-induction-bound"
+      "to": "m1-prop-induction-bound",
+      "context": "en different boxes are already included in both \\(S_i\\) and \\(N_i\\). \\paragraph{Resolving the batches and the pieces.} In every level-\\(i\\) piece \\(R\\), apply \\Cref{lem:edge-split} with two classes to partition its assigned edges into spanning graphs \\(P_R\\) and \\(T_R\\), each with cut expansion at l"
     },
     {
       "from": "m1-lem-batch-resolution",
-      "to": "m1-prop-induction-bound"
+      "to": "m1-prop-induction-bound",
+      "context": ") and \\(T_R\\), each with cut expansion at least \\(\\sigma/4\\). Reserve \\(P_R\\) as a router and leave \\(T_R\\) untouched during the batch work. All hypotheses of \\Cref{lem:batch-resolution} now hold in each \\(Y\\). The \\(J_W\\) have order at most \\(B_0\\) and disjoint assigned edges; their union is \\(F(Y)\\). Th"
     }
   ]
 }

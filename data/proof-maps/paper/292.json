@@ -110,27 +110,33 @@
   "edges": [
     {
       "from": "m1-lem-square-root-trace",
-      "to": "m1-lem-weak-mixing-bound"
+      "to": "m1-lem-weak-mixing-bound",
+      "context": "r of $\\xi_s$ is $T_s=\\sigma(s)T\\sigma(s)^*$. Testing the two vector states against $1\\otimes C$, for $\\|C\\|\\leq1$, gives \\[ \\|T_s-T\\|_1\\leq2\\delta_s. \\] Lemma~\\ref{lem:square-root-trace} therefore gives \\[ \\|\\sigma(s)T^{1/2}\\sigma(s)^*-T^{1/2}\\|_2^2 \\leq\\|T_s-T\\|_1\\leq2\\delta_s. \\] Since $\\|T^{1/2}\\|_2="
     },
     {
       "from": "m1-lem-weak-mixing-bound",
-      "to": "m1-lem-nuclear-finiteness"
+      "to": "m1-lem-nuclear-finiteness",
+      "context": "unitary representation contains an irreducible subrepresentation, so $\\sigma$ has none. Represent $B$ faithfully and unitally on a Hilbert space $E$. By Lemma~\\ref{lem:weak-mixing-bound}, \\begin{equation}\\label{eq:spatial-lower-bound} L\\bigl((u_s\\otimes q(s))_{s\\in S}\\bigr)\\geq b1 \\quad\\text{in }B\\otime"
     },
     {
       "from": "m1-lem-spectral-gap",
-      "to": "m1-lem-varying-gap"
+      "to": "m1-lem-varying-gap",
+      "context": "ongmapsto[(x_n(g)\\otimes\\overline{\\pi_n}(g))_n], \\qquad g\\in\\Gamma, \\] is a genuine unitary representation in the nonzero unital algebra $C_\\omega$. By Lemma~\\ref{lem:spectral-gap}, its Laplacian has spectrum in $\\{0\\}\\cup[\\kappa,R]$. Write \\[ P_n=L\\big((x_n(s)\\otimes\\overline{\\pi_n}(s))_{s\\in S}\\"
     },
     {
       "from": "m1-lem-varying-gap",
-      "to": "m1-lem-initial-match"
+      "to": "m1-lem-initial-match",
+      "context": "initely many entries does. Entrywise lifts give surjectivity. Applying this identification with $d=\\dim\\pi_*$ and the calculation of spectral minima in Lemma~\\ref{lem:varying-gap} proves the assertion. This fixed matrix amplification is distinct from the varying algebras used in that lemma."
     },
     {
       "from": "m1-lem-varying-gap",
-      "to": "m1-lem-uniform-predecessor"
+      "to": "m1-lem-uniform-predecessor",
+      "context": "e set $F$, choose an irreducible $\\pi_n$ with $[\\pi_n]\\in D_n$ for which no such predecessor exists. Outside $F$, choose the trivial representation. By Lemma~\\ref{lem:varying-gap}, \\begin{equation} \\lim_\\omega d(\\mathbf x_n,\\pi_n)=0. \\label{eq:chosen-zero} \\end{equation} Set $\\alpha_n=\\pi_n\\circ"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-cor-kep-consequences"
+      "to": "m1-cor-kep-consequences",
+      "context": "For each fixed free $\\omega$, \\cref{thm:main} with $B=\\Otwo$ negates unital KEP. The existential-closure claims follow from \\cite[Theorem~3.3]{GoldbringSinclair2015}"
     }
   ]
 }

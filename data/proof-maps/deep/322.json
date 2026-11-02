@@ -1,0 +1,254 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "322",
+  "title": "Tingley’s sphere-isometry problem",
+  "result": {
+    "id": "paper-result",
+    "label": "Tingley’s sphere-isometry problem",
+    "statement": "Resolves Tingley's problem: every surjective isometry between the unit spheres of nonzero real Banach spaces extends uniquely to a surjective real-linear isometry of the whole spaces. No dimension restriction is imposed, so the metric geometry of the unit sphere determines the Banach space up to linear isometry.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "supporting-functionals-and-radial-contact",
+      "label": "Supporting functionals and radial contact",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "supporting-functionals-and-radial-contact-2",
+      "label": "Supporting functionals and radial contact",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "attaining-the-maximal-defect",
+      "label": "Attaining the maximal defect",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "aligning-extremal-chords",
+      "label": "Aligning extremal chords",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "aligning-extremal-chords-2",
+      "label": "Aligning extremal chords",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-chord-contradiction",
+      "label": "The chord contradiction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-chord-contradiction-2",
+      "label": "The chord contradiction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-chord-contradiction-3",
+      "label": "The chord contradiction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-fixed-point-ingredients",
+      "label": "The fixed-point ingredients",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-fixed-point-ingredients-2",
+      "label": "The fixed-point ingredients",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-fixed-point-ingredients-3",
+      "label": "The fixed-point ingredients",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "A positive solution to Tingley’s problem",
+      "title": "A positive solution to Tingley’s problem",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-positive-solution-to-Tingleys-problem-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from A positive solution to Tingley’s problem; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "Let X,Y be nonzero real Banach spaces and let f:S_X S_Y be a surjective…",
+          "fullLabel": "Let X,Y be nonzero real Banach spaces and let f:S_X S_Y be a surjective…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "Let X,Y be nonzero real Banach spaces and let f:S_X S_Y be a surjective isometry. Then \\[ T(0)=0, T(x)=xf(x x )(x0) \\] is a surjective real-linear isometry. It is the unique linear extension of f .",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-support",
+          "role": "supporting-functionals-and-radial-contact",
+          "label": "Supports exist, and can be extended with the same norm bound to any specified…",
+          "fullLabel": "Supports exist, and can be extended with the same norm bound to any specified…",
+          "kind": "lemma",
+          "source": "Supporting functionals and radial contact",
+          "detail": "Supports exist, and can be extended with the same norm bound to any specified finite-dimensional enlargement of their domain. If unit vectors v,w and positive numbers , satisfy \\[ v+ w=+, \\] then…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-radial",
+          "role": "supporting-functionals-and-radial-contact-2",
+          "label": "If c<1 , each ray c+_+v , v S_X , meets S_X at a unique point c+(v)v . The…",
+          "fullLabel": "If c<1 , each ray c+_+v , v S_X , meets S_X at a unique point c+(v)v . The…",
+          "kind": "lemma",
+          "source": "Supporting functionals and radial contact",
+          "detail": "If c<1 , each ray c+_+v , v S_X , meets S_X at a unique point c+(v)v . The radius is continuous and satisfies \\[ 1-c(v)1+c. \\]",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-attainment",
+          "role": "attaining-the-maximal-defect",
+          "label": "If some surjective sphere isometry has M>0 , there are nonzero real Banach…",
+          "fullLabel": "If some surjective sphere isometry has M>0 , there are nonzero real Banach…",
+          "kind": "lemma",
+          "source": "Attaining the maximal defect",
+          "detail": "If some surjective sphere isometry has M>0 , there are nonzero real Banach spaces, a surjective sphere isometry, still denoted by f:S_X S_Y , and x_0,y S_X , 0<t<1 , such that |D_q(a,c)|& M &&(a,c…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-condensing",
+          "role": "aligning-extremal-chords",
+          "label": "Let C be a nonempty closed bounded convex subset of a Banach space. If g:C C is…",
+          "fullLabel": "Let C be a nonempty closed bounded convex subset of a Banach space. If g:C C is…",
+          "kind": "theorem",
+          "source": "Aligning extremal chords",
+          "detail": "Let C be a nonempty closed bounded convex subset of a Banach space. If g:C C is continuous and, for some 0<1 , \\[ (g(H))(H)(H C), \\] then g has a fixed point.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-alignment",
+          "role": "aligning-extremal-chords-2",
+          "label": "Under , put b=f(y) and keep y,t fixed. There are endpoints x,z S_X , directions…",
+          "fullLabel": "Under , put b=f(y) and keep y,t fixed. There are endpoints x,z S_X , directions…",
+          "kind": "proposition",
+          "source": "Aligning extremal chords",
+          "detail": "Under , put b=f(y) and keep y,t fixed. There are endpoints x,z S_X , directions v S_X , w S_Y , and positive numbers p,r,s,u such that x&=ty+pv S_X,& z&=ty-rv S_X,\\\\ f(x)&=tb+sw S_Y,& f(z)&=tb-uw…",
+          "dependsOn": [
+            "m1-lem-radial",
+            "m1-thm-condensing"
+          ]
+        },
+        {
+          "id": "m1-lem-secant",
+          "role": "the-chord-contradiction",
+          "label": "Put \\[ h=\\ t s, u\\ , =hs p , K= (r/u)v+hy-(p/s)v+hy r/u-p/s . \\] For every…",
+          "fullLabel": "Put \\[ h=\\ t s, u\\ , =hs p , K= (r/u)v+hy-(p/s)v+hy r/u-p/s . \\] For every…",
+          "kind": "lemma",
+          "source": "The chord contradiction",
+          "detail": "Put \\[ h=\\ t s, u\\ , =hs p , K= (r/u)v+hy-(p/s)v+hy r/u-p/s . \\] For every support at v+ y , p(v) K 1-B,& B,\\\\ B,& B>.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-large",
+          "role": "the-chord-contradiction-2",
+          "label": "Neither A> nor B> is possible.",
+          "fullLabel": "Neither A> nor B> is possible.",
+          "kind": "lemma",
+          "source": "The chord contradiction",
+          "detail": "Neither A> nor B> is possible.",
+          "dependsOn": [
+            "m1-lem-secant"
+          ]
+        },
+        {
+          "id": "m1-prop-no-defect",
+          "role": "the-chord-contradiction-3",
+          "label": "An attained positive maximum as in is impossible.",
+          "fullLabel": "An attained positive maximum as in is impossible.",
+          "kind": "proposition",
+          "source": "The chord contradiction",
+          "detail": "An attained positive maximum as in is impossible.",
+          "dependsOn": [
+            "m1-lem-large",
+            "m1-lem-secant",
+            "m1-thm-main",
+            "m1-lem-attainment"
+          ]
+        },
+        {
+          "id": "m1-lem-chi",
+          "role": "the-fixed-point-ingredients",
+          "label": "For every bounded nonempty set H in a normed space, \\[ ( H)=(H), ( H)=(H). \\]…",
+          "fullLabel": "For every bounded nonempty set H in a normed space, \\[ ( H)=(H), ( H)=(H). \\]…",
+          "kind": "lemma",
+          "source": "The fixed-point ingredients",
+          "detail": "For every bounded nonempty set H in a normed space, \\[ ( H)=(H), ( H)=(H). \\] If C_n are nonempty closed bounded subsets of a Banach space with C_ n+1 C_n and (C_n)0 , then their intersection is…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-simplex",
+          "role": "the-fixed-point-ingredients-2",
+          "label": "Every continuous self-map of a finite-dimensional probability simplex has a…",
+          "fullLabel": "Every continuous self-map of a finite-dimensional probability simplex has a…",
+          "kind": "lemma",
+          "source": "The fixed-point ingredients",
+          "detail": "Every continuous self-map of a finite-dimensional probability simplex has a fixed point.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-compactfixed",
+          "role": "the-fixed-point-ingredients-3",
+          "label": "Every continuous self-map g of a nonempty compact convex subset K of a normed…",
+          "fullLabel": "Every continuous self-map g of a nonempty compact convex subset K of a normed…",
+          "kind": "lemma",
+          "source": "The fixed-point ingredients",
+          "detail": "Every continuous self-map g of a nonempty compact convex subset K of a normed space has a fixed point.",
+          "dependsOn": [
+            "m1-lem-simplex",
+            "m1-thm-condensing",
+            "m1-lem-chi"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "A positive solution to Tingley’s problem",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-positive-solution-to-Tingleys-problem-September-23-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

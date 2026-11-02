@@ -134,51 +134,63 @@
   "edges": [
     {
       "from": "m1-row-fixed-blocks",
-      "to": "m1-row-variance"
+      "to": "m1-row-variance",
+      "context": "$|U_i|+|W|-k_i$. Conditional on the vector $k$, the assignments on $U$ and $W$ are independent uniform ordered partitions with prescribed block sizes. Lemma~\\ref{row:fixed-blocks} therefore applies. Counting these partitions shows that the law of $k$ has weights proportional to \\[ \\prod_{i=1}^3\\f"
     },
     {
       "from": "m1-row-counts",
-      "to": "m1-row-variance"
+      "to": "m1-row-variance",
+      "context": "Nonemptiness implies $m\\ge0$. The support becomes all nonnegative triples of total $m$, and the weights become $\\prod_i[x_i!(x_i+\\alpha_i)!]^{-1}$. Thus Lemma~\\ref{row:counts} applies to functions of the individual counts. Conditional on $k$, the marginal blocks $U_i$ and $W_i$ are independent"
     },
     {
       "from": "m1-row-variance",
-      "to": "m1-tri-gap"
+      "to": "m1-tri-gap",
+      "context": "d S_i]$. For a function $f$ centered in the cell, the functions $P_i f$ are centered row functions. Put $b=\\sum_i\\|P_i f\\|^2$. Orthogonality of $P_i$, Lemma~\\ref{row:variance}, and Cauchy--Schwarz yield \\[ b=\\left\\langle f,\\sum_i P_i f\\right\\rangle \\le\\|f\\|\\left\\|\\sum_i P_i f\\right\\| \\le\\|f\\"
     },
     {
       "from": "m1-sl-comparison",
-      "to": "m1-sl-global"
+      "to": "m1-sl-global",
+      "context": "rchanges their assignments when they differ and acts trivially when they agree. Thus $g_{a,b}=(I-\\tau_{kl})/2$, while $R_{a,b}=Q_{kl}$ in the notation of Lemma~\\ref{sl:comparison}. If either vertex of $b$ is not a singleton, the cross matrix cannot have both column sums equal to one, and both $g_{a"
     },
     {
       "from": "m1-dis-interaction",
-      "to": "m1-dis-nonnegative"
+      "to": "m1-dis-nonnegative",
+      "context": "The two orders of every disjoint pair occur in the sum, proving self-adjointness. Grouping them and applying Proposition~\\ref{dis:interaction} gives \\begin{align*} \\langle f,Df\\rangle &\\ge\\sum_{\\{a,b\\}:\\,a\\cap b=\\varnothing} \\bigl(2\\|g_{a,b}f\\|^2"
     },
     {
       "from": "m1-sl-global",
-      "to": "m1-dis-nonnegative"
+      "to": "m1-dis-nonnegative",
+      "context": "ight) \\ge0. \\end{align*} The first sum is over unordered pairs of disjoint vertex pairs; the equality uses $g_{a,b}=g_{b,a}$. The last inequality is Corollary~\\ref{sl:global}, applied separately for each $a$."
     },
     {
       "from": "m1-tri-gap",
-      "to": "m1-mix-global"
+      "to": "m1-mix-global",
+      "context": "anding the squares therefore gives the exact identity \\begin{equation}\\label{mix:expansion} H^2=\\sum_{T\\in\\binom V3} H_T^2-(n-3)H+D. \\end{equation} Proposition~\\ref{tri:gap} and Corollary~\\ref{dis:nonnegative} imply \\[ H^2\\succeq\\sum_{T\\in\\binom V3}H_T-(n-3)H =(n-2)H-(n-3)H=H. \\]"
     },
     {
       "from": "m1-dis-nonnegative",
-      "to": "m1-mix-global"
+      "to": "m1-mix-global",
+      "context": "gives the exact identity \\begin{equation}\\label{mix:expansion} H^2=\\sum_{T\\in\\binom V3} H_T^2-(n-3)H+D. \\end{equation} Proposition~\\ref{tri:gap} and Corollary~\\ref{dis:nonnegative} imply \\[ H^2\\succeq\\sum_{T\\in\\binom V3}H_T-(n-3)H =(n-2)H-(n-3)H=H. \\]"
     },
     {
       "from": "m1-mix-connectivity",
-      "to": "m1-mix-poincare"
+      "to": "m1-mix-poincare",
+      "context": "exchanges two singleton assignments in a pair fiber: take either opposite vertex pair of the toggled four-cycle. Thus $f$ is constant along switches, and Lemma~\\ref{mix:connectivity} makes it constant on $\\Omega_d$. The converse is immediate. The operator $H$ is positive semidefinite. By Proposition~"
     },
     {
       "from": "m1-mix-global",
-      "to": "m1-mix-poincare"
+      "to": "m1-mix-poincare",
+      "context": "itches, and Lemma~\\ref{mix:connectivity} makes it constant on $\\Omega_d$. The converse is immediate. The operator $H$ is positive semidefinite. By Proposition~\\ref{mix:global}, each eigenvalue $\\lambda$ satisfies $\\lambda^2\\ge\\lambda$, and hence is either zero or at least one. Its kernel has ju"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-mix-comparison"
+      "to": "m1-mix-comparison",
+      "context": "[Proof of Theorem~\\ref{thm:main}] If $|\\Omega_d|=1$, the mixing time is zero. Suppose henceforth that $|\\Omega_d|>1$. For any distinct switch neighbors"
     },
     {
       "from": "m1-cor-exact-sampling",
-      "to": "m1-mix-comparison"
+      "to": "m1-mix-comparison",
+      "context": "[Proof of Corollary~\\ref{cor:exact-sampling}] We use the usual explicit binary encoding of the degree vector, with delimiters between its entries. Let $n$ be the nu"
     }
   ]
 }

@@ -118,43 +118,53 @@
   "edges": [
     {
       "from": "m1-prop-order-trial",
-      "to": "m1-lem-majorant"
+      "to": "m1-lem-majorant",
+      "context": "[Completion of the proof of Proposition~\\ref{prop:order-trial}] For each reduced label, the natural scaling coefficient \\(\\lambda(d)/S(d,j)\\) need not be dyadic. We round it downward"
     },
     {
       "from": "m1-lem-bins",
-      "to": "m1-lem-majorant"
+      "to": "m1-lem-majorant",
+      "context": "ese two contributions sum to \\(c(d,j)S(d,j)\\). Mode 3 contributes \\(\\rho(d,j)\\), making the total exactly \\(\\lambda(d)\\). The bin labels are distinct by Lemma~\\ref{lem:bins}, and there are \\(\\varphi(r)\\) reduced numerators. Hence \\[ \\Pr(\\text{the returned candidate is }r)=\\varphi(r)\\lambda("
     },
     {
       "from": "m1-lem-primality",
-      "to": "m1-prop-process"
+      "to": "m1-prop-process",
+      "context": "/(k+1)$. The empty product covers $d=1$. \\paragraph{The controller and its two transitions.} To factor a node, apply the deterministic primality test in Lemma~\\ref{lem:primality} to each current factor. A prime is recorded; an even composite can be split by $2$; and a composite perfect power can"
     },
     {
       "from": "m1-prop-order-trial",
-      "to": "m1-prop-process"
+      "to": "m1-prop-process",
+      "context": "turned candidate, or $0$ if there was none. If $r=\\ord_m(a)$, goodness means that this output is $r$, which is also the canonical good output. By Proposition~\\ref{prop:order-trial}, every nonempty candidate is a positive multiple of $r$, and the probability of the candidate $r$ in one trial is $\\var"
     },
     {
       "from": "m1-prop-process",
-      "to": "m1-prop-known-probability"
+      "to": "m1-prop-known-probability",
+      "context": "exposed. Every output in this prefix is good; choosing canonical good outputs whenever another transition is requested gives an all-good evolution. Proposition~\\ref{prop:process} therefore ensures that the controller reaches the next real or dummy slot. Its transition inputs are fixed. Its new or"
     },
     {
       "from": "m1-lem-records",
-      "to": "m1-prop-known-probability"
+      "to": "m1-prop-known-probability",
+      "context": "nary transition uses fresh registers, so its good-output probability is $s$, even if unobserved old quantum work is entangled; this is the consequence of Lemma~\\ref{lem:records} explained in Section~\\ref{sec:model}. The branch choice, uniform guess, and next filter coins are also fresh. Lemma~\\re"
     },
     {
       "from": "m1-lem-completion",
-      "to": "m1-prop-known-probability"
+      "to": "m1-prop-known-probability",
+      "context": "the consequence of Lemma~\\ref{lem:records} explained in Section~\\ref{sec:model}. The branch choice, uniform guess, and next filter coins are also fresh. Lemma~\\ref{lem:completion} therefore gives conditional passing probability exactly $z$ for this prefix. This statement holds separately for every"
     },
     {
       "from": "m1-prop-known-probability",
-      "to": "m1-lem-quarter"
+      "to": "m1-lem-quarter",
+      "context": "With probability $1/2$, run Proposition~\\ref{prop:known-probability} and retain its success with the further probability \\[ c_*=2^{-(J+2)} \\left\\lfloor\\frac{2^{J+2}}{2p_*}\\right\\rf"
     },
     {
       "from": "m1-lem-records",
-      "to": "m1-lem-quarter"
+      "to": "m1-lem-quarter",
+      "context": "y $1/4$. Place the same fixed-encoding root factor list in the output register on either successful branch. All work and flags are retained when applying Lemma~\\ref{lem:records}, which gives the unitary $V_N$."
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-quarter"
+      "to": "m1-lem-quarter",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Let $\\psi=V_N\\ket{0}$, let $\\Pi$ project onto flag $1$, and put $g_*=\\Pi\\psi$. By Lemma~\\ref{lem:quarter}, $\\|g_*\\|^2="
     }
   ]
 }

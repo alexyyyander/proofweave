@@ -1,0 +1,169 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "094",
+  "title": "Subpolynomial dimension reduction in <i>L</i><sub><i>p</i></sub>",
+  "result": {
+    "id": "paper-result",
+    "label": "Subpolynomial dimension reduction in <i>L</i><sub><i>p</i></sub>",
+    "statement": "For every fixed 1 p and distortion D > 1, every n -point subset of real L p embeds into ^d with distortion at most D and dimension d=n^ o(1) , answering Naor's sublinear-dimension question for p ≠ 2. In contrast, exact embeddings require worst-case dimension (n^2) when p ≠ 2.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "finite-coordinates-and-normalized-increments",
+      "label": "Finite coordinates and normalized increments",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-weighted-moments-to-an-embedding",
+      "label": "From weighted moments to an embedding",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-projection-with-controlled-row-sums",
+      "label": "A projection with controlled row sums",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-projection-with-controlled-row-sums-2",
+      "label": "A projection with controlled row sums",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "homogeneous-increments-and-signed-poisson-sampling",
+      "label": "Homogeneous increments and signed Poisson sampling",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "homogeneous-increments-and-signed-poisson-sampling-2",
+      "label": "Homogeneous increments and signed Poisson sampling",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Subpolynomial dimension reduction in Lp",
+      "title": "Subpolynomial dimension reduction in Lp",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Subpolynomial-dimension-reduction-in-Lp-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Subpolynomial dimension reduction in Lp; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "Fix 1<p< , p2 , and put \\[ (p)= 2-p,&1<p<2,\\\\ 1-2/p,&2<p<. \\] For every D>1…",
+          "fullLabel": "Fix 1<p< , p2 , and put \\[ (p)= 2-p,&1<p<2,\\\\ 1-2/p,&2<p<. \\] For every D>1…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "Fix 1<p< , p2 , and put \\[ (p)= 2-p,&1<p<2,\\\\ 1-2/p,&2<p<. \\] For every D>1 there is a constant C_ p,D < such that, for every integer n2 , n (1+2D) d_p(n,D) \\!(C_ p,D ( n)^ (p) ). For exact…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-exact-upper",
+          "role": "finite-coordinates-and-normalized-increments",
+          "label": "Exact discretization",
+          "fullLabel": "Exact discretization",
+          "kind": "lemma",
+          "source": "Finite coordinates and normalized increments",
+          "detail": "[Exact discretization] Every n -point subset of a real L_p space embeds isometrically into _p^ n2 . This holds for every 1 p< .",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-weighted",
+          "role": "from-weighted-moments-to-an-embedding",
+          "label": "Weighted moment criterion",
+          "fullLabel": "Weighted moment criterion",
+          "kind": "lemma",
+          "source": "From weighted moments to an embedding",
+          "detail": "[Weighted moment criterion] Let 0<<1/3 and b,K1 . Suppose that, for every strictly positive probability vector on E , there is a random normalized gradient F V such that \\|F\\|_ Kalmost surely, _ e E…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-localization",
+          "role": "a-projection-with-controlled-row-sums",
+          "label": "Electrical-flow localization",
+          "fullLabel": "Electrical-flow localization",
+          "kind": "lemma",
+          "source": "A projection with controlled row sums",
+          "detail": "[Electrical-flow localization] Let G be a connected loopless graph on n2 vertices, let B be an oriented edge-by-vertex incidence matrix, and let C=diag(c_e) with c_e>0 . If Q is the Euclidean…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-projection",
+          "role": "a-projection-with-controlled-row-sums-2",
+          "label": "Weighted projection",
+          "fullLabel": "Weighted projection",
+          "kind": "lemma",
+          "source": "A projection with controlled row sums",
+          "detail": "[Weighted projection] For every strictly positive probability vector on E , there is a probability vector with _e_e/2 such that the orthogonal projection P onto V in _2() satisfies _ e E _ f E |P_ ef…",
+          "dependsOn": [
+            "m1-lem-localization"
+          ]
+        },
+        {
+          "id": "m1-lem-poisson",
+          "role": "homogeneous-increments-and-signed-poisson-sampling",
+          "label": "Signed Poisson formulas",
+          "fullLabel": "Signed Poisson formulas",
+          "kind": "lemma",
+          "source": "Homogeneous increments and signed Poisson sampling",
+          "detail": "[Signed Poisson formulas] Let h be a bounded real function supported on a region of finite -measure, and let S be its signed Poisson sum. Then e^ itS &=(((th)-1)\\,d), \\\\ e^ tS &=(((th)-1)\\,d), \\\\…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-poisson-moments",
+          "role": "homogeneous-increments-and-signed-poisson-sampling-2",
+          "label": "Nearly additive Poisson moments",
+          "fullLabel": "Nearly additive Poisson moments",
+          "kind": "lemma",
+          "source": "Homogeneous increments and signed Poisson sampling",
+          "detail": "[Nearly additive Poisson moments] Let h be a bounded real function supported on a region of finite -measure, and let S be its signed Poisson sum. For q>2 and >0 , |h|^q\\,d |S|^q (1+)|h|^q\\,d +C_ q, (…",
+          "dependsOn": [
+            "m1-lem-localization"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "Subpolynomial dimension reduction in Lp",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Subpolynomial-dimension-reduction-in-Lp-September-23-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

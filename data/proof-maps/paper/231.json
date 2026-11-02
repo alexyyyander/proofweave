@@ -134,63 +134,78 @@
   "edges": [
     {
       "from": "m1-lem-tree-response",
-      "to": "m1-prop-free-limit"
+      "to": "m1-prop-free-limit",
+      "context": "educed incidence matrix and put \\[ K_H=A_H^{\\mathsf T}(A_HA_H^{\\mathsf T})^{-1}A_H. \\] For each finite $F\\subseteq E(H)$, the matrix-tree calculation in Lemma~\\ref{lem:tree-response}, followed by the rectangular determinant identity, gives the polynomial identity \\begin{align} \\E\\prod_{e\\in F}(1+z_e\\"
     },
     {
       "from": "m1-lem-tree-response",
-      "to": "m1-lem-forest-response"
+      "to": "m1-lem-forest-response",
+      "context": "lsewhere. The resulting tree inclusion probability is the ratio in \\eqref{eq:finite-tilt} with the uniform spanning-tree law on $H_m$ in place of $\\nu$. Lemma~\\ref{lem:tree-response} bounds the difference between this probability and the one using $y'$ by the right side of \\eqref{eq:finite-response}."
     },
     {
       "from": "m1-lem-forest-response",
-      "to": "m1-prop-canonical-drift"
+      "to": "m1-prop-canonical-drift",
+      "context": "The range and Borel assertions follow from Lemma~\\ref{lem:forest-response} and the countable limsup in \\eqref{eq:drift}. If $d=\\sup_f|y_f-y'_f|<\\infty$, that lemma gives \\[ b_{e,S_n(e)}(t,y)"
     },
     {
       "from": "m1-lem-posterior",
-      "to": "m1-lem-innovation"
+      "to": "m1-lem-innovation",
+      "context": "per endpoint. Hence $\\widehat W$ is coordinatewise continuous and adapted. For $0\\le u<v$ and any bounded $\\mathcal H_u$-measurable random variable $K$, Lemma~\\ref{lem:posterior} gives, separately for each $s\\in[u,v]$, \\[ \\E[Kb_i(s,Y(s))]=\\E[KX_i]. \\] Bounded Fubini integrates these numerical ide"
     },
     {
       "from": "m1-lem-inverse",
-      "to": "m1-prop-brownian-sampler"
+      "to": "m1-prop-brownian-sampler",
+      "context": "nd gives \\[ |b_{i,S_n(i)}(t,y)-b_{i,S_n(i)}(t,y')|\\le Ld \\] for every $i,n,t$. Taking limsups in both directions proves \\eqref{eq:abstract-lipschitz}. Lemma~\\ref{lem:inverse} therefore applies. Formula~\\eqref{eq:readout} is a Borel predicate on every input, including those on which the displa"
     },
     {
       "from": "m1-lem-posterior",
-      "to": "m1-prop-brownian-sampler"
+      "to": "m1-prop-brownian-sampler",
+      "context": "full output law, use the reference observation model: take $X\\sim\\nu$, independently take standard Brownian paths $(B_i)$, and put $Y_i(t)=tX_i+B_i(t)$. Lemma~\\ref{lem:posterior} identifies the drift with the posterior mean at each fixed time, and Lemma~\\ref{lem:innovation} shows that \\[ \\widehat"
     },
     {
       "from": "m1-lem-innovation",
-      "to": "m1-prop-brownian-sampler"
+      "to": "m1-prop-brownian-sampler",
+      "context": "ard Brownian paths $(B_i)$, and put $Y_i(t)=tX_i+B_i(t)$. Lemma~\\ref{lem:posterior} identifies the drift with the posterior mean at each fixed time, and Lemma~\\ref{lem:innovation} shows that \\[ \\widehat W_i(t)=Y_i(t)-\\int_0^t b_i(s,Y(s))\\,ds \\] has the law of independent standard Brownian paths. B"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-edge-noise"
+      "to": "m1-lem-edge-noise",
+      "context": "[Proof of Theorem~\\ref{thm:main}] On labelings with distinct keys, define $\\Phi(G,U,e)$ by the readout \\eqref{eq:readout}, using the intrinsic forest dr"
     },
     {
       "from": "m1-lem-forest-response",
-      "to": "m1-lem-edge-noise"
+      "to": "m1-lem-edge-noise",
+      "context": ", equivariant rule, defined on all labelings. Fix a graph $G$. Its key-collision event has probability zero, and the edge paths have product Wiener law. Lemma~\\ref{lem:forest-response} gives the uniform finite-tilt response bound with $L=1/2$ for $\\nu=\\FUSF_G$. Proposition~\\ref{prop:brownian-sampler} th"
     },
     {
       "from": "m1-prop-brownian-sampler",
-      "to": "m1-lem-edge-noise"
+      "to": "m1-lem-edge-noise",
+      "context": "he edge paths have product Wiener law. Lemma~\\ref{lem:forest-response} gives the uniform finite-tilt response bound with $L=1/2$ for $\\nu=\\FUSF_G$. Proposition~\\ref{prop:brownian-sampler} therefore identifies the joint law of all the output indicators as $\\FUSF_G$. This proves the assertion for every fixed"
     },
     {
       "from": "m1-cor-unimodular",
-      "to": "m1-lem-edge-noise"
+      "to": "m1-lem-edge-noise",
+      "context": "[Proof of Corollary~\\ref{cor:unimodular}] Place independent uniform labels conditionally on $(G,o)$. The graphwise conclusion of Theorem~\\ref{thm:main}, for the"
     },
     {
       "from": "m1-thm-sr-group",
-      "to": "m1-lem-sr-response"
+      "to": "m1-lem-sr-response",
+      "context": "[Proof of Theorem~\\ref{thm:sr-group}] Fix a site $i\\in\\Gamma$ and a finite observed set $S\\subseteq\\Gamma$. Let $J=S\\cup\\{i\\}$ and let $\\nu_J$ be the margin"
     },
     {
       "from": "m1-prop-brownian-sampler",
-      "to": "m1-lem-sr-response"
+      "to": "m1-lem-sr-response",
+      "context": "ft is equivariant under every regular left translation on its entire domain. The uniform bound \\eqref{eq:sr-finite-tilt} supplies the hypothesis of Proposition~\\ref{prop:brownian-sampler} with $L=1/2$. That proposition gives a Borel map $\\Psi$ from the product continuous-path space to $\\{0,1\\}^{\\Gamma}$, s"
     },
     {
       "from": "m1-lem-edge-noise",
-      "to": "m1-lem-sr-response"
+      "to": "m1-lem-sr-response",
+      "context": "us-path space to $\\{0,1\\}^{\\Gamma}$, sending independent standard Brownian paths to $\\nu$ and commuting with every $\\tau_g$ on every input. The proof of Lemma~\\ref{lem:edge-noise} constructs an everywhere-defined Borel map from one uniform variable to a standard Brownian path, with fixed defaults o"
     },
     {
       "from": "m1-cor-dpp-group",
-      "to": "m1-lem-sr-response"
+      "to": "m1-lem-sr-response",
+      "context": "[Proof of Corollary~\\ref{cor:dpp-group}] For a countable discrete set, every self-adjoint positive contraction defines a determinantal probability law; see Lyo"
     }
   ]
 }

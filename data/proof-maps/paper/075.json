@@ -264,131 +264,163 @@
   "edges": [
     {
       "from": "m1-entropy-foundations-variational",
-      "to": "m1-entropy-foundations-exchangeable"
+      "to": "m1-entropy-foundations-exchangeable",
+      "context": "Start with \\Cref{entropy-foundations:variational} and put \\[ s_j=\\mathrm H(X_{j+1}\\mid X_1,\\ldots,X_j),\\qquad 0\\le j<T. \\] These numbers are nonincreasing. Indeed cond"
     },
     {
       "from": "m1-entropy-foundations-cost-rules",
-      "to": "m1-entropy-foundations-exchangeable"
+      "to": "m1-entropy-foundations-exchangeable",
+      "context": "\\right) \\le C m_*^2E/T^2. \\end{equation} The expectation of $\\log|S|-\\mathrm H(\\nu_{j,X^j})$ is $\\log|S|-s_j\\le CE/T$. In addition, for each fixed $j$, \\Cref{entropy-foundations:cost-rules} allows us to condition on the prefix, keep $T_0$ of the remaining coordinates, and change the comparison to $\\nu_{j,X^j"
     },
     {
       "from": "m1-entropy-foundations-cost-rules",
-      "to": "m1-entropy-foundations-context-bounds"
+      "to": "m1-entropy-foundations-context-bounds",
+      "context": "First consider sums under the correlated law $\\Psi$, before introducing contexts. By \\Cref{entropy-foundations:cost-rules}, for every $s\\le T_0$ the law of $(X^s,\\Gamma)$ has $\\mathcal C_\\nu\\le CE$. Relative entropy to $q$ gives \\begin{equat"
     },
     {
       "from": "m1-entropy-foundations-block-cost",
-      "to": "m1-entropy-foundations-thinning"
+      "to": "m1-entropy-foundations-thinning",
+      "context": "It suffices to construct a trial for the constant context; the rest follows from \\Cref{entropy-foundations:block-cost}. Take $2r$ disjoint blocks of $m$ coordinates from $\\Psi$. Their common marginal is a law $\\mu$ on $S^m$. Put $Q=\\nu"
     },
     {
       "from": "m1-entropy-foundations-cost-rules",
-      "to": "m1-entropy-foundations-thinning"
+      "to": "m1-entropy-foundations-thinning",
+      "context": "$ selected block indices. The full tag pattern is not recorded. Thus \\[ \\mathrm H(J)\\le\\log\\bigl(1+(2r)^r\\bigr) \\le\\log2+r\\log(2r). \\] By \\Cref{entropy-foundations:cost-rules}, conditioning on $J$ and then projecting and reordering on accepted outcomes has average cost at most $CE+\\mathrm H(J)$"
     },
     {
       "from": "m1-entropy-refinement-gluing",
-      "to": "m1-entropy-refinement-search"
+      "to": "m1-entropy-refinement-search",
+      "context": "h{Available updates.} Suppose the desired $K$ inequality fails at index $j$ in a given state. Consider separately from that same state the full observations of \\Cref{entropy-refinement:gluing} for $m_{j,0}<m\\le m_{j,1}$. Let $d_m\\ge0$ be their decreases in $a_j$, and $c_m\\ge0$ their costs. Telescoping \\Cref{eq:"
     },
     {
       "from": "m1-lemma-compression",
-      "to": "m1-entropy-refinement-search"
+      "to": "m1-entropy-refinement-search",
+      "context": "[Completion of the proof of \\Cref{lemma:compression}] Use the context $W$, index $j$, and high endpoint $m=m_{j,1}$ supplied by \\Cref{entropy-refinement:search}. Put $r=r_j"
     },
     {
       "from": "m1-lemma-compression",
-      "to": "m1-lemma-spectral-update"
+      "to": "m1-lemma-spectral-update",
+      "context": "is continuous. For large $d$, the floor is between $d/h^2$ and $D_0d$; the upper bound follows also for the maximum from \\Cref{eq:thermal-moment-cap}. Apply \\Cref{lemma:compression} with $E=t$ to obtain a subset $S'$ and center $x_0$. Its conclusion holds for every probability on this fixed $S'$, so"
     },
     {
       "from": "m1-lemma-spectral-update",
-      "to": "m1-prop-live-budgets"
+      "to": "m1-prop-live-budgets",
+      "context": "\\subsubsection*{Caps, constant order, and finite termination} Let $C_1$ be the numerical constant bounding a relative metric cost by $C_1t$ in \\Cref{lemma:spectral-update}, and let $C_2$ be its numerical regular gap-increase constant. Choose the numerical $\\varepsilon>0$ there small enough"
     },
     {
       "from": "m1-prop-thermal-evidence",
-      "to": "m1-prop-live-budgets"
+      "to": "m1-prop-live-budgets",
+      "context": "anged. Group the fresh observations of this test into that step. The conditional reference probability of the evidence given success is at most $e^{-t/8}$ by \\Cref{prop:thermal-evidence}. Consequently the conditional mean of the numerator is at most $1+(e^{t/16}-1)e^{-t/8}\\le1+e^{-t/16}$. The score $\\mat"
     },
     {
       "from": "m1-prop-live-budgets",
-      "to": "m1-lemma-07-edge-charges"
+      "to": "m1-lemma-07-edge-charges",
+      "context": "For (i) and (ii), fix the global unlabelled input experiment of \\Cref{prop:live-budgets}, following memberships through all live epochs and freezing the terminal piece only at live termination. For (iii) and"
     },
     {
       "from": "m1-lemma-07-local-budget",
-      "to": "m1-lemma-07-edge-charges"
+      "to": "m1-lemma-07-edge-charges",
+      "context": "epochs and freezing the terminal piece only at live termination. For (iii) and (iv), first fix one plateau and use the corresponding local input experiment of \\Cref{lemma:07-local-budget}, freezing the terminal piece at that plateau's exit. In each application, all windows below belong to one common finite"
     },
     {
       "from": "m1-lemma-07-local-budget",
-      "to": "m1-lemma-07-snapshots"
+      "to": "m1-lemma-07-snapshots",
+      "context": "The successive coordinate spaces increase by retaining all previous coordinates. Before cap breach there are at most $D_{\\max}$ new coordinates on a path. Thus \\Cref{lemma:07-local-budget} gives \\begin{equation}\\label{eq:07-rounded-fisher} \\mathbb E_{\\mathbf U_e}\\sum_p \\int\\frac{|D_{\\rm jump}|^2}{M}"
     },
     {
       "from": "m1-lemma-07-snapshots",
-      "to": "m1-lemma-07-activation"
+      "to": "m1-lemma-07-activation",
+      "context": "[a|\\chi_{u-v}(Y)-\\chi_{u-v}(y_p)|^2]\\right)^{1/2} \\le C|u-v||p|. \\] Thus $v$ is high at $0.9b$, since $\\sigma\\ll b_0$ and the scalar prefactor is small. By \\Cref{lemma:07-snapshots}, it is covered by a stored $s$. If that snapshot was born at $q\\supseteq p$, its main cover gives $v-s=n+j$, with $\\Del"
     },
     {
       "from": "m1-prop-capture",
-      "to": "m1-lemma-07-activation"
+      "to": "m1-lemma-07-activation",
+      "context": "one depth block beginning at $p_0$ of the claimed length. If no such $p_0$ exists there is no missed non-bad high jump. This proves the assertion and completes \\Cref{prop:capture}."
     },
     {
       "from": "m1-lemma-paths-sign",
-      "to": "m1-prop-scalar-path"
+      "to": "m1-prop-scalar-path",
+      "context": "hanges $\\psi$ by at most $Cb^{1/2}\\xi$. Telescoping from birth to any prefix end therefore gives \\[ \\sum\\delta_p\\le Cb^{1/2}(1+K_e)-\\sum r_{j+1}n_p. \\] Apply \\Cref{lemma:paths-sign} to the negative fluctuation with $\\theta=\\gamma b^{-1/2}$, where $\\gamma>0$ is a sufficiently small numerical constant."
     },
     {
       "from": "m1-lemma-07-local-budget",
-      "to": "m1-lemma-paths-innovation"
+      "to": "m1-lemma-paths-innovation",
+      "context": "pre energy is at most $4$, and the removals have expected total at most $2$. This gives the first bound in \\Cref{eq:paths-forward-budgets}. The other two are \\Cref{lemma:07-local-budget}."
     },
     {
       "from": "m1-lemma-paths-sign",
-      "to": "m1-lemma-paths-run-drift"
+      "to": "m1-lemma-paths-run-drift",
+      "context": "xceptional jump, $|U_p|\\le4\\le4e'_p$, so pay its noise directly. On the remaining jumps, \\Cref{eq:paths-energy-noise} gives $|U_p|^2\\le Cb^2(J_p+g_p)$. Apply \\Cref{lemma:paths-sign} to minus this remaining noise with parameter $\\theta=\\gamma/b$. Its quadratic bound is $C\\gamma b\\sum(J_p+g_p)$. Choo"
     },
     {
       "from": "m1-lemma-paths-sign",
-      "to": "m1-lemma-paths-run-norm"
+      "to": "m1-lemma-paths-run-norm",
+      "context": "included state $G_i\\le2C_4b^2$. At an exceptional state both $G_i$ and $J_i$ are at most $2$, and $e'_i\\ge1$. Therefore \\[ G_iJ_i\\le Cb^2J_i+Ce'_i. \\] Apply \\Cref{lemma:paths-sign} to the linear scheme with parameter $1/\\lambda$. Its quadratic term, by \\Cref{eq:paths-linear-variance}, is at most \\["
     },
     {
       "from": "m1-lemma-07-edge-charges",
-      "to": "m1-prop-vector-path"
+      "to": "m1-prop-vector-path",
+      "context": "hese outer-valid runs. We first bound the number of run starts conditionally on the birth prefix. A start on an exceptional jump can be charged to that jump. \\Cref{lemma:07-edge-charges} bounds the expected number of these by $d\\poly(h)$; there are none when $b=1$. At a nonexceptional start, $G_{\\rm star"
     },
     {
       "from": "m1-lemma-paths-run-norm",
-      "to": "m1-prop-vector-path"
+      "to": "m1-prop-vector-path",
+      "context": "and $J_p\\le\\int M_p\\le2$ bounds a threshold overshoot. Therefore their conditional expected number is at most $Cd$ by \\Cref{eq:paths-forward-budgets}. Apply \\Cref{lemma:paths-run-norm} conditionally at every origin, with the same parameter $t$. Summing its conditional failure probabilities weights each"
     },
     {
       "from": "m1-lemma-07-snapshots",
-      "to": "m1-lemma-paths-simultaneous"
+      "to": "m1-lemma-paths-simultaneous",
+      "context": "snapshot scheme creates snapshots only while its list length is at most $D_{\\max}$; estimates for representatives already born continue to the plateau end. By \\Cref{lemma:07-snapshots}, the expected number of births is bounded by a fixed polynomial in $(D_{\\max},d_1,1/b)$. The number of representatives"
     },
     {
       "from": "m1-prop-vector-path",
-      "to": "m1-lemma-paths-simultaneous"
+      "to": "m1-lemma-paths-simultaneous",
+      "context": "qquad R_b^{\\rm sc}=\\exp\\big(C(d_1+\\log(1/b))\\big), \\] as established in that lemma. Scalar estimates originate at these births. For each main representative, \\Cref{prop:vector-path} bounds the conditional expected number of run and checkpoint origins by a fixed polynomial in $(d,b_0^{-1})$. For suff"
     },
     {
       "from": "m1-lemma-07-activation",
-      "to": "m1-lemma-paths-simultaneous"
+      "to": "m1-lemma-paths-simultaneous",
+      "context": "og(Cd_1/b). \\] This proves \\Cref{eq:paths-main-parameter,eq:paths-scalar-parameter}, using $d_1=d$ for main levels and $\\log d_1\\le d_1$ for scalar levels. Use \\Cref{lemma:07-activation} with this same cap and put \\[ H_b=C\\log(C\\widehat Dd_1/b)+C\\log(1/\\sigma). \\] Its expectation satisfies \\Cref{eq:paths"
     },
     {
       "from": "m1-prop-dyadic",
-      "to": "m1-lemma-paths-simultaneous"
+      "to": "m1-lemma-paths-simultaneous",
+      "context": "[Proof of \\Cref{prop:dyadic}] The zero input is immediate. For positive input, apply the finite procedure of \\Cref{sec:procedure}, with the common"
     },
     {
       "from": "m1-prop-capture",
-      "to": "m1-lemma-paths-simultaneous"
+      "to": "m1-lemma-paths-simultaneous",
+      "context": "t $K_e(x)$ denote the sum of all normalized removal masses $\\xi_p$ on the plateau's processing path, including the intervening and terminal removals allowed in \\Cref{prop:capture}; then \\begin{equation}\\label{eq:09-kills} \\E_{\\mathbf U_e}K_e\\le1. \\end{equation} For live plateaus set $d_1=d$, and f"
     },
     {
       "from": "m1-prop-scalar-path",
-      "to": "m1-lemma-paths-simultaneous"
+      "to": "m1-lemma-paths-simultaneous",
+      "context": "apture}. On this level interval sum first over the fixed scalar mask \\[ \\max\\{|f_{p,+}^s|,|f_{p,-}^s|\\}\\le C_3b. \\] This is precisely the masked transform in \\Cref{prop:scalar-path}; that proposition applies to the masked sum over the whole contiguous level interval. Freezing $\\chi_{a'}$ at $x$ chan"
     },
     {
       "from": "m1-prop-live-budgets",
-      "to": "m1-lemma-paths-simultaneous"
+      "to": "m1-lemma-paths-simultaneous",
+      "context": "ersion} \\sum_e w_e\\E_{\\mathbf U_e}\\sum_{p\\in\\mathcal P_e(x)}V_p =\\sum_{\\text{jumping pieces }p}\\mathbf U(p)\\alpha_e V_p. \\end{equation} The Fisher bound in \\Cref{prop:live-budgets} bounds the right side by $Cd$ when $V_p=J_p$ and $e$ is live. The global scalar edge assertion of \\Cref{prop:capture}"
     },
     {
       "from": "m1-prop-dyadic",
-      "to": "m1-thm-good-set"
+      "to": "m1-thm-good-set",
+      "context": "We first pass from \\Cref{prop:dyadic} to modulated convolutions, then identify the periodic Hilbert transform. \\paragraph{The two Haar profiles.} Extend the"
     },
     {
       "from": "m1-thm-good-set",
-      "to": "m1-prop-fourier-bounded"
+      "to": "m1-prop-fourier-bounded",
+      "context": "se \\[ d_\\ell=d_*+\\max\\{0,\\log(2B/m_\\ell)\\}. \\] As $m_\\ell\\to0$ through positive values, $d_\\ell\\to\\infty$, $m_\\ell d_\\ell\\to0$, and $\\rho_\\ell\\le e^{d_\\ell}$. \\Cref{thm:good-set} and Markov's inequality show, for each $\\eta>0$, \\[ \\left|\\left\\{\\sup_N|S_Nq_\\ell|>\\eta\\right\\}\\right| \\le C(\\log d_\\"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-prop-fourier-bounded"
+      "to": "m1-prop-fourier-bounded",
+      "context": "[Proof of \\Cref{thm:main}] It suffices to work in unit-period coordinates. Write \\[ f=f_{\\mathrm{bd}}+\\sum_{j\\ge1}f_j,\\qquad f_{\\mathrm{bd}}=f\\"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-cor-fourier-weak-l1"
+      "to": "m1-cor-fourier-weak-l1",
+      "context": "The real Luxemburg space $B=L^\\Phi(\\mathbb T;\\mathbb R)$ is Banach. Since $\\Phi(2t)\\le4\\Phi(t)$, its underlying set is exactly the real $L\\log L$ class used in \\Cref{thm:main}; moreover $\\|f\\|_1\\le\\|f\\|_\\Phi/\\log2$. Translations are isometries of $B$ by invariance of $\\mu$. Each $S_N$ is a real"
     }
   ]
 }

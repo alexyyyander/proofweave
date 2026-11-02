@@ -343,195 +343,243 @@
   "edges": [
     {
       "from": "m1-cat-simplex-generators",
-      "to": "m1-prop-test-duality"
+      "to": "m1-prop-test-duality",
+      "context": "n isomorphism on two terms gives an isomorphism on the third. The same assertions pass to direct summands, by applying the dual functor to the splitting maps. \\Cref{cat:simplex-generators} now proves the duality assertions for all four categories. Each generator vanishes outside $f(\\Delta)$. Finite sums,"
     },
     {
       "from": "m1-prop-test-duality",
-      "to": "m1-prop-test-pushforward"
+      "to": "m1-prop-test-pushforward",
+      "context": "gory membership and boundedness for every object. The semialgebraic case follows from the same composition check. Both $A$ and $\\D_XA$ have compact support by \\Cref{prop:test-duality}. Hence \\eqref{cat:verdier-formula} gives the natural isomorphism \\begin{equation} \\label{cat:push-duality} Rg_!\\D_XA"
     },
     {
       "from": "m1-cat-simplex-generators",
-      "to": "m1-cat-interval-products"
+      "to": "m1-cat-interval-products",
+      "context": "continuous $f$. Finally, for fixed $B$ the locus of $A$ for which this natural comparison is an isomorphism is closed under triangles, shifts, and summands. \\Cref{cat:simplex-generators} completes the proof. For the last assertion, write the product pairing as the tensor of its two pairings, preceded by"
     },
     {
       "from": "m1-cat-interval-products",
-      "to": "m1-cat-endpoint-forms"
+      "to": "m1-cat-endpoint-forms",
+      "context": "ightarrow{u\\boxtimes\\alpha} H\\boxtimes\\D_{X,r}A \\xrightarrow{\\mu_{1,r}} \\D_{I\\times X,r+1}(J\\boxtimes A). \\end{equation} It lies in the required category by \\Cref{cat:interval-products}, and it is symmetric by that lemma. Identifying its middle object with $H\\boxtimes A$ using $\\alpha$, its cone triangle"
     },
     {
       "from": "m1-cat-symmetric-cone",
-      "to": "m1-cat-endpoint-forms"
+      "to": "m1-cat-endpoint-forms",
+      "context": "its cone triangle is \\[ J\\boxtimes A\\longrightarrow H\\boxtimes A \\xrightarrow{v\\boxtimes1}E\\boxtimes A \\xrightarrow{\\partial\\boxtimes1}(J\\boxtimes A)[1]. \\] \\Cref{cat:symmetric-cone} supplies a neutral nonsingular form $\\psi$ of degree $r$ on $E\\boxtimes A$. The two slices are disjoint closed subsets"
     },
     {
       "from": "m1-cat-product-shift-sign",
-      "to": "m1-cat-endpoint-forms"
+      "to": "m1-cat-endpoint-forms",
+      "context": "es1$ is the product of the shifted dual of $\\partial$ with the identity of $\\D_{X,r}A$, up to a single shift sign independent of the endpoint, as calculated in \\Cref{cat:product-shift-sign}. After precomposing with $1\\boxtimes\\alpha$, the two coefficients are therefore a common nonzero scalar times $\\alpha$"
     },
     {
       "from": "m1-cat-endpoint-forms",
-      "to": "m1-thm-homotopy"
+      "to": "m1-thm-homotopy",
+      "context": "For a form $(A,\\alpha)$, \\Cref{cat:endpoint-forms} gives \\[ [\\,(i_0)_*A,c(i_0)_*\\alpha\\,] +[\\,(i_1)_*A,-c(i_1)_*\\alpha\\,]=0 \\] in the degree-$r$ Witt group of the cylin"
     },
     {
       "from": "m1-prop-test-pushforward",
-      "to": "m1-thm-homotopy"
+      "to": "m1-thm-homotopy",
+      "context": "e displayed relation is the negative of the one with $|c|$. Thus in either case \\[ (i_0)_*[A,\\alpha]=(i_1)_*[A,\\alpha]. \\] Push this equality along $h$ using \\Cref{prop:test-pushforward}. Its composite maps are $h_0$ and $h_1$, so it proves the desired equality on form classes and hence on the Witt group"
     },
     {
       "from": "m1-prop-test-pushforward",
-      "to": "m1-prop-compact-support"
+      "to": "m1-prop-compact-support",
+      "context": "An extended object has such a support bound by \\Cref{prop:test-pushforward}. Conversely, let $S\\in\\Bcat(X)$ vanish off a compact set $C\\subset U$. Write it as an actual summand \\[ S\\xrightarro"
     },
     {
       "from": "m1-lem-cutoff",
-      "to": "m1-prop-compact-support"
+      "to": "m1-prop-compact-support",
+      "context": "t(X)$ vanish off a compact set $C\\subset U$. Write it as an actual summand \\[ S\\xrightarrow{i}A\\xrightarrow{r}S, \\qquad ri=\\id_S,\\qquad A\\in\\Bzero(X). \\] By \\Cref{lem:cutoff}, choose $s:A'\\to A$ over $U$ which is invertible on a neighborhood $N$ of $C$. Since $S$ is extended by zero from $N$,"
     },
     {
       "from": "m1-prop-test-duality",
-      "to": "m1-prop-compact-support"
+      "to": "m1-prop-compact-support",
+      "context": "rt condition is thick. If $S$ vanishes off $C$, open restriction of Verdier duality shows that $\\D_X S$ also vanishes off $C$. Duality stability follows from \\Cref{prop:test-duality}."
     },
     {
       "from": "m1-lem-cutoff",
-      "to": "m1-thm-germs"
+      "to": "m1-thm-germs",
+      "context": "triction thus factors through the Verdier quotient. We prove fullness first for $A\\in\\Bzero(X)$. Represent a germ by $v:A|_N\\to B|_N$ on $N\\supset K$. Apply \\Cref{lem:cutoff} with $O=N$ to obtain $s:A'\\to A$, where $A'$ is compactly supported inside $N$ and $s$ is invertible near $K$. Adjunct"
     },
     {
       "from": "m1-prop-compact-support",
-      "to": "m1-thm-germs"
+      "to": "m1-thm-germs",
+      "context": "he cone of $s$ has a compact support bound $C$ and vanishes on some open $M\\supset K$. It is therefore supported in the compact subset $C\\setminus M\\subset U$; \\Cref{prop:compact-support} puts it in $\\Bcat(U)$. The roof \\[ A\\xleftarrow{s}A'\\xrightarrow{t}B \\] defines a quotient morphism with germ $v$. Fo"
     },
     {
       "from": "m1-prop-compact-support",
-      "to": "m1-thm-witt-localization"
+      "to": "m1-thm-witt-localization",
+      "context": "We apply \\cite[Theorem~2.1, pp.~132--134]{BalmerWalter2002}. Let $\\mathcal J=\\Bcat(U)$ and $\\mathcal K=\\Bcat(X)$. By \\Cref{prop:compact-support}, $\\mathcal J$ is a full thick subcategory stable under the exact duality. It is therefore a saturated full triangulate"
     },
     {
       "from": "m1-thm-germs",
-      "to": "m1-prop-open-cover"
+      "to": "m1-prop-open-cover",
+      "context": "us(U\\cap V)$. Open neighborhoods of $K$ contained in $V$ are cofinal among its open neighborhoods in $X$: intersect any given neighborhood with $V$. Applying \\Cref{thm:germs} on $V$ and on $X$ therefore identifies the morphism groups on the two sides of \\eqref{loc:eq-open-cover}. This proves"
     },
     {
       "from": "m1-lem-cutoff",
-      "to": "m1-prop-open-cover"
+      "to": "m1-prop-open-cover",
+      "context": "nd on $X$ therefore identifies the morphism groups on the two sides of \\eqref{loc:eq-open-cover}. This proves full faithfulness. For $A_0\\in\\Bzero(X)$, apply \\Cref{lem:cutoff} with $O=V$ and this $K$. Its cutoff $A'_0\\to A_0$ has cone compactly supported inside $U$, so it becomes an isomorphis"
     },
     {
       "from": "m1-thm-dense-doubling",
-      "to": "m1-loc-cor-open-cover-bound"
+      "to": "m1-loc-cor-open-cover-bound",
+      "context": "Apply \\Cref{thm:dense-doubling} to the replete image in \\Cref{prop:open-cover}."
     },
     {
       "from": "m1-prop-open-cover",
-      "to": "m1-loc-cor-open-cover-bound"
+      "to": "m1-loc-cor-open-cover-bound",
+      "context": "Apply \\Cref{thm:dense-doubling} to the replete image in \\Cref{prop:open-cover}."
     },
     {
       "from": "m1-lat-point-groups",
-      "to": "m1-thm-bounded-comparison"
+      "to": "m1-thm-bounded-comparison",
+      "context": "The assertion for $j=0$ follows from \\Cref{lat:point-groups}, with $e_0=0$. Suppose it holds for $j-1$. Put $X=S^j$, let $U,V$ be the complements of two distinct poles, and put $"
     },
     {
       "from": "m1-thm-homotopy",
-      "to": "m1-thm-bounded-comparison"
+      "to": "m1-thm-bounded-comparison",
+      "context": "V$. The spaces $U,V$ are semialgebraically contractible, and $I$ is semialgebraically homotopy equivalent to $S^{j-1}$ (for $j=1$ this has two components). By \\Cref{thm:homotopy}, the comparisons on $U,V$ are isomorphisms and those on $I$ have the induction bound in every degree. These homotopies"
     },
     {
       "from": "m1-prop-test-pushforward",
-      "to": "m1-thm-bounded-comparison"
+      "to": "m1-thm-bounded-comparison",
+      "context": "parisons on $U,V$ are isomorphisms and those on $I$ have the induction bound in every degree. These homotopies need not be proper: the pushforward functors of \\Cref{prop:test-pushforward} use compact supports. For $\\Bcat=\\Pcat$ or $\\T$ write temporarily \\[ Q_r^{\\Bcat}(Z,A)=\\Witt_r\\bigl(\\Bcat(Z)/\\Bcat(A)\\"
     },
     {
       "from": "m1-thm-witt-localization",
-      "to": "m1-thm-bounded-comparison"
+      "to": "m1-thm-bounded-comparison",
+      "context": "act supports. For $\\Bcat=\\Pcat$ or $\\T$ write temporarily \\[ Q_r^{\\Bcat}(Z,A)=\\Witt_r\\bigl(\\Bcat(Z)/\\Bcat(A)\\bigr) \\] when $A$ is open in $Z$. Naturality of \\Cref{thm:witt-localization} gives two exact rows of the form \\[ \\Witt_r(\\Bcat(I))\\longrightarrow\\Witt_r(\\Bcat(V)) \\longrightarrow Q_r^{\\Bcat}(V,I"
     },
     {
       "from": "m1-lat-finite-chases",
-      "to": "m1-thm-bounded-comparison"
+      "to": "m1-thm-bounded-comparison",
+      "context": "longrightarrow\\Witt_{r-1}(\\Bcat(I)) \\longrightarrow\\Witt_{r-1}(\\Bcat(V)). \\] Their four outer comparisons have the uniform induction bound. The first chase in \\Cref{lat:finite-chases} therefore bounds the comparison on $Q_r(V,I)$ in all degrees. By \\Cref{prop:open-cover,thm:dense-doubling}, the two ho"
     },
     {
       "from": "m1-thm-dense-doubling",
-      "to": "m1-prop-sphere-rank"
+      "to": "m1-prop-sphere-rank",
+      "context": "isomorphism \\[ Q_r^{\\Bcat}(V,I)\\simeq\\widetilde G_{r-1}(I). \\] The dense map between these two relative groups is an isomorphism after tensoring with $\\Q$ by \\Cref{thm:dense-doubling}. Thus \\[ \\widetilde G_r(S^j)\\otimes\\Q \\simeq\\widetilde G_{r-1}(S^{j-1})\\otimes\\Q. \\] For $S^0$ the reduced group is"
     },
     {
       "from": "m1-lat-point-groups",
-      "to": "m1-prop-sphere-rank"
+      "to": "m1-prop-sphere-rank",
+      "context": "oint group. Induction and the split point summand prove the formula. At $(r,j)=(d,d)$ the two summands are $0$ and $\\Q$, respectively, because $d$ is odd and \\Cref{lat:point-groups} gives $G_d(\\pt)=0$ and $G_0(\\pt)=\\Z$."
     },
     {
       "from": "m1-prop-sphere-rank",
-      "to": "m1-prop-generic-signature"
+      "to": "m1-prop-generic-signature",
+      "context": "ultiple of it vanished, a finite relation witnessing that equality would contradict its signature. Thus $u_{F,d}$ is nontorsion and spans the rational line of \\Cref{prop:sphere-rank}. For $x\\in F_d(S^d)$ write $x\\otimes1=(a/b)\\overline{u}_{F,d}$, where $a\\in\\Z$ and $b>0$. The difference $bx-au_{F,d}$"
     },
     {
       "from": "m1-thm-bounded-comparison",
-      "to": "m1-thm-sphere-lattice"
+      "to": "m1-thm-sphere-lattice",
+      "context": "By \\Cref{thm:bounded-comparison} the comparison is a rational isomorphism, so \\Cref{prop:generic-signature} identifies its nonzero rational orientation"
     },
     {
       "from": "m1-prop-generic-signature",
-      "to": "m1-thm-sphere-lattice"
+      "to": "m1-thm-sphere-lattice",
+      "context": "By \\Cref{thm:bounded-comparison} the comparison is a rational isomorphism, so \\Cref{prop:generic-signature} identifies its nonzero rational orientation class with $\\overline{u}_d$. Take $L_d=2^{e_d}$, which annihilates the com"
     },
     {
       "from": "m1-thm-homotopy",
-      "to": "m1-prop-degree-action"
+      "to": "m1-prop-degree-action",
+      "context": "phism; these identifications preserve the fundamental classes and the orientation forms used for degree and pushforward. The homotopy need only be continuous: \\Cref{thm:homotopy} identifies $f_*$ and $g_*$ on the continuous theory, with the model identifications understood. The constant sheaf on"
     },
     {
       "from": "m1-thm-sphere-lattice",
-      "to": "m1-prop-degree-action"
+      "to": "m1-prop-degree-action",
+      "context": "on open set is dense. Its signature says $\\rho=s$. Apply the comparison to obtain the assertion in $E$. Finally, $\\overline{u}_d$ spans the rational group by \\Cref{thm:sphere-lattice}, so the assertion about the entire group follows by linearity."
     },
     {
       "from": "m1-lat-point-groups",
-      "to": "m1-prop-contractible-quotient"
+      "to": "m1-prop-contractible-quotient",
+      "context": "Homotopy invariance and \\Cref{lat:point-groups} give $E_d(U)=E_d(\\pt)=0$. Let $i:U\\hookrightarrow X$ and let $p_Z:Z\\to\\pt$ denote projection. The composite \\[ E_{d-"
     },
     {
       "from": "m1-thm-witt-localization",
-      "to": "m1-prop-contractible-quotient"
+      "to": "m1-prop-contractible-quotient",
+      "context": "jectivity argument applies in either case. All these maps exist by compact-support pushforward, whether or not the space maps are proper. The relevant part of \\Cref{thm:witt-localization} is \\[ 0\\longrightarrow E_d(X) \\longrightarrow\\Witt_d\\bigl(\\T(X)/\\T(U)\\bigr) \\longrightarrow E_{d-1}(U)\\xrightarrow{i"
     },
     {
       "from": "m1-lem-averaged-test",
-      "to": "m1-prop-move-test"
+      "to": "m1-prop-move-test",
+      "context": "We first show $(a|_F)^*\\gamma_d=0$. Choose a round ball with closure in the nonempty open set $q^{-1}(V)\\subset W$. The pinch in \\Cref{lem:averaged-test} can be moved to this ball by a homotopy on $W^+$. Here is explicit control of that homotopy. Connect the two centers b"
     },
     {
       "from": "m1-lem-orbit-injectivity",
-      "to": "m1-prop-move-test"
+      "to": "m1-prop-move-test",
+      "context": "reimage is a closed invariant compact subset of $W^+$, and its orbit space is $F$. The restricted orbit map $q^{-1}(F)\\to F$ therefore meets the hypotheses of \\Cref{lem:orbit-injectivity}, so $(a|_F)^*\\gamma_d=0$. By \\Cref{lem:odd-sphere-null}, some $D_sa|_F$ is nullhomotopic. Apply \\Cref{top:neighborhood-"
     },
     {
       "from": "m1-lem-odd-sphere-null",
-      "to": "m1-prop-move-test"
+      "to": "m1-prop-move-test",
+      "context": "its orbit space is $F$. The restricted orbit map $q^{-1}(F)\\to F$ therefore meets the hypotheses of \\Cref{lem:orbit-injectivity}, so $(a|_F)^*\\gamma_d=0$. By \\Cref{lem:odd-sphere-null}, some $D_sa|_F$ is nullhomotopic. Apply \\Cref{top:neighborhood-extension} to this nullhomotopy and $f=D_sa$ on $Y$. It"
     },
     {
       "from": "m1-top-neighborhood-extension",
-      "to": "m1-prop-move-test"
+      "to": "m1-prop-move-test",
+      "context": "therefore meets the hypotheses of \\Cref{lem:orbit-injectivity}, so $(a|_F)^*\\gamma_d=0$. By \\Cref{lem:odd-sphere-null}, some $D_sa|_F$ is nullhomotopic. Apply \\Cref{top:neighborhood-extension} to this nullhomotopy and $f=D_sa$ on $Y$. Its endpoint is the required $h$. Finally, $y_\\infty\\in F$, and every point"
     },
     {
       "from": "m1-lem-orbit-injectivity",
-      "to": "m1-lem-character-coproduct"
+      "to": "m1-lem-character-coproduct",
+      "context": "Apply \\Cref{lem:orbit-injectivity} to the compact metrizable $G$-space $W^+$ with $k=\\R$. The coefficient sheaf $\\const{\\C}{W^+}$ is the direct sum of tw"
     },
     {
       "from": "m1-lem-character-coproduct",
-      "to": "m1-lem-orthogonality"
+      "to": "m1-lem-orthogonality",
+      "context": "}B_E$ vanishes. This applies also when $\\mu=\\overline\\lambda\\ne\\lambda$: the common complex scalar operators distinguish these two real subrepresentations. By \\Cref{lem:character-coproduct} and exact open restriction, $B_D$ is the derived coproduct of the $B_{\\{\\lambda\\}}$, $\\lambda\\in D$. A morphism out of"
     },
     {
       "from": "m1-thm-germs",
-      "to": "m1-prop-equal-parts"
+      "to": "m1-prop-equal-parts",
+      "context": "of $(A_h,\\alpha_h)|_{S^d\\setminus\\{b\\}}$ and conjugates $e_i$ to $e_{i-1}$, with indices modulo $m$. The isometry and its inverse define quotient morphisms by \\Cref{thm:germs}. Its conjugation identity makes the twisted forms for $e_i$ and $e_{i-1}$ isometric in the quotient. Their untwisted"
     },
     {
       "from": "m1-prop-contractible-quotient",
-      "to": "m1-prop-equal-parts"
+      "to": "m1-prop-equal-parts",
+      "context": "jugation identity makes the twisted forms for $e_i$ and $e_{i-1}$ isometric in the quotient. Their untwisted terms agree as well. The integral isomorphism in \\Cref{prop:contractible-quotient} and \\Cref{def:character-classes} now give $z_i(h)=z_{i-1}(h)$."
     },
     {
       "from": "m1-thm-sphere-lattice",
-      "to": "m1-thm-contradiction"
+      "to": "m1-thm-contradiction",
+      "context": ":collapse,lem:averaged-test}. The latter may replace $G$ by an open subgroup; its action remains faithful and orientation preserving. First fix the lattice. \\Cref{thm:sphere-lattice} gives a positive power of $2$, denoted by $L_d$, such that \\[ E_d(S^d)\\otimes\\Q=\\Q\\overline{u}_d,\\qquad \\im\\bigl(E_d("
     },
     {
       "from": "m1-prop-move-test",
-      "to": "m1-thm-contradiction"
+      "to": "m1-thm-contradiction",
+      "context": "ve integral classes $z_i(a)\\in E_d(S^d)$. Write $\\overline{z}_i(a)=z_i(a)\\otimes1$ and $\\overline{u}_d=u_d\\otimes1$. We now compare these rational images. By \\Cref{prop:move-test} there are an integer $s>0$ and a map $h$, constant on $Y\\setminus V$, such that $h\\simeq D_s a$, where $D_s:S^d\\to S^d$"
     },
     {
       "from": "m1-prop-degree-action",
-      "to": "m1-thm-contradiction"
+      "to": "m1-thm-contradiction",
+      "context": "ariance} give \\[ D_{s*}z_i(a)=z_i(D_s a)=z_i(h)=z_j(h)=D_{s*}z_j(a). \\] On the rational line $\\Q\\overline{u}_d$, the map $D_{s*}$ is multiplication by $s$, by \\Cref{prop:degree-action}. Since $s>0$, all the $\\overline{z}_i(a)$ are equal. This cancels $s$ only as a nonzero rational scalar: the original"
     },
     {
       "from": "m1-prop-sum-classes",
-      "to": "m1-thm-contradiction"
+      "to": "m1-thm-contradiction",
+      "context": "f two positive real lines. Therefore $[A_a,\\alpha_a]=2(aqc)_*u_d$, and the degree-one property of $aqc$ gives $\\overline{[A_a,\\alpha_a]}=2\\overline{u}_d$. By \\Cref{prop:sum-classes}, \\[ \\sum_{i=0}^{m-1}\\overline{z}_i(a)=4\\overline{u}_d, \\qquad \\overline{z}_i(a)=\\frac4m\\overline{u}_d \\quad\\te"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-thm-contradiction"
+      "to": "m1-thm-contradiction",
+      "context": "[Proof of \\Cref{thm:main}] Let $M$ have any positive finite dimension $n$, and suppose that its given action were faithful. \\Cref{prop:chart-red"
     },
     {
       "from": "m1-prop-chart-reduction",
-      "to": "m1-thm-contradiction"
+      "to": "m1-thm-contradiction",
+      "context": "[Proof of \\Cref{thm:main}] Let $M$ have any positive finite dimension $n$, and suppose that its given action were faithful. \\Cref{prop:chart-reduction} produces a faithful orientation-preserving action of an open subgroup, itself isomorphic to $\\Zp$, on a connected invar"
     },
     {
       "from": "m1-cor-lie",
-      "to": "m1-thm-contradiction"
+      "to": "m1-thm-contradiction",
+      "context": "[Proof of \\Cref{cor:lie}] The classical Hilbert--Smith reduction says that a locally compact group which acts faithfully and continuously on a c"
     },
     {
       "from": "m1-cat-endpoint-forms",
-      "to": "m1-cat-product-shift-sign"
+      "to": "m1-cat-product-shift-sign",
+      "context": "All dependence on the individual degrees cancels. This is the stated scalar, and it is the suspension discrepancy used when dualizing $\\partial\\boxtimes1$ in \\Cref{cat:endpoint-forms}."
     }
   ]
 }

@@ -457,115 +457,143 @@
   "edges": [
     {
       "from": "m1-found-reference-change",
-      "to": "m1-found-row-derivative"
+      "to": "m1-found-row-derivative",
+      "context": "rtion can remove that factor, and from \\eqref{eq:A7}. If a second reference \\(K'\\) is used, expand the quotient in this gradient first, then recombine by Lemma~\\ref{found:reference-change}. This does not require differentiating \\(K'\\). There is one truncation convention to check. Differentiating an inserti"
     },
     {
       "from": "m1-paths-lift",
-      "to": "m1-paths-parameter-regularity"
+      "to": "m1-paths-parameter-regularity",
+      "context": "itial interval, and differentiating its inverse relation gives the stated \\(O(\\lambda)\\) bounds. The linearized PDE and coupled diffusion in the proof of Lemma~\\ref{paths:lift} give the bound on \\(\\partial_{\\log\\lambda}q\\). That proof also differentiates the scalar gap only after subtracting its"
     },
     {
       "from": "m1-red-lem-site-smoothing",
-      "to": "m1-red-prop-dyadic"
+      "to": "m1-red-prop-dyadic",
+      "context": "boundedly many neighboring stencil counts, lie in their individual stops \\(\\mathcal K_m\\le3x^\\varepsilon\\). On a size segment use \\(Z_m=m\\psi_m(s)\\) in Lemma~\\ref{red:lem-site-smoothing}. The derivative is \\begin{align*} \\frac{d}{d\\theta}\\overline{\\mathcal K} ={}&sn\\sum_mw_m \\left(\\dot\\psi_m+\\sum_{j=0"
     },
     {
       "from": "m1-red-prop-dyadic",
-      "to": "m1-red-prop-moments"
+      "to": "m1-red-prop-moments",
+      "context": "varepsilon\\) and uses only the preliminary subpower scale. Interpolate at the \\(k+1\\) nonnegative nodes \\(0,x^\\varepsilon,\\ldots,kx^\\varepsilon\\). Proposition~\\ref{red:prop-dyadic} bounds each nonzero-node difference; at zero the difference is zero. Division by the interpolation scale loses at most"
     },
     {
       "from": "m1-red-prop-moments",
-      "to": "m1-red-prop-identification"
+      "to": "m1-red-prop-identification",
+      "context": "bracket series equals \\(e^t-e^t=0\\); averaging that pointwise sum would therefore fail to recover the positive second moment. The limiting law from Proposition~\\ref{red:prop-moments} proves existence of the measure with these moments, its positive variance proves \\(a_2>0\\), and its exponential moment"
     },
     {
       "from": "m1-inv-pair-inverse",
-      "to": "m1-inv-sector-response"
+      "to": "m1-inv-sector-response",
+      "context": "[Proof of Proposition~\\ref{inv:pair-inverse}] If there are no retained sheets, the assertion is immediate. Otherwise use the decomposition above. By Lemma~\\ref{inv:"
     },
     {
       "from": "m1-global-residual-blocks",
-      "to": "m1-bud-outer-moments"
+      "to": "m1-bud-outer-moments",
+      "context": "n independent continuation at each radius \\(r\\). Decompose both residuals into future martingale increments, using the weighted Hessian representation in Lemma~\\ref{global:residual-blocks}. Retaining its mass weight is necessary here. First use dyadic distances from a sufficiently small inverse power of siz"
     },
     {
       "from": "m1-global-buffer-brackets",
-      "to": "m1-bud-common-star"
+      "to": "m1-bud-common-star",
+      "context": "C9} and \\eqref{eq:A1} make the centered averages on these buffers polynomially smaller than \\(W\\). The past/future brackets and common-past comparison in Lemma~\\ref{global:buffer-brackets} then give the same improvement for \\(\\||X|^2-S_*\\|_p\\) and for squared path increments in \\(L^p\\). Finally project both"
     },
     {
       "from": "m1-bud-common-star",
-      "to": "m1-bud-modified-closure"
+      "to": "m1-bud-modified-closure",
+      "context": "a star factor at cost $O(W^{-1})$. At depth $k$, accumulated coefficients are $O_k(W^{-k})$ and every unresolved term has $k$ new centered star factors. Lemma~\\ref{bud:common-star} therefore bounds its terminal contribution by $O_k(p_0x^{kc_*})$. Choose $k$ fixed so that $kc_*>2$, using $w\\ge w_c\\gg"
     },
     {
       "from": "m1-bud-coarse-profile",
-      "to": "m1-bud-modified-closure"
+      "to": "m1-bud-modified-closure",
+      "context": "[Proof of Proposition~\\ref{bud:coarse-profile}] We first exclude a failure of comparability, using a PE child for weak removal and Proposition~\\ref{bud:modified-closu"
     },
     {
       "from": "m1-bud-outer-moments",
-      "to": "m1-bud-modified-closure"
+      "to": "m1-bud-modified-closure",
+      "context": "ove a fixed multiple of $w$. Choose the loose constants strictly outside the bounds of the PE direct profile limits. The scale estimates displayed before Lemma~\\ref{bud:outer-moments} follow from $w\\ge w_c$. \\paragraph{Step 1: weak removal and feasible barriers.} First suppose \\(C(w)=o(w^2)\\). Apply"
     },
     {
       "from": "m1-bud-outer-second",
-      "to": "m1-bud-modified-closure"
+      "to": "m1-bud-modified-closure",
+      "context": "ves the first part of \\eqref{eq:C7}. The first part of \\eqref{eq:C7} has now been proved for every optimizer. In particular Lemmas~\\ref{bud:outer-moments} and~\\ref{bud:outer-second} can henceforth be used with $w=w_c$ and fixed uniform comparability constants. This is the version of \\eqref{eq:C8}--\\e"
     },
     {
       "from": "m1-global-buffer-brackets",
-      "to": "m1-bud-box-moments"
+      "to": "m1-bud-box-moments",
+      "context": "For two cuts in \\(B_{k+1}\\), take earlier and later windows of length comparable to \\(\\Delta=\\max(d_0,\\text{their radius separation})\\). The brackets in Lemma~\\ref{global:buffer-brackets} then control both centered square norms and their squared increment. The deterministic oscillation of \\(S\\) costs \\(O(\\"
     },
     {
       "from": "m1-bud-box-moments",
-      "to": "m1-bud-free-forks"
+      "to": "m1-bud-free-forks",
+      "context": "he factor \\(y/t'\\) already paid above. No trace estimate is applied below its lower mass cutoff. These are mass estimates; the radius estimates used in Lemma~\\ref{bud:box-moments} and in the coarse profile proof were proved separately by radius slides."
     },
     {
       "from": "m1-bud-high-primitive",
-      "to": "m1-bud-closure"
+      "to": "m1-bud-closure",
+      "context": "ained terminal spin on its prefix. The scalar coefficients and allocation restrictions are bounded deterministic weights \\(k_v\\), and \\(\\|F\\|_2=O(d_0)\\). Lemma~\\ref{bud:high-primitive} therefore gives \\[ \\left|\\mathbb E\\left[F\\int k_v\\,2(L_v-\\mathbb EL_v)\\,dv\\right]\\right| \\le2\\|F\\|_2 \\left\\|\\i"
     },
     {
       "from": "m1-bud-strengthening",
-      "to": "m1-bud-closure"
+      "to": "m1-bud-closure",
+      "context": "[Proof of Lemma~\\ref{bud:strengthening}] The ratio \\(R_n\\) defined below compares the removal strength with the curvature scale of the rescaled box. We first t"
     },
     {
       "from": "m1-bud-targets",
-      "to": "m1-bud-closure"
+      "to": "m1-bud-closure",
+      "context": "[Completion of Proposition~\\ref{bud:targets}] At its last stage the radius assertion converts by \\eqref{eq:C7} to \\eqref{eq:C3}; the averaged excess \\(O(x^{4-2\\zeta"
     },
     {
       "from": "m1-prop-statistics-pointwise",
-      "to": "m1-lem-statistics-widths"
+      "to": "m1-lem-statistics-widths",
+      "context": "[Proof of Proposition~\\ref{prop:statistics-pointwise}] All estimates in this proof use the untilted positive law with fixed path data. Lemma~\\ref{global:residual-blocks} sup"
     },
     {
       "from": "m1-global-residual-blocks",
-      "to": "m1-lem-statistics-widths"
+      "to": "m1-lem-statistics-widths",
+      "context": "[Proof of Proposition~\\ref{prop:statistics-pointwise}] All estimates in this proof use the untilted positive law with fixed path data. Lemma~\\ref{global:residual-blocks} supplies the conditional block decomposition \\eqref{eq:global-block-decomposition} and its integrated-increment bounds."
     },
     {
       "from": "m1-global-buffer-brackets",
-      "to": "m1-lem-statistics-widths"
+      "to": "m1-lem-statistics-widths",
+      "context": "rate and no derivative of $S$. Let $L_J=|J|^{-1}\\int_JL_u\\,du$ for a future mass window $J$ of width comparable to $r$. The future bracket identity in Lemma~\\ref{global:buffer-brackets} gives $|X_v|^2\\le2\\mathbf E_vL_J$, while $\\mathbf EL_J=O(r)$ by the deterministic mean bound. Equations \\eqref{eq:A1}"
     },
     {
       "from": "m1-global-buffer-brackets",
-      "to": "m1-prop-statistics-size-accuracy"
+      "to": "m1-prop-statistics-size-accuracy",
+      "context": "^{v_M} D_v^2 dv+ \\int_{t(V_0')}^{t_M} D_{v(t)}^2 dt\\le x^{1/4}. \\tag{D12}\\label{eq:D12} \\end{equation} Use the bracket identities of Lemma~\\ref{global:buffer-brackets}, with raw unit bounds, monotone \\(S\\), and width \\((x^6/(\\omega\\lambda (V_0')^3))^{1/2}\\) in each coordinate, using \\(d"
     },
     {
       "from": "m1-inv-sector-response",
-      "to": "m1-prop-statistics-size-accuracy"
+      "to": "m1-prop-statistics-size-accuracy",
+      "context": "is the root impulse derivative in the profile. Its derivative uses the \\hyperref[par:inverse-kernel-estimates]{post/post Hessian kernel} in the proof of Lemma~\\ref{inv:sector-response}, which is uniformly \\(O(1+M)\\) for mixtures as well: the spatial derivative \\(L_z^{\\,y}(s)\\) of the conditional scalar"
     },
     {
       "from": "m1-global-residual-blocks",
-      "to": "m1-prop-statistics-size-accuracy"
+      "to": "m1-prop-statistics-size-accuracy",
+      "context": "moment order $p$. First take a cut of mass $v\\ge4x^{\\mathfrak a/10}$ and scalar time $t\\le t_M/2$. Its small $t$-neighborhoods stay above $V_0'$. Apply Lemma~\\ref{global:residual-blocks} with unit raw bounds. For a later block at $t$-distance $l$, the gap has field length at least $c\\lambda(V_0')^2l$ and"
     },
     {
       "from": "m1-prop-statistics-high",
-      "to": "m1-lem-statistics-low-sources"
+      "to": "m1-lem-statistics-low-sources",
+      "context": "[Proof of Proposition~\\ref{prop:statistics-high}] \\leavevmode\\par \\paragraph{The covariance equation.} Fix an old pair $ab$ splitting at or above $V_i$, where $i\\in\\{1,"
     },
     {
       "from": "m1-inv-pair-inverse",
-      "to": "m1-lem-statistics-low-sources"
+      "to": "m1-lem-statistics-low-sources",
+      "context": "n of each inserted pair with $P$ depends only on the indicated labels. By \\eqref{eq:P5}, its gap on retained levels is at least $c\\lambda V_i^2$. Proposition \\ref{inv:pair-inverse} therefore inverts it with cost $O(x^{-Ca_i})$, once $p_*\\ll a_i$ is chosen. Evaluate the result at $jk=ab$. The invers"
     },
     {
       "from": "m1-cor-skcw",
-      "to": "m1-exp-prop-low-coefficients"
+      "to": "m1-exp-prop-low-coefficients",
+      "context": "[Proof of Corollary~\\ref{cor:skcw}] Abbreviate $F_n^{\\mathrm{CW}}=F_n^{\\mathrm{CW}}(\\beta,\\gamma)$ and couple it with $F_n(\\beta)$ using the same disorder"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-exp-prop-low-coefficients"
+      "to": "m1-exp-prop-low-coefficients",
+      "context": "_n} -X_n(\\beta)\\right\\|_2 \\le\\frac{K_\\gamma}{t_n} +\\left|\\frac{s_n(\\beta)}{t_n}-1\\right| \\le\\frac{2K_\\gamma}{t_n}\\longrightarrow0. \\] Theorem~\\ref{thm:main} and Slutsky's theorem now give the asserted law."
     },
     {
       "from": "m1-cor-disorder-chaos",
-      "to": "m1-exp-prop-low-coefficients"
+      "to": "m1-exp-prop-low-coefficients",
+      "context": "[Proof of Corollary~\\ref{cor:disorder-chaos}] For the Gaussian field in \\eqref{eq:model}, \\[ \\rho(\\sigma,\\tau):=\\Cov(H_n(\\sigma),H_n(\\tau)) =\\frac1n\\sum_{i<j}(\\si"
     }
   ]
 }

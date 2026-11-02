@@ -428,139 +428,173 @@
   "edges": [
     {
       "from": "m1-lem-ext-tail",
-      "to": "m1-prop-graph"
+      "to": "m1-prop-graph",
+      "context": "log N},\\qquad f_N=\\frac{\\log K_N}{\\log N} =s-\\frac{\\log\\log N}{\\log N},\\qquad m_0=\\lceil N/2\\rceil. \\] For all sufficiently large $N$, $f_N>0$. By Lemma~\\ref{lem:ext-tail}, \\[ b_N:=\\max_{m_0\\le m\\le N}(F_m(f_N)-\\theta)_+\\longrightarrow0. \\] Put \\[ t_N=b_N+|F_N(s)-\\theta|+\\frac1{\\log N},\\q"
     },
     {
       "from": "m1-lem-hier-grid",
-      "to": "m1-lem-hier-depth"
+      "to": "m1-lem-hier-depth",
+      "context": "ef{eq:depth}, with bounds \\[ 0\\le S(x)\\le d_+-d_-,\\quad 0\\le L(x,y)\\le2(d_+-d_-),\\quad |M|\\le\\max(|d_-|,|d_+|). \\] These bounds are grid integrable by Lemma~\\ref{lem:hier-grid}, since the configuration has finitely many pairs and finite raw depths. At a finite place with all raw depths zero, $d_"
     },
     {
       "from": "m2-inc-specialization",
-      "to": "m2-inc-piece"
+      "to": "m2-inc-piece",
+      "context": "First use \\Cref{inc:specialization}. Choose \\(a\\to0\\) sufficiently slowly that the initial incidence count is at least \\(t^{4-o(a)}\\) and every fixed power"
     },
     {
       "from": "m2-inc-cutting",
-      "to": "m2-inc-piece"
+      "to": "m2-inc-piece",
+      "context": "owly that the initial incidence count is at least \\(t^{4-o(a)}\\) and every fixed power of \\(\\log t\\) is \\(t^{o(a)}\\). In particular \\(a\\log t\\to\\infty\\). Apply \\Cref{inc:cutting} with \\(R=t^{1-a}\\) and \\(s=O(t^{1-a}\\log t)\\). There are \\(t^3\\) points and circles. Incidences on the sampled circles"
     },
     {
       "from": "m2-pred-device",
-      "to": "m2-pred-cross"
+      "to": "m2-pred-cross",
+      "context": "roduct is \\(\\mathbf1_{\\{a=a_q\\}}+\\mathbf1_{\\{b=b_q\\}} -2\\mathbf1_{\\{(a,b)=(a_q,b_q)\\}}\\), exactly the indicator of the hashed strict-cross relation. Therefore \\Cref{pred:device} compares its actual and predicted probabilities with error at most \\(4\\sqrt{18}(D/K)^{1/4}\\), averaged over strict pref"
     },
     {
       "from": "m2-inc-matching",
-      "to": "m2-ht-bounded"
+      "to": "m2-ht-bounded",
+      "context": "S_0. \\] Temporarily replace the two coordinates by $z/d_0$ and $d_0w$. Their edge jumps are $D_e=d_e/d_0$ and $D_e^{-1}$, whose mean heights are at most $S_0$. \\Cref{inc:matching} supplies the label hypothesis of \\Cref{ht:transfer}. Applying it to both coordinates bounds the sum of the two mean poi"
     },
     {
       "from": "m2-ht-transfer",
-      "to": "m2-ht-bounded"
+      "to": "m2-ht-bounded",
+      "context": "/d_0$ and $d_0w$. Their edge jumps are $D_e=d_e/d_0$ and $D_e^{-1}$, whose mean heights are at most $S_0$. \\Cref{inc:matching} supplies the label hypothesis of \\Cref{ht:transfer}. Applying it to both coordinates bounds the sum of the two mean point-pair difference heights. Averaging over the secon"
     },
     {
       "from": "m2-ht-height",
-      "to": "m2-ht-bounded"
+      "to": "m2-ht-bounded",
+      "context": "(z_x-z_{p_0})/d_0,\\qquad W_x=d_0(w_x-w_{p_0}) \\] satisfy a fixed bound on $\\E_\\mu(h(Z_p)+h(W_p))$. Since $Z_q=Z_p-D_{pq}$ and $W_q=W_p-D_{pq}^{-1}$ on an edge, \\Cref{ht:height} also bounds the center means. Thus there is a fixed $C_h<\\infty$ with \\begin{equation}\\label{ht:normalized-means} \\E_\\"
     },
     {
       "from": "m2-inc-entropy",
-      "to": "m2-ht-bounded"
+      "to": "m2-ht-bounded",
+      "context": "field degree. An acceptance test at $q$ asks whether the point code is attained by some actual neighbor of $q$. The actual point on an edge always passes. By \\Cref{inc:entropy}, $D=o(\\log t)$. Choose $K\\to\\infty$ with $K=o(\\log t)$ and $D/K\\to0$. Apply \\Cref{pred:acceptance} to independent unifo"
     },
     {
       "from": "m2-pred-acceptance",
-      "to": "m2-ht-bounded"
+      "to": "m2-ht-bounded",
+      "context": "neighbor of $q$. The actual point on an edge always passes. By \\Cref{inc:entropy}, $D=o(\\log t)$. Choose $K\\to\\infty$ with $K=o(\\log t)$ and $D/K\\to0$. Apply \\Cref{pred:acceptance} to independent uniform embeddings as tests. It gives a fixed strict-prefix history map with at most $M^{K-1}=t^{o(1)}$"
     },
     {
       "from": "m2-inc-piece",
-      "to": "m2-ht-bounded"
+      "to": "m2-ht-bounded",
+      "context": "e1/\\min_p d(p)=o(1)$. Distinct centers have distinct $Z$-coordinates, so $q_j\\ne q_l$ implies $D_j\\ne D_l$. The degree and atom estimates used here follow from \\Cref{inc:piece}. Combining all these estimates gives positive probability that all three tests pass, all displayed quantities are bound"
     },
     {
       "from": "m2-inc-rare",
-      "to": "m2-bud-rare-moments"
+      "to": "m2-bud-rare-moments",
+      "context": "istent, proving the second inequality. Integrating and using $\\int m=O(1)$ proves \\eqref{bud:first-moments} because $S\\to\\infty$. For the joint errors, apply \\Cref{inc:rare} with the uniform marginal bound $a_t=C(\\epsilon+k^{-1})\\to0$ from \\eqref{bud:exception-comparison}. Its edge estimate"
     },
     {
       "from": "m2-bud-intervals",
-      "to": "m2-bud-upper"
+      "to": "m2-bud-upper",
+      "context": "ictions are intervals. Extend the coefficient $1-\\lambda$ across both full intervals in \\eqref{bud:positive-intervals}, increasing it by $2\\lambda$ on $J_v$. \\Cref{bud:intervals} bounds the excess over $2T_v$ by \\[ \\lambda|J_v|\\, \\mathbf1_{\\{n_e(v),n_{e'}(v)\\in\\operatorname{int}J_v\\}}. \\] This e"
     },
     {
       "from": "m2-bud-pair-laws",
-      "to": "m2-bud-upper"
+      "to": "m2-bud-upper",
+      "context": "t $2(W_c+H_x^*)$ for a base vertex $x$, and their negative score is zero. The ordinary collision probabilities are $1/d(q)$ and $1/d(p)$. For templated stars \\Cref{bud:pair-laws} gives the bound $M/d(p)$ pointwise in $p$. Consequently their total contributions are at most, respectively, \\[ \\frac"
     },
     {
       "from": "m2-bud-pair-laws",
-      "to": "m2-bud-rare-lower"
+      "to": "m2-bud-rare-lower",
+      "context": "s exceptional. Hence the negative charge is at most $I_{y_1}+I_{y_2}+M_1+M_2$. Average these two pointwise bounds. Each slot has the original edge marginal by \\Cref{bud:pair-laws}, even with templates. The integrals of the joint terms $I_xI_{y_j}$ are $o(S)$ by \\eqref{bud:joint-exceptions}; the inc"
     },
     {
       "from": "m2-com-transfer",
-      "to": "m2-com-variation"
+      "to": "m2-com-variation",
+      "context": "positive probability, let \\(\\pi_\\theta=\\Prob(\\theta)\\) and \\(b_\\theta=\\Prob(\\text{bad edge}\\mid\\theta)\\), with both probabilities taken under the joint law in \\Cref{com:transfer}. In the center-star experiment, condition on \\(\\theta\\) and then sample \\(q\\) by its actual conditional law. The two po"
     },
     {
       "from": "m2-bud-rare-lower",
-      "to": "m2-com-variation"
+      "to": "m2-com-variation",
+      "context": "ber of templates enters. The common contributions to \\(D_Q+D_{P\\theta}\\) are therefore at least \\[ \\frac\\lambda4(C_Q+C_{P\\theta})-o(S). \\] The lower bounds in \\Cref{bud:rare-lower} outside common levels cancel their main terms, because the two star vertices are on opposite sides. Hence \\[ \\frac\\lam"
     },
     {
       "from": "m2-bud-upper",
-      "to": "m2-com-variation"
+      "to": "m2-com-variation",
+      "context": "pposite sides. Hence \\[ \\frac\\lambda4(C_Q+C_{P\\theta})-o(S) \\le D_Q+D_{P\\theta} \\le 10\\delta^2\\lambda(C_Q+C_{P\\theta})+o(S), \\] where the last inequality is \\Cref{bud:upper}. Since \\(10\\delta^2<1/4\\), this proves \\eqref{com:variation-eq}. Finally the common contribution to \\(D_Q\\) is at leas"
     },
     {
       "from": "m2-com-prediction-score",
-      "to": "m2-com-rare-positive"
+      "to": "m2-com-rare-positive",
+      "context": "If the conclusion fails, restrict to a subsequence on which \\(\\E_\\mu H_p^*=o(S)\\). By \\eqref{com:center-rare}, also \\(\\E_\\kappa H_q^*=o(S)\\), and \\Cref{com:prediction-score} gives \\(T\\le o(S)\\). At a common level declare an ordinary edge bad if its test is inconsistent or if \\(\\nu_{H(p)}(R_{"
     },
     {
       "from": "m2-bud-rare-lower",
-      "to": "m2-com-rare-positive"
+      "to": "m2-com-rare-positive",
+      "context": "\\). The result is \\[ (\\text{common contribution to }D_P)+T \\ge\\frac\\lambda4 C_P-o(S). \\] The noncommon contribution to \\(D_P\\) is at least \\(-o(S)\\) by \\Cref{bud:rare-lower}, under the present assumptions on both exception means. Therefore \\[ \\frac\\lambda4 C_P-o(S) \\le D_P+T\\le10\\delta^2\\la"
     },
     {
       "from": "m2-inc-matching",
-      "to": "m2-com-rare-positive"
+      "to": "m2-com-rare-positive",
+      "context": ". Thus the two endpoint labels disagree on an edge with probability at most \\(V_P+V_Q\\). When that sum is small, the matching-label consequence of expansion in \\Cref{inc:matching} gives one bit label with total marginal exception probability \\(O(V_P+V_Q)\\). The edge bit differs from it with probabi"
     },
     {
       "from": "m2-bud-rare-moments",
-      "to": "m2-com-rare-positive"
+      "to": "m2-com-rare-positive",
+      "context": "C_Q)=o(S)\\). On good rare levels, the minority-bit probability is bounded by the two marginal exception probabilities and the inconsistency probability, as in \\Cref{bud:rare-moments}. Its integral is \\(o(S)\\) under the present assumptions. Damaged levels contribute at most \\(W_b/2=o(S)\\). Thus \\(S=\\in"
     },
     {
       "from": "m2-bud-rare-moments",
-      "to": "m2-ext-profiles"
+      "to": "m2-ext-profiles",
+      "context": "hcal G} (X_pX_r+X_pX_q+X_rX_q+I_{pq}+I_{rq}). \\] The integrated joint point exceptions on a wedge and joint edge exceptions are \\(o(S)\\), by \\Cref{bud:rare-moments}. Thus \\(\\E E_2=o(S)\\) as well."
     },
     {
       "from": "m2-com-rare-positive",
-      "to": "m2-ext-band"
+      "to": "m2-ext-band",
+      "context": "Set \\(W=H_p^*+H_r^*\\) and \\(Z=E_1+E_2\\). By \\Cref{com:rare-positive}, choose \\(c_0>0\\), independent of \\(t\\) along the fixed sequence, such that \\(\\E W\\ge4c_0S\\) eventually. Choose \\(\\delt"
     },
     {
       "from": "m2-ext-tail",
-      "to": "m2-ext-band"
+      "to": "m2-ext-band",
+      "context": "c{\\E Z}{\\delta_t}=o(S). \\] Also discard \\(W<c_0S\\), losing at most \\(c_0S\\). If \\(W>2R_0S\\), its larger summand exceeds \\(R_0S\\) and is at least \\(W/2\\). Thus \\Cref{ext:tail} gives \\[ \\E[W\\mathbf1_{\\{W>2R_0S\\}}] \\le2\\E[H_p^*\\mathbf1_{\\{H_p^*>R_0S\\}}] +2\\E[H_r^*\\mathbf1_{\\{H_r^*>R_0S\\}}]="
     },
     {
       "from": "m2-bud-parameters",
-      "to": "m2-ext-circles"
+      "to": "m2-ext-circles",
+      "context": "ext:circle-cost}. For the comparison with the selected band, recall \\(R_0=k^{1/8}\\), \\(k=t^{o(1)}\\), and the explicit requirement \\(k^{20}/\\min_qd(q)\\to0\\) in \\Cref{bud:parameters}. The first two terms of \\eqref{ext:circle-cost}, multiplied by \\(R_0\\log(2R_0)\\), tend to zero by a fixed power of \\(t\\"
     },
     {
       "from": "m2-ext-band",
-      "to": "m2-ext-pairs"
+      "to": "m2-ext-pairs",
+      "context": "Take the band from \\Cref{ext:band}, and remove the wedges excluded by \\Cref{ext:circles}. Its probability remains at least \\(c/(R_0\\log(2R_0))=t^{-o(1)}\\"
     },
     {
       "from": "m2-ext-circles",
-      "to": "m2-ext-pairs"
+      "to": "m2-ext-pairs",
+      "context": "Take the band from \\Cref{ext:band}, and remove the wedges excluded by \\Cref{ext:circles}. Its probability remains at least \\(c/(R_0\\log(2R_0))=t^{-o(1)}\\), and all its endpoint pairs are distinct. For any fi"
     },
     {
       "from": "m2-alg-small-height-field",
-      "to": "m2-alg-derivation"
+      "to": "m2-alg-derivation",
+      "context": "itive map satisfying the product rule; being a \\(k_0\\)-derivation means that it vanishes on \\(k_0\\). Each \\(\\lambda_{i\\ell}\\) is transcendental over \\(k_0\\) by \\Cref{alg:small-height-field}. Put it in a transcendence basis of \\(F/k_0\\), prescribe its derivative to be one and those of the other basis elements"
     },
     {
       "from": "m2-alg-generic-grid",
-      "to": "m2-alg-surviving-point"
+      "to": "m2-alg-surviving-point",
+      "context": "\\(d_1\\), subadditivity would bound the left side by \\(N(d_1-1)\\). This contradicts \\(N>3j\\). The function-field assertion is the evaluation argument following \\Cref{alg:generic-grid}, with \\(\\mathcal B=K_0\\)."
     },
     {
       "from": "m2-thm-main",
-      "to": "m2-alg-private-valuations"
+      "to": "m2-alg-private-valuations",
+      "context": "[Proof of \\Cref{thm:main}] If no absolute power saving existed, the sequence reduction in \\Cref{sec:incidence} would give configurations with \\(t"
     },
     {
       "from": "m2-ht-bounded",
-      "to": "m2-alg-private-valuations"
+      "to": "m2-alg-private-valuations",
+      "context": "es used throughout the proof. Their height scales \\(S\\) have a bounded subsequence or a subsequence tending to infinity. The bounded alternative is excluded by \\Cref{ht:bounded}. In the unbounded alternative, \\Cref{ext:pairs} supplies the graphs, scales \\(J\\), edge ratios, uniform height bounds a"
     },
     {
       "from": "m2-ext-pairs",
-      "to": "m2-alg-private-valuations"
+      "to": "m2-alg-private-valuations",
+      "context": "\\(S\\) have a bounded subsequence or a subsequence tending to infinity. The bounded alternative is excluded by \\Cref{ht:bounded}. In the unbounded alternative, \\Cref{ext:pairs} supplies the graphs, scales \\(J\\), edge ratios, uniform height bounds and popular-circle deletion required by \\Cref{alg"
     },
     {
       "from": "m2-alg-obstruction",
-      "to": "m2-alg-private-valuations"
+      "to": "m2-alg-private-valuations",
+      "context": "}. In the unbounded alternative, \\Cref{ext:pairs} supplies the graphs, scales \\(J\\), edge ratios, uniform height bounds and popular-circle deletion required by \\Cref{alg:obstruction}. That proposition excludes the other alternative. Hence some fixed exponent below \\(4/3\\) admits a uniform bound. Incre"
     }
   ]
 }

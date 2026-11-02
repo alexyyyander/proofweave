@@ -217,67 +217,83 @@
   "edges": [
     {
       "from": "m1-thm-global",
-      "to": "m1-prop-continuation"
+      "to": "m1-prop-continuation",
+      "context": "[Proof of Theorem~\\ref{thm:global} from Propositions~\\ref{prop:increment} and~\\ref{prop:continuation}] If $f_0=0$, the vacuum Maxwell solution is global a"
     },
     {
       "from": "m1-prop-increment",
-      "to": "m1-prop-continuation"
+      "to": "m1-prop-continuation",
+      "context": "[Proof of Theorem~\\ref{thm:global} from Propositions~\\ref{prop:increment} and~\\ref{prop:continuation}] If $f_0=0$, the vacuum Maxwell solution is global and smooth, as shown in the final sectio"
     },
     {
       "from": "m1-ret-energy",
-      "to": "m1-ret-phase-change"
+      "to": "m1-ret-phase-change",
+      "context": "Let $Z_s$ be the fixed-time inverse phase flow. Its determinant is one by Lemma~\\ref{ret:energy}, and $\\partial_sZ_s=-D Z_s\\,(u,V')$. Since $\\nabla_y s=n$, the derivative of $Z_{t-|x-y|}(y,v)$ is the fixed-time deriv"
     },
     {
       "from": "m1-ret-receiver-time",
-      "to": "m1-occ-crude-lemma"
+      "to": "m1-occ-crude-lemma",
+      "context": "characteristic flow, gives equivalently \\begin{equation}\\label{occ:label-measure} \\mathsf M=\\int f_0(z)\\,dz\\int_{\\text{hits of }z}ds. \\end{equation} By Lemma~\\ref{ret:receiver-time}, labels having a same-time collision have zero $f_0(z)\\,dz$ measure. Every remaining label has a single increasing $C^1"
     },
     {
       "from": "m1-occ-cell-lemma",
-      "to": "m1-occ-refined-proposition"
+      "to": "m1-occ-refined-proposition",
+      "context": "bels in a cell $C$ by $Z_C$. At every time $s\\in C$ all these labels have both $q\\asymp p$ and $|u-a(s)|\\asymp\\phi$, by the same stability argument as in Lemma~\\ref{occ:cell-lemma}. For a full cell, averaging its mass over its whole length therefore gives \\[ \\int_{Z_C}f_0(z)\\,dz \\leq\\frac C{p\\lamb"
     },
     {
       "from": "m1-occ-crude-lemma",
-      "to": "m1-occ-refined-proposition"
+      "to": "m1-occ-refined-proposition",
+      "context": "already give $\\mathsf M\\leq Ch/p$; no averaging outside $J^*$ is used. Finally suppose $\\lambda<h\\leq I$, whether actual or deficit. In the space map of Lemma~\\ref{occ:crude-lemma}, each hit belongs to $H^{(2)}_{p\\phi}$ and its source time belongs to $J^*$. Hence \\[ \\mathsf M\\leq\\frac C p\\int_{J^*}"
     },
     {
       "from": "m1-ret-receiver-time",
-      "to": "m1-can-weighted-formula"
+      "to": "m1-can-weighted-formula",
+      "context": "The null set of labels with a same-time collision with the receiver can be discarded by Lemma~\\ref{ret:receiver-time}. For any remaining label, continuity on the compact time interval gives $\\min_t|Y(t)-X(t)|>0$. At a retarded point, \\["
     },
     {
       "from": "m1-can-weighted-formula",
-      "to": "m1-ang-direction"
+      "to": "m1-ang-direction",
+      "context": ",dt\\right|\\ge\\frac12w\\delta, \\qquad \\int|\\psi_t|\\,dt=2. \\end{equation} Let $P_X=\\Id-\\xi\\otimes\\xi$ and $\\Pi=wP_X/|V_X|$, so $w\\xi_t=\\Pi K$. Apply Proposition~\\ref{can:weighted-formula} with this multiplier and with the fixed selection \\begin{equation}\\label{ang:selection} \\theta<\\kappa\\phi,\\qquad p\\the"
     },
     {
       "from": "m1-can-cutoff-cancellation",
-      "to": "m1-ang-direction"
+      "to": "m1-ang-direction",
+      "context": "theta\\sqrt\\lambda \\le C\\kappa(p/P)m\\phi^2/C_1 \\le C\\kappa C_0^2/(C_1m)\\le1. \\] Source cutoff derivatives are assigned to overlapping unselected bins by Lemma~\\ref{can:cutoff-cancellation}. At the structural edge $\\theta\\asymp\\kappa\\phi$, use the direct bounds for the remaining sector. Fixed-factor neighbor"
     },
     {
       "from": "m1-ang-direction",
-      "to": "m1-ang-improved-hit"
+      "to": "m1-ang-improved-hit",
+      "context": "{C_2}$ and $Cm/C_2$. Increasing $C_2$ excludes the first exit. The argument works in both time directions and is unaffected by clipping. For each use of Lemma~\\ref{ang:direction}, choose a dyad $j'$ nearest the relevant reference-hit energy. It is comparable to $w$ for the receiver and to $p$ for"
     },
     {
       "from": "m1-can-identity",
-      "to": "m1-sel-bulk-impulse"
+      "to": "m1-sel-bulk-impulse",
+      "context": "ker}+S_{\\rm ker}). \\] Although the selection criterion uses the good-field majorant $S_g$, the selected term contains the transport kernel as required by Lemma~\\ref{can:identity}. Apply Proposition~\\ref{can:weighted-formula} to that term with $\\Pi=\\Id$, and use the direct bounds on its complement."
     },
     {
       "from": "m1-can-weighted-formula",
-      "to": "m1-sel-bulk-impulse"
+      "to": "m1-sel-bulk-impulse",
+      "context": "ection criterion uses the good-field majorant $S_g$, the selected term contains the transport kernel as required by Lemma~\\ref{can:identity}. Apply Proposition~\\ref{can:weighted-formula} to that term with $\\Pi=\\Id$, and use the direct bounds on its complement. Lemmas \\ref{sel:weight-sum}, \\ref{sel:spatial"
     },
     {
       "from": "m1-sel-weight-sum",
-      "to": "m1-sel-bulk-impulse"
+      "to": "m1-sel-bulk-impulse",
+      "context": "ired by Lemma~\\ref{can:identity}. Apply Proposition~\\ref{can:weighted-formula} to that term with $\\Pi=\\Id$, and use the direct bounds on its complement. Lemmas \\ref{sel:weight-sum}, \\ref{sel:spatial-sum}, and \\ref{sel:time-weight} bound the unselected good-field terms and all spatial and time-weight"
     },
     {
       "from": "m1-sel-spatial-sum",
-      "to": "m1-sel-bulk-impulse"
+      "to": "m1-sel-bulk-impulse",
+      "context": ":identity}. Apply Proposition~\\ref{can:weighted-formula} to that term with $\\Pi=\\Id$, and use the direct bounds on its complement. Lemmas \\ref{sel:weight-sum}, \\ref{sel:spatial-sum}, and \\ref{sel:time-weight} bound the unselected good-field terms and all spatial and time-weight derivatives. The sourc"
     },
     {
       "from": "m1-sel-time-weight",
-      "to": "m1-sel-bulk-impulse"
+      "to": "m1-sel-bulk-impulse",
+      "context": "on~\\ref{can:weighted-formula} to that term with $\\Pi=\\Id$, and use the direct bounds on its complement. Lemmas \\ref{sel:weight-sum}, \\ref{sel:spatial-sum}, and \\ref{sel:time-weight} bound the unselected good-field terms and all spatial and time-weight derivatives. The source derivatives, the central"
     },
     {
       "from": "m1-sel-exponents",
-      "to": "m1-sel-bulk-impulse"
+      "to": "m1-sel-bulk-impulse",
+      "context": "$, which fits $CP\\sqrt I$ by \\eqref{sel:short}; the endpoint weights remove the other time boundaries. For the receiver terms, Lemmas \\ref{sel:weight-sum} and \\ref{sel:exponents} give, at every receiver time, \\[ \\sum_{\\mathrm{selected}}CU\\le Cw^{-1/2}. \\] Multiplying this coefficient by \\eqref{se"
     }
   ]
 }

@@ -1,0 +1,258 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "095",
+  "title": "Hyperbolicity cones without semidefinite lifts",
+  "result": {
+    "id": "paper-result",
+    "label": "Hyperbolicity cones without semidefinite lifts",
+    "statement": "Disproves the Projected Lax conjecture: some hyperbolicity cones are not spectrahedral shadows. The examples admit no exact finite affine semidefinite lift, regardless of the number of auxiliary variables or the real coefficients used. This also disproves the generalized Lax conjecture that every hyperbolicity cone is spectrahedral.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-biquadratic-form-with-no-dominated-square",
+      "label": "A biquadratic form with no dominated square",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "hyperbolicity-and-two-cone-slices",
+      "label": "Hyperbolicity and two cone slices",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "hyperbolicity-and-two-cone-slices-2",
+      "label": "Hyperbolicity and two cone slices",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "what-a-semidefinite-representation-would-imply",
+      "label": "What a semidefinite representation would imply",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "rank-one-limits-and-a-norm-identity",
+      "label": "Rank-one limits and a norm identity",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "exact-semidefinite-representations-on-angular-slices",
+      "label": "Exact semidefinite representations on angular slices",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-degree-two-matching-identity",
+      "label": "A degree-two matching identity",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-finite-semidefinite-lift",
+      "label": "A finite semidefinite lift",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "A nonspectrahedral hyperbolicity cone",
+      "title": "A nonspectrahedral hyperbolicity cone",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Nonspectrahedral-Hyperbolicity-Cone-September-24-2026/nonspectrahedral-hyperbolicity-cone.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from A nonspectrahedral hyperbolicity cone; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "The polynomial is homogeneous of degree 20 and hyperbolic with respect to…",
+          "fullLabel": "The polynomial is homogeneous of degree 20 and hyperbolic with respect to…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "The polynomial is homogeneous of degree 20 and hyperbolic with respect to e=(I_4,I_4,0) , with p(e)=1 . Its closed hyperbolicity cone K=_+(p,e) is not spectrahedral: for every finite N1 and every…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-reduced",
+          "role": "introduction",
+          "label": "The quotient q=p/ X extends to a homogeneous polynomial of degree 16 in the…",
+          "fullLabel": "The quotient q=p/ X extends to a homogeneous polynomial of degree 16 in the…",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "The quotient q=p/ X extends to a homogeneous polynomial of degree 16 in the same 23 variables. It is hyperbolic with respect to e , with q(e)=1 , and _+(q,e)=K . In particular, its closed…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-form",
+          "role": "a-biquadratic-form-with-no-dominated-square",
+          "label": "The form b:^3^3 defined in~ is nonnegative and nonzero. If a real bilinear form…",
+          "fullLabel": "The form b:^3^3 defined in~ is nonnegative and nonzero. If a real bilinear form…",
+          "kind": "lemma",
+          "source": "A biquadratic form with no dominated square",
+          "detail": "The form b:^3^3 defined in~ is nonnegative and nonzero. If a real bilinear form :^3^3 satisfies \\[ (z,y)^2 b(z,y) for every z,y^3, \\] then =0 .",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-hyperbolic",
+          "role": "hyperbolicity-and-two-cone-slices",
+          "label": "The polynomial p in is homogeneous of degree 20 on ^4^4^3 , a real vector space…",
+          "fullLabel": "The polynomial p in is homogeneous of degree 20 on ^4^4^3 , a real vector space…",
+          "kind": "proposition",
+          "source": "Hyperbolicity and two cone slices",
+          "detail": "The polynomial p in is homogeneous of degree 20 on ^4^4^3 , a real vector space of dimension 23 . It satisfies p(e)=1 and is hyperbolic with respect to e=(I_4,I_4,0) .",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-slices",
+          "role": "hyperbolicity-and-two-cone-slices-2",
+          "label": "Let K=_+(p,e) . For real symmetric X,Z and y^3 , X0: (X,Z,y) K &\\ \\ Z_y(X^ -1…",
+          "fullLabel": "Let K=_+(p,e) . For real symmetric X,Z and y^3 , X0: (X,Z,y) K &\\ \\ Z_y(X^ -1…",
+          "kind": "proposition",
+          "source": "Hyperbolicity and two cone slices",
+          "detail": "Let K=_+(p,e) . For real symmetric X,Z and y^3 , X0: (X,Z,y) K &\\ \\ Z_y(X^ -1 ), \\\\ (X,Z,0) K &\\ \\ X0\\ and\\ Z0. Moreover, e lies in the interior of K in the full ambient space.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-pencil",
+          "role": "what-a-semidefinite-representation-would-imply",
+          "label": "Let K=_+(p,(I_4,I_4,0)) for the polynomial in~ . Suppose that K admits a…",
+          "fullLabel": "Let K=_+(p,(I_4,I_4,0)) for the polynomial in~ . Suppose that K admits a…",
+          "kind": "proposition",
+          "source": "What a semidefinite representation would imply",
+          "detail": "Let K=_+(p,(I_4,I_4,0)) for the polynomial in~ . Suppose that K admits a representation by a finite homogeneous real symmetric linear pencil. Then there are integers a,c1 , positive linear maps \\[…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-norm",
+          "role": "rank-one-limits-and-a-norm-identity",
+          "label": "Let a,c1 , let D:^4^a and E:^4^c be positive unital linear maps, and let B:^3^…",
+          "fullLabel": "Let a,c1 , let D:^4^a and E:^4^c be positive unital linear maps, and let B:^3^…",
+          "kind": "proposition",
+          "source": "Rank-one limits and a norm identity",
+          "detail": "Let a,c1 , let D:^4^a and E:^4^c be positive unital linear maps, and let B:^3^ a c be linear. Assume that holds for every X0 , Z^4 and y^3 , with _y defined by~ . Define P(v) and R(u) by~ . For every…",
+          "dependsOn": [
+            "m1-thm-main",
+            "m1-prop-hyperbolic",
+            "m1-prop-pencil",
+            "m1-lem-form",
+            "m1-cor-reduced"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "An Exact Semidefinite Lift of a Nonspectrahedral Hyperbolicity Cone",
+      "title": "An Exact Semidefinite Lift of a Nonspectrahedral Hyperbolicity Cone",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-Exact-Semidefinite-Lift-of-a-Nonspectrahedral-Hyperbolicity-Cone-October-5-2026/Exact-Semidefinite-Lift-of-a-Nonspectrahedral-Hyperbolicity-Cone.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from An Exact Semidefinite Lift of a Nonspectrahedral Hyperbolicity Cone; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "result",
+          "label": "There exist fixed matrices A_1,,A_ 23 ,B_1,,B_ 307 ^ 100 such that, for every…",
+          "fullLabel": "There exist fixed matrices A_1,,A_ 23 ,B_1,,B_ 307 ^ 100 such that, for every…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "There exist fixed matrices A_1,,A_ 23 ,B_1,,B_ 307 ^ 100 such that, for every x=(X,Z,y) V , \\[ x K there exists v^ 307 with _ =1 ^ 23 x_ A_+ _ j=1 ^ 307 v_jB_j0. \\] The equivalence holds on the…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-slice",
+          "role": "exact-semidefinite-representations-on-angular-slices",
+          "label": "For every ,, and X, Z^4 , ( X, Z,Y_(,)) K L_( X, Z,,)0. In particular, p is…",
+          "fullLabel": "For every ,, and X, Z^4 , ( X, Z,Y_(,)) K L_( X, Z,,)0. In particular, p is…",
+          "kind": "lemma",
+          "source": "Exact semidefinite representations on angular slices",
+          "detail": "For every ,, and X, Z^4 , ( X, Z,Y_(,)) K L_( X, Z,,)0. In particular, p is hyperbolic with respect to e . If X0 , the conditions in are also equivalent to Z_ Y_(,) ( X^ -1 ) .",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-matching",
+          "role": "a-degree-two-matching-identity",
+          "label": "Degree-two matching",
+          "fullLabel": "Degree-two matching",
+          "kind": "lemma",
+          "source": "A degree-two matching identity",
+          "detail": "[Degree-two matching] Let S S^3 and let z R^3 satisfy (z_1,z_2)(0,0) . There is a matrix C() C^ 32 whose entries are trigonometric polynomials of degree at most two such that, for all ,, R , C()…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-lift",
+          "role": "a-finite-semidefinite-lift",
+          "label": "For (X,Z,y) S^4 S^4 R^3 , the following are equivalent: (X,Z,y) K ; there is a…",
+          "fullLabel": "For (X,Z,y) S^4 S^4 R^3 , the following are equivalent: (X,Z,y) K ; there is a…",
+          "kind": "proposition",
+          "source": "A finite semidefinite lift",
+          "detail": "For (X,Z,y) S^4 S^4 R^3 , the following are equivalent: (X,Z,y) K ; there is a real linear functional : E R satisfying~ and H()0 .",
+          "dependsOn": [
+            "m2-lem-slice",
+            "m2-lem-matching",
+            "m2-thm-main"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    },
+    {
+      "from": "m2:m2-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "A nonspectrahedral hyperbolicity cone",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Nonspectrahedral-Hyperbolicity-Cone-September-24-2026/nonspectrahedral-hyperbolicity-cone.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "An Exact Semidefinite Lift of a Nonspectrahedral Hyperbolicity Cone",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-Exact-Semidefinite-Lift-of-a-Nonspectrahedral-Hyperbolicity-Cone-October-5-2026/Exact-Semidefinite-Lift-of-a-Nonspectrahedral-Hyperbolicity-Cone.pdf",
+      "kind": "paper"
+    }
+  ]
+}

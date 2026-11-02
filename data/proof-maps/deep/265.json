@@ -1,0 +1,983 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "265",
+  "title": "Area laws and tensor networks for two-dimensional gapped systems",
+  "result": {
+    "id": "paper-result",
+    "label": "Area laws and tensor networks for two-dimensional gapped systems",
+    "statement": "Proves an entropy area law for unique ground states of finite-range Hamiltonians on arbitrary finite induced square-lattice domains, using only a uniform full-system spectral gap and bounds on the local interactions. On open L L squares, uniformly gapped nearest-neighbor ground states also admit projected entangled-pair state approximations with polynomial bond dimension and global vector error at most L −1 .",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "entropy-and-induced-graph-locality",
+      "label": "Entropy and induced-graph locality",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "entropy-and-induced-graph-locality-2",
+      "label": "Entropy and induced-graph locality",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "marginal-tails-and-an-initial-box-estimate",
+      "label": "Marginal tails and an initial box estimate",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "marginal-tails-and-an-initial-box-estimate-2",
+      "label": "Marginal tails and an initial box estimate",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "marginal-tails-and-an-initial-box-estimate-3",
+      "label": "Marginal tails and an initial box estimate",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "positive-constraints-and-truncation-near-a-finite-set",
+      "label": "Positive constraints and truncation near a finite set",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "positive-constraints-and-truncation-near-a-finite-set-2",
+      "label": "Positive constraints and truncation near a finite set",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "positive-constraints-and-truncation-near-a-finite-set-3",
+      "label": "Positive constraints and truncation near a finite set",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "positive-constraints-and-truncation-near-a-finite-set-4",
+      "label": "Positive constraints and truncation near a finite set",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "positive-constraints-and-truncation-near-a-finite-set-5",
+      "label": "Positive constraints and truncation near a finite set",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-conditional-operator-estimates",
+      "label": "Two conditional operator estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-conditional-operator-estimates-2",
+      "label": "Two conditional operator estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-conditional-operator-estimates-3",
+      "label": "Two conditional operator estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "symmetric-replicas-and-entropy-metrics",
+      "label": "Symmetric replicas and entropy metrics",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "symmetric-replicas-and-entropy-metrics-2",
+      "label": "Symmetric replicas and entropy metrics",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "symmetric-replicas-and-entropy-metrics-3",
+      "label": "Symmetric replicas and entropy metrics",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "symmetric-replicas-and-entropy-metrics-4",
+      "label": "Symmetric replicas and entropy metrics",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "transport-through-finite-trees-of-metrics",
+      "label": "Transport through finite trees of metrics",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "transport-through-finite-trees-of-metrics-2",
+      "label": "Transport through finite trees of metrics",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "transport-through-finite-trees-of-metrics-3",
+      "label": "Transport through finite trees of metrics",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "transport-through-finite-trees-of-metrics-4",
+      "label": "Transport through finite trees of metrics",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "norm-comparisons-from-an-auxiliary-pair",
+      "label": "Norm comparisons from an auxiliary pair",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "scanning-collars-and-improving-the-entropy-bound",
+      "label": "Scanning collars and improving the entropy bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "scanning-collars-and-improving-the-entropy-bound-2",
+      "label": "Scanning collars and improving the entropy bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "scanning-collars-and-improving-the-entropy-bound-3",
+      "label": "Scanning collars and improving the entropy bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "scanning-collars-and-improving-the-entropy-bound-4",
+      "label": "Scanning collars and improving the entropy bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "scanning-collars-and-improving-the-entropy-bound-5",
+      "label": "Scanning collars and improving the entropy bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "amplifying-the-collar-estimate",
+      "label": "Amplifying the collar estimate",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "amplifying-the-collar-estimate-2",
+      "label": "Amplifying the collar estimate",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-families-of-regions-and-the-area-bound",
+      "label": "Two families of regions and the area bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-families-of-regions-and-the-area-bound-2",
+      "label": "Two families of regions and the area bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-families-of-regions-and-the-area-bound-3",
+      "label": "Two families of regions and the area bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-families-of-regions-and-the-area-bound-4",
+      "label": "Two families of regions and the area bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-families-of-regions-and-the-area-bound-5",
+      "label": "Two families of regions and the area bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "conventions-and-entropy-inputs",
+      "label": "Conventions and entropy inputs",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "conventions-and-entropy-inputs-2",
+      "label": "Conventions and entropy inputs",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "information-bounds-for-separated-regions",
+      "label": "Information bounds for separated regions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "information-bounds-for-separated-regions-2",
+      "label": "Information bounds for separated regions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "information-bounds-for-separated-regions-3",
+      "label": "Information bounds for separated regions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "information-bounds-for-separated-regions-4",
+      "label": "Information bounds for separated regions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "adaptive-finite-rank-constraints-on-small-patches",
+      "label": "Adaptive finite-rank constraints on small patches",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "compression-of-distributed-density-networks",
+      "label": "Compression of distributed density networks",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "compression-of-distributed-density-networks-2",
+      "label": "Compression of distributed density networks",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "encoded-frames-and-changes-of-ownership",
+      "label": "Encoded frames and changes of ownership",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "encoded-frames-and-changes-of-ownership-2",
+      "label": "Encoded frames and changes of ownership",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "encoded-frames-and-changes-of-ownership-3",
+      "label": "Encoded frames and changes of ownership",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "encoded-frames-and-changes-of-ownership-4",
+      "label": "Encoded frames and changes of ownership",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "encoded-frames-and-changes-of-ownership-5",
+      "label": "Encoded frames and changes of ownership",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-finite-planar-distribution-protocol",
+      "label": "A finite planar distribution protocol",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-finite-planar-distribution-protocol-2",
+      "label": "A finite planar distribution protocol",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-the-protocol-to-a-peps",
+      "label": "From the protocol to a PEPS",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-the-protocol-to-a-peps-2",
+      "label": "From the protocol to a PEPS",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "A two-dimensional area law from a global spectral gap",
+      "title": "A two-dimensional area law from a global spectral gap",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-two-dimensional-area-law-from-a-global-spectral-gap-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from A two-dimensional area law from a global spectral gap; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-area",
+          "role": "result",
+          "label": "Area law",
+          "fullLabel": "Area law",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "[Area law] For every q,R,J as above and every >0 , there is a finite constant C=C(q,R,J,) with the following property. Suppose that is a finite induced square-lattice domain and that the Hamiltonian…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-rectangles",
+          "role": "introduction",
+          "label": "The conclusion of Theorem~ holds for every subset of a finite rectangular…",
+          "fullLabel": "The conclusion of Theorem~ holds for every subset of a finite rectangular…",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "The conclusion of Theorem~ holds for every subset of a finite rectangular square lattice with bounded on-site and nearest-neighbor interactions and a unique ground state separated by a fixed global…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-continuity",
+          "role": "entropy-and-induced-graph-locality",
+          "label": "Continuity with a fixed controlled system",
+          "fullLabel": "Continuity with a fixed controlled system",
+          "kind": "lemma",
+          "source": "Entropy and induced-graph locality",
+          "detail": "[Continuity with a fixed controlled system] Let , be density operators on finite-dimensional D E , and put =12 - _11 and d_D= D . Then |S(D|E)_-S(D|E)_| 2 d_D+(1+) h( 1+ ) C(e d_D). The same…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-zero-boundary",
+          "role": "entropy-and-induced-graph-locality-2",
+          "label": "A cut with no crossing edge",
+          "fullLabel": "A cut with no crossing edge",
+          "kind": "lemma",
+          "source": "Entropy and induced-graph locality",
+          "detail": "[A cut with no crossing edge] Under the hypotheses of Theorem~ , if _ A= , then S_(A)=0 .",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-tail",
+          "role": "marginal-tails-and-an-initial-box-estimate",
+          "label": "Marginal moment and tail bounds",
+          "fullLabel": "Marginal moment and tail bounds",
+          "kind": "lemma",
+          "source": "Marginal tails and an initial box estimate",
+          "detail": "[Marginal moment and tail bounds] Let H=_ v V H_v be a finite tensor product of finite-dimensional Hilbert spaces. Let H=_ i I h_i , where I is finite, each h_i is self-adjoint, h_i c_0 for a fixed…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-initial-buffer",
+          "role": "marginal-tails-and-an-initial-box-estimate-2",
+          "label": "Conditional entropy in a buffered rectangle",
+          "fullLabel": "Conditional entropy in a buffered rectangle",
+          "kind": "lemma",
+          "source": "Marginal tails and an initial box estimate",
+          "detail": "[Conditional entropy in a buffered rectangle] There are integers C_ pad 1 and a constant C_ buf , depending only on q,R,J, , with the following property. Let Q be safe, let r1 be an integer, and let…",
+          "dependsOn": [
+            "m1-lem-tail"
+          ]
+        },
+        {
+          "id": "m1-prop-initial-box",
+          "role": "marginal-tails-and-an-initial-box-estimate-3",
+          "label": "Initial safe-box estimate",
+          "fullLabel": "Initial safe-box estimate",
+          "kind": "proposition",
+          "source": "Marginal tails and an initial box estimate",
+          "detail": "[Initial safe-box estimate] There are constants C< and e_0(0,1) , depending only on q,R,J, , such that F_ box (r) Cr^ 1+e_0 (r1).",
+          "dependsOn": [
+            "m1-lem-initial-buffer"
+          ]
+        },
+        {
+          "id": "m1-lem-quasilocal-lr",
+          "role": "positive-constraints-and-truncation-near-a-finite-set",
+          "label": "Graph-distance propagation",
+          "fullLabel": "Graph-distance propagation",
+          "kind": "lemma",
+          "source": "Positive constraints and truncation near a finite set",
+          "detail": "[Graph-distance propagation] Let _t(B)=e^ itH Be^ -itH . There are positive constants C,v,c such that, for every original support X_i , every operator A supported in X_i , every site y , and every…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-quasilocal-filter",
+          "role": "positive-constraints-and-truncation-near-a-finite-set-2",
+          "label": "A compactly supported spectral filter",
+          "fullLabel": "A compactly supported spectral filter",
+          "kind": "lemma",
+          "source": "Positive constraints and truncation near a finite set",
+          "detail": "[A compactly supported spectral filter] Fix an integer p1 , put =p/(p+1) , and let >0 . Define the real even function \\[ ()= e,&||<,\\\\ 0,&||. \\] Then C_c^( R) , (0)=1 , and the real even function \\[…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-positive",
+          "role": "positive-constraints-and-truncation-near-a-finite-set-3",
+          "label": "Positive replacement of the Hamiltonian",
+          "fullLabel": "Positive replacement of the Hamiltonian",
+          "kind": "proposition",
+          "source": "Positive constraints and truncation near a finite set",
+          "detail": "[Positive replacement of the Hamiltonian] Suppose H=E_0 , \\|\\|=1 , and \\[ H-E_0I(I-P_), P_=||. \\] For each integer p1 and =p/(p+1) , there are operators k_i , indexed by the original supports and…",
+          "dependsOn": [
+            "m1-lem-quasilocal-filter"
+          ]
+        },
+        {
+          "id": "m1-lem-quasilocal-roots",
+          "role": "positive-constraints-and-truncation-near-a-finite-set-4",
+          "label": "Square roots and local channels",
+          "fullLabel": "Square roots and local channels",
+          "kind": "lemma",
+          "source": "Positive constraints and truncation near a finite set",
+          "detail": "[Square roots and local channels] For the constraints of Proposition~ , define \\[ G_i=(I-k_i)^ 1/2 , K_i=k_i^ 1/2 , G_ i,l =(I-k_ i,l )^ 1/2 , K_ i,l =k_ i,l ^ 1/2 . \\] These are positive…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-truncation",
+          "role": "positive-constraints-and-truncation-near-a-finite-set-5",
+          "label": "Truncation near a finite set",
+          "fullLabel": "Truncation near a finite set",
+          "kind": "proposition",
+          "source": "Positive constraints and truncation near a finite set",
+          "detail": "[Truncation near a finite set] Use Proposition~ with p=1 , so =1/2 . Fix C_0>0 . There is a constant C_1 , depending only on q,R,J,,C_0 , with the following property for every real n2 and every…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-movement",
+          "role": "two-conditional-operator-estimates",
+          "label": "Conditional movement estimate",
+          "fullLabel": "Conditional movement estimate",
+          "kind": "lemma",
+          "source": "Two conditional operator estimates",
+          "detail": "[Conditional movement estimate] Let be a unit pure vector on four finite-dimensional systems P,x,U,F , and let _D denote its marginal on D . Set \\[ d= x, =(ed), =S(x|P)_+S(x|U)_ =I(x:F|U)_=I(x:F|P)_.…",
+          "dependsOn": [
+            "m1-lem-continuity"
+          ]
+        },
+        {
+          "id": "m1-lem-conditional-phases",
+          "role": "two-conditional-operator-estimates-2",
+          "label": "Marginal-phase comparison",
+          "fullLabel": "Marginal-phase comparison",
+          "kind": "lemma",
+          "source": "Two conditional operator estimates",
+          "detail": "[Marginal-phase comparison] Let be a unit pure vector on finite-dimensional systems P,x,U,F , write _D for its marginals, and put d= x and =I(x:F|U)_ . For >0 define \\[ y=(1,), R_= y+ (ed/y), \\] and…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-skew",
+          "role": "two-conditional-operator-estimates-3",
+          "label": "Conditional skew estimate",
+          "fullLabel": "Conditional skew estimate",
+          "kind": "lemma",
+          "source": "Two conditional operator estimates",
+          "detail": "[Conditional skew estimate] Let be a unit pure vector on P,x,U,F , put Y=xU , and write _D for its marginals. Suppose P=P_0P_1 and that 0 h I is supported on P_0x . Set \\[ d_h=( P_0)( x), _h=(ed_h),…",
+          "dependsOn": [
+            "m1-lem-conditional-phases"
+          ]
+        },
+        {
+          "id": "m1-lem-schur",
+          "role": "symmetric-replicas-and-entropy-metrics",
+          "label": "Schur-label estimates",
+          "fullLabel": "Schur-label estimates",
+          "kind": "lemma",
+          "source": "Symmetric replicas and entropy metrics",
+          "detail": "[Schur-label estimates] For the finite-dimensional tensor systems just defined, the following statements hold. For k of length at most q , put l_i=_i+q-i for 1 i q . Then V^ (q) _ =_ i<j l_i-l_j j-i…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-replicas-metric",
+          "role": "symmetric-replicas-and-entropy-metrics-2",
+          "label": "Integral formula and marked ratios",
+          "fullLabel": "Integral formula and marked ratios",
+          "kind": "lemma",
+          "source": "Symmetric replicas and entropy metrics",
+          "detail": "[Integral formula and marked ratios] The operators in are positive definite and central. Uniformly in their labels, (k)^ -1 e^ -tF_ Q,k W_ Q,k (k)e^ -tF_ Q,k . On S_k , W_ Q,k =W_ Q^c,k exactly. For…",
+          "dependsOn": [
+            "m1-lem-schur"
+          ]
+        },
+        {
+          "id": "m1-lem-relative-pin",
+          "role": "symmetric-replicas-and-entropy-metrics-3",
+          "label": "Relative coherent pin",
+          "fullLabel": "Relative coherent pin",
+          "kind": "lemma",
+          "source": "Symmetric replicas and entropy metrics",
+          "detail": "[Relative coherent pin] Let P,x,Y_0,F partition the fixed finite system V , put Y=xY_0 , and let \\[ A_k=A_k(P,xY_0,F), B_k=A_k(Px,Y_0,F), C_ x,k =A_k^ -1/2 B_kA_k^ -1/2 . \\] Suppose 0<t<1/4 , a=2t ,…",
+          "dependsOn": [
+            "m1-lem-movement"
+          ]
+        },
+        {
+          "id": "m1-lem-symbol",
+          "role": "symmetric-replicas-and-entropy-metrics-4",
+          "label": "Marked-copy scalar symbols",
+          "fullLabel": "Marked-copy scalar symbols",
+          "kind": "lemma",
+          "source": "Symmetric replicas and entropy metrics",
+          "detail": "[Marked-copy scalar symbols] Fix a partition P,Y,F of V , 0<t<1/4 , and a one-copy operator h supported on PY . Let A_k be , and define on S_k \\[ O_k=A_k^ -1/2 h A_k^ 1/2 , f_=, _P^t_Y^ -t h_P^ -t…",
+          "dependsOn": [
+            "m1-replicas-metric",
+            "m1-lem-skew"
+          ]
+        },
+        {
+          "id": "m1-transport-means",
+          "role": "transport-through-finite-trees-of-metrics",
+          "label": "Properties of a finite mean tree",
+          "fullLabel": "Properties of a finite mean tree",
+          "kind": "lemma",
+          "source": "Transport through finite trees of metrics",
+          "detail": "[Properties of a finite mean tree] Let T be a weighted binary tree with terminal weights w_j and positive definite inputs A_j , and let M be its root. The root commutes with invertible congruence, is…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-transport-cp",
+          "role": "transport-through-finite-trees-of-metrics-2",
+          "label": "Normalized derivative maps",
+          "fullLabel": "Normalized derivative maps",
+          "kind": "lemma",
+          "source": "Transport through finite trees of metrics",
+          "detail": "[Normalized derivative maps] At a binary vertex with output M and a child D of positive edge weight w , define _D(Z)=1w M^ -1/2 _D M[D^ 1/2 ZD^ 1/2 ]M^ -1/2 . Here _D is the Fr\\'echet derivative with…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-transport-fourier",
+          "role": "transport-through-finite-trees-of-metrics-3",
+          "label": "The two Fourier multipliers",
+          "fullLabel": "The two Fourier multipliers",
+          "kind": "lemma",
+          "source": "Transport through finite trees of metrics",
+          "detail": "[The two Fourier multipliers] For real z , g_s(z)=_ e^ iuz m_s(u)\\,du, m_s(u)>0, _ m_s(u)\\,du=2s. For s=1/4 , the functions h_(z)= e^ sz -1 2(z/2) = e^ sz/2 g_ s/2 (z) have Fourier densities q_(u)=…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-transport",
+          "role": "transport-through-finite-trees-of-metrics-4",
+          "label": "Entropy and energy transport",
+          "fullLabel": "Entropy and energy transport",
+          "kind": "proposition",
+          "source": "Transport through finite trees of metrics",
+          "detail": "[Entropy and energy transport] Fix a finite one-copy space, history and conditional choice trees, partitions, cross-band commutation, positive parameter a , and positive contractions with designated…",
+          "dependsOn": [
+            "m1-transport-cp",
+            "m1-transport-means",
+            "m1-lem-relative-pin",
+            "m1-lem-symbol",
+            "m1-lem-skew"
+          ]
+        },
+        {
+          "id": "m1-prop-comparators",
+          "role": "norm-comparisons-from-an-auxiliary-pair",
+          "label": "Upper and lower norm comparisons",
+          "fullLabel": "Upper and lower norm comparisons",
+          "kind": "proposition",
+          "source": "Norm comparisons from an auxiliary pair",
+          "detail": "[Upper and lower norm comparisons] Fix the positive gapped Hamiltonian and physical target X above, a finite collection of status partitions satisfying , a typical Schmidt set satisfying , and a mean…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-scanner-histories",
+          "role": "scanning-collars-and-improving-the-entropy-bound",
+          "label": "Geometry and probabilities of the scan",
+          "fullLabel": "Geometry and probabilities of the scan",
+          "kind": "lemma",
+          "source": "Scanning collars and improving the entropy bound",
+          "detail": "[Geometry and probabilities of the scan] Under -- , the preceding construction has the following properties for all sufficiently large \\(n\\). Every splitting designated support is a graph…",
+          "dependsOn": [
+            "m1-lem-schur"
+          ]
+        },
+        {
+          "id": "m1-prop-scanner",
+          "role": "scanning-collars-and-improving-the-entropy-bound-2",
+          "label": "The scanner estimate",
+          "fullLabel": "The scanner estimate",
+          "kind": "proposition",
+          "source": "Scanning collars and improving the entropy bound",
+          "detail": "[The scanner estimate] Assume and , and let \\(0<e<1\\) satisfy \\( e\\). Suppose S_(X) C_e n^ 1+e , S_(Q_j) C_e(nL^e+n)(0 j L). Let \\(=n^ - \\), where \\(>0\\) is fixed, and suppose \\(a r_0^2\\) is…",
+          "dependsOn": [
+            "m1-lem-continuity",
+            "m1-scanner-histories",
+            "m1-lem-tail",
+            "m1-prop-transport",
+            "m1-lem-symbol",
+            "m1-transport-means"
+          ]
+        },
+        {
+          "id": "m1-scanner-templates",
+          "role": "scanning-collars-and-improving-the-entropy-bound-3",
+          "label": "Rows, coverings, and shell entropy",
+          "fullLabel": "Rows, coverings, and shell entropy",
+          "kind": "lemma",
+          "source": "Scanning collars and improving the entropy bound",
+          "detail": "[Rows, coverings, and shell entropy] For \\(C_ tpl \\) sufficiently large, a template satisfies |T| Cns_0, |T_j T_ j-1 | n(1 j s_0), |_ ^2 T_j| Cn(0 j s_0). Suppose it is separated from the cut and,…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-small-box",
+          "role": "scanning-collars-and-improving-the-entropy-bound-4",
+          "label": "Improved safe-box estimate",
+          "fullLabel": "Improved safe-box estimate",
+          "kind": "proposition",
+          "source": "Scanning collars and improving the entropy bound",
+          "detail": "[Improved safe-box estimate] There is a constant \\(C\\), depending only on the Hamiltonian parameters, such that \\[ F_ box (r) Cr^ 1+e_* (r1), e_*=210^ -6 . \\]",
+          "dependsOn": [
+            "m1-prop-initial-box",
+            "m1-scanner-templates",
+            "m1-prop-scanner"
+          ]
+        },
+        {
+          "id": "m1-prop-collar",
+          "role": "scanning-collars-and-improving-the-entropy-bound-5",
+          "label": "A sublinear collar bound",
+          "fullLabel": "A sublinear collar bound",
+          "kind": "proposition",
+          "source": "Scanning collars and improving the entropy bound",
+          "detail": "[A sublinear collar bound] Let \\(T\\) be a template separated from the cut, with parameters \\((n,s_0)\\) as in Definition~ . Set \\[ L= n^ 1-10^ -5 , X=A T, S_0=A T_L, \\] and suppose \\(L s_0\\). For all…",
+          "dependsOn": [
+            "m1-prop-small-box",
+            "m1-scanner-templates",
+            "m1-prop-scanner",
+            "m1-lem-continuity"
+          ]
+        },
+        {
+          "id": "m1-lem-amplification-local-products",
+          "role": "amplifying-the-collar-estimate",
+          "label": "Local constraint products",
+          "fullLabel": "Local constraint products",
+          "kind": "lemma",
+          "source": "Amplifying the collar estimate",
+          "detail": "[Local constraint products] Let positive contractions k_i , anchored at a_i with bounded multiplicity, satisfy \\[ \\|k_i-E_ i,l k_i\\| C e^ -c l^ (l0), \\] where E_ i,l is conditional expectation onto…",
+          "dependsOn": [
+            "m1-lem-quasilocal-roots"
+          ]
+        },
+        {
+          "id": "m1-prop-amplification",
+          "role": "amplifying-the-collar-estimate-2",
+          "label": "Amplification",
+          "fullLabel": "Amplification",
+          "kind": "proposition",
+          "source": "Amplifying the collar estimate",
+          "detail": "[Amplification] Fix C_0>0 and let ,, be as in . Suppose n2 , L= n^ 1- , and \\[ X=A T, S_0=A T_L, Y=S_0 X, Z'= S_0. \\] Assume that |S_0| C_0n^2 , that each of the three cuts X,Y,S_0 has at most C_0n…",
+          "dependsOn": [
+            "m1-lem-tail",
+            "m1-lem-amplification-local-products",
+            "m1-lem-continuity"
+          ]
+        },
+        {
+          "id": "m1-geometry-cancellation",
+          "role": "two-families-of-regions-and-the-area-bound",
+          "label": "Two-family entropy cancellation",
+          "fullLabel": "Two-family entropy cancellation",
+          "kind": "lemma",
+          "source": "Two families of regions and the area bound",
+          "detail": "[Two-family entropy cancellation] Let be a pure state on a finite tensor product with site set . Suppose that \\[ A=D _ i I_0 X_i _ i I_1 X_i \\] is a partition into disjoint sets, and fix an order on…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-two-families",
+          "role": "two-families-of-regions-and-the-area-bound-2",
+          "label": "Two families with separated birth templates",
+          "fullLabel": "Two families with separated birth templates",
+          "kind": "proposition",
+          "source": "Two families of regions and the area bound",
+          "detail": "[Two families with separated birth templates] Fix the constants D_0 and C_ tpl in Definition~ , and a lower scale threshold n_*1 . There is a constant C with the following property. Let be a finite…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-geometry-initial-stars",
+          "role": "two-families-of-regions-and-the-area-bound-3",
+          "label": "Isolated stars of the initial mesh",
+          "fullLabel": "Isolated stars of the initial mesh",
+          "kind": "lemma",
+          "source": "Two families of regions and the area bound",
+          "detail": "[Isolated stars of the initial mesh] There is an absolute constant a_0>0 , independent of the layer and the chosen shifts, such that, on taking k_0 sufficiently large: Distinct marks v,w satisfy v-w_…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-geometry-repair-induction",
+          "role": "two-families-of-regions-and-the-area-bound-4",
+          "label": "Uniform repair induction",
+          "fullLabel": "Uniform repair induction",
+          "kind": "lemma",
+          "source": "Two families of regions and the area bound",
+          "detail": "[Uniform repair induction] For a sufficiently small fixed choice of a_0 and the corresponding threshold S_* , every active mark (v,S) at every generation has a terminal-square-free isolated star…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-geometry-birth-separation",
+          "role": "two-families-of-regions-and-the-area-bound-5",
+          "label": "Birth-template separation",
+          "fullLabel": "Birth-template separation",
+          "kind": "lemma",
+          "source": "Two families of regions and the area bound",
+          "detail": "[Birth-template separation] There is a fixed c_1>0 such that the following holds. Let B be the closed birth region of an initial belt tile of side scale u=t_k , or of a replacement tile whose removal…",
+          "dependsOn": [
+            "m1-thm-area",
+            "m1-lem-zero-boundary",
+            "m1-prop-collar",
+            "m1-prop-amplification",
+            "m1-prop-two-families",
+            "m1-geometry-cancellation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Polynomial PEPS approximation of gapped square-grid ground states",
+      "title": "Polynomial PEPS approximation of gapped square-grid ground states",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Polynomial-PEPS-approximation-of-gapped-square-grid-ground-states-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Polynomial PEPS approximation of gapped square-grid ground states; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "result",
+          "label": "Fix an integer q2 and constants J,>0 . There are constants C,c>0 , depending…",
+          "fullLabel": "Fix an integer q2 and constants J,>0 . There are constants C,c>0 , depending…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "Fix an integer q2 and constants J,>0 . There are constants C,c>0 , depending only on q,J, , with the following property. For every L2 , consider any Hermitian Hamiltonian H=_ v_L h_v+_ e E(_L) h_e,…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-area-law",
+          "role": "conventions-and-entropy-inputs",
+          "label": "Entropy area law, [Theorem~1.1 and Corollary~1.2",
+          "fullLabel": "Entropy area law, [Theorem~1.1 and Corollary~1.2",
+          "kind": "proposition",
+          "source": "Conventions and entropy inputs",
+          "detail": "[Entropy area law, ] Under -- , there is C_A=C_A(q,J,) such that every A satisfies \\[ S_(A) C_A|_ A|, _ A=\\ \\ x,y\\ E():x A, \\ y A\\ . \\] The same constant works for every L and every Hamiltonian in…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-fidelity",
+          "role": "conventions-and-entropy-inputs-2",
+          "label": "For normalized finite-dimensional states, F(,) e^ -D()/2 , D(_ AC _A_C)=I(A:C),…",
+          "fullLabel": "For normalized finite-dimensional states, F(,) e^ -D()/2 , D(_ AC _A_C)=I(A:C),…",
+          "kind": "lemma",
+          "source": "Conventions and entropy inputs",
+          "detail": "For normalized finite-dimensional states, F(,) e^ -D()/2 , D(_ AC _A_C)=I(A:C), Moreover, after enlarging the purifying space if necessary, an isometry on that space realizes overlap F(,) between…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-coarse",
+          "role": "information-bounds-for-separated-regions",
+          "label": "Coarse information outside a sublinear collar",
+          "fullLabel": "Coarse information outside a sublinear collar",
+          "kind": "proposition",
+          "source": "Information bounds for separated regions",
+          "detail": "[Coarse information outside a sublinear collar] Fix an integer N_01 and a constant A_01 . There are <1 , C< , and u_0< such that the following holds. Let u u_0 and let T be the full ambient lattice…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-cell-cmi",
+          "role": "information-bounds-for-separated-regions-2",
+          "label": "Conditional information of one cell",
+          "fullLabel": "Conditional information of one cell",
+          "kind": "lemma",
+          "source": "Information bounds for separated regions",
+          "detail": "[Conditional information of one cell] Fix c>0 . Tile the plane by an axis-parallel grid of squares of side s1 . Let G be the physical sample of one cell, let B be the physical sample of any union of…",
+          "dependsOn": [
+            "m2-prop-coarse"
+          ]
+        },
+        {
+          "id": "m2-lem-reset",
+          "role": "information-bounds-for-separated-regions-3",
+          "label": "Information reset",
+          "fullLabel": "Information reset",
+          "kind": "lemma",
+          "source": "Information bounds for separated regions",
+          "detail": "[Information reset] For every fixed p>0 there is C_p< with the following property for all sufficiently large L . Let R,C be disjoint, let R_0 R and C_0 C , and suppose \\[ I_(R:C) b, b0. \\] If _(R_0,…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-angular",
+          "role": "information-bounds-for-separated-regions-4",
+          "label": "Information under angular separation",
+          "fullLabel": "Information under angular separation",
+          "kind": "proposition",
+          "source": "Information bounds for separated regions",
+          "detail": "[Information under angular separation] Fix a>0 , A_01 , an integer m_00 , and p>0 . There is D< such that the following holds for all sufficiently large L . Let V be a set of at most m_0 marked…",
+          "dependsOn": [
+            "m2-lem-cell-cmi",
+            "m2-lem-reset"
+          ]
+        },
+        {
+          "id": "m2-prop-patch",
+          "role": "adaptive-finite-rank-constraints-on-small-patches",
+          "label": "Adaptive patch constraint",
+          "fullLabel": "Adaptive patch constraint",
+          "kind": "proposition",
+          "source": "Adaptive finite-rank constraints on small patches",
+          "detail": "[Adaptive patch constraint] Fix \\(B_0>0\\) and \\(p>0\\). There are constants \\(C,c>0\\), depending only on \\(q,J,,B_0,p\\), with the following property. For every \\(L2\\), center \\(z R^2\\), and \\(0<u B_0…",
+          "dependsOn": [
+            "m2-prop-area-law"
+          ]
+        },
+        {
+          "id": "m2-lem-effects",
+          "role": "compression-of-distributed-density-networks",
+          "label": "Elimination of normalized pair effects",
+          "fullLabel": "Elimination of normalized pair effects",
+          "kind": "lemma",
+          "source": "Compression of distributed density networks",
+          "detail": "[Elimination of normalized pair effects] Let G be a contraction with an expansion G=_ c_ M_ into K allowed monomials on a fixed set of parties. Suppose each monomial has at most r pair effects. For…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-compression",
+          "role": "compression-of-distributed-density-networks-2",
+          "label": "Distributed density compression",
+          "fullLabel": "Distributed density compression",
+          "kind": "theorem",
+          "source": "Compression of distributed density networks",
+          "detail": "[Distributed density compression] Consider a family of distributed constructions indexed by L2 with the following uniform properties. The number of parties and gates is uniformly polynomial. The…",
+          "dependsOn": [
+            "m2-lem-effects"
+          ]
+        },
+        {
+          "id": "m2-lem-group-tensor",
+          "role": "encoded-frames-and-changes-of-ownership",
+          "label": "Whole-group tensor bound",
+          "fullLabel": "Whole-group tensor bound",
+          "kind": "lemma",
+          "source": "Encoded frames and changes of ownership",
+          "detail": "[Whole-group tensor bound] Let a finite graph carry at each vertex a Hilbert-space tensor of norm at most one. Contract its internal edges by the usual coordinate pairing, and suppose there are no…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-small-rewrite",
+          "role": "encoded-frames-and-changes-of-ownership-2",
+          "label": "Small-patch rewrite",
+          "fullLabel": "Small-patch rewrite",
+          "kind": "lemma",
+          "source": "Encoded frames and changes of ownership",
+          "detail": "[Small-patch rewrite] Consider old and new one-sheet frames. Only a bounded number of their holes are affected; all other holes, encodings, and tag owners agree. Suppose there are m=O(1) additional…",
+          "dependsOn": [
+            "m2-prop-patch",
+            "m2-lem-group-tensor",
+            "m2-thm-compression"
+          ]
+        },
+        {
+          "id": "m2-lem-splitting",
+          "role": "encoded-frames-and-changes-of-ownership-3",
+          "label": "Splitting consequence",
+          "fullLabel": "Splitting consequence",
+          "kind": "lemma",
+          "source": "Encoded frames and changes of ownership",
+          "detail": "[Splitting consequence] Let T,U,E partition , and let b=I_(T:E) . There are finite-dimensional spaces B_T and B_E , an isometry \\[ V: H_U B_T B_E, \\] and normalized vectors s H_T B_T and s' H_E B_E…",
+          "dependsOn": [
+            "m2-lem-fidelity"
+          ]
+        },
+        {
+          "id": "m2-lem-birth",
+          "role": "encoded-frames-and-changes-of-ownership-4",
+          "label": "Homogeneous birth and death",
+          "fullLabel": "Homogeneous birth and death",
+          "kind": "lemma",
+          "source": "Encoded frames and changes of ownership",
+          "detail": "[Homogeneous birth and death] In an encoded frame, let T be a set of raw sites owned by P_ and disjoint from every outer hole footprint. The proposed birth changes only the owner of T , from P_ to Q_…",
+          "dependsOn": [
+            "m2-lem-splitting"
+          ]
+        },
+        {
+          "id": "m2-lem-exchange",
+          "role": "encoded-frames-and-changes-of-ownership-5",
+          "label": "Two-sheet exchange",
+          "fullLabel": "Two-sheet exchange",
+          "kind": "lemma",
+          "source": "Encoded frames and changes of ownership",
+          "detail": "[Two-sheet exchange] Consider two encoded frames, and a plane region Y . Suppose every hole's entire outer square lies on one side of Y . Inside Y , exchange the two raw ownership assignments and the…",
+          "dependsOn": [
+            "m2-lem-splitting"
+          ]
+        },
+        {
+          "id": "m2-prop-protocol",
+          "role": "a-finite-planar-distribution-protocol",
+          "label": "Distribution through a dyadic hierarchy",
+          "fullLabel": "Distribution through a dyadic hierarchy",
+          "kind": "proposition",
+          "source": "A finite planar distribution protocol",
+          "detail": "[Distribution through a dyadic hierarchy] For all sufficiently large L , there is a protocol with the following properties. All constants in this statement are uniform in the Hamiltonian and L .…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-geometry-angular",
+          "role": "a-finite-planar-distribution-protocol-2",
+          "label": "Separation of the unmodified bands",
+          "fullLabel": "Separation of the unmodified bands",
+          "kind": "lemma",
+          "source": "A finite planar distribution protocol",
+          "detail": "[Separation of the unmodified bands] There is a fixed a_0>0 such that every unmodified elementary birth or death above has changed region R of diameter O(n) and surrounding guide f satisfying (y, \\ f…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-columns",
+          "role": "from-the-protocol-to-a-peps",
+          "label": "Let be a unit vector on a tensor product of finite-dimensional spaces. If an…",
+          "fullLabel": "Let be a unit vector on a tensor product of finite-dimensional spaces. If an…",
+          "kind": "lemma",
+          "source": "From the protocol to a PEPS",
+          "detail": "Let be a unit vector on a tensor product of finite-dimensional spaces. If an operator satisfies -| |_1<1 , then some product-basis column v=|z is nonzero and satisfies \\[ _\\|v v -e^ i \\| 2. \\] Fixing…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-routing",
+          "role": "from-the-protocol-to-a-peps-2",
+          "label": "The links of the party network can be routed on the padded grid with constant…",
+          "fullLabel": "The links of the party network can be routed on the padded grid with constant…",
+          "kind": "lemma",
+          "source": "From the protocol to a PEPS",
+          "detail": "The links of the party network can be routed on the padded grid with constant edge congestion. After reflection into the genuine L L grid, congestion is still constant and physical output coordinates…",
+          "dependsOn": [
+            "m2-prop-protocol"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-area",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    },
+    {
+      "from": "m2:m2-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "A two-dimensional area law from a global spectral gap",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-two-dimensional-area-law-from-a-global-spectral-gap-September-24-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Polynomial PEPS approximation of gapped square-grid ground states",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Polynomial-PEPS-approximation-of-gapped-square-grid-ground-states-September-24-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

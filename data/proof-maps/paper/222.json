@@ -683,315 +683,393 @@
   "edges": [
     {
       "from": "m1-var-variation",
-      "to": "m1-var-continuity-order"
+      "to": "m1-var-continuity-order",
+      "context": "Refine the two partitions and integrate Lemma~\\ref{var:variation} along the segment joining the paths. The terminal derivative bounds give \\eqref{var:lipschitz}. Step paths are dense in"
     },
     {
       "from": "m1-var-folded-kernel",
-      "to": "m1-var-concavity"
+      "to": "m1-var-concavity",
+      "context": "r, $m_i$ is odd, $m_i(x)\\ge0$ for $x\\ge0$, and $m_i(x)^2$ is even and nondecreasing in $|x|$. All $U_i$ have at most linear growth, so the normalizers in Lemma~\\ref{var:folded-kernel} are finite. We first establish the cross-derivative sign \\begin{equation} \\label{var:cross-sign} \\partial_{h_j}\\rho_i"
     },
     {
       "from": "m1-var-variation",
-      "to": "m1-var-concavity"
+      "to": "m1-var-concavity",
+      "context": "the cross-derivative sign \\begin{equation} \\label{var:cross-sign} \\partial_{h_j}\\rho_i\\le0\\qquad(j>i). \\end{equation} Repeat the switch calculation from Lemma~\\ref{var:variation}, but stop its backwards propagation at the function $U_i(x)$. This gives \\begin{equation} \\label{var:later-switch} \\pa"
     },
     {
       "from": "m1-var-continuity-order",
-      "to": "m1-var-concavity"
+      "to": "m1-var-concavity",
+      "context": "on refinement handles distinct partitions. Finally, approximate any two bounded field paths in $L^1$ by monotone steps on common partitions and use Proposition~\\ref{var:continuity-order} to pass the concavity inequality to their limits."
     },
     {
       "from": "m1-arr-cascade",
-      "to": "m1-arr-quantization"
+      "to": "m1-arr-quantization",
+      "context": "decomposition} \\end{equation} All coefficients are nonnegative. The Ghirlanda--Guerra property passes through the quantization map by the tower rule, so Lemma~\\ref{arr:cascade} identifies its law. For the joint assertion, bin $r$ and each $a_j(r)$ on meshes of size $\\varepsilon$ and take their"
     },
     {
       "from": "m1-arr-cascade",
-      "to": "m1-arr-law-continuity"
+      "to": "m1-arr-law-continuity",
+      "context": "For uniqueness, round two candidate arrays on increasingly fine finite meshes. Their rounded marginals coincide, so Lemma~\\ref{arr:cascade} gives identical rounded array laws. Uniformly vanishing rounding error then identifies their original finite-block law"
     },
     {
       "from": "m1-arr-cascade",
-      "to": "m1-arr-tilt"
+      "to": "m1-arr-tilt",
+      "context": "en. By \\eqref{arr:mark-recursion}, the conditional $\\zeta_i$th moment of this multiplier is one. The marked Poisson mapping calculation in the proof of Lemma~\\ref{arr:cascade} therefore leaves the point intensity unchanged and changes the attached mark kernel exactly by \\eqref{arr:tilted-kernel"
     },
     {
       "from": "m1-arr-quantization",
-      "to": "m1-arr-limit"
+      "to": "m1-arr-limit",
+      "context": "independent base variables in this argument. Finally quantize all the ordered covariance coordinates jointly. Their finite-replica matrices converge by Lemma~\\ref{arr:quantization}, and the other observables and tests converge by the additional approximation hypothesis. Gaussian continuity and the"
     },
     {
       "from": "m1-arr-cascade",
-      "to": "m1-arr-limit"
+      "to": "m1-arr-limit",
+      "context": "al argument therefore apply. The shared Gaussian construction with independent residuals has exactly those matrices, including on repeated leaf visits. Lemma~\\ref{arr:cascade} identifies the quantized shape law, and Lemma~\\ref{arr:tilt} evaluates its bounded reweightings. Unbounded factors req"
     },
     {
       "from": "m1-arr-tilt",
-      "to": "m1-arr-limit"
+      "to": "m1-arr-limit",
+      "context": "ith independent residuals has exactly those matrices, including on repeated leaf visits. Lemma~\\ref{arr:cascade} identifies the quantized shape law, and Lemma~\\ref{arr:tilt} evaluates its bounded reweightings. Unbounded factors require an additional uniform-integrability argument; the cavity"
     },
     {
       "from": "m1-arr-ultrametric",
-      "to": "m1-arr-fresh-pattern"
+      "to": "m1-arr-fresh-pattern",
+      "context": "Theorem~\\ref{arr:ultrametric} gives positivity and ultrametricity. Lemma~\\ref{arr:limit} passes the bounded positive factor through the array limit."
     },
     {
       "from": "m1-arr-limit",
-      "to": "m1-arr-fresh-pattern"
+      "to": "m1-arr-fresh-pattern",
+      "context": "Theorem~\\ref{arr:ultrametric} gives positivity and ultrametricity. Lemma~\\ref{arr:limit} passes the bounded positive factor through the array limit. Round the off-diagonal overlap into levels $p_0\\leq\\cdots\\"
     },
     {
       "from": "m1-arr-tilt",
-      "to": "m1-arr-fresh-pattern"
+      "to": "m1-arr-fresh-pattern",
+      "context": "ntly \\[ U_{k-1}(x)=\\log\\mathbb E e^{f(x+\\sqrt{1-p_{k-1}}G)}. \\] The remaining branch transforms have coefficients $\\zeta_{k-1},\\ldots,\\zeta_1$, by Lemma~\\ref{arr:tilt}, and the common root Gaussian is averaged with coefficient zero. These are precisely the defining transforms of $V_f$"
     },
     {
       "from": "m1-arr-law-continuity",
-      "to": "m1-arr-fresh-pattern"
+      "to": "m1-arr-fresh-pattern",
+      "context": "ma~\\ref{arr:limit} and continuity of the recursion in its quantile. For bounded continuous $f$ this also supplies a direct description of that extension: Lemma~\\ref{arr:law-continuity} and the bounded reweighting argument show that the cascade values have a unique continuous limit."
     },
     {
       "from": "m1-arr-tilt",
-      "to": "m1-upper-concentration"
+      "to": "m1-upper-concentration",
+      "context": "Write $L_N=NP_N$. Put the patterns, their count, and all common root Gaussian variables into the root data. Apply Lemma~\\ref{arr:tilt} to the leaf spin log integral. If $X_0$ is the resulting recursion value at the root, that lemma gives \\[ \\mathbb E[L_"
     },
     {
       "from": "m1-arr-variance",
-      "to": "m1-upper-concentration"
+      "to": "m1-upper-concentration",
+      "context": "e of their energies. Every subsequent log-exponential transform preserves such a uniform change bound. Thus $X_0$ has Gaussian variance at most $C_HN$ by Lemma~\\ref{arr:variance}. Replacing one of the $K$ patterns changes $X_0$ by at most $2\\|f\\|_\\infty$, because this bound holds for every leaf en"
     },
     {
       "from": "m1-arr-calculus",
-      "to": "m1-upper-derivatives"
+      "to": "m1-upper-derivatives",
+      "context": "iance \\[ aN R(x,x')\\lambda_{\\gamma\\wedge\\eta}. \\] It also changes the deterministic subtraction by $-aN\\lambda_{k-1}/2$. The diagonal covariance term in Lemma~\\ref{arr:calculus} cancels this subtraction, proving \\eqref{upper:field-derivative} after reversing the pressure sign. Poisson differentia"
     },
     {
       "from": "m1-upper-concentration",
-      "to": "m1-upper-gg"
+      "to": "m1-upper-gg",
+      "context": "most $2^{-j}s$ by \\eqref{upper:taylor}. Replacing each of the three random function values by its expectation costs at most $C_H/(s\\sqrt N)$ in $L^1$, by Lemma~\\ref{upper:concentration}. Taking the positive and negative parts therefore yields \\begin{equation} \\label{upper:derivative-fluctuation} \\mathbb"
     },
     {
       "from": "m1-arr-calculus",
-      "to": "m1-upper-gg"
+      "to": "m1-upper-gg",
+      "context": "-n\\kappa_j(R_{1,n+1},T_{1,n+1})\\right)\\right\\rangle. \\end{equation} The overlap test has no direct dependence on the Gaussian coordinates of $Y_j$, so Lemma~\\ref{arr:calculus} applies. By \\eqref{upper:Y-concentration}, the left side equals $\\mathbb E\\langle Y_j\\rangle\\mathbb E\\langle D\\rangle +"
     },
     {
       "from": "m1-arr-ultrametric",
-      "to": "m1-upper-synchronization"
+      "to": "m1-upper-synchronization",
+      "context": "The arrays $R$ and $R+T$ are Gram arrays of constant diagonal, and their scalar identities follow from the joint identities. Theorem~\\ref{arr:ultrametric} therefore makes both arrays ultrametric and makes the off-diagonal entries of $R$ nonnegative. They are at most one by"
     },
     {
       "from": "m1-upper-bound",
-      "to": "m1-upper-synchronization"
+      "to": "m1-upper-synchronization",
+      "context": "[Proof of Proposition~\\ref{upper:bound}] Continue along the violating sequence and its minimizing triples. Extract a joint array limit and let $p$ be the spin-"
     },
     {
       "from": "m1-var-continuity-order",
-      "to": "m1-upper-synchronization"
+      "to": "m1-upper-synchronization",
+      "context": "ove the chord joining its endpoint values, which in turn lies above the second tail. Therefore the tail inequalities hold for every $s\\in[0,1]$. By Proposition~\\ref{var:continuity-order}, \\begin{equation} \\label{upper:V-comparison} V_f(p)\\le V_f(q). \\end{equation} At every minimizing triple $t_N>0$, a s"
     },
     {
       "from": "m1-arr-fresh-pattern",
-      "to": "m1-upper-synchronization"
+      "to": "m1-upper-synchronization",
+      "context": "respect to $t$ at that triple is nonpositive. On the other hand, the fresh pattern in \\eqref{upper:time-derivative} has covariance $R$ and diagonal one. Lemma~\\ref{arr:fresh-pattern}, applied to the marginal limiting spin-overlap array, gives \\[ \\partial_t J_N(t_N,h_N,u_N) \\longrightarrow -V_f(p)+V_"
     },
     {
       "from": "m1-var-step-reduction",
-      "to": "m1-upper-synchronization"
+      "to": "m1-upper-synchronization",
+      "context": "ery step trial with $q_{k-1}<1$ and finite entropy. Infinite-entropy trials give no restriction. Taking the infimum over finite step trials and using Corollary~\\ref{var:step-reduction} proves the claimed bound for the full variational infimum, and hence for every admissible $q$."
     },
     {
       "from": "m1-arr-variance",
-      "to": "m1-bulk-good-parameters"
+      "to": "m1-bulk-good-parameters",
+      "context": "e bounded-difference bound for the conditional mean therefore give $\\operatorname{Var}(\\log Z_N^\\circ)\\le C(N+s_N^2)\\le CN$. Both bounds are instances of Lemma~\\ref{arr:variance}. Fix $j$, with $N\\ge j$, and put $t_j=s_N2^{-j}$. Finite-dimensional Gaussian integration by parts and differentiatio"
     },
     {
       "from": "m1-bulk-good-parameters",
-      "to": "m1-bulk-restoration"
+      "to": "m1-bulk-restoration",
+      "context": "The required subsequences exist by boundedness and diagonal extraction. Lemma~\\ref{bulk:good-parameters} and Theorem~\\ref{arr:ultrametric} show that the omitted limiting overlap array is nonnegative and ultrametric. \\paragr"
     },
     {
       "from": "m1-arr-ultrametric",
-      "to": "m1-bulk-restoration"
+      "to": "m1-bulk-restoration",
+      "context": "The required subsequences exist by boundedness and diagonal extraction. Lemma~\\ref{bulk:good-parameters} and Theorem~\\ref{arr:ultrametric} show that the omitted limiting overlap array is nonnegative and ultrametric. \\paragraph{Restoration preserves the over"
     },
     {
       "from": "m1-arr-limit",
-      "to": "m1-bulk-restoration"
+      "to": "m1-bulk-restoration",
+      "context": "ng both rows means multiplying the omitted probability by $\\exp\\{f(b_1^*)+f(b_2^*)\\}$ and normalizing. This factor is bounded above and away from zero. Lemma~\\ref{arr:limit} thus evaluates every limiting full-system expectation of bounded continuous tests of finitely many overlaps and these f"
     },
     {
       "from": "m1-arr-quantization",
-      "to": "m1-bulk-restoration"
+      "to": "m1-bulk-restoration",
+      "context": "y overlaps and these fresh field evaluations. Apply finite ordered roundings to the limiting off-diagonal overlaps, leaving the diagonal equal to one. Lemmas~\\ref{arr:quantization} and~\\ref{arr:cascade} represent each rounded calculation by a finite cascade with the rounded two-replica law. Its fre"
     },
     {
       "from": "m1-arr-cascade",
-      "to": "m1-bulk-restoration"
+      "to": "m1-bulk-restoration",
+      "context": "field evaluations. Apply finite ordered roundings to the limiting off-diagonal overlaps, leaving the diagonal equal to one. Lemmas~\\ref{arr:quantization} and~\\ref{arr:cascade} represent each rounded calculation by a finite cascade with the rounded two-replica law. Its fresh pattern field consi"
     },
     {
       "from": "m1-arr-tilt",
-      "to": "m1-bulk-restoration"
+      "to": "m1-bulk-restoration",
+      "context": "nt of Lemma~\\ref{arr:limit} show that the rounded calculations converge to the unrounded ones. The two-row tilt preserves the cascade label shape law by Lemma~\\ref{arr:tilt}. Therefore, letting the rounding error vanish shows that the full limiting overlap array has exactly the omitted array"
     },
     {
       "from": "m1-cav-finite-comparison",
-      "to": "m1-cav-dual-attainment"
+      "to": "m1-cav-dual-attainment",
+      "context": "coordinate is replaced by any of the $N+L$ coordinates, and their average product is $R^+_{12}$. This symmetry is used before the cavity approximations. Lemma~\\ref{cav:finite-comparison}, the truncation passage above, and the finite cascade calculation then imply \\begin{equation}\\label{cav:rho-test} \\lim"
     },
     {
       "from": "m1-arr-tilt",
-      "to": "m1-cav-dual-attainment"
+      "to": "m1-cav-dual-attainment",
+      "context": "))\\rho_{\\bar h_m}(u)\\,du =\\int_0^1 D_0(p(u))p(u)\\,du. \\end{equation} For the right side, the unclipped cascade tilt preserves the rounded overlap law by Lemma~\\ref{arr:tilt}. The truncation estimates above transfer this evaluation to the finite-size limit, whose overlap law has quantile $p$."
     },
     {
       "from": "m1-cav-dual-attainment",
-      "to": "m1-cav-lower-bound"
+      "to": "m1-cav-lower-bound",
+      "context": "\\mathrm I}(q)+\\alpha V_f(q)\\}$, a finite number by the elementary bounds for the variational functional. The limit \\eqref{cav:increment-limit} and Proposition~\\ref{cav:dual-attainment} give, on every subsequence constructed above, \\[ \\lim_N\\Delta_{N,L}(v(N)) =L\\{S_{\\mathrm I}(p)+\\alpha V_f(p)\\}"
     },
     {
       "from": "m1-cav-finite-comparison",
-      "to": "m1-cav-lower-bound"
+      "to": "m1-cav-lower-bound",
+      "context": "G_N$; compactness would supply the array and constant-$d$ subsequence above, contradicting its evaluated limit. The uniform all-parameter lower bound of Lemma~\\ref{cav:finite-comparison} controls the complement of $\\mathcal G_N$. Specifically, for every $\\varepsilon>0$ and all large $N$, the parameter in"
     },
     {
       "from": "m1-var-continuity-order",
-      "to": "m1-ext-path-approx"
+      "to": "m1-ext-path-approx",
+      "context": "patial truncation, approximation on compact intervals, and mollification with a nonnegative smooth kernel. Each $V_{f_j}$ is continuous in $L^1$ by Proposition~\\ref{var:continuity-order}. Estimate~\\eqref{ext:path-distance} makes them uniformly Cauchy on the dense set of step paths and hence on $\\mathcal Q"
     },
     {
       "from": "m1-ext-path-approx",
-      "to": "m1-ext-bounded"
+      "to": "m1-ext-bounded",
+      "context": "Use the approximants from Lemma~\\ref{ext:path-approx}. Since the entropy functional is the same for every activation, \\[ |\\mathcal P_f(\\alpha)-\\mathcal P_{f_j}(\\alpha)| \\l"
     },
     {
       "from": "m1-arr-variance",
-      "to": "m1-ext-bounded"
+      "to": "m1-ext-bounded",
+      "context": "$\\mathcal P_f(\\alpha)$. Changing a single whole pattern vector changes $\\log Z_N(f)$ by at most $2\\|f\\|_\\infty$. The independent-input variance bound of Lemma~\\ref{arr:variance} therefore gives \\begin{equation}\\label{ext:concentration} \\operatorname{Var}(p_N(f))\\le \\frac{4M_N\\|f\\|_\\infty^2}{N^2"
     },
     {
       "from": "m1-arr-fresh-pattern",
-      "to": "m1-ext-integrable"
+      "to": "m1-ext-integrable",
+      "context": "mes\\gamma, \\qquad t(\\lambda,\\eta)=f\\bigl(y_\\lambda+\\sqrt{1-q_{k-1}}\\,\\eta\\bigr). \\] Thus the residual $\\eta$ is an integration coordinate of $P$, as in Lemma~\\ref{arr:fresh-pattern}. For a bounded Borel terminal function, integrating $\\eta$ gives the coefficient-one transform, and Lemma~\\ref{arr:tilt"
     },
     {
       "from": "m1-arr-tilt",
-      "to": "m1-ext-integrable"
+      "to": "m1-ext-integrable",
+      "context": "oordinate of $P$, as in Lemma~\\ref{arr:fresh-pattern}. For a bounded Borel terminal function, integrating $\\eta$ gives the coefficient-one transform, and Lemma~\\ref{arr:tilt}, followed by the root Gaussian average, evaluates the expected log integral as its pattern recursion. This identity use"
     },
     {
       "from": "m1-ext-bounded",
-      "to": "m1-ext-integrable"
+      "to": "m1-ext-integrable",
+      "context": "qref{ext:unbounded-path-error} also bounds the difference between the clipped and unclipped variational infima by $\\alpha\\varepsilon_{J,K}$. Apply Proposition~\\ref{ext:bounded} to $f_{J,K}$ and then \\eqref{ext:unbounded-pressure-error}. This proves convergence in expectation. For convergence in"
     },
     {
       "from": "m1-ext-path-approx",
-      "to": "m1-ext-sign"
+      "to": "m1-ext-sign",
+      "context": "eneral $f$ as in the statement, take smooth approximants $f_j$ with $|f_j|,|f|\\le K$ and $\\|f_j-f\\|_{L^1(\\gamma)}\\to0$. The omitted-pattern argument from Lemma~\\ref{ext:path-approx} still applies. Conditional on any hypercube state, however, the fresh sign field now has the common law \\[ X_N=N^{-1/2"
     },
     {
       "from": "m2-lem-hier-cascade-tilt",
-      "to": "m2-lem-hier-row-interpolation"
+      "to": "m2-lem-hier-row-interpolation",
+      "context": "\\dot C_{11} -u'(z_1)u'(z_2)\\dot C_{12}\\Big\\rangle_t. \\] The diagonal is fixed, so $\\dot C_{11}=0$; off the diagonal $\\dot C_{12}=(r-q)(U_{12})$. Lemmas \\ref{lem:hier-cascade-tilt} and \\ref{lem:hier-rank-array}, followed by the conditional product calculation, give \\eqref{eq:src1}. Bounded derivati"
     },
     {
       "from": "m2-lem-hier-rank-array",
-      "to": "m2-lem-hier-row-interpolation"
+      "to": "m2-lem-hier-row-interpolation",
+      "context": "2)\\dot C_{12}\\Big\\rangle_t. \\] The diagonal is fixed, so $\\dot C_{11}=0$; off the diagonal $\\dot C_{12}=(r-q)(U_{12})$. Lemmas \\ref{lem:hier-cascade-tilt} and \\ref{lem:hier-rank-array}, followed by the conditional product calculation, give \\eqref{eq:src1}. Bounded derivatives justify Gaussian integrati"
     },
     {
       "from": "m2-lem-hier-array-continuity",
-      "to": "m2-lem-hier-row-interpolation"
+      "to": "m2-lem-hier-row-interpolation",
+      "context": "ce $u$ has at most linear growth, \\eqref{eq:hier-exponential-moments} holds uniformly for $X=u(z)$, as the base single-replica field has law $\\cN(0,Q)$. Lemma \\ref{lem:hier-array-continuity} therefore constructs the limiting functional and tilted replica expectations independently of the step approximation. I"
     },
     {
       "from": "m2-lem-hier-cascade-tilt",
-      "to": "m2-prop-hier-spherical-limit"
+      "to": "m2-prop-hier-spherical-limit",
+      "context": "Z_N^{\\rm G}(b)$ and then averaged over the disorder, the coordinates are iid. Indeed the terminal function is a sum of independent coordinate functions; Lemma \\ref{lem:hier-cascade-tilt} makes every path transition factor by coordinate, and the independent root Gaussian marks are not tilted. Conditional"
     },
     {
       "from": "m2-prop-hier-spherical-limit",
-      "to": "m2-prop-hier-spin-concavity"
+      "to": "m2-prop-hier-spin-concavity",
+      "context": "r general $p\\le B$, choose step profiles $p_n\\le B$ converging to $p$. Their gradients have nonnegative nondecreasing representatives $r_n$ and, by Proposition \\ref{prop:hier-spherical-limit}, \\[ (r_n)_*=1-1/b_n\\le1-[2(B+1)]^{-1}. \\] Pass to an $L^1$ convergent subsequence. The finite-step tangent inequality"
     },
     {
       "from": "m2-prop-hier-spin-concavity",
-      "to": "m2-prop-hier-entropy-conjugacy"
+      "to": "m2-prop-hier-entropy-conjugacy",
+      "context": "For a step profile $q$, set $r=q$ in \\eqref{eq:hier-inverse-gradient} and obtain $p$. The tangent inequality in Proposition \\ref{prop:hier-spin-concavity} gives, for every competitor $\\widetilde p$, \\[ \\mathcal S(\\widetilde p)+\\tfrac12\\int q\\widetilde p \\le\\mathcal S(p)+\\"
     },
     {
       "from": "m2-lem-conc-regularity",
-      "to": "m2-prop-conc-concavity"
+      "to": "m2-prop-conc-concavity",
+      "context": "d{equation} For a merely concave $u$, apply this argument to $u-\\lambda z^2$ and let $\\lambda\\downarrow0$. The parabolic comparison and moment bounds in Lemma~\\ref{lem:conc-regularity} give convergence on every smooth profile and its segments. Concavity passes to that limit. Finally approximate two ar"
     },
     {
       "from": "m2-lem-conc-regularity",
-      "to": "m2-prop-conc-stability"
+      "to": "m2-prop-conc-stability",
+      "context": "In variance time the drift is $m(t)F_z(t,z)$. Its Lipschitz and growth bounds are uniform by Lemma~\\ref{lem:conc-regularity}. Thus Lemma~\\ref{lem:conc-density} gives $\\Prob(Z_1\\in I)\\geq p_\\beta>0$, where $Z_1$ denotes the rank-time endpoint."
     },
     {
       "from": "m2-lem-conc-density",
-      "to": "m2-prop-conc-stability"
+      "to": "m2-prop-conc-stability",
+      "context": "In variance time the drift is $m(t)F_z(t,z)$. Its Lipschitz and growth bounds are uniform by Lemma~\\ref{lem:conc-regularity}. Thus Lemma~\\ref{lem:conc-density} gives $\\Prob(Z_1\\in I)\\geq p_\\beta>0$, where $Z_1$ denotes the rank-time endpoint. From \\eqref{eq:conc-curvature-flow}"
     },
     {
       "from": "m2-prop-conc-concavity",
-      "to": "m2-cor-conc-convex-loss"
+      "to": "m2-cor-conc-convex-loss",
+      "context": "dition omitted when $\\chi=0$, and extend $u$ tangentially below $-L$. The resulting terminal $u_L$ is concave, increasing, and globally Lipschitz. Proposition~\\ref{prop:conc-concavity} applies after mollification and its removal. Because the cutoff lies below the entire support of $\\chi$, its error is"
     },
     {
       "from": "m2-lem-hier-cascade-tilt",
-      "to": "m2-lem-press-gg"
+      "to": "m2-lem-press-gg",
+      "context": "near Gaussian spin terms have squared reproducing-kernel norm $O(N)$, and the perturbation has squared norm $O(s_N^2)$. For a fixed finite cascade apply Lemma~\\ref{lem:hier-cascade-tilt} to the spin-integrated leaf partition marks. Conditional on shared root Gaussian fields, the log partition is a recursi"
     },
     {
       "from": "m2-lem-hier-rank-array",
-      "to": "m2-lem-press-sync"
+      "to": "m2-lem-press-sync",
+      "context": "arent and its children, determine the distribution of the new branch. Induction in the number of replicas determines the law of the discretized array. By Lemma~\\ref{lem:hier-rank-array} it is exactly the finite RPC sampling law. Refining thresholds at continuity points identifies the full scalar array. A"
     },
     {
       "from": "m2-lem-hier-cascade-tilt",
-      "to": "m2-lem-press-sync"
+      "to": "m2-lem-press-sync",
+      "context": "law after the spin-integrated tilt: all Gaussian fields in the model, including the perturbation, have conditional child independence. This is precisely Lemma~\\ref{lem:hier-cascade-tilt}. Hence the limiting second marginal is the prescribed trial profile."
     },
     {
       "from": "m2-lem-hier-array-continuity",
-      "to": "m2-lem-press-row-insertion"
+      "to": "m2-lem-press-row-insertion",
+      "context": "or every fixed $a<\\infty$, their bounded-slope potentials obey $\\E\\langle e^{a|u(g)|}\\rangle\\le C_a$ before insertion. The replica truncation argument of Lemma~\\ref{lem:hier-array-continuity} consequently passes both the finite-row tilt and its observables to the limit. For a finite RPC, claims (i)--(iii) are"
     },
     {
       "from": "m2-lem-hier-cascade-tilt",
-      "to": "m2-lem-press-row-insertion"
+      "to": "m2-lem-press-row-insertion",
+      "context": "e finite-row tilt and its observables to the limit. For a finite RPC, claims (i)--(iii) are the marking transformation and additive-mark factorization of Lemma~\\ref{lem:hier-cascade-tilt}, together with the derivative-martingale definition of $D_C$. In particular, the marking transformation makes the trans"
     },
     {
       "from": "m2-lem-press-row-insertion",
-      "to": "m2-lem-press-empirical"
+      "to": "m2-lem-press-empirical",
+      "context": "For a continuous function $F$ of one overlap, remove a specified row and reinsert it using Lemma~\\ref{lem:press-row-insertion}. Row exchangeability gives \\[ \\lim_N\\E\\langle p^N_{12}F(R_{12})\\rangle =\\alpha\\int_0^1D_q(s)F(q(s))\\,\\dd s. \\] On exp"
     },
     {
       "from": "m2-prop-hier-spin-concavity",
-      "to": "m2-prop-press-formula"
+      "to": "m2-prop-press-formula",
+      "context": "Let $q$ minimize $\\mathcal P_u$. By Proposition~\\ref{prop:hier-spin-concavity}, $\\mathcal S$ has at $p_q$ a supergradient $-r/2$, where $r$ is a nonnegative nondecreasing profile bounded strictly be"
     },
     {
       "from": "m2-thm-univ-pressure",
-      "to": "m2-prop-univ-observables"
+      "to": "m2-prop-univ-observables",
+      "context": "o(N)$. Hence $N^{-1}\\log Z-P_{N,\\eps}(u+d\\psi)$ converges to zero in probability. For a fixed test $\\psi$, put $S(d)=\\alpha\\Phi_{u+d\\psi}(q;1)+E(q)$. Theorem~\\ref{thm:univ-pressure} gives $S(0)=P(u)$ and $S'(0)=\\alpha\\int\\psi\\,\\dd\\mu_{\\beta,\\alpha}$. If $b>S'(0)$, choose a sufficiently small $d>0$ an"
     },
     {
       "from": "m2-thresh-slab-direction",
-      "to": "m2-thresh-repair"
+      "to": "m2-thresh-repair",
+      "context": "1}(1+A_\\mu y')\\geq0. \\] If $n<1$, take $W=\\ker A_T\\cap(y')^\\perp$, whose dimension satisfies $D\\geq N-|T|-1\\geq\\rho N-1\\geq\\rho N/2$ for large $N$. Apply Lemma~\\ref{thresh:slab-direction} to the remaining rows restricted to $W$. There is a unit $v\\in W$ such that \\[ \\|A_{T^c}v\\|_\\infty\\leq K\\sqrt{N/D}"
     },
     {
       "from": "m2-thresh-repair",
-      "to": "m2-thresh-deletion"
+      "to": "m2-thresh-deletion",
+      "context": "or negative gaps from at most slightly more than $N$ to strictly fewer than $N$. The remaining rows can then be repaired using the surplus dimension in Lemma~\\ref{thresh:repair}. The constants are chosen in the following order. First fix $\\eta\\in(0,1-\\alpha/\\alpha')$, so that for all sufficient"
     },
     {
       "from": "m2-thresh-uniform-geometry",
-      "to": "m2-thresh-deletion"
+      "to": "m2-thresh-deletion",
+      "context": "unt $m=\\lfloor\\alpha N\\rfloor$ is at most $(1-\\eta)M$, where $M=\\lfloor\\alpha'N\\rfloor$. Next choose $0<\\rho<\\min(1/8,\\eta/8)$ and obtain $K,c,u_0$ from Lemma~\\ref{thresh:uniform-geometry} for the parent matrix. Finally fix $d>0$ satisfying~\\eqref{thresh:eq:repair-smallness} and $d^2/u_0^2\\leq\\rho/2$. Cho"
     },
     {
       "from": "m2-thresh-pressure-energy",
-      "to": "m2-thresh-sharp"
+      "to": "m2-thresh-sharp",
+      "context": "If $\\alpha<\\alpha_J$, choose a fixed $\\alpha'\\in(\\alpha,\\alpha_J)$. The expected parent ground energy is $o(N)$ for both laws by Lemma~\\ref{thresh:pressure-energy} and pressure universality. Proposition~\\ref{thresh:deletion} proves satisfiability with probability tending to one. F"
     },
     {
       "from": "m2-thresh-deletion",
-      "to": "m2-thresh-sharp"
+      "to": "m2-thresh-sharp",
+      "context": "\\in(\\alpha,\\alpha_J)$. The expected parent ground energy is $o(N)$ for both laws by Lemma~\\ref{thresh:pressure-energy} and pressure universality. Proposition~\\ref{thresh:deletion} proves satisfiability with probability tending to one. For $\\alpha_J<\\alpha\\leq B_0$, the same ground-energy limit is"
     },
     {
       "from": "m2-cor-press-convex-loss-upper",
-      "to": "m2-zero-negative-law"
+      "to": "m2-zero-negative-law",
+      "context": "). Here only a trial upper bound is needed. The Gaussian interpolation with smooth concave tangent caps, followed by the spin conjugate inequality (Corollary~\\ref{cor:press-convex-loss-upper}), gives for every \\(q_*<1\\) \\begin{equation}\\label{zero:fixed-loss-pressure-trial} \\limsup_{N\\to\\infty}P_N(-\\beta W_w)"
     },
     {
       "from": "m2-cor-conc-convex-loss",
-      "to": "m2-zero-negative-law"
+      "to": "m2-zero-negative-law",
+      "context": "in{equation}\\label{zero:fixed-loss-pressure-trial} \\limsup_{N\\to\\infty}P_N(-\\beta W_w) \\le\\alpha\\Phi_{-\\beta W_w}(q)+E(q). \\end{equation} This uses Corollary~\\ref{cor:conc-convex-loss}, namely ordinary profile concavity for a concave terminal, not the small-terminal-perturbation radius in \\eqref{eq:src1"
     },
     {
       "from": "m2-zero-variational",
-      "to": "m2-zero-negative-law"
+      "to": "m2-zero-negative-law",
+      "context": "ce-cap pressure--energy estimate applies to \\(W_w\\), whose curvature and growth bounds are uniform for \\(|w|\\le w_0\\). Use the recovery profiles of Proposition~\\ref{zero:variational} in \\eqref{zero:fixed-loss-pressure-trial}, take \\(N\\to\\infty\\), and then \\(\\beta\\to\\infty\\). For completeness, the end"
     },
     {
       "from": "m2-thresh-uniform-geometry",
-      "to": "m2-zero-negative-cutoffs"
+      "to": "m2-zero-negative-cutoffs",
+      "context": "yed logarithmic bound prevents any subsequential limit from putting mass at zero. For the contact density, use the uniform all-spin near-gap estimate in Lemma~\\ref{thresh:uniform-geometry}. For each fixed \\(\\rho>0\\), it supplies \\(u_0>0\\) such that every ground minimizer satisfies \\[ k\\le(1+\\rho)N+2H_{\\mi"
     },
     {
       "from": "m2-zero-mechanical",
-      "to": "m2-zero-negative-cutoffs"
+      "to": "m2-zero-negative-cutoffs",
+      "context": "rho)N+2H_{\\min}/u_0^2. \\] Take \\(N\\to\\infty\\), then \\(\\alpha\\downarrow\\alpha_J\\), and finally \\(\\rho\\downarrow0\\). This gives \\(\\limsup z_c\\le1\\), while Lemma~\\ref{zero:mechanical} gives \\(z_c\\ge1\\)."
     },
     {
       "from": "m2-zero-negative-cutoffs",
-      "to": "m2-zero-spectral"
+      "to": "m2-zero-spectral",
+      "context": "and use the contact and moment convergence. The upper bound \\(\\Delta^{-2}\\) follows from \\eqref{eq:src17} and \\(z_c\\ge1\\). The estimate for \\(\\mu\\) in Lemma~\\ref{zero:negative-cutoffs} then gives \\(\\Delta\\le Ce^{-1/4}\\). The second inequality in \\eqref{zero:spin-endpoint}, together with \\(p_{q_\\beta}(1"
     },
     {
       "from": "m2-zero-negative-cutoffs",
-      "to": "m2-zero-normalized-force-cutoff"
+      "to": "m2-zero-normalized-force-cutoff",
+      "context": "s bounded away from zero because \\(z_c\\ge1\\) and \\(\\alpha\\le B_0\\). Thus the conditional mean \\(\\E[R\\mid R>0]=L\\mu/p\\) is bounded above and below. Apply Lemma~\\ref{zero:negative-cutoffs} to the corresponding mean-one force to obtain the displayed small-value bound. The final assertion is \\(z_c\\to1\\)."
     },
     {
       "from": "m2-thresh-slab-direction",
-      "to": "m2-zero-positive-cutoffs"
+      "to": "m2-zero-positive-cutoffs",
+      "context": "zero image on all active and all absolute-near-zero rows and intersect their kernel with \\(y^\\perp\\). This subspace has dimension at least \\(\\eta'N-1\\). Lemma~\\ref{thresh:slab-direction} gives a unit vector \\(v_0\\) there with \\(\\|Av_0\\|_\\infty\\le C/\\sqrt{\\eta'}\\). For small fixed \\(b>0\\), depending on \\(v"
     },
     {
       "from": "m2-zero-endpoint",
-      "to": "m2-zero-positive-cutoffs"
+      "to": "m2-zero-positive-cutoffs",
+      "context": "rect-positive-cutoff}, since the counting event included all positive gaps in \\((0,u]\\). At fixed density, the finite-temperature row marginal and Proposition~\\ref{zero:endpoint} converge along the chosen subsequence at both endpoints 0 and \\(u\\), which are atomless. Thus the bound passes directly"
     },
     {
       "from": "m2-zero-variational",
-      "to": "m2-zero-threshold-characterization"
+      "to": "m2-zero-threshold-characterization",
+      "context": "int\\gamma g_z^2\\); atomlessness with a positive density on negative intervals makes the terminal expectation strictly negative. Recovery trials in Proposition~\\ref{zero:variational} remain valid when \\(e=0\\). In that regime all trial functionals are nonnegative, so \\(\\alpha\\) is at most every ratio"
     },
     {
       "from": "m2-crit-duality",
-      "to": "m2-crit-compactness"
+      "to": "m2-crit-compactness",
+      "context": "}\\E R^2. \\end{equation} The reciprocal of $s/A$ is $A\\chi$, so this is an admissible zero-temperature trial. At $\\alpha_c$, zero ground energy and Proposition~\\ref{crit:duality} make its value nonnegative. Letting $A\\to\\infty$ proves the assertion. If $\\Delta=0$, replace $\\chi$ by $\\chi+\\eta$."
     },
     {
       "from": "m2-crit-convexity",
-      "to": "m2-crit-unique-critical"
+      "to": "m2-crit-unique-critical",
+      "context": "zed curvatures along the states.} Both pairs minimize the globally nonnegative critical functional. Their midpoint is admissible and also has value zero. Lemma~\\ref{crit:convexity} and $s_i(0)=1$ yield $c_1=c_2=:c>0$ and $\\chi_1b_1=\\chi_2b_2$ almost everywhere. Put $k_i(t,h)=-\\chi_i(t)(f_i)_{hh}(t,"
     },
     {
       "from": "m2-crit-pde",
-      "to": "m2-crit-unique-critical"
+      "to": "m2-crit-unique-critical",
+      "context": "})=k_2(t,H_{2,t}),\\qquad 0<t<1, \\] on a single event of probability one. Each $k_i(t,\\cdot)$ is strictly decreasing with strictly negative derivative by Lemma~\\ref{crit:pde}. Each $H_{i,t}$ has full support in $\\R$: on every interior compact time interval its additive-noise diffusion has loca"
     }
   ]
 }

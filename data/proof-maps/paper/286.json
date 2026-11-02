@@ -671,423 +671,528 @@
   "edges": [
     {
       "from": "m1-lem-models-graph",
-      "to": "m1-cor-models-dimensions"
+      "to": "m1-cor-models-dimensions",
+      "context": "Use Lemma~\\ref{lem:models-graph} and the orbit decompositions in Lemma~\\ref{lem:models-induction}. Each free coordinate orbit gives $n$ regular copies,"
     },
     {
       "from": "m1-lem-models-induction",
-      "to": "m1-cor-models-dimensions"
+      "to": "m1-cor-models-dimensions",
+      "context": "Use Lemma~\\ref{lem:models-graph} and the orbit decompositions in Lemma~\\ref{lem:models-induction}. Each free coordinate orbit gives $n$ regular copies, of module dimension $n$ with the unnormalized matrix trace conven"
     },
     {
       "from": "m1-lem-setup-twisted-absorption",
-      "to": "m1-lem-setup-compact-reduction"
+      "to": "m1-lem-setup-compact-reduction",
+      "context": "Lambda_0}$-regular representation. This is possible because finite-index restriction preserves finite module dimension. Tensor with $\\overline{v^c}$. Lemma~ \\ref{lem:setup-twisted-absorption} gives a finite normal module with multiplier $\\overline{\\nu_c}\\,\\overline\\omega$. In $\\overline V_c\\otimes V_c$ the ve"
     },
     {
       "from": "m1-lem-setup-twisted-absorption",
-      "to": "m1-lem-setup-normal-tensors"
+      "to": "m1-lem-setup-normal-tensors",
+      "context": "ar multiple for its $\\overline\\omega$-projective right representation. At that regular index absorb the diagonal right actions of the remaining slots by Lemma~\\ref{lem:setup-twisted-absorption}. This use of absorption allows an infinite-dimensional auxiliary tensor space. The absorbing unitaries are formed fro"
     },
     {
       "from": "m1-lem-setup-normal-tensors",
-      "to": "m1-prop-setup-induced-algebras"
+      "to": "m1-prop-setup-induced-algebras",
+      "context": "$ gives a fixed field. Consequently $(\\mathcal A_j)^\\sigma$ is the commutant of the complementary regular representation obtained by omitting slot $j$. Lemma~\\ref{lem:setup-normal-tensors} makes this commutant finite; its normalized trace is $\\beta_j$-invariant, since the remaining slot acts by unitaries in"
     },
     {
       "from": "m1-prop-setup-induced-algebras",
-      "to": "m1-lem-setup-product-mixing"
+      "to": "m1-lem-setup-product-mixing",
+      "context": "ven while all other factor translations vary. Thus for all-factor escape the weak limit is $\\prod_iP_i$, which is the projection onto constants by Proposition~\\ref{prop:setup-induced-algebras}. For partial escape, expand only over the factors of $G_0$; the other translations are the identity. The limit is the"
     },
     {
       "from": "m1-lem-setup-face-blocks",
-      "to": "m1-lem-links-matrix-data"
+      "to": "m1-lem-links-matrix-data",
+      "context": "on~\\ref{sec:setup}. At archimedean places normalize by the Hilbert--Schmidt norm; at finite places use projective ratio charts with a maximal coordinate. Lemma~\\ref{lem:setup-face-blocks} identifies the surviving Levi blocks when the gap set is $D$, proves their invertibility on a bounded complementary-gap"
     },
     {
       "from": "m1-lem-links-matrix-data",
-      "to": "m1-lem-links-gram-transport"
+      "to": "m1-lem-links-gram-transport",
+      "context": "For a fixed shift, normalized matrix multiplication and the inverse formula have denominators bounded away from zero by Lemma~\\ref{lem:links-matrix-data}. Their action on the compact label space is continuous. A diagonal continuous test therefore intertwines the shift in t"
     },
     {
       "from": "m1-lem-links-gram-transport",
-      "to": "m1-prop-links-link"
+      "to": "m1-prop-links-link",
+      "context": "ed image effects therefore lie in \\(\\mathcal A_j\\). A measured target shift changes the inverse Fourier label by the corresponding left geometric action. Lemma~\\ref{lem:links-gram-transport} consequently gives \\(\\beta_j\\)-equivariance, with the action on functions given by composition with the inverse target"
     },
     {
       "from": "m1-lem-links-gram-transport",
-      "to": "m1-lem-links-relative-boundedness"
+      "to": "m1-lem-links-relative-boundedness",
+      "context": "h fixed shift preserves the gap event in the limit, so each resulting term vanishes. The approximation error is estimated on the uncut bounded columns by Lemma~\\ref{lem:links-gram-transport}. Taking the approximation limit proves the same inclusion for bounded pairs, with no use of a mixed tensor decompositio"
     },
     {
       "from": "m1-lem-links-gram-transport",
-      "to": "m1-lem-links-invariant-variables"
+      "to": "m1-lem-links-invariant-variables",
+      "context": "For a fixed Fourier shift, the assumed asymptotic identity of bounded tests gives precisely the limiting intertwining identity used in Lemma~\\ref{lem:links-gram-transport}. Its finite-Fourier approximation proof is unchanged. Base decomposability and commutation with companions follow befor"
     },
     {
       "from": "m1-prop-links-link",
-      "to": "m1-lem-links-invariant-variables"
+      "to": "m1-lem-links-invariant-variables",
+      "context": "(\\mathcal N\\). The source face-parabolic invariance, followed by the active-factor radical argument and the inactive-factor centralizer argument in Proposition~\\ref{prop:links-link}, puts this element in \\(\\mathcal N^G=\\mathbb C\\). For mixed links, independent target invariance puts the respective s"
     },
     {
       "from": "m1-prop-links-link",
-      "to": "m1-lem-links-strict-growth"
+      "to": "m1-lem-links-strict-growth",
+      "context": "Its scalar mass is some \\(m_D>0\\), by Proposition~\\ref{prop:links-link}. Divide the stratum measurement by \\(m_D\\), and denote the resulting unital full-data measurement by \\(\\Psi\\). If \\(D=\\"
     },
     {
       "from": "m1-lem-links-obstruction",
-      "to": "m1-lem-links-strict-growth"
+      "to": "m1-lem-links-strict-growth",
+      "context": "data measurement by \\(\\Psi\\). If \\(D=\\Pi\\), its image measurement is a nonzero full-flag map fixed by the remaining source component \\(S\\), contradicting Lemma~\\ref{lem:links-obstruction}. Thus in the situation under consideration \\(D\\ne\\Pi\\). \\emph{The marginal inclusion.} Let \\(\\Psi(F)=V_\\Omega^*M_FV_\\O"
     },
     {
       "from": "m1-lem-links-matrix-data",
-      "to": "m1-lem-links-strict-growth"
+      "to": "m1-lem-links-strict-growth",
+      "context": "has zero limiting effect by the window estimate. A countable compact-window exhaustion therefore shows that the outer law gives no mass to \\(\\Omega_D\\). Lemma~\\ref{lem:links-matrix-data} places its remaining support in \\[ \\overline{\\Omega_D}\\setminus\\Omega_D \\subseteq\\bigcup_{D'\\supsetneq D}\\Omega"
     },
     {
       "from": "m1-lem-links-strict-growth",
-      "to": "m1-prop-links-gap-count"
+      "to": "m1-prop-links-gap-count",
+      "context": "for a missing root has a nonzero projection to the remaining-Levi component containing that root; its other split parts commute with that component. Thus Lemma~\\ref{lem:links-strict-growth} applies at each stage. If a full target stratum were reached before the source face were complete, the obstruction in t"
     },
     {
       "from": "m1-lem-links-no-bounded-stratum",
-      "to": "m1-prop-links-gap-count"
+      "to": "m1-prop-links-gap-count",
+      "context": "which proves \\(|D|\\leq|I|\\). If \\(I=\\Pi\\), this is just the automatic ceiling \\(|D|\\leq r\\), and no remaining-Levi obstruction is invoked. For a vertex, Lemma~\\ref{lem:links-no-bounded-stratum} excludes zero gaps and the upper bound excludes two or more. The same strict-growth argument, applied successively from"
     },
     {
       "from": "m1-lem-setup-building-interpolation",
-      "to": "m1-prop-transfer-transverse"
+      "to": "m1-prop-transfer-transverse",
+      "context": "ary fractions. For a finite-place building, the corresponding apartment-independent interpolation and its uniform Lipschitz bounds in both endpoints are Lemma~\\ref{lem:setup-building-interpolation}. The product of these real and finite-place bounds gives the assertion for the whole ambient space. \\emph{The common s"
     },
     {
       "from": "m1-prop-links-link",
-      "to": "m1-lem-transfer-fullness"
+      "to": "m1-lem-transfer-fullness",
+      "context": "lated joins must therefore be the full trace. This proves patch fullness. The normal-copy assertion follows from the normal ampliation statement in Proposition~\\ref{prop:links-link}."
     },
     {
       "from": "m1-prop-links-gap-count",
-      "to": "m1-prop-transfer-types"
+      "to": "m1-prop-transfer-types",
+      "context": "o,q^{-1}o$, in accordance with the inverse Fourier convention. If the source vertices are coaxial, the quotient path has exactly one target gap by Proposition~\\ref{prop:links-gap-count}. Nondual transverse target types would force two distinct large gaps in the cut product. The bounded-overlap version of"
     },
     {
       "from": "m1-prop-transfer-transverse",
-      "to": "m1-prop-transfer-types"
+      "to": "m1-prop-transfer-types",
+      "context": "~\\ref{prop:links-gap-count}. Nondual transverse target types would force two distinct large gaps in the cut product. The bounded-overlap version of Proposition~\\ref{prop:transfer-transverse} bounds its norm uniformly at fixed angular patches and thickness, independently of the large-gap thresholds. The locali"
     },
     {
       "from": "m1-lem-transfer-fullness",
-      "to": "m1-prop-transfer-types"
+      "to": "m1-prop-transfer-types",
+      "context": "dered vanishing without a claim about uncut operator norms. Fullness supplies a nonzero ordered cut product for generic source pairs: successively apply Lemma~\\ref{lem:transfer-fullness} to the two families. Generic dual source vertices are opposite and hence coaxial, whereas generic nondual source types"
     },
     {
       "from": "m1-prop-transfer-transverse",
-      "to": "m1-prop-transfer-isolated-sharpness"
+      "to": "m1-prop-transfer-isolated-sharpness",
+      "context": "$. The transfer error has a uniform quantitative form. Normalized product formulas are smooth with bounded derivatives on the buffered patches, by Proposition~\\ref{prop:transfer-transverse}. Replace the normalized matrix of $q$ by its rank-one top truncation. The two angular tests agree exactly on that trunc"
     },
     {
       "from": "m1-lem-links-relative-boundedness",
-      "to": "m1-prop-transfer-isolated-sharpness"
+      "to": "m1-prop-transfer-isolated-sharpness",
+      "context": "he slow path is nonmixed, $Lf$ is merely Hilbert, but every end column used before the link limit is operator bounded; the one-bounded-input extension in Lemma~\\ref{lem:links-relative-boundedness} is exactly what is used. Choose two generic moved labels in that cell. The same nonzero functional is bounded by both"
     },
     {
       "from": "m1-lem-transfer-disjointness",
-      "to": "m1-prop-transfer-isolated-sharpness"
+      "to": "m1-prop-transfer-isolated-sharpness",
+      "context": "ess} is exactly what is used. Choose two generic moved labels in that cell. The same nonzero functional is bounded by both of their forms, contradicting Lemma~\\ref{lem:transfer-disjointness}. Thus candidate products at the same source vertex are supported on equality of target values. For two unital POVMs $E,"
     },
     {
       "from": "m1-lem-links-relative-boundedness",
-      "to": "m1-prop-transfer-incidence"
+      "to": "m1-prop-transfer-incidence",
+      "context": "hen $i$ lies in another component, every type-$i$ label is incident to $F$, and ordinary fullness gives $\\mathcal C=0$, proving the inclusion. Otherwise Lemma~\\ref{lem:links-relative-boundedness}\\textup{(ii)} makes $\\mathcal C$ invariant under $N_0$. Take $f$ in its dense relatively bounded part and, by part~\\tex"
     },
     {
       "from": "m1-prop-transfer-transverse",
-      "to": "m1-prop-transfer-incidence"
+      "to": "m1-prop-transfer-incidence",
+      "context": "translation fixes $z$, because it acts trivially on the Levi chamber refinements incident to $F$. The bound is thus independent of the main time. Proposition~\\ref{prop:transfer-transverse} gives a uniform Hilbert bound for the other, cut product. Its constant depends on the fixed window, thickness, buffere"
     },
     {
       "from": "m1-prop-links-link",
-      "to": "m1-prop-transfer-incidence"
+      "to": "m1-prop-transfer-incidence",
+      "context": "er shifts; the residual and reverse-window restrictions have been removed. For the finite constant column frame $b_r$ of $e$, the frame identity of Proposition~\\ref{prop:links-link} is \\[ c_F\\langle f,\\Psi_F(\\mathcal I_i(O))f\\rangle =\\frac1d\\sum_r\\|E(A)J(\\overline{b_r},f)\\|^2=0. \\] Divide by $c_F"
     },
     {
       "from": "m1-lem-links-matrix-data",
-      "to": "m1-prop-transfer-incidence"
+      "to": "m1-prop-transfer-incidence",
+      "context": "ns span the whole amplified end space. On a compact stratum window the surviving top block of $S(h)$ has range containing every incident highest line, by Lemma~\\ref{lem:links-matrix-data}. Bounded local right inverses on its constant-rank image, or finite local spanning columns followed by output matrix mu"
     },
     {
       "from": "m1-prop-transfer-types",
-      "to": "m1-lem-transfer-incidence-words"
+      "to": "m1-lem-transfer-incidence-words",
+      "context": "The base failure rule is nonopposition of dual types, supplied by Proposition~\\ref{prop:transfer-types}; at equal self-opposite vertices it follows by its continuity argument. Suppose all incident replacements of one or bot"
     },
     {
       "from": "m1-prop-transfer-incidence",
-      "to": "m1-lem-transfer-incidence-words"
+      "to": "m1-lem-transfer-incidence-words",
+      "context": "tisfy a previously proved failure rule. If an incident pair at the target violates that rule, choose small neighborhoods of the violating vertices. Proposition~\\ref{prop:transfer-incidence} puts the corresponding output ranges inside sums of the incident source-label ranges. The prior failure rule makes thos"
     },
     {
       "from": "m1-lem-transfer-incidence-words",
-      "to": "m1-lem-transfer-inequality-word"
+      "to": "m1-lem-transfer-inequality-word",
+      "context": "remaining $r-1$ round trips realize it. Every unequal position is above that least nontrivial double coset, so success at all unequal pairs follows from Lemma~\\ref{lem:transfer-incidence-words}. The self-opposite leaf exists in the non-$A$ crystallographic list, including the nonreduced cases through their under"
     },
     {
       "from": "m1-lem-transfer-inequality-word",
-      "to": "m1-prop-transfer-sharp-flags"
+      "to": "m1-prop-transfer-sharp-flags",
+      "context": "Apply Lemma~\\ref{lem:transfer-inequality-word} in a target higher-rank component, and pull the least-position language back by Lemma~\\ref{lem:transfer-incidence-words"
     },
     {
       "from": "m1-lem-transfer-incidence-words",
-      "to": "m1-prop-transfer-sharp-flags"
+      "to": "m1-prop-transfer-sharp-flags",
+      "context": "Apply Lemma~\\ref{lem:transfer-inequality-word} in a target higher-rank component, and pull the least-position language back by Lemma~\\ref{lem:transfer-incidence-words}. The inverse-permuted word fails at equality of source type $p^{-1}(j)$. Failure propagation therefore puts every order"
     },
     {
       "from": "m1-prop-transfer-isolated-sharpness",
-      "to": "m1-prop-transfer-sharp-flags"
+      "to": "m1-prop-transfer-sharp-flags",
+      "context": "ion therefore puts every ordered product of two candidates at that same source label on the target diagonal. The unital-POVM argument at the end of Proposition~\\ref{prop:transfer-isolated-sharpness} makes them equal projections. Together with that proposition, this supplies at least one sharp type in every target com"
     },
     {
       "from": "m1-prop-transfer-incidence",
-      "to": "m1-prop-transfer-sharp-flags"
+      "to": "m1-prop-transfer-sharp-flags",
+      "context": "tex path lexicographically to a full chamber path. Its original marginal is retained. If an already sharp vertex label is incident to that chamber, Proposition~\\ref{prop:transfer-incidence} puts the corresponding full-path marginal ranges inside that sharp PVM's ranges. Unitality and the same assertion for c"
     },
     {
       "from": "m1-prop-links-gap-count",
-      "to": "m1-prop-transfer-sharp-flags"
+      "to": "m1-prop-transfer-sharp-flags",
+      "context": "(O')$, and hence is zero. Countably many such pairs exhaust the omitted-type event. Thus every $p(i)$, $i\\in I$, occurs. The general upper bound of Proposition~\\ref{prop:links-gap-count} forces the stratum type to equal $p(I)$. On this stratum $\\mathcal I_i(O)$ is precisely the event that its type-$p(i)$"
     },
     {
       "from": "m1-prop-transfer-galleries",
-      "to": "m1-prop-transfer-residue-graph"
+      "to": "m1-prop-transfer-residue-graph",
+      "context": "ource gallery shortened from the longest by the missing reflection connects the matched chambers. Its target gallery has the same shortened type by Proposition~\\ref{prop:transfer-galleries}. The shortened Weyl position is $s_iw_0=w_0s_{i^*}$; it has all the other respective left and right descents, so satura"
     },
     {
       "from": "m1-prop-links-link",
-      "to": "m1-prop-transfer-residue-graph"
+      "to": "m1-prop-transfer-residue-graph",
+      "context": "h multiplication in the independent start and output variables. Integrate out that slot. Pull the sharp reverse-panel projection through $J$, using Proposition~\\ref{prop:links-link}. The line equation then supplies $u=g\\operatorname{pr}(v)=gq$. This proves \\eqref{eq:input-6} on those ordered ranges."
     },
     {
       "from": "m1-prop-transfer-incidence",
-      "to": "m1-prop-transfer-residue-graph"
+      "to": "m1-prop-transfer-residue-graph",
+      "context": "ion holds everywhere. \\emph{Finite target places.} At a finite target place, replace the Hilbert line argument by the individual-pair assertion of Proposition~\\ref{prop:transfer-incidence}. Choose scalar clopen start and end patches. On a buffered output window carrying the end patch strictly inside the sta"
     },
     {
       "from": "m1-prop-transfer-incidence",
-      "to": "m1-cor-transfer-fibre-links"
+      "to": "m1-cor-transfer-fibre-links",
+      "context": "Borel output parameters. No countable norm-dense class of all bounded Borel functions is used. Disintegrate the amplified incidence containment of Proposition~\\ref{prop:transfer-incidence} on the same determining family. On almost every fibre its closed span contains the Hilbert fibre tensored with the span"
     },
     {
       "from": "m1-lem-links-obstruction",
-      "to": "m1-prop-finite-frame"
+      "to": "m1-prop-finite-frame",
+      "context": "ese groups generate the larger parabolic allowing the omitted simple root. The resulting unital target-equivariant full-boundary observation contradicts Lemma~\\ref{lem:links-obstruction}. The assertion concerns the original observations and so descends through the identity amplification. In a many-panel l"
     },
     {
       "from": "m1-prop-finite-frame",
-      "to": "m1-cor-finite-arch-separation"
+      "to": "m1-cor-finite-arch-separation",
+      "context": "to the identity, the normal averages $\\int_U\\alpha_u(d)\\,du$ converge ultraweakly to $d$. Their ranges therefore generate $D_*$. This contradicts Proposition~\\ref{prop:finite-frame}. The archimedean subset of the finite type list is mapped into itself; finiteness and bijectivity of the type permutati"
     },
     {
       "from": "m1-prop-finite-frame",
-      "to": "m1-lem-finite-corner-kernel"
+      "to": "m1-lem-finite-corner-kernel",
+      "context": "also fix $\\alpha_t(e)D_*\\alpha_t(e)$ pointwise for every $t\\in T$. The join of the projections $\\alpha_t(e)$ is nonzero and $T$-fixed; it is one by Proposition~\\ref{prop:finite-frame}. A countable subfamily has the same join. Lemma~\\ref{lem:finite-corner-automorphisms} now shows that every commutator"
     },
     {
       "from": "m1-lem-finite-corner-automorphisms",
-      "to": "m1-lem-finite-corner-kernel"
+      "to": "m1-lem-finite-corner-kernel",
+      "context": "in of the projections $\\alpha_t(e)$ is nonzero and $T$-fixed; it is one by Proposition~\\ref{prop:finite-frame}. A countable subfamily has the same join. Lemma~\\ref{lem:finite-corner-automorphisms} now shows that every commutator from $V_0$ acts trivially on $D_*$. There is a nonidentity such commutator because $\\L"
     },
     {
       "from": "m1-lem-finite-blocks",
-      "to": "m1-cor-finite-primes"
+      "to": "m1-cor-finite-primes",
+      "context": "trivial quotient, so is their product. The assertion for closed subgroups follows by inverse limits. Consequently $V\\times1\\subset G_n$ for every $n$. Lemma~\\ref{lem:finite-blocks} makes $[V,V]$ act trivially on all $D_n$ and hence on $D_0$. The closure of this commutator subgroup has full Lie algeb"
     },
     {
       "from": "m1-lem-finite-corner-kernel",
-      "to": "m1-cor-finite-primes"
+      "to": "m1-cor-finite-primes",
+      "context": "l Lie algebra $[\\mathfrak s,\\mathfrak s]=\\mathfrak s$; for example, take the Lie algebra of the compact abelian quotient by its closure. This contradicts Lemma~\\ref{lem:finite-corner-kernel}. Applying the assertion at every type proves the last statement."
     },
     {
       "from": "m1-lem-finite-uniform-log",
-      "to": "m1-lem-finite-limit-kernel"
+      "to": "m1-lem-finite-limit-kernel",
+      "context": "The adjugate identity then yields \\[ p^aM_V\\times\\{0\\} \\subset\\left(\\sum_iB_{i,n}M_V\\right)\\times\\{0\\} \\subset M_n \\] uniformly at those levels. Apply Lemma~\\ref{lem:finite-uniform-log} in the fixed product logarithm group $V\\times U$. With a constant $c$ independent of $n$, it follows that \\[ \\exp(p^{"
     },
     {
       "from": "m1-lem-finite-corner-kernel",
-      "to": "m1-lem-finite-limit-kernel"
+      "to": "m1-lem-finite-limit-kernel",
+      "context": "y and their algebras exhaust $D_0$. Thus $[V_1,V_1]$ fixes $D_0$. Its closure has full Lie algebra $[\\mathfrak s,\\mathfrak s]=\\mathfrak s$, contradicting Lemma~\\ref{lem:finite-corner-kernel}."
     },
     {
       "from": "m1-lem-finite-limit-kernel",
-      "to": "m1-prop-finite-dimensions"
+      "to": "m1-prop-finite-dimensions",
+      "context": "Let $G_\\infty$ be any limit. Its Lie projection onto $\\mathfrak s$ is surjective. By Lemma~\\ref{lem:finite-limit-kernel}, its Lie projection into $\\mathfrak t$ is injective. Consequently \\begin{equation} \\dim_{\\mathbb Q_p}\\mathfrak s \\le"
     },
     {
       "from": "m1-cor-finite-arch-separation",
-      "to": "m1-prop-finite-dimensions"
+      "to": "m1-prop-finite-dimensions",
+      "context": "uality} \\end{equation} Use the same missing-root construction at every type. Source and target panel dimensions come from the same finite list, and Corollaries~\\ref{cor:finite-arch-separation} and~\\ref{cor:finite-primes} keep each type cycle over a single prime field. Iterating Equation~\\eqref{eq:finite-dimens"
     },
     {
       "from": "m1-cor-finite-primes",
-      "to": "m1-prop-finite-dimensions"
+      "to": "m1-prop-finite-dimensions",
+      "context": "issing-root construction at every type. Source and target panel dimensions come from the same finite list, and Corollaries~\\ref{cor:finite-arch-separation} and~\\ref{cor:finite-primes} keep each type cycle over a single prime field. Iterating Equation~\\eqref{eq:finite-dimension-inequality} around that"
     },
     {
       "from": "m1-lem-finite-blocks",
-      "to": "m1-prop-finite-dimensions"
+      "to": "m1-prop-finite-dimensions",
+      "context": "r of every block of $D_n$ lies in $U_m$. It therefore fixes the image of $D_m$ in that block pointwise. Its projective representation is irreducible by Lemma~\\ref{lem:finite-blocks}, so that image is scalar. The block representations are jointly faithful, and therefore $D_m$ is abelian. Exhaustion"
     },
     {
       "from": "m1-prop-finite-dimensions",
-      "to": "m1-prop-finite-torsor"
+      "to": "m1-prop-finite-torsor",
+      "context": "By Proposition~\\ref{prop:finite-dimensions}, $e$ is an abelian projection. On its central support $z_e$ the algebra is type I, and the map \\begin{equation} Z(D_*"
     },
     {
       "from": "m1-lem-finite-corner-kernel",
-      "to": "m1-prop-finite-torsor"
+      "to": "m1-prop-finite-torsor",
+      "context": "trivially on the center. Since $V$ fixes $e$, Equation~\\eqref{eq:finite-center-corner} would make that subgroup act trivially on $eD_*e$, contradicting Lemma~\\ref{lem:finite-corner-kernel}. Because $L$ is discrete and $\\dim\\mathfrak s=\\dim\\mathfrak t$, the closed Lie subgroup $N_T(L)$ has the full dimension"
     },
     {
       "from": "m1-prop-finite-torsor",
-      "to": "m1-prop-finite-maps"
+      "to": "m1-prop-finite-maps",
+      "context": "ining labels. Continuity in the source label extends commutation to every fixed pair of labels. In the intrinsic coordinates $D_*=L^\\infty(T)$ of Proposition~\\ref{prop:finite-torsor}, the spectral values of the generators give a boundary-valued measurable function $F(x,z)$. Countable determining obser"
     },
     {
       "from": "m1-prop-transfer-residue-graph",
-      "to": "m1-prop-finite-speed"
+      "to": "m1-prop-finite-speed",
+      "context": "The permissible mesh ensures that $s_t$ belongs to the root-generated group $S$, so $\\eta(s_t)$ is defined. The exact translated-input identity of Proposition~\\ref{prop:transfer-residue-graph} and Proposition~\\ref{prop:finite-maps} now give \\[ a\\tau(s_tz)=g\\,b\\tau(z). \\] Since $\\tau(s_tz)=\\eta(s_t)\\tau(z)$, th"
     },
     {
       "from": "m1-prop-finite-maps",
-      "to": "m1-prop-finite-speed"
+      "to": "m1-prop-finite-speed",
+      "context": "o the root-generated group $S$, so $\\eta(s_t)$ is defined. The exact translated-input identity of Proposition~\\ref{prop:transfer-residue-graph} and Proposition~\\ref{prop:finite-maps} now give \\[ a\\tau(s_tz)=g\\,b\\tau(z). \\] Since $\\tau(s_tz)=\\eta(s_t)\\tau(z)$, this identifies \\begin{equation} g=a\\eta"
     },
     {
       "from": "m1-lem-ray-cells",
-      "to": "m1-prop-ray-radial"
+      "to": "m1-prop-ray-radial",
+      "context": "s normalized \\(C^m\\) norm at most \\(C_m/R\\). Use adjacent \\(\\epsilon_j\\)-cells for \\(n,n'\\). Their relative coordinates \\((V,Z)\\) have uniform bounds. Lemma~\\ref{lem:ray-cells} gives the required Schur estimate. The innermost ball requires only the large-height cases: \\(J\\) was chosen larger th"
     },
     {
       "from": "m1-lem-ray-geometry",
-      "to": "m1-lem-ray-angular"
+      "to": "m1-lem-ray-angular",
+      "context": "input box is separated from \\(g^-\\) by at least a sufficiently large multiple of \\(\\delta\\), and its pole distance is \\(q=e^{-u}\\). If \\(2u\\le L+C_1\\), Lemma~\\ref{lem:ray-geometry}(iii) says that the map from this box to the output boundary, including the extra coordinate \\(e^{-r(h)}/\\delta\\), has n"
     },
     {
       "from": "m1-lem-ray-unary",
-      "to": "m1-lem-ray-angular"
+      "to": "m1-lem-ray-angular",
+      "context": "(L\\) is included by increasing the constants. Thus every pair except pairs of boxes lying within \\(C_2\\delta\\) of the two respective poles is handled by Lemma~\\ref{lem:ray-unary}. To justify the multiplicity used there, a map with bounded magnification sends one buffered \\(\\delta\\)-box into a bal"
     },
     {
       "from": "m1-lem-ray-cells",
-      "to": "m1-lem-ray-angular"
+      "to": "m1-lem-ray-angular",
+      "context": "e chosen before \\(g\\); the coordinates of the pole merely change the expansion coefficients. The number of original exceptional pairs is also bounded. Lemmas~\\ref{lem:ray-cells} and \\ref{lem:ray-unary} therefore give a bound \\(Ce^{-|s-u|}\\|Y\\|_\\infty\\|Y\\|_2\\) in the square sum of all coefficients"
     },
     {
       "from": "m1-prop-ray-radial",
-      "to": "m1-lem-ray-angular"
+      "to": "m1-lem-ray-angular",
+      "context": "polynomial approximations in the strong-star topology and apply a smooth radial cutoff equal to one on \\(\\{r\\ge l\\}\\) and zero on \\(\\{r\\le l/2\\}\\). Proposition~\\ref{prop:ray-radial} bounds these approximants uniformly. Increase the constant in the hypothesis on \\(l\\) to allow this slack. Each maske"
     },
     {
       "from": "m1-lem-ray-geometry",
-      "to": "m1-prop-ray-lift"
+      "to": "m1-prop-ray-lift",
+      "context": "and \\(e^{-2s}\\); conjugation by the split translation makes both bounded. The positive-root coordinates contract and the remaining factors stay compact. Lemma~\\ref{lem:ray-geometry}(ii), followed by \\eqref{eq:ray-function} on this fixed bounded set, therefore bounds every prescribed normalized deriva"
     },
     {
       "from": "m1-lem-ray-angular",
-      "to": "m1-prop-ray-lift"
+      "to": "m1-prop-ray-lift",
+      "context": "C,D'}A_C^*B_{D'}\\), where \\((t_{C,D'})\\) is a scalar matrix of bounded degree and bounded operator norm, and both mask families satisfy the hypotheses of Lemma~\\ref{lem:ray-angular}. The column form of tracial H\\\"older gives \\[ \\left\\|\\sum_{C,D'}t_{C,D'}A_C^*B_{D'}\\right\\|_2 \\le \\|t\\| \\left\\|\\sum"
     },
     {
       "from": "m1-prop-ray-lift",
-      "to": "m1-lem-ray-overlap"
+      "to": "m1-lem-ray-overlap",
+      "context": "[Proof of the left-density assertion in Proposition~\\ref{prop:ray-lift}] At a shift \\(g\\), the left density has the coefficients of \\(YY^*\\) weighted, term by term, by the overlap of the two"
     },
     {
       "from": "m1-lem-ray-unary",
-      "to": "m1-lem-ray-overlap"
+      "to": "m1-lem-ray-overlap",
+      "context": "ith seminorm at most \\(C_m e^{C_m {d_1}-l}\\), on each of a fixed finite set of angular charts and the normalized height interval. Fourier separation and Lemma~\\ref{lem:ray-unary}, with the other factor uncut, give \\eqref{eq:ray-endpoint-error}. There is no summation over the number of shifts in \\"
     },
     {
       "from": "m1-prop-ray-radial",
-      "to": "m1-lem-ray-overlap"
+      "to": "m1-lem-ray-overlap",
+      "context": "support-preserving approximation needed here, first use bounded Fourier-polynomial approximation and then smooth radial cutoffs with fixed slack. Proposition~\\ref{prop:ray-radial} gives uniform operator bounds; doubling a short support and halving a long support preserves all scale separations in t"
     },
     {
       "from": "m1-prop-ray-lift",
-      "to": "m1-cor-ray-small-change"
+      "to": "m1-cor-ray-small-change",
+      "context": "Pair the appropriate density from Proposition~\\ref{prop:ray-lift} with \\((x-x')^*(x-x')\\), or with the reversed product on the right. Tracial Cauchy--Schwarz and \\[ \\|(x-x')^*(x-x')\\|_"
     },
     {
       "from": "m1-prop-ray-radial",
-      "to": "m1-lem-ray-compactshort"
+      "to": "m1-lem-ray-compactshort",
+      "context": "ap K^{-1}CK, \\] a finite set. Apply \\eqref{eq:ray-short-fixed} to this finite set. Diagonalization over compact exhaustions of \\(G\\), followed by Proposition~\\ref{prop:ray-radial}, gives \\eqref{eq:ray-short-compact}. More explicitly, use a fixed smooth function equal to one on \\([0,1]\\) and zero o"
     },
     {
       "from": "m1-prop-ray-lift",
-      "to": "m1-lem-ray-compactshort"
+      "to": "m1-lem-ray-compactshort",
+      "context": "erel bounds the integrated Hilbert norms of the short approximants by the supremum norm of the fixed cutoff. Thus both kinds of bounds required in Proposition~\\ref{prop:ray-lift} are uniform in these applications. Here is the spectral assertion needed in the last sentence. Multiplication by an el"
     },
     {
       "from": "m1-lem-ray-compactshort",
-      "to": "m1-prop-ray-addition"
+      "to": "m1-prop-ray-addition",
+      "context": "e fixed compact displacements. The exceptional wall in that factor has Haar measure zero, also after taking its product with the complementary factors. Lemma~\\ref{lem:ray-compactshort} therefore identifies the uncut law of the inserted product with the limiting sum law, for almost every \\(s\\). \\par\\sma"
     },
     {
       "from": "m1-lem-ray-kazhdan",
-      "to": "m1-prop-ray-addition"
+      "to": "m1-prop-ray-addition",
+      "context": "ounded integrated Hilbert norms, since each radial piece has both a uniform operator bound and a uniform Hilbert bound. Average \\(s\\) with \\(m_0^{*k}\\). Lemma~\\ref{lem:ray-kazhdan} shows that the difference from the product of the scalar Gram forms is \\(O(c_0^k)\\), uniformly in \\(n\\). Take first a"
     },
     {
       "from": "m1-lem-ray-defect",
-      "to": "m1-prop-ray-addition"
+      "to": "m1-prop-ray-addition",
+      "context": "emma~\\ref{lem:ray-compactshort}, scales \\[ a_n\\ll d_n\\ll R_n . \\] On each compact set of \\(s\\)'s replace \\(X^{\\Theta_n}_s\\) by its short approximation. Lemma~\\ref{lem:ray-defect} implies that every contributing pair of long indices has directions at distance at most \\(C e^{-c\\varepsilon R_n}\\). P"
     },
     {
       "from": "m1-prop-ray-lift",
-      "to": "m1-prop-ray-addition"
+      "to": "m1-prop-ray-addition",
+      "context": ". Lemma~\\ref{lem:ray-defect} implies that every contributing pair of long indices has directions at distance at most \\(C e^{-c\\varepsilon R_n}\\). Proposition~\\ref{prop:ray-lift} therefore permits insertion of the two ray lifts and then intertwines the short left multiplication through the lift. T"
     },
     {
       "from": "m1-prop-ray-radial",
-      "to": "m1-prop-ray-addition"
+      "to": "m1-prop-ray-addition",
+      "context": "d a uniform deficit, but no upper bound on either long input. Use smooth tail cutoffs constant near infinity, whose multiplier norms are bounded by Proposition~\\ref{prop:ray-radial}. Hold \\(N,M\\) fixed through the limits in \\(n\\) and then \\(k\\); afterward exhaust the finite output intervals and incr"
     },
     {
       "from": "m1-prop-setup-induced-algebras",
-      "to": "m1-lem-scale-original-model"
+      "to": "m1-lem-scale-original-model",
+      "context": "A partial isometry identifying the projections gives the required unital tensor-coordinate representation. Scalar relative commutant follows from Proposition~\\ref{prop:setup-induced-algebras}. Choose a full lexicographic chain starting at a vertex and adding one new simple gap at each stage. By Proposition~\\r"
     },
     {
       "from": "m1-prop-links-gap-count",
-      "to": "m1-lem-scale-original-model"
+      "to": "m1-lem-scale-original-model",
+      "context": "position~\\ref{prop:setup-induced-algebras}. Choose a full lexicographic chain starting at a vertex and adding one new simple gap at each stage. By Proposition~\\ref{prop:links-gap-count}, all its target gaps diverge. Apply this to the finite matrix of unit columns, and choose successively finite path time"
     },
     {
       "from": "m1-lem-links-invariant-variables",
-      "to": "m1-lem-scale-entropy"
+      "to": "m1-lem-scale-entropy",
+      "context": "e uncut translated constant column is unchanged. Complementary tightness similarly removes the restriction to the fixed measured compact window. Finally Lemma~\\ref{lem:links-invariant-variables} makes every limiting low-length effect scalar, and the compact-change argument identifies its value uniformly throughou"
     },
     {
       "from": "m1-lem-scale-original-model",
-      "to": "m1-lem-scale-entropy"
+      "to": "m1-lem-scale-entropy",
+      "context": "olating \\eqref{eq:scale-entropy} would thus have positive averaged mass in \\eqref{eq:scale-volume-ratio}, a contradiction. The corner-change argument of Lemma~\\ref{lem:scale-original-model} finishes the proof."
     },
     {
       "from": "m1-prop-ray-radial",
-      "to": "m1-lem-scale-tight-factor"
+      "to": "m1-lem-scale-tight-factor",
+      "context": "Smooth radial truncations have a uniform operator bound by Proposition~\\ref{prop:ray-radial}. Thus tight elements admit Hilbert approximation by bounded sequences supported in \\(r_T\\le CL_n\\). The triangle ineq"
     },
     {
       "from": "m1-lem-scale-tight-factor",
-      "to": "m1-lem-scale-tightening"
+      "to": "m1-lem-scale-tightening",
+      "context": "radicts admissibility. We then align the unitary with the identity. \\emph{A nearby invariant module.} Put \\(D_\\mathcal U=\\prod_{\\mathcal U}D_n\\) and use Lemma~\\ref{lem:scale-tight-factor}. In the Jones basic construction \\(\\langle D_\\mathcal U,e_{Q_0}\\rangle\\), with canonical semifinite trace \\cite{Jones1"
     },
     {
       "from": "m1-prop-ray-radial",
-      "to": "m1-lem-scale-tightening"
+      "to": "m1-lem-scale-tightening",
+      "context": "ight approximation. Its outer radius may be a fixed larger multiple of \\(L_n\\), chosen so that the multiplier scale always exceeds the threshold in Proposition~\\ref{prop:ray-radial}. This does not increase the error beyond the tail in \\eqref{eq:scale-kazhdan-window}. The Hilbert-space Kazhdan inequal"
     },
     {
       "from": "m1-prop-ray-lift",
-      "to": "m1-lem-scale-tightening"
+      "to": "m1-lem-scale-tightening",
+      "context": "ed $2\\times2$ matrix algebras over normalized finite factors, they also satisfy \\[ \\|x_n\\|_2\\le\\sqrt2\\,\\|x_n\\|_\\infty. \\] Thus both norm bounds in Proposition~\\ref{prop:ray-lift} and Corollary~\\ref{cor:ray-small-change} apply to every short or long column used here. One explicit diagonal choice i"
     },
     {
       "from": "m1-cor-ray-small-change",
-      "to": "m1-lem-scale-tightening"
+      "to": "m1-lem-scale-tightening",
+      "context": "normalized finite factors, they also satisfy \\[ \\|x_n\\|_2\\le\\sqrt2\\,\\|x_n\\|_\\infty. \\] Thus both norm bounds in Proposition~\\ref{prop:ray-lift} and Corollary~\\ref{cor:ray-small-change} apply to every short or long column used here. One explicit diagonal choice is as follows. For the first \\(j\\) group"
     },
     {
       "from": "m1-prop-ray-addition",
-      "to": "m1-lem-scale-many-increments"
+      "to": "m1-lem-scale-many-increments",
+      "context": "rge \\(n\\), \\(u_n=mt_n+(u_n-mt_n)\\) with nonnegative remainder. Pass to a subsequence on which the laws of these segments converge. Repeated use of Proposition~\\ref{prop:ray-addition} makes the limit at \\(u_n\\) equal to \\(P^{*m}*Q\\), where \\(P([a,\\infty])\\ge\\alpha\\) and \\(Q\\) is supported in \\([0,\\inft"
     },
     {
       "from": "m1-lem-ray-compactshort",
-      "to": "m1-lem-scale-many-increments"
+      "to": "m1-lem-scale-many-increments",
+      "context": "countably many \\(m\\)'s justifies taking them after the subsequential limit. This proves \\eqref{eq:scale-many-increments}. Compact changes are covered by Lemma~\\ref{lem:ray-compactshort}; a failure of uniformity would give a violating deterministic sequence."
     },
     {
       "from": "m1-lem-scale-original-model",
-      "to": "m1-prop-scale-linear-subsequence"
+      "to": "m1-prop-scale-linear-subsequence",
+      "context": "Use the representation \\(\\delta\\) of Lemma~\\ref{lem:scale-original-model}. Suppose first that, on a pure isolated source type \\(i\\), its matched length is totally superlinear: \\begin{equation}"
     },
     {
       "from": "m1-lem-scale-tightening",
-      "to": "m1-prop-scale-linear-subsequence"
+      "to": "m1-prop-scale-linear-subsequence",
+      "context": "small section sets. Thus sufficiently large \\(t\\) meets \\eqref{eq:scale-minimal-second}. \\emph{Tightening the witness and repeating increments.} Apply Lemma~\\ref{lem:scale-tightening}, choosing \\(\\varepsilon_K\\) so small that the resulting conjugacies preserve at least \\(1/4\\) mass in \\eqref{eq:scale-m"
     },
     {
       "from": "m1-lem-ray-compactshort",
-      "to": "m1-prop-scale-linear-subsequence"
+      "to": "m1-prop-scale-linear-subsequence",
+      "context": "representations \\(\\Theta_n\\). Each fixed element is tight at scale \\(L_n\\), hence short on scale \\(R_n\\). After extraction \\(t_n\\to\\infty\\). Otherwise Lemma~\\ref{lem:ray-compactshort}, with its proof applied to tightness on scale \\(L_n\\), would make all bounded-time transporters short on scale \\(R_n=D'"
     },
     {
       "from": "m1-lem-scale-many-increments",
-      "to": "m1-prop-scale-linear-subsequence"
+      "to": "m1-prop-scale-linear-subsequence",
+      "context": "applied to tightness on scale \\(L_n\\), would make all bounded-time transporters short on scale \\(R_n=D'_nL_n\\), contradicting the retained \\(1/4\\) mass. Lemma~\\ref{lem:scale-many-increments} therefore gives \\begin{equation}\\label{eq:scale-minimal-escape} u_n/t_n\\to\\infty \\quad\\Longrightarrow\\quad P_{\\Theta"
     },
     {
       "from": "m1-lem-scale-insertion",
-      "to": "m1-prop-scale-linear-subsequence"
+      "to": "m1-prop-scale-linear-subsequence",
+      "context": "a cycle of insertions.} Now insert copies of \\(\\delta\\) before \\(\\Theta_n\\), once for each step around the finite permutation cycle through \\(i\\), using Lemma~\\ref{lem:scale-insertion}. The first insertion, viewed from the source, is the totally superlinear one in \\eqref{eq:scale-superlinear-assumption}"
     },
     {
       "from": "m1-lem-scale-entropy",
-      "to": "m1-prop-scale-linear-subsequence"
+      "to": "m1-prop-scale-linear-subsequence",
+      "context": "h probability at least \\(1-1/m\\), and require \\(t_n/m\\) to exceed that threshold. Every subsequent insertion retains length much larger than \\(t_n\\), by Lemma~\\ref{lem:scale-entropy}. Its complementary coordinates remain tight. To justify this assertion for the random middle indices in \\eqref{eq:sca"
     },
     {
       "from": "m1-prop-ray-addition",
-      "to": "m1-prop-scale-linear-subsequence"
+      "to": "m1-prop-scale-linear-subsequence",
+      "context": "ha_0\\) below \\(C_0T_n\\). This is uniform for \\(t\\in[T_n/2,T_n]\\), after enlarging \\(C_0\\) slightly. Indeed, a violating sequence \\(t_n\\) would, by Proposition~\\ref{prop:ray-addition} applied to the fixed representation \\(\\delta\\) on scale \\(T_n\\), give a convolution limit for \\(T_n=t_n+(T_n-t_n)\\). Th"
     },
     {
       "from": "m1-lem-links-invariant-variables",
-      "to": "m1-prop-scale-linear-subsequence"
+      "to": "m1-prop-scale-linear-subsequence",
+      "context": "tive sum below \\(C_0\\) cannot exceed the mass of either summand below \\(C_0\\). Weak-limit boundary issues are removed by the stated slack in the cutoff. Lemma~\\ref{lem:links-invariant-variables} identifies all these limiting effects as scalar. The corner transfer in Lemma~\\ref{lem:scale-original-model} identifie"
     },
     {
       "from": "m1-lem-ray-geometry",
-      "to": "m1-lem-scale-pair-packing"
+      "to": "m1-lem-scale-pair-packing",
+      "context": "le C_m\\frac{R_0}{\\rho}. \\label{eq:scale-pole-remainder} \\end{equation} Here one may enlarge $C'$ by a fixed factor. Use the normalized Carnot charts of Lemma~\\ref{lem:ray-geometry}. To see these estimates, put the two polar endpoints at zero and infinity. The Cartan element is a graded dilation of"
     },
     {
       "from": "m1-lem-scale-complement-isometry",
-      "to": "m1-prop-scale-pair-estimate"
+      "to": "m1-prop-scale-pair-estimate",
+      "context": "appear in these pointwise squared coefficients. We next identify the Fourier norm to which packing applies. Let $V_\\Delta$ be the column in the proof of Lemma~\\ref{lem:scale-complement-isometry}, before the change of variables that removes its left amplification. At complement parameter $P$ and base point $o'$, a"
     },
     {
       "from": "m1-prop-scale-linear-subsequence",
-      "to": "m1-prop-scale-pair-estimate"
+      "to": "m1-prop-scale-pair-estimate",
+      "context": "Positivity permits all sums and integrals by Tonelli's theorem. We now choose the stabilizer interval so that its length cancels the factor $1+L$. Proposition~\\ref{prop:scale-linear-subsequence} provides $T_n\\to\\infty$, $A_0<\\infty$, and $\\eta_0>0$ such that, with fixed slack in $A_0$, the cutoff $r_T\\le A_0T_n$"
     },
     {
       "from": "m1-lem-scale-ordered-differences",
-      "to": "m1-lem-scale-equal-dimension"
+      "to": "m1-lem-scale-equal-dimension",
+      "context": "whose horizontal first moments are the $i$th coordinate vector. Its absolute value is dominated by a fixed smooth nonnegative weight of the kind used in Lemma~\\ref{lem:scale-ordered-differences}. The expressions \\[ \\frac1\\epsilon\\int\\psi_i(w) (P_{x\\delta_\\epsilon w}(f)-P_x(f))\\xi\\,dw \\] are conseque"
     },
     {
       "from": "m1-lem-scale-ordered-differences",
-      "to": "m1-lem-scale-module-extension"
+      "to": "m1-lem-scale-module-extension",
+      "context": "F(w,v)=\\sum_j g_j(w)(f_j(w)-f_j(v)). \\] It vanishes on the diagonal, and its second-variable horizontal derivative there is $-\\sum_jg_jd_{\\rm hor}f_j=0$. Lemma~\\ref{lem:scale-ordered-differences} gives an $o(\\epsilon)$ bound. Taking the same weak derivative limit and replacing left multipliers at $y$ by those at"
     },
     {
       "from": "m1-lem-scale-module-extension",
-      "to": "m1-lem-scale-closed-covariance"
+      "to": "m1-lem-scale-closed-covariance",
+      "context": "mn \\[ D:\\mathcal C\\longrightarrow\\mathcal K^{n_Sn_T},\\qquad Du=(T_{X_\\alpha}(\\theta_r)u)_{\\alpha,r}. \\] Every component is symmetric on $\\mathcal C$ by Lemma~\\ref{lem:scale-module-extension}. If $u_n\\to0$ and $Du_n\\to v$, testing each component against $\\mathcal C$ gives $v=0$. Thus $D$ is closable. Let $\\o"
     },
     {
       "from": "m1-lem-scale-equal-dimension",
-      "to": "m1-lem-scale-closed-covariance"
+      "to": "m1-lem-scale-closed-covariance",
+      "context": "ovectors, followed by horizontal cancellation, gives $D_X(f)\\xi=0$ for every smooth $f$, horizontal $X$, and $\\xi\\in\\mathscr E$. The bracket argument in Lemma~\\ref{lem:scale-equal-dimension} would make $P_x$ constant. Hence $l\\ne0$."
     },
     {
       "from": "m1-lem-scale-closed-covariance",
-      "to": "m1-prop-scale-isolated-height"
+      "to": "m1-prop-scale-isolated-height",
+      "context": "We first replace the field in Lemma~\\ref{lem:scale-closed-covariance} by an everywhere covariant version. Fix $x_0\\in B_S$ and let $J$ be its parabolic stabilizer. Pull the field back alon"
     },
     {
       "from": "m1-lem-panels-riesz",
-      "to": "m1-lem-panels-defect"
+      "to": "m1-lem-panels-defect",
+      "context": "Use the finite-dimensional source representation from Lemma~\\ref{lem:panels-riesz}. Fix a split endpoint $z_0$, write $h$ for the positive split-weight dimension of $W_1$, and let $r_0$ be the negative"
     },
     {
       "from": "m1-lem-panels-optimal-modules",
-      "to": "m1-lem-panels-defect"
+      "to": "m1-lem-panels-defect",
+      "context": "quation} Every term is nonnegative. Here $c_S>2$, the first dimension difference is nonnegative, and $c_Sr_0-u\\geq(c_S-1)r_0$. The uniform ratio gap in Lemma~\\ref{lem:panels-optimal-modules} now has a quantitative use. For a non-optimal $\\sigma$, the ratio bound gives explicitly \\[ c_Sh(V_\\sigma)-\\dim V_\\si"
     }
   ]
 }

@@ -1,11 +1,12 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 import { test } from "node:test";
 import {
   buildProofMapIndex,
   publicationPlainText,
   validateProofMapManifest,
 } from "../packages/domain/proof-map-index.mjs";
+import { validateDeepProofMap } from "../packages/domain/deep-proof-map.mjs";
 
 const base = new URL("../", import.meta.url);
 const collection = JSON.parse(await readFile(new URL("data/publications/openai-math.json", base), "utf8"));
@@ -39,8 +40,8 @@ test("the coverage summary is truthful and statuses are explicit", () => {
   assert.equal(index.summary.leanFamilies, 242);
   assert.equal(index.summary.leanSolutionModules, 426);
   assert.equal(index.summary.leanTheoremNames, 536);
-  assert.deepEqual(index.statusCounts, { deep: 4, draft: 0, paper: 343, lean: 18, scaffold: 7 });
-  assert.equal(index.summary.paper, 343);
+  assert.deepEqual(index.statusCounts, { deep: 347, draft: 0, paper: 0, lean: 18, scaffold: 7 });
+  assert.equal(index.summary.paper, 0);
   assert.equal(index.summary.paperStatements, 13629);
   assert.equal(index.summary.paperEdges, 14401);
   assert.equal(index.summary.lean, 18);
@@ -60,10 +61,10 @@ test("the curated families have the expected routes and labels", () => {
     assert.equal(byNumber.get(number).statusLabel, "Deep argument map");
     assert.equal(byNumber.get(number).reviewStatus, "unreviewed");
   }
-  assert.equal(byNumber.get("001").status, "paper");
+  assert.equal(byNumber.get("001").status, "deep");
   assert.equal(byNumber.get("001").route, "/proof-evolution/openai-math/001");
-  assert.equal(byNumber.get("001").statusLabel, "Paper-derived structure");
-  assert.match(byNumber.get("001").nextStep, /Review the extracted references/);
+  assert.equal(byNumber.get("001").statusLabel, "Deep argument map");
+  assert.match(byNumber.get("001").nextStep, /Extend version coverage/);
   assert.deepEqual(byNumber.get("001").paper, { manuscripts: 1, sections: 6, statements: 21, edges: 20 });
   assert.equal(byNumber.get("068").status, "scaffold");
   assert.equal(byNumber.get("068").statusLabel, "Metadata scaffold");
@@ -154,5 +155,22 @@ test("the index refuses to invent proof structure for scaffolds", () => {
     assert.equal(entry.manifestLabel, null);
     assert.match(entry.nextStep, /Extract theorem\/lemma statements|build the argument map/);
     assert.equal(entry.formalizedManuscripts >= 0, true);
+  }
+});
+
+test("every generated deep map satisfies the deep contract and stays acyclic", async () => {
+  const files = (await readdir(new URL("data/proof-maps/deep", base))).filter((name) => name.endsWith(".json"));
+  assert.equal(files.length, 346);
+  for (const file of files) {
+    const data = JSON.parse(await readFile(new URL(`data/proof-maps/deep/${file}`, base), "utf8"));
+    validateDeepProofMap(data, collection, lean);
+    for (const strategy of data.strategies) {
+      const ids = new Set(strategy.nodes.map((node) => node.id));
+      for (const node of strategy.nodes) {
+        for (const dependency of node.dependsOn) {
+          assert.ok(ids.has(dependency), `${file}: node ${node.id} depends on an unknown node`);
+        }
+      }
+    }
   }
 });

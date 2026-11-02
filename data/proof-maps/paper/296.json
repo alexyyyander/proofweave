@@ -142,51 +142,63 @@
   "edges": [
     {
       "from": "m1-thm-popa-independence",
-      "to": "m1-lem-free-haar-extension"
+      "to": "m1-lem-free-haar-extension",
+      "context": "norm separable. For example, applying $d\\mapsto d-\\tau(d)1$ to a countable norm-dense subset of $D$ gives a countable norm-dense subset of $X$. Apply Theorem~\\ref{thm:popa-independence} to obtain a diffuse abelian algebra $A\\subset\\mathbf Q$. We first choose a Haar unitary in $A$. Diffuseness gives arb"
     },
     {
       "from": "m1-lem-free-haar-extension",
-      "to": "m1-prop-perturbation"
+      "to": "m1-prop-perturbation",
+      "context": "\\mathbf Q=P^\\omega$. We use $\\tau$ also for the ultrapower trace. \\smallskip\\noindent \\emph{Free variables and prefixes.} Set $D_0=C^*(1,u,z,\\xi)$. By Lemma~\\ref{lem:free-haar-extension}, choose successively $t_j\\in\\mathcal U(\\mathbf Q)$ Haar and free from $D_j$, and put $D_{j+1}=C^*(D_j,t_j)$, for $0\\le"
     },
     {
       "from": "m1-lem-haar-absorption",
-      "to": "m1-prop-perturbation"
+      "to": "m1-prop-perturbation",
+      "context": "t_0\\prod_{k=1}^{\\ell}(u t_k). \\] Thus $g_k$ is the prefix immediately preceding the $k$th occurrence of $u$ in $W$. Since $D_j=C^*(D_0,s_1,\\ldots,s_j)$, Lemma~\\ref{lem:haar-absorption} shows that $s_{j+1}$ is Haar and free from $D_j$. In particular, $s_1,\\ldots,s_\\ell$ are free Haar unitaries. Every non"
     },
     {
       "from": "m1-lem-length-one-convolution",
-      "to": "m1-prop-perturbation"
+      "to": "m1-prop-perturbation",
+      "context": "nly the coefficient $2$-norm identity \\eqref{eq:perturbation-coefficient-isometry}, with no comparison of operator norms between the two representations. Lemma~\\ref{lem:length-one-convolution} and \\eqref{eq:perturbation-multiplicity} give \\[ \\norm{\\lambda(A)} \\le 2\\left(2c^2\\sum_{p\\in S}n_p^2\\right)^{1/2}"
     },
     {
       "from": "m1-thm-relative-generation",
-      "to": "m1-lem-projection-continuity"
+      "to": "m1-lem-projection-continuity",
+      "context": "[Proof of Theorem~\\ref{thm:relative-generation}] Take $u\\in\\mathcal C$ from Lemma~\\ref{lem:projection-continuity}, and suppose that $N_u\\ne M$. There is a unitary $z\\i"
     },
     {
       "from": "m1-prop-perturbation",
-      "to": "m1-lem-projection-continuity"
+      "to": "m1-lem-projection-continuity",
+      "context": "u(\\xi^*z)=s^2. \\] Fix \\begin{equation} \\label{eq:fixed-alpha-generation} 0<\\alpha<\\min\\{1/4,s/32\\}. \\end{equation} For every integer $\\ell\\geq1$, Proposition~\\ref{prop:perturbation} provides a unitary $u_\\ell\\in M$ and unitaries $t_{0,\\ell},\\ldots,t_{\\ell,\\ell}\\in P$ such that, with \\[ W_\\ell=t_{0,\\"
     },
     {
       "from": "m1-thm-irreducible-hyperfinite",
-      "to": "m1-prop-four-generators"
+      "to": "m1-prop-four-generators",
+      "context": "Let $M$ be such a factor. By Theorem~\\ref{thm:irreducible-hyperfinite}, applied with $N=M$, it contains a hyperfinite $\\mathrm{II}_1$ subfactor $P$ with $P'\\cap M=\\mathbb C1$. The trace-pres"
     },
     {
       "from": "m1-lem-hyperfinite-generators",
-      "to": "m1-prop-four-generators"
+      "to": "m1-prop-four-generators",
+      "context": "\\mathbb C1$. The trace-preserving conditional expectation onto $P$ embeds $P_*$ isometrically into $M_*$ by precomposition, so $P$ has separable predual. Lemma~\\ref{lem:hyperfinite-generators} gives self-adjoint $a,b\\in P$ with $P=W^*(a,b)$, and Theorem~\\ref{thm:relative-generation} gives $u\\in\\mathcal U(M)$ wi"
     },
     {
       "from": "m1-thm-relative-generation",
-      "to": "m1-prop-four-generators"
+      "to": "m1-prop-four-generators",
+      "context": "into $M_*$ by precomposition, so $P$ has separable predual. Lemma~\\ref{lem:hyperfinite-generators} gives self-adjoint $a,b\\in P$ with $P=W^*(a,b)$, and Theorem~\\ref{thm:relative-generation} gives $u\\in\\mathcal U(M)$ with $M=W^*(P,u)$. Hence \\[ M=W^*\\bigl(a,b,\\operatorname{Re}u,\\operatorname{Im}u\\bigr).\\qedh"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-matrix-encoding"
+      "to": "m1-lem-matrix-encoding",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Let $M$ be a $\\mathrm{II}_1$ factor with separable predual and normalized trace $\\tau$. Choose a projection $p\\in M$ w"
     },
     {
       "from": "m1-prop-four-generators",
-      "to": "m1-lem-matrix-encoding"
+      "to": "m1-lem-matrix-encoding",
+      "context": "ism \\[ \\Phi:M_2(N)\\longrightarrow M,\\qquad \\Phi\\begin{pmatrix}b_{11}&b_{12}\\\\b_{21}&b_{22}\\end{pmatrix} =b_{11}+b_{12}v^*+vb_{21}+vb_{22}v^*. \\] Proposition~\\ref{prop:four-generators}, applied to $N$, and Lemma~\\ref{lem:matrix-encoding} provide self-adjoint $A,B\\in M_2(N)$ with $W^*(A,B)=M_2(N)$. Defin"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-cor-entropy-generators"
+      "to": "m1-cor-entropy-generators",
+      "context": "annanEtAl2023} for $\\delta_0$. The standard semicircular $n$-tuple generates $L(\\mathbb F_n)$ as a von Neumann algebra. A self-adjoint pair supplied by Theorem~\\ref{thm:main} generates the same factor and has each dimension at most $2<n$. These two tuples give the assertion."
     }
   ]
 }

@@ -9,9 +9,6 @@ import type { DeepProofMapData } from "@/app/lib/deep-proof-map";
 import manifest from "@/data/proof-maps/manifest.json";
 import leanCoverageData from "@/data/proof-maps/lean-coverage.json";
 import paperCoverageData from "@/data/proof-maps/paper-coverage.json";
-import deep032 from "@/data/proof-maps/deep/032.json";
-import deep084 from "@/data/proof-maps/deep/084.json";
-import deep159 from "@/data/proof-maps/deep/159.json";
 import { buildProofMapIndex } from "@/packages/domain/proof-map-index.mjs";
 import {
   ClaimCard,
@@ -56,12 +53,6 @@ const explanationArtifacts: Record<string, ClaimExplanation> = {
   "159": explanation159 as ClaimExplanation,
 };
 
-const deepProofMaps: Record<string, DeepProofMapData> = {
-  "032": deep032 as unknown as DeepProofMapData,
-  "084": deep084 as unknown as DeepProofMapData,
-  "159": deep159 as unknown as DeepProofMapData,
-};
-
 type Params = { params: Promise<{ number: string }> };
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
@@ -94,7 +85,9 @@ export default async function ProofMapFamilyPage({ params }: Params) {
   if (!entry) notFound();
   const leanFamily = leanCoverage.families.find((candidate) => candidate.familyNumber === family.number);
 
-  const deep = deepProofMaps[family.number];
+  const deep = entry.status === "deep"
+    ? (await import(`../../../../data/proof-maps/deep/${family.number}.json`)).default as DeepProofMapData
+    : undefined;
   const explanation = entry.status === "draft" ? explanationForFamily(family.number, explanationArtifacts) : undefined;
   const isDraft = Boolean(explanation);
   const isDeep = Boolean(deep);

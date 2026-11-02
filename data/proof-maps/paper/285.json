@@ -682,303 +682,378 @@
   "edges": [
     {
       "from": "m1-lem-incidence-inversion",
-      "to": "m1-lem-gate-deletions"
+      "to": "m1-lem-gate-deletions",
+      "context": "re the common cutoff, and the gate of the extra interval at most two blocks later, reads eight full free raw $u$ blocks. They are independent uniform by Lemma~\\ref{lem:incidence-inversion}. Thus each noninitial gate is closed with probability exactly $2^{-8s}$. Initial gates are never closed. Each parity"
     },
     {
       "from": "m1-lem-incidence-inversion",
-      "to": "m1-lem-tower-recovery"
+      "to": "m1-lem-tower-recovery",
+      "context": "Otherwise, at A their family, serial and actual extra agree, and at B their bucket agrees as well; they are the same slot. The unique-edge assertion in Lemma~\\ref{lem:incidence-inversion} would then make the path backtrack. For either incident name $\\nu$, rearrange its current corrected evaluation block a"
     },
     {
       "from": "m1-lem-incidence-inversion",
-      "to": "m1-prop-tower-labels"
+      "to": "m1-prop-tower-labels",
+      "context": "The degree statements follow from Lemma~\\ref{lem:incidence-inversion}. At a larger endpoint, a fixed state specifies its extra value; at a smaller endpoint that value ranges over its slots"
     },
     {
       "from": "m1-lem-gate-deletions",
-      "to": "m1-prop-tower-labels"
+      "to": "m1-prop-tower-labels",
+      "context": "q:positive-label} gives \\eqref{eq:sharp-alphabet}; its exponent uses $\\log d+r=1.00005s$, not a coarser word-counting bound. The deletion assertions are Lemmas~\\ref{lem:gate-deletions} and~\\ref{lem:separation-deletions}. For fixed $b$ and incidence types, the label count has logarithm at most $1.00005s"
     },
     {
       "from": "m1-lem-separation-deletions",
-      "to": "m1-prop-tower-labels"
+      "to": "m1-prop-tower-labels",
+      "context": "f{eq:sharp-alphabet}; its exponent uses $\\log d+r=1.00005s$, not a coarser word-counting bound. The deletion assertions are Lemmas~\\ref{lem:gate-deletions} and~\\ref{lem:separation-deletions}. For fixed $b$ and incidence types, the label count has logarithm at most $1.00005s+O(\\log s)$, whereas $\\log_2(q^2)=1"
     },
     {
       "from": "m1-lem-finite-profile-realization",
-      "to": "m1-prop-tower-labels"
+      "to": "m1-prop-tower-labels",
+      "context": "s $\\log_2(q^2)=1.0001s$. This strict margin persists after fixed finite refinements of the labels. It will make the weighted forest error tend to zero in Lemma~\\ref{lem:finite-profile-realization}. It remains to prove global uniqueness. Let $N=\\lceil1.002m_i\\rceil$ and compare the first $N$ edges of two paths wit"
     },
     {
       "from": "m1-lem-tower-recovery",
-      "to": "m1-prop-tower-labels"
+      "to": "m1-prop-tower-labels",
+      "context": "ted word. Their midpoint radius is at least $\\lfloor N/2\\rfloor$. If the first midpoint has height $j$, then \\[ H_j\\le H_i+bN\\le(1+1.002a)H_i+b. \\] By Lemma~\\ref{lem:tower-recovery}, their common recovered aligned depth $\\delta$ satisfies \\[ \\delta\\ge s(N/2-2) \\ge\\frac{1.002}{1.0001}H_i-2s \\ge1.00"
     },
     {
       "from": "m1-lem-incidence-inversion",
-      "to": "m1-lem-fresh-matching-coordinates"
+      "to": "m1-lem-fresh-matching-coordinates",
+      "context": "nown correction merely translates them. Its remaining A data are exactly the corresponding $t$ evaluation bits. All other coordinates are determined by Lemma~\\ref{lem:incidence-inversion}. The forced-on current prefix table is an arbitrary bijection between these two $2^t$-element sets. Different complete"
     },
     {
       "from": "m1-lem-conditional-fourier",
-      "to": "m1-lem-conditional-mean"
+      "to": "m1-lem-conditional-mean",
+      "context": "arate dependence on the last $t$ raw $u_B$ bits. Conditional on $P_n^B$, it is therefore a function of $V+K_aU+o_a$, with $U\\in\\F_2^t$ and $V\\in\\F_2^s$. Lemma~\\ref{lem:conditional-fourier} gives \\[ \\|(1-P_n^B)\\mathsf{M}^*\\|^2\\leq\\theta. \\] Combining this orthogonally with the adjoint of \\eqref{eq:low-B-mea"
     },
     {
       "from": "m1-lem-conditional-mean",
-      "to": "m1-prop-sequential-law"
+      "to": "m1-prop-sequential-law",
+      "context": "update gives the same bound, with $k$ the total number of tested tables. The mark separation ensures at most one actual cutoff per family at an update. Lemma~\\ref{lem:conditional-mean} and \\eqref{eq:lll-criterion} show that this distribution exists for every possible preceding history, and \\eqref{eq:cur"
     },
     {
       "from": "m1-lem-pruning-key-prefix",
-      "to": "m1-lem-pruning-end-guard"
+      "to": "m1-lem-pruning-end-guard",
+      "context": "By the available endpoint depth, \\[ p\\leq2(H_*-M+E_p)/s. \\] Suppose two keys at terminal receiver positions $a<b$ coincide. Lemma~\\ref{lem:pruning-key-prefix} gives agreement through depth at least $H_*-E_p$. The receivers have the same side. Their contiguous path segment is"
     },
     {
       "from": "m1-lem-pruning-reconstruction",
-      "to": "m1-lem-pruning-return-count"
+      "to": "m1-lem-pruning-return-count",
+      "context": "ent-threshold} gives $p\\leq2(H-M)/s\\leq2H/s$. There are a fixed number of eligible bands and at most $L_s^p$ label/height patterns of a given length. By Lemma~\\ref{lem:pruning-reconstruction}, their free endpoint coordinates have at most \\[ 2^{H-h+bp} \\] choices. Each pattern and coordinate choice has at mos"
     },
     {
       "from": "m1-lem-pruning-rank-process",
-      "to": "m1-lem-pruning-return-count"
+      "to": "m1-lem-pruning-return-count",
+      "context": "}, their free endpoint coordinates have at most \\[ 2^{H-h+bp} \\] choices. Each pattern and coordinate choice has at most one actual realization. Apply Lemma~\\ref{lem:pruning-rank-process} using~\\eqref{eq:pruning-path-rank}; the event being bounded is that this realization is a minimal return in the good gr"
     },
     {
       "from": "m1-lem-pruning-key-prefix",
-      "to": "m1-lem-pruning-theta-keys"
+      "to": "m1-lem-pruning-theta-keys",
+      "context": "A repeated terminal key gives receiver-prefix agreement through $H-be-8s$ by Lemma~\\ref{lem:pruning-key-prefix}. Join the receivers by a shortest theta path. It has length below $.76m_i$ and lies in an interior band containing th"
     },
     {
       "from": "m1-lem-pruning-reconstruction",
-      "to": "m1-lem-pruning-theta-count"
+      "to": "m1-lem-pruning-theta-count",
+      "context": "abel/height patterns. Assigning heights along a spanning tree determines the remaining heights; any inconsistency on a remaining edge causes rejection. Lemma~\\ref{lem:pruning-reconstruction} has no free coordinates for a theta. For each fixed pattern use the predictable terminal and branch tests above. Ever"
     },
     {
       "from": "m1-lem-pruning-rank-process",
-      "to": "m1-lem-pruning-theta-count"
+      "to": "m1-lem-pruning-theta-count",
+      "context": "s plus six per branch update. Since $e>.9m_i$, the latter count is $O(H_i/s)=O(e)$; a bound of $20e$ suffices after omitting the fixed initial updates. Lemma~\\ref{lem:pruning-rank-process} bounds its probability by \\[ \\exp(20\\epsilon_s e) 2^{-se/2-.64H_i+100(s+be)}. \\] After summing patterns, the exponent"
     },
     {
       "from": "m1-lem-pruning-return-count",
-      "to": "m1-prop-pruning"
+      "to": "m1-prop-pruning",
+      "context": "bH_i/s. \\] Its vertex count is at most $\\ell+1\\leq5H_i/s+1$. There are at most $10H_i/s+1$ possible root layers and at most a linear number of lengths. Lemmas~\\ref{lem:pruning-return-count} and~\\ref{lem:pruning-theta-count} therefore imply, after division by $|\\mathscr B_i|=2^{H_i}$ or $|\\mathscr A_i|=2^{H_i"
     },
     {
       "from": "m1-lem-pruning-theta-count",
-      "to": "m1-prop-pruning"
+      "to": "m1-prop-pruning",
+      "context": "ost $\\ell+1\\leq5H_i/s+1$. There are at most $10H_i/s+1$ possible root layers and at most a linear number of lengths. Lemmas~\\ref{lem:pruning-return-count} and~\\ref{lem:pruning-theta-count} therefore imply, after division by $|\\mathscr B_i|=2^{H_i}$ or $|\\mathscr A_i|=2^{H_i+2r-s}$, \\begin{equation} \\label{e"
     },
     {
       "from": "m1-prop-tower-labels",
-      "to": "m1-prop-pruning"
+      "to": "m1-prop-pruning",
+      "context": "ndeleted expansion properties, so choose one in this positive-probability event. The earlier good-vertex deletion budget is separately supplied by Proposition~\\ref{prop:tower-labels} and can be made as small as required there. Passing to an induced subgraph preserves foldedness and uniqueness of a wo"
     },
     {
       "from": "m1-lem-pruning-base-girth",
-      "to": "m1-prop-pruning"
+      "to": "m1-prop-pruning",
+      "context": "de as small as required there. Passing to an induced subgraph preserves foldedness and uniqueness of a word that occurred at most once before deletion. Lemma~\\ref{lem:pruning-base-girth} proves the second assertion, and the definition of the second deletion proves the third. It remains to deduce the nonl"
     },
     {
       "from": "m1-lem-heisenberg-law",
-      "to": "m1-prop-pruning"
+      "to": "m1-prop-pruning",
+      "context": ".04m_i$ based at height $i$ in $X_{\\mathrm{old}}$. Every vertex $v$ of its support has scale $ m(v)\\geq m_i-aL\\geq(1-6.04a)m_i$. If $W$ were a $\\HH$-law, Lemma~\\ref{lem:heisenberg-law} would give a bicycle $B$ in its support with $L\\geq4|E(B)|$. The third assertion, already proved by the deletion, gives"
     },
     {
       "from": "m1-lem-fourier-envelope",
-      "to": "m1-lem-product-sampler"
+      "to": "m1-lem-product-sampler",
+      "context": "\\(\\eta/2\\), and denote its matrix coefficients by \\(A_{n,l,c}\\). Set \\[ w_n=N_i^{-1}(1+\\abs n/N_i)^{-3} (1+J_i\\norm{n\\alpha})^{-3}. \\] By Lemma~\\ref{lem:fourier-envelope}, \\(R_{n,l}:=\\sum_c\\norm{A_{n,l,c}}\\leq C_1w_n\\), while \\(\\sum_nw_n\\leq C_0/J_i\\). On the finite allowed n-interval beg"
     },
     {
       "from": "m1-lem-product-sampler",
-      "to": "m1-lem-centered-voltage-block"
+      "to": "m1-lem-centered-voltage-block",
+      "context": "}\\), and the number of base and matrix indices is at most \\(2^{3H_i}\\). The coordinates of every possible voltage and inverse have the fixed exponent of Lemma~\\ref{lem:product-sampler}. Apply Lemma~\\ref{lem:heisenberg-folner-test} with a boundary exponent larger than four. Its box error tends to zero"
     },
     {
       "from": "m1-lem-heisenberg-folner-test",
-      "to": "m1-lem-centered-voltage-block"
+      "to": "m1-lem-centered-voltage-block",
+      "context": "ndices is at most \\(2^{3H_i}\\). The coordinates of every possible voltage and inverse have the fixed exponent of Lemma~\\ref{lem:product-sampler}. Apply Lemma~\\ref{lem:heisenberg-folner-test} with a boundary exponent larger than four. Its box error tends to zero exponentially even after the row loss, and its"
     },
     {
       "from": "m1-lem-moment-support-rank",
-      "to": "m1-lem-centered-voltage-block"
+      "to": "m1-lem-centered-voltage-block",
+      "context": "ffer by only b. Because \\(\\log_2q/\\log_2d<1.25\\), the ratio of support length to this girth is at most \\(2C\\), again increasing \\(H_0\\) for the ceiling. Lemma~\\ref{lem:moment-support-rank} gives a rank bound depending on C alone. This is a use of \\emph{base} girth, not the as-yet unproved voltage girth. Le"
     },
     {
       "from": "m1-lem-repeated-edge-count",
-      "to": "m1-lem-centered-voltage-block"
+      "to": "m1-lem-centered-voltage-block",
+      "context": "hange this independence. For every other summand its absolute trace on the deck and matrix indices is at most their dimension times \\((2M_\\eta)^{2h}\\). Lemma~\\ref{lem:repeated-edge-count}, with \\(\\Delta\\leq C_*D\\), proves \\[ \\mathbb E\\operatorname{Tr}(\\widehat X^{2h}) \\leq2^{K_1H_i}(C_1D)^h, \\] where \\(C"
     },
     {
       "from": "m1-prop-sampled-symbols",
-      "to": "m1-lem-centered-voltage-block"
+      "to": "m1-lem-centered-voltage-block",
+      "context": "[Proof of Proposition~\\ref{prop:sampled-symbols}] For a block put \\(a_{\\tau,ik}=q/q_{\\tau,ik}\\). This scalar lies in a fixed compact subinterval of \\((0,\\infty)\\). Ap"
     },
     {
       "from": "m1-prop-pruning",
-      "to": "m1-lem-centered-voltage-block"
+      "to": "m1-lem-centered-voltage-block",
+      "context": "base walks of length at most \\(\\lceil6.03m_i\\rceil\\) from height i. For large \\(m_i\\), this length is below \\(6.04m_i\\); hence the local bound in Proposition~\\ref{prop:pruning} says that each is a non-law. This also removes any rounding issue at exactly \\(6.03m_i\\). Along such a walk, \\[ H_{\\"
     },
     {
       "from": "m1-lem-polynomial-avoidance",
-      "to": "m1-lem-centered-voltage-block"
+      "to": "m1-lem-centered-voltage-block",
+      "context": "h a walk, \\[ H_{\\min}\\geq H_i-b\\lceil6.03H_i/\\log_2q\\rceil \\geq(1-7b/\\log_2q)H_i \\] after raising the initial height. Taking \\(b/\\log_2q\\leq10^{-6}\\), Lemma~\\ref{lem:polynomial-avoidance} bounds its identity probability by \\(2^{-40H_i}\\), with all fixed factors absorbed by the initial height. The number o"
     },
     {
       "from": "m1-lem-word-diagram",
-      "to": "m1-lem-null-path-closes"
+      "to": "m1-lem-null-path-closes",
+      "context": "be assumed nonempty and cyclically immersed. To justify this without assuming anything about diagram regularity, use the free-group face expression from Lemma~\\ref{lem:word-diagram}. Foldedness turns every free cancellation in a source walk into an actual edge reversal. A freely trivial closed face"
     },
     {
       "from": "m1-lem-private-completion",
-      "to": "m1-lem-null-path-closes"
+      "to": "m1-lem-null-path-closes",
+      "context": "ior. An arc incident to a bounded face reads an immersed word on both its occurrences. By the preceding reductions those projected occurrences differ. Lemma~\\ref{lem:private-completion} therefore bounds its length by $Lm$ at the initial point of either occurrence. The length bounds force every bounded f"
     },
     {
       "from": "m1-lem-null-path-closes",
-      "to": "m1-prop-graphical-realization"
+      "to": "m1-prop-graphical-realization",
+      "context": "source walk, whose word is a relator, so the assignment is well defined. If two vertices have the same image, a source path between them has null label; Lemma~\\ref{lem:null-path-closes} identifies its endpoints. This proves vertex injectivity. Edges with the same formal Cayley image have the same initi"
     },
     {
       "from": "m1-lem-word-diagram",
-      "to": "m1-lem-sheet-polygon"
+      "to": "m1-lem-sheet-polygon",
+      "context": "The concatenation of any chosen sheet paths is a closed walk in the Cayley graph and has null word. Lemma~\\ref{lem:word-diagram} supplies a finite diagram. Over all choices with the prescribed contacts fixed, minimize lexicographically the filling"
     },
     {
       "from": "m1-lem-null-path-closes",
-      "to": "m1-lem-sheet-polygon"
+      "to": "m1-lem-sheet-polygon",
+      "context": "junction mark; there are at most $k$ such vertices, even if several junctions coincide. The source-path and bounded-face reductions at the beginning of Lemma~\\ref{lem:null-path-closes} apply unchanged: bounded source faces are nonempty and cyclically immersed, while each side is linearly immersed. Coin"
     },
     {
       "from": "m1-prop-graphical-realization",
-      "to": "m1-lem-sheet-polygon"
+      "to": "m1-lem-sheet-polygon",
+      "context": "within that side is an excursion with no junction in its interior. Its endpoints have the same Cayley vertex, and hence the same source vertex by Proposition~\\ref{prop:graphical-realization}. Delete the excursion from that side and remove the bridge and its cut-off component. No prescribed junction is lost."
     },
     {
       "from": "m1-lem-private-completion",
-      "to": "m1-lem-sheet-polygon"
+      "to": "m1-lem-sheet-polygon",
+      "context": "es branching. Both of its occurrences therefore lie within immersed source paths. The preceding reductions show they have different projections. Apply Lemma~\\ref{lem:private-completion} to obtain all the assertions about arc lengths and private edges. The proof using \\eqref{eq:closed-walk-lower} and~\\eq"
     },
     {
       "from": "m1-lem-sheet-polygon",
-      "to": "m1-lem-sheet-peeling"
+      "to": "m1-lem-sheet-peeling",
+      "context": "ts and close the path inside the repeated sheet. The resulting polygon has $k-1$ chosen nonconstant sides; only the closing side is unrestricted. Apply Lemma~\\ref{lem:sheet-polygon} with all these contact vertices fixed. If a chosen side has a private endpoint in its sheet, any nonconstant path with"
     },
     {
       "from": "m1-lem-sheet-peeling",
-      "to": "m1-lem-sheet-cycle-coordinates"
+      "to": "m1-lem-sheet-cycle-coordinates",
+      "context": "composition proves surjectivity of $\\Phi_R$. For injectivity, suppose that $\\sum_{j=1}^n c_{Q_j}=0$. Order the finitely many sheets in this relation by Lemma~\\ref{lem:sheet-peeling}. An edge of $Q_1$ with a nonzero coefficient in $c_{Q_1}$ must occur in another nonzero coordinate, since the total coe"
     },
     {
       "from": "m1-lem-allowed-domain-sets",
-      "to": "m1-lem-sheet-cycle-coordinates"
+      "to": "m1-lem-sheet-cycle-coordinates",
+      "context": "ndpoints of that edge are contacts with a later sheet and belong to $R_1$. Hence $c_{Q_1}$ is supported on $\\operatorname{Star}_{Q_1}(R_1)$, a forest by Lemma~\\ref{lem:allowed-domain-sets}, and is zero. Remove this coordinate and repeat. Every coordinate is zero."
     },
     {
       "from": "m1-lem-sheet-cycle-coordinates",
-      "to": "m1-prop-domains"
+      "to": "m1-prop-domains",
+      "context": "es are countable. Choose an orientation for each finite circuit $C$ of $\\mathcal C$ and let $c_C$ be its integral circuit chain. Using $\\Phi_{\\Z}$ from Lemma~\\ref{lem:sheet-cycle-coordinates}, fix its finite decomposition \\begin{equation} c_C=\\sum_{Q\\in\\mathcal F_C}c_{C,Q}, \\qquad \\abs{\\mathcal F_C}<\\infty."
     },
     {
       "from": "m1-lem-sheet-peeling",
-      "to": "m1-prop-domains"
+      "to": "m1-prop-domains",
+      "context": "heets appearing in the selected first-type conditions and of all sets $\\mathcal F_C$ for the selected second-type conditions. Peel this finite family by Lemma~\\ref{lem:sheet-peeling} and use its allowed removed sets. Assign the empty removed set to every sheet outside the family. The selected first-"
     },
     {
       "from": "m1-lem-allowed-domain-sets",
-      "to": "m1-prop-domains"
+      "to": "m1-prop-domains",
+      "context": "A circuit in the residual graph would violate its own second-type condition. The residual graph is therefore a forest. The last assertions follow from Lemma~\\ref{lem:allowed-domain-sets}."
     },
     {
       "from": "m1-lem-sheet-cycle-coordinates",
-      "to": "m1-lem-cone-exact"
+      "to": "m1-lem-cone-exact",
+      "context": "mponents on the distinct spoke sets give $\\partial b_Q=0$ for every $Q$. Its original-edge component is then $\\sum_Q b_Q=0$. Injectivity of $\\Phi_R$ in Lemma~\\ref{lem:sheet-cycle-coordinates} forces every $b_Q=0$, proving injectivity at $C_2$. Let $b+\\sum_Q\\sigma_Q(t_Q)$ be a finite $1$-cycle, with $b$ on $\\m"
     },
     {
       "from": "m1-lem-cone-exact",
-      "to": "m1-lem-no-prime-torsion"
+      "to": "m1-lem-no-prime-torsion",
+      "context": "xed edges. In particular, no involution can invert a formal positive Cayley edge. Choosing orbit representatives gives free modules over $A_p=\\F_p[P]$. Lemma~\\ref{lem:cone-exact}, with coefficients $\\F_p$, would give a free resolution of its trivial module of length two. Let $t=u-1$ for a generat"
     },
     {
       "from": "m1-lem-free-resolution-comparison",
-      "to": "m1-lem-no-prime-torsion"
+      "to": "m1-lem-no-prime-torsion",
+      "context": "logy is $\\F_p$ in every nonnegative degree. Tensoring the alleged length-two resolution gives zero homology in every degree above two. This contradicts Lemma~\\ref{lem:free-resolution-comparison}. Hence $\\Gamma$ has no subgroup of prime order. A nonidentity element of finite order $n$ would have a power of order"
     },
     {
       "from": "m1-lem-cone-exact",
-      "to": "m1-lem-degree-two-restriction"
+      "to": "m1-lem-degree-two-restriction",
+      "context": "Put $A=\\Z\\Gamma$, $B=\\Z\\HH$, $M=\\Z$, and $C_0=C_0(\\mathcal Z;\\Z)$. By Lemma~\\ref{lem:cone-exact} and Equation~\\eqref{eq:cone-orbit-modules}, the module $K=\\ker(C_0\\to M)$ has a length-one free resolution \\[ 0\\longri"
     },
     {
       "from": "m1-lem-free-resolution-comparison",
-      "to": "m1-lem-degree-two-restriction"
+      "to": "m1-lem-degree-two-restriction",
+      "context": "ft is the explicit map \\[ \\theta\\bigl(a\\otimes(h_0,\\ldots,h_n)\\bigr) =a\\,(h_0,\\ldots,h_n), \\] where the tuple on the right is viewed in $\\Gamma$. Lemma~\\ref{lem:free-resolution-comparison} makes these lifts chain homotopic. After Equation~\\eqref{eq:explicit-shapiro}, precomposition with $\\theta$ restricts"
     },
     {
       "from": "m1-lem-no-prime-torsion",
-      "to": "m1-prop-torsion-detector"
+      "to": "m1-prop-torsion-detector",
+      "context": "Lemma~\\ref{lem:no-prime-torsion} proves torsion-freeness. The deck embedding of Proposition~\\ref{prop:graphical-realization} and the coordinate calculat"
     },
     {
       "from": "m1-prop-graphical-realization",
-      "to": "m1-prop-torsion-detector"
+      "to": "m1-prop-torsion-detector",
+      "context": "Lemma~\\ref{lem:no-prime-torsion} proves torsion-freeness. The deck embedding of Proposition~\\ref{prop:graphical-realization} and the coordinate calculation in Lemma~\\ref{lem:explicit-heisenberg-detector} prove injectivity of $i_\\Gamma$. Choose"
     },
     {
       "from": "m1-lem-explicit-heisenberg-detector",
-      "to": "m1-prop-torsion-detector"
+      "to": "m1-prop-torsion-detector",
+      "context": "~\\ref{lem:no-prime-torsion} proves torsion-freeness. The deck embedding of Proposition~\\ref{prop:graphical-realization} and the coordinate calculation in Lemma~\\ref{lem:explicit-heisenberg-detector} prove injectivity of $i_\\Gamma$. Choose $c_\\Gamma$ mapping to $c_{\\HH}$ under the surjection of Lemma~\\ref{lem:degree-"
     },
     {
       "from": "m1-lem-degree-two-restriction",
-      "to": "m1-prop-torsion-detector"
+      "to": "m1-prop-torsion-detector",
+      "context": "culation in Lemma~\\ref{lem:explicit-heisenberg-detector} prove injectivity of $i_\\Gamma$. Choose $c_\\Gamma$ mapping to $c_{\\HH}$ under the surjection of Lemma~\\ref{lem:degree-two-restriction}. Its map was identified there with actual restriction in integral cohomology. Equation~\\eqref{eq:graphical-integral-d"
     },
     {
       "from": "m1-prop-domains",
-      "to": "m1-lem-assembly-trimming"
+      "to": "m1-lem-assembly-trimming",
+      "context": "s as well. Every regular deck translate of a given old vertex has the same diagonal trace. If the removed set in $Q$ is an old-centered ball, then Proposition~\\ref{prop:domains} bounds its entire cardinality by $2^{10H_i}$ whenever it meets height $i$. Equation~\\eqref{eq:carrier-trace} therefore"
     },
     {
       "from": "m1-lem-sheet-incidences",
-      "to": "m1-lem-assembly-synthesis"
+      "to": "m1-lem-assembly-synthesis",
+      "context": "et that can contain $u$ at base type $v$ is $u t_v^{-1}\\HH$, by \\eqref{eq:assembly-cover-coordinates}. This also follows from the incidence bijection in Lemma~\\ref{lem:sheet-incidences}. Thus at height $i$ each physical vertex receives at most $n_i$ indexed coordinates. Pointwise Cauchy--Schwarz gives t"
     },
     {
       "from": "m1-lem-assembly-trimming",
-      "to": "m1-lem-assembly-synthesis"
+      "to": "m1-lem-assembly-synthesis",
+      "context": "arz gives the first inequality in \\eqref{eq:raw-synthesis-level}, initially on the stated dense domain. The layer cardinalities give $n_i\\le C_s2^{H_i}$; Lemma~\\ref{lem:assembly-trimming} gives the second inequality. The bounded extensions at individual heights may be summed in operator norm, because $H_i"
     },
     {
       "from": "m1-prop-sampled-symbols",
-      "to": "m1-lem-finite-profile-realization"
+      "to": "m1-lem-finite-profile-realization",
+      "context": "nstant-extraction-error} is sufficiently small. Include the finitely many cutoff and symbol blocks $V$ and $W(f)$ as designated incidence types in Proposition~\\ref{prop:sampled-symbols}. That Proposition supplies a finite weight net. We first compare each sampled factor with its compressed sheet mean,"
     },
     {
       "from": "m1-prop-domains",
-      "to": "m1-lem-finite-profile-realization"
+      "to": "m1-lem-finite-profile-realization",
+      "context": "der only when it is an edge of its retained source sheet. Disjointness of the domains prevents any ambiguity. The remaining edges form a forest by Proposition~\\ref{prop:domains}. A matrix adjacency on a forest of degree at most $L$ and edge weight norm at most $w$ has norm at most $2w\\sqrt L$: ro"
     },
     {
       "from": "m1-lem-finite-profile-realization",
-      "to": "m1-lem-source-reduced-membership"
+      "to": "m1-lem-source-reduced-membership",
+      "context": "aths, with mesh error at most $\\eta_\\nu$. Collect their finitely many scalar matrix profiles, the four endpoint profiles, and the larger cutoffs. Apply Lemma~\\ref{lem:finite-profile-realization} to that finite family, with errors sufficiently small compared with $\\eta_\\nu$. Its finite type and weight choices prec"
     },
     {
       "from": "m1-lem-eventual-coordinate-equality",
-      "to": "m1-prop-reduced-bott-vanishing"
+      "to": "m1-prop-reduced-bott-vanishing",
+      "context": "Apply Lemma~\\ref{lem:eventual-coordinate-equality} to \\eqref{eq:physical-bott-quotient-zero}. At every coordinate \\eqref{eq:physical-bott-profile} identifies the differe"
     },
     {
       "from": "m1-lem-eventual-coordinate-equality",
-      "to": "m1-lem-finite-subgroup-witness"
+      "to": "m1-lem-finite-subgroup-witness",
+      "context": "ection in $\\Cr(\\Ginj)$; compressing the approximate partial isometry to the two corners and polar-normalizing it gives an exact witness there, just as in Lemma~\\ref{lem:eventual-coordinate-equality}. Functional calculus stays inside $\\Cr(\\Ginj)$. The original projections $P,Q$ were retained exactly throughout."
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-finite-subgroup-witness"
+      "to": "m1-lem-finite-subgroup-witness",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Make the sequence of compatible constructions just described. Proposition~\\ref{prop:graphical-realization} embeds $\\HH"
     },
     {
       "from": "m1-prop-graphical-realization",
-      "to": "m1-lem-finite-subgroup-witness"
+      "to": "m1-lem-finite-subgroup-witness",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Make the sequence of compatible constructions just described. Proposition~\\ref{prop:graphical-realization} embeds $\\HH$ in every $\\Gamma_\\nu$. Proposition~\\ref{prop:torsion-detector} proves torsion-freeness and provides an int"
     },
     {
       "from": "m1-prop-torsion-detector",
-      "to": "m1-lem-finite-subgroup-witness"
+      "to": "m1-lem-finite-subgroup-witness",
+      "context": "in}] Make the sequence of compatible constructions just described. Proposition~\\ref{prop:graphical-realization} embeds $\\HH$ in every $\\Gamma_\\nu$. Proposition~\\ref{prop:torsion-detector} proves torsion-freeness and provides an integral class whose evaluation on the ordered torus $(z,x)$ is $-1$. Propositi"
     },
     {
       "from": "m1-prop-reduced-bott-vanishing",
-      "to": "m1-lem-finite-subgroup-witness"
+      "to": "m1-lem-finite-subgroup-witness",
+      "context": "oposition~\\ref{prop:torsion-detector} proves torsion-freeness and provides an integral class whose evaluation on the ordered torus $(z,x)$ is $-1$. Proposition~\\ref{prop:reduced-bott-vanishing} proves that, for all sufficiently large $\\nu$, the rank-zero Bott class of this torus is zero in $K_0(\\Cr(\\Gamma_\\nu))$"
     },
     {
       "from": "m2-scalar-subgroup",
-      "to": "m2-scalar-compression"
+      "to": "m2-scalar-compression",
+      "context": "\\gamma\\in\\Lambda\\) and \\(v\\in\\mathcal R\\): remove its initial \\(\\Lambda\\)-factor, if present. Thus \\(\\mathcal R\\) is a transversal for the orbits used in Lemma~\\ref{scalar:subgroup}. Write \\(a_j=\\tau_\\Lambda(p_{jj})\\), so \\(a_j\\ge0\\) and \\(\\sum_j a_j=a\\). If \\(\\xi=p\\xi\\in\\ell^2(K)^N\\), put \\[ m_v=\\"
     },
     {
       "from": "m2-exp-fourier",
-      "to": "m2-exp-mean-gap"
+      "to": "m2-exp-mean-gap",
+      "context": "only the preceding interleaved blocks, the slot, and $x$. After conditioning on $P_n^B$, the resulting averaged slot function therefore has the form in Lemma~\\ref{exp:fourier}, with $U$ the $t$ active bits of the last $B$ block and $V$ the full $s+\\beta$ bits of $v_B$ starting at $ns$. No curre"
     },
     {
       "from": "m2-prune-prefix-recovery",
-      "to": "m2-prune-cycle-count"
+      "to": "m2-prune-cycle-count",
+      "context": "bitrarily many times in both directions. Cyclic nonbacktracking ensures that every such repetition is nonbacktracking. At corresponding base positions, Lemma~\\ref{prune:prefix-recovery} recovers arbitrarily long prefixes. Since the layer and side are fixed, this eventually recovers all active coordinates"
     },
     {
       "from": "m2-exp-realized-gap",
-      "to": "m2-prune-tower-properties"
+      "to": "m2-prune-tower-properties",
+      "context": "Only the fourth item requires further proof. The degree and norm claims are established in \\eqref{tow:degrees} and Proposition~\\ref{exp:realized-gap}. For normalized counting constants, for example, the constant entry after applying normalized incidence is \\(d/(\\sqrt{"
     },
     {
       "from": "m2-prune-prefix-recovery",
-      "to": "m2-prune-tower-properties"
+      "to": "m2-prune-tower-properties",
+      "context": "is at least \\(\\lfloor N/2\\rfloor\\), and let its layer on the first path be \\(j\\). Every edge changes the layer by at most one, so \\[ H_j\\leq H_i+N. \\] Lemma~\\ref{prune:prefix-recovery} recovers both padded streams at that position through length at least \\[ \\frac{sN}{4}-2s \\geq\\frac{25s}{\\log_2d}H_i-2"
     },
     {
       "from": "m2-geo-reductions",
-      "to": "m2-geo-arcs"
+      "to": "m2-geo-arcs",
+      "context": "two source assignments. Its other incidence cannot be on the same bounded face, since an edge with the same face on both sides is a bridge, excluded by Lemma~\\ref{geo:reductions}. If the arc were at least $L_i$ long on either compared assignment, its freely reduced word would determine its project"
     },
     {
       "from": "m2-geo-arcs",
-      "to": "m2-geo-embeddings"
+      "to": "m2-geo-embeddings",
+      "context": "Apply Lemma~\\ref{geo:arcs} to a minimum injectivity-failure diagram, with $m=1$. Its first two inequalities imply $20J\\le6J$, hence $J=0$. The un"
     },
     {
       "from": "m2-geo-arcs",
-      "to": "m2-geo-chain-filling"
+      "to": "m2-geo-chain-filling",
+      "context": "onempty loop, rotate its start to a group vertex and split it into the sides specified above. There are $m\\le n$ sides. Inflate and minimize, and apply Lemma~\\ref{geo:arcs}. For each arc choose a standard path between the images of its endpoints: use the generator edge if it has a fixed-sid"
     },
     {
       "from": "m2-geo-arcs",
-      "to": "m2-geo-avoidance"
+      "to": "m2-geo-avoidance",
+      "context": "$ sides. We claim every arc occurrence on the designated adjustable side is shorter than its local $L_j$. For an opposite bounded-face incidence this is Lemma~\\ref{geo:arcs}; an opposite generator incidence has length one. If the opposite incidence is on another adjustable side, that side us"
     },
     {
       "from": "m2-geo-embeddings",
-      "to": "m2-geo-avoidance"
+      "to": "m2-geo-avoidance",
+      "context": "fferent center because the original path avoids $c_Q$. A long arc would align the two source paths and then identify the copies, as observed after Proposition~\\ref{geo:embeddings}, which is impossible. It remains to exclude an arc with both incidences on the designated side. Its edges are exterior"
     },
     {
       "from": "m2-geo-thin",
-      "to": "m2-geo-balls"
+      "to": "m2-geo-balls",
+      "context": "D_0+3$ on the chosen $A,o$ geodesic. Every vertex of $[A,B]$ is at distance greater than $D_0$ from $p$, since its distance from $A$ is at most two. By Lemma~\\ref{geo:thin}, $p$ has a bridge of length at most $D_0$ to a vertex $q$ of the chosen $B,o$ geodesic. This bridge avoids $A$ because"
     },
     {
       "from": "m2-geo-avoidance",
-      "to": "m2-geo-balls"
+      "to": "m2-geo-balls",
+      "context": "the layer of the fixed $u$, and define \\[ R_Q=\\left\\lceil25(L^*+1)L_i\\right\\rceil, \\qquad B(Q)=\\{v\\in Q:d_Q(u,v)\\le R_Q\\}, \\] with the induced edges. Lemma~\\ref{geo:avoidance} puts every intersection with an earlier copy into this one ball. The root $o$, chosen geodesic, and ball center $u$ ha"
     }
   ]
 }

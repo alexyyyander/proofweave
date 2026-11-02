@@ -255,131 +255,163 @@
   "edges": [
     {
       "from": "m1-auto-representation",
-      "to": "m1-auto-order-reversal"
+      "to": "m1-auto-order-reversal",
+      "context": "Apply Lemma~\\ref{auto:representation} to the complementing machine, and let $S=\\tau(\\Sigma_H^*)$. Suppose $\\tau(u)\\sqsubseteq\\tau(v)$. For each $p,q\\in H$,"
     },
     {
       "from": "m1-diag-rectangles",
-      "to": "m1-diag-transport"
+      "to": "m1-diag-transport",
+      "context": "ly of $z$. For every occurrence of a through edge of the middle factor $e$ on a chosen path, choose an $e$-class whose rectangle covers that edge, using Lemma~\\ref{diag:rectangles}. Mark a $d$-class if any class chosen along its witness lies in $J$; let $J'$ be the marked set. If a class is unmarked"
     },
     {
       "from": "m1-diag-rectangles",
-      "to": "m1-nest-containment"
+      "to": "m1-nest-containment",
+      "context": "t point $x$ of $P_d$. Using \\eqref{nest:forward-identities} twice, its recurrence gives \\[ x\\bigl(K_dF_eSF_dTF_eK_d\\bigr)x. \\] By the rectangle cover in Lemma~\\ref{diag:rectangles}, each of the two displayed $F_e$-edges can be factored through an $e$-recurrent point. Denote the first point by $p$ an"
     },
     {
       "from": "m1-nest-absorption",
-      "to": "m1-nest-containment"
+      "to": "m1-nest-containment",
+      "context": "_eK_e,\\\\ \\beta&=K_eF_eSF_dTF_eK_e=K_eF_dK_e=U_e^+(d),\\\\ \\gamma&=K_eF_eK_d. \\end{align*} Here $\\beta\\subseteq P_d$ because $K_e\\subseteq K_d$. Moreover, Lemma~\\ref{nest:absorption} shows that multiplying $P_d$ on either side by $\\alpha$ or $\\gamma$ gives a subrelation of $P_d$. Thus all four endpoin"
     },
     {
       "from": "m1-nest-absorption",
-      "to": "m1-nest-chain"
+      "to": "m1-nest-chain",
+      "context": "keep these choices fixed. Every protected label $x$ of sign $\\sigma$ satisfies $xU_{b_0}^\\sigma(b_j)x$ at every stage $j$. By transitivity of nesting and Lemma~\\ref{nest:absorption}, $K_{b_0}^\\sigma\\subseteq K_{b_j}^\\sigma$, so this loop also belongs to $P_{b_j}^\\sigma$. Thus every protected label re"
     },
     {
       "from": "m1-nest-containment",
-      "to": "m1-nest-chain"
+      "to": "m1-nest-chain",
+      "context": "udget} illustrates the two ways that an unprotected new class can obtain weight at least one from the previous stage. \\input{figures/nesting-budget} By Lemma~\\ref{nest:containment}, each unprotected class at stage $j$ contains previous classes of total weight at least $1$: either one nonmissing clas"
     },
     {
       "from": "m1-diag-rectangles",
-      "to": "m1-amp-single-edge"
+      "to": "m1-amp-single-edge",
+      "context": "aneously over all the data in the statement, including $m$, $e$, $S$, and $\\phi$. For $2\\leq h\\leq2t$, we have $D(h)=1$. If $\\mathcal M_e(a)$ were empty, Lemma \\ref{diag:rectangles} would give $e\\sqsubseteq a$. Order reversal would then give $I_H\\cup\\{(x,y)\\}\\subseteq I_H$, a contradiction. Assume h"
     },
     {
       "from": "m1-diag-transport",
-      "to": "m1-amp-single-edge"
+      "to": "m1-amp-single-edge",
+      "context": "and the inverse of a unit lift maps to the inverse permutation. Explicitly, a unit $p\\in S$ gives the conjugate $pap^{-1}$, with $pep^{-1}=e$. Applying Lemma \\ref{diag:transport} with $J=\\mathcal M_e(a)$ therefore gives \\[ |\\mathcal M_e(s_i)|\\leq2c,\\qquad |\\mathcal M_e(s'_j)|\\leq2c. \\] Consequen"
     },
     {
       "from": "m1-diag-missing",
-      "to": "m1-amp-single-edge"
+      "to": "m1-amp-single-edge",
+      "context": "=1}^t\\mathcal M_e(s_i) \\ \\cup\\ \\bigcup_{j=1}^t\\mathcal M_e(s'_j) \\ \\subseteq\\mathcal C_e \\] has $|J|\\leq4tc$, and the product inequality of Lemma \\ref{diag:missing} gives $\\mathcal M_e(s_i s'_j)\\subseteq J$ for every $i,j$. Let $P_0=I_{H\\setminus\\{z\\}}$. Choose an idempotent lift $"
     },
     {
       "from": "m1-nest-chain",
-      "to": "m1-amp-single-edge"
+      "to": "m1-amp-single-edge",
+      "context": "ell\\leq t^2). \\] Here taking a positive power cannot enlarge the missing set: all factors have the same missing set, and their union is unchanged. Proposition \\ref{nest:chain} now yields \\begin{equation} \\sum_{\\ell=1}^{t^2}\\delta_\\ell\\leq16tc, \\qquad \\delta_\\ell=|\\mathcal M_{b_{\\ell-1}}(b_\\e"
     },
     {
       "from": "m1-amp-relation-corner",
-      "to": "m1-amp-single-edge"
+      "to": "m1-amp-single-edge",
+      "context": ". Among the possible extra pairs of $P$, only $(u_i,v_j)$ has both endpoints in $F$, and this pair has not yet been added. Therefore $i_FPi_F=i_F$. By Lemma \\ref{amp:relation-corner}, $Q\\trianglelefteq P$ and restriction gives $Q\\mathcal R_HQ\\simeq\\mathcal R_F$. Moreover, Equation \\eqref{amp:union} gi"
     },
     {
       "from": "m1-amp-minimal-corner",
-      "to": "m1-amp-single-edge"
+      "to": "m1-amp-single-edge",
+      "context": "ite monoid $A=bSb$. The restriction of $\\phi$ maps it onto $P\\mathcal R_HP$: sandwiching any preimage by $b$ gives a preimage of its $P$-sandwich. Apply Lemma \\ref{amp:minimal-corner} \\emph{inside $A$} to the idempotent $Q$. We obtain an idempotent $d\\in A$ with $\\phi(d)=Q$, minimal there among idempo"
     },
     {
       "from": "m1-amp-image",
-      "to": "m1-amp-single-edge"
+      "to": "m1-amp-single-edge",
+      "context": "[Proof of Theorem \\ref{amp:image}] Apply Lemma \\ref{amp:minimal-corner} to $\\phi_0$ and the idempotent $I_H$. It supplies an idempotent $e\\in S_0$ such"
     },
     {
       "from": "m1-auto-representation",
-      "to": "m1-auto-source"
+      "to": "m1-auto-source",
+      "context": "[Proof of Lemma~\\ref{auto:representation}] Let $B$ be the $s$-state automaton in the lemma, with state set $Q$ and initial state $q_0$. Introduce one new state $"
     },
     {
       "from": "m1-main-theorem",
-      "to": "m1-auto-source"
+      "to": "m1-auto-source",
+      "context": "[Proof of Theorem~\\ref{main:theorem}] For any $n\\geq4$, let $h=n-2$, choose a set $H$ of size $h$, and use the $n$-state source automaton from Lemma~\\ref{au"
     },
     {
       "from": "m1-auto-order-reversal",
-      "to": "m1-auto-source"
+      "to": "m1-auto-source",
+      "context": "se a set $H$ of size $h$, and use the $n$-state source automaton from Lemma~\\ref{auto:source}. If an $s$-state 2NFA recognizes its complement, then Proposition~\\ref{auto:order-reversal} supplies the order-reversing relation image required by Theorem~\\ref{amp:image}. With $m=s+1$, that bound gives \\[ 2"
     },
     {
       "from": "m1-amp-image",
-      "to": "m1-auto-source"
+      "to": "m1-auto-source",
+      "context": "ce}. If an $s$-state 2NFA recognizes its complement, then Proposition~\\ref{auto:order-reversal} supplies the order-reversing relation image required by Theorem~\\ref{amp:image}. With $m=s+1$, that bound gives \\[ 2(s+1)\\geq 2^{\\lfloor(h-2)/127\\rfloor} =2^{\\lfloor(n-4)/127\\rfloor}."
     },
     {
       "from": "m1-main-theorem",
-      "to": "m1-auto-determinization"
+      "to": "m1-auto-determinization",
+      "context": "$s$-state deterministic recognizer for $L(A_n)$ has a deterministic complement, also a 2NFA, with at most $C(s+1)$ states for an absolute constant $C$. Theorem~\\ref{main:theorem} gives \\[ C(s+1)\\ge \\tfrac12\\,2^{\\lfloor(n-4)/127\\rfloor}-1. \\] For all sufficiently large $n$ this implies the asserte"
     },
     {
       "from": "m2-thm-main",
-      "to": "m2-cor-no-polynomial"
+      "to": "m2-cor-no-polynomial",
+      "context": "Put $n=h+3$ in Theorem~\\ref{thm:main}. Every deterministic equivalent for this family has at least \\[ 2^{\\frac12\\lfloor(n-5)/31\\rfloor-1}-2 \\] states. This"
     },
     {
       "from": "m2-lem-corners",
-      "to": "m2-lem-unit-lifts"
+      "to": "m2-lem-unit-lifts",
+      "context": "$ under $\\phi$ is exactly $qMq$: for any $v\\in M$, a preimage $s\\in S$ gives $\\phi(ese)=qvq$. Its identity $e$ maps to the identity $q$ of this corner. Lemma~\\ref{lem:corners}(i) makes the displayed definition of $\\phi_e$ well-defined and transfers both multiplication and surjectivity. Suppose"
     },
     {
       "from": "m2-lem-corners",
-      "to": "m2-thm-rank-loss"
+      "to": "m2-thm-rank-loss",
+      "context": "{H}\\cup\\{(z,v_j)\\} \\quad(1\\le i,j\\le t). \\end{equation} Conjugation by permutation diagrams preserves rank, so all these idempotents have rank $m-c$. By Lemma~\\ref{lem:corners}(ii), each has support of size at most $2c$. Thus the set \\[ J=\\bigcup_{i=1}^{t}\\supp(s_i) \\ \\cup\\ \\bigcup_{j=1}"
     },
     {
       "from": "m2-lem-rank-basic",
-      "to": "m2-thm-rank-loss"
+      "to": "m2-thm-rank-loss",
+      "context": "ell=\\rank(b_\\ell)\\quad(0\\le\\ell\\le t^2), \\qquad \\Delta_\\ell=r_{\\ell-1}-r_\\ell\\quad(1\\le\\ell\\le t^2). \\] The nested corners in \\eqref{eq:rank-chain} and Lemma~\\ref{lem:rank-basic} give $\\Delta_\\ell\\ge0$. In the single coordinate system obtained by reducing at $b_0$, the starting element is the iden"
     },
     {
       "from": "m2-lem-unit-lifts",
-      "to": "m2-thm-rank-loss"
+      "to": "m2-thm-rank-loss",
+      "context": "\\qquad \\beta=R_{b_{\\ell-1}}(b_\\ell)\\in T. \\] Here $T$ contains the ambient identity $R_{b_{\\ell-1}}(b_{\\ell-1})=\\id$. The unital-surjection assertion of Lemma~\\ref{lem:unit-lifts} gives \\[ \\theta:T\\longrightarrow P\\R{H}P, \\qquad \\theta(R_{b_{\\ell-1}}(w))=\\phi(w) \\quad(w\\in b_{\\ell-1}Sb_{\\ell-1}"
     },
     {
       "from": "m2-lem-relation-corner",
-      "to": "m2-thm-rank-loss"
+      "to": "m2-thm-rank-loss",
+      "context": ", the only one with both endpoints in $F$ is $(u_i,v_j)$, which has not yet been added. Every point of $F$ is different from $z$. Therefore \\[ EPE=E. \\] Lemma~\\ref{lem:relation-corner} shows that $Q$ is idempotent, $PQ=QP=Q$, and restriction $Z\\mapsto EZE$ is a unital isomorphism from $Q\\R{H}Q$ onto $\\R"
     },
     {
       "from": "m2-lem-corners",
-      "to": "m2-cor-divisor-degree"
+      "to": "m2-cor-divisor-degree",
+      "context": "f minimum rank among those with $\\phi(e)=\\Id{H}$. The set of choices is nonempty, since the identity of $S$ is one such idempotent. Put $r=\\rank(e)$. By Lemmas~\\ref{lem:corners} and~\\ref{lem:unit-lifts}, the reduced corner \\[ T=R_e(eSe)\\subseteq\\D{r} \\] contains the ambient identity and maps uni"
     },
     {
       "from": "m2-lem-unit-lifts",
-      "to": "m2-cor-divisor-degree"
+      "to": "m2-cor-divisor-degree",
+      "context": "hose with $\\phi(e)=\\Id{H}$. The set of choices is nonempty, since the identity of $S$ is one such idempotent. Put $r=\\rank(e)$. By Lemmas~\\ref{lem:corners} and~\\ref{lem:unit-lifts}, the reduced corner \\[ T=R_e(eSe)\\subseteq\\D{r} \\] contains the ambient identity and maps unitally onto $\\Id{H}\\R{H}\\I"
     },
     {
       "from": "m2-thm-rank-loss",
-      "to": "m2-cor-divisor-degree"
+      "to": "m2-cor-divisor-degree",
+      "context": ". Surjectivity supplies a lift in $T$ of $\\Id{H}\\cup\\{(x,y)\\}$. A positive idempotent power of that lift is an idempotent $a\\in T$ with the same image. Theorem~\\ref{thm:rank-loss} applies to this representation, so \\[ \\Lfun(h)\\le r-\\rank(a)\\le r\\le k.\\qedhere \\]"
     },
     {
       "from": "m2-thm-machine-diagrams",
-      "to": "m2-lem-tree-tour"
+      "to": "m2-lem-tree-tour",
+      "context": "[Proof of Theorem~\\ref{thm:machine-diagrams}] Use the modified successor rule with its $N=s+1$ states, numbered by $[N]$. We first augment its undirected graph by"
     },
     {
       "from": "m2-thm-main",
-      "to": "m2-lem-syntactic-quotient"
+      "to": "m2-lem-syntactic-quotient",
+      "context": "[Proof of Theorem~\\ref{thm:main}] The source-state assertion is Proposition~\\ref{prop:small-nfa}. Let an arbitrary $s$-state deterministic two-way autom"
     },
     {
       "from": "m2-prop-small-nfa",
-      "to": "m2-lem-syntactic-quotient"
+      "to": "m2-lem-syntactic-quotient",
+      "context": "[Proof of Theorem~\\ref{thm:main}] The source-state assertion is Proposition~\\ref{prop:small-nfa}. Let an arbitrary $s$-state deterministic two-way automaton recognize $\\OWL_h$ on all finite words. Under initial-confi"
     },
     {
       "from": "m2-thm-machine-diagrams",
-      "to": "m2-lem-syntactic-quotient"
+      "to": "m2-lem-syntactic-quotient",
+      "context": ":small-nfa}. Let an arbitrary $s$-state deterministic two-way automaton recognize $\\OWL_h$ on all finite words. Under initial-configuration acceptance, Theorem~\\ref{thm:machine-diagrams} gives a representation in $\\D{k}$ with $k=4(s+1)^2$. Lemma~\\ref{lem:syntactic-quotient} supplies a unital surjection fr"
     },
     {
       "from": "m2-cor-divisor-degree",
-      "to": "m2-lem-syntactic-quotient"
+      "to": "m2-lem-syntactic-quotient",
+      "context": "esentation in $\\D{k}$ with $k=4(s+1)^2$. Lemma~\\ref{lem:syntactic-quotient} supplies a unital surjection from the generated submonoid onto $\\R{[h]}$. Corollary~\\ref{cor:divisor-degree} then gives \\[ 4(s+1)^2=k\\ge\\Lfun(h)=2^{\\lfloor(h-2)/31\\rfloor}. \\] With positive-transition acceptance, use the additi"
     }
   ]
 }

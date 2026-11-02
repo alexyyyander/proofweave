@@ -85,35 +85,43 @@
   "edges": [
     {
       "from": "m1-thm-representation",
-      "to": "m1-lem-lift"
+      "to": "m1-lem-lift",
+      "context": "Take $F=\\widehat F\\circ C$ from Theorem~\\ref{thm:representation} and Lemma~\\ref{lem:cuts}. If $F(x)=F(y)$, then $\\pi(d(x))=\\pi(d(y))$, hence $d(x)=d(y)$. Each fiber of $F$ therefore in"
     },
     {
       "from": "m1-lem-cuts",
-      "to": "m1-lem-lift"
+      "to": "m1-lem-lift",
+      "context": "Take $F=\\widehat F\\circ C$ from Theorem~\\ref{thm:representation} and Lemma~\\ref{lem:cuts}. If $F(x)=F(y)$, then $\\pi(d(x))=\\pi(d(y))$, hence $d(x)=d(y)$. Each fiber of $F$ therefore injects, by $C$, into a sin"
     },
     {
       "from": "m1-lem-continuity",
-      "to": "m1-prop-recovery"
+      "to": "m1-prop-recovery",
+      "context": "ree oracle sets and is therefore Borel in $(x,y)$. The set on which this is the least successful index is Borel as well. Thus $e:\\R^2\\to\\N$ is Borel. By Lemma~\\ref{lem:continuity}, choose comeager sets $D\\subseteq\\R$ and $E\\subseteq\\R^2$ such that $F|D$ and $e|E$ are continuous; the codomain of $e$"
     },
     {
       "from": "m1-thm-rigidity",
-      "to": "m1-prop-recovery"
+      "to": "m1-prop-recovery",
+      "context": "[Proof of Theorem~\\ref{thm:rigidity}] Fix an arbitrary order automorphism $\\pi$ and take the Borel map $F$ given by Lemma~\\ref{lem:lift}. Fix an irrational"
     },
     {
       "from": "m1-lem-lift",
-      "to": "m1-prop-recovery"
+      "to": "m1-prop-recovery",
+      "context": "[Proof of Theorem~\\ref{thm:rigidity}] Fix an arbitrary order automorphism $\\pi$ and take the Borel map $F$ given by Lemma~\\ref{lem:lift}. Fix an irrational $t\\in(0,1)$. Proposition~\\ref{prop:recovery} gives a comeager set $G_t$ of pairs $(u,v)$ for which \\"
     },
     {
       "from": "m1-lem-cuts",
-      "to": "m1-prop-recovery"
+      "to": "m1-prop-recovery",
+      "context": "\\mathbf b=d(t)\\vee d(u)\\vee d(v)$. Each argument in the four values on the right of \\eqref{eq:four-values} is a rational linear combination of $t,u,v,1$. Lemma~\\ref{lem:cuts} bounds its degree by $\\mathbf b$, and Equation~\\eqref{eq:representation} bounds the degree of its $F$-value by $\\pi(\\ma"
     },
     {
       "from": "m1-lem-avoidance",
-      "to": "m1-prop-recovery"
+      "to": "m1-prop-recovery",
+      "context": "^{-1}(d(t))\\leT d(t)\\vee d(u)\\vee d(v) \\qquad((u,v)\\in G_t). \\end{equation} Choose one fixed set $Y$ representing $\\pi^{-1}(d(t))$. If $Y\\not\\leT C(t)$, Lemma~\\ref{lem:avoidance} says that \\[ \\{(u,v):Y\\leT C(t)\\oplus C(u)\\oplus C(v)\\} \\] is meager. But \\eqref{eq:generic-bound} puts the comeager se"
     },
     {
       "from": "m1-thm-rigidity",
-      "to": "m1-cor-biinterpretability"
+      "to": "m1-cor-biinterpretability",
+      "context": "Slaman and Woodin prove that this property is equivalent to rigidity \\cite[Theorem~7.5.3]{SlamanWoodin2005}. Apply Theorem~\\ref{thm:rigidity}."
     }
   ]
 }

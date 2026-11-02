@@ -1,0 +1,174 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "150",
+  "title": "Weak mixing of triangular billiards with an irrational angle",
+  "result": {
+    "id": "paper-result",
+    "label": "Weak mixing of triangular billiards with an irrational angle",
+    "statement": "Proves that the billiard flow in every nondegenerate Euclidean triangle with at least one angle irrational relative to π is weakly mixing for normalized area times uniform direction. This strengthens ergodicity on the entire irrational-angle class, with no genericity or Diophantine restrictions.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "the-double-and-its-angular-coefficients",
+      "label": "The double and its angular coefficients",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "localized-energy-and-individual-coefficient-bounds",
+      "label": "Localized energy and individual coefficient bounds",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "localized-energy-and-individual-coefficient-bounds-2",
+      "label": "Localized energy and individual coefficient bounds",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "localized-energy-and-individual-coefficient-bounds-3",
+      "label": "Localized energy and individual coefficient bounds",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "side-reflections-and-weak-mixing",
+      "label": "Side reflections and weak mixing",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "side-reflections-and-weak-mixing-2",
+      "label": "Side reflections and weak mixing",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Weak mixing of triangular billiards with an irrational angle",
+      "title": "Weak mixing of triangular billiards with an irrational angle",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Weak-mixing-of-triangular-billiards-with-an-irrational-angle-October-5-2026/weak-mixing-triangular-billiards.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Weak mixing of triangular billiards with an irrational angle; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "The unit-speed billiard flow in every nondegenerate Euclidean triangle with at…",
+          "fullLabel": "The unit-speed billiard flow in every nondegenerate Euclidean triangle with at…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "The unit-speed billiard flow in every nondegenerate Euclidean triangle with at least one angle irrational relative to \\(\\) is weakly mixing for normalized Liouville measure.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-rigidity",
+          "role": "the-double-and-its-angular-coefficients",
+          "label": "Transverse rigidity",
+          "fullLabel": "Transverse rigidity",
+          "kind": "proposition",
+          "source": "The double and its angular coefficients",
+          "detail": "[Transverse rigidity] Let \\(M\\) be the regular oriented double of a fixed nondegenerate Euclidean triangle, and let \\(_t\\) be its geodesic flow on \\(SM\\) with normalized Liouville measure. Suppose…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-energy",
+          "role": "localized-energy-and-individual-coefficient-bounds",
+          "label": "Localized coefficient estimate",
+          "fullLabel": "Localized coefficient estimate",
+          "kind": "lemma",
+          "source": "Localized energy and individual coefficient bounds",
+          "detail": "[Localized coefficient estimate] Let \\(w L^2(SM)\\) have compact spatial support in \\(M\\) and be smooth in position with values in angular \\(L^2\\) in every flat chart. Suppose \\(Aw\\) vanishes over \\(M…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-smoothing",
+          "role": "localized-energy-and-individual-coefficient-bounds-2",
+          "label": "Spatial regularization",
+          "fullLabel": "Spatial regularization",
+          "kind": "lemma",
+          "source": "Localized energy and individual coefficient bounds",
+          "detail": "[Spatial regularization] For every integer \\(0\\), the preceding operators satisfy ^ ^ S_ u_ L^2(r>K) C_u_2. Their derivatives here are taken before zero extension. The output is smooth in position…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-bounded-modes",
+          "role": "localized-energy-and-individual-coefficient-bounds-3",
+          "label": "Individual coefficient regularity",
+          "fullLabel": "Individual coefficient regularity",
+          "kind": "lemma",
+          "source": "Localized energy and individual coefficient bounds",
+          "detail": "[Individual coefficient regularity] Suppose \\(h L^(SM)\\), \\(h_ H\\), and \\((X-i)h=0\\) locally in distributions on the regular bundle. Every Fourier coefficient then has a global square-integrable flat…",
+          "dependsOn": [
+            "m1-lem-energy",
+            "m1-lem-smoothing",
+            "m1-prop-rigidity"
+          ]
+        },
+        {
+          "id": "m1-prop-eigenfunctions",
+          "role": "side-reflections-and-weak-mixing",
+          "label": "Let \\(Q\\) be a nondegenerate Euclidean triangle with an angle irrational…",
+          "fullLabel": "Let \\(Q\\) be a nondegenerate Euclidean triangle with an angle irrational…",
+          "kind": "proposition",
+          "source": "Side reflections and weak mixing",
+          "detail": "Let \\(Q\\) be a nondegenerate Euclidean triangle with an angle irrational relative to \\(\\). If \\(F L^2(Q S^1,)\\) satisfies \\[ F_t=e^ i t Fin L^2 (t) \\] for some \\(\\), then \\(F\\) is constant almost…",
+          "dependsOn": [
+            "m1-prop-rigidity"
+          ]
+        },
+        {
+          "id": "m1-lem-spectral",
+          "role": "side-reflections-and-weak-mixing-2",
+          "label": "Let \\((,)\\) be a standard probability space and \\(_t\\) a measure-preserving…",
+          "fullLabel": "Let \\((,)\\) be a standard probability space and \\(_t\\) a measure-preserving…",
+          "kind": "lemma",
+          "source": "Side reflections and weak mixing",
+          "detail": "Let \\((,)\\) be a standard probability space and \\(_t\\) a measure-preserving flow whose composition operators form a strongly continuous unitary group on complex \\(L^2()\\). If the only flow…",
+          "dependsOn": [
+            "m1-thm-main",
+            "m1-prop-eigenfunctions"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "Weak mixing of triangular billiards with an irrational angle",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Weak-mixing-of-triangular-billiards-with-an-irrational-angle-October-5-2026/weak-mixing-triangular-billiards.pdf",
+      "kind": "paper"
+    }
+  ]
+}

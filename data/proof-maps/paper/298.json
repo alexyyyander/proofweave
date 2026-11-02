@@ -94,35 +94,43 @@
   "edges": [
     {
       "from": "m1-lem-wick",
-      "to": "m1-prop-fisher"
+      "to": "m1-prop-fisher",
+      "context": "Let $Z=V_u$ and let $\\xi_i$ be supplied by Lemma~\\ref{lem:wick}. Contraction of conditional expectation gives $\\Phi^*(Z)\\leq n/u$. Also $\\tau(Z_i\\xi_i)=1$ by testing the conjugate ide"
     },
     {
       "from": "m1-lem-matrix-convergence",
-      "to": "m1-lem-finitechi"
+      "to": "m1-lem-finitechi",
+      "context": "bove, in dimensions $d_k=pq_k$, and add independent GUE noise of variance $h$. If $M$ bounds the coordinate norms of those models, take $R_0=M+8\\sqrt h$. Lemma~\\ref{lem:matrix-convergence} and \\eqref{eq:gue-norm-tail} show that these noised models lie in every fixed moment neighborhood of $X$, within that c"
     },
     {
       "from": "m1-lem-matrix-convergence",
-      "to": "m1-lem-flow"
+      "to": "m1-lem-flow",
+      "context": "-P_i(Z^{(d)}(s))^2\\big). \\] First use \\eqref{eq:matrixibp} to replace every term involving the score by a product of normalized polynomial traces. Lemma~\\ref{lem:matrix-convergence} then gives the limit of the right side as \\[ \\sum_i\\left[2(\\tau\\otimes\\tau)((\\partial_iP_i)(V_{h+s}))"
     },
     {
       "from": "m1-lem-wick",
-      "to": "m1-lem-flow"
+      "to": "m1-lem-flow",
+      "context": "-\\tau(P_i(V_{h+s})^2)\\right]. \\] The limiting law is $V_{h+s}$ because the new semicircular noise is free from $X=V_h$. Conjugate variables exist by Lemma~\\ref{lem:wick}. Taking the supremum over these tests in Lemma~\\ref{lem:variational} gives \\begin{equation}\\label{eq:matrix-free-fisher"
     },
     {
       "from": "m1-lem-variational",
-      "to": "m1-lem-flow"
+      "to": "m1-lem-flow",
+      "context": "h+s}$ because the new semicircular noise is free from $X=V_h$. Conjugate variables exist by Lemma~\\ref{lem:wick}. Taking the supremum over these tests in Lemma~\\ref{lem:variational} gives \\begin{equation}\\label{eq:matrix-free-fisher} \\liminf_d I_d(s)\\geq\\Phi^*(V_{h+s}). \\end{equation} This holds for"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-eventprob"
+      "to": "m1-lem-eventprob",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Retain the same cutoff, dimension subsequence, and ensembles throughout. Put $\\alpha=\\mu_d(\\mathcal E_d)$ and $\\beta=\\"
     },
     {
       "from": "m1-lem-flow",
-      "to": "m1-lem-eventprob"
+      "to": "m1-lem-eventprob",
+      "context": "In particular, \\[ \\limsup_d H_d(Z^{(d)}(t))\\leq L(h+t)-1. \\] This upper bound concerns exactly the terminal law $Z^{(d)}(t)=A^{(d)}+\\sqrt t G^{(d)}$ in Lemma~\\ref{lem:flow}. Combining the two bounds on its entropy and then \\eqref{eq:largeentropy}--\\eqref{eq:freeflow} gives \\begin{align*} \\c"
     },
     {
       "from": "m1-lem-finitechi",
-      "to": "m1-lem-eventprob"
+      "to": "m1-lem-eventprob",
+      "context": "s holds for every fixed cutoff with $\\chi_R(X)>-\\infty$; for the remaining cutoffs it is automatic. Taking the supremum over cutoffs preserves the bound. Lemma~\\ref{lem:finitechi} gives $\\chi(X)>-\\infty$, and \\eqref{eq:entropydeficit} shows that $\\chi^*(X)$ is a finite real number. The bounded matr"
     }
   ]
 }

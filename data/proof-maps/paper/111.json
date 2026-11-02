@@ -167,67 +167,83 @@
   "edges": [
     {
       "from": "m1-lem-paths",
-      "to": "m1-lem-feasibility"
+      "to": "m1-lem-feasibility",
+      "context": "ving of arrivals, and of every prefix. All masks are drawn initially and the matroid is known. Each density maximization is over finitely many flats. By Lemma~\\ref{lem:paths}, it is enough to compute a finite interval of integer times for the at most $|E|$ listed groups. Positive rounding has"
     },
     {
       "from": "m1-lem-transactions",
-      "to": "m1-lem-exit"
+      "to": "m1-lem-exit",
+      "context": "is held fixed in this comparison; no earlier state is recomputed after previous positive bits are erased. All transactions consume distinct coordinates. Lemma~\\ref{lem:transactions} bounds the conditional expected number of non-exit steps in this block by $\\log(1/\\delta)\\le\\log(1/p_0)$. There is at m"
     },
     {
       "from": "m1-lem-exit",
-      "to": "m1-lem-safe"
+      "to": "m1-lem-safe",
+      "context": "Apply Lemma~\\ref{lem:exit} to each $d\\in D_h\\cap Y$. By Lemma~\\ref{lem:paths}, the only birth excluded from the range $a_h+2\\le b\\le0$ is the base"
     },
     {
       "from": "m1-lem-paths",
-      "to": "m1-lem-safe"
+      "to": "m1-lem-safe",
+      "context": "Apply Lemma~\\ref{lem:exit} to each $d\\in D_h\\cap Y$. By Lemma~\\ref{lem:paths}, the only birth excluded from the range $a_h+2\\le b\\le0$ is the baseline birth $a_h$; a birth at $a_h+1$ is impossible."
     },
     {
       "from": "m1-lem-generators",
-      "to": "m1-lem-safe"
+      "to": "m1-lem-safe",
+      "context": "\\cap Y\\cap Q_h(L)| \\le\\rk(Q_h(L))\\le\\frac{|D_h|}{\\kappa}. \\] Here $Y$ is independent in the matroid, and the last inequality is the generator bound of Lemma~\\ref{lem:generators}. Summing \\eqref{eq:birth-safety-probability} over labels and valid birth times therefore gives a pre-parity expected sa"
     },
     {
       "from": "m1-lem-generators",
-      "to": "m1-lem-pattern-family"
+      "to": "m1-lem-pattern-family",
+      "context": "$D,C,T$ bit on $U_i$ enters this incoming path or these competition sets. Write $a=a_h$ and $q=\\lfloor n/\\kappa\\rfloor$. On any actual listed outcome, Lemma~\\ref{lem:generators} supplies a set $J_h\\subseteq U_i$ of at most $q$ density generators and an insertion time $\\tau(g)$ for each $g\\in J_h$"
     },
     {
       "from": "m1-lem-pivot-patterns",
-      "to": "m1-lem-pattern-family"
+      "to": "m1-lem-pattern-family",
+      "context": "sidual. Let $S_d(n)=\\sum_{\\ell=0}^{d}\\binom n\\ell$. There are at most $S_q(n)^2$ subset choices. Each sequence has at most $2q$ movable occurrences, so Lemma~\\ref{lem:pivot-patterns} gives \\begin{equation}\\label{eq:raw-pattern-count} |\\mathfrak R_i| \\le S_q(n)^2\\bigl(4^{2q}S_{2q}(n)\\bigr)^2. \\end{eq"
     },
     {
       "from": "m1-lem-transfer",
-      "to": "m1-lem-pattern-family"
+      "to": "m1-lem-pattern-family",
+      "context": "[Proof of Lemma~\\ref{lem:transfer}] Put $n=n_i$. On the unlisted branch $D\\cap U_i$ is empty, so Lemma~\\ref{lem:safe}, with both sides extended by zero o"
     },
     {
       "from": "m1-lem-safe",
-      "to": "m1-lem-pattern-family"
+      "to": "m1-lem-pattern-family",
+      "context": "[Proof of Lemma~\\ref{lem:transfer}] Put $n=n_i$. On the unlisted branch $D\\cap U_i$ is empty, so Lemma~\\ref{lem:safe}, with both sides extended by zero on that branch, can be averaged over $D$. Since each label belongs to $D$ with proba"
     },
     {
       "from": "m1-lem-generators",
-      "to": "m1-lem-rank-cost"
+      "to": "m1-lem-rank-cost",
+      "context": "Choose the generator sets of Lemma~\\ref{lem:generators} and put \\[ J=C_h\\cup\\bigcup_{j>h}(C_j\\cup J_j). \\] This single set satisfies $|J|\\le c_h$ and, for every integer $k$,"
     },
     {
       "from": "m1-lem-rank-cost",
-      "to": "m1-lem-thinning"
+      "to": "m1-lem-thinning",
+      "context": "Its intersection with $T_h$ is still independent over the same base and has expected size $t$ times its size. Linearity proves the first inequality, and Lemma~\\ref{lem:rank-cost} proves the second. No selected order is conditioned upon."
     },
     {
       "from": "m1-prop-hidden",
-      "to": "m1-lem-thinning"
+      "to": "m1-lem-thinning",
+      "context": "[Proof of Proposition~\\ref{prop:hidden} and Theorem~\\ref{thm:main}] Choose the two branches with equal probability. In the first case above, the main branch co"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-thinning"
+      "to": "m1-lem-thinning",
+      "context": "[Proof of Proposition~\\ref{prop:hidden} and Theorem~\\ref{thm:main}] Choose the two branches with equal probability. In the first case above, the main branch contributes at least $t\\gamma"
     },
     {
       "from": "m1-lem-feasibility",
-      "to": "m1-lem-thinning"
+      "to": "m1-lem-thinning",
+      "context": "B} =2^{-140-16-5-100-32}=2^{-293}. \\] When $W=0$, the benchmark is zero and the conclusion is immediate. Feasibility and measurability follow from Lemma~\\ref{lem:feasibility} and the analogous immediate properties of the maximum branch. This proves Proposition~\\ref{prop:hidden}. The revealed m"
     },
     {
       "from": "m1-lem-simulation",
-      "to": "m1-lem-thinning"
+      "to": "m1-lem-thinning",
+      "context": "s of the maximum branch. This proves Proposition~\\ref{prop:hidden}. The revealed mask is selected from the initial seed, independently of the weights, so Lemma~\\ref{lem:simulation} proves Theorem~\\ref{thm:main}, with slack in its announced constant. The construction covers empty ground sets, loops,"
     },
     {
       "from": "m1-prop-hidden",
-      "to": "m1-cor-secretary"
+      "to": "m1-cor-secretary",
+      "context": "Let $R$ denote the complete source seed of Proposition~\\ref{prop:hidden}, including the independent fair branch choice $J$. In the maximum branch the sacrificed mask has independent membership"
     }
   ]
 }

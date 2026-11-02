@@ -118,43 +118,53 @@
   "edges": [
     {
       "from": "m1-lem-radial",
-      "to": "m1-prop-alignment"
+      "to": "m1-prop-alignment",
+      "context": "posite endpoint back to $S_X$, and reverse its direction from $ty$. A fixed direction for this return map will align the two chords. For $v\\in S_X$, use Lemma~\\ref{lem:radial} to define $p=p(v)>0$ by $x(v)=ty+pv\\in S_X$. Define successively \\begin{equation}\\label{eq:return} f(x(v))=tb+sw,\\qquad"
     },
     {
       "from": "m1-thm-condensing",
-      "to": "m1-prop-alignment"
+      "to": "m1-prop-alignment",
+      "context": "ma\\delta+4\\eta/a$. Letting $\\eta\\downarrow0$ for this fixed cover and then taking the infimum over diameter covers gives $\\chi(g(H))\\le\\gamma\\chi(H)$. Theorem~\\ref{thm:condensing} now gives $v\\in C$ with $g(v)=v$. Set $x=x(v)$; this endpoint may differ from $x_0$. Substitution in \\eqref{eq:return}"
     },
     {
       "from": "m1-lem-secant",
-      "to": "m1-lem-large"
+      "to": "m1-lem-large",
+      "context": "First suppose $B>\\epsilon$. Then $h=\\epsilon/u$ and Lemma~\\ref{lem:secant} gives \\begin{equation}\\label{eq:product} \\frac{pu}{d\\epsilon}\\ge1. \\end{equation} Let $L$ be any support at $v$, and wr"
     },
     {
       "from": "m1-lem-large",
-      "to": "m1-prop-no-defect"
+      "to": "m1-prop-no-defect",
+      "context": "By Lemma~\\ref{lem:large}, $A,B\\le\\epsilon$. Apply Lemma~\\ref{lem:secant} both to the original configuration and to \\eqref{eq:inverse}. This give"
     },
     {
       "from": "m1-lem-secant",
-      "to": "m1-prop-no-defect"
+      "to": "m1-prop-no-defect",
+      "context": "By Lemma~\\ref{lem:large}, $A,B\\le\\epsilon$. Apply Lemma~\\ref{lem:secant} both to the original configuration and to \\eqref{eq:inverse}. This gives \\begin{equation}\\label{eq:small} \\epsilon\\le d"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-prop-no-defect"
+      "to": "m1-prop-no-defect",
+      "context": "[Proof of Theorem~\\ref{thm:main}] If the defect of the original sphere map were positive, Lemma~\\ref{lem:attainment} and Proposition~\\ref{prop:no-defect"
     },
     {
       "from": "m1-lem-attainment",
-      "to": "m1-prop-no-defect"
+      "to": "m1-prop-no-defect",
+      "context": "[Proof of Theorem~\\ref{thm:main}] If the defect of the original sphere map were positive, Lemma~\\ref{lem:attainment} and Proposition~\\ref{prop:no-defect} would contradict one another. Thus $M=0$. For $a=\\alpha x$ and $c=\\beta y$, where"
     },
     {
       "from": "m1-lem-simplex",
-      "to": "m1-lem-compactfixed"
+      "to": "m1-lem-compactfixed",
+      "context": ", and these are continuous probability weights. Map the probability simplex to itself by sending coefficients $(a_i)$ to $(\\lambda_i(\\sum_j a_jP_j))$. By Lemma~\\ref{lem:simplex} there is a fixed coefficient vector. Its convex combination $x\\in K$ satisfies \\[ \\norm{x-g(x)} \\le\\sum_i\\lambda_i(x)\\n"
     },
     {
       "from": "m1-thm-condensing",
-      "to": "m1-lem-compactfixed"
+      "to": "m1-lem-compactfixed",
+      "context": "[Proof of Theorem~\\ref{thm:condensing}] Set $C_0=C$ and $C_{n+1}=\\clco(g(C_n))$. These are nonempty closed bounded convex subsets of $C$ satisfying $C_{n+1}\\s"
     },
     {
       "from": "m1-lem-chi",
-      "to": "m1-lem-compactfixed"
+      "to": "m1-lem-compactfixed",
+      "context": "ref{thm:condensing}] Set $C_0=C$ and $C_{n+1}=\\clco(g(C_n))$. These are nonempty closed bounded convex subsets of $C$ satisfying $C_{n+1}\\subset C_n$. By Lemma~\\ref{lem:chi}, \\[ \\chi(C_{n+1})=\\chi(g(C_n))\\le\\gamma\\chi(C_n), \\] so their intersection $K$ is nonempty, compact, and convex. If $x\\"
     }
   ]
 }

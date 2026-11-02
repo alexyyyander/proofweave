@@ -93,51 +93,63 @@
   "edges": [
     {
       "from": "m1-prop-mp-interface",
-      "to": "m1-lem-mp-prefix"
+      "to": "m1-lem-mp-prefix",
+      "context": "Fix the global positional strategy of Proposition~\\ref{prop:mp-interface}, retaining its chosen edge at each Max vertex and all edges at Min vertices. Every simple directed cycle in this graph"
     },
     {
       "from": "m1-lem-mp-prefix",
-      "to": "m1-lem-combine"
+      "to": "m1-lem-combine",
+      "context": "gives a win for \\Min. The one-edge step after reaching $S$ ensures that successive applications of the rule advance the play. Now let $d$ be even. By Lemma~\\ref{lem:mp-prefix}, fix a mean-payoff strategy on $H$ whose every finite prefix, from every start, has weight at least $-B$. For each $x\\"
     },
     {
       "from": "m1-prop-mp-interface",
-      "to": "m1-thm-determinacy"
+      "to": "m1-thm-determinacy",
+      "context": "S=\\{v\\in H:p(v)=d\\},\\qquad A=\\Attr_P^H(S),\\qquad R=H\\setminus A. \\] If $d$ is even and \\Max\\ does not win for mean payoff alone everywhere in $H$, Proposition~\\ref{prop:mp-interface} supplies a nonempty set of vertices from which \\Min\\ can force failure of the mean-payoff condition. These are conjunc"
     },
     {
       "from": "m1-lem-combine",
-      "to": "m1-thm-determinacy"
+      "to": "m1-thm-determinacy",
+      "context": "re conjunction-losing vertices, so they provide $Y$ with $J=\\Min$ in the preceding reduction. We may therefore assume that the mean-payoff hypothesis of Lemma~\\ref{lem:combine} holds whenever $d$ is even. Since $S$ is nonempty, $R$ has fewer vertices than $H$. Apply induction to the game on $R"
     },
     {
       "from": "m1-thm-determinacy",
-      "to": "m1-lem-extract"
+      "to": "m1-lem-extract",
+      "context": "$D$, because $D$ is closed at \\Max's vertices; \\Min\\ is restricted to choosing edges in $D$. Suppose that the game on $R_D$ has no $Q$-winning vertex. Theorem~\\ref{thm:determinacy} makes every vertex there winning for $P$, with the uniform prefix property if $P=\\Max$. Apply Lemma~\\ref{lem:combine}"
     },
     {
       "from": "m1-lem-combine",
-      "to": "m1-lem-extract"
+      "to": "m1-lem-extract",
+      "context": "$ has no $Q$-winning vertex. Theorem~\\ref{thm:determinacy} makes every vertex there winning for $P$, with the uniform prefix property if $P=\\Max$. Apply Lemma~\\ref{lem:combine} to the arena $D$, using the target $D\\cap S$ and its residual arena $R_D$. All its hypotheses have just been verified,"
     },
     {
       "from": "m1-lem-arena-facts",
-      "to": "m1-lem-extract"
+      "to": "m1-lem-extract",
+      "context": "tegy hypothesis is vacuous. Consequently the $Q$-winning set in $R_D$ is nonempty. It is a $Q$-dominion there, and it lifts to a $Q$-dominion in $R$ by Lemma~\\ref{lem:arena-facts}, since $R_D$ is closed at $P$'s vertices. It is contained in $D$, as required. If $S=\\varnothing$, then $R=H$ and $R_D"
     },
     {
       "from": "m1-lem-arena-facts",
-      "to": "m1-thm-labels"
+      "to": "m1-thm-labels",
+      "context": "$P=\\Max$. A winning strategy that stays in $D$ also wins for mean payoff alone in $U$, so $D\\cap X=\\varnothing$. Since $D$ is closed at $Q$'s vertices, Lemma~\\ref{lem:arena-facts} shows that $\\Attr_Q^U(X)$ misses $D$ and preserves its dominion property in the residual arena. For a deletion obtaine"
     },
     {
       "from": "m1-lem-extract",
-      "to": "m1-thm-labels"
+      "to": "m1-thm-labels",
+      "context": "en $d$ is even, the mean-payoff step immediately before that child certified $U_{\\mathrm{mp}}(U)=U$. Thus, at a nonempty phase return, all hypotheses of Lemma~\\ref{lem:extract} hold in $U$: every priority is at least $d$, and the required mean-payoff condition holds when $d$ is even. No occurre"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-prop-reduction-cost"
+      "to": "m1-prop-reduction-cost",
+      "context": "[Proof of Theorem~\\ref{thm:main}] The empty arena has an empty winning set and is handled immediately. For a nonempty arena, the output of $\\Solve(G,(n,"
     },
     {
       "from": "m1-thm-labels",
-      "to": "m1-prop-reduction-cost"
+      "to": "m1-prop-reduction-cost",
+      "context": "~\\ref{thm:main}] The empty arena has an empty winning set and is handled immediately. For a nonempty arena, the output of $\\Solve(G,(n,n))$ is exact by Theorem~\\ref{thm:labels} and the winning-region argument at the end of Section~\\ref{sec:algorithm}. Proposition~\\ref{prop:mp-interface} impleme"
     },
     {
       "from": "m1-prop-mp-interface",
-      "to": "m1-prop-reduction-cost"
+      "to": "m1-prop-reduction-cost",
+      "context": "a, the output of $\\Solve(G,(n,n))$ is exact by Theorem~\\ref{thm:labels} and the winning-region argument at the end of Section~\\ref{sec:algorithm}. Proposition~\\ref{prop:mp-interface} implements each ordinary mean-payoff call of input length $L'$ in $2^{O((\\log_2(L'+2))^2)}$ bit operations, uniformly a"
     }
   ]
 }

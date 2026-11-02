@@ -1,0 +1,465 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "194",
+  "title": "Lech’s multiplicity conjecture",
+  "result": {
+    "id": "paper-result",
+    "label": "Lech’s multiplicity conjecture",
+    "statement": "Proves e(R) e(S) for every flat local homomorphism of nonzero Noetherian local rings, where e is Hilbert–Samuel multiplicity. This resolves Lech's conjecture in every dimension and characteristic.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "a-complex-estimate-with-an-additive-length",
+      "label": "A complex estimate with an additive length",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-complex-estimate-with-an-additive-length-2",
+      "label": "A complex estimate with an additive length",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-complex-estimate-with-an-additive-length-3",
+      "label": "A complex estimate with an additive length",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-complex-estimate-with-an-additive-length-4",
+      "label": "A complex estimate with an additive length",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-complex-estimate-with-an-additive-length-5",
+      "label": "A complex estimate with an additive length",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-complex-estimate-with-an-additive-length-6",
+      "label": "A complex estimate with an additive length",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "normalized-length-algebras",
+      "label": "Normalized length algebras",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "normalized-length-algebras-2",
+      "label": "Normalized length algebras",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "normalized-length-algebras-3",
+      "label": "Normalized length algebras",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "normalized-length-algebras-4",
+      "label": "Normalized length algebras",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "reductions-and-a-finite-free-complex",
+      "label": "Reductions and a finite free complex",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "reductions-and-a-finite-free-complex-2",
+      "label": "Reductions and a finite free complex",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "reductions-and-a-finite-free-complex-3",
+      "label": "Reductions and a finite free complex",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "reductions-and-a-finite-free-complex-4",
+      "label": "Reductions and a finite free complex",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "reductions-and-a-finite-free-complex-5",
+      "label": "Reductions and a finite free complex",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "reductions-and-a-finite-free-complex-6",
+      "label": "Reductions and a finite free complex",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "mixed-characteristic",
+      "label": "Mixed characteristic",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "mixed-characteristic-2",
+      "label": "Mixed characteristic",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "mixed-characteristic-3",
+      "label": "Mixed characteristic",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "residue-characteristic-zero",
+      "label": "Residue characteristic zero",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "residue-characteristic-zero-2",
+      "label": "Residue characteristic zero",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "residue-characteristic-zero-3",
+      "label": "Residue characteristic zero",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "residue-characteristic-zero-4",
+      "label": "Residue characteristic zero",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Lech's multiplicity conjecture",
+      "title": "Lech's multiplicity conjecture",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Lechs-multiplicity-conjecture-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Lech's multiplicity conjecture; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "Lech's conjecture",
+          "fullLabel": "Lech's conjecture",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "[Lech's conjecture] Let (R, m)(S, n) be a flat local homomorphism of nonzero Noetherian local rings. Then \\[ e(R) e(S). \\] There is no restriction on the dimensions, the residue fields, or the…",
+          "dependsOn": [
+            "m1-thm-positive-characteristic",
+            "m1-thm-mixed-characteristic",
+            "m1-thm-charzero"
+          ]
+        },
+        {
+          "id": "m1-thm-complex",
+          "role": "a-complex-estimate-with-an-additive-length",
+          "label": "Let C , I , and be as above. Assume that is additive on short exact sequences,…",
+          "fullLabel": "Let C , I , and be as above. Assume that is additive on short exact sequences,…",
+          "kind": "theorem",
+          "source": "A complex estimate with an additive length",
+          "detail": "Let C , I , and be as above. Assume that is additive on short exact sequences, that (0)=0 , and that direct sums and filtered colimits of length-zero modules killed by a common power of I have length…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-acyclicity",
+          "role": "a-complex-estimate-with-an-additive-length-2",
+          "label": "Under the standing length hypotheses, let F be a finite free complex in degrees…",
+          "fullLabel": "Under the standing length hypotheses, let F be a finite free complex in degrees…",
+          "kind": "lemma",
+          "source": "A complex estimate with an additive length",
+          "detail": "Under the standing length hypotheses, let F be a finite free complex in degrees 0,,h , contractible locally off V(I) . Each H_i(F) is annihilated by a fixed power of I , all its lengths are finite,…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-complex-graded-comparison",
+          "role": "a-complex-estimate-with-an-additive-length-3",
+          "label": "The graded surjection (C/I)[Z_1,,Z_h]_I C has length-zero kernel in every…",
+          "fullLabel": "The graded surjection (C/I)[Z_1,,Z_h]_I C has length-zero kernel in every…",
+          "kind": "lemma",
+          "source": "A complex estimate with an additive length",
+          "detail": "The graded surjection (C/I)[Z_1,,Z_h]_I C has length-zero kernel in every degree. For every vector bundle V on _^ h-1 and every integer t , restriction induces isomorphisms modulo length zero \\[…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-complex-twist-maps",
+          "role": "a-complex-estimate-with-an-additive-length-4",
+          "label": "Let D be either F_Y V or G V , with V a vector bundle pulled back from _^ h-1 .…",
+          "fullLabel": "Let D be either F_Y V or G V , with V a vector bundle pulled back from _^ h-1 .…",
+          "kind": "lemma",
+          "source": "A complex estimate with an additive length",
+          "detail": "Let D be either F_Y V or G V , with V a vector bundle pulled back from _^ h-1 . There is an integer M_D such that, for every integer j and every M M_D , the inclusion \\[ D(j+M) D(j) \\] induces zero…",
+          "dependsOn": [
+            "m1-lem-complex-graded-comparison"
+          ]
+        },
+        {
+          "id": "m1-lem-complex-euler-comparison",
+          "role": "a-complex-estimate-with-an-additive-length-5",
+          "label": "One has _(F_Y)=_i(-1)^i H_i(F)= H_0(F). If _i(-1)^i b_i=0 , then for every…",
+          "fullLabel": "One has _(F_Y)=_i(-1)^i H_i(F)= H_0(F). If _i(-1)^i b_i=0 , then for every…",
+          "kind": "lemma",
+          "source": "A complex estimate with an additive length",
+          "detail": "One has _(F_Y)=_i(-1)^i H_i(F)= H_0(F). If _i(-1)^i b_i=0 , then for every vector bundle V pulled back from _^ h-1 , _(F_Y V)=( V)_(F_Y).",
+          "dependsOn": [
+            "m1-lem-complex-graded-comparison",
+            "m1-lem-complex-twist-maps"
+          ]
+        },
+        {
+          "id": "m1-lem-complex-root-bundle",
+          "role": "a-complex-estimate-with-an-additive-length-6",
+          "label": "Given integers r_1>>r_ h-1 , there is a vector bundle V of rank (h-1)! on _^…",
+          "fullLabel": "Given integers r_1>>r_ h-1 , there is a vector bundle V of rank (h-1)! on _^…",
+          "kind": "lemma",
+          "source": "A complex estimate with an additive length",
+          "detail": "Given integers r_1>>r_ h-1 , there is a vector bundle V of rank (h-1)! on _^ h-1 with the following property. For every ring A and every integer a , V(a) on _A^ h-1 is acyclic if a=r_j for some j .…",
+          "dependsOn": [
+            "m1-lem-complex-graded-comparison",
+            "m1-thm-complex",
+            "m1-lem-acyclicity",
+            "m1-lem-complex-twist-maps",
+            "m1-lem-complex-euler-comparison"
+          ]
+        },
+        {
+          "id": "m1-thm-length-inputs",
+          "role": "normalized-length-algebras",
+          "label": "Let (D, d,k) be a complete Noetherian local domain of dimension h>0 , with…",
+          "fullLabel": "Let (D, d,k) be a complete Noetherian local domain of dimension h>0 , with…",
+          "kind": "theorem",
+          "source": "Normalized length algebras",
+          "detail": "Let (D, d,k) be a complete Noetherian local domain of dimension h>0 , with perfect residue field k of characteristic p>0 . There exist a D -algebra C and a function , with values in [0,] , on C…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-normalized-limit",
+          "role": "normalized-length-algebras-2",
+          "label": "Suppose that all the modules in the following assertions are annihilated by a…",
+          "fullLabel": "Suppose that all the modules in the following assertions are annihilated by a…",
+          "kind": "lemma",
+          "source": "Normalized length algebras",
+          "detail": "Suppose that all the modules in the following assertions are annihilated by a fixed power of m_A . Direct sums, sums, and directed colimits of zero-length modules have length zero. If M=_n M_n is an…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-perfection-conductor",
+          "role": "normalized-length-algebras-3",
+          "label": "There is an element 0 g A such that \\[ gC B_1, g^ 1/q C B_q(q=p^n). \\]",
+          "fullLabel": "There is an element 0 g A such that \\[ gC B_1, g^ 1/q C B_q(q=p^n). \\]",
+          "kind": "lemma",
+          "source": "Normalized length algebras",
+          "detail": "There is an element 0 g A such that \\[ gC B_1, g^ 1/q C B_q(q=p^n). \\]",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-perfection-finite-length",
+          "role": "normalized-length-algebras-4",
+          "label": "In the characteristic- p setup above, let M be a finite-length D -module. If…",
+          "fullLabel": "In the characteristic- p setup above, let M be a finite-length D -module. If…",
+          "kind": "lemma",
+          "source": "Normalized length algebras",
+          "detail": "In the characteristic- p setup above, let M be a finite-length D -module. If the limit on the right exists, then \\[ _(C_D M) =_ q=p^n q^ -h _D(_D^n(M)). \\]",
+          "dependsOn": [
+            "m1-lem-perfection-conductor",
+            "m1-lem-normalized-limit"
+          ]
+        },
+        {
+          "id": "m1-lem-residue-extension",
+          "role": "reductions-and-a-finite-free-complex",
+          "label": "For every complete Noetherian local ring (B, b,k) and every algebraic closure k…",
+          "fullLabel": "For every complete Noetherian local ring (B, b,k) and every algebraic closure k…",
+          "kind": "lemma",
+          "source": "Reductions and a finite free complex",
+          "detail": "For every complete Noetherian local ring (B, b,k) and every algebraic closure k of k , there is a complete Noetherian local ring B' and a flat local map B B' such that \\[ bB'= b_ B' , B'/ b_ B' k,…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-reduction",
+          "role": "reductions-and-a-finite-free-complex-2",
+          "label": "To prove e(R) e(S) for all flat local maps of nonzero Noetherian local rings,…",
+          "fullLabel": "To prove e(R) e(S) for all flat local maps of nonzero Noetherian local rings,…",
+          "kind": "lemma",
+          "source": "Reductions and a finite free complex",
+          "detail": "To prove e(R) e(S) for all flat local maps of nonzero Noetherian local rings, it suffices to prove it when R and S are complete, R is a domain, R= S>0 , and the residue field of S is algebraically…",
+          "dependsOn": [
+            "m1-lem-residue-extension"
+          ]
+        },
+        {
+          "id": "m1-prop-setup",
+          "role": "reductions-and-a-finite-free-complex-3",
+          "label": "Let (R, m)(S, n) be a flat local map of complete Noetherian local rings.…",
+          "fullLabel": "Let (R, m)(S, n) be a flat local map of complete Noetherian local rings.…",
+          "kind": "proposition",
+          "source": "Reductions and a finite free complex",
+          "detail": "Let (R, m)(S, n) be a flat local map of complete Noetherian local rings. Suppose R is a domain, R= S=d>0 , the residue characteristic is p>0 , and the residue field L of S is algebraically closed.…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-ma-hk",
+          "role": "reductions-and-a-finite-free-complex-4",
+          "label": "Ma's Hilbert--Kunz identity",
+          "fullLabel": "Ma's Hilbert--Kunz identity",
+          "kind": "lemma",
+          "source": "Reductions and a finite free complex",
+          "detail": "[Ma's Hilbert--Kunz identity] Let (T, t) be a complete local ring of characteristic p>0 with perfect residue field, let J be a perfect ideal, and put S=T/J . For any system of parameters x_1,,x_d of…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-positive-characteristic",
+          "role": "reductions-and-a-finite-free-complex-5",
+          "label": "For every flat local map (R, m)(S, n) of nonzero Noetherian local rings of…",
+          "fullLabel": "For every flat local map (R, m)(S, n) of nonzero Noetherian local rings of…",
+          "kind": "theorem",
+          "source": "Reductions and a finite free complex",
+          "detail": "For every flat local map (R, m)(S, n) of nonzero Noetherian local rings of characteristic p>0 , one has e(R) e(S) .",
+          "dependsOn": [
+            "m1-lem-reduction",
+            "m1-prop-setup",
+            "m1-thm-length-inputs",
+            "m1-thm-complex",
+            "m1-lem-ma-hk"
+          ]
+        },
+        {
+          "id": "m1-cor-dutta-domain",
+          "role": "reductions-and-a-finite-free-complex-6",
+          "label": "Dutta multiplicity over positive-characteristic domains",
+          "fullLabel": "Dutta multiplicity over positive-characteristic domains",
+          "kind": "corollary",
+          "source": "Reductions and a finite free complex",
+          "detail": "[Dutta multiplicity over positive-characteristic domains] Let (R, m) be a complete Noetherian local domain of characteristic p>0 , and let F be a short complex over R . Then \\[ _^R(F) e(R). \\]",
+          "dependsOn": [
+            "m1-thm-length-inputs",
+            "m1-lem-perfection-finite-length",
+            "m1-thm-complex",
+            "m1-lem-residue-extension"
+          ]
+        },
+        {
+          "id": "m1-lem-mixed-quotient",
+          "role": "mixed-characteristic",
+          "label": "Let (A, a) be a Noetherian local ring of positive dimension t , let H be a…",
+          "fullLabel": "Let (A, a) be a Noetherian local ring of positive dimension t , let H be a…",
+          "kind": "lemma",
+          "source": "Mixed characteristic",
+          "detail": "Let (A, a) be a Noetherian local ring of positive dimension t , let H be a -primary, and let f H . If A/(f)=t-1 , then \\[ e(H,A) e(H,A/(f)). \\]",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-mixed-asymptotic",
+          "role": "mixed-characteristic-2",
+          "label": "Let (B, b) be a complete Noetherian local domain of dimension h , and let 1 d h…",
+          "fullLabel": "Let (B, b) be a complete Noetherian local domain of dimension h , and let 1 d h…",
+          "kind": "lemma",
+          "source": "Mixed characteristic",
+          "detail": "Let (B, b) be a complete Noetherian local domain of dimension h , and let 1 d h . Suppose that an ideal L b and elements x_1,,x_d b satisfy L+(x_1, ,x_d)= b . Put \\[ H_N=L+(x_1^N,,x_d^N), N1. \\] The…",
+          "dependsOn": [
+            "m1-lem-mixed-quotient"
+          ]
+        },
+        {
+          "id": "m1-thm-mixed-characteristic",
+          "role": "mixed-characteristic-3",
+          "label": "Assume the notation and conclusions of Proposition~ , and suppose that the…",
+          "fullLabel": "Assume the notation and conclusions of Proposition~ , and suppose that the…",
+          "kind": "theorem",
+          "source": "Mixed characteristic",
+          "detail": "Assume the notation and conclusions of Proposition~ , and suppose that the source domain R has mixed characteristic. Then \\[ e(S) e(T)=e(R). \\]",
+          "dependsOn": [
+            "m1-prop-setup",
+            "m1-thm-length-inputs",
+            "m1-thm-complex",
+            "m1-lem-acyclicity",
+            "m1-lem-mixed-asymptotic"
+          ]
+        },
+        {
+          "id": "m1-lem-charzero-finite-free",
+          "role": "residue-characteristic-zero",
+          "label": "Let (R, m)(S, n) be a flat local map between complete Noetherian local rings of…",
+          "fullLabel": "Let (R, m)(S, n) be a flat local map between complete Noetherian local rings of…",
+          "kind": "lemma",
+          "source": "Residue characteristic zero",
+          "detail": "Let (R, m)(S, n) be a flat local map between complete Noetherian local rings of equal dimension and residue characteristic zero. There is a factorization \\[ R R' S \\] such that R' is complete local,…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-charzero-certificate",
+          "role": "residue-characteristic-zero-2",
+          "label": "Let (R_0, m_0)(S_0, n_0) be a finite free local map of complete local rings of…",
+          "fullLabel": "Let (R_0, m_0)(S_0, n_0) be a finite free local map of complete local rings of…",
+          "kind": "lemma",
+          "source": "Residue characteristic zero",
+          "detail": "Let (R_0, m_0)(S_0, n_0) be a finite free local map of complete local rings of dimension d>0 , with a common infinite coefficient field L and residue field L . Put r=e(R_0) . There is a finite system…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-charzero-specialization",
+          "role": "residue-characteristic-zero-3",
+          "label": "Let L be a field of characteristic zero. A finite polynomial system over which…",
+          "fullLabel": "Let L be a field of characteristic zero. A finite polynomial system over which…",
+          "kind": "lemma",
+          "source": "Residue characteristic zero",
+          "detail": "Let L be a field of characteristic zero. A finite polynomial system over which has a solution in L[[t_1,,t_d]] has a solution in K[[t_1,,t_d]] for some algebraically closed field K of positive…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-charzero",
+          "role": "residue-characteristic-zero-4",
+          "label": "For every flat local homomorphism of nonzero Noetherian local rings (R, m)(S,…",
+          "fullLabel": "For every flat local homomorphism of nonzero Noetherian local rings (R, m)(S,…",
+          "kind": "theorem",
+          "source": "Residue characteristic zero",
+          "detail": "For every flat local homomorphism of nonzero Noetherian local rings (R, m)(S, n) whose residue fields have characteristic zero, one has e(R) e(S) .",
+          "dependsOn": [
+            "m1-lem-reduction",
+            "m1-lem-charzero-finite-free",
+            "m1-lem-charzero-certificate",
+            "m1-lem-charzero-specialization",
+            "m1-thm-positive-characteristic"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "Lech's multiplicity conjecture",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Lechs-multiplicity-conjecture-September-23-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

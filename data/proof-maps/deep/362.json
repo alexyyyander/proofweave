@@ -1,0 +1,443 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "362",
+  "title": "Global smoothness for relativistic Vlasov–Maxwell",
+  "result": {
+    "id": "paper-result",
+    "label": "Global smoothness for relativistic Vlasov–Maxwell",
+    "statement": "Proves large-data global existence and uniqueness for the three-dimensional, one-species relativistic Vlasov–Maxwell system. Smooth admissible initial data may be arbitrary provided the particle density is compactly supported and the electromagnetic fields have finite energy and bounded derivatives of every order; the solution remains smooth on every finite time interval.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "the-signed-momentum-estimate-and-its-consequence",
+      "label": "The signed momentum estimate and its consequence",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-signed-momentum-estimate-and-its-consequence-2",
+      "label": "The signed momentum estimate and its consequence",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "energy-and-the-retarded-force",
+      "label": "Energy and the retarded force",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "energy-and-the-retarded-force-2",
+      "label": "Energy and the retarded force",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "energy-and-the-retarded-force-3",
+      "label": "Energy and the retarded force",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "energy-and-the-retarded-force-4",
+      "label": "Energy and the retarded force",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "energy-and-the-retarded-force-5",
+      "label": "Energy and the retarded force",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "occupation-of-retarded-bins",
+      "label": "Occupation of retarded bins",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "occupation-of-retarded-bins-2",
+      "label": "Occupation of retarded bins",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "occupation-of-retarded-bins-3",
+      "label": "Occupation of retarded bins",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "direct-bounds-for-the-retarded-force",
+      "label": "Direct bounds for the retarded force",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "signed-cancellation-along-the-source-trajectories",
+      "label": "Signed cancellation along the source trajectories",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "signed-cancellation-along-the-source-trajectories-2",
+      "label": "Signed cancellation along the source trajectories",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "signed-cancellation-along-the-source-trajectories-3",
+      "label": "Signed cancellation along the source trajectories",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "direction-changes-and-improved-occupation",
+      "label": "Direction changes and improved occupation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "direction-changes-and-improved-occupation-2",
+      "label": "Direction changes and improved occupation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "selecting-the-signed-part-of-the-force",
+      "label": "Selecting the signed part of the force",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "selecting-the-signed-part-of-the-force-2",
+      "label": "Selecting the signed part of the force",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "selecting-the-signed-part-of-the-force-3",
+      "label": "Selecting the signed part of the force",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "selecting-the-signed-part-of-the-force-4",
+      "label": "Selecting the signed part of the force",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "selecting-the-signed-part-of-the-force-5",
+      "label": "Selecting the signed part of the force",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "local-theory-and-continuation-for-finite-energy-fields",
+      "label": "Local theory and continuation for finite-energy fields",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "local-theory-and-continuation-for-finite-energy-fields-2",
+      "label": "Local theory and continuation for finite-energy fields",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system",
+      "title": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-global",
+          "role": "result",
+          "label": "Every smooth admissible datum generates a unique global classical solution of .…",
+          "fullLabel": "Every smooth admissible datum generates a unique global classical solution of .…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "Every smooth admissible datum generates a unique global classical solution of . For every finite T , this solution satisfies \\[ f C^([0,T]^3_x^3_v), E,B C^([0,T]^3_x;^3), \\] and f has compact…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-increment",
+          "role": "the-signed-momentum-estimate-and-its-consequence",
+          "label": "Signed momentum increments",
+          "fullLabel": "Signed momentum increments",
+          "kind": "proposition",
+          "source": "The signed momentum estimate and its consequence",
+          "detail": "[Signed momentum increments] For each smooth admissible datum and finite T_0 , there are constants M,A1 and P_0 with the following property. On every compact classical solution interval [0,t_*] as…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-continuation",
+          "role": "the-signed-momentum-estimate-and-its-consequence-2",
+          "label": "Local theory and continuation",
+          "fullLabel": "Local theory and continuation",
+          "kind": "proposition",
+          "source": "The signed momentum estimate and its consequence",
+          "detail": "[Local theory and continuation] Every smooth admissible datum has a unique maximal classical solution. It is smooth on each compact subinterval of its lifespan. If its maximal time T_ is finite and…",
+          "dependsOn": [
+            "m1-thm-global",
+            "m1-prop-increment"
+          ]
+        },
+        {
+          "id": "m1-ret-energy",
+          "role": "energy-and-the-retarded-force",
+          "label": "Transport and cone energy",
+          "fullLabel": "Transport and cone energy",
+          "kind": "lemma",
+          "source": "Energy and the retarded force",
+          "detail": "[Transport and cone energy] The characteristic flow preserves phase volume and transports f_0 . In particular 0 f\\|f_0\\|_ . Define \\[ U=|E|^2+|B|^2 2 + qf\\,dv, S=E B+ quf\\,dv, H_0=_ ^3 U(0,x)\\,dx. \\]…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ret-phase-change",
+          "role": "energy-and-the-retarded-force-2",
+          "label": "Retarded phase change",
+          "fullLabel": "Retarded phase change",
+          "kind": "lemma",
+          "source": "Energy and the retarded force",
+          "detail": "[Retarded phase change] Away from the cone tip, the map sending (y,v) at time s=t-|x-y| to its initial label is one-to-one, with Jacobian dz=d\\,dy\\,dv, d=1-n u(v)>0. Its image consists, up to the…",
+          "dependsOn": [
+            "m1-ret-energy"
+          ]
+        },
+        {
+          "id": "m1-ret-representation",
+          "role": "energy-and-the-retarded-force-3",
+          "label": "Retarded field representation",
+          "fullLabel": "Retarded field representation",
+          "kind": "proposition",
+          "source": "Energy and the retarded force",
+          "detail": "[Retarded field representation] Let E^ fr ,B^ fr be the homogeneous wave solutions with data \\[ (E^ fr ,_tE^ fr )|_ t=0 =(E_0, B_0), (B^ fr ,_tB^ fr )|_ t=0 =(B_0,- E_0). \\] For t>0 , define initial…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ret-direct-bounds",
+          "role": "energy-and-the-retarded-force-4",
+          "label": "Pointwise force bounds",
+          "fullLabel": "Pointwise force bounds",
+          "kind": "lemma",
+          "source": "Energy and the retarded force",
+          "detail": "[Pointwise force bounds] Let ,>0 satisfy ^2 d and ^2 D , with fixed comparison constants. The transport kernel splits into two terms, according to the normal and tangential parts of n-u , bounded by…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ret-receiver-time",
+          "role": "energy-and-the-retarded-force-5",
+          "label": "Source time along a receiver",
+          "fullLabel": "Source time along a receiver",
+          "kind": "lemma",
+          "source": "Energy and the retarded force",
+          "detail": "[Source time along a receiver] Along a retarded source label satisfying t=s+|X(t)-Y(s,z)| away from collisions, dt ds = dD, ds\\,f_0(z)\\,dz=D\\,dt\\,f(t-r,y,v)\\,dy\\,dv. For f_0(z)dz -almost every label…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-occ-crude-lemma",
+          "role": "occupation-of-retarded-bins",
+          "label": "Crude occupation bounds",
+          "fullLabel": "Crude occupation bounds",
+          "kind": "lemma",
+          "source": "Occupation of retarded bins",
+          "detail": "[Crude occupation bounds] For every bin and every allowed set of receiver times, M& C (I,h)p, \\\\ M& C I ^2 ^2 .",
+          "dependsOn": [
+            "m1-ret-receiver-time"
+          ]
+        },
+        {
+          "id": "m1-occ-cell-lemma",
+          "role": "occupation-of-retarded-bins-2",
+          "label": "Occupation on stable cells",
+          "fullLabel": "Occupation on stable cells",
+          "kind": "lemma",
+          "source": "Occupation of retarded bins",
+          "detail": "[Occupation on stable cells] In every actual bin, M Chk_1 p (1,I/,h/).",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-occ-refined-proposition",
+          "role": "occupation-of-retarded-bins-3",
+          "label": "Baseline occupation with a joint energy budget",
+          "fullLabel": "Baseline occupation with a joint energy budget",
+          "kind": "proposition",
+          "source": "Occupation of retarded bins",
+          "detail": "[Baseline occupation with a joint energy budget] Suppose h I , excluding only deficit bins with h . Then M Chk_1 p (1+ I E), E= E_ p ,&small sector,\\\\ 1,&remaining sector. Consequently, with R=1+I/ E…",
+          "dependsOn": [
+            "m1-occ-crude-lemma"
+          ]
+        },
+        {
+          "id": "m1-dir-direct",
+          "role": "direct-bounds-for-the-retarded-force",
+          "label": "Integrated force bounds",
+          "fullLabel": "Integrated force bounds",
+          "kind": "proposition",
+          "source": "Direct bounds for the retarded force",
+          "detail": "[Integrated force bounds] Assume the bootstrap . The bounded data term, T_r , T_ , S_b , and the remaining-sector part of S_g have combined integral at most C. The integral of the full force…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-can-identity",
+          "role": "signed-cancellation-along-the-source-trajectories",
+          "label": "Signed force identity",
+          "fullLabel": "Signed force identity",
+          "kind": "lemma",
+          "source": "Signed cancellation along the source trajectories",
+          "detail": "[Signed force identity] At every non-tip point of a retarded branch, K =-(k_0 rd )' +e r^2D^2 (n q_X^2D -a) +n(a_t k_0) rD^2 . Consequently the two nondifferentiated terms, in dt\\,dy\\,dv measure, are…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-can-cutoff-cancellation",
+          "role": "signed-cancellation-along-the-source-trajectories-2",
+          "label": "Derivatives of a selected sum",
+          "fullLabel": "Derivatives of a selected sum",
+          "kind": "lemma",
+          "source": "Signed cancellation along the source trajectories",
+          "detail": "[Derivatives of a selected sum] Let S be any fixed set of representative indices, all in the small sector, and put =_ j S _j . Selection may depend on the interval and fixed parameters, but not on…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-can-weighted-formula",
+          "role": "signed-cancellation-along-the-source-trajectories-3",
+          "label": "Weighted signed formula",
+          "fullLabel": "Weighted signed formula",
+          "kind": "proposition",
+          "source": "Signed cancellation along the source trajectories",
+          "detail": "[Weighted signed formula] Let J=[t_1,t_2] lie in a compact classical time interval. Let 01 be Lipschitz on J , vanish at its endpoints, and be extended by zero outside J . Let be a selected sum as in…",
+          "dependsOn": [
+            "m1-ret-receiver-time"
+          ]
+        },
+        {
+          "id": "m1-ang-direction",
+          "role": "direction-changes-and-improved-occupation",
+          "label": "Direction changes",
+          "fullLabel": "Direction changes",
+          "kind": "lemma",
+          "source": "Direction changes and improved occupation",
+          "detail": "[Direction changes] Assume the signed increment bootstrap on [0,] . Let w be a dyad with w P^ 3/5 , and let J be a closed interval of length at most (w/P)^2 on which a supported characteristic…",
+          "dependsOn": [
+            "m1-can-weighted-formula",
+            "m1-can-cutoff-cancellation"
+          ]
+        },
+        {
+          "id": "m1-ang-improved-hit",
+          "role": "direction-changes-and-improved-occupation-2",
+          "label": "Direction-based occupation at intermediate angles",
+          "fullLabel": "Direction-based occupation at intermediate angles",
+          "kind": "lemma",
+          "source": "Direction changes and improved occupation",
+          "detail": "[Direction-based occupation at intermediate angles] Assume the signed increment bootstrap on [0,] . Let a small-sector bin satisfy p,w P^ 7/10 , j^ -49/100 j^ -4/25 (j=p,w). Let the eligible receiver…",
+          "dependsOn": [
+            "m1-ang-direction"
+          ]
+        },
+        {
+          "id": "m1-sel-weight-sum",
+          "role": "selecting-the-signed-part-of-the-force",
+          "label": "The sum of W over all small-sector indices is bounded by a constant depending…",
+          "fullLabel": "The sum of W over all small-sector indices is bounded by a constant depending…",
+          "kind": "lemma",
+          "source": "Selecting the signed part of the force",
+          "detail": "The sum of W over all small-sector indices is bounded by a constant depending only on and the fixed decomposition. The unselected small-sector good-field terms have total integral at most CP I .",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sel-exponents",
+          "role": "selecting-the-signed-part-of-the-force-2",
+          "label": "Receiver coefficient on selected bins",
+          "fullLabel": "Receiver coefficient on selected bins",
+          "kind": "lemma",
+          "source": "Selecting the signed part of the force",
+          "detail": "[Receiver coefficient on selected bins] For fixed M,A , there is a threshold P_*(M,A) such that every selected index with P P_*(M,A) satisfies the exact representative inequality U w^ -1/2 W.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sel-spatial-sum",
+          "role": "selecting-the-signed-part-of-the-force-3",
+          "label": "The total spatial-cutoff error is at most C B(I,w) .",
+          "fullLabel": "The total spatial-cutoff error is at most C B(I,w) .",
+          "kind": "lemma",
+          "source": "Selecting the signed part of the force",
+          "detail": "The total spatial-cutoff error is at most C B(I,w) .",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sel-time-weight",
+          "role": "selecting-the-signed-part-of-the-force-4",
+          "label": "The total time-weight derivative is at most C_ B(I,w) .",
+          "fullLabel": "The total time-weight derivative is at most C_ B(I,w) .",
+          "kind": "lemma",
+          "source": "Selecting the signed part of the force",
+          "detail": "The total time-weight derivative is at most C_ B(I,w) .",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sel-bulk-impulse",
+          "role": "selecting-the-signed-part-of-the-force-5",
+          "label": "For the weight above and P P_*(M,A) , |_J(t)K(t)\\,dt| C_. The constant C_ is…",
+          "fullLabel": "For the weight above and P P_*(M,A) , |_J(t)K(t)\\,dt| C_. The constant C_ is…",
+          "kind": "proposition",
+          "source": "Selecting the signed part of the force",
+          "detail": "For the weight above and P P_*(M,A) , |_J(t)K(t)\\,dt| C_. The constant C_ is independent of M,A .",
+          "dependsOn": [
+            "m1-can-identity",
+            "m1-can-weighted-formula",
+            "m1-sel-weight-sum",
+            "m1-sel-spatial-sum",
+            "m1-sel-time-weight",
+            "m1-sel-exponents"
+          ]
+        },
+        {
+          "id": "m1-cont-exterior",
+          "role": "local-theory-and-continuation-for-finite-energy-fields",
+          "label": "Exterior comparison",
+          "fullLabel": "Exterior comparison",
+          "kind": "lemma",
+          "source": "Local theory and continuation for finite-energy fields",
+          "detail": "[Exterior comparison] Suppose that a C^1 solution exists on [0,S] , that f_0 is compactly supported as above, and that F(0) H^k(^3) for every integer k . Then the fields belong to C([0,S];L^2) and…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cont-vacuum",
+          "role": "local-theory-and-continuation-for-finite-energy-fields-2",
+          "label": "Smooth finite-energy vacuum fields",
+          "fullLabel": "Smooth finite-energy vacuum fields",
+          "kind": "lemma",
+          "source": "Local theory and continuation for finite-energy fields",
+          "detail": "[Smooth finite-energy vacuum fields] Let D_E,D_B C_b^(^3) L^2(^3) be divergence-free. There is a global smooth vacuum Maxwell solution on [0,) with these data, continuous into L^2 , whose spatial…",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-global",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

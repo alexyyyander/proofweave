@@ -1,0 +1,289 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "131",
+  "title": "Rapid mixing of graph switches for every degree sequence",
+  "result": {
+    "id": "paper-result",
+    "label": "Rapid mixing of graph switches for every degree sequence",
+    "statement": "Resolves the simple-undirected Kannan–Tetali–Vempala conjecture: the lazy edge-switch chain mixes in O(n^8) time for every graphical labeled degree sequence. The same degree-constrained graphs can also be sampled exactly uniformly by an almost-surely terminating algorithm with expected polynomial bit running time.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-variance-inequality-for-three-rows",
+      "label": "A variance inequality for three rows",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-variance-inequality-for-three-rows-2",
+      "label": "A variance inequality for three rows",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-variance-inequality-for-three-rows-3",
+      "label": "A variance inequality for three rows",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "resamplings-on-a-vertex-triple",
+      "label": "Resamplings on a vertex triple",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "disjoint-pair-resamplings",
+      "label": "Disjoint pair resamplings",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "controlling-the-equality-projections",
+      "label": "Controlling the equality projections",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "controlling-the-equality-projections-2",
+      "label": "Controlling the equality projections",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "controlling-the-equality-projections-3",
+      "label": "Controlling the equality projections",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-pair-resampling-to-the-switch-chain",
+      "label": "From pair resampling to the switch chain",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-pair-resampling-to-the-switch-chain-2",
+      "label": "From pair resampling to the switch chain",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-pair-resampling-to-the-switch-chain-3",
+      "label": "From pair resampling to the switch chain",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-pair-resampling-to-the-switch-chain-4",
+      "label": "From pair resampling to the switch chain",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Polynomial mixing of the switch chain for every graphical degree sequence",
+      "title": "Polynomial mixing of the switch chain for every graphical degree sequence",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Polynomial-Mixing-of-the-Switch-Chain-for-Every-Graphical-Degree-Sequence-September-25-2026/main.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Polynomial mixing of the switch chain for every graphical degree sequence; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "For every n4 and every graphical degree vector d , \\[ t_ mix (d) 2n^8. \\] If…",
+          "fullLabel": "For every n4 and every graphical degree vector d , \\[ t_ mix (d) 2n^8. \\] If…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "For every n4 and every graphical degree vector d , \\[ t_ mix (d) 2n^8. \\] If |_d|>1 , the spectral gap of P_d is at least [24n^2 n4]^ -1 .",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-exact-sampling",
+          "role": "introduction",
+          "label": "Exact uniform sampling",
+          "fullLabel": "Exact uniform sampling",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "[Exact uniform sampling] There is a uniform randomized algorithm that, given any finite graphical labeled degree vector d=(d_1,,d_n) , uses unbiased random bits, terminates almost surely, and outputs…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-row-fixed-blocks",
+          "role": "a-variance-inequality-for-three-rows",
+          "label": "Fixed block sizes",
+          "fullLabel": "Fixed block sizes",
+          "kind": "lemma",
+          "source": "A variance inequality for three rows",
+          "detail": "[Fixed block sizes] Let (U_1,U_2,U_3) and (W_1,W_2,W_3) be independent uniform ordered partitions of finite labeled sets U and W , with all six block sizes prescribed. For arbitrary real functions…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-row-counts",
+          "role": "a-variance-inequality-for-three-rows-2",
+          "label": "Random block sizes",
+          "fullLabel": "Random block sizes",
+          "kind": "lemma",
+          "source": "A variance inequality for three rows",
+          "detail": "[Random block sizes] Let m,_1,_2,_3 be nonnegative integers. Give the triples x=(x_1,x_2,x_3) of nonnegative integers with x_1+x_2+x_3=m probabilities proportional to \\[ _ i=1 ^3 w_i(x_i), w_i(t)=1…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-row-variance",
+          "role": "a-variance-inequality-for-three-rows-3",
+          "label": "Three-row variance inequality",
+          "fullLabel": "Three-row variance inequality",
+          "kind": "lemma",
+          "source": "A variance inequality for three rows",
+          "detail": "[Three-row variance inequality] Fix row and column sums for binary matrices with three rows, and take the uniform distribution on the nonempty set of all matrices with these prescribed margins. Let…",
+          "dependsOn": [
+            "m1-row-fixed-blocks",
+            "m1-row-counts"
+          ]
+        },
+        {
+          "id": "m1-tri-gap",
+          "role": "resamplings-on-a-vertex-triple",
+          "label": "For every vertex triple T , one has H_T^2 H_T .",
+          "fullLabel": "For every vertex triple T , one has H_T^2 H_T .",
+          "kind": "proposition",
+          "source": "Resamplings on a vertex triple",
+          "detail": "For every vertex triple T , one has H_T^2 H_T .",
+          "dependsOn": [
+            "m1-row-variance"
+          ]
+        },
+        {
+          "id": "m1-dis-interaction",
+          "role": "disjoint-pair-resamplings",
+          "label": "Disjoint-pair interaction",
+          "fullLabel": "Disjoint-pair interaction",
+          "kind": "proposition",
+          "source": "Disjoint pair resamplings",
+          "detail": "[Disjoint-pair interaction] For disjoint vertex pairs a,b and every real function f on _d , 2 h_a f,h_b f 2\\|g_ a,b f\\|^2 -\\|R_ a,b f\\|^2-\\|R_ b,a f\\|^2.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sl-comparison",
+          "role": "controlling-the-equality-projections",
+          "label": "Equality-indicator projections on a slice",
+          "fullLabel": "Equality-indicator projections on a slice",
+          "kind": "lemma",
+          "source": "Controlling the equality projections",
+          "detail": "[Equality-indicator projections on a slice] Let N0 and 0 q N be integers. Give \\[ X_ N,q =\\ x\\ 0,1\\ ^N:\\ _ i=1 ^N x_i=q\\ \\] the uniform measure. Let _ ij interchange coordinates i,j , and put \\[…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sl-global",
+          "role": "controlling-the-equality-projections-2",
+          "label": "Summed equality-indicator energy",
+          "fullLabel": "Summed equality-indicator energy",
+          "kind": "corollary",
+          "source": "Controlling the equality projections",
+          "detail": "[Summed equality-indicator energy] For every vertex pair a and every function f on the graph space, _ b:\\,b a= \\|R_ a,b f\\|^2 _ b:\\,b a= \\|g_ a,b f\\|^2.",
+          "dependsOn": [
+            "m1-sl-comparison"
+          ]
+        },
+        {
+          "id": "m1-dis-nonnegative",
+          "role": "controlling-the-equality-projections-3",
+          "label": "The ordered sum D=_ a,b V2\\ b= h_a h_b is self-adjoint and positive…",
+          "fullLabel": "The ordered sum D=_ a,b V2\\ b= h_a h_b is self-adjoint and positive…",
+          "kind": "corollary",
+          "source": "Controlling the equality projections",
+          "detail": "The ordered sum D=_ a,b V2\\ b= h_a h_b is self-adjoint and positive semidefinite.",
+          "dependsOn": [
+            "m1-dis-interaction",
+            "m1-sl-global"
+          ]
+        },
+        {
+          "id": "m1-mix-global",
+          "role": "from-pair-resampling-to-the-switch-chain",
+          "label": "The pair-resampling operator satisfies H^2 H.",
+          "fullLabel": "The pair-resampling operator satisfies H^2 H.",
+          "kind": "proposition",
+          "source": "From pair resampling to the switch chain",
+          "detail": "The pair-resampling operator satisfies H^2 H.",
+          "dependsOn": [
+            "m1-tri-gap",
+            "m1-dis-nonnegative"
+          ]
+        },
+        {
+          "id": "m1-mix-connectivity",
+          "role": "from-pair-resampling-to-the-switch-chain-2",
+          "label": "Any two graphs in _d can be joined by a sequence of valid switches.",
+          "fullLabel": "Any two graphs in _d can be joined by a sequence of valid switches.",
+          "kind": "lemma",
+          "source": "From pair resampling to the switch chain",
+          "detail": "Any two graphs in _d can be joined by a sequence of valid switches.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-mix-poincare",
+          "role": "from-pair-resampling-to-the-switch-chain-3",
+          "label": "The kernel of H consists exactly of the constant functions. For every real…",
+          "fullLabel": "The kernel of H consists exactly of the constant functions. For every real…",
+          "kind": "corollary",
+          "source": "From pair resampling to the switch chain",
+          "detail": "The kernel of H consists exactly of the constant functions. For every real function f on _d , Var_ _d (f) f,Hf.",
+          "dependsOn": [
+            "m1-mix-connectivity",
+            "m1-mix-global"
+          ]
+        },
+        {
+          "id": "m1-mix-comparison",
+          "role": "from-pair-resampling-to-the-switch-chain-4",
+          "label": "The operators above satisfy h_a n^2J_a, _ a V2 J_a=2L, H2n^2L.",
+          "fullLabel": "The operators above satisfy h_a n^2J_a, _ a V2 J_a=2L, H2n^2L.",
+          "kind": "lemma",
+          "source": "From pair resampling to the switch chain",
+          "detail": "The operators above satisfy h_a n^2J_a, _ a V2 J_a=2L, H2n^2L.",
+          "dependsOn": [
+            "m1-thm-main",
+            "m1-cor-exact-sampling"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "Polynomial mixing of the switch chain for every graphical degree sequence",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Polynomial-Mixing-of-the-Switch-Chain-for-Every-Graphical-Degree-Sequence-September-25-2026/main.pdf",
+      "kind": "paper"
+    }
+  ]
+}

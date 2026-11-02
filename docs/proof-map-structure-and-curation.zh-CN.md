@@ -6,17 +6,17 @@
 
 | 状态 | 含义 | 当前数量 |
 | --- | --- | --- |
-| `deep` | 已整理的 theorem-level argument map，含版本、依赖、跨解法关系、Lean 对齐和来源定位 | 4（003、032、084、159） |
+| `deep` | theorem-level argument map：4 个手工策展（003、032、084、159）+ 343 个由论文结构逐族核对后升级（引用上下文分类、剔除背景引用、破除环） | 347 |
 | `draft` | 已有的 draft explanation，含 proof steps / Lean annotations，但未评审，步骤顺序不自动等于依赖 DAG | 0 |
-| `paper` | 从 pinned 论文 LaTeX 机器抽取：定理型陈述为节点，证明正文里的显式引用为边；引用不等于经验证的依赖，未经评审 | 343 |
+| `paper` | 从 pinned 论文 LaTeX 机器抽取：定理型陈述为节点，证明正文里的显式引用为边；当前所有可解析的族都已升级为 deep，此状态保留给后续新增或降级的族 | 0 |
 | `lean` | 从 pinned comparator/solution 机器抽取的结构：形式化目标 → 求解定理 → 允许公理；不是定理级依赖图，未经评审 | 18 |
 | `scaffold` | 只登记 claim、manuscripts、citations、upstream Lean scope；没有定理级证明链，也没有可抽取的论文/Lean 结构 | 7 |
 
-论文派生结构当前覆盖 343 个族、548 篇论文、13,629 个陈述与 14,401 条引用边；另有 25 个族没有可解析的 LaTeX（18 个保留 Lean 派生结构，7 个保持骨架）。
+论文结构当前覆盖 347 个族（548 篇论文、13,629 个陈述、14,401 条原始引用边）；其中 343 个已逐族核对并升级为 deep（剔除 726 条背景引用、8 条成环边后保留 13,411 条依赖边），4 个维持原手工深图。另有 25 个族没有可解析的 LaTeX（18 个保留 Lean 派生结构，7 个保持骨架）。
 
 `scaffold` 不是“证明完成”，也不是“没有数学”。它表示来源记录已入索引，但定理陈述、证明依赖和 Lean 对齐尚未整理。
 
-`paper` 也不是“证明已完成”。节点是论文的定理型陈述，边是证明环境中的显式 `\\ref` 引用；引用可能是背景、上下文或重复引用，页面不得把引用图写成经验证的证明依赖，也不得写成重放或评审。
+`paper` 也不是“证明已完成”。节点是论文的定理型陈述，边是证明环境中的显式 `\\ref` 引用；引用可能是背景、上下文或重复引用，页面不得把引用图写成经验证的证明依赖，也不得写成重放或评审。升级为 `deep` 的机器升级图在 caveats 中保留同样声明。
 
 ## 2. URL 与数据
 
@@ -47,7 +47,7 @@
 
 ### paper → deep
 
-`paper` 是自动状态（论文 LaTeX 至少解析出一个定理型陈述即进入），优先级高于 `lean`。要进入 `deep`，必须逐条核对证明里的引用：保留真正的证明依赖，删除背景/上下文引用，补角色、策略、跨解法关系与 Lean 对齐，再用 `validateDeepProofMap` 校验并登记到 manifest 的 `deep`。
+`paper` 是自动状态（论文 LaTeX 至少解析出一个定理型陈述即进入），优先级高于 `lean`。升级由 `npm run proof:maps:promote` 完成：逐族读取每条引用在证明中的上下文，剔除明确背景措辞（cf.、recall、as in、analogous 等），用 DFS 破除成环边，生成符合 `validateDeepProofMap` 的定理级图，并把族登记到 manifest 的 `deep`。生成图在 caveats 中声明“由论文结构机器升级、引用不是审计过的依赖、未经评审”。不满足契约的族会留在 `paper`。
 
 ### lean → deep
 
@@ -142,4 +142,14 @@ npm run proof:maps:paper:build
 
 缓存位于 `/tmp/proof-map-tex-cache`，按 repository + pinned revision 分目录；数据只对固定 revision 有效，换 revision 必须重跑。
 
-已知边界：部分论文用单文件 LaTeX（如 `paper.tex`），部分 statement 没有 label（用合成 id，无法被其他论文内部引用）；数学公式在陈述摘要里会退化为近似纯文本。页面必须保持 `paper` 状态，不得写成 `deep`、replay 或评审。
+已知边界：部分论文用单文件 LaTeX（如 `paper.tex`），部分 statement 没有 label（用合成 id，无法被其他论文内部引用）；数学公式在陈述摘要里会退化为近似纯文本。
+
+逐族升级：
+
+```bash
+npm run proof:maps:promote            # 生成/更新 deep 图（已存在的策展深图不会被覆盖）
+npm run proof:maps:promote -- --dry-run
+npm run proof:maps:promote -- --family 005
+```
+
+升级规则：证明环境中的 `\\ref` 引用若不含背景措辞（cf.、recall、as in、analogous、similarly 等）即视为依赖边；DFS 破除环；每族生成 section 级 roles 与一个 strategy/论文。每一张生成的 deep 图都在 caveats 中声明“由论文结构机器升级、引用不是审计过的依赖、未经评审”，`reviewStatus` 保持 `unreviewed`。不满足 `validateDeepProofMap` 的族留在 `paper`。

@@ -1,0 +1,237 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "026",
+  "title": "Positive lower density of large prime gaps",
+  "result": {
+    "id": "paper-result",
+    "label": "Positive lower density of large prime gaps",
+    "statement": "For every fixed C > 0, a positive proportion of consecutive prime gaps exceed C pn, throughout every sufficiently large initial segment of the primes. The proportion may depend on C . Consequently, the indices where pn/n increases have positive lower density, answering Erdős and Prachar.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-two-adjacent-intervals-to-gap-counts",
+      "label": "From two adjacent intervals to gap counts",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-two-adjacent-intervals-to-gap-counts-2",
+      "label": "From two adjacent intervals to gap counts",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-square-with-a-small-marked-moment",
+      "label": "A square with a small marked moment",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "cancellation-between-adjacent-dimensions",
+      "label": "Cancellation between adjacent dimensions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "cancellation-between-adjacent-dimensions-2",
+      "label": "Cancellation between adjacent dimensions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "analytic-estimates-for-the-square",
+      "label": "Analytic estimates for the square",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "analytic-estimates-for-the-square-2",
+      "label": "Analytic estimates for the square",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "analytic-estimates-for-the-square-3",
+      "label": "Analytic estimates for the square",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "analytic-estimates-for-the-square-4",
+      "label": "Analytic estimates for the square",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Positive lower density of large prime gaps",
+      "title": "Positive lower density of large prime gaps",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Positive-lower-density-of-large-prime-gaps-September-25-2026/main.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Positive lower density of large prime gaps; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "For every fixed real C>0 , there are constants c(C)>0 and N_0(C) such that, for…",
+          "fullLabel": "For every fixed real C>0 , there are constants c(C)>0 and N_0(C) such that, for…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "For every fixed real C>0 , there are constants c(C)>0 and N_0(C) such that, for every integer N N_0(C) , \\[ \\#\\ 1 n N:p_ n+1 -p_n>C p_n\\ c(C)N. \\]",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-ratios",
+          "role": "introduction",
+          "label": "The set \\[ \\ n1:p_n n < p_ n+1 n+1 \\ \\] has positive lower asymptotic density.",
+          "fullLabel": "The set \\[ \\ n1:p_n n < p_ n+1 n+1 \\ \\] has positive lower asymptotic density.",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "The set \\[ \\ n1:p_n n < p_ n+1 n+1 \\ \\] has positive lower asymptotic density.",
+          "dependsOn": [
+            "m1-thm-main"
+          ]
+        },
+        {
+          "id": "m1-prop-weights",
+          "role": "from-two-adjacent-intervals-to-gap-counts",
+          "label": "Weights for adjacent intervals",
+          "fullLabel": "Weights for adjacent intervals",
+          "kind": "proposition",
+          "source": "From two adjacent intervals to gap counts",
+          "detail": "[Weights for adjacent intervals] For each fixed >0 there is a finite constant K_>0 with the following property. For every >0 , there are weights W_X(m)0 , defined for integers X<m2X , such that E_X…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-adjacent-gaps",
+          "role": "from-two-adjacent-intervals-to-gap-counts-2",
+          "label": "Suppose h1 and that for at least X integers m(X,2X] , the interval (m,m+h]…",
+          "fullLabel": "Suppose h1 and that for at least X integers m(X,2X] , the interval (m,m+h]…",
+          "kind": "lemma",
+          "source": "From two adjacent intervals to gap counts",
+          "detail": "Suppose h1 and that for at least X integers m(X,2X] , the interval (m,m+h] contains a prime and (m+h,m+2h] contains none. Then at least X/h distinct primes p(X,2X+h] have a consecutive successor p^+…",
+          "dependsOn": [
+            "m1-thm-main",
+            "m1-prop-weights"
+          ]
+        },
+        {
+          "id": "m1-prop-weight-moments",
+          "role": "a-square-with-a-small-marked-moment",
+          "label": "Moment identities and a detector bound",
+          "fullLabel": "Moment identities and a detector bound",
+          "kind": "proposition",
+          "source": "A square with a small marked moment",
+          "detail": "[Moment identities and a detector bound] Hold , k , and the family (f_j)_ 0 j k fixed. Then, as X , E_XZ^2& w:=_ j=0 ^k_j\\|f_j\\|_2^2, & E_XZ^4&=O_ ,k, f (1), \\\\ E_X(Z^2V_J)& w, & E_X(Z^2V_I)& v:=_…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-small-first-moment",
+          "role": "cancellation-between-adjacent-dimensions",
+          "label": "A one-dimensional profile",
+          "fullLabel": "A one-dimensional profile",
+          "kind": "lemma",
+          "source": "Cancellation between adjacent dimensions",
+          "detail": "[A one-dimensional profile] For every >0 and >0 , there exists a nonnegative g C_c^((0,)) such that \\[ _0^ g(u)^2\\,du=1, _0^ g(u)\\,du=, _g:=_0^ u g(u)^2\\,du<. \\]",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-dimension-cancellation",
+          "role": "cancellation-between-adjacent-dimensions-2",
+          "label": "Cancellation between high dimensions",
+          "fullLabel": "Cancellation between high dimensions",
+          "kind": "proposition",
+          "source": "Cancellation between adjacent dimensions",
+          "detail": "[Cancellation between high dimensions] For every fixed >0 , there are families of the type used in Proposition~ , with increasing finite maximum dimension k , for which w1 and v0 .",
+          "dependsOn": [
+            "m1-lem-small-first-moment"
+          ]
+        },
+        {
+          "id": "m1-prop-mixed-moments",
+          "role": "analytic-estimates-for-the-square",
+          "label": "Uniform mixed moments",
+          "fullLabel": "Uniform mixed moments",
+          "kind": "proposition",
+          "source": "Analytic estimates for the square",
+          "detail": "[Uniform mixed moments] Put L= X , where X tends to infinity through integers, and let E_X denote the average over X<m2X . Fix nonnegative integers j_1,,j_R . For each r , let F_r be a real function…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-arithmetic-1",
+          "role": "analytic-estimates-for-the-square-2",
+          "label": "Weighted distribution with uniform shifted endpoints",
+          "fullLabel": "Weighted distribution with uniform shifted endpoints",
+          "kind": "lemma",
+          "source": "Analytic estimates for the square",
+          "detail": "[Weighted distribution with uniform shifted endpoints] Assume the Bombieri--Vinogradov theorem: for every A>0 there is b(A)>0 such that _ q x^ 1/2 ( x)^ -b(A) _ (c,q)=1 |(x;q,c)-x (q) | _A x( x)^ -A…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-arithmetic-2",
+          "role": "analytic-estimates-for-the-square-3",
+          "label": "Exact density sum and arithmetic error",
+          "fullLabel": "Exact density sum and arithmetic error",
+          "kind": "lemma",
+          "source": "Analytic estimates for the square",
+          "detail": "[Exact density sum and arithmetic error] Use the notation and support assumptions of Proposition~ ; this lemma requires only bounded functions F_r and also allows B0 in the shift bound H_X=DL^B . Put…",
+          "dependsOn": [
+            "m1-lem-arithmetic-1",
+            "m1-prop-mixed-moments"
+          ]
+        },
+        {
+          "id": "m1-lem-singular-average",
+          "role": "analytic-estimates-for-the-square-4",
+          "label": "Singular series in boxes",
+          "fullLabel": "Singular series in boxes",
+          "kind": "lemma",
+          "source": "Analytic estimates for the square",
+          "detail": "[Singular series in boxes] Fix an integer s0 and a constant K1 . For each positive integer h , let I_1,,I_s be intervals of h consecutive integers, all contained in an interval of diameter at most Kh…",
+          "dependsOn": [
+            "m1-prop-weight-moments"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "Positive lower density of large prime gaps",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Positive-lower-density-of-large-prime-gaps-September-25-2026/main.pdf",
+      "kind": "paper"
+    }
+  ]
+}

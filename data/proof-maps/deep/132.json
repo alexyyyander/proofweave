@@ -1,0 +1,190 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "132",
+  "title": "A superquadratic separation of sensitivity and block sensitivity",
+  "result": {
+    "id": "paper-result",
+    "label": "A superquadratic separation of sensitivity and block sensitivity",
+    "statement": "Constructs total Boolean functions with block sensitivity bs (f) s(f)^ for a fixed α > 2, disproving the quadratic strengthening of the Sensitivity Conjecture. Here s(f) counts influential individual-bit flips, while block sensitivity allows disjoint groups of bits to change together.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "the-labelled-tournament-and-nested-predicates",
+      "label": "The labelled tournament and nested predicates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-labelled-tournament-and-nested-predicates-2",
+      "label": "The labelled tournament and nested predicates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-labelled-tournament-and-nested-predicates-3",
+      "label": "The labelled tournament and nested predicates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "sensitivity-recurrences",
+      "label": "Sensitivity recurrences",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "quantitative-bounds-and-separation",
+      "label": "Quantitative bounds and separation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "quantitative-bounds-and-separation-2",
+      "label": "Quantitative bounds and separation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "quantitative-bounds-and-separation-3",
+      "label": "Quantitative bounds and separation",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "A superquadratic separation between sensitivity and block sensitivity",
+      "title": "A superquadratic separation between sensitivity and block sensitivity",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-superquadratic-separation-between-sensitivity-and-block-sensitivity-September-25-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from A superquadratic separation between sensitivity and block sensitivity; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "For every real \\(C>0\\), there are a positive integer \\(n\\) and a nonconstant…",
+          "fullLabel": "For every real \\(C>0\\), there are a positive integer \\(n\\) and a nonconstant…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "For every real \\(C>0\\), there are a positive integer \\(n\\) and a nonconstant total Boolean function \\(f:\\ 0,1\\ ^n\\ 0,1\\ \\) such that \\[ (f)>C\\,s(f)^2. \\] More precisely, for every integer \\(d1\\) the…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-labelling",
+          "role": "the-labelled-tournament-and-nested-predicates",
+          "label": "The edges can be labelled by numbers \\(a(i,j)\\) so that there is no set \\(I\\)…",
+          "fullLabel": "The edges can be labelled by numbers \\(a(i,j)\\) so that there is no set \\(I\\)…",
+          "kind": "lemma",
+          "source": "The labelled tournament and nested predicates",
+          "detail": "The edges can be labelled by numbers \\(a(i,j)\\) so that there is no set \\(I\\) of size \\(t\\) admitting choices \\(m_j\\), \\(j I\\), with \\[ a(i,j)=m_j for every edge i j within I. \\]",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-base",
+          "role": "the-labelled-tournament-and-nested-predicates-2",
+          "label": "The initial sensitivity profiles satisfy S_ 0,0 L, S_ 0,1 LM, J_ 0,0 =J_ 0,1 =0.",
+          "fullLabel": "The initial sensitivity profiles satisfy S_ 0,0 L, S_ 0,1 LM, J_ 0,0 =J_ 0,1 =0.",
+          "kind": "lemma",
+          "source": "The labelled tournament and nested predicates",
+          "detail": "The initial sensitivity profiles satisfy S_ 0,0 L, S_ 0,1 LM, J_ 0,0 =J_ 0,1 =0.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-blocks",
+          "role": "the-labelled-tournament-and-nested-predicates-3",
+          "label": "At every level \\(0 d\\), all predicates are zero at the all-zero input. There…",
+          "fullLabel": "At every level \\(0 d\\), all predicates are zero at the all-zero input. There…",
+          "kind": "lemma",
+          "source": "The labelled tournament and nested predicates",
+          "detail": "At every level \\(0 d\\), all predicates are zero at the all-zero input. There are \\(Mk^\\) pairwise disjoint nonempty blocks of coordinates, each of size \\(Lr^\\), such that flipping any one block at…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-recurrences",
+          "role": "sensitivity-recurrences",
+          "label": "For 1 d , write S'_b=S_ -1,b and J'_b=J_ -1,b . Then S_ ,1 & M^2S'_0+rS'_1, &…",
+          "fullLabel": "For 1 d , write S'_b=S_ -1,b and J'_b=J_ -1,b . Then S_ ,1 & M^2S'_0+rS'_1, &…",
+          "kind": "proposition",
+          "source": "Sensitivity recurrences",
+          "detail": "For 1 d , write S'_b=S_ -1,b and J'_b=J_ -1,b . Then S_ ,1 & M^2S'_0+rS'_1, & J_ ,1 & M^2J'_0+rS'_1,\\\\ S_ ,0 & tS'_0+S'_1+3J'_1, & J_ ,0 & tS'_0+3J'_1.",
+          "dependsOn": [
+            "m1-lem-labelling"
+          ]
+        },
+        {
+          "id": "m1-lem-quantitative-profiles",
+          "role": "quantitative-bounds-and-separation",
+          "label": "Suppose that d 1 and M 9^ d+1 . For every 0 d and b\\ 0,1\\ , the predicates of…",
+          "fullLabel": "Suppose that d 1 and M 9^ d+1 . For every 0 d and b\\ 0,1\\ , the predicates of…",
+          "kind": "lemma",
+          "source": "Quantitative bounds and separation",
+          "detail": "Suppose that d 1 and M 9^ d+1 . For every 0 d and b\\ 0,1\\ , the predicates of the construction satisfy \\[ S_ ,b 2L M^ +b . \\]",
+          "dependsOn": [
+            "m1-prop-recurrences",
+            "m1-thm-main",
+            "m1-lem-labelling",
+            "m1-lem-blocks"
+          ]
+        },
+        {
+          "id": "m1-lem-composition",
+          "role": "quantitative-bounds-and-separation-2",
+          "label": "Let f:\\ 0,1\\ ^a\\ 0,1\\ and g:\\ 0,1\\ ^b\\ 0,1\\ be total Boolean functions. Their…",
+          "fullLabel": "Let f:\\ 0,1\\ ^a\\ 0,1\\ and g:\\ 0,1\\ ^b\\ 0,1\\ be total Boolean functions. Their…",
+          "kind": "lemma",
+          "source": "Quantitative bounds and separation",
+          "detail": "Let f:\\ 0,1\\ ^a\\ 0,1\\ and g:\\ 0,1\\ ^b\\ 0,1\\ be total Boolean functions. Their disjoint composition is the function on ab bits defined by \\[ (f g)(x_1,,x_a) =f(g(x_1),,g(x_a)), x_i\\ 0,1\\ ^b. \\] Then…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-power-separation",
+          "role": "quantitative-bounds-and-separation-3",
+          "label": "There exist a real number >2 and nonconstant total Boolean functions F_m , for…",
+          "fullLabel": "There exist a real number >2 and nonconstant total Boolean functions F_m , for…",
+          "kind": "corollary",
+          "source": "Quantitative bounds and separation",
+          "detail": "There exist a real number >2 and nonconstant total Boolean functions F_m , for integers m1 , such that \\[ (F_m,0) s(F_m)^ for every m, (F_m,0). \\]",
+          "dependsOn": [
+            "m1-thm-main",
+            "m1-lem-composition"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "A superquadratic separation between sensitivity and block sensitivity",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-superquadratic-separation-between-sensitivity-and-block-sensitivity-September-25-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

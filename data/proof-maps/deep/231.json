@@ -1,0 +1,292 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "231",
+  "title": "The free uniform spanning forest is a factor of IID",
+  "result": {
+    "id": "paper-result",
+    "label": "The free uniform spanning forest is a factor of IID",
+    "statement": "On every infinite connected locally finite simple unweighted graph, the free uniform spanning forest is a factor of independent vertex labels, by one isomorphism-equivariant rule using no root. Translation-invariant strongly Rayleigh binary processes on every countable group, including invariant determinantal processes with Hermitian positive-contraction kernels, are also factors of IID.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "introduction-2",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "introduction-3",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "weighted-trees-and-a-canonical-response-field",
+      "label": "Weighted trees and a canonical response field",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "weighted-trees-and-a-canonical-response-field-2",
+      "label": "Weighted trees and a canonical response field",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "weighted-trees-and-a-canonical-response-field-3",
+      "label": "Weighted trees and a canonical response field",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "weighted-trees-and-a-canonical-response-field-4",
+      "label": "Weighted trees and a canonical response field",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "brownian-observations-and-their-innovations",
+      "label": "Brownian observations and their innovations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "brownian-observations-and-their-innovations-2",
+      "label": "Brownian observations and their innovations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-deterministic-inverse-and-a-brownian-sampler",
+      "label": "A deterministic inverse and a Brownian sampler",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-deterministic-inverse-and-a-brownian-sampler-2",
+      "label": "A deterministic inverse and a Brownian sampler",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "one-borel-graph-rule",
+      "label": "One Borel graph rule",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "strongly-rayleigh-processes-on-countable-groups",
+      "label": "Strongly Rayleigh processes on countable groups",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "The free uniform spanning forest is a factor of IID",
+      "title": "The free uniform spanning forest is a factor of IID",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-free-uniform-spanning-forest-is-a-factor-of-IID-September-25-2026/The-free-uniform-spanning-forest-is-a-factor-of-IID-September-25-2026.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from The free uniform spanning forest is a factor of IID; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "There is one Borel, root-independent, equivariant rule \\[ (G,U,e)\\ 0,1\\ \\] such…",
+          "fullLabel": "There is one Borel, root-independent, equivariant rule \\[ (G,U,e)\\ 0,1\\ \\] such…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "There is one Borel, root-independent, equivariant rule \\[ (G,U,e)\\ 0,1\\ \\] such that, for every infinite connected locally finite simple undirected unweighted graph G and independent Uniform[0,1]…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-unimodular",
+          "role": "introduction",
+          "label": "The free uniform spanning forest is a graph factor of IID under every…",
+          "fullLabel": "The free uniform spanning forest is a graph factor of IID under every…",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "The free uniform spanning forest is a graph factor of IID under every unimodular law supported on the stated class of graphs. The same rule works for every such law.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-sr-group",
+          "role": "introduction-2",
+          "label": "Strongly Rayleigh processes on countable groups",
+          "fullLabel": "Strongly Rayleigh processes on countable groups",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "[Strongly Rayleigh processes on countable groups] Let be a countable group and let be a strongly Rayleigh probability law on \\ 0,1\\ ^ invariant under every _g . There is a Borel map \\[ _:[0,1]^ \\…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-dpp-group",
+          "role": "introduction-3",
+          "label": "Determinantal processes on countable groups",
+          "fullLabel": "Determinantal processes on countable groups",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "[Determinantal processes on countable groups] Let be a countable group and let K be a self-adjoint positive contraction on ^2() , so 0 K I . If the determinantal probability law with kernel K is…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-tree-response",
+          "role": "weighted-trees-and-a-canonical-response-field",
+          "label": "Weighted-tree response",
+          "fullLabel": "Weighted-tree response",
+          "kind": "lemma",
+          "source": "Weighted trees and a canonical response field",
+          "detail": "[Weighted-tree response] Let H be a finite connected graph with at least two vertices, and let T(H) denote its set of spanning trees. For h R^ E(H) , give each T T(H) probability proportional to (_ f…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-free-limit",
+          "role": "weighted-trees-and-a-canonical-response-field-2",
+          "label": "Free exhaustion limit",
+          "fullLabel": "Free exhaustion limit",
+          "kind": "proposition",
+          "source": "Weighted trees and a canonical response field",
+          "detail": "[Free exhaustion limit] Let G be an infinite connected locally finite simple graph. If H_1 H_2 are finite connected subgraphs with _n E(H_n)=E(G) , the uniform spanning-tree laws on H_n , extended by…",
+          "dependsOn": [
+            "m1-lem-tree-response"
+          ]
+        },
+        {
+          "id": "m1-lem-forest-response",
+          "role": "weighted-trees-and-a-canonical-response-field-3",
+          "label": "Finite-field forest response",
+          "fullLabel": "Finite-field forest response",
+          "kind": "lemma",
+          "source": "Weighted trees and a canonical response field",
+          "detail": "[Finite-field forest response] The function b_ e,S takes values in [0,1] and is continuous in (t,(y_f)_ f S ) . For all t0 and y,y' R^ E , |b_ e,S (t,y)-b_ e,S (t,y')| 12_ f S |y_f-y'_f|, where the…",
+          "dependsOn": [
+            "m1-lem-tree-response"
+          ]
+        },
+        {
+          "id": "m1-prop-canonical-drift",
+          "role": "weighted-trees-and-a-canonical-response-field-4",
+          "label": "Canonical drift",
+          "fullLabel": "Canonical drift",
+          "kind": "proposition",
+          "source": "Weighted trees and a canonical response field",
+          "detail": "[Canonical drift] Each b_e is a jointly Borel function on [0,) R^ E with values in [0,1] , where R^ E has its product Borel structure. The construction commutes with graph isomorphisms and does not…",
+          "dependsOn": [
+            "m1-lem-forest-response"
+          ]
+        },
+        {
+          "id": "m1-lem-posterior",
+          "role": "brownian-observations-and-their-innovations",
+          "label": "Posterior drift",
+          "fullLabel": "Posterior drift",
+          "kind": "lemma",
+          "source": "Brownian observations and their innovations",
+          "detail": "[Posterior drift] For every fixed t0 and i I , b_i(t,Y(t))=almost surely.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-innovation",
+          "role": "brownian-observations-and-their-innovations-2",
+          "label": "Joint innovation law",
+          "fullLabel": "Joint innovation law",
+          "kind": "lemma",
+          "source": "Brownian observations and their innovations",
+          "detail": "[Joint innovation law] The family ( W_i)_ i I has the law of independent standard Brownian motions. Its finite-coordinate increments after time u are independent of H_u .",
+          "dependsOn": [
+            "m1-lem-posterior"
+          ]
+        },
+        {
+          "id": "m1-lem-inverse",
+          "role": "a-deterministic-inverse-and-a-brownian-sampler",
+          "label": "Deterministic inversion",
+          "fullLabel": "Deterministic inversion",
+          "kind": "lemma",
+          "source": "A deterministic inverse and a Brownian sampler",
+          "detail": "[Deterministic inversion] Let b:[0,)^I^I be jointly Borel. Suppose that a constant 0 L< satisfies _ i I |b_i(t,y)-b_i(t,y')| L_ j I |y_j-y'_j| for every t0 and every y,y'^I whose coordinate…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-brownian-sampler",
+          "role": "a-deterministic-inverse-and-a-brownian-sampler-2",
+          "label": "Sampling from independent Brownian paths",
+          "fullLabel": "Sampling from independent Brownian paths",
+          "kind": "proposition",
+          "source": "A deterministic inverse and a Brownian sampler",
+          "detail": "[Sampling from independent Brownian paths] Let be a probability law on \\ 0,1\\ ^I , where I is countable, and for each i choose finite sets S_n(i) increasing to I . Interpret the finite-tilt functions…",
+          "dependsOn": [
+            "m1-lem-inverse",
+            "m1-lem-posterior",
+            "m1-lem-innovation"
+          ]
+        },
+        {
+          "id": "m1-lem-edge-noise",
+          "role": "one-borel-graph-rule",
+          "label": "There is a Borel equivariant rule assigning a continuous path w_e starting at…",
+          "fullLabel": "There is a Borel equivariant rule assigning a continuous path w_e starting at…",
+          "kind": "lemma",
+          "source": "One Borel graph rule",
+          "detail": "There is a Borel equivariant rule assigning a continuous path w_e starting at zero to each edge of a vertex-labeled graph such that, for every fixed graph with independent uniform vertex labels,…",
+          "dependsOn": [
+            "m1-thm-main",
+            "m1-lem-forest-response",
+            "m1-prop-brownian-sampler",
+            "m1-cor-unimodular"
+          ]
+        },
+        {
+          "id": "m1-lem-sr-response",
+          "role": "strongly-rayleigh-processes-on-countable-groups",
+          "label": "Strongly Rayleigh response",
+          "fullLabel": "Strongly Rayleigh response",
+          "kind": "lemma",
+          "source": "Strongly Rayleigh processes on countable groups",
+          "detail": "[Strongly Rayleigh response] Let F be a nonempty finite set and let be a strongly Rayleigh probability law on \\ 0,1\\ ^F . For h^F , let \\[ _h(x)= (_ j F h_jx_j)(x) _ z\\ 0,1\\ ^F (_ j F h_jz_j)(z) ,…",
+          "dependsOn": [
+            "m1-thm-sr-group",
+            "m1-prop-brownian-sampler",
+            "m1-lem-edge-noise",
+            "m1-cor-dpp-group"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "The free uniform spanning forest is a factor of IID",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-free-uniform-spanning-forest-is-a-factor-of-IID-September-25-2026/The-free-uniform-spanning-forest-is-a-factor-of-IID-September-25-2026.pdf",
+      "kind": "paper"
+    }
+  ]
+}

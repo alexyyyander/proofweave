@@ -1,6 +1,6 @@
 export const DEEP_PROOF_MAP_SCHEMA_VERSION = "pw-deep-proof-map-v1";
 
-const STEP_KINDS = new Set(["theorem", "lemma", "corollary", "construction", "bound", "assembly", "external"]);
+const STEP_KINDS = new Set(["theorem", "lemma", "proposition", "corollary", "construction", "bound", "assembly", "external"]);
 const PROOF_DETAIL_LEVELS = new Set(["lemma", "grouped", "summary", "section"]);
 const LEAN_STATUSES = new Set(["formalized_upstream", "not_formalized", "not_separately_formalized"]);
 const EDGE_TYPES = new Set(["proves", "implies", "same-role", "replaces", "bypasses"]);
@@ -134,7 +134,7 @@ export function validateDeepProofMap(data, collection, leanCoverage = null) {
     if (!Array.isArray(strategy.authors) || strategy.authors.length === 0) fail(`${label}.authors must not be empty`);
     for (const author of strategy.authors) expectString(author, `${label}.authors entry`);
     expectDate(strategy.date, `${label}.date`);
-    if (!Number.isInteger(strategy.pages) || strategy.pages < 1 || strategy.pages > 1000) fail(`${label}.pages must be an integer between 1 and 1000`);
+    if (!Number.isInteger(strategy.pages) || strategy.pages < 0 || strategy.pages > 1000) fail(`${label}.pages must be an integer between 0 and 1000 (0 records an unknown page count)`);
     if (typeof strategy.color !== "string" || !/^#[0-9a-f]{6}$/i.test(strategy.color)) fail(`${label}.color must be a six-digit hex color`);
     expectEnum(strategy.proofDetail, PROOF_DETAIL_LEVELS, `${label}.proofDetail`);
     if (strategy.leanStatus !== undefined) expectEnum(strategy.leanStatus, LEAN_STATUSES, `${label}.leanStatus`);

@@ -330,111 +330,138 @@
   "edges": [
     {
       "from": "m1-lem-base-calculus",
-      "to": "m1-lem-rank-signatures"
+      "to": "m1-lem-rank-signatures",
+      "context": "is possible: there are finitely many marginal differences $f(A\\cup\\{e\\})-f(A)$ and finitely many box endpoints. The equation $B(f')=B(f)+a$ follows from Lemma~\\ref{lem:base-calculus}. Apply the proved construction to the shifted argument and $f'$, then let $H\\to\\infty$. This gives exactly the desired"
     },
     {
       "from": "m1-lem-rank-signatures",
-      "to": "m1-prop-shift-logconcavity"
+      "to": "m1-prop-shift-logconcavity",
+      "context": "s of count coordinates are disjoint. In the first factor, the coordinates $a_j,p$ feed the same physical coordinate, as do $a_k,q$, exactly as allowed in Lemma~\\ref{lem:rank-signatures}. On this finite box, choose modular translations $c_1,c_2$ so that $f_i+c_i$ is nondecreasing and every lower endpoint"
     },
     {
       "from": "m1-lem-balanced-summation",
-      "to": "m1-prop-shift-logconcavity"
+      "to": "m1-prop-shift-logconcavity",
+      "context": "s strictly positive on the full slice and has both signatures. Sum every ordinary pair $(a_e,b_e)$ at balance, leaving the pair $(p,q)$ of total $M$. By Lemma~\\ref{lem:balanced-summation}, the resulting weight has the removal signature. Let $y_H(t)$ denote its value at $(p,q)=(t-A,B-t)$. It is positive for"
     },
     {
       "from": "m1-lem-generator-prefixes",
-      "to": "m1-lem-partitions"
+      "to": "m1-lem-partitions",
+      "context": "exactly the required atoms, and contains at most \\(n(n-1)\\) sets. Its values and all comparisons have polynomial encoding length. The prefix bound is now Lemma~\\ref{lem:generator-prefixes}, because \\(n(n^2+1)S\\le N^4S\\)."
     },
     {
       "from": "m1-lem-polyhedral-controls",
-      "to": "m1-lem-shift-average"
+      "to": "m1-lem-shift-average",
+      "context": "\\(d(A)=0\\le s_*(A)\\); otherwise \\(d(A)\\le\\|d\\|_1\\le S/2<s_*(A)\\). Thus \\(d\\in B(s_*)\\), so \\(B(r_1)\\cap(B(r_2)+d)\\) is nonempty. Its integrality, from Lemma~\\ref{lem:polyhedral-controls}, supplies an integer point. Inclusion gives the same positivity for \\(Y^+\\). All coordinates of an expanded base lie"
     },
     {
       "from": "m1-prop-shift-logconcavity",
-      "to": "m1-lem-shift-average"
+      "to": "m1-lem-shift-average",
+      "context": "bound} therefore gives \\(Y(d),Y^+(d)\\le e^K\\) for every \\(d\\). In the positive region just proved, their logarithms lie between zero and \\(K\\). By Proposition~\\ref{prop:shift-logconcavity}, these logarithms are concave on integer lines parallel to \\(e_j-e_k\\). Introduce the star shifts successively. Each"
     },
     {
       "from": "m1-lem-generator-prefixes",
-      "to": "m1-lem-refinement-witnesses"
+      "to": "m1-lem-refinement-witnesses",
+      "context": "ice every generator has slack below \\(S\\), and on the whole second slice its complement has slack below \\(S\\). The same assertions hold at \\(c\\). Apply Lemma~\\ref{lem:generator-prefixes} to \\(Q_i(w)\\cup\\{c\\}\\), using complemented generators for system 2. It gives \\begin{equation}\\label{eq:initial-total-di"
     },
     {
       "from": "m1-lem-polyhedral-controls",
-      "to": "m1-lem-refinement-witnesses"
+      "to": "m1-lem-refinement-witnesses",
+      "context": "nerators for system 2. It gives \\begin{equation}\\label{eq:initial-total-distance} |w_G-c(G)|\\le 2n(n^2+1)S\\le N^6S. \\end{equation} The distance bound in Lemma~\\ref{lem:polyhedral-controls}, applied to one rank system and these partition equalities, gives a point \\(a\\in Q_i(w)\\) with \\(\\|a-c\\|_\\infty\\le N^{1"
     },
     {
       "from": "m1-lem-center",
-      "to": "m1-lem-refinement-witnesses"
+      "to": "m1-lem-refinement-witnesses",
+      "context": "l its descendants. Intersect \\(Q\\) with the cube of radius \\(L=N^{10}S\\) about \\(a\\), and choose a center \\(b\\) of this boxed slice with the property of Lemma~\\ref{lem:center}. If every rank inequality cutting a current part has slack at least \\(S\\) at \\(b\\), stop on this branch with \\(a^*=b\\)"
     },
     {
       "from": "m1-lem-refinement-witnesses",
-      "to": "m1-prop-expansion"
+      "to": "m1-prop-expansion",
+      "context": "a(l)Y(d(l)),\\qquad \\mathcal W^+=\\sum_l\\omega(l)Y^+(d(l)). \\] Fix common integer superblock totals \\(w\\), and perform the two independent subdivisions of Lemma~\\ref{lem:refinement-witnesses}. We compare one pair of terminal slices \\(Q_1,Q_2\\) and its expanded pair \\(Q_1+\\Delta_1,Q_2+\\Delta_2\\). Their partiti"
     },
     {
       "from": "m1-lem-shift-average",
-      "to": "m1-prop-expansion"
+      "to": "m1-prop-expansion",
+      "context": "zero, with Jacobian and cell measure one. Summing over the terminal pairs and then over \\(w\\) yields \\(\\mathcal W^+\\le e^{N^{-8}}\\mathcal W\\). Finally, Lemma~\\ref{lem:shift-average} gives \\[ Z^+\\le e^{3N^{-8}}\\frac{\\mathcal W^+}{A_\\omega} \\le e^{4N^{-8}}\\frac{\\mathcal W}{A_\\omega} \\le e^{7N^{-8}}Z"
     },
     {
       "from": "m1-lem-rank-signatures",
-      "to": "m1-prop-port-model"
+      "to": "m1-prop-port-model",
+      "context": "integer port settings, and their weights are $w(u)$, so \\eqref{eq:positive-proxy-bound} proves the comparison. Positivity is explicit in the definitions. Lemma~\\ref{lem:rank-signatures} applies to the rank factors, including the simultaneous reflection on side 1. Lemma~\\ref{lem:block-signatures} applies"
     },
     {
       "from": "m1-lem-block-signatures",
-      "to": "m1-prop-port-model"
+      "to": "m1-prop-port-model",
+      "context": "Positivity is explicit in the definitions. Lemma~\\ref{lem:rank-signatures} applies to the rank factors, including the simultaneous reflection on side 1. Lemma~\\ref{lem:block-signatures} applies to every block factor. The coordinate groups of all these factors are disjoint; hence the full normalized compl"
     },
     {
       "from": "m1-lem-port-penalties",
-      "to": "m1-lem-weight-bounds"
+      "to": "m1-lem-weight-bounds",
+      "context": "ability kernels. For the lower bound put $u^c_{iD}=c(D)$ and $z^c_e=c_e$ on free edges. The tree solve gives $X_1=X_2=c$, so the prefix-slack argument of Lemma~\\ref{lem:port-penalties} gives $V_G(u^c,z^c)\\le2N^4S$. For each free coordinate choose $z^*_e=\\max\\{c_e,1/4\\}$. It lies in $[0,R+1]$ with at lea"
     },
     {
       "from": "m1-prop-oracle-tools",
-      "to": "m1-lem-weight-bounds"
+      "to": "m1-lem-weight-bounds",
+      "context": ". For the minima defining $m_r$ and the maxima defining $V_G$, rational modular terms are handled by clearing their common denominator and applying Proposition~\\ref{prop:oracle-tools}. The binary length of that denominator is at most the sum of the individual denominator lengths. Thus the size paramete"
     },
     {
       "from": "m1-lem-weight-bounds",
-      "to": "m1-lem-volume-lift"
+      "to": "m1-lem-volume-lift",
+      "context": "nal scales, and the input port encodings. At a rational query, clearing denominators for the two submodular minimizations takes polynomial bit work as in Lemma~\\ref{lem:weight-bounds}. Each inequality, rather than the number of possible subsets, is the encoding parameter. For the inner ball choose \\["
     },
     {
       "from": "m1-lem-volume-lift",
-      "to": "m1-prop-weight-evaluator"
+      "to": "m1-prop-weight-evaluator",
+      "context": "olume theorem with relative error $\\rho/10$, and restore the exact determinant factor. Use the same parameter $\\rho$ in~\\eqref{eq:volume-lift-scales}. By Lemma~\\ref{lem:volume-lift}, its successful output is a relative $\\rho/2$ approximation to $\\widetilde I_G$. For completeness, all resource bounds"
     },
     {
       "from": "m1-lem-weight-bounds",
-      "to": "m1-prop-weight-evaluator"
+      "to": "m1-prop-weight-evaluator",
+      "context": "lock integrals. Evaluate the remaining exponentials and all rational arithmetic to another $\\rho/(100(n+1))$ relative error per factor. The log bounds in Lemma~\\ref{lem:weight-bounds} ensure that these relative accuracies require only polynomial absolute precision. One elementary implementation uses th"
     },
     {
       "from": "m1-prop-weight-evaluator",
-      "to": "m1-lem-counting-bits"
+      "to": "m1-lem-counting-bits",
+      "context": "$O(p\\log(p+1))$ bits and are computed by bounded integer arithmetic. Each weight evaluation has deterministic polynomial work and output length by Proposition~\\ref{prop:weight-evaluator}, even on its failure event. The scale $2^{-Uj/H_o}$ and rational powers have polynomial descriptions and evaluation pr"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-counting-bits"
+      "to": "m1-lem-counting-bits",
+      "context": "[Proof of Theorem~\\ref{thm:main}] First perform the exact feasibility test from Section~\\ref{sec:polyhedra}. Its integrality guarantee makes an empty re"
     },
     {
       "from": "m1-prop-counting-reference",
-      "to": "m1-lem-counting-bits"
+      "to": "m1-lem-counting-bits",
+      "context": "In all other feasible cases perform the partition and port constructions proved above. If $p\\geq1$, let $Y$ be the implemented ratio product. By Proposition~\\ref{prop:counting-reference} and Lemma~\\ref{lem:counting-bits}, outside an event of probability at most $1/50+20J_*\\xi<1/4$, the run does not abort"
     },
     {
       "from": "m2-lem-coefficient",
-      "to": "m2-lem-transversalvariance"
+      "to": "m2-lem-transversalvariance",
+      "context": "at node. At a node with partial assignment $\\sigma$, set \\[ a_{ij}=\\frac{c^{\\sigma}_{ij}}{z_{\\sigma}}\\frac{c_{ji}}{c_0} \\quad (i\\ne j\\text{ unassigned}). \\] \\Cref{lem:coefficient}, used both conditionally and with the global indices reversed, gives \\begin{equation}\\label{eq:scores} a_{ij}a_{ji}\\le"
     },
     {
       "from": "m2-lem-transport",
-      "to": "m2-lem-transversalvariance"
+      "to": "m2-lem-transversalvariance",
+      "context": "pair }t. \\end{equation} If only one pair remains, take that pair and the condition is vacuous. Branch by specifying which element of pair $k$ is chosen. Apply \\Cref{lem:transport} with the assignment $\\sigma$ fixed, the two elements of pair $k$ as singleton slots $p,d$, and the other unassigned pai"
     },
     {
       "from": "m2-lem-transport",
-      "to": "m2-lem-defecttransfer"
+      "to": "m2-lem-defecttransfer",
+      "context": "ransversal total is at least $c_0/4$. Denote its chosen elements by $a_i,a_j$ and their mates by $b_i,b_j$, and let $\\mathcal A$ be this transversal event. In \\Cref{lem:transport}, set \\[ B=\\{a_j\\},\\qquad C=\\{b_i\\},\\qquad p=a_i,\\qquad d=b_j, \\] and use the remaining original pairs as ordinary slot"
     },
     {
       "from": "m2-lem-coefficient",
-      "to": "m2-lem-defecttransfer"
+      "to": "m2-lem-defecttransfer",
+      "context": "$ selected, so $v_t\\le c_{it}$. The first two terms of the coefficient in \\eqref{eq:transport} are each at most $4/c_0$. For each ordinary slot, goodness and \\Cref{lem:coefficient} give \\[ \\frac{2v_t}{s_ps_dW_t} \\le\\frac{8c_{it}c_{tj}}{c_{ij}s_dc_0} \\le\\frac8{s_d}\\le\\frac{32}{c_0}. \\] The transpo"
     },
     {
       "from": "m2-lem-transversalvariance",
-      "to": "m2-lem-trace"
+      "to": "m2-lem-trace",
+      "context": "rgy} \\calE(H)=\\pi(A)\\inner{h}{(I-P_A)h}_\\mu. \\end{equation} Because $\\pi(A)=c_0/\\Lambda$, \\eqref{eq:Dirichlet} gives $D(H)/c_0=2n^2\\calE(H)/\\pi(A)$. Applying \\Cref{lem:transversalvariance} to $H$ therefore yields \\[ \\Var_\\mu h\\le2n^2C_{\\rm p}\\inner{h}{(I-P_A)h}_\\mu, \\qquad 2n^2C_{\\rm p}\\le18n^4. \\] This p"
     },
     {
       "from": "m2-thm-main",
-      "to": "m2-cor-intersection"
+      "to": "m2-cor-intersection",
+      "context": "troid. Their common bases are therefore precisely $\\mathcal C_k$. A truncation query uses at most one original independence query and a cardinality check, so \\Cref{thm:main} applies with the required oracle and bit bounds even if the original ranks differ. For $\\mathcal C$, estimate each $|\\"
     }
   ]
 }

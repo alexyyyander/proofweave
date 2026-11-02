@@ -1,0 +1,268 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "067",
+  "title": "The Campana–Peternell conjecture in dimension six",
+  "result": {
+    "id": "paper-result",
+    "label": "The Campana–Peternell conjecture in dimension six",
+    "statement": "Proves the Campana–Peternell conjecture in complex dimension six: every smooth connected complex projective Fano sixfold with nef tangent bundle is rational homogeneous.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "minimal-rational-curves",
+      "label": "Minimal rational curves",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "minimal-rational-curves-2",
+      "label": "Minimal rational curves",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "minimal-rational-curves-3",
+      "label": "Minimal rational curves",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "pseudoindex-four",
+      "label": "Pseudoindex four",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "characteristic-class-constraints-in-pseudoindex-five",
+      "label": "Characteristic-class constraints in pseudoindex five",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "characteristic-class-constraints-in-pseudoindex-five-2",
+      "label": "Characteristic-class constraints in pseudoindex five",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "characteristic-class-constraints-in-pseudoindex-five-3",
+      "label": "Characteristic-class constraints in pseudoindex five",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-numerical-constraint",
+      "label": "The numerical constraint",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "recognizing-the-grassmannian",
+      "label": "Recognizing the Grassmannian",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "recognizing-the-grassmannian-2",
+      "label": "Recognizing the Grassmannian",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-sixfold-theorem-and-its-consequences",
+      "label": "The sixfold theorem and its consequences",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "The Campana–Peternell conjecture in dimension six",
+      "title": "The Campana–Peternell conjecture in dimension six",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Campana-Peternell-conjecture-in-dimension-six-September-25-2026/main.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from The Campana–Peternell conjecture in dimension six; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "Every smooth connected complex projective Fano variety of dimension six with…",
+          "fullLabel": "Every smooth connected complex projective Fano variety of dimension six with…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "Every smooth connected complex projective Fano variety of dimension six with nef tangent bundle is rational homogeneous.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-nef-tangent-uniformization",
+          "role": "introduction",
+          "label": "Albanese fibres and uniformization",
+          "fullLabel": "Albanese fibres and uniformization",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "[Albanese fibres and uniformization] Let X be a connected compact K\\\"ahler manifold whose holomorphic tangent bundle is nef in the analytic sense. Suppose \\[ 0 d=_ C X- q(X)6. \\] Then there is a…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-minimal-family",
+          "role": "minimal-rational-curves",
+          "label": "Let X be a smooth complex Fano manifold of dimension n with nef tangent bundle,…",
+          "fullLabel": "Let X be a smooth complex Fano manifold of dimension n with nef tangent bundle,…",
+          "kind": "proposition",
+          "source": "Minimal rational curves",
+          "detail": "Let X be a smooth complex Fano manifold of dimension n with nef tangent bundle, and let V be a component of rational curves of minimal anticanonical degree d . Then U and V are smooth projective…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-pseudoindex-reduction",
+          "role": "minimal-rational-curves-2",
+          "label": "Let X be a smooth complex Fano sixfold with (X)=1 and nef tangent bundle. Then…",
+          "fullLabel": "Let X be a smooth complex Fano sixfold with (X)=1 and nef tangent bundle. Then…",
+          "kind": "proposition",
+          "source": "Minimal rational curves",
+          "detail": "Let X be a smooth complex Fano sixfold with (X)=1 and nef tangent bundle. Then either X P^6 , X Q^6 , or its pseudoindex is 4 or 5 .",
+          "dependsOn": [
+            "m1-prop-minimal-family"
+          ]
+        },
+        {
+          "id": "m1-lem-p1-involution",
+          "role": "minimal-rational-curves-3",
+          "label": "Let p:B D be a smooth projective morphism of smooth connected projective…",
+          "fullLabel": "Let p:B D be a smooth projective morphism of smooth connected projective…",
+          "kind": "lemma",
+          "source": "Minimal rational curves",
+          "detail": "Let p:B D be a smooth projective morphism of smooth connected projective varieties whose fibres are isomorphic to P^1 . Set c=c_1(T_p) and =p^*p_* . Every class on B is uniquely a+cb , with a,b…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-pseudoindex-four",
+          "role": "pseudoindex-four",
+          "label": "A smooth complex Fano sixfold with nef tangent bundle, Picard number one and…",
+          "fullLabel": "A smooth complex Fano sixfold with nef tangent bundle, Picard number one and…",
+          "kind": "proposition",
+          "source": "Pseudoindex four",
+          "detail": "A smooth complex Fano sixfold with nef tangent bundle, Picard number one and pseudoindex four is rational homogeneous.",
+          "dependsOn": [
+            "m1-lem-p1-involution"
+          ]
+        },
+        {
+          "id": "m1-lem-marked-tangent",
+          "role": "characteristic-class-constraints-in-pseudoindex-five",
+          "label": "For a general point x X , the fibre F=e^ -1 (x) is a smooth irreducible…",
+          "fullLabel": "For a general point x X , the fibre F=e^ -1 (x) is a smooth irreducible…",
+          "kind": "lemma",
+          "source": "Characteristic-class constraints in pseudoindex five",
+          "detail": "For a general point x X , the fibre F=e^ -1 (x) is a smooth irreducible projective threefold, and the tangent direction at the marking defines a finite morphism \\[ _x F P(T_x^*X). \\] Its image C_x is…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-shifted-descent",
+          "role": "characteristic-class-constraints-in-pseudoindex-five-2",
+          "label": "The classes r,s,t are pulled back from V .",
+          "fullLabel": "The classes r,s,t are pulled back from V .",
+          "kind": "lemma",
+          "source": "Characteristic-class constraints in pseudoindex five",
+          "detail": "The classes r,s,t are pulled back from V .",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-constant-hodge",
+          "role": "characteristic-class-constraints-in-pseudoindex-five-3",
+          "label": "Let f:Z B be a smooth projective morphism between smooth connected complex…",
+          "fullLabel": "Let f:Z B be a smooth projective morphism between smooth connected complex…",
+          "kind": "lemma",
+          "source": "Characteristic-class constraints in pseudoindex five",
+          "detail": "Let f:Z B be a smooth projective morphism between smooth connected complex projective varieties, and suppose that B is simply connected. For all p,j0 , the vector bundle R^jf_*^p_ Z/B is…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-finite-ratio",
+          "role": "the-numerical-constraint",
+          "label": "Let A , C_1 and N be the rational matrices and index set defined in Section~ .…",
+          "fullLabel": "Let A , C_1 and N be the rational matrices and index set defined in Section~ .…",
+          "kind": "lemma",
+          "source": "The numerical constraint",
+          "detail": "Let A , C_1 and N be the rational matrices and index set defined in Section~ . Suppose that Q^ 11 and Q^ 18 satisfy \\[ _0=_0=1, N(_i_j)_ (i,(j)) C_1 =0. \\] Then 32-20_1+3_1^2=0.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-vmrt-nondegenerate",
+          "role": "recognizing-the-grassmannian",
+          "label": "For a general point x X , the threefold C_x P(T_x^*X) P^5 is linearly…",
+          "fullLabel": "For a general point x X , the threefold C_x P(T_x^*X) P^5 is linearly…",
+          "kind": "lemma",
+          "source": "Recognizing the Grassmannian",
+          "detail": "For a general point x X , the threefold C_x P(T_x^*X) P^5 is linearly nondegenerate.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-pseudoindex-five-recognition",
+          "role": "recognizing-the-grassmannian-2",
+          "label": "Every smooth complex Fano sixfold with nef tangent bundle, Picard number one…",
+          "fullLabel": "Every smooth complex Fano sixfold with nef tangent bundle, Picard number one…",
+          "kind": "proposition",
+          "source": "Recognizing the Grassmannian",
+          "detail": "Every smooth complex Fano sixfold with nef tangent bundle, Picard number one and pseudoindex five is isomorphic to Gr(2,5) .",
+          "dependsOn": [
+            "m1-lem-finite-ratio",
+            "m1-lem-vmrt-nondegenerate",
+            "m1-thm-main",
+            "m1-prop-pseudoindex-reduction",
+            "m1-prop-pseudoindex-four"
+          ]
+        },
+        {
+          "id": "m1-cor-positive-ke",
+          "role": "the-sixfold-theorem-and-its-consequences",
+          "label": "Let X be a smooth connected complex projective Fano variety with nef tangent…",
+          "fullLabel": "Let X be a smooth connected complex projective Fano variety with nef tangent…",
+          "kind": "corollary",
+          "source": "The sixfold theorem and its consequences",
+          "detail": "Let X be a smooth connected complex projective Fano variety with nef tangent bundle and 1_ C X6 . Then X admits a positive K\\\"ahler--Einstein metric. More precisely, with the Ricci-form convention \\[…",
+          "dependsOn": [
+            "m1-thm-main",
+            "m1-cor-nef-tangent-uniformization"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "The Campana–Peternell conjecture in dimension six",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Campana-Peternell-conjecture-in-dimension-six-September-25-2026/main.pdf",
+      "kind": "paper"
+    }
+  ]
+}

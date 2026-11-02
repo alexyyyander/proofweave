@@ -1,0 +1,447 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "290",
+  "title": "Relative bicentralizers and modular spectral recovery",
+  "result": {
+    "id": "paper-result",
+    "label": "Relative bicentralizers and modular spectral recovery",
+    "statement": "Proves Connes' bicentralizer conjecture for every type III 1 factor with separable predual and every faithful normal state. More generally, for every inclusion N M of von Neumann algebras with separable preduals admitting a faithful normal conditional expectation, constructs an amenable expected subalgebra P N with P' c(M)=N' c(M), resolving the relative bicentralizer conjecture.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "modular-notation-and-bicentralizer-inputs",
+      "label": "Modular notation and bicentralizer inputs",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-absolute-bicentralizer",
+      "label": "The absolute bicentralizer",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-two-relative-products",
+      "label": "The two relative products",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-estimate-uniform-in-total-modular-energy",
+      "label": "An estimate uniform in total modular energy",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-estimate-uniform-in-total-modular-energy-2",
+      "label": "An estimate uniform in total modular energy",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "repeated-tensor-tests",
+      "label": "Repeated tensor tests",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "repeated-tensor-tests-2",
+      "label": "Repeated tensor tests",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-continuous-core-and-the-general-inclusion",
+      "label": "The continuous core and the general inclusion",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "introduction-2",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "bicentralizers-and-the-reduction",
+      "label": "Bicentralizers and the reduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "modular-localization-and-averaging",
+      "label": "Modular localization and averaging",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "modular-localization-and-averaging-2",
+      "label": "Modular localization and averaging",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "modular-localization-and-averaging-3",
+      "label": "Modular localization and averaging",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "modular-localization-and-averaging-4",
+      "label": "Modular localization and averaging",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "recovering-bounded-operators-from-spectral-vectors",
+      "label": "Recovering bounded operators from spectral vectors",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "spectral-rigidity",
+      "label": "Spectral rigidity",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "spectral-rigidity-2",
+      "label": "Spectral rigidity",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "spectral-rigidity-3",
+      "label": "Spectral rigidity",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "spectral-rigidity-4",
+      "label": "Spectral rigidity",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Expected amenable subalgebras preserving core commutants",
+      "title": "Expected amenable subalgebras preserving core commutants",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Expected-amenable-subalgebras-preserving-core-commutants-September-23-2026/Expected-amenable-subalgebras-preserving-core-commutants-September-23-2026.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Expected amenable subalgebras preserving core commutants; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "Let N M be a unital inclusion of von Neumann algebras with separable preduals,…",
+          "fullLabel": "Let N M be a unital inclusion of von Neumann algebras with separable preduals,…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "Let N M be a unital inclusion of von Neumann algebras with separable preduals, and suppose that there is a faithful normal conditional expectation E_N:M N . There exist a unital amenable von Neumann…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-masa",
+          "role": "introduction",
+          "label": "Under the hypotheses of Theorem~ , there is a maximal abelian subalgebra A N…",
+          "fullLabel": "Under the hypotheses of Theorem~ , there is a maximal abelian subalgebra A N…",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "Under the hypotheses of Theorem~ , there is a maximal abelian subalgebra A N with a faithful normal conditional expectation F:N A such that \\[ A' c(M)=c(A)(N' c(M)). \\]",
+          "dependsOn": [
+            "m1-thm-main"
+          ]
+        },
+        {
+          "id": "m1-prop-inputs",
+          "role": "modular-notation-and-bicentralizer-inputs",
+          "label": "Binormal states and spectral shifts",
+          "fullLabel": "Binormal states and spectral shifts",
+          "kind": "proposition",
+          "source": "Modular notation and bicentralizer inputs",
+          "detail": "[Binormal states and spectral shifts] In this setting the following hold. [label=()] If a state on B() satisfies \\[ ==, (e_N)=1, (f(X_M))=f(0)(f C_0()), \\] then, for a,b B , ((a)(b))= a b,. For each…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-absolute",
+          "role": "the-absolute-bicentralizer",
+          "label": "For every type III_1 factor N with separable predual and every faithful normal…",
+          "fullLabel": "For every type III_1 factor N with separable predual and every faithful normal…",
+          "kind": "theorem",
+          "source": "The absolute bicentralizer",
+          "detail": "For every type III_1 factor N with separable predual and every faithful normal state on N , one has (N,)=1 .",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-products",
+          "role": "the-two-relative-products",
+          "label": "The expectations satisfy \\[ E_N|_B=()1, E_B|_N=()1. \\] Consequently the maps \\[…",
+          "fullLabel": "The expectations satisfy \\[ E_N|_B=()1, E_B|_N=()1. \\] Consequently the maps \\[…",
+          "kind": "lemma",
+          "source": "The two relative products",
+          "detail": "The expectations satisfy \\[ E_N|_B=()1, E_B|_N=()1. \\] Consequently the maps \\[ R(x a)=xa, L(x a)=ax (x N,\\ a B) \\] extend to isometries from H K to .",
+          "dependsOn": [
+            "m1-thm-absolute"
+          ]
+        },
+        {
+          "id": "m1-prop-energy",
+          "role": "an-estimate-uniform-in-total-modular-energy",
+          "label": "Uniform energy estimate",
+          "fullLabel": "Uniform energy estimate",
+          "kind": "proposition",
+          "source": "An estimate uniform in total modular energy",
+          "detail": "[Uniform energy estimate] For every K there is a function _:(0,)[0,) with _()0 as 0 such that \\|(C-D_ all )()\\| _() for every n1 , every d_0,,d_n , and every unit vector H^ n whose S_n -spectral…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-kernel",
+          "role": "an-estimate-uniform-in-total-modular-energy-2",
+          "label": "The iterated kernel",
+          "fullLabel": "The iterated kernel",
+          "kind": "lemma",
+          "source": "An estimate uniform in total modular energy",
+          "detail": "[The iterated kernel] Formula~ defines a unital completely positive map Z: B() B(H^ n ) , possibly nonnormal. It satisfies Z((a))&=Z((a))=(a)1(a M), &Z(e_N)&=1, \\\\ Z(f(X_M))&=f(S_n+d)(f C_0()). For…",
+          "dependsOn": [
+            "m1-prop-energy",
+            "m1-prop-inputs"
+          ]
+        },
+        {
+          "id": "m1-lem-hybrid",
+          "role": "repeated-tensor-tests",
+          "label": "Hybrid words and time averaging",
+          "fullLabel": "Hybrid words and time averaging",
+          "kind": "lemma",
+          "source": "Repeated tensor tests",
+          "detail": "[Hybrid words and time averaging] The estimate holds with the same modulus if any subset of the U_j is replaced by D_j , or if all U_j are replaced by G_j=(U_j+D_j)/2 . For every >0 there is a…",
+          "dependsOn": [
+            "m1-prop-energy"
+          ]
+        },
+        {
+          "id": "m1-thm-ud",
+          "role": "repeated-tensor-tests-2",
+          "label": "For the operators in , one has U=D .",
+          "fullLabel": "For the operators in , one has U=D .",
+          "kind": "theorem",
+          "source": "Repeated tensor tests",
+          "detail": "For the operators in , one has U=D .",
+          "dependsOn": [
+            "m1-lem-hybrid"
+          ]
+        },
+        {
+          "id": "m1-prop-corefixed",
+          "role": "the-continuous-core-and-the-general-inclusion",
+          "label": "If N is a type III_1 factor, then \\[ (N c(M),)^=N' c(M). \\]",
+          "fullLabel": "If N is a type III_1 factor, then \\[ (N c(M),)^=N' c(M). \\]",
+          "kind": "proposition",
+          "source": "The continuous core and the general inclusion",
+          "detail": "If N is a type III_1 factor, then \\[ (N c(M),)^=N' c(M). \\]",
+          "dependsOn": [
+            "m1-thm-ud",
+            "m1-thm-main"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Bounded recovery for modular spectral averages",
+      "title": "Bounded recovery for modular spectral averages",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Bounded-recovery-for-modular-spectral-averages-September-23-2026/Bounded-recovery-for-modular-spectral-averages-September-23-2026.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Bounded recovery for modular spectral averages; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "result",
+          "label": "Let M be a type III_1 factor with separable predual and let be any faithful…",
+          "fullLabel": "Let M be a type III_1 factor with separable predual and let be any faithful…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "Let M be a type III_1 factor with separable predual and let be any faithful normal state on M . Then \\[ (M,)=1. \\]",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-rigidity",
+          "role": "introduction-2",
+          "label": "Spectral intertwining rigidity",
+          "fullLabel": "Spectral intertwining rigidity",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "[Spectral intertwining rigidity] Let M be a von Neumann algebra with a faithful normal state such that M_=1 . Let b: M be a continuous -preserving action. Suppose that, for every s , every uniformly…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-bc-inputs",
+          "role": "bicentralizers-and-the-reduction",
+          "label": "Established bicentralizer results",
+          "fullLabel": "Established bicentralizer results",
+          "kind": "proposition",
+          "source": "Bicentralizers and the reduction",
+          "detail": "[Established bicentralizer results] Let M be a type III_1 factor with separable predual and a faithful normal state. If B=(M,) is nonscalar, then B is a type III_1 subfactor with a normal -preserving…",
+          "dependsOn": [
+            "m2-thm-main",
+            "m2-thm-rigidity"
+          ]
+        },
+        {
+          "id": "m2-mod-predual",
+          "role": "modular-localization-and-averaging",
+          "label": "From modular localization to predual norm",
+          "fullLabel": "From modular localization to predual norm",
+          "kind": "lemma",
+          "source": "Modular localization and averaging",
+          "detail": "[From modular localization to predual norm] For w M and s , w-e^sw _ M_* (1+e^ s/2 ) (e^ D/2 -e^ s/2 )w . Consequently, if (w_n) is uniformly bounded and the D -spectral support of w_n is contained…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mod-localization",
+          "role": "modular-localization-and-averaging-2",
+          "label": "Smooth spectral localization",
+          "fullLabel": "Smooth spectral localization",
+          "kind": "lemma",
+          "source": "Modular localization and averaging",
+          "detail": "[Smooth spectral localization] Let f C_c^() , with Fourier convention f(u)=_ g(t)e^ itu \\,dt . For y M , the weak integral \\[ y_f=_ g(t)_t(y)\\,dt \\] belongs to M and satisfies y_fg_1y and y_f=f(D)y .…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mod-means",
+          "role": "modular-localization-and-averaging-3",
+          "label": "Two norm ergodic limits",
+          "fullLabel": "Two norm ergodic limits",
+          "kind": "lemma",
+          "source": "Modular localization and averaging",
+          "detail": "[Two norm ergodic limits] For every y M and M_* , _t(y)\\,d_k(t)&(y) &&in H, \\\\ _ -t \\,d_k(t)&(1) &&in M_*.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mod-average",
+          "role": "modular-localization-and-averaging-4",
+          "label": "Operator averaging",
+          "fullLabel": "Operator averaging",
+          "kind": "lemma",
+          "source": "Modular localization and averaging",
+          "detail": "[Operator averaging] For S(H) , define P(S) by \\[ P(S)h,k =m_t U_t^*SU_th,k. \\] Then P is a positive unital contraction, P(S) commutes with every spectral projection of D , and P(L(a))=(a)1(a M). In…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-rec-bounded",
+          "role": "recovering-bounded-operators-from-spectral-vectors",
+          "label": "Bounded recovery",
+          "fullLabel": "Bounded recovery",
+          "kind": "theorem",
+          "source": "Recovering bounded operators from spectral vectors",
+          "detail": "[Bounded recovery] Let M be a von Neumann algebra with a faithful normal state such that M_=1 . Use the standard-space notation and the fixed mean m of . Fix T(H) and s . Suppose that _n>0 tends to…",
+          "dependsOn": [
+            "m2-mod-localization",
+            "m2-mod-average",
+            "m2-mod-means"
+          ]
+        },
+        {
+          "id": "m2-spec-point",
+          "role": "spectral-rigidity",
+          "label": "Estimate at a spectral point",
+          "fullLabel": "Estimate at a spectral point",
+          "kind": "lemma",
+          "source": "Spectral rigidity",
+          "detail": "[Estimate at a spectral point] Let a,a^ M satisfy a= a^ . For s , set \\[ T_s=R(a^)-L(b_s(a))(H). \\] If h_n H are unit vectors with D -spectral supports contained in [s-d_n,s+d_n] , where d_n>0 and…",
+          "dependsOn": [
+            "m2-rec-bounded",
+            "m2-mod-predual"
+          ]
+        },
+        {
+          "id": "m2-spec-interval",
+          "role": "spectral-rigidity-2",
+          "label": "Estimate on an interval",
+          "fullLabel": "Estimate on an interval",
+          "kind": "lemma",
+          "source": "Spectral rigidity",
+          "detail": "[Estimate on an interval] Let a,a^ M satisfy a= a^ . For every nonempty compact interval I , every c , and every h E_D(I)H , t (R(a^ )-cL(a))U_th_ av h_ s I (b_s(a)-ca) .",
+          "dependsOn": [
+            "m2-mod-average",
+            "m2-spec-point"
+          ]
+        },
+        {
+          "id": "m2-spec-pairing",
+          "role": "spectral-rigidity-3",
+          "label": "Joint spectral pairing",
+          "fullLabel": "Joint spectral pairing",
+          "kind": "lemma",
+          "source": "Spectral rigidity",
+          "detail": "[Joint spectral pairing] For every (r,p),(q,) S , (i(r+qp))=1.",
+          "dependsOn": [
+            "m2-mod-localization",
+            "m2-spec-interval",
+            "m2-mod-average"
+          ]
+        },
+        {
+          "id": "m2-spec-eigenvalues",
+          "role": "spectral-rigidity-4",
+          "label": "Modular eigenvalues",
+          "fullLabel": "Modular eigenvalues",
+          "kind": "lemma",
+          "source": "Spectral rigidity",
+          "detail": "[Modular eigenvalues] If M_=1 , then D has no nonzero eigenvalue. If, in addition, D has pure point spectrum, then M=1 .",
+          "dependsOn": [
+            "m2-thm-rigidity",
+            "m2-spec-pairing"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    },
+    {
+      "from": "m2:m2-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "Expected amenable subalgebras preserving core commutants",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Expected-amenable-subalgebras-preserving-core-commutants-September-23-2026/Expected-amenable-subalgebras-preserving-core-commutants-September-23-2026.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Bounded recovery for modular spectral averages",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Bounded-recovery-for-modular-spectral-averages-September-23-2026/Bounded-recovery-for-modular-spectral-averages-September-23-2026.pdf",
+      "kind": "paper"
+    }
+  ]
+}

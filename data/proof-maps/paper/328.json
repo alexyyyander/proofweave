@@ -125,39 +125,48 @@
   "edges": [
     {
       "from": "m1-thm-main",
-      "to": "m1-cor-commuting"
+      "to": "m1-cor-commuting",
+      "context": "For the empty family, take $R=\\operatorname{id}_C$. Otherwise, Theorem~\\ref{thm:main} applies to every nonempty closed bounded convex subset $D$ of $C$, since a relatively norm-closed subset of the norm-cl"
     },
     {
       "from": "m1-lem-weak-facts",
-      "to": "m1-lem-reduction"
+      "to": "m1-lem-reduction",
+      "context": "in its convex hull. Hence $C'=\\overline{\\bigcup_n C_n}$ is separable, bounded, closed, and convex. Norm continuity of $F$ gives $F(C')\\subseteq C'$, and Lemma~\\ref{lem:weak-facts} makes $C'$ weakly compact. Every decreasing chain of nonempty norm-closed convex invariant subsets of $C'$ has a nonem"
     },
     {
       "from": "m1-lem-diametral",
-      "to": "m1-lem-compact-detector"
+      "to": "m1-lem-compact-detector",
+      "context": "Choose an $\\varepsilon/2$-net $a_1,\\ldots,a_m$ in $E$ and set $a=m^{-1}\\sum_{i=1}^m a_i\\in K$. Lemma~\\ref{lem:diametral} implies that, for some $\\delta>0$, \\[ \\norm{Ty-y}\\leq\\delta \\quad\\Longrightarrow\\quad \\norm{y-a}\\geq1-\\frac{\\v"
     },
     {
       "from": "m1-lem-finite-tuples",
-      "to": "m1-prop-anchor"
+      "to": "m1-prop-anchor",
+      "context": "The sets $A_m$ are nonempty, compact, and decreasing. Every member is nonexpansive by Lemma~\\ref{lem:finite-tuples}. First, $\\conv\\mathcal H_m$ is closed under composition. Indeed, if \\[ g=\\sum_{r=1}^s\\lambda_r(R_{n_r}\\circ G_r) \\i"
     },
     {
       "from": "m1-lem-idempotent",
-      "to": "m1-prop-anchor"
+      "to": "m1-prop-anchor",
+      "context": "on $h\\mapsto h\\circ k$ is continuous in the pointwise weak topology: its value at an argument $a$ is the evaluation of $h$ at the fixed argument $k(a)$. Lemma~\\ref{lem:idempotent} supplies $P\\in A$ with $P\\circ P=P$. Choose any $a\\in K$ and set $x=P(a)$; then $P(x)=x$. Write \\[ B_m=\\overline{\\{h"
     },
     {
       "from": "m1-lem-adaptive-selection",
-      "to": "m1-prop-tree-data"
+      "to": "m1-prop-tree-data",
+      "context": "s through $L_{k-1}$ have been constructed and $\\tau_{k-1}$ has been fixed. Visit the parents in $L_{k-1}$ from left to right. For a given parent, apply Lemma~\\ref{lem:adaptive-selection} with tolerance $\\tau_{k-1}$. Its successive map choices will be the candidates for this parent's children. We now spec"
     },
     {
       "from": "m1-lem-compact-detector",
-      "to": "m1-prop-tree-data"
+      "to": "m1-prop-tree-data",
+      "context": "v$, $\\Theta_v$, $Q_v$, and $E_v$ as above. The ancestor maps are fixed, so the number \\[ C_v=\\sum_{p\\prec v}c_{G_p} \\] is finite; take $c_{G_r}=0$. By Lemma~\\ref{lem:compact-detector}, there is $\\delta_v>0$ such that any $y\\in K$ with $\\norm{Ty-y}<\\delta_v$ admits a functional $f\\in X^*$, $\\norm{f}\\le1"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-prop-finite-witness"
+      "to": "m1-prop-finite-witness",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Suppose a counterexample exists. The reduction and constructions in Sections~\\ref{sec:prelim}--\\ref{sec:tree} give the"
     },
     {
       "from": "m1-lem-weak-facts",
-      "to": "m1-prop-finite-witness"
+      "to": "m1-prop-finite-witness",
+      "context": "[Proof of Lemma~\\ref{lem:weak-facts}] We begin with the Hahn--Banach extension argument underlying the first two assertions. Suppose that a linear functiona"
     }
   ]
 }

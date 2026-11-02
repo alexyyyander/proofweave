@@ -1,0 +1,504 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "138",
+  "title": "Subset Sum in `O(2^ 0.49n )` time",
+  "result": {
+    "id": "paper-result",
+    "label": "Subset Sum in `O(2^ 0.49n )` time",
+    "statement": "Gives a uniform randomized classical algorithm for worst-case Subset Sum in ordinary O(2^ 0.49n ) word-RAM time on polynomial-bit inputs, where n counts the integers. The time bound holds on every execution and success probability is at least 2/3 on every input. Inputs may repeat positive integers; words have O(n+b) bits for maximum input bit length b .",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "isolation-distinct-sums-and-prime-collisions",
+      "label": "Isolation, distinct sums, and prime collisions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "isolation-distinct-sums-and-prime-collisions-2",
+      "label": "Isolation, distinct sums, and prime collisions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "isolation-distinct-sums-and-prime-collisions-3",
+      "label": "Isolation, distinct sums, and prime collisions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "isolation-distinct-sums-and-prime-collisions-4",
+      "label": "Isolation, distinct sums, and prime collisions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "isolation-distinct-sums-and-prime-collisions-5",
+      "label": "Isolation, distinct sums, and prime collisions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-fixed-filtering-construction",
+      "label": "A fixed filtering construction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-fixed-filtering-construction-2",
+      "label": "A fixed filtering construction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "estimating-a-modular-checksum",
+      "label": "Estimating a modular checksum",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "estimating-a-modular-checksum-2",
+      "label": "Estimating a modular checksum",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "extracting-the-modular-aliases",
+      "label": "Extracting the modular aliases",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "extracting-the-modular-aliases-2",
+      "label": "Extracting the modular aliases",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "counting-and-enumeration-tools",
+      "label": "Counting and enumeration tools",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "counting-and-enumeration-tools-2",
+      "label": "Counting and enumeration tools",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "counting-and-enumeration-tools-3",
+      "label": "Counting and enumeration tools",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "counting-and-enumeration-tools-4",
+      "label": "Counting and enumeration tools",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "compressing-repeated-sums",
+      "label": "Compressing repeated sums",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "representations-and-bounded-parent-dictionaries",
+      "label": "Representations and bounded parent dictionaries",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "representations-and-bounded-parent-dictionaries-2",
+      "label": "Representations and bounded parent dictionaries",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "weighted-disjointness-in-bounded-space",
+      "label": "Weighted disjointness in bounded space",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "weighted-disjointness-in-bounded-space-2",
+      "label": "Weighted disjointness in bounded space",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "survival-within-the-resource-budgets",
+      "label": "Survival within the resource budgets",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "survival-within-the-resource-budgets-2",
+      "label": "Survival within the resource budgets",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-single-uniform-bounded-algorithm",
+      "label": "A single uniform bounded algorithm",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Subset Sum in Time $`O(2^{0.49n})`$",
+      "title": "Subset Sum in Time $`O(2^{0.49n})`$",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-04",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Subset-Sum-in-Time-2-power-0-49n-October-4-2026/subset-sum.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Subset Sum in Time $`O(2^{0.49n})`$; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "There is a uniform randomized classical algorithm A for Subset Sum with the…",
+          "fullLabel": "There is a uniform randomized classical algorithm A for Subset Sum with the…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "There is a uniform randomized classical algorithm A for Subset Sum with the following properties in the word-RAM model . For every input with n2 , the algorithm halts on every execution and outputs…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-isolation",
+          "role": "isolation-distinct-sums-and-prime-collisions",
+          "label": "Isolation",
+          "fullLabel": "Isolation",
+          "kind": "lemma",
+          "source": "Isolation, distinct sums, and prime collisions",
+          "detail": "[Isolation] For every choice of the tie weights, there is a subset I with a(I)=t if and only if there are s\\ 0,,nN_0\\ and I with c(I)=t_s . If the original instance has a solution, then with…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-deficiency",
+          "role": "isolation-distinct-sums-and-prime-collisions-2",
+          "label": "Properties of deficiency",
+          "fullLabel": "Properties of deficiency",
+          "kind": "lemma",
+          "source": "Isolation, distinct sums, and prime collisions",
+          "detail": "[Properties of deficiency] For arbitrary fixed integer weights, d()=0 and d(V)0 . For i V , \\[ 0 d(V\\ i\\ )-d(V)1. \\] For disjoint U,V , \\[ d(U V) d(U)+d(V). \\] If V,V' have equal size and differ by…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-half-variance",
+          "role": "isolation-distinct-sums-and-prime-collisions-3",
+          "label": "Random restrictions",
+          "fullLabel": "Random restrictions",
+          "kind": "lemma",
+          "source": "Isolation, distinct sums, and prime collisions",
+          "detail": "[Random restrictions] Let V_q be a uniformly random q -element subset of [n] , for 0 q n . Then \\[ Vard(V_q) q. \\] Moreover, E d(V_q) is nondecreasing in q .",
+          "dependsOn": [
+            "m1-lem-deficiency"
+          ]
+        },
+        {
+          "id": "m1-prop-preliminary",
+          "role": "isolation-distinct-sums-and-prime-collisions-4",
+          "label": "Capped preliminary search",
+          "fullLabel": "Capped preliminary search",
+          "kind": "proposition",
+          "source": "Isolation, distinct sums, and prime collisions",
+          "detail": "[Capped preliminary search] Given fixed transformed weights and targets from , there is a randomized procedure that either returns the correct decision for the original instance or returns CONTINUE.…",
+          "dependsOn": [
+            "m1-lem-isolation",
+            "m1-lem-half-variance"
+          ]
+        },
+        {
+          "id": "m1-lem-prime-collision",
+          "role": "isolation-distinct-sums-and-prime-collisions-5",
+          "label": "Random-prime collisions",
+          "fullLabel": "Random-prime collisions",
+          "kind": "lemma",
+          "source": "Isolation, distinct sums, and prime collisions",
+          "detail": "[Random-prime collisions] There are absolute constants K and L_* such that the following holds. For an integer L L_* , let p be uniform among the primes in [2^L,2^ L+1 ) . If D is a nonzero integer…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-filtering-moments",
+          "role": "a-fixed-filtering-construction",
+          "label": "Filtering moments",
+          "fullLabel": "Filtering moments",
+          "kind": "proposition",
+          "source": "A fixed filtering construction",
+          "detail": "[Filtering moments] The functions in satisfy _ T M(x)^2 2^ 8.5(-u(x)) \\,dx&<2^ 0.5168 ,\\\\ _ T M(x)^2 2^ 8.3(a v(x)-u(x)) \\,dx&<2^ 0.5168 .",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lemma-finite-filtering",
+          "role": "a-fixed-filtering-construction-2",
+          "label": "Finite filtering data",
+          "fullLabel": "Finite filtering data",
+          "kind": "lemma",
+          "source": "A fixed filtering construction",
+          "detail": "[Finite filtering data] There is an absolute integer P_0 such that for every P P_0 the finite functions satisfy and 1P_ x Z/P Z M(x)^2 2^ 8.5(-u(x)) &<2^ 0.5169 ,\\\\ 1P_ x Z/P Z M(x)^2 2^ 8.3(a…",
+          "dependsOn": [
+            "m1-prop-filtering-moments"
+          ]
+        },
+        {
+          "id": "m1-thm-checksum",
+          "role": "estimating-a-modular-checksum",
+          "label": "Modular checksum estimator",
+          "fullLabel": "Modular checksum estimator",
+          "kind": "theorem",
+          "source": "Estimating a modular checksum",
+          "detail": "[Modular checksum estimator] Fix a constant d>0 . There is a uniform randomized procedure with the following guarantee for all sufficiently large n . Its inputs are an integer P with | P- n|2 ,…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lemma-checksum-tables",
+          "role": "estimating-a-modular-checksum-2",
+          "label": "Coverage and sizes",
+          "fullLabel": "Coverage and sizes",
+          "kind": "lemma",
+          "source": "Estimating a modular checksum",
+          "detail": "[Coverage and sizes] For the preceding random construction, the following statements hold. [label=( *)] Conditional on arbitrary phases, the probability that some k<P has no match in its own pattern…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-aliases",
+          "role": "extracting-the-modular-aliases",
+          "label": "Alias extraction",
+          "fullLabel": "Alias extraction",
+          "kind": "theorem",
+          "source": "Extracting the modular aliases",
+          "detail": "[Alias extraction] There is one randomized procedure with the following properties for all sufficiently large n . Its input consists of the transformed integers c_i=Ca_i+u_i and targets t_s=Ct+s , 0…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sparse-distinction",
+          "role": "extracting-the-modular-aliases-2",
+          "label": "Sparse distinctions",
+          "fullLabel": "Sparse distinctions",
+          "kind": "lemma",
+          "source": "Extracting the modular aliases",
+          "detail": "[Sparse distinctions] With probability 1-o(1) over P , the following implication holds simultaneously for every v\\ -1,0,1\\ ^n with at most m nonzero coordinates: _i v_ic_i0 _i v_ic_i0 P. The error is…",
+          "dependsOn": [
+            "m1-lem-prime-collision",
+            "m1-thm-main",
+            "m1-prop-preliminary",
+            "m1-thm-aliases",
+            "m1-thm-checksum",
+            "m1-lem-isolation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "A Low-Space Algorithm for Worst-Case Subset Sum",
+      "title": "A Low-Space Algorithm for Worst-Case Subset Sum",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-26",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Low-Space-Algorithm-for-Worst-Case-Subset-Sum-September-26-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from A Low-Space Algorithm for Worst-Case Subset Sum; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "result",
+          "label": "There is a single uniform classical randomized algorithm in this model that…",
+          "fullLabel": "There is a single uniform classical randomized algorithm in this model that…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "There is a single uniform classical randomized algorithm in this model that never answers YES incorrectly and answers each YES instance correctly with probability at least 2/3 . For every fixed…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-target",
+          "role": "introduction",
+          "label": "For every fixed >0.199 , the same algorithm has ordinary O_ c, (2^ n ) word…",
+          "fullLabel": "For every fixed >0.199 , the same algorithm has ordinary O_ c, (2^ n ) word…",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "For every fixed >0.199 , the same algorithm has ordinary O_ c, (2^ n ) word space under each fixed polynomial-bit convention, with the time and correctness guarantees of Theorem~ . In particular, it…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-deficiency",
+          "role": "counting-and-enumeration-tools",
+          "label": "Deficiency",
+          "fullLabel": "Deficiency",
+          "kind": "lemma",
+          "source": "Counting and enumeration tools",
+          "detail": "[Deficiency] For arbitrary fixed weights on the n indices, deficiency is nonnegative, invariant under sign changes of individual weights, inclusion-monotone, and superadditive on disjoint domains.…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-entropy",
+          "role": "counting-and-enumeration-tools-2",
+          "label": "Elementary entropy bounds",
+          "fullLabel": "Elementary entropy bounds",
+          "kind": "lemma",
+          "source": "Counting and enumeration tools",
+          "detail": "[Elementary entropy bounds] For integers 0 k v , \\[ 2^ v h(k/v) v+1 vk 2^ v h(k/v) . \\] For v=k=0 , interpret v h(k/v) as zero. Entropy is concave, symmetric about 1/2 , and increasing on [0,1/2] .…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-prime",
+          "role": "counting-and-enumeration-tools-3",
+          "label": "Prime factors",
+          "fullLabel": "Prime factors",
+          "kind": "lemma",
+          "source": "Counting and enumeration tools",
+          "detail": "[Prime factors] Let 4 n be an integer. The set \\[ P_= \\ p prime:p<2^,\\ 4 p2^\\ \\] has at least 2^/(4) elements. If p is uniform on this set and is a fixed nonzero integer with ||<2^ 2u , then \\[ 8u^2…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-streams",
+          "role": "counting-and-enumeration-tools-4",
+          "label": "Filtered streams and tie joins",
+          "fullLabel": "Filtered streams and tie joins",
+          "kind": "lemma",
+          "source": "Counting and enumeration tools",
+          "detail": "[Filtered streams and tie joins] Let A_1,A_2 be stored constant-word item arrays whose indices have O(n) bits. Let p P be positive integers, and let c,v be specified integer residues. Assume that the…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-compressed",
+          "role": "compressing-repeated-sums",
+          "label": "Compressed-block trial",
+          "fullLabel": "Compressed-block trial",
+          "kind": "lemma",
+          "source": "Compressing repeated sums",
+          "detail": "[Compressed-block trial] For sufficiently large main-branch inputs, the compressed-block trial uses at most u^ 15 2^ n/2 word operations on every random outcome, including bounded sampling, and uses…",
+          "dependsOn": [
+            "m2-lem-streams",
+            "m2-lem-samplers",
+            "m2-lem-deficiency",
+            "m2-lem-prime"
+          ]
+        },
+        {
+          "id": "m2-alg-validity",
+          "role": "representations-and-bounded-parent-dictionaries",
+          "label": "Every retained parent entry has a subset witness on its parent's indices.…",
+          "fullLabel": "Every retained parent entry has a subset witness on its parent's indices.…",
+          "kind": "lemma",
+          "source": "Representations and bounded parent dictionaries",
+          "detail": "Every retained parent entry has a subset witness on its parent's indices. Deduplicating entries by actual weight and top mask preserves the existence of every valid final match. Every YES returned by…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-prefix",
+          "role": "representations-and-bounded-parent-dictionaries-2",
+          "label": "Prefix accounting",
+          "fullLabel": "Prefix accounting",
+          "kind": "lemma",
+          "source": "Representations and bounded parent dictionaries",
+          "detail": "[Prefix accounting] Fix positive integers C,q and a nonnegative integer m . On each side j\\ L,R\\ , let T_j be a finite collection of raw tuple occurrences. Each occurrence has a bucket in \\ 0,,q-1\\…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-separator",
+          "role": "weighted-disjointness-in-bounded-space",
+          "label": "Weighted disjointness",
+          "fullLabel": "Weighted disjointness",
+          "kind": "lemma",
+          "source": "Weighted disjointness in bounded space",
+          "detail": "[Weighted disjointness] For the input and independent families just specified, there is a weighted-disjointness check with the following guarantees, for all sufficiently large n . It returns YES only…",
+          "dependsOn": [
+            "m2-lem-entropy",
+            "m2-lem-samplers"
+          ]
+        },
+        {
+          "id": "m2-cor-separator-reuse",
+          "role": "weighted-disjointness-in-bounded-space-2",
+          "label": "Reusing the families",
+          "fullLabel": "Reusing the families",
+          "kind": "corollary",
+          "source": "Weighted disjointness in bounded space",
+          "detail": "[Reusing the families] Fix a finite list of checks satisfying the input conditions of Lemma~ , with common block parameters, and let \\[ N_ check =_ checks (| L|+| R|). \\] The list may itself be…",
+          "dependsOn": [
+            "m2-lem-separator"
+          ]
+        },
+        {
+          "id": "m2-lem-representation",
+          "role": "survival-within-the-resource-budgets",
+          "label": "For a main-branch YES input with \\(<.00765n\\), ideal sampling produces, with…",
+          "fullLabel": "For a main-branch YES input with \\(<.00765n\\), ideal sampling produces, with…",
+          "kind": "lemma",
+          "source": "Survival within the resource budgets",
+          "detail": "For a main-branch YES input with \\(<.00765n\\), ideal sampling produces, with probability at least \\(u^ -100 \\), a passing spread test and a representation of a solution satisfying all prescribed leaf…",
+          "dependsOn": [
+            "m2-lem-deficiency"
+          ]
+        },
+        {
+          "id": "m2-lem-resources",
+          "role": "survival-within-the-resource-budgets-2",
+          "label": "On a YES input with \\(<.00765n\\), a representation trial with the bounded…",
+          "fullLabel": "On a YES input with \\(<.00765n\\), a representation trial with the bounded…",
+          "kind": "lemma",
+          "source": "Survival within the resource budgets",
+          "detail": "On a YES input with \\(<.00765n\\), a representation trial with the bounded samplers and operation cap succeeds with probability at least \\(u^ -110 \\), for sufficiently large main-branch inputs.",
+          "dependsOn": [
+            "m2-lem-representation",
+            "m2-lem-samplers"
+          ]
+        },
+        {
+          "id": "m2-lem-samplers",
+          "role": "a-single-uniform-bounded-algorithm",
+          "label": "Bounded samplers",
+          "fullLabel": "Bounded samplers",
+          "kind": "lemma",
+          "source": "A single uniform bounded algorithm",
+          "detail": "[Bounded samplers] A uniform integer in \\(\\ 0,,D-1\\ \\), with \\(1 D<2^w\\), can be sampled using at most \\(n^3\\) rejection attempts, or the trial can report failure. Conditional on any preceding…",
+          "dependsOn": [
+            "m2-lem-prime"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    },
+    {
+      "from": "m2:m2-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "Subset Sum in Time $`O(2^{0.49n})`$",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Subset-Sum-in-Time-2-power-0-49n-October-4-2026/subset-sum.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "A Low-Space Algorithm for Worst-Case Subset Sum",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Low-Space-Algorithm-for-Worst-Case-Subset-Sum-September-26-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

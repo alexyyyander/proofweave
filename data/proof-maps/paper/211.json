@@ -684,451 +684,563 @@
   "edges": [
     {
       "from": "m1-lem-graph-energy",
-      "to": "m1-prop-inputs"
+      "to": "m1-prop-inputs",
+      "context": "), counts all \\(n\\) primal edges, and pushes normalized corner counting to \\(\\deg(v)/(2n)\\). Its all-edge network therefore has operator \\(B_n=2G_n\\) by Lemma~\\ref{lem:graph-energy}. Its limiting surface is the ordinary unit-area sphere with the original marks forgotten. Auxiliary marks and rerooti"
     },
     {
       "from": "m1-lem-space-normalization",
-      "to": "m1-prop-inputs"
+      "to": "m1-prop-inputs",
+      "context": "ng vertex distortion. Approximating the triples \\((x,x,0)\\) in the opposite direction gives round density of the vertex locations, hence \\(D_h\\)-density. Lemma~\\ref{lem:space-normalization} permits replacement of \\(\\widehat a_n\\) by \\(a_n\\): along this coupling the \\(\\widehat a_n\\)-scaled diameters are bound"
     },
     {
       "from": "m1-prop-inputs",
-      "to": "m1-prop-operators"
+      "to": "m1-prop-operators",
+      "context": "n^*$. Indeed, multiplication by $J_ng_{n,i}$ preserves the range of $J_n$ and represents multiplication by $g_{n,i}$ there. The tour convergence in Proposition~\\ref{prop:inputs} gives $J_ng_{n,i}\\to Jf_i$ uniformly, hence convergence of these multiplication operators in norm. Equation~\\eqref{eq:s"
     },
     {
       "from": "m1-lem-uniform-recovery",
-      "to": "m1-lem-resolvent-approximation"
+      "to": "m1-lem-resolvent-approximation",
+      "context": "Take the recoveries $w_n$ from Lemma~\\ref{lem:uniform-recovery}. Their uniform approximation, together with the tour convergence, gives $J_nw_n\\to Jf$ in $H$. For fixed $\\alpha$, Equa"
     },
     {
       "from": "m1-lem-stationary-maximal",
-      "to": "m1-lem-resolvent-approximation"
+      "to": "m1-lem-resolvent-approximation",
+      "context": "+\\lambda}\\right)^2\\dd\\nu_f(\\lambda). \\] Here $f$ belongs to the form domain, so $1+\\lambda$ is integrable against $\\nu_f$; dominated convergence applies. Lemma~\\ref{lem:stationary-maximal}, applied with $A=G_n$ to $w_n-u_{n,\\alpha}$, now gives \\[ \\lim_{\\alpha\\to\\infty}\\limsup_n \\EE\\sup_{t\\le T}\\abs{w_n(Y^"
     },
     {
       "from": "m1-lem-uniform-recovery",
-      "to": "m1-prop-path-limit"
+      "to": "m1-prop-path-limit",
+      "context": "Fix $d>0$. Choose finitely many round disks $O_1,\\ldots,O_m$ covering $\\Sph$ and smooth cutoffs $f_i=1-\\chi_i$ to which Lemma~\\ref{lem:uniform-recovery} applies, such that \\begin{equation}\\label{eq:separating-cutoffs} f_i=0\\text{ on }O_i, \\qquad x\\in O_i,\\ \\rho(x,y)\\ge"
     },
     {
       "from": "m1-lem-resolvent-approximation",
-      "to": "m1-prop-path-limit"
+      "to": "m1-prop-path-limit",
+      "context": "uniform over all the stated stopping-time pairs. First take $\\limsup_n$, then let $s\\downarrow0$ with $\\alpha$ fixed, and finally let $\\alpha\\to\\infty$. Lemma~\\ref{lem:resolvent-approximation} gives \\[ \\lim_{s\\downarrow0}\\limsup_n \\sup_{\\substack{\\tau\\le\\sigma\\le T\\\\0\\le\\sigma-\\tau\\le s}} \\PP\\{\\rho(\\xi^n_\\ta"
     },
     {
       "from": "m1-prop-inputs",
-      "to": "m1-prop-path-limit"
+      "to": "m1-prop-path-limit",
+      "context": "ic on $\\Sph$, so the laws are tight in $D([0,T],\\Sph)$ with its $J_1$ topology. Every jump of $\\xi^n$ joins the endpoints of an embedded map edge. Proposition~\\ref{prop:inputs} therefore makes its largest jump tend to zero. A jump of a $J_1$ limit must be approximated by jumps of comparable size"
     },
     {
       "from": "m1-prop-operators",
-      "to": "m1-prop-path-limit"
+      "to": "m1-prop-path-limit",
+      "context": "ximated by jumps of comparable size; hence every subsequential limit is continuous. Evaluation at fixed times is continuous at continuous paths, so Proposition~\\ref{prop:operators} identifies the finite-dimensional laws of every such limit with those of $B^h$. These finite-dimensional laws determine"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-clock"
+      "to": "m1-lem-clock",
+      "context": "[Proof of Theorem~\\ref{thm:main}]\\label{proofmain} Start from an arbitrary subsequence and take the coupled further subsequence of Proposition~\\ref{prop"
     },
     {
       "from": "m1-prop-inputs",
-      "to": "m1-lem-clock"
+      "to": "m1-lem-clock",
+      "context": "[Proof of Theorem~\\ref{thm:main}]\\label{proofmain} Start from an arbitrary subsequence and take the coupled further subsequence of Proposition~\\ref{prop:inputs}. Fix a realization in its probability-one event and a finite integer $r\\ge1$. Conditional on this realization, the $r$"
     },
     {
       "from": "m1-lem-ambient-space",
-      "to": "m1-lem-clock"
+      "to": "m1-lem-clock",
+      "context": "\\eqref{eq:cable-local-limit}, repeated on $r$ independent probability spaces, couples the product laws with almost sure convergence of every coordinate. Lemma~\\ref{lem:ambient-space} also gives Hausdorff convergence of the spaces and Prokhorov convergence of their measures in the same $Z$. Under the p"
     },
     {
       "from": "m2-lem-space-normalization",
-      "to": "m2-prop-geometry"
+      "to": "m2-prop-geometry",
+      "context": "r is finite and strictly positive. Replacing the graph diameter by \\(\\Delta_n=\\max\\{1,\\diam(V_n,d_n)\\}\\) does not affect this limit because \\(b_n\\to0\\). Lemma~\\ref{lem:space-normalization} gives \\(a_n/b_n\\to1\\), hence the graph convergence in \\eqref{eq:common-distance-graph} and \\(a_n\\to0\\). Couple each fl"
     },
     {
       "from": "m2-prop-readout-extension",
-      "to": "m2-prop-sphere-support"
+      "to": "m2-prop-sphere-support",
+      "context": "\\dd\\zeta)\\,\\Pi_h(\\dd\\pi). \\label{eq:sphere-input-domination} \\end{equation} The local input \\(\\xi\\) is a measurable function of \\((h,\\zeta,\\pi)\\). Proposition~\\ref{prop:readout-extension} gives the same observation kernel \\(\\mathsf K_\\xi\\) on activation on both sides; the cemetery convention extends it to"
     },
     {
       "from": "m2-prop-readout-extension",
-      "to": "m2-lem-record-null-transfer"
+      "to": "m2-lem-record-null-transfer",
+      "context": "nslated endpoint-density multiplier. Open fillability gives \\(f(c)>0\\) on the inputs at issue. The multiplier depends on the input and filling, so Proposition~\\ref{prop:readout-extension} leaves the enlarged \\(K_c\\) unchanged. If \\(B\\) is null in this completion, then \\[ 0=\\int f(c)K_c(B_c)\\,\\mu(\\dd c) \\"
     },
     {
       "from": "m2-prop-readout-extension",
-      "to": "m2-lem-deterministic-germs"
+      "to": "m2-lem-deterministic-germs",
+      "context": "lity-one event. On this exhaustion, the small tests defining a germ need no exterior permutation; their order is the direction of that traversal. Proposition~\\ref{prop:readout-extension} therefore implies, for bounded measurable \\(\\varphi\\), that \\begin{equation} p_\\varphi(z)=\\EE[\\varphi(Y(z))\\mid\\mathca"
     },
     {
       "from": "m2-prop-readout-extension",
-      "to": "m2-prop-edge-quantiles"
+      "to": "m2-prop-edge-quantiles",
+      "context": "tching ordinary reference packages for the two sphere marginals, and the cone packages witnessing the quantile events for each reference marginal. Propositions~\\ref{prop:readout-extension} and \\ref{prop:sphere-support} provide these matched packages, and Lemma~\\ref{lem:dual-geometry} couples the two sphere"
     },
     {
       "from": "m2-prop-sphere-support",
-      "to": "m2-prop-edge-quantiles"
+      "to": "m2-prop-edge-quantiles",
+      "context": "s for the two sphere marginals, and the cone packages witnessing the quantile events for each reference marginal. Propositions~\\ref{prop:readout-extension} and \\ref{prop:sphere-support} provide these matched packages, and Lemma~\\ref{lem:dual-geometry} couples the two sphere marginals on the same physical"
     },
     {
       "from": "m2-lem-dual-geometry",
-      "to": "m2-prop-edge-quantiles"
+      "to": "m2-prop-edge-quantiles",
+      "context": "quantile events for each reference marginal. Propositions~\\ref{prop:readout-extension} and \\ref{prop:sphere-support} provide these matched packages, and Lemma~\\ref{lem:dual-geometry} couples the two sphere marginals on the same physical maps with the same edge count. The high-unit and budget argument"
     },
     {
       "from": "m2-lem-finite-el",
-      "to": "m2-prop-edge-quantiles"
+      "to": "m2-prop-edge-quantiles",
+      "context": "discrete indicators equal \\(1\\) eventually. Since \\(\\rho_{j_k}\\to0\\), the default value \\(Z_{j_k}=1\\) cannot satisfy the low inequality for large \\(k\\). Lemma~\\ref{lem:finite-el} then gives near-minimum path laws for the middle family, and trimming between the narrower bands gives squared traffic"
     },
     {
       "from": "m2-lem-edge-density-budget",
-      "to": "m2-prop-edge-quantiles"
+      "to": "m2-prop-edge-quantiles",
+      "context": "one local family with squared traffic at most \\((M+2)\\rho_{j_k}\\). These laws now live on the same ordinary extraction as the probability-one budgets of Lemma~\\ref{lem:edge-density-budget}. Apply Lemma~\\ref{lem:edge-flow-compactness} on their common event to obtain a law \\(\\mu\\) of nonconstant rectifiable p"
     },
     {
       "from": "m2-lem-edge-flow-compactness",
-      "to": "m2-prop-edge-quantiles"
+      "to": "m2-prop-edge-quantiles",
+      "context": "st \\((M+2)\\rho_{j_k}\\). These laws now live on the same ordinary extraction as the probability-one budgets of Lemma~\\ref{lem:edge-density-budget}. Apply Lemma~\\ref{lem:edge-flow-compactness} on their common event to obtain a law \\(\\mu\\) of nonconstant rectifiable paths and a nonzero measure \\(\\Lambda\\ll\\dd z\\"
     },
     {
       "from": "m2-lem-deterministic-germs",
-      "to": "m2-prop-edge-quantiles"
+      "to": "m2-prop-edge-quantiles",
+      "context": "E_v(z)\\) is jointly measurable. Deleting finitely many radii leaves it unchanged, and all supports shrink to \\(z\\). Its indicator is therefore a germ in Lemma~\\ref{lem:deterministic-germs}. The finite bound \\(M\\) may depend on the radius. At arclength-almost every interior visit of almost every path of \\("
     },
     {
       "from": "m2-prop-geometry",
-      "to": "m2-prop-edge-quantiles"
+      "to": "m2-prop-edge-quantiles",
+      "context": "ugation if its orientation convention requires this. Let \\(H_k^+\\) and \\(H_k^-\\) be the two reference homeomorphisms. The canonical comparison in Proposition~\\ref{prop:geometry}, from \\cite[Theorem~8.8]{C}, permits a further extraction on which their changes to the common canonical coordinate con"
     },
     {
       "from": "m2-thm-network-bounds",
-      "to": "m2-prop-edge-quantiles"
+      "to": "m2-prop-edge-quantiles",
+      "context": "[Proof of Theorem~\\ref{thm:network-bounds}] Let \\(m_k\\to\\infty\\) be any sequence of letters per time unit. Write \\[ m_k=4^{j_k}v_k,\\qquad 1\\le v_k<4, \\] and pas"
     },
     {
       "from": "m2-prop-readout-extension",
-      "to": "m2-lem-uniform-relaxation"
+      "to": "m2-lem-uniform-relaxation",
+      "context": "ic polynomial and the constraints are finitely many closed intervals. The list of intrinsic cell instructions and rational intervals is countable. Proposition~\\ref{prop:readout-extension} therefore retains their joint limits, including equality through a common union record on overlaps. Fix \\(V_0\\Subset V"
     },
     {
       "from": "m2-thm-network-bounds",
-      "to": "m2-lem-energy-measures"
+      "to": "m2-lem-energy-measures",
+      "context": "ger protected chart. Choose finitely many smaller disks covering the compact set, each with a fixed enlargement in one \\(U_i\\). The disk cutoffs from Theorem~\\ref{thm:network-bounds}, followed by finite maxima, give functions \\(\\eta_i\\in[0,1]\\) supported with room in \\(U_i\\), with \\(\\sum_i\\eta_i\\ge1\\)"
     },
     {
       "from": "m2-lem-uniform-relaxation",
-      "to": "m2-lem-energy-measures"
+      "to": "m2-lem-energy-measures",
+      "context": "or subadditivity, fix a compactly contained test domain in \\(O_1\\cup O_2\\). Cover its closure by inset regions of \\(O_1,O_2\\), recover \\(f\\) there using Lemma~\\ref{lem:uniform-relaxation}(ii), and apply \\eqref{eq:edge-gluing}. The glued functions converge uniformly on the test domain, so Lemma~\\ref{lem:un"
     },
     {
       "from": "m2-lem-energy-measures",
-      "to": "m2-lem-energy-bounds"
+      "to": "m2-lem-energy-bounds",
+      "context": "arable to \\(r\\), centered at grid points, with fixed enlargements contained in \\(U\\). Construct a cutoff partition \\((\\theta_{i,m})\\) as in the proof of Lemma~\\ref{lem:energy-measures}, and put \\[ w_{m,r}(v)=\\sum_i f(x_i)\\theta_{i,m}(v), \\] where \\(x_i\\) is the center of the \\(i\\)-th disk. At a vertex"
     },
     {
       "from": "m2-lem-uniform-relaxation",
-      "to": "m2-lem-energy-bounds"
+      "to": "m2-lem-energy-bounds",
+      "context": "ith the same overlap bound. Exhausting \\(U\\) gives the lower inequality for a uniformly convergent sequence. Apply that inequality to the recoveries in Lemma~\\ref{lem:uniform-relaxation}(ii), and exhaust their inner domains. It gives the lower bound in \\eqref{eq:energy-comparison} and the assertion that"
     },
     {
       "from": "m2-lem-energy-bounds",
-      "to": "m2-lem-energy-tensor"
+      "to": "m2-lem-energy-tensor",
+      "context": "of the coordinate functions \\(x_1,x_2\\), and define \\[ A_{ij}(x)=\\frac{\\dd\\Gamma(x_i,x_j)}{\\dd x}(x). \\] The densities exist because the upper bound of Lemma~\\ref{lem:energy-bounds} dominates the measures of \\(x_i+x_j\\) and \\(x_i-x_j\\) by Lebesgue measure. Bilinearity makes \\(A\\) symmetric. For eac"
     },
     {
       "from": "m2-lem-uniform-relaxation",
-      "to": "m2-lem-energy-tensor"
+      "to": "m2-lem-energy-tensor",
+      "context": ")}{\\pi r^2}, \\end{equation} and it is enough to use a countable sequence of radii. Each open energy in the numerator is obtained from the cell infima in Lemma~\\ref{lem:uniform-relaxation}, on inner domains within that ball. Balls with arbitrary centers can themselves be exhausted by a countable base of rat"
     },
     {
       "from": "m2-prop-readout-extension",
-      "to": "m2-lem-energy-tensor"
+      "to": "m2-lem-energy-tensor",
+      "context": "heir gradient vectors by \\(R\\); hence the density matrix is transported by \\(A\\mapsto RAR^{\\mathsf T}\\). On overlapping disks the union records of Proposition~\\ref{prop:readout-extension} give the common restriction of these measures. Thus the shrinking-ball reading has the translation and rotation action"
     },
     {
       "from": "m2-lem-deterministic-germs",
-      "to": "m2-lem-energy-tensor"
+      "to": "m2-lem-energy-tensor",
+      "context": "he common restriction of these measures. Thus the shrinking-ball reading has the translation and rotation actions, with common restrictions, required by Lemma~\\ref{lem:deterministic-germs}. Apply Lemma~\\ref{lem:deterministic-germs} to bounded transforms of the three entries of \\(A\\). It makes \\(A(z)\\) det"
     },
     {
       "from": "m2-prop-sphere-support",
-      "to": "m2-lem-energy-tensor"
+      "to": "m2-lem-energy-tensor",
+      "context": "=kI\\), with deterministic \\(k>0\\). The preceding assertion is a probability-one statement about activated local outputs and local continuum data. Proposition~\\ref{prop:sphere-support} transfers its null failure event from the ordinary input and the extended kernel to each strict-interior sphere patch a"
     },
     {
       "from": "m2-prop-geometry",
-      "to": "m2-lem-square-conductance"
+      "to": "m2-lem-square-conductance",
+      "context": "he pulled-back embedding to any fixed accuracy; its facial cycles and their order are preserved up to one reversal. The reference homeomorphisms in Proposition~\\ref{prop:geometry} have vanishing projection error, and \\(T_m\\to T\\) uniformly transfers that tracking to the canonical sphere. Apply the"
     },
     {
       "from": "m2-lem-mixed-duality",
-      "to": "m2-lem-square-conductance"
+      "to": "m2-lem-square-conductance",
+      "context": "of this cycle and everything inside it. Its four arcs follow the four square sides with error tending to zero. Define \\(C_m^{\\rm p},C_m^{\\rm d}\\) as in Lemma~\\ref{lem:mixed-duality}, using unit conductances. Write \\(Q^\\epsilon=\\{x:\\dist(x,\\overline Q)<\\epsilon\\}\\). For an upper bound, choose a smoo"
     },
     {
       "from": "m2-lem-uniform-relaxation",
-      "to": "m2-lem-square-conductance"
+      "to": "m2-lem-square-conductance",
+      "context": "rgement \\(Q^\\epsilon\\). For fixed \\(\\delta,\\epsilon\\), every edge of \\(G_m^Q\\) is eventually located in \\(Q^{\\epsilon/2}\\). Apply the recovery clause of Lemma~\\ref{lem:uniform-relaxation} with \\(W=Q^{\\epsilon/2}\\Subset U=Q^\\epsilon\\), together with \\eqref{eq:scalar-relaxation}. It recovers \\(f_\\delta\\) un"
     },
     {
       "from": "m2-lem-energy-measures",
-      "to": "m2-lem-square-conductance"
+      "to": "m2-lem-square-conductance",
+      "context": "\\), with limsup energy on \\(Q^{\\epsilon/2}\\) at most \\(k_{\\rm p}\\int_{Q^\\epsilon}\\abs{\\nabla f_\\delta}^2\\dd x\\). The constant-recovery modification after Lemma~\\ref{lem:energy-measures} makes it exactly zero and one on smaller side strips, with additional energy \\(o(1)\\). The boundary arcs lie in these"
     },
     {
       "from": "m2-lem-harmonic-compactness",
-      "to": "m2-lem-square-conductance"
+      "to": "m2-lem-square-conductance",
+      "context": "each compact subset of \\(Q\\), the boundary is absent for large \\(m\\), and all original primal incidences, or all original dual incidences, are present. Lemma~\\ref{lem:harmonic-compactness} therefore gives a locally uniformly convergent further subsequence, with continuous limit \\(f\\). We verify its prescri"
     },
     {
       "from": "m2-thm-conductivity",
-      "to": "m2-lem-square-conductance"
+      "to": "m2-lem-square-conductance",
+      "context": "[Proof of Theorem~\\ref{thm:conductivity}] Lemma~\\ref{lem:energy-tensor} identifies the two reference relaxations with the scalar integrals \\(k_{\\rm p}\\) and \\(k"
     },
     {
       "from": "m2-lem-energy-tensor",
-      "to": "m2-lem-square-conductance"
+      "to": "m2-lem-square-conductance",
+      "context": "[Proof of Theorem~\\ref{thm:conductivity}] Lemma~\\ref{lem:energy-tensor} identifies the two reference relaxations with the scalar integrals \\(k_{\\rm p}\\) and \\(k_{\\rm d}\\). Equation~\\eqref{eq:"
     },
     {
       "from": "m2-lem-energy-bounds",
-      "to": "m2-lem-square-conductance"
+      "to": "m2-lem-square-conductance",
+      "context": "k_{\\rm p}k_{\\rm d}=1. \\] Thus \\(k_{\\rm p}=k_{\\rm d}=1\\). For a continuous function outside \\(H^1_{\\rm loc}\\), local finiteness is ruled out by Lemma~\\ref{lem:energy-bounds}. For a continuous \\(H^1_{\\rm loc}\\) function with infinite integral, inner exhaustion and its lower bound give infinit"
     },
     {
       "from": "m2-prop-sphere-support",
-      "to": "m2-lem-square-conductance"
+      "to": "m2-lem-square-conductance",
+      "context": "f{prop:geometry}(iv) supplies ordinary chart interiors from two rerootings covering the canonical sphere. Each carries the formula just proved, by Proposition~\\ref{prop:sphere-support} in its own marked marginal and by \\eqref{eq:coordinate-relaxation}. On overlaps these are restrictions of the same fin"
     },
     {
       "from": "m2-thm-network-bounds",
-      "to": "m2-lem-voltage-bounds"
+      "to": "m2-lem-voltage-bounds",
+      "context": ". At the two intersections the clipped voltage takes the values \\(\\beta\\) and \\(\\alpha\\). Its total variation on each such circuit is at least \\(D\\). Theorem~\\ref{thm:network-bounds} supplies a circuit law with \\(\\sum_e\\tau(e)^2\\le B\\). The expectation below is only over that finite-network circuit l"
     },
     {
       "from": "m2-prop-geometry",
-      "to": "m2-lem-voltage-bounds"
+      "to": "m2-lem-voltage-bounds",
+      "context": "_0\\) by finitely many such disks, with consecutive disks overlapping. Vertices occur in each overlap for all large \\(n\\), by the vanishing mesh in Proposition~\\ref{prop:geometry}. Chaining the oscillation bounds and using \\(u_n(\\mathsf d_n)=0\\), \\(z_n(\\mathsf d_n)\\to z_0\\), gives the asserted bou"
     },
     {
       "from": "m2-lem-harmonic-compactness",
-      "to": "m2-lem-voltage-bounds"
+      "to": "m2-lem-voltage-bounds",
+      "context": "es are eventually outside \\(\\overline W\\). Equation \\eqref{eq:point-current} then makes \\(u_n\\) harmonic at every vertex with full star in \\(W\\). Apply Lemma~\\ref{lem:harmonic-compactness} on \\(W\\), using the local bounds just proved, to obtain compactness on \\(V\\). A countable exhaustion by such buffered"
     },
     {
       "from": "m2-lem-uniform-relaxation",
-      "to": "m2-lem-no-energy-defect"
+      "to": "m2-lem-no-energy-defect",
+      "context": "t as the radius varies, and a finite measure gives positive mass to at most countably many of them. The local uniform convergence and the lower bound of Lemma~\\ref{lem:uniform-relaxation} give \\[ \\mathcal R(u,V) \\le\\liminf_n\\mathcal E_n^0(u_n;W)=\\xi(W)<\\infty. \\] The equality uses vague convergence on th"
     },
     {
       "from": "m2-lem-energy-bounds",
-      "to": "m2-lem-no-energy-defect"
+      "to": "m2-lem-no-energy-defect",
+      "context": "0(u_n;W)=\\xi(W)<\\infty. \\] The equality uses vague convergence on the relatively compact continuity set \\(W\\). These choices around each compact set and Lemma~\\ref{lem:energy-bounds} put \\(u\\) in \\(H^1_{\\rm loc}(O)\\). Theorem~\\ref{thm:conductivity} now identifies \\(\\mathcal R(u,V)=\\int_V\\abs{\\nabla u}"
     },
     {
       "from": "m2-thm-conductivity",
-      "to": "m2-lem-no-energy-defect"
+      "to": "m2-lem-no-energy-defect",
+      "context": "he relatively compact continuity set \\(W\\). These choices around each compact set and Lemma~\\ref{lem:energy-bounds} put \\(u\\) in \\(H^1_{\\rm loc}(O)\\). Theorem~\\ref{thm:conductivity} now identifies \\(\\mathcal R(u,V)=\\int_V\\abs{\\nabla u}^2\\). Thus \\[ \\int_K\\abs{\\nabla u}^2\\dd x\\le\\xi(D). \\] Take the"
     },
     {
       "from": "m2-thm-four-point",
-      "to": "m2-lem-no-energy-defect"
+      "to": "m2-lem-no-energy-defect",
+      "context": "[Proof of Theorem~\\ref{thm:four-point}] Take any subsequence. Lemma~\\ref{lem:voltage-bounds} and a further vague energy extraction give a locally uniform lim"
     },
     {
       "from": "m2-lem-voltage-bounds",
-      "to": "m2-lem-no-energy-defect"
+      "to": "m2-lem-no-energy-defect",
+      "context": "[Proof of Theorem~\\ref{thm:four-point}] Take any subsequence. Lemma~\\ref{lem:voltage-bounds} and a further vague energy extraction give a locally uniform limit \\(u\\) on \\(O\\). Lemma~\\ref{lem:no-energy-defect} mak"
     },
     {
       "from": "m2-prop-address-input",
-      "to": "m2-lem-truncated-packing"
+      "to": "m2-lem-truncated-packing",
+      "context": "Choose fixed address parameters within Proposition~\\ref{prop:address-input} so that \\[ \\delta=\\vartheta-1-\\varepsilon-\\frac{C_0+\\eta}{\\ell_R}>0. \\] Fix \\(k,M\\) and a log stride \\(L>2\\ell_R\\). S"
     },
     {
       "from": "m2-lem-truncated-packing",
-      "to": "m2-lem-reachable-packing"
+      "to": "m2-lem-reachable-packing",
+      "context": "Choose fixed \\(1<\\alpha<\\beta<a_0\\) and apply Lemma~\\ref{lem:truncated-packing} with one selected base and \\(\\mathcal I_N=[\\alpha N,\\beta N]\\). For every \\(x\\in\\mathcal I_N\\), the proposed jumps div"
     },
     {
       "from": "m2-prop-address-input",
-      "to": "m2-lem-one-base-credit"
+      "to": "m2-lem-one-base-credit",
+      "context": "\\(m_k\\ge1\\). At a generation where its component has a rank cycle, that component contributes one rank beyond a union spanning tree. Part (i) of Proposition~\\ref{prop:address-input} therefore gives \\[ e_k\\ge m_k-D_k \\quad\\text{there},\\qquad e_k\\ge m_k-1-D_k \\quad\\text{at every other generation}."
     },
     {
       "from": "m2-lem-truncated-packing",
-      "to": "m2-lem-one-base-credit"
+      "to": "m2-lem-one-base-credit",
+      "context": "gin by \\(O(\\log\\widehat C_m)=o(N)\\); its extra ancestors are included in the same error. Fix \\(R\\) and the errors so that the \\(\\delta\\) in the proof of Lemma~\\ref{lem:truncated-packing} is at least \\((\\vartheta-1)/2\\). Combining \\eqref{eq:fixed-code-charge}, \\eqref{eq:address-count}, and \\eqref{eq:one-b"
     },
     {
       "from": "m2-lem-finite-view-input",
-      "to": "m2-prop-flow-availability"
+      "to": "m2-prop-flow-availability",
+      "context": "y and its successive extensions by the stated construction kernels for base \\(\\iota\\). Let \\(\\mathsf A_m^{\\mathrm{acyc}}\\) be the retained indicator from Lemma~\\ref{lem:finite-view-input}, belonging to the common trial marginal, that base \\(\\iota\\)'s combined center component is acyclic, and write \\(\\maths"
     },
     {
       "from": "m2-prop-readout-extension",
-      "to": "m2-prop-flow-availability"
+      "to": "m2-prop-flow-availability",
+      "context": "pty family and compactify these coordinates. This is a function of the same exact incidence record and fixed intrinsic instruction, as required by Proposition~\\ref{prop:readout-extension}. For each fixed recipe and fixed truncation, consider the compatible anchored selected subprobabilities constructed be"
     },
     {
       "from": "m2-thm-network-bounds",
-      "to": "m2-prop-flow-availability"
+      "to": "m2-prop-flow-availability",
+      "context": "e its open ports and a compact connecting route inside its recorded open confinement. Finitely many ordinary charts off the auxiliary marks cover it. Theorem~\\ref{thm:network-bounds} gives a path law with finite squared traffic there. Full preimages and the strict inner/outer margins put its endpoint"
     },
     {
       "from": "m2-lem-record-null-transfer",
-      "to": "m2-prop-flow-availability"
+      "to": "m2-prop-flow-availability",
+      "context": "ined trial and parameter marginal as \\(\\mathsf S_m\\), and set \\(\\mathsf S_m^0(B)=\\mathsf S_m\\{G_m^0,(c_{0,m},Y_m)\\in B\\}\\). The finite domination part of Lemma~\\ref{lem:record-null-transfer}, followed by the bounded all-seed trial entropy, gives \\begin{equation} \\label{eq:pre-anchor-tac} \\mathsf R_m^0(B_m)\\l"
     },
     {
       "from": "m2-lem-finite-el",
-      "to": "m2-prop-flow-availability"
+      "to": "m2-prop-flow-availability",
+      "context": "No slot meets the center, and feasibility has no omitted filling as an argument. This is the restricted tightness of \\(\\sum_sY_{m,s}\\) used below. By Lemma~\\ref{lem:finite-el}, choose a near-minimizing path law for each \\(\\mathcal P_{m,s}\\) with squared traffic at most \\(Y_{m,s}+1\\). Sample th"
     },
     {
       "from": "m2-lem-one-base-credit",
-      "to": "m2-prop-flow-availability"
+      "to": "m2-prop-flow-availability",
+      "context": "proof of the circuit-sparsity result in \\cite[Section~12]{P}. In regime (i) this contradicts \\cite[Proposition~10.18]{P}. In regime (ii) it contradicts Lemma~\\ref{lem:one-base-credit}. The latter uses only fixed \\(B\\) and \\(r_m(BN)\\to\\infty\\); the distance normalization and the narrow length-recursion"
     },
     {
       "from": "m2-lem-reachable-packing",
-      "to": "m2-lem-energy-overlap"
+      "to": "m2-lem-energy-overlap",
+      "context": "esponsible time from the first within twice the support depth plus a fixed number of steps. The times are \\(cT\\)-separated. The simultaneous version of Lemma~\\ref{lem:reachable-packing}, with \\(\\zeta=1/40\\), bounds their number by \\(e^{N/40}\\). This bounds the multiplicity of each edge in the left side."
     },
     {
       "from": "m2-prop-geometry",
-      "to": "m2-lem-quantum-ball-bounds"
+      "to": "m2-lem-quantum-ball-bounds",
+      "context": "e a second triple of area marks and use the same proposition in its three-mark coordinate. The sphere area is nonatomic, as in the sphere input of Proposition~\\ref{prop:geometry}, so the two triples are disjoint almost surely. Their two mark-free open sets cover the sphere. On each realization,"
     },
     {
       "from": "m2-lem-trace-green",
-      "to": "m2-prop-continuum-form"
+      "to": "m2-prop-continuum-form",
+      "context": "Apply Lemma~\\ref{lem:trace-green} to $\\mu_h$ using Lemma~\\ref{lem:quantum-ball-bounds}. Injectivity makes the formula \\eqref{eq:continuum-form-domain} w"
     },
     {
       "from": "m2-lem-quantum-ball-bounds",
-      "to": "m2-prop-continuum-form"
+      "to": "m2-prop-continuum-form",
+      "context": "Apply Lemma~\\ref{lem:trace-green} to $\\mu_h$ using Lemma~\\ref{lem:quantum-ball-bounds}. Injectivity makes the formula \\eqref{eq:continuum-form-domain} well defined. The norm equivalence \\eqref{eq:trace-no"
     },
     {
       "from": "m2-prop-geometry",
-      "to": "m2-lem-tour-order"
+      "to": "m2-lem-tour-order",
+      "context": "By Proposition~\\ref{prop:geometry}, for \\(\\mu\\)-almost every \\(z\\) the fiber \\(\\eta_2^{-1}(\\{z\\})\\) has exactly one element among all times in \\([0,1]\\)."
     },
     {
       "from": "m2-lem-tour-order",
-      "to": "m2-lem-energy-compactness"
+      "to": "m2-lem-energy-compactness",
+      "context": "n,\\ell,j,b}}^{-1/2}\\norm{F}_H. \\end{equation} Equation~\\eqref{eq:block-positive-length} bounds these coefficients uniformly for a norm-bounded sequence. Lemma~\\ref{lem:tour-order} shows that each of the finitely many indicator factors in \\eqref{eq:priority-approximant}, and hence their product, con"
     },
     {
       "from": "m2-thm-main",
-      "to": "m2-lem-inverse-kernel-compactness"
+      "to": "m2-lem-inverse-kernel-compactness",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Start with any sequence of sizes tending to infinity and pass to a common representation extraction as above. On its"
     },
     {
       "from": "m2-prop-continuum-form",
-      "to": "m2-lem-inverse-kernel-compactness"
+      "to": "m2-lem-inverse-kernel-compactness",
+      "context": "\\eqref{eq:inverse-HS-convergence} holds. Let \\(\\kappa_i\\), \\(i\\ge1\\), be the positive eigenvalues of \\(K\\) in decreasing order, with multiplicity. Proposition~\\ref{prop:continuum-form} says that \\(K_h\\) is injective on the centered subspace of \\(L^2(\\mu)\\), which is infinite-dimensional. Thus every \\(\\k"
     },
     {
       "from": "m2-lem-normalization",
-      "to": "m2-lem-inverse-kernel-compactness"
+      "to": "m2-lem-inverse-kernel-compactness",
+      "context": "for all sufficiently large \\(n\\), and reciprocation gives \\(\\nu_{n,i}\\to\\nu_i\\). The constant eigenvalue is zero on both sides. With the conventions of Lemma~\\ref{lem:normalization} and Proposition~\\ref{prop:continuum-form}, \\begin{equation}\\label{eq:target-eigenvalue-convergence} n\\lambda_{n,i}=\\fr"
     },
     {
       "from": "m2-prop-geometry",
-      "to": "m2-lem-inverse-kernel-compactness"
+      "to": "m2-lem-inverse-kernel-compactness",
+      "context": "ows that \\(z_n(V_n)\\) is \\(\\varepsilon_n\\)-dense in the round sphere. The pushed measures \\(\\bar\\mu_n=(z_n)_*\\mu_n\\) converge weakly to \\(\\mu\\) by Proposition~\\ref{prop:geometry}. On the compact round sphere this is convergence in Prokhorov distance. Choose \\(\\rho_n\\downarrow0\\) larger than that"
     },
     {
       "from": "m2-lem-space-normalization",
-      "to": "m2-lem-inverse-kernel-compactness"
+      "to": "m2-lem-inverse-kernel-compactness",
+      "context": "actly the deterministic diameter normalization in Theorem~\\ref{thm:main}; its identification with the scale in the companion distance graph was proved in Lemma~\\ref{lem:space-normalization}. All three convergences have been proved on this one representation with the same \\(\\mu_h\\), \\(D_h\\), and conformal sp"
     },
     {
       "from": "m3-inp-complete-core",
-      "to": "m3-inp-sandwich"
+      "to": "m3-inp-sandwich",
+      "context": "ide $O$. Their endpoints may be chosen from the prescribed dense countable relative-time library. Uniform projection accuracy and the complete collar of Lemma~\\ref{inp:complete-core} give the desired inclusions. Select a vertex when any of its visits is in this union. The same argument applies to eac"
     },
     {
       "from": "m3-inp-complete-core",
-      "to": "m3-inp-local-kernels"
+      "to": "m3-inp-local-kernels",
+      "context": "-increments} reads the increments without an absolute contour height. Positive shared seams read the forest offsets, and the three-seam configuration in Lemma~\\ref{inp:complete-core} reads the offsets needed at a minimum cap. Durations and relative cuts are local area data. Thus all four types of in"
     },
     {
       "from": "m3-inp-kernel-transfer",
-      "to": "m3-inp-local-kernels"
+      "to": "m3-inp-local-kernels",
+      "context": "mma~\\ref{inp:complete-core} reads the offsets needed at a minimum cap. Durations and relative cuts are local area data. Thus all four types of input in Lemma~\\ref{inp:kernel-transfer} are local. For finitely many prescriptions in disjoint spatial domains, merge within each domain. Different domains u"
     },
     {
       "from": "m3-inp-sandwich",
-      "to": "m3-inp-local-kernels"
+      "to": "m3-inp-local-kernels",
+      "context": "ray as the local output. Finite joint consistency and the countable prescription library then give the kernel on all tests. Lemmas \\ref{inp:complete-core} and~\\ref{inp:sandwich} identify its buffered exhaustion with the corresponding observations from the actual graph. No additional conditioning"
     },
     {
       "from": "m3-inp-kernel-transfer",
-      "to": "m3-inp-transport"
+      "to": "m3-inp-transport",
+      "context": "risons are exactly the same integer tests. Therefore the numerical costs on the resulting graph are identical. Smooth sampling densities may change, but Lemma~\\ref{inp:kernel-transfer} leaves the conditional kernels unchanged. The cuts must be transformed too. At field $g+c_v$, the layer corresponding"
     },
     {
       "from": "m3-inp-local-kernels",
-      "to": "m3-nd-germs"
+      "to": "m3-nd-germs",
+      "context": "Let $\\mathcal H$ denote the pair of fields. By Proposition~\\ref{inp:local-kernels}, $\\E[Y(z)\\mid\\mathcal H]$ is measurable with respect to the field restrictions to every neighborhood of $z$. This fiel"
     },
     {
       "from": "m3-inp-gaussian",
-      "to": "m3-nd-germs"
+      "to": "m3-nd-germs",
+      "context": "ro, and the Gaussian chaos decomposition gives triviality of the corresponding sigma-field. Apply this to both independent fields. Local equivalence in Lemma~\\ref{inp:gaussian} transfers the conclusion to the ordinary chart, including the imaginary field modulo its period. Consequently $\\E[Y(z)"
     },
     {
       "from": "m3-inp-local-kernels",
-      "to": "m3-nd-coverage"
+      "to": "m3-nd-coverage",
+      "context": "Apply the cited lemma to the kernels of Proposition~\\ref{inp:local-kernels}, with the intrinsic transport of Proposition~\\ref{inp:transport}. Its hypotheses are the local product rule, the actua"
     },
     {
       "from": "m3-inp-transport",
-      "to": "m3-nd-coverage"
+      "to": "m3-nd-coverage",
+      "context": "Apply the cited lemma to the kernels of Proposition~\\ref{inp:local-kernels}, with the intrinsic transport of Proposition~\\ref{inp:transport}. Its hypotheses are the local product rule, the actual-field coordinate rule, and a common fixed-index change of quant"
     },
     {
       "from": "m3-inp-array-interface",
-      "to": "m3-nd-coverage"
+      "to": "m3-nd-coverage",
+      "context": "Its hypotheses are the local product rule, the actual-field coordinate rule, and a common fixed-index change of quantum unit; all are supplied by Proposition~\\ref{inp:array-interface}. The real-field parameter $Q=2/\\gamma+\\gamma/2$ is greater than two. The cost-index factor in the stated annulus lemm"
     },
     {
       "from": "m3-nd-el-traffic",
-      "to": "m3-nd-coverage"
+      "to": "m3-nd-coverage",
+      "context": "braries. On their simultaneous convergence event, the successful local prescription on each realized annulus gives an eventual discrete EL lower bound. Lemma~\\ref{nd:el-traffic} then constructs a density on that finite graph. For fixed $N$ only finitely many annuli are used, so their thresholds"
     },
     {
       "from": "m3-nd-coverage",
-      "to": "m3-nd-nondegeneration"
+      "to": "m3-nd-nondegeneration",
+      "context": "xed $i$, the quantile at $m2^{-i}$ therefore gives the high-probability barrier event in units $b_m$. Extract jointly with all these backward offsets. Lemmas~\\ref{nd:coverage} and \\ref{nd:densities} apply in the comparison region. The first inequality of \\eqref{nd:quantiles} and Lemma~\\ref{nd:"
     },
     {
       "from": "m3-nd-densities",
-      "to": "m3-nd-nondegeneration"
+      "to": "m3-nd-nondegeneration",
+      "context": "at $m2^{-i}$ therefore gives the high-probability barrier event in units $b_m$. Extract jointly with all these backward offsets. Lemmas~\\ref{nd:coverage} and \\ref{nd:densities} apply in the comparison region. The first inequality of \\eqref{nd:quantiles} and Lemma~\\ref{nd:el-traffic}, on the oth"
     },
     {
       "from": "m3-nd-el-traffic",
-      "to": "m3-nd-nondegeneration"
+      "to": "m3-nd-nondegeneration",
+      "context": "hese backward offsets. Lemmas~\\ref{nd:coverage} and \\ref{nd:densities} apply in the comparison region. The first inequality of \\eqref{nd:quantiles} and Lemma~\\ref{nd:el-traffic}, on the other hand, supply with positive probability one graph's probability flow $\\nu_m$ between the two macroscopical"
     },
     {
       "from": "m3-inp-sandwich",
-      "to": "m3-nd-nondegeneration"
+      "to": "m3-nd-nondegeneration",
+      "context": "any selectors with these properties, and require that the prescription be readable within a fixed-factor enlargement of the tube, with positive margins. Lemma~\\ref{inp:sandwich} makes existence of such a test independent of the particular selector library after arbitrarily small relaxation of the"
     },
     {
       "from": "m3-nd-germs",
-      "to": "m3-nd-nondegeneration"
+      "to": "m3-nd-nondegeneration",
+      "context": "every neighborhood of $z$. The preceding paragraph and \\eqref{nd:length-area} give a positive-area set of witnesses on our positive-probability event. Lemma~\\ref{nd:germs} and Remark~\\ref{nd:germ-symmetries} therefore imply that one of these indicators has deterministic value one almost eve"
     },
     {
       "from": "m3-inp-topology",
-      "to": "m3-nd-nondegeneration"
+      "to": "m3-nd-nondegeneration",
+      "context": "s illustrated in Figure~\\ref{nd:transverse-figure}. Every path of one family meets every path of the other upstairs by the transverse-tube rule in Proposition~\\ref{inp:topology}. Such an intersection uses an edge and its dual. Choose traffic minimizers $j_m,j_m^*$ by Lemma~\\ref{nd:el-traffic}."
     },
     {
       "from": "m3-nd-nondegeneration",
-      "to": "m3-nd-cutoffs"
+      "to": "m3-nd-cutoffs",
+      "context": "Proposition~\\ref{nd:nondegeneration} and the second quantile bound in \\eqref{nd:quantiles} give the barrier hypotheses with deterministic units equal to one"
     },
     {
       "from": "m3-nd-densities",
-      "to": "m3-nd-cutoffs"
+      "to": "m3-nd-cutoffs",
+      "context": "dths comparable to $(\\tau-1)r$. Cover it by a finite union $U$ of open boxes with closure strictly inside the target ring and area $O_\\tau(r^2)$. Apply Lemma~\\ref{nd:densities} to this $U$. First choose $N$ so large that $R_N$ is small compared with the intermediate width and both collars, and t"
     },
     {
       "from": "m3-nd-el-traffic",
-      "to": "m3-nd-cutoffs"
+      "to": "m3-nd-cutoffs",
+      "context": "this width. After division by the width, the squared density norm is bounded by $C(\\tau)$ times the chart constant. The clipped-distance construction of Lemma~\\ref{nd:el-traffic} gives the cutoff, with exact constants on all inner and outer lifts. One may carry out the construction on a protected"
     },
     {
       "from": "m3-inp-topology",
-      "to": "m3-en-circuit"
+      "to": "m3-en-circuit",
+      "context": "primal inner lifts on the inner side as well, and all lifts beyond the larger well on the outer side. This uses the all-lift joining statement of Proposition~\\ref{inp:topology} and remains valid when the full boundary chain touches itself. The selected circuit lies in the change annulus and has"
     },
     {
       "from": "m3-en-circuit",
-      "to": "m3-en-harmonic-compactness"
+      "to": "m3-en-harmonic-compactness",
+      "context": "t annuli of one fixed aspect, all inside a prescribed small neighborhood. Choose all radii before taking $m$ large. Their energy sum is at most $E$, so Lemma~\\ref{en:circuit} supplies a surrounding circuit on which the oscillation is at most $(CE/J)^{1/2}$. The discrete maximum principle boun"
     },
     {
       "from": "m3-inp-sandwich",
-      "to": "m3-en-envelope"
+      "to": "m3-en-envelope",
+      "context": "Given $K\\Subset K'\\Subset U$ and $0<\\delta'<\\delta$, insert between the two tests a finite selector test from Lemma~\\ref{inp:sandwich}. Cover the relevant visit labels by finitely many selectors on which the target varies by less than a fixed fraction o"
     },
     {
       "from": "m3-nd-cutoffs",
-      "to": "m3-en-fundamental"
+      "to": "m3-en-fundamental",
+      "context": "ghts, choose finitely many disks whose smaller disks cover the compact set and whose larger disks stay in the prescribed members of the cover. Use Proposition~\\ref{nd:cutoffs}, sum the resulting cutoffs, and normalize where their sum is at least one. Clipping and division on this fixed range pr"
     },
     {
       "from": "m3-en-fundamental",
-      "to": "m3-en-measure"
+      "to": "m3-en-measure",
+      "context": "oint open sets. To prove subadditivity on $U\\cup V$, first fix a compact subset of this union. Recover $u$ in $U$ and $V$, and join the recoveries with Lemma~\\ref{en:fundamental}; the transition is compactly contained in $U\\cap V$. Let $m\\to\\infty$ and then $\\varepsilon\\downarrow0$ in \\eqref{en:g"
     },
     {
       "from": "m3-en-measure",
-      "to": "m3-en-representation"
+      "to": "m3-en-representation",
+      "context": "We first identify the energy of smooth functions. Polarize the Radon measures from Proposition~\\ref{en:measure}. The measures of the linear functions $\\ell_1(z)=\\Re z$, $\\ell_2(z)=\\Im z$ and their sums are absolutely continuous by"
     },
     {
       "from": "m3-en-circuit",
-      "to": "m3-en-representation"
+      "to": "m3-en-representation",
+      "context": "n} Suppose the right side is finite. Put a square grid of fixed small spacing $r$ in a compactly contained region of $U$. At every grid node $x$, apply Lemma~\\ref{en:circuit} to a recovery sequence, using an annulus with inner and outer radii $0.7r$ and $0.8r$, and choose a value $a_{x,m}$ at"
     },
     {
       "from": "m3-nd-germs",
-      "to": "m3-en-scalar"
+      "to": "m3-en-scalar",
+      "context": "ks, with arbitrarily small open buffers. Choose measurable $\\limsup$ versions and a fixed default on the null set where Lebesgue differentiation fails. Lemma~\\ref{nd:germs} applies to these matrix-valued readouts (or to a bounded injective encoding of their entries), so $A$ and $A^*$ are det"
     },
     {
       "from": "m3-inp-reflection",
-      "to": "m3-en-scalar"
+      "to": "m3-en-scalar",
+      "context": "ariance are precisely those in Remark~\\ref{nd:germ-symmetries}, and compare local laws with their actual field transformations. Primal--dual reflection (Lemma~\\ref{inp:reflection}) equates the two scalar values. The upper bound and coercivity give $0<\\lambda<\\infty$."
     },
     {
       "from": "m3-en-fundamental",
-      "to": "m3-en-condenser"
+      "to": "m3-en-condenser",
+      "context": "them uniformly on a neighborhood of the annulus. Bounded-energy weights in the flat collars paste in the exact constants at a vanishing energy cost, by Lemma~\\ref{en:fundamental}. Lemma~\\ref{en:scalar} gives $\\limsup C_m\\le\\lambda C_0$. The minimizer lies in $[0,1]$ and is harmonic off the plate"
     },
     {
       "from": "m3-en-scalar",
-      "to": "m3-en-condenser"
+      "to": "m3-en-condenser",
+      "context": "hood of the annulus. Bounded-energy weights in the flat collars paste in the exact constants at a vanishing energy cost, by Lemma~\\ref{en:fundamental}. Lemma~\\ref{en:scalar} gives $\\limsup C_m\\le\\lambda C_0$. The minimizer lies in $[0,1]$ and is harmonic off the plates. Its bounded energy a"
     },
     {
       "from": "m3-en-harmonic-compactness",
-      "to": "m3-en-condenser"
+      "to": "m3-en-condenser",
+      "context": "mental}. Lemma~\\ref{en:scalar} gives $\\limsup C_m\\le\\lambda C_0$. The minimizer lies in $[0,1]$ and is harmonic off the plates. Its bounded energy and Lemma~\\ref{en:harmonic-compactness} give compactness in the open annulus. At a plate-boundary point, use the stacks of rings from that lemma, small enough"
     },
     {
       "from": "m3-inp-topology",
-      "to": "m3-en-condenser"
+      "to": "m3-en-condenser",
+      "context": "Every surrounding circuit meets a path lying strictly on the plate side: choose a tube there from the inner well to outside the ring and lift it by Proposition~\\ref{inp:topology}. Thus the circuit contains a vertex with the prescribed value. A circuit of small variation is uniformly close to tha"
     },
     {
       "from": "m3-inp-topology",
-      "to": "m3-en-current-period"
+      "to": "m3-en-current-period",
+      "context": "ry dual lifts in a smaller disk are connected within the larger one. Loops used to integrate the cochain can be filled inside a further buffer, by Proposition~\\ref{inp:topology}; every primal vertex there is harmonic. Cellular closedness therefore makes the integral independent of the chosen pat"
     },
     {
       "from": "m3-en-harmonic-compactness",
-      "to": "m3-en-current-period"
+      "to": "m3-en-current-period",
+      "context": "branch along this chain, matching on each connected overlap; on returning to the first disk, the continued branch differs from the original by $\\pm C_m$. Lemma~\\ref{en:harmonic-compactness} gives local uniform subsequential limits. Their transition constants converge, so their period is $\\pm\\lambda C_0$. E"
     },
     {
       "from": "m3-en-envelope",
-      "to": "m3-en-recovery-measures"
+      "to": "m3-en-recovery-measures",
+      "context": "ubset V$ and a compact set $K\\subset O$ containing $W$ with a collar. The energy tests inside $W$ are eventually counted by the edge measure $\\nu_m(K)$. Lemma~\\ref{en:envelope} and compact-set Portmanteau give \\[ F^*(p,W)\\le\\liminf_m\\nu_m(K) \\le\\limsup_m\\nu_m(K)\\le\\nu(K)\\le\\nu(O). \\]"
     },
     {
       "from": "m3-en-recovery-measures",
-      "to": "m3-en-angular-recovery"
+      "to": "m3-en-angular-recovery",
+      "context": "g a slightly larger closed annulus, each avoiding the origin, with angle branches $p_i=\\theta_i/(2\\pi)$. Recover $p_i$ uniformly on larger branch disks. Lemma~\\ref{en:recovery-measures} applies to these recoveries, denoted $v_{i,m}$. Take a smooth partition of unity $b_i$ with supports compactly inside"
     },
     {
       "from": "m3-en-angular-recovery",
-      "to": "m3-en-reciprocity"
+      "to": "m3-en-reciprocity",
+      "context": "Only $\\lambda\\ge1$ remains after \\eqref{en:lambda-upper}. Pair $\\dd u_m$ with the cochain $\\alpha_m$ of Lemma~\\ref{en:angular-recovery}, matching each primal edge with its crossing dual edge and using the consistent crossing sign. Then \\begin{equation}\\l"
     },
     {
       "from": "m3-inp-topology",
-      "to": "m3-en-reciprocity"
+      "to": "m3-en-reciprocity",
+      "context": "r's gradient pairs with $\\alpha_m$ along the oriented dual boundary chain separating the two wells. This chain has total winding one up to sign by Proposition~\\ref{inp:topology}; the cochain has exact unit period by \\eqref{en:angular-error}. This proves \\eqref{en:pairing}. The argument uses the"
     }
   ]
 }

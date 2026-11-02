@@ -409,263 +409,328 @@
   "edges": [
     {
       "from": "m1-geo-representative",
-      "to": "m1-geo-tangent"
+      "to": "m1-geo-tangent",
+      "context": "e determining family of smooth compact spatial functions times arbitrary compact time functions then identifies the slice weights for almost every time. Lemma~\\ref{geo:representative} gives equality at every interior time of the interval. The homothetic descriptions therefore agree on overlapping inte"
     },
     {
       "from": "m1-gauge-radial",
-      "to": "m1-lin-rates"
+      "to": "m1-lin-rates",
+      "context": "al section. Finite problems and exhaustion therefore construct this inverse on each space, with the natural entrance trace \\eqref{lin:dirichlet-trace}. Lemma~\\ref{gauge:radial} supplies the nonlinear coefficient estimate in these same strip norms, with the first-derivative traces and the strict"
     },
     {
       "from": "m1-lin-conical",
-      "to": "m1-lin-gaussian-conical"
+      "to": "m1-lin-gaussian-conical",
+      "context": "ore its drift normalization. Local elliptic regularity makes the trace $v_0=J/(z a_n)$ at the entrance smooth. Solve $\\mathcal Cv=0$ with this trace by Lemma~\\ref{lin:conical}. The normal lift $\\widetilde J=z a_n v$ is in the Gaussian $H^2$ domain on the tail. Indeed smooth conical coordinates"
     },
     {
       "from": "m1-lin-rates",
-      "to": "m1-lin-gaussian-conical"
+      "to": "m1-lin-gaussian-conical",
+      "context": "efore a Gaussian exterior $L$-solution with zero Dirichlet trace at the entrance. Local elliptic estimates give the pointwise bound used in the proof of Lemma~\\ref{lin:rates}, namely a polynomial times $\\exp(|X|^2/8+o(|X|^2))$. For $1/8<\\alpha_0<1/4$ the positive function $e^{\\alpha_0|X|^2}$"
     },
     {
       "from": "m1-gauge-radial",
-      "to": "m1-gauge-compact"
+      "to": "m1-gauge-compact",
+      "context": "heta$. The lower terms have the integrable factor $\\mu$. Analytic composition on a small trace neighborhood and the same algebra--module estimate as in Lemma~\\ref{gauge:radial} therefore prove the conical map assertion. For example the trace of $v_t$ follows from product integration of $\\mu^{-1}"
     },
     {
       "from": "m1-lin-rates",
-      "to": "m1-lin-family"
+      "to": "m1-lin-family",
+      "context": "\\emph{The type-preserving inverse and the reference family.} For each end, Lemma~\\ref{lin:rates} constructs Jacobi solutions with its opening and two tilt coefficients prescribed independently. Extend them inward by"
     },
     {
       "from": "m1-lin-observations",
-      "to": "m1-lin-family"
+      "to": "m1-lin-family",
+      "context": "s opening and two tilt coefficients prescribed independently. Extend them inward by cutoffs. They lie in $H^2_G$ and have compact Jacobi sources. Apply Lemma~\\ref{lin:observations} to these functions. The map from the enlarged observation values to the $\\kappa$ opening coefficients of the homogeneou"
     },
     {
       "from": "m1-lin-gaussian-conical",
-      "to": "m1-lin-family"
+      "to": "m1-lin-family",
+      "context": "eir Gaussian norms and those of their lifted sources are controlled: this follows from their polynomial cylindrical bounds and from the lift estimates in Lemma~\\ref{lin:gaussian-conical}. The remaining source is compact. Solve the Gaussian normalized block with the required $V_b$ observations and arbitr"
     },
     {
       "from": "m1-lin-gaussian",
-      "to": "m1-lin-family"
+      "to": "m1-lin-family",
+      "context": "ut $r=|X|$ there, and let \\[ \\mathcal D_G=\\{w:\\nabla^2w,\\ (1+r)\\nabla w,\\ (1+r^2)w\\in L^2(S)\\} \\] with its sum norm. This is the half-density domain in Lemma~\\ref{lin:gaussian}. For real $b$, let $F_b:S\\to S_b$ be the prescribed parametrization and $J_b$ its area Jacobian. Pull back the scalar"
     },
     {
       "from": "m1-lin-conical",
-      "to": "m1-lin-family"
+      "to": "m1-lin-family",
+      "context": "on each cylinder using Lemma~\\ref{lin:rates} at $\\gamma>2$, where every slow channel is an entrance channel. Solve the original zero-entrance problem of Lemma~\\ref{lin:conical} on each cone. Cut their normal lifts off on fixed far collars where $\\mathcal Z$ contains only the retained angular co"
     },
     {
       "from": "m1-lin-family",
-      "to": "m1-ref-finite-taylor"
+      "to": "m1-ref-finite-taylor",
+      "context": "The coefficient equations and their polynomial bounds are those of Proposition~\\ref{lin:family}, including its coefficientwise conversion to normal graph variables. The stated absolute smallness keeps every interme"
     },
     {
       "from": "m1-ref-finite-taylor",
-      "to": "m1-ref-real-comparison"
+      "to": "m1-ref-real-comparison",
+      "context": "s of the normal graph equation and its drift have at most the polynomial growth measured by $\\mathfrak a_R$. Apply \\eqref{ref:augmented-comparison}, use Lemma~\\ref{ref:finite-taylor} for $r_M$, and absorb all the small terms. This proves \\eqref{ref:real-comparison-estimate}. For the action assertion,"
     },
     {
       "from": "m1-gauge-mixed",
-      "to": "m1-lin-global"
+      "to": "m1-lin-global",
+      "context": "hi^2/(Z_0^2r^2))}, \\qquad \\frac{H_r}{\\varphi^2}. \\] These have the polar units $E_B\\asymp(B|r|)^{-2}$ and $1$. Equivalently, in the mixed gauge of Lemma~\\ref{gauge:mixed}, the angular-curvature and support terms have slow drift $-\\varphi^2/(r^2H_r)$, independent of the prescribed transvers"
     },
     {
       "from": "m1-lin-conical",
-      "to": "m1-lin-global"
+      "to": "m1-lin-global",
+      "context": "ior})} +\\|g/\\rho_B(T_B)\\|_{\\mathcal T^N_{E(T_B),h}}\\right). \\end{equation} The overlap constants depend only on the prescribed fixed data and $D$. Lemma~\\ref{lin:conical} supplies the conical part of this estimate. The compact multiplier sources are absent on all sufficiently far collars."
     },
     {
       "from": "m1-gauge-mixed",
-      "to": "m1-lin-shielding"
+      "to": "m1-lin-shielding",
+      "context": "rectly on their bulk slots. Here is the shifted perturbation check for the geometric difference operators used below. In the mixed prescribed gauges of Lemma~\\ref{gauge:mixed}, suppose the two background perturbations have norm at most $W$ in \\eqref{gauge:norm}, and set $\\varepsilon=ZW\\ll1$. R"
     },
     {
       "from": "m1-gauge-radial",
-      "to": "m1-lin-shielding"
+      "to": "m1-lin-shielding",
+      "context": "varepsilon+\\varepsilon^2)N_d(w). \\] This is a module estimate, not pointwise control of every lower coefficient. In a pure radial chart the variables in Lemma~\\ref{gauge:radial} give the same argument, with any small circular opening included in the reference. The reference margins and this shif"
     },
     {
       "from": "m1-lin-global",
-      "to": "m1-arr-preliminary-solves"
+      "to": "m1-arr-preliminary-solves",
+      "context": "ections enforce the observations exactly. The exit derivative is that of the comparison profile, so its initial derivative residual is zero. Apply Proposition~\\ref{lin:global} with rate \\(2.2\\), keeping the strict buffer above \\(2.06\\), and with the bounded-band weights specified above. Its hy"
     },
     {
       "from": "m1-arr-contours",
-      "to": "m1-arr-preliminary-solves"
+      "to": "m1-arr-preliminary-solves",
+      "context": "hts specified above. Its hypotheses hold: before the bounded outer part the coefficients are small perturbations of the cylindrical family; on that part Lemma~\\ref{arr:contours} gives the diffusion signs, and the reference remains transverse with nonsingular drift. We verify the index hypothesis"
     },
     {
       "from": "m1-lin-conical",
-      "to": "m1-arr-preliminary-solves"
+      "to": "m1-arr-preliminary-solves",
+      "context": "y and small mixed coefficient on the cylindrical and height charts. It follows from closeness to the real reference on the core and its collars, and from Lemma~\\ref{lin:conical} on conical pieces. The spatial coordinate changes on the pulled-back domains are real, so transform the tensors by real"
     },
     {
       "from": "m1-jump-compatibility",
-      "to": "m1-arr-preliminary-solves"
+      "to": "m1-arr-preliminary-solves",
+      "context": "it unit, and comparison derivative. The real stopped family below checks the consecutive-stop data separately. At the initial fixed-radius height transition, \\Cref{jump:compatibility} verifies the natural trace size $O(B^{-2.8})$, below the available outer strip size $B^{-4}\\rho_B(T)\\asymp B^{-1.8}$, a"
     },
     {
       "from": "m1-arr-preliminary-solves",
-      "to": "m1-arr-first-variation"
+      "to": "m1-arr-first-variation",
+      "context": "retained. For those preliminary families, the area and momentum prefactors, endpoint velocities and solution variations have polynomial bounds by Proposition~\\ref{arr:preliminary-solves}. Along these fixed scaled contours, \\(\\operatorname{Re}(X\\cdot X)=\\operatorname{Re}z^2+o(B^2)\\); bounded transverse rad"
     },
     {
       "from": "m1-jump-endpoints",
-      "to": "m1-arr-first-variation"
+      "to": "m1-arr-first-variation",
+      "context": "nges of exit prescriptions at fixed observations. The refined family uses the same algebraic identity, with its separate shape and Gaussian-height estimates in \\Cref{jump:endpoints}; its trace class alone is not used to infer \\eqref{arr:endpoint-estimate}."
     },
     {
       "from": "m1-arr-preliminary-solves",
-      "to": "m1-arr-real-stops"
+      "to": "m1-arr-real-stops",
+      "context": "d the strict normalized diffusion bounds on the real path persist throughout the stop. Use the same base, first opening jet, and prescribed outer cutoff as in \\Cref{arr:preliminary-solves}. On the outer cutoff band the base noncircular remainder is $O(H^{-2+\\eta})$, and the nonleading first jet is $O(H^{-2"
     },
     {
       "from": "m1-arr-real-stops",
-      "to": "m1-arr-gevrey"
+      "to": "m1-arr-gevrey",
+      "context": "Take the real stopped problems of Lemma~\\ref{arr:real-stops} with \\(R_j=R_0\\Lambda^j\\), \\(\\Lambda>1\\), and set \\[ F_j(s,h)=F_{R_j}(p_0(s)+s^\\ell h). \\] There are full complex \\(s\\"
     },
     {
       "from": "m1-arr-division",
-      "to": "m1-arr-gevrey"
+      "to": "m1-arr-gevrey",
+      "context": "for derivatives in the scaled variable \\(h\\). Derivatives in the original parameter \\(p\\) additionally require fixed division; their proof is given after Lemma~\\ref{arr:division}, in \\eqref{arr:unscaled-remainder}. The gamma weight is equivalent, up to exponential factors in \\(N\\), to \\((N!)^{1/k}"
     },
     {
       "from": "m1-arr-gevrey",
-      "to": "m1-arr-division"
+      "to": "m1-arr-division",
+      "context": "ir equations gives \\[ \\|z_j-z_{j-1}\\| \\le\\frac{\\|A^{-1}\\|}{1-q_*}\\, \\|H_j-H_{j-1}\\|. \\] They therefore telescope exponentially on full disks. Lemma~\\ref{arr:gevrey} supplies their coefficient and all-orders remainder bounds. The same contraction estimate compares the actual sector r"
     },
     {
       "from": "m1-arr-gevrey",
-      "to": "m1-arr-regular-implicit"
+      "to": "m1-arr-regular-implicit",
+      "context": "have a previously fixed loss \\(|s|^{-M_0}\\), choose instead \\(\\ell>\\max\\{L_0,m+M_0\\}\\). In either case enlarge $\\ell$ to the fixed threshold required in Lemma~\\ref{arr:gevrey}, in particular $\\ell\\ge k$, and then set $N=\\ell+m+1$. Increase \\(N\\) and the polynomial approximation order if needed"
     },
     {
       "from": "m1-arr-division",
-      "to": "m1-arr-regular-implicit"
+      "to": "m1-arr-regular-implicit",
+      "context": "\\): the constant term has order \\(N>\\ell+m\\), the linear term is \\(\\det J_0\\,s^\\ell h\\), and the quadratic term starts at order \\(2\\ell\\ge\\ell+m\\). Hence Lemma~\\ref{arr:division}, with its low-Taylor subtractions for the disk approximants, applies to these actual quotients. Their leading equation"
     },
     {
       "from": "m1-arr-formal-replacement",
-      "to": "m1-arr-regular-implicit"
+      "to": "m1-arr-regular-implicit",
+      "context": "plies to these actual quotients. Their leading equation is \\(H_0(h)=h\\). The regular implicit roots have the Gevrey expansion given by formal inversion. Lemma~\\ref{arr:formal-replacement} identifies it with the substituted formal arc and proves that every original constraint has zero formal expansion. Thi"
     },
     {
       "from": "m1-arr-flatness-upgrade",
-      "to": "m1-arr-action-upper"
+      "to": "m1-arr-action-upper",
+      "context": "atness} with room to spare. A sufficiently small fixed change of evaluation angle stays inside the sectors and preserves the positive multiplier gain in Lemma~\\ref{arr:flatness-upgrade}. The endpoint Gaussian real parts change continuously by a small relative amount. The preceding \\(1.4\\) quadratic marg"
     },
     {
       "from": "m1-lin-strip",
-      "to": "m1-jump-height-inverse"
+      "to": "m1-jump-height-inverse",
+      "context": "weighted future and exit kernels. Schur's inequality for the differentiated formula, followed by the equation for $a v_{m,ss}$ and the first-trace estimate of \\cref{lin:strip}, proves \\eqref{jump:mean-inverse}. The two source sums in \\eqref{jump:mean-source-norm} are respectively its cumulativ"
     },
     {
       "from": "m1-arr-preliminary-solves",
-      "to": "m1-jump-compatibility"
+      "to": "m1-jump-compatibility",
+      "context": "eal path parameter at the exit, are holomorphic in the identified trace space, as is their affine interpolation. This verifies the parameter-data condition in \\cref{arr:preliminary-solves}. Apply \\cref{jump:height-inverse} on this bounded interval with the constant total budget $W_{\\rm fix}=B^{-1.8}$. The"
     },
     {
       "from": "m1-jump-height-inverse",
-      "to": "m1-jump-compatibility"
+      "to": "m1-jump-compatibility",
+      "context": "lomorphic in the identified trace space, as is their affine interpolation. This verifies the parameter-data condition in \\cref{arr:preliminary-solves}. Apply \\cref{jump:height-inverse} on this bounded interval with the constant total budget $W_{\\rm fix}=B^{-1.8}$. The incoming oscillation is $O(W_{\\rm"
     },
     {
       "from": "m1-jump-height-inverse",
-      "to": "m1-jump-moving-exit"
+      "to": "m1-jump-moving-exit",
+      "context": "})$ up to such a polynomial, and the differentiated nonlinear coefficients obey the projected products in \\eqref{jump:height-products}. Apply the two parts of \\cref{jump:height-inverse} to \\eqref{jump:differentiated-exit-equation} and absorb $D\\mathcal N_\\eta$ with \\eqref{jump:contraction}. The explicit"
     },
     {
       "from": "m1-lin-shielding",
-      "to": "m1-jump-moving-exit"
+      "to": "m1-jump-moving-exit",
+      "context": "tisfies the homogeneous linearized equation. Its outer size from \\eqref{jump:log-remainder-bound} is at most a fixed power of $B$, since $Y\\leq cB$. Applying \\cref{lin:shielding} to this zero-entrance derivative gives $B^M e^{-c_{\\rm sh}B^2}$ on the joining band. Thus the derivative of the splice"
     },
     {
       "from": "m1-jump-compatibility",
-      "to": "m1-jump-endpoints"
+      "to": "m1-jump-endpoints",
+      "context": "rentiating the equation and the strip estimates; on each fixed exterior annulus the scaled coefficients are uniformly elliptic. The interpolation estimates in \\cref{jump:compatibility} give the same conclusion for the interpolated problems. One can also identify the limiting equation before taking a li"
     },
     {
       "from": "m1-gauge-height",
-      "to": "m1-jump-endpoints"
+      "to": "m1-jump-endpoints",
+      "context": "ial size in $Y$. Indeed the first traces give $z_r=O(Y+1+Y^\\gamma)$ and $z_\\theta/r=O(B^{-13/20}Y^{-1/10})$ at the exit, while the relative slope smallness in \\cref{gauge:height} keeps the continued denominators in the same branches as the circular profile. Thus both the displacement and momentum"
     },
     {
       "from": "m1-jump-jump",
-      "to": "m1-jump-stokes"
+      "to": "m1-jump-stokes",
+      "context": "[Proof of Proposition~\\ref{jump:jump}] Lemma~\\ref{jump:endpoints}, including the preliminary synchronization \\eqref{jump:nonadverse-sync} and the retained fa"
     },
     {
       "from": "m1-jump-endpoints",
-      "to": "m1-jump-stokes"
+      "to": "m1-jump-stokes",
+      "context": "[Proof of Proposition~\\ref{jump:jump}] Lemma~\\ref{jump:endpoints}, including the preliminary synchronization \\eqref{jump:nonadverse-sync} and the retained far boundary momenta, changes"
     },
     {
       "from": "m1-lin-family",
-      "to": "m1-phase-jets"
+      "to": "m1-phase-jets",
+      "context": "ght side of \\eqref{phase:full-equation}, and put $\\mathcal D_b=D\\mathfrak E(w_{[0]})$. Outside the observation support, $\\mathfrak E(w_{[0]})=0$. Proposition~\\ref{lin:family} and the analytic change from $R$ to $w$ give, after removal of the first-order tilt, \\begin{equation} w_{[0]}=O(z^{-2+"
     },
     {
       "from": "m1-lin-rates",
-      "to": "m1-phase-jets"
+      "to": "m1-phase-jets",
+      "context": "ular bounds. An unscaled log derivative used as a coefficient is the function trace of a differentiated jet, supplied by the log-regularity assertion of Lemma~\\ref{lin:rates}. The operator $\\mathcal D_b$ is the radial realization of the Jacobi operator at $w_{[0]}$: the preceding multipliers"
     },
     {
       "from": "m1-lin-global",
-      "to": "m1-phase-inner-evaluation"
+      "to": "m1-phase-inner-evaluation",
+      "context": "data. Retain the natural Taylor weight \\[ \\rho_n(z)\\asymp(1+z)^{p_n},\\qquad p_n=2n+2+\\eta, \\] normalized on a fixed entrance collar. Apply Proposition~\\ref{lin:global} at this fixed rate with its size parameter relabeled $Z=z_2$, rather than the opening scale $B$. The straight real sto"
     },
     {
       "from": "m1-arr-preliminary-solves",
-      "to": "m1-phase-inner-evaluation"
+      "to": "m1-phase-inner-evaluation",
+      "context": "aths satisfy the coefficient and compatibility hypotheses of the proposition. For each finite conical stop, the index construction in the proof of Proposition~\\ref{arr:preliminary-solves} applies directly on this shorter domain. Its normalized principal tensor still has positive real part, and the new der"
     },
     {
       "from": "m1-phase-jets",
-      "to": "m1-phase-inner-evaluation"
+      "to": "m1-phase-inner-evaluation",
+      "context": "he actual correction to that comparison. These estimates do not use the Taylor comparison or the shielding conclusion. For the degree-$n$ Taylor graph, Lemma~\\ref{phase:jets}, including its fixed logarithmic and angular derivative bounds, gives \\[ W_{\\mathrm{T}}\\le C_n\\bigl( Z^{-2+\\eta}+B^{-"
     },
     {
       "from": "m1-gauge-mixed",
-      "to": "m1-phase-inner-evaluation"
+      "to": "m1-phase-inner-evaluation",
+      "context": "from this same circular reference is bounded throughout the segment by a constant times $W_{\\mathrm{act}}+W_{\\mathrm{T}}$. In the radial realization of Lemma~\\ref{gauge:mixed} take $c_1=0$, $c_2=1$, and axial scale $Z$. Thus the shifted coefficient--module bound of Lemma~\\ref{lin:shielding} app"
     },
     {
       "from": "m1-lin-shielding",
-      "to": "m1-phase-inner-evaluation"
+      "to": "m1-phase-inner-evaluation",
+      "context": "hrm{T}}$. In the radial realization of Lemma~\\ref{gauge:mixed} take $c_1=0$, $c_2=1$, and axial scale $Z$. Thus the shifted coefficient--module bound of Lemma~\\ref{lin:shielding} applies uniformly along the averaged segment, with $\\varepsilon=O(Z(W_{\\mathrm{act}}+W_{\\mathrm{T}}))=o(1)$. Lemma~\\r"
     },
     {
       "from": "m1-arr-preliminary-solves",
-      "to": "m1-phase-primitive"
+      "to": "m1-phase-primitive",
+      "context": ":W} \\end{equation} for the deviation from the circular model on each strip in this region. Choose $\\epsilon_1$ small enough for this consequence of Proposition~\\ref{arr:preliminary-solves}; the number of strips is $O(\\log B)$. On the real radial portion $E\\asymp z^{-2}$; on the bounded final transition ban"
     },
     {
       "from": "m1-gauge-mixed",
-      "to": "m1-phase-primitive"
+      "to": "m1-phase-primitive",
+      "context": "radial portion $E\\asymp z^{-2}$; on the bounded final transition bands $E\\asymp B^{-2}$. Their derivative losses are consequently at most $B$ and $B^2$. Lemma~\\ref{gauge:mixed}, applied directly on the prescribed real parameter bands, and \\eqref{gauge:averaging} show that the mean curve obeys th"
     },
     {
       "from": "m1-phase-inner-evaluation",
-      "to": "m1-phase-primitive"
+      "to": "m1-phase-primitive",
+      "context": "le/2=O(W^2)$. At either endpoint, after division by $z^2$, its cost is $O(W^2 z_1^{-2})=o(B^{-4})$. At the initial radial section it relates the mean in Lemma~\\ref{phase:inner-evaluation} to the present mean curve; at the final pure height section the radius is exactly $r_0$. It remains to control the cir"
     },
     {
       "from": "m1-phase-primitive",
-      "to": "m1-phase-expansion"
+      "to": "m1-phase-expansion",
+      "context": "Write $q_0=\\phi(r_0)^2\\in(0,1)$. At the mean section, $z=Z\\sqrt{q_0}$ and $w=-q_0$. Integrate Lemma~\\ref{phase:primitive} starting with \\eqref{phase:inner-value}. An antiderivative of its explicit right side is \\[ -2\\beta/z^2-4\\beta^2\\log"
     },
     {
       "from": "m1-arr-contours",
-      "to": "m1-phase-no-arc"
+      "to": "m1-phase-no-arc",
+      "context": "s choice also applies when $k$ is even: it is a continuation on the chosen sheet of $s$, and does not require replacing a real parameter by its negative. Lemma~\\ref{arr:contours} and Proposition~\\ref{arr:action-upper} give both lateral arrays and common parameters in an open range of nearby test a"
     },
     {
       "from": "m1-arr-action-upper",
-      "to": "m1-phase-no-arc"
+      "to": "m1-phase-no-arc",
+      "context": "ven: it is a continuation on the chosen sheet of $s$, and does not require replacing a real parameter by its negative. Lemma~\\ref{arr:contours} and Proposition~\\ref{arr:action-upper} give both lateral arrays and common parameters in an open range of nearby test angles. Their common parameters have th"
     },
     {
       "from": "m1-jump-jump",
-      "to": "m1-phase-no-arc"
+      "to": "m1-phase-no-arc",
+      "context": "tending to zero exponentially in a positive power of $\\rho^{-1}$. The sign and phase of the coefficient multiplying each contribution also agree. Proposition~\\ref{jump:jump} uses the branch of the area element continued from positive real area and the outward integration convention on each en"
     },
     {
       "from": "m1-phase-no-arc",
-      "to": "m1-jet-finite-power"
+      "to": "m1-jet-finite-power",
+      "context": "Regard $\\mathcal F$ as an element of the formal ring $\\R[[b,x]]$, and let $I$ be the ideal generated by its finitely many first partial derivatives. By \\Cref{phase:no-arc}, every formal arc through the origin on which $I$ vanishes has $x=0$. The formal real arc criterion of Aschenbrenner--S"
     },
     {
       "from": "m1-jet-finite-power",
-      "to": "m1-flow-localized"
+      "to": "m1-flow-localized",
+      "context": "Let $m$ be the fixed exponent in Lemma~\\ref{jet:finite-power}. Choose one integer $N$ for which that lemma applies and $N-1>4\\max\\{m,1\\}$. Use the finite action $f_N$, multiplier"
     },
     {
       "from": "m1-ref-finite-taylor",
-      "to": "m1-flow-localized"
+      "to": "m1-flow-localized",
+      "context": "hich that lemma applies and $N-1>4\\max\\{m,1\\}$. Use the finite action $f_N$, multiplier $\\lambda_N$, and globally cut-off normal Taylor graph $T_N$ from Lemma~\\ref{ref:finite-taylor}. Its height $v_N$ satisfies $\\|v_N\\|_{C^2}\\le C_N|x|^{1/2}=o(1)$, including the first two spatial derivatives needed i"
     },
     {
       "from": "m1-ref-real-comparison",
-      "to": "m1-flow-localized"
+      "to": "m1-flow-localized",
+      "context": "f:taylor-multiplier}. Let $u$ be the actual normal height. Its observations define $p=(b,x)$ by $P(u)=\\mathsf P(p)$, and its multiplier is zero. Apply Lemma~\\ref{ref:real-comparison} with $\\lambda_U=0$ and weight $a=1+\\delta$ for a small fixed $\\delta>0$. Take the outer reference radius to be $R-C$,"
     },
     {
       "from": "m1-flow-localized",
-      "to": "m1-flow-improvement"
+      "to": "m1-flow-improvement",
+      "context": "rvation core in a compact reference region $K$. Since the conclusion concerns $R\\to\\infty$, increase the lower radius threshold to $R_{\\eta,K}$ in Proposition~\\ref{flow:localized}; its cutoff $\\chi_R$ is then one on both regions. The compact estimate and \\eqref{flow:base-multiplier} give exponenti"
     },
     {
       "from": "m1-flow-improvement",
-      "to": "m1-flow-radius-induction"
+      "to": "m1-flow-radius-induction",
+      "context": "nequality, the multiplier estimate, and \\eqref{flow:selected-time} make the core height and compact multiplier small as the minimum radius becomes large. Lemma~\\ref{flow:improvement} gives as small a height and slope as desired over $S_{b_j}$ to radius $(1-\\zeta)R_j$, where $b_j=b(\\tau_j)$. In partic"
     },
     {
       "from": "m1-flow-propagation",
-      "to": "m1-flow-radius-induction"
+      "to": "m1-flow-radius-induction",
+      "context": "a}$, and dilation back to the rescaled coordinates has factor $e^{\\Delta/2}$. Consecutive selected times satisfy $0.8\\le\\tau_{j+1}-\\tau_j\\le1.2$. Apply Lemma~\\ref{flow:propagation}, allocating its additional spatial loss within another $\\zeta R_j$. In the rescaled coordinates it yields a complete w"
     },
     {
       "from": "m1-flow-propagation",
-      "to": "m1-flow-uniqueness"
+      "to": "m1-flow-uniqueness",
+      "context": "supplies the graphs and derivatives through this prospective stopping time. For a last available slice, propagate directly from its improved graph using Lemma~\\ref{flow:propagation} over the fixed horizon $U=1-e^{-2}<1$. No subsequent selected slice, localized inequality, or future unit energy drop"
     },
     {
       "from": "m1-flow-finite-length",
-      "to": "m1-flow-uniqueness"
+      "to": "m1-flow-uniqueness",
+      "context": "s an entering extra sheet or a loss at the boundary of the observation domain at the stopping time. The length through completed intervals is bounded by Lemma~\\ref{flow:finite-length}. The entire remaining segment from the last selected slice costs at most \\begin{equation}\\label{flow:last-length} \\in"
     },
     {
       "from": "m1-geo-representative",
-      "to": "m1-flow-uniqueness"
+      "to": "m1-flow-uniqueness",
+      "context": "athcal H^2\\!\\llcorner M_s^\\lambda$. A tangent Radon family $(\\mu_s)_{s<0}$ is assumed to satisfy the local hypotheses and the all-endpoint inequality of Lemma~\\ref{geo:representative}, and along its extracted scales $\\lambda_i\\to\\infty$ to satisfy \\begin{equation}\\label{flow:spacetime-weight-limit} \\i"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-flow-uniqueness"
+      "to": "m1-flow-uniqueness",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Fix a singular point at the first singular time. The preceding construction applies to its tangent section from \\Cref"
     },
     {
       "from": "m1-geo-tangent",
-      "to": "m1-flow-uniqueness"
+      "to": "m1-flow-uniqueness",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Fix a singular point at the first singular time. The preceding construction applies to its tangent section from \\Cref{geo:tangent}, and Proposition~\\ref{flow:uniqueness} gives the full fixed-frame smooth convergence and the equality of every negative"
     }
   ]
 }

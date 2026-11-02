@@ -118,71 +118,88 @@
   "edges": [
     {
       "from": "m1-lem-passage",
-      "to": "m1-lem-neutral"
+      "to": "m1-lem-neutral",
+      "context": "Fix the old finite data and choose $c$ as in Lemma~\\ref{lem:passage}, also satisfying its prescribed lower bound. Identify all but a small interval of the $a$ circle with an interval in $\\"
     },
     {
       "from": "m1-lem-law-approx",
-      "to": "m1-lem-signal"
+      "to": "m1-lem-signal",
+      "context": "directly from our convention: $\\int\\mathcal P_s\\rho(y)\\ee(\\ell y)\\,\\dd y=M_\\ell$. \\emph{Realization and support.} We now realize this law by a passage. Lemma~\\ref{lem:law-approx} provides a bounded smooth circle function $J$, strictly increasing on a good arc, and a smooth cutoff $\\psi$ compactly"
     },
     {
       "from": "m1-lem-fast-average",
-      "to": "m1-lem-signal"
+      "to": "m1-lem-signal",
+      "context": "ne: \\[ w_{r,m}(s)=\\frac{|A_{r,m}(u,a)|^2}{|m\\phi'(u)|}, \\qquad m(c+\\phi(u))=s, \\] extended by zero. For such a nonnegative compactly supported weight, Lemma~\\ref{lem:fast-average} and contraction of total variation under pushforward and periodization give \\begin{align} &\\lim_{N\\to\\infty}\\int_\\R w_"
     },
     {
       "from": "m1-lem-passage",
-      "to": "m1-lem-signal"
+      "to": "m1-lem-signal",
+      "context": "above. These facts supply the continuity and domination required for fast averaging. The independence of the weight from $a$ is essential in this step. Lemma~\\ref{lem:passage} identifies the output density, up to an arbitrarily small $L^1$ error, as the folding to $\\T$ of $w_{r,m}(s)\\mathcal P_"
     },
     {
       "from": "m1-lem-neutral",
-      "to": "m1-lem-refresh-transmit"
+      "to": "m1-lem-refresh-transmit",
+      "context": "Use Lemma~\\ref{lem:neutral} with residue modulus $P$. Denote the refreshed scale by $\\widetilde B$, its packet densities by $\\widetilde p_{r,m}$,"
     },
     {
       "from": "m1-lem-signal",
-      "to": "m1-lem-refresh-transmit"
+      "to": "m1-lem-refresh-transmit",
+      "context": "an old one and using \\eqref{eq:signal-color-match}. In particular the extra terms tend to zero. The compact margin in the normalized band lets us apply Lemma~\\ref{lem:signal} with the same $P,\\gamma$ after this refresh, although its actual indices and scale may be very large. By that lemma th"
     },
     {
       "from": "m1-prop-prediction",
-      "to": "m1-lem-phase-tests"
+      "to": "m1-lem-phase-tests",
+      "context": "[Proof of Proposition~\\ref{prop:prediction}] Zero colors may be omitted. If all colors vanish, a neutral passage with zero output packets and $\\Psi=0$ proves the"
     },
     {
       "from": "m1-lem-passage",
-      "to": "m1-lem-phase-tests"
+      "to": "m1-lem-phase-tests",
+      "context": "Choose an integer $c_0$ large enough that the full compact ranges $m(c_0+\\phi(\\T))$ for distinct old indices are separated and avoid zero, as required by Lemma~\\ref{lem:passage}. In particular this separates the compact packet images \\[ m(c_0+\\phi(u)),\\qquad u\\in\\operatorname{proj}_u\\supp A_{r"
     },
     {
       "from": "m1-lem-signal",
-      "to": "m1-lem-phase-tests"
+      "to": "m1-lem-phase-tests",
+      "context": "nd multiply the $r$th cutoff by $b_r-q(x\\bmod1)$. Fix $0<b_0<D_0$ such that all the retained neighborhoods lie strictly inside $\\{b_0<|x|<D_0\\}$. Apply Lemma~\\ref{lem:signal} to this fixed $d$ and these band bounds. It gives a modulus $P$ and an arbitrarily small positive strength $\\gamma$, in"
     },
     {
       "from": "m1-lem-neutral",
-      "to": "m1-lem-phase-tests"
+      "to": "m1-lem-phase-tests",
+      "context": "ready fixed $c_0$, choosing its jitter and its integer $N_0$ for the required accuracy. Use $B=N_0$ as the output angular scale. Lemmas~\\ref{lem:passage} and~\\ref{lem:neutral} give color densities as close to $p_r$ in $L^1$ as desired. On their retained supports the normalized indices $x=j/N_0"
     },
     {
       "from": "m1-lem-refresh-transmit",
-      "to": "m1-lem-phase-tests"
+      "to": "m1-lem-phase-tests",
+      "context": "dist_{\\T}(x\\bmod1,z)$ can be made arbitrarily small after $J_0$ is fixed, by increasing $N_0$. We follow this anchor by $n$ refresh--transmit pairs from Lemma~\\ref{lem:refresh-transmit}. At every passage the scale changes by $B'=NcB$. The support estimates \\eqref{eq:signal-index-drift}--\\eqref{eq:signal-"
     },
     {
       "from": "m1-prop-prediction",
-      "to": "m1-prop-stage"
+      "to": "m1-prop-stage",
+      "context": "We first prepare smooth packets for $f$ and $h$, then put constant tags on disjoint packets, and finally use Proposition~\\ref{prop:prediction}. Every accuracy appearing below may be made arbitrarily small after the finite data on which it depends have been fixed"
     },
     {
       "from": "m1-lem-neutral",
-      "to": "m1-prop-stage"
+      "to": "m1-prop-stage",
+      "context": "ty-norm-bound}, which also applies to the nonsmooth $L^2$ coefficients of an admissible vector. Across a passage, density preservation instead comes from Lemma~\\ref{lem:neutral}. \\paragraph{Converting the angular averages.} In the current coordinates write \\[ h=h_\\perp+g(u,a),\\qquad g_0(a)=\\in"
     },
     {
       "from": "m1-lem-passage",
-      "to": "m1-prop-stage"
+      "to": "m1-prop-stage",
+      "context": "a)\\ee(m_rH(u)-ju)\\dd u. \\end{equation} Here $\\chi$ is the new good-arc cutoff; its loss was made small before choosing the broad neutral jitter and $N$. Lemma~\\ref{lem:passage} shows that the support restrictions delete arbitrarily little norm as $N$ increases. There are finitely many retained"
     },
     {
       "from": "m1-lem-flat-vector",
-      "to": "m1-prop-stage"
+      "to": "m1-prop-stage",
+      "context": "one by $\\int\\sqrt p\\le\\|G\\|_2$ and $\\|G-f\\|_2\\to0$. Reality implies $p(-z)=p(z)$ almost everywhere. Set $E=\\{p=0\\}$, choose the flat real vector $v$ of Lemma~\\ref{lem:flat-vector} for this last map, and define \\begin{equation}\\label{eq:whitening} f'=\\left(\\frac{\\1_{E^c}}{\\sqrt p}\\right)(U)G+\\1_E(U"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-prop-stage"
+      "to": "m1-prop-stage",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Choose a smooth periodic speed $\\phi_0$ which agrees with an increasing affine function on a nonempty closed interval"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-cor-dynamical-profile"
+      "to": "m1-cor-dynamical-profile",
+      "context": "Let $V:L^2_0(\\T^3,\\mu)\\to L^2(S^1,m)$ be the unitary spectral model in Theorem~\\ref{thm:main}. For $a,b\\in L^2_0(\\T^3,\\mu)$, \\[ \\int_{\\T^3}(a\\circ T^n)\\overline b\\dd\\mu =\\int_{S^1}w^n(Va)(w)\\overline{(Vb)(w)}\\dd"
     }
   ]
 }

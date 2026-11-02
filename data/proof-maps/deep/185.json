@@ -1,0 +1,408 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "185",
+  "title": "Counterexamples to infinite matroid intersection and packing/covering",
+  "result": {
+    "id": "paper-result",
+    "label": "Counterexamples to infinite matroid intersection and packing/covering",
+    "statement": "Disproves the unrestricted infinite matroid intersection and packing/covering conjectures in ZFC, using two self-dual partitional matroids on a countably infinite ground set. The same examples answer Joó’s partitional-matroid question negatively. They are neither finitary nor cofinitary, so Nash-Williams’ original finitary conjecture remains outside the result.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "matroids-and-the-self-dual-reduction",
+      "label": "Matroids and the self-dual reduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "matroids-and-the-self-dual-reduction-2",
+      "label": "Matroids and the self-dual reduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-ultrafilter-rank-and-simultaneous-reservations",
+      "label": "An ultrafilter rank and simultaneous reservations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-ultrafilter-rank-and-simultaneous-reservations-2",
+      "label": "An ultrafilter rank and simultaneous reservations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-ultrafilter-rank-and-simultaneous-reservations-3",
+      "label": "An ultrafilter rank and simultaneous reservations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-ultrafilter-rank-and-simultaneous-reservations-4",
+      "label": "An ultrafilter rank and simultaneous reservations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-ultrafilter-rank-and-simultaneous-reservations-5",
+      "label": "An ultrafilter rank and simultaneous reservations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "bases-within-a-density-zero-class",
+      "label": "Bases within a density-zero class",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "bases-within-a-density-zero-class-2",
+      "label": "Bases within a density-zero class",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "bases-within-a-density-zero-class-3",
+      "label": "Bases within a density-zero class",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "bases-within-a-density-zero-class-4",
+      "label": "Bases within a density-zero class",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "bases-within-a-density-zero-class-5",
+      "label": "Bases within a density-zero class",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "bases-within-a-density-zero-class-6",
+      "label": "Bases within a density-zero class",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "assembling-a-self-dual-matroid",
+      "label": "Assembling a self-dual matroid",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "assembling-a-self-dual-matroid-2",
+      "label": "Assembling a self-dual matroid",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "assembling-a-self-dual-matroid-3",
+      "label": "Assembling a self-dual matroid",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "assembling-a-self-dual-matroid-4",
+      "label": "Assembling a self-dual matroid",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "assembling-a-self-dual-matroid-5",
+      "label": "Assembling a self-dual matroid",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-separate-covering-and-packing-conjectures",
+      "label": "The separate Covering and Packing conjectures",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "A Counterexample to the Infinite Matroid Packing/Covering Conjecture",
+      "title": "A Counterexample to the Infinite Matroid Packing/Covering Conjecture",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Counterexample-to-the-Infinite-Matroid-Packing-Covering-Conjecture-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from A Counterexample to the Infinite Matroid Packing/Covering Conjecture; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "In ZFC, there exist a countably infinite set E and two infinite matroids…",
+          "fullLabel": "In ZFC, there exist a countably infinite set E and two infinite matroids…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "In ZFC, there exist a countably infinite set E and two infinite matroids M_0,M_1 on E such that M_i^*=M_i on the same labelled ground set for i=0,1 , and \\[ I_0 I_1 E for every independent I_0 in M_0…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-intersection",
+          "role": "introduction",
+          "label": "The same pair (M_0,M_1) constructed in Theorem~ consists of partitional…",
+          "fullLabel": "The same pair (M_0,M_1) constructed in Theorem~ consists of partitional…",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "The same pair (M_0,M_1) constructed in Theorem~ consists of partitional matroids and does not satisfy intersection. More explicitly, for every set J independent in both M_0 and M_1 and every…",
+          "dependsOn": [
+            "m1-thm-main"
+          ]
+        },
+        {
+          "id": "m1-lem-closure-duality",
+          "role": "matroids-and-the-self-dual-reduction",
+          "label": "Let N be an infinite matroid on F . If S X F , then \\[ cl_ N X (S) =cl_N(S) X.…",
+          "fullLabel": "Let N be an infinite matroid on F . If S X F , then \\[ cl_ N X (S) =cl_N(S) X.…",
+          "kind": "lemma",
+          "source": "Matroids and the self-dual reduction",
+          "detail": "Let N be an infinite matroid on F . If S X F , then \\[ cl_ N X (S) =cl_N(S) X. \\] A subset S F is spanning if and only if it contains a basis of N . A subset S F is spanning in N if and only if F S…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-selfdual-reduction",
+          "role": "matroids-and-the-self-dual-reduction-2",
+          "label": "Let N_0,N_1 be matroids on the same set F , with N_i=N_i^* on the same labels.…",
+          "fullLabel": "Let N_0,N_1 be matroids on the same set F , with N_i=N_i^* on the same labels.…",
+          "kind": "lemma",
+          "source": "Matroids and the self-dual reduction",
+          "detail": "Let N_0,N_1 be matroids on the same set F , with N_i=N_i^* on the same labels. Suppose there is a partition F=P , disjoint sets S_0,S_1 P spanning N_0\\! P,N_1\\! P , respectively, and independent sets…",
+          "dependsOn": [
+            "m1-lem-closure-duality"
+          ]
+        },
+        {
+          "id": "m1-lem-columns",
+          "role": "an-ultrafilter-rank-and-simultaneous-reservations",
+          "label": "Independent columns",
+          "fullLabel": "Independent columns",
+          "kind": "lemma",
+          "source": "An ultrafilter rank and simultaneous reservations",
+          "detail": "[Independent columns] There are subsets A_t,B_t,G_t of D , indexed by t< c , with the following property. For any r distinct columns from these three families and any prescribed membership pattern on…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-ultrafilter",
+          "role": "an-ultrafilter-rank-and-simultaneous-reservations-2",
+          "label": "There is an ultrafilter U on D disjoint from K , containing every G_t , and…",
+          "fullLabel": "There is an ultrafilter U on D disjoint from K , containing every G_t , and…",
+          "kind": "lemma",
+          "source": "An ultrafilter rank and simultaneous reservations",
+          "detail": "There is an ultrafilter U on D disjoint from K , containing every G_t , and satisfying X U \\ t< c:X_ K G_t\\ is finite.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-rank",
+          "role": "an-ultrafilter-rank-and-simultaneous-reservations-3",
+          "label": "Rank invariance and monotonicity",
+          "fullLabel": "Rank invariance and monotonicity",
+          "kind": "lemma",
+          "source": "An ultrafilter rank and simultaneous reservations",
+          "detail": "[Rank invariance and monotonicity] If X Y K , then X is large if and only if Y is large, and in that case (X)=(Y) . If X,Y are large and X_ K Y , then (X)(Y) .",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-thinning",
+          "role": "an-ultrafilter-rank-and-simultaneous-reservations-4",
+          "label": "Rank-raising thinning",
+          "fullLabel": "Rank-raising thinning",
+          "kind": "lemma",
+          "source": "An ultrafilter rank and simultaneous reservations",
+          "detail": "[Rank-raising thinning] Let s X D , with s small and X large, and let < c . There is a large set u such that \\[ s u X, (u)>. \\]",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-reservations",
+          "role": "an-ultrafilter-rank-and-simultaneous-reservations-5",
+          "label": "Simultaneous reservations",
+          "fullLabel": "Simultaneous reservations",
+          "kind": "lemma",
+          "source": "An ultrafilter rank and simultaneous reservations",
+          "detail": "[Simultaneous reservations] Let S be a family of fewer than c subsets of E_0 , each positive for J_0 . There is an index t< c such that \\[ S H_ t,0 J_0 and S H_ t,1 J_0 (S S). \\]",
+          "dependsOn": [
+            "m1-lem-columns",
+            "m1-lem-thinning"
+          ]
+        },
+        {
+          "id": "m1-lem-probe-properties",
+          "role": "bases-within-a-density-zero-class",
+          "label": "Probe properties",
+          "fullLabel": "Probe properties",
+          "kind": "lemma",
+          "source": "Bases within a density-zero class",
+          "detail": "[Probe properties] For X,Y C(T) the following statements hold. d_m^T(X)0 and p_n^T(X)/c_n0 . If X Y , then f_n^T(Y)-f_n^T(X) |(Y X) V_n|. Adding or deleting one element changes every probe by at most…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-block-continuity",
+          "role": "bases-within-a-density-zero-class-2",
+          "label": "Continuity within a fixed interval",
+          "fullLabel": "Continuity within a fixed interval",
+          "kind": "lemma",
+          "source": "Bases within a density-zero class",
+          "detail": "[Continuity within a fixed interval] Suppose I X_k Y for k1 , where I,Y C(T) , and membership of every element in X_k eventually agrees with its membership in a set X . Then X C(T) and, for every…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-local-antichain",
+          "role": "bases-within-a-density-zero-class-3",
+          "label": "Antichains and finite changes",
+          "fullLabel": "Antichains and finite changes",
+          "kind": "lemma",
+          "source": "Bases within a density-zero class",
+          "detail": "[Antichains and finite changes] Each family B^-(T) and B^+(T) contains T , is an antichain under inclusion, and is preserved by finite modifications that add and delete equally many elements.",
+          "dependsOn": [
+            "m1-lem-probe-properties"
+          ]
+        },
+        {
+          "id": "m1-lem-positive-pool",
+          "role": "bases-within-a-density-zero-class-4",
+          "label": "Small modifications with divergent probes",
+          "fullLabel": "Small modifications with divergent probes",
+          "kind": "lemma",
+          "source": "Bases within a density-zero class",
+          "detail": "[Small modifications with divergent probes] Let X C(T) . If G X^c is J_0 -positive, there is P G in J_0 such that f_n^T(X P)+ . If G X is J_0 -positive, there is P G in J_0 such that f_n^T(X P)- .",
+          "dependsOn": [
+            "m1-lem-probe-properties"
+          ]
+        },
+        {
+          "id": "m1-lem-local-interpolation",
+          "role": "bases-within-a-density-zero-class-5",
+          "label": "Interpolation",
+          "fullLabel": "Interpolation",
+          "kind": "lemma",
+          "source": "Bases within a density-zero class",
+          "detail": "[Interpolation] If I Y are in C(T) , _T(I)-1 , and _T(Y)>0 , then there is B B^-(T) with I B Y .",
+          "dependsOn": [
+            "m1-lem-block-continuity"
+          ]
+        },
+        {
+          "id": "m1-prop-local-intervals",
+          "role": "bases-within-a-density-zero-class-6",
+          "label": "Interval alternatives for one class",
+          "fullLabel": "Interval alternatives for one class",
+          "kind": "proposition",
+          "source": "Bases within a density-zero class",
+          "detail": "[Interval alternatives for one class] Fix \\ -,+\\ and let I Y E_0 . If \\[ T I J_0 or Y T J_0, \\] there is B B^(T) satisfying at least one of B I, I B Y, Y B.",
+          "dependsOn": [
+            "m1-lem-positive-pool",
+            "m1-lem-local-interpolation"
+          ]
+        },
+        {
+          "id": "m1-lem-zones",
+          "role": "assembling-a-self-dual-matroid",
+          "label": "The Upper zone, Lower zone, and admissible sets partition 2^ E_0 . The Upper…",
+          "fullLabel": "The Upper zone, Lower zone, and admissible sets partition 2^ E_0 . The Upper…",
+          "kind": "lemma",
+          "source": "Assembling a self-dual matroid",
+          "detail": "The Upper zone, Lower zone, and admissible sets partition 2^ E_0 . The Upper zone is upward closed, the Lower zone is downward closed, and all three statuses are invariant under symmetric differences…",
+          "dependsOn": [
+            "m1-lem-rank"
+          ]
+        },
+        {
+          "id": "m1-lem-zone-crossing",
+          "role": "assembling-a-self-dual-matroid-2",
+          "label": "Crossing the zones",
+          "fullLabel": "Crossing the zones",
+          "kind": "lemma",
+          "source": "Assembling a self-dual matroid",
+          "detail": "[Crossing the zones] If A Z E_0 , with A Lower and Z Upper, then there is an admissible B satisfying A B Z .",
+          "dependsOn": [
+            "m1-lem-thinning"
+          ]
+        },
+        {
+          "id": "m1-lem-insert-prototype",
+          "role": "assembling-a-self-dual-matroid-3",
+          "label": "Let T be a family of fewer than c admissible subsets of E_0 . Suppose A Z E_0 ,…",
+          "fullLabel": "Let T be a family of fewer than c admissible subsets of E_0 . Suppose A Z E_0 ,…",
+          "kind": "lemma",
+          "source": "Assembling a self-dual matroid",
+          "detail": "Let T be a family of fewer than c admissible subsets of E_0 . Suppose A Z E_0 , that A is not Upper and Z is not Lower, and that, for every T T , T A J_0, Z T J_0. Then there is an admissible B…",
+          "dependsOn": [
+            "m1-lem-reservations",
+            "m1-lem-zones",
+            "m1-lem-zone-crossing"
+          ]
+        },
+        {
+          "id": "m1-prop-basis-family",
+          "role": "assembling-a-self-dual-matroid-4",
+          "label": "There is a nonempty family B of admissible subsets of E_0 with the following…",
+          "fullLabel": "There is a nonempty family B of admissible subsets of E_0 with the following…",
+          "kind": "proposition",
+          "source": "Assembling a self-dual matroid",
+          "detail": "There is a nonempty family B of admissible subsets of E_0 with the following properties: B is an antichain and is closed under complements. If B B , F B and H E_0 B are finite with |F|=|H| , then (B…",
+          "dependsOn": [
+            "m1-prop-local-intervals",
+            "m1-lem-zones",
+            "m1-lem-insert-prototype",
+            "m1-lem-local-antichain"
+          ]
+        },
+        {
+          "id": "m1-thm-local-matroid",
+          "role": "assembling-a-self-dual-matroid-5",
+          "label": "There is a matroid Q on E_0=L R whose bases are precisely the family B in…",
+          "fullLabel": "There is a matroid Q on E_0=L R whose bases are precisely the family B in…",
+          "kind": "theorem",
+          "source": "Assembling a self-dual matroid",
+          "detail": "There is a matroid Q on E_0=L R whose bases are precisely the family B in Proposition~ . It is equal to its dual on the same labels, and all its bases are admissible. In particular, for every basis B…",
+          "dependsOn": [
+            "m1-prop-basis-family"
+          ]
+        },
+        {
+          "id": "m1-cor-separate-covering-packing",
+          "role": "the-separate-covering-and-packing-conjectures",
+          "label": "The unrestricted separate Covering and Packing Conjectures of Bowler and…",
+          "fullLabel": "The unrestricted separate Covering and Packing Conjectures of Bowler and…",
+          "kind": "corollary",
+          "source": "The separate Covering and Packing conjectures",
+          "detail": "The unrestricted separate Covering and Packing Conjectures of Bowler and Carmesin are both false in ZFC.",
+          "dependsOn": [
+            "m1-thm-main"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "A Counterexample to the Infinite Matroid Packing/Covering Conjecture",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Counterexample-to-the-Infinite-Matroid-Packing-Covering-Conjecture-September-24-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

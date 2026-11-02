@@ -565,423 +565,528 @@
   "edges": [
     {
       "from": "m1-lem-hier-pilot-bounds",
-      "to": "m1-lem-hier-column-test"
+      "to": "m1-lem-hier-column-test",
+      "context": "Fix $i,y$ and condition on $Y_f(y)=1$. In a fixed row, the set $\\{w:G_i(x,w)>\\eta_-f\\}$ has cardinality at most $k_*/(\\eta_-f)$ by Lemma~\\ref{lem:hier-pilot-bounds}. Its expected number of retained members is at most $D_{\\rm row}$: the specified terminal $y$, if in this set, contribu"
     },
     {
       "from": "m1-lem-hier-pilot-bounds",
-      "to": "m1-lem-hier-residual"
+      "to": "m1-lem-hier-residual",
+      "context": "C\\mathbf 1-E(\\mathbf 1-C\\mathbf 1) \\leq C\\mathbf 1\\leq\\mathbf 1. \\] Also $D\\leq C+EC$, whose entries are at most $f+f\\sum_z E(x,z)\\leq(k_*+1)f$ by Lemma~\\ref{lem:hier-pilot-bounds}. Strict forwardness and the support claims follow from the same formulas. Because $A(x,y)\\leq k_*f$, Equation~\\eqref{"
     },
     {
       "from": "m1-lem-hier-residual",
-      "to": "m1-prop-hier-copy-step"
+      "to": "m1-prop-hier-copy-step",
+      "context": "This proves the density bound. If a nonprimary fraction $s_j(D(x,y)/f)$ is positive on a positive entry, then $D(x,y)/f>\\tau_0>\\varepsilon_{\\rm good}$. Lemma~\\ref{lem:hier-residual} therefore implies $g(y)<1$. Since $\\gamma$ equals one through $1/2$, this gives $U^{\\max}(y)>1/2$, and hence $r_j(y)=1$"
     },
     {
       "from": "m1-lem-hier-column-test",
-      "to": "m1-prop-hier-copy-step"
+      "to": "m1-prop-hier-copy-step",
+      "context": ">1/4\\},\\qquad n'=|\\mathcal A(C)|. \\] Every $y\\in\\mathcal O$ has, for some pilot step $i$, more than $J/(4C_\\pi f)$ entries with $G_i(x,y)>\\delta_0f$, by Lemma~\\ref{lem:hier-column-test}. Counting these incidences over all steps and all active rows, and using Lemma~\\ref{lem:hier-pilot-bounds}, gives \\beg"
     },
     {
       "from": "m1-lem-hier-pilot-bounds",
-      "to": "m1-prop-hier-copy-step"
+      "to": "m1-prop-hier-copy-step",
+      "context": "_\\pi f)$ entries with $G_i(x,y)>\\delta_0f$, by Lemma~\\ref{lem:hier-column-test}. Counting these incidences over all steps and all active rows, and using Lemma~\\ref{lem:hier-pilot-bounds}, gives \\begin{align*} |\\mathcal O|\\frac{J}{4C_\\pi f} &\\leq\\sum_{i=1}^{k_*}\\#\\{(x,y):G_i(x,y)>\\delta_0f\\}\\\\ &\\leq\\fra"
     },
     {
       "from": "m1-prop-hier-copy-step",
-      "to": "m1-prop-hier-reward-target"
+      "to": "m1-prop-hier-reward-target",
+      "context": "d follows from $W_l\\leq P_l^cp_0\\leq1$. Equation~\\eqref{eq:hier-reward-update} is Equation~\\eqref{eq:hier-cumulative-matrices} applied to $e$. By Proposition~\\ref{prop:hier-copy-step}, induction gives \\[ |\\mathcal A(C_l)|\\leq2^l|\\mathcal A(S)|\\leq2^l|V_0|, \\qquad C_l(x,y)\\leq q^{-l}. \\] There are at"
     },
     {
       "from": "m1-lem-env-ranks",
-      "to": "m1-lem-atom-dense"
+      "to": "m1-lem-atom-dense",
+      "context": "ic columns. Conditional on $Y_t(y)=1$, the specified column contributes at most one hit and each other column has $Y_a$-hit probability at most $C a$, by Lemma~\\ref{lem:env-ranks}. Thus the expected count is at most $1+CM_G/r$. Conditioning also on the independent source channel does not alter th"
     },
     {
       "from": "m1-lem-hier-pilot-bounds",
-      "to": "m1-lem-hier-bin-products"
+      "to": "m1-lem-hier-bin-products",
+      "context": "Use $F\\mathbf 1\\leq k_*\\mathbf 1$ from Lemma~\\ref{lem:hier-pilot-bounds}: $(FA_b)\\mathbf 1\\leq F\\mathbf 1$, and $(FA_b)(x,y)\\leq c_b b\\sum_zF(x,z)$. The last assertion follows by multiplying"
     },
     {
       "from": "m1-lem-atom-dense",
-      "to": "m1-lem-atom-correction"
+      "to": "m1-lem-atom-correction",
+      "context": "The row count argument in Lemma~\\ref{lem:atom-dense}, with the correction thresholds, gives $\\Pr(R\\ne1\\mid\\text{the two hits})\\le1/8$. If $g_0(y)>0$, every source with $I(x"
     },
     {
       "from": "m1-lem-atom-margins",
-      "to": "m1-lem-atom-ports"
+      "to": "m1-lem-atom-ports",
+      "context": "The row and witness assertions are Lemma~\\ref{lem:atom-margins}; clipping and multiplication by bounded factors do not enlarge supports. If a column has more than $K_c$ entries in $A$"
     },
     {
       "from": "m1-lem-atom-ports",
-      "to": "m1-lem-atom-assembly"
+      "to": "m1-lem-atom-assembly",
+      "context": "s zero. The pre-incoming discrepancy may be charged on its entire row domain; it needs no incoming cap. Each column has at most $2K_c$ edges in $E$, by Lemma~\\ref{lem:atom-ports}. By Equation~\\eqref{eq:atom-rank-lipschitz}, the root-Lipschitz incoming cutoff, and Equation~\\eqref{eq:atom-ordinary-f"
     },
     {
       "from": "m1-lem-env-affine",
-      "to": "m1-lem-env-gap"
+      "to": "m1-lem-env-gap",
+      "context": "t blocks can be concatenated into this one component; frozen bits are not transformed. There are a bounded number of components. Apply the lazy walk from Lemma~\\ref{lem:env-affine} to a uniformly selected component. If there are $J_{\\rm comp}$ components and the single-component gap is at least $\\ga"
     },
     {
       "from": "m1-thm-ctrl-realization",
-      "to": "m1-lem-env-variants"
+      "to": "m1-lem-env-variants",
+      "context": "A test depending on a vertex can be delayed until that vertex is current, with the required matrix state regenerated from the recorded transformations. Theorem~\\ref{thm:ctrl-realization} accounts for reversible restoration and the simultaneous space used when these operations are nested."
     },
     {
       "from": "m1-lem-env-ranks",
-      "to": "m1-lem-est-true-means"
+      "to": "m1-lem-est-true-means",
+      "context": "deterministic $r_i(x)$ and includes the routing fraction in the bin, so the same argument applies on each fixed-symbol part. Fixed-suffix invariance in Lemma~\\ref{lem:env-ranks} justifies all inherited padding conventions. The second channel is its defining preparatory conditional mean, on its o"
     },
     {
       "from": "m1-lem-est-loss",
-      "to": "m1-lem-est-mean-comparison"
+      "to": "m1-lem-est-mean-comparison",
+      "context": "First suppose $b\\ge a$. Apply Equation~\\eqref{eq:est-relative-loss} after conditional expectation, and then the mixture contraction of Lemma~\\ref{lem:est-loss} before it. Homogeneity supplies a factor $b/a$ after division by $a$. The factor $f/\\pi_f$ in a product is bounded abov"
     },
     {
       "from": "m1-lem-hier-bin-products",
-      "to": "m1-lem-est-omission"
+      "to": "m1-lem-est-omission",
+      "context": "The deterministic contribution $H$ has entries at most $Cb$ and bounded row mass. For a product these bounds follow from Lemma~\\ref{lem:hier-bin-products}. Therefore \\[ \\sum_y\\pi_a|H(x,y)/a|^s \\le \\frac{\\pi_a}{a^s}(Cb)^{s-1}\\sum_yH(x,y) \\le C'(b/a)^{s-1}. \\] Integrating"
     },
     {
       "from": "m1-lem-env-variants",
-      "to": "m1-lem-est-paths"
+      "to": "m1-lem-est-paths",
+      "context": "the generator word and guessed wraps, and a bounded number of constituent ports. An included scale obeys $|h_b|=O(d)$, and the walk has length $O(d)$. Lemma~\\ref{lem:env-variants} therefore bounds all these records by $O(d)$ bits. Port alphabets are fixed by Lemma~\\ref{lem:atom-ports}. There are o"
     },
     {
       "from": "m1-lem-atom-ports",
-      "to": "m1-lem-est-paths"
+      "to": "m1-lem-est-paths",
+      "context": "h_b|=O(d)$, and the walk has length $O(d)$. Lemma~\\ref{lem:env-variants} therefore bounds all these records by $O(d)$ bits. Port alphabets are fixed by Lemma~\\ref{lem:atom-ports}. There are only $O((1+d)^2)$ choices of budgets and scales before the exponential word/variant choices. Check each con"
     },
     {
       "from": "m1-lem-est-omission",
-      "to": "m1-lem-est-mean-prefix"
+      "to": "m1-lem-est-mean-prefix",
+      "context": "refix and have no error. \\emph{Wholly omitted scales.} A bin with $c_b\\ge M$ contributes no layer. We bound its deterministic contribution directly by Lemma~\\ref{lem:est-omission}. First we show that every such bin is fine. Put $r=\\log_2(1/a)\\ge0$. A coarse bin has $0\\le h_b\\le r$ because all grid"
     },
     {
       "from": "m1-lem-est-mean-comparison",
-      "to": "m1-lem-est-raw-difference"
+      "to": "m1-lem-est-raw-difference",
+      "context": "ntly many left paths in the union of the compared rows. Ordinary bounded-factor differences and the row and incoming caps therefore give the sums used in Lemma~\\ref{lem:est-mean-comparison}, without any averaging. For a coarse bin the absolute coefficient costs $b/a$ in the norm rather than its $s$-th root."
     },
     {
       "from": "m1-lem-est-mean-prefix",
-      "to": "m1-lem-est-prefix"
+      "to": "m1-lem-est-prefix",
+      "context": "The mean assertion is Lemma~\\ref{lem:est-mean-prefix}. For a difference layer, write $F_{xy}$ for its sample function on $\\mathcal C_{xy}^{u,a}$, $\\mathcal A_{xy}$ for the c"
     },
     {
       "from": "m1-lem-env-gap",
-      "to": "m1-lem-est-prefix"
+      "to": "m1-lem-est-prefix",
+      "context": "of length $\\ell(M-m)$, and $\\Pi_{xy}$ for uniform averaging on that slice. Put $w_{xy}=\\Pr(\\mathcal C_{xy}^{u,a})/(Nu)$ and $r_{M-m}=C2^{-c\\ell(M-m)}$. Lemma~\\ref{lem:env-gap} gives a uniform operator bound, so \\[ \\sum_{x,y}w_{xy} \\|(\\mathcal A_{xy}-\\Pi_{xy})F_{xy}\\|_{L_s}^s \\le r_{M-m}^s"
     },
     {
       "from": "m1-lem-est-raw-difference",
-      "to": "m1-lem-est-prefix"
+      "to": "m1-lem-est-prefix",
+      "context": "^s \\sum_{x,y}w_{xy}\\|F_{xy}\\|_{L_s}^s. \\] The slice weights make the sum on the right precisely the integrated raw norm to the $s$th power, bounded by Lemma~\\ref{lem:est-raw-difference}. Thus the uniform operator estimate applies directly to the integrated input bound, even when different slices have dif"
     },
     {
       "from": "m1-lem-buf-reference",
-      "to": "m1-lem-buf-relative-stability"
+      "to": "m1-lem-buf-relative-stability",
+      "context": "ssion identity region. These $K$ positive entries close all gates as well. It remains to consider the case of fewer than $K$ true entries above $L_0$. Lemma~\\ref{lem:buf-reference} bounds every reference rank and threshold by $2L_0$. Fix $L_1$ much larger than $L_0$ and all upper saturation thresho"
     },
     {
       "from": "m1-lem-buf-update",
-      "to": "m1-lem-buf-relative-stability"
+      "to": "m1-lem-buf-relative-stability",
+      "context": "range. All remaining first-coordinate input errors and increments now have absolute bounds by $C(1+L_1)e_i$ and $C(1+L_1)(e_i+e_{i-1})$, respectively. Lemma~\\ref{lem:buf-update}, iterated from $j$ to the last group, therefore bounds every array and threshold discrepancy by $CE$, on taking $C_1$ l"
     },
     {
       "from": "m1-lem-env-ranks",
-      "to": "m1-lem-buf-rarity"
+      "to": "m1-lem-buf-rarity",
+      "context": "4C_{\\mathrm{mass}}}{a\\rho_j}. \\] Conditional on one specified endpoint hit, each other endpoint in this set is retained with probability at most $Ca$, by Lemma~\\ref{lem:env-ranks}. This remains true if the specified hit uses the narrower rate. The forced endpoint contributes at most 1, so the exp"
     },
     {
       "from": "m1-lem-buf-relative-stability",
-      "to": "m1-prop-buf-error"
+      "to": "m1-prop-buf-error",
+      "context": "(n_j\\rho_j^s)^{-1} \\bigl(2^{sB_1d_j}+2^{-sK_nd_j}\\bigr). \\label{eq:buf-false-sum} \\end{equation} For a true-type first overflow at $j$, use Lemma~\\ref{lem:buf-relative-stability} and split $e_i\\leq\\beta_i+\\gamma_i$. For the mean part, enlarge the actual first-overflow event to $\\Theta_j$, apply Eq"
     },
     {
       "from": "m1-prop-buf-error",
-      "to": "m1-prop-est-clean"
+      "to": "m1-prop-est-clean",
+      "context": "To apply Proposition~\\ref{prop:buf-error}, use the deterministic-mean and absolute-noise bounds of Lemma~\\ref{lem:est-prefix}. The first target is nonnegative w"
     },
     {
       "from": "m1-lem-est-prefix",
-      "to": "m1-prop-est-clean"
+      "to": "m1-prop-est-clean",
+      "context": "To apply Proposition~\\ref{prop:buf-error}, use the deterministic-mean and absolute-noise bounds of Lemma~\\ref{lem:est-prefix}. The first target is nonnegative with bounded deterministic row mass before division by $a$, and its second target is"
     },
     {
       "from": "m1-lem-buf-clamping",
-      "to": "m1-prop-est-clean"
+      "to": "m1-prop-est-clean",
+      "context": "coming quantities required by the incoming comparison. Exact endpoint grouping gives common increment arrays for the clamped and unclamped calculations. Lemma~\\ref{lem:buf-clamping} therefore preserves these row-function values, including scores and witnesses, so the same estimates hold after clampin"
     },
     {
       "from": "m1-lem-atom-assembly",
-      "to": "m1-prop-est-clean"
+      "to": "m1-prop-est-clean",
+      "context": "Lemma~\\ref{lem:buf-clamping} therefore preserves these row-function values, including scores and witnesses, so the same estimates hold after clamping. Lemma~\\ref{lem:atom-assembly} then charges the incoming gates by those same pre-output norms. Its separate column-vector calls have a fixed positive"
     },
     {
       "from": "m1-lem-ctrl-replay",
-      "to": "m1-lem-fp-clean"
+      "to": "m1-lem-fp-clean",
+      "context": "nt mask, as required in Section~\\ref{sec:buf-compression}. The salt rule is required of all access operations, including inverse queries and port orders; Lemma~\\ref{lem:ctrl-replay} supplies its implementation. Lemmas~\\ref{lem:env-gap} and \\ref{lem:env-variants} therefore apply to this function. Th"
     },
     {
       "from": "m1-lem-env-gap",
-      "to": "m1-lem-fp-clean"
+      "to": "m1-lem-fp-clean",
+      "context": "The salt rule is required of all access operations, including inverse queries and port orders; Lemma~\\ref{lem:ctrl-replay} supplies its implementation. Lemmas~\\ref{lem:env-gap} and \\ref{lem:env-variants} therefore apply to this function. This verifies the deterministic-mean hypothesis of Propos"
     },
     {
       "from": "m1-lem-env-variants",
-      "to": "m1-lem-fp-clean"
+      "to": "m1-lem-fp-clean",
+      "context": "red of all access operations, including inverse queries and port orders; Lemma~\\ref{lem:ctrl-replay} supplies its implementation. Lemmas~\\ref{lem:env-gap} and \\ref{lem:env-variants} therefore apply to this function. This verifies the deterministic-mean hypothesis of Proposition~\\ref{prop:est-clean};"
     },
     {
       "from": "m1-prop-est-clean",
-      "to": "m1-lem-fp-clean"
+      "to": "m1-lem-fp-clean",
+      "context": "ntation. Lemmas~\\ref{lem:env-gap} and \\ref{lem:env-variants} therefore apply to this function. This verifies the deterministic-mean hypothesis of Proposition~\\ref{prop:est-clean}; it does not assert independence between errors of different children."
     },
     {
       "from": "m1-lem-fp-clean",
-      "to": "m1-lem-fp-envelope"
+      "to": "m1-lem-fp-envelope",
+      "context": "Each fixed variant is independent of the present salt and leaves it unchanged. Lemma~\\ref{lem:fp-clean} therefore makes its clean witness supports $\\mathcal G_b$-measurable. We use these supports as sets of actual IDs, not"
     },
     {
       "from": "m1-lem-fp-hash",
-      "to": "m1-lem-fp-envelope"
+      "to": "m1-lem-fp-envelope",
+      "context": "mitted when describing its full array. This proves the representative claim. Equation~\\eqref{eq:fp-envelope-collision} is now the pair union bound from Lemma~\\ref{lem:fp-hash}, conditional on the fixed envelope."
     },
     {
       "from": "m1-lem-env-variants",
-      "to": "m1-lem-fp-escape"
+      "to": "m1-lem-fp-escape",
+      "context": "ld start must be summed out. Fix a guessed variant and a two-factor path $x\\to z\\to y$. Change variables by its measure-preserving transformation, as in Lemma~\\ref{lem:env-variants}; in the following display all memberships, ports, and witness values are evaluated in that transformed environment. Wri"
     },
     {
       "from": "m1-lem-est-raw-difference",
-      "to": "m1-lem-fp-escape"
+      "to": "m1-lem-fp-escape",
+      "context": "been retained in Equation~\\eqref{eq:fp-actual-incoming}. At slack $d$, scale ratios, variants, and immediate path counts cost at most $2^{O(d)}$, as in Lemma~\\ref{lem:est-raw-difference}. The possible reset factor in Equation~\\eqref{eq:fp-actual-incoming} is absorbed by the precision gain. Admissible ro"
     },
     {
       "from": "m1-lem-est-raw-difference",
-      "to": "m1-lem-fp-direct"
+      "to": "m1-lem-fp-direct",
+      "context": "ing any exact base term assigned to that group. Take an absent second channel to be zero, and choose a deterministic descriptor bound $k_d\\le2^{Cd}$. By Lemma~\\ref{lem:est-raw-difference}, the clean paired increments at a group of slack $d$ obey their crude absolute estimates in the retained endpoint metri"
     },
     {
       "from": "m1-lem-buf-update",
-      "to": "m1-lem-fp-direct"
+      "to": "m1-lem-fp-direct",
+      "context": "e $\\sup_y|Z_y|^s\\le\\sum_y|Z_y|^s$ over actual ID positions, the row norm of $\\max_\\nu\\sup_y|\\Delta_d^{\\mathrm{cl},\\nu}(x,y)|$ is at most $2^{-p+O(d)}$. Lemmas~\\ref{lem:buf-update} and \\ref{lem:buf-clamping}, together with Equation~\\eqref{eq:buf-propagation}, propagate an input discrepancy at slack"
     },
     {
       "from": "m1-lem-buf-clamping",
-      "to": "m1-lem-fp-direct"
+      "to": "m1-lem-fp-direct",
+      "context": "|Z_y|^s$ over actual ID positions, the row norm of $\\max_\\nu\\sup_y|\\Delta_d^{\\mathrm{cl},\\nu}(x,y)|$ is at most $2^{-p+O(d)}$. Lemmas~\\ref{lem:buf-update} and \\ref{lem:buf-clamping}, together with Equation~\\eqref{eq:buf-propagation}, propagate an input discrepancy at slack $d$ to the final array with"
     },
     {
       "from": "m1-lem-fp-buckets",
-      "to": "m1-lem-fp-direct"
+      "to": "m1-lem-fp-direct",
+      "context": "l in $d+1$. At each step the discrepancy is measured between the clamped full arrays, including their defaults. The next bucket increment is compared by Lemma~\\ref{lem:fp-buckets}; compression then applies its uniform Lipschitz bound and the common clamp cannot enlarge the discrepancy. This recurr"
     },
     {
       "from": "m1-lem-fp-clean",
-      "to": "m1-prop-fp-coupling"
+      "to": "m1-prop-fp-coupling",
+      "context": "l in a block coupling and already have their actual target bounds. Same-block clean children have the clean target bounds at smaller budgets. Therefore Lemma~\\ref{lem:fp-clean}, the prefix estimate, and the compression analysis give the clean active target bounds with the spare constants in Prop"
     },
     {
       "from": "m1-prop-est-clean",
-      "to": "m1-prop-fp-coupling"
+      "to": "m1-prop-fp-coupling",
+      "context": "erefore Lemma~\\ref{lem:fp-clean}, the prefix estimate, and the compression analysis give the clean active target bounds with the spare constants in Proposition~\\ref{prop:est-clean}. For the coupling, Lemmas~\\ref{lem:fp-escape}--\\ref{lem:fp-direct} bound the pre-incoming quantities. Incoming gates"
     },
     {
       "from": "m1-lem-fp-escape",
-      "to": "m1-prop-fp-coupling"
+      "to": "m1-prop-fp-coupling",
+      "context": "imate, and the compression analysis give the clean active target bounds with the spare constants in Proposition~\\ref{prop:est-clean}. For the coupling, Lemmas~\\ref{lem:fp-escape}--\\ref{lem:fp-direct} bound the pre-incoming quantities. Incoming gates are then compared by their rank and root-Lipsch"
     },
     {
       "from": "m1-lem-fp-direct",
-      "to": "m1-prop-fp-coupling"
+      "to": "m1-prop-fp-coupling",
+      "context": "ssion analysis give the clean active target bounds with the spare constants in Proposition~\\ref{prop:est-clean}. For the coupling, Lemmas~\\ref{lem:fp-escape}--\\ref{lem:fp-direct} bound the pre-incoming quantities. Incoming gates are then compared by their rank and root-Lipschitz bounds. In their"
     },
     {
       "from": "m1-lem-atom-assembly",
-      "to": "m1-prop-fp-coupling"
+      "to": "m1-prop-fp-coupling",
+      "context": "chitz bounds. In their multiplier effect, restrict to the union of the final supports of the two tables; these have bounded incoming multiplicity. Thus Lemma~\\ref{lem:atom-assembly} costs only a fixed factor on pre-incoming errors. Its separately queried column vectors have a positive constant budge"
     },
     {
       "from": "m1-lem-fp-hash",
-      "to": "m1-prop-fp-coupling"
+      "to": "m1-prop-fp-coupling",
+      "context": "single free-bit component. Likewise, an enlargement of the fixed identifier-length coefficient only changes the polynomial-evaluation collision term in Lemma~\\ref{lem:fp-hash} to at most $2c_{\\mathrm{ID}}/B^2$; increasing the fixed minimum $B\\ge c_{\\mathrm{ID}}$ bounds it by $2/B$. These enlar"
     },
     {
       "from": "m1-prop-fp-coupling",
-      "to": "m1-thm-fp-estimators"
+      "to": "m1-thm-fp-estimators",
+      "context": "Proposition~\\ref{prop:fp-coupling} adds the actual--clean discrepancy to Proposition~\\ref{prop:est-clean} with its spare constant. The inactive-task boun"
     },
     {
       "from": "m1-prop-est-clean",
-      "to": "m1-thm-fp-estimators"
+      "to": "m1-thm-fp-estimators",
+      "context": "Proposition~\\ref{prop:fp-coupling} adds the actual--clean discrepancy to Proposition~\\ref{prop:est-clean} with its spare constant. The inactive-task bounds follow from the fixed bounded ranges and supports. The induction in"
     },
     {
       "from": "m1-lem-arith-gate-evaluation",
-      "to": "m1-lem-arith-elementary"
+      "to": "m1-lem-arith-elementary",
+      "context": "e root clock, the fixed margins, and the gate path. Regenerating a place by replaying that path needs no saved binary place counter at each transition. Lemma~\\ref{lem:arith-gate-evaluation} therefore gives the suspended-space bounds. Their longest paths have length $O(t+1)$. For composition, use one common"
     },
     {
       "from": "m1-lem-arith-gate-evaluation",
-      "to": "m1-lem-arith-multiplication"
+      "to": "m1-lem-arith-multiplication",
+      "context": "ate descriptions, term coordinates, bit positions and tail shifts are computable by replaying paths and doing integer index arithmetic from $t$ and $q$. Lemma~\\ref{lem:arith-gate-evaluation} converts these depth bounds to suspended storage. Finally, Equation~\\eqref{eq:arith-last-band} bounds every intrinsic"
     },
     {
       "from": "m1-lem-arith-elementary",
-      "to": "m1-lem-arith-reciprocal"
+      "to": "m1-lem-arith-reciprocal",
+      "context": "e produced by integer arithmetic, as described below. The suffix $e$ has the exact stream with digit zero through $k$ and digit $x_j$ thereafter. Thus Lemmas~\\ref{lem:arith-elementary} and \\ref{lem:arith-multiplication} provide exact streams for $\\widehat T_t$, using only a fixed number of normalized op"
     },
     {
       "from": "m1-lem-arith-multiplication",
-      "to": "m1-lem-arith-reciprocal"
+      "to": "m1-lem-arith-reciprocal",
+      "context": "c, as described below. The suffix $e$ has the exact stream with digit zero through $k$ and digit $x_j$ thereafter. Thus Lemmas~\\ref{lem:arith-elementary} and \\ref{lem:arith-multiplication} provide exact streams for $\\widehat T_t$, using only a fixed number of normalized operations. Explicitly, form the prod"
     },
     {
       "from": "m1-lem-arith-residue-stream",
-      "to": "m1-lem-arith-reciprocal"
+      "to": "m1-lem-arith-reciprocal",
+      "context": "For $r>0$, computing floors of the coefficient scaled at $r$ and $r-1$ gives its exact difference digit; at $r=0$ use the place-zero floor alone, as in Lemma~\\ref{lem:arith-residue-stream}. Clipping is unnecessary because the coefficients were normalized in advance. Every original-input query during this f"
     },
     {
       "from": "m1-lem-arith-elementary",
-      "to": "m1-lem-arith-rank"
+      "to": "m1-lem-arith-rank",
+      "context": "h $K=t+h$ for fixed large $h$. Order these finite rational values, breaking ties by descriptor index. Compare every pair using the signed comparison of Lemma~\\ref{lem:arith-elementary}. For each descriptor count how many descriptors precede it, then compare that count to the requested rank minus one."
     },
     {
       "from": "m1-lem-arith-gate-evaluation",
-      "to": "m1-lem-arith-rank"
+      "to": "m1-lem-arith-rank",
+      "context": "ndices in $O(d+t)$ scratch, using only the fixed domain and root parameters. No numerical comparison is needed to determine the circuit topology. Apply Lemma~\\ref{lem:arith-gate-evaluation}. The constants in Equation~\\eqref{eq:arith-local-bound} can absorb the fixed digit overshoot because $d\\geq1$."
     },
     {
       "from": "m1-lem-arith-elementary",
-      "to": "m1-lem-arith-sums-scales"
+      "to": "m1-lem-arith-sums-scales",
+      "context": "ays normalized. Along one path there are $r$ elementary operations. Choose common coefficients in their bounds, as in the last paragraph of the proof of Lemma~\\ref{lem:arith-elementary}. The constant terms sum to $O(r)$ and the differences of successive digit clocks telescope. Thus the local length is"
     },
     {
       "from": "m1-lem-arith-residue-stream",
-      "to": "m1-thm-arith-interface"
+      "to": "m1-thm-arith-interface",
+      "context": "The primitive constructions define deterministic integers $N_t$. Lemma~\\ref{lem:arith-residue-stream} turns them into exact streams. When composing primitives, their operands are these exact streams; numerical approximat"
     },
     {
       "from": "m1-lem-arith-sums-scales",
-      "to": "m1-thm-arith-interface"
+      "to": "m1-thm-arith-interface",
+      "context": "ed everywhere. There are a bounded number of stages, each with overhead $O(d)$; within a balanced reduction the elementary overheads have total $O(d)$ by Lemma~\\ref{lem:arith-sums-scales}. Along any path the intermediate clock differences telescope, giving Equation~\\eqref{eq:arith-export} and total oversh"
     },
     {
       "from": "m1-lem-arith-reciprocal",
-      "to": "m1-thm-arith-interface"
+      "to": "m1-thm-arith-interface",
+      "context": "se $u\\geq0$. Increasing the stage constants as above makes this same choice of $b$ valid in all local bounds. The early-word case is already included in Lemma~\\ref{lem:arith-reciprocal}: those retained bits are part of the local record and are paid for at the actual original-input clock by Equation~\\eqre"
     },
     {
       "from": "m1-lem-arith-buffered-test",
-      "to": "m1-thm-arith-interface"
+      "to": "m1-thm-arith-interface",
+      "context": "sic bound. They ask the structural operand at clock zero. Buffered tests are separate recipes with structural starting clock zero and precision fixed by Lemma~\\ref{lem:arith-buffered-test}; they are not altered when a surrounding value is requested more accurately. Thus no discontinuous comparison of exact"
     },
     {
       "from": "m1-lem-arith-gate-evaluation",
-      "to": "m1-thm-arith-interface"
+      "to": "m1-thm-arith-interface",
+      "context": "stor cursor address or requires an operand value to discover the next gate. Their integers have $O(B+d+t)$ bits; repeated scans reuse one scratch area. Lemma~\\ref{lem:arith-gate-evaluation} therefore applies at every Boolean portion of the recipe. Finally, for a public coefficient $P/Q$, $Q>0$, producing a"
     },
     {
       "from": "m1-lem-ctrl-local-graph",
-      "to": "m1-lem-ctrl-tour"
+      "to": "m1-lem-ctrl-tour",
+      "context": "entify the root in this component; its address never has to be compared with an earlier address. Constant-degree adjacency and edge flip are provided by Lemma~\\ref{lem:ctrl-local-graph}."
     },
     {
       "from": "m1-lem-ctrl-local-graph",
-      "to": "m1-lem-ctrl-cap"
+      "to": "m1-lem-ctrl-cap",
+      "context": "cessful request the returned row port is the one in the reached initiation, not a guessed port. This is the token used by a later forward restoration in Lemma~\\ref{lem:ctrl-local-graph}. These are inverse maps by the common contour order. Existence tests make the corresponding visits and reverse them,"
     },
     {
       "from": "m1-lem-ctrl-local-graph",
-      "to": "m1-lem-ctrl-score-rank"
+      "to": "m1-lem-ctrl-score-rank",
+      "context": "gram state may be a partial suffix state preceding a high-place query. It then contains that short suffix, rather than a saved copy of the final score. Lemma~\\ref{lem:ctrl-local-graph} therefore also gives the required bound for inverse neighbor queries. All root components are finite, including isolate"
     },
     {
       "from": "m1-lem-est-paths",
-      "to": "m1-lem-ctrl-paths"
+      "to": "m1-lem-ctrl-paths",
+      "context": "delegation. An old prefix port delegates to that preceding prefix; after its return it requires no new graph query. These are exactly the path cases of Lemma~\\ref{lem:est-paths}. There are two compiled continuations of this same terminal syntax. A one-way continuation clears its path records af"
     },
     {
       "from": "m1-lem-ctrl-paths",
-      "to": "m1-lem-ctrl-equality"
+      "to": "m1-lem-ctrl-equality",
+      "context": "The two descriptors occupy $O(d)$ bits. By Lemma~\\ref{lem:ctrl-paths}, each endpoint can be visited and restored for a local bit or hash action. If $d>2h_*$, compare the $O(B)$ identifier"
     },
     {
       "from": "m1-lem-fp-catalytic",
-      "to": "m1-lem-ctrl-equality"
+      "to": "m1-lem-ctrl-equality",
+      "context": "O(d)$ bits, since $h_*=\\lfloor\\epsilon\\log_2 B\\rfloor$ with a fixed positive $\\epsilon$ and sufficient minimum padding. Otherwise use the four visits in Lemma~\\ref{lem:fp-catalytic}: flip the first key's bit, xor the second key's bit into a result, and repeat. The final result is key equality for eve"
     },
     {
       "from": "m1-lem-est-paths",
-      "to": "m1-lem-ctrl-recipes"
+      "to": "m1-lem-ctrl-recipes",
+      "context": "heir explicit chain; graph probes copy only that local raw chain.} \\label{tab:ctrl-records} \\end{table} \\paragraph{Immediate paths and their values.} By Lemma~\\ref{lem:est-paths}, a group has at most $2^{O(d)}$ immediate descriptors: term and channel part, scale and budget offsets, a variant word"
     },
     {
       "from": "m1-lem-ctrl-paths",
-      "to": "m1-lem-ctrl-recipes"
+      "to": "m1-lem-ctrl-recipes",
+      "context": "a fixed arithmetic recipe. For terminal motion the right unbalanced path, or the direct child path, is the last delegation. This is the ordered path of Lemma~\\ref{lem:ctrl-paths}. To avoid a validity cycle distinguish intrinsic constituent existence, intrinsic motion or excursion, and outer valid"
     },
     {
       "from": "m1-thm-arith-interface",
-      "to": "m1-lem-ctrl-recipes"
+      "to": "m1-lem-ctrl-recipes",
+      "context": "es neither a large numerical shift nor a new long choice field. The fixed number of bounded-factor products, coefficients and $O(d)$ scale shifts obey Theorem~\\ref{thm:arith-interface}. \\paragraph{Candidate domain and bucket sums.} The descriptor pool is the concatenation of the preceding list position"
     },
     {
       "from": "m1-lem-fp-buckets",
-      "to": "m1-lem-ctrl-recipes"
+      "to": "m1-lem-ctrl-recipes",
+      "context": "reserves distinct actual representatives, including when two old representatives have the same key. Thus it gives exactly the intermediate array used in Lemma~\\ref{lem:fp-buckets}. \\begingroup \\widowpenalty=10000 \\paragraph{Ranks, compression, and list selection.} The intermediate domain and its v"
     },
     {
       "from": "m1-lem-buf-update",
-      "to": "m1-lem-ctrl-recipes"
+      "to": "m1-lem-ctrl-recipes",
+      "context": "is included as often as needed to represent the unlimited padding in the prescribed ranks. The rank, max, min, absolute-value and clipping operations of Lemma~\\ref{lem:buf-update} are the finite arithmetic primitives. The ranges are $2^{O(d)}$ by Lemma~\\ref{lem:buf-clamping}; their known normalizi"
     },
     {
       "from": "m1-lem-buf-clamping",
-      "to": "m1-lem-ctrl-recipes"
+      "to": "m1-lem-ctrl-recipes",
+      "context": "rank, max, min, absolute-value and clipping operations of Lemma~\\ref{lem:buf-update} are the finite arithmetic primitives. The ranges are $2^{O(d)}$ by Lemma~\\ref{lem:buf-clamping}; their known normalizing shifts have magnitude $O(d)$. \\par\\endgroup Here $u_0\\ge\\rho_d=2^{-c_1d}$. A canonical finit"
     },
     {
       "from": "m1-lem-atom-margins",
-      "to": "m1-lem-ctrl-recipes"
+      "to": "m1-lem-ctrl-recipes",
+      "context": "cal equalities at the boundary need not be decided. No default can expose a positive row score: its rank dummies close the gate first, by the margins of Lemma~\\ref{lem:atom-margins}. Remap a requested list ordinal to its selected intermediate descriptor by enumerating the pool and counting the prece"
     },
     {
       "from": "m1-lem-ctrl-cap",
-      "to": "m1-lem-ctrl-recipes"
+      "to": "m1-lem-ctrl-recipes",
+      "context": "d paired move fails; only a successful move permits a gate or column-value query at the endpoint. The paired inverse keeps its target-side validator from Lemma~\\ref{lem:ctrl-cap}. Incoming ranks and vector queries return zero outside their prescribed vertex type or membership domain. These checks"
     },
     {
       "from": "m1-lem-atom-ports",
-      "to": "m1-lem-ctrl-recipes"
+      "to": "m1-lem-ctrl-recipes",
+      "context": "sses and pre-incoming values.} At the final slack $d=1$, the list size, port alphabet and all threshold gaps are constants. The classes and witnesses in Lemma~\\ref{lem:atom-ports} are defined by canonical finite-margin entry and rank tests on the final raw arrays. They can be enumerated without te"
     },
     {
       "from": "m1-lem-ctrl-score-rank",
-      "to": "m1-lem-ctrl-recipes"
+      "to": "m1-lem-ctrl-recipes",
+      "context": "ot merely entries promised valid by an external caller. The auxiliary scoring program has the same initial check. Its score digits are pre-incoming, so Lemma~\\ref{lem:ctrl-score-rank} invokes only lower forward operations. By Lemma~\\ref{lem:atom-ports}, discarding a precursor with more than $K_c$ inco"
     },
     {
       "from": "m1-lem-atom-ports",
-      "to": "m1-lem-ctrl-replay"
+      "to": "m1-lem-ctrl-replay",
+      "context": "t or vector role uses the specified public stage rate and its prescribed suffix; it does not carry the old source. These are the common-tuple recipes in Lemma~\\ref{lem:atom-ports} and Lemma~\\ref{lem:est-paths}. An averaging edge also carries its generator and wrap word. Apply these fixed transfor"
     },
     {
       "from": "m1-lem-est-paths",
-      "to": "m1-lem-ctrl-replay"
+      "to": "m1-lem-ctrl-replay",
+      "context": "fied public stage rate and its prescribed suffix; it does not carry the old source. These are the common-tuple recipes in Lemma~\\ref{lem:atom-ports} and Lemma~\\ref{lem:est-paths}. An averaging edge also carries its generator and wrap word. Apply these fixed transformations in order to the curren"
     },
     {
       "from": "m1-thm-arith-interface",
-      "to": "m1-lem-ctrl-replay"
+      "to": "m1-lem-ctrl-replay",
+      "context": "e. Numerical paths specify arithmetic operands, gates, digit places and the early-prefix modes of a reciprocal. Their finite index rules are those of Theorem~\\ref{thm:arith-interface}; an absolute place is recovered from the root clock and the path or offset, not saved afresh per frame. Descriptor sele"
     },
     {
       "from": "m1-lem-fp-clean",
-      "to": "m1-lem-ctrl-replay"
+      "to": "m1-lem-ctrl-replay",
+      "context": "y and checks are used before predecessor queries. Consequently the entire lower-block structure is independent of later salts. The clean calculation in Lemma~\\ref{lem:fp-clean} uses the same fixed descriptor orders and structural clocks, with its stipulated replacements of comparison predicates."
     },
     {
       "from": "m1-thm-ctrl-realization",
-      "to": "m1-lem-ctrl-replay"
+      "to": "m1-lem-ctrl-replay",
+      "context": "[Proof of Theorem~\\ref{thm:ctrl-realization}] Let $S$ exceed the finite number of operation strata in Lemma~\\ref{lem:ctrl-recipes}, including the subdivision of pat"
     },
     {
       "from": "m1-lem-ctrl-recipes",
-      "to": "m1-lem-ctrl-replay"
+      "to": "m1-lem-ctrl-replay",
+      "context": "[Proof of Theorem~\\ref{thm:ctrl-realization}] Let $S$ exceed the finite number of operation strata in Lemma~\\ref{lem:ctrl-recipes}, including the subdivision of path validation and all final wrappers. Choose fixed integers $K_0>S+1$ and $K_1>2(K_0+S"
     },
     {
       "from": "m1-lem-ctrl-local-graph",
-      "to": "m1-lem-ctrl-replay"
+      "to": "m1-lem-ctrl-replay",
+      "context": "me $a_0,b_0$ at every budget; a lower opaque operation contributes its call recipe, but none of its internal working states, to that certificate. Second, Lemma~\\ref{lem:ctrl-local-graph} converts a copied raw portion to its physical bound with one fixed pair $A,D$. The induction below appends a lower ope"
     },
     {
       "from": "m1-lem-ctrl-paths",
-      "to": "m1-lem-ctrl-replay"
+      "to": "m1-lem-ctrl-replay",
+      "context": "Theorem~\\ref{thm:arith-interface}, then compute exactly their specified bit or digit. Their finite loops and lower calls terminate. Endpoint visits use Lemma~\\ref{lem:ctrl-paths}, and completed endpoint comparisons use Lemma~\\ref{lem:ctrl-equality}. The latter restores arbitrary catalyst contents"
     },
     {
       "from": "m1-lem-ctrl-equality",
-      "to": "m1-lem-ctrl-replay"
+      "to": "m1-lem-ctrl-replay",
+      "context": "fied bit or digit. Their finite loops and lower calls terminate. Endpoint visits use Lemma~\\ref{lem:ctrl-paths}, and completed endpoint comparisons use Lemma~\\ref{lem:ctrl-equality}. The latter restores arbitrary catalyst contents and has an independent answer, preserving the induction hypothesis."
     },
     {
       "from": "m1-lem-ctrl-tour",
-      "to": "m1-lem-ctrl-replay"
+      "to": "m1-lem-ctrl-replay",
+      "context": "an admissible lower tuple and available space; fresh safe lower queries do not rely on the truth of an earlier stored flag. The finite graph contours of Lemma~\\ref{lem:ctrl-tour} now implement the higher cap and inverse-rank wrappers in Lemmas~\\ref{lem:ctrl-cap} and~\\ref{lem:ctrl-score-rank}. The"
     },
     {
       "from": "m1-lem-ctrl-cap",
-      "to": "m1-lem-ctrl-replay"
+      "to": "m1-lem-ctrl-replay",
+      "context": "n the truth of an earlier stored flag. The finite graph contours of Lemma~\\ref{lem:ctrl-tour} now implement the higher cap and inverse-rank wrappers in Lemmas~\\ref{lem:ctrl-cap} and~\\ref{lem:ctrl-score-rank}. They terminate on success-root components even if other graph components contain cycles"
     },
     {
       "from": "m1-lem-ctrl-score-rank",
-      "to": "m1-lem-ctrl-replay"
+      "to": "m1-lem-ctrl-replay",
+      "context": "er stored flag. The finite graph contours of Lemma~\\ref{lem:ctrl-tour} now implement the higher cap and inverse-rank wrappers in Lemmas~\\ref{lem:ctrl-cap} and~\\ref{lem:ctrl-score-rank}. They terminate on success-root components even if other graph components contain cycles or guard-created dead ends."
     },
     {
       "from": "m1-thm-fixed-precision",
-      "to": "m1-lem-final-majority"
+      "to": "m1-lem-final-majority",
+      "context": "[Proof of Theorem~\\ref{thm:fixed-precision}] Apply Lemma~\\ref{lem:model-reduction} to $\\mathcal M$, with no promise on its acceptance probability. Set \\[ r=d\\lcei"
     },
     {
       "from": "m1-lem-model-reduction",
-      "to": "m1-lem-final-majority"
+      "to": "m1-lem-final-majority",
+      "context": "[Proof of Theorem~\\ref{thm:fixed-precision}] Apply Lemma~\\ref{lem:model-reduction} to $\\mathcal M$, with no promise on its acceptance probability. Set \\[ r=d\\lceil\\log_2(n+2)\\rceil,\\qquad \\Delta=2^{-r}"
     },
     {
       "from": "m1-prop-hier-reward-target",
-      "to": "m1-lem-final-majority"
+      "to": "m1-lem-final-majority",
+      "context": "e $|V_0|\\le2^{C_0B}$ is an explicit configuration bound. Since $d$ is fixed, $r,L=O(B)$. Let $z$ be the all-primary copy of the start at stage $L$. Proposition~\\ref{prop:hier-reward-target} gives \\begin{equation}\\label{eq:final-hierarchy-accuracy} 0\\le p_{\\mathcal M}(x)-W_L(z)\\le\\Delta/8. \\end{equation} Thi"
     },
     {
       "from": "m1-lem-env-ranks",
-      "to": "m1-lem-final-majority"
+      "to": "m1-lem-final-majority",
+      "context": "eward task take $a=u=f=b_L$. Its rank satisfies $i_*=O(L+1)$, and Equation~\\eqref{eq:est-precision} reads \\[ p=M_{\\rm top}/K_{\\rm prec}-HL-A_*i_*. \\] By Lemma~\\ref{lem:env-ranks}, fix an integer $C_{\\rm tail}\\ge1$ bounding $(f/\\pi_f)C_b^8$ throughout the admissible range. Choose the fixed linear c"
     },
     {
       "from": "m1-thm-fp-estimators",
-      "to": "m1-lem-final-majority"
+      "to": "m1-lem-final-majority",
+      "context": "get and field-size choices in the preceding subsection allow this enlargement; Equation~\\eqref{eq:final-admissible} still bounds every descendant rate. Theorem~\\ref{thm:fp-estimators} supplies the reward moment estimate. Lemma~\\ref{lem:final-majority}, with $\\eta=\\Delta/8$, now shows that \\begin{equati"
     },
     {
       "from": "m1-thm-arith-interface",
-      "to": "m1-lem-final-majority"
+      "to": "m1-lem-final-majority",
+      "context": "\\] by Equation~\\eqref{eq:final-precision-choice}. We next turn the estimator values into a finite list of dyadic numbers. For each master environment, Theorem~\\ref{thm:arith-interface} gives the digits $w_j\\in\\{-6,\\ldots,6\\}$ of its one fixed value $\\bar W_L(z)$. Structural choices do not depend on the"
     },
     {
       "from": "m1-thm-ctrl-realization",
-      "to": "m1-lem-final-majority"
+      "to": "m1-lem-final-majority",
+      "context": "during this computation. The master environment, current cursor, catalyst, shared scratch, and suspended controller records together use $O(B)$ bits by Theorem~\\ref{thm:ctrl-realization}, because $M_{\\rm top},K=O(B)$. The outer computation keeps only a fixed number of additional $O(B)$-bit registers: its"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-final-majority"
+      "to": "m1-lem-final-majority",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Let $\\mathcal M$ recognize a language in $\\BPL$, with acceptance probability at most $1/3$ on no inputs and at least $"
     },
     {
       "from": "m1-thm-probability",
-      "to": "m1-cor-promise-bpl"
+      "to": "m1-cor-promise-bpl",
+      "context": "[Proof of Theorem~\\ref{thm:probability}] Fix a padded machine $\\mathcal M_{\\rm pad}$ as follows. On a string beginning with $1^n0x$, where $|x|=n$, it simulate"
     },
     {
       "from": "m1-thm-fixed-precision",
-      "to": "m1-cor-promise-bpl"
+      "to": "m1-cor-promise-bpl",
+      "context": "full input length. On every string with the specified prefix its acceptance probability is $p_{\\mathcal M}(x)$. Fix once and for all the transducer of Theorem~\\ref{thm:fixed-precision} for $\\mathcal M_{\\rm pad}$ and $d=1$. On input $(x,1^q)$, with $n=|x|$ and $q\\ge1$, set \\[ m=2^{q+\\lceil\\log_2(2n+4)\\"
     },
     {
       "from": "m1-thm-fixed-precision",
-      "to": "m1-cor-certified-search"
+      "to": "m1-cor-certified-search",
+      "context": "$p_t(v)$, and it has a polynomial worst-case time bound in its input length. Write $\\gamma=(n+2)^{-c}$. Choose a fixed exponent $d$ large enough that Theorem~\\ref{thm:fixed-precision}, applied to the continuation machine, approximates every queried value within $\\delta\\le\\gamma/(8T(n))$. Such a fixed e"
     },
     {
       "from": "m1-thm-effective-simulation",
-      "to": "m1-lem-compiler-interpreter"
+      "to": "m1-lem-compiler-interpreter",
+      "context": "[Completion of the proof of Theorem~\\ref{thm:effective-simulation}] The compiler returns the described machine $D$ and the integers $K,H,c$ in Equation~\\eqref{eq:compiler-output-bounds}."
     },
     {
       "from": "m1-thm-fixed-precision",
-      "to": "m1-lem-compiler-interpreter"
+      "to": "m1-lem-compiler-interpreter",
+      "context": "ent enumeration, numerical digits, recursive interfaces, recomputation, and precision management---belong to the one complete library machine proved in Theorem~\\ref{thm:fixed-precision}. Its tapes remain counted throughout virtualization. The compiler adds only the exact input operations analyzed here,"
     }
   ]
 }

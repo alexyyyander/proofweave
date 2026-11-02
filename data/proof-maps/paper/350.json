@@ -617,311 +617,388 @@
   "edges": [
     {
       "from": "m1-thm-subharmonic-profile",
-      "to": "m1-lem-exceptional-gradient"
+      "to": "m1-lem-exceptional-gradient",
+      "context": "[Proof of Theorem~\\ref{thm:subharmonic-profile}] Fix such a profile $V$ and pass to a further subsequence so that $S_j/D_j\\to d$ and $B_j/D_j\\to b$ as in Lemma~\\ref{le"
     },
     {
       "from": "m1-lem-carleman",
-      "to": "m1-lem-exceptional-gradient"
+      "to": "m1-lem-exceptional-gradient",
+      "context": "[Proof of Theorem~\\ref{thm:subharmonic-profile}] Fix such a profile $V$ and pass to a further subsequence so that $S_j/D_j\\to d$ and $B_j/D_j\\to b$ as in Lemma~\\ref{lem:carleman}. The profile bounds remain valid on this subsequence. Suppose a smooth $\\chi$ touches $V$ from above at a finite poin"
     },
     {
       "from": "m1-lem-profile-extraction",
-      "to": "m1-lem-exceptional-gradient"
+      "to": "m1-lem-exceptional-gradient",
+      "context": "by the common normalization constant $c_j$ yields \\[ S_j\\int_G e^{-2S_j\\chi}\\,d\\mu_j \\le C\\int_F e^{-2S_j\\chi}\\,d\\mu_j. \\] The weighted bounds of Lemma~\\ref{lem:profile-extraction}, together with $\\log S_j/S_j\\to0$, now give the contradiction \\[ 0=\\sup_G(V-\\chi)\\le\\sup_F(V-\\chi)<0. \\] In particular"
     },
     {
       "from": "m1-lem-profile-extraction",
-      "to": "m1-prop-initial-growth"
+      "to": "m1-prop-initial-growth",
+      "context": "local norm by repeating that eigenfunction. Set $S_j=j k_j$. Then $S_j\\to\\infty$ and $S_j/k_j\\to\\infty$, whether or not $k_j$ tends to infinity. Apply Lemma~\\ref{lem:profile-extraction} on $M$ to the probability measures $|u_j|^2\\,d\\operatorname{vol}_g$. Compactness of $M$ and the compact upper bound wi"
     },
     {
       "from": "m1-thm-subharmonic-profile",
-      "to": "m1-prop-initial-growth"
+      "to": "m1-prop-initial-growth",
+      "context": "lying $|U_j|^2\\,dx$ by a fixed positive constant if necessary makes its mass at most one; the resulting logarithmic profile is the restriction of $V$. Theorem~\\ref{thm:subharmonic-profile} applies with $B_j=0$, $K_j=k_j$, and $D_j=S_j$, since \\[ \\frac{k_j}{S_j}=\\frac1j\\longrightarrow0, \\qquad \\frac{k_j^2"
     },
     {
       "from": "m1-lem-affine-profile",
-      "to": "m1-prop-subdivision"
+      "to": "m1-prop-subdivision",
+      "context": "First choose \\(A>10R\\), using only the uniform estimates of Lemma~\\ref{lem:affine-profile}, so large that, with \\(\\rho=A^{-1}\\), \\[ C\\rho^2(1+\\abs{\\log\\rho})<\\frac\\rho4. \\] Choose \\(C_1\\) strictly larger than"
     },
     {
       "from": "m1-lem-profile-extraction",
-      "to": "m1-prop-subdivision"
+      "to": "m1-prop-subdivision",
+      "context": "asures on \\(\\D_R\\) by setting \\[ d\\mu_j(X)= \\frac{e^{-2B_j\\cdot X}\\abs{U_j(X)}^2\\,dX} {\\displaystyle\\int_{\\D_R}e^{-2B_j\\cdot X}\\abs{U_j(X)}^2\\,dX}. \\] Lemma~\\ref{lem:profile-extraction} and Theorem~\\ref{thm:subharmonic-profile} give, after passage to a subsequence, a subharmonic profile \\(V\\), possibly i"
     },
     {
       "from": "m1-thm-subharmonic-profile",
-      "to": "m1-prop-subdivision"
+      "to": "m1-prop-subdivision",
+      "context": "X)= \\frac{e^{-2B_j\\cdot X}\\abs{U_j(X)}^2\\,dX} {\\displaystyle\\int_{\\D_R}e^{-2B_j\\cdot X}\\abs{U_j(X)}^2\\,dX}. \\] Lemma~\\ref{lem:profile-extraction} and Theorem~\\ref{thm:subharmonic-profile} give, after passage to a subsequence, a subharmonic profile \\(V\\), possibly identically \\(-\\infty\\), on \\(\\D_R\\). It s"
     },
     {
       "from": "m1-prop-subdivision",
-      "to": "m1-lem-descent"
+      "to": "m1-lem-descent",
+      "context": ", we obtain the other required smallness condition, \\[ \\frac{K^2s}{S(S+\\abs{B})} \\le \\frac{K}{S+\\abs{B}}\\le \\frac1{C_0}. \\] All the hypotheses of Proposition~\\ref{prop:subdivision} hold. Its conclusions, with \\(S/K=m(Q,b)+f_Q\\), are precisely \\eqref{eq:descent}. Along a path, \\(s(Q_i)=A^{-i}s(I)\\)"
     },
     {
       "from": "m1-lem-descent",
-      "to": "m1-lem-stopped-descent"
+      "to": "m1-lem-stopped-descent",
+      "context": "There are only finitely many nodes. At each node from which descent continues, choose one of the assignments furnished by Lemma~\\ref{lem:descent}. These choices and the stopping rule determine all random variables on the finite probability space of terminal paths."
     },
     {
       "from": "m1-thm-subharmonic-profile",
-      "to": "m1-lem-large-slope"
+      "to": "m1-lem-large-slope",
+      "context": "infty\\le C\\), and \\(\\norm{\\nabla p_j}_\\infty\\le Cs_j\\). Set \\[ S_j=K_j\\abs{b_j},\\qquad B_j=K_jb_j,\\qquad D_j=S_j+\\abs{B_j}=2S_j. \\] The hypotheses of Theorem~\\ref{thm:subharmonic-profile} follow from \\[ S_j\\ge a_0j\\longrightarrow\\infty,\\qquad \\frac{K_j}{D_j}=\\frac1{2\\abs{b_j}}\\longrightarrow0,\\qquad \\fr"
     },
     {
       "from": "m1-lem-profile-extraction",
-      "to": "m1-lem-large-slope"
+      "to": "m1-lem-large-slope",
+      "context": "2\\abs{b_j}^2}\\longrightarrow0. \\] Normalize the tilted measures \\[ d\\mu_j(x)=c_j e^{-2B_j\\cdot x}\\abs{U_j(x)}^2\\,dx \\] to have mass one on \\(\\D_R\\). By Lemma~\\ref{lem:profile-extraction} and Theorem~\\ref{thm:subharmonic-profile}, a subsequence has a subharmonic profile \\(V\\le0\\), with the identically minu"
     },
     {
       "from": "m1-lem-large-slope",
-      "to": "m1-prop-stability"
+      "to": "m1-prop-stability",
+      "context": "Let \\(B_*,\\eta_*\\) be the thresholds from Lemma~\\ref{lem:large-slope}. Choose \\(\\gamma\\) so that \\[ 0<\\gamma<\\frac12,\\qquad \\frac{\\gamma}{1-\\gamma}\\le\\eta_*. \\] Let \\(C_{\\mathrm{st}}\\) b"
     },
     {
       "from": "m1-lem-stopped-descent",
-      "to": "m1-prop-stability"
+      "to": "m1-prop-stability",
+      "context": "m:large-slope}. Choose \\(\\gamma\\) so that \\[ 0<\\gamma<\\frac12,\\qquad \\frac{\\gamma}{1-\\gamma}\\le\\eta_*. \\] Let \\(C_{\\mathrm{st}}\\) be the constant from Lemma~\\ref{lem:stopped-descent}. Choose \\[ 0<\\sigma\\le\\min\\left\\{\\frac{\\gamma}{2}, \\frac{\\gamma}{8C_{\\mathrm{st}}}\\right\\},"
     },
     {
       "from": "m1-lem-descent",
-      "to": "m1-prop-stability"
+      "to": "m1-prop-stability",
+      "context": "\\frac{2L}{1-\\gamma}, \\frac{8C_{\\mathrm{st}}}{\\gamma}\\right\\}. \\] Write \\(B_0=\\abs{b_I}\\). Starting at \\(I\\), descend using Lemma~\\ref{lem:descent} while \\[ \\abs{b_i-b_I}<\\gamma B_0,\\qquad m_i<\\gamma B_0, \\] and stop at the first failure of either inequality or at t"
     },
     {
       "from": "m1-prop-subdivision",
-      "to": "m1-lem-entry-bound"
+      "to": "m1-lem-entry-bound",
+      "context": "mmediately before an entry the path is inactive. An inactive square cannot have $N>H$, since that would start an excursion, so $N(Q^p)\\le H$. Apply Proposition~\\ref{prop:subdivision} at $Q^p$ with $b=0$ and $S=HK_{Q^p}+C_0$. Indeed, $E(Q^p,0)\\le HK_{Q^p}\\le S$, and \\[ \\frac{K_{Q^p}}{S}\\le\\frac1H, \\q"
     },
     {
       "from": "m1-prop-stability",
-      "to": "m1-prop-persistence"
+      "to": "m1-prop-persistence",
+      "context": "ment below extracts a nonconstant profile, finds a nearby square with small affine excess relative to a nonzero slope, and transfers that square to Proposition~\\ref{prop:stability}. We may require $H$ to exceed any fixed threshold needed above. Suppose there is no triple $(H,\\delta,J)$ with the ass"
     },
     {
       "from": "m1-lem-profile-extraction",
-      "to": "m1-prop-persistence"
+      "to": "m1-prop-persistence",
+      "context": "rrow0, \\qquad \\frac{K_j^2\\|\\nabla p_j\\|_\\infty}{S_j^2} \\le\\frac{Cs_j}{H_j^2}\\longrightarrow0. \\] Normalize $|U_j|^2\\,d\\xi$ to have mass one on $\\D_R$. Lemma~\\ref{lem:profile-extraction} and Theorem~\\ref{thm:subharmonic-profile}, with zero tilt, give a subharmonic profile $V$ on $\\D_R$ satisfying \\[ V\\le"
     },
     {
       "from": "m1-thm-subharmonic-profile",
-      "to": "m1-prop-persistence"
+      "to": "m1-prop-persistence",
+      "context": "_\\infty}{S_j^2} \\le\\frac{Cs_j}{H_j^2}\\longrightarrow0. \\] Normalize $|U_j|^2\\,d\\xi$ to have mass one on $\\D_R$. Lemma~\\ref{lem:profile-extraction} and Theorem~\\ref{thm:subharmonic-profile}, with zero tilt, give a subharmonic profile $V$ on $\\D_R$ satisfying \\[ V\\le0,\\qquad \\sup_{\\overline{\\D_1}}V\\ge-1. \\]"
     },
     {
       "from": "m1-lem-potential-decomposition",
-      "to": "m1-prop-persistence"
+      "to": "m1-prop-persistence",
+      "context": "ies the subtraction of these bounds. Since $A>10R$, both disks are contained in $\\D_2$. Consequently $V$ is nonconstant on $\\D_2$. The representation in Lemma~\\ref{lem:potential-decomposition} implies $V\\in W^{1,1}(\\D_2)$: the gradient of the logarithmic kernel is locally integrable in two dimensions, and the r"
     },
     {
       "from": "m1-prop-persistence",
-      "to": "m1-thm-mean-growth"
+      "to": "m1-thm-mean-growth",
+      "context": "Fix the threshold $H$ supplied by Proposition~\\ref{prop:persistence}. A terminal path on which no excursion is active has terminal growth $N\\le H$. Every other terminal path has exactly on"
     },
     {
       "from": "m1-lem-descent",
-      "to": "m1-thm-mean-growth"
+      "to": "m1-thm-mean-growth",
+      "context": "entry's excursion is still active. These sets are disjoint as $Q$ varies. Starting separately at each entry $Q$, set $b_Q=0$ and perform the descent of Lemma~\\ref{lem:descent}, stopping at the first square with $N\\le L$ or at the bottom, whichever comes first. Every continuing square has $N>L$,"
     },
     {
       "from": "m1-lem-stopped-descent",
-      "to": "m1-thm-mean-growth"
+      "to": "m1-thm-mean-growth",
+      "context": "n} gives \\[ N_T\\le m_T+(R+1)|b_T| \\le m_T+(R+1)\\sum_{i<T}|b_{i+1}-b_i|. \\] The uniform distribution on paths agrees with normalized planar area on $Q$. Lemma~\\ref{lem:stopped-descent} and Lemma~\\ref{lem:entry-bound} therefore imply \\[ \\begin{split} \\int_{\\Omega_Q}N_{\\mathrm{term}}(x)\\,dx &\\le |Q|\\,\\"
     },
     {
       "from": "m1-lem-entry-bound",
-      "to": "m1-thm-mean-growth"
+      "to": "m1-thm-mean-growth",
+      "context": "\\le m_T+(R+1)\\sum_{i<T}|b_{i+1}-b_i|. \\] The uniform distribution on paths agrees with normalized planar area on $Q$. Lemma~\\ref{lem:stopped-descent} and Lemma~\\ref{lem:entry-bound} therefore imply \\[ \\begin{split} \\int_{\\Omega_Q}N_{\\mathrm{term}}(x)\\,dx &\\le |Q|\\,\\E\\left[m_T+(R+1)"
     },
     {
       "from": "m1-thm-local-length",
-      "to": "m1-lem-wavelength-length"
+      "to": "m1-lem-wavelength-length",
+      "context": "lable because $R=1000$. Choose $\\eps$ so small that $(60\\eps)^2\\norm{p}_\\infty<\\eps_0$ uniformly over the coordinate regions in use. Then $F$ satisfies Theorem~\\ref{thm:local-length}. An interior $H^2$ estimate for $\\Delta F=-qF$, followed by the two-dimensional Sobolev embedding, gives \\[ \\norm{F}_"
     },
     {
       "from": "m1-prop-initial-growth",
-      "to": "m1-lem-wavelength-length"
+      "to": "m1-lem-wavelength-length",
+      "context": "{1/4})}} =\\log\\frac{\\norm{u}_{L^2(\\D_{165s}(x_I))}} {\\norm{u}_{L^2(\\D_{15s}(x_I))}} \\le E(I,0). \\] All these norms are nonzero by Proposition~\\ref{prop:initial-growth}. The length disk becomes $\\D_s(x_I)$ and contains the closed square $I$, whose corner distance is $s/\\sqrt2$. Hausdorff"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-wavelength-length"
+      "to": "m1-lem-wavelength-length",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Choose finitely many smooth isothermal neighborhoods and root squares $Q_0$ whose interiors cover $M$. Make their side"
     },
     {
       "from": "m1-prop-subdivision",
-      "to": "m1-lem-wavelength-length"
+      "to": "m1-lem-wavelength-length",
+      "context": "ro there. Proposition~\\ref{prop:initial-growth} gives a uniform initial bound $N(Q_0)\\le C_{\\mathrm{init}}$. Choose the subdivision constants from Proposition~\\ref{prop:subdivision}, and then the small $\\eps$ of Lemma~\\ref{lem:wavelength-length}. Write $k_{\\min}=\\sqrt{\\lambda_1(M,g)}>0$. A single per"
     },
     {
       "from": "m1-thm-mean-growth",
-      "to": "m1-lem-wavelength-length"
+      "to": "m1-lem-wavelength-length",
+      "context": "ot, its parent has $kAs>\\eps$, so $ks>\\eps/A$. If it is the root, then $ks\\ge k_{\\min}s_0$. In both cases, every visited square satisfies $K_Q\\ge a_0$. Theorem~\\ref{thm:mean-growth} therefore gives \\[ \\av_{I\\text{ terminal in }Q_0}E(I,0)\\le Cks. \\] There are $(s_0/s)^2$ terminal squares. Applying Le"
     },
     {
       "from": "m2-lem-profile-localization",
-      "to": "m2-lem-profile-preparation"
+      "to": "m2-lem-profile-preparation",
+      "context": "cap\\ker\\dd s \\] continues to be strict, with a positive margin on a smaller compact neighborhood. The differential $\\dd s$ remains nonzero there. Apply Lemma~\\ref{lem:profile-localization} to these neighborhoods with $\\dd\\mu=|a|\\,\\dd V_g$. It gives finitely many cubes and cutoff-one cores capturing at leas"
     },
     {
       "from": "m2-prop-profile-amplification",
-      "to": "m2-lem-radial-corrugation"
+      "to": "m2-lem-radial-corrugation",
+      "context": "[Proof of Proposition~\\ref{prop:profile-amplification}] Keep the periodic functions and the constants from Lemma~\\ref{lem:radial-corrugation} fixed. Define \\[ \\theta=\\frac{"
     },
     {
       "from": "m2-lem-profile-preparation",
-      "to": "m2-lem-radial-corrugation"
+      "to": "m2-lem-radial-corrugation",
+      "context": "qquad t_* =\\theta g_0,\\qquad \\eta=\\frac{t_*}{4}>0. \\] We prove the cycle statement, allowing any prescribed positive $C^0$ budget for that cycle. Apply Lemma~\\ref{lem:profile-preparation} with $\\epsilon_p\\le\\min(1/3,t_*/16)$ and half the $C^0$ budget. Write $\\psi$ for the resulting profile and $U$ for its"
     },
     {
       "from": "m2-lem-profile-localization",
-      "to": "m2-lem-radial-corrugation"
+      "to": "m2-lem-radial-corrugation",
+      "context": "shrinking, the nonzero singular values of $\\dd y$ lie in $[1/2,2]$. One can also choose a constant $A$ on that patch with $1/2\\le A/|a_\\psi|\\le2$. Apply Lemma~\\ref{lem:profile-localization} in $U$ with density $|a_\\psi|\\,\\dd V_g$. Its radial patch cores capture at least half the full-region mass. In view o"
     },
     {
       "from": "m2-prop-profile-amplification",
-      "to": "m2-prop-spherical-profiles"
+      "to": "m2-prop-spherical-profiles",
+      "context": "ed range of $t$; thus $j_t<0$ there. Compactness gives a positive lower bound for $j_t$ on $\\overline\\Omega$, uniform over $t\\in[1/5,3/10]$. Apply Proposition~\\ref{prop:profile-amplification} to $\\phi_0$ on $\\Omega$, using a $C^0$ tolerance smaller than both $\\varepsilon$ and half this positive lower bound. E"
     },
     {
       "from": "m2-lem-wave-noncancellation",
-      "to": "m2-prop-wave-superposition"
+      "to": "m2-prop-wave-superposition",
+      "context": "Let $G_n$ be the simultaneous event of Lemma~\\ref{lem:wave-noncancellation}, and put $A_n=n\\int_\\Omega L(x)\\,dx$. By Proposition~\\ref{prop:sign-functional} and Lemma~\\ref{lem:wave-sign-expectati"
     },
     {
       "from": "m2-prop-sign-functional",
-      "to": "m2-prop-wave-superposition"
+      "to": "m2-prop-wave-superposition",
+      "context": "Let $G_n$ be the simultaneous event of Lemma~\\ref{lem:wave-noncancellation}, and put $A_n=n\\int_\\Omega L(x)\\,dx$. By Proposition~\\ref{prop:sign-functional} and Lemma~\\ref{lem:wave-sign-expectation}, \\[ 0\\le\\mathcal F_n(U_n)\\le C_{\\rm sign}A_n, \\qquad \\mathbb E\\mathcal F_n("
     },
     {
       "from": "m2-lem-wave-sign-expectation",
-      "to": "m2-prop-wave-superposition"
+      "to": "m2-prop-wave-superposition",
+      "context": "n$ be the simultaneous event of Lemma~\\ref{lem:wave-noncancellation}, and put $A_n=n\\int_\\Omega L(x)\\,dx$. By Proposition~\\ref{prop:sign-functional} and Lemma~\\ref{lem:wave-sign-expectation}, \\[ 0\\le\\mathcal F_n(U_n)\\le C_{\\rm sign}A_n, \\qquad \\mathbb E\\mathcal F_n(U_n)\\ge c_{\\rm sign}A_n, \\qquad \\Pr(G_n^c"
     },
     {
       "from": "m2-lem-exact-quotients",
-      "to": "m2-prop-exactification"
+      "to": "m2-prop-exactification",
+      "context": "d} \\label{eq:exact-parameter-budget} \\end{equation} These choices depend only on \\(k,P,B\\). We suppress the subscript \\(n\\) in the construction. Apply Lemma~\\ref{lem:exact-quotients} with \\(h=k_1\\) to obtain positive smooth coefficients \\(b,s\\) satisfying \\eqref{eq:exact-weighted-equation} and \\eqref{"
     },
     {
       "from": "m2-lem-exact-positive-factor",
-      "to": "m2-prop-exactification"
+      "to": "m2-prop-exactification",
+      "context": "qref{eq:exact-coefficient-smallness}. Since \\(g\\) is round and \\(U=w_n\\) on \\(\\{r\\ge t_2\\}\\), their residual vanishes there, and \\(b=s=1\\) there. Apply Lemma~\\ref{lem:exact-positive-factor} to obtain a positive smooth solution \\(v\\) of \\eqref{eq:exact-semilinear} satisfying \\eqref{eq:exact-factor-bound}. Ch"
     },
     {
       "from": "m2-lem-metric-conductivity",
-      "to": "m2-prop-exactification"
+      "to": "m2-prop-exactification",
+      "context": ":exact-density-estimates} and this last estimate imply \\[ \\|\\widehat g-g\\|_{C^k}\\le Cn^{-P-10}\\le n^{-P} \\] for all sufficiently large \\(n\\). Combining Lemma~\\ref{lem:metric-conductivity} with \\eqref{eq:exact-conjugated-equation} proves \\(\\Delta_{\\widehat g}u=-\\Lambda u\\). On \\(\\{r\\ge t_3\\}\\), \\(A=\\Id\\),"
     },
     {
       "from": "m2-lem-nondegenerate-pencil",
-      "to": "m2-prop-pinned-simplicity"
+      "to": "m2-prop-pinned-simplicity",
+      "context": ". Moreover, \\[ M(K)(v,v)=\\frac12\\int_{\\mathcal A}\\chi|p|^4\\,dV_h>0. \\] The image $M(\\mathcal K)$ is a linear subspace of the symmetric forms on $E_0$. Lemma~\\ref{lem:nondegenerate-pencil} therefore gives one $K\\in\\mathcal K$ for which $M(K)$ is nondegenerate on $E_0$. For real $\\tau$, put \\[ A_\\tau=e^{\\t"
     },
     {
       "from": "m2-prop-spherical-profiles",
-      "to": "m2-prop-one-step"
+      "to": "m2-prop-one-step",
+      "context": "mediate radii as in the wave and exactification constructions, leaving a nonempty annulus between their outermost modified radius $t_3$ and $R_1$. Proposition~\\ref{prop:spherical-profiles} gives a fixed smooth profile $\\phi$ with \\[ J:=\\int_\\Omega L_\\phi\\,dx >4C_{\\mathrm{area}}A/c_{\\mathrm{wave}}. \\] Here"
     },
     {
       "from": "m2-prop-exactification",
-      "to": "m2-prop-one-step"
+      "to": "m2-prop-one-step",
+      "context": "{\\mathrm{wave}}>0$ is independent of the chosen profile. The required finite derivative orders and residual powers can be specified in advance. By Proposition~\\ref{prop:exactification}, choose these orders so that, after increasing $n$, there is an exact eigenpair $(\\widehat g,u)$ at $\\Lambda_n$, with $"
     },
     {
       "from": "m2-prop-pinned-simplicity",
-      "to": "m2-prop-one-step"
+      "to": "m2-prop-one-step",
+      "context": "these conclusions. Since $n\\ge2$, \\begin{equation}\\label{eq:one-step-sign-threshold} \\mathcal F(u)>2C_{\\mathrm{area}}A(n+1). \\end{equation} Apply Proposition~\\ref{prop:pinned-simplicity} in an annulus $t_3<r<t_4<R_1$, with an arbitrarily small smooth change. It gives $g'\\in\\mathcal N_1$ with the same exa"
     },
     {
       "from": "m2-lem-simple-eigenpair-continuity",
-      "to": "m2-prop-one-step"
+      "to": "m2-prop-one-step",
+      "context": "anged and $g'=g_*$ on $r\\ge R_1$. Now freeze $\\mathcal F$, including its subdivision and all its coordinate shifts, and set $T=C_{\\mathrm{area}}A(n+1)$. Lemma~\\ref{lem:simple-eigenpair-continuity} gives an open neighborhood $\\mathcal W\\subset\\mathcal V$ of $g'$ on which a normalized real eigenfunction $u_h$ has eig"
     },
     {
       "from": "m2-thm-main",
-      "to": "m2-prop-one-step"
+      "to": "m2-prop-one-step",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Let $\\mathcal O$ be any prescribed $C^\\infty$ neighborhood of the round metric. We will retain all the open witness r"
     },
     {
       "from": "m2-env-amplify",
-      "to": "m2-env-gaps"
+      "to": "m2-env-gaps",
+      "context": "ine P$, by the $C^2$-openness of \\eqref{env:condition}. Its gaps relative to $f_0$ are exactly $\\tau$ on $\\overline U_0$ and $-\\tau$ outside $U_1$. Apply Lemma~\\ref{env:amplify} finitely many times in $D$, with total sup-norm change less than $\\tau/4$, to make $\\int_D|\\nabla_hf|_h\\,dx>L_*$. The r"
     },
     {
       "from": "m2-env-gaps",
-      "to": "m2-wave-residual"
+      "to": "m2-wave-residual",
+      "context": "{g_0})u_k^0, \\] supported in $\\supp(h-g_0)\\subset U_0$. Each fixed-order derivative is bounded by a fixed power of $k$ times $e^{kf_0}$. The first gap of Lemma~\\ref{env:gaps}, $f>f_0+\\sigma$ on $\\overline U_0$, makes this exponentially small relative to $W$. The commutator terms $[\\Delta_h,\\om"
     },
     {
       "from": "m2-env-background-mode",
-      "to": "m2-wave-noncancellation"
+      "to": "m2-wave-noncancellation",
+      "context": "al E_k$ the random contribution to the unscaled value and normalized gradient is at most $Ck^5e^{kf(x)}\\le Ck^{-3}W(x)$. The background gradient bound in Lemma~\\ref{env:background-mode} gives \\[ |(u_k^0,k^{-1}du_k^0)|\\ge c e^{kf_0(x)} \\ge c(1-k^{-8})W(x). \\] Thus $|\\mathcal V_k(x)"
     },
     {
       "from": "m2-wave-packets",
-      "to": "m2-score-expectation"
+      "to": "m2-score-expectation",
+      "context": "The nearest grid center is at distance $O(k^{-1})$ from $x$ and lies in $U_3$. The two-sided quadratic phase bounds and the amplitude estimate in Proposition~\\ref{wave:packets} show that its normalized packet has absolute value bounded below by a positive constant. Hence $\\operatorname{Var}X(x)"
     },
     {
       "from": "m2-env-gaps",
-      "to": "m2-score-expectation"
+      "to": "m2-score-expectation",
+      "context": "$q_0$ independent of the envelope. The normalized deterministic mean is $m(x)=e^{k(f_0(x)-f(x))}\\cos(k\\phi(x))$, with $|m(x)|\\le e^{-k\\sigma}$ on $D$ by Lemma~\\ref{env:gaps}. For a centered one-dimensional Gaussian of standard deviation $s>0$, adding a mean $m$ changes its sign with probabili"
     },
     {
       "from": "m2-wave-residual",
-      "to": "m2-score-good"
+      "to": "m2-score-good",
+      "context": "Choose the packet accuracy in Lemma~\\ref{wave:residual} to give \\eqref{score:residual}. Let $G_k$ be the event in Lemma~\\ref{wave:noncancellation}: all coefficients have abso"
     },
     {
       "from": "m2-wave-noncancellation",
-      "to": "m2-score-good"
+      "to": "m2-score-good",
+      "context": "Choose the packet accuracy in Lemma~\\ref{wave:residual} to give \\eqref{score:residual}. Let $G_k$ be the event in Lemma~\\ref{wave:noncancellation}: all coefficients have absolute value at most $k$, and the stated noncancellation bound holds. Its probability tends t"
     },
     {
       "from": "m2-score-expectation",
-      "to": "m2-score-good"
+      "to": "m2-score-good",
+      "context": "noncancellation bound holds. Its probability tends to one, and its coefficient bound gives the support, residual, and derivative conclusions above. By Lemma~\\ref{score:expectation} and the deterministic upper bound $\\mathcal S\\le4T_k$, \\[ \\mathbb E\\bigl[\\mathcal S(u)\\mathbf1_{G_k}\\bigr] \\ge\\bigl(c"
     },
     {
       "from": "m2-corr-realization",
-      "to": "m2-corr-localization"
+      "to": "m2-corr-localization",
+      "context": "[Proof of Lemma~\\ref{corr:realization}] Here is one explicit order of choices. Given \\(p,L\\), choose an even integer \\(s>p+4\\), and set \\[ \\begin{gathered}"
     },
     {
       "from": "m2-corr-weighted",
-      "to": "m2-corr-localization"
+      "to": "m2-corr-localization",
+      "context": "r \\(s>p+4\\), and set \\[ \\begin{gathered} N=\\lceil L\\rceil+p+4,\\qquad r=s+2,\\qquad \\ell=s+3,\\\\ J=E_{s+2}+N,\\qquad E_{s+2}=1000(s+4). \\end{gathered} \\] Lemma~\\ref{corr:weighted} uses \\(u\\) through order \\(s+4=\\ell+1\\) and \\(R\\) through order \\(\\ell\\), and gives \\[ \\|F\\|_{C^{s+2}}+\\|\\vartheta\\|_{"
     },
     {
       "from": "m2-corr-conformal",
-      "to": "m2-corr-localization"
+      "to": "m2-corr-localization",
+      "context": "ef{corr:potential-estimate} then gives \\[ \\|h_1-h\\|_{C^{s+2}}+\\|w-1\\|_{C^{s+2}} +\\|V_0\\|_{H^s}=O(k^{-N}). \\] For large \\(k\\), Lemma~\\ref{corr:conformal} applies with \\(\\Lambda=\\Lambda_k\\). Its estimate and the embedding \\(H^s\\hookrightarrow C^{p+2}\\), valid because \\(s>p"
     },
     {
       "from": "m2-lem-simple-eigenpair-continuity",
-      "to": "m2-spec-persistence"
+      "to": "m2-spec-persistence",
+      "context": "S$ is lower semicontinuous for uniform convergence and invariant under nonzero real rescaling by \\eqref{score:lsc} and the paragraph following it. Apply Lemma~\\ref{lem:simple-eigenpair-continuity} to this functional, the threshold $T$, and the interval $I$, and intersect its neighborhood with $\\mathcal U$. For ever"
     },
     {
       "from": "m2-spec-simple",
-      "to": "m2-spec-one-step"
+      "to": "m2-spec-one-step",
+      "context": "First choose a finite $C^r$ neighborhood of $h$ contained in $\\mathcal O\\cap\\mathcal U$, reserving part of its tolerance for Lemma~\\ref{spec:simple}. Let $c_{\\mathrm s}>0$ be the constant, independent of the amplified envelope, in the conclusion of Proposition~\\ref{s"
     },
     {
       "from": "m2-score-good",
-      "to": "m2-spec-one-step"
+      "to": "m2-spec-one-step",
+      "context": "t of its tolerance for Lemma~\\ref{spec:simple}. Let $c_{\\mathrm s}>0$ be the constant, independent of the amplified envelope, in the conclusion of Proposition~\\ref{score:good}. By Lemma~\\ref{env:gaps}, choose the nested patches and an envelope with the required gaps and with \\[ c_{\\mathrm H}c"
     },
     {
       "from": "m2-env-gaps",
-      "to": "m2-spec-one-step"
+      "to": "m2-spec-one-step",
+      "context": "~\\ref{spec:simple}. Let $c_{\\mathrm s}>0$ be the constant, independent of the amplified envelope, in the conclusion of Proposition~\\ref{score:good}. By Lemma~\\ref{env:gaps}, choose the nested patches and an envelope with the required gaps and with \\[ c_{\\mathrm H}c_{\\mathrm s}\\int_D B(x)\\,d"
     },
     {
       "from": "m2-corr-realization",
-      "to": "m2-spec-one-step"
+      "to": "m2-spec-one-step",
+      "context": "ose the nested patches and an envelope with the required gaps and with \\[ c_{\\mathrm H}c_{\\mathrm s}\\int_D B(x)\\,dx>2\\sqrt3\\,N. \\] For these fixed data, Lemma~\\ref{corr:realization} specifies finite residual derivative orders and accuracy powers that suffice for the reserved $C^r$ tolerance. Construc"
     },
     {
       "from": "m2-spec-persistence",
-      "to": "m2-spec-one-step"
+      "to": "m2-spec-one-step",
+      "context": "mbda_k$ simple by an arbitrarily small change preserving $t$. Take this change within the remaining tolerance. All support conditions are preserved, and Lemma~\\ref{spec:persistence} supplies the last claim."
     },
     {
       "from": "m2-thm-four",
-      "to": "m2-spec-one-step"
+      "to": "m2-spec-one-step",
+      "context": "[Proof of Theorem~\\ref{thm:four}] Let $\\mathcal X=C^\\infty(M;\\operatorname{Sym}^2T^*M)$, the real Fr\\'echet space of smooth symmetric covariant two-tens"
     },
     {
       "from": "m3-lem-corrugation",
-      "to": "m3-prop-envelope"
+      "to": "m3-prop-envelope",
+      "context": "Choose $C_{\\mathrm p}$ large enough and $c_{\\mathrm p}>0$ small enough for both Lemma~\\ref{lem:corrugation} and the seed preparation following Lemma~\\ref{lem:seed}. Choose the final $\\nu$ sufficiently small for the former lemm"
     },
     {
       "from": "m3-lem-seed",
-      "to": "m3-prop-envelope"
+      "to": "m3-prop-envelope",
+      "context": "Choose $C_{\\mathrm p}$ large enough and $c_{\\mathrm p}>0$ small enough for both Lemma~\\ref{lem:corrugation} and the seed preparation following Lemma~\\ref{lem:seed}. Choose the final $\\nu$ sufficiently small for the former lemma and so that a fixed cube $P_0$ of side $\\nu$ has closu"
     },
     {
       "from": "m3-lem-phase-hessian",
-      "to": "m3-prop-packets"
+      "to": "m3-prop-packets",
+      "context": "re negligible compared with the original \\(ck^{-\\delta}\\) margin. Consequently \\[ b^2H(e_1,e_1)+H(v,v)\\ge k^{-2\\delta} \\] for every selected pair. Apply Lemma~\\ref{lem:phase-hessian} to obtain \\(U,D\\). Multiplying its characteristic identity by \\(Q'\\) gives \\((U+iD)P=0\\). \\paragraph{Frozen charts and"
     },
     {
       "from": "m3-lem-polynomial-inverse",
-      "to": "m3-prop-packets"
+      "to": "m3-prop-packets",
+      "context": "other terms have already been determined. The Hermitian norm of \\(P/Q\\) lies between \\(1\\) and \\(3\\) for large \\(k\\), by \\eqref{eq:waves-imaginary-size}. Lemma~\\ref{lem:polynomial-inverse} therefore solves each equation with a uniformly bounded right inverse. Solving through degree \\(T-1\\) gives the desired"
     },
     {
       "from": "m3-prop-packets",
-      "to": "m3-lem-scaled-packets"
+      "to": "m3-lem-scaled-packets",
+      "context": "d |Y|\\le2. \\end{equation} The nearest center has \\(|X_z(x)|=O(k^{-10+100\\delta})\\). The center formula and its nearby-jet estimate in the proof of Proposition~\\ref{prop:packets} show that one of its packets has \\(|w(x)|\\ge c e^{kh(x)}\\). This proves the first line of \\eqref{eq:scaled-packet-bound"
     },
     {
       "from": "m3-lem-scaled-packets",
-      "to": "m3-lem-signs"
+      "to": "m3-lem-signs",
+      "context": "x)|^2, \\qquad U_x(Y)=u(x+R_xY)/S_x,\\qquad |Y|\\le2. \\] In expressions differentiated with respect to $Y$, a packet $v$ means its composition $v(x+R_xY)$. Lemma~\\ref{lem:scaled-packets} applies to the entire packet collection, including packets centered outside $V$ that meet this ball. It gives $S_x\\ge c"
     },
     {
       "from": "m3-prop-step",
-      "to": "m3-lem-simplicity"
+      "to": "m3-lem-simplicity",
+      "context": "[Proof of Proposition~\\ref{prop:step}] Fix the input pair, the collar, $r$ and $\\eta$. Choose $R\\ge\\max\\{r,1\\}$ and a smaller positive tolerance $\\eta'$ so t"
     },
     {
       "from": "m3-lem-noncancellation",
-      "to": "m3-lem-simplicity"
+      "to": "m3-lem-simplicity",
+      "context": "+2$ and $M\\ge2131+1088R$, and then choose the finite packet orders giving \\eqref{eq:sum-weighted-bounds}. All these choices precede frequency selection. Lemmas~\\ref{lem:noncancellation} and~\\ref{lem:signs} give, for every sufficiently large allowed $k$, a sample with the required first-jet bound, residua"
     },
     {
       "from": "m3-lem-signs",
-      "to": "m3-lem-simplicity"
+      "to": "m3-lem-simplicity",
+      "context": "then choose the finite packet orders giving \\eqref{eq:sum-weighted-bounds}. All these choices precede frequency selection. Lemmas~\\ref{lem:noncancellation} and~\\ref{lem:signs} give, for every sufficiently large allowed $k$, a sample with the required first-jet bound, residual bounds and a certi"
     },
     {
       "from": "m3-lem-correction",
-      "to": "m3-lem-simplicity"
+      "to": "m3-lem-simplicity",
+      "context": "give, for every sufficiently large allowed $k$, a sample with the required first-jet bound, residual bounds and a certificate of size $c_*k^{1+\\gamma}$. Lemma~\\ref{lem:correction} changes the pair by at most $C_Rk^{-2}$ in $C^R$ while preserving that same function. Choose $k$ large enough for this"
     },
     {
       "from": "m3-thm-main",
-      "to": "m3-lem-persistence"
+      "to": "m3-lem-persistence",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Use monotone fixed coordinate norms for pairs. Choose $b>0$ so that the closed $C^1$ ball of radius $b$ about $\\mathca"
     },
     {
       "from": "m3-prop-step",
-      "to": "m3-lem-persistence"
+      "to": "m3-lem-persistence",
+      "context": "i+1)}\\varepsilon_i\\right\\}. \\end{split} \\end{equation} For $j=1$, the inner minimum is omitted. These are finite requirements at each stage. Apply Proposition~\\ref{prop:step} to $\\mathcal P_{j-1}$, with $l_+=l^{(j-1)}$, $l_-=l^{(j)}$, order $r_j$ and tolerance $\\eta_j$. Use the certificates fr"
     },
     {
       "from": "m3-lem-signs",
-      "to": "m3-lem-persistence"
+      "to": "m3-lem-persistence",
+      "context": "{prop:step} to $\\mathcal P_{j-1}$, with $l_+=l^{(j-1)}$, $l_-=l^{(j)}$, order $r_j$ and tolerance $\\eta_j$. Use the certificates from its construction in Lemma~\\ref{lem:signs}, with balls centered in $V$ and radii at most $k_j^{-1}$. The proposition gives a positive constant $c_j$ and all suffi"
     }
   ]
 }

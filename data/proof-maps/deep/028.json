@@ -1,0 +1,301 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "028",
+  "title": "Uniformly bounded components of Gaussian-prime graphs",
+  "result": {
+    "id": "paper-result",
+    "label": "Uniformly bounded components of Gaussian-prime graphs",
+    "statement": "Proves the Gaussian moat conjecture: no infinite walk through distinct Gaussian primes can have uniformly bounded steps. More strongly, for every distance bound D , the graph joining Gaussian primes at distance at most D has uniformly bounded finite component sizes, depending only on D , including primes on the coordinate axes.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "the-gaussian-moat-problem",
+      "label": "The Gaussian moat problem",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "periodicity-and-the-uniform-bound",
+      "label": "Periodicity and the uniform bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "arithmetic-walks-and-entropy",
+      "label": "Arithmetic, walks, and entropy",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "arithmetic-walks-and-entropy-2",
+      "label": "Arithmetic, walks, and entropy",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "arithmetic-walks-and-entropy-3",
+      "label": "Arithmetic, walks, and entropy",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "entropy-enrichment-from-a-forward-segment",
+      "label": "Entropy enrichment from a forward segment",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "entropy-enrichment-from-a-forward-segment-2",
+      "label": "Entropy enrichment from a forward segment",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "entropy-enrichment-from-a-forward-segment-3",
+      "label": "Entropy enrichment from a forward segment",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "coverage-from-shared-continuation-data",
+      "label": "Coverage from shared continuation data",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "coverage-from-shared-continuation-data-2",
+      "label": "Coverage from shared continuation data",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-common-sampling-schedule",
+      "label": "A common sampling schedule",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-common-sampling-schedule-2",
+      "label": "A common sampling schedule",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "zero-avoidance-costs-information",
+      "label": "Zero avoidance costs information",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-common-law-entropy-budget",
+      "label": "The common-law entropy budget",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Bounded-Step Walks on Gaussian Primes",
+      "title": "Bounded-Step Walks on Gaussian Primes",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-26",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Bounded-Step-Walks-on-Gaussian-Primes-September-26-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Bounded-Step Walks on Gaussian Primes; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "Uniform component bound",
+          "fullLabel": "Uniform component bound",
+          "kind": "theorem",
+          "source": "The Gaussian moat problem",
+          "detail": "[Uniform component bound] For every finite real D there is a finite B_D such that every connected component of G_D has at most B_D vertices. The bound is independent of the starting prime and…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-sieve",
+          "role": "the-gaussian-moat-problem",
+          "label": "Finite sieve obstruction",
+          "fullLabel": "Finite sieve obstruction",
+          "kind": "theorem",
+          "source": "The Gaussian moat problem",
+          "detail": "[Finite sieve obstruction] For every D1 there is a finite set P_D of rational primes congruent to 1 modulo 4 such that A( P_D) contains no infinite sequence of distinct points with successive…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-periodic",
+          "role": "periodicity-and-the-uniform-bound",
+          "label": "From a periodic obstruction to a uniform bound",
+          "fullLabel": "From a periodic obstruction to a uniform bound",
+          "kind": "proposition",
+          "source": "Periodicity and the uniform bound",
+          "detail": "[From a periodic obstruction to a uniform bound] Fix D1 and a finite set P of rational primes congruent to 1 modulo 4 . Suppose that A( P) contains no infinite self-avoiding walk with steps at most D…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-displacement",
+          "role": "arithmetic-walks-and-entropy",
+          "label": "Displacement entropy",
+          "fullLabel": "Displacement entropy",
+          "kind": "lemma",
+          "source": "Arithmetic, walks, and entropy",
+          "detail": "[Displacement entropy] If \\(T_0,T_1\\) are jointly distributed finite random times and \\(|T_1-T_0| n\\) almost surely, then \\[ H(z_ T_1 -z_ T_0 )2(n+1)+O_D(1). \\] The same bound holds conditionally on…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-continuity",
+          "role": "arithmetic-walks-and-entropy-2",
+          "label": "Continuity",
+          "fullLabel": "Continuity",
+          "kind": "lemma",
+          "source": "Arithmetic, walks, and entropy",
+          "detail": "[Continuity] If two laws of \\((X,Y)\\), on the same finite product alphabet, have total variation at most \\(1/2\\), and the product alphabet has at most \\(a\\) elements, then \\[ |H(X Y)-H( X Y)| 2h()+2…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-list",
+          "role": "arithmetic-walks-and-entropy-3",
+          "label": "A short-list entropy bound",
+          "fullLabel": "A short-list entropy bound",
+          "kind": "lemma",
+          "source": "Arithmetic, walks, and entropy",
+          "detail": "[A short-list entropy bound] Let \\(X\\) have at most \\(a\\) values, let \\(Y\\) be finite data, and let \\( L(Y)\\) be a list of possible values of \\(X\\). If \\[ \\ X L(Y),\\ | L(Y)| b\\ =, 1 b a, \\] then \\[…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-differences",
+          "role": "entropy-enrichment-from-a-forward-segment",
+          "label": "Many differences",
+          "fullLabel": "Many differences",
+          "kind": "lemma",
+          "source": "Entropy enrichment from a forward segment",
+          "detail": "[Many differences] Let \\(E\\) consist of the points of a segment of \\(n1\\) steps of the walk. Let \\(R\\) be its diameter, choose a line through two points realizing that diameter, and let \\(W\\) be the…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-rectangle",
+          "role": "entropy-enrichment-from-a-forward-segment-2",
+          "label": "A randomly signed product avoids a thin rectangle",
+          "fullLabel": "A randomly signed product avoids a thin rectangle",
+          "kind": "lemma",
+          "source": "Entropy enrichment from a forward segment",
+          "detail": "[A randomly signed product avoids a thin rectangle] Let \\(p_1,,p_r\\) be distinct rational primes congruent to \\(1\\) modulo \\(4\\), all in \\([T,2T]\\), where \\(T5\\), and put \\(P=_i p_i\\). Let \\(Q\\) be…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-enrichment",
+          "role": "entropy-enrichment-from-a-forward-segment-3",
+          "label": "Entropy enrichment",
+          "fullLabel": "Entropy enrichment",
+          "kind": "lemma",
+          "source": "Entropy enrichment from a forward segment",
+          "detail": "[Entropy enrichment] Let \\(Z=z_\\) and \\(V\\) be the starting point and sampled endpoint in the preceding transition for a fixed self-avoiding \\(D\\)-step walk. Set \\[ q= U/L_*, b= g^2U/L_*. \\] Consider…",
+          "dependsOn": [
+            "m1-lem-differences",
+            "m1-lem-rectangle",
+            "m1-lem-displacement"
+          ]
+        },
+        {
+          "id": "m1-lem-conditioning",
+          "role": "coverage-from-shared-continuation-data",
+          "label": "One shared conditioning cost",
+          "fullLabel": "One shared conditioning cost",
+          "kind": "lemma",
+          "source": "Coverage from shared continuation data",
+          "detail": "[One shared conditioning cost] Let (Y,) be any pair of finite variables, with Y taking values in , and let S be selected independently as above. If \\[ _S H(F_S(Y))(1-)s L, H() s L, \\] then _c[…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-transfer",
+          "role": "coverage-from-shared-continuation-data-2",
+          "label": "One-step coverage transfer",
+          "fullLabel": "One-step coverage transfer",
+          "kind": "theorem",
+          "source": "Coverage from shared continuation data",
+          "detail": "[One-step coverage transfer] Use the signed coordinates and the experiment just defined, with integers 1 s k and n1 . Let \\[ 0<3/8, 0<1/64, '=+4, 0<'<1, 0<1, 0'1. \\] Suppose that at every a in the…",
+          "dependsOn": [
+            "m1-lem-list",
+            "m1-lem-conditioning"
+          ]
+        },
+        {
+          "id": "m1-lem-future-shift",
+          "role": "a-common-sampling-schedule",
+          "label": "Future shifts and smoothing",
+          "fullLabel": "Future shifts and smoothing",
+          "kind": "lemma",
+          "source": "A common sampling schedule",
+          "detail": "[Future shifts and smoothing] Let \\(V\\) be a scheduled scale in a band with parameter \\(g\\). For all sufficiently large \\(M\\), the maximum total forward time shift from the checkpoint before \\(V\\) to…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-coverage",
+          "role": "a-common-sampling-schedule-2",
+          "label": "Terminal residue coverage",
+          "fullLabel": "Terminal residue coverage",
+          "kind": "proposition",
+          "source": "A common sampling schedule",
+          "detail": "[Terminal residue coverage] For all sufficiently large \\(M\\), uniformly over the batches, \\(0 i J\\), and all exact start times \\(a0\\) at \\(A_i\\), all but a fraction at most \\(_i\\) of the signed…",
+          "dependsOn": [
+            "m1-thm-transfer",
+            "m1-lem-conditioning"
+          ]
+        },
+        {
+          "id": "m1-prop-information-rate",
+          "role": "zero-avoidance-costs-information",
+          "label": "Information cost of one batch",
+          "fullLabel": "Information cost of one batch",
+          "kind": "proposition",
+          "source": "Zero avoidance costs information",
+          "detail": "[Information cost of one batch] There is a constant \\(c_1>0\\), depending only on the fixed schedule parameters, such that for all sufficiently large \\(M\\) and every batch in , 1 L_T \\, _ C I(X'_T;W_…",
+          "dependsOn": [
+            "m1-prop-coverage"
+          ]
+        },
+        {
+          "id": "m1-lem-telescope",
+          "role": "the-common-law-entropy-budget",
+          "label": "A common-law entropy telescope",
+          "fullLabel": "A common-law entropy telescope",
+          "kind": "lemma",
+          "source": "The common-law entropy budget",
+          "detail": "[A common-law entropy telescope] For every fixed collection \\( C\\) of prime choices, _T I(X'_T;W_ L_T (t_*) O'_T) L_T K_D+o(1), where the error tends to zero uniformly over the choices and the walks…",
+          "dependsOn": [
+            "m1-lem-continuity",
+            "m1-thm-sieve",
+            "m1-prop-information-rate"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "Bounded-Step Walks on Gaussian Primes",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Bounded-Step-Walks-on-Gaussian-Primes-September-26-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

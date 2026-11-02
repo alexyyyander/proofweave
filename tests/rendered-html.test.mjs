@@ -1318,11 +1318,11 @@ test("serves the localized shell and translated information pages", async () => 
   assert.match(proofFamilyHtml, /深度论证地图：定理级依赖已策展并定位到源码/);
   assert.match(proofFamilyHtml, /<title>证明地图 032/);
 
-  const derivedFamily = await render("/proof-evolution/openai-math/005", localizedHeaders);
-  const derivedFamilyHtml = await derivedFamily.text();
-  assert.match(derivedFamilyHtml, /论文的陈述与证明引用了什么。/);
-  assert.match(derivedFamilyHtml, /论文派生结构/);
-  assert.match(derivedFamilyHtml, /引用/);
+  const promotedFamily = await render("/proof-evolution/openai-math/005", localizedHeaders);
+  const promotedFamilyHtml = await promotedFamily.text();
+  assert.match(promotedFamilyHtml, /深度论证地图/);
+  assert.match(promotedFamilyHtml, /定理级依赖/);
+  assert.match(promotedFamilyHtml, /<title>证明地图 005/);
 
   const leanFamily = await render("/proof-evolution/openai-math/024", localizedHeaders);
   const leanFamilyHtml = await leanFamily.text();

@@ -102,39 +102,48 @@
   "edges": [
     {
       "from": "m1-lem-parameters",
-      "to": "m1-lem-degree-estimates"
+      "to": "m1-lem-degree-estimates",
+      "context": "f(z)=\\frac{q^{1-sz/n}}{z}. \\] Its logarithm is convex, since $(\\log f)''(z)=1/z^2>0$. Hence $f(z)\\le\\max\\{f(2),f(t_0)\\}$. The sharp estimate for $q$ in Lemma~\\ref{lem:parameters} gives \\[ f(2) =\\frac12 n^{-1/2} \\exp\\bigl(O(s\\log n/n+1/a)\\bigr) =O(n^{-1/2}). \\] At the other endpoint, $s\\le\\sq"
     },
     {
       "from": "m1-prop-circuit",
-      "to": "m1-lem-degree-estimates"
+      "to": "m1-lem-degree-estimates",
+      "context": "[Proof of Proposition~\\ref{prop:circuit}] If $g=0$, the conclusion is immediate. Otherwise its formal output degree is $n$: induction on the gates shows that e"
     },
     {
       "from": "m1-lem-product-rank",
-      "to": "m1-lem-degree-estimates"
+      "to": "m1-lem-degree-estimates",
+      "context": "a linear form. Suppose first that every $e_j<t_0$. By \\eqref{eq:low-degree-distances}, \\[ \\sum_j d_{e_j}\\ge\\frac{s}{2n}\\sum_j e_j=\\frac s2. \\] Apply Lemmas~\\ref{lem:product-rank} and~\\ref{lem:degree-estimates}, weakening $q^{d_{e_j}}$ to $q^{d_{e_j}/2}$ for even degrees. The combined even-degree"
     },
     {
       "from": "m1-lem-parameters",
-      "to": "m1-lem-word-sum"
+      "to": "m1-lem-word-sum",
+      "context": "\\alpha^{-d_V(\\tau)}\\beta^{d_U(\\tau)}. \\end{equation} Here we enlarged the final sum from words without isolated positions to all words. By Lemma~\\ref{lem:parameters}, $\\alpha^{-1}\\le\\sqrt n$ and $k\\le n/2$, so the logarithm of the prefactor is at most \\[ \\frac{2k}{n^2}+\\log(1+\\sqrt n"
     },
     {
       "from": "m1-prop-imm",
-      "to": "m1-lem-word-sum"
+      "to": "m1-lem-word-sum",
+      "context": "[Completion of the proof of Proposition~\\ref{prop:imm}] Lemma~\\ref{lem:word-sum}, applied to \\eqref{eq:moment-reduction}, gives \\[ T_2\\le D n^{2L}\\mu^2(1+\\beta)^m\\exp(C\\sqrt"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-word-sum"
+      "to": "m1-lem-word-sum",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Let a syntactically homogeneous $\\Sigma\\Pi\\Sigma\\Pi\\Sigma$ circuit over $\\C$ of size $S$ compute $f=\\IMM_{n,n}$. Use"
     },
     {
       "from": "m1-prop-circuit",
-      "to": "m1-lem-word-sum"
+      "to": "m1-lem-word-sum",
+      "context": "r $\\C$ of size $S$ compute $f=\\IMM_{n,n}$. Use the partition from Proposition~\\ref{prop:imm}. For all sufficiently large $n$, Propositions~\\ref{prop:imm} and~\\ref{prop:circuit} give absolute constants $C_1,C_2>0$ such that \\[ D\\exp(-C_1\\sqrt n) \\le R(f) \\le 2S^2D\\exp(C_2\\sqrt n)n^{-\\sqrt n/10"
     },
     {
       "from": "m1-prop-imm",
-      "to": "m1-cor-characteristic-zero"
+      "to": "m1-cor-characteristic-zero",
+      "context": "Fix $n$ and the parameters and partition used in Proposition~\\ref{prop:imm}. Express $F_{\\IMM_{n,n}}$ in ordinary monomial bases of both its domain and codomain. The coefficients of $\\IMM_{n,n}"
     },
     {
       "from": "m1-prop-circuit",
-      "to": "m1-cor-characteristic-zero"
+      "to": "m1-cor-characteristic-zero",
+      "context": "ases used in the complex moment argument does not change that complex rank. Proposition~\\ref{prop:imm} therefore supplies its lower bound over $K$. Proposition~\\ref{prop:circuit} holds over every field, with the same constants. The preceding comparison proves the corollary with an absolute thresh"
     }
   ]
 }

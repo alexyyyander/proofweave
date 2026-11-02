@@ -1,0 +1,742 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "125",
+  "title": "The metric <i>k</i>-median approximation threshold and recovery",
+  "result": {
+    "id": "paper-result",
+    "label": "The metric <i>k</i>-median approximation threshold and recovery",
+    "statement": "Gives a deterministic polynomial-time (1+2/e+ )-approximation for finite rational metric k -median with specified candidate facilities, for every fixed ε > 0. Assuming P NP, the optimal infimum approximation factor is 1+2/e.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "conventions-and-reduction-to-bounded-integral-distances",
+      "label": "Conventions and reduction to bounded integral distances",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "local-search-and-anchored-comparison-clusters",
+      "label": "Local search and anchored comparison clusters",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "local-search-and-anchored-comparison-clusters-2",
+      "label": "Local search and anchored comparison clusters",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "local-search-and-anchored-comparison-clusters-3",
+      "label": "Local search and anchored comparison clusters",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "joint-sampling-of-leaders-and-removals",
+      "label": "Joint sampling of leaders and removals",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "joint-sampling-of-leaders-and-removals-2",
+      "label": "Joint sampling of leaders and removals",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "joint-sampling-of-leaders-and-removals-3",
+      "label": "Joint sampling of leaders and removals",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "joint-sampling-of-leaders-and-removals-4",
+      "label": "Joint sampling of leaders and removals",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "joint-sampling-of-leaders-and-removals-5",
+      "label": "Joint sampling of leaders and removals",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "joint-sampling-of-leaders-and-removals-6",
+      "label": "Joint sampling of leaders and removals",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "joint-sampling-of-leaders-and-removals-7",
+      "label": "Joint sampling of leaders and removals",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "completing-sampled-prefixes-and-recovering-the-budget",
+      "label": "Completing sampled prefixes and recovering the budget",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "completing-sampled-prefixes-and-recovering-the-budget-2",
+      "label": "Completing sampled prefixes and recovering the budget",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "completing-sampled-prefixes-and-recovering-the-budget-3",
+      "label": "Completing sampled prefixes and recovering the budget",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "completing-sampled-prefixes-and-recovering-the-budget-4",
+      "label": "Completing sampled prefixes and recovering the budget",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "sharper-recovery-when-few-clusters-are-unanchored",
+      "label": "Sharper recovery when few clusters are unanchored",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "sharper-recovery-when-few-clusters-are-unanchored-2",
+      "label": "Sharper recovery when few clusters are unanchored",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-surplus-construction-and-its-execution-certificate",
+      "label": "The surplus construction and its execution certificate",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-surplus-construction-and-its-execution-certificate-2",
+      "label": "The surplus construction and its execution certificate",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "strictness-at-a-bounded-opening-price",
+      "label": "Strictness at a bounded opening price",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-low-sensitivity-case",
+      "label": "The low sensitivity case",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-stability-dichotomy-and-the-final-algorithm",
+      "label": "The stability dichotomy and the final algorithm",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-stability-dichotomy-and-the-final-algorithm-2",
+      "label": "The stability dichotomy and the final algorithm",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "introduction-2",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "preliminaries-and-the-reduction",
+      "label": "Preliminaries and the reduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "preparing-the-openings",
+      "label": "Preparing the openings",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "preparing-the-openings-2",
+      "label": "Preparing the openings",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-finite-inequality-for-the-drift",
+      "label": "A finite inequality for the drift",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-finite-inequality-for-the-drift-2",
+      "label": "A finite inequality for the drift",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "tapered-iterative-rounding",
+      "label": "Tapered iterative rounding",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "tapered-iterative-rounding-2",
+      "label": "Tapered iterative rounding",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "tapered-iterative-rounding-3",
+      "label": "Tapered iterative rounding",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "tapered-iterative-rounding-4",
+      "label": "Tapered iterative rounding",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "tapered-iterative-rounding-5",
+      "label": "Tapered iterative rounding",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "tapered-iterative-rounding-6",
+      "label": "Tapered iterative rounding",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "deterministic-implementation-and-completion",
+      "label": "Deterministic implementation and completion",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "deterministic-implementation-and-completion-2",
+      "label": "Deterministic implementation and completion",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Single-exponential recovery and bounded-price strictness for metric k-median",
+      "title": "Single-exponential recovery and bounded-price strictness for metric k-median",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Single-Exponential-Recovery-and-Bounded-Price-Strictness-for-Metric-k-Median-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Single-exponential recovery and bounded-price strictness for metric k-median; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-ref-recovery",
+          "role": "result",
+          "label": "Refined recovery",
+          "fullLabel": "Refined recovery",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "[Refined recovery] Let D and F be disjoint indexed sets in a metric whose distances between distinct indices are positive integers bounded by a fixed polynomial in N=|D|+|F| . Fix >0 and 0<L_0< , and…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-main-theorem",
+          "role": "introduction",
+          "label": "Global application",
+          "fullLabel": "Global application",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "[Global application] There is an absolute constant >0 with the following property. For every fixed a>0 , a randomized polynomial-time algorithm for metric k -median always returns a set S F with |S|…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pre-rounding",
+          "role": "conventions-and-reduction-to-bounded-integral-distances",
+          "label": "Metric rounding and transfer",
+          "fullLabel": "Metric rounding and transfer",
+          "kind": "lemma",
+          "source": "Conventions and reduction to bounded integral distances",
+          "detail": "[Metric rounding and transfer] Fix rational 0<_01 . Suppose a polynomial-time algorithm for the bounded integral instances just described always returns at most k facilities of cost at most 5opt_k ,…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-loc-descent",
+          "role": "local-search-and-anchored-comparison-clusters",
+          "label": "Exact local descent",
+          "fullLabel": "Exact local descent",
+          "kind": "lemma",
+          "source": "Local search and anchored comparison clusters",
+          "detail": "[Exact local descent] Suppose all distances are integers at most B , where B is bounded by a fixed polynomial in N=n+|F| . From any nonempty initial set of r facilities, a width- 5 local optimum of…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-loc-swap",
+          "role": "local-search-and-anchored-comparison-clusters-2",
+          "label": "Weighted swap bound",
+          "fullLabel": "Weighted swap bound",
+          "kind": "lemma",
+          "source": "Local search and anchored comparison clusters",
+          "detail": "[Weighted swap bound] Under the preceding hypotheses, if S is a width- 5 local optimum and u=6/5 , then S_b+uS_g (1+2u)P_b+uD_g. Consequently, cost(S) uD_g+(1+2u)P_b. In particular, for any…",
+          "dependsOn": [
+            "m1-loc-descent"
+          ]
+        },
+        {
+          "id": "m1-loc-anchoring",
+          "role": "local-search-and-anchored-comparison-clusters-3",
+          "label": "Anchoring",
+          "fullLabel": "Anchoring",
+          "kind": "theorem",
+          "source": "Local search and anchored comparison clusters",
+          "detail": "[Anchoring] Let S be a width- 5 local optimum, and let O be a comparison set with 2 h=|O||S| and P=cost(O)>0 . Suppose b>0 satisfies b(+ |\\ i O:n_isep_i<b\\ |) 10P. For every fixed (0,1] , there is a…",
+          "dependsOn": [
+            "m1-loc-swap"
+          ]
+        },
+        {
+          "id": "m1-sam-computable-radius",
+          "role": "joint-sampling-of-leaders-and-removals",
+          "label": "The computable radius",
+          "fullLabel": "The computable radius",
+          "kind": "lemma",
+          "source": "Joint sampling of leaders and removals",
+          "detail": "[The computable radius] If d_1 d_n are the client distances from w , including the zero distance from w to itself, then r^0(w)=_ 1 j n \\ d_j,P/(mj)\\ >0. In particular the minimum in Equation~ is…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sam-dummy-metric",
+          "role": "joint-sampling-of-leaders-and-removals-2",
+          "label": "Dummy distances and ties",
+          "fullLabel": "Dummy distances and ties",
+          "kind": "lemma",
+          "source": "Joint sampling of leaders and removals",
+          "detail": "[Dummy distances and ties] The construction above extends the original metric without changing its distances. For every original point x , \\[ d(x,_i)=d(x,w_i)+R_i, d(_,_i)=+R_i. \\] If R_i d(w_i,O) ,…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sam-radius-budget",
+          "role": "joint-sampling-of-leaders-and-removals-3",
+          "label": "Amortized radius guesses",
+          "fullLabel": "Amortized radius guesses",
+          "kind": "lemma",
+          "source": "Joint sampling of leaders and removals",
+          "detail": "[Amortized radius guesses] Fix 0<1 . Consider a sequence with at most m ball additions, each using the prescribed correct radius above, and suppose that every previously added leaf remains present at…",
+          "dependsOn": [
+            "m1-sam-computable-radius"
+          ]
+        },
+        {
+          "id": "m1-sam-probability",
+          "role": "joint-sampling-of-leaders-and-removals-4",
+          "label": "Adaptive guided trajectories",
+          "fullLabel": "Adaptive guided trajectories",
+          "kind": "lemma",
+          "source": "Joint sampling of leaders and removals",
+          "detail": "[Adaptive guided trajectories] Fix O,P,m , 0<1 , and a number (0,1] independent of the instance size. Suppose an analytical guided process uses the same initial state and, at each of its nonterminal…",
+          "dependsOn": [
+            "m1-sam-radius-budget"
+          ]
+        },
+        {
+          "id": "m1-sam-near-clients",
+          "role": "joint-sampling-of-leaders-and-removals-5",
+          "label": "Near-client witnesses",
+          "fullLabel": "Near-client witnesses",
+          "kind": "lemma",
+          "source": "Joint sampling of leaders and removals",
+          "detail": "[Near-client witnesses] Let n_i>0 , a>1 , and N_i(a)=\\ p C_i:d_p^* a d_i\\ . For any nonempty reference set in a metric extension, set T_i(a)=_ p N_i(a) d(p,H) . Then |N_i(a)|(1-1/a)n_i, d(i,H) a d_i+…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sam-sampling-mass",
+          "role": "joint-sampling-of-leaders-and-removals-6",
+          "label": "Sampling mass",
+          "fullLabel": "Sampling mass",
+          "kind": "lemma",
+          "source": "Joint sampling of leaders and removals",
+          "detail": "[Sampling mass] At every correct main state with =10^ -6 , W(H)3.42P+61T_ near (H). If the first stopping inequality fails, the joint event of sampling a client in _ i B N_i and choosing ball mode…",
+          "dependsOn": [
+            "m1-sam-computable-radius"
+          ]
+        },
+        {
+          "id": "m1-sam-successful-prefix",
+          "role": "joint-sampling-of-leaders-and-removals-7",
+          "label": "A successful sampling prefix",
+          "fullLabel": "A successful sampling prefix",
+          "kind": "theorem",
+          "source": "Joint sampling of leaders and removals",
+          "detail": "[A successful sampling prefix] Assume the equal-size comparison setup and Equation~ , with 1 m M_0 , and use =10^ -6 . Given S and the correct guesses P,m , one run of the actual experiment has, with…",
+          "dependsOn": [
+            "m1-sam-sampling-mass",
+            "m1-sam-probability",
+            "m1-sam-computable-radius"
+          ]
+        },
+        {
+          "id": "m1-comp-partition-max",
+          "role": "completing-sampled-prefixes-and-recovering-the-budget",
+          "label": "Categorical continuous greedy with explicit error",
+          "fullLabel": "Categorical continuous greedy with explicit error",
+          "kind": "lemma",
+          "source": "Completing sampled prefixes and recovering the budget",
+          "detail": "[Categorical continuous greedy with explicit error] Let g be a normalized, monotone, submodular function given by an exact value oracle, and let E have a partition into a parts. For every 0<<1-1/e ,…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-comp-surrogate-properties",
+          "role": "completing-sampled-prefixes-and-recovering-the-budget-2",
+          "label": "Surrogate realization and submodularity",
+          "fullLabel": "Surrogate realization and submodularity",
+          "kind": "lemma",
+          "source": "Completing sampled prefixes and recovering the budget",
+          "detail": "[Surrogate realization and submodularity] For every finite branch and feasible X , one can construct a nonempty real solution U_X F with |U_X| h and cost(U_X)(X) . Moreover g(X)=()-(X) is normalized,…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-comp-completion",
+          "role": "completing-sampled-prefixes-and-recovering-the-budget-3",
+          "label": "Completion of a prefix",
+          "fullLabel": "Completion of a prefix",
+          "kind": "theorem",
+          "source": "Completing sampled prefixes and recovering the budget",
+          "detail": "[Completion of a prefix] In the prefix setting above, fix a rational 1/e<<1 . Define \\[ R^*=S_0 Q, J=_ s R^* J_s, I=_ p J d(p,H), X^*=\\ (i,i):i A\\ . \\] For p C_i , let c_p= d(p,_i),&i good,\\\\…",
+          "dependsOn": [
+            "m1-comp-partition-max",
+            "m1-comp-surrogate-properties"
+          ]
+        },
+        {
+          "id": "m1-comp-recovery",
+          "role": "completing-sampled-prefixes-and-recovering-the-budget-4",
+          "label": "Single-exponential recovery",
+          "fullLabel": "Single-exponential recovery",
+          "kind": "theorem",
+          "source": "Completing sampled prefixes and recovering the budget",
+          "detail": "[Single-exponential recovery] Suppose |S|=|O|=h1 , P=cost(O)>0 , and O has an injective proxy map into S for its good centers such that \\[ _ i good _ p C_i d(p,_i) P_g+0.01P. \\] Assume the number m…",
+          "dependsOn": [
+            "m1-sam-successful-prefix",
+            "m1-comp-completion"
+          ]
+        },
+        {
+          "id": "m1-ref-two-stage",
+          "role": "sharper-recovery-when-few-clusters-are-unanchored",
+          "label": "Two-stage endpoint",
+          "fullLabel": "Two-stage endpoint",
+          "kind": "lemma",
+          "source": "Sharper recovery when few clusters are unanchored",
+          "detail": "[Two-stage endpoint] The blind sampling procedure, run for at most 2m steps and retaining all prefixes, has probability at least (-O_(m)) of producing a prefix with the following properties. There is…",
+          "dependsOn": [
+            "m1-sam-radius-budget",
+            "m1-sam-near-clients",
+            "m1-sam-computable-radius",
+            "m1-sam-probability"
+          ]
+        },
+        {
+          "id": "m1-ref-charges",
+          "role": "sharper-recovery-when-few-clusters-are-unanchored-2",
+          "label": "Refined charge bound",
+          "fullLabel": "Refined charge bound",
+          "kind": "lemma",
+          "source": "Sharper recovery when few clusters are unanchored",
+          "detail": "[Refined charge bound] For the endpoint above, the cost bound in Equation~ is at most (1+2 a_1++11+ q)P (1+2/e+6)P.",
+          "dependsOn": [
+            "m1-ref-recovery",
+            "m1-ref-two-stage",
+            "m1-comp-completion",
+            "m1-sam-computable-radius",
+            "m1-sam-radius-budget"
+          ]
+        },
+        {
+          "id": "m1-imp-cglss",
+          "role": "the-surplus-construction-and-its-execution-certificate",
+          "label": "Surplus construction",
+          "fullLabel": "Surplus construction",
+          "kind": "theorem",
+          "source": "The surplus construction and its execution certificate",
+          "detail": "[Surplus construction] For the metric range above and fixed v , the construction underlying Theorem~1.2 of can be run in polynomial time at any target 2 h |F| . With precision =2^ -N , its output has…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-imp-surplus-history",
+          "role": "the-surplus-construction-and-its-execution-certificate-2",
+          "label": "Surplus solution with a compatible history",
+          "fullLabel": "Surplus solution with a compatible history",
+          "kind": "lemma",
+          "source": "The surplus construction and its execution certificate",
+          "detail": "[Surplus solution with a compatible history] Given valid sequences of either output form in Theorem~ , with their price, fixed copy lengths, opening witnesses and certified bids, a polynomial-time…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-str-strictness",
+          "role": "strictness-at-a-bounded-opening-price",
+          "label": "Bounded-price strictness",
+          "fullLabel": "Bounded-price strictness",
+          "kind": "lemma",
+          "source": "Strictness at a bounded opening price",
+          "detail": "[Bounded-price strictness] For T>0 define B=T+2, =1 200B , c(T)= ^2 100 >0. Assume 0<1 , 0<v1 , and v^2c(T) 6(T+2) . For any regular facility i F and nonempty client set C D of positive cost P_C=_ p…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sur-low-sensitivity",
+          "role": "the-low-sensitivity-case",
+          "label": "Low sensitivity",
+          "fullLabel": "Low sensitivity",
+          "kind": "proposition",
+          "source": "The low sensitivity case",
+          "detail": "[Low sensitivity] With these fixed parameters, suppose k>2L and opt_ k-2L (1+)opt_k. Put h=k-L . In polynomial time one can compute a real facility set S of size k with cost(S) (2-c 100 )opt_h (2-c…",
+          "dependsOn": [
+            "m1-imp-cglss",
+            "m1-imp-surplus-history",
+            "m1-str-strictness",
+            "m1-loc-anchoring",
+            "m1-loc-swap"
+          ]
+        },
+        {
+          "id": "m1-asm-sensitive",
+          "role": "the-stability-dichotomy-and-the-final-algorithm",
+          "label": "A sensitive cardinality",
+          "fullLabel": "A sensitive cardinality",
+          "kind": "lemma",
+          "source": "The stability dichotomy and the final algorithm",
+          "detail": "[A sensitive cardinality] Suppose k>2L , 0<1 , and \\[ opt_ k-2L >(1+)opt_k. \\] Put =/(4L) . There is an integer h' with k-2L<h' k such that opt_ h'-1 (1+)opt_ h' , opt_ h' (1+)opt_k. For an optimum O…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-asm-integral",
+          "role": "the-stability-dichotomy-and-the-final-algorithm-2",
+          "label": "Integral-instance algorithm",
+          "fullLabel": "Integral-instance algorithm",
+          "kind": "proposition",
+          "source": "The stability dichotomy and the final algorithm",
+          "detail": "[Integral-instance algorithm] With the constants above, for every 0<<1 there is a randomized algorithm which always returns at most k facilities and cost at most 5opt_k , and with probability at…",
+          "dependsOn": [
+            "m1-loc-descent",
+            "m1-loc-swap",
+            "m1-comp-recovery",
+            "m1-sur-low-sensitivity",
+            "m1-asm-sensitive",
+            "m1-loc-anchoring"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "The approximation threshold for metric k-median",
+      "title": "The approximation threshold for metric k-median",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Approximation-Threshold-for-Metric-k-Median-September-24-2026/main.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from The approximation threshold for metric k-median; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "result",
+          "label": "For every fixed \\(>0\\), there is a deterministic algorithm which, given a…",
+          "fullLabel": "For every fixed \\(>0\\), there is a deterministic algorithm which, given a…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "For every fixed \\(>0\\), there is a deterministic algorithm which, given a finite rational metric \\(k\\)-median instance with \\(1 k |F|\\), returns \\(S F\\), \\(|S| k\\), such that \\[ _ j J d(j,S)…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-threshold",
+          "role": "introduction-2",
+          "label": "If \\(P NP\\), the infimum of deterministic polynomial-time approximation factors…",
+          "fullLabel": "If \\(P NP\\), the infimum of deterministic polynomial-time approximation factors…",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "If \\(P NP\\), the infimum of deterministic polynomial-time approximation factors for metric \\(k\\)-median with specified candidate facilities is \\(1+2/e\\).",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-li-svensson",
+          "role": "preliminaries-and-the-reduction",
+          "label": "Li--Svensson~ , Theorem~4 of the 2014 manuscript",
+          "fullLabel": "Li--Svensson~ , Theorem~4 of the 2014 manuscript",
+          "kind": "theorem",
+          "source": "Preliminaries and the reduction",
+          "detail": "[Li--Svensson~ , Theorem~4 of the 2014 manuscript] Let \\(>1\\), and suppose \\( A\\) is a \\(c\\)-additive \\(\\)-approximation algorithm for metric \\(k\\)-median. For every \\(>0\\), there is an ordinary…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-preparation",
+          "role": "preparing-the-openings",
+          "label": "For every >0 , there is a constant _0 with the following property. Given a…",
+          "fullLabel": "For every >0 , there is a constant _0 with the following property. Given a…",
+          "kind": "theorem",
+          "source": "Preparing the openings",
+          "detail": "For every >0 , there is a constant _0 with the following property. Given a finite rational metric instance and feasible rational openings 0 y_i1 with a nearest-unit assignment of cost V_j for each…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-prep-weighted-rounding",
+          "role": "preparing-the-openings-2",
+          "label": "Let q_e0 be rational counts and let _e>0 be rational weights. One can randomly…",
+          "fullLabel": "Let q_e0 be rational counts and let _e>0 be rational weights. One can randomly…",
+          "kind": "lemma",
+          "source": "Preparing the openings",
+          "detail": "Let q_e0 be rational counts and let _e>0 be rational weights. One can randomly update the counts within the bounds [ q_e, q_e] , preserving _e_e q_e on every update, until at most one count is…",
+          "dependsOn": [
+            "m2-thm-preparation"
+          ]
+        },
+        {
+          "id": "m2-thm-finite-inequality",
+          "role": "a-finite-inequality-for-the-drift",
+          "label": "Finite comparison inequality",
+          "fullLabel": "Finite comparison inequality",
+          "kind": "theorem",
+          "source": "A finite inequality for the drift",
+          "detail": "[Finite comparison inequality] Let I be a finite index set with probability weights (_i)_ i I , and let D_i0 satisfy _iD_i=1 . Both _i and _t denote expectation with these weights; in a double…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-scalar-bounds",
+          "role": "a-finite-inequality-for-the-drift-2",
+          "label": "Scalar bounds",
+          "fullLabel": "Scalar bounds",
+          "kind": "lemma",
+          "source": "A finite inequality for the drift",
+          "detail": "[Scalar bounds] Fix x , put X=1-x , and take 0 w X and s\\ 0,1\\ . Use the functions in Equation~ , and define z&=Pw^2,& b&=(2-s)P(x+w),& a&=A+2Pw,& C&=1-Ps,\\\\ d_0&=.52,& d_1&=.4,&…",
+          "dependsOn": [
+            "m2-thm-finite-inequality"
+          ]
+        },
+        {
+          "id": "m2-thm-grid-rounding",
+          "role": "tapered-iterative-rounding",
+          "label": "Rounding a grid solution",
+          "fullLabel": "Rounding a grid solution",
+          "kind": "theorem",
+          "source": "Tapered iterative rounding",
+          "detail": "[Rounding a grid solution] For every fixed >0 and all sufficiently large constant integers , put g=1/ . Suppose a finite rational metric instance has openings y_i g Z of total mass M1 . For a client…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-rnd-count",
+          "role": "tapered-iterative-rounding-2",
+          "label": "Constant additive count",
+          "fullLabel": "Constant additive count",
+          "kind": "lemma",
+          "source": "Tapered iterative rounding",
+          "detail": "[Constant additive count] Fix g,,,T as above, with sufficiently small as a function of and . For every fixed >0 , one can choose b_*>0 and a constant C such that the final active mass is at most M+C…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-rnd-completion",
+          "role": "tapered-iterative-rounding-3",
+          "label": "Backup and completion",
+          "fullLabel": "Backup and completion",
+          "kind": "lemma",
+          "source": "Tapered iterative rounding",
+          "detail": "[Backup and completion] Once a copy of S_0 is physically removed, an integral facility within distance 5R of the client exists and persists to the end. At the end of the process one can retain all…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-rnd-batch",
+          "role": "tapered-iterative-rounding-4",
+          "label": "Conditional batch drift",
+          "fullLabel": "Conditional batch drift",
+          "kind": "lemma",
+          "source": "Tapered iterative rounding",
+          "detail": "[Conditional batch drift] For every pre-round history and every realized graph, the physical round, the above alive-set update, and the time advance satisfy ( f+ B) +O_((+) R). Here B is computed…",
+          "dependsOn": [
+            "m2-lem-rnd-completion"
+          ]
+        },
+        {
+          "id": "m2-lem-rnd-average",
+          "role": "tapered-iterative-rounding-5",
+          "label": "Averaged ideal drift",
+          "fullLabel": "Averaged ideal drift",
+          "kind": "lemma",
+          "source": "Tapered iterative rounding",
+          "detail": "[Averaged ideal drift] Conditional on the pre-round history, the ideal expression satisfies f+_ graph B BgV+12 V.",
+          "dependsOn": [
+            "m2-thm-finite-inequality"
+          ]
+        },
+        {
+          "id": "m2-lem-rnd-survival",
+          "role": "tapered-iterative-rounding-6",
+          "label": "Decay of the alive mass",
+          "fullLabel": "Decay of the alive mass",
+          "kind": "lemma",
+          "source": "Tapered iterative rounding",
+          "detail": "[Decay of the alive mass] For sufficiently small depending only on , every client's analysis process satisfies y_T(1-/2)^T e^ -/2 .",
+          "dependsOn": [
+            "m2-lem-rnd-batch"
+          ]
+        },
+        {
+          "id": "m2-lem-affine-support",
+          "role": "deterministic-implementation-and-completion",
+          "label": "Affine support reduction",
+          "fullLabel": "Affine support reduction",
+          "kind": "lemma",
+          "source": "Deterministic implementation and completion",
+          "detail": "[Affine support reduction] Let a distribution list have states \\(s_1,,s_M\\), weights \\(_1,,_M\\), and feature vectors \\(v(s_i) Q^d\\). There is an exact algorithm that replaces the weights by…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-pseudo",
+          "role": "deterministic-implementation-and-completion-2",
+          "label": "Deterministic additive approximation",
+          "fullLabel": "Deterministic additive approximation",
+          "kind": "theorem",
+          "source": "Deterministic implementation and completion",
+          "detail": "[Deterministic additive approximation] For every fixed \\(>0\\), there is an instance-independent integer \\(c0\\) and a deterministic polynomial-time algorithm for metric \\(k\\)-median that opens at most…",
+          "dependsOn": [
+            "m2-thm-preparation",
+            "m2-thm-grid-rounding",
+            "m2-thm-main",
+            "m2-thm-li-svensson"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-ref-recovery",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    },
+    {
+      "from": "m2:m2-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "Single-exponential recovery and bounded-price strictness for metric k-median",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Single-Exponential-Recovery-and-Bounded-Price-Strictness-for-Metric-k-Median-September-24-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "The approximation threshold for metric k-median",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Approximation-Threshold-for-Metric-k-Median-September-24-2026/main.pdf",
+      "kind": "paper"
+    }
+  ]
+}

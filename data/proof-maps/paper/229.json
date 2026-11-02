@@ -347,91 +347,113 @@
   "edges": [
     {
       "from": "m1-lem-channel",
-      "to": "m1-prop-cone-closure"
+      "to": "m1-prop-cone-closure",
+      "context": "By Lemma~\\ref{lem:channel}, a channel step scales $x=Lp$ by $\\lambda$ without changing the marginal law of the observation. Consequently \\eqref{eq"
     },
     {
       "from": "m1-lem-bayes-product",
-      "to": "m1-prop-cone-closure"
+      "to": "m1-prop-cone-closure",
+      "context": "bservation. Consequently \\eqref{eq:H-scaling} gives \\[ \\E H(\\lambda x)\\geq\\lambda^3\\E H(x)\\geq0. \\] The resulting law remains symmetric. For a product, Lemma~\\ref{lem:bayes-product} expresses its posterior expectations as $\\E_{\\mu\\otimes\\nu}[z\\phi(P)]$. The expectation here is over independent margin"
     },
     {
       "from": "m1-lem-channel",
-      "to": "m1-prop-tree-recursion"
+      "to": "m1-prop-tree-recursion",
+      "context": "independence of the child subtrees from each other and from $D$; for the regular tree the subtrees are deterministic copies of the same rooted tree. By Lemma~\\ref{lem:channel} and Proposition~\\ref{prop:cone-closure}, each branch law belongs to $\\mathcal C$ and has mean $A$ equal to \\[ b=\\lamb"
     },
     {
       "from": "m1-prop-cone-closure",
-      "to": "m1-prop-tree-recursion"
+      "to": "m1-prop-tree-recursion",
+      "context": "s from each other and from $D$; for the regular tree the subtrees are deterministic copies of the same rooted tree. By Lemma~\\ref{lem:channel} and Proposition~\\ref{prop:cone-closure}, each branch law belongs to $\\mathcal C$ and has mean $A$ equal to \\[ b=\\lambda^2m_n. \\] Combining the branches succe"
     },
     {
       "from": "m1-lem-bayes-product",
-      "to": "m1-prop-tree-recursion"
+      "to": "m1-prop-tree-recursion",
+      "context": "\\ref{prop:cone-closure}, each branch law belongs to $\\mathcal C$ and has mean $A$ equal to \\[ b=\\lambda^2m_n. \\] Combining the branches successively by Lemma~\\ref{lem:bayes-product} and Proposition~\\ref{prop:cone-closure} preserves membership in $\\mathcal C$. If $k=0$, the posterior is $\\unif$ and h"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-prop-tree-recursion"
+      "to": "m1-prop-tree-recursion",
+      "context": "[Proof of Theorem~\\ref{thm:main}] If $\\lambda=0$, each branch observation is independent of the root; equivalently, \\eqref{eq:tree-recursion} gives $m_n"
     },
     {
       "from": "m1-lem-subdivision",
-      "to": "m1-prop-finite-verification"
+      "to": "m1-prop-finite-verification",
+      "context": "1935 20 lp=871 lt=97 \\end{verbatim} Here \\texttt{lp} and \\texttt{lt} count the terminal cells accepted by Types P and T. The substitutions are those of Lemma~\\ref{lem:subdivision}, and Appendix~\\ref{app:implementation} verifies their exact implementation and the coefficient arithmetic. Lemmas~\\ref"
     },
     {
       "from": "m1-lem-type-t",
-      "to": "m1-prop-finite-verification"
+      "to": "m1-prop-finite-verification",
+      "context": "ons are those of Lemma~\\ref{lem:subdivision}, and Appendix~\\ref{app:implementation} verifies their exact implementation and the coefficient arithmetic. Lemmas~\\ref{lem:type-t} and~\\ref{lem:type-p} certify the sign on each accepted cell, and Lemma~\\ref{lem:subdivision} proves coverage. The cont"
     },
     {
       "from": "m1-lem-type-p",
-      "to": "m1-prop-finite-verification"
+      "to": "m1-prop-finite-verification",
+      "context": "a~\\ref{lem:subdivision}, and Appendix~\\ref{app:implementation} verifies their exact implementation and the coefficient arithmetic. Lemmas~\\ref{lem:type-t} and~\\ref{lem:type-p} certify the sign on each accepted cell, and Lemma~\\ref{lem:subdivision} proves coverage. The continuous extension at z"
     },
     {
       "from": "m3-fnd-ordered",
-      "to": "m3-fnd-limit"
+      "to": "m3-fnd-limit",
+      "context": "vergence on the compact simplex. Moreover \\(m^{(\\ell+1)}=\\E[m^{(\\ell)}\\mid\\mathcal F_{\\ell+1}]\\), so conditional Jensen proves the stated monotonicity. Lemma~\\ref{fnd:ordered} transfers these conclusions to the required unlabelled observations. It remains to pass Equation~\\eqref{fnd:law-recurs"
     },
     {
       "from": "m3-fnd-limit",
-      "to": "m3-fnd-supercritical"
+      "to": "m3-fnd-supercritical",
+      "context": "\\(\\mu_\\ell\\geq C^{-1}\\) at every depth, and Equation~\\eqref{fnd:tv-moment} gives \\(a_\\ell\\geq(\\sqrt3 C)^{-1}>0\\). The limiting advantage exists by Proposition~\\ref{fnd:limit}, so it is positive. In particular, this argument uses the original Poisson experiment, without conditioning on surviva"
     },
     {
       "from": "m3-fnd-ordered",
-      "to": "m3-fnd-degradation"
+      "to": "m3-fnd-degradation",
+      "context": "son broadcast law with mean \\(d_-\\). These operations are performed only on the known tree and observed boundary; neither requires a survival event. By Lemma~\\ref{fnd:ordered}, an unlabelled observation can first be randomly ordered without accessing the root, and the final ordering can then be"
     },
     {
       "from": "m3-fnd-limit",
-      "to": "m3-fnd-degradation"
+      "to": "m3-fnd-degradation",
+      "context": "abelled model as well. Their comparison of the stated quantities follows from Equation~\\eqref{fnd:conditional-jensen}, and passes to the limits by Proposition~\\ref{fnd:limit}."
     },
     {
       "from": "m3-fnd-survival",
-      "to": "m3-pos-moment-bounds"
+      "to": "m3-pos-moment-bounds",
+      "context": "qref{pos:Q-identities}, followed by Cauchy--Schwarz, prove \\[ 0\\le\\E J\\le\\mu-\\lambda q\\nu, \\qquad c\\nu\\le\\eta\\le\\E x^{3/2}\\le\\sqrt{\\mu\\nu}. \\] Finally, Lemma~\\ref{fnd:survival} gives \\(\\mu^2\\le s\\nu\\). Squaring \\(c\\nu\\le\\sqrt{\\mu\\nu}\\) gives \\(\\nu\\le\\mu/c^2\\), and combining the two bounds gives"
     },
     {
       "from": "m3-fnd-survival",
-      "to": "m3-pos-nonreconstruction"
+      "to": "m3-pos-nonreconstruction",
+      "context": "now proves the strict inequality on the entire interval. Finally suppose \\(1/\\sqrt2<\\lambda<1\\), which can occur at equality only in the Poisson model. Lemma~\\ref{fnd:survival}, with \\(d=\\lambda^{-2}\\), gives \\(s\\le2(1-\\lambda^2)\\). Hence \\[ T-\\frac85\\ge\\frac3{20} -\\frac{1-17\\"
     },
     {
       "from": "m3-wei-identities",
-      "to": "m3-wei-positive"
+      "to": "m3-wei-positive",
+      "context": "[Proof of Proposition~\\ref{wei:exclusion}] Suppose a nontrivial fixed point exists. Lemmas \\ref{wei:identities} and~\\ref{wei:scalarbounds} place its scalar $\\xi$ in the certified interval. Choose the applicable row of~\\eqref{wei:p"
     },
     {
       "from": "m3-wei-scalarbounds",
-      "to": "m3-wei-positive"
+      "to": "m3-wei-positive",
+      "context": "[Proof of Proposition~\\ref{wei:exclusion}] Suppose a nontrivial fixed point exists. Lemmas \\ref{wei:identities} and~\\ref{wei:scalarbounds} place its scalar $\\xi$ in the certified interval. Choose the applicable row of~\\eqref{wei:parameters}. Equation~\\eqre"
     },
     {
       "from": "m3-fnd-limit",
-      "to": "m3-grid-negative-completion"
+      "to": "m3-grid-negative-completion",
+      "context": "by the recursion and the two garblings above. Conditional Jensen gives \\mbox{$\\mu_{\\mathrm{true}}\\leq\\mu_{\\mathrm{upper}}<1/20$} at that depth. By Proposition~\\ref{fnd:limit}, the actual depth laws have a symmetric fixed-point limit and their moments decrease to its moment. The limit therefor"
     },
     {
       "from": "m3-thm-threshold",
-      "to": "m3-grid-negative-completion"
+      "to": "m3-grid-negative-completion",
+      "context": "[Proof of Theorem~\\ref{thm:threshold}] Proposition~\\ref{fnd:supercritical} proves reconstruction whenever $d\\lambda^2>1$. Conversely, Proposition~\\ref{pos:n"
     },
     {
       "from": "m3-fnd-supercritical",
-      "to": "m3-grid-negative-completion"
+      "to": "m3-grid-negative-completion",
+      "context": "[Proof of Theorem~\\ref{thm:threshold}] Proposition~\\ref{fnd:supercritical} proves reconstruction whenever $d\\lambda^2>1$. Conversely, Proposition~\\ref{pos:nonreconstruction} proves non-reconstr"
     },
     {
       "from": "m3-pos-nonreconstruction",
-      "to": "m3-grid-negative-completion"
+      "to": "m3-grid-negative-completion",
+      "context": "[Proof of Theorem~\\ref{thm:threshold}] Proposition~\\ref{fnd:supercritical} proves reconstruction whenever $d\\lambda^2>1$. Conversely, Proposition~\\ref{pos:nonreconstruction} proves non-reconstruction for $0\\le\\lambda\\le d^{-1/2}$, and Proposition~\\ref{grid:negative-completion} proves it for e"
     },
     {
       "from": "m3-cor-sbm",
-      "to": "m3-grid-negative-completion"
+      "to": "m3-grid-negative-completion",
+      "context": "[Proof of Corollary~\\ref{cor:sbm}] Set \\[ \\lambda=\\frac{a-b}{a+2b}\\in(-1/2,1),\\qquad d\\lambda^2=\\frac{(a-b)^2}{3(a+2b)}. \\] The corresponding Poisson b"
     }
   ]
 }

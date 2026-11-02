@@ -122,7 +122,8 @@
     "runner:axiom:check": "node --test --test-name-pattern=\"builds dependencies once and audits the exact entry source once|requires a complete exact-target axiom report\" tests/container-lean-executor.test.mjs",
     "proof:maps:report": "node scripts/report-proof-map-coverage.mjs",
     "proof:maps:lean:build": "node scripts/build-proof-map-lean-index.mjs",
-    "proof:maps:paper:build": "node scripts/build-proof-map-paper-index.mjs"
+    "proof:maps:paper:build": "node scripts/build-proof-map-paper-index.mjs",
+    "proof:maps:promote": "node scripts/promote-proof-map-paper-to-deep.mjs"
   },
   "dependencies": {
     "@cloudflare/containers": "^0.3.7",

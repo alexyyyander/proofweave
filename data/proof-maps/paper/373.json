@@ -86,43 +86,53 @@
   "edges": [
     {
       "from": "m1-lem-local",
-      "to": "m1-prop-certificate"
+      "to": "m1-prop-certificate",
+      "context": "Use the functions and neighborhoods of Lemma~\\ref{lem:local}. Choose small balls contained in these neighborhoods, taking \\(U_0\\) inside both central neighborhoods. On the respecti"
     },
     {
       "from": "m1-prop-certificate",
-      "to": "m1-lem-common-ball"
+      "to": "m1-lem-common-ball",
+      "context": "of zero. Choose a positive-radius ball \\(B\\) about zero inside their intersection and \\(U_0\\). The inverse maps then take \\(B\\) into \\(U_k^+\\), and Proposition~\\ref{prop:certificate} gives \\(Z_k(Y_k(B))\\subset U_k^-\\). The inverse and composition of the relevant diffeomorphisms are diffeomorphisms ont"
     },
     {
       "from": "m1-prop-equal-infima",
-      "to": "m1-lem-borel-transport"
+      "to": "m1-lem-borel-transport",
+      "context": "[Proof of Proposition~\\ref{prop:equal-infima}] Write \\(K_0=\\supp g\\), and let \\(K_1,\\ldots,K_4\\) be its images under the four maps in \\(\\calH\\). These are nonempty c"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-borel-transport"
+      "to": "m1-lem-borel-transport",
+      "context": "ves the required upper bound on the Monge infimum. The reverse bound follows because every admissible graph plan is a coupling. Strict nonattainment is Theorem~\\ref{thm:main}."
     },
     {
       "from": "m1-lem-local",
-      "to": "m1-thm-riesz"
+      "to": "m1-thm-riesz",
+      "context": "zc_s(0,a_k,-a_k)=s(1+2^{-s-1})a_k. \\] As before, we keep the positive outer point \\(y\\) free and minimize in the other two coordinates. The potentials in Lemma~\\ref{lem:local} are replaced by \\[ u_0(x)=2+2^{-s}-\\frac K2|x|^2,\\qquad v_k(z)=s(1+2^{-s-1})a_k\\cdot(z+a_k)-\\frac K2|z+a_k|^2. \\] The"
     },
     {
       "from": "m1-prop-certificate",
-      "to": "m1-thm-riesz"
+      "to": "m1-thm-riesz",
+      "context": "tivity of the other pair terms and permutation symmetry of \\(c_s\\) therefore give the full supporting inequality and exact contact set described in Proposition~\\ref{prop:certificate}, now in \\(\\R^d\\). The proof of Lemma~\\ref{lem:common-ball} then also applies in \\(\\R^d\\). On that common ball \\(B\\), c"
     },
     {
       "from": "m1-lem-common-ball",
-      "to": "m1-thm-riesz"
+      "to": "m1-thm-riesz",
+      "context": "(c_s\\) therefore give the full supporting inequality and exact contact set described in Proposition~\\ref{prop:certificate}, now in \\(\\R^d\\). The proof of Lemma~\\ref{lem:common-ball} then also applies in \\(\\R^d\\). On that common ball \\(B\\), choose a nonnegative \\(g\\in C_c^\\infty(B)\\) with \\(\\int_B g^"
     },
     {
       "from": "m1-lem-splitting",
-      "to": "m1-thm-riesz"
+      "to": "m1-thm-riesz",
+      "context": "e marginals equal to \\(\\mu\\). The bounded supporting potential proves its cost is finite and forces every optimal coupling onto the contact set. Applying Lemma~\\ref{lem:splitting} to the four branch maps then excludes every marginal-preserving Borel pair, exactly as in Section~\\ref{sec:proof}. \\pa"
     },
     {
       "from": "m1-prop-equal-infima",
-      "to": "m1-thm-riesz"
+      "to": "m1-thm-riesz",
+      "context": "separation \\(\\eta\\), and \\(\\pi_0\\) uses only products of three distinct components. Repeat the cell partition and redistribution from the proof of Proposition~\\ref{prop:equal-infima} in \\(\\R^d\\), using Lemma~\\ref{lem:borel-transport}. The first-coordinate marginals used to split the cells are absolute"
     },
     {
       "from": "m1-lem-borel-transport",
-      "to": "m1-thm-riesz"
+      "to": "m1-thm-riesz",
+      "context": "ducts of three distinct components. Repeat the cell partition and redistribution from the proof of Proposition~\\ref{prop:equal-infima} in \\(\\R^d\\), using Lemma~\\ref{lem:borel-transport}. The first-coordinate marginals used to split the cells are absolutely continuous by Fubini in every such dimension. Th"
     }
   ]
 }

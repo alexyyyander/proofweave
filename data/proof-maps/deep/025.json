@@ -1,0 +1,351 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "025",
+  "title": "Short Egyptian fractions",
+  "result": {
+    "id": "paper-result",
+    "label": "Short Egyptian fractions",
+    "statement": "Every rational a/b with 1 a b is a sum of O( b) distinct positive unit fractions. The worst-case minimum number of terms has the same order, resolving Erdős’s conjecture on short Egyptian fractions.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "introduction-2",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-a-dense-set-to-every-numerator",
+      "label": "From a dense set to every numerator",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-a-dense-set-to-every-numerator-2",
+      "label": "From a dense set to every numerator",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-a-dense-set-to-every-numerator-3",
+      "label": "From a dense set to every numerator",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-uniform-divisor-moment",
+      "label": "A uniform divisor moment",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "divisors-with-small-residues",
+      "label": "Divisors with small residues",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "divisors-with-small-residues-2",
+      "label": "Divisors with small residues",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "divisors-with-small-residues-3",
+      "label": "Divisors with small residues",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "divisors-with-small-residues-4",
+      "label": "Divisors with small residues",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "counting-representations-of-one",
+      "label": "Counting representations of one",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "preserving-a-prescribed-denominator",
+      "label": "Preserving a prescribed denominator",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "preserving-a-prescribed-denominator-2",
+      "label": "Preserving a prescribed denominator",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-quantitative-prescribed-denominator-bound",
+      "label": "A quantitative prescribed-denominator bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-quantitative-prescribed-denominator-bound-2",
+      "label": "A quantitative prescribed-denominator bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-quantitative-prescribed-denominator-bound-3",
+      "label": "A quantitative prescribed-denominator bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-quantitative-prescribed-denominator-bound-4",
+      "label": "A quantitative prescribed-denominator bound",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Short Egyptian fractions",
+      "title": "Short Egyptian fractions",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Short-Egyptian-fractions-September-25-2026/Short-Egyptian-fractions-September-25-2026.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Short Egyptian fractions; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "There are absolute constants c_1,c_2>0 and b_0 such that, for every integer b…",
+          "fullLabel": "There are absolute constants c_1,c_2>0 and b_0 such that, for every integer b…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "There are absolute constants c_1,c_2>0 and b_0 such that, for every integer b b_0 , \\[ c_1 b N(b) c_2 b. \\] In particular, the upper bound holds for every integer numerator 1 a<b .",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-counting",
+          "role": "introduction",
+          "label": "There are absolute constants c,C>0 and k_0 such that, for every integer k k_0 ,…",
+          "fullLabel": "There are absolute constants c,C>0 and k_0 such that, for every integer k k_0 ,…",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "There are absolute constants c,C>0 and k_0 such that, for every integer k k_0 , \\[ ck F(k) Ck. \\]",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-prescribed",
+          "role": "introduction-2",
+          "label": "For every sufficiently large integer k , \\[ ((k/600)) v(k)1+k^ 2^ k-1 . \\] More…",
+          "fullLabel": "For every sufficiently large integer k , \\[ ((k/600)) v(k)1+k^ 2^ k-1 . \\] More…",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "For every sufficiently large integer k , \\[ ((k/600)) v(k)1+k^ 2^ k-1 . \\] More precisely, \\[ 2 257 _ k v(k)k _ k v(k)k 2. \\] Equivalently for the lower bound, every fixed c<2/257 satisfies…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-density",
+          "role": "from-a-dense-set-to-every-numerator",
+          "label": "A dense set of short expansions",
+          "fullLabel": "A dense set of short expansions",
+          "kind": "proposition",
+          "source": "From a dense set to every numerator",
+          "detail": "[A dense set of short expansions] There are absolute constants \\(D_M>1\\), \\(L>0\\), and \\(S_0>1\\) with the following property. Put \\(D_X=D_M+2\\) and \\(D_C=4D_X\\). For every real \\(S S_0\\) and every…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-distinct",
+          "role": "from-a-dense-set-to-every-numerator-2",
+          "label": "Removing repetitions",
+          "fullLabel": "Removing repetitions",
+          "kind": "lemma",
+          "source": "From a dense set to every numerator",
+          "detail": "[Removing repetitions] Let \\(k1\\) be an integer. If \\(0<x<1\\) is a sum of \\(k\\) positive unit fractions with integer denominators, then it is a sum of \\(k\\) such fractions with distinct denominators,…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-greedy",
+          "role": "from-a-dense-set-to-every-numerator-3",
+          "label": "Preparing the denominator",
+          "fullLabel": "Preparing the denominator",
+          "kind": "lemma",
+          "source": "From a dense set to every numerator",
+          "detail": "[Preparing the denominator] Let \\(1 a<b\\) be integers and let \\(T>b\\) be real. After at most \\[ 1+_2( T 2 ) \\] greedy steps, either \\(a/b\\) has been expressed as a sum of unit fractions, or its…",
+          "dependsOn": [
+            "m1-thm-main",
+            "m1-prop-density",
+            "m1-lem-distinct"
+          ]
+        },
+        {
+          "id": "m1-lem-divisor",
+          "role": "a-uniform-divisor-moment",
+          "label": "For every fixed pair of real numbers \\(D,r1\\), there is \\(S_0(D,r)\\) such that…",
+          "fullLabel": "For every fixed pair of real numbers \\(D,r1\\), there is \\(S_0(D,r)\\) such that…",
+          "kind": "lemma",
+          "source": "A uniform divisor moment",
+          "detail": "For every fixed pair of real numbers \\(D,r1\\), there is \\(S_0(D,r)\\) such that the following holds for \\(S S_0(D,r)\\). Suppose that \\(X,Y\\) are real numbers and \\(N\\) is a nonnegative integer…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-residues",
+          "role": "divisors-with-small-residues",
+          "label": "For all sufficiently large \\(S\\) and every integer \\(C\\) satisfying , there are…",
+          "fullLabel": "For all sufficiently large \\(S\\) and every integer \\(C\\) satisfying , there are…",
+          "kind": "lemma",
+          "source": "Divisors with small residues",
+          "detail": "For all sufficiently large \\(S\\) and every integer \\(C\\) satisfying , there are an integer \\(M\\) and indexed lists \\(T_0,T_1,,T_R\\), each with \\(2^m\\) entries, such that: \\(e^S<M e^ D_MS \\), and the…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-discrepancy",
+          "role": "divisors-with-small-residues-2",
+          "label": "For all sufficiently large real \\(w\\), suppose \\(u,Q\\) are positive integers…",
+          "fullLabel": "For all sufficiently large real \\(w\\), suppose \\(u,Q\\) are positive integers…",
+          "kind": "lemma",
+          "source": "Divisors with small residues",
+          "detail": "For all sufficiently large real \\(w\\), suppose \\(u,Q\\) are positive integers and \\(T\\) is a nonempty finite list of positive integers. If \\[ |1 |T| _ t T ( Qt/u)| e^ -3 w (1 e^ 4 w ), \\] then at…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-reciprocal-phase",
+          "role": "divisors-with-small-residues-3",
+          "label": "Fix \\(B4\\). There are constants \\(A_B,_B>0\\) such that, for every sufficiently…",
+          "fullLabel": "Fix \\(B4\\). There are constants \\(A_B,_B>0\\) such that, for every sufficiently…",
+          "kind": "lemma",
+          "source": "Divisors with small residues",
+          "detail": "Fix \\(B4\\). There are constants \\(A_B,_B>0\\) such that, for every sufficiently large \\(U\\), every real \\(Z\\) with \\(U^4 |Z| U^B\\), and every interval \\(I\\), \\[ |_ n I (Z/n)| A_BU^ 1-_B . \\]",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-deterministic",
+          "role": "divisors-with-small-residues-4",
+          "label": "For the deterministic list \\(T_0\\) constructed above, every level \\(0 j<d\\)…",
+          "fullLabel": "For the deterministic list \\(T_0\\) constructed above, every level \\(0 j<d\\)…",
+          "kind": "lemma",
+          "source": "Divisors with small residues",
+          "detail": "For the deterministic list \\(T_0\\) constructed above, every level \\(0 j<d\\) with \\(X=X_j>e^S\\), and every integer \\(1 H:= e^ 4 m \\), one has 1X_ X_ j+1 <u X |1 |T_0| _ t T_0 ( Ct/u)|^2 e^ -0.01m for…",
+          "dependsOn": [
+            "m1-lem-reciprocal-phase",
+            "m1-prop-density",
+            "m1-lem-residues",
+            "m1-lem-divisor"
+          ]
+        },
+        {
+          "id": "m1-lem-marked-cleanup",
+          "role": "counting-representations-of-one",
+          "label": "Let Q>1 be odd. Suppose that a finite list of positive integers m_1,,m_t…",
+          "fullLabel": "Let Q>1 be odd. Suppose that a finite list of positive integers m_1,,m_t…",
+          "kind": "lemma",
+          "source": "Counting representations of one",
+          "detail": "Let Q>1 be odd. Suppose that a finite list of positive integers m_1,,m_t satisfies _ i=1 ^t1/m_i=1 and contains a multiple of Q . Then 1 has a representation by at most t distinct positive unit…",
+          "dependsOn": [
+            "m1-cor-counting",
+            "m1-thm-main"
+          ]
+        },
+        {
+          "id": "m1-lem-marked-greedy-prefix",
+          "role": "preserving-a-prescribed-denominator",
+          "label": "A greedy prefix avoiding one denominator",
+          "fullLabel": "A greedy prefix avoiding one denominator",
+          "kind": "lemma",
+          "source": "Preserving a prescribed denominator",
+          "detail": "[A greedy prefix avoiding one denominator] Let m4 and T2m^2 be integers. There are integers 2 n_1<<n_j , none equal to m , and integers q>0 and 0 R<2m such that \\[ 1=1m+_ i=1 ^ j 1 n_i + Rq, q=m_ i=1…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-exact-marker-padding",
+          "role": "preserving-a-prescribed-denominator-2",
+          "label": "Preserving a prescribed denominator while padding",
+          "fullLabel": "Preserving a prescribed denominator while padding",
+          "kind": "lemma",
+          "source": "Preserving a prescribed denominator",
+          "detail": "[Preserving a prescribed denominator while padding] Let r3 be an integer, and suppose that \\[ 1=_ i=1 ^ r 1 n_i , 1 n_1<<n_r, \\] where the denominators are integers. For every m\\ n_1,,n_r\\ there is a…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-marked-length",
+          "role": "a-quantitative-prescribed-denominator-bound",
+          "label": "For every >0 there is an integer m_ such that every integer m m_ occurs as an…",
+          "fullLabel": "For every >0 there is an integer m_ such that every integer m m_ occurs as an…",
+          "kind": "proposition",
+          "source": "A quantitative prescribed-denominator bound",
+          "detail": "For every >0 there is an integer m_ such that every integer m m_ occurs as an exact denominator in a representation of 1 by distinct positive unit fractions with at most \\[ (257 2 +) m \\] terms.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-rational-divisor-supply",
+          "role": "a-quantitative-prescribed-denominator-bound-2",
+          "label": "For every sufficiently large integer m , put \\[ L= m, Y=m^4, (v)=4 v 2 (v2). \\]…",
+          "fullLabel": "For every sufficiently large integer m , put \\[ L= m, Y=m^4, (v)=4 v 2 (v2). \\]…",
+          "kind": "lemma",
+          "source": "A quantitative prescribed-denominator bound",
+          "detail": "For every sufficiently large integer m , put \\[ L= m, Y=m^4, (v)=4 v 2 (v2). \\] Let P(v) be the product of the first (v) primes, and define \\[ K_m=P(Y)^2\\, L!. \\] Then K_m>m and K_m (32 2 +o(1)) m m…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-marked-divisor-density",
+          "role": "a-quantitative-prescribed-denominator-bound-3",
+          "label": "Let m2 be an integer. Suppose that q is obtained from m by a finite sequence of…",
+          "fullLabel": "Let m2 be an integer. Suppose that q is obtained from m by a finite sequence of…",
+          "kind": "lemma",
+          "source": "A quantitative prescribed-denominator bound",
+          "detail": "Let m2 be an integer. Suppose that q is obtained from m by a finite sequence of replacements q nq , where at each replacement n is a positive integer satisfying n q+1 . Then, for every real number w…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-marked-grouping",
+          "role": "a-quantitative-prescribed-denominator-bound-4",
+          "label": "Let m2 , q1 , K_m1 , and B1 be integers. Suppose that, for every real w , the…",
+          "fullLabel": "Let m2 , q1 , K_m1 , and B1 be integers. Suppose that, for every real w , the…",
+          "kind": "lemma",
+          "source": "A quantitative prescribed-denominator bound",
+          "detail": "Let m2 , q1 , K_m1 , and B1 be integers. Suppose that, for every real w , the integer q has a divisor in [w/m,w] . Suppose also that each integer s can be written as a sum of at most B positive…",
+          "dependsOn": [
+            "m1-prop-marked-length",
+            "m1-lem-rational-divisor-supply",
+            "m1-lem-marked-greedy-prefix",
+            "m1-lem-marked-divisor-density",
+            "m1-lem-distinct",
+            "m1-cor-prescribed",
+            "m1-lem-exact-marker-padding",
+            "m1-cor-counting"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "Short Egyptian fractions",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Short-Egyptian-fractions-September-25-2026/Short-Egyptian-fractions-September-25-2026.pdf",
+      "kind": "paper"
+    }
+  ]
+}

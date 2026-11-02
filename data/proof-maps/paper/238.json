@@ -691,271 +691,338 @@
   "edges": [
     {
       "from": "m1-lem-sequential-tv",
-      "to": "m1-prop-averaged-marginal"
+      "to": "m1-prop-averaged-marginal",
+      "context": "First fix \\(C\\) and apply Lemma~\\ref{lem:sequential-tv} to \\(Z_j=\\Pi_T(c_j)\\). In its \\(j\\)th summand, condition further on the paths through time \\(T\\) of the first \\(j-1\\) c"
     },
     {
       "from": "m1-thm-mixing",
-      "to": "m1-prop-orbit-lift"
+      "to": "m1-prop-orbit-lift",
+      "context": "[Completion of the proof of Theorem~\\ref{thm:mixing}] With our Fourier normalization, every probability measure \\(\\sigma\\) on \\(G\\) obeys \\begin{equation}\\label{eq:h-14} 4"
     },
     {
       "from": "m2-shear-lem-tuple",
-      "to": "m2-prop-marginals"
+      "to": "m2-prop-marginals",
+      "context": "n. \\end{equation} Let $\\widetilde\\delta_a(\\mathbf v,\\mathcal M)$ be the auxiliary tuple distance conditional on the complete schedule and partition. Use Lemma~\\ref{shear:lem:tuple} with $\\Lambda=\\mathbf v$. Its terminal identification is automatic, since $\\mathcal F_T^j$ already contains the complet"
     },
     {
       "from": "m2-lem-frames",
-      "to": "m2-prop-marginals"
+      "to": "m2-prop-marginals",
+      "context": ". \\end{equation} The schedule remains inside the distance on the left. For every fixed schedule and partition, choose $\\boldsymbol\\iota=(1,\\ldots,d)$ in Lemma~\\ref{lem:frames}. The first directions are $v_j=e_j$, so $L_0=I$. Corollary \\ref{cor:frames:marginals}, followed by the terminal rotatio"
     },
     {
       "from": "m2-cor-frames-marginals",
-      "to": "m2-prop-marginals"
+      "to": "m2-prop-marginals",
+      "context": "every fixed schedule and partition, choose $\\boldsymbol\\iota=(1,\\ldots,d)$ in Lemma~\\ref{lem:frames}. The first directions are $v_j=e_j$, so $L_0=I$. Corollary \\ref{cor:frames:marginals}, followed by the terminal rotation, therefore gives the same-list identity \\begin{equation}\\label{eq:marginal-frame-tra"
     },
     {
       "from": "m2-lem-degrees",
-      "to": "m2-prop-lift"
+      "to": "m2-prop-lift",
+      "context": "For every $a$, the group $H_a$ is isomorphic to $S_{|M_a|}$. Hence \\eqref{eq:degrees:truncated-sum} and Lemma~\\ref{lem:degrees} give \\[ \\sum_{\\substack{\\pi\\in\\widehat H_a\\\\\\dim\\pi\\le D^{1/k}}}(\\dim\\pi)^2 \\le C_0D^{18/k}. \\] In the orbit construc"
     },
     {
       "from": "m2-prop-lift-orbit-sum",
-      "to": "m2-prop-lift"
+      "to": "m2-prop-lift",
+      "context": "ma~\\ref{lem:degrees} give \\[ \\sum_{\\substack{\\pi\\in\\widehat H_a\\\\\\dim\\pi\\le D^{1/k}}}(\\dim\\pi)^2 \\le C_0D^{18/k}. \\] In the orbit construction of Proposition~\\ref{prop:lift:orbit-sum}, this recovers $\\dim W_a\\le C_0D^{18/k}$, and the component bound \\eqref{eq:lift:component-bound} becomes \\[ |\\langle"
     },
     {
       "from": "m2-thm-main",
-      "to": "m2-lem-fair-sign"
+      "to": "m2-lem-fair-sign",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Fix $k=64$ and let $d\\ge6$ grow. Put $T=1025d$ and $\\mu=q_d^{*T}$. Proposition~\\ref{prop:marginals} supplies a partiti"
     },
     {
       "from": "m2-prop-marginals",
-      "to": "m2-lem-fair-sign"
+      "to": "m2-lem-fair-sign",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Fix $k=64$ and let $d\\ge6$ grow. Put $T=1025d$ and $\\mu=q_d^{*T}$. Proposition~\\ref{prop:marginals} supplies a partition of the labels into $k$ sets of size $m=n/k$ for which the sum of the complementary marginal errors"
     },
     {
       "from": "m2-lem-trim",
-      "to": "m2-lem-fair-sign"
+      "to": "m2-lem-fair-sign",
+      "context": "ef{prop:marginals} supplies a partition of the labels into $k$ sets of size $m=n/k$ for which the sum of the complementary marginal errors tends to zero. Lemma~\\ref{lem:trim} therefore applies with their sum at most $1/4$ for all sufficiently large $d$. It supplies a probability measure $\\bar\\"
     },
     {
       "from": "m2-prop-lift",
-      "to": "m2-lem-fair-sign"
+      "to": "m2-lem-fair-sign",
+      "context": "\\bar\\mu(gH_a)\\le4\\frac{|H_a|}{|G|}\\quad(g\\in G,\\ 1\\le a\\le k). \\end{equation} Here $H_a$ permutes the $a$th label block and fixes all other labels. Corollary~\\ref{prop:lift} gives, simultaneously for every irreducible $\\rho$ of dimension $D$, \\begin{equation}\\label{eq:final-op} \\|\\widehat{\\b"
     },
     {
       "from": "m2-lem-degrees",
-      "to": "m2-lem-fair-sign"
+      "to": "m2-lem-fair-sign",
+      "context": "l{eq:final-op} \\|\\widehat{\\bar\\mu}(\\rho)\\|_{\\op} \\le A D^{-23/64},\\qquad A=\\sqrt{4\\cdot64\\,C_0}, \\end{equation} where $C_0$ is the absolute constant in Lemma~\\ref{lem:degrees}. Take $\\ell=32$, a fixed number independent of $d$. Operator-norm submultiplicativity and $\\|B\\|_{\\HS}\\le\\sqrt D\\|B\\|_"
     },
     {
       "from": "m2-lem-plancherel",
-      "to": "m2-lem-fair-sign"
+      "to": "m2-lem-fair-sign",
+      "context": "refore \\[ |\\widehat{\\bar\\mu}(\\sgn)| \\le2\\|\\bar\\mu-\\mu\\|_{\\TV}=o(1). \\] Its contribution after $\\ell$ factors is therefore $o(1)$ as well. Together with Lemma~\\ref{lem:plancherel} and \\eqref{eq:final-degree-sum}, this proves $\\|\\bar\\mu^{*32}-U\\|_{\\TV}=o(1)$. Convolution by a probability measure co"
     },
     {
       "from": "m2-lem-concentration",
-      "to": "m2-shear-lem-fixed-balance"
+      "to": "m2-shear-lem-fixed-balance",
+      "context": "ossing switch, the available count on either chosen side is $a+\\operatorname{Bin}(b,1/2)$, using $b$ independent fair coins. Its mean is $m/2$. If $b>0$, Lemma~\\ref{lem:concentration} bounds a deviation of at least $m/4$ by $2\\exp(-2(m/4)^2/b)\\le2e^{-m/8}$; if $b=0$ the count is exactly $m/2$. The inte"
     },
     {
       "from": "m2-shear-lem-tuple",
-      "to": "m2-shear-prop-fixed-marginal"
+      "to": "m2-shear-prop-fixed-marginal",
+      "context": "e(1-\\gamma)\\E\\Delta_t +2\\gamma e^{-N/(8L)}. \\end{equation} Starting from $\\Delta_d\\le1$ yields $\\E\\Delta_T\\le(1-\\gamma)^{T-d}+2e^{-N/(8L)}$. Apply Lemma~\\ref{shear:lem:tuple} with terminal data $\\Lambda=\\mathbf v$. For every complete schedule, the first basis is $(e_{\\iota_1},\\ldots,e_{\\iota_d"
     },
     {
       "from": "m2-lem-frames",
-      "to": "m2-shear-prop-fixed-marginal"
+      "to": "m2-shear-prop-fixed-marginal",
+      "context": "hear:lem:tuple} with terminal data $\\Lambda=\\mathbf v$. For every complete schedule, the first basis is $(e_{\\iota_1},\\ldots,e_{\\iota_d})$, so $L_0=I$ in Lemma~\\ref{lem:frames}. The same-list equality \\eqref{eq:frames:tuple-input-map} transfers the conditional tuple bound to $X^{\\boldsymbol\\iota"
     },
     {
       "from": "m2-shear-lem-tuple",
-      "to": "m2-shear-prop-reservoir"
+      "to": "m2-shear-prop-reservoir",
+      "context": "\\eqref{eq:marginal-cross-energy} give \\[ \\E\\Delta_{t+1}\\le(31/32)\\E\\Delta_t+p_{\\mathrm{bad}}/32, \\qquad \\E\\Delta_T\\le e^{-8d}+p_{\\mathrm{bad}}. \\] Use Lemma~\\ref{shear:lem:tuple} with $\\Lambda=\\mathbf v$. For each fixed schedule and $B$, the standard first basis gives $L_0=I$, so the conditional a"
     },
     {
       "from": "m2-shear-lem-tuple",
-      "to": "m2-lifts-averaged-tuples"
+      "to": "m2-lifts-averaged-tuples",
+      "context": "teration give \\[ \\E\\Delta_{s+1}\\le(1-\\gamma_j)\\E\\Delta_s +2\\gamma_j\\vartheta^h,\\qquad \\E\\Delta_t\\le(1-1/(4b))^{t-d}+2\\vartheta^m. \\] Lemma~\\ref{shear:lem:tuple}, with $\\Lambda=\\mathbf v$, bounds the average distance conditional on the full schedule and list. For every fixed sched"
     },
     {
       "from": "m2-lem-concentration",
-      "to": "m2-shear-prop-random-tuple"
+      "to": "m2-shear-prop-random-tuple",
+      "context": "as comparison of consecutive probabilities shows. Before conditioning, the half-count has mean $h/2$ and is a sum of $N/2$ independent bounded variables. Lemma~\\ref{lem:concentration} gives \\begin{equation}\\label{shear:eq:sample-balance} \\Pr\\{\\min(|D_t^j\\cap J_t|,|D_t^j\\setminus J_t|)<h/4\\} \\le2(N+1)"
     },
     {
       "from": "m2-lem-subprobability-fourier",
-      "to": "m2-shear-prop-fourier-inputs"
+      "to": "m2-shear-prop-fourier-inputs",
+      "context": "cluding their common-measure and mass claims, follow from \\cite[Lemma~\\Lref{l:trim}]{partial-fourier}. The normalization assertion for \\(f\\) follows from Lemma~\\ref{lem:subprobability-fourier} below; dividing the exact cap by \\(z\\) gives the normalized cap."
     },
     {
       "from": "m2-lem-plancherel",
-      "to": "m2-lem-subprobability-fourier"
+      "to": "m2-lem-subprobability-fourier",
+      "context": "The regular-character expansion in Lemma~\\ref{lem:plancherel}, with coefficients \\(a(g)\\overline{a(h)}\\), proves \\eqref{shear:eq:plancherel-mass}. Apply it to \\(\\xi-mU_G\\) and \\(\\xi"
     },
     {
       "from": "m2-shear-prop-fourier-inputs",
-      "to": "m2-shear-cor-512"
+      "to": "m2-shear-cor-512",
+      "context": "unds each complementary image-tuple error by \\[ \\delta_N=\\frac{N^{3/2}}2 \\left((31/32)^{255d}+64e^{-N/64}\\right)^{1/2}=o(1). \\] Exact trimming by Proposition~\\ref{shear:prop:fourier-inputs} gives \\(0\\le f\\le\\mu\\) with mass \\(z\\), where \\(1-z\\le8\\delta_N=o(1)\\), and cap one on all eight coset systems. For th"
     },
     {
       "from": "m2-lem-subprobability-fourier",
-      "to": "m2-shear-cor-512"
+      "to": "m2-shear-cor-512",
+      "context": "er} gives the inverse-quarter limit. The sign coefficient of \\(f\\) is at most \\(1-z\\) in magnitude, and the trivial coefficient of \\(f^{*2}\\) is \\(z^2\\). Lemma~\\ref{lem:subprobability-fourier} therefore gives \\[ \\left(\\sum_g|f^{*2}(g)-U_G(g)|\\right)^2 \\le(1-z^2)^2+(1-z)^4+(8C_1)^2Z_{1/4}(N)=o(1). \\] Adding ba"
     },
     {
       "from": "m2-shear-prop-reservoir",
-      "to": "m2-shear-thm-2048"
+      "to": "m2-shear-thm-2048",
+      "context": "These terms and the restored mass \\(1-z^8\\) all vanish. The eight time blocks take \\(2056d\\) physical shuffles. For the random omitted set route, Proposition~\\ref{shear:prop:reservoir} and the partition averaging above give a partition into eight equal parts with summed error \\(o(1)\\) at \\(T=257d\\). Hea"
     },
     {
       "from": "m2-frames-average-law",
-      "to": "m2-frames-average-marginals"
+      "to": "m2-frames-average-marginals",
+      "context": "The ordinary marginal assertion is Lemma~\\ref{frames:average-law}, specifically \\eqref{frames:average-tv}. The partition averaging above selects 64 equal parts whose complementary error"
     },
     {
       "from": "m2-shear-prop-fourier-inputs",
-      "to": "m2-frames-average-marginals"
+      "to": "m2-frames-average-marginals",
+      "context": "cally \\eqref{frames:average-tv}. The partition averaging above selects 64 equal parts whose complementary errors sum to \\(o(1)\\). Exact trimming by Proposition~\\ref{shear:prop:fourier-inputs} gives \\(0\\le f\\le\\mu_T\\), of mass \\(z=1-o(1)\\), with cap one for all 64 coset systems. This is the stated domination of"
     },
     {
       "from": "m2-lem-lower",
-      "to": "m2-shear-cor-order"
+      "to": "m2-shear-cor-order",
+      "context": "Lemma~\\ref{lem:lower} gives distance at least \\(1-(e/\\sqrt N)^N>1/4\\) for every integer \\(t\\le d\\) when \\(d\\) is large. Lemma~\\ref{lem:one-ca"
     },
     {
       "from": "m2-lem-one-card-lower",
-      "to": "m2-shear-cor-order"
+      "to": "m2-shear-cor-order",
+      "context": "Lemma~\\ref{lem:lower} gives distance at least \\(1-(e/\\sqrt N)^N>1/4\\) for every integer \\(t\\le d\\) when \\(d\\) is large. Lemma~\\ref{lem:one-card-lower} gives the stated one-card bound for every \\(d\\). The upper bound follows from Corollary~\\ref{shear:cor:512}; \\eqref{eq:"
     },
     {
       "from": "m2-shear-cor-512",
-      "to": "m2-shear-cor-order"
+      "to": "m2-shear-cor-order",
+      "context": "integer \\(t\\le d\\) when \\(d\\) is large. Lemma~\\ref{lem:one-card-lower} gives the stated one-card bound for every \\(d\\). The upper bound follows from Corollary~\\ref{shear:cor:512}; \\eqref{eq:sharp-support-time} gives the sharper lower asymptotic \\(2d-O(1)\\)."
     },
     {
       "from": "m2-frames-holes",
-      "to": "m2-frames-conditional-interface"
+      "to": "m2-frames-conditional-interface",
+      "context": "First fix the list, the complete schedule, and feasible complete trajectories of the preceding labels. Lemma~\\ref{frames:holes} identifies the conditional mass on the left of \\eqref{frames:full-path-prefix} with the forward mass computed from the"
     },
     {
       "from": "m2-shear-lem-fixed-balance",
-      "to": "m2-frames-crossing-balance"
+      "to": "m2-frames-crossing-balance",
+      "context": "The transverse-layer proof of Lemma~\\ref{shear:lem:fixed-balance} is uniform over the entire fixed direction schedule. It therefore applies here even though the first basis is prescribe"
     },
     {
       "from": "m2-frames-cross-energy",
-      "to": "m2-frames-crossing-balance"
+      "to": "m2-frames-crossing-balance",
+      "context": "ix} makes the energy vector measurable in the chronological field, and \\eqref{frames:direction-factorization} permits averaging the next direction there. Lemma~\\ref{frames:cross-energy} then contracts energy by at least $\\alpha=1/(4r)$ whenever the two counts are at least $m/4$. We use the balance estima"
     },
     {
       "from": "m2-lem-subprobability-fourier",
-      "to": "m2-frames-backward-removal"
+      "to": "m2-frames-backward-removal",
+      "context": "cifications are precisely the left cosets $gK_i$. Normalization costs $1/a$, at most two eventually. The total-variation bound for $\\bar\\nu$ follows from Lemma~\\ref{lem:subprobability-fourier}."
     },
     {
       "from": "m2-frames-backward-removal",
-      "to": "m2-frames-pointwise-applications"
+      "to": "m2-frames-pointwise-applications",
+      "context": "^{-12}$ for large $d$, since $(31/32)^{511d}\\le e^{-511d/32}$. The exceptional mass is at most $8n\\,n^6n^{-12}=o(1)$. Use the normalized law $\\bar\\nu$ in Lemma~\\ref{frames:backward-removal} and the direct inverse-square estimate of Lemma~\\Lref{l:degree-inverse-square}. Proposition~\\Lref{l:orbit-span}, with $"
     },
     {
       "from": "m2-frames-cross-energy",
-      "to": "m2-frames-stopped-marginals"
+      "to": "m2-frames-stopped-marginals",
+      "context": "event $\\mathcal B_j(t)$ is $\\mathcal F_{j,t-1}$-measurable, before the direction at $t$ is revealed. Equation \\eqref{frames:direction-factorization} and Lemma~\\ref{frames:cross-energy}, followed by $\\mathcal B_j(t)\\subseteq\\mathcal B_j(t-1)$, give \\[ \\mathbb E[\\mathbf1_{\\mathcal B_j(t)}E_{j,t}] \\le(1-"
     },
     {
       "from": "m2-frames-stopped-marginals",
-      "to": "m2-frames-pruning-application"
+      "to": "m2-frames-pruning-application",
+      "context": "Use any fixed partition into sixteen equal blocks and apply Proposition~\\ref{frames:stopped-marginals} to its complements. Theorem~\\Lref{l:spectral-pruning} gives exponent $a=1/8$ with constant one. Sixteen convolutions ha"
     },
     {
       "from": "m2-frames-holes",
-      "to": "m2-frames-reference-rows"
+      "to": "m2-frames-reference-rows",
+      "context": "The conditioned paths are feasible, because they come from $g$. Their complement at time $t$ is exactly the set of available positions $g_t(F)$. Lemma~\\ref{frames:holes} gives the conditional mass flow on these positions. We express its three edge cases in the reference indices. If a mat"
     },
     {
       "from": "m2-frames-matching-invariance",
-      "to": "m2-frames-typical-history"
+      "to": "m2-frames-typical-history",
+      "context": "the span of its preceding $d-1$ directions. At each layer use fresh independent fair switch coins. Denote its cumulative permutation by $\\widetilde g_t$. Lemma~\\ref{frames:matching-invariance} says that, for each complete direction schedule, its matching sequence on trajectory labels has the same law as the cyc"
     },
     {
       "from": "m2-frames-cross-energy",
-      "to": "m2-frames-typical-history"
+      "to": "m2-frames-typical-history",
+      "context": "orrespond exactly to the position pairs contained in $\\widetilde g_{t-1}(F)$ in the new matching. Thus the squared row loss is the position-space loss in Lemma~\\ref{frames:cross-energy}. For $t>d$, let $J_t$ be the span of the preceding $d-1$ directions, and let $h,h'$ be the sizes of $\\widetilde g_{t-1"
     },
     {
       "from": "m2-frames-reference-rows",
-      "to": "m2-frames-shadow-entropy"
+      "to": "m2-frames-shadow-entropy",
+      "context": "last inequality is \\[ D(\\nu\\|\\mathbb P)\\ge D(\\nu_X\\|U_X) -\\sum_{j=1}^q\\mathbb E_\\nu\\log(m_jp_j), \\qquad X=\\{i_1,\\ldots,i_q\\}. \\] Lemma~\\ref{frames:reference-rows} applies with observed complement $V\\setminus F_j$ and gives $p_j=Q_T^{F_j}(i_j,i_j)$ on each realized history. For a un"
     },
     {
       "from": "m2-frames-typical-history",
-      "to": "m2-frames-entropy-tail"
+      "to": "m2-frames-entropy-tail",
+      "context": "erence probability is the law $\\mathbb P$ of cyclic switch histories, its endpoint map is $g_T$, and its common event is $\\mathcal G_{\\mathrm{ent}}$ from Lemma~\\ref{frames:typical-history}. Lemma~\\ref{frames:shadow-entropy} verifies the theorem's hypothesis for every probability $\\nu$ supported on that same"
     },
     {
       "from": "m2-frames-shadow-entropy",
-      "to": "m2-frames-entropy-tail"
+      "to": "m2-frames-entropy-tail",
+      "context": "bb P$ of cyclic switch histories, its endpoint map is $g_T$, and its common event is $\\mathcal G_{\\mathrm{ent}}$ from Lemma~\\ref{frames:typical-history}. Lemma~\\ref{frames:shadow-entropy} verifies the theorem's hypothesis for every probability $\\nu$ supported on that same event, with $q=n-n/128$ and additi"
     },
     {
       "from": "m2-frames-entropy-tail",
-      "to": "m2-frames-entropy-application"
+      "to": "m2-frames-entropy-application",
+      "context": "| =\\frac{|\\mathbb E[\\operatorname{sgn}(g_T)\\mathbf1_{\\mathcal G_{\\mathrm{ent}}^c}]|}{a} \\le\\frac{1-a}{a}=o(1). \\] For the nonlinear irreducibles, Proposition~\\ref{frames:entropy-tail} gives the operator bound with the absolute constant $C'$. The trivial coefficient of $\\eta^{*b}$ is one. Plancherel the"
     },
     {
       "from": "m2-shear-lem-keys",
-      "to": "m2-frames-aux-directions"
+      "to": "m2-frames-aux-directions",
+      "context": "Set $A_i=B_i^{-1}$. Since $S_i$ is an involution, $A_i=A_{i-1}S_i$ and $w_i=A_{i-1}e_{\\iota_i}$, which are the forward frame and selected directions of Lemma~\\ref{shear:lem:keys}. Remark~\\ref{shear:rem:factorization} gives the inverse coupled identity $X_i=B_iY_i$ and the conditional coordinate-sw"
     },
     {
       "from": "m2-frames-conditional-interface",
-      "to": "m2-frames-aux-directions"
+      "to": "m2-frames-aux-directions",
+      "context": "the same periodic axis order. The prefix law makes the old virtual path and the next direction conditionally independent given the direction prefix; Corollary~\\ref{frames:conditional-interface} records the resulting hidden-position factorization after specified virtual path prefixes through layer $i-1$ are obser"
     },
     {
       "from": "m2-frames-aux-directions",
-      "to": "m2-frames-aux-energy"
+      "to": "m2-frames-aux-energy",
+      "context": "Lemma~\\ref{frames:aux:directions} gives the conditional product-switch law and the fresh direction in the field $\\mathcal F_{i-1}^j$. Apply Lemma~\\ref{sh"
     },
     {
       "from": "m2-frames-aux-directions",
-      "to": "m2-frames-aux-marginal"
+      "to": "m2-frames-aux-marginal",
+      "context": "For each $j<k$, the terminal factorization in Lemma~\\ref{frames:aux:directions} and \\eqref{frames:terminal-disclosure} give \\[ \\Pr\\{Y_T(a_{j+1})=x\\mid \\Lambda,\\mathcal O,\\, Y_s(a_h):0\\"
     },
     {
       "from": "m2-shear-lem-tuple",
-      "to": "m2-frames-aux-marginal"
+      "to": "m2-frames-aux-marginal",
+      "context": "ure} give \\[ \\Pr\\{Y_T(a_{j+1})=x\\mid \\Lambda,\\mathcal O,\\, Y_s(a_h):0\\le s\\le T,\\ h\\le j\\}=q_T(x). \\] Thus the terminal-data hypothesis of Lemma~\\ref{shear:lem:tuple} holds with initial datum $\\mathcal O$ and terminal datum $\\Lambda$. Write \\[ \\delta_{\\rm virt}(\\Lambda,\\mathcal O) =\\"
     },
     {
       "from": "m2-frames-aux-energy",
-      "to": "m2-frames-aux-marginal"
+      "to": "m2-frames-aux-marginal",
+      "context": "_k\\right\\|_{\\rm TV} \\] for the conditional virtual tuple distance. The lemma's coarsening to preceding endpoints and sequential comparison, together with Lemma~\\ref{frames:aux:energy}, give \\[ \\mathbb E_{\\Lambda,\\mathcal O}\\delta_{\\rm virt}(\\Lambda,\\mathcal O) \\le\\frac{k}{2}\\sqrt{n\\bigl(e^{-25d}+T\\de"
     },
     {
       "from": "m2-lifts-tuple-constants",
-      "to": "m2-lifts-random-four-blocks"
+      "to": "m2-lifts-random-four-blocks",
+      "context": "For $d\\ge4$, put $m=n/16$, $T=513d$, and $\\mu=q_d^{*T}$. Corollary~\\ref{lifts:tuple-constants} gives $\\mathbb E_{|A|=n-m}\\|\\mu_A-U_A\\|_{\\TV}\\le\\varepsilon_n=o(1)$. In a uniformly chosen ordered partition $(M_1,\\ldo"
     },
     {
       "from": "m2-lem-trim",
-      "to": "m2-lifts-random-four-blocks"
+      "to": "m2-lifts-random-four-blocks",
+      "context": "us M_i$ identifies the left coset $gH_i$. Delete the union of all cosets whose original $\\mu$-mass exceeds twice uniform. The calculation in the proof of Lemma~\\ref{lem:trim} gives a common subprobability $f\\le\\mu$ of mass $z=1-\\eta$, with $\\eta\\le32\\varepsilon_n=o(1)$, such that $f(gH_i)\\le2/"
     },
     {
       "from": "m2-lem-fair-sign",
-      "to": "m2-lifts-random-four-blocks"
+      "to": "m2-lifts-random-four-blocks",
+      "context": "ivity yields \\[ D\\|\\widehat f(\\rho)^4\\|_{\\HS}^2 \\le D\\|\\widehat f(\\rho)\\|_{\\HS}^8 \\le(32C_2)^4D^{-2}. \\] The trivial coefficient of $f^{*4}$ is $z^4$. Lemma~\\ref{lem:fair-sign} gives $|\\widehat f(\\sgn)|\\le\\eta$, since the original block has sign mean zero. Plancherel and \\eqref{lifts:inverse-squ"
     },
     {
       "from": "m2-lifts-tuple-constants",
-      "to": "m2-lifts-sixteen-theorem"
+      "to": "m2-lifts-sixteen-theorem",
+      "context": "iform source state in $X_i$ places the specified labels outside $M_i$ at a uniform injection. Their output law is the quotient row $p_i(x,\\cdot)$, so Corollary~\\ref{lifts:tuple-constants} gives \\[ \\frac1L\\sum_{x\\in X_i}\\frac12\\sum_{y\\in X_i} |p_i(x,y)-L^{-1}|\\le\\delta_n,\\qquad \\delta_n=n^{-10}. \\]"
     },
     {
       "from": "m2-lifts-tuple-constants",
-      "to": "m2-lifts-neumann-theorem"
+      "to": "m2-lifts-neumann-theorem",
+      "context": "For sufficiently large $d$, in particular $d\\ge10$, set $b=1024$, $T=(1+32b)d$, and $\\mu=q_d^{*T}$. Corollary~\\ref{lifts:tuple-constants}, in the set form established at the start of this section, gives the displayed hypothesis with $\\delta_n=o(1)$. Let $\\n"
     },
     {
       "from": "m2-lem-fair-sign",
-      "to": "m2-lifts-neumann-theorem"
+      "to": "m2-lifts-neumann-theorem",
+      "context": "he set form established at the start of this section, gives the displayed hypothesis with $\\delta_n=o(1)$. Let $\\nu$ be the resulting nearby probability. Lemma~\\ref{lem:fair-sign} gives $|\\widehat\\nu(\\sgn)|\\le2\\|\\nu-\\mu\\|_{\\TV}=o(1)$. For eight factors, Plancherel and $\\|A\\|_{\\HS}\\le\\sqrt D\\,\\|A\\|_"
     },
     {
       "from": "m2-shear-prop-fixed-marginal",
-      "to": "m2-frames-char-half-list"
+      "to": "m2-frames-char-half-list",
+      "context": "Proposition~\\ref{shear:prop:fixed-marginal} covers every periodic ordering of the standard axes, including every starting phase, and the inverse product obtained b"
     },
     {
       "from": "m2-frames-char-one-pass",
-      "to": "m2-frames-char-block-norm"
+      "to": "m2-frames-char-block-norm",
+      "context": "ementary half group, and the last commutes with both groups, so \\eqref{frames:char:schur-cap} applies to each. On each $G_j$-type selected by $P_{j,>}$, Lemma~\\ref{frames:char:one-pass} bounds the normalized trace by $2D_\\alpha^{-1/100}\\le2D^{-1/10000}$. Averaging with the restriction dimension weights,"
     },
     {
       "from": "m2-frames-char-minimum-degree",
-      "to": "m2-frames-char-block-norm"
+      "to": "m2-frames-char-block-norm",
+      "context": "te inverse-first sum gives \\[ \\sum_{D_\\alpha\\le D^{1/100}}D_\\alpha^2 \\le D^{3/100}\\sum_{\\alpha\\in\\widehat{S_b}}D_\\alpha^{-1} \\le C_\\zeta D^{3/100}. \\] Lemma~\\ref{frames:char:minimum-degree} gives $b\\le D$. Therefore \\begin{equation}\\label{frames:char:small-trace} \\frac{\\operatorname{tr}(P_{0,\\le}P_{1,\\le})}"
     },
     {
       "from": "m2-frames-char-main",
-      "to": "m2-frames-char-block-norm"
+      "to": "m2-frames-char-block-norm",
+      "context": "[Proof of Theorem~\\ref{frames:char:main}] Take $r=60000$ successive blocks, modifying their long segments independently. The product law $\\mu$ differs from the"
     },
     {
       "from": "m2-char-main",
-      "to": "m2-char-repair"
+      "to": "m2-char-repair",
+      "context": "[Proof of Theorem~\\ref{char:main}] Choose $C$ from the shared half-list lemma and a fixed positive integer $K$ with $K\\delta>3$. Take $K$ successive bloc"
     },
     {
       "from": "m3-l-degree-basic",
-      "to": "m3-l-amplification"
+      "to": "m3-l-amplification",
+      "context": "}D^{2-2r\\beta}. \\] In the Hilbert--Schmidt case submultiplicativity gives $D\\|\\widehat f_n^{\\,r}\\|_{\\HS}^2\\le A^rD^{1-r\\gamma}$. The sums tend to zero by Lemma~\\ref{l:degree-basic}. The trivial coefficient tends to one. Lemma~\\ref{l:plancherel} gives convergence for $f_n^{*r}$; the missing mass or a"
     },
     {
       "from": "m3-l-plancherel",
-      "to": "m3-l-amplification"
+      "to": "m3-l-amplification",
+      "context": "y gives $D\\|\\widehat f_n^{\\,r}\\|_{\\HS}^2\\le A^rD^{1-r\\gamma}$. The sums tend to zero by Lemma~\\ref{l:degree-basic}. The trivial coefficient tends to one. Lemma~\\ref{l:plancherel} gives convergence for $f_n^{*r}$; the missing mass or a telescoping replacement of the $r$ probability factors gives co"
     },
     {
       "from": "m3-l-single-orbit",
-      "to": "m3-l-orbit-span"
+      "to": "m3-l-orbit-span",
+      "context": "st small factor. Thus the explicit splitting $v_i=Q_iv$ is precisely the least-index assignment above. Fix $v_i\\in E_i$ and put $W_i=\\Span\\rho(H_i)v_i$. Lemma~\\ref{l:single-orbit} and the definition of $C_u$ give \\begin{equation}\\label{l:orbit-dimension} \\dim W_i\\le\\sum_{\\tau\\in\\Irr(H_i):\\,\\dim\\ta"
     },
     {
       "from": "m3-l-partition-selection",
-      "to": "m3-l-orbit-completion"
+      "to": "m3-l-orbit-completion",
+      "context": "Lemma~\\ref{l:partition-selection} selects an eight-block partition with summed marginal error $o(1)$. Lemma~\\ref{l:trim} supplies a common subprobability"
     },
     {
       "from": "m3-l-trim",
-      "to": "m3-l-orbit-completion"
+      "to": "m3-l-orbit-completion",
+      "context": "Lemma~\\ref{l:partition-selection} selects an eight-block partition with summed marginal error $o(1)$. Lemma~\\ref{l:trim} supplies a common subprobability $f_n\\le\\mu_n$ of mass $1-o(1)$ and coset cap one. Proposition~\\ref{l:orbit-span} at $u"
     },
     {
       "from": "m3-l-orbit-span",
-      "to": "m3-l-orbit-completion"
+      "to": "m3-l-orbit-completion",
+      "context": "partition with summed marginal error $o(1)$. Lemma~\\ref{l:trim} supplies a common subprobability $f_n\\le\\mu_n$ of mass $1-o(1)$ and coset cap one. Proposition~\\ref{l:orbit-span} at $u=1$ gives $\\|\\widehat f_n(\\rho)\\|_{\\op}\\le\\sqrt{8C_1}D^{-5/16}$. The nonsign Plancherel contribution after four fa"
     },
     {
       "from": "m3-l-amplification",
-      "to": "m3-l-orbit-completion"
+      "to": "m3-l-orbit-completion",
+      "context": "onsign Plancherel contribution after four factors is at most $(8C_1)^4 Z_{1/2}(n)$, because $2-8(5/16)=-1/2$. Sign and missing mass tend to zero by Proposition~\\ref{l:amplification}. This completes a route from averaged observations to the full law."
     }
   ]
 }

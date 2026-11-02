@@ -1,0 +1,274 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "242",
+  "title": "Single-fold Diophantine representations and undecidability under an at-most-one-solution promise",
+  "result": {
+    "id": "paper-result",
+    "label": "Single-fold Diophantine representations and undecidability under an at-most-one-solution promise",
+    "statement": "Every recursively enumerable set of tuples of natural numbers has a Diophantine representation with exactly one auxiliary solution for each member and none for nonmembers. This proves the single-fold conjecture and hence the finite-fold conjecture. Diophantine solvability over the nonnegative integers remains undecidable even with an at-most-one-solution promise.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "polynomial-constructions-with-unique-witnesses",
+      "label": "Polynomial constructions with unique witnesses",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-rank-one-curve-with-unique-arithmetic-codes",
+      "label": "A rank-one curve with unique arithmetic codes",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-rank-one-curve-with-unique-arithmetic-codes-2",
+      "label": "A rank-one curve with unique arithmetic codes",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-rank-one-curve-with-unique-arithmetic-codes-3",
+      "label": "A rank-one curve with unique arithmetic codes",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-uniquely-represented-function-with-intermediate-growth",
+      "label": "A uniquely represented function with intermediate growth",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-uniquely-represented-function-with-intermediate-growth-2",
+      "label": "A uniquely represented function with intermediate growth",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-power-graph-from-a-growth-function",
+      "label": "A power graph from a growth function",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-power-graph-from-a-growth-function-2",
+      "label": "A power graph from a growth function",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "testing-containment-of-binary-digits",
+      "label": "Testing containment of binary digits",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "one-witness-for-a-halting-computation",
+      "label": "One witness for a halting computation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "one-witness-for-a-halting-computation-2",
+      "label": "One witness for a halting computation",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Single-fold Diophantine representations",
+      "title": "Single-fold Diophantine representations",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Single-fold-Diophantine-representations-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Single-fold Diophantine representations; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "For every integer n1 and every recursively enumerable set S^n , there are an…",
+          "fullLabel": "For every integer n1 and every recursively enumerable set S^n , there are an…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "For every integer n1 and every recursively enumerable set S^n , there are an integer m1 and a polynomial P such that, for every a^n , \\[ \\#\\ w^m:P(a,w)=0\\ = 1,&a S,\\\\0,&a S. \\]",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-unique-h10",
+          "role": "introduction",
+          "label": "Undecidability with an at-most-one-solution promise",
+          "fullLabel": "Undecidability with an at-most-one-solution promise",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "[Undecidability with an at-most-one-solution promise] There exist integers m,D1 for which no algorithm has the following property: on every input polynomial F of total degree at most D satisfying the…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-composition",
+          "role": "polynomial-constructions-with-unique-witnesses",
+          "label": "Composition and disjoint cases",
+          "fullLabel": "Composition and disjoint cases",
+          "kind": "lemma",
+          "source": "Polynomial constructions with unique witnesses",
+          "detail": "[Composition and disjoint cases] Finite conjunctions of single-fold polynomial systems, using separate auxiliary tuples for distinct calls, preserve uniqueness for fixed values of all their displayed…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-rank-one",
+          "role": "a-rank-one-curve-with-unique-arithmetic-codes",
+          "label": "The group \\(E()\\) has rank one and torsion subgroup \\[ T=\\…",
+          "fullLabel": "The group \\(E()\\) has rank one and torsion subgroup \\[ T=\\…",
+          "kind": "proposition",
+          "source": "A rank-one curve with unique arithmetic codes",
+          "detail": "The group \\(E()\\) has rank one and torsion subgroup \\[ T=\\ O,(0,0),(5,0),(-5,0)\\ . \\] Consequently there exists \\(P E()\\) such that every rational point has a unique expression \\(nP+t\\), with \\(n\\)…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-rational-codes",
+          "role": "a-rank-one-curve-with-unique-arithmetic-codes-2",
+          "label": "Every rational number has exactly one code satisfying . Any fixed finite…",
+          "fullLabel": "Every rational number has exactly one code satisfying . Any fixed finite…",
+          "kind": "lemma",
+          "source": "A rank-one curve with unique arithmetic codes",
+          "detail": "Every rational number has exactly one code satisfying . Any fixed finite sequence of rational additions, subtractions, multiplications, divisions by nonzero divisors, and comparisons on valid codes…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-point-arithmetic",
+          "role": "a-rank-one-curve-with-unique-arithmetic-codes-3",
+          "label": "Given valid codes for \\(Q_1,Q_2 E()\\), addition has a polynomial implementation…",
+          "fullLabel": "Given valid codes for \\(Q_1,Q_2 E()\\), addition has a polynomial implementation…",
+          "kind": "lemma",
+          "source": "A rank-one curve with unique arithmetic codes",
+          "detail": "Given valid codes for \\(Q_1,Q_2 E()\\), addition has a polynomial implementation with a unique output code for \\(Q_1+Q_2\\) and a unique complete tuple of auxiliary coordinates. The same is true of any…",
+          "dependsOn": [
+            "m1-lem-rational-codes"
+          ]
+        },
+        {
+          "id": "m1-lem-representatives",
+          "role": "a-uniquely-represented-function-with-intermediate-growth",
+          "label": "For each integer \\(j1\\), exactly one point in \\((jP+ T)(-jP+ T)\\) satisfies .…",
+          "fullLabel": "For each integer \\(j1\\), exactly one point in \\((jP+ T)(-jP+ T)\\) satisfies .…",
+          "kind": "lemma",
+          "source": "A uniquely represented function with intermediate growth",
+          "detail": "For each integer \\(j1\\), exactly one point in \\((jP+ T)(-jP+ T)\\) satisfies . These are all the representatives.",
+          "dependsOn": [
+            "m1-prop-rank-one"
+          ]
+        },
+        {
+          "id": "m1-prop-growth",
+          "role": "a-uniquely-represented-function-with-intermediate-growth-2",
+          "label": "There are a total function \\(g:\\), a real constant \\(>0\\), and an integer…",
+          "fullLabel": "There are a total function \\(g:\\), a real constant \\(>0\\), and an integer…",
+          "kind": "proposition",
+          "source": "A uniquely represented function with intermediate growth",
+          "detail": "There are a total function \\(g:\\), a real constant \\(>0\\), and an integer \\(u_04\\) such that the graph of \\(g\\) has a single-fold Diophantine representation, including uniqueness of its output and…",
+          "dependsOn": [
+            "m1-lem-representatives",
+            "m1-lem-rational-codes",
+            "m1-lem-point-arithmetic"
+          ]
+        },
+        {
+          "id": "m1-lem-pell-sequences",
+          "role": "a-power-graph-from-a-growth-function",
+          "label": "For an integer a2 , put D=a^2-1 and define integers x_i(a),y_i(a) by \\[ (a+…",
+          "fullLabel": "For an integer a2 , put D=a^2-1 and define integers x_i(a),y_i(a) by \\[ (a+…",
+          "kind": "lemma",
+          "source": "A power graph from a growth function",
+          "detail": "For an integer a2 , put D=a^2-1 and define integers x_i(a),y_i(a) by \\[ (a+ D)^i=x_i(a)+y_i(a) D(i0). \\] Every solution in positive integers of x^2-Dy^2=1 is (x_i(a),y_i(a)) for exactly one i1 .…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-power",
+          "role": "a-power-graph-from-a-growth-function-2",
+          "label": "Suppose that g: has a complete single-fold graph and that there are fixed…",
+          "fullLabel": "Suppose that g: has a complete single-fold graph and that there are fixed…",
+          "kind": "proposition",
+          "source": "A power graph from a growth function",
+          "detail": "Suppose that g: has a complete single-fold graph and that there are fixed constants >0 and u_0 , with u_04 , such that ( u)^2< g(u)<u u (u u_0). Then the relation \\[ (b,n,c) b2\\ and \\ c=b^n (b,n,c)…",
+          "dependsOn": [
+            "m1-lem-pell-sequences"
+          ]
+        },
+        {
+          "id": "m1-prop-subset",
+          "role": "testing-containment-of-binary-digits",
+          "label": "The relation x y on ^2 has a complete single-fold Diophantine representation.",
+          "fullLabel": "The relation x y on ^2 has a complete single-fold Diophantine representation.",
+          "kind": "proposition",
+          "source": "Testing containment of binary digits",
+          "detail": "The relation x y on ^2 has a complete single-fold Diophantine representation.",
+          "dependsOn": [
+            "m1-prop-power"
+          ]
+        },
+        {
+          "id": "m1-lem-counter-universality",
+          "role": "one-witness-for-a-halting-computation",
+          "label": "Let n 1 and let S^n be recursively enumerable. There is a counter machine that,…",
+          "fullLabel": "Let n 1 and let S^n be recursively enumerable. There is a counter machine that,…",
+          "kind": "lemma",
+          "source": "One witness for a halting computation",
+          "detail": "Let n 1 and let S^n be recursively enumerable. There is a counter machine that, when its first n counters are initialized to a_1,,a_n and its remaining counters to zero, reaches its halt state if and…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-machine-compiler",
+          "role": "one-witness-for-a-halting-computation-2",
+          "label": "Fix n1 and a deterministic counter machine with finitely many states and…",
+          "fullLabel": "Fix n1 and a deterministic counter machine with finitely many states and…",
+          "kind": "proposition",
+          "source": "One witness for a halting computation",
+          "detail": "Fix n1 and a deterministic counter machine with finitely many states and counters, instructions INC and TESTDEC , and one halt state. Initialize each counter by a fixed choice of an input coordinate…",
+          "dependsOn": [
+            "m1-prop-power",
+            "m1-prop-subset",
+            "m1-thm-main",
+            "m1-lem-counter-universality",
+            "m1-cor-unique-h10",
+            "m1-prop-rank-one"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "Single-fold Diophantine representations",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Single-fold-Diophantine-representations-September-24-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

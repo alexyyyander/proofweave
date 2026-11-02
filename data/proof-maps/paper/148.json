@@ -142,55 +142,68 @@
   "edges": [
     {
       "from": "m1-lem-entropy-calculus",
-      "to": "m1-lem-nonsaturation"
+      "to": "m1-lem-nonsaturation",
+      "context": "By Lemma~\\ref{lem:entropy-calculus}, $0\\le\\Delta_v\\le1$. We show that a vanishing one-bit deficit would force almost maximal entropy in a fixed wider scale"
     },
     {
       "from": "m1-lem-entropy-dimension",
-      "to": "m1-lem-nonsaturation"
+      "to": "m1-lem-nonsaturation",
+      "context": "l H_{s_m}(\\mu)-\\mathcal H_v(\\mu) =\\sum_{j=1}^mG_{vK^{-j},vK^{-(j-1)}}(\\mu)>mB. \\] Its entropy ratio has lower limit at least $B/\\log K>d$, contradicting Lemma~\\ref{lem:entropy-dimension}. This proves the lemma."
     },
     {
       "from": "m1-lem-entropy-calculus",
-      "to": "m1-lem-type-deficit"
+      "to": "m1-lem-type-deficit",
+      "context": "om variable $X$ and $t\\in\\R$, \\begin{equation}\\label{eq:types-grid-translation} H_s^0(X+t)\\ge H_s^0(X)-1. \\end{equation} This is the fixed-grid bound in Lemma~\\ref{lem:entropy-calculus}, Equation~\\eqref{eq:entropy-grid-comparison}. Condition now only on $\\mathcal F_n$. The original symbols after the fir"
     },
     {
       "from": "m1-lem-entropy-dimension",
-      "to": "m1-lem-type-deficit"
+      "to": "m1-lem-type-deficit",
+      "context": "is a function of the exact finite value, so \\begin{equation}\\label{eq:types-deficit-bound} 0\\le V_n\\le H(\\nu_{\\omega,n})\\le nb\\log m. \\end{equation} By Lemma~\\ref{lem:entropy-dimension}, $\\limsup_{s\\downarrow0}H_s^0(\\mu)/\\log(1/s)\\le d$. Choose $\\eta=\\gamma/(4A)>0$. For all sufficiently large $n$, the pr"
     },
     {
       "from": "m1-lem-pair-bound",
-      "to": "m1-prop-pair-bands"
+      "to": "m1-prop-pair-bands",
+      "context": "the signs of the $R_h$. With $b$ and $\\varepsilon$ already fixed, choose an integer $k$ so large that \\[ m^b\\log(k+1)<\\frac{k\\varepsilon}{2}. \\] Apply Lemma~\\ref{lem:pair-bound} to each $\\nu_{\\omega,n}$ at scale $\\rho_n$. Its conclusion, with a positive constant $C_k$ depending only on $k$, is \\"
     },
     {
       "from": "m1-lem-type-deficit",
-      "to": "m1-prop-pair-bands"
+      "to": "m1-prop-pair-bands",
+      "context": "_{\\omega,n}); \\] the index condition follows from $2^{-\\ell}\\le2\\rho_n$ if and only if $\\ell\\ge a_n$. Multiply by $\\mathbf1_{E_n}$ and take expectations. Lemma~\\ref{lem:type-deficit} and \\eqref{eq:types-sumset} give \\[ C_k\\E\\!\\left[\\mathbf1_{E_n} \\sum_{\\ell\\ge a_n}c_\\ell(\\nu_{\\omega,n})\\right]"
     },
     {
       "from": "m1-lem-two-point",
-      "to": "m1-lem-conditional-gain"
+      "to": "m1-lem-conditional-gain",
+      "context": "5M. \\] Even if $R_j$ is negative, the scaled pair, after ordering its endpoints, is a translate of the fair law on $\\{0,v\\}$. Translation invariance and Lemma~\\ref{lem:two-point} show that this pair increases the window entropy of $\\tau_{j+n}$ by at least \\[ \\Delta_v(\\tau_{j+n})-\\frac5M. \\] The"
     },
     {
       "from": "m1-lem-entropy-calculus",
-      "to": "m1-lem-conditional-gain"
+      "to": "m1-lem-conditional-gain",
+      "context": "mean is the identity of measures \\[ \\E[\\tau_{j+n}\\mid\\mathcal F_{j+n}] =\\mathsf D_{R_{j+n}}\\mu. \\] The functional $\\Delta_v=1-G_{v,2v}$ is convex by Lemma~\\ref{lem:entropy-calculus}. Each chosen distance $v$ is fixed under the present conditioning. Hence Jensen's inequality and signed scaling give"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-disjoint-windows"
+      "to": "m1-lem-disjoint-windows",
+      "context": "[Completion of the proof of Theorem~\\ref{thm:main}] The standard upper bound gives $\\dim_H\\mu\\le\\min\\{1,h/\\chi\\}$. If the inequality were strict, then $d=\\dim_H\\mu$ woul"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-cor-no-overlaps"
+      "to": "m1-cor-no-overlaps",
+      "context": "istinct words give distinct complete maps. Hence $G_n$ is an injective function of its symbol word, so $H(G_n)=nH(p)$ and $h_{\\mathrm{RW}}=H(p)$. Apply Theorem~\\ref{thm:main}."
     },
     {
       "from": "m1-cor-no-overlaps",
-      "to": "m1-cor-set"
+      "to": "m1-cor-set",
+      "context": "attractor is its fixed point and $s_*=0$. For at least two maps choose the strictly positive weights $p_i=|r_i|^{s_*}$. Then $H(p)=s_*\\chi(\\Phi,p)$. Corollary~\\ref{cor:no-overlaps} gives a measure supported on $K_\\Phi$ of dimension $\\min\\{1,s_*\\}$, which is a lower bound for its set dimension. For t"
     },
     {
       "from": "m1-cor-no-overlaps",
-      "to": "m1-cor-homogeneous"
+      "to": "m1-cor-homogeneous",
+      "context": "Apply Corollary~\\ref{cor:no-overlaps} with $r_i=\\lambda$ for every $i$. Since the weights sum to one, $\\chi=\\log(1/\\lambda)$."
     },
     {
       "from": "m1-cor-homogeneous",
-      "to": "m1-cor-three-maps"
+      "to": "m1-cor-three-maps",
+      "context": "Apply Corollary~\\ref{cor:homogeneous} with translations $0,1,t$."
     }
   ]
 }

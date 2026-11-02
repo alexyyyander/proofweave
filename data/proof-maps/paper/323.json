@@ -290,143 +290,178 @@
   "edges": [
     {
       "from": "m1-ev-prefix",
-      "to": "m1-ev-criterion"
+      "to": "m1-ev-criterion",
+      "context": "\\}$. Such a finite set exists by compactness of the finite-dimensional unit sphere and the definition of the dual norm. Use the spaces $G$ and $Z$ from Lemma~\\ref{ev:prefix}. For each $j$, \\[ R_Gx_j=\\sum_{i<j}f_i(x_j)f_i^\\#\\in Z. \\] Restriction from $F^*$ to $G^*$ is contractive. Density o"
     },
     {
       "from": "m1-ev-prefix",
-      "to": "m1-ev-small"
+      "to": "m1-ev-small",
+      "context": "infinite-dimensional closed subspace; strict singularity says that $T$ is not bounded below there, so the choice is possible. The prefix calculation in Lemma~\\ref{ev:prefix}, with vectors and norming functionals interchanged, shows that $(y_n)$ is basic and $|a_n|\\le4\\|\\sum_i a_i y_i\\|$. The"
     },
     {
       "from": "m1-pos-measure",
-      "to": "m1-pos-density"
+      "to": "m1-pos-density",
+      "context": "ly many annihilation conditions leave an infinite-dimensional closed subspace of $E$, so Dvoretzky's Theorem gives \\eqref{pos:rows} there. For each $n$, Lemma~\\ref{pos:measure} gives a map $j_n:\\kappa\\to\\{1,\\ldots,N_n\\}$ whose fibers have measure $1/N_n$. For $y\\in A$, \\eqref{pos:rows} implies $"
     },
     {
       "from": "m1-ev-prefix",
-      "to": "m1-pos-density"
+      "to": "m1-pos-density",
+      "context": "$. The vectors $g_n$ have norms between $1$ and $2$, and the sets $D_n$ are actual half-normers of their prefix spans, annihilated by all later vectors. Lemma~\\ref{ev:prefix} therefore makes $(g_n)$ basic, with coefficient functionals $g_n^\\#\\in G^*$ of norm at most $4$, where $G=[g_n:n\\ge1]$."
     },
     {
       "from": "m1-pos-density",
-      "to": "m1-pos-family"
+      "to": "m1-pos-family",
+      "context": "ch would have cardinality less than $\\kappa$, and their union would be dense in $D$ with cardinality less than $\\kappa$, by regularity. This contradicts Lemma~\\ref{pos:density}. Enumerate $D=(y_\\beta)_{\\beta<\\kappa}$. For $\\alpha<\\kappa$, let $M_\\alpha=[y_\\beta:\\beta<\\alpha]\\subset E^*$. Its"
     },
     {
       "from": "m1-pos-density",
-      "to": "m1-pos-theorem"
+      "to": "m1-pos-theorem",
+      "context": "ble closed subspace $E\\subset X^*$. It contains no isomorphic copy of $\\ell_1$, whose usual basis would give an unconditional basic sequence in $X^*$. Lemmas~\\ref{pos:density} and~\\ref{pos:family} give a seminormalized family $f_\\alpha=h_\\alpha R_E$ with the pointwise null-support property. Lem"
     },
     {
       "from": "m1-pos-family",
-      "to": "m1-pos-theorem"
+      "to": "m1-pos-theorem",
+      "context": "\\subset X^*$. It contains no isomorphic copy of $\\ell_1$, whose usual basis would give an unconditional basic sequence in $X^*$. Lemmas~\\ref{pos:density} and~\\ref{pos:family} give a seminormalized family $f_\\alpha=h_\\alpha R_E$ with the pointwise null-support property. Lemma~\\ref{pos:sampling}"
     },
     {
       "from": "m1-pos-sampling",
-      "to": "m1-pos-theorem"
+      "to": "m1-pos-theorem",
+      "context": "e in $X^*$. Lemmas~\\ref{pos:density} and~\\ref{pos:family} give a seminormalized family $f_\\alpha=h_\\alpha R_E$ with the pointwise null-support property. Lemma~\\ref{pos:sampling} then produces an unconditional basic sequence in $X^*$, the desired contradiction."
     },
     {
       "from": "m1-ev-criterion",
-      "to": "m1-ev-positive-transfer"
+      "to": "m1-ev-positive-transfer",
+      "context": "-linear isometry with inverse $f\\mapsto\\operatorname{Re}f$. Indeed $Ag$ is complex-linear, and phase rotation in $B_X$ proves $\\|Ag\\|=\\|g\\|$. Apply Proposition~\\ref{ev:criterion} to $X_{\\R}$, and transport its witness under $A$ to a real closed infinite-dimensional subspace $E\\subset (X^*)_{\\R}$."
     },
     {
       "from": "m1-ev-prefix",
-      "to": "m1-ev-positive-transfer"
+      "to": "m1-ev-positive-transfer",
+      "context": "ct singularity of $q|_{iM}$ lets us choose $f_n$ with $\\operatorname{dist}(if_n,E)<\\varepsilon_n/2$. Choose $g_n\\in E$ with $\\|g_n-if_n\\|<\\varepsilon_n$. Lemma~\\ref{ev:prefix} shows that $(f_n)$ is complex basic, with coefficient bound $4$. Put $H=\\overline{\\operatorname{span}}_{\\C}\\{f_n:n\\ge1"
     },
     {
       "from": "m1-ev-criterion",
-      "to": "m1-ev-finite-sum"
+      "to": "m1-ev-finite-sum",
+      "context": "Use the norm $\\|(x_1,x_2)\\|=\\max(\\|x_1\\|,\\|x_2\\|)$ on $Y=X_1\\oplus X_2$, so $Y^*=X_1^*\\oplus_1X_2^*$. If $Y$ had such a quotient, Proposition~\\ref{ev:criterion} would provide a closed infinite-dimensional $F\\subset Y^*$ with norm-separable evaluation image. Let $p_j:F\\to X_j^*$"
     },
     {
       "from": "m1-ev-small",
-      "to": "m1-ev-finite-sum"
+      "to": "m1-ev-finite-sum",
+      "context": "its coordinate operators. If $p_1$ is not strictly singular, choose a closed infinite-dimensional $G\\subset F$ on which it is bounded below. Otherwise, Lemma~\\ref{ev:small} gives a closed infinite-dimensional $G\\subset F$ with $\\|p_1|_G\\|\\le1/2$, and then \\[ \\|p_2g\\|=\\|g\\|-\\|p_1g\\|\\ge\\tfrac"
     },
     {
       "from": "m1-ev-positive-transfer",
-      "to": "m1-ev-fields"
+      "to": "m1-ev-fields",
+      "context": "Proposition~\\ref{ev:positive-transfer} proves the positive implication from real to complex spaces. For the other implication, suppose $X$ is a real countere"
     },
     {
       "from": "m1-ev-finite-sum",
-      "to": "m1-ev-fields"
+      "to": "m1-ev-fields",
+      "context": "$X\\oplus_\\infty X$. A separable infinite-dimensional complex quotient would give a separable infinite-dimensional real quotient of this sum, contrary to Lemma~\\ref{ev:finite-sum}."
     },
     {
       "from": "m1-ch-norm",
-      "to": "m1-ch-color-bound"
+      "to": "m1-ch-color-bound",
+      "context": "sum_j\\theta_j^r\\right)^{1/r}<1. \\] We used $q'>r$ and disjointness of the active weight sets. Now apply H\\\"older's inequality to vectors on $C_k$ and use Lemma~\\ref{ch:norm}. Applying \\eqref{ch:ell-s} to finite tails proves convergence of every asserted infinite series."
     },
     {
       "from": "m1-ch-closures",
-      "to": "m1-path-rigidity"
+      "to": "m1-path-rigidity",
+      "context": ", hence $F_p(\\xi)$, hence $\\alpha$; the closure for the first prefix also contains $\\alpha$. Their ordered initial segments through $\\alpha$ coincide by Lemma~\\ref{ch:closures}. Every piece preceding the first path's piece that contains $\\alpha$ is supported strictly before $\\alpha$. Position"
     },
     {
       "from": "m1-path-rigidity",
-      "to": "m1-path-weak-cauchy"
+      "to": "m1-path-weak-cauchy",
+      "context": "ce. Only finitely many new paths can be selected at this threshold. Indeed, if $h$ distinct paths have been selected, remove their finite prefixes as in Lemma~\\ref{path:rigidity}. Those prefixes vanish on all sufficiently late blocks. By \\eqref{path:tail-estimate} and finite dimensional $\\ell_q$"
     },
     {
       "from": "m1-ch-closures",
-      "to": "m1-path-weak-cauchy"
+      "to": "m1-path-weak-cauchy",
+      "context": "a$ are therefore exactly $F_p(\\beta)$. Every earlier uncropped piece is supported strictly before $\\beta$. The position-alignment observation following Lemma~\\ref{ch:closures} shows that these earlier pieces are eventually the same actual functions on $\\Gamma$. Choosing $\\beta$ in arbitrarily"
     },
     {
       "from": "m1-ch-parameters",
-      "to": "m1-path-weak-cauchy"
+      "to": "m1-path-weak-cauchy",
+      "context": "n. The terminal, Type~I and Type~II cases are exhaustive. Equations \\eqref{path:type-i-oscillation} and \\eqref{path:type-ii-oscillation}, together with Lemma~\\ref{ch:parameters}, imply \\[ D\\le\\left(\\sum_j1/m_j\\right)D<\\tfrac18D \\quad\\hbox{if }D>0. \\] Hence $D=0$: every $u\\in\\mathcal C$ gives a"
     },
     {
       "from": "m1-ch-parameters",
-      "to": "m1-pair-partition"
+      "to": "m1-pair-partition",
+      "context": "ges. Thus \\[ a(L_h)\\ge\\frac{L_h}{2m_h}. \\] Choose $t>s$ sufficiently close to $s$ that $d^{1/t'}\\le2d^{1/r}$ for $1\\le d\\le N$. The parameter limit in Lemma~\\ref{ch:parameters} implies that $a(k)/k^{1/t}$ is unbounded. Consequently there is a record index $k$ such that \\[ a(\\ell)\\le a(k)(\\ell/k"
     },
     {
       "from": "m1-ch-closures",
-      "to": "m1-pair-four-hits"
+      "to": "m1-pair-four-hits",
+      "context": "contains $a$; the second contains $b$, and hence $a$, by coherence and the bound on $p$. The two closures have the same initial segment through $a$, by Lemma~\\ref{ch:closures}. In the first path every piece of weight below $J_v$ lies strictly before $a$. Its compressed array is zero after the"
     },
     {
       "from": "m1-pair-exact",
-      "to": "m1-pair-four-hits"
+      "to": "m1-pair-four-hits",
+      "context": "[Proof of Proposition~\\ref{pair:exact}] Perform the preceding construction in the prescribed tail and put $y=(m_J/L)\\sum_{i=1}^Lx_i$. Equation~\\eqref{pair:su"
     },
     {
       "from": "m1-branch-reduction",
-      "to": "m1-branch-separation"
+      "to": "m1-branch-separation",
+      "context": "Apply Lemma~\\ref{branch:reduction}. We use the pure $k$ family in its first alternative and the mixed family in its second. There are two steps: approxi"
     },
     {
       "from": "m1-ev-small",
-      "to": "m1-branch-separation"
+      "to": "m1-branch-separation",
+      "context": "a$ is a limit ordinal. For $i=1$, take $\\beta=0$. In the mixed case let $l$ be the largest color previously used, with $l=-1$ at the first step. Apply Lemma~\\ref{ev:small} to $P_{<\\beta}|_H$, and in the mixed case also to the finitely many maps $P_{C_j}|_H$, $0\\leq j\\leq l$. We may therefo"
     },
     {
       "from": "m1-pair-exact",
-      "to": "m1-branch-separation"
+      "to": "m1-branch-separation",
+      "context": "James tree construction~\\cite{James1974}, branches will separate dual functionals. Here the nodes carry the prescribed-weight pairs constructed in Proposition~\\ref{pair:exact}. List the finite binary sequences in breadth-first order, ordering each finite level lexicographically. For each node"
     },
     {
       "from": "m1-path-rigidity",
-      "to": "m1-twist-path-map"
+      "to": "m1-twist-path-map",
+      "context": "Consider finitely many distinct paths. By Lemma~\\ref{path:rigidity}, removing a finite prefix from each leaves pairwise disjoint weight sets. A removed prefix has finite support and belon"
     },
     {
       "from": "m1-branch-separation",
-      "to": "m1-twist-counterexample"
+      "to": "m1-twist-counterexample",
+      "context": "some $c_j$. Thus the countable set $\\{u_n+c_j:n,j\\ge1\\}$ is dense in the inverse image. But this inverse image contains every path restriction $P|_F$. Theorem~\\ref{branch:separation} supplies an uncountable norm-separated family among those restrictions, a contradiction. Because $\\overline{B(X)}=V$,"
     },
     {
       "from": "m1-ev-criterion",
-      "to": "m1-twist-counterexample"
+      "to": "m1-twist-counterexample",
+      "context": "es the two evaluation images and preserves norm separability. Thus the evaluations on every such $F'$ are nonseparable. The necessary direction of Proposition~\\ref{ev:criterion} therefore rules out a separable infinite-dimensional quotient of $X$."
     },
     {
       "from": "m1-ch-norm",
-      "to": "m1-twist-density"
+      "to": "m1-twist-density",
+      "context": "Lemma~\\ref{ch:norm} makes the finitely supported rational vectors a dense subset of $E$ of cardinality $\\aleph_1$, while the coordinate vec"
     },
     {
       "from": "m1-twist-lemma",
-      "to": "m1-twist-density"
+      "to": "m1-twist-density",
+      "context": "coordinate vectors $e_\\alpha$, $\\alpha<\\omega_1$, are pairwise at distance at least one. Hence $\\dens E=\\aleph_1$, and the isomorphism $E\\simeq X^*$ from Lemma~\\ref{twist:lemma} gives $\\dens X^*=\\aleph_1$. Choose a norm-dense set $D\\subset S_{X^*}$ of cardinality $\\aleph_1$, and, for each $f\\in"
     },
     {
       "from": "m1-ev-fields",
-      "to": "m1-twist-density"
+      "to": "m1-twist-density",
+      "context": "cannot be separable, since it is infinite dimensional and would then be its own forbidden quotient. Thus $\\dens X=\\aleph_1$. The complexification in Corollary~\\ref{ev:fields} has underlying real space isomorphic to $X\\oplus_\\infty X$, so it has the same density. That corollary also gives the a"
     },
     {
       "from": "m1-model-solovay",
-      "to": "m1-model-positive"
+      "to": "m1-model-positive",
+      "context": "ns suffice to name all reals \\cite[Chapter~VII, Definition~5.11 and Lemmas~5.12--5.13]{Kunen1980}. Hence the extension satisfies $\\mathfrak c=\\kappa$. Theorem~\\ref{model:solovay} now gives the required measure on $\\mathcal P(\\mathfrak c)$ in the extension. Set forcing preserves ZFC, including Cho"
     },
     {
       "from": "m1-intro-small-density",
-      "to": "m1-model-positive"
+      "to": "m1-model-positive",
+      "context": "[Proof of Corollary~\\ref{intro:small-density}] Starting with a ground model of ZFC and GCH, the forcing construction in \\cite[Chapter~VIII, Theorem~6.3]{Kunen1980} g"
     },
     {
       "from": "m1-ev-positive-transfer",
-      "to": "m1-model-positive"
+      "to": "m1-model-positive",
+      "context": "quotient for every real Banach space of norm density $\\aleph_1$. A complex Banach space has the same norm density as its underlying real space, so Proposition~\\ref{ev:positive-transfer} gives the corresponding complex conclusion. On the other side, consistency of ZFC gives a CH model, and Corollary~\\ref"
     },
     {
       "from": "m1-twist-density",
-      "to": "m1-model-positive"
+      "to": "m1-model-positive",
+      "context": "e, so Proposition~\\ref{ev:positive-transfer} gives the corresponding complex conclusion. On the other side, consistency of ZFC gives a CH model, and Corollary~\\ref{twist:density} supplies real and complex counterexamples of norm density $\\aleph_1$ there. Consequently, for each field $\\mathbb F\\in\\"
     }
   ]
 }

@@ -176,71 +176,88 @@
   "edges": [
     {
       "from": "m1-lem-faber",
-      "to": "m1-prop-coefficients"
+      "to": "m1-prop-coefficients",
+      "context": "(Tu)(\\mu)=\\sum_{j\\ge1}\\left(\\sum_{k=1}^Ns_{kj}C_k\\right)\\mu^{-j}. \\end{equation} All interchanges are justified by the absolute uniform convergence in Theorem~\\ref{lem:faber}. In particular, \\[ \\sum_{j\\ge1}\\HS{\\sum_{k=1}^Ns_{kj}C_k}^2\\le\\sum_{k=1}^N\\HS{C_k}^2. \\] By \\eqref{eq:boundary-basis},"
     },
     {
       "from": "m1-lem-exterior-collar",
-      "to": "m1-thm-domain"
+      "to": "m1-thm-domain",
+      "context": "Choose $h$ from Lemma~\\ref{lem:exterior-collar} and apply Theorem~\\ref{lem:faber} to this coordinate. Put $\\gamma=\\|F[A]\\|$. There is nothing to prove if $\\gamma=0$. O"
     },
     {
       "from": "m1-lem-faber",
-      "to": "m1-thm-domain"
+      "to": "m1-thm-domain",
+      "context": "Choose $h$ from Lemma~\\ref{lem:exterior-collar} and apply Theorem~\\ref{lem:faber} to this coordinate. Put $\\gamma=\\|F[A]\\|$. There is nothing to prove if $\\gamma=0$. Otherwise choose unit singular vect"
     },
     {
       "from": "m1-lem-resolvent",
-      "to": "m1-thm-domain"
+      "to": "m1-thm-domain",
+      "context": "\\otimes e_i$ and $y=\\sum_{i=1}^mYe_i\\otimes e_i$, where $X,Y$ are $n$-by-$m$ matrices and $(e_i)$ is the standard basis of $\\C^m$. For the resolvent in Theorem~\\ref{lem:resolvent}, define matrix functions \\[ P=X^*RX,\\quad Q=Y^*RY,\\quad M=Y^*RX,\\quad L=X^*RY. \\] Subscripts $k\\ge0$ denote the coeffi"
     },
     {
       "from": "m1-prop-coefficients",
-      "to": "m1-thm-domain"
+      "to": "m1-thm-domain",
+      "context": "to these full expansions for every finite degree. Apply it to the two identities in \\eqref{eq:ordered-products}. The lower coefficient estimate in Proposition~\\ref{prop:coefficients} and the two boundary multiplier bounds give \\begin{align*} \\gamma|x^*G[A]x| &\\le a\\Bigl(\\sum_k\\HS{U_k}^2\\Bigr)^{1/2}"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-approx"
+      "to": "m1-lem-approx",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Compactness of $W(A)$ follows from compactness of the unit sphere. We recall a short proof of the Toeplitz--Hausdorff"
     },
     {
       "from": "m1-thm-domain",
-      "to": "m1-lem-approx"
+      "to": "m1-lem-approx",
+      "context": "etween the chosen values belongs to the numerical range of the compression and hence to $W(A)$. Apply Lemma~\\ref{lem:approx} with $K=W(A)$. By scaling Theorem~\\ref{thm:domain}, \\[ \\|P[A]\\|\\le2\\max_{z\\in\\overline\\Omega_j}\\|P(z)\\|. \\] If this maximum is zero, each entry of $P$ vanishes on an ope"
     },
     {
       "from": "m2-thm-structural",
-      "to": "m2-lem-comparison"
+      "to": "m2-lem-comparison",
+      "context": "[Completion of Theorems~\\ref{thm:structural} and~\\ref{thm:representation}] If $\\kappa=1$, the required bound already holds. Otherwise Proposition~\\ref{prop:extremal"
     },
     {
       "from": "m2-thm-representation",
-      "to": "m2-lem-comparison"
+      "to": "m2-lem-comparison",
+      "context": "[Completion of Theorems~\\ref{thm:structural} and~\\ref{thm:representation}] If $\\kappa=1$, the required bound already holds. Otherwise Proposition~\\ref{prop:extremal} and Section~\\ref{sec:bridge"
     },
     {
       "from": "m2-prop-extremal",
-      "to": "m2-lem-comparison"
+      "to": "m2-lem-comparison",
+      "context": "[Completion of Theorems~\\ref{thm:structural} and~\\ref{thm:representation}] If $\\kappa=1$, the required bound already holds. Otherwise Proposition~\\ref{prop:extremal} and Section~\\ref{sec:bridge} supply all the hypotheses of Lemma~\\ref{lem:comparison} at auxiliary size $k=n$: \\eqref{eq"
     },
     {
       "from": "m2-prop-density",
-      "to": "m2-lem-comparison"
+      "to": "m2-lem-comparison",
+      "context": "n and positive trace, \\eqref{eq:positive-block} supplies positivity, and \\eqref{eq:projected-densities} identifies its entries. Hence $\\kappa\\le2$. Proposition~\\ref{prop:density} already used this same metric and density for every independently chosen coefficient size $m$, which proves all stateme"
     },
     {
       "from": "m2-cor-polynomial",
-      "to": "m2-lem-gaussian"
+      "to": "m2-lem-gaussian",
+      "context": "[Proof of Corollary~\\ref{cor:polynomial}] For completeness, the Toeplitz--Hausdorff convexity theorem \\cite{Toeplitz1918,Hausdorff1919} follows here from two-di"
     },
     {
       "from": "m2-thm-structural",
-      "to": "m2-lem-gaussian"
+      "to": "m2-lem-gaussian",
+      "context": "of the unit sphere. Apply Lemma~\\ref{lem:gaussian} to $K=W(A)$. For each fixed polynomial $P(z)=\\sum_{j=0}^dB_jz^j$, with arbitrary $B_j\\in M_m(\\C)$, Theorems~\\ref{thm:structural} and~\\ref{thm:representation} give \\[ \\left\\|\\sum_{j=0}^dA^j\\otimes B_j\\right\\| \\le2\\max_{\\overline\\Omega_\\epsilon}\\|P"
     },
     {
       "from": "m2-thm-representation",
-      "to": "m2-lem-gaussian"
+      "to": "m2-lem-gaussian",
+      "context": "y Lemma~\\ref{lem:gaussian} to $K=W(A)$. For each fixed polynomial $P(z)=\\sum_{j=0}^dB_jz^j$, with arbitrary $B_j\\in M_m(\\C)$, Theorems~\\ref{thm:structural} and~\\ref{thm:representation} give \\[ \\left\\|\\sum_{j=0}^dA^j\\otimes B_j\\right\\| \\le2\\max_{\\overline\\Omega_\\epsilon}\\|P(z)\\|. \\] Uniform continuity"
     },
     {
       "from": "m2-cor-polynomial",
-      "to": "m2-cor-hilbert"
+      "to": "m2-cor-hilbert",
+      "context": "\\rangle=\\langle x,Q_EAx\\rangle=\\langle x,Ax\\rangle$. With the conjugate-linear-first convention, these are exactly the numerical-range values used in Corollary~\\ref{cor:polynomial}. Thus $W(A_E)\\subset W(A)$. Applying Corollary~\\ref{cor:polynomial} in an orthonormal basis of $E$ yields \\[ \\|P[A]\\xi"
     },
     {
       "from": "m2-lem-gaussian",
-      "to": "m2-cor-hilbert"
+      "to": "m2-cor-hilbert",
+      "context": ". \\] Indeed, apply the scalar theorem to each of the finitely many entries; entrywise uniform convergence implies convergence in matrix operator norm. By Lemma~\\ref{lem:gaussian}, choose an admissible $\\Omega$ with $K\\subset\\Omega$ and $\\overline\\Omega\\subset K_\\epsilon$, and let $\\Gamma=\\partial\\"
     },
     {
       "from": "m2-lem-conformal-coordinates",
-      "to": "m2-cor-hilbert"
+      "to": "m2-cor-hilbert",
+      "context": "[Proof of Lemma~\\ref{lem:conformal-coordinates}] \\emph{A disk coordinate for a bounded simply connected domain.} Let $U\\subset\\C$ be a bounded simply connected domain"
     }
   ]
 }

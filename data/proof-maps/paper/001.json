@@ -190,83 +190,103 @@
   "edges": [
     {
       "from": "m1-prop-transport",
-      "to": "m1-lem-admissible-realization"
+      "to": "m1-lem-admissible-realization",
+      "context": "[Proof of Proposition~\\ref{prop:transport}] \\medskip\\noindent \\emph{The original point and its reduction.} Apply Lemma~\\ref{lem:auxiliary-datum}. Choose a ration"
     },
     {
       "from": "m1-lem-auxiliary-datum",
-      "to": "m1-lem-admissible-realization"
+      "to": "m1-lem-admissible-realization",
+      "context": "[Proof of Proposition~\\ref{prop:transport}] \\medskip\\noindent \\emph{The original point and its reduction.} Apply Lemma~\\ref{lem:auxiliary-datum}. Choose a rational $J$-equivariant identification $W=(V\\otimes_\\Q P)^{\\oplus m}$ and set $n=m[P:\\Q]$. Choose a basis o"
     },
     {
       "from": "m1-prop-transport",
-      "to": "m1-cor-cm-transport"
+      "to": "m1-cor-cm-transport",
+      "context": "y \\(G\\). Equivalently, its alternating form on \\(V\\) has multiplier \\(c^r\\), where \\(c\\) is the similitude character. Thus the first alternative of Proposition~\\ref{prop:transport} applies and gives the asserted data and simultaneous equality."
     },
     {
       "from": "m1-thm-filtration",
-      "to": "m1-lem-lagrangian-intersection"
+      "to": "m1-lem-lagrangian-intersection",
+      "context": "[Proof of Theorem~\\ref{thm:filtration}] We write $e$ and $u$ also for their cohomological actions on $D$. These actions commute with Frobenius and satisfy \\be"
     },
     {
       "from": "m1-lem-avoidance",
-      "to": "m1-lem-lagrangian-intersection"
+      "to": "m1-lem-lagrangian-intersection",
+      "context": "ntly of $D'$. On the opposite block, the same intersection equality follows from $u$-stability of $D'$ and \\eqref{eq:filtration-opposite-choice}. Apply Lemma~\\ref{lem:avoidance} to $K_1,r,b$. Its one point satisfies \\eqref{eq:filtration-minimal-intersection} for every one of the subobjects just"
     },
     {
       "from": "m1-lem-lift-hom",
-      "to": "m1-cor-filtration-divisor"
+      "to": "m1-cor-filtration-divisor",
+      "context": "realization of a marked power, pullback respects this filtration condition, which is precisely the condition on the associated symmetric homomorphism in Lemma~\\ref{lem:lift-hom}."
     },
     {
       "from": "m1-thm-filtration",
-      "to": "m1-lem-weil-group"
+      "to": "m1-lem-weil-group",
+      "context": "at the opposite embedding is its annihilator. The factor $\\SL_{2s}$ acts transitively on these subspaces, as in the cohomological orbit calculation of Theorem~\\ref{thm:filtration}. Finally, an alternating determinant form evaluated on $a_\\tau v_1,\\ldots,a_\\tau v_{2s}$ is multiplied by $\\det(a_\\tau"
     },
     {
       "from": "m1-prop-weil",
-      "to": "m1-lem-weil-group"
+      "to": "m1-lem-weil-group",
+      "context": "[Proof of Proposition~\\ref{prop:weil}] The vanishing alternative is Lemma~\\ref{lem:weil-orthogonality}. Suppose that $u$ is invertible, and use the divisor $"
     },
     {
       "from": "m1-lem-weil-orthogonality",
-      "to": "m1-lem-weil-group"
+      "to": "m1-lem-weil-group",
+      "context": "[Proof of Proposition~\\ref{prop:weil}] The vanishing alternative is Lemma~\\ref{lem:weil-orthogonality}. Suppose that $u$ is invertible, and use the divisor $D^u$ from \\eqref{eq:weil-extra-divisor}. \\medskip\\noindent \\emph"
     },
     {
       "from": "m1-prop-transport",
-      "to": "m1-lem-weil-group"
+      "to": "m1-lem-weil-group",
+      "context": "emma~\\ref{lem:weil-group} it lies geometrically in the required $G$-orbit. The \\hyperref[par:transport-tensor-descent]{finite-descent argument} in Proposition~\\ref{prop:transport} shows that its full finite family of Hodge-type structure tensors descends from the original number-field point by crys"
     },
     {
       "from": "m1-cor-filtration-divisor",
-      "to": "m1-lem-weil-group"
+      "to": "m1-lem-weil-group",
+      "context": "0^*D^u$. \\medskip\\noindent \\emph{Lifting the projector, action, and divisor.} The projector and this $E$-action preserve the repeated filtration. By Corollary~\\ref{cor:filtration-divisor}, $D^u$ satisfies the divisor lifting condition for the chosen filtration on the first summand. The crystalline map indu"
     },
     {
       "from": "m1-lem-lift-hom",
-      "to": "m1-lem-weil-group"
+      "to": "m1-lem-weil-group",
+      "context": "orname{pr}_1a^{-1}$ respects that filtration and the marked repeated filtration on $B_0$. Hence $D_0=q_0^*D^u$ satisfies the same condition on $B$. Apply Lemma~\\ref{lem:lift-hom} to \\(R_0\\), to a finite \\(\\Q\\)-basis of the action of \\(E\\) on \\(\\operatorname{im}(R_0)\\), and to the symmetric homomor"
     },
     {
       "from": "m1-lem-weil-divisor-span",
-      "to": "m1-lem-weil-group"
+      "to": "m1-lem-weil-group",
+      "context": "he pure support of $\\gamma_0$. Compatibility of the transported realizations then gives these support and nondegeneracy assertions in Betti cohomology. Lemma~\\ref{lem:weil-divisor-span} now expresses the rational Betti class $R^*\\kappa$ as a finite rational linear combination of products of rational divi"
     },
     {
       "from": "m1-lem-cm-reduction",
-      "to": "m1-cor-cm-pairing"
+      "to": "m1-cor-cm-pairing",
+      "context": "ple of the unit, so the assertion follows from the compatibility of divisor intersection numbers with the normalized traces. In positive codimension use Lemma~\\ref{lem:cm-reduction}. Proposition~\\ref{prop:weil} gives the Lefschetz pairing property for the specialization of each $\\eta_i$. Lemma~\\ref{"
     },
     {
       "from": "m1-prop-weil",
-      "to": "m1-cor-cm-pairing"
+      "to": "m1-cor-cm-pairing",
+      "context": "lows from the compatibility of divisor intersection numbers with the normalized traces. In positive codimension use Lemma~\\ref{lem:cm-reduction}. Proposition~\\ref{prop:weil} gives the Lefschetz pairing property for the specialization of each $\\eta_i$. Lemma~\\ref{lem:pairing-functorial} preser"
     },
     {
       "from": "m1-lem-pairing-functorial",
-      "to": "m1-cor-cm-pairing"
+      "to": "m1-cor-cm-pairing",
+      "context": "codimension use Lemma~\\ref{lem:cm-reduction}. Proposition~\\ref{prop:weil} gives the Lefschetz pairing property for the specialization of each $\\eta_i$. Lemma~\\ref{lem:pairing-functorial} preserves this property under rational pullback and rational linear combinations. Applying it to \\eqref{eq:cm-pullback"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-cor-cm-pairing"
+      "to": "m1-cor-cm-pairing",
+      "context": "[Proof of Theorem~\\ref{thm:main}] The case \\(r=0\\) follows from divisor intersection numbers as in the preceding corollary. This includes \\(\\dim A=0\\),"
     },
     {
       "from": "m1-cor-cm-transport",
-      "to": "m1-cor-cm-pairing"
+      "to": "m1-cor-cm-pairing",
+      "context": "he point class; its normalized trace is preserved by specialization, and the complementary product is \\(1\\). We may therefore assume \\(0<r<\\dim A\\). Corollary~\\ref{cor:cm-transport} gives a CM abelian variety $B/\\Qbar$ with good reduction at $w$, a rational Hodge class $\\kappa$ on $B$, a quasi-isogen"
     },
     {
       "from": "m1-cor-cm-transport",
-      "to": "m1-cor-all-hodge-specialization"
+      "to": "m1-cor-all-hodge-specialization",
+      "context": "$0<r<d$. Choose the CM variety $B$, Hodge class $\\kappa$, and rational homomorphism \\[ b=aj\\in\\Hom^0(A_0,B_0),\\qquad \\gamma_0=b^*\\kappa_0 \\] from Corollary~\\ref{cor:cm-transport}. The equality holds in all the stated realizations, with the usual absolute-Hodge specializations of $\\kappa$. Axiom"
     },
     {
       "from": "m1-cor-cm-transport",
-      "to": "m1-cor-algebraic-specialization"
+      "to": "m1-cor-algebraic-specialization",
+      "context": "zero. For $0<r<d$, use the CM variety $B$, rational Hodge class $\\kappa$, and map \\[ b=aj\\in\\Hom^0(A_0,B_0),\\qquad \\gamma_0=b^*\\kappa_0 \\] given by Corollary~\\ref{cor:cm-transport}, with the equality in every stated realization. By \\cite[Theorem~1.1]{OpenAICMHodge2026}, \\(\\kappa\\) is the Betti clas"
     }
   ]
 }

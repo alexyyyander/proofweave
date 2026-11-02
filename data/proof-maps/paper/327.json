@@ -84,35 +84,43 @@
   "edges": [
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-edge-labels"
+      "to": "m1-lem-edge-labels",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Suppose that $X$ has Markov type $p>1$ with constant $K$ and is not superreflexive. Lemma~\\ref{lem:ordered-norm} suppl"
     },
     {
       "from": "m1-lem-ordered-norm",
-      "to": "m1-lem-edge-labels"
+      "to": "m1-lem-edge-labels",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Suppose that $X$ has Markov type $p>1$ with constant $K$ and is not superreflexive. Lemma~\\ref{lem:ordered-norm} supplies a spreading invariant norm $N$ with contractive adjacent merging, whose finite coordinate spans embed in $X$ w"
     },
     {
       "from": "m1-prop-walks",
-      "to": "m1-lem-edge-labels"
+      "to": "m1-lem-edge-labels",
+      "context": "riant norm $N$ with contractive adjacent merging, whose finite coordinate spans embed in $X$ with arbitrarily small distortion. For each $n$, apply Proposition~\\ref{prop:walks} to $N$. Lemma~\\ref{lem:edge-labels}, applied through the finite span of these labels, gives \\begin{equation}\\label{eq:c"
     },
     {
       "from": "m1-lem-order-averaging",
-      "to": "m1-prop-chart-transport"
+      "to": "m1-prop-chart-transport",
+      "context": "Apply Lemma~\\ref{lem:order-averaging} to obtain $B$ and a chart law $\\nu$. The matching condition is \\begin{equation}\\label{eq:chart-match} C'(a)=C(T_s(a))\\"
     },
     {
       "from": "m1-prop-walks",
-      "to": "m1-lem-two-levels"
+      "to": "m1-lem-two-levels",
+      "context": "[Proof of Proposition~\\ref{prop:walks}] Fix a norm $N$ as in the proposition. We first construct labels with a common nonzero norm and normalize them at the e"
     },
     {
       "from": "m1-lem-action",
-      "to": "m1-lem-two-levels"
+      "to": "m1-lem-two-levels",
+      "context": "} \\noindent\\emph{Step 1: the finite chart chain.} Fix an integer $n\\geq1$, and let \\[ L=8(n+1),\\qquad \\epsilon=\\frac1{10n}. \\] Use the homeomorphisms of Lemma~\\ref{lem:action}. The landmarks below record the interval endpoints used by labels and all orbit points needed to follow $n$ steps. The"
     },
     {
       "from": "m1-prop-chart-transport",
-      "to": "m1-lem-two-levels"
+      "to": "m1-lem-two-levels",
+      "context": "ach $s$ use the partial order-preserving bijection \\[ T_s=h_s|_{D_s},\\qquad D_s=\\{a\\in\\Lambda:h_s(a)\\in\\Lambda\\}. \\] Its inverse is $T_{s^{-1}}$. Proposition~\\ref{prop:chart-transport} gives a finite stationary reversible marked chain on charts; denote its stationary chart law by $\\nu$. Call a transitio"
     },
     {
       "from": "m1-lem-ordered-norm",
-      "to": "m1-lem-two-levels"
+      "to": "m1-lem-two-levels",
+      "context": "[Proof of Lemma~\\ref{lem:ordered-norm}] By \\eqref{eq:superreflexive-characterization}, there is a nonreflexive Banach space $Y$ finitely representable in $X$."
     }
   ]
 }

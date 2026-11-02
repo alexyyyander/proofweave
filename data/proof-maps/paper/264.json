@@ -686,279 +686,348 @@
   "edges": [
     {
       "from": "m1-prop-bg-package",
-      "to": "m1-prop-bg-runout"
+      "to": "m1-prop-bg-runout",
+      "context": "on $T\\Sigma$. The geometric estimate used there is \\cite[\\CompanionRef{foundation}{cmp:corner-ratios}]{KerrCTwo}. Its hypotheses are the low interior bounds of \\Cref{prop:bg-package} and a future unit timelike wedge track starting sufficiently far in both optical coordinates. It imposes no curvature b"
     },
     {
       "from": "m1-prop-bg-package",
-      "to": "m1-lem-bg-branch-tube"
+      "to": "m1-lem-bg-branch-tube",
+      "context": "ed momentum set. On this neighborhood, every fixed state derivative of \\eqref{bg:reduced-hamiltonian} is bounded by $Ce^{-\\kappa v}e^{o(v)}$. This follows from \\Cref{prop:bg-package}, since each derivative of $a$ retains its factor and the state is in a compact set. The Hamiltonian field and its Lipsc"
     },
     {
       "from": "m1-ex-homotopy",
-      "to": "m1-ex-graph"
+      "to": "m1-ex-graph",
+      "context": "ts spatial graph linearly with that of the vertical segment, using $s$ as parameter. This is a fixed-endpoint homotopy of future timelike paths in the chart. \\Cref{ex:homotopy} forbids the member through $(0,0)\\notin M$. Thus $f(z)\\le\\delta$; in particular the clipping at $2\\delta$ is inactive."
     },
     {
       "from": "m1-ex-graph",
-      "to": "m1-prop-exit-family"
+      "to": "m1-prop-exit-family",
+      "context": "Use the graph and chart of \\Cref{ex:graph}. Constants in this proof depend on this fixed chart, but not on the small scale $l$. Choose small numbers $\\rho_0,\\va"
     },
     {
       "from": "m1-ex-boxes",
-      "to": "m1-prop-exit-family"
+      "to": "m1-prop-exit-family",
+      "context": "where $C_\\beta$ bounds the derivative of a fixed smooth bump on $(-1,1)$ that equals one at zero. We may also require $\\rho_0+4\\varepsilon_0<1$. Fix $K>3$ in \\Cref{ex:boxes}. For one of its boxes, write $z_c$ for the center and set \\[ s_c=f(z_c),\\qquad s_0=s_c-l,\\qquad s_1=s_c+l. \\] Every po"
     },
     {
       "from": "m1-ex-homotopy",
-      "to": "m1-prop-exit-family"
+      "to": "m1-prop-exit-family",
+      "context": "same two endpoints in $M$. Their first member is the assumed interior geodesic arc, whereas the last passes through $(s_c,z_c)\\in\\partial M$. This contradicts \\Cref{ex:homotopy}. It follows that every arc in $G_l$ has a maximal pre-stop height $s_*\\le s_1$, with no slope or chart stop. Unit nor"
     },
     {
       "from": "m1-prop-exit-family",
-      "to": "m1-prop-exit-cover"
+      "to": "m1-prop-exit-cover",
+      "context": "Fix such a datum and extension. \\Cref{prop:exit-family} provides a measurable family $S_*$ of positive $\\mu_d$ measure, finite full lifetimes, and one finite set of ambient ch"
     },
     {
       "from": "m1-prop-bg-runout",
-      "to": "m1-prop-exit-cover"
+      "to": "m1-prop-exit-cover",
+      "context": "ref{prop:exit-family} provides a measurable family $S_*$ of positive $\\mu_d$ measure, finite full lifetimes, and one finite set of ambient chart witnesses. By \\Cref{prop:bg-runout}, every seed in $S_*$ crosses the comparison cylinder and its first comparison runout is a branch or a corner. The corn"
     },
     {
       "from": "m1-lem-bg-branch-tube",
-      "to": "m1-prop-exit-cover"
+      "to": "m1-prop-exit-cover",
+      "context": "sis nor a curvature bound along the selected seed. Choose a density point $w$ of $S_*$ outside that null subset, with $w\\in S_*$. It is a branch seed. Apply \\Cref{lem:bg-branch-tube} and, if necessary, interchange the optical labels. This gives an open seed neighborhood $\\mathcal N$ of $w$ with all t"
     },
     {
       "from": "m1-thm-dn-comparison",
-      "to": "m1-prop-dn-low-error"
+      "to": "m1-prop-dn-low-error",
+      "context": "[Proof of \\Cref{thm:dn-comparison}] We first make explicit the finite order choices. Choose a spatial target order $k\\ge2s$, enlarged if necessary to imp"
     },
     {
       "from": "m1-lem-dn-high-uniform",
-      "to": "m1-prop-dn-low-error"
+      "to": "m1-prop-dn-low-error",
+      "context": "nd{equation} The constant $2$ in $k+2$ supplies Sobolev embedding on the three-dimensional slices. Here $M$ is the requested slice Sobolev order; the proof of \\Cref{lem:dn-high-uniform} runs its angular currents at the larger order specified there. That Lemma determines a finite initial buffer $r(M)$ an"
     },
     {
       "from": "m1-prop-packet-preparation",
-      "to": "m1-prop-dn-low-error"
+      "to": "m1-prop-dn-low-error",
+      "context": "e all linear defects as small as required, including the finite inverse-lapse losses in deriving linearized double-null identities. The base-loss statement in \\Cref{prop:packet-preparation} ensures that this last operation changes constants and required fixed background jets, but does not increase any previo"
     },
     {
       "from": "m1-prop-experiment-attachment",
-      "to": "m1-prop-dn-low-error"
+      "to": "m1-prop-dn-low-error",
+      "context": "on as the prepared exterior solution in its newly initialized optical coordinates, by the same local uniqueness. The whole-bridge attachment is carried out in \\Cref{prop:experiment-attachment}. This proves the Theorem."
     },
     {
       "from": "m1-prop-packet-preparation",
-      "to": "m1-prop-experiment-attachment"
+      "to": "m1-prop-experiment-attachment",
+      "context": "by the old datum is made there. Choose a fixed exterior joining time $t_a$ inside the enlarged lower block. On the selected end attach the exact exterior from \\Cref{prop:packet-preparation}, computed from these same partial-slice data, using the shrinking outer cutoff \\eqref{pk:outer-cutoff}. The identifying"
     },
     {
       "from": "m1-thm-dn-comparison",
-      "to": "m1-prop-experiment-attachment"
+      "to": "m1-prop-experiment-attachment",
+      "context": "ar. They are noncharacteristic at this fixed depth. Local geometric vacuum uniqueness identifies this collar with the initial collar of the exact solution from \\Cref{thm:dn-comparison}; equivalently that solution may be started on the collar itself. The quadratic template comparison does not substitute"
     },
     {
       "from": "m1-thm-dn-comparison",
-      "to": "m1-prop-curvature-signal"
+      "to": "m1-prop-curvature-signal",
+      "context": "the smooth relative-field expression \\eqref{at:curvature-formula}. Choose $\\zeta$ small enough that this term is $o(\\amp)$. The exact-minus-template error from \\Cref{thm:dn-comparison}, at the finite derivative orders in \\eqref{at:curvature-formula}, is also $o(\\amp)$; multiplication by the individual $"
     },
     {
       "from": "m1-lem-bg-branch-tube",
-      "to": "m1-prop-matched-seeds"
+      "to": "m1-prop-matched-seeds",
+      "context": "e $V$ for the background Hamiltonian vector field. On the common late state tube this field and its first two state derivatives are bounded by $a e^{o(v)}$, by \\Cref{lem:bg-branch-tube}. This bound is integrable over the late $v$ interval. Differentiating \\eqref{at:reduced-H} shows that the new field and"
     },
     {
       "from": "m1-prop-packet-preparation",
-      "to": "m1-prop-matched-seeds"
+      "to": "m1-prop-matched-seeds",
+      "context": "rentiation; the denominators are powers of $p_T$ separated from zero; and all relative coefficient differences and their needed jets are exponentially small by \\Cref{prop:packet-preparation} and \\Cref{thm:dn-comparison}. Fixed higher background factors cost $e^{o(T)}$, which is absorbed by that exponential."
     },
     {
       "from": "m1-thm-dn-comparison",
-      "to": "m1-prop-matched-seeds"
+      "to": "m1-prop-matched-seeds",
+      "context": "wers of $p_T$ separated from zero; and all relative coefficient differences and their needed jets are exponentially small by \\Cref{prop:packet-preparation} and \\Cref{thm:dn-comparison}. Fixed higher background factors cost $e^{o(T)}$, which is absorbed by that exponential. The terminal state difference"
     },
     {
       "from": "m1-ho-base-comparison",
-      "to": "m1-prop-averaged-holonomy"
+      "to": "m1-prop-averaged-holonomy",
+      "context": "e B$. The finite selector is measurable and may depend on all three momentum labels. Fix Borel representatives of the finitely many weak Christoffel arrays. By \\Cref{ho:base-comparison}, the base frame matrices obey $\\|M(0)\\|+\\|M(0)^{-1}\\|\\le C_0$. Choose a fixed $K>2C_0+1$. Fix $X\\in\\mathcal X$ and a s"
     },
     {
       "from": "m1-ho-loop-jets",
-      "to": "m1-prop-averaged-holonomy"
+      "to": "m1-prop-averaged-holonomy",
+      "context": "polation argument, as in \\cite[\\CompanionRef{signed}{holo:interpolation}]{KerrCOne}. Write \\[ H_{x,X}(l)-\\Id=\\sum_{k=0}^{17}C_k l^k+\\mathcal R_{18}(l). \\] By \\Cref{ho:loop-jets}, the Taylor integral remainder at $l=j l_T$ is bounded by $C Q_Tl_T^{18}$. The Vandermonde matrix $(j^k)_{0\\le j,k\\le1"
     },
     {
       "from": "m1-prop-matched-seeds",
-      "to": "m1-thm-nowhere-dense"
+      "to": "m1-thm-nowhere-dense",
+      "context": "chment}, the exact full-bridge data $d_T$ satisfy $p_m(d_T-d)\\to0$; hence they lie in $V$ for all sufficiently large $T$. The set $E(O,B)$ is dense in $V$, so \\Cref{prop:matched-seeds} allows us, for every such fixed $T$, to choose $\\widehat d_T\\in E(O,B)\\cap V$ as close to $d_T$ as required by all the"
     },
     {
       "from": "m1-prop-averaged-holonomy",
-      "to": "m1-thm-nowhere-dense"
+      "to": "m1-thm-nowhere-dense",
+      "context": "-signal} |D(\\widehat g_T)-D(g_d)|>\\amp \\quad\\text{if }|\\cos(\\lambda v)|\\ge1/2, \\end{equation} and both metrics have the uniform hypotheses of \\Cref{prop:averaged-holonomy}. In particular the constants there are independent of $T$; the required finite closeness was chosen to retain them. S"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-thm-nowhere-dense"
+      "to": "m1-thm-nowhere-dense",
+      "context": "[Proof of \\Cref{thm:main}] By \\Cref{prop:exit-cover}, every datum in $\\Ueps$ admitting the future extension in the statement belongs to some $E(O"
     },
     {
       "from": "m1-prop-exit-cover",
-      "to": "m1-thm-nowhere-dense"
+      "to": "m1-thm-nowhere-dense",
+      "context": "[Proof of \\Cref{thm:main}] By \\Cref{prop:exit-cover}, every datum in $\\Ueps$ admitting the future extension in the statement belongs to some $E(O,B)$. The seed basis and th"
     },
     {
       "from": "m2-test-diamond",
-      "to": "m2-test-exit-cover"
+      "to": "m2-test-exit-cover",
+      "context": "$ and derivative $O(l)$. Multiplying the bump by $\\lambda\\in[0,1]$ gives a fixed-endpoint homotopy through future timelike curves inside the ambient box. Lemma~\\ref{test:diamond}, applied to the globally hyperbolic spacetime $\\mathcal M_d$, forces the final path to remain inside it, although it pa"
     },
     {
       "from": "m2-test-interior-endpoint",
-      "to": "m2-test-exit-cover"
+      "to": "m2-test-exit-cover",
+      "context": "iqueness assertion for the merely continuous ambient Christoffel symbols has been made. Continue one of the starting states backwards in $\\mathcal M_d$. Lemma~\\ref{test:interior-endpoint} and its location in $I^+(\\Sigma)$ give a transverse crossing of $\\Sigma$. Smooth geodesic flow through this fixed compa"
     },
     {
       "from": "m2-test-loop-bootstrap",
-      "to": "m2-test-exit-cover"
+      "to": "m2-test-exit-cover",
+      "context": "age of $\\mathcal M_d$. A finite chart cover of the earlier compact tube, with smaller chart cores, provides a common positive chart margin there as well. Lemma~\\ref{test:loop-bootstrap} now supplies one $l_*>0$ and one $C_*<\\infty$ for every base point on every geodesic in the seed neighborhood. In parti"
     },
     {
       "from": "m2-test-interior-endpoint",
-      "to": "m2-test-comparison"
+      "to": "m2-test-comparison",
+      "context": "a future timelike wedge track. If they had finite limits, its position would remain in a compact regular coordinate range; the temporal-chart argument of Lemma~\\ref{test:interior-endpoint} would give geodesic continuation there. Hence one or both limits are infinite, exactly as in Equation~\\eqref{test:runou"
     },
     {
       "from": "m2-test-corner-bounds",
-      "to": "m2-test-corner-null"
+      "to": "m2-test-corner-null",
+      "context": "{AB}\\Xi^B. \\end{equation} The shift contributes to the $Y_0$ covector component, but not to $\\pi_{Y_1}$, because $\\partial_{Y_1}$ is a multiple of $L_1$. Lemma~\\ref{test:corner-bounds} and the uniform sphere-metric comparison show that, along each corner track, these momenta satisfy one finite bound on"
     },
     {
       "from": "m2-test-comparison",
-      "to": "m2-test-branch-seed"
+      "to": "m2-test-branch-seed",
+      "context": "The passing test gives finite full-development duration for every $w\\in O$, so Proposition~\\ref{test:comparison} applies to all of them. The nonempty open set $O$ has positive $\\mu$-measure and cannot be contained in the null set of"
     },
     {
       "from": "m2-test-corner-null",
-      "to": "m2-test-branch-seed"
+      "to": "m2-test-branch-seed",
+      "context": "ition~\\ref{test:comparison} applies to all of them. The nonempty open set $O$ has positive $\\mu$-measure and cannot be contained in the null set of Proposition~\\ref{test:corner-null}. Choose a noncorner seed. The source's exchange lemma changes the coordinate preparation on the same cylinder and produ"
     },
     {
       "from": "m2-bg-geometry",
-      "to": "m2-bg-coefficients"
+      "to": "m2-bg-coefficients",
+      "context": "]}. \\end{equation} Besides the cross derivatives just considered, its radial-angular entries contain the pure derivatives $L_i\\chi_i$ controlled by Proposition~\\ref{bg:geometry}. Two angular directions carry a $\\sqrt a$ derivative or a product of matrices tending to zero. The only nonzero limiti"
     },
     {
       "from": "m2-bg-coefficients",
-      "to": "m2-bg-packet"
+      "to": "m2-bg-packet",
+      "context": "e identical conclusion for each transport coefficient. The normalized sources $a\\mathcal Pp_{j-1}$ and $\\sqrt a\\,\\mathcal Cp_{j-1}$ have these bounds by Lemma~\\ref{bg:coefficients}. Integration over length $O(T)$ preserves them. All these equations are local in $v$ and along the angular flow, so p"
     },
     {
       "from": "m2-bg-exterior",
-      "to": "m2-bg-packet"
+      "to": "m2-bg-packet",
+      "context": "nch patch. Start a complex phase $\\varphi$ with spatial value $v(0,w)+i|w-Y|^2/2$ and choose its temporal root to agree with $dv$ at the center. Proposition~ \\ref{bg:exterior} supplies the real rays and every subsegment propagator. Propagate finite complex phase jets along them. If $P_c,Q_c$"
     },
     {
       "from": "m2-bg-packet",
-      "to": "m2-bg-amplitude-independent"
+      "to": "m2-bg-amplitude-independent",
+      "context": "Every transport, beam superposition, residual and matching operation in the proof of Proposition~\\ref{bg:packet} is linear and homogeneous in the final factor $A_T$. Coefficient estimates are independent of that factor. Multiplying"
     },
     {
       "from": "m2-prep-signed-entry",
-      "to": "m2-attach-development"
+      "to": "m2-attach-development",
+      "context": "rs is needed. Let $t_T$ be the exterior launch time, let $C_e$ be the exterior center, and let $s_* =\\sup|C_e'|<1-2\\beta$. The protected ball from Proposition~\\ref{prep:signed-entry} contains the fixed-origin ball of radius \\begin{equation}\\label{attach:protected-radius} (1-2\\beta)t_T-|C_e(t_T)| \\ge"
     },
     {
       "from": "m2-bg-geometry",
-      "to": "m2-attach-canonical-tube"
+      "to": "m2-attach-canonical-tube",
+      "context": "se $v_0$ so that the angular track is in an inner subchart about its limit, with a fixed coordinate margin. The bounded first derivatives of $b$ in Proposition~\\ref{bg:geometry} imply, on a fixed bounded momentum range and at the same $v$, \\[ |p(Y)-p(Y_0(v))| \\le C\\bigl(|u-u_0(v)|+|\\theta-\\thet"
     },
     {
       "from": "m2-attach-absolute-shell",
-      "to": "m2-attach-observer"
+      "to": "m2-attach-observer",
+      "context": "rsion matrices. The new covector satisfies the exact unit shell. It lies in the fixed bounded root interval and in the fixed state tube, so uniqueness in Lemma~\\ref{attach:absolute-shell} places it on that lemma's future root. The loss $a_p^{-1/2}$ in the first estimate of Equation~\\eqref{attach:terminal-s"
     },
     {
       "from": "m2-prep-signed-entry",
-      "to": "m2-attach-observer"
+      "to": "m2-attach-observer",
+      "context": "nu_0)T$, and all its lower causal shadows lie in the protected ball of Equation~\\eqref{attach:protected-radius}. Exact earlier entry agreement from Proposition~\\ref{prep:signed-entry}, the support conclusion of Proposition~\\ref{energy:signed-experiment}, and the attachment therefore identify this entir"
     },
     {
       "from": "m2-energy-signed-experiment",
-      "to": "m2-attach-observer"
+      "to": "m2-attach-observer",
+      "context": "ball of Equation~\\eqref{attach:protected-radius}. Exact earlier entry agreement from Proposition~\\ref{prep:signed-entry}, the support conclusion of Proposition~\\ref{energy:signed-experiment}, and the attachment therefore identify this entire neighborhood with the background one. Finite-time smooth geodesic fl"
     },
     {
       "from": "m2-attach-development",
-      "to": "m2-attach-observer"
+      "to": "m2-attach-observer",
+      "context": "there is an open observation neighborhood in the attached spacetime, so local geodesic continuation extends it for a positive further proper time. Proposition~\\ref{attach:development} embeds this path and its continuation into the full MGHD. Its observation time is therefore strictly below the full-MGH"
     },
     {
       "from": "m2-test-observer-comparison",
-      "to": "m2-attach-observer"
+      "to": "m2-attach-observer",
+      "context": "test form are parallel along the observing geodesic. At $\\Sigma$ their comparison is uniform because $d_T^\\pm\\to d$ and $w_T^\\pm\\to w$; equivalently use Lemma~\\ref{test:observer-comparison}. Parallel transport preserves the comparison constants. This proves the norm assertion and, by applying it to a vector"
     },
     {
       "from": "m2-bg-coefficients",
-      "to": "m2-holo-curvature-functional"
+      "to": "m2-holo-curvature-functional",
+      "context": "Set $Z_\\alpha=\\sqrt a\\,\\hat e_\\alpha$, and let $V_\\alpha$ be the matrices of $\\nabla^g_{Z_\\alpha}$ on the $\\hat e$ frame. The coefficient estimates of Lemma~\\ref{bg:coefficients} bound $V$, the coefficients of $[Z_\\alpha,Z_\\beta]$ in $Z$, their required ordinary jets, and the normalized entries of"
     },
     {
       "from": "m2-bg-packet",
-      "to": "m2-holo-signal"
+      "to": "m2-holo-signal",
+      "context": "s \\[ \\frac12\\bigl(\\nabla_1\\nabla_1 h_{XX} +\\nabla_X\\nabla_X h_{11} -2\\nabla_1\\nabla_X h_{1X}\\bigr). \\] The packet from Proposition~\\ref{bg:packet} is \\[ h_T^{\\mathrm p} =A_T\\operatorname{tr.rev.}_g\\operatorname{Re} \\left(e^{i\\lambda_T v}"
     },
     {
       "from": "m2-holo-signal",
-      "to": "m2-holo-violation"
+      "to": "m2-holo-violation",
+      "context": "Choose the sign in Proposition~\\ref{holo:signal}. Its adaptive seed $w_T$ is in $O$ for large $T$ and reaches $p_T$ in the full MGHD at a finite positive proper time,"
     },
     {
       "from": "m2-attach-observer",
-      "to": "m2-holo-violation"
+      "to": "m2-holo-violation",
+      "context": "osition~\\ref{holo:signal}. Its adaptive seed $w_T$ is in $O$ for large $T$ and reaches $p_T$ in the full MGHD at a finite positive proper time, by Proposition~\\ref{attach:observer}. The loops in Lemma~\\ref{holo:loops} lie entirely in $I^+(\\Sigma)$ of that development by Proposition~\\ref{attach:deve"
     },
     {
       "from": "m2-holo-loops",
-      "to": "m2-holo-violation"
+      "to": "m2-holo-violation",
+      "context": "ed $w_T$ is in $O$ for large $T$ and reaches $p_T$ in the full MGHD at a finite positive proper time, by Proposition~\\ref{attach:observer}. The loops in Lemma~\\ref{holo:loops} lie entirely in $I^+(\\Sigma)$ of that development by Proposition~\\ref{attach:development}. Their lengths tend to zero u"
     },
     {
       "from": "m2-attach-development",
-      "to": "m2-holo-violation"
+      "to": "m2-holo-violation",
+      "context": "sitive proper time, by Proposition~\\ref{attach:observer}. The loops in Lemma~\\ref{holo:loops} lie entirely in $I^+(\\Sigma)$ of that development by Proposition~\\ref{attach:development}. Their lengths tend to zero uniformly for $0\\leq h\\leq17h_T$, so they satisfy the strict cutoff $\\mathcal L_T(h)<B^{-1}"
     },
     {
       "from": "m2-holo-interpolation",
-      "to": "m2-holo-violation"
+      "to": "m2-holo-violation",
+      "context": "al H_T(jh_T)-\\Id\\| \\leq a_p jh_T e^{o(T)},\\qquad 0\\leq j\\leq17. \\] The fixed constants, including $B$, have been included in $e^{o(T)}$. Apply Lemma~\\ref{holo:interpolation} with $F=\\mathcal H_T-\\Id$, $b=a_pe^{o(T)}$, and $M=e^{o(T)}$. Equation~\\eqref{holo:second-coefficient} gives \\begin{ali"
     },
     {
       "from": "m2-phase-main",
-      "to": "m2-holo-violation"
+      "to": "m2-holo-violation",
+      "context": "[Proof of Theorem~\\ref{phase:main}] Work first at the fixed normalized center of Section~\\ref{phase:scaling}. Lemma~\\ref{test:closed} makes each passing s"
     },
     {
       "from": "m2-test-closed",
-      "to": "m2-holo-violation"
+      "to": "m2-holo-violation",
+      "context": "[Proof of Theorem~\\ref{phase:main}] Work first at the fixed normalized center of Section~\\ref{phase:scaling}. Lemma~\\ref{test:closed} makes each passing set \\(\\mathcal A(O,B)\\) relatively closed in \\(\\mathcal U\\). It has empty relative interior. Indeed"
     },
     {
       "from": "m2-phase-baire",
-      "to": "m2-holo-violation"
+      "to": "m2-holo-violation",
+      "context": "in \\(\\mathcal U\\). It has empty relative interior. Indeed, given \\(d\\in\\mathcal A(O,B)\\) and any relative neighborhood \\(V\\) of \\(d\\) in \\(\\mathcal U\\), Lemma~\\ref{phase:baire} gives a sufficiently small finite \\(p_m\\) ball contained in \\(V\\). The strict \\(p_{10}\\) inequality defining \\(\\mathcal"
     },
     {
       "from": "m2-test-exit-cover",
-      "to": "m2-holo-violation"
+      "to": "m2-holo-violation",
+      "context": "\\\\ B\\in\\N,\\ B\\ge1}} \\bigl(\\mathcal U\\setminus\\mathcal A(O,B)\\bigr) \\] is a dense \\(G_\\delta\\) in the nonempty Baire space \\(\\mathcal U\\). By Proposition~\\ref{test:exit-cover}, every datum admitting a future \\(C^1\\) extension in Definition~\\ref{phase:extension} belongs to at least one passing s"
     },
     {
       "from": "m3-cat-homotopy",
-      "to": "m3-cat-regular-exit"
+      "to": "m3-cat-regular-exit",
+      "context": "nd all paths stay in the chart with its uniform timelike margin. Under the supposition that the original arc stayed inside, both endpoints belong to the image. \\Cref{cat:homotopy} would then keep every path inside, although the path at \\(\\lambda=1\\) passes through \\(z\\), a contradiction. Thus every"
     },
     {
       "from": "m3-geo-radial",
-      "to": "m3-geo-normal-functions"
+      "to": "m3-geo-normal-functions",
+      "context": "The strict minimum established in Lemma~\\ref{geo:radial} and the implicit function theorem give the smooth function $r_c$. Set $U=F^2/\\Delta$ and $U_c=U(r_c)$. Near the minim"
     },
     {
       "from": "m3-geo-normal-functions",
-      "to": "m3-geo-normal-hyperbolicity"
+      "to": "m3-geo-normal-hyperbolicity",
+      "context": "The functions $\\varphi_\\pm$ of Lemma~\\ref{geo:normal-functions} give the two invariant surfaces; their common zero set is the trap, and their nonzero bracket proves symplectic transve"
     },
     {
       "from": "m3-geo-tangent-growth",
-      "to": "m3-geo-normal-hyperbolicity"
+      "to": "m3-geo-normal-hyperbolicity",
+      "context": "ommon zero set is the trap, and their nonzero bracket proves symplectic transversality. Their differential equations give the normal exponential rates. Lemma~\\ref{geo:tangent-growth} bounds every fixed-order tangent derivative polynomially, which proves the claimed domination. For nearby levels, use"
     },
     {
       "from": "m3-geo-radial",
-      "to": "m3-geo-normal-hyperbolicity"
+      "to": "m3-geo-normal-hyperbolicity",
+      "context": "s null level. Their bracket remains nonzero by continuity. The positive angular margin also persists, as proved above. For a trapped impact parameter, Lemma~\\ref{geo:radial} gives $F(r_+)>0$. Along a departing tail $L_z/E$ and $D/E^2$ remain fixed, and $F^2/\\Delta$ increases strictly as $r$"
     },
     {
       "from": "m3-geo-radial",
-      "to": "m3-geo-projected-ellipticity"
+      "to": "m3-geo-projected-ellipticity",
+      "context": "-2Mr>0. \\end{aligned} \\label{geo:projected-symbol} \\end{equation} The last inequality is strict for every $r>r_+>M$. The normalized trap is compact by Lemma~\\ref{geo:radial}. Its spatial projection is nonzero, since a nonzero multiple of $dt$ is timelike and cannot be a null covector. Conseq"
     },
     {
       "from": "m3-geo-radial",
-      "to": "m3-geo-zero-energy"
+      "to": "m3-geo-zero-energy",
+      "context": "izons, the radial component of a null ray is nonzero because $dr$ is timelike. At the horizon, all crossings other than the generators are transverse. Lemmas~\\ref{geo:radial} and \\ref{geo:horizon-source} therefore exhaust the possible non-escaping behavior. At bounded temporal frequency, spat"
     },
     {
       "from": "m3-geo-horizon-source",
-      "to": "m3-geo-zero-energy"
+      "to": "m3-geo-zero-energy",
+      "context": "ponent of a null ray is nonzero because $dr$ is timelike. At the horizon, all crossings other than the generators are transverse. Lemmas~\\ref{geo:radial} and \\ref{geo:horizon-source} therefore exhaust the possible non-escaping behavior. At bounded temporal frequency, spatial fiber infinity correspond"
     },
     {
       "from": "m3-st-hhv",
-      "to": "m3-st-stationary-estimates"
+      "to": "m3-st-stationary-estimates",
+      "context": "not change this reasoning. We recall why physical homogeneous limiting-absorption states on a closed nonzero band belong to the outgoing class in Proposition~\\ref{st:hhv}. The passage from physical limiting absorption to outgoing conormality uses the unchanged Kerr end and the interior pr"
     },
     {
       "from": "m3-st-conic-gauge",
-      "to": "m3-st-stationary-estimates"
+      "to": "m3-st-stationary-estimates",
+      "context": "the minimum normal rate in a positive metric, including its transport and the half-density convention. The geometric defining functions $z_1\\pm z_2$ and Lemma~\\ref{st:conic-gauge} verify these hypotheses for each nonzero-energy sign with margin. To use the separated symbol $q_E=\\Sigma_Kb^{-1}(k,k)"
     },
     {
       "from": "m3-st-hhv",
-      "to": "m3-st-transpose"
+      "to": "m3-st-transpose",
+      "context": "n outgoing primal problem uses $L_{\\mathrm h}$ with extendible interior orders and exactly the exterior graph proposed for the outgoing transpose. Proposition~\\ref{st:hhv} gives solvability on compact smooth data, trivial kernel, and an estimate with compact error. Altering interior orders"
     },
     {
       "from": "m3-st-hhv",
-      "to": "m3-st-profiles"
+      "to": "m3-st-profiles",
+      "context": "including the sharper translation-potential bound, and then preserve their identities under the conic modification. Begin with the local gauge of Proposition~\\ref{st:hhv}. Correct cut-off Kerr, translation, and boost generators successively with its stationary gauge-potential inverse. The"
     },
     {
       "from": "m3-st-stationary-estimates",
-      "to": "m3-st-profiles"
+      "to": "m3-st-profiles",
+      "context": "nly the finite base list is made small by the single choice of $\\Lambda$. Hence the profile identities remain exact. The seven modes persist, and Proposition~\\ref{st:stationary-estimates} excludes any enlargement of the decaying kernel. Gauge-potential invertibility persists by the same elliptic smallness"
     },
     {
       "from": "m3-st-profiles",
-      "to": "m3-st-families"
+      "to": "m3-st-families",
+      "context": "Integrate the stationary correction flows in Lemma~\\ref{st:profiles}. For the velocity directions use the affine leading chart \\begin{equation}\\label{st:affine-chart} t_K=\\sqrt{1-|v|^2}\\"
     },
     {
       "from": "m3-st-families",
-      "to": "m3-st-adjoint-tails"
+      "to": "m3-st-adjoint-tails",
+      "context": "operator. Indicial regularity initially permits order-$(-1)$ fundamental solutions. Pairing with the ten independent constant-asymptote homogeneous modes of \\Cref{st:families} kills their leading coefficients. The supported convention supplies no inner boundary contribution, so the remaining a"
     }
   ]
 }

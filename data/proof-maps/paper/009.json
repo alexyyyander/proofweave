@@ -509,383 +509,478 @@
   "edges": [
     {
       "from": "m1-thm-local-input",
-      "to": "m1-prop-local-dimension"
+      "to": "m1-prop-local-dimension",
+      "context": "nce characters of~\\(vF\\) kill its divisible subgroup~\\(v\\kappa\\), this proves \\[ \\dim I_v\\leq\\rrank(vF/v\\kappa). \\] Now let~\\(S\\) be alternating. By Theorem~\\ref{thm:local-input}, its valuative part~\\(S_0\\) is a subspace of codimension at most one and, for its associated valuation~\\(v\\), \\(S_0\\sub"
     },
     {
       "from": "m1-lem-residue-duality",
-      "to": "m1-prop-local-dimension"
+      "to": "m1-prop-local-dimension",
+      "context": "appa\\), and its value group is a finite-index extension of~\\(\\Z^s\\), hence is abstractly~\\(\\Z^s\\). Its inertia has dimension~\\(s\\) and is alternating by Lemma~\\ref{lem:residue-duality}. For~\\(s=0\\), the field is~\\(\\kappa\\), its character space is zero, and the assertion has the same interpretation."
     },
     {
       "from": "m1-prop-local-dimension",
-      "to": "m1-prop-quasi-recovery"
+      "to": "m1-prop-quasi-recovery",
+      "context": "versely, suppose~\\eqref{eq:local-inertia-intersection} holds. Let~\\(S_{i,0}\\) be the valuative part of~\\(S_i\\), with associated valuation~\\(v_i\\). Proposition~\\ref{prop:local-dimension} gives \\[ S_{i,0}=I_{v_i},\\qquad S_i\\subset D_{v_i}, \\qquad \\dim I_{v_i}\\geq s-1\\geq1, \\] and~\\(v_i\\) has equality in~"
     },
     {
       "from": "m1-lem-local-approximation",
-      "to": "m1-prop-quasi-recovery"
+      "to": "m1-prop-quasi-recovery",
+      "context": "leq v_2\\), then \\[ 0\\ne I_{v_1}\\subset S_1\\cap S_2=H, \\] so~\\(H=I_{v_1}\\). The other comparable case is symmetric. If the valuations are incomparable, Lemma~\\ref{lem:local-approximation} puts~\\(H\\) inside the inertia of their finest common coarsening. In either case every element of~\\(H\\) is valuative. B"
     },
     {
       "from": "m1-thm-local-input",
-      "to": "m1-prop-quasi-recovery"
+      "to": "m1-prop-quasi-recovery",
+      "context": "ent of~\\(H\\) is valuative. Because it lies in each~\\(S_i\\), it then lies in each~\\(S_{i,0}\\), giving \\[ H=I_{v_1}\\cap I_{v_2}. \\] Let~\\(u=v_H\\). By Theorem~\\ref{thm:local-input}, it coarsens each \\(v_i\\), and therefore \\[ H\\subset I_u\\subset I_{v_1}\\cap I_{v_2}=H. \\] Equality in~\\eqref{eq:local-"
     },
     {
       "from": "m1-lem-residue-duality",
-      "to": "m1-prop-quasi-recovery"
+      "to": "m1-prop-quasi-recovery",
+      "context": "ive rank one and residue transcendence degree~\\(s-1\\). Minimality of~\\(v\\) forces~\\(v=v_H\\). Finally, an element of~\\(D_v\\) is alternating with~\\(h\\) by Lemma~\\ref{lem:residue-duality}, since~\\(h\\) has zero residue image. Conversely, an element alternating with~\\(h\\) belongs to \\(D_{v_H}=D_v\\) by Theore"
     },
     {
       "from": "m1-lem-local-abhyankar",
-      "to": "m1-lem-local-flag-uniqueness"
+      "to": "m1-lem-local-flag-uniqueness",
+      "context": "f~\\(vF\\) maps to zero in~\\(vF/v\\kappa\\cong\\Z\\), and hence lies in~\\(v\\kappa\\). Coarsening by~\\(C\\) therefore leaves the relative value group unchanged. Lemma~\\ref{lem:local-abhyankar} shows that the residue transcendence degree remains~\\(s-1\\), so minimality of~\\(v\\) forces~\\(C=0\\). For a composite fl"
     },
     {
       "from": "m1-thm-local-input",
-      "to": "m1-lem-local-flag-uniqueness"
+      "to": "m1-lem-local-flag-uniqueness",
+      "context": "convexity places it in the subgroup. The first assertion therefore shows that the largest such convex subgroup is zero. The coarsening description in Theorem~\\ref{thm:local-input} now gives \\(v=v_{I_v}\\)."
     },
     {
       "from": "m1-prop-local-dimension",
-      "to": "m1-cor-flag-matching"
+      "to": "m1-cor-flag-matching",
+      "context": "The maximum alternating dimension is preserved by~\\(\\Phi\\), giving equality of transcendence degrees by Proposition~\\ref{prop:local-dimension}. Proposition~\\ref{prop:quasi-recovery} then identifies corresponding quasi-prime inertia and decomposition spaces. Qu"
     },
     {
       "from": "m1-prop-quasi-recovery",
-      "to": "m1-cor-flag-matching"
+      "to": "m1-cor-flag-matching",
+      "context": "The maximum alternating dimension is preserved by~\\(\\Phi\\), giving equality of transcendence degrees by Proposition~\\ref{prop:local-dimension}. Proposition~\\ref{prop:quasi-recovery} then identifies corresponding quasi-prime inertia and decomposition spaces. Quotienting by inertia and using Lemma~\\re"
     },
     {
       "from": "m1-lem-residue-duality",
-      "to": "m1-cor-flag-matching"
+      "to": "m1-cor-flag-matching",
+      "context": "on}. Proposition~\\ref{prop:quasi-recovery} then identifies corresponding quasi-prime inertia and decomposition spaces. Quotienting by inertia and using Lemma~\\ref{lem:residue-duality} gives the indicated isomorphism on residue characters, with its alternating relation. As long as the residual transcen"
     },
     {
       "from": "m1-lem-local-flag-uniqueness",
-      "to": "m1-cor-flag-matching"
+      "to": "m1-cor-flag-matching",
+      "context": "} again there. The inverse-image identities~\\eqref{eq:local-composition} identify the resulting pairs with those of compositions on the original fields. Lemma~\\ref{lem:local-flag-uniqueness} shows that each such inertia determines its composite valuation, so this matching is independent of any choice of a pre"
     },
     {
       "from": "m1-lem-local-abhyankar",
-      "to": "m1-cor-flag-matching"
+      "to": "m1-cor-flag-matching",
+      "context": "shows that each such inertia determines its composite valuation, so this matching is independent of any choice of a presentation as a flag. At each step Lemma~\\ref{lem:local-abhyankar} supplies finitely generated residue fields over algebraically closed residue constants. The local results apply even i"
     },
     {
       "from": "m1-thm-density-input",
-      "to": "m1-lem-residual-density-mod-ell"
+      "to": "m1-lem-residual-density-mod-ell",
+      "context": "Since \\(uF_0/u\\kappa_0\\cong\\Z\\), reduction \\(\\widehat I_u\\to I_u\\) is surjective. Given \\(\\chi\\in I_u\\), choose a lift \\(\\widehat\\chi\\in\\widehat I_u\\). Theorem~\\ref{thm:density-input} supplies \\(\\widehat\\eta\\in\\widehat S_F^{\\mathrm{in}}\\cap\\widehat D_v\\) with \\(\\widehat\\rho_v(\\widehat\\eta)=\\widehat\\chi"
     },
     {
       "from": "m1-lem-residual-valuative",
-      "to": "m1-prop-point-recognition"
+      "to": "m1-prop-point-recognition",
+      "context": "smooth point is dominated by the valuation ring. Writing each function as a power of a uniformizer times a local unit identifies the two valuations. Thus Lemma~\\ref{lem:residual-valuative} shows that every line in \\(\\mathcal L_v\\) is a point line. The converse inclusion follows from Lemma~\\ref{lem:residual-"
     },
     {
       "from": "m1-lem-residual-density-mod-ell",
-      "to": "m1-prop-point-recognition"
+      "to": "m1-prop-point-recognition",
+      "context": "he two valuations. Thus Lemma~\\ref{lem:residual-valuative} shows that every line in \\(\\mathcal L_v\\) is a point line. The converse inclusion follows from Lemma~\\ref{lem:residual-density-mod-ell}, using the trivial constant reduction. Lemma~\\ref{lem:curve-orders} now proves the two conditions. Suppose instead tha"
     },
     {
       "from": "m1-lem-curve-orders",
-      "to": "m1-prop-point-recognition"
+      "to": "m1-prop-point-recognition",
+      "context": "in \\(\\mathcal L_v\\) is a point line. The converse inclusion follows from Lemma~\\ref{lem:residual-density-mod-ell}, using the trivial constant reduction. Lemma~\\ref{lem:curve-orders} now proves the two conditions. Suppose instead that \\(\\kappa_0\\) is not algebraic over a finite field. There is a nont"
     },
     {
       "from": "m1-lem-support-bertini",
-      "to": "m1-prop-finite-curve-test"
+      "to": "m1-prop-finite-curve-test",
+      "context": "j$ is finite \\'{e}tale. Kummer theory and independence say that it is integral of degree $\\ell^m$. Successively choose $d-1$ general hyperplanes. Apply Lemma~\\ref{lem:support-bertini} to the cover on each successive open section, and Bertini smoothness to the base and its specified divisors. We obtain"
     },
     {
       "from": "m1-lem-kummer-kernel",
-      "to": "m1-prop-uniform-support"
+      "to": "m1-prop-uniform-support",
+      "context": "=\\Theta([t-a])$. The classes $[t-a]$, $a\\in k$, are independent in $V_{k(t)}$, as is seen from their orders at the finite points of the projective line. Lemma~\\ref{lem:kummer-kernel} shows that the kernel of $V_{k(t)}\\to V_K$ is finite dimensional. A basis for its intersection with the span of these"
     },
     {
       "from": "m1-prop-finite-curve-test",
-      "to": "m1-prop-uniform-support"
+      "to": "m1-prop-uniform-support",
+      "context": "ther $a\\in A$ distinct from the anchors and put $a_6=a$. Choose representatives $g_1,\\ldots,g_6\\in L^\\times$ of $h_{a_1},\\ldots,h_{a_6}$, and apply Proposition~\\ref{prop:finite-curve-test} to these representatives. Let $w$ be the resulting valuation and $C_w$ its residual curve. Their residue classes are in"
     },
     {
       "from": "m1-lem-residue-duality",
-      "to": "m1-prop-uniform-support"
+      "to": "m1-prop-uniform-support",
+      "context": "Let $w$ be the resulting valuation and $C_w$ its residual curve. Their residue classes are independent, so their evaluations on $D_w$ are independent by Lemma~\\ref{lem:residue-duality}. Let $v$ be the quasi-prime $(d-1)$-divisor of $K$ corresponding to $w$ under Corollary~\\ref{cor:flag-matching}. The ev"
     },
     {
       "from": "m1-cor-flag-matching",
-      "to": "m1-prop-uniform-support"
+      "to": "m1-prop-uniform-support",
+      "context": "evaluations on $D_w$ are independent by Lemma~\\ref{lem:residue-duality}. Let $v$ be the quasi-prime $(d-1)$-divisor of $K$ corresponding to $w$ under Corollary~\\ref{cor:flag-matching}. The evaluations of the six functions $u_j=t-a_j$, $1\\le j\\le6$, on $D_v$ are independent. We first normalize these fu"
     },
     {
       "from": "m1-prop-point-recognition",
-      "to": "m1-prop-uniform-support"
+      "to": "m1-prop-uniform-support",
+      "context": "heta([u_j])=[g_j]$ on the original decomposition spaces. This identifies the individual tested classes, as well as preserving their independence. Proposition~\\ref{prop:point-recognition} says that $kv$, like $lw$, is algebraic over a finite field, and that the complete point families on the two residual c"
     },
     {
       "from": "m1-lem-curve-orders",
-      "to": "m1-prop-uniform-support"
+      "to": "m1-prop-uniform-support",
+      "context": "esidual curves correspond. Let $C_v$ be the smooth projective curve with function field $Kv$. Both residue characteristics are different from $\\ell$; by Lemma~\\ref{lem:curve-orders}, the dimensions of the common point-order kernels are twice the genera. The residual isomorphism preserves these kerne"
     },
     {
       "from": "m1-lem-curve-orders",
-      "to": "m1-lem-curve-intersection"
+      "to": "m1-lem-curve-intersection",
+      "context": "$\\{x\\}\\times C_Q$. Its representative from $P$ therefore lies in the common kernel of all point orders of $C_P$. This kernel has dimension $2g(C_P)$ by Lemma~\\ref{lem:curve-orders}, so the intersection inside $V_{PQ}$ is finite dimensional. The maps from $V_P$ and $V_Q$ to $V_{PQ}$ are injective: e"
     },
     {
       "from": "m1-lem-kummer-kernel",
-      "to": "m1-lem-curve-intersection"
+      "to": "m1-lem-curve-intersection",
+      "context": "ctive: each factor field is relatively algebraically closed in the function field of the product. The kernel of $V_{PQ}\\to V_F$ is finite dimensional by Lemma~\\ref{lem:kummer-kernel}. To see that passing to $F$ preserves the finite-intersection conclusion, consider pairs $(a,b)\\in V_P\\oplus V_Q$ whos"
     },
     {
       "from": "m1-lem-constant-descent",
-      "to": "m1-lem-curve-incidence"
+      "to": "m1-lem-curve-incidence",
+      "context": "g\\in(M\\overline{P_0})^{\\times\\ell}. \\end{equation} This reasoning applies to each $g$ separately, while $T'$, $M$, and $P_0$ stay fixed. Lemma~\\ref{lem:constant-descent}, applied to the regular extension $M/P_0$, now gives the asserted containment in $V_M$."
     },
     {
       "from": "m1-prop-uniform-support",
-      "to": "m1-thm-curve-matching"
+      "to": "m1-thm-curve-matching",
+      "context": "etminus k$, and put $H=\\Theta(V_E)$. For $a\\in k$, let $h_a=\\Theta([t-a])$, and let $\\mathcal S$ be the union of their mod-$\\ell$ supports on $X$. Proposition~\\ref{prop:uniform-support} bounds the degrees of these supports, and hence the degree of every prime divisor in $\\mathcal S$. The set $\\mathcal S"
     },
     {
       "from": "m1-prop-finite-curve-test",
-      "to": "m1-thm-curve-matching"
+      "to": "m1-thm-curve-matching",
+      "context": "first observe that the kernel of all divisor-order maps on $X$ is finite dimensional. If it contained more than $2G_X$ independent classes, apply Proposition~\\ref{prop:finite-curve-test} to representatives of a finite independent subset of that size. Their independent residues on the testing curve would"
     },
     {
       "from": "m1-lem-curve-orders",
-      "to": "m1-thm-curve-matching"
+      "to": "m1-thm-curve-matching",
+      "context": "esentatives of a finite independent subset of that size. Their independent residues on the testing curve would all have zero point orders, contradicting Lemma~\\ref{lem:curve-orders} and its genus bound. On the other hand, the $[t-a]$ span an infinite-dimensional subspace of $V_E$, and therefore the"
     },
     {
       "from": "m1-prop-quasi-recovery",
-      "to": "m1-thm-curve-matching"
+      "to": "m1-thm-curve-matching",
+      "context": "l}. For each $D\\in\\mathcal S$, some $h_a$ has nonzero order at $D$. Match the valuation of $D$ to the quasi-divisorial valuation $v$ of $K$ using Proposition~\\ref{prop:quasi-recovery}. Its inertia $I_v$ has nonzero restriction to $E$. Consequently $vE/vk\\ne0$; this group is a subgroup of the cyclic g"
     },
     {
       "from": "m1-lem-residue-duality",
-      "to": "m1-thm-curve-matching"
+      "to": "m1-thm-curve-matching",
+      "context": "ihilates this class. The preceding equality of restriction images, transported through $\\Phi$, implies that decomposition at $D$ annihilates it too. By Lemma~\\ref{lem:residue-duality}, its residue is an $\\ell$-th power in $l(D)$. Since a fixed rational function has nonzero integral order at only finit"
     },
     {
       "from": "m1-lem-curve-incidence",
-      "to": "m1-thm-curve-matching"
+      "to": "m1-thm-curve-matching",
+      "context": "$l(D)$. Since a fixed rational function has nonzero integral order at only finitely many prime divisors, this proves \\eqref{eq:curve-residue-trivial}. Lemma~\\ref{lem:curve-incidence} now supplies $M/L$ and $P_0\\subset M$ with $M=LP_0$, $M/P_0$ regular, and the image of $H$ contained in the image of $V"
     },
     {
       "from": "m1-lem-kummer-kernel",
-      "to": "m1-thm-curve-matching"
+      "to": "m1-thm-curve-matching",
+      "context": "t $P_N$ be the relative algebraic closure of $P_0$ in $N$. It is a curve subfield of $N/l$. The image $H_N$ of $H$ in $V_N$ is infinite dimensional, by Lemma~\\ref{lem:kummer-kernel}, and lies in $V_{P_N}$. Every $L$-automorphism $\\gamma$ of $N$ fixes $H_N$ pointwise. Thus $H_N\\subset V_{P_N}\\cap V_"
     },
     {
       "from": "m1-lem-curve-intersection",
-      "to": "m1-thm-curve-matching"
+      "to": "m1-thm-curve-matching",
+      "context": "kummer-kernel}, and lies in $V_{P_N}$. Every $L$-automorphism $\\gamma$ of $N$ fixes $H_N$ pointwise. Thus $H_N\\subset V_{P_N}\\cap V_{\\gamma(P_N)}$, and Lemma~\\ref{lem:curve-intersection} forces $\\gamma(P_N)=P_N$. Put $P_L=P_N\\cap L$. This is relatively algebraically closed in $L$. It also has transcende"
     },
     {
       "from": "m1-lem-constant-descent",
-      "to": "m1-thm-curve-matching"
+      "to": "m1-thm-curve-matching",
+      "context": "e. For each $[g]\\in H$, Lemma~\\ref{lem:curve-incidence} and \\eqref{eq:curve-exact-descent} give an $\\ell$-th root of $g$ in $L\\overline{P_L}$. Applying Lemma~\\ref{lem:constant-descent} once more, now to $L/P_L$, yields the exact inclusion $\\Theta(V_E)\\subset V_{P_L}$. Apply the same argument to $\\Theta"
     },
     {
       "from": "m1-lem-kummer-kernel",
-      "to": "m1-prop-true-divisors"
+      "to": "m1-prop-true-divisors",
+      "context": "appa(t)$ and therefore on its algebraic extension $E$. Reduction embeds $E$ into $Fv$. Its induced map $V_E\\to V_{Fv}$ has finite-dimensional kernel by Lemma~\\ref{lem:kummer-kernel}. Lemma~\\ref{lem:residue-duality} identifies that kernel with $V_E\\cap D_v^\\perp$, proving \\eqref{eq:good-true-test}."
     },
     {
       "from": "m1-lem-residue-duality",
-      "to": "m1-prop-true-divisors"
+      "to": "m1-prop-true-divisors",
+      "context": "gebraic extension $E$. Reduction embeds $E$ into $Fv$. Its induced map $V_E\\to V_{Fv}$ has finite-dimensional kernel by Lemma~\\ref{lem:kummer-kernel}. Lemma~\\ref{lem:residue-duality} identifies that kernel with $V_E\\cap D_v^\\perp$, proving \\eqref{eq:good-true-test}. Conversely, suppose that the restr"
     },
     {
       "from": "m1-thm-curve-matching",
-      "to": "m1-prop-true-divisors"
+      "to": "m1-prop-true-divisors",
+      "context": "an infinite-dimensional subspace of $V_E\\cap D_v^\\perp$. This disproves \\eqref{eq:good-true-test} for every $E$. The final assertion now follows from Theorem~\\ref{thm:curve-matching} and the already established matching of quasi-divisorial pairs."
     },
     {
       "from": "m1-prop-true-divisors",
-      "to": "m1-prop-good-matching"
+      "to": "m1-prop-good-matching",
+      "context": "For each curve subfield $E$, let $\\mathcal Q_E$ be the collection of nonzero images of true divisorial inertia in $A_E$. By Proposition~\\ref{prop:true-divisors}, these collections correspond under the induced character isomorphisms. They are subfamilies of the point lines of $E$"
     },
     {
       "from": "m1-lem-curve-orders",
-      "to": "m1-prop-good-matching"
+      "to": "m1-prop-good-matching",
+      "context": "each line. The generators tend to zero outside finite sets, so summation defines a continuous map from a product of copies of $\\Lambda$ into $A_E$. By Lemma~\\ref{lem:curve-orders}, when every point occurs, this summation map has one-dimensional kernel, generated by a coefficient family with every c"
     },
     {
       "from": "m1-lem-good-functions",
-      "to": "m1-lem-common-partner"
+      "to": "m1-lem-common-partner",
+      "context": "losed point $q$ on a model where all the $t_i$ are regular, and choose $a,b$ vanishing at $q$ with independent differentials. Put $s=a/b$. It is good by Lemma~\\ref{lem:good-functions}. For $c\\ne0$, write \\[ t_i+cs=\\frac{t_i b+ca}{b}. \\] At $q$ the numerator has differentia"
     },
     {
       "from": "m1-prop-true-divisors",
-      "to": "m1-lem-simultaneous-values"
+      "to": "m1-lem-simultaneous-values",
+      "context": "in the maximal ideal of the regular local ring at \\(P\\). Thus restriction of \\(I_v\\) to each \\(k(t_i)\\) is the nonzero point line at \\(a_i\\). By Proposition~\\ref{prop:true-divisors}, the matched valuation on \\(L\\) is a true divisor. Restriction of characters commutes with the correspondence of good"
     },
     {
       "from": "m1-lem-simultaneous-values",
-      "to": "m1-lem-field-affine"
+      "to": "m1-lem-field-affine",
+      "context": "mpositum had transcendence degree one, relative algebraic closedness would make them equal. On the dense open of \\(Y\\) given by the inverse inclusion in Lemma~\\ref{lem:simultaneous-values}, the third coordinate is forced by the first two to be \\[ B_{z_c}\\bigl(B_t^{-1}(x)+cB_s^{-1}(y)\\bigr). \\] We restrict"
     },
     {
       "from": "m1-lem-cofinite-rational",
-      "to": "m1-lem-field-affine"
+      "to": "m1-lem-field-affine",
+      "context": "ng cofinitely with a bijection. A dense open in \\((\\Pj^1_l)^2\\) has cofinite fibers outside finitely many values of \\(y\\). Since \\(B_s\\) is a bijection, Lemma~\\ref{lem:cofinite-rational} therefore gives \\[ D_b:=B_{z_c}T_{cb}B_t^{-1}\\in\\mathcal H_l \\qquad\\text{for cofinitely many }b\\in k. \\] For two such"
     },
     {
       "from": "m1-lem-common-partner",
-      "to": "m1-prop-constant-alignment"
+      "to": "m1-prop-constant-alignment",
+      "context": "Choose a good function \\(t\\), and use Lemma~\\ref{lem:common-partner} to choose a good \\(s\\) satisfying the hypotheses of Lemma~\\ref{lem:field-affine}. First consider the embedding \\(B_t\\A"
     },
     {
       "from": "m1-lem-field-affine",
-      "to": "m1-prop-constant-alignment"
+      "to": "m1-prop-constant-alignment",
+      "context": "Choose a good function \\(t\\), and use Lemma~\\ref{lem:common-partner} to choose a good \\(s\\) satisfying the hypotheses of Lemma~\\ref{lem:field-affine}. First consider the embedding \\(B_t\\Aff(k)B_t^{-1}\\subset\\mathcal H_l\\), with the finite-agreement convention of that"
     },
     {
       "from": "m1-lem-cofinite-rational",
-      "to": "m1-prop-constant-alignment"
+      "to": "m1-prop-constant-alignment",
+      "context": "e original exceptional sets for all \\(b\\) at once. The injectivity of \\(\\chi\\) implies that \\(h\\) is injective on a cofinite subset of \\(\\Pj^1(l)\\). By Lemma~\\ref{lem:cofinite-rational}, it represents a member of \\(\\mathcal H_l\\), so \\(\\chi(k)\\) contains a cofinite subset of \\(l\\). An infinite proper su"
     },
     {
       "from": "m1-lem-simultaneous-values",
-      "to": "m1-thm-field-isomorphism"
+      "to": "m1-thm-field-isomorphism",
+      "context": "ir images are dense in their respective relation varieties. Taking closures under the homeomorphism gives the equality. Apply now the first inclusion of Lemma~\\ref{lem:simultaneous-values}. Delete from its source open the finitely many exceptional values in each coordinate where \\eqref{eq:field-alignment}"
     },
     {
       "from": "m1-lem-good-functions",
-      "to": "m1-thm-field-isomorphism"
+      "to": "m1-thm-field-isomorphism",
+      "context": "uad \\sigma(P)(u_{t_1},\\ldots,u_{t_m})=0, \\] where \\(\\sigma(P)\\) is obtained by applying \\(\\sigma\\) to the coefficients. Good functions generate \\(K\\) by Lemma~\\ref{lem:good-functions}. The displayed equivalence for every finite tuple makes the assignments \\(a\\mapsto\\sigma(a)\\) for \\(a\\in k\\) and \\(t\\ma"
     },
     {
       "from": "m1-lem-kummer-kernel",
-      "to": "m1-lem-restriction-rank"
+      "to": "m1-lem-restriction-rank",
+      "context": "If $v|_E$ is trivial, reduction embeds $E$ in $Kv$. The kernel of $V_E\\to V_{Kv}$ is finite-dimensional by Lemma~\\ref{lem:kummer-kernel}, whereas $V_E$ is infinite-dimensional. Dualizing and using Lemma~\\ref{lem:residue-duality} shows that the restriction"
     },
     {
       "from": "m1-lem-residue-duality",
-      "to": "m1-lem-restriction-rank"
+      "to": "m1-lem-restriction-rank",
+      "context": "in $Kv$. The kernel of $V_E\\to V_{Kv}$ is finite-dimensional by Lemma~\\ref{lem:kummer-kernel}, whereas $V_E$ is infinite-dimensional. Dualizing and using Lemma~\\ref{lem:residue-duality} shows that the restriction of $D_v$ to $A_E$ has infinite-dimensional image. Otherwise $v|_E$ is a positive multiple o"
     },
     {
       "from": "m1-lem-good-functions",
-      "to": "m1-lem-separate-divisors"
+      "to": "m1-lem-separate-divisors",
+      "context": "having value zero and the prescribed independent first-order terms at $R$. These ideals are pairwise comaximal, so the prescriptions are independent. By Lemma~\\ref{lem:good-functions}, $t=a/b$ is good. Its residue on $D_1$ is nonconstant, since it takes different values at $P,Q$, and its value along $D"
     },
     {
       "from": "m1-prop-true-divisors",
-      "to": "m1-prop-global-scalar"
+      "to": "m1-prop-global-scalar",
+      "context": "By Proposition~\\ref{prop:true-divisors}, $\\Psi^*$ permutes the pairs $I_v\\subset D_v$ for true prime divisors. Since $\\Psi$ fixes each $V_E$, it preserves the"
     },
     {
       "from": "m1-lem-restriction-rank",
-      "to": "m1-prop-global-scalar"
+      "to": "m1-prop-global-scalar",
+      "context": "i^*$ permutes the pairs $I_v\\subset D_v$ for true prime divisors. Since $\\Psi$ fixes each $V_E$, it preserves the rank of restriction of $D_v$ to $A_E$. Lemmas~\\ref{lem:restriction-rank} and~\\ref{lem:separate-divisors} therefore force this permutation of true divisors to be the identity. Fix a good ratio"
     },
     {
       "from": "m1-lem-separate-divisors",
-      "to": "m1-prop-global-scalar"
+      "to": "m1-prop-global-scalar",
+      "context": "bset D_v$ for true prime divisors. Since $\\Psi$ fixes each $V_E$, it preserves the rank of restriction of $D_v$ to $A_E$. Lemmas~\\ref{lem:restriction-rank} and~\\ref{lem:separate-divisors} therefore force this permutation of true divisors to be the identity. Fix a good rational subfield $E$. Every point li"
     },
     {
       "from": "m1-lem-curve-orders",
-      "to": "m1-prop-global-scalar"
+      "to": "m1-prop-global-scalar",
+      "context": "$ denotes the smooth projective model of $E$. The sum of these order characters is zero, and its coefficient families have exactly the diagonal kernel by Lemma~\\ref{lem:curve-orders}. Continuity permits applying $\\Psi_E^*$ to this sum, so all $a_x$ equal one scalar $a_E$. Since $E$ is rational, its po"
     },
     {
       "from": "m1-lem-good-functions",
-      "to": "m1-prop-global-scalar"
+      "to": "m1-prop-global-scalar",
+      "context": "th $A_E$ and $A_F$. The scalar by which $\\Psi^*$ acts on $I_v$ must be both $a_E$ and $a_F$. All these scalars agree. Good-function classes span $V_K$ by Lemma~\\ref{lem:good-functions}, proving the claim."
     },
     {
       "from": "m1-lem-curve-intersection",
-      "to": "m1-prop-uniqueness"
+      "to": "m1-prop-uniqueness",
+      "context": "a(E^i)$ is algebraic over this rational field; clearing powers puts it in $P$. Hence $\\beta(E^i)=P^i$. Since $\\beta_1$ is scalar, $V_P=V_E$ inside $V_K$. Lemma~\\ref{lem:curve-intersection} forces $P=E$. It follows that $\\beta(t)=h(t)$ for a perfect rational function $h$ generating $k(t)^i$ over $k$ up to p"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-prop-uniqueness"
+      "to": "m1-prop-uniqueness",
+      "context": "[Proof of Theorem~\\ref{thm:main}] A compatible $\\Theta$ gives equal transcendence degrees by Proposition~\\ref{prop:local-dimension}. Theorem~\\ref{thm:fi"
     },
     {
       "from": "m1-prop-local-dimension",
-      "to": "m1-prop-uniqueness"
+      "to": "m1-prop-uniqueness",
+      "context": "[Proof of Theorem~\\ref{thm:main}] A compatible $\\Theta$ gives equal transcendence degrees by Proposition~\\ref{prop:local-dimension}. Theorem~\\ref{thm:field-isomorphism} produces a field isomorphism $\\alpha:K^i\\to L^i$ respecting constants; in particul"
     },
     {
       "from": "m1-thm-field-isomorphism",
-      "to": "m1-prop-uniqueness"
+      "to": "m1-prop-uniqueness",
+      "context": "[Proof of Theorem~\\ref{thm:main}] A compatible $\\Theta$ gives equal transcendence degrees by Proposition~\\ref{prop:local-dimension}. Theorem~\\ref{thm:field-isomorphism} produces a field isomorphism $\\alpha:K^i\\to L^i$ respecting constants; in particular, the characteristics agree. Propos"
     },
     {
       "from": "m1-prop-global-scalar",
-      "to": "m1-prop-uniqueness"
+      "to": "m1-prop-uniqueness",
+      "context": "heorem~\\ref{thm:field-isomorphism} produces a field isomorphism $\\alpha:K^i\\to L^i$ respecting constants; in particular, the characteristics agree. Proposition~\\ref{prop:global-scalar} shows that $\\Theta$ and $\\alpha_1$ differ by a single scalar, proving surjectivity of the stated map. If two field isom"
     },
     {
       "from": "m2-prelim-duality",
-      "to": "m2-prelim-completion"
+      "to": "m2-prelim-completion",
+      "context": "also in the inseparable case and sends an element of $E$ to its $[F:E]$-th power. It induces the stated composite on completions. Torsion freeness from Lemma~\\ref{prelim:duality} proves injectivity."
     },
     {
       "from": "m2-prelim-duality",
-      "to": "m2-prelim-central-lift"
+      "to": "m2-prelim-central-lift",
+      "context": "mpatibility. It fits into an exact sequence of abelian pro-$\\ell$ groups \\[ 0\\longrightarrow B\\longrightarrow Q\\longrightarrow A\\longrightarrow0. \\] By Lemma~\\ref{prelim:duality}, $A$ is a product of copies of $\\Zell$. Such products are projective in the category of abelian pro-$\\ell$ groups. Ind"
     },
     {
       "from": "m2-local-dimension",
-      "to": "m2-local-quasiprime"
+      "to": "m2-local-quasiprime",
+      "context": "mposing with $v$ gives two alternating inertia spaces of dimension $s$ whose intersection is $\\mathcal I_v$. Conversely, let $S_1,S_2$ be as stated. By Lemma~\\ref{local:dimension}, their valuative parts are $\\Sigma_i=\\mathcal I_{u_i}$, where each $u_i$ has no transcendence defect and $\\dim\\Sigma_i\\"
     },
     {
       "from": "m2-local-residue",
-      "to": "m2-local-quasiprime"
+      "to": "m2-local-quasiprime",
+      "context": "is quasi-prime, and the coarsest-valuation description also proves uniqueness. Every member of $\\mathcal D_v$ alternates with $h$, by the calculation in Lemma~\\ref{local:residue}. For the converse apply the third part of the local character theorem to the valuative line~$H$."
     },
     {
       "from": "m2-local-commuting",
-      "to": "m2-local-transport"
+      "to": "m2-local-transport",
+      "context": "Lemma~\\ref{local:commuting} makes the alternating relation intrinsic to the bracket. Lemma~\\ref{local:dimension} then recovers~$d$, and Lemma~\\ref"
     },
     {
       "from": "m2-local-dimension",
-      "to": "m2-local-transport"
+      "to": "m2-local-transport",
+      "context": "Lemma~\\ref{local:commuting} makes the alternating relation intrinsic to the bracket. Lemma~\\ref{local:dimension} then recovers~$d$, and Lemma~\\ref{local:quasiprime} recovers the rationalized rank-one pairs. Intersecting with the in"
     },
     {
       "from": "m2-local-quasiprime",
-      "to": "m2-local-transport"
+      "to": "m2-local-transport",
+      "context": "Lemma~\\ref{local:commuting} makes the alternating relation intrinsic to the bracket. Lemma~\\ref{local:dimension} then recovers~$d$, and Lemma~\\ref{local:quasiprime} recovers the rationalized rank-one pairs. Intersecting with the integral modules recovers the exact pairs. Lemma~\\ref"
     },
     {
       "from": "m2-local-residue",
-      "to": "m2-local-transport"
+      "to": "m2-local-transport",
+      "context": "covers~$d$, and Lemma~\\ref{local:quasiprime} recovers the rationalized rank-one pairs. Intersecting with the integral modules recovers the exact pairs. Lemma~\\ref{local:residue} supplies the residual character spaces and their alternating relation. If $u$ is a valuation of $Fv$, the inverse imag"
     },
     {
       "from": "m2-local-transport",
-      "to": "m2-local-curves"
+      "to": "m2-local-curves",
+      "context": "Proposition~\\ref{local:transport} recovers every group used in \\eqref{local:residual-set}. A continuous isomorphism preserves the closure of the union,"
     },
     {
       "from": "m2-local-criterion-hypotheses",
-      "to": "m2-local-curves"
+      "to": "m2-local-curves",
+      "context": "somorphism preserves the closure of the union, its intersection with decomposition, its quotient image and the maximal procyclic subgroups in that image. Lemma~\\ref{local:criterion-hypotheses} verifies the hypotheses of Pop's criterion on both sides. The complete-curve-like property therefore holds simultaneou"
     },
     {
       "from": "m2-tests-residual",
-      "to": "m2-tests-bertini"
+      "to": "m2-tests-bertini",
+      "context": "[Proof of Lemma~\\ref{tests:residual}] \\emph{Spread the finite data.} Let $D_1,\\ldots,D_s$ be the prime divisors occurring in the divisors of the $g_j$. The"
     },
     {
       "from": "m2-tests-residual",
-      "to": "m2-pencil-uniform"
+      "to": "m2-pencil-uniform",
+      "context": "onzero integer entries. The necessary lower bound on $e$ may depend on $a$. Choose representatives $g_j\\in L^\\times$ of $h_{a_j}$ modulo $q$, and apply Lemma~\\ref{tests:residual}. It gives $w$, a residual curve $C$, and the same noncyclic subgroup with distinct nonzero generators in $(Lw)^\\times/("
     },
     {
       "from": "m2-local-transport",
-      "to": "m2-pencil-uniform"
+      "to": "m2-pencil-uniform",
+      "context": "same noncyclic subgroup with distinct nonzero generators in $(Lw)^\\times/(Lw)^{\\times q}$. Evaluation on $D_w/I_w=W_{Lw}$ detects these classes. By Proposition~\\ref{local:transport}, there is a corresponding quasi-prime $(d-1)$-divisor $v$ of $K/k$, and the evaluations of the $u_j$ on $D_v$ modulo $q"
     },
     {
       "from": "m2-local-curves",
-      "to": "m2-pencil-uniform"
+      "to": "m2-pencil-uniform",
+      "context": "Thus $\\ell$ is nonzero in $kv$ in that case as well. \\emph{Compare the two residual curves.} The constants $lw$ are algebraic over a finite field. Proposition~\\ref{local:curves} therefore gives the same assertion for $kv$ and identifies the full families of point inertia lines in $W_{Lw}$ and $W_"
     },
     {
       "from": "m2-prelim-curve-kernel",
-      "to": "m2-pencil-uniform"
+      "to": "m2-pencil-uniform",
+      "context": "and identifies the full families of point inertia lines in $W_{Lw}$ and $W_{Kv}$. Let $C'/kv$ be the smooth projective curve with function field $Kv$. By Lemma~\\ref{prelim:curve-kernel}, the mod-$\\ell$ kernels of the point order maps have dimensions $2g(C)$ and $2g(C')$. The residual isomorphism identifi"
     },
     {
       "from": "m2-pencil-uniform",
-      "to": "m2-pencil-finite"
+      "to": "m2-pencil-finite",
+      "context": "If $z\\notin k$, apply Theorem~\\ref{pencil:uniform} to $t=z$ and $a=0$. If $z\\in k^\\times$, its Kummer class is zero because $k^\\times$ is divisible."
     },
     {
       "from": "m2-local-transport",
-      "to": "m2-recovery-residue-powers"
+      "to": "m2-recovery-residue-powers",
+      "context": "ensional, a contradiction. For $D\\in\\mathcal S$, let $w_D$ be its divisorial valuation and let $v$ be the quasi-prime divisor of $K/k$ supplied by Proposition~\\ref{local:transport}. Its inertia detects some $[t-a]$. Consequently $vE/vk$ is nonzero inside the rank-one group $vK/vk$. The valuation tra"
     },
     {
       "from": "m2-pencil-finite",
-      "to": "m2-recovery-residue-powers"
+      "to": "m2-recovery-residue-powers",
+      "context": "alue zero, and then by a constant with the reciprocal residue, makes it a principal unit. Thus $D_v$ kills $[z]$, and $D_{w_D}$ kills $\\Theta[z]$. By Corollary~\\ref{pencil:finite}, the excluded $D$ form a finite set. Discard also the finitely many prime divisors in the ordinary divisor of $g$. For"
     },
     {
       "from": "m2-prelim-curve-kernel",
-      "to": "m2-recovery-intersection"
+      "to": "m2-recovery-intersection",
+      "context": "-order zero by its $Q$-representation. Its $x$-order is therefore zero, since multiplication by $e$ is injective on $\\Zell$. This holds for every $x$. By Lemma~\\ref{prelim:curve-kernel}, the intersection embeds in the finite-rank Tate module of $\\operatorname{Pic}^0(C_P)$."
     },
     {
       "from": "m2-recovery-curves",
-      "to": "m2-recovery-intersection"
+      "to": "m2-recovery-intersection",
+      "context": "[Proof of Theorem~\\ref{recovery:curves}] Let $E\\subset K$ be a curve subfield, and choose $t\\in E\\setminus k$. Relative algebraic closedness makes $E$ the rela"
     },
     {
       "from": "m2-recovery-residue-powers",
-      "to": "m2-recovery-intersection"
+      "to": "m2-recovery-intersection",
+      "context": "t K$ be a curve subfield, and choose $t\\in E\\setminus k$. Relative algebraic closedness makes $E$ the relative algebraic closure of $k(t)$ in $K$. Apply Lemmas~\\ref{recovery:residue-powers} and \\ref{recovery:incidence} to one representative of each $\\Theta[z]\\bmod\\ell^j$, for $z\\in E^\\times$ and $j\\geq1$. We"
     },
     {
       "from": "m2-recovery-incidence",
-      "to": "m2-recovery-intersection"
+      "to": "m2-recovery-intersection",
+      "context": "se $t\\in E\\setminus k$. Relative algebraic closedness makes $E$ the relative algebraic closure of $k(t)$ in $K$. Apply Lemmas~\\ref{recovery:residue-powers} and \\ref{recovery:incidence} to one representative of each $\\Theta[z]\\bmod\\ell^j$, for $z\\in E^\\times$ and $j\\geq1$. We obtain fields $L\\subset M$ a"
     },
     {
       "from": "m2-recovery-kummer-descent",
-      "to": "m2-recovery-intersection"
+      "to": "m2-recovery-intersection",
+      "context": "laim that its image in $\\widehat M$ lies in $\\widehat P_0$. At level $\\ell^j$, every element of $\\widehat E$ is represented by an actual $z\\in E^\\times$. Lemma~\\ref{recovery:kummer-descent} puts its image in $P_0^\\times/P_0^{\\times\\ell^j}$. These classes are unique because $P_0$ is relatively algebraically c"
     },
     {
       "from": "m2-prelim-completion",
-      "to": "m2-recovery-intersection"
+      "to": "m2-recovery-intersection",
+      "context": "d in $M$, and their uniqueness makes them compatible as $j$ varies. Taking inverse limits proves the claim. Completion maps across $M/L$ are injective by Lemma~\\ref{prelim:completion}. Choose a finite normal extension $N/L$ containing $M$, allowing an inseparable part, and let $P_N$ be the relative al"
     },
     {
       "from": "m2-recovery-curves",
-      "to": "m2-recovery-divisorial"
+      "to": "m2-recovery-divisorial",
+      "context": "nit. Its class in $\\widehat E$ is nonzero and is killed by $D_v$, so \\eqref{eq:recovery-divisorial} fails. The criterion is invariant under $\\Theta$ by Theorem~\\ref{recovery:curves} and the local correspondence."
     },
     {
       "from": "m2-recovery-divisorial",
-      "to": "m2-recovery-rational"
+      "to": "m2-recovery-rational",
+      "context": "a|_{\\widehat E}$ defines $\\varphi_E$. Evaluation against elements of $\\widehat E$ proves the commutativity of \\eqref{eq:recovery-quotient-diagram}. Proposition~\\ref{recovery:divisorial} and the preceding description of point lines show that $\\varphi_E$ matches them. Their generators may differ by units,"
     },
     {
       "from": "m2-prelim-curve-kernel",
-      "to": "m2-recovery-rational"
+      "to": "m2-recovery-rational",
+      "context": "Their generators may differ by units, which do not change the common kernel of point-order evaluations modulo $\\ell$. Its dimension is twice the genus by Lemma~\\ref{prelim:curve-kernel}. Hence genus is preserved. A smooth projective curve over an algebraically closed field has genus zero exactly when its"
     },
     {
       "from": "m2-thm-main",
-      "to": "m2-reconstruction-pop"
+      "to": "m2-reconstruction-pop",
+      "context": "[Proof of Theorem~\\ref{thm:main}] A field isomorphism $\\alpha:K^i\\to L^i$ induces a contravariant isomorphism of absolute Galois groups, well defined up"
     },
     {
       "from": "m2-prelim-central-lift",
-      "to": "m2-reconstruction-pop"
+      "to": "m2-reconstruction-pop",
+      "context": "herefore gives the same allowed orbit. This proves well-definedness of $\\Phi_{K,L}$. Conversely, let $\\varphi:\\Pi_L^a\\to\\Pi_K^a$ be bracket-compatible. Lemma~\\ref{prelim:central-lift} lifts it to a class-two isomorphism. After choosing Tate identifications, let $\\Theta$ be its dual \\eqref{eq:theta}. P"
     },
     {
       "from": "m2-local-transport",
-      "to": "m2-reconstruction-pop"
+      "to": "m2-reconstruction-pop",
+      "context": "mma~\\ref{prelim:central-lift} lifts it to a class-two isomorphism. After choosing Tate identifications, let $\\Theta$ be its dual \\eqref{eq:theta}. Proposition~\\ref{local:transport} recovers the common relative transcendence degree and the quasi-divisorial pairs. The finite residual tests and the uni"
     },
     {
       "from": "m2-recovery-curves",
-      "to": "m2-reconstruction-pop"
+      "to": "m2-reconstruction-pop",
+      "context": "nce degree and the quasi-divisorial pairs. The finite residual tests and the uniform support bound prove the completed curve-subfield correspondence in Theorem~\\ref{recovery:curves}. The recognition statements in Section~\\ref{sec:curve-recovery} then show that $\\varphi$ preserves true divisorial ine"
     },
     {
       "from": "m2-recovery-rational",
-      "to": "m2-reconstruction-pop"
+      "to": "m2-reconstruction-pop",
+      "context": "then show that $\\varphi$ preserves true divisorial inertia and every relatively algebraically closed rational quotient, including its point lines. Proposition~\\ref{recovery:rational} gives the actual commuting quotient diagrams in \\eqref{eq:recovery-quotient-diagram}. Their vertical maps are surjectiv"
     }
   ]
 }

@@ -397,187 +397,233 @@
   "edges": [
     {
       "from": "m1-filt-koszul",
-      "to": "m1-filt-comparison"
+      "to": "m1-filt-comparison",
+      "context": "going maps. Applying the rank inequality to these two maps proves that passing to the associated graded complex cannot decrease this homology dimension. Lemma~\\ref{filt:koszul} now gives \\eqref{filt:betti}. For $j<0$ all the relevant Koszul terms vanish, so the same assertion holds."
     },
     {
       "from": "m1-filt-minimal",
-      "to": "m1-mono-transfer"
+      "to": "m1-mono-transfer",
+      "context": "ro original differential entry has positive degree, so the transferred resolution is minimal. Each summand $S(-s)$ of $F_p$ becomes $m$ summands $T(-s)$. Lemma~\\ref{filt:minimal} proves \\eqref{mono:betti-transfer} for every $p,j$. If $I=S$, both quotients and their resolutions may be taken to be"
     },
     {
       "from": "m1-thm-forms",
-      "to": "m1-mono-bound"
+      "to": "m1-mono-bound",
+      "context": "If $I=S$, take $M=S$. Assume henceforth that $I$ is proper. Apply Theorem~\\ref{thm:forms} to the given regular sequence. It supplies $k$, $\\Delta$, and commuting degree-one forms $t_h$ satisfying the basis pr"
     },
     {
       "from": "m1-mono-transfer",
-      "to": "m1-mono-bound"
+      "to": "m1-mono-bound",
+      "context": "_n]$. In particular $C_{h\\ell}$ is homogeneous of degree $a_h-1$ when nonzero. Define $T=k[y_1,\\ldots,y_n]$, $m=\\dim_k\\Delta$, $W=IN$, and $Q=N/W$ as in Lemma~\\ref{mono:transfer}. Under \\eqref{mono:free-map}, view $N$ as the free $T$-module with coefficient space $V=\\Delta$. In each total degree"
     },
     {
       "from": "m1-filt-comparison",
-      "to": "m1-mono-bound"
+      "to": "m1-mono-bound",
+      "context": "e lexicographically smallest tuple \\[ (\\alpha_n,\\ldots,\\alpha_1) \\] first. This order is compatible with addition. Apply Proposition~\\ref{filt:comparison} to the homogeneous $T$-submodule $W$ with this order. For an exponent $\\alpha$, let $V_\\alpha\\subseteq\\Delta$ be its l"
     },
     {
       "from": "m1-filt-minimal",
-      "to": "m1-stab-distraction"
+      "to": "m1-stab-distraction",
+      "context": "etti numbers. If $K=S$, both quotients are zero. Otherwise, choose a minimal exponent-multigraded free resolution $F_\\bullet\\to S/K$ with $F_0=S$, as in Lemma~\\ref{filt:minimal}. A nonzero differential entry from a generator of multidegree $u$ to one of multidegree $v$ has the form $c x^{u-v}$,"
     },
     {
       "from": "m1-stab-distraction",
-      "to": "m1-stab-main"
+      "to": "m1-stab-main",
+      "context": "rm the map $D$ above. Replace $K$ by \\[ K'=\\operatorname{in}_{\\mathrm{lex}}D(K), \\] where the leading monomial is the lexicographically largest one. By Lemma~\\ref{stab:distraction}, $P\\subseteq D(K)$, and hence $P\\subseteq K'$. That lemma and Proposition~\\ref{filt:comparison} show that the Hilbert"
     },
     {
       "from": "m1-filt-comparison",
-      "to": "m1-stab-main"
+      "to": "m1-stab-main",
+      "context": "ading monomial is the lexicographically largest one. By Lemma~\\ref{stab:distraction}, $P\\subseteq D(K)$, and hence $P\\subseteq K'$. That lemma and Proposition~\\ref{filt:comparison} show that the Hilbert function is preserved and \\[ \\beta^S_{p,j}(S/K)\\le\\beta^S_{p,j}(S/K') \\qquad(p\\ge0,\\ j\\in\\Z). \\"
     },
     {
       "from": "m1-box-inequalities",
-      "to": "m1-box-ideal"
+      "to": "m1-box-ideal",
+      "context": "Write \\(Y_d=\\operatorname{Lex}(X_d)\\). Since \\(H\\) is an ideal, \\(\\partial X_d\\subseteq X_{d+1}\\). Lemma~\\ref{box:inequalities} therefore gives \\[ |\\partial Y_d|\\le|\\partial X_d| \\le|X_{d+1}|=|Y_{d+1}|. \\] Both \\(\\partial Y_d\\)"
     },
     {
       "from": "m1-box-ideal",
-      "to": "m1-tor-stable"
+      "to": "m1-tor-stable",
+      "context": "By Proposition~\\ref{box:ideal}, $G$ is an ideal stable in the box and has the same Hilbert function as $H$. If $H=A$, then $G=A$ and both comparisons"
     },
     {
       "from": "m1-filt-minimal",
-      "to": "m1-tor-stable"
+      "to": "m1-tor-stable",
+      "context": "then $G=A$ and both comparisons are equalities. For proper $H$, the ideal comparison implies the quotient comparison in positive homological degrees by Lemma~\\ref{filt:minimal}: \\begin{equation} \\label{tor:ideal-quotient} \\beta^A_{p+1,j}(A/H)=\\beta^A_{p,j}(H), \\qquad \\beta^A_{p+1,j}(A/G)=\\bet"
     },
     {
       "from": "m1-tor-deficit",
-      "to": "m1-tor-stable"
+      "to": "m1-tor-stable",
+      "context": "nent of $z$. The middle summands still contribute to $\\Tor$, but their Koszul differentials have rank zero. Thus they contribute nothing to the deficits. Lemma~\\ref{tor:deficit} yields \\begin{equation} \\label{tor:endpoint-deficits} D^R_{p,j}(B_H) =D^R_{p,j}(H^{(0)}) +D^R_{p,j-a}(R/H^{(a"
     },
     {
       "from": "m1-box-inequalities",
-      "to": "m1-tor-stable"
+      "to": "m1-tor-stable",
+      "context": "ient ideal equal to $R$: its lex replacement is $R$, the corresponding ideal comparison is equality, and its quotient is zero. The slice inequalities of Lemma~\\ref{box:inequalities} imply \\begin{equation} \\label{tor:endpoint-inclusions} G^{(0)}\\subseteq\\Lambda'H^{(0)},\\qquad \\Lambda'H^{(a-1)}\\subse"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-tor-stable"
+      "to": "m1-tor-stable",
+      "context": "[Proof of Theorem~\\ref{thm:main}] If \\(I=S\\), then \\(L_d=S_d\\) is allowed in every degree and \\(J=S\\); all quotient Betti numbers are zero. Assume \\(I\\n"
     },
     {
       "from": "m1-mono-bound",
-      "to": "m1-tor-stable"
+      "to": "m1-tor-stable",
+      "context": "heorem~\\ref{thm:main}] If \\(I=S\\), then \\(L_d=S_d\\) is allowed in every degree and \\(J=S\\); all quotient Betti numbers are zero. Assume \\(I\\ne S\\). Proposition~\\ref{mono:bound} gives a monomial ideal \\(M\\supseteq P\\) with the Hilbert function of \\(I\\) and \\[ \\beta^S_{p,j}(S/I)\\le\\beta^S_{p,j}(S"
     },
     {
       "from": "m1-stab-main",
-      "to": "m1-tor-stable"
+      "to": "m1-tor-stable",
+      "context": "es a monomial ideal \\(M\\supseteq P\\) with the Hilbert function of \\(I\\) and \\[ \\beta^S_{p,j}(S/I)\\le\\beta^S_{p,j}(S/M) \\qquad(p\\ge0,\\ j\\in\\Z). \\] Proposition~\\ref{stab:main} gives a box-stable monomial ideal \\(H\\supseteq P\\), with the same Hilbert function, and \\[ \\beta^S_{p,j}(S/M)\\le\\beta^"
     },
     {
       "from": "m1-cor-characteristic-zero",
-      "to": "m1-tor-stable"
+      "to": "m1-tor-stable",
+      "context": "[Proof of Corollary~\\ref{cor:characteristic-zero}] If \\(I=S_F\\), the prescription gives \\(J=S_F\\), and all quotient Betti numbers vanish. We may therefore assume that \\("
     },
     {
       "from": "m2-lem-ordered-basis",
-      "to": "m2-prop-monomial-reduction"
+      "to": "m2-prop-monomial-reduction",
+      "context": "Put \\(N=\\Delta[x_1,\\ldots,x_n]\\), with the full left \\(\\Delta\\)-basis of Lemma~\\ref{lem:ordered-basis}. Extend \\(I\\) to the two-sided ideal \\(\\Delta I\\) of \\(N\\). For each nonzero homogeneous element of this ideal, take t"
     },
     {
       "from": "m2-lem-bounded-curve-field",
-      "to": "m2-prop-initial-data"
+      "to": "m2-prop-initial-data",
+      "context": "e is \\(d\\), then \\[ \\deg T=d\\deg Z. \\] In particular \\(d\\le D\\) and \\(\\deg Z\\le D\\). Choose a field of definition \\(F_0\\subseteq\\Omega\\) for \\(Z\\) as in Lemma~\\ref{lem:bounded-curve-field}, and write \\(d_*=d_*(n,D)\\). Let \\(r=\\binom{n+1}{2}\\), the size of each coefficient block. Since all \\(mr\\) coefficient"
     },
     {
       "from": "m2-lem-homogeneous-joins",
-      "to": "m2-thm-parameters"
+      "to": "m2-thm-parameters",
+      "context": "nzero. Recording that combination replaces the complement by a space with contractible fibers over it, while exposing the nonzero hypersurface levels of Lemma~\\ref{lem:homogeneous-joins}. Define the open incidence variety \\[ \\cH=\\left\\{(\\ell,[w])\\in\\C^{N_*}\\times\\PP(W): \\sum_m w("
     },
     {
       "from": "m2-prop-binary-curves",
-      "to": "m2-lem-picard-character-maps"
+      "to": "m2-lem-picard-character-maps",
+      "context": "[Proof of Proposition~\\ref{prop:binary-curves}] Lemma~\\ref{lem:binary-cover} supplies parts \\textup{(i)} and \\textup{(ii)}, and Lemma~\\ref{lem:binary-matrices} suppli"
     },
     {
       "from": "m2-lem-binary-cover",
-      "to": "m2-lem-picard-character-maps"
+      "to": "m2-lem-picard-character-maps",
+      "context": "[Proof of Proposition~\\ref{prop:binary-curves}] Lemma~\\ref{lem:binary-cover} supplies parts \\textup{(i)} and \\textup{(ii)}, and Lemma~\\ref{lem:binary-matrices} supplies part \\textup{(iii)}. Apply"
     },
     {
       "from": "m2-lem-binary-matrices",
-      "to": "m2-lem-picard-character-maps"
+      "to": "m2-lem-picard-character-maps",
+      "context": "[Proof of Proposition~\\ref{prop:binary-curves}] Lemma~\\ref{lem:binary-cover} supplies parts \\textup{(i)} and \\textup{(ii)}, and Lemma~\\ref{lem:binary-matrices} supplies part \\textup{(iii)}. Apply Lemmas~\\ref{lem:picard-free} and~\\ref{lem:picard-character-maps} to the \\'etale cov"
     },
     {
       "from": "m2-lem-picard-free",
-      "to": "m2-lem-picard-character-maps"
+      "to": "m2-lem-picard-character-maps",
+      "context": "es}] Lemma~\\ref{lem:binary-cover} supplies parts \\textup{(i)} and \\textup{(ii)}, and Lemma~\\ref{lem:binary-matrices} supplies part \\textup{(iii)}. Apply Lemmas~\\ref{lem:picard-free} and~\\ref{lem:picard-character-maps} to the \\'etale cover \\(C\\to T_0\\) to obtain part \\textup{(iv)}."
     },
     {
       "from": "m2-prop-rank-to-euler",
-      "to": "m2-lem-torsor-euler"
+      "to": "m2-lem-torsor-euler",
+      "context": "[Proof of Proposition~\\ref{prop:rank-to-euler}] The construction and the first identity have been established above. By Proposition~\\ref{prop:binary-curves}, \\(H\\) a"
     },
     {
       "from": "m2-prop-binary-curves",
-      "to": "m2-lem-torsor-euler"
+      "to": "m2-lem-torsor-euler",
+      "context": "[Proof of Proposition~\\ref{prop:rank-to-euler}] The construction and the first identity have been established above. By Proposition~\\ref{prop:binary-curves}, \\(H\\) acts freely on \\(P\\), hence on \\(Z\\times X\\). Its quotient is a projective scheme, and the quotient morphism is"
     },
     {
       "from": "m2-lem-picard-character-maps",
-      "to": "m2-lem-index-equivariant-map"
+      "to": "m2-lem-index-equivariant-map",
+      "context": "ological line bundles, giving the stated isomorphism for \\(\\Phi_0\\). Finally, any character of \\(H=G^{M-1}\\) is a product of characters of its factors. Lemma~\\ref{lem:picard-character-maps} realizes each factor character by an equivariant circle-valued map on the corresponding factor of \\(P\\). Multiplying t"
     },
     {
       "from": "m2-lem-index-integral-pushforward",
-      "to": "m2-prop-index-test"
+      "to": "m2-prop-index-test",
+      "context": "\\in K^0(V\\times\\PP^h(\\C))\\) whose pullback is \\(\\sigma\\). Since \\(Z\\to V\\) is an étale covering of degree \\(e_1\\) and \\(T_Z\\) is the pullback of \\(T_V\\), Lemma~\\ref{lem:index-integral-pushforward} gives \\begin{equation}\\label{eq:index-family} \\int_Z\\ch(\\sigma)\\td(T_Z) =e_1\\ch(I_V(\\tau)) =\\ch\\!\\left(\\sum_{j=0"
     },
     {
       "from": "m2-lem-index-equivariant-map",
-      "to": "m2-prop-index-test"
+      "to": "m2-prop-index-test",
+      "context": "ily} \\int_Z\\ch(\\sigma)\\td(T_Z) =e_1\\ch(I_V(\\tau)) =\\ch\\!\\left(\\sum_{j=0}^h q_j u^j\\right), \\qquad q_j\\in e_1\\Z. \\end{equation} Nonequivariantly, Lemma~\\ref{lem:index-equivariant-map} makes \\(\\gamma\\) homotopic to \\((z,t)\\mapsto(z,\\Phi_0(t))\\). The equality \\eqref{eq:index-family} therefore computes th"
     },
     {
       "from": "m2-thm-parameters",
-      "to": "m2-prop-index-test"
+      "to": "m2-prop-index-test",
+      "context": "-divisibility}. A smooth linear section of \\(X\\) retains that divisibility and can also be compared with the projective-space test. Put \\(d=\\dim X\\). Theorem~\\ref{thm:parameters} gives \\(\\operatorname{codim}_X(X\\setminus X_{\\sm})>h\\). A general linear section of codimension \\(d-h\\) therefore misse"
     },
     {
       "from": "m2-thm-division",
-      "to": "m2-lem-index-padic-truncation"
+      "to": "m2-lem-index-padic-truncation",
+      "context": "[Completion of the proof of Theorem~\\ref{thm:division}] Use \\(D_0\\), \\(q_0,\\ldots,q_h\\), and \\(Q_*\\) just constructed for the chosen module. If \\(e_0=1\\), then \\(q_0=\\pm r\\in"
     },
     {
       "from": "m2-lem-stage-basepoint",
-      "to": "m2-prop-induction-step"
+      "to": "m2-prop-induction-step",
+      "context": "\\) be the degree of \\(\\Delta_0\\), and take \\(\\mathfrak j\\) and \\(W\\) as in \\eqref{eq:stage-ideal} and \\eqref{eq:stage-annihilator}. Write \\(s=\\dim_k W\\). Lemma~\\ref{lem:stage-basepoint} gives base-point-freeness of \\(\\mathfrak j_b\\), and Lemma~\\ref{lem:simple-factor} shows that every nonzero geometric me"
     },
     {
       "from": "m2-lem-simple-factor",
-      "to": "m2-prop-induction-step"
+      "to": "m2-prop-induction-step",
+      "context": ":stage-ideal} and \\eqref{eq:stage-annihilator}. Write \\(s=\\dim_k W\\). Lemma~\\ref{lem:stage-basepoint} gives base-point-freeness of \\(\\mathfrak j_b\\), and Lemma~\\ref{lem:simple-factor} shows that every nonzero geometric member of \\(W\\) has a factor of multiplicity one. \\smallskip\\noindent \\emph{Paramet"
     },
     {
       "from": "m2-thm-parameters",
-      "to": "m2-prop-induction-step"
+      "to": "m2-prop-induction-step",
+      "context": "max\\left\\{2h+4s+10,\\ \\dim_k\\Sym^b_k U\\right\\}. \\label{eq:assembly-M} \\end{align} The prime-indexed set in \\eqref{eq:assembly-h} is empty if \\(e_0=1\\). Theorem~\\ref{thm:parameters} supplies the geometrically integral projective constraint variety \\[ X=\\PP\\left\\{(\\ell_1,\\ldots,\\ell_M)\\in U^{\\oplus M"
     },
     {
       "from": "m2-prop-binary-curves",
-      "to": "m2-prop-induction-step"
+      "to": "m2-prop-induction-step",
+      "context": ")\\in U^{\\oplus M}: \\sum_{m=1}^M w(\\ell_m)=0\\ \\text{for every }w\\in W\\right\\}. \\] Use the curve and its two characters \\(\\chi,\\psi\\) from Proposition~\\ref{prop:binary-curves}. For \\(M-1\\) copies of the curve, indexed by \\(m=2,\\ldots,M\\), let \\[ H=G^{M-1},\\qquad e_1=|H|, \\] and write \\(\\chi_m"
     },
     {
       "from": "m2-thm-division",
-      "to": "m2-prop-induction-step"
+      "to": "m2-prop-induction-step",
+      "context": "t character \\(\\eta_m^{-1}\\). This preserves its equations because their degree is \\(b\\), and it gives the natural linearization of \\(\\cO_X(1)\\). As in Theorem~\\ref{thm:division}, put \\[ B=\\prod_{m=2}^M\\Pic^0(C),\\qquad K=k(B\\times X\\times R),\\qquad F=K^H, \\] where \\(R\\) is an affine space with a"
     },
     {
       "from": "m2-lem-veronese-extension",
-      "to": "m2-prop-induction-step"
+      "to": "m2-prop-induction-step",
+      "context": "and the identifications \\[ u_T=s'_{m-1},\\qquad v_T=\\ell_m. \\] They are identities under evaluation because they are identities of sections on the curve. Lemma~\\ref{lem:veronese-extension} shows that the resulting quotient is finite over the preceding formal relation algebra and gives \\[ (s'_m)^b=(s'_{m-1}"
     },
     {
       "from": "m2-lem-sparsity-preserved",
-      "to": "m2-prop-induction-step"
+      "to": "m2-prop-induction-step",
+      "context": "one can be checked after the faithfully flat extension \\(F\\subset K\\), where it was proved link by link. In particular it remains finite over \\(F[x]\\). Lemma~\\ref{lem:sparsity-preserved} now preserves the geometric no-small-curve condition: the linear projection of the new characteristic set is finite and"
     },
     {
       "from": "m2-thm-construction",
-      "to": "m2-prop-induction-step"
+      "to": "m2-prop-induction-step",
+      "context": "[Proof of Theorem~\\ref{thm:construction}] Proposition~\\ref{prop:initial-data} supplies the initial data with no triangular rows yet constructed. Apply Propositi"
     },
     {
       "from": "m2-prop-initial-data",
-      "to": "m2-prop-induction-step"
+      "to": "m2-prop-induction-step",
+      "context": "[Proof of Theorem~\\ref{thm:construction}] Proposition~\\ref{prop:initial-data} supplies the initial data with no triangular rows yet constructed. Apply Proposition~\\ref{prop:induction-step} in the o"
     },
     {
       "from": "m2-lem-ordered-basis",
-      "to": "m2-prop-induction-step"
+      "to": "m2-prop-induction-step",
+      "context": "enter is finitely generated over \\(\\C\\), all multipliers in the triangular identities belong to \\(A\\) in the stated degrees, and all \\(c_i\\) are nonzero. Lemma~\\ref{lem:ordered-basis} gives finiteness over \\(k[x]\\) and the full ordered left-\\(\\Delta\\) basis. This proves every assertion of Theorem~\\ref{"
     },
     {
       "from": "m2-thm-main",
-      "to": "m2-prop-induction-step"
+      "to": "m2-prop-induction-step",
+      "context": "[Proof of Corollary~\\ref{thm:main}] Apply Theorem~\\ref{thm:construction} to the regular sequence contained in \\(I\\). Proposition~\\ref{prop:monomial-reduct"
     },
     {
       "from": "m2-prop-monomial-reduction",
-      "to": "m2-prop-induction-step"
+      "to": "m2-prop-induction-step",
+      "context": "[Proof of Corollary~\\ref{thm:main}] Apply Theorem~\\ref{thm:construction} to the regular sequence contained in \\(I\\). Proposition~\\ref{prop:monomial-reduction} gives one monomial ideal \\(J\\) containing all \\(x_i^{a_i}\\) and having the same Hilbert function as \\(I\\) in every degr"
     },
     {
       "from": "m2-cor-characteristic-zero",
-      "to": "m2-prop-induction-step"
+      "to": "m2-prop-induction-step",
+      "context": "[Proof of Corollary~\\ref{cor:characteristic-zero}] If \\(I=S_F\\), take \\(J=S_F\\). Otherwise, first work over \\(\\C\\). Choose a linear coordinate change for which \\(f_1,\\ld"
     },
     {
       "from": "m2-cor-characteristic-zero",
-      "to": "m2-cor-local-cohomology"
+      "to": "m2-cor-local-cohomology",
+      "context": "e f_c\\) in \\(\\overline S=F[x_1,\\ldots,x_c]\\) form a full regular sequence of the same degrees. The list of added linear forms is empty when \\(c=n\\). Corollary~\\ref{cor:characteristic-zero}, applied in \\(\\overline S\\) to every homogeneous ideal containing this sequence, supplies precisely the Artinian EGH pr"
     },
     {
       "from": "m2-cor-characteristic-zero",
-      "to": "m2-cor-quadratic-cayley-bacharach"
+      "to": "m2-cor-quadratic-cayley-bacharach",
+      "context": "a,\\ell)\\), \\[ \\deg\\Gamma=\\sum_{j\\ge0}\\dim_F A_j, \\qquad H_\\Gamma(m)=\\sum_{j=0}^m\\dim_F A_j. \\] Some \\(A_e\\) is therefore nonzero with \\(e\\ge m+1\\). Corollary~\\ref{cor:characteristic-zero} replaces \\(A\\) by a quotient by a monomial ideal containing every variable square, with the same Hilbert function. A su"
     }
   ]
 }

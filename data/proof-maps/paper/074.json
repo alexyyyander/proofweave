@@ -676,447 +676,558 @@
   "edges": [
     {
       "from": "m1-lem-finite-cleaning",
-      "to": "m1-lem-regularization"
+      "to": "m1-lem-regularization",
+      "context": "ximal event mass, and clean all the partitions into pairs consisting of an index and a block. Those partitions may have many cells, which is permitted in Lemma~\\ref{lem:finite-cleaning}. Let $c_j$ be the lower endpoint, a multiple of $\\nu$, of the common rounded count interval at scale $\\kappa_j$. Every"
     },
     {
       "from": "m1-lem-regularization",
-      "to": "m1-lem-hybrid-equality"
+      "to": "m1-lem-hybrid-equality",
+      "context": "rt is a subset of the old support. Hence $m\\leexp m'$. Its plank masses cannot increase, so $\\Delta'_{h_0}\\le\\Delta_{h_0}$. Its profile remains $F$ by Lemma~\\ref{lem:regularization}. Applying~\\eqref{eq:hybrid-upper} to the refinement sandwiches both quantities: \\[ m\\leexp m'\\leexp N^{H+\\Pi_F(1)}\\D"
     },
     {
       "from": "m1-thm-set-input",
-      "to": "m1-lem-weighted-convex-set"
+      "to": "m1-lem-weighted-convex-set",
+      "context": "members, and each retained shading still has the required minimum density. It is not necessary to identify different shadings on repeated tubes. Apply Theorem~\\ref{thm:set-input} with target loss $\\varepsilon/2$, and choose $\\eta_{\\mathrm{in}}$ no larger than its density tolerance. For all suffici"
     },
     {
       "from": "m1-lem-weighted-convex-set",
-      "to": "m1-lem-weighted-set"
+      "to": "m1-lem-weighted-set",
+      "context": "_i$ is at least $c\\delta^{\\eta_{\\mathrm{in}}}$. Moreover \\[ \\left|\\bigcup_iY_i\\right|\\le C\\delta^3\\#E. \\] Rescale the common length $L$ to one and apply Lemma~\\ref{lem:weighted-convex-set}. Choose the present $\\eta_{\\mathrm{in}}$ smaller than half the density tolerance of that lemma, so fixed length and den"
     },
     {
       "from": "m1-thm-furstenberg-input",
-      "to": "m1-cor-weighted-furstenberg"
+      "to": "m1-cor-weighted-furstenberg",
+      "context": "cell. The resulting line parameters are separated, the shadings retain their Frostman bounds, and their union is contained in the original union. Apply Theorem~\\ref{thm:furstenberg-input}, having chosen the current $\\eta_{\\mathrm{in}}$ smaller than half its allowed tolerance."
     },
     {
       "from": "m1-thm-multilinear-input",
-      "to": "m1-cor-multilinear-cubes"
+      "to": "m1-cor-multilinear-cubes",
+      "context": "er lies entirely in the enlarged cylinder, so the enlarged multiplicity dominates $m_j(Q)$ everywhere on $Q$. Integrate over the disjoint cubes and use Theorem~\\ref{thm:multilinear-input}, followed by the fixed radius rescaling. Finally the determinant of three unit vectors changes by at most a constant ti"
     },
     {
       "from": "m1-lem-regularization",
-      "to": "m1-prop-local-bound"
+      "to": "m1-prop-local-bound",
+      "context": "^{-F(\\kappa)+o(1)}$ events. Include the assignment cells and their parent subdivisions among the regularization tests. The inherited-weight cleaning of Lemma~\\ref{lem:regularization} and Corollary~\\ref{cor:active-weight-cleaning} preserves the threshold $N^{\\varepsilon-o(1)}T$ on surviving packets: de"
     },
     {
       "from": "m1-cor-active-weight-cleaning",
-      "to": "m1-prop-local-bound"
+      "to": "m1-prop-local-bound",
+      "context": "e assignment cells and their parent subdivisions among the regularization tests. The inherited-weight cleaning of Lemma~\\ref{lem:regularization} and Corollary~\\ref{cor:active-weight-cleaning} preserves the threshold $N^{\\varepsilon-o(1)}T$ on surviving packets: delete active packets retaining less than an inve"
     },
     {
       "from": "m1-thm-multilinear-input",
-      "to": "m1-loc-short-block-plane"
+      "to": "m1-loc-short-block-plane",
+      "context": "mass there is at least $mK^{-100}$. There are $O(K^{40})$ caps. A ball is bad if three rich caps have direction determinant at least $K^{-10}$. Apply Theorem~\\ref{thm:multilinear-input} to the unshaded tubes at spatial resolution $K/N$, summing over the possible cap triples. The transversality loss, the"
     },
     {
       "from": "m1-loc-short-block-plane",
-      "to": "m1-lem-prefix-extension"
+      "to": "m1-lem-prefix-extension",
+      "context": "\\emph{The planar neighbor measure.} Use the central graph and the fixed block planes of Lemma~\\ref{loc:short-block-plane}. Choose a retained reference index-block. Normalize its block length to one and project orthogonally onto the corresp"
     },
     {
       "from": "m1-cor-weighted-furstenberg",
-      "to": "m1-lem-prefix-extension"
+      "to": "m1-lem-prefix-extension",
+      "context": "ot shorten this shading. The bounded projection preserves its cell count and Frostman estimates. Thus the weighted and repeated-line formulation in Corollary~\\ref{cor:weighted-furstenberg} applies to this probability law and these shadings. It gives at least \\begin{equation} N^{-F(\\kappa)+o(1)}K^{1+\\mu}"
     },
     {
       "from": "m1-lem-plate-nikodym",
-      "to": "m1-lem-prefix-extension"
+      "to": "m1-lem-prefix-extension",
+      "context": "$E^+$ for the new support. Every point of $E^+$ lies in a plate with density \\eqref{loc:prefix-density} in a fixed enlargement of the original support. Lemma~\\ref{lem:plate-nikodym} gives \\begin{equation} |E^+|\\leq N^{2F(\\kappa)+2\\kappa(1-\\mu)+o(1)}|E|. \\label{loc:prefix-support-cost} \\end{equatio"
     },
     {
       "from": "m1-lem-prefix-extension",
-      "to": "m1-lem-flat-delay"
+      "to": "m1-lem-flat-delay",
+      "context": "),\\qquad F(u)\\geq\\max(e-\\varepsilon,0)u \\quad(0\\leq u\\leq\\kappa). \\label{loc:record-prefix} \\end{equation} We may take $\\kappa$ as small as needed for Lemma~\\ref{lem:prefix-extension}. At a typical fine incidence the neighboring mass is at least $mN^{-o(1)}$ and lies within $O(K^{-1})$ of one plane."
     },
     {
       "from": "m1-lem-weighted-set",
-      "to": "m1-loc-flat-saturation"
+      "to": "m1-loc-flat-saturation",
+      "context": "epsilon}$. If an extensive remainder survives, its clustering parameter is at most $mN^{-\\varepsilon}$ in every local chart. The weighted set estimate, Lemma~\\ref{lem:weighted-set}, applies with local resolution $K$ and arbitrarily small fixed theorem loss: choose that loss below $\\varepsilon/(2\\kap"
     },
     {
       "from": "m1-prop-local-bound",
-      "to": "m1-loc-flat-saturation"
+      "to": "m1-loc-flat-saturation",
+      "context": "$, and their mass is at least $mK N^{-o(1)}$. Cleaning the assignment and chart partitions preserves these lower bounds on occupied packets, as in Proposition~\\ref{prop:local-bound}."
     },
     {
       "from": "m1-cor-active-weight-cleaning",
-      "to": "m1-lem-anisotropic"
+      "to": "m1-lem-anisotropic",
+      "context": "the larger block. Include packet subdivisions and parent assignments in the finite cleaning. Since every original index-block has subpower routing, Corollary~\\ref{cor:active-weight-cleaning} shows that surviving packets retain active mass $mKN^{-o(1)}$. The routing also preserves the time tree. On every fix"
     },
     {
       "from": "m1-lem-regularization",
-      "to": "m1-lem-anisotropic"
+      "to": "m1-lem-anisotropic",
+      "context": "branching exponent. The nonnegative losses on each fixed subrange must consequently all be zero. This is the ensemble profile-preservation argument of Lemma~\\ref{lem:regularization}, with its routing hypothesis now verified. Thus the inherited prefix is $F|_{[0,\\kappa_1]}$. The charts and retained p"
     },
     {
       "from": "m1-lem-weighted-set",
-      "to": "m1-lem-positive-deficit"
+      "to": "m1-lem-positive-deficit",
+      "context": "lat scale. Choose a fixed $e_1>0$ sufficiently small compared with $c_*h$ and $h$, and require $\\alpha$ to be smaller still, as well as small enough for Lemma~\\ref{lem:weighted-set} with target loss $e_1/2$. Greedily assign and remove all original full-time indices in any global plank $S$ of widths"
     },
     {
       "from": "m1-lem-flat-delay",
-      "to": "m1-lem-positive-deficit"
+      "to": "m1-lem-positive-deficit",
+      "context": "l plates.} The global slab assigned to an index has a fixed axis. We next compare it with the axes of the local saturated plates used by that index. By Lemma~\\ref{lem:flat-delay}, this particular hybrid equality has a positive flat delay. Now choose a fixed \\[ 0<\\xi\\ll c_* \\] smaller than that d"
     },
     {
       "from": "m1-loc-flat-saturation",
-      "to": "m1-lem-positive-deficit"
+      "to": "m1-lem-positive-deficit",
+      "context": "at-delay}, this particular hybrid equality has a positive flat delay. Now choose a fixed \\[ 0<\\xi\\ll c_* \\] smaller than that delay, and set $K=N^\\xi$. Lemma~\\ref{loc:flat-saturation}, applied within the extensive $S$-assigned graph, supplies saturated local plates $W$ of widths $1,K$ up to subpowers a"
     },
     {
       "from": "m1-lem-anisotropic",
-      "to": "m1-lem-positive-deficit"
+      "to": "m1-lem-positive-deficit",
+      "context": "to sign, by at most $C\\theta$. \\paragraph{The hybrid contradiction.} For each original index its $S$ axis is fixed over all time. Thus the hypotheses of Lemma~\\ref{lem:anisotropic} hold globally, with $K_1=N$ and the finer flat scale $K=N^\\xi$. All previous discards were extensive or removed a power"
     },
     {
       "from": "m1-lem-hybrid-equality",
-      "to": "m1-lem-positive-deficit"
+      "to": "m1-lem-positive-deficit",
+      "context": "a\\leq N$ in each plank test. Thus the hybrid equality exponents tend to the exact critical one. Apply the profile compactness and equality diagonal from Lemma~\\ref{lem:hybrid-equality}. A downward jump of the convex cost would improve the critical score and contradict the sharp upper bound, so it canno"
     },
     {
       "from": "m1-lem-regularization",
-      "to": "m1-lem-derivative-capture"
+      "to": "m1-lem-derivative-capture",
+      "context": "r; bounded slopes give bounded overlap in their support counts. The captured graph is therefore extensive. Pigeonhole a common dyadic width type and use Lemma~\\ref{lem:regularization} to preserve the packet lower counts. Comparing \\eqref{eq:perturbed-capture-threshold} with \\eqref{eq:stationary-local-t"
     },
     {
       "from": "m1-lem-derivative-capture",
-      "to": "m1-lem-nested-cuts"
+      "to": "m1-lem-nested-cuts",
+      "context": "At the initial flat prefix, Lemma~\\ref{lem:derivative-capture} gives $\\chi_0=0$. Thus $a=1$, $b=N^\\tau$, and the packets are plates of mass $\\eqexp mN^\\tau$. Cut to the outer model,"
     },
     {
       "from": "m1-prop-local-bound",
-      "to": "m1-lem-nested-cuts"
+      "to": "m1-lem-nested-cuts",
+      "context": "s original activity in the same physical block. The pulled back upper bounds therefore count subsets of the original active indices, as required by Proposition~\\ref{prop:local-bound}. For the pullback, consider an earlier registered pair consisting of an index and its occupied cut block. Before filli"
     },
     {
       "from": "m1-lem-regularization",
-      "to": "m1-lem-nested-cuts"
+      "to": "m1-lem-nested-cuts",
+      "context": "t's event mass is consequently a common factor times its index mass. Include the packet partitions at every preceding level in the deficiency deletion of Lemma~\\ref{lem:regularization}. For a finite list, choose the deletion cutoff smaller than the total retained proportion, while still subpower. The ch"
     },
     {
       "from": "m1-lem-nested-cuts",
-      "to": "m1-lem-angle-packing"
+      "to": "m1-lem-angle-packing",
+      "context": "\\emph{Packing adjacent packets.} Use the finite chains of Lemma~\\ref{lem:nested-cuts}. Write $\\delta$ for their mesh size. Consider one smaller-block packet of widths $(a,b)$ and the larger-block packets m"
     },
     {
       "from": "m1-lem-derivative-capture",
-      "to": "m1-lem-angle-packing"
+      "to": "m1-lem-angle-packing",
+      "context": "final normal. Sending the mesh to zero in the specified order proves the orientation assertion. \\paragraph{The inner equality.} The reverse selection in Lemma~\\ref{lem:derivative-capture} has $\\chi\\ge F(s)/v$, while every admissible shape has $\\chi\\le s$. Therefore $s-F(s)/v\\ge0$. Its value at $s=\\tau$ is"
     },
     {
       "from": "m1-lem-anisotropic",
-      "to": "m1-lem-angle-packing"
+      "to": "m1-lem-angle-packing",
+      "context": "i\\ge F(s)/v$, while every admissible shape has $\\chi\\le s$. Therefore $s-F(s)/v\\ge0$. Its value at $s=\\tau$ is $\\tau$, proving the bounds on $D_*$. Apply Lemma~\\ref{lem:anisotropic} over the $N^\\kappa$-block with angular scale $\\theta=N^{-D_*}$. Its fine assigned plates are the flat-prefix plates of"
     },
     {
       "from": "m1-lem-angle-packing",
-      "to": "m1-prop-canonical"
+      "to": "m1-prop-canonical",
+      "context": "any positive-deficit equality and put $g(s)=s-F(s)/v$. If the running minimum of $g$ from $\\tau$ remained equal to $\\tau$ throughout its nontrivial part, Lemma~\\ref{lem:angle-packing}, applied at a prefix with positive deficit, would produce a nontrivial equality with zero initial delay. This contradic"
     },
     {
       "from": "m1-lem-flat-delay",
-      "to": "m1-prop-canonical"
+      "to": "m1-prop-canonical",
+      "context": ", Lemma~\\ref{lem:angle-packing}, applied at a prefix with positive deficit, would produce a nontrivial equality with zero initial delay. This contradicts Lemma~\\ref{lem:flat-delay}. There is therefore a new minimum $D<\\tau$, attained at a prefix $\\kappa$ with $g(\\kappa)=D$. At this prefix the inner"
     },
     {
       "from": "m1-lem-hybrid-equality",
-      "to": "m1-prop-canonical"
+      "to": "m1-prop-canonical",
+      "context": "or the delay.} We claim that $\\tau_*>0$. Suppose otherwise, and choose $F_j\\in\\mathcal E_v$ with initial delays $\\tau_j\\to0$. Equality compactness, as in Lemma~\\ref{lem:hybrid-equality}, gives a subsequence converging uniformly to an equality $F_\\infty$ with deficit $v>0$. The cost is lower semicontinuou"
     },
     {
       "from": "m1-lem-prefix-extension",
-      "to": "m1-prop-canonical"
+      "to": "m1-prop-canonical",
+      "context": "is still an equality. By Lemma~\\ref{lem:flat-delay}, $F_\\infty$ has a flat interval of positive length. The small-prefix multilinear argument underlying Lemma~\\ref{lem:prefix-extension} has slack depending only on the fixed critical parameters. In particular, its allowed prefix length can be chosen indep"
     },
     {
       "from": "m1-lem-derivative-capture",
-      "to": "m1-prop-canonical"
+      "to": "m1-prop-canonical",
+      "context": "\\ge\\tau_*(s-D'). \\label{eq:canonical-inner-passage} \\end{equation} Any saturated outer cut at $s$ has $\\chi\\le s<1$ and deficit $(v-F(s))/(1-\\chi)$. By Lemma~\\ref{lem:derivative-capture} this is at most $v$, whence $\\chi\\le F(s)/v$. The reverse selection of that lemma therefore attains $\\chi=F(s)/v=s-D'$,"
     },
     {
       "from": "m1-lem-nested-cuts",
-      "to": "m1-lem-stationary-shape"
+      "to": "m1-lem-stationary-shape",
+      "context": "each choice, so both sides are available at every step. All perturbation limits are resolved on a fixed finite chain before taking its mesh diagonal, and Lemma~\\ref{lem:nested-cuts} preserves the required earlier assignments."
     },
     {
       "from": "m1-lem-stationary-shape",
-      "to": "m1-prop-stationary-data"
+      "to": "m1-prop-stationary-data",
+      "context": "Choose the finite chains from Lemma~\\ref{lem:stationary-shape} and use the scales defined above. On the canonical profile the running aspect exponent is decreasing above $\\tau$, and"
     },
     {
       "from": "m1-lem-angle-packing",
-      "to": "m1-prop-stationary-data"
+      "to": "m1-prop-stationary-data",
+      "context": "ical profile the running aspect exponent is decreasing above $\\tau$, and at $\\kappa=1-\\ell c$ its value is \\[ \\kappa-F(\\kappa)/v=\\tau c. \\] The proof of Lemma~\\ref{lem:angle-packing}, which applies unchanged to the tracked finite chains, shows that every initial plate used by this packet has its norma"
     },
     {
       "from": "m1-lem-nested-cuts",
-      "to": "m1-prop-stationary-data"
+      "to": "m1-prop-stationary-data",
+      "context": "ted by further refinement, with the same limiting data. Finally include, in the finite cleaning list, the assignment partitions from every level in use. Lemma~\\ref{lem:nested-cuts} then gives all the simultaneous memberships, the original active-index interpretation, and stability under extensive re"
     },
     {
       "from": "m1-lem-regularization",
-      "to": "m1-lem-estimate-cleaning"
+      "to": "m1-lem-estimate-cleaning",
+      "context": "We distinguish two reference graphs in the cleaning. For the new homogenization tests use the finite label construction of Lemma~\\ref{lem:regularization}: these are its within-index integer counts and conditional-probability tests with polynomially many children. Perform i"
     },
     {
       "from": "m1-lem-nested-cuts",
-      "to": "m1-lem-angular-frostman"
+      "to": "m1-lem-angular-frostman",
+      "context": "\\[ S=n_bN^{-\\tau b},\\qquad K'=N^{b-\\ell c}, \\qquad\\theta=\\Theta_b=N^{-\\tau b}. \\] First pass to the isotropic outer parents associated to $B_b$, as in Lemma~\\ref{lem:nested-cuts}. Their effective resolution count is $N^b$. The assigned $B_b$ plates have time and long spatial length $N^{\\tau b}$ in"
     },
     {
       "from": "m1-prop-local-bound",
-      "to": "m1-lem-angular-frostman"
+      "to": "m1-lem-angular-frostman",
+      "context": "l units, unit thin width, and mass at least $SN^{\\tau b-o(1)}$. On the longer interval $I_c$, which has $K'$ bins in this model, the local bound of Proposition~\\ref{prop:local-bound} pulls back to \\begin{equation} n(\\text{plank of widths }a_1,b_1) \\le N^{o(1)} S N^{-\\ell gP(\\beta)}(K')^{-h}a_1^xb_1"
     },
     {
       "from": "m1-lem-estimate-cleaning",
-      "to": "m1-lem-angular-frostman"
+      "to": "m1-lem-angular-frostman",
+      "context": "I_c$ has only subpower many charts. Any deficient chart portions are pruned relative to this restricted token graph. Now apply the two-budget cleaning of Lemma~\\ref{lem:estimate-cleaning}: original packet and time-tree references use the loss $E$, while the new homogenization references, computed after reg"
     },
     {
       "from": "m1-lem-anisotropic",
-      "to": "m1-lem-angular-frostman"
+      "to": "m1-lem-angular-frostman",
+      "context": "pE$ are the two consequences of this same retained graph; the selection is not performed a second time. Apply the geometric construction in the proof of Lemma~\\ref{lem:anisotropic} on $I_c$, with angular width $\\theta$. Here we use only its bounded-chart routing, rectangle pullback, and cell-count c"
     },
     {
       "from": "m1-lem-estimate-cleaning",
-      "to": "m1-lem-conditional-x"
+      "to": "m1-lem-conditional-x",
+      "context": "ength $Z'$ bins, with raw assigned mass at least $S'Z'N^{-o(1)}$. Each index and $I_c$ is in only subpower many registered charts. After chart splitting, Lemma~\\ref{lem:estimate-cleaning} preserves these packet masses on typical occupied pieces. \\paragraph{The reference-mass claim.} For each cell $C$ in a"
     },
     {
       "from": "m1-prop-stationary-data",
-      "to": "m1-lem-conditional-x"
+      "to": "m1-lem-conditional-x",
+      "context": "s occupied. Give each tuple weight $\\omega_i$. The cell $C$ is fixed by $(i,\\mathfrak c)$, and its packet owner is fixed by $(i,\\mathfrak c,J)$, by Proposition~\\ref{prop:stationary-data}(iv). Consequently \\eqref{eq:X-bad-predicate} is constant on the tuple. This constancy is the reason that replacing its"
     },
     {
       "from": "m1-lem-gap-density",
-      "to": "m1-lem-remove-label"
+      "to": "m1-lem-remove-label",
+      "context": "overlap given $L_2$ and the base cell. This comparison costs $O(1)$ ordinary entropy, which vanishes in the $N$ limit before any division by $b$. Apply Lemma~\\ref{lem:gap-density} and differentiate at a common Lebesgue point of the information densities. The difference of two $\\sigma$-rates is bou"
     },
     {
       "from": "m1-lem-conditional-x",
-      "to": "m1-cor-normal-position-rate"
+      "to": "m1-cor-normal-position-rate",
+      "context": "Fix an extra label depth $\\sigma>0$ with $c+\\sigma<1$. Lemma~\\ref{lem:conditional-X} bounds the normalized conditional $X$ entropy at every sufficiently small fixed gap $r$ by $xr$ in the limit $N\\to\\inft"
     },
     {
       "from": "m1-lem-remove-label",
-      "to": "m1-cor-normal-position-rate"
+      "to": "m1-cor-normal-position-rate",
+      "context": "entropy is exactly $K_{\\{X\\}}^\\sigma(a,a+r)$. Dividing by $r$ and taking $r\\downarrow0$ gives $\\phi_{\\{X\\}}^\\sigma\\le x$ at almost every point. Finally Lemma~\\ref{lem:remove-label}, with $\\sigma\\downarrow0$, gives $a_1=\\phi_{\\{X\\}}\\le x$. The positive-offset range is the range required by Lemma~\\ref"
     },
     {
       "from": "m1-lem-remove-label",
-      "to": "m1-prop-entropy-demand"
+      "to": "m1-prop-entropy-demand",
+      "context": "erlap; all four speeds are bounded. The change in their entropy difference is bounded by the extra-label information on this containing gap, as proved in Lemma~\\ref{lem:remove-label}. At a common differentiation point it is at most $b$ times a quantity tending to zero as $\\sigma\\downarrow0$, plus $o("
     },
     {
       "from": "m1-lem-remove-label",
-      "to": "m1-lem-velocity-trace"
+      "to": "m1-lem-velocity-trace",
+      "context": "mation is added, proving the required inequality for \\eqref{eq:velocity-conditional-rate}. First differentiate in $r$ and then remove the extra label by Lemma~\\ref{lem:remove-label}. Fubini in the common threshold and the two locations gives the essential monotonicity assertion. More explicitly, the"
     },
     {
       "from": "m1-prop-entropy-demand",
-      "to": "m1-lem-stripe-demand"
+      "to": "m1-lem-stripe-demand",
+      "context": "nd this to all $L^1$ tests, proving \\eqref{eq:entropy-boundary-derivative}. It also proves the corresponding statement for stripe averages. Finally Proposition~\\ref{prop:entropy-demand} rearranges as \\[ \\mathcal M-w(g-d)\\ge s_0\\ell+wd-\\partial_c\\mathscr H. \\] The right side converges weak-star to $\\tau+"
     },
     {
       "from": "m1-lem-pr-relative-frame",
-      "to": "m1-lem-blowup-counts"
+      "to": "m1-lem-blowup-counts",
+      "context": "arily, take $b$ so small that $C_0b<\\sigma$ and $c+\\sigma<1$. Condition additionally on $e_{c+\\sigma}$ and read all forms in that finer frame. Given $L$, Lemma~\\ref{lem:pr-relative-frame} shows that the required observations in the two frames determine one another up to bounded overlaps. The full starting"
     },
     {
       "from": "m1-lem-gap-density",
-      "to": "m1-lem-blowup-counts"
+      "to": "m1-lem-blowup-counts",
+      "context": "g cell is included in this comparison; errors from unobserved components are below the finest tested width. Apply the rectangular layering conclusion of Lemma~\\ref{lem:gap-density}. The starting offsets of the four increment intervals are \\[ a+(1-k_i)b. \\] Intervals belonging to different speed gro"
     },
     {
       "from": "m1-lem-remove-label",
-      "to": "m1-lem-blowup-counts"
+      "to": "m1-lem-blowup-counts",
+      "context": "t and conditioning observations in question are sandwiched between full $e_c$-frame observations at offsets $a-Cb$ and $a+Cb$, up to bounded overlaps. By Lemma~\\ref{lem:remove-label}, the change of a conditional increment upon adding $e_{c+\\sigma}$ is bounded by the incremental label information on th"
     },
     {
       "from": "m1-lem-regularization",
-      "to": "m1-lem-blowup-counts"
+      "to": "m1-lem-blowup-counts",
+      "context": "used; and the same observations with the fixed additional labels $e_{c+\\sigma}$. Include also the within-index parameter-cell tests described below. Use Lemma~\\ref{lem:regularization} on finitely many tests at a time, including the deficient-cell deletions relative to their original mass. This makes th"
     },
     {
       "from": "m1-lem-angular-frostman",
-      "to": "m1-lem-blowup-counts"
+      "to": "m1-lem-blowup-counts",
+      "context": "bounds at every intermediate radius. \\paragraph{Time and normal parameters.} It remains to verify the parameter hypotheses for these finite experiments. Lemma~\\ref{lem:angular-frostman} and the uniform time branching give the two upper bounds conditional on the index and $E_0$. Nondeficient $E_0$ cells h"
     },
     {
       "from": "m1-lem-blowup-counts",
-      "to": "m1-lem-pair-information"
+      "to": "m1-lem-pair-information",
+      "context": "s of the grid's inverse images. Choose $b_n$ summable, and increase $N_n$ so that $1/\\log N_n$ is summable as well as satisfying all the finite tests of Lemma~\\ref{lem:blowup-counts}. Tonelli's theorem applied to the nonnegative functions in \\eqref{pr:information-integral} shows that their sum is fini"
     },
     {
       "from": "m1-lem-robust-projection",
-      "to": "m1-lem-pr-projection-transfer"
+      "to": "m1-lem-pr-projection-transfer",
+      "context": "ection-margin} \\end{equation} The choices are possible by continuity, and are made before any pinning loss is chosen. Let $\\kappa>0$ be an allowance from Lemma~\\ref{lem:robust-projection} for these three fixed exponents. In the pinned case choose the loss tolerance $\\epsilon$ so small that \\begin{equation}"
     },
     {
       "from": "m1-lem-blowup-counts",
-      "to": "m1-lem-pr-projection-transfer"
+      "to": "m1-lem-pr-projection-transfer",
+      "context": "dot\\mid B)$, independently of the pair experiment's conditional law of $L_1$. Within this original matrix law, freeze the nuisance bins at depth $\\zeta$. Lemma~\\ref{lem:blowup-counts} gives the point Frostman bounds, with exponent $t_*$, in every occupied fiber. For sufficiently large $D$ their constan"
     },
     {
       "from": "m1-lem-pair-information",
-      "to": "m1-lem-pr-projection-transfer"
+      "to": "m1-lem-pr-projection-transfer",
+      "context": "On the other hand the chain rule and nonnegativity imply \\[ \\mathrm I(J_f;L_1\\mid E_0,J_0,L_0) \\le \\mathrm I(J_f;L_0,L_1\\mid E_0,J_0) =o(\\log D) \\] by Lemma~\\ref{lem:pair-information}. Since $\\kappa\\zeta>0$ is fixed, this contradicts \\eqref{pr:information-contradiction} and proves the lemma."
     },
     {
       "from": "m1-prop-projection-rates",
-      "to": "m1-lem-pr-projection-transfer"
+      "to": "m1-lem-pr-projection-transfer",
+      "context": "[Proof of Proposition~\\ref{prop:projection-rates}] Fix a good interior $c$. Work at offsets where the entropy densities, the local counts, and the pair information concl"
     },
     {
       "from": "m1-lem-pinning",
-      "to": "m1-lem-pr-projection-transfer"
+      "to": "m1-lem-pr-projection-transfer",
+      "context": "V)$, of conditional exponent $a_1+v_1$, by Lemma~\\ref{lem:blowup-counts}. Its target exponent is $a_1$. The product slope has available exponent $s_0$ by Lemma~\\ref{lem:pinning} and the preceding coupling construction. Lemma~\\ref{lem:pr-projection-transfer} includes both its marginal bias and its"
     },
     {
       "from": "m1-lem-robust-projection",
-      "to": "m1-lem-pr-ray-improvement"
+      "to": "m1-lem-pr-ray-improvement",
+      "context": "smaller than $\\delta_J$. The same absolute bound thus holds for the directions perpendicular to the rays from these anchors to the center of $J$. Apply Lemma~\\ref{lem:robust-projection} at resolution $\\delta_J$, with point exponent $s$, direction exponent $\\sigma$, and target exponent $\\sigma_m$. Fix its"
     },
     {
       "from": "m1-lem-pinning",
-      "to": "m1-lem-pr-ray-improvement"
+      "to": "m1-lem-pr-ray-improvement",
+      "context": "[Proof of Lemma~\\ref{lem:pinning}] It is enough to prove the assertion for small $\\epsilon<s/10$; we reserve a fixed fraction of $\\epsilon$ for each norm"
     },
     {
       "from": "m1-lem-critical-point",
-      "to": "m1-prop-critical-vanishing"
+      "to": "m1-prop-critical-vanishing",
+      "context": "2}{16}\\right\\}. \\label{eq:closure-eta} \\end{equation} This choice is legitimate because the critical inequality at \\(q=0\\) is independent of \\(\\eta\\). Lemma~\\ref{lem:critical-point} supplies an interior differentiability point with \\(h>0\\) and \\(h_z>0\\). The construction in Proposition~\\ref{prop:can"
     },
     {
       "from": "m1-prop-canonical",
-      "to": "m1-prop-critical-vanishing"
+      "to": "m1-prop-critical-vanishing",
+      "context": "ependent of \\(\\eta\\). Lemma~\\ref{lem:critical-point} supplies an interior differentiability point with \\(h>0\\) and \\(h_z>0\\). The construction in Proposition~\\ref{prop:canonical}, Proposition~\\ref{prop:stationary-data}, and Lemma~\\ref{lem:angular-frostman} then supplies fixed parameters satisfying"
     },
     {
       "from": "m1-prop-stationary-data",
-      "to": "m1-prop-critical-vanishing"
+      "to": "m1-prop-critical-vanishing",
+      "context": "lem:critical-point} supplies an interior differentiability point with \\(h>0\\) and \\(h_z>0\\). The construction in Proposition~\\ref{prop:canonical}, Proposition~\\ref{prop:stationary-data}, and Lemma~\\ref{lem:angular-frostman} then supplies fixed parameters satisfying \\begin{gather} p>2,\\qquad 0\\le q<1,\\q"
     },
     {
       "from": "m1-lem-angular-frostman",
-      "to": "m1-prop-critical-vanishing"
+      "to": "m1-prop-critical-vanishing",
+      "context": "or differentiability point with \\(h>0\\) and \\(h_z>0\\). The construction in Proposition~\\ref{prop:canonical}, Proposition~\\ref{prop:stationary-data}, and Lemma~\\ref{lem:angular-frostman} then supplies fixed parameters satisfying \\begin{gather} p>2,\\qquad 0\\le q<1,\\qquad d=2-q,\\qquad 0<h\\le1-q,\\qquad x"
     },
     {
       "from": "m1-prop-entropy-demand",
-      "to": "m1-prop-critical-vanishing"
+      "to": "m1-prop-critical-vanishing",
+      "context": "ell. \\label{eq:closure-low-q} \\end{equation} We record precisely the limiting statements to be used. Fix a compact interval \\(J\\subset(0,1)\\). Proposition~\\ref{prop:entropy-demand} and Lemma~\\ref{lem:stripe-demand} imply that every weak-star limit of \\(\\mathcal Q(\\cdot,a)\\), along generic offsets \\("
     },
     {
       "from": "m1-lem-stripe-demand",
-      "to": "m1-prop-critical-vanishing"
+      "to": "m1-prop-critical-vanishing",
+      "context": "{equation} We record precisely the limiting statements to be used. Fix a compact interval \\(J\\subset(0,1)\\). Proposition~\\ref{prop:entropy-demand} and Lemma~\\ref{lem:stripe-demand} imply that every weak-star limit of \\(\\mathcal Q(\\cdot,a)\\), along generic offsets \\(a\\to0\\), is at least \\(T_*\\) almos"
     },
     {
       "from": "m1-lem-velocity-trace",
-      "to": "m1-prop-critical-vanishing"
+      "to": "m1-prop-critical-vanishing",
+      "context": "ed with smooth tests extend to such tests by \\(L^1\\) approximation. We will use this extension to localize on measurable subsets of \\(J\\). For \\(w<1\\), Lemma~\\ref{lem:velocity-trace} gives strong one-sided \\(L^1(J)\\) traces for \\(v_1\\) through a fixed full-measure set of generic offsets. The correspo"
     },
     {
       "from": "m1-cor-normal-position-rate",
-      "to": "m1-prop-critical-vanishing"
+      "to": "m1-prop-critical-vanishing",
+      "context": "fsets. We use this strong convergence to localize the constraints that hold where \\(v_1>0\\); weak-star convergence suffices for the other rates. By Corollary~\\ref{cor:normal-position-rate}, on the right we also have \\begin{equation} a_1\\le x=1-q-h<1. \\label{eq:closure-x-rate} \\end{equation} It follows i"
     },
     {
       "from": "m1-prop-projection-rates",
-      "to": "m1-prop-critical-vanishing"
+      "to": "m1-prop-critical-vanishing",
+      "context": ") in \\eqref{eq:entropy-domain} contains small offsets of both signs uniformly on \\(J\\) when \\(w<1\\), and small positive offsets when \\(w=1\\). Thus Proposition~\\ref{prop:projection-rates} applies on every stripe used below. The bound \\eqref{eq:closure-x-rate} is available on the right. The choice of stri"
     },
     {
       "from": "m1-lem-regularization",
-      "to": "m1-prop-maximal-reduction"
+      "to": "m1-prop-maximal-reduction",
+      "context": "s in a fixed enlargement of \\(A\\), of cell count at most \\(C|A|\\). Along a subsequence write \\(\\theta=N^{-\\alpha+o(1)}\\), with \\(0\\le\\alpha\\le1\\). Apply Lemma~\\ref{lem:regularization} to this indexed event graph. It retains \\(nkN^{-o(1)}\\) events in weighted count and gives a limiting profile \\(F\\)."
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-prop-maximal-reduction"
+      "to": "m1-prop-maximal-reduction",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Fix \\(\\varepsilon>0\\). Proposition~\\ref{prop:critical-vanishing} allows a choice of \\(p>2\\) with \\(h(p,0)=0\\) and \\(("
     },
     {
       "from": "m1-prop-critical-vanishing",
-      "to": "m1-prop-maximal-reduction"
+      "to": "m1-prop-maximal-reduction",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Fix \\(\\varepsilon>0\\). Proposition~\\ref{prop:critical-vanishing} allows a choice of \\(p>2\\) with \\(h(p,0)=0\\) and \\((p-2)/3<\\varepsilon/2\\). Apply Proposition~\\ref{prop:maximal-reduct"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-cor-nikodym-space-forms"
+      "to": "m1-cor-nikodym-space-forms",
+      "context": "hood is contained in the union of three of the cylinders \\(T_\\delta(a,\\omega)\\) used here. Consequently \\(\\widetilde K_\\delta f\\le3\\pi K_\\delta f\\), so Theorem~\\ref{thm:main} gives its \\(L^3\\)-to-\\(L^3\\) bound with every positive power loss. Also \\[ \\|\\widetilde K_\\delta f\\|_{L^\\infty(S^2)} \\l"
     },
     {
       "from": "m2-a01-flattening",
-      "to": "m2-a01-homogenization"
+      "to": "m2-a01-homogenization",
+      "context": "ble dense depth grid containing all required endpoints. At stage \\(N_0\\), test a finite initial part of this grid, increasing its size sufficiently slowly. By \\Cref{a01:flattening}, use a common fixed polynomial base mesh fine enough for all the observations and for a power-small total variation err"
     },
     {
       "from": "m2-a01-density-operations",
-      "to": "m2-a01-homogenization"
+      "to": "m2-a01-homogenization",
+      "context": "nverse-subpower mass. Restrict to it. This restriction is a cell table testing the joint discrete observations and is tempered. Its upper bounds persist, and \\Cref{a01:density-operations} shows that its densities lose a fixed power relative to the preselection values only on power-small mass. The total va"
     },
     {
       "from": "m2-a01-density-operations",
-      "to": "m2-a01-angular-coarsening"
+      "to": "m2-a01-angular-coarsening",
+      "context": "corresponding sum of old pure densities. This proves the coarse bound for the good submeasure relative to the old denominator. The omitted-mass comparison in \\Cref{a01:density-operations} gives the typical assertion, and \\Cref{a01:restriction-integral} handles a later inverse-subpower restriction of the de"
     },
     {
       "from": "m2-a01-flattening",
-      "to": "m2-a01-angular-coarsening"
+      "to": "m2-a01-angular-coarsening",
+      "context": "Choose the tolerance and number of tests slowly to obtain the final assertion. These exclusions may be purely analytical; if an output selection needs them, \\Cref{a01:flattening} implements the corresponding cell tests. In particular this argument does not assert a bound on the maximum angular pro"
     },
     {
       "from": "m2-lem-quadratic-sublevel",
-      "to": "m2-a01-saturation"
+      "to": "m2-a01-saturation",
+      "context": "hat same mass. At a fixed base in chart \\(c\\), the conditions \\(|P|\\le K_0a_r\\) and \\(|P_w|\\ge B/K_0\\) admit only \\(K_0\\) hidden bins of width \\(a_r/B\\). Apply \\Cref{lem:quadratic-sublevel} with \\(\\varepsilon=K_0a_r\\), \\(b=B/K_0\\), and \\(\\delta=a_r/B\\), and enlarge the subpower factor. The chart base volume"
     },
     {
       "from": "m2-a01-density-operations",
-      "to": "m2-lem-normalization"
+      "to": "m2-lem-normalization",
+      "context": "Refining \\(p_L\\) by the known chart label does not change its typical density exponent. Apply \\Cref{a01:exact-density-transform}, the bounded bin overlap, and \\Cref{a01:density-operations} to obtain \\Cref{a01:terminal-normalization}. Global exceptional masses are multiplied by \\(Z^{-1}\\le K_0\\), so their p"
     },
     {
       "from": "m2-lem-weighted-planks",
-      "to": "m2-a01-horizon-bound"
+      "to": "m2-a01-horizon-bound",
+      "context": "eed not retain that floor. Mark all time bins with positive surviving labeled duration on each used trace. There are at least \\(D_m/K_0\\) marks per trace, so \\Cref{lem:weighted-planks} applies for any fixed \\(\\eps>0\\), eventually. Moving a point to the bin center costs a fixed cell enlargement because n"
     },
     {
       "from": "m2-lem-weighted-planks",
-      "to": "m2-thm-model-reduction"
+      "to": "m2-thm-model-reduction",
+      "context": "ed incidence mass, and mark the visited time bins of each trace. Each mark covers at most \\(\\rho\\) units of time. In the finite weighted approximation used for \\Cref{lem:weighted-planks}, this gives \\[ \\sum_i\\omega_i\\#J_i\\ge\\frac{m_{\\mathrm{ret}}}{\\rho}. \\] Dividing by the visited-cell bound, and enlargi"
     },
     {
       "from": "m2-a01-density-operations",
-      "to": "m2-thm-model-reduction"
+      "to": "m2-thm-model-reduction",
+      "context": "1:exact-density-transform} to a full-time crop. The actual rounded grids have bounded overlap. Combining that overlap and the bounded crop-label ambiguity with \\Cref{a01:density-operations} gives the typical equivalence, for \\(0\\le s\\le r_0\\), \\begin{equation} n_{\\mathrm{new}}(s)\\sim_{\\log} n(s,u_0)\\frac{a"
     },
     {
       "from": "m2-lem-quadratic-sublevel",
-      "to": "m2-thm-model-reduction"
+      "to": "m2-thm-model-reduction",
+      "context": "t,y,w)|\\le K_0a_{r_0},\\qquad |P_w(t,y,w)|\\ge\\epsilon/K_0 \\] confine \\(w\\) to total length at most \\(K_0a_{r_0}\\), after enlarging the subpower factor. This is \\Cref{lem:quadratic-sublevel}, applied at fixed \\((t,y)\\). Integrate this spatial-volume bound over \\(I\\). Dividing \\Cref{a01:selector-volume} by \\(q"
     },
     {
       "from": "m2-lem-algebraic-norm",
-      "to": "m2-a02-algebraic-path"
+      "to": "m2-a02-algebraic-path",
+      "context": "anch is simple and holomorphic on these enlargements. Its polynomial evaluations have bounded-degree relations, by the preceding closure properties. Applying \\Cref{lem:algebraic-norm} on successive overlapping balls gives a finite bound \\(C^{O(A)}\\) for the endpoint norm ratio. It is uniform in all coe"
     },
     {
       "from": "m2-lem-algebraic-norm",
-      "to": "m2-a02-local-graph-matching"
+      "to": "m2-a02-local-graph-matching",
+      "context": "t \\(f_*\\) and divide by \\(M\\); this reference has the same algebraic degree bound and common holomorphic domain as the list members. The closure properties and \\Cref{lem:algebraic-norm} give derivative upper bounds through any required fixed order with loss \\(R^{C\\eps}\\). At every incident point, the dif"
     },
     {
       "from": "m2-lem-two-color-matching",
-      "to": "m2-a02-local-graph-matching"
+      "to": "m2-a02-local-graph-matching",
+      "context": "ts. Normalization costs only another \\(R^{C\\eps}\\). Rescale the fiber interval, whose geometry and holomorphic margins are fixed. The restricted sheets meet \\Cref{lem:two-color-matching} with \\(N=R\\), with only fixed multiples of \\(\\eps\\) in all loss exponents. Choose \\(\\eps_*\\) below that lemma's tolera"
     },
     {
       "from": "m2-a01-saturation",
-      "to": "m2-lem-terminal-extension"
+      "to": "m2-lem-terminal-extension",
+      "context": "presentative equations to obtain the new charts. \\par\\smallskip\\noindent\\textbf{1. Comparing the old terminal equations.} Prepare the true terminal system by \\Cref{a01:saturation}, so its labels are known by \\(p_L\\) and its true floors persist. Let \\(q_0=N^{-h+o(1)}\\) be its dyadic time length. Sel"
     },
     {
       "from": "m2-lem-quadratic-sublevel",
-      "to": "m2-lem-terminal-extension"
+      "to": "m2-lem-terminal-extension",
+      "context": "ption. Fix \\(A\\). At the opposite time, the spatial point lies in its extrapolated rectangle of area at most \\[ q_0^2gN^{C_0e}. \\] At each exact base, apply \\Cref{lem:quadratic-sublevel} with the value width from \\Cref{a02:old-test-extrapolation}, the opposite-time derivative floor \\(N^{-e}\\), and hidden-"
     },
     {
       "from": "m2-lem-algebraic-norm",
-      "to": "m2-lem-terminal-extension"
+      "to": "m2-lem-terminal-extension",
+      "context": "y the two center jet cubes at spacing \\(M\\), in the scaled coordinates of \\(U\\), through a fixed sufficiently high order. Paired cubes are bounded neighbors by \\Cref{lem:algebraic-norm}. The same lemma shows that all members of such a group are within \\(O(M)\\) of a common reference sheet in norm. Each"
     },
     {
       "from": "m2-a02-local-graph-matching",
-      "to": "m2-lem-terminal-extension"
+      "to": "m2-lem-terminal-extension",
+      "context": "zed index weight. The lists now agree in value to \\(\\delta N^{O(e)}\\), have paired norm discrepancies comparable to \\(M\\), and satisfy all other hypotheses of \\Cref{a02:local-graph-matching}. Every displayed loss \\(N^{O(e)}\\) is a sufficiently small fixed power of \\(M/\\delta\\) if \\(C_*\\) is chosen large enoug"
     },
     {
       "from": "m2-a02-algebraic-path",
-      "to": "m2-lem-terminal-extension"
+      "to": "m2-lem-terminal-extension",
+      "context": "ntinue the two chosen branches. First use \\Cref{lem:algebraic-norm} to extend \\Cref{a02:local-sheet-match} to the interior complex source domain, and then use \\Cref{a02:algebraic-path}. At the anchor their difference, and all required fixed jets in \\(D\\)'s \\(z\\)-coordinates, are at most \\(\\delta N^{O(e)"
     },
     {
       "from": "m2-lem-normalization",
-      "to": "m2-a03-composition"
+      "to": "m2-a03-composition",
+      "context": "n within an arbitrary positive tolerance of \\(H(F)\\), on a subsequence where that system exists. Lift it through the known atlas using the terminal equality in \\Cref{lem:normalization}. The time exponents add, and the lifted system is true at the original terminal depth. Letting the tolerance tend to"
     },
     {
       "from": "m2-a01-angular-coarsening",
-      "to": "m2-a03-composition"
+      "to": "m2-a03-composition",
+      "context": "zero proves \\Cref{a03:known-composition}. Coarsening to \\(r\\) keeps the trajectory and incidence data and the profile on \\([0,r]\\). The angular coarsening in \\Cref{a01:angular-coarsening} gives the required angular cap at \\(p_r\\). Thus only the terminal profile-slope condition at \\(r\\) has to be checked w"
     },
     {
       "from": "m2-a01-horizon-bound",
-      "to": "m2-a03-positive-rate"
+      "to": "m2-a03-positive-rate",
+      "context": "The upper bound follows from \\Cref{a01:horizon-bound}. For a bad problem \\(E\\), choose \\(e>0\\) small compared with \\(H(E)>0\\) and its length, and choose a true terminal syst"
     },
     {
       "from": "m2-lem-terminal-extension",
-      "to": "m2-a03-positive-rate"
+      "to": "m2-a03-positive-rate",
+      "context": "und}. For a bad problem \\(E\\), choose \\(e>0\\) small compared with \\(H(E)>0\\) and its length, and choose a true terminal system with horizon \\(h<H(E)+e/4\\). By \\Cref{lem:terminal-extension}, it gives a known atlas with horizon \\(h-e\\) and positive remaining length at most \\(Ce\\). Normalize through this atlas"
     },
     {
       "from": "m2-lem-terminal-extension",
-      "to": "m2-prop-critical-path"
+      "to": "m2-prop-critical-path",
+      "context": "')(r_i-a). \\end{equation} Let \\(G_i\\) be this coarsened problem. We claim that \\(H(G_i)=0\\). Otherwise fix this \\(i\\), and let \\(C_i,c_i\\) be the constants in \\Cref{lem:terminal-extension} for its global terminal cap. Choose \\[ 0<e<\\min\\bigl(H(G_i),c_i r_i,(r_i-a)/C_i\\bigr) \\] and a true terminal system wi"
     },
     {
       "from": "m2-lem-normalization",
-      "to": "m2-prop-critical-path"
+      "to": "m2-prop-critical-path",
+      "context": "gh this atlas to obtain a homogeneous remaining problem \\(F\\) of length \\(L_F=r_i-t_i\\). The terminal density equality and intermediate density upper bound in \\Cref{lem:normalization} give, for its profile \\(f_F\\), \\[ f_F(L_F)-f_F(s) \\le f_i(r_i)-f_i(t_i+s) \\le d''(L_F-s),\\qquad 0\\le s\\le L_F. \\] Th"
     },
     {
       "from": "m2-prop-critical-path",
-      "to": "m2-a03-zero-depth"
+      "to": "m2-a03-zero-depth",
+      "context": "3:linear-profile} applies to \\(f_{F_i}(r)-f_{F_i}(0)\\), without extracting a limit of either absolute term. For every fixed \\(b\\in(0,1)\\), the construction in \\Cref{prop:critical-path} gives actual depths \\(b_i\\to b\\), relative profile errors tending to zero, and horizons \\(kb+o_i(1)\\). Apply this state"
     },
     {
       "from": "m2-a03-excluded-improvements",
-      "to": "m2-a03-finite-guard"
+      "to": "m2-a03-finite-guard",
+      "context": "requirements are preserved after enlarging the actual subpower slack. These outputs therefore form an actual known atlas on an exact subsequence, excluded by \\Cref{a03:excluded-improvements}."
     },
     {
       "from": "m2-lem-normalization",
-      "to": "m2-prop-tangent-palette"
+      "to": "m2-prop-tangent-palette",
+      "context": "gned trajectory mass in its old world. Saturation gives \\[ \\nu_{\\mathrm{old}}(A) \\sim_{\\log} n_{\\mathrm{old}}(b)J_A. \\] Normalize its base coordinates as in \\Cref{lem:normalization}. The parent prior \\(\\nu_A\\) is the old trajectory prior conditioned on this full assignment, and parent time is unifor"
     },
     {
       "from": "m2-a01-largest-axis",
-      "to": "m2-prop-tangent-palette"
+      "to": "m2-prop-tangent-palette",
+      "context": "e cumulative principal axes of each potential parent. Its minor spatial scale per unit time is smaller than the major scale by an actual power of \\(N_0\\). By \\Cref{a01:largest-axis}, cumulative child largest widths per unit time are full up to actual subpower factors. Make these prunings simultaneou"
     },
     {
       "from": "m2-lem-algebraic-norm",
-      "to": "m2-prop-tangent-palette"
+      "to": "m2-prop-tangent-palette",
+      "context": "ve derivative and curvature bounds give an error \\(Ka\\) in \\(X\\) at the incidences, and \\(|X|\\le K\\) there. The composition is an algebraic holomorphic sheet; \\Cref{lem:algebraic-norm} bounds it and its required derivatives by \\(K\\) on the used interiors. In version 1 use the explicit graph directly."
     },
     {
       "from": "m2-prop-candidate-upgrade",
-      "to": "m2-a03-actual-lists"
+      "to": "m2-a03-actual-lists",
+      "context": "[Proof of \\Cref{prop:candidate-upgrade}] Candidate existence means existence of a parent, node, chart and test; the auxiliary construction proving it may use m"
     },
     {
       "from": "m2-a02-local-graph-matching",
-      "to": "m2-a03-actual-lists"
+      "to": "m2-a03-actual-lists",
+      "context": "n 1 the subtracted parent graph is fixed by the chart and exact base, so the same conclusion holds. Fix \\(d_0=(1+d)/2<1\\). Let \\(\\eps_*\\) be the tolerance in \\Cref{a02:local-graph-matching} for these fixed comparison domains and degrees. Decrease it to at most one, and set \\begin{equation} \\eps=\\eps_*/2,\\q"
     },
     {
       "from": "m2-lem-algebraic-norm",
-      "to": "m2-a03-actual-lists"
+      "to": "m2-a03-actual-lists",
+      "context": "ts incidence base projection. By \\Cref{a03:candidate-marginal}, this projection has relative measure at least \\(N^{-O(\\sigma)}\\) in the comparison box. Apply \\Cref{lem:algebraic-norm} on the interiors with fixed margins to obtain the same norm bound, with an adjusted \\(O(\\sigma)\\) exponent. Suppose a"
     },
     {
       "from": "m2-lem-normalization",
-      "to": "m2-a03-actual-lists"
+      "to": "m2-a03-actual-lists",
+      "context": "adjusted to the subbox's midpoint spatial bin in moving chart coordinates. Its bounds hold throughout with actual path slacks. Restore original coordinates by \\Cref{lem:normalization}: thickness and tests acquire the parent-depth factor, with derivative units restored. In version 2, \\(w\\) uses the res"
     },
     {
       "from": "m2-a03-finite-guard",
-      "to": "m2-a03-actual-lists"
+      "to": "m2-a03-actual-lists",
+      "context": "thrm{path}}\\log N_0\\to0\\). The fixed positive tangent gain exceeds \\(\\gamma_n\\), and its time cost is less than half \\(k\\) times its gain. All requirements of \\Cref{a03:finite-guard} are now satisfied, giving the contradiction."
     }
   ]
 }

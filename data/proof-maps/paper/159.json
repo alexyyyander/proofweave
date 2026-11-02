@@ -363,183 +363,228 @@
   "edges": [
     {
       "from": "m1-ap-main",
-      "to": "m1-ap-reciprocal"
+      "to": "m1-ap-reciprocal",
+      "context": "rogression. For $m\\ge0$, translation identifies $[2^m,2^{m+1})\\cap\\mathbb Z$ with an interval of length $2^m$. Thus $|A\\cap[2^m,2^{m+1})|\\le r_k(2^m)$. Theorem~\\ref{ap:main} implies, for $m\\ge1$, \\[ \\sum_{a\\in A\\cap[2^m,2^{m+1})}\\frac1a \\le 2^{-m}r_k(2^m) \\le C_k\\exp\\bigl(-c_k(m\\log2)^{\\va"
     },
     {
       "from": "m1-ap-path-chart",
-      "to": "m1-ap-path-ensemble"
+      "to": "m1-ap-path-ensemble",
+      "context": "malized smooth interpolation has logarithmic costs polynomial in the cold-pre budget, $\\log\\sigma^{-1}$, and $\\log L$, when $C_*$ is sufficiently large. Lemma~\\ref{ap:path:chart} controls all normalized coordinate maps independently of orientation and height. Buffered ambient chart extensions can"
     },
     {
       "from": "m1-ap-path-comparison",
-      "to": "m1-ap-path-detection"
+      "to": "m1-ap-path-detection",
+      "context": "[Proof of the cold clause] The ordinary argument of Lemma~\\ref{cube:pathwise-detection} applies to the ensemble above by Lemma~\\ref{ap:path:comparison}. Indeed, mesh endpoints and enumerate strides to reduce the separately chosen slices to finitely many possibilities."
     },
     {
       "from": "m1-ap-path-ensemble",
-      "to": "m1-ap-path-detection"
+      "to": "m1-ap-path-detection",
+      "context": "as at least fraction $\\delta_{\\rm sl}$ of the full parameter box, then \\[ X_r(\\phi)\\le \\delta_{\\rm sl}^{-1}\\mathbb E_U m_U|\\phi|. \\] Lemma~\\ref{ap:path:ensemble} bounds the excess mass above a cap of cold preliminary size. Doubling the cap bounds the mass of the resulting tail by"
     },
     {
       "from": "m1-ap-major-padic",
-      "to": "m1-ap-major-denominator"
+      "to": "m1-ap-major-denominator",
+      "context": "degree bound; $N$ is polynomial in their dimension. For $q=p^e$ above a degree-dependent constant, choose sufficiently many disjoint pure-free axes that Lemma~\\ref{ap:major:padic} and a union bound over at most $q^N$ coefficient vectors give probability at most $q^{-10}$ that \\emph{some} primitive"
     },
     {
       "from": "m1-ap-path-ensemble",
-      "to": "m1-ap-major-refinement"
+      "to": "m1-ap-major-refinement",
+      "context": "oof applies to the present sampler: the local correlation is obtained from a buffered chart-supported phase, fully slow and integral lift identities from Lemma~\\ref{ap:path:ensemble}, and the cold detection conclusion of Theorem~\\ref{ap:path:detection}. It does not use a fine mixed-center spatial bou"
     },
     {
       "from": "m1-ap-path-detection",
-      "to": "m1-ap-major-refinement"
+      "to": "m1-ap-major-refinement",
+      "context": "from a buffered chart-supported phase, fully slow and integral lift identities from Lemma~\\ref{ap:path:ensemble}, and the cold detection conclusion of Theorem~\\ref{ap:path:detection}. It does not use a fine mixed-center spatial boundary estimate. We obtain a decomposition with cold-pre bounds on a r"
     },
     {
       "from": "m1-ap-major-real-recovery",
-      "to": "m1-ap-major-refinement"
+      "to": "m1-ap-major-refinement",
+      "context": "kes both differences zero. Hence the candidate slow and rational terms have, separately, the original bounds $B$ and $\\rho$ on these evaluations. Apply Lemma~\\ref{ap:major:real-recovery} to the first and Lemma~\\ref{ap:major:denominator} to the second. This gives the sharpened conclusions on $K'$. In deg"
     },
     {
       "from": "m1-ap-major-denominator",
-      "to": "m1-ap-major-refinement"
+      "to": "m1-ap-major-refinement",
+      "context": "and rational terms have, separately, the original bounds $B$ and $\\rho$ on these evaluations. Apply Lemma~\\ref{ap:major:real-recovery} to the first and Lemma~\\ref{ap:major:denominator} to the second. This gives the sharpened conclusions on $K'$. In degree zero, simply take a split of the fixed constan"
     },
     {
       "from": "m1-ap-major-backward",
-      "to": "m1-ap-major-refinement"
+      "to": "m1-ap-major-refinement",
+      "context": "[Proof of Lemma~\\ref{ap:major:backward}] There are at most $(1+2R_h)^{d_h}$ possible failed rows. Pigeonhole one of them. Its failure fraction still has inve"
     },
     {
       "from": "m1-ap-major-preparation",
-      "to": "m1-ap-major-refinement"
+      "to": "m1-ap-major-refinement",
+      "context": "[Proof of Proposition~\\ref{ap:major:preparation}] If a stop probability is too large, apply Lemma~\\ref{ap:major:backward} at that level and then Lemma~\\ref{ap:major:tra"
     },
     {
       "from": "m1-ap-major-transaction",
-      "to": "m1-ap-major-refinement"
+      "to": "m1-ap-major-refinement",
+      "context": "[Proof of Proposition~\\ref{ap:major:preparation}] If a stop probability is too large, apply Lemma~\\ref{ap:major:backward} at that level and then Lemma~\\ref{ap:major:transaction}. Retest the resulting actual system. Earlier tests are not assumed to remain valid after a restriction. To count tra"
     },
     {
       "from": "m1-ap-path-grid",
-      "to": "m1-ap-path-relative-cube"
+      "to": "m1-ap-path-relative-cube",
+      "context": "\\E|D_i|^2\\ge(\\delta')^2$. The sparse factor satisfies \\[ \\|F_s\\|_{U^q}^{2^q} \\le B^{2^q}\\E_{\\rm cube}\\prod_\\omega\\nu(u_\\omega) =O_{\\rm warm}(1) \\] by Lemma~\\ref{ap:path:grid}. Inserting the appropriate conjugate of $D_i$ at vertex $i$ and applying Gowers--Cauchy--Schwarz gives \\[ (\\delta')^2"
     },
     {
       "from": "m1-ap-path-detection",
-      "to": "m1-ap-path-weighted-separation"
+      "to": "m1-ap-path-weighted-separation",
+      "context": "[Proof of the warm clause of Theorem~\\ref{ap:path:detection}] Mesh and enumerate the allowed pathwise slices as in the cold proof. Lemma~\\ref{prelim:dual-gowers} and Lemma~\\ref{ap:"
     },
     {
       "from": "m1-ap-path-comparison",
-      "to": "m1-ap-path-weighted-separation"
+      "to": "m1-ap-path-weighted-separation",
+      "context": "e warm clause of Theorem~\\ref{ap:path:detection}] Mesh and enumerate the allowed pathwise slices as in the cold proof. Lemma~\\ref{prelim:dual-gowers} and Lemma~\\ref{ap:path:comparison} give ambient cube detection at order $q=r+1\\le j$. Lemma~\\ref{ap:path:relative-cube} therefore gives warm detection in"
     },
     {
       "from": "m1-ap-path-relative-cube",
-      "to": "m1-ap-path-weighted-separation"
+      "to": "m1-ap-path-weighted-separation",
+      "context": "athwise slices as in the cold proof. Lemma~\\ref{prelim:dual-gowers} and Lemma~\\ref{ap:path:comparison} give ambient cube detection at order $q=r+1\\le j$. Lemma~\\ref{ap:path:relative-cube} therefore gives warm detection in normalized chart measure. Here is the precise change of measure for approximation."
     },
     {
       "from": "m1-ap-path-ensemble",
-      "to": "m1-ap-path-weighted-separation"
+      "to": "m1-ap-path-weighted-separation",
+      "context": "o path or test support uses them. On actual supports $\\nu\\asymp_{\\rm warm}m_j^{-1}$, and $\\E_U\\nu=1+o(1)$ by rank. The cap and excess-mass statement in Lemma~\\ref{ap:path:ensemble} therefore gives a warm cap and arbitrarily small excess mass for $m_{\\rm rel}$ under $\\mu$. Enlarge that cap from $C_0"
     },
     {
       "from": "m1-ap-path-ensemble",
-      "to": "m1-ap-scalar-forward"
+      "to": "m1-ap-scalar-forward",
+      "context": "roducts of later $e_i$. Fix a nonstopped, rank-sufficient parent at layer $j$. Average first over unrestricted Haar centers. The one-site calculation in Lemma~\\ref{ap:path:ensemble} says that, with any bounded nonnegative site insertion, this average is at least $(1-o(1))$ times the parent mean off a"
     },
     {
       "from": "m1-ap-scalar-flags",
-      "to": "m1-ap-scalar-forward"
+      "to": "m1-ap-scalar-forward",
+      "context": "small cold-pre error. It also has the corresponding uniform upper density bound. Apply this first with the input times all remaining strict constraints. Lemma~\\ref{ap:scalar:flags} bounds the bad-flag loss by a small proportional part of the parent mean and a negligible additive error. In estimating"
     },
     {
       "from": "m1-ap-path-grid",
-      "to": "m1-ap-scalar-forward"
+      "to": "m1-ap-scalar-forward",
+      "context": "$ and $\\int G_j\\le e_j$. If a spatial boundary cutoff has thickness $\\theta$ and mean $O(n\\theta)$ on this parent, the marginal rank estimate proved with Lemma~\\ref{ap:path:grid} gives \\[ \\E_U 1_{\\rm boundary}\\,1_{\\rm current\\ strict} \\le O(n\\theta)e_j+\\delta, \\] with an arbitrarily small"
     },
     {
       "from": "m1-ap-scalar-flags",
-      "to": "m1-ap-scalar-measure"
+      "to": "m1-ap-scalar-measure",
+      "context": "[Proof of Lemma~\\ref{ap:scalar:flags}] We first prove the finite-field assertions, including the characteristic dependence. Temporarily write $P=\\varpi$, $N="
     },
     {
       "from": "m1-ap-path-ensemble",
-      "to": "m1-ap-scalar-measure"
+      "to": "m1-ap-scalar-measure",
+      "context": "t data. This gives the joint flag bounds. Notice that all equations and their Jacobians ignore the constant coefficient of $b$. For the actual path law, Lemma~\\ref{ap:path:ensemble} gives the needed finite-residue comparisons. Uniformity is required in all nonconstant pure-free degrees, not only the"
     },
     {
       "from": "m1-ap-scalar-measure",
-      "to": "m1-ap-scalar-comparison"
+      "to": "m1-ap-scalar-comparison",
+      "context": "First omit flags. Enlarge the degree-zero local testing seminorm by the supremum of pairings with all normalized sliced forecasting weights of Lemma~\\ref{ap:scalar:measure}. Their cap and uniform order-zero twist approximation give detection for the enlarged seminorm. Apply the separation ar"
     },
     {
       "from": "m1-ap-path-detection",
-      "to": "m1-ap-scalar-comparison"
+      "to": "m1-ap-scalar-comparison",
+      "context": "nd uniform order-zero twist approximation give detection for the enlarged seminorm. Apply the separation argument of Lemma~\\ref{cube:separation}, using Theorem~\\ref{ap:path:detection}. In the warm case its inner product is the normalized chart measure, and the one-site cap and tail are taken relative t"
     },
     {
       "from": "m1-ap-scalar-flags",
-      "to": "m1-ap-scalar-comparison"
+      "to": "m1-ap-scalar-comparison",
+      "context": "e $\\varpi>T$, or of a squarefree product $d\\in(T,T^2]$ of bad primes: in the latter case multiply primes at most $T$ until the product first crosses $T$. Lemma~\\ref{ap:scalar:flags} and summation give expected exceptional mass $O(T^{-9})$ in the uniform model and hence error $O(T^{-8})$. The same con"
     },
     {
       "from": "m1-ap-major-refinement",
-      "to": "m1-ap-passive-warm-matching"
+      "to": "m1-ap-passive-warm-matching",
+      "context": "A weighted form of degree $d<j$ has no $\\beta$ argument. Apply Proposition~\\ref{lifting:candidate-major}, or its quantitative refinement in Lemma~\\ref{ap:major:refinement}, at cold-pre cost. It yields, on the ordinary $u$ variables, \\[ A(u)=S(u/H)+R(u), \\] with co"
     },
     {
       "from": "m1-ap-major-denominator",
-      "to": "m1-ap-passive-warm-matching"
+      "to": "m1-ap-passive-warm-matching",
+      "context": "with a warm inverse norm, giving the claimed real bound. For the rational bound, multiply $R$ by the warm common denominator of its evaluation and apply Lemma~\\ref{ap:major:denominator} to the pure-free spatial outputs. Its loss depends on dimensions and the inverse retained path probability, not on the"
     },
     {
       "from": "m1-ap-path-detection",
-      "to": "m1-ap-passive-replacement"
+      "to": "m1-ap-passive-replacement",
+      "context": "oint-value bins using a common point-value mesh. The masked site inputs belonging to these bins now form a fixed controlled menu over all paths. Apply Theorem~\\ref{ap:path:detection} to each bounded masked input, with error small enough to pay for the menu size, pivot threshold and retained path proba"
     },
     {
       "from": "m1-ap-passive-warm-matching",
-      "to": "m1-ap-passive-replacement"
+      "to": "m1-ap-passive-replacement",
+      "context": "all functions of $u$ alone. At a matching grade $d\\leq s$, its residual modulo the projected fast algebra has a warm slow-plus-rational path evaluation. Lemma~\\ref{ap:passive:warm-matching} gives the same bounds for its ordinary ambient scalar coordinates. Rational sections lift them to the required left sl"
     },
     {
       "from": "m1-ap-scalar-comparison",
-      "to": "m1-ap-passive-scalar-return"
+      "to": "m1-ap-passive-scalar-return",
+      "context": "t gives menus of bounded site functions with the same supremum accuracy. These site functions need not have any regularity. The scalar comparison, Proposition~\\ref{ap:scalar:comparison}, therefore transfers their full-mass signed score to $\\mathcal K$ on one modular-good path, including its retained subs"
     },
     {
       "from": "m1-ap-scalar-comparison",
-      "to": "m1-ap-active-replacement"
+      "to": "m1-ap-active-replacement",
+      "context": "numerated exactly; all other pieces have pre-relative sides. Parallel sides exceed these cutoffs, so endpoint rounding has negligible mass. Apply Proposition~\\ref{ap:scalar:comparison}, including its flag version, to the fixed menu of site functions. A union bound over menu entries and testing slices g"
     },
     {
       "from": "m1-ap-scalar-flags",
-      "to": "m1-ap-active-replacement"
+      "to": "m1-ap-active-replacement",
+      "context": "sitive flagged term, first truncate the inclusion-exclusion expansion of the no-bad flag as in the proof of Proposition~\\ref{ap:scalar:comparison}, using Lemma~\\ref{ap:scalar:flags}. The error may charge the short label mass, mode count, and current productive probability. Split each retained term"
     },
     {
       "from": "m1-lifting-refiltration",
-      "to": "m1-ap-active-replacement"
+      "to": "m1-ap-active-replacement",
+      "context": "hich match exactly. The short labels are actual entries of the same $t_I$. Refilter in the inverse images $H,H_F$ of $\\mathfrak v,\\mathfrak v_F$, using Lemma~\\ref{lifting:refiltration}. Lift the matched symbols to full factors \\begin{equation} P_F^*=E_F P_H R_F,\\qquad P_H\\in H_F. \\lab"
     },
     {
       "from": "m1-ap-scalar-flags",
-      "to": "m1-ap-macro-sections"
+      "to": "m1-ap-macro-sections",
+      "context": "e-identity} b(x+V(s,h),r+h)=b(x,r)+s \\quad\\hbox{over }\\Z/M\\Z. \\end{equation} By the prime-power lifting and CRT construction in Lemma~\\ref{ap:scalar:flags}, their number at $(x,r)$ is $M^{v_fl-J}W_*(x,r)$. Their selected reductions remain selected when the basepoint moves a"
     },
     {
       "from": "m1-ap-iteration-dimensions",
-      "to": "m1-ap-iteration-widths"
+      "to": "m1-ap-iteration-widths",
+      "context": "umerical scale may be exponential in such a polynomial without violating the estimate. For this interval run of $T$ rounds starting without slots, Proposition~\\ref{ap:iteration:dimensions} supplies a structural bound $d_*$ polynomial in $2+p$. Define downward width envelopes by \\[ V_D=Q_D(0)+T P_D(p,d_*),"
     },
     {
       "from": "m1-ap-increment",
-      "to": "m1-ap-iteration-widths"
+      "to": "m1-ap-iteration-widths",
+      "context": "[Completion of the proof of Theorem~\\ref{ap:increment}] Preparation preserves a strict positive certificate with an arbitrarily small proportional target discount. Propositi"
     },
     {
       "from": "m1-ap-scalar-forward",
-      "to": "m1-ap-iteration-widths"
+      "to": "m1-ap-iteration-widths",
+      "context": "e proof of Theorem~\\ref{ap:increment}] Preparation preserves a strict positive certificate with an arbitrarily small proportional target discount. Proposition~\\ref{ap:scalar:forward} then supplies productive terminal paths on a fraction at least a fixed multiple of $a$, at a threshold differing from $"
     },
     {
       "from": "m1-ap-absolute",
-      "to": "m1-ap-iteration-widths"
+      "to": "m1-ap-iteration-widths",
+      "context": "is use of the forward mass comparison is important: it does not charge the inverse of the incoming strict surplus, which may be arbitrarily small. Apply Lemma~\\ref{ap:absolute} on a productive terminal box. Its sides meet the dimension-dependent requirement by the minimum-side choices above. It"
     },
     {
       "from": "m1-ap-iteration-compression",
-      "to": "m1-ap-iteration-widths"
+      "to": "m1-ap-iteration-widths",
+      "context": "eturn at a fixed multiplicative gain. The passive and active ascents preserve enough of that gain, and restore all determining equations exactly. Apply Lemma~\\ref{ap:iteration:compression} at the root. Choose the fixed proportional losses sufficiently small that a net factor $1+\\eta_k$, with $\\eta_k>0$, re"
     },
     {
       "from": "m1-ap-iteration-dimensions",
-      "to": "m1-ap-iteration-closure"
+      "to": "m1-ap-iteration-closure",
+      "context": "at least $e^{-p}$ after enlarging $C$. The same parameter $p$, fresh-rank bound, and structural forecasts are therefore valid throughout the run. Propositions~\\ref{ap:iteration:dimensions} and \\ref{ap:iteration:widths} bound the sum of all root logarithmic slice losses, the maximal remaining log-side requir"
     },
     {
       "from": "m1-ap-iteration-widths",
-      "to": "m1-ap-iteration-closure"
+      "to": "m1-ap-iteration-closure",
+      "context": "$C$. The same parameter $p$, fresh-rank bound, and structural forecasts are therefore valid throughout the run. Propositions~\\ref{ap:iteration:dimensions} and \\ref{ap:iteration:widths} bound the sum of all root logarithmic slice losses, the maximal remaining log-side requirement, and the endpoint roundi"
     },
     {
       "from": "m1-ap-main",
-      "to": "m1-ap-iteration-closure"
+      "to": "m1-ap-iteration-closure",
+      "context": "[Proof of Theorem~\\ref{ap:main}] For $\\alpha=r_k(N)/N>0$, the contrapositive of Proposition~\\ref{ap:iteration:closure} gives \\[ \\log N<C_k\\bigl(2+\\log"
     },
     {
       "from": "m1-ap-weighted-dyadic",
-      "to": "m1-ap-weighted-harmonic"
+      "to": "m1-ap-weighted-harmonic",
+      "context": "Apply Proposition~\\ref{ap:weighted:dyadic} with $w(n)=1/n$. By Equation~\\eqref{ap:weighted:density}, its terms for $m\\ge1$ are at most $C\\exp(-c(m\\log2)^\\varepsil"
     },
     {
       "from": "m1-ap-weighted-dyadic",
-      "to": "m1-ap-weighted-stretched"
+      "to": "m1-ap-weighted-stretched",
+      "context": "for large $y$. On every sufficiently late dyadic interval the maximum is therefore its left-endpoint value. For $w_a$, the corresponding summand in Proposition~\\ref{ap:weighted:dyadic} is at most \\[ C e^{-(c-a)(m\\log2)^\\varepsilon}, \\] which is summable. For $w_{*,\\eta}$ the exponent"
     },
     {
       "from": "m1-ap-weighted-dyadic",
-      "to": "m1-ap-weighted-logarithmic"
+      "to": "m1-ap-weighted-logarithmic",
+      "context": "Fix $k\\ge3$. On the $m$th dyadic interval the weight is at most $C_B(1+m)^B2^{-m}$. Hence the terms in Proposition~\\ref{ap:weighted:dyadic} are bounded, apart from finitely many, by \\[ C_{k,B}(1+m)^B e^{-c_k(m\\log2)^{\\varepsilon_k}}. \\] This sequen"
     }
   ]
 }

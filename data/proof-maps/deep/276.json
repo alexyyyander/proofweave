@@ -1,0 +1,297 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "276",
+  "title": "Classical capacity of generalized amplitude damping",
+  "result": {
+    "id": "paper-result",
+    "label": "Classical capacity of generalized amplitude damping",
+    "statement": "Determines the unassisted classical capacity of every qubit generalized amplitude-damping channel, including all damping and thermal parameters. An explicit one-variable optimization gives the capacity, attained by independent two-state signal ensembles with collective decoding. Holevo capacity, minimum output entropy and regularized classical capacity are additive when tensoring with any finite-dimensional quantum channel.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-entropy-inequality-with-one-zero-block",
+      "label": "An entropy inequality with one zero block",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-entropy-inequality-with-one-zero-block-2",
+      "label": "An entropy inequality with one zero block",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-entropy-inequality-with-one-zero-block-3",
+      "label": "An entropy inequality with one zero block",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-entropy-inequality-with-one-zero-block-4",
+      "label": "An entropy inequality with one zero block",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-entropy-inequality-with-one-zero-block-5",
+      "label": "An entropy inequality with one zero block",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-thermal-block-entropy-inequality",
+      "label": "A thermal block entropy inequality",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-the-thermal-inequality-to-channel-outputs",
+      "label": "From the thermal inequality to channel outputs",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-the-thermal-inequality-to-channel-outputs-2",
+      "label": "From the thermal inequality to channel outputs",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-the-thermal-inequality-to-channel-outputs-3",
+      "label": "From the thermal inequality to channel outputs",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-the-thermal-inequality-to-channel-outputs-4",
+      "label": "From the thermal inequality to channel outputs",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "ordinary-damping-the-unital-case-and-endpoints",
+      "label": "Ordinary damping, the unital case, and endpoints",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "ordinary-damping-the-unital-case-and-endpoints-2",
+      "label": "Ordinary damping, the unital case, and endpoints",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Classical capacity and entropy inequalities for generalized amplitude damping",
+      "title": "Classical capacity and entropy inequalities for generalized amplitude damping",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Classical-capacity-and-entropy-inequalities-for-generalized-amplitude-damping-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Classical capacity and entropy inequalities for generalized amplitude damping; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "For all , and every integer n1 , (_ , ^ n ) =n(_ , ) = n 2 _ 0 p1 \\…",
+          "fullLabel": "For all , and every integer n1 , (_ , ^ n ) =n(_ , ) = n 2 _ 0 p1 \\…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "For all , and every integer n1 , (_ , ^ n ) =n(_ , ) = n 2 _ 0 p1 \\ h((1-)p+)-g(v_ , (p))\\ , where v_ , (p) =(1-)+(1-)(p-)^2. In particular, C(_ , )=(_ , ) . If p maximizes , independent products of…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-partner-additivity",
+          "role": "introduction",
+          "label": "Additivity with a finite-dimensional partner",
+          "fullLabel": "Additivity with a finite-dimensional partner",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "[Additivity with a finite-dimensional partner] Let , , put =_ , , and let N: B( H_ in ) B( H_ out ) be completely positive and trace preserving, where H_ in and H_ out are nonzero finite-dimensional…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-block",
+          "role": "an-entropy-inequality-with-one-zero-block",
+          "label": "Let A,B,C^ d e , and put \\[ M= A&B\\\\ C&0 , x=(AA^*), y=(BB^*), z=(CC^*). \\] If…",
+          "fullLabel": "Let A,B,C^ d e , and put \\[ M= A&B\\\\ C&0 , x=(AA^*), y=(BB^*), z=(CC^*). \\] If…",
+          "kind": "theorem",
+          "source": "An entropy inequality with one zero block",
+          "detail": "Let A,B,C^ d e , and put \\[ M= A&B\\\\ C&0 , x=(AA^*), y=(BB^*), z=(CC^*). \\] If x+y+z=1 , then (MM^*) x(AA^*/x)+y(BB^*/y)+z(CC^*/z)+g(yz), where each term with zero weight is omitted.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-integral",
+          "role": "an-entropy-inequality-with-one-zero-block-2",
+          "label": "If U,V0 have equal trace, with possibly different sizes, then (U)-(V) =_0^ r…",
+          "fullLabel": "If U,V0 have equal trace, with possibly different sizes, then (U)-(V) =_0^ r…",
+          "kind": "lemma",
+          "source": "An entropy inequality with one zero block",
+          "detail": "If U,V0 have equal trace, with possibly different sizes, then (U)-(V) =_0^ r r^2 . The integral converges absolutely.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-logdet",
+          "role": "an-entropy-inequality-with-one-zero-block-3",
+          "label": "For each fixed Z^ N N , the function G_Z(D,E)=(D+ZE^ -1 Z^*)- D, D,E>0, is…",
+          "fullLabel": "For each fixed Z^ N N , the function G_Z(D,E)=(D+ZE^ -1 Z^*)- D, D,E>0, is…",
+          "kind": "lemma",
+          "source": "An entropy inequality with one zero block",
+          "detail": "For each fixed Z^ N N , the function G_Z(D,E)=(D+ZE^ -1 Z^*)- D, D,E>0, is jointly convex on pairs of positive definite Hermitian matrices.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-scalar",
+          "role": "an-entropy-inequality-with-one-zero-block-4",
+          "label": "The function F is positively homogeneous of degree one and concave on the…",
+          "fullLabel": "The function F is positively homogeneous of degree one and concave on the…",
+          "kind": "lemma",
+          "source": "An entropy inequality with one zero block",
+          "detail": "The function F is positively homogeneous of degree one and concave on the probability simplex. For every finite collection of nonnegative triples, _i F(x_i,y_i,z_i) F\\!(_i x_i,_i y_i,_i z_i).",
+          "dependsOn": [
+            "m1-lem-integral",
+            "m1-lem-logdet",
+            "m1-thm-block"
+          ]
+        },
+        {
+          "id": "m1-lem-binary-spectrum",
+          "role": "an-entropy-inequality-with-one-zero-block-5",
+          "label": "The function s g(s^2) is nondecreasing and convex on [0,1/2] . Consequently, g…",
+          "fullLabel": "The function s g(s^2) is nondecreasing and convex on [0,1/2] . Consequently, g…",
+          "kind": "lemma",
+          "source": "An entropy inequality with one zero block",
+          "detail": "The function s g(s^2) is nondecreasing and convex on [0,1/2] . Consequently, g is nondecreasing on [0,1/4] .",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-thermal",
+          "role": "a-thermal-block-entropy-inequality",
+          "label": "Let X,Y be complex matrices of the same rectangular shape with (XX^*)=(YY^*)=1…",
+          "fullLabel": "Let X,Y be complex matrices of the same rectangular shape with (XX^*)=(YY^*)=1…",
+          "kind": "theorem",
+          "source": "A thermal block entropy inequality",
+          "detail": "Let X,Y be complex matrices of the same rectangular shape with (XX^*)=(YY^*)=1 . Suppose ,,,0 sum to one and -=K^2, K0. Set T= XX^*+ YY^*&KXY^*\\\\ KYX^*& XX^*+ YY^* , U_0=+, U_1=+, and u=U_0U_1-K^2 .…",
+          "dependsOn": [
+            "m1-thm-block"
+          ]
+        },
+        {
+          "id": "m1-lem-e-convex",
+          "role": "from-the-thermal-inequality-to-channel-outputs",
+          "label": "For every , , the function p g((1-)+(1-)(p-)^2) is convex on [0,1] .",
+          "fullLabel": "For every , , the function p g((1-)+(1-)(p-)^2) is convex on [0,1] .",
+          "kind": "lemma",
+          "source": "From the thermal inequality to channel outputs",
+          "detail": "For every , , the function p g((1-)+(1-)(p-)^2) is convex on [0,1] .",
+          "dependsOn": [
+            "m1-lem-binary-spectrum"
+          ]
+        },
+        {
+          "id": "m1-lem-partner-branch",
+          "role": "from-the-thermal-inequality-to-channel-outputs-2",
+          "label": "Let , , put =_ , and e(p)=g(v_ , (p)) , and let N: B( H_ in ) B( H_ out ) be…",
+          "fullLabel": "Let , , put =_ , and e(p)=g(v_ , (p)) , and let N: B( H_ in ) B( H_ out ) be…",
+          "kind": "lemma",
+          "source": "From the thermal inequality to channel outputs",
+          "detail": "Let , , put =_ , and e(p)=g(v_ , (p)) , and let N: B( H_ in ) B( H_ out ) be completely positive and trace preserving on nonzero finite-dimensional complex Hilbert spaces. For a unit vector ^2 H_ in…",
+          "dependsOn": [
+            "m1-thm-thermal"
+          ]
+        },
+        {
+          "id": "m1-prop-pure-bound",
+          "role": "from-the-thermal-inequality-to-channel-outputs-3",
+          "label": "For every , , put =_ , and e(p)=g(v_ , (p)) . For every integer n1 and every…",
+          "fullLabel": "For every , , put =_ , and e(p)=g(v_ , (p)) . For every integer n1 and every…",
+          "kind": "proposition",
+          "source": "From the thermal inequality to channel outputs",
+          "detail": "For every , , put =_ , and e(p)=g(v_ , (p)) . For every integer n1 and every unit vector on n qubits, let p_j be the probability of outcome 1 at site j in the computational basis. Then (^ n ()) _ j=1…",
+          "dependsOn": [
+            "m1-lem-partner-branch",
+            "m1-lem-e-convex"
+          ]
+        },
+        {
+          "id": "m1-cor-mixed-bound",
+          "role": "from-the-thermal-inequality-to-channel-outputs-4",
+          "label": "For every , , integer n1 , and density matrix on (^2)^ n , let p_j be its…",
+          "fullLabel": "For every , , integer n1 , and density matrix on (^2)^ n , let p_j be its…",
+          "kind": "corollary",
+          "source": "From the thermal inequality to channel outputs",
+          "detail": "For every , , integer n1 , and density matrix on (^2)^ n , let p_j be its excitation probability at site j . Then \\[ (_ , ^ n ()) _ j=1 ^n g(v_ , (p_j)). \\]",
+          "dependsOn": [
+            "m1-prop-pure-bound",
+            "m1-lem-e-convex",
+            "m1-thm-main",
+            "m1-cor-partner-additivity",
+            "m1-lem-partner-branch",
+            "m1-lem-binary-spectrum"
+          ]
+        },
+        {
+          "id": "m1-cor-ordinary",
+          "role": "ordinary-damping-the-unital-case-and-endpoints",
+          "label": "Ordinary amplitude damping",
+          "fullLabel": "Ordinary amplitude damping",
+          "kind": "corollary",
+          "source": "Ordinary damping, the unital case, and endpoints",
+          "detail": "[Ordinary amplitude damping] For , let _ be the qubit channel with Kraus operators \\[ K_0=(1,1- ), K_1=\\,01. \\] For every integer n1 , \\[ (_^ n )=n C(_) = n 2 _ 0 p1 \\ h((1-)p)-g((1-)p^2)\\ . \\]",
+          "dependsOn": [
+            "m1-thm-main"
+          ]
+        },
+        {
+          "id": "m1-cor-unital",
+          "role": "ordinary-damping-the-unital-case-and-endpoints-2",
+          "label": "Unital midpoint",
+          "fullLabel": "Unital midpoint",
+          "kind": "corollary",
+          "source": "Ordinary damping, the unital case, and endpoints",
+          "detail": "[Unital midpoint] For every , \\[ C(_ ,1/2 ) =1-1 2 g(/4) =1-1 2 h\\!( 1+1- 2). \\] The pair (01)/2 attains the one-use Holevo information, and its independent products attain every finite-power Holevo…",
+          "dependsOn": [
+            "m1-lem-e-convex",
+            "m1-thm-main",
+            "m1-lem-scalar",
+            "m1-lem-logdet"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "Classical capacity and entropy inequalities for generalized amplitude damping",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Classical-capacity-and-entropy-inequalities-for-generalized-amplitude-damping-September-24-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

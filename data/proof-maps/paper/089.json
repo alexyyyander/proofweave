@@ -508,259 +508,323 @@
   "edges": [
     {
       "from": "m1-geo-chord-separation",
-      "to": "m1-geo-gap"
+      "to": "m1-geo-gap",
+      "context": "t gaps. Then each strict circular $u$--$v$ arc contains a vertex of $S$. A path inside $S$ joining these two vertices would have to visit $u$ or $v$ by Lemma~\\ref{geo:chord-separation}. Both endpoints lie outside $S$, a contradiction. Thus each edge stays in one gap, and so does the whole path."
     },
     {
       "from": "m1-geo-chord-separation",
-      "to": "m1-geo-skipping"
+      "to": "m1-geo-skipping",
+      "context": "c between its endpoints, and an index in the complementary closed arc lies on the other. They are therefore not cyclic neighbors. The final assertion is Lemma~\\ref{geo:chord-separation}."
     },
     {
       "from": "m1-geo-outerplanar",
-      "to": "m1-geo-portals"
+      "to": "m1-geo-portals",
+      "context": "connected sets $C$ and $L$, and contract each of the three nonempty connector interiors to a separate vertex. This gives a $K_{2,3}$ minor, contrary to Lemma~\\ref{geo:outerplanar}. A maximal set of entrance midpoints at mutual distances greater than $100a$ thus has cardinality at most two. Maxima"
     },
     {
       "from": "m1-geo-portals",
-      "to": "m1-geo-cells"
+      "to": "m1-geo-cells",
+      "context": "he diameter bound follows. Suppose $q>30a$ and let $C^+$ be the component of $\\{b_i\\ge q\\}$ containing the cell. It has at most two entrance portals by Lemma~\\ref{geo:portals}. Take $v$ in the cell and follow a shortest path to $o$ until the first switch below threshold $q$. Before that switc"
     },
     {
       "from": "m1-geo-cells",
-      "to": "m1-geo-portal-levels"
+      "to": "m1-geo-portal-levels",
+      "context": "threshold is contained in a unique component at the preceding threshold, proving the parent assertion. For $n\\ge1$, repeat the root-geodesic argument in Lemma~\\ref{geo:cells} at lower threshold $n\\delta$. A point of the node's own layer has radial distance below $(n+1)\\delta+a/2$. A child po"
     },
     {
       "from": "m1-int-deterministic",
-      "to": "m1-int-common-formula"
+      "to": "m1-int-common-formula",
+      "context": "e of $v$. The entry column is an entrance column of that child. Hence $v$ is within $2\\rho+200a<c_0$ of a portal of that child. The equality collar of Lemma~\\ref{int:deterministic} identifies its formula and its selected atom with those of $\\nu$ at $v$. This proves the assertion for every represent"
     },
     {
       "from": "m1-int-common-formula",
-      "to": "m1-int-depth"
+      "to": "m1-int-depth",
+      "context": "$. If $n\\le M$, every ancestor is already in the asserted list. Otherwise consider its ancestor $\\mu$ of depth $n-M\\ge1$. For a point $v$ of the ball, Lemma~\\ref{int:common-formula}, radial comparison, and \\eqref{int:portal-radial} give \\[ d_J(k,v)\\ge M\\delta-3a\\qquad(k\\in K_\\mu). \\] The definition"
     },
     {
       "from": "m1-int-interpolation",
-      "to": "m1-int-near-tie"
+      "to": "m1-int-near-tie",
+      "context": "[Completion of Theorem~\\ref{int:interpolation}] Take the deterministic list furnished by Lemma~\\ref{int:depth}. The union bound and Lemma~\\ref{int:near-tie}, with $t="
     },
     {
       "from": "m1-int-depth",
-      "to": "m1-int-near-tie"
+      "to": "m1-int-near-tie",
+      "context": "[Completion of Theorem~\\ref{int:interpolation}] Take the deterministic list furnished by Lemma~\\ref{int:depth}. The union bound and Lemma~\\ref{int:near-tie}, with $t=4\\rho$, show that the probability of a pair satisfying $|A(x)-A'"
     },
     {
       "from": "m1-int-near-tie",
-      "to": "m1-int-comparisons"
+      "to": "m1-int-comparisons",
+      "context": "list for $Q_i$ on that ball, with its chosen sign and shift. Adjoin the shifted $g_j$ branches and, if present, $f$. For pairs from one interpolation use Lemma~\\ref{int:near-tie}. For pairs from different interpolations condition on all noises except the own noise of an atom in one interpolation;"
     },
     {
       "from": "m1-geo-padding",
-      "to": "m1-main-ray"
+      "to": "m1-main-ray",
+      "context": "d there is a minimizing $z\\in\\partial C$ with \\[ s(z)+(1-\\zeta_A)d_{J_1}(w,z)\\le s(w)+7E_A. \\] Put $d_0=d_{J_1}(w,z)$. The radial padding conclusion of Lemma~\\ref{geo:padding} gives $d_0\\ge0.01D=10^{-5}$. The weak diameter estimate gives $d_0\\le10D<0.02$. Choose an intrinsic shortest path from"
     },
     {
       "from": "m1-main-ray",
-      "to": "m1-main-pair-separation"
+      "to": "m1-main-pair-separation",
+      "context": "ter bound and eligibility. Keep the coin at an endpoint with no descending path and suppress the coin of the other endpoint. This has probability $1/4$. Lemma~\\ref{main:ray} raises the first comparison value by more than $2E_A$ and leaves the second unchanged, so their new field difference ha"
     },
     {
       "from": "m1-sets-component-refinement",
-      "to": "m1-pack-barrier"
+      "to": "m1-pack-barrier",
+      "context": "Z<\\min\\{T_x,T_y\\}$ have the required three membership conditions and mass at least $\\kappa_Aj/4$. Choices at the threshold endpoints have measure zero. Lemma~\\ref{sets:component-refinement} separates the two active points into different components whenever the tip is inactive; each such label contributes $2$"
     },
     {
       "from": "m1-geo-sublevel",
-      "to": "m1-pack-bound"
+      "to": "m1-pack-bound",
+      "context": "through any seed is within its radius-$5$ neighborhood. Set $H=h(w_*)$ and form the profile $q_i=s(i,H)$, with $+\\infty$ outside the old component as in Lemma~\\ref{geo:sublevel}. Put \\begin{equation} t=s(w_*)-\\tfrac12\\,10^{-5},\\qquad S=\\{i:q_i\\le t\\}. \\label{pack:low-set} \\end{equation} For ev"
     },
     {
       "from": "m1-geo-gap",
-      "to": "m1-pack-bound"
+      "to": "m1-pack-bound",
+      "context": "mn $i$ at point $v$, then \\[ q_i\\ge s(v)-a_1\\ge s(w_*)-8R-a_1>t. \\] All comparisons take place in $I$, as verified above. The noncrossing gap property, Lemma~\\ref{geo:gap}, now places all these path words and their endpoint representatives in one linear circular gap of $S$. Fix a represent"
     },
     {
       "from": "m1-geo-skipping",
-      "to": "m1-pack-bound"
+      "to": "m1-pack-bound",
+      "context": "e of these two path words either visits its representative column or makes a switch strictly over its index. This is the elementary skipping property of Lemma~\\ref{geo:skipping}, applied between the center and the extreme index on that side. If the path visits the column of $w$, a vertical inter"
     },
     {
       "from": "m1-geo-chord-separation",
-      "to": "m1-pack-bound"
+      "to": "m1-pack-bound",
+      "context": "a,b)$, its descending path, whose terminal column belongs to $S$, would have to visit column $a$ or $b$. This follows from noncrossing, or directly from Lemma~\\ref{geo:chord-separation}. Join that visit vertically to $e$, then follow the appropriate extreme path back to $z$ and a shortest center-to-$w$"
     },
     {
       "from": "m1-main-ray",
-      "to": "m1-pack-bound"
+      "to": "m1-pack-bound",
+      "context": "$w$ must likewise hit column $a$ or $b$, since it begins in $(a,b)$ and ends in $S$. Let $v$ be its first such hit and let $p$ be the arclength to $v$. Lemma~\\ref{main:ray} and the vertical comparison with $e$ give \\[ s(v)\\le s(w)-p+\\epsilon, \\qquad s(v)\\ge s(e)-a_1\\ge s(w)-j-a_1. \\] It f"
     },
     {
       "from": "m1-geo-padding",
-      "to": "m1-pack-bound"
+      "to": "m1-pack-bound",
+      "context": "nct width-$g$ cells: their bands, band component, and two old identifiers have already been shown to coincide. Their seed points are radially padded, so Lemma~\\ref{geo:padding} gives pairwise $d_{J_1}$-separation at least $b_0=0.01g$. For each chosen seed, take one of the path points just const"
     },
     {
       "from": "m1-geo-chord-separation",
-      "to": "m1-ord-support"
+      "to": "m1-ord-support",
+      "context": ",q]_a). \\tag{\\ref{ord:support}.2}\\label{ord:collision} \\] Indeed, a strict-sublevel path from any column $z$ with $f_z(H)<c$ to $a$ avoids $p,q$, whereas Lemma~\\ref{geo:chord-separation} forbids such a path when $z$ is strictly inside $[p,q]_a$. If one endpoint is $a$, both endpoint values equal the globa"
     },
     {
       "from": "m1-geo-skipping",
-      "to": "m1-ord-overlap"
+      "to": "m1-ord-overlap",
+      "context": "trictly after $i$. If $\\Gamma_y$ visits column $i$, connect the two visits on that column vertically at cost at most $\\eta$, giving the claim. Otherwise Lemma~\\ref{geo:skipping} supplies a switch on $\\Gamma_y$ with endpoint columns $p<i<q$. If its height is $H_0\\in J$, then \\[ |q_p-q_q|\\le8\\eta,"
     },
     {
       "from": "m1-geo-chord-separation",
-      "to": "m1-ord-overlap"
+      "to": "m1-ord-overlap",
+      "context": "hus the middle point on column $i$ is strictly inside the interval bounded by the link $pq$, whereas the endpoints of $\\Gamma_x$ are strictly outside it. Lemma~\\ref{geo:chord-separation} implies that $\\Gamma_x$ visits $p$ or $q$. Connect this visit vertically to height $H_0$ and, if needed, use the zero-c"
     },
     {
       "from": "m1-geo-chord-separation",
-      "to": "m1-ord-two-side"
+      "to": "m1-ord-two-side",
+      "context": "lue greater than $c$ on its opposite side. The projected concatenation $(\\gamma_z^-)^{-1}\\gamma_z^+$ must therefore visit an endpoint of the crosslink by Lemma~\\ref{geo:chord-separation}. Each such visit is reachable from $z$ in length at most $2R$, since it lies on one of the two original paths. Move ver"
     },
     {
       "from": "m1-ord-overlap",
-      "to": "m1-ord-two-side"
+      "to": "m1-ord-two-side",
+      "context": "ll value interval, and lies on one open arc. Every point on it is reachable from $z$ in length at most $2R$. If $\\Gamma_x,\\Gamma_y$ were on the same arc, Lemma~\\ref{ord:overlap}, with common interval of length $0.36R>32\\eta$, would give \\[ d(x,y)\\le4R+2\\eta<1. \\] Consequently their two arcs are"
     },
     {
       "from": "m1-ord-transverse-lipschitz",
-      "to": "m1-ord-two-side"
+      "to": "m1-ord-two-side",
+      "context": "} gives the same contradiction. Thus the centers have opposite arcs and, by \\eqref{ord:positive-magnitude}, $t_s(x),t_s(y)$ have opposite signs. Finally Lemma~\\ref{ord:transverse-lipschitz} and the assumed equality of band and unrestricted distances give \\[ |t_s(x)|+|t_s(y)| =|t_s(x)-t_s(y)| \\le4d_I(x"
     },
     {
       "from": "m1-sets-vertical",
-      "to": "m1-sec-validity"
+      "to": "m1-sec-validity",
+      "context": "band, and its arc assignment remain fixed under the new identifier; subsequent increments change only its auxiliary field. A height branch is rebased by Lemma~\\ref{sets:vertical}. Unchanged points retain their chart, and uses of the same inherited atom in the same interpolation keep one identifier"
     },
     {
       "from": "m1-ord-two-side",
-      "to": "m1-sec-remaining"
+      "to": "m1-sec-remaining",
+      "context": "$B$ cutoff therefore gives \\[ |s(x)-s(y)|\\le10^{-4}R+2\\lambda K<0.001R. \\] The four excursion paths lie in the common band $J_2$, whose width satisfies Lemma~\\ref{ord:two-side}. Applying that lemma gives opposite signs of $t_s$ and $0.01R\\le |t_s(x)|,|t_s(y)|\\le8$. These bounds put both endpoin"
     },
     {
       "from": "m1-main-validity",
-      "to": "m1-pad-success"
+      "to": "m1-pad-success",
+      "context": "Lemma~\\ref{main:validity} bounds movement in the main clipping. Secondary movement is bounded by Lemma~\\ref{sec:validity}; increments are bounded"
     },
     {
       "from": "m1-sec-validity",
-      "to": "m1-pad-success"
+      "to": "m1-pad-success",
+      "context": "Lemma~\\ref{main:validity} bounds movement in the main clipping. Secondary movement is bounded by Lemma~\\ref{sec:validity}; increments are bounded by Lemma~\\ref{sec:increment-bound}. These estimates apply even at points outside the finite ver"
     },
     {
       "from": "m1-sec-increment-bound",
-      "to": "m1-pad-success"
+      "to": "m1-pad-success",
+      "context": "Lemma~\\ref{main:validity} bounds movement in the main clipping. Secondary movement is bounded by Lemma~\\ref{sec:validity}; increments are bounded by Lemma~\\ref{sec:increment-bound}. These estimates apply even at points outside the finite vertex list. There are no simultaneous main updates at a point"
     },
     {
       "from": "m1-main-pair-separation",
-      "to": "m1-pad-success"
+      "to": "m1-pad-success",
+      "context": "Otherwise the interior requirements hold with probability at least $1/4$. Conditional on the bands and cells, a missing descending path is handled by Corollary~\\ref{main:pair-separation}: keep that endpoint's cell and suppress the other, giving positive separation with probability at least $1/4$ condition"
     },
     {
       "from": "m1-sec-admitted-success",
-      "to": "m1-pad-success"
+      "to": "m1-pad-success",
+      "context": "icate on a label set of measure at least $\\kappa_Aj/4$, which the no-change mode preserves. For a surviving pair, admission at an endpoint is handled by Lemma~\\ref{sec:admitted-success}, including its no-change alternative. If neither orientation admits either endpoint, apply Lemma~\\ref{sec:remaining}. E"
     },
     {
       "from": "m1-sec-remaining",
-      "to": "m1-pad-success"
+      "to": "m1-pad-success",
+      "context": "at an endpoint is handled by Lemma~\\ref{sec:admitted-success}, including its no-change alternative. If neither orientation admits either endpoint, apply Lemma~\\ref{sec:remaining}. Each case uses one of four modes, at most one fair orientation, and at most $2M_{\\mathrm{pack}}+1$ prescribed group co"
     },
     {
       "from": "m1-int-comparisons",
-      "to": "m1-pad-persistence"
+      "to": "m1-pad-persistence",
+      "context": "ide the ball, or different formulas could win there. Strict margins at domain boundaries prevent the first kind of change. The comparison estimate of Corollary~\\ref{int:comparisons} controls the second. \\paragraph{Height bands.} The probability that an endpoint of either random height tiling lies wi"
     },
     {
       "from": "m1-pack-bound",
-      "to": "m1-pad-persistence"
+      "to": "m1-pad-persistence",
+      "context": "hese choices precede the fresh clipping noises. A group whose domain meets $B$ has an admitted seed at band distance at most $R+2\\rho<4R$ from $v$. Proposition~\\ref{pack:bound} therefore bounds the number of such groups by $M_{\\mathrm{pack}}$. If a group's domain meets but does not contain $B$,"
     },
     {
       "from": "m1-sec-validity",
-      "to": "m1-pad-persistence"
+      "to": "m1-pad-persistence",
+      "context": "m{pack}}$. If a group's domain meets but does not contain $B$, its boundary is reached within length $2\\rho$ from every point of its domain in the ball. Lemma~\\ref{sec:validity} puts the proposal below the old field at this spatial boundary by a fixed positive margin; height-boundary crossings ha"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-cor-almost-embeddable"
+      "to": "m1-cor-almost-embeddable",
+      "context": "$M=\\max\\{C_{\\mathrm{pl}},C_{\\widehat h+1}\\}$. For a connected target piece with nonnegative edge lengths, add $\\varepsilon>0$ to every edge and apply Theorem~\\ref{thm:main} or the companion theorem. As $\\varepsilon\\downarrow0$, the shortest-path matrices converge, so the corresponding $L_1$"
     },
     {
       "from": "m2-lem-separator",
-      "to": "m2-prop-uncertainty"
+      "to": "m2-prop-uncertainty",
+      "context": "additional coordinates gives exactly the original intersection transition. Every layer has at most $2^k$ states. All indexing vertex sets are nonempty by Lemma~\\ref{lem:separator}, so complementation acts on their assignment spaces without fixed points. Symmetry of the bag laws preserves the chain"
     },
     {
       "from": "m2-thm-markov-flow",
-      "to": "m2-prop-uncertainty"
+      "to": "m2-prop-uncertainty",
+      "context": "restriction defines a feasible flow: its arc masses satisfy conservation at intermediate states and are dominated by the original arc capacities. Apply Theorem~\\ref{thm:markov-flow} to the first flow and to the complemented second flow, normalizing all masses by $m$. After multiplying back by $m$ and"
     },
     {
       "from": "m2-lem-particle-bounds",
-      "to": "m2-prop-particle-realization"
+      "to": "m2-prop-particle-realization",
+      "context": "particle pairs and always choose the first eligible pair using the pre-launch memory, before sampling any fresh perturbation randomness for that launch. Lemma~\\ref{lem:particle-bounds} applies to each branch history, including the operations performed on copies at the parent bag. In particular, the sta"
     },
     {
       "from": "m2-lem-trace-update",
-      "to": "m2-prop-particle-realization"
+      "to": "m2-prop-particle-realization",
+      "context": ", let its recorded law be \\[ \\mu_t= \\left.\\sum_{i=1}^N(\\sigma_{F_i}^M)^{\\mathrm{sym}}\\right|_{B_t}. \\] Updates at $B_t$ leave this measure unchanged by Lemma~\\ref{lem:trace-update}, and releasing reservations makes no change to the functions. Thus it is immaterial whether this law is recorded befor"
     },
     {
       "from": "m2-prop-particle-realization",
-      "to": "m2-prop-cobag"
+      "to": "m2-prop-cobag",
+      "context": "vanishing at the other. Retaining its pair carries that separation to the bag containing the tested vertices. We use the particle construction of Proposition~\\ref{prop:particle-realization}, reserving one pair of particles for each active scale. Initially all $N$ particles vanish. At the root, launch a pair"
     },
     {
       "from": "m2-thm-padded",
-      "to": "m2-prop-cobag"
+      "to": "m2-prop-cobag",
+      "context": "bags where its scale is active. Here is the perturbation used for a new scale $s$. Put $r=s/16$, and sample a partition $\\mathcal P$ at scale $r$ from Theorem~\\ref{thm:padded}. For $C\\in\\mathcal P$ give an independent uniform coefficient $U_C\\in[0,1]$ to the bump \\[ \\psi_C(z)= \\begin{cases}"
     },
     {
       "from": "m2-lem-disjoint-bumps",
-      "to": "m2-prop-cobag"
+      "to": "m2-prop-cobag",
+      "context": "cases} \\qquad g(z)=\\sum_{C\\in\\mathcal P}U_C\\psi_C(z). \\] For a root launch with empty interface, omit the term $d(z,A)$. All these choices are fresh. Lemma~\\ref{lem:disjoint-bumps} shows that $g$ is $1$-Lipschitz. It vanishes on the launch bag when that bag is nonempty. Since the scale is active at"
     },
     {
       "from": "m2-lem-trace-update",
-      "to": "m2-prop-cobag"
+      "to": "m2-prop-cobag",
+      "context": "leq g\\leq r\\leq\\Delta/8$. At each launch use two free particles with a common weak sorting order on the interface, replace them by $f+g$ and $f-g$ as in Lemma~\\ref{lem:trace-update}, and reserve them. An empty interface imposes no sorting constraint. All updates have $\\operatorname{Lip}(g)\\leq3$ and"
     },
     {
       "from": "m2-thm-padded",
-      "to": "m2-lem-ordinary-noise"
+      "to": "m2-lem-ordinary-noise",
+      "context": "1+\\lambda}\\}, \\qquad r_j=2^{j+m}. \\] The bands partition $\\{h>0\\}$. Independently of $\\lambda$, sample a partition $\\mathcal P_j$ at scale $r_j$ from Theorem~\\ref{thm:padded}, for each $j\\in I$. Thus the partition scales are fixed powers of two, not random functions of $\\lambda$. Consequently,"
     },
     {
       "from": "m2-lem-disjoint-bumps",
-      "to": "m2-lem-ordinary-noise"
+      "to": "m2-lem-ordinary-noise",
+      "context": "e for every possible pair $(j,C)$ with $C\\subseteq V$. The nonempty sets $E$ are disjoint, and each bump is nonnegative and $1$-Lipschitz on all of $V$. Lemma~\\ref{lem:disjoint-bumps} therefore shows that $v$ is $1$-Lipschitz, including at points where $h=0$. For $z\\in W_j$, \\[ 0\\leq v(z)\\leq r_j/2"
     },
     {
       "from": "m2-lem-separator",
-      "to": "m2-lem-cache-defined"
+      "to": "m2-lem-cache-defined",
+      "context": "If $A_i$ precedes $A_j$, then $A_j$ lies between $A_i$ and $B$ on the ancestry path. Lemma~\\ref{lem:separator}, applied to paths from $p\\in B$ to $A_i$, gives $d(p,A_j)\\leq d(p,A_i)$. Thus a threshold protects at most one entry."
     },
     {
       "from": "m2-lem-launch-gap",
-      "to": "m2-lem-anchor-tests"
+      "to": "m2-lem-anchor-tests",
+      "context": "reserved pair supplies a common submeasure throughout its reservation, including its endpoints. Since $g_A$ vanishes on $A$ and $|g_A(z)|\\geq h_A(z)/2$, Lemma~\\ref{lem:launch-gap} gives uncertainty at least $d(z,A)$. Proposition~\\ref{prop:uncertainty} gives the first assertion after averaging. For"
     },
     {
       "from": "m2-prop-uncertainty",
-      "to": "m2-lem-anchor-tests"
+      "to": "m2-lem-anchor-tests",
+      "context": ", including its endpoints. Since $g_A$ vanishes on $A$ and $|g_A(z)|\\geq h_A(z)/2$, Lemma~\\ref{lem:launch-gap} gives uncertainty at least $d(z,A)$. Proposition~\\ref{prop:uncertainty} gives the first assertion after averaging. For the second assertion, use the single particle's symmetrized sweep. The"
     },
     {
       "from": "m2-lem-height-gap",
-      "to": "m2-lem-anchor-tests"
+      "to": "m2-lem-anchor-tests",
+      "context": "ertainty} gives the first assertion after averaging. For the second assertion, use the single particle's symmetrized sweep. The sweeping margin permits Lemma~\\ref{lem:height-gap} to give uncertainty at least $t$ on the stated event. Apply Proposition~\\ref{prop:uncertainty} and average again. Thes"
     },
     {
       "from": "m2-lem-finite-limiting-rules",
-      "to": "m2-lem-youngest-crossing"
+      "to": "m2-lem-youngest-crossing",
+      "context": "The permanent root is crossing. Given any finite collection of crossing anchor sequences, take their latest effective start. It is early by Lemma~\\ref{lem:finite-limiting-rules}. Every anchor in the collection has started, and each of their late terminal times follows this early time. Thus they"
     },
     {
       "from": "m2-lem-cache-defined",
-      "to": "m2-lem-youngest-crossing"
+      "to": "m2-lem-youngest-crossing",
+      "context": "ossing sequences existed, select that many; their pairwise distinctness also holds simultaneously eventually. This would contradict the bound $n_0+1$ of Lemma~\\ref{lem:cache-defined}. This bound concerns the set of equivalence classes of all crossing sequences, not just a list chosen in advance. The f"
     },
     {
       "from": "m2-lem-finite-limiting-rules",
-      "to": "m2-lem-old-distant-anchor"
+      "to": "m2-lem-old-distant-anchor",
+      "context": "S$. The separator inequality now gives $D_0\\geq d(x,S)=1$. Its reservation starts before $S$ and has a late terminal time, proving the last assertion by Lemma~\\ref{lem:finite-limiting-rules}. Suppose $D_0\\leq H$ on a set in $\\mathcal U$. Use the ordinary noise event at $x$ from Lemma~\\ref{lem:ordinary-noise"
     },
     {
       "from": "m2-lem-ordinary-noise",
-      "to": "m2-lem-old-distant-anchor"
+      "to": "m2-lem-old-distant-anchor",
+      "context": "ing the last assertion by Lemma~\\ref{lem:finite-limiting-rules}. Suppose $D_0\\leq H$ on a set in $\\mathcal U$. Use the ordinary noise event at $x$ from Lemma~\\ref{lem:ordinary-noise}, of probability at least $\\rho$. On this event, a fresh uniform coefficient has amplitude at least $c\\eta D_0\\geq c\\et"
     },
     {
       "from": "m2-lem-separator",
-      "to": "m2-lem-anchor-obstruction"
+      "to": "m2-lem-anchor-obstruction",
+      "context": "B$ is either \\emph{near}, with $d(p,s)<\\delta/4$, or \\emph{far}, with $d(p,s)>10D_0$. A shortest path from $A_*$ to $x$ meets $B$ at a vertex $v_0$, by Lemmas~\\ref{lem:separator} and \\ref{lem:old-distant-anchor}. As $v_0$ lies on such a shortest path, \\[ h_*(v_0)+d(v_0,x)=D_0. \\] Moreover, \\[ d"
     },
     {
       "from": "m2-lem-old-distant-anchor",
-      "to": "m2-lem-anchor-obstruction"
+      "to": "m2-lem-anchor-obstruction",
+      "context": ", with $d(p,s)<\\delta/4$, or \\emph{far}, with $d(p,s)>10D_0$. A shortest path from $A_*$ to $x$ meets $B$ at a vertex $v_0$, by Lemmas~\\ref{lem:separator} and \\ref{lem:old-distant-anchor}. As $v_0$ lies on such a shortest path, \\[ h_*(v_0)+d(v_0,x)=D_0. \\] Moreover, \\[ d(p,v_0)\\leq\\delta+d(x,v_0)\\leq1+D"
     },
     {
       "from": "m2-lem-anchor-obstruction",
-      "to": "m2-lem-protected-successor"
+      "to": "m2-lem-protected-successor",
+      "context": "begin{equation}\\label{eq:successor-absolute-bounds} d(p,A')\\leq\\delta+1\\leq2, \\qquad d(p,A_*)\\geq D_0-\\delta\\geq D_0-1. \\end{equation} Choose $q$ from Lemma~\\ref{lem:anchor-obstruction} and write $L=d(p,q)$. There are two alternatives. If $L\\leq300$, then \\[ JL\\geq\\frac{J\\delta}{4}>K\\delta\\geq d(p,A'),"
     },
     {
       "from": "m2-lem-old-distant-anchor",
-      "to": "m2-lem-younger-crossing"
+      "to": "m2-lem-younger-crossing",
+      "context": "Inspect the inclusive cache list at the insertion test at $S$. By Lemma~\\ref{lem:old-distant-anchor}, $A_*$ was launched strictly above $S$, so this is indeed a non-root insertion. Consider the younger entries whose lau"
     },
     {
       "from": "m2-lem-protected-successor",
-      "to": "m2-lem-younger-crossing"
+      "to": "m2-lem-younger-crossing",
+      "context": "ite list is empty, the proposal at $S$ is itself the immediate successor of $A_*$. It is retained automatically when there is space; at a full insertion Lemma~\\ref{lem:protected-successor} prohibits its eviction. Thus in this case too there is an immediate successor $A'$ launched at or after $S$, present j"
     },
     {
       "from": "m2-prop-combined-lower",
-      "to": "m2-lem-younger-crossing"
+      "to": "m2-lem-younger-crossing",
+      "context": "[Proof of Proposition~\\ref{prop:combined-lower}] If no such constant existed, choosing ratios smaller than $1/i$ would give \\eqref{eq:failed-lower-comparison}. The no"
     },
     {
       "from": "m2-lem-youngest-crossing",
-      "to": "m2-lem-younger-crossing"
+      "to": "m2-lem-younger-crossing",
+      "context": "ined-lower}] If no such constant existed, choosing ratios smaller than $1/i$ would give \\eqref{eq:failed-lower-comparison}. The normalization above and Lemmas~\\ref{lem:youngest-crossing}--\\ref{lem:younger-crossing} would then produce a crossing anchor younger than the youngest crossing anchor. This contra"
     },
     {
       "from": "m2-thm-main",
-      "to": "m2-lem-younger-crossing"
+      "to": "m2-lem-younger-crossing",
+      "context": "[Proof of Theorem~\\ref{thm:main}] The one-vertex graph is immediate. For every other admissible graph, Proposition~\\ref{prop:cobag} and the anchor const"
     },
     {
       "from": "m2-prop-cobag",
-      "to": "m2-lem-younger-crossing"
+      "to": "m2-lem-younger-crossing",
+      "context": "[Proof of Theorem~\\ref{thm:main}] The one-vertex graph is immediate. For every other admissible graph, Proposition~\\ref{prop:cobag} and the anchor construction give finite cut pseudometrics $D_{\\mathrm{bag}}$ and $D_{\\mathrm{anc}}$ satisfying the unif"
     }
   ]
 }

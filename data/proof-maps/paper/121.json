@@ -218,71 +218,88 @@
   "edges": [
     {
       "from": "m1-lem-comparison-tree",
-      "to": "m1-lem-curvature-telescope"
+      "to": "m1-lem-curvature-telescope",
+      "context": "2\\sum h. \\] Adding the preceding bound on $\\sum G$ proves \\eqref{eq:curvature-structural}. It remains only to substitute the comparison-tree bounds. By Lemma~\\ref{lem:comparison-tree} and $w_0\\le2Fc$, \\begin{equation}\\label{eq:total-warmup-slack} \\sum h\\le512FJD/P+4FJD/T. \\end{equation} Together with~"
     },
     {
       "from": "m1-lem-curvature-telescope",
-      "to": "m1-cor-bad-node-cost"
+      "to": "m1-cor-bad-node-cost",
+      "context": "At a bad node, $c<2b<2H^{1/4}(K+G)$. Sum and apply Lemma~\\ref{lem:curvature-telescope}."
     },
     {
       "from": "m1-lem-comparison-tree",
-      "to": "m1-lem-comparison-band"
+      "to": "m1-lem-comparison-band",
+      "context": "^{200}\\le H^{1/100}$ bounds the middle expression by $\\sqrt{8\\ell}\\,\\ell^{-1500}+2\\ell^{-4000}$. The radius and shared-endpoint conditions were proved in Lemma~\\ref{lem:comparison-tree}. Thus~\\eqref{eq:band-coverage} proves $\\alpha^*\\in\\mathcal C_{b,r}$. The diameter bound for the band implies that any"
     },
     {
       "from": "m1-lem-group-accuracy",
-      "to": "m1-prop-node-regret"
+      "to": "m1-prop-node-regret",
+      "context": "action-regret} on the fixed prefix $1\\le t<t_\\times$. Let $E_t$ be the failure event for the group approximation associated with this representative. By Lemma~\\ref{lem:group-accuracy}, $\\Pr(E_t\\mid\\text{child tables})\\le H^{-4}$, and on its complement Equation~\\ref{eq:group-accuracy} holds for every ac"
     },
     {
       "from": "m1-thm-refinement",
-      "to": "m1-prop-node-regret"
+      "to": "m1-prop-node-regret",
+      "context": "[Proof of Theorem~\\ref{thm:refinement}, accuracy part] Fix a starting state with true cost $D>0$ and its comparison tree from Section~\\ref{sec:comparison}. Fo"
     },
     {
       "from": "m1-lem-comparison-tree",
-      "to": "m1-prop-node-regret"
+      "to": "m1-prop-node-regret",
+      "context": "hrm{root})-D)_+ \\le C_{\\mathrm{term}}-D+L\\sum_{\\mathrm{nonterminal}}e +\\frac1S\\sum_{\\mathrm{nonterminal}}\\sum_{t=1}^S\\mathcal R_t. \\end{equation} Lemma~\\ref{lem:comparison-tree} bounds the first two terms by $(8MJ/P+4LJ/P)D$. We bound the last sum using the three classes of comparison nodes. On"
     },
     {
       "from": "m1-lem-generic-regret",
-      "to": "m1-prop-node-regret"
+      "to": "m1-prop-node-regret",
+      "context": "em:comparison-tree} bounds the first two terms by $(8MJ/P+4LJ/P)D$. We bound the last sum using the three classes of comparison nodes. On bad nodes use Lemma~\\ref{lem:generic-regret} and $W\\le4Fc$. Corollary~\\ref{cor:bad-node-cost} bounds their total contribution by \\[ 40000F^2 H^{1/4}(1+J/P+J/T)D. \\"
     },
     {
       "from": "m1-cor-bad-node-cost",
-      "to": "m1-prop-node-regret"
+      "to": "m1-prop-node-regret",
+      "context": "$(8MJ/P+4LJ/P)D$. We bound the last sum using the three classes of comparison nodes. On bad nodes use Lemma~\\ref{lem:generic-regret} and $W\\le4Fc$. Corollary~\\ref{cor:bad-node-cost} bounds their total contribution by \\[ 40000F^2 H^{1/4}(1+J/P+J/T)D. \\] On nodes that are not bad but satisfy $|\\wideha"
     },
     {
       "from": "m1-lem-comparison-band",
-      "to": "m1-prop-node-regret"
+      "to": "m1-prop-node-regret",
+      "context": "+J/P+J/T)D. \\] On nodes that are not bad but satisfy $|\\widehat v|>1-\\tau$, the same lemma gives $(H^{-1/4}+4\\tau F)c$. Every other nonterminal satisfies Lemma~\\ref{lem:comparison-band}, so Proposition~\\ref{prop:node-regret} applies. Its dimension and mass bounds are \\[ \\ln d_{\\mathcal C}\\le4(p_*+21)\\el"
     },
     {
       "from": "m1-lem-finite-optimizer",
-      "to": "m1-cor-online-local-cost"
+      "to": "m1-cor-online-local-cost",
+      "context": "e b/M$ and $b\\ge1$. The guard $h_\\Sigma\\le64Fb$ bounds this denominator's bit length by $O(H)$, without multiplying denominators across the action list. Lemma~\\ref{lem:finite-optimizer} gives a polynomial number of bit operations in these quantities and in the bit length of each input rational. The size"
     },
     {
       "from": "m1-lem-finite-optimizer",
-      "to": "m1-lem-unconditional-sizes"
+      "to": "m1-lem-unconditional-sizes",
+      "context": "s their magnitudes need not have the good-seed normalization, but this does not increase their bit length beyond that bound. The first step $\\xi_0=1$ in Lemma~\\ref{lem:finite-optimizer} makes its gap estimate independent of the initial linear objective magnitude."
     },
     {
       "from": "m1-lem-unconditional-sizes",
-      "to": "m1-lem-local-work"
+      "to": "m1-lem-local-work",
+      "context": "and by polynomial factors. Direct enumeration, including all guard tests, therefore has local arithmetic count \\[ 2^{O(M(p_*+1)\\ell)}H^{O(p_*+1)}. \\] Lemmas~\\ref{lem:unconditional-sizes} and \\ref{lem:finite-optimizer} give polynomial bit costs in the stated parameters for each arithmetic operation and for"
     },
     {
       "from": "m1-lem-finite-optimizer",
-      "to": "m1-lem-local-work"
+      "to": "m1-lem-local-work",
+      "context": "t enumeration, including all guard tests, therefore has local arithmetic count \\[ 2^{O(M(p_*+1)\\ell)}H^{O(p_*+1)}. \\] Lemmas~\\ref{lem:unconditional-sizes} and \\ref{lem:finite-optimizer} give polynomial bit costs in the stated parameters for each arithmetic operation and for the numerical routine. Hence"
     },
     {
       "from": "m1-thm-seed",
-      "to": "m1-thm-work"
+      "to": "m1-thm-work",
+      "context": "Let $n_x=|x|$. At depth $j$, an interval has width at most $\\ceil{n_x/M^j}$. Theorem~\\ref{thm:seed} bounds the expected cost of a first initial-entry request there by \\[ \\left(1+\\ceil{n_x/M^j}\\right)2^{o(H)}. \\] The co"
     },
     {
       "from": "m1-lem-local-work",
-      "to": "m1-thm-work"
+      "to": "m1-thm-work",
+      "context": "tionary cost. The same conditional expectation argument applies to each exact mixture sampler, whose expected local cost is uniformly bounded. Combining Lemma~\\ref{lem:local-work} with \\eqref{eq:depth-evaluations}, all these costs are at most \\begin{align*} 2^{o(H)}\\sum_{j=0}^J M^j\\left(1+\\ceil{n"
     },
     {
       "from": "m1-lem-unconditional-sizes",
-      "to": "m1-thm-work"
+      "to": "m1-thm-work",
+      "context": "(p_*+1)}$ auxiliary representative, group and draw records, so their total satisfies the same bound. Their keys and scalar fields have the bit bounds of Lemma~\\ref{lem:unconditional-sizes}. Each local action list and numerical computation has at most $2^{o(H)}=N^{o(1)}$ scratch size by Lemma~\\ref{lem:local-"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-thm-work"
+      "to": "m1-thm-work",
+      "context": "se no efficiency claim uniform in a varying $\\varepsilon$. Together with the success probability established in Section~\\ref{sec:accuracy}, this proves Theorem~\\ref{thm:main}."
     }
   ]
 }

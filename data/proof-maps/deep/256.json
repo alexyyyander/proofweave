@@ -1,0 +1,241 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "256",
+  "title": "Nonsingular systems of equations over arbitrary groups",
+  "result": {
+    "id": "paper-result",
+    "label": "Nonsingular systems of equations over arbitrary groups",
+    "statement": "Proves that every finite system of equations over an arbitrary group whose exponent-sum matrix has full row rank over ℚ has a simultaneous solution in an overgroup, resolving Howie's conjecture. The coefficient group embeds in the presented quotient. A companion proves Kervaire's conjecture: adjoining one generator and one relation cannot trivialize a nontrivial group.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "simultaneous-fixed-spaces",
+      "label": "Simultaneous fixed spaces",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "spectral-phase",
+      "label": "Spectral phase",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "spectral-phase-2",
+      "label": "Spectral phase",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-planar-boundary-obstruction",
+      "label": "The planar boundary obstruction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "spectral-phase-and-its-trace",
+      "label": "Spectral phase and its trace",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-unitary-with-a-large-fixed-space",
+      "label": "A unitary with a large fixed space",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-planar-surface-cannot-have-one-nontrivial-boundary",
+      "label": "A planar surface cannot have one nontrivial boundary",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Nonsingular systems of equations over arbitrary groups",
+      "title": "Nonsingular systems of equations over arbitrary groups",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Nonsingular-systems-of-equations-over-arbitrary-groups-October-5-2026/nonsingular-systems-over-arbitrary-groups.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Nonsingular systems of equations over arbitrary groups; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "Nonsingular systems",
+          "fullLabel": "Nonsingular systems",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "[Nonsingular systems] Let G be any group, let 1 m n be integers, and let w_1,,w_m G*F_n . If their exponent-sum matrix has row rank m over Q , then the canonical homomorphism \\[ G (G*F_n)/\\!…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-fixed-space",
+          "role": "simultaneous-fixed-spaces",
+          "label": "Simultaneous fixed spaces",
+          "fullLabel": "Simultaneous fixed spaces",
+          "kind": "theorem",
+          "source": "Simultaneous fixed spaces",
+          "detail": "[Simultaneous fixed spaces] Let r 0 and n 1 , and let k_1,,k_r be positive integers. For each j\\ 1,,n\\ , let B_j be a finite ordered list of pairs (i,s) with 1 i r and s\\ 1,-1\\ ; repetitions are…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-phase-subadditivity",
+          "role": "spectral-phase",
+          "label": "Spectral-phase subadditivity",
+          "fullLabel": "Spectral-phase subadditivity",
+          "kind": "lemma",
+          "source": "Spectral phase",
+          "detail": "[Spectral-phase subadditivity] For every group G , every positive integer d , and all unitaries U,V M_d( M) , \\[ (UV)(U)+(V). \\]",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-cycle-phase",
+          "role": "spectral-phase-2",
+          "label": "Weighted-cycle formula",
+          "fullLabel": "Weighted-cycle formula",
+          "kind": "lemma",
+          "source": "Spectral phase",
+          "detail": "[Weighted-cycle formula] Let a be a positive integer, let Q_1,,Q_a M be unitary, and define T M_a( M) by \\[ T(e_t v)=e_ t+1 Q_tv(1 t a), e_ a+1 =e_1. \\] If C=Q_aQ_ a-1 Q_1 is the product around the…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-planar",
+          "role": "the-planar-boundary-obstruction",
+          "label": "Planar boundary obstruction",
+          "fullLabel": "Planar boundary obstruction",
+          "kind": "proposition",
+          "source": "The planar boundary obstruction",
+          "detail": "[Planar boundary obstruction] Let w_1,,w_m G*F_n have exponent-sum matrix of row rank m over Q . Let be a connected oriented surface of genus zero obtained from a nonempty finite collection of signed…",
+          "dependsOn": [
+            "m1-thm-fixed-space",
+            "m1-lem-phase-subadditivity",
+            "m1-lem-cycle-phase"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "The Kervaire theorem for groups",
+      "title": "The Kervaire theorem for groups",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Kervaire-Theorem-for-Groups-September-24-2026/The-Kervaire-Theorem-for-Groups-September-24-2026.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from The Kervaire theorem for groups; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "result",
+          "label": "For every group A and every unimodular word w A* t , the canonical homomorphism…",
+          "fullLabel": "For every group A and every unimodular word w A* t , the canonical homomorphism…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "For every group A and every unimodular word w A* t , the canonical homomorphism \\[ A (A* t)/\\! w\\!_H \\] is injective.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-kervaire",
+          "role": "introduction",
+          "label": "The Kervaire conjecture",
+          "fullLabel": "The Kervaire conjecture",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "[The Kervaire conjecture] If A1 , then (A* t)/\\! w\\!_H1 for every w A* t .",
+          "dependsOn": [
+            "m2-thm-main"
+          ]
+        },
+        {
+          "id": "m2-lem-phase",
+          "role": "spectral-phase-and-its-trace",
+          "label": "Subadditivity of spectral phase",
+          "fullLabel": "Subadditivity of spectral phase",
+          "kind": "lemma",
+          "source": "Spectral phase and its trace",
+          "detail": "[Subadditivity of spectral phase] For all unitaries U,V M_b( M) , \\[ (UV)(U)+(V). \\]",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-fixed",
+          "role": "a-unitary-with-a-large-fixed-space",
+          "label": "Let s_1,,s_n\\ 1,-1\\ satisfy :=_i s_i\\ 1,-1\\ , let k1 be an integer, and put…",
+          "fullLabel": "Let s_1,,s_n\\ 1,-1\\ satisfy :=_i s_i\\ 1,-1\\ , let k1 be an integer, and put…",
+          "kind": "lemma",
+          "source": "A unitary with a large fixed space",
+          "detail": "Let s_1,,s_n\\ 1,-1\\ satisfy :=_i s_i\\ 1,-1\\ , let k1 be an integer, and put m=nk . For every P(m) there is an X(k) such that \\[ F(X)=diag(X^ s_1 ,,X^ s_n )P \\] fixes a complex subspace of dimension…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-planar",
+          "role": "a-planar-surface-cannot-have-one-nontrivial-boundary",
+          "label": "Planar boundary theorem",
+          "fullLabel": "Planar boundary theorem",
+          "kind": "theorem",
+          "source": "A planar surface cannot have one nontrivial boundary",
+          "detail": "[Planar boundary theorem] Let be a connected surface of genus zero constructed from a nonempty finite collection of word disks for and bands as above. If every boundary word except possibly one is…",
+          "dependsOn": [
+            "m2-thm-main"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    },
+    {
+      "from": "m2:m2-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "Nonsingular systems of equations over arbitrary groups",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Nonsingular-systems-of-equations-over-arbitrary-groups-October-5-2026/nonsingular-systems-over-arbitrary-groups.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "The Kervaire theorem for groups",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Kervaire-Theorem-for-Groups-September-24-2026/The-Kervaire-Theorem-for-Groups-September-24-2026.pdf",
+      "kind": "paper"
+    }
+  ]
+}

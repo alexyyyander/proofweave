@@ -239,79 +239,98 @@
   "edges": [
     {
       "from": "m1-thm-main",
-      "to": "m1-cor-forbidden"
+      "to": "m1-cor-forbidden",
+      "context": "Set $r=\\max\\{4,|V(F)|\\}$. Since $K_r$ contains $F$ as a subgraph, every $F$-free graph is $K_r$-free. Apply Theorem~\\ref{thm:main}."
     },
     {
       "from": "m1-lem-sparse-multipliers",
-      "to": "m1-lem-local-cross"
+      "to": "m1-lem-local-cross",
+      "context": "First suppose that $S,D$ are disjoint and nonempty. Apply Lemma~\\ref{lem:sparse-multipliers} to the original induced graph $H[S]$, with its $q$-weights and $\\epsilon=e^{-16h}$. Set $k'=e^{8h}$, and take the mult"
     },
     {
       "from": "m1-lem-local-cross",
-      "to": "m1-lem-local-cross-transfer"
+      "to": "m1-lem-local-cross-transfer",
+      "context": "ted union lies in a ball of radius $R_0$ in $H$ and meets each original part in at most $P_0$ vertices. The coefficient bounds also pass to the images. Lemma~\\ref{lem:local-cross}, which permits overlap of the two sets, therefore proves the asserted estimate. Finally, distinct neighbors of a vertex"
     },
     {
       "from": "m1-lem-triangle-splitting",
-      "to": "m1-lem-walk-entropy-bound"
+      "to": "m1-lem-walk-entropy-bound",
+      "context": "[Proof of Lemma~\\ref{lem:triangle-splitting}] We first turn the entropy bound into similarity of the label laws at a triangle corner. For two probability rows $p,a"
     },
     {
       "from": "m1-prop-triangle-bound",
-      "to": "m1-lem-walk-entropy-bound"
+      "to": "m1-lem-walk-entropy-bound",
+      "context": "[Proof of Proposition~\\ref{prop:triangle-bound}] Apply the deletions of Subsection~\\ref{subsec:triangle-preparation} to all levels, then Lemma~\\ref{lem:triangle-splitt"
     },
     {
       "from": "m1-lem-adjustment",
-      "to": "m1-lem-walk-entropy-bound"
+      "to": "m1-lem-walk-entropy-bound",
+      "context": "[Completion of the proof of Lemma~\\ref{lem:adjustment}] Proposition~\\ref{prop:triangle-bound} bounds the contribution from triangles all of whose vertices are good by $O_r(M_"
     },
     {
       "from": "m1-lem-adjustment",
-      "to": "m1-lem-round-expectation"
+      "to": "m1-lem-round-expectation",
+      "context": "e\\Lambda w_i$ to the non-edge part and $-d_i$ to the edge part. A drop at a neighbor $l$ contributes $-w_iw_l$. These are bounded by the drop vector in Lemma~\\ref{lem:adjustment}. Finally, $|\\log(w_i/w_*)|=O(\\log\\Delta)$ by \\eqref{eq:weight-bounds}; absorbing these logarithms gives the error in \\"
     },
     {
       "from": "m1-prop-one-round",
-      "to": "m1-lem-activation-collisions"
+      "to": "m1-lem-activation-collisions",
+      "context": "[Proof of Proposition~\\ref{prop:one-round}] Fix a trial avoiding all $E_v$. Lemma~\\ref{lem:round-expectation}, \\eqref{eq:vertex-concentration}, and \\eqref{eq:mat"
     },
     {
       "from": "m1-lem-round-expectation",
-      "to": "m1-lem-activation-collisions"
+      "to": "m1-lem-activation-collisions",
+      "context": "[Proof of Proposition~\\ref{prop:one-round}] Fix a trial avoiding all $E_v$. Lemma~\\ref{lem:round-expectation}, \\eqref{eq:vertex-concentration}, and \\eqref{eq:matching-concentration} summed over the edges incident with $v$ give \\b"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-activation-collisions"
+      "to": "m1-lem-activation-collisions",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Start from the empty partial coloring and the weights in \\eqref{eq:initial-state}, and set \\begin{equation}\\label{eq:n"
     },
     {
       "from": "m2-lem-sparse-multipliers",
-      "to": "m2-lem-cross-mass"
+      "to": "m2-lem-cross-mass",
+      "context": "The random multipliers keep the positive quadratic term within $S$ small, while their bounded range controls the vertex terms through a logarithm. Apply Lemma~\\ref{lem:sparse-multipliers} to $G[S]$ with $\\varepsilon=e^{-8x}$, and set $k=e^{4x}$. Define a nonnegative random vector by \\[ q_v= \\begin{cases"
     },
     {
       "from": "m2-lem-invariant-preservation",
-      "to": "m2-lem-triangle-peeling"
+      "to": "m2-lem-triangle-peeling",
+      "context": "v$ to obtain $s_u\\ge c_{uv}\\ge\\tau$; summing $w_vc_{uv}\\ge\\tau w_v$ over the remaining neighbors gives $h_u\\ge\\tau s_u$. The last assertion follows from Lemma~\\ref{lem:invariant-preservation}."
     },
     {
       "from": "m2-lem-reverse-admissibility",
-      "to": "m2-lem-weighted-splitting"
+      "to": "m2-lem-weighted-splitting",
+      "context": "other two corners has the same bound, by the permutation symmetry of the ordered-triangle law. Each of its six directed incidences has marginal $\\mu$, so Lemma~\\ref{lem:reverse-admissibility} bounds the average inadmissibility probability of each by $\\delta_x$. A union bound, with no independence assumption be"
     },
     {
       "from": "m2-lem-triangle-peeling",
-      "to": "m2-prop-neighborhood-reduction"
+      "to": "m2-prop-neighborhood-reduction",
+      "context": "Peel edges whose current common-neighbor weight is less than $1/x$. If $H$ is the remaining graph, Lemma~\\ref{lem:triangle-peeling} gives \\[ T_H(w)\\ge T_G(w)-M_G(w)/x. \\] Edge deletion does not increase any weighted neighborhood, and it preserves the"
     },
     {
       "from": "m2-lem-weighted-splitting",
-      "to": "m2-prop-neighborhood-reduction"
+      "to": "m2-prop-neighborhood-reduction",
+      "context": "he cross-mass condition. If $H$ has no edges, take $G'$ to be empty. Then $T_G(w)\\le M_G(w)/x$, which implies \\eqref{eq:step-triangles}. Otherwise, apply Lemma~\\ref{lem:weighted-splitting} to $H$. Since $x\\mapsto\\log x/\\sqrt x$ is decreasing for $x\\ge e^2$, \\eqref{eq:iteration-threshold} ensures $0\\le1-a_C\\"
     },
     {
       "from": "m2-lem-invariant-preservation",
-      "to": "m2-prop-neighborhood-reduction"
+      "to": "m2-prop-neighborhood-reduction",
+      "context": "_G(w)}x. \\end{align*} The projection through $H$ is still injective on directed edges. The edge-mass bound and inherited cross-mass condition follow from Lemma~\\ref{lem:invariant-preservation}."
     },
     {
       "from": "m2-thm-weighted-triangles",
-      "to": "m2-prop-neighborhood-reduction"
+      "to": "m2-prop-neighborhood-reduction",
+      "context": "[Proof of Theorem~\\ref{thm:weighted-triangles}] If $G$ has no edges, both sides vanish. Otherwise choose $x_0\\ge1$ such that every neighborhood has weight at most $e^"
     },
     {
       "from": "m2-lem-optimizer",
-      "to": "m2-prop-maximum-degree"
+      "to": "m2-prop-maximum-degree",
+      "context": "the first inequality by induction on $n$. For the empty graph both sides are zero. Suppose $n>0$, let $w$ maximize $F_G$, and write $W=\\sum_v w_v$. By Lemma~\\ref{lem:optimizer}, $0<w_v\\le1$. For a vertex $v$, put $A_v=\\{v\\}\\cup N(v)$ and let $G-A_v$ denote the induced graph on the remaining ver"
     },
     {
       "from": "m2-thm-main",
-      "to": "m2-prop-maximum-degree"
+      "to": "m2-prop-maximum-degree",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Let $G$ have $n$ vertices and average degree $d\\ge2$. Delete the vertices whose degrees in $G$ exceed $2d$, and let $"
     }
   ]
 }

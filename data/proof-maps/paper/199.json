@@ -445,195 +445,243 @@
   "edges": [
     {
       "from": "m1-conv-proposition",
-      "to": "m1-conv-comparison"
+      "to": "m1-conv-comparison",
+      "context": "[Proof of Proposition~\\ref{conv:proposition}] We first check finiteness and introduce the two column functors. Since $i$ is injective, the map $\\iota$ in \\eqref{con"
     },
     {
       "from": "m1-res-base",
-      "to": "m1-res-polynomial"
+      "to": "m1-res-polynomial",
+      "context": "(V,C),\\qquad \\lambda\\otimes v\\longmapsto \\bigl(\\varphi\\longmapsto\\lambda(\\varphi(v))\\bigr). \\] Apply this isomorphism termwise to the resolution $R$ of Lemma~\\ref{res:base}. Exactness of vector-space duality shows that $L\\otimes_C R$ has homology only in degree two, where it is $D(s^{\\mathrm"
     },
     {
       "from": "m1-coc-data",
-      "to": "m1-res-polynomial"
+      "to": "m1-res-polynomial",
+      "context": "very power $\\delta^m$ is nonzero and spans $E^{3m}$, and all other nonnegative degrees vanish. We have proved $\\Ext_T^*(s,s)=\\kk[\\delta]$ as an algebra. Lemma~\\ref{coc:data} shows that $p(s)$ is nonzero in degree three: the simple-valued cochain evaluates to $q^3\\ne0$ on the cycle $q^2[t|x|J]"
     },
     {
       "from": "m1-res-polynomial",
-      "to": "m1-res-tensor"
+      "to": "m1-res-tensor",
+      "context": "spaces gives the K\\\"unneth isomorphism. Tensoring the comparison maps identifies multiplication as well; the external maps commute in characteristic two. Lemma~\\ref{res:polynomial} therefore gives \\[ \\Ext_A^*(X,X)=\\kk[\\tau_1,\\tau_2]. \\] In particular $X$ has a nonzero positive self-extension and ca"
     },
     {
       "from": "m1-coc-data",
-      "to": "m1-lift-g"
+      "to": "m1-lift-g",
+      "context": "Let $z':Q_1\\to T$ be the cochain given by $z'([a])=z_H(a)$ from Lemma~\\ref{coc:data}, with extension \\eqref{lift:extension}. Its boundary on $[a|b]$ is \\[ az'(b)+z'(ab)+z'(a)h^{-1}(b). \\] By identity~\\eq"
     },
     {
       "from": "m1-cone-profile",
-      "to": "m1-branch-profile"
+      "to": "m1-branch-profile",
+      "context": "W^4=0$. Therefore \\eqref{branch:positive-projection} is an isomorphism in degree $1$ as well. For $a\\ge2$, both $W^{a+2}$ and $W^{a+3}$ vanish by Proposition~\\ref{cone:profile}, giving the isomorphism directly."
     },
     {
       "from": "m1-branch-twist",
-      "to": "m1-branch-comparison"
+      "to": "m1-branch-comparison",
+      "context": "ves $\\delta^0(c\\id_X,d\\id_X)=(c+d)v$. This is onto and has the diagonal line as its kernel. Let $a=3m>0$. Under \\eqref{branch:positive-projection} and Lemma~\\ref{branch:twist}, the map \\eqref{branch:delta} is \\begin{equation} \\label{branch:matrix} (g,j)\\longmapsto \\bigl(H_1^{-m}g+j,\\ H_2^{-m"
     },
     {
       "from": "m1-branch-profile",
-      "to": "m1-branch-comparison"
+      "to": "m1-branch-comparison",
+      "context": "er $m$, including those divisible by the characteristic. Hence \\eqref{branch:matrix} is invertible. If $a>0$ is not divisible by $3$, then $H^a=0$, and Lemma~\\ref{branch:profile} gives $V^a=0$. Thus $\\delta^a$ is an isomorphism in these degrees too."
     },
     {
       "from": "m1-prop-radical",
-      "to": "m1-prop-basechange"
+      "to": "m1-prop-basechange",
+      "context": "qref{eq:basechange}, since field extension is faithful. Thus the extended sequence does not split and $Z_K$ is nonprojective. The radical ideal in Proposition~\\ref{prop:radical} stays nilpotent and has quotient $K^8$ after scalar extension, so it is the radical of $\\Lambda_K$. Its nonzero fourth"
     },
     {
       "from": "m2-h-derived-models",
-      "to": "m2-h-stable-image"
+      "to": "m2-h-stable-image",
+      "context": "$(c_nP)[n]$, naturally on chain maps. A homotopy changes $c_n(f)$ by a map factoring through $P_{n-1}$, so the construction descends to homotopy classes. Lemma~\\ref{h:derived-models} then makes it functorial on derived maps. The identity $c_n(P[a])=c_{n-a}P$ gives shift compatibility. A projective res"
     },
     {
       "from": "m2-h-derived-models",
-      "to": "m2-h-perfect-factor"
+      "to": "m2-h-perfect-factor",
+      "context": "Choose bounded-below projective models $P,Q$ and represent the map by a global chain map $f:P\\to Q$, using Lemma~\\ref{h:derived-models}. For a sufficiently high $n$, both complexes are exact in degrees at least $n$ and $c_n(f)$ factors through a finite pr"
     },
     {
       "from": "m2-h-stable-image",
-      "to": "m2-h-evaluation"
+      "to": "m2-h-evaluation",
+      "context": "tion-shifts}, these identify the two sides of \\eqref{h:evaluation-image}. They commute with chain maps. For a filtered complex, the cross differential in Lemma~\\ref{h:stable-image} evaluates to its tensor with $X$. That lemma's explicit diagram therefore identifies the evaluated connecting map with"
     },
     {
       "from": "m2-h-comparison",
-      "to": "m2-tr-transfer"
+      "to": "m2-tr-transfer",
+      "context": "^A M\\bigr)\\\\ &\\simeq \\Ext_R^a(Z,Z)\\oplus\\Ext_R^a(Z,N)=0 \\qquad(a>0). \\end{align*} Here the first summand vanishes by \\eqref{tr:two-sided-vanishing} and Lemma~\\ref{h:comparison}, and the second by \\eqref{tr:negative-duality}. Lemma~\\ref{tr:trivial-symmetric} proves that $A$ is symmetric. The mo"
     },
     {
       "from": "m2-tr-trivial-symmetric",
-      "to": "m2-tr-transfer"
+      "to": "m2-tr-transfer",
+      "context": "d{align*} Here the first summand vanishes by \\eqref{tr:two-sided-vanishing} and Lemma~\\ref{h:comparison}, and the second by \\eqref{tr:negative-duality}. Lemma~\\ref{tr:trivial-symmetric} proves that $A$ is symmetric. The module $M$ is finite and unital. Finally, if $M$ were a direct summand of $A^r$, te"
     },
     {
       "from": "m2-e-polynomial",
-      "to": "m2-e-all-degrees"
+      "to": "m2-e-all-degrees",
+      "context": "phism. In particular the maps acting on the first and second tensor factors commute, since all interchange signs are \\(+1\\) in characteristic two. Proposition~\\ref{e:polynomial} therefore gives \\(\\Ext_E^*(X,X)=k[\\tau_1,\\tau_2]\\) as algebras. Its degree-three part is nonzero, so \\(X\\) is not proj"
     },
     {
       "from": "m2-h-duality",
-      "to": "m2-e-all-degrees"
+      "to": "m2-e-all-degrees",
+      "context": "jective summand. Thus \\(\\sEnd_E(X)=k\\). Positive Ext agrees with positive stable Hom over the symmetric algebra \\(E\\), proving \\eqref{e:two-polynomial}. Lemma~\\ref{h:duality} gives \\[ \\cH^{-a-1}\\cong D\\cH^a\\qquad(a\\ge0), \\] which proves the support and dimensions in \\eqref{e:profile}. To reta"
     },
     {
       "from": "m2-e-all-degrees",
-      "to": "m2-e-socle"
+      "to": "m2-e-socle",
+      "context": "maps \\(X\\to\\Omega X\\) factoring through a finite projective are zero, whereas \\(i_X\\ne0\\). Finally \\(\\cH^{-1}=D\\mathcal P_0\\) is one-dimensional by Proposition~\\ref{e:all-degrees}."
     },
     {
       "from": "m2-e-socle",
-      "to": "m2-e-twists"
+      "to": "m2-e-twists",
+      "context": "\\sigma_H(\\sigma_H^{-1}(a)b)=a\\sigma_H(b)\\), and induces the identity on \\(X\\). On the kernels it sends \\(\\zeta\\) to \\(H^2\\zeta\\). Thus the generator in Lemma~\\ref{e:socle} is sent to \\(H^2\\) times itself, proving that \\(U_H\\) acts by \\(H^2\\) on \\(\\cH^{-1}\\). Finally the exact twist functor"
     },
     {
       "from": "m2-a-dual-dimensions",
-      "to": "m2-b-bar-model"
+      "to": "m2-b-bar-model",
+      "context": ", with each term a finite free \\(E^e\\)-module. On the left, \\(B\\otimes B^{\\otimes i}\\otimes E\\) is a projective \\(B\\)-resolution of \\({}_BE\\). By Proposition~\\ref{a:dual-dimensions}, this module has a projective resolution supported in degrees \\(0,\\ldots,4\\). Comparison of projective resolutions give"
     },
     {
       "from": "m2-h-stable-image",
-      "to": "m2-b-bar-model"
+      "to": "m2-b-bar-model",
+      "context": "s on both sides; it follows inductively that every \\(N_r\\) is side-projective. Take \\(Y=N_4\\). Its stable class is \\((c_5K)[4]=\\cI[-1]\\), as required. Lemmas~\\ref{h:stable-image} and~\\ref{h:evaluation} give the stated stable images and their evaluation compatibilities. We denote the stable map in"
     },
     {
       "from": "m2-h-evaluation",
-      "to": "m2-b-bar-model"
+      "to": "m2-b-bar-model",
+      "context": "ws inductively that every \\(N_r\\) is side-projective. Take \\(Y=N_4\\). Its stable class is \\((c_5K)[4]=\\cI[-1]\\), as required. Lemmas~\\ref{h:stable-image} and~\\ref{h:evaluation} give the stated stable images and their evaluation compatibilities. We denote the stable map induced by \\(m\\) by \\(\\ov"
     },
     {
       "from": "m2-h-evaluation",
-      "to": "m2-b-profile"
+      "to": "m2-b-profile",
+      "context": "equation}\\label{b:evaluated-model} K\\otimes_E X\\simeq (T\\otimes_C R)\\otimes(T\\otimes_C R) =\\mathcal J\\otimes\\mathcal J . \\end{equation} In particular, Lemma~\\ref{h:evaluation} identifies its stable image with \\(\\cI X\\). We retain the actual attaching maps in the triangle \\[ s[2]\\longrightarro"
     },
     {
       "from": "m2-h-derived-models",
-      "to": "m2-b-profile"
+      "to": "m2-b-profile",
+      "context": "underlying graded complex \\(A_\\bullet\\oplus Q_\\bullet\\), differential \\[ \\begin{pmatrix}d_A&t\\\\0&d_Q\\end{pmatrix}, \\] and represents \\(\\mathcal J\\), by Lemma~\\ref{h:derived-models}. Indeed the cone construction for the rotated triangle gives this identification; comparisons of projective models lift"
     },
     {
       "from": "m2-h-stable-image",
-      "to": "m2-b-profile"
+      "to": "m2-b-profile",
+      "context": "(\\tau_1,\\tau_2),\\qquad \\binom{\\tau_2}{\\tau_1}. \\] These are the cross differentials \\(t\\) in the relevant factor and the identity in the other factor. Lemma~\\ref{h:stable-image} identifies them with the connecting maps after taking stable images. We first compute the kernels and cokernels of the"
     },
     {
       "from": "m2-e-all-degrees",
-      "to": "m2-b-profile"
+      "to": "m2-b-profile",
+      "context": "to the bottom level. Write \\(\\mathcal P_m=k[\\tau_1,\\tau_2]_m\\) for polynomials of total exponent \\(m\\), and put \\(\\mathcal P_m=0\\) for \\(m<0\\). By Proposition~\\ref{e:all-degrees}, \\[ \\cH^{3m}=\\mathcal P_m,\\qquad \\cH^{-3m-1}=D\\mathcal P_m\\quad(m\\geq0), \\] and all other \\(\\cH^a\\) vanish. Multipli"
     },
     {
       "from": "m2-a-dual-dimensions",
-      "to": "m2-b-ordinary-factorization"
+      "to": "m2-b-ordinary-factorization",
+      "context": "spaces. Each coinduced left-module term is a finite injective, hence belongs to \\(\\add(DB)\\). The last left-module cokernel is also injective: by Proposition~\\ref{a:dual-dimensions}, \\(\\idim({}_BB)\\leq4\\), and dimension shifting gives, for every finite left module \\(V\\), \\[ \\Ext_B^1(V,C^d(B)) \\cong"
     },
     {
       "from": "m2-b-ordinary-factorization",
-      "to": "m2-b-trace-obstruction"
+      "to": "m2-b-trace-obstruction",
+      "context": "The character identities make \\(\\eta\\) a bimodule map. By Lemma~\\ref{b:ordinary-factorization}, a perfect factorization would give an ordinary factorization through \\(\\add(DB\\otimes B)\\). We show that every such f"
     },
     {
       "from": "m2-h-evaluation",
-      "to": "m2-b-evaluated-lift"
+      "to": "m2-b-evaluated-lift",
+      "context": "Write \\(U=U_H\\) and \\(\\phi=\\pi\\overline m:\\cI\\to S\\). All shifts of \\(U\\) and \\(\\cI\\) have finite side-projective representatives by Lemma~\\ref{h:evaluation}. Consider the finite-dimensional linear map \\[ \\phi_*:\\sHom_{E^e}(U[1],\\cI) \\longrightarrow\\sHom_{E^e}(U[1],S). \\] Sy"
     },
     {
       "from": "m2-h-duality",
-      "to": "m2-b-evaluated-lift"
+      "to": "m2-b-evaluated-lift",
+      "context": "ref{h:evaluation}. Consider the finite-dimensional linear map \\[ \\phi_*:\\sHom_{E^e}(U[1],\\cI) \\longrightarrow\\sHom_{E^e}(U[1],S). \\] Symmetric duality, Lemma~\\ref{h:duality} applied over \\(E^e\\), identifies its transpose with \\begin{equation}\\label{b:transpose} \\sHom_{E^e}(S,U)\\longrightarro"
     },
     {
       "from": "m2-e-socle",
-      "to": "m2-b-evaluated-lift"
+      "to": "m2-b-evaluated-lift",
+      "context": "and its duality shift is \\(U[1][-1]=U\\); naturality in the second argument gives the displayed precomposition. Let \\(\\zeta=f^*\\otimes f^*\\in E\\), as in Lemma~\\ref{e:socle}. Both its left and right actions are the character \\(\\chi\\). The map \\[ b_0:S\\longrightarrow U,\\qquad b_0(1)=\\zeta \\"
     },
     {
       "from": "m2-h-perfect-factor",
-      "to": "m2-b-evaluated-lift"
+      "to": "m2-b-evaluated-lift",
+      "context": "_0\\phi\\ne0\\) stably. Suppose otherwise. The derived map \\(b_0\\pi m:K\\to U\\) then has zero stable image and factors through a perfect \\(E^e\\)-complex by Lemma~\\ref{h:perfect-factor}. To apply that lemma with projective models, one may take a bounded-below projective resolution \\(Q\\to U\\) with finite"
     },
     {
       "from": "m2-a-dual-dimensions",
-      "to": "m2-b-evaluated-lift"
+      "to": "m2-b-evaluated-lift",
+      "context": "eed an \\(E^e\\)-free module restricts to the outer bimodule \\(E\\otimes E\\). Tensoring the left and right \\(B\\)-projective resolutions of \\(E\\) from Proposition~\\ref{a:dual-dimensions} gives a \\(B^e\\)-projective resolution of length at most \\(8\\). Finite sums and summands have the same bound. A bounde"
     },
     {
       "from": "m2-b-trace-obstruction",
-      "to": "m2-b-evaluated-lift"
+      "to": "m2-b-evaluated-lift",
+      "context": "e \\(\\rho(\\zeta)=\\chi_B\\), and in higher degrees it is zero. Thus our supposed factorization would make \\(\\eta\\) factor through a perfect \\(B^e\\)-complex. Lemma~\\ref{b:trace-obstruction} excludes this possibility. We have proved \\(b_0\\phi\\ne0\\). It follows from \\eqref{b:transpose} that \\(\\phi_*\\) is nonz"
     },
     {
       "from": "m2-b-stable-adjunction",
-      "to": "m2-b-evaluated-lift"
+      "to": "m2-b-evaluated-lift",
+      "context": "ity. We have proved \\(b_0\\phi\\ne0\\). It follows from \\eqref{b:transpose} that \\(\\phi_*\\) is nonzero. Choose \\(\\beta:U[1]\\to\\cI\\) with \\(\\phi\\beta\\ne0\\). Lemma~\\ref{b:stable-adjunction}, applied only to the side-projective source \\(U[1]\\), identifies this nonzero class with the composite \\[ U[1]X\\xright"
     },
     {
       "from": "m2-b-bimodule",
-      "to": "m2-b-evaluated-lift"
+      "to": "m2-b-evaluated-lift",
+      "context": "[Proof of Proposition~\\ref{b:bimodule}] Take the fixed finite side-projective \\(Y\\) constructed in Lemma~\\ref{b:bar-model}. Lemma~\\ref{b:profile} proves its r"
     },
     {
       "from": "m2-b-bar-model",
-      "to": "m2-b-evaluated-lift"
+      "to": "m2-b-evaluated-lift",
+      "context": "[Proof of Proposition~\\ref{b:bimodule}] Take the fixed finite side-projective \\(Y\\) constructed in Lemma~\\ref{b:bar-model}. Lemma~\\ref{b:profile} proves its required Hom profile. For any \\(H\\in k^\\times\\), shift the map of Lemma~\\ref{b:evalua"
     },
     {
       "from": "m2-b-profile",
-      "to": "m2-b-evaluated-lift"
+      "to": "m2-b-evaluated-lift",
+      "context": "[Proof of Proposition~\\ref{b:bimodule}] Take the fixed finite side-projective \\(Y\\) constructed in Lemma~\\ref{b:bar-model}. Lemma~\\ref{b:profile} proves its required Hom profile. For any \\(H\\in k^\\times\\), shift the map of Lemma~\\ref{b:evaluated-lift} by \\([-1]\\) a"
     },
     {
       "from": "m2-e-twists",
-      "to": "m2-t-comparison-maps"
+      "to": "m2-t-comparison-maps",
+      "context": "ion} Indeed each projection sends $v_0$ to the identity of $X$, and evaluation of a bimodule map commutes with the specified shift comparisons. By Proposition~\\ref{e:twists}, at $a=3m>0$ the map in \\eqref{t:projected-delta} is the scalar matrix \\[ \\begin{pmatrix}H_1^{-m}&1\\\\H_2^{-m}&1\\end{pm"
     },
     {
       "from": "m2-e-all-degrees",
-      "to": "m2-t-comparison-maps"
+      "to": "m2-t-comparison-maps",
+      "context": "implies that each determinant is nonzero in $k$, for every such $m$. In all other degrees in the asserted ranges, the source and target are zero by Proposition~\\ref{e:all-degrees} and the already proved isomorphism $p^a$. Finally, $\\Delta^0(c,d)=(c+d)v_0$ is surjective. Since $\\cH^{-2}=0$, the ma"
     },
     {
       "from": "m2-e-all-degrees",
-      "to": "m2-t-finite-module"
+      "to": "m2-t-finite-module",
+      "context": "every finite projective $\\Lambda$-module to an $E$-projective. But $X$ is nonprojective, since its degree-three self-extension group is nonzero by Proposition~\\ref{e:all-degrees}. Thus $Z$ is nonprojective."
     },
     {
       "from": "m2-h-comparison",
-      "to": "m2-t-vanishing"
+      "to": "m2-t-vanishing",
+      "context": "tarrow0,\\\\[-2pt] \\mathcal C^\\bullet=\\Hom_\\Lambda^\\bullet(B_0[1],A_0). \\end{split} \\end{equation} The underlying degreewise Hom spaces are products as in Lemma~\\ref{h:comparison}; the block decomposition has only four blocks. In particular, it does not replace any product by a direct sum. The di"
     },
     {
       "from": "m2-t-comparison-maps",
-      "to": "m2-t-vanishing"
+      "to": "m2-t-vanishing",
+      "context": "grightarrow H^a\\End_\\Lambda^\\bullet(P_Z) \\longrightarrow\\ker\\Delta^a\\longrightarrow0. \\end{equation} For $a>1$ or $a\\leq-3$, both outer terms vanish by Lemma~\\ref{t:comparison-maps}. At $a=1$, they vanish by surjectivity of $\\Delta^0$ and injectivity of $\\Delta^1$. At $a=-2$, they vanish by the iso"
     },
     {
       "from": "m2-thm-main",
-      "to": "m2-t-vanishing"
+      "to": "m2-t-vanishing",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Fix the finite bimodule maps in \\eqref{t:fiber}, the complete resolution $P$, and the lifted map used in \\eqref{t:cone"
     },
     {
       "from": "m2-t-finite-module",
-      "to": "m2-t-vanishing"
+      "to": "m2-t-vanishing",
+      "context": "preceding propositions. The algebra $\\Lambda$ in \\eqref{t:triangular-algebra} and its module $Z$ in \\eqref{t:explicit-module} are finite-dimensional. By Lemma~\\ref{t:finite-module}, $Z$ is nonprojective and has the totally acyclic resolution $P_Z$. Proposition~\\ref{t:vanishing} supplies both hypothe"
     },
     {
       "from": "m2-tr-transfer",
-      "to": "m2-t-vanishing"
+      "to": "m2-t-vanishing",
+      "context": "nprojective and has the totally acyclic resolution $P_Z$. Proposition~\\ref{t:vanishing} supplies both hypotheses on its complete self-Hom groups in Proposition~\\ref{tr:transfer}. Apply that proposition with $R=\\Lambda$ to obtain \\[ A=\\Lambda\\ltimes D\\Lambda, \\qquad M=A\\otimes_\\Lambda Z. \\] It p"
     },
     {
       "from": "m2-cor-homological",
-      "to": "m2-prop-endomorphism"
+      "to": "m2-prop-endomorphism",
+      "context": "[Proof of Corollary~\\ref{cor:homological}] Fix a field extension $K/k$. The symmetric structure survives extension of scalars: since $A$ is finite-dimensional, t"
     },
     {
       "from": "m2-cor-finitistic",
-      "to": "m2-prop-endomorphism"
+      "to": "m2-prop-endomorphism",
+      "context": "[Proof of Corollary~\\ref{cor:finitistic}] Fix a field extension $K/k$ and abbreviate $\\Gamma_K$ to $\\Gamma$. Use the minimal injective resolution of the left re"
     },
     {
       "from": "m2-cor-homological",
-      "to": "m2-cor-tilting-complements"
+      "to": "m2-cor-tilting-complements",
+      "context": "Fix $K$ and abbreviate $\\Gamma_K$ to $\\Gamma$. By Corollary~\\ref{cor:homological}, $\\Gamma$ fails the generalized Nakayama conjecture. Buan--Solberg~\\cite[Theorems~3.1 and~3.4]{BuanSolberg1998} therefo"
     }
   ]
 }

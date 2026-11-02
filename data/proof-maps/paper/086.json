@@ -489,299 +489,373 @@
   "edges": [
     {
       "from": "m1-prop-normalized",
-      "to": "m1-lem-outer"
+      "to": "m1-lem-outer",
+      "context": "all stops has length at most $|J|/4$. On the intervening tree, division of $f_j$ by $16^{1/q}a_{j,J}$ makes all required local sizes at most one. Proposition~\\ref{prop:normalized} therefore bounds this tree by \\[ 16^{4/q}(A+cC_N)|J|\\prod_ja_{j,J}. \\] Repeat at the stopped roots. The sets $E_J=J\\s"
     },
     {
       "from": "m1-thm-local",
-      "to": "m1-lem-outer"
+      "to": "m1-lem-outer",
+      "context": "f_j. \\] Taking the supremum gives $C_N\\le C A+C cC_N$, where $C$ is bounded uniformly for $2<q<3$. Choose $c$ so that $Cc<1/2$ and absorb. This proves Theorem~\\ref{thm:local}. To recover the continuous kernel, take an odd compactly supported Gevrey function $\\phi$ with $\\phi^{(3)}(0)\\ne0$, an"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-outer"
+      "to": "m1-lem-outer",
+      "context": "tive $a$ and recovers a nonzero constant times the principal-value four-linear form. Reflection of $t$ changes only its sign and gives the operator in Theorem~\\ref{thm:main}. Duality against compactly supported bounded $f_0$ proves the inequality in Theorem~\\ref{thm:main}. Density of Schwar"
     },
     {
       "from": "m1-lem-private-columns",
-      "to": "m1-lem-compression"
+      "to": "m1-lem-compression",
+      "context": "their restrictions to $Q$. Let $g_K$ be the direct sum of these projections, extended by zero off $K$. At most $D$ labels occur on each such path. By Lemma~\\ref{lem:private-columns}, with \\[ G=4D^5, \\] we have \\[ \\|g_K\\|_{L^\\infty(K;\\mathcal H)}\\le Ga_K, \\qquad \\|g_K\\|_2^2=\\langle z,g_K\\rangle. \\]"
     },
     {
       "from": "m1-lem-projection-prefixes",
-      "to": "m1-lem-compression"
+      "to": "m1-lem-compression",
+      "context": "nd send that cell and its descendants to a new attempt, using the same $g$ and $a$. Denote the disjoint new roots from $R$ by $\\mathcal R(R)$. To apply Lemma~\\ref{lem:projection-prefixes}, complete each anchor generation to a stopping partition $\\pi_n$ of $R$, $0\\le n\\le T$. The active atoms are the ancho"
     },
     {
       "from": "m1-lem-chart-operations",
-      "to": "m1-lem-weyl"
+      "to": "m1-lem-weyl",
+      "context": "ontal matrix. Returns in each coordinate direction then bound the remaining effective quadratic matrix. Let \\(P\\) clear the denominators of \\(C\\), as in Lemma~\\ref{lem:chart-operations}. Put \\(F=\\vartheta Q\\). The support of \\(F\\), its supremum norm, its \\(L^2\\) norm, and \\(\\int(1+\\|z\\|)|F(z)|\\,dz\\) are"
     },
     {
       "from": "m1-lem-chart-expansion",
-      "to": "m1-lem-ap-separation"
+      "to": "m1-lem-ap-separation",
+      "context": "ber of integral choices and the dimensions are quasipolynomially bounded in the original complexity. The integration-by-parts calculation in the proof of Lemma~\\ref{lem:chart-expansion}, with derivative order larger than the Fourier dimension by at least \\(110\\), bounds shell coefficient sums by \\(DT^{-1"
     },
     {
       "from": "m1-lem-weyl",
-      "to": "m1-lem-single-scale-separation"
+      "to": "m1-lem-single-scale-separation",
+      "context": "ove the first assertion. The factors \\(\\psi_a,\\psi_b\\) are bounded multipliers and do not increase the two \\(L^2\\) norms. For the second assertion apply Lemma~\\ref{lem:weyl} to \\(Q(r\\,\\cdot)\\), with \\(V=r\\theta\\) and \\(\\Lambda=r^2\\lambda\\). Lemma~\\ref{lem:chart-expansion}, truncated to a suff"
     },
     {
       "from": "m1-lem-chart-expansion",
-      "to": "m1-lem-single-scale-separation"
+      "to": "m1-lem-single-scale-separation",
+      "context": "t increase the two \\(L^2\\) norms. For the second assertion apply Lemma~\\ref{lem:weyl} to \\(Q(r\\,\\cdot)\\), with \\(V=r\\theta\\) and \\(\\Lambda=r^2\\lambda\\). Lemma~\\ref{lem:chart-expansion}, truncated to a sufficiently small uniform error, then gives terms \\[ e(\\lambda_*t^2+\\gamma t),\\qquad \\gamma=\\beta+\\s"
     },
     {
       "from": "m1-lem-chart-operations",
-      "to": "m1-lem-single-scale-separation"
+      "to": "m1-lem-single-scale-separation",
+      "context": "bump in the corresponding amplitude, and support that amplitude away from every other lattice translate. On \\(I\\) only the chosen translate contributes. Lemma~\\ref{lem:chart-operations} handles the affine offset and the product with \\(\\psi_e\\). Outside \\(I\\) a bounded periodic extension is harmless. Th"
     },
     {
       "from": "m1-thm-lss",
-      "to": "m1-lem-continuous-inverse"
+      "to": "m1-lem-continuous-inverse",
+      "context": "therefore, \\[ \\|g_L\\|_{U^3[L]}\\ge c\\delta, \\] after shifting the integer labels by one if needed. No bound on this choice of \\(L\\) is required. Apply Theorem~\\ref{thm:lss}. Write its dimension as \\(d_0\\), its complexity as \\(M_0\\), its Lipschitz bound as \\(K_0\\), and its correlation as \\(\\"
     },
     {
       "from": "m1-lem-chart-operations",
-      "to": "m1-lem-continuous-inverse"
+      "to": "m1-lem-continuous-inverse",
+      "context": "gr). \\] Its outside phase is an ordinary quadratic in \\(n\\). The matrix \\(C_k\\) is rational with controlled height, while the horizontal orbit is affine. Lemma~\\ref{lem:chart-operations} removes its constant offset, without putting an unbounded parameter in the amplitude. Thus each summand is an atom \\eqr"
     },
     {
       "from": "m1-lem-continuous-inverse",
-      "to": "m1-lem-bounded-decomposition"
+      "to": "m1-lem-bounded-decomposition",
+      "context": "ions are extended by zero for their \\(\\mathcal U(I)\\) norms. Put \\(\\sigma=\\tau/2\\). Let \\(\\mathcal A\\) be the bounded atoms of the complexity supplied by Lemma~\\ref{lem:continuous-inverse} at threshold \\(\\sigma^2\\), restricted to \\(I\\), and let \\(\\kappa>0\\) be the corresponding correlation bound. Choose \\(M"
     },
     {
       "from": "m1-lem-cube-bounds",
-      "to": "m1-lem-local-von-neumann"
+      "to": "m1-lem-local-von-neumann",
+      "context": "emum norms and the \\(U^3\\) norm, so the same estimate applies to every Fourier term. The argument starts with bounded inputs; the mixed-cube estimate in Lemma~\\ref{lem:cube-bounds} and \\(L^2\\) approximation extend it to the stated class. Summing the kernel's absolutely convergent Fourier series prov"
     },
     {
       "from": "m1-lem-bounded-decomposition",
-      "to": "m1-lem-detection"
+      "to": "m1-lem-detection",
+      "context": "rm has magnitude at least \\(3\\delta/4\\). All clipped inputs have supremum norm at most \\(B\\), and retain their original \\(L^q\\) or \\(L^2\\) bounds. Apply Lemma~\\ref{lem:bounded-decomposition} to the clipped \\(h/B\\) with \\[ \\tau_1=\\frac{\\delta}{100C C_1B^3}. \\] On multiplying back by \\(B\\), write its structure"
     },
     {
       "from": "m1-lem-local-von-neumann",
-      "to": "m1-lem-detection"
+      "to": "m1-lem-detection",
+      "context": "On multiplying back by \\(B\\), write its structured part as \\(s_1=\\sum_\\nu a_\\nu\\varphi_\\nu\\), with \\[ \\sum_\\nu|a_\\nu|\\le A_1,\\qquad A_1=B D_{\\tau_1}. \\] Lemma~\\ref{lem:local-von-neumann} bounds the two error contributions by \\(C C_1B^3\\tau_1\\) each: the other two opposing inputs are bounded by \\(B\\), and"
     },
     {
       "from": "m1-lem-ap-separation",
-      "to": "m1-lem-detection"
+      "to": "m1-lem-detection",
+      "context": "are quasipolynomial in \\(C_1,\\delta^{-1}\\), with a \\(q\\)-dependent constant but an absolute log exponent. Notice also that \\(\\|v_B\\|_{2,I}\\le1\\). Apply Lemma~\\ref{lem:ap-separation} to this pair. Let \\(D_0\\) bound its absolute coefficient sum and its shell constants. For each term without its coeffi"
     },
     {
       "from": "m1-lem-single-scale-separation",
-      "to": "m1-lem-detection"
+      "to": "m1-lem-detection",
+      "context": "). The retained terms have quasipolynomial complexity. At least one such term has form magnitude at least \\(\\delta_1=\\delta_0/(2D_0)\\). The first part of Lemma~\\ref{lem:single-scale-separation} forces its Fourier supremum \\(A_r\\) to be at least \\(\\delta_1/(C C_1)\\). Use the second part of that lemma with a unif"
     },
     {
       "from": "m1-lem-single-scale-separation",
-      "to": "m1-lem-low-scale-sum"
+      "to": "m1-lem-low-scale-sum",
+      "context": "+\\log(2H)$. Throughout this proof, $D_1,D_2,\\ldots$ denote quantities with logarithms bounded by a polynomial in $\\mathcal K$. The single-scale part of Lemma~\\ref{lem:single-scale-separation} gives the bilinear bound $CA_r$ before any expansion. When $A_r>0$, Lemmas~\\ref{lem:weyl} and \\ref{lem:chart-expansion"
     },
     {
       "from": "m1-lem-weyl",
-      "to": "m1-lem-low-scale-sum"
+      "to": "m1-lem-low-scale-sum",
+      "context": "in $\\mathcal K$. The single-scale part of Lemma~\\ref{lem:single-scale-separation} gives the bilinear bound $CA_r$ before any expansion. When $A_r>0$, Lemmas~\\ref{lem:weyl} and \\ref{lem:chart-expansion} give an expansion into terms \\[ e(\\lambda_*t^2+\\gamma t),\\qquad |\\lambda_*|r^2\\le D_1. \\"
     },
     {
       "from": "m1-lem-chart-expansion",
-      "to": "m1-lem-low-scale-sum"
+      "to": "m1-lem-low-scale-sum",
+      "context": "The single-scale part of Lemma~\\ref{lem:single-scale-separation} gives the bilinear bound $CA_r$ before any expansion. When $A_r>0$, Lemmas~\\ref{lem:weyl} and \\ref{lem:chart-expansion} give an expansion into terms \\[ e(\\lambda_*t^2+\\gamma t),\\qquad |\\lambda_*|r^2\\le D_1. \\] The possible unscaled $\\lamb"
     },
     {
       "from": "m1-lem-compression",
-      "to": "m1-lem-low-scale-sum"
+      "to": "m1-lem-low-scale-sum",
+      "context": "ct center frequencies form a null set and cause no additional term. A fixed bounded multiplier preserves the estimate. For a projection sequence, apply Lemma~\\ref{lem:compression} to these rows. Its cost is polynomial in $\\log(2D_{\\mathrm h})$. For an energy sequence, use instead the per-interval"
     },
     {
       "from": "m1-lem-ap-separation",
-      "to": "m1-cor-predictor-list"
+      "to": "m1-cor-predictor-list",
+      "context": "Expand the low pair by Lemma~\\ref{lem:ap-separation}. Its dyadic shell coefficients have the stated rapidly decreasing absolute sums. Apply Lemma~\\ref{lem:low-scale-sum}"
     },
     {
       "from": "m1-lem-low-scale-sum",
-      "to": "m1-cor-predictor-list"
+      "to": "m1-cor-predictor-list",
+      "context": "Expand the low pair by Lemma~\\ref{lem:ap-separation}. Its dyadic shell coefficients have the stated rapidly decreasing absolute sums. Apply Lemma~\\ref{lem:low-scale-sum} to each shell and sum its Fourier-supremum bands. First discard sufficiently high separation shells; then, for each re"
     },
     {
       "from": "m1-lem-chart-expansion",
-      "to": "m1-cor-predictor-list"
+      "to": "m1-cor-predictor-list",
+      "context": "bands. The shell and band thresholds have logarithms polynomial in $1+B+\\log(2H_{\\rm low})$. The remaining scales admit the finite chart expansion from Lemma~\\ref{lem:chart-expansion}. Truncate its pooled tails in the absolute scale-sum norm exactly as in the proof of Lemma~\\ref{lem:low-scale-sum}. D"
     },
     {
       "from": "m1-lem-detection",
-      "to": "m1-lem-adaptive-approximation"
+      "to": "m1-lem-adaptive-approximation",
+      "context": "Start with no columns at a segment root $J$ and proceed in depth order. At a cell whose residual fails the desired inequality, Lemma~\\ref{lem:detection} supplies a bounded atom $\\varphi$ with physical residual correlation at least $\\rho$, where $\\log(1/\\rho)\\le k^{O(1)}$"
     },
     {
       "from": "m1-cor-predictor-list",
-      "to": "m1-prop-high-truncation"
+      "to": "m1-prop-high-truncation",
+      "context": "dency order. On a common older segment, the low columns, their coefficients, and their path counts have a bound $D_{\\rm old}=\\exp(k^{O(1)})$. Apply Corollary~\\ref{cor:predictor-list} to every available pair of low labels, using a precision log $B$ that is a sufficiently large fixed polynomial in $k$."
     },
     {
       "from": "m1-lem-predictor-replacement",
-      "to": "m1-prop-high-truncation"
+      "to": "m1-prop-high-truncation",
+      "context": "}$ and the original low coefficient/count bounds have been fixed. The choices make both the error of Corollary~\\ref{cor:predictor-list} and the error of Lemma~\\ref{lem:predictor-replacement} smaller than $e^{-2k}$ after all original-label sums. Only a polynomial in the logarithm of a subsequently enlarged hi"
     },
     {
       "from": "m1-lem-two-accuracy-expansion",
-      "to": "m1-prop-high-truncation"
+      "to": "m1-prop-high-truncation",
+      "context": ". It does not involve the next high precision. The two choices are therefore successive fixed-polynomial log choices. Apply the comparison argument of Lemma~\\ref{lem:two-accuracy-expansion} to these two new approximants and the older projections. The new fits are more accurate than every older projection, a"
     },
     {
       "from": "m1-lem-weyl",
-      "to": "m1-lem-active-triple"
+      "to": "m1-lem-active-triple",
+      "context": "g the fixed triple and its conjugate copy and the two smooth kernels at the shared anchor. The six atoms combine into the multivariable chart setting of Lemma~\\ref{lem:weyl}. Recenter at the fixed $y$. All unscaled horizontal, linear, and quadratic parameters are now fixed along the path, b"
     },
     {
       "from": "m1-lem-chart-expansion",
-      "to": "m1-lem-active-triple"
+      "to": "m1-lem-active-triple",
+      "context": "e path, before multiplication by $r$ or $r^2$. If $\\mathcal A_I>\\delta$, apply Lemma~\\ref{lem:weyl} to this integral at Fourier frequency zero, and then Lemma~\\ref{lem:chart-expansion} with an error small compared with $\\delta^2$. Every effective quadratic entry and every linear $t$-frequency in the tr"
     },
     {
       "from": "m1-lem-active-triple",
-      "to": "m1-prop-base-reduction"
+      "to": "m1-prop-base-reduction",
+      "context": "pose norm greater than $D_{\\rm base}^{-C'}$, with $C'$ a sufficiently large fixed constant. Along a path there are at most $D_{\\rm base}^3$ triples, and Lemma~\\ref{lem:active-triple} gives only a logarithmic-polynomial number of active scales for each one. Enlarging the absolute power proves \\eqref{e"
     },
     {
       "from": "m1-prop-high-truncation",
-      "to": "m1-prop-base-reduction"
+      "to": "m1-prop-base-reduction",
+      "context": "s. Local absolute $L^2$ estimates and bounded sizes thus give a bound independent of the number of depths. For later levels, the pair estimate in Proposition~\\ref{prop:high-truncation} and the bounded sizes of the other two arguments give $|H_I(Y)|\\le C\\eta$. Decrease $\\theta$ once more, and increase th"
     },
     {
       "from": "m1-lem-weyl",
-      "to": "m1-lem-tag-separation"
+      "to": "m1-lem-tag-separation",
+      "context": "inner product would therefore give a Fourier coefficient of their conjugate product above a fixed multiple of $\\tau_2$ after recentering and rescaling. Lemma~\\ref{lem:weyl} gives \\eqref{eq:src-2} for the difference data. The fixed factor $c_i$ in a same-slot product only changes the allowab"
     },
     {
       "from": "m1-lem-historical-masks",
-      "to": "m1-lem-usable-bessel"
+      "to": "m1-lem-usable-bessel",
+      "context": "in the finite calculation if needed, and call its endpoint $s_*$. If two supporting endpoint cells $I,J$ overlap, their intersection is the finer cell. Lemma~\\ref{lem:historical-masks} says that its depth is at most $s_*$. Therefore every nonzero term in \\[ a_{v,G}\\overline{a_{w,G'}} =\\sum_{I,J}a_{v"
     },
     {
       "from": "m1-lem-tag-separation",
-      "to": "m1-lem-usable-bessel"
+      "to": "m1-lem-usable-bessel",
+      "context": "ave no overlap with any term of the other label and contribute zero. If no separating depth occurs within the root, there are no overlaps at all. Apply Lemma~\\ref{lem:tag-separation} on every grid cell. The two private labels cannot coincide on an overlap, since equal tags have distance zero. Hence"
     },
     {
       "from": "m1-lem-same-tag",
-      "to": "m1-lem-catalog-closure"
+      "to": "m1-lem-catalog-closure",
+      "context": "ts and masks, not their numeric distance values or the number of inserted columns. The helper bases have the stipulated same count. Upon a failed test, Lemma~\\ref{lem:same-tag} supplies a bounded physical column with moment at least the threshold in \\eqref{eq:src-13} divided by $H_0$. Insert a"
     },
     {
       "from": "m1-lem-compression",
-      "to": "m1-lem-catalog-closure"
+      "to": "m1-lem-catalog-closure",
+      "context": "ertions. Every individual positive projection in that history is nested in the insertion index. Expand complements and use the binary-prefix argument of Lemma~\\ref{lem:compression}. The target increments are orthogonal rows; the right-hand history is evaluated at the old insertion index. The sum of"
     },
     {
       "from": "m1-lem-usable-bessel",
-      "to": "m1-lem-catalog-closure"
+      "to": "m1-lem-catalog-closure",
+      "context": "umber of named graph contexts. They do not depend on $H_{\\rm ed}$. We may therefore first fix these bounds, then choose $\\tau_2$ sufficiently small for Lemma~\\ref{lem:usable-bessel} and all pair-mismatch errors, and finally choose $H_{\\rm ed}$ by Lemma~\\ref{lem:tag-separation}. This order is not cir"
     },
     {
       "from": "m1-lem-tag-separation",
-      "to": "m1-lem-catalog-closure"
+      "to": "m1-lem-catalog-closure",
+      "context": "these bounds, then choose $\\tau_2$ sufficiently small for Lemma~\\ref{lem:usable-bessel} and all pair-mismatch errors, and finally choose $H_{\\rm ed}$ by Lemma~\\ref{lem:tag-separation}. This order is not circular."
     },
     {
       "from": "m1-lem-historical-masks",
-      "to": "m1-prop-localization"
+      "to": "m1-prop-localization",
+      "context": "cumulative mask and exclusion of old tags. Let $G$ be the current group of such a central vertex. The upper pad is smaller than the first ball pad, so Lemma~\\ref{lem:historical-masks} puts the source in every needed mask of that ball filter. The source cannot match two distinct groups: it would then v"
     },
     {
       "from": "m1-lem-tag-separation",
-      "to": "m1-prop-localization"
+      "to": "m1-prop-localization",
+      "context": "e difference from the identity is bounded by \\eqref{eq:src-13}, using the upper source. For any other group, expand the new primal ball source and apply Lemma~\\ref{lem:tag-separation}. Old-source terms on either side are still bounded using the untouched lower residual guard. This yields an identity,"
     },
     {
       "from": "m1-lem-tag-separation",
-      "to": "m1-lem-transfer"
+      "to": "m1-lem-transfer",
+      "context": "t with the entire helper band $A_a^p x_a$ as one $L^2$ spectator. For a far source, expand the helper primal: every pair of source tags is separated, so Lemma~\\ref{lem:tag-separation} applies. Neighbor closure is the triangle inequality for a cumulative mask and Lemma~\\ref{lem:historical-masks} at the"
     },
     {
       "from": "m1-lem-historical-masks",
-      "to": "m1-lem-transfer"
+      "to": "m1-lem-transfer",
+      "context": "every pair of source tags is separated, so Lemma~\\ref{lem:tag-separation} applies. Neighbor closure is the triangle inequality for a cumulative mask and Lemma~\\ref{lem:historical-masks} at the current actual use for a ball mask. The gap $q-p>2$ leaves at least this one-pad margin. The main version of \\"
     },
     {
       "from": "m1-lem-local-absolute",
-      "to": "m1-lem-short-block"
+      "to": "m1-lem-short-block",
+      "context": "lta/r_s)^2$ times a lattice sum and a fast progression integral. Here and below the lattice form bounds follow from the same pair-coordinate argument as Lemma~\\ref{lem:local-absolute}. For two different progression slots the integer pair map is injective onto its image, and the pair map on the connect"
     },
     {
       "from": "m1-lem-sides-mixed-maximal",
-      "to": "m1-lem-short-block"
+      "to": "m1-lem-short-block",
+      "context": "e last display by \\[ C_q C_N(q)\\prod_{j=0}^3 \\|M_qg_j\\|_{L_y^{p_j}L_{\\gamma,\\sigma}^4L_w^{h_j}}. \\] All three exponents in each slot exceed $q$. Apply Lemma~\\ref{lem:sides-mixed-maximal} in exactly this norm order. For a regular slot the fourth-moment estimate gives \\[ \\|g_j\\|_{L_y^{p_j}L_{\\gamma,\\sigma"
     },
     {
       "from": "m1-lem-usable-bessel",
-      "to": "m1-lem-sides-variation"
+      "to": "m1-lem-sides-variation",
+      "context": "ier input cell when its mask is nonempty. Splitting at the $r$-cells if necessary therefore places these adjoint ranges in the usable endpoint spaces of Lemma~\\ref{lem:usable-bessel}. That lemma makes the rows jointly Bessel across groups. They are local to their $r$-cells, so Lemma~\\ref{lem:compres"
     },
     {
       "from": "m1-lem-compression",
-      "to": "m1-lem-sides-variation"
+      "to": "m1-lem-sides-variation",
+      "context": "usable endpoint spaces of Lemma~\\ref{lem:usable-bessel}. That lemma makes the rows jointly Bessel across groups. They are local to their $r$-cells, so Lemma~\\ref{lem:compression} inserts the shared product $B'_r$ at a cost $G_0$. For the second term, the usable-range Bessel estimate at each commo"
     },
     {
       "from": "m1-lem-compression",
-      "to": "m1-lem-sides-stacks"
+      "to": "m1-lem-sides-stacks",
+      "context": "projections. At a fixed band index, the outer band difference is a difference of two such products. The binary-prefix product estimate in the proof of Lemma~\\ref{lem:compression}, now on a sequence of at most $K+1$ times, gives \\[ \\|T_bV_{G,b}\\|_2^2+ \\sum_{[r,t]\\ \\mathrm{at\\ a\\ fixed\\ length}}"
     },
     {
       "from": "m1-lem-sides-variation",
-      "to": "m1-lem-sides-stacks"
+      "to": "m1-lem-sides-stacks",
+      "context": "uation~\\eqref{eq:src-17}. Pay at most $P+1$ on the banded side. For a rolling input write $W_s=T_s(Z_{G,s}-Z_{G,u_b})$. The base term is controlled by Lemma~\\ref{lem:sides-variation} on the intervals $[u_b,b]$, whose overlap across blocks is bounded. Its increments split exactly as \\[ W_t-W_r =T_t("
     },
     {
       "from": "m1-lem-transfer",
-      "to": "m1-prop-side-estimate"
+      "to": "m1-prop-side-estimate",
+      "context": "The three-side power bound was proved above using the path square caps and $3p>2$. Lemma~\\ref{lem:transfer} gives the decomposition into transferred main terms, numerical errors, and coupled near bands. Restoring the full comp"
     },
     {
       "from": "m1-lem-sides-stacks",
-      "to": "m1-prop-side-estimate"
+      "to": "m1-prop-side-estimate",
+      "context": "wo arbitrary side inputs. The frozen-complement argument accounts for every freeze error and every discarded large complement as a third strong factor. Lemma~\\ref{lem:sides-stacks}, the common maximal cuts, and the sparse comparison then give Equation~\\eqref{eq:src-19} for the remaining terms. All"
     },
     {
       "from": "m1-lem-chart-expansion",
-      "to": "m1-lem-first-match-lift"
+      "to": "m1-lem-first-match-lift",
+      "context": "ndpoint version of Equation~\\eqref{eq:src-2}, with the harmless fixed factor \\(c_l\\). Recenter at \\(I_0\\), choose one rational splitting there, and apply Lemma~\\ref{lem:chart-expansion}. Its tail estimate gives the stated uniform error and finite coefficient and count bounds. A single splitting gives a"
     },
     {
       "from": "m1-lem-height-bins",
-      "to": "m1-lem-linear-exceptional"
+      "to": "m1-lem-linear-exceptional",
+      "context": "log_2\\mathcal T\\). For a nonzero evaluation set \\(x(a)=\\log_2(|a\\cdot\\Theta|r_0)\\). Exception at block start \\(b\\) means \\[ b-2K-\\tau<x(a)<b+K+\\tau. \\] Lemma~\\ref{lem:height-bins} places all these \\(x(a)\\) in at most \\(d_{\\max}\\) packets of width \\(W\\). A packet \\([\\alpha,\\alpha+W]\\) can cause an e"
     },
     {
       "from": "m1-lem-linear-exceptional",
-      "to": "m1-lem-height-stabilization"
+      "to": "m1-lem-height-stabilization",
+      "context": "factor. Finally, \\(m_h-6^\\Delta m'\\in U\\subseteq K_B\\), so \\[ a+(0,m'/L_{h-\\Delta})\\in K_{\\mathrm{rat}}. \\] Its height remains at most \\(\\mathcal H\\). Lemma~\\ref{lem:linear-exceptional} makes its evaluation at most \\(\\mathcal T^{-1}/r_{v_b}\\), which is below the PRE threshold. Equation~\\eqref{eq:src-21}"
     },
     {
       "from": "m1-lem-height-stabilization",
-      "to": "m1-lem-good-predicates"
+      "to": "m1-lem-good-predicates",
+      "context": "ptional height-good primary, since fewer than one tenth of the primaries are excluded. The witnessing modes of that primary belong to \\(\\mathcal F_h\\). Lemma~\\ref{lem:height-stabilization} joins them directly in PRE at \\(h-\\Delta\\), so the two predecessor components agree. Modes in the same minimal PRE com"
     },
     {
       "from": "m1-lem-entry-rank",
-      "to": "m1-lem-bad-density-chain"
+      "to": "m1-lem-bad-density-chain",
+      "context": "L\\) bad incidences. The second failure indicator is bounded by \\(\\beta^{-1}\\) times the sum of the exceptional and height-bad fractions. At fixed \\(i\\), Lemma~\\ref{lem:entry-rank}, applied as \\(h\\) increases, bounds the height-bad fractions by \\(AH_M\\). At fixed \\(h\\), apply that lemma as \\(i\\) inc"
     },
     {
       "from": "m1-lem-compression",
-      "to": "m1-lem-lifted-row-compression"
+      "to": "m1-lem-lifted-row-compression",
+      "context": ", since \\(\\mathscr R_{l,G}\\) is one fixed bounded operator. It depends only on \\(J_e\\), and therefore also only on the containing decision cell \\(u_e\\). Lemma~\\ref{lem:compression} applies to the outer individual main ball projection at that cell. It permits arbitrarily many rows with the same decis"
     },
     {
       "from": "m1-lem-usable-bessel",
-      "to": "m1-lem-lifted-row-compression"
+      "to": "m1-lem-lifted-row-compression",
+      "context": "}^*P_e. \\] Its range is thus in the main ball range on the entire cell \\(u_e\\). With an averaged projection, it lies in the sum of these usable ranges. Lemma~\\ref{lem:usable-bessel} gives \\[ \\left\\|\\sum_G A_G^*w_G\\right\\|^2 \\le C\\sum_G\\|A_G^*w_G\\|^2 \\le G_0\\sum_G\\|w_G\\|^2. \\] Duality p"
     },
     {
       "from": "m1-lem-good-predicates",
-      "to": "m1-prop-linear-side"
+      "to": "m1-prop-linear-side",
+      "context": "where \\(J\\) is a retained \\(v_b\\)-cell and \\(\\mathcal E\\) is a minimal PRE component of side modes. Such a component consists entirely of side modes by Lemma~\\ref{lem:good-predicates}. Split block indices into their ten congruence classes. Within one class, link an event to a later event on a descendan"
     },
     {
       "from": "m1-lem-bad-density-chain",
-      "to": "m1-prop-linear-side"
+      "to": "m1-prop-linear-side",
+      "context": "vent of a linked chain gives \\[ \\pi(\\mathcal E^{(i)}_h) \\subseteq\\pi(\\mathcal F^{(i)}_h) \\subseteq\\pi(\\mathcal E^{(i+1)}_h) \\] at every height. Apply Lemma~\\ref{lem:bad-density-chain} with \\[ M=D_{\\mathrm m},\\quad \\beta=\\tfrac1{10},\\quad A=C d_{\\max}R_*^{\\mathrm{ht}},\\quad B=C d_{\\max}, \\quad\\delta="
     },
     {
       "from": "m1-lem-height-stabilization",
-      "to": "m1-prop-linear-side"
+      "to": "m1-prop-linear-side",
+      "context": "{\\mathrm m},\\quad \\beta=\\tfrac1{10},\\quad A=C d_{\\max}R_*^{\\mathrm{ht}},\\quad B=C d_{\\max}, \\quad\\delta=\\delta_*. \\] The height multiplicity comes from Lemma~\\ref{lem:height-stabilization}; the exceptional-block multiplicity comes from Lemma~\\ref{lem:linear-exceptional}. Every event mode has more than \\(\\de"
     },
     {
       "from": "m1-lem-linear-exceptional",
-      "to": "m1-prop-linear-side"
+      "to": "m1-prop-linear-side",
+      "context": "_{\\max}, \\quad\\delta=\\delta_*. \\] The height multiplicity comes from Lemma~\\ref{lem:height-stabilization}; the exceptional-block multiplicity comes from Lemma~\\ref{lem:linear-exceptional}. Every event mode has more than \\(\\delta_*(J_*+1)\\) bad heights. Our choice of \\(J_*\\) meets the lemma's lower bound."
     },
     {
       "from": "m1-lem-separated-mode-rows",
-      "to": "m1-prop-linear-side"
+      "to": "m1-prop-linear-side",
+      "context": "ts on one cell are distinct components and have the same separation. Their label sets are pairwise disjoint on a path, with total count at most \\(D_*\\). Lemma~\\ref{lem:separated-mode-rows} applies to the orthogonal projection \\(P_{\\mathcal E,J}\\) onto the augmented columns of \\(\\mathcal E\\), restricted to \\"
     },
     {
       "from": "m1-lem-lifted-row-compression",
-      "to": "m1-prop-linear-side"
+      "to": "m1-prop-linear-side",
+      "context": "nd the bounded number of levels gives squared Bessel bound \\(G_0\\) for the event rows. The decision cell for a row is its containing \\(u_b\\)-cell. Apply Lemma~\\ref{lem:lifted-row-compression} to obtain \\begin{equation*} \\sum_{G,b,J,\\mathcal E} \\|P_{\\mathcal E,J}\\widetilde Z_{l,G,b}\\|^2 \\le G_0|R|."
     },
     {
       "from": "m1-lem-height-stabilization",
-      "to": "m1-lem-hereditary-labels"
+      "to": "m1-lem-hereditary-labels",
+      "context": "It contains a later nonexceptional height-good primary. Two witnessing modes of that primary lie in \\(\\mathcal F_{\\rm late}\\), one from each predecessor. Lemma~\\ref{lem:height-stabilization} joins them in the later PRE graph at \\(h-\\Delta\\). Earlier PRE edges persist, so \\[ \\mathcal E_{\\rm early}\\subseteq\\m"
     },
     {
       "from": "m1-lem-separated-mode-rows",
-      "to": "m1-lem-component-size"
+      "to": "m1-lem-component-size",
+      "context": "Modes in different minimal CURRENT components are nonadjacent in that graph. The oscillatory proof of Lemma~\\ref{lem:separated-mode-rows} applies on \\(I\\), because \\(|I|\\ge r_{t_b}\\). Its synthesis calculation on this single cell shows that for arbitrary s"
     },
     {
       "from": "m1-prop-linear-side",
-      "to": "m1-lem-component-size"
+      "to": "m1-lem-component-size",
+      "context": "ry mode outside \\(\\mathcal F\\) is CURRENT-nonadjacent to the modes inside. Pairing against a unit vector of its augmented span, as in the proof of Proposition~\\ref{prop:linear-side}, gives \\[ \\|P_{\\mathcal F,I}\\widetilde Z_{l,G,b} -T_{\\mathcal F}\\|_{2,I}\\le D_*^{-190}. \\] Combine"
     },
     {
       "from": "m1-lem-hereditary-labels",
-      "to": "m1-prop-top-count"
+      "to": "m1-prop-top-count",
+      "context": "ge\\sigma\\). Call them its first tops. First tops of the same representative do not overlap. For two overlapping first tops of different representatives, Lemma~\\ref{lem:hereditary-labels} gives CURRENT nonadjacency of all their component modes at the later block. The label sets are therefore disjoint on a"
     },
     {
       "from": "m1-lem-separated-mode-rows",
-      "to": "m1-prop-top-count"
+      "to": "m1-prop-top-count",
+      "context": "ENT nonadjacency of all their component modes at the later block. The label sets are therefore disjoint on a path, with total mode count at most \\(D_*\\). Lemma~\\ref{lem:separated-mode-rows} proves a uniform Bessel bound for the rows \\(P_{\\mathcal F,I}\\) at these tops. The row is supported on its actual cell"
     },
     {
       "from": "m1-lem-lifted-row-compression",
-      "to": "m1-prop-top-count"
+      "to": "m1-prop-top-count",
+      "context": "tops. The row is supported on its actual cell \\(I\\), which is contained in the \\(u_b\\)-cell of its frozen list. This remains a valid decision cell for Lemma~\\ref{lem:lifted-row-compression}, even if many rows share it. All these endpoint cells have the top itself as a downstream actual-use certificate. Tha"
     },
     {
       "from": "m1-prop-linear-side",
-      "to": "m1-prop-top-count"
+      "to": "m1-prop-top-count",
+      "context": "lls there are disjoint; at each cell the component sum is bounded by \\(\\|V_{l,G,b}\\|_{2,I}^2\\). Summing the at most \\(K\\) depths and then applying Proposition~\\ref{prop:linear-side} gives \\[ \\sum_{\\rm tops}|I|\\,\\|V_{\\mathcal F}\\|_{2,I}^2 \\le C K\\sum_{G,b}\\|V_{l,G,b}\\|^2 \\le K G_0|R|. \\"
     },
     {
       "from": "m1-lem-component-size",
-      "to": "m1-prop-top-count"
+      "to": "m1-prop-top-count",
+      "context": "ounded pointwise lift, and the side bounds give \\(\\|\\widetilde Z_{l,G,b}\\|_{2,I} +\\|V_{l,G,b}\\|_{2,I}\\le P^C\\). Projection is a contraction on \\(I\\), so Lemma~\\ref{lem:component-size} bounds \\(\\sigma_{\\mathcal F}\\) by \\(P^C\\) as well."
     },
     {
       "from": "m1-lem-finite-sparse-count",
-      "to": "m1-prop-thin-count"
+      "to": "m1-prop-thin-count",
+      "context": "of scales after summing. Summing over the fixed core labels proves the first inequality of \\eqref{eq:src-34} for a core/side pair as well. We now apply Lemma~\\ref{lem:finite-sparse-count} with $M=M'$, $L=L_0$, $d=\\dim\\theta_z$, and \\[ \\zeta=\\xi/36. \\] The fixed constants in \\eqref{eq:src-35} may be absorb"
     }
   ]
 }

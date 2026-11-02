@@ -183,51 +183,63 @@
   "edges": [
     {
       "from": "m1-lem-weights",
-      "to": "m1-lem-detector"
+      "to": "m1-lem-detector",
+      "context": "Consequently, replacing \\(S(p,q)\\) by \\(S(p,q)+r_p+c_q\\) leaves \\(M(A,B)\\) unchanged: the added \\(r_p\\) terms vanish after the weighted sum in \\(q\\), by Lemma~\\ref{lem:weights}, and the \\(c_q\\) terms vanish after the weighted sum in \\(p\\). Diagonal entries have no effect because \\(u_p-u_q=0\\) th"
     },
     {
       "from": "m1-lem-triangles",
-      "to": "m1-lem-detector"
+      "to": "m1-lem-detector",
+      "context": "term and a constant. Hence \\[ M(A,B)=\\sum_{(p,q)\\in L_s} K(p,q)\\frac{u_p-u_q}{G'(u_p)G'(u_q)} A(u_p,u_q)B(u_p,u_q). \\] Every displayed weight is nonzero. Lemma~\\ref{lem:triangles} identifies each of the two polynomial spaces with \\(\\R^{L_s}\\) by evaluation. In these two coordinate systems the pairi"
     },
     {
       "from": "m1-lem-weights",
-      "to": "m1-lem-tests"
+      "to": "m1-lem-tests",
+      "context": "i,p}w_iw_p t_i^a t_p^b[ip] \\] has boundary \\[ \\left(\\sum_iw_i t_i^a\\right)\\sum_pw_p t_p^b\\ee_p - \\left(\\sum_pw_p t_p^b\\right)\\sum_iw_i t_i^a\\ee_i=0 \\] by Lemma~\\ref{lem:weights}. For a monomial \\(H=x^au^by^cv^h\\), Equation~\\eqref{eq:test} is \\(J(z_{a,b},z_{c,h})=0\\), by Lemma~\\ref{lem:cycles}. Li"
     },
     {
       "from": "m1-lem-cycles",
-      "to": "m1-lem-tests"
+      "to": "m1-lem-tests",
+      "context": "b\\right)\\sum_iw_i t_i^a\\ee_i=0 \\] by Lemma~\\ref{lem:weights}. For a monomial \\(H=x^au^by^cv^h\\), Equation~\\eqref{eq:test} is \\(J(z_{a,b},z_{c,h})=0\\), by Lemma~\\ref{lem:cycles}. Linearity gives the result."
     },
     {
       "from": "m1-lem-tests",
-      "to": "m1-lem-injectivity"
+      "to": "m1-lem-injectivity",
+      "context": "e first force vanishing at a shared endpoint, then use the resulting polynomial factors to descend in degree. \\emph{Localizing at a shared endpoint.} In Lemma~\\ref{lem:tests} use \\begin{equation}\\label{eq:localtest} H=P(x,u,y,v)(u-v)(u-y)(v-x)U(x)V(y)B(u,v), \\end{equation} where \\(\\deg U,\\deg"
     },
     {
       "from": "m1-lem-detector",
-      "to": "m1-lem-injectivity"
+      "to": "m1-lem-injectivity",
+      "context": "), the inner sum is the order pairing on the \\(2s\\) nodes different from \\(t_i\\). Its first polynomial, \\(P(t_i,u,t_i,v)\\), belongs to \\(\\PP_{s-2,s-2}\\). Lemma~\\ref{lem:detector} gives \\[ P(t_i,u,t_i,v)=0 \\quad\\text{as a polynomial in }u,v,\\quad\\text{for every }i. \\] \\emph{Dividing the collision"
     },
     {
       "from": "m1-lem-tests",
-      "to": "m1-prop-odd"
+      "to": "m1-prop-odd",
+      "context": "e product \\[ \\Delta=(x-u)(y-v)(x-y)(x-v)(u-y)(u-v). \\] For \\(P,Q\\in\\SSS\\), the polynomial \\(PQ\\Delta\\) has separate degrees at most \\(2(s-2)+3=2s-1\\), so Lemma~\\ref{lem:tests} applies. Its only nonzero terms come from \\(\\TT\\): every common endpoint kills \\(\\Delta\\). Fix representative orientat"
     },
     {
       "from": "m1-lem-injectivity",
-      "to": "m1-prop-odd"
+      "to": "m1-prop-odd",
+      "context": "ds to a basis of \\(V\\). The resulting map \\(V\\to W^*\\) has kernel \\(W^\\perp\\); hence \\(\\dim W^\\perp=|\\TT|-\\dim W\\), and therefore \\(2\\dim W\\le|\\TT|\\). By Lemma~\\ref{lem:injectivity} and Equations~\\eqref{eq:support} and~\\eqref{eq:dim}, \\[ c(D)\\ge\\frac{|\\TT|}{2}\\ge\\dim W=\\binom{s}{2}^{\\!2}. \\] Cancella"
     },
     {
       "from": "m1-prop-odd",
-      "to": "m1-cor-lower"
+      "to": "m1-cor-lower",
+      "context": "Proposition~\\ref{prop:odd} proves the odd cases \\(n\\ge5\\). For \\(n=2s>4\\), delete each vertex in turn from a normalized minimum drawing. Every cro"
     },
     {
       "from": "m2-lem-subspace",
-      "to": "m2-cor-rank-sum"
+      "to": "m2-cor-rank-sum",
+      "context": "] The map $v\\mapsto(v,X_iv)$ identifies $\\ker(X_i-Y_j)$ with $U_i\\cap V_j$. Thus \\[ \\dim(U_i\\cap V_j)=d-\\rank(X_i-Y_j), \\qquad U_i\\cap V_i=\\{0\\}. \\] Lemma~\\ref{lem:subspace}, with $N=2d$, gives \\[ \\sum_{i,j=1}^{m}\\rank(X_i-Y_j) \\geq\\left(m^2-2\\left\\lfloor\\frac{m^2}{4}\\right\\rfloor\\right)d"
     },
     {
       "from": "m2-lem-cycle-pairing",
-      "to": "m2-lem-additive"
+      "to": "m2-lem-additive",
+      "context": "ctor $z$ with entries $+1$ on $ip,1p'$ and $-1$ on $ip',1p$, and the four-cycle vector $y$ with entries $+1$ on $kq,1q'$ and $-1$ on $kq',1q$. Expanding Lemma~\\ref{lem:cycle-pairing} gives \\[ 0=z^{\\mathsf T}Jy =H(p,q)-H(p,q')-H(p',q)+H(p',q'). \\] If any of those index differences is trivial, the s"
     },
     {
       "from": "m2-lem-triangular-basis",
-      "to": "m2-lem-detector"
+      "to": "m2-lem-detector",
+      "context": "gular-pattern} and $-1$ on the second. List the pairs in $Q_s$ in any order, and let $A_Q$ be the square matrix with columns $h_{pq}$ in that order. By Lemma~\\ref{lem:triangular-basis}, $A_Q$ is invertible. Equation \\eqref{eq:detector-definition} now gives \\begin{equation} \\label{eq:detector-factorizat"
     }
   ]
 }

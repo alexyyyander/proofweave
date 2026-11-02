@@ -1,0 +1,480 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "274",
+  "title": "Parity is not in QAC<sup>0</sup>",
+  "result": {
+    "id": "paper-result",
+    "label": "Parity is not in QAC<sup>0</sup>",
+    "statement": "Resolves Moore's parity conjecture in the measured-output model: constant-depth quantum circuits with arbitrary one-qubit gates, unbounded-arity Toffoli gates and polynomially many total qubits cannot compute parity with any fixed positive worst-case advantage. Ancillas start in zero, one output qubit is measured, and all other registers may be discarded. Xu–Li's reductions give the same bounded-error obstruction for strict majority.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "product-projections-and-localization",
+      "label": "Product projections and localization",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-polynomial-approximation-with-controlled-coefficients",
+      "label": "A polynomial approximation with controlled coefficients",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "depth-reduction-for-small-support-projections",
+      "label": "Depth reduction for small-support projections",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "depth-reduction-for-small-support-projections-2",
+      "label": "Depth reduction for small-support projections",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "depth-reduction-for-small-support-projections-3",
+      "label": "Depth reduction for small-support projections",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-finite-scale-induction",
+      "label": "The finite scale induction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "consequences-of-localization-and-parity",
+      "label": "Consequences of localization and parity",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "consequences-of-localization-and-parity-2",
+      "label": "Consequences of localization and parity",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "consequences-of-localization-and-parity-3",
+      "label": "Consequences of localization and parity",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "consequences-of-localization-and-parity-4",
+      "label": "Consequences of localization and parity",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "product-tests-and-regular-trajectories",
+      "label": "Product tests and regular trajectories",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "product-tests-and-regular-trajectories-2",
+      "label": "Product tests and regular trajectories",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-polynomial-filters",
+      "label": "Two polynomial filters",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-polynomial-filters-2",
+      "label": "Two polynomial filters",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "propagation-of-low-degree-perturbations",
+      "label": "Propagation of low-degree perturbations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "transporting-excitation-tails",
+      "label": "Transporting excitation tails",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "transporting-excitation-tails-2",
+      "label": "Transporting excitation tails",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "projection-insertion-and-pruning",
+      "label": "Projection insertion and pruning",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "projection-insertion-and-pruning-2",
+      "label": "Projection insertion and pruning",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "projection-insertion-and-pruning-3",
+      "label": "Projection insertion and pruning",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "projection-insertion-and-pruning-4",
+      "label": "Projection insertion and pruning",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "projection-insertion-and-pruning-5",
+      "label": "Projection insertion and pruning",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Product-projection localization and the QAC0 parity lower bound",
+      "title": "Product-projection localization and the QAC0 parity lower bound",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Product-projection-localization-and-the-QAC0-parity-lower-bound-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Product-projection localization and the QAC0 parity lower bound; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-parity",
+          "role": "result",
+          "label": "Parity lower bound",
+          "fullLabel": "Parity lower bound",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "[Parity lower bound] Fix a nonnegative integer \\(d\\), a real number \\(c1\\), and \\(0<1/2\\). For all sufficiently large \\(n\\), no circuit of depth at most \\(d\\) on \\(n\\) input qubits and at most…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-localization",
+          "role": "product-projections-and-localization",
+          "label": "Localization of conjugated product projections",
+          "fullLabel": "Localization of conjugated product projections",
+          "kind": "theorem",
+          "source": "Product projections and localization",
+          "detail": "[Localization of conjugated product projections] Fix a nonnegative integer \\(d\\) and real numbers \\(0 s<t\\). For all sufficiently large \\(N\\), every \\(U_d(N)\\) and every pair of counts \\(M,D\\) on \\(…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-polynomial",
+          "role": "a-polynomial-approximation-with-controlled-coefficients",
+          "label": "Fix real numbers 0<a<b and u>(a+b)/2 . For every sufficiently large integer N ,…",
+          "fullLabel": "Fix real numbers 0<a<b and u>(a+b)/2 . For every sufficiently large integer N ,…",
+          "kind": "lemma",
+          "source": "A polynomial approximation with controlled coefficients",
+          "detail": "Fix real numbers 0<a<b and u>(a+b)/2 . For every sufficiently large integer N , there is a real polynomial p such that p N^u, W_N(p) (N^u), p(0)=1, and |p(x)| (-N^a) for every integer 1 x N^b. The…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-base",
+          "role": "depth-reduction-for-small-support-projections",
+          "label": "Depth zero",
+          "fullLabel": "Depth zero",
+          "kind": "lemma",
+          "source": "Depth reduction for small-support projections",
+          "detail": "[Depth zero] For every fixed 0 s<t , the statement _0(s,t) holds.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-propagation",
+          "role": "depth-reduction-for-small-support-projections-2",
+          "label": "Propagation from low counts",
+          "fullLabel": "Propagation from low counts",
+          "kind": "lemma",
+          "source": "Depth reduction for small-support projections",
+          "detail": "[Propagation from low counts] Fix d1 and assume _ d-1 (s,t) for every fixed pair 0 s<t . For fixed ,0 and >\\ ,\\ , all sufficiently large N satisfy [M N^ ]B[M<N^ ] (-N^) uniformly for every count M…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-small-support",
+          "role": "depth-reduction-for-small-support-projections-3",
+          "label": "Small-support depth reduction",
+          "fullLabel": "Small-support depth reduction",
+          "kind": "lemma",
+          "source": "Depth reduction for small-support projections",
+          "detail": "[Small-support depth reduction] Fix d1 and assume _ d-1 (s,t) for every fixed pair 0 s<t . For fixed u,w0 and t>\\ u,w\\ , all sufficiently large N satisfy [M N^t]UAU^ [M=0] (-N^w) uniformly for every…",
+          "dependsOn": [
+            "m1-lem-propagation"
+          ]
+        },
+        {
+          "id": "m1-lem-backward",
+          "role": "the-finite-scale-induction",
+          "label": "One backward step",
+          "fullLabel": "One backward step",
+          "kind": "lemma",
+          "source": "The finite scale induction",
+          "detail": "[One backward step] Fix \\(d1\\), and assume \\(_ d-1 (s,t)\\) for every fixed \\(0 s<t\\). Let \\(s,t,b\\) be fixed real numbers with \\[ 0 s<t<b<2t-s. \\] If \\(_d(t,b)\\) holds, then \\(_d(s,t)\\) holds.",
+          "dependsOn": [
+            "m1-lem-polynomial",
+            "m1-lem-small-support",
+            "m1-thm-localization",
+            "m1-lem-base"
+          ]
+        },
+        {
+          "id": "m1-cor-state-preparation",
+          "role": "consequences-of-localization-and-parity",
+          "label": "State-preparation obstructions",
+          "fullLabel": "State-preparation obstructions",
+          "kind": "corollary",
+          "source": "Consequences of localization and parity",
+          "detail": "[State-preparation obstructions] Fix a nonnegative integer d , c1 , a>0 , and 0<<1 . For all sufficiently large n , every n -qubit reduced state prepared from zero inputs by an allowed depth-at-most-…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-quantum-lmn",
+          "role": "consequences-of-localization-and-parity-2",
+          "label": "Qualitative scalar-output Quantum-LMN",
+          "fullLabel": "Qualitative scalar-output Quantum-LMN",
+          "kind": "corollary",
+          "source": "Consequences of localization and parity",
+          "detail": "[Qualitative scalar-output Quantum-LMN] For every fixed nonnegative integer d , there is a positive function _d on the positive integers, depending only on d , such that _d(k)/k^A for every fixed A>0…",
+          "dependsOn": [
+            "m1-thm-parity",
+            "m1-thm-localization"
+          ]
+        },
+        {
+          "id": "m1-cor-symmetric-functions",
+          "role": "consequences-of-localization-and-parity-3",
+          "label": "Majority and symmetric functions",
+          "fullLabel": "Majority and symmetric functions",
+          "kind": "corollary",
+          "source": "Consequences of localization and parity",
+          "detail": "[Majority and symmetric functions] Let \\((f_n)\\) be a symmetric Boolean family satisfying either \\((f_n) n^\\) for some fixed \\(>0\\), or \\( _ 1/3 (f_n)=(n^ 1/2+ )\\) for some fixed \\(>0\\), for all…",
+          "dependsOn": [
+            "m1-thm-parity"
+          ]
+        },
+        {
+          "id": "m1-cor-majority-average",
+          "role": "consequences-of-localization-and-parity-4",
+          "label": "High-average-accuracy majority obstruction",
+          "fullLabel": "High-average-accuracy majority obstruction",
+          "kind": "corollary",
+          "source": "Consequences of localization and parity",
+          "detail": "[High-average-accuracy majority obstruction] For every fixed \\(>0\\), no nonuniform family \\((C_n)\\) in the circuit model of , with fixed depth and polynomially many total qubits, satisfies \\[ 2^ -n _…",
+          "dependsOn": [
+            "m1-cor-quantum-lmn"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Regular trajectories, pruning and quantum parity",
+      "title": "Regular trajectories, pruning and quantum parity",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Regular-trajectories-pruning-and-quantum-parity-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Regular trajectories, pruning and quantum parity; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-parity",
+          "role": "result",
+          "label": "Fix positive integers d,k,C and a real 0<1/2 . There is an integer…",
+          "fullLabel": "Fix positive integers d,k,C and a real 0<1/2 . There is an integer…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "Fix positive integers d,k,C and a real 0<1/2 . There is an integer n_0=n_0(d,k,C,) such that, for every n n_0 , every allowed circuit of depth at most d on at most C(n+1)^k total qubits has an input…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-uniformization",
+          "role": "product-tests-and-regular-trajectories",
+          "label": "Uniformity from arbitrary choices",
+          "fullLabel": "Uniformity from arbitrary choices",
+          "kind": "lemma",
+          "source": "Product tests and regular trajectories",
+          "detail": "[Uniformity from arbitrary choices] Fix a sequence of base data, and let D_ be the nonempty set of permitted auxiliary choices at index . Suppose that for every sequence D_ D_ and every fixed…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-degree-shift",
+          "role": "product-tests-and-regular-trajectories-2",
+          "label": "Degree controls excitation shifts",
+          "fullLabel": "Degree controls excitation shifts",
+          "kind": "lemma",
+          "source": "Product tests and regular trajectories",
+          "detail": "[Degree controls excitation shifts] Let be a nonnegative integer. If E and A is any test, then \\[ _ H_A=f \\,E\\,_ H_A=e =0 whenever |f-e|>. \\] In particular, for every real x , \\[ _ H_A>x+ \\,E\\,_ H_A…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-zero-filter",
+          "role": "two-polynomial-filters",
+          "label": "Integer zero filter",
+          "fullLabel": "Integer zero filter",
+          "kind": "lemma",
+          "source": "Two polynomial filters",
+          "detail": "[Integer zero filter] Fix 0<q<L<1 and r>(q+L)/2 . For all sufficiently large integers m there is a real polynomial Q such that \\[ Q m^r, _ 0 x m |Q(x)|(m^r), \\] and, for every integer j with 0 j m^L…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-tail-filter",
+          "role": "two-polynomial-filters-2",
+          "label": "Tail filter",
+          "fullLabel": "Tail filter",
+          "kind": "lemma",
+          "source": "Two polynomial filters",
+          "detail": "[Tail filter] Fix 0<v<h<u1 and s>0 . Let k be a degree exponent satisfying k>s+(u-h)/2 . For all sufficiently large integers m , there is a real polynomial T with \\[ T m^k, T(x)0(x R), _ 0 x m…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-propagation",
+          "role": "propagation-of-low-degree-perturbations",
+          "label": "Low-degree propagation",
+          "fullLabel": "Low-degree propagation",
+          "kind": "proposition",
+          "source": "Propagation of low-degree perturbations",
+          "detail": "[Low-degree propagation] Let V be a circuit with a bounded number of analytic layers, and suppose the trajectory from , with 1 , is regular for V . Here k,K denote degree exponents: fix 0<k<K<1 . For…",
+          "dependsOn": [
+            "m2-lem-zero-filter"
+          ]
+        },
+        {
+          "id": "m2-lem-tail-transport",
+          "role": "transporting-excitation-tails",
+          "label": "Tail transport",
+          "fullLabel": "Tail transport",
+          "kind": "lemma",
+          "source": "Transporting excitation tails",
+          "detail": "[Tail transport] Let V have a bounded number of analytic layers, let A and B be tests at its initial and final endpoints, respectively, and put \\[ =V^ P_BV, 1. \\] Assume that both the trajectory from…",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-exponent-budget",
+          "role": "transporting-excitation-tails-2",
+          "label": "Exponent budget",
+          "fullLabel": "Exponent budget",
+          "kind": "lemma",
+          "source": "Transporting excitation tails",
+          "detail": "[Exponent budget] Suppose \\[ 0 b<h<u1, 0<<<h, u-h<. \\] There are fixed exponents q,k,K,r,r',s,v_0,v, satisfying 0<h-<q<r<r'<s<k<h, k<K<1, k<u-,\\\\ K+q 2 <r, s+u-h 2 <k,\\\\ \\ b,r'\\ <v_0<v<h, r'<<v_0.…",
+          "dependsOn": [
+            "m2-lem-tail-transport",
+            "m2-lem-tail-filter",
+            "m2-prop-propagation",
+            "m2-lem-degree-shift",
+            "m2-lem-zero-filter"
+          ]
+        },
+        {
+          "id": "m2-prop-projection-insertion",
+          "role": "projection-insertion-and-pruning",
+          "label": "Projection insertion",
+          "fullLabel": "Projection insertion",
+          "kind": "proposition",
+          "source": "Projection insertion and pruning",
+          "detail": "[Projection insertion] Let W=U_t U_1 have a bounded number of layers, and suppose the trajectory \\[ _j=U_j U_1_0, 0 j t, \\] is regular, with _01 . For any product test B at the output, set \\[…",
+          "dependsOn": [
+            "m2-lem-tail-transport",
+            "m2-lem-uniformization"
+          ]
+        },
+        {
+          "id": "m2-cor-product-tail",
+          "role": "projection-insertion-and-pruning-2",
+          "label": "Tail at a product input",
+          "fullLabel": "Tail at a product input",
+          "kind": "corollary",
+          "source": "Projection insertion and pruning",
+          "detail": "[Tail at a product input] Suppose _0 is a normalized product state and its trajectory under W is regular. Let P_0=|_0_0| be the full product projection and H_0 its count. For any product test B at…",
+          "dependsOn": [
+            "m2-prop-projection-insertion",
+            "m2-lem-tail-transport"
+          ]
+        },
+        {
+          "id": "m2-cor-overlap-tail",
+          "role": "projection-insertion-and-pruning-3",
+          "label": "Overlap and output tail",
+          "fullLabel": "Overlap and output tail",
+          "kind": "corollary",
+          "source": "Projection insertion and pruning",
+          "detail": "[Overlap and output tail] Under the hypotheses of Corollary~ , write _t=W_0 . For any product test B at the output and every fixed 0<p<h<1 , P_B _t^ 2 _ H_B m^h _t (-m^p) eventually. For each fixed…",
+          "dependsOn": [
+            "m2-lem-tail-transport",
+            "m2-prop-projection-insertion"
+          ]
+        },
+        {
+          "id": "m2-lem-retained-layer",
+          "role": "projection-insertion-and-pruning-4",
+          "label": "A retained layer is regular",
+          "fullLabel": "A retained layer is regular",
+          "kind": "lemma",
+          "source": "Projection insertion and pruning",
+          "detail": "[A retained layer is regular] Let W have a regular trajectory from a normalized product state, and write =W_0 . Consider a proposed next layer of disjoint reflections I-2P_g . Retain precisely the…",
+          "dependsOn": [
+            "m2-cor-overlap-tail"
+          ]
+        },
+        {
+          "id": "m2-prop-pruning",
+          "role": "projection-insertion-and-pruning-5",
+          "label": "Pruning from a product state",
+          "fullLabel": "Pruning from a product state",
+          "kind": "proposition",
+          "source": "Projection insertion and pruning",
+          "detail": "[Pruning from a product state] For any sequence of circuits U=U_t U_1 on m qubits, with a bounded number t of analytic layers, and any normalized product starting states _0 , the following…",
+          "dependsOn": [
+            "m2-lem-retained-layer",
+            "m2-thm-parity",
+            "m2-cor-product-tail"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-parity",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    },
+    {
+      "from": "m2:m2-thm-parity",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "Product-projection localization and the QAC0 parity lower bound",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Product-projection-localization-and-the-QAC0-parity-lower-bound-September-24-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Regular trajectories, pruning and quantum parity",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Regular-trajectories-pruning-and-quantum-parity-September-24-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

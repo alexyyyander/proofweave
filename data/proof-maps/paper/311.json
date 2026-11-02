@@ -254,135 +254,168 @@
   "edges": [
     {
       "from": "m1-formal-reduced-smooth",
-      "to": "m1-formal-annihilator"
+      "to": "m1-formal-annihilator",
+      "context": "Put $q=p^h$, and let $I\\ne0$ be the defining ideal of $\\mathcal H$ in $R=k[[T_1,\\ldots,T_r]]$. By Lemma~\\ref{formal:reduced-smooth}, its coordinate ring is a power-series ring $B$ of some dimension $e<r$. If $e=0$, then $B=k$ and $\\mathcal H$ is the o"
     },
     {
       "from": "m1-formal-separation",
-      "to": "m1-formal-closure"
+      "to": "m1-formal-closure",
+      "context": ")=0$. Truncation at degree $m$ gives \\[ \\left|\\sum_{|\\ell|\\leq m}b_\\ell t^{q^N\\ell}\\right| \\leq\\|t\\|^{q^N(m+1)}. \\] Taking $q^N$th roots and applying Lemma~\\ref{formal:separation} shows that, for every $k$-linear $\\lambda:C\\to k$, the coefficientwise transform \\[ Q_{s,\\lambda}(T'):=\\sum_\\ell\\lamb"
     },
     {
       "from": "m1-formal-annihilator",
-      "to": "m1-formal-closure"
+      "to": "m1-formal-closure",
+      "context": "and inversion conditions follow from $0\\in S$ and $-_{\\Gamma_h^r}S=S$. Therefore $\\Spf(R/I)$ is a proper reduced closed formal subgroup of $\\Gamma_h^r$. Lemma~\\ref{formal:annihilator} supplies a nonzero formal homomorphism $\\varphi:\\Gamma_h^r\\to\\Gamma_h$ killing this subgroup. Its restrictions to the f"
     },
     {
       "from": "m1-bundles-geometry",
-      "to": "m1-bundles-independence"
+      "to": "m1-bundles-independence",
+      "context": "eg\\mathcal F\\leq \\frac{b}{n}<1. \\] Its integral degree is therefore zero. The divisor of the wedge section is effective of degree zero, hence empty by Theorem~\\ref{bundles:geometry}. The chosen $b$ sections thus trivialize $\\mathcal F$ by the determinant criterion. All the original sections belong"
     },
     {
       "from": "m1-formal-closure",
-      "to": "m1-bundles-nondegeneracy"
+      "to": "m1-bundles-nondegeneracy",
+      "context": "$ is a subgroup because the ring addition in $A_n$ and the map $\\nu$ respect the formal group laws. If a nonzero $k$-formal series vanished on it, Proposition~\\ref{formal:closure} would give $a_1,\\ldots,a_r\\in A_h$, not all zero, such that \\begin{equation} \\label{bundles:annihilator-relation} \\su"
     },
     {
       "from": "m1-bundles-input",
-      "to": "m1-bundles-nondegeneracy"
+      "to": "m1-bundles-nondegeneracy",
+      "context": "elation} \\sum_{i=1}^r a_i\\nu d(z_i)=0 \\qquad\\text{for every }d\\in A_n. \\end{equation} The sum in this equation is the target group sum. By Theorem~\\ref{bundles:input}, regard the $z_i$ as global sections of $\\mathcal E_n$ and $\\nu$ as a nonzero bundle map $\\mathcal E_n\\to\\mathcal E_h$."
     },
     {
       "from": "m1-bundles-independence",
-      "to": "m1-bundles-nondegeneracy"
+      "to": "m1-bundles-nondegeneracy",
+      "context": "d matrix algebra. This is the extension of a vanishing linear identity; no assertion that an arbitrary matrix preserves the order $A_n$ is involved. By Lemma~\\ref{bundles:independence}, the generic vectors $z_i$ are independent. Choose an index $i_0$ with $a_{i_0}\\ne0$. This operator is invertible in"
     },
     {
       "from": "m1-def-algebraization",
-      "to": "m1-def-tate-kernel"
+      "to": "m1-def-tate-kernel",
+      "context": "ion}, the kernel consists of sequences with $t_0=0$ and $[p]t_{j+1}=t_j$. These are precisely the compatible $p^j$-torsion points of $\\mathcal G_x$. By Lemma~\\ref{def:algebraization} every such point is small, and the \\'etale height is $r$. Over the algebraically closed field $C$ the resulting Tate m"
     },
     {
       "from": "m1-def-transport",
-      "to": "m1-def-tate-kernel"
+      "to": "m1-def-tate-kernel",
+      "context": "ry small point admits division by $p$ within the open unit disc. Repeated choices give a compatible sequence with any prescribed zeroth point, and Proposition~\\ref{def:transport} proves surjectivity of $\\Theta_x$. Finally, multiplying a putative rational relation among a $\\Zp$-basis by a sufficien"
     },
     {
       "from": "m1-def-transport",
-      "to": "m1-def-coordinates"
+      "to": "m1-def-coordinates",
+      "context": "Analyticity follows from Proposition~\\ref{def:transport}, and $\\theta(x)=0$. Let $v$ be a direction in the kernel of its differential. Write $A=C[\\epsilon]/\\epsilon^2$ and $y'"
     },
     {
       "from": "m1-def-ks",
-      "to": "m1-def-coordinates"
+      "to": "m1-def-coordinates",
+      "context": "ifferential. Write $A=C[\\epsilon]/\\epsilon^2$ and $y'$ for the corresponding first-order parameter point. Its preceding parameters remain zero. By Proposition~\\ref{def:ks}, it suffices to prove that $\\mathcal G_{y'}$ is the constant deformation of $\\mathcal G_x$ with its residue marking. W"
     },
     {
       "from": "m1-def-height-rigidity",
-      "to": "m1-def-coordinates"
+      "to": "m1-def-coordinates",
+      "context": ")$. This describes the connected factor by taking the identity factor after algebraic base change. Its formal group $H_{y'}$ satisfies the hypothesis of Lemma~\\ref{def:height-rigidity}, so it is the constant deformation of $H_x$ with the residue marking fixed. That formal isomorphism restricts to all i"
     },
     {
       "from": "m1-def-recursion",
-      "to": "m1-def-natural-comparison"
+      "to": "m1-def-natural-comparison",
+      "context": "phism exists by the height classification over the algebraically closed field $C$. It intertwines $[p]_{H_x}(T)=f_x(T^q)$ with $[p]_{\\Gamma_h}(T)=T^q$. Lemma~\\ref{def:recursion} therefore shows that every coefficient of $\\alpha_x$ lies in $\\OO_C$. An integral series with zero constant term conve"
     },
     {
       "from": "m1-def-transport",
-      "to": "m1-def-natural-comparison"
+      "to": "m1-def-natural-comparison",
+      "context": "ctoid $C$-algebra $R$, with value again in $R^{\\circ\\circ}$. Its formal homomorphism identity converges on those arguments as well. Combined with Proposition~\\ref{def:transport}, this proves additivity and naturality of $\\nu_x$ on all such affinoids, hence as a sheaf morphism. Continuity extends"
     },
     {
       "from": "m1-bundles-input",
-      "to": "m1-def-natural-comparison"
+      "to": "m1-def-natural-comparison",
+      "context": "ame equality follows at geometric valued-field points by naturality; these detect equality of coordinates in a uniform affinoid algebra. Equivalently, Theorem~\\ref{bundles:input} permits working throughout with additive sheaf morphisms. Write $a_1=\\alpha_x'(0)\\ne0$ and choose $t\\in C$ with $0<|t|"
     },
     {
       "from": "m1-def-tate-kernel",
-      "to": "m1-def-natural-comparison"
+      "to": "m1-def-natural-comparison",
+      "context": "_x'(0)\\ne0$ and choose $t\\in C$ with $0<|t|<|a_1|$. For $j\\ge2$ the integral coefficients satisfy \\[ |a_jt^j|\\le|t|^2<|a_1t|, \\] so $\\alpha_x(t)\\ne0$. Lemma~\\ref{def:tate-kernel} supplies $z\\in\\mathcal H_n(C)$ with $\\Theta_x(z)=t$. Thus $\\nu_x(z)\\ne0$, proving nonzeroness of the sheaf morphism. On"
     },
     {
       "from": "m1-orb-density",
-      "to": "m1-orb-finite-jets"
+      "to": "m1-orb-finite-jets",
+      "context": "[Proof of Theorem~\\ref{orb:density}] Put $r=n-h$ and $q=p^h$. Choose a $\\Zp$-basis $z_1,\\ldots,z_r$ of $T_x$ as in Lemma~\\ref{def:tate-kernel}. Propositi"
     },
     {
       "from": "m1-def-tate-kernel",
-      "to": "m1-orb-finite-jets"
+      "to": "m1-orb-finite-jets",
+      "context": "[Proof of Theorem~\\ref{orb:density}] Put $r=n-h$ and $q=p^h$. Choose a $\\Zp$-basis $z_1,\\ldots,z_r$ of $T_x$ as in Lemma~\\ref{def:tate-kernel}. Proposition~\\ref{def:coordinates} says that \\[ \\theta(y)=\\bigl(\\Theta_y(z_i)\\bigr)_{i=1}^r, \\qquad \\theta(x)=0, \\]"
     },
     {
       "from": "m1-def-coordinates",
-      "to": "m1-orb-finite-jets"
+      "to": "m1-orb-finite-jets",
+      "context": "[Proof of Theorem~\\ref{orb:density}] Put $r=n-h$ and $q=p^h$. Choose a $\\Zp$-basis $z_1,\\ldots,z_r$ of $T_x$ as in Lemma~\\ref{def:tate-kernel}. Proposition~\\ref{def:coordinates} says that \\[ \\theta(y)=\\bigl(\\Theta_y(z_i)\\bigr)_{i=1}^r, \\qquad \\theta(x)=0, \\] is analytic with invertible differen"
     },
     {
       "from": "m1-def-natural-comparison",
-      "to": "m1-orb-finite-jets"
+      "to": "m1-orb-finite-jets",
+      "context": "differential at $x$. Fix the formal group isomorphism \\[ \\alpha_x:H_x\\xrightarrow{\\sim}\\Gamma_h, \\qquad \\alpha_x(T)=\\sum_{j\\geq1}a_j^xT^j, \\] of Proposition~\\ref{def:natural-comparison}. Its forward coefficients belong to $\\OO_C$, its linear coefficient is nonzero, and $\\nu_x=\\alpha_x\\Theta_x$ is a nonz"
     },
     {
       "from": "m1-def-recursion",
-      "to": "m1-orb-finite-jets"
+      "to": "m1-orb-finite-jets",
+      "context": "$\\mathcal H_n\\to\\mathcal H_h$. \\smallskip \\noindent\\emph{Formal coordinates.} Write $[p]_{H_y}(T)=f_y(T^q)$ and $b(y)=f'_y(0)$, so that $b(x)\\neq0$. By Lemma~\\ref{def:recursion}, a series $\\alpha(T)=\\sum_{j\\geq1}A_jT^j$ intertwines this multiplication by $p$ with $q$th powers exactly when \\begin{"
     },
     {
       "from": "m1-def-stabilizer",
-      "to": "m1-orb-finite-jets"
+      "to": "m1-orb-finite-jets",
+      "context": "all sufficiently large $N$, the element $g_N=1-p^Nd$ is a unit in $G$, and its orbit point $y_N=y_{g_N}$ tends to $x$ by the continuity discussed before Lemma~\\ref{def:stabilizer}. The subtraction in $g_N$ is in the endomorphism ring. Transport sends $g_Nz_i$ into $T_{y_N}$; applying the group ho"
     },
     {
       "from": "m1-formal-separation",
-      "to": "m1-orb-finite-jets"
+      "to": "m1-orb-finite-jets",
+      "context": "the replacement error both tend to zero, so the same conclusion holds. For each $d\\in A_n$, Equation~\\eqref{orb:rooted-limit} holds for every $m\\geq0$. Lemma~\\ref{formal:separation} therefore gives \\[ \\sum_\\ell\\lambda(B_\\ell)s(d)^\\ell=0 \\] for every $k$-linear functional $\\lambda:C\\to k$ and every $"
     },
     {
       "from": "m1-bundles-nondegeneracy",
-      "to": "m1-orb-finite-jets"
+      "to": "m1-orb-finite-jets",
+      "context": "t\\{\\bigl(\\nu_x(dz_i)\\bigr)_{i=1}^r:d\\in A_n\\right\\}. \\] The $z_i$ are $\\Qp$-linearly independent, $r=n-h<n$, and $\\nu_x$ is a nonzero natural map. Proposition~\\ref{bundles:nondegeneracy} excludes precisely this formal equation. The contradiction proves the theorem."
     },
     {
       "from": "m1-fin-curve",
-      "to": "m1-fin-primes"
+      "to": "m1-fin-primes",
+      "context": "ak p\\). If \\(h=n\\), the ideal \\(I_n\\) is maximal, so \\(\\mathfrak p=I_n\\). Otherwise the image of \\(u_h\\) in \\(R=E_0/\\mathfrak p\\) is a nonzero nonunit. Lemma~\\ref{fin:curve} gives a point \\(x:R\\to\\OO_C\\) at which all parameters are small and \\(u_h(x)\\ne0\\). It is therefore a point of the heig"
     },
     {
       "from": "m1-orb-density",
-      "to": "m1-fin-primes"
+      "to": "m1-fin-primes",
+      "context": "es a point \\(x:R\\to\\OO_C\\) at which all parameters are small and \\(u_h(x)\\ne0\\). It is therefore a point of the height-at-least-\\(h\\) polydisc to which Theorem~\\ref{orb:density} applies. If \\(\\mathfrak p/I_h\\ne0\\), choose a nonzero series \\[ f\\in\\mathfrak p/I_h \\subset k_n[[u_h,\\ldots,u_{"
     },
     {
       "from": "m1-fin-translation",
-      "to": "m1-fin-primes"
+      "to": "m1-fin-primes",
+      "context": "If \\(\\mathfrak p/I_h\\ne0\\), choose a nonzero series \\[ f\\in\\mathfrak p/I_h \\subset k_n[[u_h,\\ldots,u_{n-1}]]. \\] Its coefficients are bounded, and Lemma~\\ref{fin:translation} shows that it defines a nonzero ambient analytic germ at \\(x\\). Stability of \\(\\mathfrak p\\) makes \\(f\\) vanish at ever"
     },
     {
       "from": "m1-fin-charzero",
-      "to": "m1-fin-primes"
+      "to": "m1-fin-primes",
+      "context": "ries in the ambient generic polydisc. By Lemma~\\ref{fin:translation}, its germ at \\(x\\) is nonzero. It vanishes on the \\(U\\)-orbit, contradicting Proposition~\\ref{fin:charzero}. Thus \\(\\mathfrak p=0\\)."
     },
     {
       "from": "m1-fin-primes",
-      "to": "m1-fin-radicals"
+      "to": "m1-fin-radicals",
+      "context": "in \\(U\\): its complement is a finite union of closed cosets. Since \\(U\\) is open in \\(A_n^\\times\\), the stabilizer is open in \\(A_n^\\times\\) as well. Theorem~\\ref{fin:primes} applies to every minimal prime of \\(J\\). Their intersection is \\(J\\); since the standard primes form a chain, this inte"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-fin-support"
+      "to": "m1-fin-support",
+      "context": "[Proof of Theorem~\\ref{thm:main}] By Corollary~\\ref{fin:radicals} and Proposition~\\ref{fin:support}, the support of every object of \\(\\mathcal D\\) belon"
     },
     {
       "from": "m1-fin-radicals",
-      "to": "m1-fin-support"
+      "to": "m1-fin-support",
+      "context": "[Proof of Theorem~\\ref{thm:main}] By Corollary~\\ref{fin:radicals} and Proposition~\\ref{fin:support}, the support of every object of \\(\\mathcal D\\) belongs to the finite chain \\[ \\Spec("
     },
     {
       "from": "m1-fin-support",
-      "to": "m1-fin-balmer"
+      "to": "m1-fin-balmer",
+      "context": "orm a total chain, including the empty set. Hence $S(X)\\cap S(Y)$ is one of $S(X)$ and $S(Y)$. By the tensor-product and containment statements in Proposition~\\ref{fin:support}, if $X\\otimes Y$ belongs to a proper $\\mathcal D_j$, then one of $X$ and $Y$ does as well. This also includes $\\mathcal"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-fin-balmer"
+      "to": "m1-fin-balmer",
+      "context": "al D_{n+1}=0$: two nonempty supports both contain $V(I_n)$, so their intersection is nonempty. Every proper member of the chain is therefore prime, and Theorem~\\ref{thm:main} leaves no other prime ideals. In the Balmer topology, a point $\\mathcal Q$ lies in $\\overline{\\{\\mathcal P\\}}$ precise"
     }
   ]
 }

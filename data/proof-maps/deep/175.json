@@ -1,0 +1,206 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "175",
+  "title": "Talagrand’s expectation thresholds, discrete convexity, and graph decompositions",
+  "result": {
+    "id": "paper-result",
+    "label": "Talagrand’s expectation thresholds, discrete convexity, and graph decompositions",
+    "statement": "Proves that integral and fractional expectation thresholds differ by at most a universal factor, and resolves Talagrand's discrete-convexity conjecture. An application proves the Ascoli–He–Park–Talagrand graph-decomposition conjecture: every graph's edges split into a universally bounded number of fixed pieces, each with containment threshold at most a universal constant times the original graph's integral expectation threshold. The pieces' embeddings need not agree on shared vertices.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "covering-input-and-elementary-estimates",
+      "label": "Covering input and elementary estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "covering-input-and-elementary-estimates-2",
+      "label": "Covering input and elementary estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "covering-input-and-elementary-estimates-3",
+      "label": "Covering input and elementary estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "covering-input-and-elementary-estimates-4",
+      "label": "Covering input and elementary estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "uniform-neighborhood-transfer",
+      "label": "Uniform neighborhood transfer",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "uniform-neighborhood-transfer-2",
+      "label": "Uniform neighborhood transfer",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "direct-embedding-lemmas",
+      "label": "Direct embedding lemmas",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "direct-embedding-lemmas-2",
+      "label": "Direct embedding lemmas",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Graph Decompositions at the Integral Expectation Threshold",
+      "title": "Graph Decompositions at the Integral Expectation Threshold",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Graph-Decompositions-at-the-Integral-Expectation-Threshold-October-5-2026/graph-threshold-decompositions.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Graph Decompositions at the Integral Expectation Threshold; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "There exist an absolute integer k2 and an absolute constant L1 such that, for…",
+          "fullLabel": "There exist an absolute integer k2 and an absolute constant L1 such that, for…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "There exist an absolute integer k2 and an absolute constant L1 such that, for every n2 and every graph H on at most n vertices, the edges of H admit a partition \\[ E(H)=E(H_1)\\,\\,\\,\\,E(H_k) with…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-discrete",
+          "role": "covering-input-and-elementary-estimates",
+          "label": "Discrete convexity, [Theorem~1.1",
+          "fullLabel": "Discrete convexity, [Theorem~1.1",
+          "kind": "theorem",
+          "source": "Covering input and elementary estimates",
+          "detail": "[Discrete convexity, ] Set K_0=2^ 75 . For every nonempty finite set X , every r(0,1) , and every family 2^X with _r()1-1/K_0 , the family \\[ E_ K_0 ()= \\ S X:S D_1 D_ K_0 for every D_1,,D_ K_0 \\ \\]…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-typical-cover",
+          "role": "covering-input-and-elementary-estimates-2",
+          "label": "Let n2 , let H have an edge and at most n vertices, and suppose q(H;n)<r<1 . If…",
+          "fullLabel": "Let n2 , let H have an edge and at most n vertices, and suppose q(H;n)<r<1 . If…",
+          "kind": "corollary",
+          "source": "Covering input and elementary estimates",
+          "detail": "Let n2 , let H have an edge and at most n vertices, and suppose q(H;n)<r<1 . If a family of graphs on [n] satisfies _r()1-1/K_0 , then some copy of H has its edges contained in the union of K_0…",
+          "dependsOn": [
+            "m1-thm-discrete"
+          ]
+        },
+        {
+          "id": "m1-lem-q-lower",
+          "role": "covering-input-and-elementary-estimates-3",
+          "label": "If H has an edge, |V(H)| n , and d=(H) , then q(H;n)1 2 n2 , q(H;n)12 n^ -2/d .",
+          "fullLabel": "If H has an edge, |V(H)| n , and d=(H) , then q(H;n)1 2 n2 , q(H;n)12 n^ -2/d .",
+          "kind": "lemma",
+          "source": "Covering input and elementary estimates",
+          "detail": "If H has an edge, |V(H)| n , and d=(H) , then q(H;n)1 2 n2 , q(H;n)12 n^ -2/d .",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-split",
+          "role": "covering-input-and-elementary-estimates-4",
+          "label": "Degeneracy splitting",
+          "fullLabel": "Degeneracy splitting",
+          "kind": "lemma",
+          "source": "Covering input and elementary estimates",
+          "detail": "[Degeneracy splitting] For every positive integer m , the edges of a d -degenerate graph can be partitioned into m graphs, each of degeneracy at most d/m .",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-compression",
+          "role": "uniform-neighborhood-transfer",
+          "label": "Compression after a random extension",
+          "fullLabel": "Compression after a random extension",
+          "kind": "lemma",
+          "source": "Uniform neighborhood transfer",
+          "detail": "[Compression after a random extension] Let Y be finite, r(0,1) , and s1 an integer. For every nonempty family \\[ \\ T Y:1|T| s\\ \\] there is a nonempty subfamily with ||2r^ -s such that S satisfies f_…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-transfer",
+          "role": "uniform-neighborhood-transfer-2",
+          "label": "Neighborhood transfer",
+          "fullLabel": "Neighborhood transfer",
+          "kind": "proposition",
+          "source": "Uniform neighborhood transfer",
+          "detail": "[Neighborhood transfer] There is an absolute integer N_1 such that the following holds for every n N_1 and every r,s satisfying . There exists =(n,r,s)2^ E(K_n) with _r()1-1/K_0 such that, whenever Y…",
+          "dependsOn": [
+            "m1-lem-compression"
+          ]
+        },
+        {
+          "id": "m1-prop-degree-embedding",
+          "role": "direct-embedding-lemmas",
+          "label": "There is an absolute integer N_2 such that, for n N_2 and r,s satisfying ,…",
+          "fullLabel": "There is an absolute integer N_2 such that, for n N_2 and r,s satisfying ,…",
+          "kind": "proposition",
+          "source": "Direct embedding lemmas",
+          "detail": "There is an absolute integer N_2 such that, for n N_2 and r,s satisfying , every graph J with \\[ |V_+(J)| n/4, (J) s, (J) n^ 2/3 \\] and at most n vertices satisfies p_c(J;n) r .",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-stars",
+          "role": "direct-embedding-lemmas-2",
+          "label": "Put A=400e^4 . There is an absolute integer N_3 such that, for every n N_3 and…",
+          "fullLabel": "Put A=400e^4 . There is an absolute integer N_3 such that, for every n N_3 and…",
+          "kind": "proposition",
+          "source": "Direct embedding lemmas",
+          "detail": "Put A=400e^4 . There is an absolute integer N_3 such that, for every n N_3 and every star forest J on at most n vertices with |V_+(J)| n/100 , p_c(J;n)2Aq(J;n). If q(J;n)<1/(2A) , the stronger bound…",
+          "dependsOn": [
+            "m1-thm-main",
+            "m1-prop-transfer",
+            "m1-prop-degree-embedding",
+            "m1-lem-q-lower",
+            "m1-cor-typical-cover",
+            "m1-lem-split"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "Graph Decompositions at the Integral Expectation Threshold",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Graph-Decompositions-at-the-Integral-Expectation-Threshold-October-5-2026/graph-threshold-decompositions.pdf",
+      "kind": "paper"
+    }
+  ]
+}

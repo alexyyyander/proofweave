@@ -1,0 +1,268 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "284",
+  "title": "The optimal quartic separation between randomized and quantum queries",
+  "result": {
+    "id": "paper-result",
+    "label": "The optimal quartic separation between randomized and quantum queries",
+    "statement": "Shows that the universal bound R(f)=O((1+Q(f))^4) for total Boolean functions is sharp in its exponent, ruling out every smaller power and disproving the conjectured cubic relation. Here R and Q are randomized and quantum worst-case bit-query complexities with error at most 1/3; computation between queries is unrestricted.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "an-addressed-certificate-with-outward-pointers",
+      "label": "An addressed certificate with outward pointers",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-addressed-certificate-with-outward-pointers-2",
+      "label": "An addressed certificate with outward pointers",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "quantum-search-with-probabilistic-comparisons",
+      "label": "Quantum search with probabilistic comparisons",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "quantum-search-with-probabilistic-comparisons-2",
+      "label": "Quantum search with probabilistic comparisons",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "quantum-search-with-probabilistic-comparisons-3",
+      "label": "Quantum search with probabilistic comparisons",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-randomized-lower-bound",
+      "label": "The randomized lower bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-randomized-lower-bound-2",
+      "label": "The randomized lower bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-universal-quartic-bound",
+      "label": "The universal quartic bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-universal-quartic-bound-2",
+      "label": "The universal quartic bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-universal-quartic-bound-3",
+      "label": "The universal quartic bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-universal-quartic-bound-4",
+      "label": "The universal quartic bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-universal-quartic-bound-5",
+      "label": "The universal quartic bound",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "A Nearly Quartic Separation Between Randomized and Quantum Query Complexity",
+      "title": "A Nearly Quartic Separation Between Randomized and Quantum Query Complexity",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Nearly-Quartic-Separation-Between-Randomized-and-Quantum-Query-Complexity-October-5-2026/quartic-query-separation.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from A Nearly Quartic Separation Between Randomized and Quantum Query Complexity; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "The optimal power is _ tot =4 . More precisely, (f)=O((1+(f))^4) for every…",
+          "fullLabel": "The optimal power is _ tot =4 . More precisely, (f)=O((1+(f))^4) for every…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "The optimal power is _ tot =4 . More precisely, (f)=O((1+(f))^4) for every total Boolean function. For each fixed integer k2 , there are positive constants c_k,C_k,b_k and total Boolean functions F_…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-forrelation",
+          "role": "an-addressed-certificate-with-outward-pointers",
+          "label": "For each fixed integer k2 , the functions P_ k,m have the following properties.…",
+          "fullLabel": "For each fixed integer k2 , the functions P_ k,m have the following properties.…",
+          "kind": "lemma",
+          "source": "An addressed certificate with outward pointers",
+          "detail": "For each fixed integer k2 , the functions P_ k,m have the following properties. For all sufficiently large powers of four m , (P_ k,m )>L, L= m^ 1-1/k (_2 m)^2 . For every 0<<1/2 , a quantum…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-local-tests",
+          "role": "an-addressed-certificate-with-outward-pointers-2",
+          "label": "For every input to F_ k,m and every pair (i,s)^r , the assertion that i wins at…",
+          "fullLabel": "For every input to F_ k,m and every pair (i,s)^r , the assertion that i wins at…",
+          "kind": "lemma",
+          "source": "An addressed certificate with outward pointers",
+          "detail": "For every input to F_ k,m and every pair (i,s)^r , the assertion that i wins at address s is a conjunction of \\[ K_ k,m =m+(m-1)+r(S_ k,m +2) =O_k(m( m)^3) \\] Boolean tests. Each test can be…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-amplification",
+          "role": "quantum-search-with-probabilistic-comparisons",
+          "label": "Bounded amplification",
+          "fullLabel": "Bounded amplification",
+          "kind": "lemma",
+          "source": "Quantum search with probabilistic comparisons",
+          "detail": "[Bounded amplification] Let A be a quantum state preparation with a designated success bit. Its success probability is p , and, if p>0 , its normalized successful state is g . Let 0<1/2 and 0<<1/2 .…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-tournament",
+          "role": "quantum-search-with-probabilistic-comparisons-2",
+          "label": "A tournament for probabilistic comparisons",
+          "fullLabel": "A tournament for probabilistic comparisons",
+          "kind": "proposition",
+          "source": "Quantum search with probabilistic comparisons",
+          "detail": "[A tournament for probabilistic comparisons] For m2 , put \\[ T=(1000m), =1 1000T . \\] Suppose a coherent comparison circuit, controlled by two candidate indices and reversible with all workspace…",
+          "dependsOn": [
+            "m1-lem-amplification"
+          ]
+        },
+        {
+          "id": "m1-prop-quantum",
+          "role": "quantum-search-with-probabilistic-comparisons-3",
+          "label": "For every fixed k2 , the total functions of Section~ satisfy \\[ (F_ k,m ) m(…",
+          "fullLabel": "For every fixed k2 , the total functions of Section~ satisfy \\[ (F_ k,m ) m(…",
+          "kind": "proposition",
+          "source": "Quantum search with probabilistic comparisons",
+          "detail": "For every fixed k2 , the total functions of Section~ satisfy \\[ (F_ k,m ) m( m)^ O_k(1) . \\]",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-adaptive-product",
+          "role": "the-randomized-lower-bound",
+          "label": "Let P D , where D^n , let be a distribution on D , and let L be a nonnegative…",
+          "fullLabel": "Let P D , where D^n , let be a distribution on D , and let L be a nonnegative…",
+          "kind": "lemma",
+          "source": "The randomized lower bound",
+          "detail": "Let P D , where D^n , let be a distribution on D , and let L be a nonnegative integer. Suppose every deterministic algorithm making at most L queries computes P under with success probability at most…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-classical",
+          "role": "the-randomized-lower-bound-2",
+          "label": "For each fixed integer k2 and every sufficiently large power of four m , the…",
+          "fullLabel": "For each fixed integer k2 and every sufficiently large power of four m , the…",
+          "kind": "proposition",
+          "source": "The randomized lower bound",
+          "detail": "For each fixed integer k2 and every sufficiently large power of four m , the total function of Section~ satisfies (F_ k,m )> G:=mL 100 , L= m^ 1-1/k (_2m)^2 .",
+          "dependsOn": [
+            "m1-lem-adaptive-product",
+            "m1-thm-main",
+            "m1-prop-quantum",
+            "m1-thm-quartic-upper"
+          ]
+        },
+        {
+          "id": "m1-thm-quartic-upper",
+          "role": "the-universal-quartic-bound",
+          "label": "[ ] Every total Boolean function satisfies \\[ (f)(f)=O((1+(f))^4). \\]",
+          "fullLabel": "[ ] Every total Boolean function satisfies \\[ (f)(f)=O((1+(f))^4). \\]",
+          "kind": "theorem",
+          "source": "The universal quartic bound",
+          "detail": "[ ] Every total Boolean function satisfies \\[ (f)(f)=O((1+(f))^4). \\]",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-adversary",
+          "role": "the-universal-quartic-bound-2",
+          "label": "Nonnegative spectral adversary bound",
+          "fullLabel": "Nonnegative spectral adversary bound",
+          "kind": "lemma",
+          "source": "The universal quartic bound",
+          "detail": "[Nonnegative spectral adversary bound] Let f be a nonconstant total Boolean function. Let be a nonzero real symmetric matrix, indexed by inputs, with nonnegative entries and _ xy =0 whenever…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-bs-lambda",
+          "role": "the-universal-quartic-bound-3",
+          "label": "For every nonconstant total Boolean function, \\[ (f)=O((f)^2), (f)=O((f)). \\]",
+          "fullLabel": "For every nonconstant total Boolean function, \\[ (f)=O((f)^2), (f)=O((f)). \\]",
+          "kind": "lemma",
+          "source": "The universal quartic bound",
+          "detail": "For every nonconstant total Boolean function, \\[ (f)=O((f)^2), (f)=O((f)). \\]",
+          "dependsOn": [
+            "m1-lem-adversary"
+          ]
+        },
+        {
+          "id": "m1-lem-degree-lambda",
+          "role": "the-universal-quartic-bound-4",
+          "label": ", using",
+          "fullLabel": ", using",
+          "kind": "lemma",
+          "source": "The universal quartic bound",
+          "detail": "[ , using ] Every nonconstant total Boolean function satisfies (f)(f)^2 .",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-degree-bs",
+          "role": "the-universal-quartic-bound-5",
+          "label": "[ ] Every total Boolean function satisfies (f)(f)(f) .",
+          "fullLabel": "[ ] Every total Boolean function satisfies (f)(f)(f) .",
+          "kind": "lemma",
+          "source": "The universal quartic bound",
+          "detail": "[ ] Every total Boolean function satisfies (f)(f)(f) .",
+          "dependsOn": [
+            "m1-thm-quartic-upper",
+            "m1-lem-bs-lambda",
+            "m1-lem-degree-lambda"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "A Nearly Quartic Separation Between Randomized and Quantum Query Complexity",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Nearly-Quartic-Separation-Between-Randomized-and-Quantum-Query-Complexity-October-5-2026/quartic-query-separation.pdf",
+      "kind": "paper"
+    }
+  ]
+}

@@ -3752,6 +3752,7 @@ export const en = {
   "proofMaps.label.detailLevelNote.section": "This is a section-level map of a longer proof, not a full lemma DAG.",
   "proofMaps.label.kind.theorem": "theorem",
   "proofMaps.label.kind.lemma": "lemma",
+  "proofMaps.label.kind.proposition": "proposition",
   "proofMaps.label.kind.corollary": "corollary",
   "proofMaps.label.kind.construction": "construction",
   "proofMaps.label.kind.bound": "bound",

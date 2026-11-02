@@ -384,159 +384,198 @@
   "edges": [
     {
       "from": "m1-thm-stable",
-      "to": "m1-lem-monotone-ends"
+      "to": "m1-lem-monotone-ends",
+      "context": "$L\\to\\infty$ proves the assertion. For example, $u(x',t)<u(x',t+1)\\le v_+(x')$, which proves the strict upper inequality; the lower one is analogous. Theorem~\\ref{thm:stable} says that each $v_\\pm$ is a constant well or a planar heteroclinic. To check the minimizing assertion directly, put $\\"
     },
     {
       "from": "m1-lem-diffuse-local",
-      "to": "m1-lem-diffuse-compactness"
+      "to": "m1-lem-diffuse-compactness",
+      "context": "Lemma~\\ref{lem:diffuse-local} gives all normalized derivative bounds on fixed balls and a positive local lower bound for $D_j/\\epsilon_j$. Since $U_j"
     },
     {
       "from": "m1-lem-diffuse-positive",
-      "to": "m1-lem-diffuse-mean"
+      "to": "m1-lem-diffuse-mean",
+      "context": "Choose $c_1$ strictly between $1/(2\\sqrt2)$ and $c$, and fix a finite $P\\ge1$ supplied by Lemma~\\ref{lem:diffuse-positive} for $c_1$. If no uniform $\\delta$ existed for this $P$, there would be solutions and zeros with $0<\\epsilon_j=D_j(z_j)\\"
     },
     {
       "from": "m1-lem-diffuse-compactness",
-      "to": "m1-lem-diffuse-mean"
+      "to": "m1-lem-diffuse-mean",
+      "context": "niform $\\delta$ existed for this $P$, there would be solutions and zeros with $0<\\epsilon_j=D_j(z_j)\\to0$ violating \\eqref{eq:diffuse-mean-window}. Apply Lemma~\\ref{lem:diffuse-compactness} to translate and rotate them. On the fixed interval $[-P,P]$, smooth convergence gives \\[ \\frac1{\\epsilon_j}\\int_{-P}^"
     },
     {
       "from": "m1-lem-finite-critical",
-      "to": "m1-lem-finite-measures"
+      "to": "m1-lem-finite-measures",
+      "context": "lies in \\(B_{2S+1}(Z)\\cap B_{r+1}(y)\\). To prove \\eqref{eq:B3}, first observe the exact identity \\[ e(v)=\\frac{q^2}{2}-\\frac{q^2D}{4}. \\] Together with Lemma~\\ref{lem:finite-critical} this gives, uniformly at bad centers, \\begin{equation}\\label{eq:finite-qmass} R^{-m}\\int_{B_R(y)}q^2\\longrightarrow \\s"
     },
     {
       "from": "m1-lem-finite-critical",
-      "to": "m1-lem-finite-rough"
+      "to": "m1-lem-finite-rough",
+      "context": "that either \\(l(z)\\le C'R^{1/10}\\), or an area-\\(cR^m\\) patch of the source sheet, within distance \\(cR\\) of \\(z\\), has \\(l\\ge c l(z)\\). In the chart of Lemma~\\ref{lem:finite-critical}, an adjacent height difference \\(h=f_{i+1}-f_i>0\\) satisfies \\[ \\operatorname{div}(a(x')\\nabla h)=\\mathcal M(f_{i+1})-"
     },
     {
       "from": "m1-thm-finite",
-      "to": "m1-lem-finite-rough"
+      "to": "m1-lem-finite-rough",
+      "context": "[Completion of the proof of Theorem~\\ref{thm:finite}] \\emph{The nearly linear gap test.} Fix a small tolerance \\(\\delta>0\\) and use \\[ \\psi(l)=l+\\log l,\\qquad w=\\min\\{T_0,"
     },
     {
       "from": "m1-lem-finite-green",
-      "to": "m1-lem-finite-rough"
+      "to": "m1-lem-finite-rough",
+      "context": ") is large. Moreover \\[ -\\frac{\\psi''(l)}{\\psi'(l)}=\\frac1{l(l+1)},\\qquad \\frac{l(l+1)}{s}\\longrightarrow0 \\] by \\eqref{eq:B8}. Thus \\eqref{eq:B6} and Lemma~\\ref{lem:finite-green} apply with \\(L\\le1+\\delta\\). \\emph{The upper logarithmic coefficient.} Let \\(1/(2\\sqrt2)<c_*<\\sqrt2/3\\) and \\(P\\) be t"
     },
     {
       "from": "m1-lem-diffuse-mean",
-      "to": "m1-lem-finite-rough"
+      "to": "m1-lem-finite-rough",
+      "context": "mma~\\ref{lem:finite-green} apply with \\(L\\le1+\\delta\\). \\emph{The upper logarithmic coefficient.} Let \\(1/(2\\sqrt2)<c_*<\\sqrt2/3\\) and \\(P\\) be those of Lemma~\\ref{lem:diffuse-mean}. Increase \\(S\\) so this lemma applies on \\(\\Sigma_{S/2}\\) and its \\(P\\)-tube is injective. The source term of \\eqref{"
     },
     {
       "from": "m1-lem-finite-gap",
-      "to": "m1-lem-finite-rough"
+      "to": "m1-lem-finite-rough",
+      "context": "{S/2}\\) and its \\(P\\)-tube is injective. The source term of \\eqref{eq:B7} contributes one curvature integral; the target terms contribute at most two by Lemma~\\ref{lem:finite-gap}. The area Jacobians and radial-weight changes cost a relative \\(1+C\\delta\\) after increasing \\(S\\). Thus the curvatur"
     },
     {
       "from": "m1-thm-finite",
-      "to": "m1-cor-finite-subcritical"
+      "to": "m1-cor-finite-subcritical",
+      "context": "Theorem~\\ref{thm:finite} makes every finite \\(K_f\\) subcritical. Apply \\cite[Theorem~3.2]{FSS2025} with its tolerance \\(\\delta(K_f,n)\\) and \\(r^"
     },
     {
       "from": "m1-lem-reach-density-window",
-      "to": "m1-lem-reach-isolation"
+      "to": "m1-lem-reach-isolation",
+      "context": "\\emph{One graph and preliminary bounds.} The fixed bound of Lemma~\\ref{lem:reach-density-window} is subcritical by Theorem~\\ref{thm:finite}. Apply Corollary~\\ref{cor:finite-subcritical}, including its sheeting concl"
     },
     {
       "from": "m1-thm-finite",
-      "to": "m1-lem-reach-isolation"
+      "to": "m1-lem-reach-isolation",
+      "context": "\\emph{One graph and preliminary bounds.} The fixed bound of Lemma~\\ref{lem:reach-density-window} is subcritical by Theorem~\\ref{thm:finite}. Apply Corollary~\\ref{cor:finite-subcritical}, including its sheeting conclusions, at radius $h$. Thus the density us"
     },
     {
       "from": "m1-cor-finite-subcritical",
-      "to": "m1-lem-reach-isolation"
+      "to": "m1-lem-reach-isolation",
+      "context": "\\emph{One graph and preliminary bounds.} The fixed bound of Lemma~\\ref{lem:reach-density-window} is subcritical by Theorem~\\ref{thm:finite}. Apply Corollary~\\ref{cor:finite-subcritical}, including its sheeting conclusions, at radius $h$. Thus the density used here is the fixed local bound $K_0$; the con"
     },
     {
       "from": "m1-lem-reach-half-line-barrier",
-      "to": "m1-lem-reach-isolation"
+      "to": "m1-lem-reach-isolation",
+      "context": "rs obey the same bounds, since each positive derivative of $A$ is no larger than $O(h^{-1})$. \\emph{A first bound for the profile error.} Use $v_0$ from Lemma~\\ref{lem:reach-half-line-barrier} on $t\\ge0$ and its reflection on $t\\le0$, separately on the two half-boxes. The reflected pair need not be differentiab"
     },
     {
       "from": "m1-lem-reach-phase-ball",
-      "to": "m1-prop-reach-calculus"
+      "to": "m1-prop-reach-calculus",
+      "context": "uniform decrease so those balls avoid the rest of the boundary. Hence at the second foot $y$ there is a zero-free tangent ball of radius $c_\\Gamma d$. Lemma~\\ref{lem:reach-phase-ball} shows that the foot is regular, $a(y)+D(y)\\le C_\\Gamma/d$, and its inward trace satisfies $H_{N_y}(y)\\le C_\\Gamma d^{-1"
     },
     {
       "from": "m1-lem-reach-isolation",
-      "to": "m1-prop-reach-calculus"
+      "to": "m1-prop-reach-calculus",
+      "context": "l trace signs. We bound its last quotient uniformly, including almost tangential contacts. Choose a small fixed $\\gamma'>0$ compared with the gains in Lemmas~\\ref{lem:reach-isolation} and \\ref{lem:reach-phase-ball}. If $s\\ge d^{-\\gamma'}$, the second-foot upper trace, the base bounds $|H|\\le Ch^{-2}$ a"
     },
     {
       "from": "m1-lem-reach-small-defect",
-      "to": "m1-cor-reach-base-defect"
+      "to": "m1-cor-reach-base-defect",
+      "context": "Use the tangent balls of Lemma~\\ref{lem:reach-small-defect} and Lemma~\\ref{lem:reach-phase-ball}. The proof of Proposition~\\ref{prop:reach-calculus} supplies the corresponding ta"
     },
     {
       "from": "m1-lem-reach-phase-ball",
-      "to": "m1-cor-reach-base-defect"
+      "to": "m1-cor-reach-base-defect",
+      "context": "Use the tangent balls of Lemma~\\ref{lem:reach-small-defect} and Lemma~\\ref{lem:reach-phase-ball}. The proof of Proposition~\\ref{prop:reach-calculus} supplies the corresponding tangent balls at second feet, with radi"
     },
     {
       "from": "m1-prop-reach-calculus",
-      "to": "m1-cor-reach-base-defect"
+      "to": "m1-cor-reach-base-defect",
+      "context": "Use the tangent balls of Lemma~\\ref{lem:reach-small-defect} and Lemma~\\ref{lem:reach-phase-ball}. The proof of Proposition~\\ref{prop:reach-calculus} supplies the corresponding tangent balls at second feet, with radius measured by the source reach $d(z)$. Exponential"
     },
     {
       "from": "m1-lem-diffuse-mean",
-      "to": "m1-lem-interface-sharp-means"
+      "to": "m1-lem-interface-sharp-means",
+      "context": "d for $q$ in a fixed small neighborhood of a zero, and its upper bound on a fixed segment. The mean-curvature estimate is the finite-window conclusion of Lemma~\\ref{lem:diffuse-mean}. To prove the additional curvature estimate, and to identify the common limiting quantities, consider the normalized l"
     },
     {
       "from": "m1-lem-diffuse-compactness",
-      "to": "m1-lem-interface-sharp-means"
+      "to": "m1-lem-interface-sharp-means",
+      "context": "ma~\\ref{lem:diffuse-mean}. To prove the additional curvature estimate, and to identify the common limiting quantities, consider the normalized limits of Lemma~\\ref{lem:diffuse-compactness}, with $z=0$, $\\nu(z)=e_n$, and normalization by $D(0)$ for $D$ and by $\\sqrt{D(0)}$ for $T$. Write these limits as $\\m"
     },
     {
       "from": "m1-lem-diffuse-positive",
-      "to": "m1-lem-interface-sharp-means"
+      "to": "m1-lem-interface-sharp-means",
+      "context": "sor independent of $s=x_n$, and \\[ F(x',s)=G(s)\\mathcal D(x',s),\\qquad (-\\Delta+2-G)F=2G(s)|\\mathcal T(x')|^2. \\] We use the nonnegative source part of Lemma~\\ref{lem:diffuse-positive} to compare this mass with curvature. The function $|\\mathcal T|^2$ is horizontally subharmonic. In a product cylinder"
     },
     {
       "from": "m1-lem-diffuse-positive",
-      "to": "m1-lem-interface-mean-gradient"
+      "to": "m1-lem-interface-mean-gradient",
+      "context": "e even source part of $F$ contributes zero to this derivative. For a positive homogeneous extremal $F=e^{b\\cdot x'}f(s/\\sqrt2)$, the explicit profiles in Lemma~\\ref{lem:diffuse-positive} give \\[ |\\nabla_{x'}F_s(0)|\\le C|b|F(0),\\qquad |b|\\le\\sqrt{3/2}. \\] The average of $e^{b\\cdot x'}$ on $B_{S/2}^m$ is a"
     },
     {
       "from": "m1-lem-interface-immersed-test",
-      "to": "m1-prop-interface-strengthened-stability"
+      "to": "m1-prop-interface-strengthened-stability",
+      "context": "Use Lemma~\\ref{lem:interface-immersed-test}. On the support of $\\beta$ the pullback tangential metric differs from the surface metric by $O(\\alpha)$. Uniform der"
     },
     {
       "from": "m1-lem-reach-half-line-barrier",
-      "to": "m1-lem-interface-halfspace-inverse"
+      "to": "m1-lem-interface-halfspace-inverse",
+      "context": "Let $v_0$ be the bounded positive half-line function supplied by Lemma~\\ref{lem:reach-half-line-barrier} with initial endpoint $0$. It satisfies $(-\\partial_t^2+V_g)v_0=1$, $0<c\\le v_0\\le C$, and $|v_0'|+|v_0''|\\le C$. Its t"
     },
     {
       "from": "m1-prop-interface-exact-comparison",
-      "to": "m1-lem-interface-halfspace-inverse"
+      "to": "m1-lem-interface-halfspace-inverse",
+      "context": "[Proof of Proposition~\\ref{prop:interface-exact-comparison}] Fix $z$ and write $B=J_0(z)+E(z)$. We need only treat $B\\to0$. For the first inequality other values are trivial. Fo"
     },
     {
       "from": "m1-lem-reach-small-defect",
-      "to": "m1-lem-interface-halfspace-inverse"
+      "to": "m1-lem-interface-halfspace-inverse",
+      "context": "$D(z_j)\\to0$ would make $U$ converge to a linear coordinate on every fixed ball, forcing $d(z_j)\\to\\infty$ by the definition of the penalty. This is also Lemma~\\ref{lem:reach-small-defect}. \\emph{Step 1: ordered sheets on the comparison scale.} Translate and rotate so $z=0$, $\\nu(z)=e_n$. Put $P_0=A_0\\log"
     },
     {
       "from": "m1-lem-reach-phase-ball",
-      "to": "m1-lem-interface-halfspace-inverse"
+      "to": "m1-lem-interface-halfspace-inverse",
+      "context": "cludes a second contact of the tangent ball with the base. The radius therefore works uniformly, including at bases on a lateral face of the smaller box. Lemma~\\ref{lem:reach-phase-ball}, or its explicit inequality \\eqref{eq:C6}, gives $v\\to g(t_1)$ on every fixed depth interval. Indeed, along the inward"
     },
     {
       "from": "m1-lem-diffuse-local",
-      "to": "m1-lem-interface-good-area"
+      "to": "m1-lem-interface-good-area",
+      "context": "r graph areas gives the claim. Larger balls are covered by $C(1+r)^n$ unit balls. The last assertions are local Harnack and the differentiated bounds in Lemma~\\ref{lem:diffuse-local}, applied on a fixed regular graph contained in the good set."
     },
     {
       "from": "m1-lem-interface-good-area",
-      "to": "m1-lem-interface-integral"
+      "to": "m1-lem-interface-integral",
+      "context": "premum by an unjustified point value integral. Let $w$ be good and $\\dist(w,X)>2$. On its fixed regular graph, for $w'$ within intrinsic distance $\\mu$, Lemma~\\ref{lem:interface-good-area} gives \\[ a(w)^4\\le C a(w')^4+C\\mu^4D(w)^2. \\] Average on that small graph disk, and use Harnack and a fixed-size graph"
     },
     {
       "from": "m1-lem-interface-log-windows",
-      "to": "m1-prop-interface-sharp-gaps"
+      "to": "m1-prop-interface-sharp-gaps",
+      "context": "$|t|\\le Q$ in its affine normal coordinates. The true orientations are opposed, and all profile and affine errors on this patch tend uniformly to zero by Lemma~\\ref{lem:interface-log-windows} and \\eqref{eq:interface-normal-accuracy} at its bases. Thus the exact source on the right of \\eqref{eq:L6} satisfies \\"
     },
     {
       "from": "m1-cor-reach-base-defect",
-      "to": "m1-lem-growth-gluing"
+      "to": "m1-lem-growth-gluing",
+      "context": "partition terms remain to be canceled by the variance identity. \\paragraph{Construction: a collar on which $f=1$.} The base tangent-ball estimate in Corollary~\\ref{cor:reach-base-defect} and \\eqref{eq:diffuse-local} give a uniform bound \\begin{equation}\\label{eq:growth-bounded-collar-reach} \\sup_{\\Sigma_"
     },
     {
       "from": "m1-lem-interface-immersed-test",
-      "to": "m1-lem-growth-gluing"
+      "to": "m1-lem-growth-gluing",
+      "context": "h $|\\nabla\\mu|\\le C/L_0$, and put $p_0(z)=\\mu(z)f(d(z))$. Use the normal immersion $\\Phi(z,s)=z+s\\nu(z)$ and the even curvature cutoff $\\beta(z,s)$ from Lemma~\\ref{lem:interface-immersed-test}, supported strictly inside $|s|a<\\alpha$ and equal to one for $|s|a\\le\\alpha/2$. The parameter $\\alpha$ is fixed small"
     },
     {
       "from": "m1-lem-interface-log-windows",
-      "to": "m1-lem-radial-clean-geometry"
+      "to": "m1-lem-radial-clean-geometry",
+      "context": "$R$ this ball avoids $Z$, because $2N^\\omega<N^{\\beta_0}/3$. Every zero in it therefore satisfies \\[ D<\\rho^{-\\alpha}\\le CN^{-\\alpha}\\le N^{-\\omega}. \\] Lemma~\\ref{lem:interface-log-windows} applies on a fixed fractional interior, decreasing $\\omega$ if necessary to leave a margin. Every fixed logarithmic-pow"
     },
     {
       "from": "m1-lem-radial-clean-geometry",
-      "to": "m1-lem-radial-switch-cost"
+      "to": "m1-lem-radial-switch-cost",
+      "context": "iple of $\\log\\rho$, so the $q^2$ mass of a fixed-width band tends uniformly to zero. Normal parametrization from each base, using the single traversal in Lemma~\\ref{lem:radial-clean-geometry}, bounds the integral of these tangential terms by $o_R(1)\\int|\\nabla_\\Sigma\\psi|^2$. Young's inequality with a fixed sm"
     },
     {
       "from": "m1-lem-radial-errors",
-      "to": "m1-lem-radial-switch-cost"
+      "to": "m1-lem-radial-switch-cost",
+      "context": "widths and polynomially bounded logarithmic Jacobian factors. The integrand is at most $C\\rho^{-4}$ times a fixed logarithmic power. The collar bound in Lemma~\\ref{lem:radial-errors} and the summation \\eqref{eq:R3} make this portion negligible. This argument counts rays, not globally named sheets. On"
     },
     {
       "from": "m1-thm-stable",
-      "to": "m1-lem-radial-area"
+      "to": "m1-lem-radial-area",
+      "context": "[Completion of Theorem~\\ref{thm:stable}] If a solution attains either endpoint of $[-1,1]$, it is the corresponding constant by the strong maximum principle. T"
     },
     {
       "from": "m1-thm-finite",
-      "to": "m1-lem-radial-area"
+      "to": "m1-lem-radial-area",
+      "context": "s anywhere, the equality case in Section~\\ref{sec:diffuse} gives a planar heteroclinic. Otherwise $D>0$ everywhere. If its centered density is bounded, Theorem~\\ref{thm:finite} applies. If that density were unbounded, then $K(R)\\to\\infty$ and Sections~\\ref{sec:reach}--\\ref{sec:growth}, followed"
     }
   ]
 }

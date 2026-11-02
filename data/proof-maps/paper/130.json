@@ -411,187 +411,233 @@
   "edges": [
     {
       "from": "m1-net-edge",
-      "to": "m1-net-finite-interface"
+      "to": "m1-net-finite-interface",
+      "context": "translations at the sinks and undo the signed bank exchange. The result is $C^{\\otimes mf}$ on each physical role, including every auxiliary array. By Lemma~\\ref{net:edge}, an edge with residual dimension $\\rho$ uses $\\rho$ products $C_z^{\\otimes f}$ or $(C_z^{-1})^{\\otimes f}$. Extend $z$"
     },
     {
       "from": "m1-net-finite-interface",
-      "to": "m1-net-tensor-bound"
+      "to": "m1-net-tensor-bound",
+      "context": "$k=0$. For $k\\ge K$, write $k=mf+r$, where $f=\\lfloor k/m\\rfloor$ and $0\\le r<m$. Apply the $r$ remaining bit factors directly. On $W$ arrays use Proposition~\\ref{net:finite-interface} with $f$ columns and $r$ spectator bits. On each of the $W_*-W$ remaining arrays use one directional step for each of"
     },
     {
       "from": "m1-net-indexing",
-      "to": "m1-net-tensor-bound"
+      "to": "m1-net-tensor-bound",
+      "context": "pendent transforms $C^{\\otimes f}$. Since $f\\ge72$ and $k-f\\ge(m-1)f\\ge71$, the number $2^{k-f}$ is divisible by $W_*=2^{71}$. After the permutation of Lemma~\\ref{net:indexing}, partition its fibers into exactly $2^{k-f}/W_*$ batches and use the present $W_*$-array algorithm recursively on each"
     },
     {
       "from": "m1-loc-replay",
-      "to": "m1-loc-toeplitz"
+      "to": "m1-loc-toeplitz",
+      "context": "pair, borrow $g$ coordinates outside its source and target chunks but inside these same $v$ coordinates; \\eqref{loc:fit} guarantees their availability. Lemma~\\ref{loc:replay} implements its update in $O(1+\\log v)$ shear layers. Process the $O(\\log^2v)$ pairs serially. Every borrowed coordina"
     },
     {
       "from": "m1-loc-toeplitz",
-      "to": "m1-loc-fourier"
+      "to": "m1-loc-fourier",
+      "context": "Apply Lemma~\\ref{loc:toeplitz} to the Toeplitz factor of $N$ in Lemma~\\ref{loc:newton-reduction}. The two diagonal factors of $N$ are monomial layers"
     },
     {
       "from": "m1-loc-newton-reduction",
-      "to": "m1-loc-fourier"
+      "to": "m1-loc-fourier",
+      "context": "Apply Lemma~\\ref{loc:toeplitz} to the Toeplitz factor of $N$ in Lemma~\\ref{loc:newton-reduction}. The two diagonal factors of $N$ are monomial layers. Equation~\\eqref{loc:fourier-factorization} then gives the Fouri"
     },
     {
       "from": "m1-loc-compiler",
-      "to": "m1-prop-tensor-fourier"
+      "to": "m1-prop-tensor-fourier",
+      "context": "Use Proposition~\\ref{loc:compiler} on every axis. Its words can be refined and padded to a common sequence of $O((1+\\log r_{\\max})^4)$ slot types: a monom"
     },
     {
       "from": "m1-lem-sector-address",
-      "to": "m1-prop-tensor-fourier"
+      "to": "m1-prop-tensor-fourier",
+      "context": "ord's borrowed coordinates throughout that word. Tensor monomials cost $O(R)$ by the prefix traversal. A tensor pair slot decomposes into the sectors of Lemma~\\ref{lem:sector-address}. Its width-$2^k$ sector carries precisely $C^{\\otimes k}$. Theorem~\\ref{net:tensor-bound} bounds its cost, including in"
     },
     {
       "from": "m1-net-tensor-bound",
-      "to": "m1-prop-tensor-fourier"
+      "to": "m1-prop-tensor-fourier",
+      "context": "traversal. A tensor pair slot decomposes into the sectors of Lemma~\\ref{lem:sector-address}. Its width-$2^k$ sector carries precisely $C^{\\otimes k}$. Theorem~\\ref{net:tensor-bound} bounds its cost, including invocation and movement, by $O(2^k(k+1)^\\theta)$. As $k\\le\\ell$ and the sector widths sum to"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-prime-lengths"
+      "to": "m1-lem-prime-lengths",
+      "context": "[Proof of Theorem~\\ref{thm:main} and Corollary~\\ref{cor:decimal}] All maps in the construction are exact and deterministic. The local word compiler and"
     },
     {
       "from": "m1-cor-decimal",
-      "to": "m1-lem-prime-lengths"
+      "to": "m1-lem-prime-lengths",
+      "context": "[Proof of Theorem~\\ref{thm:main} and Corollary~\\ref{cor:decimal}] All maps in the construction are exact and deterministic. The local word compiler and the fixed finite network have sp"
     },
     {
       "from": "m1-net-tensor-bound",
-      "to": "m1-lem-prime-lengths"
+      "to": "m1-lem-prime-lengths",
+      "context": "Fixed network tables contribute absolute constants, and local tables have size polynomial in $\\log(n+2)$. Array movement and traversal were counted in Theorem~\\ref{net:tensor-bound} and Lemma~\\ref{lem:sector-address}. Therefore a fixed number of $O(\\log(n+2))$-bit words per integer suffices throughou"
     },
     {
       "from": "m1-lem-sector-address",
-      "to": "m1-lem-prime-lengths"
+      "to": "m1-lem-prime-lengths",
+      "context": "absolute constants, and local tables have size polynomial in $\\log(n+2)$. Array movement and traversal were counted in Theorem~\\ref{net:tensor-bound} and Lemma~\\ref{lem:sector-address}. Therefore a fixed number of $O(\\log(n+2))$-bit words per integer suffices throughout, as required by the model."
     },
     {
       "from": "m1-cor-polynomial-multiplication",
-      "to": "m1-lem-prime-lengths"
+      "to": "m1-lem-prime-lengths",
+      "context": "[Proof of Corollary~\\ref{cor:polynomial-multiplication}] Set $M=2n-1$ and zero-pad $a$ and $b$ to vectors $\\widetilde a,\\widetilde b$ of length $M$. Every sum of two indices i"
     },
     {
       "from": "m1-net-finite-interface",
-      "to": "m1-syn-local-certificate"
+      "to": "m1-syn-local-certificate",
+      "context": "Use Proposition~\\ref{net:finite-interface} and the padding \\eqref{net:padding} on $W_*=2^{71}$ arrays of length $2^{mf}$. The $S=W_*m-\\Delta$ directional steps re"
     },
     {
       "from": "m2-fft-dirty-layers",
-      "to": "m2-fft-toeplitz-layers"
+      "to": "m2-fft-toeplitz-layers",
+      "context": "c r4. \\] At least $7r/8$ coordinates of this very recursion block lie outside the source and target chunks. They suffice for the $\\ell$ scratch coordinates in \\cref{fft:dirty-layers}. No extra coordinate is introduced for the padded FFT: its zero inputs require no register, and every gate requiring a"
     },
     {
       "from": "m2-fft-toeplitz-layers",
-      "to": "m2-lem-fourier-layers"
+      "to": "m2-lem-fourier-layers",
+      "context": "zation. Uniqueness gives $P^{-1}=L^{\\mathsf T}$, and therefore \\begin{equation}\\label{fft:fourier-toeplitz} F_r=N D_N^{-1}N^{\\mathsf T}. \\end{equation} Apply \\cref{fft:toeplitz-layers} to $T$ and include its two diagonal factors to factor $N$. Transposing a product reverses its factor order; the transp"
     },
     {
       "from": "m2-lem-amplification",
-      "to": "m2-prop-win-to-fourier"
+      "to": "m2-prop-win-to-fourier",
+      "context": "Fix the winning matrix $A$ of width $q$, the winning tensor exponent, and the entire winning word. Since $A$ is nonmonomial, $q\\ge2$. By \\cref{lem:amplification}, there are fixed constants $C$ and $0<\\alpha<1$ such that $A^{\\otimes k}$ has a scalar circuit of size at most $Cq^k(k+"
     },
     {
       "from": "m2-lem-fourier-layers",
-      "to": "m2-prop-win-to-fourier"
+      "to": "m2-prop-win-to-fourier",
+      "context": "rmuting $k_i$ by this unit converts the corresponding factor to $F_{r_i}$. Hence $F_n$ is $\\bigotimes_{i=1}^mF_{r_i}$ up to input and output permutations. By \\cref{lem:fourier-layers}, each factor has at most \\[ T=O(1+\\log^4m) \\] layers, uniformly for these $r_i$. Pad the shorter sequences in time by"
     },
     {
       "from": "m2-lem-generation",
-      "to": "m2-prop-win-to-fourier"
+      "to": "m2-prop-win-to-fourier",
+      "context": "remaining coordinates because $qt\\le r_i$. The desired map on that tuple is its prescribed pair operation together with identity on the $q-2$ spectators. By \\cref{lem:generation}, every such map has an implementation using the same fixed sequence of positive $A$-call slots and monomial slots; deno"
     },
     {
       "from": "m2-lem-generation",
-      "to": "m2-price-packing"
+      "to": "m2-price-packing",
+      "context": "_i\\), and one identity species \\(I_d\\) for every required identity dimension \\(d\\), including \\(d=1\\). Denote this finite dimension set by \\(\\mathcal D\\). By \\cref{lem:generation}, for every \\(i\\) there is a fixed word on \\(q_i\\) coordinates implementing identity using exactly \\(h_i>0\\) calls to \\("
     },
     {
       "from": "m2-fft-dirty-layers",
-      "to": "m2-lem-shear-dag"
+      "to": "m2-lem-shear-dag",
+      "context": "A finite DAG has finite depth and finite maximum fan-out, counting repeated operand edges and designated output uses. Apply \\cref{fft:dirty-layers} to this DAG with source coordinates $x$, target coordinates $y$, and one additional coordinate per gate, with arbitrary"
     },
     {
       "from": "m2-price-word-bounds",
-      "to": "m2-lem-shear-dag"
+      "to": "m2-lem-shear-dag",
+      "context": "ng $(x,y,z)\\mapsto(x,y+Gx,z)$. Although depth and fan-out may vary with the DAG, the shear count is independent of both; the layer bound is not needed here. By \\cref{price:word-bounds} and identity padding, this proves \\cref{corner:eq:shear-dag}. If only $a_0$ rows are nonzero, apply the same replay to"
     },
     {
       "from": "m2-lem-shear-dag",
-      "to": "m2-corner-lem-cascade"
+      "to": "m2-corner-lem-cascade",
+      "context": ")$ and $A'=A_{k,t}(P\\otimes I_N)$. In formal series modulo $z^t$, $A'^{-1}E_t$ is precisely the coefficient map of $q_kH_k^{-1}E=Q_k$ just constructed. Hence \\cref{lem:shear-dag}, with zero output rows omitted, bounds the price of the shear with block $-A'^{-1}E_t$ by $O_K((k+1)^3N)$. This uses o"
     },
     {
       "from": "m2-lem-triangular",
-      "to": "m2-corner-lem-cascade"
+      "to": "m2-corner-lem-cascade",
+      "context": "ertible, and $A'$ is invertible because $H(0)=M$ and $q_k(0)\\ne0$. Therefore the other diagonal block of this lower triangular product is also invertible. By \\cref{lem:triangular} its price is at least $p(A')$. There are $tkn^{k-1}$ cell calls in $\\mathcal K_{k,t}$, so \\[ p(A')\\le tkn^{k-1}p(K)+N"
     },
     {
       "from": "m2-lem-scalar-convolution",
-      "to": "m2-corner-lem-cascade"
+      "to": "m2-corner-lem-cascade",
+      "context": "ng its identity on the state. Finally $A_{k,t}=A'(P^{-1}\\otimes I_N)$ and inverse symmetry give \\[ p(A_{k,t})\\le tkn^{k-1}p(K)+2Np(P)+O_K((k+1)^3N). \\] Apply \\cref{lem:scalar-convolution} to $P$. Its bound is uniform even though $q_k$ varies with $k$, proving \\cref{corner:eq:cascade-bound}."
     },
     {
       "from": "m2-thm-corner",
-      "to": "m2-corner-lem-cascade"
+      "to": "m2-corner-lem-cascade",
+      "context": "[Proof of \\cref{thm:corner}] Independent row and column permutations move $M$ to the top-left corner and preserve $p(K)$. Write the resulting matr"
     },
     {
       "from": "m2-thm-corner",
-      "to": "m2-cor-dag-price"
+      "to": "m2-cor-dag-price",
+      "context": "$G$ is an invertible square submatrix of $\\begin{pmatrix}I_m&G\\\\0&I_m\\end{pmatrix}$, so \\cref{thm:corner} gives its first inequality, and \\cref{lem:shear-dag} gives the second. Although the proof of the corner law fixed each"
     },
     {
       "from": "m2-lem-shear-dag",
-      "to": "m2-cor-dag-price"
+      "to": "m2-cor-dag-price",
+      "context": "$G$ is an invertible square submatrix of $\\begin{pmatrix}I_m&G\\\\0&I_m\\end{pmatrix}$, so \\cref{thm:corner} gives its first inequality, and \\cref{lem:shear-dag} gives the second. Although the proof of the corner law fixed each individual matrix while taking a limit, the resultin"
     },
     {
       "from": "m2-cor-dag-price",
-      "to": "m2-lem-boundary-comparison"
+      "to": "m2-lem-boundary-comparison",
+      "context": "and the identity contribution uses the already available input values. The output count is $|\\mathcal U|N=O_G((k+1)N)$. Thus the universal one-way DAG bound, \\cref{cor:dag-price}, and \\cref{feedback:eq:active-summand} give \\begin{equation} p(\\widehat R)=p(R_{\\mathcal U}) \\leq C_G(k+1)^6N."
     },
     {
       "from": "m2-lem-scalar-convolution",
-      "to": "m2-lem-boundary-comparison"
+      "to": "m2-lem-boundary-comparison",
+      "context": "a scalar has been charged; the model does not charge for producing its description. This is precisely why the gate bound is independent of $t$ and $\\ell$. By \\cref{lem:scalar-convolution}, direct-sum additivity and the tensor law, \\[ p(P)=O(T\\log(2T))=O(t\\log(2t)),\\qquad p(P\\otimes I_N)=Np(P). \\] Undoing"
     },
     {
       "from": "m2-thm-corner",
-      "to": "m2-thm-feedback"
+      "to": "m2-thm-feedback",
+      "context": "If there is no state block, $H=M=K$. With a state block present, $s_0=0$ is the invertible corner law, \\cref{thm:corner}. We prove the claim for $s_0\\ne0$ by fixing $K,s_0$ throughout the following estimates. Let \\[ q(z)=\\det(I_r-zD),\\qqu"
     },
     {
       "from": "m2-lem-boundary-comparison",
-      "to": "m2-thm-feedback"
+      "to": "m2-thm-feedback",
+      "context": "is invertible. Put $N=n^k$ and choose $t=t(k)$ as in \\cref{feedback:eq:common-length}. For sufficiently large $k$, this choice meets the degree condition in \\cref{lem:boundary-comparison}. Write $A_H=\\mathcal T_t(H(z)^{\\otimes k})$. The cascade estimate in \\cref{corner:eq:cascade-bound} gives, with const"
     },
     {
       "from": "m2-lem-scalar-convolution",
-      "to": "m2-thm-feedback"
+      "to": "m2-thm-feedback",
+      "context": "pper triangular Toeplitz matrix with entry $s_0^{j-i}/(j-i)!$ at $j\\geq i$, then \\[ V_{s_0}=D_!^{-1}U_{s_0}D_!. \\] Monomial invariance, transpose symmetry and \\cref{lem:scalar-convolution} imply \\begin{equation} p(V_{s_0})=O(t\\log(2t)). \\label{feedback:eq:translation-price} \\end{equation} Applying triangu"
     },
     {
       "from": "m2-lem-triangular",
-      "to": "m2-thm-feedback"
+      "to": "m2-thm-feedback",
+      "context": "em:scalar-convolution} imply \\begin{equation} p(V_{s_0})=O(t\\log(2t)). \\label{feedback:eq:translation-price} \\end{equation} Applying triangular monotonicity, \\cref{lem:triangular}, to \\cref{feedback:eq:taylor-conjugacy}, then undoing its two scalar changes of basis, gives \\begin{align} p(W) &\\geq"
     },
     {
       "from": "m2-lem-boundary-comparison",
-      "to": "m2-thm-specialization"
+      "to": "m2-thm-specialization",
+      "context": "geq tk n^{k-1}p(G(0)) =tk n^{k-1}p(X(0)). \\label{feedback:eq:specialization-lower} \\end{equation} For sufficiently large $k$ the degree condition of \\cref{lem:boundary-comparison} holds. Its uniform estimate applies to the modulus just chosen, even though $a=a_k$ can vary. Combining it with \\cref"
     },
     {
       "from": "m2-thm-feedback",
-      "to": "m2-lem-pivot-bound"
+      "to": "m2-lem-pivot-bound",
+      "context": "eses are relevant: $D$ makes the solve possible, whereas $A$ makes its resulting transition invertible. We realize this solve as a feedback operation to which \\cref{thm:feedback} applies. Use data $(x,y)$ of widths $n,r$ and state $z$ of width $r$. First apply, separately on the $r$ pairs $(y_i,z_"
     },
     {
       "from": "m2-pivot-lem-one-port",
-      "to": "m2-lem-scalar-pivot"
+      "to": "m2-lem-scalar-pivot",
+      "context": "e one state coordinate. Coordinates fixed by the old chain remain members of its old set; no padding from the tensor-grid proof is added to it. Induction using \\cref{pivot:lem:one-port} gives \\begin{equation}\\label{pivot:eq:forward-chain-price} p(\\mathcal C_\\ell)=\\ell p(K). \\end{equation} The full chai"
     },
     {
       "from": "m2-lem-pivot-bound",
-      "to": "m2-lem-scalar-pivot"
+      "to": "m2-lem-scalar-pivot",
+      "context": "lower block triangular with diagonal blocks $A$. In fact its $(j,i)$ block for $i<j$ is $Cd^{j-1-i}B$, and its blocks for $i>j$ vanish. Both blocks required by \\cref{lem:pivot-bound} are therefore invertible for every $\\ell$. Pivoting the boundary state means that $w_\\ell$ is given and $w_0$ is reque"
     },
     {
       "from": "m2-lem-scalar-pivot",
-      "to": "m2-pivot-cor-basis-exchange"
+      "to": "m2-pivot-cor-basis-exchange",
+      "context": "ctively. These give the asserted criterion exactly. When both are nonzero, the transition between them is \\cref{pivot:eq:pivot-matrix} with scalar pivot. Apply \\cref{lem:scalar-pivot}. Reorderings have zero price."
     },
     {
       "from": "m2-thm-feedback",
-      "to": "m2-lem-pair-price"
+      "to": "m2-lem-pair-price",
+      "context": "4=\\lambda\\Id_4. \\] Here $J$ is monomial because $\\lambda\\ne0$, and \\[ (\\Id_4+J)(\\Id_4-J+J^2-J^3)=(1-\\lambda)\\Id_4 \\] shows that $\\Id_4+J$ is invertible. Apply \\cref{thm:feedback} at parameter one to \\[ \\mathcal L=\\begin{pmatrix}\\Id_4&J\\\\\\Id_4&0\\end{pmatrix}. \\] This full cell is invertible, its d"
     },
     {
       "from": "m2-pivot-cor-basis-exchange",
-      "to": "m2-lem-pair-price"
+      "to": "m2-lem-pair-price",
+      "context": ". The determinant table proves that every list is a basis, including on both sides of every exchange; it follows also by direct elementary row operations. Thus \\cref{pivot:cor:basis-exchange} applies at all four exchanges. Changing the source basis from $Y$ to $EY$ by a shear replaces its transition matrix $T$"
     },
     {
       "from": "m2-lem-scalar-pivot",
-      "to": "m2-reflect-triangular-price"
+      "to": "m2-reflect-triangular-price",
+      "context": "\\\\ T_m&T_m\\end{pmatrix}. \\] We shall exchange each bottom input form with the corresponding bottom output form, using only the exact \\emph{scalar} pivot law of \\cref{lem:scalar-pivot}. Here is a determinant check for every intermediate exchange. For any subset $H\\subseteq\\{n+1,\\ldots,2n\\}$ of already"
     },
     {
       "from": "m2-lem-pair-price",
-      "to": "m2-reflect-sparse-reflection"
+      "to": "m2-reflect-sparse-reflection",
+      "context": "oots of the diagonal-factor determinant, and all roots of $1-\\eps^2A_{ij}^2$ for the supported pairs. These are finitely many roots of nonzero polynomials. By \\cref{lem:pair-price}, direct sums, and product subadditivity, \\begin{equation} p(K(\\eps))\\leq \\frac32h\\qquad(\\eps\\notin E_0). \\label{refle"
     },
     {
       "from": "m2-thm-feedback",
-      "to": "m2-reflect-sparse-reflection"
+      "to": "m2-reflect-sparse-reflection",
+      "context": "nd{align*} The last equality follows from $mI_w+(v-ms)K(\\eps)=\\eps C_+(\\eps)/(\\eps+t)$. The output is invertible by the choice of $E_t$, so every hypothesis of \\cref{thm:feedback} is satisfied. An invertible scalar pair has price at most two. The factorization \\eqref{reflect:feedback-cell} and \\e"
     },
     {
       "from": "m2-thm-specialization",
-      "to": "m2-reflect-sparse-reflection"
+      "to": "m2-reflect-sparse-reflection",
+      "context": "erefore imply \\[ p(H_t(\\eps))\\leq p(F_{t,\\eps}) \\leq p(K(\\eps))+2w \\leq \\frac32h+2w \\qquad(\\eps\\notin E_t). \\] Apply \\cref{thm:specialization} to the rational matrix $H_t$ at $\\eps=0$. This proves \\begin{equation} p\\bigl((I+tA)(I-tA)^{-1}\\bigr)\\leq C_A, \\qqua"
     }
   ]
 }

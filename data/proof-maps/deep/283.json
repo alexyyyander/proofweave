@@ -1,0 +1,324 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "283",
+  "title": "Polynomial-time unitary synthesis from a Boolean oracle",
+  "result": {
+    "id": "paper-result",
+    "label": "Polynomial-time unitary synthesis from a Boolean oracle",
+    "statement": "Solves the constant-error Aaronson–Kuperberg unitary synthesis problem: a uniform polynomial-size quantum oracle circuit approximates every n -qubit unitary channel within diamond-norm error 1/2, after a suitable Boolean oracle is chosen. Gates, qubits, oracle calls and query length are polynomially bounded. The target-dependent oracle may have an unrestricted truth table; its efficient classical construction is not asserted.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "controlled-tasks-and-programmable-slots",
+      "label": "Controlled tasks and programmable slots",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "controlled-tasks-and-programmable-slots-2",
+      "label": "Controlled tasks and programmable slots",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "controlled-tasks-and-programmable-slots-3",
+      "label": "Controlled tasks and programmable slots",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "producing-a-contracting-block",
+      "label": "Producing a contracting block",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "producing-a-contracting-block-2",
+      "label": "Producing a contracting block",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "producing-a-contracting-block-3",
+      "label": "Producing a contracting block",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "fourier-fields-for-a-smaller-unitary",
+      "label": "Fourier fields for a smaller unitary",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "fourier-fields-for-a-smaller-unitary-2",
+      "label": "Fourier fields for a smaller unitary",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "fourier-fields-for-a-smaller-unitary-3",
+      "label": "Fourier fields for a smaller unitary",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "implementing-the-field-encodings",
+      "label": "Implementing the field encodings",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "implementing-the-field-encodings-2",
+      "label": "Implementing the field encodings",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "assembling-the-recursion",
+      "label": "Assembling the recursion",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "assembling-the-recursion-2",
+      "label": "Assembling the recursion",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "compilation-into-one-boolean-oracle",
+      "label": "Compilation into one Boolean oracle",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "compilation-into-one-boolean-oracle-2",
+      "label": "Compilation into one Boolean oracle",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Polynomial-Time Unitary Synthesis from a Boolean Oracle",
+      "title": "Polynomial-Time Unitary Synthesis from a Boolean Oracle",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Polynomial-Time-Unitary-Synthesis-from-a-Boolean-Oracle-October-5-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Polynomial-Time Unitary Synthesis from a Boolean Oracle; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "Polynomial-time unitary synthesis",
+          "fullLabel": "Polynomial-time unitary synthesis",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "[Polynomial-time unitary synthesis] There are a polynomial p and a deterministic classical algorithm which, on input 1^n for any integer n1 , outputs in time at most p(n) a quantum oracle circuit A_n…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-slot-preparation",
+          "role": "controlled-tasks-and-programmable-slots",
+          "label": "State preparation",
+          "fullLabel": "State preparation",
+          "kind": "lemma",
+          "source": "Controlled tasks and programmable slots",
+          "detail": "[State preparation] For every u1 there is a skeleton of u+1 slots that maps 0^u to _ for any prescribed family of unit vectors a_^ 2^u . Its structure depends only on the register sizes.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-slot-permutation",
+          "role": "controlled-tasks-and-programmable-slots-2",
+          "label": "Basis permutations",
+          "fullLabel": "Basis permutations",
+          "kind": "lemma",
+          "source": "Controlled tasks and programmable slots",
+          "detail": "[Basis permutations] Any family of permutations of the 2^u computational basis states can be implemented with 5u slots and u temporary qubits that start and finish at zero. The skeleton is…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-slot-fourier",
+          "role": "controlled-tasks-and-programmable-slots-3",
+          "label": "Fourier transforms",
+          "fullLabel": "Fourier transforms",
+          "kind": "lemma",
+          "source": "Controlled tasks and programmable slots",
+          "detail": "[Fourier transforms] The unitary \\[ x 2^ -b/2 _ z=0 ^ 2^b-1 e^ 2 i xz/2^b z \\] on b1 qubits has a uniformly generated skeleton with O(b) slots. Products of such transforms have a number of slots…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-contract-moment",
+          "role": "producing-a-contracting-block",
+          "label": "A matrix sign estimate",
+          "fullLabel": "A matrix sign estimate",
+          "kind": "lemma",
+          "source": "Producing a contracting block",
+          "detail": "[A matrix sign estimate] Let L_1,,L_q be Hermitian h h matrices, and let _1,,_q be independent Rademacher variables. Set v= _i L_i^2 . For every integer a1 , _ i=1 ^q_iL_i 2h^ 1/(2a) (2a-1)v.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-contract-block",
+          "role": "producing-a-contracting-block-2",
+          "label": "A block of uniformly small norm",
+          "fullLabel": "A block of uniformly small norm",
+          "kind": "proposition",
+          "source": "Producing a contracting block",
+          "detail": "[A block of uniformly small norm] For every unitary U on ^d , there are unitaries P_ L and P_ R on ^d such that V=P_ L UP_ R = A&B\\&D , D r, where the block sizes are k,s from~ . The transformations…",
+          "dependsOn": [
+            "m1-slot-permutation",
+            "m1-contract-moment"
+          ]
+        },
+        {
+          "id": "m1-contract-depth",
+          "role": "producing-a-contracting-block-3",
+          "label": "Dimension decrease",
+          "fullLabel": "Dimension decrease",
+          "kind": "lemma",
+          "source": "Producing a contracting block",
+          "detail": "[Dimension decrease] For the parameters in~ , s d/(4M) . Starting at any d2^n and repeatedly replacing d2 by d-s , one reaches d=1 in fewer than J=8M(n+1) steps.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-fields-unitary",
+          "role": "fourier-fields-for-a-smaller-unitary",
+          "label": "For the unitary block matrix in and any diagonal unitary Z , the matrix F in is…",
+          "fullLabel": "For the unitary block matrix in and any diagonal unitary Z , the matrix F in is…",
+          "kind": "lemma",
+          "source": "Fourier fields for a smaller unitary",
+          "detail": "For the unitary block matrix in and any diagonal unitary Z , the matrix F in is unitary. If R=OF^*= I_k\\\\ Y , Y=XF^*, then FE^*=R^*V, Y=(I-Z^*D^*)^ -1 Z^*B^*.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-fields-gram",
+          "role": "fourier-fields-for-a-smaller-unitary-2",
+          "label": "For either T= E_L or T= R_L , (1-r^ 2L )I_d\\ \\ T^* T\\ \\ I_d. In addition, let F…",
+          "fullLabel": "For either T= E_L or T= R_L , (1-r^ 2L )I_d\\ \\ T^* T\\ \\ I_d. In addition, let F…",
+          "kind": "proposition",
+          "source": "Fourier fields for a smaller unitary",
+          "detail": "For either T= E_L or T= R_L , (1-r^ 2L )I_d\\ \\ T^* T\\ \\ I_d. In addition, let F apply F(z) to the port register, controlled on z . Then F E_L- R_L V2.",
+          "dependsOn": [
+            "m1-fields-unitary"
+          ]
+        },
+        {
+          "id": "m1-fields-sparsity",
+          "role": "fourier-fields-for-a-smaller-unitary-3",
+          "label": "In these Fourier coordinates, every row of E_L and of R_L has at most L nonzero…",
+          "fullLabel": "In these Fourier coordinates, every row of E_L and of R_L has at most L nonzero…",
+          "kind": "proposition",
+          "source": "Fourier fields for a smaller unitary",
+          "detail": "In these Fourier coordinates, every row of E_L and of R_L has at most L nonzero entries.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-encode-row-sparse",
+          "role": "implementing-the-field-encodings",
+          "label": "Under , an exact-slot unitary U_T satisfies U_T - T5. It uses O(L(n+w+h)) slots…",
+          "fullLabel": "Under , an exact-slot unitary U_T satisfies U_T - T5. It uses O(L(n+w+h)) slots…",
+          "kind": "lemma",
+          "source": "Implementing the field encodings",
+          "detail": "Under , an exact-slot unitary U_T satisfies U_T - T5. It uses O(L(n+w+h)) slots and w+h+2 fresh qubits. Its slot structure depends only on the register sizes, d , and L , and it works coherently for…",
+          "dependsOn": [
+            "m1-slot-preparation"
+          ]
+        },
+        {
+          "id": "m1-encode-implementation",
+          "role": "implementing-the-field-encodings-2",
+          "label": "Under the hypotheses and definitions of Section~ , there are exact-slot…",
+          "fullLabel": "Under the hypotheses and definitions of Section~ , there are exact-slot…",
+          "kind": "proposition",
+          "source": "Implementing the field encodings",
+          "detail": "Under the hypotheses and definitions of Section~ , there are exact-slot unitaries U_E, U_R such that U_E - E_L5r^ 2L , U_R - R_L5r^ 2L . Each uses O(L(K+n+h)+K) slots and K+n+h+2 fresh qubits, with…",
+          "dependsOn": [
+            "m1-fields-sparsity",
+            "m1-fields-gram",
+            "m1-encode-row-sparse",
+            "m1-slot-fourier"
+          ]
+        },
+        {
+          "id": "m1-rec-step",
+          "role": "assembling-the-recursion",
+          "label": "One synthesis step",
+          "fullLabel": "One synthesis step",
+          "kind": "lemma",
+          "source": "Assembling the recursion",
+          "detail": "[One synthesis step] Let V be a unitary on ^ k+s in the block form of Proposition~ , and let D r<1 . Use the fields and encoders of Sections~ and~ with truncation length L . Suppose a circuit…",
+          "dependsOn": [
+            "m1-encode-implementation",
+            "m1-fields-gram"
+          ]
+        },
+        {
+          "id": "m1-rec-skeleton",
+          "role": "assembling-the-recursion-2",
+          "label": "Uniform programmable synthesis",
+          "fullLabel": "Uniform programmable synthesis",
+          "kind": "proposition",
+          "source": "Assembling the recursion",
+          "detail": "[Uniform programmable synthesis] Let n1 , 1 d2^n , and t0 . There is a programmable-slot circuit structure, determined by n,d,t , with the following property. For every family (U_)_ \\ 0,1\\ ^t of…",
+          "dependsOn": [
+            "m1-contract-block",
+            "m1-rec-step",
+            "m1-contract-depth",
+            "m1-encode-implementation"
+          ]
+        },
+        {
+          "id": "m1-compile-words",
+          "role": "compilation-into-one-boolean-oracle",
+          "label": "There is an absolute positive integer K_ w such that every S SU(2) and every…",
+          "fullLabel": "There is an absolute positive integer K_ w such that every S SU(2) and every…",
+          "kind": "lemma",
+          "source": "Compilation into one Boolean oracle",
+          "detail": "There is an absolute positive integer K_ w such that every S SU(2) and every 0<<1 admit a word in H,T,T^ of length at most K_ w ^ -3 whose matrix has determinant one and differs from S by at most in…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-compile-slots",
+          "role": "compilation-into-one-boolean-oracle-2",
+          "label": "Compilation of slots",
+          "fullLabel": "Compilation of slots",
+          "kind": "proposition",
+          "source": "Compilation into one Boolean oracle",
+          "detail": "[Compilation of slots] Let a skeleton have S slots on Q qubits, and put =1/h for an integer h2 . There is a deterministic procedure, polynomial in Q,S,1/ , that produces a circuit over H,T,T^,CNOT…",
+          "dependsOn": [
+            "m1-compile-words",
+            "m1-thm-main",
+            "m1-rec-skeleton"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "Polynomial-Time Unitary Synthesis from a Boolean Oracle",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Polynomial-Time-Unitary-Synthesis-from-a-Boolean-Oracle-October-5-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

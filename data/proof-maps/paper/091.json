@@ -78,31 +78,38 @@
   "edges": [
     {
       "from": "m1-thm-main",
-      "to": "m1-prop-variance"
+      "to": "m1-prop-variance",
+      "context": "[Proof of Theorem~\\ref{thm:main} from Proposition~\\ref{prop:variance}] Suppose first that $n\\ge2$. Fix nonzero spanning vectors $p_1,\\ldots,p_N$ and pos"
     },
     {
       "from": "m1-prop-variance",
-      "to": "m1-lem-tensor"
+      "to": "m1-lem-tensor",
+      "context": "[Proof of Proposition~\\ref{prop:variance}] The potential is smooth and even, and $D^2V\\ge\\eps I$. Lemma~\\ref{lem:moment} therefore supplies the moment coordinate"
     },
     {
       "from": "m1-lem-moment",
-      "to": "m1-lem-tensor"
+      "to": "m1-lem-tensor",
+      "context": "[Proof of Proposition~\\ref{prop:variance}] The potential is smooth and even, and $D^2V\\ge\\eps I$. Lemma~\\ref{lem:moment} therefore supplies the moment coordinates, with $0<\\tau\\le (4/\\eps)I$. Put \\[ H_i=D_x^2\\psi_i,\\qquad a_i=\\E\\psi_i. \\]"
     },
     {
       "from": "m1-lem-density",
-      "to": "m1-lem-tensor"
+      "to": "m1-lem-tensor",
+      "context": "d terms are nonnegative, since $M$ is positive definite and $B$ is symmetric. This is the required estimate on the dense class of double divergences. By Lemma~\\ref{lem:density}, such $u$ are dense in the centered even subspace of $L^2(\\mu)$. Each $\\psi_i\\in L^2(\\mu)$, so all pairings $u\\mapsto\\E"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-tensor"
+      "to": "m1-lem-tensor",
+      "context": "ion is immediate; otherwise division and squaring prove \\eqref{eq:variance}. This completes the analytic assertion and, by Section~\\ref{sec:reduction}, Theorem~\\ref{thm:main}."
     },
     {
       "from": "m1-cor-lp",
-      "to": "m1-lem-tensor"
+      "to": "m1-lem-tensor",
+      "context": "[Proof of Corollary~\\ref{cor:lp}] At $\\lambda=0,1$, the assertion follows from $\\mathcal W[h_K]=K$ and $\\mathcal W[h_L]=L$. Suppose $0<\\lambda<1$. Set \\"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-cor-measure"
+      "to": "m1-cor-measure",
+      "context": "likewise for $L$; if $P_Eu=0$, the middle product is $0$. Thus \\begin{equation}\\label{eq:relative-wulff-inclusion} D_E\\subset D\\cap E. \\end{equation} Theorem~\\ref{thm:main} in dimension $d$, followed by Saroglou's transfer theorem \\cite[Theorem~3.1]{Saroglou2016} in that same dimension, give"
     }
   ]
 }

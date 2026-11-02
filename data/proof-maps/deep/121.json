@@ -1,0 +1,443 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "121",
+  "title": "Almost-linear approximation of edit distance",
+  "result": {
+    "id": "paper-result",
+    "label": "Almost-linear approximation of edit distance",
+    "statement": "For every fixed rational (0,1), gives a randomized (1+ ) approximation to unit-cost edit distance in worst-case expected time N^ 1+o(1) , with success probability at least 2/3. The strings have total length N and polynomially bounded integer symbols. This is an asymptotic guarantee at fixed accuracy.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "alignment-geometry-and-computational-parameters",
+      "label": "Alignment geometry and computational parameters",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "simultaneous-coarse-estimates",
+      "label": "Simultaneous coarse estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "simultaneous-coarse-estimates-2",
+      "label": "Simultaneous coarse estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "simultaneous-coarse-estimates-3",
+      "label": "Simultaneous coarse estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-seed-to-refinement-construction",
+      "label": "A seed-to-refinement construction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-seed-to-refinement-construction-2",
+      "label": "A seed-to-refinement construction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-seed-to-refinement-construction-3",
+      "label": "A seed-to-refinement construction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "predicted-bands-and-the-refined-tables",
+      "label": "Predicted bands and the refined tables",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "predicted-bands-and-the-refined-tables-2",
+      "label": "Predicted bands and the refined tables",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-comparison-tree-and-cost-weighted-curvature",
+      "label": "A comparison tree and cost-weighted curvature",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-comparison-tree-and-cost-weighted-curvature-2",
+      "label": "A comparison tree and cost-weighted curvature",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-comparison-tree-and-cost-weighted-curvature-3",
+      "label": "A comparison tree and cost-weighted curvature",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-comparison-tree-and-cost-weighted-curvature-4",
+      "label": "A comparison tree and cost-weighted curvature",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "conditional-regret-and-the-first-crossing",
+      "label": "Conditional regret and the first crossing",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "conditional-regret-and-the-first-crossing-2",
+      "label": "Conditional regret and the first crossing",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "conditional-regret-and-the-first-crossing-3",
+      "label": "Conditional regret and the first crossing",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "accuracy-and-the-sequence-of-seed-passes",
+      "label": "Accuracy and the sequence of seed passes",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-optimization-and-exact-sampling",
+      "label": "Finite optimization and exact sampling",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-optimization-and-exact-sampling-2",
+      "label": "Finite optimization and exact sampling",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "lazy-evaluation-and-the-expected-work-bound",
+      "label": "Lazy evaluation and the expected work bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "lazy-evaluation-and-the-expected-work-bound-2",
+      "label": "Lazy evaluation and the expected work bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "lazy-evaluation-and-the-expected-work-bound-3",
+      "label": "Lazy evaluation and the expected work bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "lazy-evaluation-and-the-expected-work-bound-4",
+      "label": "Lazy evaluation and the expected work bound",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "An Almost-Linear Approximation Scheme for Edit Distance",
+      "title": "An Almost-Linear Approximation Scheme for Edit Distance",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-Almost-Linear-Approximation-Scheme-for-Edit-Distance-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from An Almost-Linear Approximation Scheme for Edit Distance; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "There is one uniform randomized algorithm that, given x,y and a rational (0,1)…",
+          "fullLabel": "There is one uniform randomized algorithm that, given x,y and a rational (0,1)…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "There is one uniform randomized algorithm that, given x,y and a rational (0,1) , returns a nonnegative integer D such that \\[ 23. \\] For every fixed rational , its worst-case expected running time on…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-geometry",
+          "role": "alignment-geometry-and-computational-parameters",
+          "label": "For every interval state, c(I,q) |z(I,q)| . Both c(I,) and |z(I,)| are 1…",
+          "fullLabel": "For every interval state, c(I,q) |z(I,q)| . Both c(I,) and |z(I,)| are 1…",
+          "kind": "lemma",
+          "source": "Alignment geometry and computational parameters",
+          "detail": "For every interval state, c(I,q) |z(I,q)| . Both c(I,) and |z(I,)| are 1 -Lipschitz in the endpoint metric. If I is partitioned, in order, into I_1,,I_m , and =(s_1,,s_m) is any list of valid child…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-seed",
+          "role": "simultaneous-coarse-estimates",
+          "label": "Initial estimates",
+          "fullLabel": "Initial estimates",
+          "kind": "theorem",
+          "source": "Simultaneous coarse estimates",
+          "detail": "[Initial estimates] With the parameters and labeled interval tree of Section~ , there is a lazily evaluated random table U^ (0) (I,q) of integers in [0,N] such that, with probability at least 0.99 ,…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-shift-tree",
+          "role": "simultaneous-coarse-estimates-2",
+          "label": "At the root o , \\[ d T_o(0), T_o(0)(1+2BD_0)dif k d. \\]",
+          "fullLabel": "At the root o , \\[ d T_o(0), T_o(0)(1+2BD_0)dif k d. \\]",
+          "kind": "lemma",
+          "source": "Simultaneous coarse estimates",
+          "detail": "At the root o , \\[ d T_o(0), T_o(0)(1+2BD_0)dif k d. \\]",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-coarse-precision",
+          "role": "simultaneous-coarse-estimates-3",
+          "label": "Except on an event of probability less than 0.01 , simultaneously for all…",
+          "fullLabel": "Except on an event of probability less than 0.01 , simultaneously for all…",
+          "kind": "lemma",
+          "source": "Simultaneous coarse estimates",
+          "detail": "Except on an event of probability less than 0.01 , simultaneously for all initial entries, all guesses, all their nodes, and all shifts, T_w(v)/f_w-a_w T_w(v) f_wT_w(v)+a_w, f_w=(1+ 1- )^ height(w) 2.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-refinement",
+          "role": "a-seed-to-refinement-construction",
+          "label": "Refinement",
+          "fullLabel": "Refinement",
+          "kind": "theorem",
+          "source": "A seed-to-refinement construction",
+          "detail": "[Refinement] Use the parameters and interval tree of Section~ in the large-input branch. Let A be a power of two with 1 A A_ init , and let U be an integer table on every labeled tree node and every…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-initial-cones",
+          "role": "a-seed-to-refinement-construction-2",
+          "label": "Initial cones",
+          "fullLabel": "Initial cones",
+          "kind": "lemma",
+          "source": "A seed-to-refinement construction",
+          "detail": "[Initial cones] For the fixed seed in Theorem~ , \\ c/a,|z|\\ w_02Fc, (w_0(I,)) L_0. At a nonleaf, the following local rule computes this global minimum exactly. If U(I,q)=0 , return zero. Otherwise…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-cone-locality",
+          "role": "a-seed-to-refinement-construction-3",
+          "label": "Cone locality",
+          "fullLabel": "Cone locality",
+          "kind": "lemma",
+          "source": "A seed-to-refinement construction",
+          "detail": "[Cone locality] Fix a good seed as in Theorem~ . Take a minimum of w_0(I,q) and any family of cones of slope L with nonnegative base costs at representatives (b,r) . If w_0(I,q)=0 , its value is…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-refinement-invariants",
+          "role": "predicted-bands-and-the-refined-tables",
+          "label": "For a seed satisfying Theorem~ , every outcome of the refinement obeys \\…",
+          "fullLabel": "For a seed satisfying Theorem~ , every outcome of the refinement obeys \\…",
+          "kind": "lemma",
+          "source": "Predicted bands and the refined tables",
+          "detail": "For a seed satisfying Theorem~ , every outcome of the refinement obeys \\ c/a,|z|\\ & d_t d_ t-1 w_0, \\\\ d_t(I,q)&(1+)d_t(I,q')+L|q-q'|_1. At nonleaves one also has B_I(d_t)(q) d_t(I,q) B_I(d_ t-1…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-group-accuracy",
+          "role": "predicted-bands-and-the-refined-tables-2",
+          "label": "One-group accuracy",
+          "fullLabel": "One-group accuracy",
+          "kind": "lemma",
+          "source": "Predicted bands and the refined tables",
+          "detail": "[One-group accuracy] Under the seed hypothesis of Theorem~ , fix complete child tables and one group at time t . With conditional probability at least 1-H^ -4 , all action-cost estimates used to…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-comparison-tree",
+          "role": "a-comparison-tree-and-cost-weighted-curvature",
+          "label": "Comparison costs",
+          "fullLabel": "Comparison costs",
+          "kind": "lemma",
+          "source": "A comparison tree and cost-weighted curvature",
+          "detail": "[Comparison costs] At each nonterminal of the comparison tree, (b,r) is a representative, b satisfies the local scale restriction~ , and ^* is a wide action whose endpoint shifts are within 6b of…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-curvature-telescope",
+          "role": "a-comparison-tree-and-cost-weighted-curvature-2",
+          "label": "Total curvature",
+          "fullLabel": "Total curvature",
+          "kind": "lemma",
+          "source": "A comparison tree and cost-weighted curvature",
+          "detail": "[Total curvature] On the fixed comparison tree, put h=Le+w_0(I,q)/T at each nonterminal. Then _ nonterminal (K+G) 4C_ term +3_ nonterminal e +4_ nonterminal h. Consequently, _ nonterminal (K+G)…",
+          "dependsOn": [
+            "m1-lem-comparison-tree"
+          ]
+        },
+        {
+          "id": "m1-cor-bad-node-cost",
+          "role": "a-comparison-tree-and-cost-weighted-curvature-3",
+          "label": "The total true cost of bad nodes satisfies _ bad c 10000FH^ 1/4 (1+J/P+J/T)D.",
+          "fullLabel": "The total true cost of bad nodes satisfies _ bad c 10000FH^ 1/4 (1+J/P+J/T)D.",
+          "kind": "corollary",
+          "source": "A comparison tree and cost-weighted curvature",
+          "detail": "The total true cost of bad nodes satisfies _ bad c 10000FH^ 1/4 (1+J/P+J/T)D.",
+          "dependsOn": [
+            "m1-lem-curvature-telescope"
+          ]
+        },
+        {
+          "id": "m1-lem-comparison-band",
+          "role": "a-comparison-tree-and-cost-weighted-curvature-4",
+          "label": "Comparison-band coverage",
+          "fullLabel": "Comparison-band coverage",
+          "kind": "lemma",
+          "source": "A comparison tree and cost-weighted curvature",
+          "detail": "[Comparison-band coverage] At a non-bad comparison node with | v|1- , the action ^* belongs to C_ b,r . Its representative is not skipped: the band is nonempty, h_64Fb , and the rounded action (b,r)…",
+          "dependsOn": [
+            "m1-lem-comparison-tree"
+          ]
+        },
+        {
+          "id": "m1-lem-generic-regret",
+          "role": "conditional-regret-and-the-first-crossing",
+          "label": "At every nonterminal comparison node, _ t=1 ^S R_t _i( d_0- d_S)(I_i,q_i)…",
+          "fullLabel": "At every nonterminal comparison node, _ t=1 ^S R_t _i( d_0- d_S)(I_i,q_i)…",
+          "kind": "lemma",
+          "source": "Conditional regret and the first crossing",
+          "detail": "At every nonterminal comparison node, _ t=1 ^S R_t _i( d_0- d_S)(I_i,q_i) _i(m_i-|z_i|) W-|z(I,r)|, where z_i=z(I_i,q_i) . In particular, the bound is at most 4Fc . If the node is not bad and | v|>1-…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-entropy",
+          "role": "conditional-regret-and-the-first-crossing-2",
+          "label": "Monotone costs with fixed block masses",
+          "fullLabel": "Monotone costs with fixed block masses",
+          "kind": "lemma",
+          "source": "Conditional regret and the first crossing",
+          "detail": "[Monotone costs with fixed block masses] Let Q be a nonempty compact convex set of probability vectors in R^d , containing a vector with every coordinate positive. Partition the coordinates into…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-node-regret",
+          "role": "conditional-regret-and-the-first-crossing-3",
+          "label": "Condition on the complete child tables at such a comparison node. Then &h_( d_…",
+          "fullLabel": "Condition on the complete child tables at such a comparison node. Then &h_( d_…",
+          "kind": "proposition",
+          "source": "Conditional regret and the first crossing",
+          "detail": "Condition on the complete child tables at such a comparison node. Then &h_( d_ C +2+SH^ -3 )\\\\ &+2 c+2SH^ -4 Fc. Here h_64Fb and d_ C 4(p_*+21) .",
+          "dependsOn": [
+            "m1-lem-group-accuracy",
+            "m1-thm-refinement",
+            "m1-lem-comparison-tree",
+            "m1-lem-generic-regret",
+            "m1-cor-bad-node-cost",
+            "m1-lem-comparison-band"
+          ]
+        },
+        {
+          "id": "m1-lem-seed-amplification",
+          "role": "accuracy-and-the-sequence-of-seed-passes",
+          "label": "Conditional on any fixed good preceding seed, the next seed is good for factor…",
+          "fullLabel": "Conditional on any fixed good preceding seed, the next seed is good for factor…",
+          "kind": "lemma",
+          "source": "Accuracy and the sequence of seed passes",
+          "detail": "Conditional on any fixed good preceding seed, the next seed is good for factor 4a except with probability at most (10H-H^2) .",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-finite-optimizer",
+          "role": "finite-optimization-and-exact-sampling",
+          "label": "A finite entropy optimizer",
+          "fullLabel": "A finite entropy optimizer",
+          "kind": "lemma",
+          "source": "Finite optimization and exact sampling",
+          "detail": "[A finite entropy optimizer] Let Q be the convex hull of a nonempty finite list of rational probability vectors in R^d , and suppose that every coordinate is positive in at least one listed vector.…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-online-local-cost",
+          "role": "finite-optimization-and-exact-sampling-2",
+          "label": "Local cost of the online rule",
+          "fullLabel": "Local cost of the online rule",
+          "kind": "corollary",
+          "source": "Finite optimization and exact sampling",
+          "detail": "[Local cost of the online rule] For a band in the edit-distance algorithm, the numerical mixture in Section~ can be constructed and sampled with local expected bit cost 2^ o(H) , using only already…",
+          "dependsOn": [
+            "m1-lem-finite-optimizer"
+          ]
+        },
+        {
+          "id": "m1-lem-unconditional-sizes",
+          "role": "lazy-evaluation-and-the-expected-work-bound",
+          "label": "Unconditional size bounds",
+          "fullLabel": "Unconditional size bounds",
+          "kind": "lemma",
+          "source": "Lazy evaluation and the expected work bound",
+          "detail": "[Unconditional size bounds] On every execution, all local searches are finite. The warmup values are nonnegative integers bounded by (2L_0+1)N , and every refinement value satisfies 0 d_t(I,q)…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-current-index-budget",
+          "role": "lazy-evaluation-and-the-expected-work-bound-2",
+          "label": "Current-index calls",
+          "fullLabel": "Current-index calls",
+          "kind": "lemma",
+          "source": "Lazy evaluation and the expected work bound",
+          "detail": "[Current-index calls] Evaluating one refinement entry d_t(I,q) requires at most M^ O(1) distinct child entries at the same pass, copy, and index t . This bound holds for all seeds and all sample…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-local-work",
+          "role": "lazy-evaluation-and-the-expected-work-bound-3",
+          "label": "Local evaluation cost",
+          "fullLabel": "Local evaluation cost",
+          "kind": "lemma",
+          "source": "Lazy evaluation and the expected work bound",
+          "detail": "[Local evaluation cost] After collapsing the finite auxiliary calculations into table-entry evaluations, one warmup or refinement entry has at most H^ O(p_*+1) distinct inputs at earlier indices or…",
+          "dependsOn": [
+            "m1-lem-unconditional-sizes",
+            "m1-lem-finite-optimizer"
+          ]
+        },
+        {
+          "id": "m1-thm-work",
+          "role": "lazy-evaluation-and-the-expected-work-bound-4",
+          "label": "Charged expected running time",
+          "fullLabel": "Charged expected running time",
+          "kind": "theorem",
+          "source": "Lazy evaluation and the expected work bound",
+          "detail": "[Charged expected running time] The large-input algorithm has worst-case expected running time N^ 1+o(1) on the logarithmic-word RAM, over its internal randomness. This includes input processing,…",
+          "dependsOn": [
+            "m1-thm-seed",
+            "m1-lem-local-work",
+            "m1-lem-unconditional-sizes",
+            "m1-thm-main"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "An Almost-Linear Approximation Scheme for Edit Distance",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-Almost-Linear-Approximation-Scheme-for-Edit-Distance-September-24-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

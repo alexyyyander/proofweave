@@ -1,0 +1,311 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "333",
+  "title": "Smooth isometric immersions of surfaces into ℝ<sup>4</sup>",
+  "result": {
+    "id": "paper-result",
+    "label": "Smooth isometric immersions of surfaces into ℝ<sup>4</sup>",
+    "statement": "Every closed smooth Riemannian surface admits a smooth isometric immersion into ℝ 4 , resolving the closed-surface form of the four-dimensional isometric-immersion problem. This includes nonorientable surfaces and metrics of arbitrary Gaussian curvature.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "normal-geometry-and-admissible-phases",
+      "label": "Normal geometry and admissible phases",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "normal-geometry-and-admissible-phases-2",
+      "label": "Normal geometry and admissible phases",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-primitive-metric-addition",
+      "label": "The primitive metric addition",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "small-oscillatory-metric-increments",
+      "label": "Small oscillatory metric increments",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-exact-smooth-correction",
+      "label": "An exact smooth correction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-exact-smooth-correction-2",
+      "label": "An exact smooth correction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-exact-smooth-correction-3",
+      "label": "An exact smooth correction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-velocity-circle-with-controlled-turns",
+      "label": "A velocity circle with controlled turns",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-velocity-circle-with-controlled-turns-2",
+      "label": "A velocity circle with controlled turns",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-velocity-circle-with-controlled-turns-3",
+      "label": "A velocity circle with controlled turns",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-velocity-circle-with-controlled-turns-4",
+      "label": "A velocity circle with controlled turns",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "realizing-the-primitive-metric-addition",
+      "label": "Realizing the primitive metric addition",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "realizing-the-primitive-metric-addition-2",
+      "label": "Realizing the primitive metric addition",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "global-preparation-and-finite-assembly",
+      "label": "Global preparation and finite assembly",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "global-preparation-and-finite-assembly-2",
+      "label": "Global preparation and finite assembly",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Smooth isometric immersions of closed surfaces into Euclidean four-space",
+      "title": "Smooth isometric immersions of closed surfaces into Euclidean four-space",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Smooth-isometric-immersions-of-closed-surfaces-into-Euclidean-four-space-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Smooth isometric immersions of closed surfaces into Euclidean four-space; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "Every closed smooth Riemannian surface (M,g) admits a C^ isometric immersion…",
+          "fullLabel": "Every closed smooth Riemannian surface (M,g) admits a C^ isometric immersion…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "Every closed smooth Riemannian surface (M,g) admits a C^ isometric immersion into (^4,_4) , where _4=_ i=1 ^4 dx_i^2 .",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-phase-data",
+          "role": "normal-geometry-and-admissible-phases",
+          "label": "Positive phase decompositions",
+          "fullLabel": "Positive phase decompositions",
+          "kind": "lemma",
+          "source": "Normal geometry and admissible phases",
+          "detail": "[Positive phase decompositions] Let F:M^4 be a smooth immersion with B_F(p)0 for every p , and let h_0 be a smooth positive definite tensor. There are finitely many functions _ defined on coordinate…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-polynomial-phase-data",
+          "role": "normal-geometry-and-admissible-phases-2",
+          "label": "Phase data for a varying family",
+          "fullLabel": "Phase data for a varying family",
+          "kind": "lemma",
+          "source": "Normal geometry and admissible phases",
+          "detail": "[Phase data for a varying family] Fix a metric h_* and suppose that f_z , 0<z<z_0 , are smooth immersions satisfying uniform upper and positive lower metric bounds, \\[ \\|f_z\\|_ C^j =O(z^ -j )(0 j3),…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-primitive-addition",
+          "role": "the-primitive-metric-addition",
+          "label": "Primitive addition with preserved boundary conditions",
+          "fullLabel": "Primitive addition with preserved boundary conditions",
+          "kind": "proposition",
+          "source": "The primitive metric addition",
+          "detail": "[Primitive addition with preserved boundary conditions] Let M be a closed smooth surface and F:M^4 a smooth immersion whose second fundamental form is nonzero as a tensor at every point. Assume F has…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-small-increment",
+          "role": "small-oscillatory-metric-increments",
+          "label": "Small increment",
+          "fullLabel": "Small increment",
+          "kind": "proposition",
+          "source": "Small oscillatory metric increments",
+          "detail": "[Small increment] Let the phase data above be fixed. Let P_1,,P_d be fixed smooth tensor-valued differential operators polynomial above order two, and put \\[ P(G)=(G)+_ i=1 ^d^i P_i(G), 01. \\] There…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-exact-correction",
+          "role": "an-exact-smooth-correction",
+          "label": "Exact correction",
+          "fullLabel": "Exact correction",
+          "kind": "proposition",
+          "source": "An exact smooth correction",
+          "detail": "[Exact correction] Let M be a closed smooth surface, and let h_* be a smooth Riemannian metric on M . Fix background norms. There are positive integers R,N with the following property. Suppose that…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-finite-order-smoothing",
+          "role": "an-exact-smooth-correction-2",
+          "label": "For each positive integer r , there are linear smoothing operators S_s , 0<s…",
+          "fullLabel": "For each positive integer r , there are linear smoothing operators S_s , 0<s…",
+          "kind": "lemma",
+          "source": "An exact smooth correction",
+          "detail": "For each positive integer r , there are linear smoothing operators S_s , 0<s s_0 , on smooth sections of any fixed smooth vector bundle over M , with the following properties. For fixed nonnegative…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-exact-step",
+          "role": "an-exact-smooth-correction-3",
+          "label": "One smoothing step",
+          "fullLabel": "One smoothing step",
+          "kind": "lemma",
+          "source": "An exact smooth correction",
+          "detail": "[One smoothing step] Under , take either '=^k or '=^ k+1 . For sufficiently small t , there is a smooth increment U such that, with \\[ G'=G+U, H'='^ -2 (h_*-(G')), S'_m= S_m(;G',H'), \\] for every…",
+          "dependsOn": [
+            "m1-prop-small-increment"
+          ]
+        },
+        {
+          "id": "m1-lem-velocity-plane",
+          "role": "a-velocity-circle-with-controlled-turns",
+          "label": "On a neighborhood of D and a sufficiently small neighborhood of the 2-jet…",
+          "fullLabel": "On a neighborhood of D and a sufficiently small neighborhood of the 2-jet…",
+          "kind": "lemma",
+          "source": "A velocity circle with controlled turns",
+          "detail": "On a neighborhood of D and a sufficiently small neighborhood of the 2-jet section of F , the vectors Y,C are independent, P is a smooth 2-plane, and R_0 is bounded below by a positive constant.…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-loop-density",
+          "role": "a-velocity-circle-with-controlled-turns-2",
+          "label": "Smooth densities for interior averages",
+          "fullLabel": "Smooth densities for interior averages",
+          "kind": "lemma",
+          "source": "A velocity circle with controlled turns",
+          "detail": "[Smooth densities for interior averages] Let a smooth family of circle-valued paths p_b(t)^2 and targets c_b^2 be parametrized by a finite-dimensional parameter b . On a compact parameter set,…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-small-value-derivative",
+          "role": "a-velocity-circle-with-controlled-turns-3",
+          "label": "Let K be a compact subset of a finite union of smooth embedded curves in the…",
+          "fullLabel": "Let K be a compact subset of a finite union of smooth embedded curves in the…",
+          "kind": "lemma",
+          "source": "A velocity circle with controlled turns",
+          "detail": "Let K be a compact subset of a finite union of smooth embedded curves in the interior of a coordinate disk. Suppose the curves have only finitely many intersections and only finitely many tangencies…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-velocity-loop",
+          "role": "a-velocity-circle-with-controlled-turns-4",
+          "label": "Velocity loop",
+          "fullLabel": "Velocity loop",
+          "kind": "lemma",
+          "source": "A velocity circle with controlled turns",
+          "detail": "[Velocity loop] Under the hypotheses of Proposition~ , fix any finite threshold T . There is a neighborhood of the 2-jet section of F over D and a small exterior neighborhood, on which one can choose…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-primitive-realization",
+          "role": "realizing-the-primitive-metric-addition",
+          "label": "Realization of a velocity loop",
+          "fullLabel": "Realization of a velocity loop",
+          "kind": "proposition",
+          "source": "Realizing the primitive metric addition",
+          "detail": "[Realization of a velocity loop] Let M be a closed smooth surface and let F:M^4 be a smooth immersion whose second fundamental form is nonzero at every point. Let D be a disk with coordinates x,y on…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-finite-periodic-expansion",
+          "role": "realizing-the-primitive-metric-addition-2",
+          "label": "Finite periodic expansion",
+          "fullLabel": "Finite periodic expansion",
+          "kind": "lemma",
+          "source": "Realizing the primitive metric addition",
+          "detail": "[Finite periodic expansion] Under the hypotheses of Proposition~ , for each integer L2 there are periodic differential operators U_1,,U_L with values in ^4 , and symmetric tensor differential…",
+          "dependsOn": [
+            "m1-prop-primitive-realization",
+            "m1-prop-exact-correction",
+            "m1-prop-small-increment",
+            "m1-lem-phase-data"
+          ]
+        },
+        {
+          "id": "m1-lem-spherical-preparation",
+          "role": "global-preparation-and-finite-assembly",
+          "label": "Finite-point spherical preparation",
+          "fullLabel": "Finite-point spherical preparation",
+          "kind": "lemma",
+          "source": "Global preparation and finite assembly",
+          "detail": "[Finite-point spherical preparation] Let M be a closed smooth surface and let I:M S^3 be a smooth immersion. There are constants C,c>0 and _0>0 with the following property. For every finite set P M…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-global-preparation",
+          "role": "global-preparation-and-finite-assembly-2",
+          "label": "Global primitive preparation",
+          "fullLabel": "Global primitive preparation",
+          "kind": "lemma",
+          "source": "Global preparation and finite assembly",
+          "detail": "[Global primitive preparation] Let (M,g) be a closed smooth Riemannian surface. There exist a smooth immersion F^0:M^4 , a smooth unit normal n^0 , and a finite list \\[ (D_j,x_j,y_j,a_j), 1 j K, \\]…",
+          "dependsOn": [
+            "m1-lem-spherical-preparation",
+            "m1-thm-main",
+            "m1-prop-primitive-addition"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "Smooth isometric immersions of closed surfaces into Euclidean four-space",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Smooth-isometric-immersions-of-closed-surfaces-into-Euclidean-four-space-September-23-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

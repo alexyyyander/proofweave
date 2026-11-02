@@ -1,0 +1,270 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "063",
+  "title": "The generalized Mukai conjecture",
+  "result": {
+    "id": "paper-result",
+    "label": "The generalized Mukai conjecture",
+    "statement": "Proves the generalized Mukai conjecture: every positive-dimensional smooth complex projective Fano manifold of dimension n , Picard number ρ and pseudoindex ι satisfies ( -1) n, with equality exactly for ( P^ -1 )^ . Here the pseudoindex is the least anticanonical degree of a rational curve.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "quantum-divisors-and-point-descendants",
+      "label": "Quantum divisors and point descendants",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-lower-bound-for-point-descendants",
+      "label": "A lower bound for point descendants",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-lower-bound-for-point-descendants-2",
+      "label": "A lower bound for point descendants",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-lower-bound-for-point-descendants-3",
+      "label": "A lower bound for point descendants",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-independent-joint-eigenvalue-tuple",
+      "label": "An independent joint eigenvalue tuple",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-divisor-eigenvalues-to-independent-curve-degrees",
+      "label": "From divisor eigenvalues to independent curve degrees",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-divisor-eigenvalues-to-independent-curve-degrees-2",
+      "label": "From divisor eigenvalues to independent curve degrees",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-divisor-eigenvalues-to-independent-curve-degrees-3",
+      "label": "From divisor eigenvalues to independent curve degrees",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-equality-case",
+      "label": "The equality case",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-equality-case-2",
+      "label": "The equality case",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-equality-case-3",
+      "label": "The equality case",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-equality-case-4",
+      "label": "The equality case",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "The generalized Mukai conjecture",
+      "title": "The generalized Mukai conjecture",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Generalized-Mukai-Conjecture-September-24-2026/article.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from The generalized Mukai conjecture; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "Let X be a smooth connected complex projective Fano manifold of positive…",
+          "fullLabel": "Let X be a smooth connected complex projective Fano manifold of positive…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "Let X be a smooth connected complex projective Fano manifold of positive dimension n , Picard number _X and pseudoindex _X . Then \\[ _X(_X-1) n. \\] Equality holds if and only if \\[ X( P^ _X-1 )^ _X .…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-recurrence",
+          "role": "quantum-divisors-and-point-descendants",
+          "label": "For every integer degree vector with d_>0 and every j\\ 1,,r\\ , _jv_=_ A_ j, v_…",
+          "fullLabel": "For every integer degree vector with d_>0 and every j\\ 1,,r\\ , _jv_=_ A_ j, v_…",
+          "kind": "lemma",
+          "source": "Quantum divisors and point descendants",
+          "detail": "For every integer degree vector with d_>0 and every j\\ 1,,r\\ , _jv_=_ A_ j, v_ - . For a positive degree , (v_,1)=_ d_-2 ()_.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-descendant-bound",
+          "role": "a-lower-bound-for-point-descendants",
+          "label": "Point-descendant lower bound",
+          "fullLabel": "Point-descendant lower bound",
+          "kind": "proposition",
+          "source": "A lower bound for point descendants",
+          "detail": "[Point-descendant lower bound] Suppose that \\(\\) is represented by a nonconstant free map \\( P^1 X\\). Put \\(d=d_\\) and \\(b=ad\\). Then \\[ _ d-2 (pt)_ 1 b^ d-1 . \\]",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-weighted-degree-lower",
+          "role": "a-lower-bound-for-point-descendants-2",
+          "label": "Let \\( P\\) be a weighted projective stack with positive integer weights at most…",
+          "fullLabel": "Let \\( P\\) be a weighted projective stack with positive integer weights at most…",
+          "kind": "lemma",
+          "source": "A lower bound for point descendants",
+          "detail": "Let \\( P\\) be a weighted projective stack with positive integer weights at most \\(b\\), and let \\(Z P\\) be an integral closed substack of dimension \\(h\\). Then \\[ _Z c_1( O_ P (1))^h b^ -(h+1) . \\]",
+          "dependsOn": [
+            "m1-prop-descendant-bound"
+          ]
+        },
+        {
+          "id": "m1-lem-free-dense",
+          "role": "a-lower-bound-for-point-descendants-3",
+          "label": "The numerical degrees represented by nonconstant free rational maps are Zariski…",
+          "fullLabel": "The numerical degrees represented by nonconstant free rational maps are Zariski…",
+          "kind": "lemma",
+          "source": "A lower bound for point descendants",
+          "detail": "The numerical degrees represented by nonconstant free rational maps are Zariski dense in \\(N_1(X)_ C \\). They are closed under addition and under multiplication by positive integers.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-spectral",
+          "role": "an-independent-joint-eigenvalue-tuple",
+          "label": "At least one joint diagonal tuple (_1,,_r) of the quantum divisor matrices has…",
+          "fullLabel": "At least one joint diagonal tuple (_1,,_r) of the quantum divisor matrices has…",
+          "kind": "proposition",
+          "source": "An independent joint eigenvalue tuple",
+          "detail": "At least one joint diagonal tuple (_1,,_r) of the quantum divisor matrices has coordinates algebraically independent over C .",
+          "dependsOn": [
+            "m1-lem-free-dense",
+            "m1-prop-descendant-bound"
+          ]
+        },
+        {
+          "id": "m1-lem-alternating-trace",
+          "role": "from-divisor-eigenvalues-to-independent-curve-degrees",
+          "label": "An alternating trace form",
+          "fullLabel": "An alternating trace form",
+          "kind": "lemma",
+          "source": "From divisor eigenvalues to independent curve degrees",
+          "detail": "[An alternating trace form] Let L be a field extension of C , let A_1,,A_rMat_m(L) commute pairwise, and let A_0Mat_m(L) commute with each A_j , where r1 . Use the K\\\"ahler differential of L/ C , and…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-spectral-trace",
+          "role": "from-divisor-eigenvalues-to-independent-curve-degrees-2",
+          "label": "A nonzero trace from one eigenvalue tuple",
+          "fullLabel": "A nonzero trace from one eigenvalue tuple",
+          "kind": "lemma",
+          "source": "From divisor eigenvalues to independent curve degrees",
+          "detail": "[A nonzero trace from one eigenvalue tuple] Let L be an algebraically closed extension of C and let A_1,,A_rMat_m(L) commute pairwise. Suppose a joint diagonal tuple (_1,,_r) in a common upper…",
+          "dependsOn": [
+            "m1-lem-alternating-trace"
+          ]
+        },
+        {
+          "id": "m1-prop-independent-correspondences",
+          "role": "from-divisor-eigenvalues-to-independent-curve-degrees-3",
+          "label": "Independent curve correspondences",
+          "fullLabel": "Independent curve correspondences",
+          "kind": "proposition",
+          "source": "From divisor eigenvalues to independent curve degrees",
+          "detail": "[Independent curve correspondences] Suppose that the quantum divisor operators A_1(q),,A_r(q) have an algebraically independent joint eigenvalue tuple over C . There are linearly independent…",
+          "dependsOn": [
+            "m1-lem-spectral-trace"
+          ]
+        },
+        {
+          "id": "m1-thm-ordered-chain-bound",
+          "role": "the-equality-case",
+          "label": "The ordered-chain bound",
+          "fullLabel": "The ordered-chain bound",
+          "kind": "theorem",
+          "source": "The equality case",
+          "detail": "[The ordered-chain bound] Let Y be a smooth complex projective variety. Let V^1,,V^k be proper irreducible components of RatCurves^ n (Y) whose numerical classes are linearly independent. For every y…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-occhetta-product",
+          "role": "the-equality-case-2",
+          "label": "Occhetta's product characterization",
+          "fullLabel": "Occhetta's product characterization",
+          "kind": "theorem",
+          "source": "The equality case",
+          "detail": "[Occhetta's product characterization] Let Y be a smooth complex projective variety of dimension n . Suppose Y has numerically independent unsplit covering families V^1,,V^k with anticanonical degrees…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-minimum-degree-incidence",
+          "role": "the-equality-case-3",
+          "label": "Minimum-degree incidence",
+          "fullLabel": "Minimum-degree incidence",
+          "kind": "lemma",
+          "source": "The equality case",
+          "detail": "[Minimum-degree incidence] Let _1,,_k be linearly independent numerical stable-map degrees on X , each of anticanonical degree . If S_ _1 S_ _k 0 , there exist numerically independent unsplit…",
+          "dependsOn": [
+            "m1-thm-ordered-chain-bound"
+          ]
+        },
+        {
+          "id": "m1-prop-equality-rigidity",
+          "role": "the-equality-case-4",
+          "label": "Rigidity at equality",
+          "fullLabel": "Rigidity at equality",
+          "kind": "proposition",
+          "source": "The equality case",
+          "detail": "[Rigidity at equality] Suppose 2 , r(-1)=n , and the independent nonzero product in exists. Then \\[ X( P^ -1 )^r. \\]",
+          "dependsOn": [
+            "m1-lem-minimum-degree-incidence",
+            "m1-thm-ordered-chain-bound",
+            "m1-thm-occhetta-product"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "The generalized Mukai conjecture",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Generalized-Mukai-Conjecture-September-24-2026/article.pdf",
+      "kind": "paper"
+    }
+  ]
+}

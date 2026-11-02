@@ -215,75 +215,93 @@
   "edges": [
     {
       "from": "m1-main-entropy",
-      "to": "m1-main-components"
+      "to": "m1-main-components",
+      "context": "Fix $k\\ge k_0$ and let $H_k$ be the invariant Oseledets set where $\\lambda_+>0$. It has positive area by \\cref{main:entropy}, while $\\det Df_k=1$ makes the other exponent $-\\lambda_+<0$ there. The normalized restriction $\\nu_k=m(H_k)^{-1}m|_{H_"
     },
     {
       "from": "m1-setup-shortfall-count",
-      "to": "m1-can-many-good"
+      "to": "m1-can-many-good",
+      "context": "\\ \\sum_{j=1}^{N-1}\\bigl[1-(\\upsilon_j-\\upsilon_{j+1})\\bigr] &\\le3\\delta n+\\log3. \\end{align*} Every summand is nonnegative by \\cref{can:log-increments}. Apply \\cref{setup:shortfall-count} to $\\tau$ to count indices where the first line of \\cref{can:good} fails. An individual increment smaller than $c$ cos"
     },
     {
       "from": "m1-can-theorem",
-      "to": "m1-can-local-scarcity"
+      "to": "m1-can-local-scarcity",
+      "context": "[Proof of \\cref{can:theorem}] Fix once and for all a sufficiently small $\\delta>0$ allowed by \\cref{can:matching}. Its constants $c_1,C_1,n_*$ are"
     },
     {
       "from": "m1-can-matching",
-      "to": "m1-can-local-scarcity"
+      "to": "m1-can-local-scarcity",
+      "context": "[Proof of \\cref{can:theorem}] Fix once and for all a sufficiently small $\\delta>0$ allowed by \\cref{can:matching}. Its constants $c_1,C_1,n_*$ are now fixed. Choose $\\eta>0$ so small that \\begin{equation}\\label{can:eta-choice} 5\\eta"
     },
     {
       "from": "m1-bridge-theorem",
-      "to": "m1-bridge-graphs"
+      "to": "m1-bridge-graphs",
+      "context": "[Proof of \\cref{bridge:theorem}] We first find many usable middle times. On the bridge event choose a unit vector realizing $\\norm{T_{a,b}}$ and follow"
     },
     {
       "from": "m1-setup-shortfall-count",
-      "to": "m1-bridge-graphs"
+      "to": "m1-bridge-graphs",
+      "context": "and follow its norms along the bridge. The increments of their logarithms to base $M$ are at most 1, and their total shortfall from 1 is at most $(1-c_b)n$. By \\cref{setup:shortfall-count}, if $c_b$ is sufficiently close to 1, at least $\\eta n$ indices $i$ in the middle third, for an absolute $\\eta>0$, sati"
     },
     {
       "from": "m1-scale-truncation",
-      "to": "m1-scale-doubling"
+      "to": "m1-scale-doubling",
+      "context": "Use the notation of \\cref{scale:truncation}. Both $D$ and $\\ell$ are nonnegative, and $\\ell\\le2n$. Let $\\delta>0$ be the fixed constant in \\cref{can:theorem}. Choo"
     },
     {
       "from": "m1-can-theorem",
-      "to": "m1-scale-doubling"
+      "to": "m1-scale-doubling",
+      "context": "Use the notation of \\cref{scale:truncation}. Both $D$ and $\\ell$ are nonnegative, and $\\ell\\le2n$. Let $\\delta>0$ be the fixed constant in \\cref{can:theorem}. Choose a fixed $H$ sufficiently large that \\[ \\ell>H(1+D),\\qquad s=\\lfloor\\ell/2\\rfloor \\quad\\Longrightarrow\\quad s"
     },
     {
       "from": "m1-scale-doubling",
-      "to": "m1-scale-selection"
+      "to": "m1-scale-selection",
+      "context": "_K<1$. By \\cref{scale:long-deficit}, there is a first power of two $N\\ge n_0$ for which $e_N>\\theta_K$. It satisfies $N>n_0$ and $e_{N/2}\\le\\theta_K$. Applying \\cref{scale:doubling} once gives \\[ \\theta_K<\\epsilon=e_N\\le C\\theta_K+C/n_0\\longrightarrow0. \\] Also $\\epsilon n_0\\ge\\theta_K n_0\\ge\\sqrt{n"
     },
     {
       "from": "m1-scale-selection",
-      "to": "m1-scale-local-mass"
+      "to": "m1-scale-local-mass",
+      "context": "ntity \\begin{equation}\\label{scale:J-telescope} \\sum_{\\substack{n_0\\le n<N\\\\n\\text{ a power of }2}} \\E J(I)(g_n)=e_{pN/2}-e_{pn_0/2}. \\end{equation} By \\cref{scale:selection} and dyadic monotonicity, its nonnegative right side is $O_I(\\epsilon)$. Put $a=h(I_l)$, $b=h(I_r)$, and $\\bar h=(a+b)/"
     },
     {
       "from": "m1-can-theorem",
-      "to": "m1-shape-exclusions"
+      "to": "m1-shape-exclusions",
+      "context": ", $nr$ and $nt$ are integers at every scale $n\\ge n_0$ in our sums. The event \\cref{shape:forbidden-triple} for $g_n$ is contained in the cancellation event of \\cref{can:theorem}, at center $nr$ and spacing $nt$. Consequently its $\\mu_K$-mass is at most \\[ \\frac{C}{\\epsilon}\\sum_{n_0\\le n<N}^{\\r"
     },
     {
       "from": "m1-scale-selection",
-      "to": "m1-shape-exclusions"
+      "to": "m1-shape-exclusions",
+      "context": "le n<N}^{\\rm dyadic} e^{-\\gamma tn} \\le \\frac{C_t}{\\epsilon}e^{-\\gamma t n_0}\\longrightarrow0. \\] The last conclusion follows from $\\epsilon n_0\\to\\infty$ in \\cref{scale:selection}. The event is open in $X$. To pass to a locally finite limit, test its indicator from below by nonnegative continuous"
     },
     {
       "from": "m1-bridge-theorem",
-      "to": "m1-shape-exclusions"
+      "to": "m1-shape-exclusions",
+      "context": "arge. By \\cref{scale:individual-test-bound} and Markov's inequality, \\[ \\sup_{n_0\\le n<N}^{\\rm dyadic}\\PP(H(g_n)>\\eta/2) \\le C_{I',\\eta}\\epsilon. \\] Applying \\cref{bridge:theorem} at the integer bridge length $rn$, summing, and using \\cref{scale:local-mass}, we obtain \\begin{align} &\\int \\one_{\\{d"
     },
     {
       "from": "m1-scale-local-mass",
-      "to": "m1-shape-exclusions"
+      "to": "m1-shape-exclusions",
+      "context": "p_{n_0\\le n<N}^{\\rm dyadic}\\PP(H(g_n)>\\eta/2) \\le C_{I',\\eta}\\epsilon. \\] Applying \\cref{bridge:theorem} at the integer bridge length $rn$, summing, and using \\cref{scale:local-mass}, we obtain \\begin{align} &\\int \\one_{\\{d(u,v)>c_b r,\\ H>\\eta\\}}W\\,\\dd\\mu_K \\nonumber\\\\ &\\qquad\\le C\\epsilon\\left["
     },
     {
       "from": "m1-scale-decomposition",
-      "to": "m1-shape-exclusions"
+      "to": "m1-shape-exclusions",
+      "context": "ion and positive dilation of time, including the corresponding division of distances by the dilation factor. The measure inequality $(S^{-1})_*\\nu\\le\\mu$ from \\cref{scale:decomposition} consequently transfers them to $\\nu$. All the other component measures are dominated by $\\mu$, so they inherit them as"
     },
     {
       "from": "m1-shape-crossloss",
-      "to": "m1-shape-classification"
+      "to": "m1-shape-classification",
+      "context": "because $p,q\\in P_d\\subset Q_d$. The triangle inequality gives $d(x,y)\\le c_b(y-x)$. The only case not yet settled is a bounded slow interval of length zero; \\cref{shape:crossloss} below excludes it."
     },
     {
       "from": "m1-scale-truncation",
-      "to": "m1-end-balance"
+      "to": "m1-end-balance",
+      "context": "n $2q-2D/n>\\ell/n$ defines an open neighborhood $U_q$ of $d_1$. Eventually $s=qn$ is an integer at every scale in the sum. On $U_q$, the truncation estimate of \\cref{scale:truncation} gives, with its fixed additive constant $A$, \\[ \\ell\\le\\ell_{\\rm cut}+A, \\qquad J\\le qJ([1-q,1+q])+\\frac{A}{2n}. \\]"
     },
     {
       "from": "m1-shape-crossloss",
-      "to": "m1-end-remainder"
+      "to": "m1-end-remainder",
+      "context": "mu_*(d), \\qquad \\sum_{j\\in\\Z}\\int|G(S^j d)|\\,\\dd\\mu_*<\\infty. \\end{equation} Put $F_j=\\int\\Phi(h_{2^j}(0))\\,\\dd\\mu_*$. These quantities are finite. Indeed \\cref{shape:crossloss} makes the integrand zero unless $[0,2^j]$ meets $[a,b]$, which requires $-2\\le a\\le2^j$; the endpoint intensity on this"
     }
   ]
 }

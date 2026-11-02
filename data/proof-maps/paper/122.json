@@ -160,27 +160,33 @@
   "edges": [
     {
       "from": "m1-lem-lift",
-      "to": "m1-lem-nested-overlap"
+      "to": "m1-lem-nested-overlap",
+      "context": "nequality handles the two projection errors. For the induction on $j$, assume the overlap statement at level $j-1$; at $j=1$ it is the input invariant. Lemma~\\ref{lem:lift}, with base word $U_{j-1}^+$, overlap count $h_{j-1}$, replication $P_j$, and $F=h_j\\ge C h_{j-1}P_j$, gives overlap at"
     },
     {
       "from": "m1-lem-moment",
-      "to": "m1-lem-nested-overlap"
+      "to": "m1-lem-nested-overlap",
+      "context": "the window outputs. For fixed $V$, each is a product of at most $L$ factors $1+Z$ at distinct positions, averaged over $V$, where $Z$ is the old score. Lemma~\\ref{lem:moment} gives for its homogeneous degree-$r$ part the squared $L^{r_i}(Q)$ bound \\[ (C_1r_i)^{2r}N^{-a_0dr}\\binom Lr. \\] Conve"
     },
     {
       "from": "m1-lem-clipping",
-      "to": "m1-lem-nested-overlap"
+      "to": "m1-lem-nested-overlap",
+      "context": "silon s_*} \\exp(O_B((D+1)s_*\\Lambda))$. On typical metadata, the region $G_+<1/2$ has mass $o(\\Delta)$ under both laws by the same moment argument as in Lemma~\\ref{lem:clipping}. On its complement, the squared density difference bounds Hellinger distance. Adding the atypical metadata and projec"
     },
     {
       "from": "m1-lem-scale-margins",
-      "to": "m1-lem-tree-simulation"
+      "to": "m1-lem-tree-simulation",
+      "context": "gin{equation}\\label{eq:fit-probability} \\Prob(\\mathcal F^c)\\le\\exp(-N^{\\epsilon/2})=o(\\Delta). \\end{equation} The last comparison follows uniformly from Lemma~\\ref{lem:scale-margins}: $\\epsilon\\log N\\ge\\epsilon\\log N_0$ dominates $\\log\\log n+\\log(d_D+B+1)$, so $N^{\\epsilon/2}$ dominates $\\log\\Delta^{-"
     },
     {
       "from": "m1-thm-tv",
-      "to": "m1-lem-restoration"
+      "to": "m1-lem-restoration",
+      "context": "[Proof of Theorem~\\ref{thm:tv}] Fix any $q\\in(0,1)$. Choose $B=2$, $\\zeta=1/2$, and auxiliary coefficients $c=1/(80\\log2)<c_+=1/(40\\log2)$ once, inde"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-restoration"
+      "to": "m1-lem-restoration",
+      "context": "its pair has length at most $n$ and common padding reaches $n$ exactly. This proves \\eqref{eq:min-tv}. The sample-complexity conclusion follows from Theorem~\\ref{thm:main}, whose proof below does not use Theorem~\\ref{thm:tv}. Indeed, $c\\log(q^3\\log n)\\to\\infty$ for any fixed admissible $c>"
     }
   ]
 }

@@ -282,107 +282,133 @@
   "edges": [
     {
       "from": "m1-lem-poles",
-      "to": "m1-thm-words"
+      "to": "m1-thm-words",
+      "context": "$\\sigma(R_w)=R_w$, so~\\eqref{eq:fixed-field} implies $R_w\\in K$. For each $|w|=\\ell-1$, it then gives \\[ \\sum_{i=1}^n b_i R_{iw}=\\sigma(-R_w)-(-R_w). \\] Lemma~\\ref{lem:poles} forces every $R_{iw}$ to vanish. Every word of length $\\ell$ occurs in exactly one such family, contradicting the choic"
     },
     {
       "from": "m1-lem-acyclic-representation",
-      "to": "m1-lem-formula-representation"
+      "to": "m1-lem-formula-representation",
+      "context": "t has value $f$. There are two program vertices per formula vertex, including each scalar leaf. The claimed coefficient representation now follows from Lemma~\\ref{lem:acyclic-representation}."
     },
     {
       "from": "m1-thm-words",
-      "to": "m1-prop-formula-system"
+      "to": "m1-prop-formula-system",
+      "context": "H(0)=I_m$ and $H$ is invertible over $K[[z]]$. The coefficient representation gives \\[ uHv=\\sum_w (uB_wv)h_w=\\sum_w f_w h_w=h_f. \\] In particular, Proposition~\\ref{thm:words} gives $uHv\\neq 0$ when $f\\neq 0$. The shift fixes every $B_i$, and the defining recursion for the word series gives $\\"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-coefficient-descent"
+      "to": "m1-lem-coefficient-descent",
+      "context": "[Proof of Theorem~\\ref{thm:main}] We first verify the simultaneous guarantee. Fix any field $F$ of characteristic $p$ and any nonzero polynomial $f$"
     },
     {
       "from": "m1-thm-order",
-      "to": "m1-cor-path-programs"
+      "to": "m1-cor-path-programs",
+      "context": "Section~\\ref{sec:systems} gives the same strictly upper triangular coefficient representation using at most $m$ states. Thus Theorem~\\ref{thm:order} yields $\\ord_z h_f\\leq n\\binom m2$ for every nonzero path polynomial. With this value of $N$, define $U_i$ by \\eqref"
     },
     {
       "from": "m1-lem-coefficient-descent",
-      "to": "m1-cor-path-programs"
+      "to": "m1-cor-path-programs",
+      "context": "ields $\\ord_z h_f\\leq n\\binom m2$ for every nonzero path polynomial. With this value of $N$, define $U_i$ by \\eqref{eq:truncated-operators} and apply Lemma~\\ref{lem:coefficient-descent} with $k=\\F_p$ and $E$ as displayed above. The same degree bound and bit analysis apply. When $m=1$, every path poly"
     },
     {
       "from": "m2-lem-formula-representation",
-      "to": "m2-prop-formula-system"
+      "to": "m2-prop-formula-system",
+      "context": "Take the representation from Lemma~\\ref{lem:formula-representation} and define the finite sum \\[ G(z)=\\sum_{|w|<m}B_wh_w(z),\\qquad A(z)=\\sum_{i=1}^n\\frac{B_i}{z+i}. \\] The empty word co"
     },
     {
       "from": "m2-lem-word-independence",
-      "to": "m2-prop-formula-system"
+      "to": "m2-prop-formula-system",
+      "context": "_i\\prod_{j\\ne i}(z+j), \\] whose entries have degree at most $n-1$. Finally, \\eqref{eq:formula-representation} gives $uGv=h_f$. This series is nonzero by Lemma~\\ref{lem:word-independence}, since $f\\ne0$; in particular $u\\ne0$."
     },
     {
       "from": "m2-lem-wronskian",
-      "to": "m2-thm-multiplicity"
+      "to": "m2-thm-multiplicity",
+      "context": "ith rows $R_0,\\ldots,R_{k-1}$, and put $S=\\binom{k}{2}$. The rows of $BG$ are $h,h',\\ldots,h^{(k-1)}$. Some $k$ components of $h$ form a basis of $V$, so Lemma~\\ref{lem:wronskian} gives a nonzero $k\\times k$ minor of $BG$. Since $G$ is invertible, $B$ also has a nonzero $k\\times k$ minor. Every suc"
     },
     {
       "from": "m2-prop-formula-system",
-      "to": "m2-prop-path-programs"
+      "to": "m2-prop-path-programs",
+      "context": "For such a representation, define $G=\\sum_{|w|<m}B_wh_w$. Strict upper triangularity makes all longer products zero. As in Proposition~\\ref{prop:formula-system}, this gives $G(0)=I_m$ and \\[ G'=\\left(\\sum_{i=1}^n\\frac{B_i}{z+i}\\right)G, \\qquad uGv=h_f. \\] Thus $G$ is invertible"
     },
     {
       "from": "m2-lem-word-independence",
-      "to": "m2-prop-path-programs"
+      "to": "m2-prop-path-programs",
+      "context": "us $G$ is invertible over $F[[z]]$, and the system has the denominator and numerator degrees in \\eqref{eq:formula-system}. The series $h_f$ is nonzero by Lemma~\\ref{lem:word-independence}. Theorem~\\ref{thm:multiplicity} gives $\\ord_0 h_f\\le d-1$, so \\eqref{eq:first-column} proves detection. The preceding e"
     },
     {
       "from": "m2-thm-multiplicity",
-      "to": "m2-prop-path-programs"
+      "to": "m2-prop-path-programs",
+      "context": "nd the system has the denominator and numerator degrees in \\eqref{eq:formula-system}. The series $h_f$ is nonzero by Lemma~\\ref{lem:word-independence}. Theorem~\\ref{thm:multiplicity} gives $\\ord_0 h_f\\le d-1$, so \\eqref{eq:first-column} proves detection. The preceding entry and output cost calculation"
     },
     {
       "from": "m3-lem-integral-reduction",
-      "to": "m3-lem-small-expansion"
+      "to": "m3-lem-small-expansion",
+      "context": "Put $W=\\sum_{i=0}^nT_iU$ and $\\ell=\\dim_FW$. Since $T_0$ is injective, $\\ell\\geq k$. By Lemma~\\ref{lem:integral-reduction}, $\\overline U\\subseteq\\mathcal P_N(\\Q)$ has dimension $k$ and $\\overline W\\subseteq\\mathcal P_M(\\Q)$ has dimension $\\el"
     },
     {
       "from": "m3-lem-wronskian-orders",
-      "to": "m3-lem-small-expansion"
+      "to": "m3-lem-small-expansion",
+      "context": ". Although the auxiliary spaces $U'$ may depend on $j$, these are bounds on the fixed filtration of $\\overline W$ and can therefore be summed. Applying Lemma~\\ref{lem:wronskian-orders} to both reduced spaces gives \\begin{align*} \\ell(M-1)+w\\binom\\ell2 &\\geq\\sum_{i=0}^n\\sum_{h=1}^{\\ell}b_{ih}\\\\ &\\g"
     },
     {
       "from": "m3-prop-rectangular",
-      "to": "m3-lem-small-expansion"
+      "to": "m3-lem-small-expansion",
+      "context": "[Proof of Proposition~\\ref{prop:rectangular}] Suppose that $\\sum_iA_i\\otimes T_i$ has a nonzero kernel vector, written as $q$ components $f_1,\\ldots,f_q\\in\\mathcal"
     },
     {
       "from": "m3-prop-rectangular",
-      "to": "m3-prop-pencil-deformation"
+      "to": "m3-prop-pencil-deformation",
+      "context": "Proposition~\\ref{prop:rectangular} gives \\[ \\rank_{\\Q(t)}\\left(\\sum_{i=0}^n A_i\\otimes R_i(t)\\right) \\geq qN>(q-1)M. \\] Choose a nonzero minor of"
     },
     {
       "from": "m3-lem-division-lift",
-      "to": "m3-prop-pencil-deformation"
+      "to": "m3-prop-pencil-deformation",
+      "context": "zero. The lifted matrix consequently has rank greater than $(q-1)M$ over $\\Q(\\omega)(t,p,r)$. Its $M\\times M$ blocks belong to the division algebra of Lemma~\\ref{lem:division-lift}: each is a rational linear combination of the $R_i^*$. Its rank is thus a multiple of $M$. As the whole matrix has or"
     },
     {
       "from": "m3-lem-division-lift",
-      "to": "m3-lem-invertible-witness"
+      "to": "m3-lem-invertible-witness",
+      "context": "which the given formula is defined and has nonzero value. Choose a primitive $d$th root $\\omega$, put $K=\\Q(\\omega)$, and lift each $W_i$ to $W_i^*$ by Lemma~\\ref{lem:division-lift}. We first verify the domain of the actual formula tree independently of the division-algebra argument. Inside $K(p,r)"
     },
     {
       "from": "m3-lem-formula-realization",
-      "to": "m3-prop-formula-certificates"
+      "to": "m3-prop-formula-certificates",
+      "context": "There are at most $s$ inverse-node occurrences. By Lemma~\\ref{lem:formula-realization}, each corresponding pencil has order $|h|+1\\le s+1\\le B$. The augmentation has order $|\\Phi|+2\\le s+2\\le2s+1=B$, where"
     },
     {
       "from": "m3-lem-invertible-witness",
-      "to": "m3-prop-formula-certificates"
+      "to": "m3-prop-formula-certificates",
+      "context": "invertible. This proves the reverse implication without simplifying the formula or enlarging its domain. Finally, if $\\Phi$ is admissible and nonzero, Lemma~\\ref{lem:invertible-witness} supplies an evaluation over a field extension of $\\Q$ at which the original tree is defined and its value is invertible"
     },
     {
       "from": "m3-prop-formula-certificates",
-      "to": "m3-prop-generator-hitting"
+      "to": "m3-prop-generator-hitting",
+      "context": "Fix one such formula~$\\Phi$. By Proposition~\\ref{prop:formula-certificates}, there is a family of at most $s+1$ affine linear pencils over~$\\Q$, each of order at most~$B$, whose simultaneous inve"
     },
     {
       "from": "m3-prop-pencil-deformation",
-      "to": "m3-prop-generator-hitting"
+      "to": "m3-prop-generator-hitting",
+      "context": "_\\Phi$. Thus $|\\widehat{\\mathcal C}_\\Phi|\\le s+2$. For $L=A_0+\\sum_{i=1}^n A_i x_i\\in\\widehat{\\mathcal C}_\\Phi$ and $\\omega\\in\\Omega$, recall from Proposition~\\ref{prop:pencil-deformation} that \\[ P_{L,\\omega}(t,p,r) =\\det\\!\\left(\\sum_{i=0}^n A_i\\otimes R_i^{*,\\omega}(t,p,r)\\right). \\] Propo"
     },
     {
       "from": "m3-thm-main",
-      "to": "m3-prop-generator-complexity"
+      "to": "m3-prop-generator-complexity",
+      "context": "[Completion of the proof of Theorem~\\ref{thm:main}] Use the generator just defined. Proposition~\\ref{prop:generator-hitting} gives the universal hitting property, with in"
     },
     {
       "from": "m3-prop-generator-hitting",
-      "to": "m3-prop-generator-complexity"
+      "to": "m3-prop-generator-complexity",
+      "context": "[Completion of the proof of Theorem~\\ref{thm:main}] Use the generator just defined. Proposition~\\ref{prop:generator-hitting} gives the universal hitting property, with invertible and therefore nonzero output values. Proposition~\\ref{prop:genera"
     },
     {
       "from": "m3-cor-pencil-hitting",
-      "to": "m3-cor-rank-detecting-list"
+      "to": "m3-cor-rank-detecting-list",
+      "context": "s order $a+b-t\\leq a+b$. Set $s=a+b$, so this order is at most $B=2s+1$. Both $N$ and $s$ are positive. Apply the single list $\\mathcal H_{N,s}$ from Corollary~\\ref{cor:pencil-hitting}, and project each output onto its first $k$ matrices, retaining its dimension $e$ and any repetitions. This defines $\\m"
     },
     {
       "from": "m3-prop-generator-complexity",
-      "to": "m3-cor-rank-detecting-list"
+      "to": "m3-cor-rank-detecting-list",
+      "context": "s empty but still carries $e$, and the identity also follows directly from $\\rank(A_0\\otimes I_e)=e\\rank A_0$. Since $N+s+1$ is polynomial in $P$, Proposition~\\ref{prop:generator-complexity} and the dimension bound~\\eqref{eq:generator-dimension-bounds} give the stated generation, query-encoding, and dimension"
     }
   ]
 }

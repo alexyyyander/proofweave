@@ -429,87 +429,108 @@
   "edges": [
     {
       "from": "m1-prop-displacement",
-      "to": "m1-lem-fourier"
+      "to": "m1-lem-fourier",
+      "context": "[Proof of Proposition~\\ref{prop:displacement}] By Lemma~\\ref{lem:cuts}, each displacement of $H$ is a nonnegative linear combination of displacements of Boolean cut"
     },
     {
       "from": "m1-lem-cuts",
-      "to": "m1-lem-fourier"
+      "to": "m1-lem-fourier",
+      "context": "[Proof of Proposition~\\ref{prop:displacement}] By Lemma~\\ref{lem:cuts}, each displacement of $H$ is a nonnegative linear combination of displacements of Boolean cut maps. It is enough to pro"
     },
     {
       "from": "m1-lem-alignments",
-      "to": "m1-lem-binary-code"
+      "to": "m1-lem-binary-code",
+      "context": "pair bijectively, in increasing order. They give a letter matching between $x$ and $y$ whose loss is the number of non-good genuine blocks, at most $2a$. Lemma~\\ref{lem:alignments} yields $\\ID(x,y)\\le2a$. Minimizing the bit loss proves the lower bounds, including empty strings and independently chos"
     },
     {
       "from": "m1-prop-family",
-      "to": "m1-prop-binary-lower"
+      "to": "m1-prop-binary-lower",
+      "context": "{k,p}(z+e)),\\enc(W_{k,p}(z)))}{wn_k}\\\\ &\\le\\frac{w\\ID(W_{k,p}(z+e),W_{k,p}(z))}{wn_k}\\le r. \\end{align*} Thus $H$ meets the averaged hypotheses of Proposition~\\ref{prop:family}. For $v=v_{k,p}$, the lower bounds give, again at every state, \\begin{align*} \\norm{H(z+v)-H(z)} &\\ge\\frac{\\ED(\\enc("
     },
     {
       "from": "m1-thm-or",
-      "to": "m1-prop-uniform-upper"
+      "to": "m1-prop-uniform-upper",
+      "context": "). \\end{equation} For the alphabet $[q]$, use the delimiter code with $t=\\lceil\\log_2q\\rceil$, $w=2t+3$, and binary length $m=wd$. We have $m\\ge7$, so Theorem~\\ref{thm:or} applies. For every $h$, the padded string $c_d(h(x))$ has length $m$. The metric comparisons, \\eqref{eq:code-padded} an"
     },
     {
       "from": "m2-pre-tagged-rows",
-      "to": "m2-mask-separation"
+      "to": "m2-mask-separation",
+      "context": "_{\\ell,j}(z(a'-a))) \\geq\\frac{2^{-(\\ell-1)}}4tL D_\\ell(\\theta). \\] A row with no matches loses every source position and satisfies the same bound. Hence Lemma~\\ref{pre:tagged-rows} applies with $A=2^{-(\\ell-1)}D_\\ell(\\theta)/4\\leq1/8$. Since $t\\geq4$, its denominator $1+tA/(t-1)$ is less than two. W"
     },
     {
       "from": "m2-pre-tagged-rows",
-      "to": "m2-lem-exc-alignment"
+      "to": "m2-lem-exc-alignment",
+      "context": "Because every symbol carries its leaf tag, a match between these two node words preserves the child index $i$. We verify the nonsplit-row hypothesis of Lemma~\\ref{pre:tagged-rows}. Suppose all matches from a source row with parameter $s$ lie in a target row with parameter $s'$. Within child $i$ t"
     },
     {
       "from": "m2-upper-uniform",
-      "to": "m2-upper-histogram"
+      "to": "m2-upper-histogram",
+      "context": "[Proof of Theorem~\\ref{upper:uniform}] Fix integers $b\\ge2$ and $H\\ge1$, put $n=b^H$, and fix a nonempty finite alphabet $\\Gamma$. We construct maps $F_k$ a"
     },
     {
       "from": "m2-upper-partitions",
-      "to": "m2-upper-histogram"
+      "to": "m2-upper-histogram",
+      "context": "y \\eqref{upper:common-suffix}, the resulting distance $\\rho_s$ satisfies \\[ r_{m-s+1}(u,v)\\le\\rho_s(u,v) \\le\\Lambda_{k-1}r_{m-s+1}(u,v). \\] Apply Lemma~\\ref{upper:partitions} on the full domain $\\Gamma^{m-s+1}$ at rate \\begin{equation}\\label{upper:lambda-local} \\alpha_s=\\frac{4\\log(s+1)}s. \\e"
     },
     {
       "from": "m2-upper-move",
-      "to": "m2-upper-histogram"
+      "to": "m2-upper-histogram",
+      "context": "deficits is at least $r_N(x,y)$. It follows that $\\|F_k(x)-F_k(y)\\|_1\\ge r_N(x,y)$. \\paragraph{Expansion along a move.} In a nonexceptional block from Lemma~\\ref{upper:move}, the two window lists have at least $s-1$ identical occurrences. For a shifted block, pair starts displaced by one; fo"
     },
     {
       "from": "m3-lem-tagged",
-      "to": "m3-prop-finite-separation"
+      "to": "m3-prop-finite-separation",
+      "context": "q:finite-charge} d_h=\\frac m2\\,4^{-(h-1)}B. \\end{equation} The child blocks have equal length, fixed order and disjoint alphabets. Also $d_h\\leq(m-1)B$. Lemma~\\ref{lem:tagged} therefore gives \\[ r_{L_v}\\bigl(G_v(x),G_v(x+t w_v)\\bigr) \\geq\\frac{Td_h}{2} =4^{-h}mTB=4^{-h}L_v. \\] The lemma appl"
     },
     {
       "from": "m3-lem-cuts",
-      "to": "m3-lem-finite-fourier"
+      "to": "m3-lem-finite-fourier",
+      "context": "Apply Lemma~\\ref{lem:cuts} to the finite image of $F$ and pull each cut back to an indicator $U:A\\to\\{0,1\\}$. Since an indicator difference has ab"
     },
     {
       "from": "m3-lem-finite-fourier",
-      "to": "m3-prop-finite-lower"
+      "to": "m3-prop-finite-lower",
+      "context": "D(G(x),G(y))\\leq\\rho(x,y)\\leq\\ED(G(x),G(y)). \\] The map $x\\mapsto G(x)$ need not be injective; composing it with the embedding still gives a map to which Lemma~\\ref{lem:finite-fourier} applies. Write \\[ V(z)=\\E_x\\rho(x,x+z) =\\sum_\\chi |1-\\chi(z)|^2H(\\chi),\\qquad H(\\chi)\\geq0. \\] First average over th"
     },
     {
       "from": "m3-lem-finite-cost",
-      "to": "m3-prop-finite-lower"
+      "to": "m3-prop-finite-lower",
+      "context": "nate of one leaf $u$. The average of $|1-\\chi(t e_u)|^2$ is two if $\\chi$ is nontrivial on that coordinate and zero otherwise. Sum the leaf-cost bound in Lemma~\\ref{lem:finite-cost} over all $m^k$ leaves. It follows that \\begin{equation}\\label{eq:finite-leaf-mass} 2\\sum_\\chi \\wt(\\chi)H(\\chi)\\leq M."
     },
     {
       "from": "m3-prop-finite-separation",
-      "to": "m3-prop-finite-lower"
+      "to": "m3-prop-finite-lower",
+      "context": "J}{T}+\\frac1{2k^k}\\right) \\leq C_1Mk^{-k}. \\end{equation} Here $J/T=4k^{-10k}$, so an absolute $C_1$ suffices for all large $k$. Finally $Q_o=2$. Proposition~\\ref{prop:finite-separation} with $t=1$ and \\eqref{eq:deficit} imply $\\rho(x,x+w_o)\\geq4^{-k}M/D$ at every state. Its average, compared with \\eqref{"
     },
     {
       "from": "m3-lem-tagged",
-      "to": "m3-lem-torus-good-separation"
+      "to": "m3-lem-torus-good-separation",
+      "context": "amma^{h-1}B$. Leaf labels give pairwise disjoint child alphabets, and the child blocks have equal length and fixed order. Since $d\\leq mB/64\\leq(m-1)B$, Lemma~\\ref{lem:tagged} gives \\[ r_{(mT)^h}\\bigl(X_v(\\omega),X_v(\\omega+t)\\bigr) \\geq\\frac{Td}{2} =\\frac{\\delta}{2}\\gamma^{h-1}(mT)^h =\\gam"
     },
     {
       "from": "m3-lem-torus-good-separation",
-      "to": "m3-prop-good-probability"
+      "to": "m3-prop-good-probability",
+      "context": "roves the induction. Apply the statement to the one fixed root shift $t=1/2$, which is eligible for large $k$. Choose a realization in which it is good. Lemma~\\ref{lem:torus-good-separation} then gives \\eqref{eq:torus-separation} for every base phase. No simultaneous random choice for all eligible shifts is a"
     },
     {
       "from": "m3-lem-cuts",
-      "to": "m3-lem-torus-fourier"
+      "to": "m3-lem-torus-fourier",
+      "context": "Apply Lemma~\\ref{lem:cuts} to the finite range of $F$ and pull a cut back to a measurable indicator $U$ on $\\T^n$. It belongs to $L^2(\\T^n)$. For"
     },
     {
       "from": "m3-thm-binary",
-      "to": "m3-cor-matching"
+      "to": "m3-cor-matching",
+      "context": "st: each operation becomes the same type of operation or no change. Thus the two distances are equal on binary words. The witness from either proof of Theorem~\\ref{thm:binary} is therefore an isometric subset of $\\Sigma^{\\leq d}$. Restricting an embedding to that subset proves the lower bound i"
     },
     {
       "from": "m3-thm-companion-upper",
-      "to": "m3-cor-matching"
+      "to": "m3-cor-matching",
+      "context": "m:binary} is therefore an isometric subset of $\\Sigma^{\\leq d}$. Restricting an embedding to that subset proves the lower bound in \\eqref{eq:matching}. Theorem~\\ref{thm:companion-upper} gives the upper bound. Since the constants and thresholds are absolute, taking the supremum over finite alphabets prese"
     },
     {
       "from": "m3-thm-804",
-      "to": "m3-lem-random-segments"
+      "to": "m3-lem-random-segments",
+      "context": "[Proof of Theorem~\\ref{thm:804}] Use codewords supplied by Lemma~\\ref{lem:random-segments}. Fix any increasing matching of $N_{\\rm mat}$ bits between $"
     }
   ]
 }

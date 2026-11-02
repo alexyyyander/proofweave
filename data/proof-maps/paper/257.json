@@ -271,143 +271,178 @@
   "edges": [
     {
       "from": "m1-diagram-existence",
-      "to": "m1-diagram-normal-form"
+      "to": "m1-diagram-normal-form",
+      "context": "The nonempty class of finite pictures in Lemma~\\ref{diagram:existence} has a lexicographic minimum for the stated pair of nonnegative integer costs. In the sphere case fix the chain $c$ onc"
     },
     {
       "from": "m1-diagram-normal-form",
-      "to": "m1-diagram-weighted-rank"
+      "to": "m1-diagram-weighted-rank",
+      "context": "nd{equation} Every internal letter contact joins two different field positions. For fan triangles and decorations this follows from the cancellations in Lemma~\\ref{diagram:normal-form}; for two loose top sides it follows from the same-occurrence top cancellation. A contact between different kinds of ce"
     },
     {
       "from": "m1-diagram-normal-form",
-      "to": "m1-diagram-apex"
+      "to": "m1-diagram-apex",
+      "context": "fan triangles. This path cannot have length zero, because then the two top polygons use the same radial side of the same occurrence $a_0$, forbidden by Lemma~\\ref{diagram:normal-form}. If the path has length one, it must have an exceptional port, since the other ports lie in the line part of the bipar"
     },
     {
       "from": "m1-thm-diagram",
-      "to": "m1-diagram-separator"
+      "to": "m1-diagram-separator",
+      "context": "[Proof of Theorem~\\ref{thm:diagram}] Fix the parameters, so that $\\kappa$ and $C_0$ in Lemma~\\ref{diagram:fragment} are positive constants. Choose $\\eta>0"
     },
     {
       "from": "m1-diagram-fragment",
-      "to": "m1-diagram-separator"
+      "to": "m1-diagram-separator",
+      "context": "[Proof of Theorem~\\ref{thm:diagram}] Fix the parameters, so that $\\kappa$ and $C_0$ in Lemma~\\ref{diagram:fragment} are positive constants. Choose $\\eta>0$ with $2C_0\\eta\\le1/2$, and apply Lemma~\\ref{diagram:separator} with $D=15$. T"
     },
     {
       "from": "m1-diagram-rank",
-      "to": "m1-diagram-separator"
+      "to": "m1-diagram-separator",
+      "context": "ive constants. Choose $\\eta>0$ with $2C_0\\eta\\le1/2$, and apply Lemma~\\ref{diagram:separator} with $D=15$. This gives a fixed finite threshold $K$. By Lemma~\\ref{diagram:rank}, with probability tending to one Equation~\\eqref{diagram:rank-bound} holds for all collections of at most $8K$ occurren"
     },
     {
       "from": "m1-diagram-existence",
-      "to": "m1-diagram-separator"
+      "to": "m1-diagram-separator",
+      "context": "ure uses at most $2C_0\\ell$ interior faces. If a nonzero cellular two-cycle $c$ existed in $\\widetilde P$, use its normal spherical picture supplied by Lemmas~\\ref{diagram:existence} and \\ref{diagram:normal-form}. For it $B_0=0$, forcing $A=0$. Its cellular chain would then be zero, contrary to its c"
     },
     {
       "from": "m1-diagram-normal-form",
-      "to": "m1-diagram-separator"
+      "to": "m1-diagram-separator",
+      "context": "interior faces. If a nonzero cellular two-cycle $c$ existed in $\\widetilde P$, use its normal spherical picture supplied by Lemmas~\\ref{diagram:existence} and \\ref{diagram:normal-form}. For it $B_0=0$, forcing $A=0$. Its cellular chain would then be zero, contrary to its construction. Therefore $H_2(\\"
     },
     {
       "from": "m1-sample-lem-budget",
-      "to": "m1-sample-lem-conditional-counts"
+      "to": "m1-sample-lem-conditional-counts",
+      "context": "t entirely in $U$; replacing $A$ by $U$ can only increase those costs. This proves the displayed inequality directly. Its first term is at least one by Lemma~\\ref{sample:lem-budget}, and each nonempty summand is at least one by Equation~\\eqref{sample:eq-closure-gap}. Each such branch contains at mos"
     },
     {
       "from": "m1-sample-lem-conditional-counts",
-      "to": "m1-sample-lem-coupling"
+      "to": "m1-sample-lem-coupling",
+      "context": "t $L_N=|\\Omega_n|$ and $\\lambda_N=\\E L_N$. For a specified branch let \\[ D_N=\\sum_{\\sigma\\in\\Omega_n}|A_\\sigma-a_N|. \\] The conditional variance bound of Lemma~\\ref{sample:lem-conditional-counts}, followed by the Cauchy--Schwarz inequality, gives uniformly in each possible assignment $\\sigma$ \\[ \\E\\bigl[|A_\\sigma-"
     },
     {
       "from": "m1-sample-lem-coupling",
-      "to": "m1-prop-sampling"
+      "to": "m1-prop-sampling",
+      "context": "$e$. For such a test Equation~\\eqref{sample:eq-budget} forces $U=\\varnothing$, and its one-branch star is exactly a master match. The leaf assertion in Lemma~\\ref{sample:lem-coupling} therefore gives single-field uniformity. Choose parameters satisfying all the finite overlap margins just described, $"
     },
     {
       "from": "m1-prop-sampling",
-      "to": "m1-lem-conditional-test"
+      "to": "m1-lem-conditional-test",
+      "context": "Fix $t$. Use the coupling in Proposition~\\ref{prop:sampling}: it gives $t$ matches agreeing on $I$, each branch marginal at total variation distance at most $\\eta_{\\nu,t}$ from $\\m"
     },
     {
       "from": "m1-lem-conditional-test",
-      "to": "m1-energy-path-bounds"
+      "to": "m1-energy-path-bounds",
+      "context": "~\\eqref{energy:log-comparison} gives \\[ d(u_0,u_k)^2\\ge d(u_0,u_{k-1})^2+\\norm{v_{a_k}}^2 -2\\ip{h_I}{v_{a_k}} \\] in every factor. Average, apply Lemma~\\ref{lem:conditional-test}, and take the ultralimit. Induction adds at least one at each step. Every prefix of the field sets in the statement is"
     },
     {
       "from": "m1-energy-minimizer",
-      "to": "m1-prop-configuration"
+      "to": "m1-prop-configuration",
+      "context": "Use the normalized minimizing actions of Lemma~\\ref{energy:minimizer} and the uniform bound of Lemma~\\ref{energy:displacement-bound}. The product construction, Lemma~\\ref{energy:path-bound"
     },
     {
       "from": "m1-energy-displacement-bound",
-      "to": "m1-prop-configuration"
+      "to": "m1-prop-configuration",
+      "context": "Use the normalized minimizing actions of Lemma~\\ref{energy:minimizer} and the uniform bound of Lemma~\\ref{energy:displacement-bound}. The product construction, Lemma~\\ref{energy:path-bounds}, and the decoration-square argument give the first assertion"
     },
     {
       "from": "m1-energy-path-bounds",
-      "to": "m1-prop-configuration"
+      "to": "m1-prop-configuration",
+      "context": "normalized minimizing actions of Lemma~\\ref{energy:minimizer} and the uniform bound of Lemma~\\ref{energy:displacement-bound}. The product construction, Lemma~\\ref{energy:path-bounds}, and the decoration-square argument give the first assertion. Lemmas~\\ref{energy:hexagon-flatness} and~\\ref{energy:com"
     },
     {
       "from": "m1-energy-hexagon-flatness",
-      "to": "m1-prop-configuration"
+      "to": "m1-prop-configuration",
+      "context": "ref{energy:displacement-bound}. The product construction, Lemma~\\ref{energy:path-bounds}, and the decoration-square argument give the first assertion. Lemmas~\\ref{energy:hexagon-flatness} and~\\ref{energy:common-center} give the second. The fixed-fraction argument above gives the third."
     },
     {
       "from": "m1-energy-common-center",
-      "to": "m1-prop-configuration"
+      "to": "m1-prop-configuration",
+      "context": "he product construction, Lemma~\\ref{energy:path-bounds}, and the decoration-square argument give the first assertion. Lemmas~\\ref{energy:hexagon-flatness} and~\\ref{energy:common-center} give the second. The fixed-fraction argument above gives the third."
     },
     {
       "from": "m1-prop-configuration",
-      "to": "m1-geom-fan-sums"
+      "to": "m1-geom-fan-sums",
+      "context": "The four-cycle $X_i,H,Y_i,H'$ has unit sides and diagonals of length $\\sqrt2$, by the two-step assertions of Proposition~\\ref{prop:configuration}. Lemma~\\ref{geom:square} makes it a flat square. Let $J_i$ be its center, which is the midpoint of $X_i,Y_i$ and also"
     },
     {
       "from": "m1-geom-square",
-      "to": "m1-geom-fan-sums"
+      "to": "m1-geom-fan-sums",
+      "context": "The four-cycle $X_i,H,Y_i,H'$ has unit sides and diagonals of length $\\sqrt2$, by the two-step assertions of Proposition~\\ref{prop:configuration}. Lemma~\\ref{geom:square} makes it a flat square. Let $J_i$ be its center, which is the midpoint of $X_i,Y_i$ and also of $H,H'$. The triangle"
     },
     {
       "from": "m1-geom-fan-sums",
-      "to": "m1-geom-exceptional"
+      "to": "m1-geom-exceptional",
+      "context": "Apply the square construction in Lemma~\\ref{geom:fan-sums} at $C$, using $H_0$ and any other line through $C$. Since $J$ is its center, \\begin{equation} d(H_0,J)^2=\\frac12,\\qqu"
     },
     {
       "from": "m1-prop-configuration",
-      "to": "m1-geom-exceptional"
+      "to": "m1-geom-exceptional",
+      "context": "so $d(H_0,z)=1$, $d(c,z)=d(c,H_0)=r$, and the two paths $p,H_0,z$ and $q,H_0,z$ give \\[ d(p,z)^2=d(q,z)^2=2. \\] The ternary midpoint conclusion of Proposition~\\ref{prop:configuration} states that the angle at $H_0$ between the segments to $J,z$ is at least $\\pi/2$. Angle comparison and Equation~\\eqref"
     },
     {
       "from": "m1-geom-exceptional",
-      "to": "m1-geom-antipodal"
+      "to": "m1-geom-antipodal",
+      "context": "\\[ d_\\Sigma(\\widehat M_C,\\widehat h_0)=a, \\qquad d_\\Sigma(\\widehat h_0,\\widehat x_D)=b. \\] The two arcs occur consecutively in the Euclidean sector of Lemma~\\ref{geom:exceptional}; their concatenation is its geodesic direction arc. By Equation~\\eqref{geom:fan-products}, \\[ d_\\Sigma(\\widehat x_D,\\"
     },
     {
       "from": "m1-geom-antipodal",
-      "to": "m1-prop-no-configuration"
+      "to": "m1-prop-no-configuration",
+      "context": "d retain the notation above. By Equation~\\eqref{geom:nonnegative}, $\\ip{M_A}{M_B}\\geq0$. We will contradict this bound by splitting the axis supplied by Lemma~\\ref{geom:antipodal}. Use the fan identities \\[ M_C=h_{AC}\\oplus h_{BC},\\qquad M_D=h_{AD}\\oplus h_{BD}. \\] The four lines in these expres"
     },
     {
       "from": "m1-geom-square",
-      "to": "m1-prop-no-configuration"
+      "to": "m1-prop-no-configuration",
+      "context": "ve $q_0=\\operatorname{mid}(u,u')$. The identity at $D$ likewise gives $q_0=\\operatorname{mid}(v,v')$. In cyclic order $u,v,u',v'$, these points satisfy Lemma~\\ref{geom:square}. They therefore span a unit flat square in $Q$, centered at $q_0$. Let \\[ m=\\operatorname{mid}(u,v),\\qquad m'=\\oper"
     },
     {
       "from": "m1-prop-sampling",
-      "to": "m1-lem-completion-diagonal"
+      "to": "m1-lem-completion-diagonal",
+      "context": ", request all the admissible tests in the fixed master pattern with $1\\le t\\le j$. This is a finite list. Choose $\\varepsilon_j>0$ small enough for Proposition~\\ref{prop:sampling} for this list and for Theorem~\\ref{thm:diagram}, with $\\varepsilon_j<1/(400j)$, and set \\[ \\alpha_j=\\delta_j=\\varepsil"
     },
     {
       "from": "m1-thm-diagram",
-      "to": "m1-lem-completion-diagonal"
+      "to": "m1-lem-completion-diagonal",
+      "context": "ster pattern with $1\\le t\\le j$. This is a finite list. Choose $\\varepsilon_j>0$ small enough for Proposition~\\ref{prop:sampling} for this list and for Theorem~\\ref{thm:diagram}, with $\\varepsilon_j<1/(400j)$, and set \\[ \\alpha_j=\\delta_j=\\varepsilon_j, \\qquad \\beta_j=8\\varepsilon_j. \\] These p"
     },
     {
       "from": "m1-lem-model-presentation",
-      "to": "m1-lem-completion-diagonal"
+      "to": "m1-lem-completion-diagonal",
+      "context": "ment threshold and $n$ is needed before fixing the parameters and threshold. This proves \\textup{(i)}--\\textup{(iv)}. Each $G_j$ has a quotient $C_2$ by Lemma~\\ref{lem:model-presentation}. If it were finite, its universal cover would be a finite contractible CW complex, and multiplicativity of Euler charac"
     },
     {
       "from": "m1-lem-completion-diagonal",
-      "to": "m1-prop-completion-no-action"
+      "to": "m1-prop-completion-no-action",
+      "context": "ly, that infinitely many $G_j$ admitted such actions. Restrict to that subsequence and choose one action for each of its groups. All fixed-test limits in Lemma~\\ref{lem:completion-diagonal} remain valid. The action spaces, their dimensions, and their local geometries are allowed to vary. Normalize the minim"
     },
     {
       "from": "m1-lem-conditional-test",
-      "to": "m1-prop-completion-no-action"
+      "to": "m1-prop-completion-no-action",
+      "context": "energy for each action as in Equation~\\eqref{energy:normalization}. The infinitude just proved makes this energy positive. The displacement estimate and Lemma~\\ref{lem:conditional-test} hold uniformly for these choices of actions. Proposition~\\ref{prop:configuration} therefore supplies the limiting confi"
     },
     {
       "from": "m1-prop-configuration",
-      "to": "m1-prop-completion-no-action"
+      "to": "m1-prop-completion-no-action",
+      "context": "just proved makes this energy positive. The displacement estimate and Lemma~\\ref{lem:conditional-test} hold uniformly for these choices of actions. Proposition~\\ref{prop:configuration} therefore supplies the limiting configuration. Proposition~\\ref{prop:no-configuration} excludes it. Thus only finitely"
     },
     {
       "from": "m1-prop-no-configuration",
-      "to": "m1-prop-completion-no-action"
+      "to": "m1-prop-completion-no-action",
+      "context": ":conditional-test} hold uniformly for these choices of actions. Proposition~\\ref{prop:configuration} therefore supplies the limiting configuration. Proposition~\\ref{prop:no-configuration} excludes it. Thus only finitely many of the selected groups can admit such actions; in particular, an instance with no"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-lem-completion-transfer"
+      "to": "m1-lem-completion-transfer",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Choose an instance $P_j$ supplied by Proposition~\\ref{prop:completion-no-action}. Its finite letter presentation has a"
     },
     {
       "from": "m1-prop-completion-no-action",
-      "to": "m1-lem-completion-transfer"
+      "to": "m1-lem-completion-transfer",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Choose an instance $P_j$ supplied by Proposition~\\ref{prop:completion-no-action}. Its finite letter presentation has a linear disk bound by Theorem~\\ref{thm:diagram}. Apply Lemma~\\ref{lem:completion-t"
     },
     {
       "from": "m1-thm-diagram",
-      "to": "m1-lem-completion-transfer"
+      "to": "m1-lem-completion-transfer",
+      "context": "{thm:main}] Choose an instance $P_j$ supplied by Proposition~\\ref{prop:completion-no-action}. Its finite letter presentation has a linear disk bound by Theorem~\\ref{thm:diagram}. Apply Lemma~\\ref{lem:completion-transfer} to obtain $K$. Since $P_j$ has dimension two, the same-dimension constructio"
     }
   ]
 }

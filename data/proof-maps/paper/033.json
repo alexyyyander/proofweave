@@ -681,331 +681,413 @@
   "edges": [
     {
       "from": "m1-setup-log-modification",
-      "to": "m1-setup-modification-compatibility"
+      "to": "m1-setup-modification-compatibility",
+      "context": "ional image restricts to codimension at least two. Components not dominating the base do not meet this fiber. The restricted map has the same boundary rule, so \\Cref{setup:log-modification} applies on the fiber. For (ii), every prime exceptional for the composite is either newly exceptional or the transform"
     },
     {
       "from": "m1-setup-log-modification",
-      "to": "m1-setup-flattening"
+      "to": "m1-setup-flattening",
+      "context": "t $r(E)$, and therefore also $p(E)$, has dimension at most $N-2$. Thus $E$ is exceptional over $Z_0$. The boundary and orbifold-morphism assertions follow from \\Cref{setup:log-modification}. The new map has connected general fiber. Its Stein factorization has a finite bimeromorphic map to the normal base $T$"
     },
     {
       "from": "m1-setup-modification-compatibility",
-      "to": "m1-setup-flattening"
+      "to": "m1-setup-flattening",
+      "context": "tionality over $Z_0$. This includes principalizations of prescribed bad loci and their SNC resolutions on the base. Iterating proves the persistence assertion; \\Cref{setup:modification-compatibility}\\textup{(ii)} identifies the stepwise boundary with that computed directly over $Z_0$."
     },
     {
       "from": "m1-setup-flattening",
-      "to": "m1-setup-simultaneous"
+      "to": "m1-setup-simultaneous",
+      "context": "Assertion (i) is \\Cref{setup:flattening}. For (ii), a source prime is either newly exceptional, with coefficient one, or the strict transform of an old prime wi"
     },
     {
       "from": "m1-setup-modification-compatibility",
-      "to": "m1-setup-simultaneous"
+      "to": "m1-setup-simultaneous",
+      "context": "ith coefficient one, or the strict transform of an old prime with unchanged image in $Y$. The hypothesis handles the latter case. Assertions (iii) and (iv) are \\Cref{setup:modification-compatibility}; \\eqref{setup:retained-multiplicity} is the defining minimum for $C$. Flattening the original map supplies the initial"
     },
     {
       "from": "m1-setup-log-modification",
-      "to": "m1-application-relative-iitaka"
+      "to": "m1-application-relative-iitaka",
+      "context": "o the restriction has dimension exactly zero. Apply this to the resolved log adjoint on a very general \\(f\\)-fiber. Its divisible section ring is unchanged by \\Cref{setup:log-modification}, and adjunction identifies the restriction with \\(K_G+\\Delta_G\\). Further source modifications preserve the same sectio"
     },
     {
       "from": "m1-rankone-comparison",
-      "to": "m1-rankone-extension"
+      "to": "m1-rankone-extension",
+      "context": "[Completion of the proof of \\Cref{rankone:comparison}] Take $q$ divisible by $m$ and by the denominators of all rational data. In a local base frame, a meromorphic section"
     },
     {
       "from": "m1-setup-log-modification",
-      "to": "m1-rankone-extension"
+      "to": "m1-rankone-extension",
+      "context": "ies the $\\Delta_0$ pole bound in codimension one. Since $X_0$ is smooth and the adjoint multiple is a line bundle, it extends across codimension two. Finally \\Cref{setup:log-modification} pulls it back to a section of $q(K_X+\\Delta)$, proving \\eqref{rankone:sections}. If the diagram is over $Y$, apply thi"
     },
     {
       "from": "m1-generaltype-addition",
-      "to": "m1-addition-principle"
+      "to": "m1-addition-principle",
+      "context": "city boundary are preserved; newly exceptional primes have coefficient one. Thus all hypotheses remain valid. If $S$ is a point, $M$ is rationally trivial and \\Cref{generaltype:addition} proves the proposition. Suppose $\\dim S>0$, and choose an ample Cartier divisor $A$ on $S$. A very general $h$-fiber is"
     },
     {
       "from": "m1-application-weak-effectivity",
-      "to": "m1-addition-principle"
+      "to": "m1-addition-principle",
+      "context": "k. Choose rational $a>\\max\\{1,a_0\\}$. Since $P$ is nef, $K_S+aP$ is big. For sufficiently small rational $\\lambda>0$, $H=K_S+aP-\\lambda A$ is still big. Lemma~\\ref{application:weak-effectivity} now gives a nonzero section of a positive multiple of \\begin{equation}\\label{application:negative-twist} E_-=D+aM-\\lam"
     },
     {
       "from": "m1-period-numerics",
-      "to": "m1-period-boundary"
+      "to": "m1-period-boundary",
+      "context": "uses the multivariable nilpotent orbit theorem \\cite{CKS} and applies here as well. The filtrations and strictness also restrict to a complex summand. Apply \\Cref{period:numerics} on $E_i$."
     },
     {
       "from": "m1-period-numerics",
-      "to": "m1-period-quotient"
+      "to": "m1-period-quotient",
+      "context": "me connected algebraic monodromy. Its period differential is generically injective by construction. On a Kähler compactification its Griffiths line is big by \\Cref{period:numerics}; equivalently, one can apply \\cite[Corollary~1.3]{BrunebarbeCadorel}. The quotient therefore has a smooth projective m"
     },
     {
       "from": "m1-period-stabilizer",
-      "to": "m1-period-quotient"
+      "to": "m1-period-quotient",
+      "context": "ds agrees with a fixed $\\eta\\in\\Gamma'$. Then $\\eta^{-1}\\delta$ fixes a period germ, hence the whole generic lifted period image by analytic continuation. By \\Cref{period:stabilizer} it is the identity, so $\\delta\\in\\Gamma'$. Resolve the finite group action equivariantly and remove its proper algebra"
     },
     {
       "from": "m1-period-adjoint-reduction",
-      "to": "m1-period-quotient"
+      "to": "m1-period-quotient",
+      "context": "ystem and Hodge filtration descend there. In particular, this descent uses an open subset, not merely very general points. The highest-weight construction in \\Cref{period:adjoint-reduction} gives a line on that open subset whose pullback is a fixed positive power of $L$. Take its parabolic extension on a lo"
     },
     {
       "from": "m1-period-numerics",
-      "to": "m1-period-rankloss"
+      "to": "m1-period-rankloss",
+      "context": "Write $n=\\dim S$ and $r=\\nu(P)$, the generic rank of the line map $j$ by \\Cref{period:numerics}. The full retained period map has rank $n$; the argument does not require $r=n$. Work first on a finite Galois cover of"
     },
     {
       "from": "m1-period-quotient",
-      "to": "m1-period-rankloss"
+      "to": "m1-period-rankloss",
+      "context": "\\nu(P_H)=d_H, \\qquad P_Q=q^*B_Q. \\end{equation} Here $q:\\widetilde S\\to S_Q$ is a resolved projective quotient for the full $Q$-period, constructed by \\Cref{period:quotient}, and $\\dim S_Q=s_Q$. The highest-line rank on $S_Q$ is $s_Q$ by \\eqref{period:rankdecomposition}. Only the quotient c"
     },
     {
       "from": "m1-period-boundary",
-      "to": "m1-period-rankloss"
+      "to": "m1-period-rankloss",
+      "context": "ned in the proper fixed locus in \\eqref{period:fixedlocus}, and the rational map is defined at every point under consideration. Its rank is less than $d_H$. By \\Cref{period:boundary}, \\[ \\nu(P_H|_{E_i})<d_H. \\] Together with $\\nu(P_Q|_{E_i})\\leq s_Q$ this proves the required ine"
     },
     {
       "from": "m1-period-adjoint-reduction",
-      "to": "m1-period-rankloss"
+      "to": "m1-period-rankloss",
+      "context": "e. \\smallskip\\noindent \\emph{Finite nonidentity local monodromy.} Let $\\gamma$ be the original finite local monodromy. The disconnected-monodromy argument in \\Cref{period:adjoint-reduction} shows that $\\gamma$ preserves the orbit span $W$. It therefore acts on the highest-line orbit $J$, permuting its nontr"
     },
     {
       "from": "m1-period-stabilizer",
-      "to": "m1-period-rankloss"
+      "to": "m1-period-rankloss",
+      "context": "$Q$. Its $Q$-action fixes every generic $Q$-period, by the domination of $S_Q$ and analytic continuation from the resulting open set of lifted periods. Apply \\Cref{period:stabilizer} to the descended $Q$-variation. This action is the identity. Hence $\\gamma$ is the identity on the whole retained adj"
     },
     {
       "from": "m1-period-adjoint",
-      "to": "m1-period-subtract"
+      "to": "m1-period-subtract",
+      "context": "[Proof of \\Cref{period:adjoint}] Apply \\Cref{period:quotient}. If its target is a point there is nothing further to prove. Otherwise mark the divisor"
     },
     {
       "from": "m1-period-quotient",
-      "to": "m1-period-subtract"
+      "to": "m1-period-subtract",
+      "context": "[Proof of \\Cref{period:adjoint}] Apply \\Cref{period:quotient}. If its target is a point there is nothing further to prove. Otherwise mark the divisor $D$ as above. The adjoint va"
     },
     {
       "from": "m1-period-rankloss",
-      "to": "m1-period-subtract"
+      "to": "m1-period-subtract",
+      "context": "imension-two loci, apply the theorem on a log resolution and push the sections down; the resulting logarithmic canonical divisor pushes forward to $K_S+D$. By \\Cref{period:rankloss}, each marked component has strictly smaller numerical rank. Apply \\Cref{period:subtract} with $A=K_S$ and the marked r"
     },
     {
       "from": "m1-generaltype-selection",
-      "to": "m1-generaltype-stable-comparison"
+      "to": "m1-generaltype-stable-comparison",
+      "context": "he fiber's log canonical model. Their union contains a very general subset of \\(Y\\), and all genuine frames over a point of \\(\\Lambda_m\\) give good data. Apply \\Cref{generaltype:selection}. We obtain one fixed \\(m\\) for which \\(\\Lambda_m\\) is not contained in a countable union of proper analytic subsets an"
     },
     {
       "from": "m1-generaltype-stable-comparison",
-      "to": "m1-generaltype-relative-system"
+      "to": "m1-generaltype-relative-system",
+      "context": "Use \\Cref{generaltype:stable-comparison}. If \\(\\dim R>0\\), the stable-family bigness theorem \\cite[Theorem~8.1 and Corollary~8.3]{KovacsPatakfalvi} applies: th"
     },
     {
       "from": "m1-generaltype-stable-orders",
-      "to": "m1-generaltype-relative-system"
+      "to": "m1-generaltype-relative-system",
+      "context": "le log canonical divisor of the fixed stable pair instead. Pullback and the meromorphic comparison preserve these image dimensions and give the pole bounds of \\Cref{generaltype:stable-orders}. Replace the comparison cover by a Galois cover and resolve the diagrams equivariantly. To do this analytically, firs"
     },
     {
       "from": "m1-generaltype-addition",
-      "to": "m1-generaltype-expose-valuation"
+      "to": "m1-generaltype-expose-valuation",
+      "context": "[Proof of \\Cref{generaltype:addition}] We may suppose \\(\\kappa(Y,K_Y+C)\\geq0\\). Choose a Kähler modification \\(\\nu\\colon\\widetilde V\\to V\\), resolve the boun"
     },
     {
       "from": "m1-generaltype-relative-system",
-      "to": "m1-generaltype-expose-valuation"
+      "to": "m1-generaltype-expose-valuation",
+      "context": "nk choice makes the same degree have full rank on general fibers. Notice that no vertical coefficient has been lowered, and \\(C\\) has not been changed. Apply \\Cref{generaltype:relative-system} to \\(A\\), and write \\(\\sigma\\) for a member of its system in degree \\(b\\), including any product degree. Let \\[ \\eta"
     },
     {
       "from": "m1-main-orbifold",
-      "to": "m1-generaltype-expose-valuation"
+      "to": "m1-generaltype-expose-valuation",
+      "context": "[Proof of \\Cref{main:orbifold}] If either summand on the right is \\(-\\infty\\), the asserted inequality is automatic. Suppose henceforth that both are"
     },
     {
       "from": "m1-setup-flattening",
-      "to": "m1-generaltype-expose-valuation"
+      "to": "m1-generaltype-expose-valuation",
+      "context": "egative, and put \\[ k=\\kappa(F,K_F+\\Delta_F),\\qquad b=\\kappa(f\\mid\\Delta). \\] \\smallskip\\noindent \\emph{Fixing the base.} Use Section~\\ref{setup:section} and \\Cref{setup:flattening} to resolve the diagram, take K\\\"ahler models, and flatten before resolving the source. Use strict transforms plus reduc"
     },
     {
       "from": "m1-setup-simultaneous",
-      "to": "m1-generaltype-expose-valuation"
+      "to": "m1-generaltype-expose-valuation",
+      "context": "del. It has SNC support, and the definition of the invariant gives \\begin{equation} \\kappa(Y,K_Y+C)\\geq b. \\label{application:invariant-bound} \\end{equation} \\Cref{setup:simultaneous} preserves \\(C=B(f,\\Delta)\\) and the coefficient-one condition through all further changes over \\(Y\\). \\smallskip\\noind"
     },
     {
       "from": "m1-application-relative-iitaka",
-      "to": "m1-generaltype-expose-valuation"
+      "to": "m1-generaltype-expose-valuation",
+      "context": "elta)\\) and the coefficient-one condition through all further changes over \\(Y\\). \\smallskip\\noindent \\emph{The relative Iitaka map and its Hodge line.} Apply \\Cref{application:relative-iitaka}, obtaining \\[ X\\xrightarrow{g}W\\xrightarrow{h}Y, \\qquad \\dim W_y=k, \\qquad \\kappa(G,K_G+\\Delta_G)=0. \\] Make \\(W\\) K"
     },
     {
       "from": "m1-rankone-comparison",
-      "to": "m1-generaltype-expose-valuation"
+      "to": "m1-generaltype-expose-valuation",
+      "context": "diagram, and fix the current smooth source pair \\((X_0,\\Delta_0)\\) as reference. Flatten over \\(W\\) and resolve the generator and boundary data as required by \\Cref{rankone:comparison}. Thus every prime mapped by \\(g\\) into codimension at least two is exceptional over \\(X_0\\), and on a dense smooth log"
     },
     {
       "from": "m1-application-composition",
-      "to": "m1-generaltype-expose-valuation"
+      "to": "m1-generaltype-expose-valuation",
+      "context": "ange over an open patch of \\(Y\\) and extend on the smooth \\(W_y\\) by the relative section comparison. Adjunction identifies the restricted adjoint bundles. By \\Cref{application:composition}, \\begin{equation} B(h,T)\\geq C. \\label{application:composed-boundary} \\end{equation} The same lemma gives coefficient"
     },
     {
       "from": "m1-addition-principle",
-      "to": "m1-generaltype-expose-valuation"
+      "to": "m1-generaltype-expose-valuation",
+      "context": ") for every prime of \\(W\\) mapped into codimension at least two in \\(Y\\). Thus both boundary hypotheses of \\Cref{generaltype:addition} hold. The hypotheses of \\Cref{addition:principle} have now all been verified. Its conclusion is \\begin{equation}\\label{application:final-intermediate-bound} \\kappa(W,K_"
     },
     {
       "from": "m1-setup-log-modification",
-      "to": "m1-generaltype-expose-valuation"
+      "to": "m1-generaltype-expose-valuation",
+      "context": "eserving their ratios and image dimensions. Untested \\(g\\)-contracted primes are exceptional over \\((X_0,\\Delta_0)\\), so the forms descend and extend there. By \\Cref{setup:log-modification}, they then descend to the original source. Combining \\eqref{application:invariant-bound} and \\eqref{application:final-i"
     },
     {
       "from": "m1-setup-flattening",
-      "to": "m1-spec-base-comparison"
+      "to": "m1-spec-base-comparison",
+      "context": "Choose a neat model as in Lemma~\\ref{setup:flattening}, with $p:X'\\to X$, $q:Y'\\to Y$, $f':X'\\to Y'$, and $\\Delta'=p_*^{-1}\\Delta+\\operatorname{Exc}(p)_{\\mathrm{red}}$. We ma"
     },
     {
       "from": "m1-main-orbifold",
-      "to": "m1-spec-logarithmic"
+      "to": "m1-spec-logarithmic",
+      "context": "Theorem~\\ref{main:orbifold} applies to $(X,D_X)$, and Lemma~\\ref{spec:base-comparison} bounds its base term from below. If either term on the right"
     },
     {
       "from": "m1-spec-base-comparison",
-      "to": "m1-spec-logarithmic"
+      "to": "m1-spec-logarithmic",
+      "context": "Theorem~\\ref{main:orbifold} applies to $(X,D_X)$, and Lemma~\\ref{spec:base-comparison} bounds its base term from below. If either term on the right of~\\eqref{spec:log-inequality} is $-\\infty$, the assertion"
     },
     {
       "from": "m1-spec-logarithmic",
-      "to": "m1-spec-ordinary"
+      "to": "m1-spec-ordinary",
+      "context": "Over $\\mathbb C$, the ordinary assertion follows by taking $D_X=D_Y=0$ in Corollary~\\ref{spec:logarithmic}. In a projective family over $\\mathbb C$, the Iitaka dimension of the geometric generic fiber equals that of a very ge"
     },
     {
       "from": "m1-setup-log-modification",
-      "to": "m1-spec-core-dimension"
+      "to": "m1-spec-core-dimension",
+      "context": "Resolve the core map, using the boundary convention of Lemma~\\ref{setup:log-modification}. The total and fiber Iitaka dimensions are preserved. Theorem~\\ref{main:orbifold} gives the lower bound in~\\eqref{spe"
     },
     {
       "from": "m1-main-orbifold",
-      "to": "m1-spec-core-dimension"
+      "to": "m1-spec-core-dimension",
+      "context": "Resolve the core map, using the boundary convention of Lemma~\\ref{setup:log-modification}. The total and fiber Iitaka dimensions are preserved. Theorem~\\ref{main:orbifold} gives the lower bound in~\\eqref{spec:core-equality}, since the invariant base dimension is $\\dim C$. For completeness,"
     },
     {
       "from": "m1-main-orbifold",
-      "to": "m1-spec-core-tower"
+      "to": "m1-spec-core-tower",
+      "context": "Theorem~\\ref{main:orbifold} establishes the hypothesis of Campana's Corollary~6.14, which supplies the $\\kappa$-rational quotient. Its scope is ex"
     },
     {
       "from": "m1-lem-reduced-cyclic-top",
-      "to": "m1-cor-reduced-integral-moduli"
+      "to": "m1-cor-reduced-integral-moduli",
+      "context": "athbb V=0,\\qquad F^r\\mathbb V_{\\mathcal O} =\\widetilde x_*\\omega_{\\widetilde X^\\circ/W^\\circ} (D_{\\widetilde X}^\\circ). \\] Lemma~\\ref{lem:reduced-cyclic-top} makes this entire top piece a line. Strictness for the weight filtration therefore singles out one weight $w$ with \\["
     },
     {
       "from": "m1-p1logcbfalt-section-test",
-      "to": "m1-p1logcbfalt-finite"
+      "to": "m1-p1logcbfalt-finite",
+      "context": "tional sections of the appropriate multiples of \\(D\\); they are regular in the required lattices at every prime divisor, and hence are global sections by Lemma~\\ref{p1logcbfalt:section-test}. Thus the two nonzero graded rings have the same transcendence degree, which gives equality of Iitaka dimensions. If th"
     },
     {
       "from": "m1-setup-log-modification",
-      "to": "m1-p1logcbfalt-iitaka"
+      "to": "m1-p1logcbfalt-iitaka",
+      "context": "triction of the full divisor to the Iitaka fiber has Iitaka dimension zero by the Iitaka fibration theorem. For the logarithmic replacement, the proof of Lemma~\\ref{setup:log-modification} gives the sheaf identity \\[ \\mu_*\\cO_{V'}\\bigl(m(K_{V'}+B_{V'})\\bigr) =\\cO_V\\bigl(m(K_V+B_V)\\bigr) \\] in every suffic"
     },
     {
       "from": "m2-thm-main",
-      "to": "m2-thm-projective-variation"
+      "to": "m2-thm-projective-variation",
+      "context": "Apply Theorem~\\ref{thm:main} with empty compactification boundaries."
     },
     {
       "from": "m2-num-finite",
-      "to": "m2-prelim-generic"
+      "to": "m2-prelim-generic",
+      "context": "ify the section spaces, compatibly with multiplication, and hence preserve the dimensions of the section maps. The finite-morphism assertion follows from Lemma~\\ref{num:finite}. Morphisms, rational maps, and the identities making two rational maps inverse use finitely many coefficients and sprea"
     },
     {
       "from": "m2-spec-logarithmic",
-      "to": "m2-it-compactification"
+      "to": "m2-it-compactification",
+      "context": "lies over $D_Y$, and $\\Supp(f^*D_Y)\\subseteq\\Supp(D_X)$. A very general fiber lies over $V$, has no boundary, and has ordinary Kodaira dimension $d$. Theorem~\\ref{spec:logarithmic} now applies to these smooth projective varieties, connected fibers, and reduced SNC boundaries. Its conclusion is \\eqr"
     },
     {
       "from": "m2-spec-logarithmic",
-      "to": "m2-it-zerofiber"
+      "to": "m2-it-zerofiber",
+      "context": "nd both displayed boundaries are reduced SNC. Every component of the inverse base boundary is in the source boundary, because both lie over $D_Y$. Thus Theorem~\\ref{spec:logarithmic} applies. Its conclusion, together with \\eqref{it:absolute-fiber} and Lemma~\\ref{it:contraction}, is \\[ 0\\geq \\kappa\\b"
     },
     {
       "from": "m2-it-contraction",
-      "to": "m2-it-zerofiber"
+      "to": "m2-it-zerofiber",
+      "context": "he source boundary, because both lie over $D_Y$. Thus Theorem~\\ref{spec:logarithmic} applies. Its conclusion, together with \\eqref{it:absolute-fiber} and Lemma~\\ref{it:contraction}, is \\[ 0\\geq \\kappa\\bigl(J,K_J+D'|_J\\bigr) +\\kappa\\bigl(W_z,K_{W_z}+D_W^0|_{W_z}\\bigr)\\geq0. \\] Both terms vanish."
     },
     {
       "from": "m2-it-contraction",
-      "to": "m2-it-dimensions"
+      "to": "m2-it-dimensions",
+      "context": "orname{Hilb}(Y). \\] We claim that the dimension of its image is exactly $p_1$. Fix a very general $z$ and a basis of $T_zZ$. Perform the contraction in Lemma~\\ref{it:contraction} for every $p_1$-tuple of basis vectors. By Lemma~\\ref{it:zerofiber}, all nonzero resulting sections in degree $m$ are p"
     },
     {
       "from": "m2-it-zerofiber",
-      "to": "m2-it-dimensions"
+      "to": "m2-it-dimensions",
+      "context": "y $p_1$. Fix a very general $z$ and a basis of $T_zZ$. Perform the contraction in Lemma~\\ref{it:contraction} for every $p_1$-tuple of basis vectors. By Lemma~\\ref{it:zerofiber}, all nonzero resulting sections in degree $m$ are proportional. Indeed, two independent sections in one degree would g"
     },
     {
       "from": "m2-it-diagram",
-      "to": "m2-it-dimensions"
+      "to": "m2-it-dimensions",
+      "context": "_t})$. This proves the last assertion of \\eqref{it:dimension-equations}. All these final resolutions preserve the section and fiber properties in Proposition~\\ref{it:diagram}. We now fix an earlier resolved Iitaka source $X_*$ and take the common source $X'$ above it; later source modificatio"
     },
     {
       "from": "m2-num-finite",
-      "to": "m2-ro-root"
+      "to": "m2-ro-root",
+      "context": "\\qquad s\\longmapsto s/\\eta^m. \\label{ro:root-section-injection} \\end{equation} Only codimension-one tests on $J^{\\mathrm{nor}}$ enter this injection. Lemma~\\ref{num:finite} gives $\\kappa(J^{\\mathrm{nor}},\\pi_0^*E)=\\kappa(J,E)=0$. Since $\\pi_0^*E$ is effective, each space on the right of \\eqr"
     },
     {
       "from": "m2-ro-extraction",
-      "to": "m2-ro-transfer"
+      "to": "m2-ro-transfer",
+      "context": "Apply Lemma~\\ref{ro:extraction} with fixed source $X_*$ and base $W$. Retain the maps to $Y$ and $Z$, resolve the finite boundary supports, and recompu"
     },
     {
       "from": "m2-ro-metric",
-      "to": "m2-ro-transfer"
+      "to": "m2-ro-transfer",
+      "context": "dimension is preserved. The target system has Iitaka dimension zero by \\eqref{ro:initial-zero}. The identity $T_z\\sim_{\\Q}B|_{W_z}+M|_{W_z}$ from Proposition~\\ref{ro:metric} proves \\eqref{ro:transfer-bound}."
     },
     {
       "from": "m2-period-adjoint",
-      "to": "m2-hd-adjoint"
+      "to": "m2-hd-adjoint",
+      "context": "The hypotheses meet Theorem~\\ref{period:adjoint} directly. A projective manifold belongs to class $\\mathcal C$, a rational polarization is a real polarization, and the"
     },
     {
       "from": "m2-ro-extraction",
-      "to": "m2-ro-weak-addition"
+      "to": "m2-ro-weak-addition",
+      "context": "Use Lemma~\\ref{ro:extraction} with fixed source $T_1$ and base $R$. On the resulting smooth source $T_2$, let $\\Delta_2$ be the strict transform of $"
     },
     {
       "from": "m2-hodge-extensions",
-      "to": "m2-ro-trivial"
+      "to": "m2-ro-trivial",
+      "context": "ant boundary strata meet it transversely, including those of the enlarged divisor defining the domain of the variation. The log-pair pullback property in Lemma~\\ref{hodge:extensions} therefore identifies $N$ with the parabolic extension of the restricted variation. Moreover \\[ \\kappa(T_1,K_{T_1}+\\Del"
     },
     {
       "from": "m2-hd-adjoint",
-      "to": "m2-ro-trivial"
+      "to": "m2-ro-trivial",
+      "context": "] by \\eqref{ro:initial-zero} and $B\\ge D_W^0$. In particular, $D=K_{T_1}+\\Delta$ is rationally equivalent to an effective rational divisor. Apply Proposition~\\ref{hd:adjoint} to the restricted integral polarized variation whose \\emph{entire} highest piece is this line. The comparison is applie"
     },
     {
       "from": "m2-ro-weak-addition",
-      "to": "m2-ro-trivial"
+      "to": "m2-ro-trivial",
+      "context": "ref{ro:transfer-bound} and the rational effectivity of $D$; the Hodge line is pulled back. If $\\dim R>0$, choose a sufficiently large rational $c\\ge1$. Lemma~\\ref{ro:weak-addition} gives \\[ \\kappa(T_1,D+cN)\\ge\\dim R>0. \\] But \\begin{equation} D+N=\\frac1c(D+cN)+\\left(1-\\frac1c\\right)D. \\label{ro:i"
     },
     {
       "from": "m2-lem-finite-character",
-      "to": "m2-hodge-restricted-character"
+      "to": "m2-hodge-restricted-character",
+      "context": "k variation is again polarized, integral and pure. Constancy of its projective highest line makes that line a rank-one complex local subsystem. Apply Corollary~\\ref{lem:finite-character} to this restricted variation. No common exponent for different algebraic loci is needed."
     },
     {
       "from": "m2-ro-trivial",
-      "to": "m2-ro-flat-character"
+      "to": "m2-ro-flat-character",
+      "context": "Put $T_1=W_z$ and $N=M|_{W_z}$. Proposition~\\ref{ro:trivial} gives $N\\sim_{\\Q}0$, and the pullback property in Lemma~\\ref{hodge:extensions} identifies $N$ with the parabolic extens"
     },
     {
       "from": "m2-hodge-extensions",
-      "to": "m2-ro-flat-character"
+      "to": "m2-ro-flat-character",
+      "context": "Put $T_1=W_z$ and $N=M|_{W_z}$. Proposition~\\ref{ro:trivial} gives $N\\sim_{\\Q}0$, and the pullback property in Lemma~\\ref{hodge:extensions} identifies $N$ with the parabolic extension of the restricted entire top line. The degree of $N$ on every complete smoo"
     },
     {
       "from": "m2-hodge-degree-zero",
-      "to": "m2-ro-flat-character"
+      "to": "m2-ro-flat-character",
+      "context": "nsions} identifies $N$ with the parabolic extension of the restricted entire top line. The degree of $N$ on every complete smooth test curve is zero. Corollary~\\ref{hodge:degree-zero} makes the projective top line constant along such curves. Complete-intersection curves through general points and tang"
     },
     {
       "from": "m2-hodge-restricted-character",
-      "to": "m2-ro-flat-character"
+      "to": "m2-ro-flat-character",
+      "context": "h curves. Complete-intersection curves through general points and tangent directions give projective constancy on the connected good locus of $T_1$. Corollary~\\ref{hodge:restricted-character}, applied to this restricted integral polarized variation, gives finite monodromy for its original top line."
     },
     {
       "from": "m2-cc-operator",
-      "to": "m2-cc-zeros"
+      "to": "m2-cc-zeros",
+      "context": "ough $S$ is nonzero. Let $z$ and $G$ be local equations for $S$ and $R_0$, and put \\[ W=Gv,\\qquad u=(W(z)/z)|_S. \\] The pole bound in Lemma~\\ref{cc:operator} shows that $W$ is holomorphic and vanishes on the reduced zero divisor. It is consequently logarithmic along that divi"
     },
     {
       "from": "m2-cc-preparation",
-      "to": "m2-cc-zeros"
+      "to": "m2-cc-zeros",
+      "context": "hed above: its divisor section vanishes on $S$. This proves the horizontal vanishing. For vertical components, use the reduced-fiber model $P_0\\to C$ in Lemma~\\ref{cc:preparation}, to which $\\Theta$ descends. At a general point of a reduced fiber component the map has local equation $t=z$. There t"
     },
     {
       "from": "m2-cc-criterion",
-      "to": "m2-cc-zeros"
+      "to": "m2-cc-zeros",
+      "context": "[Proof of Theorem~\\ref{cc:criterion}] We may assume $n>0$, and use the preparation and notation of Lemmas~\\ref{cc:preparation}--\\ref{cc:zeros}. Proposition~"
     },
     {
       "from": "m2-hodge-restricted-character",
-      "to": "m2-cc-loci"
+      "to": "m2-cc-loci",
+      "context": "mology variation to $T$. Its entire highest Hodge step has rank one. Constancy of the projective line makes it a flat rank-one local subsystem, and Corollary~\\ref{hodge:restricted-character}, applied anew to this restricted variation, gives finite character. On an algebraic curve in $T$, Theorem~\\ref{cc:crit"
     },
     {
       "from": "m2-cc-criterion",
-      "to": "m2-cc-loci"
+      "to": "m2-cc-loci",
+      "context": "stem, and Corollary~\\ref{hodge:restricted-character}, applied anew to this restricted variation, gives finite character. On an algebraic curve in $T$, Theorem~\\ref{cc:criterion} therefore applies, including its equivariant assertion. We pass from curves to the geometric generic point of $T$. Af"
     },
     {
       "from": "m2-cc-preparation",
-      "to": "m2-cc-loci"
+      "to": "m2-cc-loci",
+      "context": "at stratification. Equivariance is expressed by invariance of the graph under the diagonal finite action; a birational action is first regularized as in Lemma~\\ref{cc:preparation}. The images of the graph loci in $T\\times T$ are constructible. For $\\dim T=0$ the conclusion is immediate, and for $"
     },
     {
       "from": "m2-ro-root",
-      "to": "m2-ro-constancy"
+      "to": "m2-ro-constancy",
+      "context": "On the smooth family locus $W^\\circ$, Lemma~\\ref{ro:root} gives a smooth projective cyclic-cover family with connected fibers, Kodaira dimension zero, and a one-dimensional \\emp"
     },
     {
       "from": "m2-ro-flat-character",
-      "to": "m2-ro-constancy"
+      "to": "m2-ro-constancy",
+      "context": "ected fibers, Kodaira dimension zero, and a one-dimensional \\emph{entire} ordinary top-form space. On the connected open of every very general $W_z$, Corollary~\\ref{ro:flat-character} makes its projective top line constant. Corollary~\\ref{cc:loci} therefore makes that restricted cover family geometrica"
     },
     {
       "from": "m2-cc-loci",
-      "to": "m2-ro-constancy"
+      "to": "m2-ro-constancy",
+      "context": "ordinary top-form space. On the connected open of every very general $W_z$, Corollary~\\ref{ro:flat-character} makes its projective top line constant. Corollary~\\ref{cc:loci} therefore makes that restricted cover family geometrically birationally constant, equivariantly for its cyclic deck gro"
     },
     {
       "from": "m2-it-diagram",
-      "to": "m2-ro-constancy"
+      "to": "m2-ro-constancy",
+      "context": "sertion, apply the second part of Corollary~\\ref{cc:loci} to $W^\\circ\\to Z$, shrinking $Z$ if necessary. Its geometric generic fiber is integral by Proposition~\\ref{it:diagram}, and the preceding paragraph verifies the fiber and constant-line hypotheses on its very general complex fibers. Over $"
     },
     {
       "from": "m2-num-alteration",
-      "to": "m2-num-model-pair"
+      "to": "m2-num-model-pair",
+      "context": "e Iitaka dimension directly. The model is a point after the Stein extension. We may therefore assume $r>0$. First suppose the generic pair is klt. Apply Lemma~\\ref{num:alteration}, prescribing the algebraic closure of $k(I)$ in $k(H)$ and choosing the corresponding component. The altered geometric"
     },
     {
       "from": "m2-num-finite",
-      "to": "m2-num-model-pair"
+      "to": "m2-num-model-pair",
+      "context": "um:alteration}, these systems give sections of $m\\tau^*(K_{\\mathcal V_p}+C)$ on the finite normalization of the original $H$. Their ratios are unchanged. Lemma~\\ref{num:finite} therefore gives the same lower bound for $K_{\\mathcal V_p}+C$ on $H$. Choose $0\\ne\\alpha\\in H^0(I,\\ell(K_I+D_I))$. In c"
     },
     {
       "from": "m2-it-diagram",
-      "to": "m2-mk-setup"
+      "to": "m2-mk-setup",
+      "context": "The diagram and dimension assertions follow from Propositions~\\ref{it:diagram} and~\\ref{it:dimensions}. The latter identifies $\\C(S)=\\C(Y)$ inside $\\C(X)$, so the present parameter field is the embe"
     },
     {
       "from": "m2-it-dimensions",
-      "to": "m2-mk-setup"
+      "to": "m2-mk-setup",
+      "context": "The diagram and dimension assertions follow from Propositions~\\ref{it:diagram} and~\\ref{it:dimensions}. The latter identifies $\\C(S)=\\C(Y)$ inside $\\C(X)$, so the present parameter field is the embedded field $b(I)=b\\,\\C(Y"
     },
     {
       "from": "m2-ro-divisors",
-      "to": "m2-mk-setup"
+      "to": "m2-mk-setup",
+      "context": "nding assertion for $S_t$ in Proposition~\\ref{it:dimensions}; nonzero divisible sections are preserved by field extension. The second follows from Proposition~\\ref{ro:divisors}. Finally, \\eqref{mk:zero-fiber} is precisely Proposition~\\ref{ro:trivial} after this generic restriction."
     },
     {
       "from": "m2-ro-trivial",
-      "to": "m2-mk-setup"
+      "to": "m2-mk-setup",
+      "context": "ble sections are preserved by field extension. The second follows from Proposition~\\ref{ro:divisors}. Finally, \\eqref{mk:zero-fiber} is precisely Proposition~\\ref{ro:trivial} after this generic restriction."
     }
   ]
 }

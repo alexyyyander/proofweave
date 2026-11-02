@@ -174,75 +174,93 @@
   "edges": [
     {
       "from": "m1-dih-plane",
-      "to": "m1-bg-graph"
+      "to": "m1-bg-graph",
+      "context": "e eight pairs in an application of the rule are actual directed reflection edges. The two paths from $a$ to $r$ through $p,q$ have a common root plane by Lemma~\\ref{dih:plane}(3). The two labels leaving $a$ are distinct and span that plane. Applying the same argument to the paths from $a$ to $s"
     },
     {
       "from": "m1-dih-shape",
-      "to": "m1-bg-graph"
+      "to": "m1-bg-graph",
+      "context": "ct, so the two paths from $p$ to $c$ put the last two labels there as well. Thus all six vertices lie in one maximal plane coset. By Lemmas~\\ref{dih:plane} and~\\ref{dih:shape}, the three edges from $a$ through $p,r$ to $c$ have positive odd relative gaps; their sum is positive and odd. Lemma~\\r"
     },
     {
       "from": "m1-dih-shape",
-      "to": "m1-dih-transport"
+      "to": "m1-dih-transport",
+      "context": "Write $n=\\ell_D(c)-\\ell_D(x)$. By Lemma~\\ref{dih:shape}, the interval has one vertex at each end, two vertices in every internal rank, and all possible directed edges between"
     },
     {
       "from": "m1-dih-plane",
-      "to": "m1-dih-transport"
+      "to": "m1-dih-transport",
+      "context": "one vertex at each end, two vertices in every internal rank, and all possible directed edges between consecutive ranks. Its vertices lie in $[u,b]$, by Lemma~\\ref{dih:plane}. The two arrows from $x$ to its relative atoms have distinct labels after applying $\\iota$. Let $\\Pi'$ be the plane o"
     },
     {
       "from": "m1-dih-plane",
-      "to": "m1-dih-midpoint-order"
+      "to": "m1-dih-midpoint-order",
+      "context": "r $0\\le n<m$ in finite type and every $n\\ge0$ in infinite type, the word of length $n+1$ is reduced. Its last relative cover is an ambient upward edge by Lemma~\\ref{dih:plane}. The sign criterion \\eqref{eq:bg-reflection-sign} then identifies $\\delta_n,\\epsilon_n$ as the positive ambient roots o"
     },
     {
       "from": "m1-dih-transport",
-      "to": "m1-dih-count"
+      "to": "m1-dih-count",
+      "context": "If $[x,c]_D$ has relative rank one, then $c=y$, and both sides vanish. Otherwise apply $\\iota$ using Proposition~\\ref{dih:transport}, then identify the target coset with its dihedral group by Lemma~\\ref{dih:plane}. The transported schedule is now the t"
     },
     {
       "from": "m1-dih-plane",
-      "to": "m1-dih-count"
+      "to": "m1-dih-count",
+      "context": "en $c=y$, and both sides vanish. Otherwise apply $\\iota$ using Proposition~\\ref{dih:transport}, then identify the target coset with its dihedral group by Lemma~\\ref{dih:plane}. The transported schedule is now the target label order, and the relative gaps are unchanged. By the definition of refl"
     },
     {
       "from": "m1-dih-midpoint-order",
-      "to": "m1-dih-count"
+      "to": "m1-dih-count",
+      "context": "the target label order, and the relative gaps are unchanged. By the definition of reflection order, this label order is one of the two angular orders in Lemma~\\ref{dih:midpoint-order}. Rename the resulting group and vertices $D,x,y,c$, and use the integer indexing above. Lemma~\\ref{dih:shape} says that"
     },
     {
       "from": "m1-dih-shape",
-      "to": "m1-dih-count"
+      "to": "m1-dih-count",
+      "context": "s one of the two angular orders in Lemma~\\ref{dih:midpoint-order}. Rename the resulting group and vertices $D,x,y,c$, and use the integer indexing above. Lemma~\\ref{dih:shape} says that $i\\to j$ is an arrow exactly when \\[ |i|<|j|\\quad\\text{and}\\quad i-j\\ \\text{is odd}. \\] We first use the ord"
     },
     {
       "from": "m1-dih-plane",
-      "to": "m1-dih-sum"
+      "to": "m1-dih-sum",
+      "context": "Partition the positive roots other than $\\alpha$ according to their planes $\\Pi=\\operatorname{span}(\\alpha,\\gamma)$. By the relative inversion formula in Lemma~\\ref{dih:plane}, the contribution of all positive roots in such a plane is \\[ \\sum_{\\gamma\\in\\Phi_D^+}\\varepsilon(\\gamma) =\\ell_D(y)-"
     },
     {
       "from": "m1-dih-midpoint-order",
-      "to": "m1-loc-models"
+      "to": "m1-loc-models",
+      "context": "$ is finite of type $I_2(m)$, its normalized canonical simple roots have Gram matrix with diagonal entries one and off-diagonal entries $-\\cos(\\pi/m)$ by Lemma~\\ref{dih:midpoint-order}. Its root plane is therefore positive definite and carries the usual real dihedral reflection representation. The nond"
     },
     {
       "from": "m1-bg-realization",
-      "to": "m1-loc-models"
+      "to": "m1-loc-models",
+      "context": "orbit exists by avoiding the countable union of proper fixed subspaces. The required simple-subregular orbits exist by the generic-hyperplane argument in Lemma~\\ref{bg:realization}, applied to the restricted orthogonal representation. In particular, no assertion that its simple-root pairing is the g"
     },
     {
       "from": "m1-loc-dihedral-kl",
-      "to": "m1-loc-models"
+      "to": "m1-loc-models",
+      "context": "d Proposition~7.1(4)]{Fiebig08}. The coset identification preserves the relative orientation and the left root labels, so these statements apply on $C$. Lemma~\\ref{loc:dihedral-kl} and the stalk character formula now show that every stalk below $c$ is $A$ with a generator in degree zero. Every nonze"
     },
     {
       "from": "m1-dih-sum",
-      "to": "m1-edge-bound"
+      "to": "m1-edge-bound",
+      "context": "), write \\(D_\\Pi\\) for its maximal dihedral subgroup and put \\[ k_\\Pi=\\frac{\\ell_{D_\\Pi}(y)-\\ell_{D_\\Pi}(x)-1}{2}. \\] These are nonnegative integers. By Lemma~\\ref{dih:sum}, only finitely many are nonzero and \\[ \\sum_\\Pi k_\\Pi=\\frac{d(x,y)-1}{2}. \\] Choose a root \\(\\beta_\\Pi\\in\\Pi\\) indepen"
     },
     {
       "from": "m1-edge-lattice",
-      "to": "m1-edge-bound"
+      "to": "m1-edge-bound",
+      "context": "target \\(f_eJ\\) is a free \\(C\\)-module of full generic rank in \\(B^e\\). If \\(C\\) is a field, it equals \\(B^e\\), and the inclusion is immediate. Otherwise Lemma~\\ref{edge:lattice} reduces the inclusion to height-one primes of \\(C\\). At a prime containing no nonzero reduced root label, all factors i"
     },
     {
       "from": "m1-loc-decomposition",
-      "to": "m1-edge-bound"
+      "to": "m1-edge-bound",
+      "context": "=D_\\Pi x\\cap[1,b]\\), and choose the sheaf isomorphism \\[ \\psi:B_R|_K\\longrightarrow \\bigoplus_{c\\in K}\\mathcal O_{c,R}^{\\oplus m_c} \\] from Proposition~\\ref{loc:decomposition}. The edge \\(e\\) is supported in a model with top \\(c\\) exactly when \\(y\\le_{D_\\Pi}c\\). Thus the edge component of \\(\\ps"
     },
     {
       "from": "m1-dih-count",
-      "to": "m1-edge-bound"
+      "to": "m1-edge-bound",
+      "context": "educes to a uniformizer times a unit. The valuations of \\(I_c\\) and \\(J_c\\) are therefore the later-edge counts \\(h_x\\) and \\(h_y\\) in \\([x,c]_{D_\\Pi}\\). Lemma~\\ref{dih:count} gives \\(h_x-h_y=k_\\Pi\\). At \\(\\mathfrak q\\), the element \\(f_e\\) has valuation \\(k_\\Pi\\): all other plane contributions"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-cor-all-subintervals"
+      "to": "m1-cor-all-subintervals",
+      "context": "Apply Theorem~\\ref{thm:main} to each restricted interval. For the second assertion, write reciprocity as \\[ q^{d(x,y)}P_{x,y}(q^{-1}) =\\sum_{x\\le"
     }
   ]
 }

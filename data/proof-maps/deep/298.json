@@ -1,0 +1,207 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "298",
+  "title": "Two notions of free entropy differ even when both are finite",
+  "result": {
+    "id": "paper-result",
+    "label": "Two notions of free entropy differ even when both are finite",
+    "statement": "Constructs a bounded self-adjoint tuple in a tracial von Neumann algebra whose microstates and nonmicrostates free entropies satisfy - ^ . This answers Voiculescu’s finite-entropy equality question negatively: the matrix-approximation and free-Fisher-information definitions differ even when both are finite.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "conventions-and-preliminary-facts",
+      "label": "Conventions and preliminary facts",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "conventions-and-preliminary-facts-2",
+      "label": "Conventions and preliminary facts",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-cumulant-bound-for-the-fisher-deficit",
+      "label": "A cumulant bound for the Fisher deficit",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-cumulant-bound-for-the-fisher-deficit-2",
+      "label": "A cumulant bound for the Fisher deficit",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-signal-and-its-two-noise-scales",
+      "label": "The signal and its two noise scales",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-signal-and-its-two-noise-scales-2",
+      "label": "The signal and its two noise scales",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "entropy-production-for-specified-matrix-ensembles",
+      "label": "Entropy production for specified matrix ensembles",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-persistent-block-structure-entropy-deficit",
+      "label": "A persistent block-structure entropy deficit",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "A finite-entropy separation of microstates and nonmicrostates free entropy",
+      "title": "A finite-entropy separation of microstates and nonmicrostates free entropy",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-finite-entropy-separation-of-microstates-and-nonmicrostates-free-entropy-September-25-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from A finite-entropy separation of microstates and nonmicrostates free entropy; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "There exist an integer n2 and a bounded self-adjoint tuple X=(X_1,,X_n) in a…",
+          "fullLabel": "There exist an integer n2 and a bounded self-adjoint tuple X=(X_1,,X_n) in a…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "There exist an integer n2 and a bounded self-adjoint tuple X=(X_1,,X_n) in a von Neumann algebra with faithful normal tracial state such that \\[ -<(X)^*(X)-12<. \\] Here is the original microstates…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-variational",
+          "role": "conventions-and-preliminary-facts",
+          "label": "Polynomial variational formula",
+          "fullLabel": "Polynomial variational formula",
+          "kind": "lemma",
+          "source": "Conventions and preliminary facts",
+          "detail": "[Polynomial variational formula] If a bounded self-adjoint tuple Z has conjugate variables, then ^*(Z)=_ P_1=P_1^*,,P_n=P_n^* _ i=1 ^n, where the supremum is over self-adjoint noncommutative…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-matrix-convergence",
+          "role": "conventions-and-preliminary-facts-2",
+          "label": "Bounded matrix inputs",
+          "fullLabel": "Bounded matrix inputs",
+          "kind": "lemma",
+          "source": "Conventions and preliminary facts",
+          "detail": "[Bounded matrix inputs] Let K_d be sets of self-adjoint matrix tuples with a common coordinate operator-norm bound. Suppose their normalized trace moments converge uniformly over K_d to the moments…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-wick",
+          "role": "a-cumulant-bound-for-the-fisher-deficit",
+          "label": "Wick testing",
+          "fullLabel": "Wick testing",
+          "kind": "lemma",
+          "source": "A cumulant bound for the Fisher deficit",
+          "detail": "[Wick testing] Let C be a centered bounded self-adjoint n -tuple, let S be a standard semicircular family free from C , and put Z=C+ u S , where u>0 . For a multi-index j=(j_1,,j_r) , r1 , and a…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-fisher",
+          "role": "a-cumulant-bound-for-the-fisher-deficit-2",
+          "label": "Squared-cumulant Fisher bound",
+          "fullLabel": "Squared-cumulant Fisher bound",
+          "kind": "proposition",
+          "source": "A cumulant bound for the Fisher deficit",
+          "detail": "[Squared-cumulant Fisher bound] Let C be a centered bounded self-adjoint n -tuple with diagonal covariance (C_iC_j)=_ ij c_i , where c_i0 , and let S be a standard semicircular family free from C .…",
+          "dependsOn": [
+            "m1-lem-wick"
+          ]
+        },
+        {
+          "id": "m1-lem-cumulants",
+          "role": "the-signal-and-its-two-noise-scales",
+          "label": "For K=128 and every m1 , \\[ \\|_m(C)\\|_2 K^m p^ m/4 . \\]",
+          "fullLabel": "For K=128 and every m1 , \\[ \\|_m(C)\\|_2 K^m p^ m/4 . \\]",
+          "kind": "lemma",
+          "source": "The signal and its two noise scales",
+          "detail": "For K=128 and every m1 , \\[ \\|_m(C)\\|_2 K^m p^ m/4 . \\]",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-finitechi",
+          "role": "the-signal-and-its-two-noise-scales-2",
+          "label": "The tuple X has (X)>- .",
+          "fullLabel": "The tuple X has (X)>- .",
+          "kind": "lemma",
+          "source": "The signal and its two noise scales",
+          "detail": "The tuple X has (X)>- .",
+          "dependsOn": [
+            "m1-lem-matrix-convergence"
+          ]
+        },
+        {
+          "id": "m1-lem-flow",
+          "role": "entropy-production-for-specified-matrix-ensembles",
+          "label": "For the fixed tuple X=V_h , fix a cutoff R>0 with _R(X)>- . There are…",
+          "fullLabel": "For the fixed tuple X=V_h , fix a cutoff R>0 with _R(X)>- . There are…",
+          "kind": "lemma",
+          "source": "Entropy production for specified matrix ensembles",
+          "detail": "For the fixed tuple X=V_h , fix a cutoff R>0 with _R(X)>- . There are dimensions tending to infinity and random tuples A^ (d) , uniform on increasingly accurate positive-volume microstate sets at…",
+          "dependsOn": [
+            "m1-lem-matrix-convergence",
+            "m1-lem-wick",
+            "m1-lem-variational"
+          ]
+        },
+        {
+          "id": "m1-lem-eventprob",
+          "role": "a-persistent-block-structure-entropy-deficit",
+          "label": "Let _d be the law of A^ (d) + t G^ (d) , and let _d be the law of independent…",
+          "fullLabel": "Let _d be the law of A^ (d) + t G^ (d) , and let _d be the law of independent…",
+          "kind": "lemma",
+          "source": "A persistent block-structure entropy deficit",
+          "detail": "Let _d be the law of A^ (d) + t G^ (d) , and let _d be the law of independent centered GUE coordinates of variances v_i(h+t)=h+t+c_i . For all sufficiently large d , \\[ _d( E_d)12, _d( E_d) e^ -4d^2…",
+          "dependsOn": [
+            "m1-thm-main",
+            "m1-lem-flow",
+            "m1-lem-finitechi"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "A finite-entropy separation of microstates and nonmicrostates free entropy",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-finite-entropy-separation-of-microstates-and-nonmicrostates-free-entropy-September-25-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

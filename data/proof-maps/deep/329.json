@@ -1,0 +1,206 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "329",
+  "title": "A counterexample to metric-entropy duality",
+  "result": {
+    "id": "paper-result",
+    "label": "A counterexample to metric-entropy duality",
+    "statement": "Disproves Pietsch's dimension-free duality conjecture for metric entropy. Origin-symmetric convex bodies violate every proposed choice of universal constants in the conjectured comparison between covering numbers and those of the polar bodies, even when the covering body is a cube.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "the-matrix-construction-target",
+      "label": "The matrix construction target",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "uniform-compression-from-partitions",
+      "label": "Uniform compression from partitions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "uniform-compression-from-partitions-2",
+      "label": "Uniform compression from partitions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "uniform-compression-from-partitions-3",
+      "label": "Uniform compression from partitions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-field-partitions-and-separated-rows",
+      "label": "Finite-field partitions and separated rows",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-field-partitions-and-separated-rows-2",
+      "label": "Finite-field partitions and separated rows",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-field-partitions-and-separated-rows-3",
+      "label": "Finite-field partitions and separated rows",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "choice-of-parameters-and-failure-of-duality",
+      "label": "Choice of parameters and failure of duality",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Counterexamples to the duality conjecture for metric entropy",
+      "title": "Counterexamples to the duality conjecture for metric entropy",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Counterexamples-to-the-duality-conjecture-for-metric-entropy-September-24-2026/main.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Counterexamples to the duality conjecture for metric entropy; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "For every a,b1 , there are a positive integer n and an origin-symmetric convex…",
+          "fullLabel": "For every a,b1 , there are a positive integer n and an origin-symmetric convex…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "For every a,b1 , there are a positive integer n and an origin-symmetric convex body K^n such that, with L=[-1,1]^n , \\[ N(K,L)>b N(L^,a^ -1 K^). \\]",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-matrix-to-bodies",
+          "role": "the-matrix-construction-target",
+          "label": "Matrix-to-body conversion",
+          "fullLabel": "Matrix-to-body conversion",
+          "kind": "lemma",
+          "source": "The matrix construction target",
+          "detail": "[Matrix-to-body conversion] Let X and Y be finite nonempty sets, and let g_y X , y Y , be real functions. Write \\[ R_x=(g_y(x))_ y Y ^Y, f_=_ y Y _y g_y, F=\\ f_:\\|\\|_11\\ . \\] Suppose that \\[ \\|R_x-R_…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-log-profile",
+          "role": "uniform-compression-from-partitions",
+          "label": "Logarithmic profile",
+          "fullLabel": "Logarithmic profile",
+          "kind": "lemma",
+          "source": "Uniform compression from partitions",
+          "detail": "[Logarithmic profile] For any positive integer h , the weights \\[ _j= (j+2)- (j+1) (h+1) (0 j<h) \\] are positive, sum to one, and satisfy, for every d\\ 0,1,2,\\ \\ \\ , _h(d) &=_ j=0 ^ h-1 _j1_ \\ d j\\ ,…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-compression",
+          "role": "uniform-compression-from-partitions-2",
+          "label": "Uniform compression",
+          "fullLabel": "Uniform compression",
+          "kind": "proposition",
+          "source": "Uniform compression from partitions",
+          "detail": "[Uniform compression] Under the hypotheses above, there is a finite list A of real-valued functions on X , of cardinality Q , such that every f F_+ has an approximant A A satisfying f(x)-3 A(x)…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-signed-compression",
+          "role": "uniform-compression-from-partitions-3",
+          "label": "Signed compression",
+          "fullLabel": "Signed compression",
+          "kind": "corollary",
+          "source": "Uniform compression from partitions",
+          "detail": "[Signed compression] With the notation of Proposition~ , put \\[ f_=_ y Y _y g_y, B_1^Y=\\ ^Y:_ y Y |_y|1\\ , \\] and \\[ F=\\ f_: B_1^Y\\ =\\ g_y:y Y\\ . \\] There is a list of at most Q^2 functions which…",
+          "dependsOn": [
+            "m1-prop-compression"
+          ]
+        },
+        {
+          "id": "m1-lem-polynomial-zero",
+          "role": "finite-field-partitions-and-separated-rows",
+          "label": "Polynomial zero bound",
+          "fullLabel": "Polynomial zero bound",
+          "kind": "lemma",
+          "source": "Finite-field partitions and separated rows",
+          "detail": "[Polynomial zero bound] Let P_p[z_1,,z_k] be a nonzero polynomial of total degree at most d , where k,d are nonnegative integers and p is prime. If U_1,,U_k are independent and uniform in _p , then…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-robust-directions",
+          "role": "finite-field-partitions-and-separated-rows-2",
+          "label": "Directions with nonvanishing evaluations",
+          "fullLabel": "Directions with nonvanishing evaluations",
+          "kind": "proposition",
+          "source": "Finite-field partitions and separated rows",
+          "detail": "[Directions with nonvanishing evaluations] Let 0<<1 and let r,h be positive integers. Put w=2D_h, u=hw , and let p be any prime satisfying p>\\ h,h^2u^ 2h \\ . There exist t_1,,t_u E=_p^r such that,…",
+          "dependsOn": [
+            "m1-lem-polynomial-zero"
+          ]
+        },
+        {
+          "id": "m1-prop-separated-rows",
+          "role": "finite-field-partitions-and-separated-rows-3",
+          "label": "Partitions with separated rows",
+          "fullLabel": "Partitions with separated rows",
+          "kind": "proposition",
+          "source": "Finite-field partitions and separated rows",
+          "detail": "[Partitions with separated rows] With the parameters and directions of Proposition~ , let \\[ X=Sym^h(E^*), L_i(x)=x(t_i,,,), \\] and let T=\\ T:|[u] T| u\\ . Then |X|=m=p^ D_h , and each label map L_i…",
+          "dependsOn": [
+            "m1-thm-main",
+            "m1-prop-compression",
+            "m1-cor-signed-compression",
+            "m1-lem-matrix-to-bodies"
+          ]
+        },
+        {
+          "id": "m1-cor-convexified-separation",
+          "role": "choice-of-parameters-and-failure-of-duality",
+          "label": "Separation from convexified packing",
+          "fullLabel": "Separation from convexified packing",
+          "kind": "corollary",
+          "source": "Choice of parameters and failure of duality",
+          "detail": "[Separation from convexified packing] For every A,C1 , there are an integer n1 and an origin-symmetric convex body K^n such that, with L=[-1,1]^n , \\[ N(K,L)>C M(K,L/A). \\]",
+          "dependsOn": [
+            "m1-thm-main"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "Counterexamples to the duality conjecture for metric entropy",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Counterexamples-to-the-duality-conjecture-for-metric-entropy-September-24-2026/main.pdf",
+      "kind": "paper"
+    }
+  ]
+}

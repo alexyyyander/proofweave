@@ -1,0 +1,226 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-02",
+  "familyNumber": "050",
+  "title": "A counterexample to Griffiths’ positivity conjecture",
+  "result": {
+    "id": "paper-result",
+    "label": "A counterexample to Griffiths’ positivity conjecture",
+    "statement": "Constructs ample rank-two bundles on P^1 P^1 with no smooth Hermitian metric of strictly Griffiths-positive curvature, disproving Griffiths' positivity conjecture already on the quadric surface.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The paper's main stated theorem for this family."
+    },
+    {
+      "id": "a-bundle-defined-by-three-graphs",
+      "label": "A bundle defined by three graphs",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-bundle-defined-by-three-graphs-2",
+      "label": "A bundle defined by three graphs",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-bundle-defined-by-three-graphs-3",
+      "label": "A bundle defined by three graphs",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "ampleness-of-every-member-of-the-family",
+      "label": "Ampleness of every member of the family",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-necessary-quadratic-limit",
+      "label": "A necessary quadratic limit",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-invariant-measure-obstruction",
+      "label": "The invariant measure obstruction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-invariant-measure-obstruction-2",
+      "label": "The invariant measure obstruction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-invariant-measure-obstruction-3",
+      "label": "The invariant measure obstruction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-invariant-measure-obstruction-4",
+      "label": "The invariant measure obstruction",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Ample rank-two bundles on the quadric surface without Griffiths-positive metrics",
+      "title": "Ample rank-two bundles on the quadric surface without Griffiths-positive metrics",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/ample-rank-two-bundles-on-the-quadric-surface-without-griffiths-positive-metrics-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof references extracted from Ample rank-two bundles on the quadric surface without Griffiths-positive metrics; background citations removed.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "result",
+          "label": "There is an algebraic vector bundle G of rank two on S such that, for every…",
+          "fullLabel": "There is an algebraic vector bundle G of rank two on S such that, for every…",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "There is an algebraic vector bundle G of rank two on S such that, for every positive integer m , the bundle \\[ E_m=f_m^*G P \\] is ample. There is an integer m_0 such that E_m admits no smooth…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-matrix-data",
+          "role": "a-bundle-defined-by-three-graphs",
+          "label": "The matrices A,B belong to _2() and satisfy \\[ A= B=1, (A^ -1 B)=-2, (AB)=1+2.…",
+          "fullLabel": "The matrices A,B belong to _2() and satisfy \\[ A= B=1, (A^ -1 B)=-2, (AB)=1+2.…",
+          "kind": "lemma",
+          "source": "A bundle defined by three graphs",
+          "detail": "The matrices A,B belong to _2() and satisfy \\[ A= B=1, (A^ -1 B)=-2, (AB)=1+2. \\] The orders of A , B , and A^ -1 B in _2() are 6 , 6 , and 8 , respectively. The induced projective orders of A and B…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-graph-divisor",
+          "role": "a-bundle-defined-by-three-graphs-2",
+          "label": "The divisor D has bidegree (3,3) and exactly six singular points, all ordinary…",
+          "fullLabel": "The divisor D has bidegree (3,3) and exactly six singular points, all ordinary…",
+          "kind": "lemma",
+          "source": "A bundle defined by three graphs",
+          "detail": "The divisor D has bidegree (3,3) and exactly six singular points, all ordinary transverse intersections of two components. There are no triple intersections.",
+          "dependsOn": [
+            "m1-lem-matrix-data"
+          ]
+        },
+        {
+          "id": "m1-prop-construction",
+          "role": "a-bundle-defined-by-three-graphs-3",
+          "label": "These three isomorphisms glue to an algebraic isomorphism :L_1^ -1 |_D _2^ -1…",
+          "fullLabel": "These three isomorphisms glue to an algebraic isomorphism :L_1^ -1 |_D _2^ -1…",
+          "kind": "proposition",
+          "source": "A bundle defined by three graphs",
+          "detail": "These three isomorphisms glue to an algebraic isomorphism :L_1^ -1 |_D _2^ -1 |_D, |_ _M =M^ b . Let =(^)^ -1 :L_1|_D L_2|_D and define G=\\ (u_1,u_2) L_1 L_2: u_2|_D=(u_1|_D)\\ . Then G is an…",
+          "dependsOn": [
+            "m1-lem-matrix-data"
+          ]
+        },
+        {
+          "id": "m1-prop-ampleness",
+          "role": "ampleness-of-every-member-of-the-family",
+          "label": "For every positive integer m , the bundle E_m=f_m^*G P is ample. More…",
+          "fullLabel": "For every positive integer m , the bundle E_m=f_m^*G P is ample. More…",
+          "kind": "proposition",
+          "source": "Ampleness of every member of the family",
+          "detail": "For every positive integer m , the bundle E_m=f_m^*G P is ample. More precisely, _ (E_m) (n) is very ample for every even integer n with n-13m .",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-limit",
+          "role": "a-necessary-quadratic-limit",
+          "label": "Let G be a holomorphic vector bundle of positive rank on S=^1^1 , and put F=G^…",
+          "fullLabel": "Let G be a holomorphic vector bundle of positive rank on S=^1^1 , and put F=G^…",
+          "kind": "proposition",
+          "source": "A necessary quadratic limit",
+          "detail": "Let G be a holomorphic vector bundle of positive rank on S=^1^1 , and put F=G^ . Suppose that f_m^*G P admits a smooth strictly Griffiths-positive Hermitian metric for infinitely many positive…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-ruling-reduction",
+          "role": "the-invariant-measure-obstruction",
+          "label": "Let G be the bundle of Proposition~ , and put F=G^ . Suppose that q:F for every…",
+          "fullLabel": "Let G be the bundle of Proposition~ , and put F=G^ . Suppose that q:F for every…",
+          "kind": "lemma",
+          "source": "The invariant measure obstruction",
+          "detail": "Let G be the bundle of Proposition~ , and put F=G^ . Suppose that q:F for every x^1 and v(-b)_x .",
+          "dependsOn": [
+            "m1-prop-construction"
+          ]
+        },
+        {
+          "id": "m1-lem-seminorm-curvature",
+          "role": "the-invariant-measure-obstruction-2",
+          "label": "Logarithmic curvature of a squared seminorm",
+          "fullLabel": "Logarithmic curvature of a squared seminorm",
+          "kind": "lemma",
+          "source": "The invariant measure obstruction",
+          "detail": "[Logarithmic curvature of a squared seminorm] Let L be a holomorphic line bundle on a connected Riemann surface C . Suppose that a_:L Then u_e , with the value - allowed, is subharmonic and locally…",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-no-invariant-measure",
+          "role": "the-invariant-measure-obstruction-3",
+          "label": "The projective transformations induced by the matrices A and B in preserve no…",
+          "fullLabel": "The projective transformations induced by the matrices A and B in preserve no…",
+          "kind": "lemma",
+          "source": "The invariant measure obstruction",
+          "detail": "The projective transformations induced by the matrices A and B in preserve no nonzero finite positive Borel measure on ^1 .",
+          "dependsOn": [
+            "m1-lem-matrix-data"
+          ]
+        },
+        {
+          "id": "m1-prop-obstruction",
+          "role": "the-invariant-measure-obstruction-4",
+          "label": "For the bundle G of Proposition~ , every finite nonnegative plurisubharmonic…",
+          "fullLabel": "For the bundle G of Proposition~ , every finite nonnegative plurisubharmonic…",
+          "kind": "proposition",
+          "source": "The invariant measure obstruction",
+          "detail": "For the bundle G of Proposition~ , every finite nonnegative plurisubharmonic function on the total space of F=G^ whose restriction to each fiber is a Hermitian quadratic form is identically zero.",
+          "dependsOn": [
+            "m1-lem-ruling-reduction",
+            "m1-lem-seminorm-curvature",
+            "m1-lem-no-invariant-measure",
+            "m1-thm-main",
+            "m1-prop-construction",
+            "m1-prop-ampleness",
+            "m1-prop-limit"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "m1:m1-thm-main",
+      "to": "paper-result",
+      "type": "proves",
+      "label": "states the result"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: statements and proof references are extracted from the pinned LaTeX, and explicit background citations are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+  ],
+  "sources": [
+    {
+      "label": "Ample rank-two bundles on the quadric surface without Griffiths-positive metrics",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/ample-rank-two-bundles-on-the-quadric-surface-without-griffiths-positive-metrics-September-24-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

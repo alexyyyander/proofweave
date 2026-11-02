@@ -199,91 +199,113 @@
   "edges": [
     {
       "from": "m1-lat-plane-count",
-      "to": "m1-lat-anisotropic"
+      "to": "m1-lat-anisotropic",
+      "context": "2\\le R_2$. For fixed $u_2,u_3$, the determinant equation is $u_1\\cdot y=t/a$. Its integral solutions are either absent or form a translate of $L_y$. By Lemmas~\\ref{lat:plane-count} and~\\ref{lat:plane-covolume}, at most $C R_1^2/|y|$ satisfy the first-column bound; the required hypothesis is $\\mu_2\\l"
     },
     {
       "from": "m1-lat-plane-covolume",
-      "to": "m1-lat-anisotropic"
+      "to": "m1-lat-anisotropic",
+      "context": ",u_3$, the determinant equation is $u_1\\cdot y=t/a$. Its integral solutions are either absent or form a translate of $L_y$. By Lemmas~\\ref{lat:plane-count} and~\\ref{lat:plane-covolume}, at most $C R_1^2/|y|$ satisfy the first-column bound; the required hypothesis is $\\mu_2\\le R_2\\le R_1$. For a fixed n"
     },
     {
       "from": "m1-lat-successive",
-      "to": "m1-lat-anisotropic"
+      "to": "m1-lat-anisotropic",
+      "context": "\\ge1$ has $O(Y^3)$ vectors. It remains to treat $\\mu_2>R_3$. Group the normals by powers of two $U,Z\\ge1$ with \\[ U\\le\\mu_1<2U,\\qquad Z\\le\\mu_2<2Z. \\] Lemma~\\ref{lat:successive} gives $|y|\\asymp UZ$. There are at most $C U^4Z^2$ normals in such a group. Indeed, choose a shortest nonzero vector $"
     },
     {
       "from": "m1-lat-successive",
-      "to": "m1-lat-fixed-det"
+      "to": "m1-lat-fixed-det",
+      "context": "Let $V$ be the matrix whose rows are the successive shortest vectors $v_1,v_2,v_3$, and let $\\Lambda_0$ be their integer span. By Lemma~\\ref{lat:successive}, \\[ m=[\\Lambda:\\Lambda_0]=\\frac{|\\det V|}{I}\\le3^{3/2}. \\] Since the finite group $\\Lambda/\\Lambda_0$ has order $m$, e"
     },
     {
       "from": "m1-lat-anisotropic",
-      "to": "m1-lat-fixed-det"
+      "to": "m1-lat-fixed-det",
+      "context": "sideration to integral matrices. Their common determinant is $m^3t/\\det V\\ne0$. If this number is not an integer, there are no such matrices; otherwise Lemma~\\ref{lat:anisotropic} applies. The $j$th column of $Q$ has length at most $R_j=C_0X/\\lambda_j$, where $C_0$ is an absolute constant chosen s"
     },
     {
       "from": "m1-orb-diagonal",
-      "to": "m1-orb-conditional"
+      "to": "m1-orb-conditional",
+      "context": "in $R_h$. In addition to the three labels, condition on the complete first column of $C$ and the first entries of its other two columns. If $b\\geq j$, Lemma~\\ref{orb:diagonal} implies, for $i,v\\in\\{2,3\\}$, \\[ C_{iv}\\equiv C_{i1}C_{11}^{-1}C_{1v}\\pmod{B^j}. \\] The right sides are fixed under th"
     },
     {
       "from": "m1-aux-random-set",
-      "to": "m1-aux-weights"
+      "to": "m1-aux-weights",
+      "context": "conditional on $G_q$, its translation $G_qa$ is uniform. Conditioning back on $a\\in\\mathcal A$ increases the probability of any event by at most two, by Lemma~\\ref{aux:random-set}. The affine group acts transitively on the ordered affinely independent triples in $\\mathbb F_q^3$, whose number is \\["
     },
     {
       "from": "m1-aux-weights",
-      "to": "m1-sam-weighted-count"
+      "to": "m1-sam-weighted-count",
+      "context": "e first that $t\\ne0$. Since $0<|t|\\le\\tau<q$, the reduction of $A$ modulo $q$ has rank three. Its columns are therefore affinely independent, and Proposition~\\ref{aux:weights} gives $W(A)\\ll1$. Every row of $A$ belongs to $\\Lambda$ and has norm less than $4N$. Moreover $E\\mathbb Z^3\\subseteq\\La"
     },
     {
       "from": "m1-lat-fixed-det",
-      "to": "m1-sam-weighted-count"
+      "to": "m1-sam-weighted-count",
+      "context": "very row of $A$ belongs to $\\Lambda$ and has norm less than $4N$. Moreover $E\\mathbb Z^3\\subseteq\\Lambda$ gives $\\lambda_3(\\Lambda)\\le E\\le h<4N$. Proposition~\\ref{lat:fixed-det}, applied with $X=4N$, proves the estimate. For $t=0$, Proposition~\\ref{zero:weighted-zero} below proves the stronger b"
     },
     {
       "from": "m1-zero-weighted-zero",
-      "to": "m1-sam-weighted-count"
+      "to": "m1-sam-weighted-count",
+      "context": "3\\subseteq\\Lambda$ gives $\\lambda_3(\\Lambda)\\le E\\le h<4N$. Proposition~\\ref{lat:fixed-det}, applied with $X=4N$, proves the estimate. For $t=0$, Proposition~\\ref{zero:weighted-zero} below proves the stronger bound $O(\\log(2N)N^6/I^2)$ for all matrices with rows in $\\Lambda$ and pairwise distinct proj"
     },
     {
       "from": "m1-sam-lifting",
-      "to": "m1-sam-bad-triple"
+      "to": "m1-sam-bad-triple",
+      "context": "Conditional on the labels and digit matrix $C$, the probability is zero when all labels are distinct. Otherwise Lemma~\\ref{sam:lifting} and Proposition~\\ref{sam:weighted-count}, together with the bound $|\\mathcal O|\\gg h^8/(D^3E^2)$ from \\eqref{orb:orbit-"
     },
     {
       "from": "m1-sam-weighted-count",
-      "to": "m1-sam-bad-triple"
+      "to": "m1-sam-bad-triple",
+      "context": "Conditional on the labels and digit matrix $C$, the probability is zero when all labels are distinct. Otherwise Lemma~\\ref{sam:lifting} and Proposition~\\ref{sam:weighted-count}, together with the bound $|\\mathcal O|\\gg h^8/(D^3E^2)$ from \\eqref{orb:orbit-bound}, bound it by \\[ \\frac{h^9}{N^9}\\f"
     },
     {
       "from": "m1-lat-plane-covolume",
-      "to": "m1-zero-plane"
+      "to": "m1-zero-plane",
+      "context": "Primitivity gives $x\\cdot\\mathbb Z^3=\\mathbb Z$. Since $E\\mathbb Z^3\\subseteq\\Lambda$, we have $E\\mathbb Z\\subseteq g(x)\\mathbb Z$, so $g(x)\\mid E$. Lemma~\\ref{lat:plane-covolume} gives the formula for $J_x$, and $g(x)^3/I\\le E^2/D\\le h^2$. Primitivity also implies $\\bar x\\ne0$, with no restrictio"
     },
     {
       "from": "m1-lat-plane-count",
-      "to": "m1-zero-plane"
+      "to": "m1-zero-plane",
+      "context": "ains two independent vectors of length at most $4N$. Therefore the second successive minimum of $\\Gamma$ is at most $4N$ whenever the count is nonzero. Lemma~\\ref{lat:plane-count} then bounds the choices for each vector by $O(N^2/\\det\\Gamma)$, and $\\det\\Gamma=mJ_x$."
     },
     {
       "from": "m1-zero-weighted-zero",
-      "to": "m1-zero-moment"
+      "to": "m1-zero-moment",
+      "context": "[Proof of Proposition~\\ref{zero:weighted-zero}] Every $A\\in\\mathcal Z$ has rational rank two. Indeed, its columns are nonzero, and no two are proportional because th"
     },
     {
       "from": "m1-aux-weights",
-      "to": "m1-zero-moment"
+      "to": "m1-zero-moment",
+      "context": "\\le Ih^2$, together with an extra row congruence or a smaller number of possible null vectors. The support statement and the three weight bounds in Proposition~\\ref{aux:weights} give the following exhaustive cases. \\paragraph{Affinely independent residues.} If $W(A)>0$ and the columns of $A\\bmod"
     },
     {
       "from": "m1-aux-random-set",
-      "to": "m1-zero-moment"
+      "to": "m1-zero-moment",
+      "context": "hts} give the following exhaustive cases. \\paragraph{Affinely independent residues.} If $W(A)>0$ and the columns of $A\\bmod q$ are affinely independent, Lemma~\\ref{aux:random-set} excludes the relation $Ax=0$ when $|x|\\le H$. To see both parts of this exclusion, if $x_1+x_2+x_3\\ne0$ use the restri"
     },
     {
       "from": "m1-zero-plane",
-      "to": "m1-zero-moment"
+      "to": "m1-zero-moment",
+      "context": "x\\notin\\mathbb F_q\\delta$. The functional $v\\mapsto v\\cdot\\delta$ is nonzero on $\\Pi_x$: the annihilator of $\\Pi_x$ is precisely $\\mathbb F_q\\bar x$. By Lemma~\\ref{zero:plane}, the rows of $A$ therefore belong to the index-$q$ sublattice \\[ \\{v\\in\\Lambda_x:v_i=v_j\\pmod q\\}. \\] There are $O(R^3"
     },
     {
       "from": "m1-intro-main",
-      "to": "m1-zero-moment"
+      "to": "m1-zero-moment",
+      "context": "[Proof of Theorem~\\ref{intro:main}] Keep the parameters constructed above, with $d=41$, and set \\begin{equation}\\label{alt:sample-size} a_r=r\\sqrt{N^3/\\t"
     },
     {
       "from": "m1-sam-proportional",
-      "to": "m1-zero-moment"
+      "to": "m1-zero-moment",
+      "context": "us the unordered triples whose projected points are pairwise distinct and whose determinant has absolute value at most $\\tau$. Linearity of expectation, Lemma~\\ref{sam:proportional}, and Corollary~\\ref{sam:bad-triple} give \\begin{equation}\\label{alt:expected-events} \\frac{\\mathbb EZ}{n_r} \\ll n_r(h"
     },
     {
       "from": "m1-sam-bad-triple",
-      "to": "m1-zero-moment"
+      "to": "m1-zero-moment",
+      "context": "ed points are pairwise distinct and whose determinant has absolute value at most $\\tau$. Linearity of expectation, Lemma~\\ref{sam:proportional}, and Corollary~\\ref{sam:bad-triple} give \\begin{equation}\\label{alt:expected-events} \\frac{\\mathbb EZ}{n_r} \\ll n_r(hq)^6N^{-3} +n_r^2(\\log(2N))^2\\fr"
     },
     {
       "from": "m1-norm-prime-interval",
-      "to": "m1-zero-moment"
+      "to": "m1-zero-moment",
+      "context": "also converts the factor $r^2$ into a fixed power of the number of points. For a sufficiently large integer $n$, put $m=\\lceil(n/A_k)^{1/\\alpha}\\rceil$. Lemma~\\ref{norm:prime-interval} supplies a prime $r$ with $m<r\\le2m$. Once $(n/A_k)^{1/\\alpha}\\ge1$, we have $m\\le2(n/A_k)^{1/\\alpha}$, so \\eqref{alt:c"
     }
   ]
 }

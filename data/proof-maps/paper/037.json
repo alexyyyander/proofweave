@@ -483,247 +483,308 @@
   "edges": [
     {
       "from": "m1-cone-edim",
-      "to": "m1-cone-reduction"
+      "to": "m1-cone-reduction",
+      "context": "ed volume over all centered valuations. Thus the two passages preserve the infimum in \\eqref{cone:eq-density}, not only the number of an arbitrary test. Lemma~\\ref{cone:edim} gives the embedding-dimension inequality for the first passage. Upper semicontinuity along the vertex section of the sp"
     },
     {
       "from": "m1-cone-product",
-      "to": "m1-cone-reduction"
+      "to": "m1-cone-reduction",
+      "context": "\\) and a smooth curve. The slice is klt by this étale description. If \\(P\\) were singular, the slice would be singular as well. The induction hypothesis, Lemma~\\ref{cone:product}, and étale invariance would then imply \\[ d(P,C)\\le p_N<p_n\\le d(o,C), \\] contrary to \\eqref{cone:eq-orbi"
     },
     {
       "from": "m1-small-tensor-bound",
-      "to": "m1-small-character-estimate"
+      "to": "m1-small-character-estimate",
+      "context": "\\(\\|\\beta\\|=O(b)\\), and then \\(\\|\\chi\\|=O(b)\\), uniformly in the tensor, its rank and the grading. Put \\(\\tau=\\chi(\\xi)\\). The eigencomponent satisfies Lemma~\\ref{small:tensor-bound}, so \\(\\tau\\geq-b\\). On the other hand, \\[ -bm=\\chi(\\zeta)=\\frac rn\\tau+\\chi(\\epsilon) \\geq-\\frac rn b-cb\\|\\epsilon\\|"
     },
     {
       "from": "m1-small-classification",
-      "to": "m1-small-character-estimate"
+      "to": "m1-small-character-estimate",
+      "context": "[Proof of Theorem~\\ref{small:classification}] For each grading choose the minimal curve and its stabilizer order \\(m\\) as above. If the exceptional case in Lemma~\\"
     },
     {
       "from": "m1-small-deformation",
-      "to": "m1-small-character-estimate"
+      "to": "m1-small-character-estimate",
+      "context": "oof of Theorem~\\ref{small:classification}] For each grading choose the minimal curve and its stabilizer order \\(m\\) as above. If the exceptional case in Lemma~\\ref{small:deformation} occurs, then \\(r/m=N\\) and the \\(\\mu_m\\)-action on \\(T_{C,P}\\) is trivial. Faithfulness of the transverse tangent acti"
     },
     {
       "from": "m1-small-finite-evaluation",
-      "to": "m1-small-character-estimate"
+      "to": "m1-small-character-estimate",
+      "context": "erse tangent action implies \\(m=1\\), hence \\(r=N\\). Equation~\\eqref{small:stabilizer-assumption} then forces \\(m_{\\max}=1\\). For the remaining indices, Lemmas~\\ref{small:finite-evaluation} and~\\ref{small:norm-tensor} apply. The character estimate and Equation~\\eqref{small:curve-range} give \\[ 0\\leq nm-r\\l"
     },
     {
       "from": "m1-small-norm-tensor",
-      "to": "m1-small-character-estimate"
+      "to": "m1-small-character-estimate",
+      "context": "), hence \\(r=N\\). Equation~\\eqref{small:stabilizer-assumption} then forces \\(m_{\\max}=1\\). For the remaining indices, Lemmas~\\ref{small:finite-evaluation} and~\\ref{small:norm-tensor} apply. The character estimate and Equation~\\eqref{small:curve-range} give \\[ 0\\leq nm-r\\leq nc\\|\\epsilon\\|. \\] The le"
     },
     {
       "from": "m1-jet-setup",
-      "to": "m1-jet-test"
+      "to": "m1-jet-test",
+      "context": "isfying $D_0+\\delta|x|<q$. These finite quotients are supported at the vertex, so computing them in $S$ or in its local ring gives the same length. Proposition~\\ref{jet:setup} applies to this strictly positive cutoff functional. Since $K$ has dimension $n$, homogeneity and integration by layers"
     },
     {
       "from": "m1-cone-approximation",
-      "to": "m1-jet-moments"
+      "to": "m1-jet-moments",
+      "context": "$\\mathbb E_{\\mu_f}|x|$, and $\\mathbb E_{\\mu_f}|x|^2$, because $e^{-\\delta|x|}\\le1$. The test at zero is a rescaling of the current degree valuation, so Lemma~\\ref{cone:approximation} gives $F_\\nu(0)\\to\\nvol(o,C)$. If $F'_\\nu(0)/F_\\nu(0)$ were bounded above by a fixed negative number along a subsequenc"
     },
     {
       "from": "m1-prob-logconcavity",
-      "to": "m1-prob-critical-points"
+      "to": "m1-prob-critical-points",
+      "context": "Equivalently consider a local minimum of $\\mathbb Eh(Y)$, where $Y=u+\\sum_i a_iX_i$. At a nonzero coefficient vector, Lemma~\\ref{prob:logconcavity} supplies a continuous positive log-concave density for $Y$. First and second differentiation under the expectation are"
     },
     {
       "from": "m1-prob-single-crossing",
-      "to": "m1-prob-critical-points"
+      "to": "m1-prob-critical-points",
+      "context": "longmapsto\\mathbb E k(Y+a_iE'+cE''). \\] Its base variable has a positive full-support log-concave density by Lemma~\\ref{prob:logconcavity}, contradicting Lemma~\\ref{prob:single-crossing}. Therefore there are at most two coefficient values. Suppose the two values are $b<c$ and the higher value occurs at i"
     },
     {
       "from": "m1-prob-bound",
-      "to": "m1-prob-critical-points"
+      "to": "m1-prob-critical-points",
+      "context": "[Proof of Theorem~\\ref{prob:bound}] Put $\\Phi_N(a)=(e^u/u)\\mathbb E g(u+a\\cdot X)$ and let $\\mathcal P_N$ be its supremum under the sum-zero constraint. F"
     },
     {
       "from": "m1-jet-moments",
-      "to": "m1-jet-interior"
+      "to": "m1-jet-interior",
+      "context": "uad(x\\in\\RR_{\\ge0}^N). \\end{equation} Take $u=4/3$. Applying Equation~\\eqref{jet:envelope} pointwise to Equation~\\eqref{jet:supporting-plane}, and using Lemma~\\ref{jet:moments}, gives \\begin{align*} (1-\\eta_\\nu/u)H &\\le\\mathbb E\\left[\\left(1+\\frac{1+B_0(X)}u\\right)"
     },
     {
       "from": "m1-jet-setup",
-      "to": "m1-jet-interior"
+      "to": "m1-jet-interior",
+      "context": "The strict epigraph inequality is therefore precisely Equation~\\eqref{jet:interior-conclusion}. Its membership in the lattice was already proved in Proposition~\\ref{jet:setup}."
     },
     {
       "from": "m1-adj-vanishing",
-      "to": "m1-adj-implication"
+      "to": "m1-adj-implication",
+      "context": "\\end{equation} The first term is nef and big and the second is nef. The fractional boundary has simple normal crossings and coefficients less than one. Lemma~\\ref{adj:vanishing} gives $H^1(\\mathcal Y,\\cO_{\\mathcal Y}(A_{\\mathcal Y}))=0$. The divisor restriction sequence therefore gives a surjecti"
     },
     {
       "from": "m1-adj-implication",
-      "to": "m1-adj-saturation"
+      "to": "m1-adj-saturation",
+      "context": "ve $t$; the exponent coordinates remain positive as well. Apply this with $t=1/k_\\nu$ and $v'=v+e_\\nu$ to obtain Equation~\\eqref{adj:inward-recurrence}. Lemma~\\ref{adj:implication}, applied to the lattice point $l_\\nu+w$, would then put this point in $\\Gamma\\subset K$, a contradiction. Every suppor"
     },
     {
       "from": "m1-jet-setup",
-      "to": "m1-adj-saturation"
+      "to": "m1-adj-saturation",
+      "context": "ple of $q\\in\\Lambda$ lies in this semigroup, then $q\\in K$ by homogeneity, so $q$ already lies in it; this is saturation. The group is $\\Lambda$ by Proposition~\\ref{jet:setup}."
     },
     {
       "from": "m1-filt-first-ring",
-      "to": "m1-filt-reduced"
+      "to": "m1-filt-reduced",
+      "context": "The $T$-Rees algebra is finite type by Lemma~\\ref{filt:first-ring} and the generator-lifting argument in Lemma~\\ref{filt:discrepancy}. Its nonzero fibers are $S$, and its central fiber $"
     },
     {
       "from": "m1-filt-discrepancy",
-      "to": "m1-filt-reduced"
+      "to": "m1-filt-reduced",
+      "context": "The $T$-Rees algebra is finite type by Lemma~\\ref{filt:first-ring} and the generator-lifting argument in Lemma~\\ref{filt:discrepancy}. Its nonzero fibers are $S$, and its central fiber $\\overline S$ is normal, Cohen--Macaulay, and Gorenstein. The regul"
     },
     {
       "from": "m1-filt-discrepancy",
-      "to": "m1-filt-structure"
+      "to": "m1-filt-structure",
+      "context": "regular. The total space satisfies $R_1$ and $S_2$, hence is normal. Notice that normality of $D$ or of $G$ is not required in this argument. Finally Lemma~\\ref{filt:discrepancy}, with $Q=n$, gives the canonical generator and top-form identity."
     },
     {
       "from": "m1-filt-free-grading",
-      "to": "m1-filt-stabilizer"
+      "to": "m1-filt-stabilizer",
+      "context": "Otherwise Lemma~\\ref{filt:free-grading} would make $D$ a polynomial ring on $N$ degree-one generators, and Proposition~\\ref{filt:structure} would make $G$ a po"
     },
     {
       "from": "m1-filt-structure",
-      "to": "m1-filt-stabilizer"
+      "to": "m1-filt-stabilizer",
+      "context": "Otherwise Lemma~\\ref{filt:free-grading} would make $D$ a polynomial ring on $N$ degree-one generators, and Proposition~\\ref{filt:structure} would make $G$ a polynomial ring on $n=N+1$ generators. Choose these generators homogeneous also for original degree a"
     },
     {
       "from": "m1-filt-discrepancy",
-      "to": "m1-boot-slice-tests"
+      "to": "m1-boot-slice-tests",
+      "context": "tration-domination} w(s')\\geq p\\ell. \\end{equation} Since $F^1S$ is the vertex maximal ideal, this proves that $w$ is centered exactly at $o$. Applying Lemma~\\ref{filt:discrepancy} with canonical shift $Q=n$, and then Equation~\\eqref{boot:etale-discrepancy}, gives the discrepancy inequality in Equat"
     },
     {
       "from": "m1-boot-slice-tests",
-      "to": "m1-boot-slice-klt"
+      "to": "m1-boot-slice-klt",
+      "context": "If it were not klt, there would be a prime divisor $E$ on a log resolution of $Y$ with $A_Y(E)\\leq0$ and center containing $y$. By Lemma~\\ref{boot:slice-tests}, its center is contained in $\\lambda_Y=0$, so $a=\\ord_E(\\lambda_Y)>0$. Choose a log resolution also resolving this fun"
     },
     {
       "from": "m1-boot-character-shares",
-      "to": "m1-boot-refined-estimate"
+      "to": "m1-boot-refined-estimate",
+      "context": "Fix $0<x<1$ and take $p=\\lfloor kx/\\ell\\rfloor$. Apply Equation~\\eqref{boot:hilbert-cutoff} to the first term in Equation~\\eqref{boot:exact-split}, and Lemma~\\ref{boot:character-shares} to Equation~\\eqref{boot:quotient-injection}. There are only finitely many characters for the fixed slice, so the error"
     },
     {
       "from": "m1-boot-slice-klt",
-      "to": "m1-boot-holder"
+      "to": "m1-boot-holder",
+      "context": "bigl(\\ell^{n/N}+(h/\\sigma)^{1/N}\\bigr)^N \\bigl(N^n+(A')^n\\sigma/h\\bigr), \\] with equality exactly as in Equation~\\eqref{boot:holder-equality}. Finally, Lemmas~\\ref{boot:slice-klt} and \\ref{boot:slice-singular} show that $y\\in Y$ is a singular boundary-zero klt germ of dimension $n$. Since $u_*$ co"
     },
     {
       "from": "m1-boot-slice-singular",
-      "to": "m1-boot-holder"
+      "to": "m1-boot-holder",
+      "context": ")^{1/N}\\bigr)^N \\bigl(N^n+(A')^n\\sigma/h\\bigr), \\] with equality exactly as in Equation~\\eqref{boot:holder-equality}. Finally, Lemmas~\\ref{boot:slice-klt} and \\ref{boot:slice-singular} show that $y\\in Y$ is a singular boundary-zero klt germ of dimension $n$. Since $u_*$ computes its minimum, \\[ (A'/n)"
     },
     {
       "from": "m1-cone-reduction",
-      "to": "m1-boot-upper"
+      "to": "m1-boot-upper",
+      "context": "Suppose $M_n>p_n$. Choose singular klt germs whose densities $d_i>p_n$ tend to $M_n$. Proposition~\\ref{cone:reduction} gives for each of them a singular Gorenstein K-polystable cone $o_i\\in C_i$, smooth off the vertex, with the same densi"
     },
     {
       "from": "m1-cone-approximation",
-      "to": "m1-boot-upper"
+      "to": "m1-boot-upper",
+      "context": "f them a singular Gorenstein K-polystable cone $o_i\\in C_i$, smooth off the vertex, with the same density $d_i$. Fix $i$ and choose the fast gradings of Lemma~\\ref{cone:approximation} for this cone. If $m_{\\max}\\leq r/N$ holds along an infinite subsequence, Theorem~\\ref{small:classification} implies t"
     },
     {
       "from": "m1-small-classification",
-      "to": "m1-boot-upper"
+      "to": "m1-boot-upper",
+      "context": "_i$. Fix $i$ and choose the fast gradings of Lemma~\\ref{cone:approximation} for this cone. If $m_{\\max}\\leq r/N$ holds along an infinite subsequence, Theorem~\\ref{small:classification} implies that $C_i$ is smooth or the standard ODP cone. The first possibility contradicts its singularity. The second"
     },
     {
       "from": "m1-end-odp-value",
-      "to": "m1-boot-upper"
+      "to": "m1-boot-upper",
+      "context": "d ODP cone. The first possibility contradicts its singularity. The second contradicts $d_i>p_n$, since the normalized volume at an ODP is $2(n-1)^n$ by Lemma~\\ref{end:odp-value}. Thus the large-stabilizer condition holds for all sufficiently far terms. Applying Lemma~\\ref{boot:holder} to one suc"
     },
     {
       "from": "m1-boot-holder",
-      "to": "m1-boot-upper"
+      "to": "m1-boot-upper",
+      "context": "rmalized volume at an ODP is $2(n-1)^n$ by Lemma~\\ref{end:odp-value}. Thus the large-stabilizer condition holds for all sufficiently far terms. Applying Lemma~\\ref{boot:holder} to one such term gives \\[ d_i\\leq p_n/2+M_n/2. \\] Letting $i$ tend to infinity yields $M_n\\leq p_n/2+M_n/2$, contrary"
     },
     {
       "from": "m1-filt-first-ring",
-      "to": "m1-boot-strict-count"
+      "to": "m1-boot-strict-count",
+      "context": "ac12, \\] and set $a_k=\\lceil tk\\rceil$ and $p_k=\\lfloor k/2\\rfloor$. For large $k$ one has $p_k-a_k>0$. Use the vector-space basis $v^b e_i$ supplied by Lemma~\\ref{filt:first-ring}; it is adapted to $W$, with $W(v^b e_i)=b+T_i$. Let $E_k$ be the span of its basis vectors with level less than $p_k-a"
     },
     {
       "from": "m1-boot-equality-data",
-      "to": "m1-boot-strict-count"
+      "to": "m1-boot-strict-count",
+      "context": "t:quotient-injection}. At $x=1/2$, $\\ell=1$, and $\\sigma/h=1$, these estimates give \\[ \\vol(w) \\leq 2^{-n}+2^{-n}-(1/2-t)^n <2^{-N}, \\] contradicting Lemma~\\ref{boot:equality-data}. Only the single exponent $a_k$ is used at each cutoff, so there is no overlap between collections of powers to count."
     },
     {
       "from": "m1-cone-approximation",
-      "to": "m1-boot-rounding"
+      "to": "m1-boot-rounding",
+      "context": "2>0$ such that their $\\zeta$-degrees lie between $c_1r$ and $c_2r$ for all sufficiently far gradings. Also $m=m_{\\max}\\leq\\max_i\\deg_\\zeta g_i=O(r)$, by Lemma~\\ref{cone:approximation}. The section $v\\in S_m$ has a polynomial lift in these generators homogeneous for $\\zeta$. Every monomial in such a l"
     },
     {
       "from": "m1-boot-equality-data",
-      "to": "m1-boot-rounding"
+      "to": "m1-boot-rounding",
+      "context": "the nonzero character components of $v$ is precisely $\\wt_\\xi(v)$; the same estimate therefore holds even when $v$ is not itself a torus eigenfunction. Lemma~\\ref{boot:equality-data} gives \\begin{equation} \\label{boot:changing-section-error} w(v)=\\frac{2Nm}{r} +O(\\|\\varepsilon\\|/r)"
     },
     {
       "from": "m1-boot-strict-count",
-      "to": "m1-boot-rounding"
+      "to": "m1-boot-rounding",
+      "context": "\\begin{equation} \\label{boot:changing-section-error} w(v)=\\frac{2Nm}{r} +O(\\|\\varepsilon\\|/r) =\\frac{2Nm}{r}+o(1/r). \\end{equation} By Lemma~\\ref{boot:strict-count}, $w(v)\\leq2$. Thus $Nm-r\\leq O(\\|\\varepsilon\\|)=o(1)$. The left side is an integer, so it is nonpositive for all suffic"
     },
     {
       "from": "m1-cone-approximation",
-      "to": "m1-boot-equality-cone"
+      "to": "m1-boot-equality-cone",
+      "context": "Take the fast primitive gradings of Lemma~\\ref{cone:approximation}. A term either already has $Nm_{\\max}\\leq r$, or lies in the large-stabilizer range. In the latter range, all constru"
     },
     {
       "from": "m1-boot-rounding",
-      "to": "m1-boot-equality-cone"
+      "to": "m1-boot-equality-cone",
+      "context": "has $Nm_{\\max}\\leq r$, or lies in the large-stabilizer range. In the latter range, all constructions above are available for sufficiently far terms, and Lemma~\\ref{boot:rounding} again gives $Nm_{\\max}\\leq r$. The entire sequence therefore eventually satisfies the small-stabilizer hypothesis. The"
     },
     {
       "from": "m1-small-classification",
-      "to": "m1-boot-equality-cone"
+      "to": "m1-boot-equality-cone",
+      "context": "erms, and Lemma~\\ref{boot:rounding} again gives $Nm_{\\max}\\leq r$. The entire sequence therefore eventually satisfies the small-stabilizer hypothesis. Theorem~\\ref{small:classification} identifies $C$ with the smooth affine cone or the standard quadratic cone. Since $o\\in C$ is singular, only the ordinar"
     },
     {
       "from": "m1-end-hypersurface-test",
-      "to": "m1-end-hypersurface"
+      "to": "m1-end-hypersurface",
+      "context": "Let \\(q=\\mult_x(F)\\ge2\\). Weights all equal to one in Lemma~\\ref{end:hypersurface-test} give \\[ \\nvol(x,X)\\le q(n+1-q)^n, \\] and klt implies \\(q<n+1\\). The function \\(b(t)=t(n+1-t)^n\\"
     },
     {
       "from": "m1-thm-main",
-      "to": "m1-end-hypersurface"
+      "to": "m1-end-hypersurface",
+      "context": "[Proof of Theorem~\\ref{thm:main}] The cases \\(n=2,3,4\\) were established in Section~\\ref{sec:cones}, the last by Theorem~\\ref{inp:fourfold}. Suppose the"
     },
     {
       "from": "m1-inp-fourfold",
-      "to": "m1-end-hypersurface"
+      "to": "m1-end-hypersurface",
+      "context": "[Proof of Theorem~\\ref{thm:main}] The cases \\(n=2,3,4\\) were established in Section~\\ref{sec:cones}, the last by Theorem~\\ref{inp:fourfold}. Suppose the theorem is known in lower dimensions and let \\(n=N+1\\ge5\\). The supremum argument of Theorem~\\ref{boot:upp"
     },
     {
       "from": "m1-boot-upper",
-      "to": "m1-end-hypersurface"
+      "to": "m1-end-hypersurface",
+      "context": "ef{sec:cones}, the last by Theorem~\\ref{inp:fourfold}. Suppose the theorem is known in lower dimensions and let \\(n=N+1\\ge5\\). The supremum argument of Theorem~\\ref{boot:upper} gives \\(M_n\\le p_n\\), hence the asserted inequality for every singular germ. Now suppose \\(d(x,X)=p_n\\). Apply Proposi"
     },
     {
       "from": "m1-cone-reduction",
-      "to": "m1-end-hypersurface"
+      "to": "m1-end-hypersurface",
+      "context": "rgument of Theorem~\\ref{boot:upper} gives \\(M_n\\le p_n\\), hence the asserted inequality for every singular germ. Now suppose \\(d(x,X)=p_n\\). Apply Proposition~\\ref{cone:reduction} to obtain a K-polystable cone \\(C\\) with the same density and \\(\\edim(X,x)\\le\\edim(C,o)\\). The equality argument of The"
     },
     {
       "from": "m1-boot-equality-cone",
-      "to": "m1-end-hypersurface"
+      "to": "m1-end-hypersurface",
+      "context": "ly Proposition~\\ref{cone:reduction} to obtain a K-polystable cone \\(C\\) with the same density and \\(\\edim(X,x)\\le\\edim(C,o)\\). The equality argument of Theorem~\\ref{boot:equality-cone} makes \\(C\\) an ordinary double point. Therefore \\(\\edim(X,x)\\le n+1\\). Since \\(x\\) is singular, its embedding dimensio"
     },
     {
       "from": "m1-end-odp-value",
-      "to": "m1-end-hypersurface"
+      "to": "m1-end-hypersurface",
+      "context": "ncipal. Proposition~\\ref{end:hypersurface} shows that its equation has nondegenerate quadratic part and hence that the analytic germ is ODP. Conversely, Lemma~\\ref{end:odp-value} gives equality at every analytic ODP. This proves both directions of the equality statement and completes the induction"
     },
     {
       "from": "m1-cor-global",
-      "to": "m1-end-hypersurface"
+      "to": "m1-end-hypersurface",
+      "context": "[Proof of Corollary~\\ref{cor:global}] For every closed point \\(x\\) of a K-semistable \\(\\QQ\\)-Fano \\(n\\)-fold \\(V\\), the local-to-global comparison gives \\["
     },
     {
       "from": "m2-lem-edim",
-      "to": "m2-prop-cone"
+      "to": "m2-prop-cone",
+      "context": "Apply stable degeneration to \\((x,X)\\), with boundary zero, and quotient the acting torus by its kernel. This gives the volume assertions and, by Lemma~\\ref{lem:edim}, the embedding-dimension comparison. If a singular point of \\(C\\) lies away from \\(o\\), its positive-grading orbit is"
     },
     {
       "from": "m2-lem-extraction",
-      "to": "m2-lem-jet"
+      "to": "m2-lem-jet",
+      "context": "On the smooth algebraic slice cover of a chart in Lemma~\\ref{lem:extraction}, take the monomial valuation \\(w_\\alpha\\) with weights \\[ (1,\\alpha,\\alpha,\\alpha) \\] in \\(u\\) and regular slice parame"
     },
     {
       "from": "m2-lem-jet",
-      "to": "m2-prop-stabilizer"
+      "to": "m2-prop-stabilizer",
+      "context": "/(r^4h)\\to1\\) along any sequence of offending gradings approaching the minimizing ray. Notice that \\(\\alpha=r\\delta\\) is rational. The error constants in Lemma~\\ref{lem:jet} need not be uniform in the grading: the cutoff limit was already taken for each individual valuation. Fix a grading sa"
     },
     {
       "from": "m2-lem-extraction",
-      "to": "m2-prop-stabilizer"
+      "to": "m2-prop-stabilizer",
+      "context": "E\\). At a point of its center with stabilizer order \\(m\\), local Cartierness gives \\[ m\\ord_F(E)\\in\\Z_{>0},\\qquad\\ord_F(E)\\ge1/m. \\] Using the lc pair in Lemma~\\ref{lem:extraction}, \\[ A_C(F)=A_{\\widetilde C,E}(F)+r\\ord_F(E)\\ge r/m>5/2. \\] Since \\(K_C\\) is Cartier, \\(A_C(F)\\) is an integer, proving"
     },
     {
       "from": "m2-lem-hilbert",
-      "to": "m2-prop-short"
+      "to": "m2-prop-short",
+      "context": "or. The constant function gives masses \\(1,-1\\) at \\(p,-p\\). The polynomial density is therefore odd as well, by uniqueness of the zero-frequency part in Lemma~\\ref{lem:hilbert}. Indeed, arbitrary Fourier-transform jets at zero detect every coefficient of a polynomial. Write it as \\[ a(x^3+cx),\\q"
     },
     {
       "from": "m2-lem-canonical-positive",
-      "to": "m2-prop-short"
+      "to": "m2-prop-short",
+      "context": "l used here has polynomial degree at most six after multiplication by the density, so the stated \\(H^3\\) approximation suffices. \\emph{Dimension three.} Lemma~\\ref{lem:canonical-positive} gives \\[ P_T(y)=a(y^2+uy+c),\\qquad a>0,\\quad u>0. \\] The measure \\(\\mu_T\\) is positive. Testing with \\(|g_1(y+u/2)|^2\\)"
     },
     {
       "from": "m2-prop-short",
-      "to": "m2-prop-threshold"
+      "to": "m2-prop-threshold",
+      "context": "is less than \\(5/2\\) and on whose lc centers every function of weight in \\((0,D)\\) vanishes. A minimal lc center will have positive dimension, and Proposition~\\ref{prop:short}(b), together with the elementary curve case, will give a contradiction. Take a homogeneous vector-space basis \\(f_1,\\l"
     },
     {
       "from": "m2-lem-extraction",
-      "to": "m2-prop-threshold"
+      "to": "m2-prop-threshold",
+      "context": "fixed termwise by the connected group \\(\\Gm\\), and each center contains \\(o\\). We first show that \\(o\\) itself is not an lc center. On the extraction of Lemma~\\ref{lem:extraction}, write \\(\\widetilde G\\) for the strict transform. In each smooth finite chart, its equations depend only on the slice p"
     },
     {
       "from": "m2-lem-canonical-positive",
-      "to": "m2-prop-threshold"
+      "to": "m2-prop-threshold",
+      "context": "ree discrepancy, which is positive by klt. Restoring the positive common factor preserves the sign. Sending the generator to \\(1\\) gives the injection in Lemma~\\ref{lem:canonical-positive}, lowering weights by a positive amount. Proposition~\\ref{prop:short}(b) gives the contradiction. \\emph{If \\(\\dim Z=3\\)"
     },
     {
       "from": "m2-prop-stabilizer",
-      "to": "m2-prop-section"
+      "to": "m2-prop-section",
+      "context": "_iE_i\\right), \\qquad K_Y=\\rho^*K_C+\\sum_i(A_i-1)E_i. \\] Every exceptional divisor has center \\(o\\), so \\(b_i\\ge1\\) is an integer and \\(A_i\\ge3\\) by Proposition~\\ref{prop:stabilizer}. For a general section \\(H\\) from the affine embedding coordinates, \\[ \\rho^*H=H_Y+\\sum_i b_iE_i, \\] where \\(H_Y\\) is s"
     },
     {
       "from": "m2-prop-threshold",
-      "to": "m2-prop-section"
+      "to": "m2-prop-section",
+      "context": "Cohen--Macaulay fourfold, and is smooth away from \\(o\\) by Bertini. Thus it is \\(S_2\\) and \\(R_1\\), and is generically reduced, giving normality. Proposition~\\ref{prop:threshold} yields \\(A_i/b_i>3/2\\). If \\(b_i\\ge2\\), then \\[ A_i-b_i>\\frac{b_i}{2}\\ge1; \\] if \\(b_i=1\\), the bound \\(A_i\\ge3\\) gives"
     },
     {
       "from": "m2-thm-main",
-      "to": "m2-prop-section"
+      "to": "m2-prop-section",
+      "context": "[Proof of Theorem~\\ref{thm:main}] If \\(\\nvol(x,X)<162\\), the bound is already strict. Otherwise Proposition~\\ref{prop:cone} and Proposition~\\ref{prop:se"
     },
     {
       "from": "m2-prop-cone",
-      "to": "m2-prop-section"
+      "to": "m2-prop-section",
+      "context": "[Proof of Theorem~\\ref{thm:main}] If \\(\\nvol(x,X)<162\\), the bound is already strict. Otherwise Proposition~\\ref{prop:cone} and Proposition~\\ref{prop:section} give \\[ \\edim(x,X)\\le5. \\] A singular normal complex algebraic fourfold germ of embe"
     }
   ]
 }
