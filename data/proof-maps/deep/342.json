@@ -198,9 +198,7 @@
           "kind": "lemma",
           "source": "Quadratic mass growth",
           "detail": "Choose normal coordinates centered at \\(x\\), on a uniformly small fixed ball, and put \\(t=d_g(x,y)\\). Let a smooth radial cutoff be one on a smaller ball and vanish outside the coordinate ball. For…",
-          "dependsOn": [
-            "m1-prop-growth"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-zero-pairing",
@@ -287,10 +285,12 @@
           "source": "Densities and planar tangent measures",
           "detail": "[Vanishing transverse moment] Under the hypotheses of Theorem~ , _r:= _ C _ B_r(x) |_ L_^ z_x(y)r|^2 (y)(x,)=o(r^2).",
           "dependsOn": [
-            "m1-thm-main",
             "m1-prop-separation",
             "m1-prop-energy",
             "m1-lem-zero-pairing"
+          ],
+          "mentions": [
+            "m1-lem-density"
           ]
         },
         {

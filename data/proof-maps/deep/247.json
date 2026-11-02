@@ -657,7 +657,6 @@
           "source": "Integral stability in a fixed number of coordinates",
           "detail": "The augmented chain complex C_(m) is exact in degrees at most m-2 .",
           "dependsOn": [
-            "m1-thm-stability",
             "m1-prop-finite-rank-input",
             "m1-lem-stabilizer-uce"
           ]
@@ -941,7 +940,10 @@
           "kind": "lemma",
           "source": "Centrality and rational stability",
           "detail": "A square matrix over R is invertible if and only if its reduction modulo I is invertible. Every tuple of columns whose reductions are linearly independent extends to an invertible matrix. The group…",
-          "dependsOn": []
+          "dependsOn": [],
+          "mentions": [
+            "m2-fp-matrix-periodicity"
+          ]
         },
         {
           "id": "m2-st-frames",
@@ -1174,7 +1176,6 @@
             "m2-prop-rational-stability",
             "m2-prop-centrality",
             "m2-kt-rational-detection",
-            "m2-thm-main",
             "m2-thm-algebra",
             "m2-thm-finite-presentation",
             "m2-fp-matrix-periodicity"

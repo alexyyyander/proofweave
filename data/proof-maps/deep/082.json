@@ -504,7 +504,6 @@
           "detail": "[A uniform mixed boundary estimate] Fix distinct vertices v,w\\ 0,1\\ , so that \\ v,w\\ =\\ 0,1\\ . Let the edge joining v,w have array B , indexed in the original endpoint order (0,1) , and let the edge…",
           "dependsOn": [
             "m1-lem-line-maximal",
-            "m1-prop-frequency-block",
             "m1-lem-mixed-trace",
             "m1-lem-joint-convexity",
             "m1-lem-heat-identities",
@@ -572,7 +571,6 @@
           "dependsOn": [
             "m1-lem-gaussian-envelope",
             "m1-cor-odd-family",
-            "m1-thm-count",
             "m1-prop-smooth-switches",
             "m1-lem-finite-truncations"
           ]
@@ -732,7 +730,10 @@
           "kind": "lemma",
           "source": "Summation and passage to measurable inputs",
           "detail": "[Continuity at one scale] For every \\(k\\) and real \\(F_v L^3(_+^2)\\), _ I_k L_ I (F_0,F_1,F_2) _ v=0 ^2F_v_3. Consequently the sequence \\((L_ I (F_0,F_1,F_2))_ I_k \\) depends continuously on the…",
-          "dependsOn": []
+          "dependsOn": [],
+          "mentions": [
+            "m2-thm-main"
+          ]
         }
       ]
     },

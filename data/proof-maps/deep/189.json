@@ -286,8 +286,6 @@
           "source": "A large clique",
           "detail": "Let s 4 , and let H be a finite connected nonbipartite graph containing no K_s . Suppose that \\[ (H) s, |N_H[\\ a,b\\ ]| 2s whenever a,b are distinct and nonadjacent. \\] For every nonconstant map…",
           "dependsOn": [
-            "m1-clq-bound",
-            "m1-clq-triangle",
             "m1-clq-layer-interface",
             "m1-clq-long-path"
           ]
@@ -386,7 +384,10 @@
           "kind": "corollary",
           "source": "Optimal path systems",
           "detail": "[Singleton and ball compatibility] Consider two options based at distinct vertices x,y X , with integer radius labels r,s-1 . If r=s=-1 , the two options are disjoint and anticomplete whenever xy…",
-          "dependsOn": []
+          "dependsOn": [],
+          "mentions": [
+            "m1-path-separation"
+          ]
         },
         {
           "id": "m1-grow-replacement",

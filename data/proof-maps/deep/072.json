@@ -431,8 +431,7 @@
           "source": "Transport between saddles and maxima",
           "detail": "[Transfer bound] The dyadic transfer operator satisfies 2 .",
           "dependsOn": [
-            "m1-lem-jacobian-moments",
-            "m1-thm-main"
+            "m1-lem-jacobian-moments"
           ]
         },
         {
@@ -464,8 +463,7 @@
           "source": "Integral means and the full integrability range",
           "detail": "[Positive derivative powers] For every f and 0<t<2/3 , \\[ _ |f'(z)|^t A(z)<. \\]",
           "dependsOn": [
-            "m1-lem-function-powers",
-            "m1-thm-main"
+            "m1-lem-function-powers"
           ]
         },
         {
@@ -601,7 +599,10 @@
           "kind": "lemma",
           "source": "Critical points and strict pairing",
           "detail": "[Generic targets and Borel goodness] Goodness is Borel in \\((F,)\\). For \\(P\\)-almost every \\(F\\), area-almost every \\(\\) is good.",
-          "dependsOn": []
+          "dependsOn": [],
+          "mentions": [
+            "m2-prop-compact-levels"
+          ]
         },
         {
           "id": "m2-lem-count",
@@ -658,7 +659,6 @@
           "source": "The harmonic equality barrier and the uniform gap",
           "detail": "[The harmonic equality barrier] For \\(k=3/4\\), no \\(F\\) has \\(J_F0\\).",
           "dependsOn": [
-            "m2-thm-main",
             "m2-prop-strict-transport",
             "m2-prop-disk"
           ]

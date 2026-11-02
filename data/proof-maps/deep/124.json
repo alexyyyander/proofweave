@@ -229,7 +229,6 @@
           "source": "The algorithm and its structural certificate",
           "detail": "Every feasible full three-machine schedule has a bounded-description hierarchy. In fact, the global node predicates and relative split predicates needed in the hierarchy have fewer than \\(500\\)…",
           "dependsOn": [
-            "m1-thm-main",
             "m1-prop-algorithm"
           ]
         },
@@ -323,7 +322,10 @@
           "kind": "lemma",
           "source": "Short global lists and changes of direction",
           "detail": "Every pruned list produced by this construction has at most five entries. At most three of them are injections from its current run.",
-          "dependsOn": []
+          "dependsOn": [],
+          "mentions": [
+            "m1-lem-update-labels"
+          ]
         },
         {
           "id": "m1-lem-flatten",

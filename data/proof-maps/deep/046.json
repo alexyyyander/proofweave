@@ -320,9 +320,7 @@
           "kind": "lemma",
           "source": "A local criterion for nontrivial loops",
           "detail": "[Extension] If is a guide and e is an edge starting at its terminal vertex, there is a guide to the endpoint of e and a ladder between e and of width at most 50H .",
-          "dependsOn": [
-            "m1-thm-path-lemma"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-arrangement-local",
@@ -468,6 +466,9 @@
           "detail": "The readings just constructed satisfy the three chart hypotheses of Lemma~ .",
           "dependsOn": [
             "m1-prop-kernel-compatibility"
+          ],
+          "mentions": [
+            "m1-prop-model-hyperbolicity"
           ]
         },
         {
@@ -525,8 +526,6 @@
           "dependsOn": [
             "m1-thm-orbifold-cyclic",
             "m1-lem-ambient-blowdown",
-            "m1-thm-main",
-            "m1-prop-large-reduction",
             "m1-red-compact-criterion"
           ]
         }
@@ -744,7 +743,6 @@
           "source": "The projective surface and its rational fiber",
           "detail": "Let Z=h^ -1 (c_*)_ red be the rational nodal fiber of . Some connected component Z_0 of Z satisfies \\[ |(_1(Z_0)_1(X))| =. \\]",
           "dependsOn": [
-            "m2-thm-main",
             "m2-lem-rational-hull"
           ]
         }

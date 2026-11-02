@@ -358,9 +358,7 @@
           "kind": "theorem",
           "source": "Packing signed intervals",
           "detail": "[Pippenger--Spencer] For each integer r2 and each >0 , there is >0 such that the following holds. If an r -uniform hypergraph satisfies, for some D>0 , \\[ (1-)D<d(v)<(1+)Dfor every vertex v, d(u,v)<…",
-          "dependsOn": [
-            "m2-lem-signed-packing"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-starting",
@@ -382,7 +380,6 @@
           "detail": "[Quadratic sampling] Let C_c^() , let x_* and \\ 0\\ , and let J be compact. For J and , put \\[ x_ , =x_*+ - , _ , =(-)x_* -( - )^2 2 . \\] As N tends to infinity through positive integers, uniformly…",
           "dependsOn": [
             "m2-lem-quadratic",
-            "m2-prop-starting",
             "m2-prop-auxiliary",
             "m2-lem-signed-packing"
           ]
@@ -416,8 +413,6 @@
           "source": "Rounding with a small defect mass",
           "detail": "There is an absolute constant C_0 such that, for integers 1 s R and a real matrix B^ R s , there is a vector \\ -1,1\\ ^s satisfying \\[ B _ C_0s (2R/s). \\]",
           "dependsOn": [
-            "m2-lem-rounding",
-            "m2-thm-main",
             "m2-prop-starting"
           ],
           "objectUses": [
@@ -535,9 +530,7 @@
           "kind": "lemma",
           "source": "Rounding with a small defect mass",
           "detail": "There is an absolute constant C_0 such that, for integers 1 s R and a real matrix B^ R s , there is a vector \\ -1,1\\ ^s satisfying \\[ B _ C_0s (2R/s). \\]",
-          "dependsOn": [
-            "m3-lem-rounding"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-cor-finite-flatness",
@@ -559,7 +552,10 @@
           "kind": "corollary",
           "source": "Binary merit factors and Morse shifts",
           "detail": "[All-length unbounded binary merit factors] For N2 , let \\[ F_N=_ A\\ -1,1\\ ^N F(A). \\] Then \\[ _ N F_N=+, \\] where the limit runs through all integer lengths. Equivalently, one can choose a word A_N\\…",
-          "dependsOn": []
+          "dependsOn": [],
+          "mentions": [
+            "m3-thm-main"
+          ]
         },
         {
           "id": "m3-cor-morse",

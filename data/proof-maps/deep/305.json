@@ -917,7 +917,6 @@
           "source": "The geometric reduction",
           "detail": "[Restriction maps and coordinate slopes] The cohomology and slope conclusions of Proposition~ hold. For each edge piece one also has H^1(Y_i, Y_i;k) (H^1(Y_i;k) H^1( Y_i;k)), b_2(Y_i)=b_1(Y_i)-1.",
           "dependsOn": [
-            "m2-prop-geometric-reduction",
             "m2-lem-marked-body",
             "m2-lem-connected-tree-cuts"
           ]
@@ -1076,10 +1075,7 @@
           "kind": "lemma",
           "source": "Algebraicity with based holonomy markings",
           "detail": "[Removing the error while fixing the critical scheme] Let \\(f(h)^3\\) and \\(e(f)^2\\). There is a formal automorphism \\(\\) of \\(R\\), equal to the identity modulo \\(J=(f)\\), such that \\[ (f+e)=f. \\]",
-          "dependsOn": [
-            "m2-thm-edge-algebraicity",
-            "m2-lem-cartan-jacobian-square"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-vertex-data",
@@ -1113,6 +1109,9 @@
           "detail": "At the joint origin the tangent images of H_A and H_B , with the external parameters fixed, are complementary. For each vertex, S_P(H_P) I_P^2, (_h S_P)(H_P)=M_P r_P, where M_P is an actual…",
           "dependsOn": [
             "m2-prop-edge-potential"
+          ],
+          "mentions": [
+            "m2-lem-vertex-linear"
           ]
         },
         {

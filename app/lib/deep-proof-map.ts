@@ -23,6 +23,7 @@ export type DeepProofNode = {
   detail: string;
   dependsOn: string[];
   objectUses?: string[];
+  mentions?: string[];
 };
 
 export type DeepProofStrategy = {
@@ -232,6 +233,7 @@ export function adaptDeepProofMap(deep: DeepProofMapData, revision: string, subj
         source: node.source,
         dependsOn: node.dependsOn,
         ...(node.objectUses && node.objectUses.length > 0 ? { objectUses: node.objectUses } : {}),
+        ...(node.mentions && node.mentions.length > 0 ? { mentions: node.mentions } : {}),
       })),
     })),
     versionEdges: [],

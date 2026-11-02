@@ -515,6 +515,7 @@
 .argument-map-legend i { border-top: 2px solid #8b96a9; display: inline-block; width: 22px; }
 .argument-map-legend i.is-depends { border-color: #7f93d8; }
 .argument-map-legend i.is-object { border-color: #6f8fae; border-top-style: dotted; }
+.argument-map-legend i.is-mentions { border-color: #9aa4b5; border-top-style: dotted; opacity: .7; }
 .argument-map-legend i.is-proves { border-color: #c084fc; border-top-width: 3px; }
 .argument-map-legend i.is-same-role { border-color: #9aa6bb; border-top-style: dotted; }
 .argument-map-legend i.is-replaces { border-color: #d9a95d; border-top-style: dashed; }
@@ -711,3 +712,6 @@
 .argument-edge.is-object { stroke: #6f8fae; stroke-dasharray: 3 5; }
 
 .proof-network-legend i.is-network-edge.is-object { border-color: #6f8fae; border-top-style: dotted; }
+.proof-network-legend i.is-network-edge.is-mentions { border-color: #9aa4b5; border-top-style: dotted; opacity: .7; }
+
+.argument-edge.is-mentions { stroke: #9aa4b5; stroke-dasharray: 1 5; opacity: .7; }

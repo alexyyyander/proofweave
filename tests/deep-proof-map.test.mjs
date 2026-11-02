@@ -18,7 +18,7 @@ function clone(value) {
 }
 
 test("every deep map validates against the catalog and Lean coverage", () => {
-  assert.equal(deep.size, 345);
+  assert.equal(deep.size, 342);
   for (const [number, data] of deep) {
     assert.equal(validateDeepProofMap(data, collection, lean), data);
     assert.equal(data.familyNumber, number);

@@ -427,7 +427,6 @@
           "source": "Prime estimates",
           "detail": "[One-variable and mixed differencing] Let k2 , and let f have degree at most k , with coefficient b_k of x^k . If J is an interval of integers of length at most an integer M1 , and m is a positive…",
           "dependsOn": [
-            "m1-prop-prime-minor-arcs",
             "m1-lem-rational-spacing"
           ]
         },
@@ -453,8 +452,7 @@
             "m1-prop-prime-minor-arcs",
             "m1-prop-prime-progressions",
             "m1-lem-local-lifting",
-            "m1-lem-local-sums",
-            "m1-prop-pair-cancellation"
+            "m1-lem-local-sums"
           ]
         },
         {
@@ -770,6 +768,9 @@
           "dependsOn": [
             "m2-prop-scale-transfer",
             "m2-prop-nonexceptional-contraction"
+          ],
+          "mentions": [
+            "m2-lem-lift-moments"
           ]
         },
         {
@@ -781,7 +782,6 @@
           "source": "Exceptional terms and the power-saving induction",
           "detail": "There are absolute constants a_0>0 and C_0< such that, for every positive integer N and every square-difference-free set A , \\[ Y(N,A) C_0N^ -a_0 . \\]",
           "dependsOn": [
-            "m2-thm-main",
             "m2-lem-functional-properties"
           ],
           "objectUses": [

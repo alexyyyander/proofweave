@@ -492,7 +492,6 @@
           "source": "From spectral positivity to a quadratic reserve",
           "detail": "[Scalar graph comparison] Let h be a smooth metric on an n -manifold, let t,u be smooth functions, and work on an open set where s=| u|_h>0 . Let =(s) be a smooth function with 0<<1 , and put \\[ l=1-…",
           "dependsOn": [
-            "m1-pre-reserve",
             "m1-pre-global-graph"
           ]
         },
@@ -678,8 +677,7 @@
           "detail": "[Slab diameter bound] For <u+2 , every connected component C of \\[ \\ x P:<r(x)<u\\ \\] has d -diameter at most 220 .",
           "dependsOn": [
             "m2-prop-separating-interfaces",
-            "m2-lem-region-tree",
-            "m2-thm-main"
+            "m2-lem-region-tree"
           ]
         }
       ]
@@ -952,7 +950,10 @@
           "kind": "lemma",
           "source": "Universal covers and the uniform simplex metric",
           "detail": "[Level components of a proper Morse function] Let u:N be a proper Morse function on a connected smooth manifold without boundary. There is a locally finite simplicial graph K and a continuous map q:N…",
-          "dependsOn": []
+          "dependsOn": [],
+          "mentions": [
+            "m3-cover-uniform"
+          ]
         },
         {
           "id": "m3-packet-split",

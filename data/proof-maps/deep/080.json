@@ -658,7 +658,6 @@
           "source": "A power saving for transverse inputs",
           "detail": "[No full-to-empty block] For sufficiently small fixed >0 , the positive-probability configuration in is impossible.",
           "dependsOn": [
-            "m1-prop-transverse",
             "m1-lem-transverse-tubes",
             "m1-lem-transverse-binary",
             "m1-lem-transverse-finite-jumps"
@@ -694,7 +693,6 @@
           "detail": "[Broad saving] There is an absolute c_b>0 such that, whenever K s^ c_b , the broad part of the functional in a ball of radius O(s^2) satisfies _ Q broad (Q)^ 2/3 \\|V\\|_ L^6(Q) ^2 s^ -c_b m_0^ 2/3 s^…",
           "dependsOn": [
             "m1-lem-transverse-product",
-            "m1-prop-sparse",
             "m1-lem-sparse-layers"
           ],
           "objectUses": [
@@ -772,10 +770,7 @@
           "kind": "lemma",
           "source": "A bilinear frame estimate without a scale loss",
           "detail": "[A local bilinear sampling bound] Consider the two states from the preceding construction with 0<_i1 . Let Q be a square of side _k^ -1 and let Z_Q Q contain at most one designated point from each…",
-          "dependsOn": [
-            "m1-thm-frame",
-            "m1-lem-frame-initial"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-oned",
@@ -956,7 +951,6 @@
           "source": "Endpoint square summation and the order of limits",
           "detail": "[Gaussian approximation with uniform local mass] Let h0 be locally integrable on ^2 and suppose \\[ A=_ z^2 _ B(z,1) h(y)\\,dy<. \\] For a>0 let \\[ K_a(z)=1 4 a e^ -|z|^2/(4a) . \\] Then (K_a*h)(x) is…",
           "dependsOn": [
-            "m1-thm-main",
             "m1-thm-maximal"
           ]
         }
@@ -1096,8 +1090,7 @@
           "source": "Packet estimates and a near-Cauchy bound",
           "detail": "[A polynomial starting bound] Under the hypotheses of , there is a fixed finite M_k such that |Y| C(2+R)^ M_k _Ts_T^2.",
           "dependsOn": [
-            "m2-p-weighted",
-            "m2-p-near-cauchy"
+            "m2-p-weighted"
           ]
         },
         {

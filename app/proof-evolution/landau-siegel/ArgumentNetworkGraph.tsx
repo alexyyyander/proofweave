@@ -17,7 +17,7 @@ export type ArgumentNetworkNode = {
 export type ArgumentNetworkEdge = {
   source: string;
   target: string;
-  type: "strategy" | "depends" | "object" | "final" | "cross";
+  type: "strategy" | "depends" | "object" | "mentions" | "final" | "cross";
   label?: string;
 };
 
@@ -88,6 +88,7 @@ function edgeStyle(edge: ArgumentNetworkEdge) {
   if (edge.type === "strategy") return { rest: 118, strength: 0.2 };
   if (edge.type === "depends") return { rest: 76, strength: 0.38 };
   if (edge.type === "object") return { rest: 92, strength: 0.22 };
+  if (edge.type === "mentions") return { rest: 104, strength: 0.12 };
   if (edge.type === "final") return { rest: 120, strength: 0.55 };
   return { rest: 165, strength: 0.13 };
 }
@@ -183,8 +184,8 @@ export function ArgumentNetworkGraph({ nodes, edges, graphKey, roles, selectedNo
         const incident = !active || edge.source === active || edge.target === active;
         ctx.globalAlpha = incident ? (edge.type === "strategy" ? 0.38 : edge.type === "cross" ? 0.42 : 0.78) : 0.08;
         ctx.lineWidth = edge.type === "final" ? 1.8 : edge.type === "cross" ? 1 : 0.9;
-        ctx.strokeStyle = edge.type === "final" ? "#e8b35a" : edge.type === "cross" ? "#b7a6d9" : edge.type === "object" ? "#6f8fae" : edge.type === "depends" ? "#7f93d8" : "#64748b";
-        ctx.setLineDash(edge.type === "cross" ? [4, 5] : edge.type === "strategy" ? [2, 5] : edge.type === "object" ? [3, 5] : []);
+        ctx.strokeStyle = edge.type === "final" ? "#e8b35a" : edge.type === "cross" ? "#b7a6d9" : edge.type === "object" ? "#6f8fae" : edge.type === "mentions" ? "#9aa4b5" : edge.type === "depends" ? "#7f93d8" : "#64748b";
+        ctx.setLineDash(edge.type === "cross" ? [4, 5] : edge.type === "strategy" ? [2, 5] : edge.type === "object" ? [3, 5] : edge.type === "mentions" ? [1, 5] : []);
         ctx.beginPath();
         ctx.moveTo(source.x, source.y);
         ctx.lineTo(target.x, target.y);
@@ -477,6 +478,7 @@ export function ArgumentNetworkGraph({ nodes, edges, graphKey, roles, selectedNo
       <span><i style={{ background: "#f2d27a" }} />{t("proofMaps.argumentGraph.legendResult")}</span>
       <span><i className="is-network-edge is-depends" />{t("proofMaps.argumentGraph.legendDependency")}</span>
       <span><i className="is-network-edge is-object" />{t("proofMaps.argumentGraph.legendObject")}</span>
+      <span><i className="is-network-edge is-mentions" />{t("proofMaps.argumentGraph.legendMentions")}</span>
       <span><i className="is-network-edge is-final" />{t("proofMaps.argumentGraph.legendFinal")}</span>
       <span><i className="is-network-edge is-cross" />{t("proofMaps.argumentGraph.legendCross")}</span>
     </div>

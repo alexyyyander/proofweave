@@ -603,9 +603,7 @@
           "kind": "proposition",
           "source": "The branch inequality",
           "detail": "[Global places over a singular curve] For every irreducible curve component \\(T\\) of \\( Y\\), with \\(b_T\\) as in and the fixed resolution \\(g: Y Y\\), \\[ b_T\\ \\ \\#\\ c E a prime component of (g):\\\\…",
-          "dependsOn": [
-            "m1-thm-branch"
-          ],
+          "dependsOn": [],
           "objectUses": [
             "m1-lem-link-quotient"
           ]
@@ -656,6 +654,9 @@
           "dependsOn": [
             "m1-lem-small-comparison",
             "m1-prop-difficulty-finite"
+          ],
+          "mentions": [
+            "m1-lem-difficulty-ranks"
           ]
         },
         {
@@ -935,9 +936,10 @@
           "detail": "[Local-system bound] For P and Q in , rankGr^ W _ 4 _ T irreducible curve\\\\ TSingY Q b_T.",
           "dependsOn": [
             "m2-lem-restriction-purity",
-            "m2-thm-branch",
-            "m2-lem-conductor",
             "m2-lem-echoes"
+          ],
+          "mentions": [
+            "m2-prop-local-valuations"
           ]
         },
         {
@@ -1014,7 +1016,6 @@
           "source": "From local cohomology to divisorial valuations",
           "detail": "Let q:Y_e Y be a dominant \\'etale morphism of normal integral complex varieties, let Y , and fix ' Y_e above such that ()(') is an isomorphism. Suppose that Y is Q -Gorenstein. On normalized…",
           "dependsOn": [
-            "m2-prop-local-valuations",
             "m2-local-etale-lines",
             "m2-local-degree-independence"
           ]

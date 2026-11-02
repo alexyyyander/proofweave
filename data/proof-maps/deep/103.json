@@ -666,6 +666,9 @@
           "dependsOn": [
             "m1-lem-env-gap",
             "m1-lem-est-raw-difference"
+          ],
+          "mentions": [
+            "m1-lem-est-mean-prefix"
           ]
         },
         {
@@ -1072,7 +1075,6 @@
           "source": "Uniform controller implementation",
           "detail": "[Parameter replay and salt visibility] The records in Lemma~ are regenerable in the sense of Definition~ . With respect to their own effective environments, actual procedures at a budget in block b…",
           "dependsOn": [
-            "m1-thm-ctrl-realization",
             "m1-lem-ctrl-local-graph",
             "m1-lem-ctrl-paths",
             "m1-lem-ctrl-equality",
@@ -1104,14 +1106,11 @@
           "source": "Derandomization and quantitative consequences",
           "detail": "[Conditioning on one start] Let W^V , and suppose an estimator satisfies \\[ 1N E_ v V X_f(v)f | W(v)-W(v)|^8 C_b^8 2^ -8p . \\] For any specified z V and every >0 , E & N f _f C_b^8 2^ -8p , \\\\ & N f…",
           "dependsOn": [
-            "m1-thm-fixed-precision",
-            "m1-lem-model-reduction",
             "m1-prop-hier-reward-target",
             "m1-lem-env-ranks",
             "m1-thm-fp-estimators",
             "m1-thm-arith-interface",
-            "m1-thm-ctrl-realization",
-            "m1-thm-main"
+            "m1-thm-ctrl-realization"
           ]
         },
         {

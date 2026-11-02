@@ -43,6 +43,10 @@ function escapeRegExp(value) {
   return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+const pointerPattern = /\b(?:see|proved in|shown in|given in|stated in|recalled in|appears in)\b/i;
+const restatementPattern = /\bwe (?:now |next )?(?:state|record|restate|quote)\b|\bthe statement of\b|\bis stated\b/i;
+const headerPattern = /Proof of (?:the )?[^.]{0,50}$/;
+
 function classifyEdge(edge) {
   if (!edge.context || !edge.label) return "unclear";
   const pattern = new RegExp(`\\\\(?:c|C|auto)?ref\\{${escapeRegExp(edge.label)}\\}`);
@@ -52,11 +56,12 @@ function classifyEdge(edge) {
   const before = edge.context.slice(Math.max(0, start - 200), start);
   const after = edge.context.slice(start + match[0].length, start + match[0].length + 140);
   if (backgroundPattern.test(before) || backgroundPattern.test(after)) return "background";
-  if (identificationPattern.test(before)) return "mention";
+  if (headerPattern.test(before)) return "header";
   if (beforeDependency.test(before) || afterDependency.test(after) || listDependency.test(after)) return "dependency";
   if (listContinuation.test(before) && listReference.test(before)) return "dependency";
   if (passiveDependency.test(after)) return "dependency";
   if (objectPattern.test(before)) return "object";
+  if (identificationPattern.test(before) || pointerPattern.test(before) || pointerPattern.test(after) || restatementPattern.test(before + " " + after)) return "mentions";
   return "mention";
 }
 
@@ -104,15 +109,17 @@ function acyclic(nodes, dependencies) {
 function buildDeep(structure, family) {
   const nodes = structure.nodes;
   const strategies = [];
-  const counts = { background: 0, mention: 0, object: 0, unclear: 0, cycles: 0 };
+  const counts = { background: 0, mention: 0, object: 0, mentions: 0, header: 0, unclear: 0, cycles: 0 };
   for (const manuscript of structure.manuscripts) {
     const manuscriptNodes = nodes.filter((node) => node.manuscript === manuscript.title);
     if (manuscriptNodes.length === 0) continue;
     const ids = new Set(manuscriptNodes.map((node) => node.id));
     const dependencies = new Map(manuscriptNodes.map((node) => [node.id, []]));
     const objectUses = new Map(manuscriptNodes.map((node) => [node.id, []]));
+    const mentions = new Map(manuscriptNodes.map((node) => [node.id, []]));
     const seen = new Set();
     const seenObjects = new Set();
+    const seenMentions = new Set();
     for (const edge of structure.edges) {
       if (!ids.has(edge.from) || !ids.has(edge.to)) continue;
       const verdict = classifyEdge(edge);
@@ -133,6 +140,19 @@ function buildDeep(structure, family) {
         }
         continue;
       }
+      if (verdict === "mentions") {
+        counts.mentions += 1;
+        const mentionKey = `${edge.from}|${edge.to}`;
+        if (!seenMentions.has(mentionKey)) {
+          seenMentions.add(mentionKey);
+          mentions.get(edge.to).push(edge.from);
+        }
+        continue;
+      }
+      if (verdict === "header") {
+        counts.header += 1;
+        continue;
+      }
       if (verdict === "unclear") {
         counts.unclear += 1;
         continue;
@@ -142,7 +162,7 @@ function buildDeep(structure, family) {
       seen.add(key);
       dependencies.get(edge.to).push(edge.from);
     }
-    strategies.push({ manuscript, nodes: manuscriptNodes, dependencies, objectUses });
+    strategies.push({ manuscript, nodes: manuscriptNodes, dependencies, objectUses, mentions });
   }
   if (strategies.length === 0) return { error: "no strategies" };
   const dependencyCount = strategies.reduce((total, strategy) => total + [...strategy.dependencies.values()].reduce((sum, list) => sum + list.length, 0), 0);
@@ -173,6 +193,7 @@ function buildDeep(structure, family) {
       detail: node.statement || node.label,
       dependsOn: dependencies.get(node.id) ?? [],
       ...(strategy.objectUses.get(node.id)?.length ? { objectUses: strategy.objectUses.get(node.id) } : {}),
+      ...(strategy.mentions.get(node.id)?.length ? { mentions: strategy.mentions.get(node.id) } : {}),
     }));
     strategiesOut.push({
       id: strategyId,
@@ -294,6 +315,7 @@ process.stdout.write(`${JSON.stringify({
   droppedBackground: results.reduce((total, entry) => total + (entry.background ?? 0), 0),
   droppedMentions: results.reduce((total, entry) => total + (entry.mention ?? 0), 0),
   objectUses: results.reduce((total, entry) => total + (entry.object ?? 0), 0),
+  mentionEdges: results.reduce((total, entry) => total + (entry.mentions ?? 0), 0),
   droppedUnclear: results.reduce((total, entry) => total + (entry.unclear ?? 0), 0),
   droppedCycles: results.reduce((total, entry) => total + (entry.cycles ?? 0), 0),
   demotedSample: tally("demoted").slice(0, 8),

@@ -157,11 +157,12 @@ export function validateDeepProofMap(data, collection, leanCoverage = null) {
       expectEnum(node.kind, STEP_KINDS, `${nodeLabel}.kind`);
       expectArray(node.dependsOn, `${nodeLabel}.dependsOn`);
       for (const dependency of node.dependsOn) expectId(dependency, `${nodeLabel}.dependsOn entry`);
-      if (node.objectUses !== undefined) {
-        expectArray(node.objectUses, `${nodeLabel}.objectUses`);
-        for (const target of node.objectUses) {
-          expectId(target, `${nodeLabel}.objectUses entry`);
-          if (target === node.id) fail(`${nodeLabel}.objectUses must not reference itself`);
+      for (const field of ["objectUses", "mentions"]) {
+        if (node[field] === undefined) continue;
+        expectArray(node[field], `${nodeLabel}.${field}`);
+        for (const target of node[field]) {
+          expectId(target, `${nodeLabel}.${field} entry`);
+          if (target === node.id) fail(`${nodeLabel}.${field} must not reference itself`);
         }
       }
       if (node.role === "result") resultNodeCount += 1;
@@ -173,8 +174,10 @@ export function validateDeepProofMap(data, collection, leanCoverage = null) {
     resultNodesByStrategy.set(strategy.id, resultNodeCount);
     assertAcyclic(nodes, strategy.id);
     for (const node of nodes) {
-      for (const target of node.objectUses ?? []) {
-        if (!nodeIds.has(target)) fail(`${label}: node ${node.id} uses an object from unknown node ${target}`);
+      for (const field of ["objectUses", "mentions"]) {
+        for (const target of node[field] ?? []) {
+          if (!nodeIds.has(target)) fail(`${label}: node ${node.id} references unknown node ${target} in ${field}`);
+        }
       }
     }
   }

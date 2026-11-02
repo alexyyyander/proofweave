@@ -605,7 +605,6 @@
           "source": "Joint analyticity at the grazing boundary",
           "detail": "[Buffered division, ] Let \\(\\ 1/2,1\\ \\), and suppose a mean-zero periodic function \\(F\\) is holomorphic on \\( D_ j_0 ^\\), with norm at most \\(M\\). Let the fixed integer buffers satisfy \\(b_ buf…",
           "dependsOn": [
-            "m1-joint-newton",
             "m1-joint-factorization",
             "m1-joint-compatibility"
           ]
@@ -619,10 +618,7 @@
           "source": "A physical collar of analytic caustics",
           "detail": "There exist \\(_0>0\\) and a jointly real-analytic family \\[ _:^2, 0_0, \\] with the following properties. The zero leaf parametrizes \\(\\); each positive leaf is a smooth, simple, regular, strictly…",
           "dependsOn": [
-            "m1-thm-joint",
-            "m1-thm-collar-regularity",
-            "m1-thm-analytic-boundary",
-            "m1-thm-main"
+            "m1-thm-joint"
           ]
         }
       ]
@@ -712,9 +708,7 @@
           "kind": "lemma",
           "source": "Rational caustics and analytic regularity",
           "detail": "Fix the bounds in for \\(m=2\\), and increase \\(N\\) if necessary. On the Wiener space of width \\(\\), the coefficient formula for \\( C(u)\\) defines a bounded operator \\(A(u)\\) satisfying A(u)=_ N +R(u),…",
-          "dependsOn": [
-            "m2-thm-analytic"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-ana-analytic-action-interface",
@@ -1065,8 +1059,10 @@
           "source": "Exponential profiles and exclusion of infinite growth",
           "detail": "[Tracking a regular model corridor] Let a compact corridor of a continued branch of the model in have nonzero kernels and twist, and let \\(T\\) range over a compact set avoiding zero. Suppose two…",
           "dependsOn": [
-            "m2-cone-profile-action-convergence",
-            "m2-thm-exponential-obstruction"
+            "m2-cone-profile-action-convergence"
+          ],
+          "mentions": [
+            "m2-profile-branch-model"
           ]
         },
         {

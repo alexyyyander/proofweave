@@ -6,13 +6,13 @@
 
 | 状态 | 含义 | 当前数量 |
 | --- | --- | --- |
-| `deep` | theorem-level argument map：4 个手工策展（003、032、084、159）+ 342 个由论文结构严格升级（只保留前提依赖 9,572 条，并把 1,037 条对象引用单独标注、以虚线显示） | 346 |
+| `deep` | theorem-level argument map：4 个手工策展（003、032、084、159）+ 339 个由论文结构严格升级（前提依赖 9,157 条、对象引用 1,032 条、指认/提及 95 条，三类边分别用实线、虚线、点线显示） | 343 |
 | `draft` | 已有的 draft explanation，含 proof steps / Lean annotations，但未评审，步骤顺序不自动等于依赖 DAG | 0 |
-| `paper` | 从 pinned 论文 LaTeX 机器抽取的完整引用图；没有严格依赖边（或未升级）的族保留此状态（当前 171） | 1 |
+| `paper` | 从 pinned 论文 LaTeX 机器抽取的完整引用图；没有前提依赖边的族保留此状态（当前 049、171、195、334） | 4 |
 | `lean` | 从 pinned comparator/solution 机器抽取的结构：形式化目标 → 求解定理 → 允许公理；不是定理级依赖图，未经评审 | 18 |
 | `scaffold` | 只登记 claim、manuscripts、citations、upstream Lean scope；没有定理级证明链，也没有可抽取的论文/Lean 结构 | 7 |
 
-论文结构当前覆盖 347 个族（548 篇论文、13,629 个陈述、14,401 条原始引用边）；其中 342 个已严格升级为 deep：证明句中作为前提使用的引用（含列表续引与被动式，9,572 条）进入 `dependsOn`，“the constant in Theorem X”这类对象引用（1,037 条）单独进入 `objectUses` 并以虚线显示。其余 2,810 条提及、725 条背景引用不进入图，1 条成环边被破除；family 171 没有任何前提边，退回 paper；4 个维持原手工深图。另有 25 个族没有可解析的 LaTeX（18 个保留 Lean 派生结构，7 个保持骨架）。
+论文结构当前覆盖 347 个族（548 篇论文、13,629 个陈述、14,401 条原始引用边）；其中 339 个已严格升级为 deep：证明句中作为前提使用的引用（含列表续引与被动式，9,157 条）进入 `dependsOn`；“the constant in Theorem X”这类对象引用（1,032 条）进入 `objectUses`；指认/导航类引用（“the case is Lemma X”“see Lemma X”等，95 条）进入 `mentions`。三类边在矩阵与网络图里分别用实线、虚线、点线显示，并在图例与节点抽屉中区分。另有 2,094 条未分类提及与 724 条背景引用不进入图，证明标题自指被排除，0 条成环边。049/195/334 只含证明标题引用，没有前提边，退回 paper；171 同样保留 paper；4 个维持原手工深图。另有 25 个族没有可解析的 LaTeX（18 个保留 Lean 派生结构，7 个保持骨架）。
 
 `scaffold` 不是“证明完成”，也不是“没有数学”。它表示来源记录已入索引，但定理陈述、证明依赖和 Lean 对齐尚未整理。
 
@@ -156,6 +156,7 @@ npm run proof:maps:promote -- --family 005
 
 - **前提依赖**（`dependsOn`）：引用之前紧邻 by/using/apply/follows from 等介词，之后同句出现 gives/applies/shows/identifies 等依赖动词，或属于 “by Lemmas A and B” 的列表续引、“Lemma X is used to …” 的被动式；
 - **对象引用**（`objectUses`）：引用以名词短语出现（“the constant in Theorem X”“the invariant open of Lemma X”“constructed in the proof of X”），证明使用 X 定义/保证的对象，而不是把 X 当推理前提；图上用虚线与前提依赖区分；
-- **背景与提及**：cf./recall/as in/analogous、“the case is Lemma X”“see Lemma X”、证明标题自指等，不进入图。
+- **指认 / 提及**（`mentions`）：“the case is Lemma X”“the remaining assertions are Lemma X”“see Lemma X”“proved in Lemma X”“we state Lemma X”等点名、识别或导航用途；它们进入图，但以更淡的点线与前两类区分；
+- **背景与标题**：cf./recall/as in/analogous、证明标题自指（`Proof of X`）以及无法归类的剩余提及，不进入图。
 
-所有边再经过 DFS 破除环；列表续引与被动式修正后，前提边为 9,572 条，另有 1,037 条对象引用；2,810 条提及与 725 条背景引用被剔除。
+所有边再经过 DFS 破除环。最终：前提边 9,157 条、对象引用 1,032 条、指认/提及边 95 条；2,094 条未分类提及与 724 条背景引用不进入图，证明标题自指（“Proof of X”）也排除。列表续引与被动式已计入前提边。
