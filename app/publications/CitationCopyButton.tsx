@@ -1,4 +1,6 @@
 "use client";
+import { Button } from "@/app/components/ui";
+
 import { useState } from "react";
 
 export function CitationCopyButton({ citation }: { citation: string }) {
@@ -7,5 +9,5 @@ export function CitationCopyButton({ citation }: { citation: string }) {
     try { await navigator.clipboard.writeText(citation); setStatus("Copied"); }
     catch { setStatus("Select and copy the citation below."); }
   }
-  return <span className="publication-copy-action"><button type="button" onClick={copy}>Copy BibTeX</button><span role="status">{status}</span></span>;
+  return <span className="publication-copy-action"><Button type="button" onClick={copy}>Copy BibTeX</Button><span role="status">{status}</span></span>;
 }
