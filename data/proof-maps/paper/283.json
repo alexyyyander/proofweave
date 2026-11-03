@@ -1,0 +1,159 @@
+{
+  "familyNumber": "283",
+  "familyTitle": "Polynomial-time unitary synthesis from a Boolean oracle",
+  "manuscripts": [
+    {
+      "id": "Polynomial-Time-Unitary-Synthesis-from-a-Boolean-Oracle-October-5-2026",
+      "title": "Polynomial-Time Unitary Synthesis from a Boolean Oracle",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Polynomial-Time-Unitary-Synthesis-from-a-Boolean-Oracle-October-5-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Controlled tasks and programmable slots",
+    "Producing a contracting block",
+    "Fourier fields for a smaller unitary",
+    "Implementing the field encodings",
+    "Assembling the recursion",
+    "Compilation into one Boolean oracle"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Polynomial-time unitary synthesis",
+      "statement": "[Polynomial-time unitary synthesis] There are a polynomial p and a deterministic classical algorithm which, on input 1^n for any integer n1 , outputs in time at most p(n) a quantum oracle circuit A_n…",
+      "section": "Introduction",
+      "manuscript": "Polynomial-Time Unitary Synthesis from a Boolean Oracle"
+    },
+    {
+      "id": "m1-slot-preparation",
+      "kind": "lemma",
+      "label": "State preparation",
+      "statement": "[State preparation] For every u1 there is a skeleton of u+1 slots that maps 0^u to _ for any prescribed family of unit vectors a_^ 2^u . Its structure depends only on the register sizes.",
+      "section": "Controlled tasks and programmable slots",
+      "manuscript": "Polynomial-Time Unitary Synthesis from a Boolean Oracle"
+    },
+    {
+      "id": "m1-slot-permutation",
+      "kind": "lemma",
+      "label": "Basis permutations",
+      "statement": "[Basis permutations] Any family of permutations of the 2^u computational basis states can be implemented with 5u slots and u temporary qubits that start and finish at zero. The skeleton is…",
+      "section": "Controlled tasks and programmable slots",
+      "manuscript": "Polynomial-Time Unitary Synthesis from a Boolean Oracle"
+    },
+    {
+      "id": "m1-slot-fourier",
+      "kind": "lemma",
+      "label": "Fourier transforms",
+      "statement": "[Fourier transforms] The unitary \\[ x 2^ -b/2 _ z=0 ^ 2^b-1 e^ 2 i xz/2^b z \\] on b1 qubits has a uniformly generated skeleton with O(b) slots. Products of such transforms have a number of slots…",
+      "section": "Controlled tasks and programmable slots",
+      "manuscript": "Polynomial-Time Unitary Synthesis from a Boolean Oracle"
+    },
+    {
+      "id": "m1-contract-moment",
+      "kind": "lemma",
+      "label": "A matrix sign estimate",
+      "statement": "[A matrix sign estimate] Let L_1,,L_q be Hermitian h h matrices, and let _1,,_q be independent Rademacher variables. Set v= _i L_i^2 . For every integer a1 , _ i=1 ^q_iL_i 2h^ 1/(2a) (2a-1)v.",
+      "section": "Producing a contracting block",
+      "manuscript": "Polynomial-Time Unitary Synthesis from a Boolean Oracle"
+    },
+    {
+      "id": "m1-contract-block",
+      "kind": "proposition",
+      "label": "A block of uniformly small norm",
+      "statement": "[A block of uniformly small norm] For every unitary U on ^d , there are unitaries P_ L and P_ R on ^d such that V=P_ L UP_ R = A&B\\&D , D r, where the block sizes are k,s from~ . The transformations…",
+      "section": "Producing a contracting block",
+      "manuscript": "Polynomial-Time Unitary Synthesis from a Boolean Oracle"
+    },
+    {
+      "id": "m1-contract-depth",
+      "kind": "lemma",
+      "label": "Dimension decrease",
+      "statement": "[Dimension decrease] For the parameters in~ , s d/(4M) . Starting at any d2^n and repeatedly replacing d2 by d-s , one reaches d=1 in fewer than J=8M(n+1) steps.",
+      "section": "Producing a contracting block",
+      "manuscript": "Polynomial-Time Unitary Synthesis from a Boolean Oracle"
+    },
+    {
+      "id": "m1-fields-unitary",
+      "kind": "lemma",
+      "label": "For the unitary block matrix in and any diagonal unitary Z , the matrix F in is…",
+      "statement": "For the unitary block matrix in and any diagonal unitary Z , the matrix F in is unitary. If R=OF^*= I_k\\\\ Y , Y=XF^*, then FE^*=R^*V, Y=(I-Z^*D^*)^ -1 Z^*B^*.",
+      "section": "Fourier fields for a smaller unitary",
+      "manuscript": "Polynomial-Time Unitary Synthesis from a Boolean Oracle"
+    },
+    {
+      "id": "m1-fields-gram",
+      "kind": "proposition",
+      "label": "For either T= E_L or T= R_L , (1-r^ 2L )I_d\\ \\ T^* T\\ \\ I_d. In addition, let F…",
+      "statement": "For either T= E_L or T= R_L , (1-r^ 2L )I_d\\ \\ T^* T\\ \\ I_d. In addition, let F apply F(z) to the port register, controlled on z . Then F E_L- R_L V2.",
+      "section": "Fourier fields for a smaller unitary",
+      "manuscript": "Polynomial-Time Unitary Synthesis from a Boolean Oracle"
+    },
+    {
+      "id": "m1-fields-sparsity",
+      "kind": "proposition",
+      "label": "In these Fourier coordinates, every row of E_L and of R_L has at most L nonzero…",
+      "statement": "In these Fourier coordinates, every row of E_L and of R_L has at most L nonzero entries.",
+      "section": "Fourier fields for a smaller unitary",
+      "manuscript": "Polynomial-Time Unitary Synthesis from a Boolean Oracle"
+    },
+    {
+      "id": "m1-encode-row-sparse",
+      "kind": "lemma",
+      "label": "Under , an exact-slot unitary U_T satisfies U_T - T5. It uses O(L(n+w+h)) slots…",
+      "statement": "Under , an exact-slot unitary U_T satisfies U_T - T5. It uses O(L(n+w+h)) slots and w+h+2 fresh qubits. Its slot structure depends only on the register sizes, d , and L , and it works coherently for…",
+      "section": "Implementing the field encodings",
+      "manuscript": "Polynomial-Time Unitary Synthesis from a Boolean Oracle"
+    },
+    {
+      "id": "m1-encode-implementation",
+      "kind": "proposition",
+      "label": "Under the hypotheses and definitions of Section~ , there are exact-slot…",
+      "statement": "Under the hypotheses and definitions of Section~ , there are exact-slot unitaries U_E, U_R such that U_E - E_L5r^ 2L , U_R - R_L5r^ 2L . Each uses O(L(K+n+h)+K) slots and K+n+h+2 fresh qubits, with…",
+      "section": "Implementing the field encodings",
+      "manuscript": "Polynomial-Time Unitary Synthesis from a Boolean Oracle"
+    },
+    {
+      "id": "m1-rec-step",
+      "kind": "lemma",
+      "label": "One synthesis step",
+      "statement": "[One synthesis step] Let V be a unitary on ^ k+s in the block form of Proposition~ , and let D r<1 . Use the fields and encoders of Sections~ and~ with truncation length L . Suppose a circuit…",
+      "section": "Assembling the recursion",
+      "manuscript": "Polynomial-Time Unitary Synthesis from a Boolean Oracle"
+    },
+    {
+      "id": "m1-rec-skeleton",
+      "kind": "proposition",
+      "label": "Uniform programmable synthesis",
+      "statement": "[Uniform programmable synthesis] Let n1 , 1 d2^n , and t0 . There is a programmable-slot circuit structure, determined by n,d,t , with the following property. For every family (U_)_ \\ 0,1\\ ^t of…",
+      "section": "Assembling the recursion",
+      "manuscript": "Polynomial-Time Unitary Synthesis from a Boolean Oracle"
+    },
+    {
+      "id": "m1-compile-words",
+      "kind": "lemma",
+      "label": "There is an absolute positive integer K_ w such that every S SU(2) and every…",
+      "statement": "There is an absolute positive integer K_ w such that every S SU(2) and every 0<<1 admit a word in H,T,T^ of length at most K_ w ^ -3 whose matrix has determinant one and differs from S by at most in…",
+      "section": "Compilation into one Boolean oracle",
+      "manuscript": "Polynomial-Time Unitary Synthesis from a Boolean Oracle"
+    },
+    {
+      "id": "m1-compile-slots",
+      "kind": "proposition",
+      "label": "Compilation of slots",
+      "statement": "[Compilation of slots] Let a skeleton have S slots on Q qubits, and put =1/h for an integer h2 . There is a deterministic procedure, polynomial in Q,S,1/ , that produces a circuit over H,T,T^,CNOT…",
+      "section": "Compilation into one Boolean oracle",
+      "manuscript": "Polynomial-Time Unitary Synthesis from a Boolean Oracle"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-rec-skeleton",
+      "to": "m1-thm-main",
+      "label": "rec:skeleton",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Apply Proposition~\\ref{rec:skeleton} with $d=2^n$ and no initial labels. Its skeleton has polynomially many qubits and slots, and approximates the target un"
+    }
+  ]
+}

@@ -10,6 +10,9 @@ import { personKeyProofChallengeSigningPayload } from "@/packages/protocol/perso
 import { createDevicePersonKey, hasDevicePersonKey, signDevicePersonPayload } from "@/app/workbench/browser-signing-key";
 import { issueDelegation, issuePersonKeyProofChallenge, registerAgent, registerPersonKey, submitPersonKeyProof } from "@/app/workbench/delegation-control-api";
 import { reusableAgentDelegation } from "@/app/lib/local-agent-journey";
+import { useI18n } from "@/app/i18n/client";
+import type { Locale } from "@/app/i18n/config";
+import type { Translator } from "@/app/i18n/translate";
 
 type PairingPreview = {
   id: string;
@@ -27,6 +30,7 @@ export function CodexPairingApproval({ profile, pairingId, secret }: {
   pairingId: string;
   secret: string;
 }) {
+  const { t, locale } = useI18n();
   const [pairing, setPairing] = useState<PairingPreview | null>(null);
   const currentKey = useMemo(() => profile.signingKeys.find(
     (key) => key.revokedAt === null && key.possessionVerifiedAt !== null,
@@ -39,9 +43,7 @@ export function CodexPairingApproval({ profile, pairingId, secret }: {
     agentPublicKey: pairing.agentPublicKey,
     requiredScopes: pairing.delegationScopes,
   }) : null, [pairing, profile]);
-  const inputError = !pairingId || !secret
-    ? "This local connection link is incomplete. Return to Codex and start the connection again."
-    : null;
+  const inputError = !pairingId || !secret ? t("connect.error.incomplete") : null;
 
   useEffect(() => {
     let live = true;
@@ -51,13 +53,13 @@ export function CodexPairingApproval({ profile, pairingId, secret }: {
     })
       .then(async (response) => {
         const payload = await response.json().catch(() => ({}));
-        if (!response.ok) throw new Error(payload?.error?.message ?? "This local connection link has expired.");
+        if (!response.ok) throw new Error(locale === "en" ? payload?.error?.message ?? "This local connection link has expired." : t("connect.error.expired"));
         return payload.pairing as PairingPreview;
       })
       .then((value) => { if (live) setPairing(value); })
-      .catch((cause: unknown) => { if (live) setError(messageFor(cause)); });
+      .catch((cause: unknown) => { if (live) setError(messageFor(cause, t, locale)); });
     return () => { live = false; };
-  }, [inputError, pairingId, secret]);
+  }, [inputError, locale, pairingId, secret, t]);
 
   useEffect(() => {
     let live = true;
@@ -85,10 +87,10 @@ export function CodexPairingApproval({ profile, pairingId, secret }: {
         body: JSON.stringify({ secret, delegationCertificateId: delegation.id }),
       });
       const result = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(result?.error?.message ?? "The local connection could not be approved.");
+      if (!response.ok) throw new Error(locale === "en" ? result?.error?.message ?? "The local connection could not be approved." : t("connect.error.approve"));
       window.location.assign(result.redirectUrl);
     } catch (cause) {
-      setError(messageFor(cause));
+      setError(messageFor(cause, t, locale));
       setBusy(false);
     }
   };
@@ -123,29 +125,29 @@ export function CodexPairingApproval({ profile, pairingId, secret }: {
 
   return <Surface as="section" className="connect-codex-card" aria-live="polite">
     <div className="connect-codex-device">
-      <span className="micro-label">This local Agent</span>
-      <strong>{pairing?.agentLabel ?? "Reading local connection…"}</strong>
-      {pairing && <><code>{pairing.agentId}</code><small>{connectionModeLabel(pairing.connectionMode)} · {pairingStatusLabel(pairing)}.</small></>}
+      <span className="micro-label">{t("connect.device.label")}</span>
+      <strong>{pairing?.agentLabel ?? t("connect.device.reading")}</strong>
+      {pairing && <><code>{pairing.agentId}</code><small>{connectionModeLabel(pairing.connectionMode, t)} · {pairingStatusLabel(pairing, t, locale)}.</small></>}
     </div>
     <div className="connect-codex-boundary">
-      <div><span>Stored locally</span><p>Agent private key, OAuth refresh token, Codex workspace, model settings, and raw research notes.</p></div>
-      <div><span>Recorded by Proofweave</span><p>Agent public key, a 30-day {pairing ? delegationLabel(pairing.delegationScopes) : "scoped"} delegation, and a revocable connection record.</p></div>
+      <div><span>{t("connect.boundary.localTitle")}</span><p>{t("connect.boundary.localBody")}</p></div>
+      <div><span>{t("connect.boundary.recordedTitle")}</span><p>{t("connect.boundary.recordedBody", { scope: pairing ? delegationLabel(pairing.delegationScopes) : "scoped" })}</p></div>
     </div>
-    {pairing?.status === "approved" ? <p className="connect-codex-status">This one-time link was already approved. The connection, compatible delegation, Agent identity, and stable Attempt ids remain recorded; return to Codex to continue.</p>
-      : pairing?.status === "expired" ? <p className="connect-codex-status">This one-time link expired without changing the Agent or any Attempt. Ask Codex to create a fresh approval link for the same local Agent.</p>
-        : reusableDelegation ? <p className="connect-codex-status">The same Agent already has compatible active authority. Proofweave will reuse it and keep every existing Attempt reachable.</p> : <>
-      {keyState === "checking" && <p className="connect-codex-status">Checking whether this browser can sign the approval…</p>}
-      {keyState === "missing" && <p className="connect-codex-status">This browser will create one protected Person signing key before approval. Its private half never leaves this browser.</p>}
-      {keyState === "ready" && <p className="connect-codex-status">Your protected Person signing key is ready to approve this local Agent.</p>}
+    {pairing?.status === "approved" ? <p className="connect-codex-status">{t("connect.status.approved")}</p>
+      : pairing?.status === "expired" ? <p className="connect-codex-status">{t("connect.status.expired")}</p>
+        : reusableDelegation ? <p className="connect-codex-status">{t("connect.status.reusable")}</p> : <>
+      {keyState === "checking" && <p className="connect-codex-status">{t("connect.status.checking")}</p>}
+      {keyState === "missing" && <p className="connect-codex-status">{t("connect.status.missing")}</p>}
+      {keyState === "ready" && <p className="connect-codex-status">{t("connect.status.ready")}</p>}
     </>}
     {(inputError ?? error) && <p className="setup-message setup-message-error" role="alert">{inputError ?? error}</p>}
-    {pairing?.status === "approved" ? <ActionLink className="button button-primary connect-codex-approve" href="/workbench">Open my work <span aria-hidden="true">→</span></ActionLink>
-      : pairing?.status === "expired" ? <ActionLink className="button button-primary connect-codex-approve" href="/integrations#codex-beta">Create a fresh link in Codex <span aria-hidden="true">→</span></ActionLink>
+    {pairing?.status === "approved" ? <ActionLink className="button button-primary connect-codex-approve" href="/workbench">{t("connect.action.openWork")} <span aria-hidden="true">→</span></ActionLink>
+      : pairing?.status === "expired" ? <ActionLink className="button button-primary connect-codex-approve" href="/integrations#codex-beta">{t("connect.action.freshLink")} <span aria-hidden="true">→</span></ActionLink>
         : <Button className="button button-primary connect-codex-approve" type="button" disabled={!pairing || busy || (!reusableDelegation && keyState === "checking")} onClick={() => void approve()}>
-          {busy ? "Creating secure connection…" : reusableDelegation ? "Reconnect existing Agent" : keyState === "missing" ? "Create key and approve local Codex" : "Approve local Codex"}
+          {busy ? t("connect.action.creating") : reusableDelegation ? t("connect.action.reconnect") : keyState === "missing" ? t("connect.action.createKey") : t("connect.action.approve")}
           {!busy && <span aria-hidden="true">→</span>}
         </Button>}
-    <p className="connect-codex-note">You can revoke this connection or its delegation later in Settings. Approval does not claim Lean verification or create a contribution receipt.</p>
+    <p className="connect-codex-note">{t("connect.note")}</p>
   </Surface>;
 }
 
@@ -168,10 +170,10 @@ function certificateFor(input: {
   };
 }
 
-function connectionModeLabel(mode: PairingPreview["connectionMode"]): string {
-  if (mode === "review") return "Independent review connection";
-  if (mode === "research_and_review") return "Research and independent review connection";
-  return "Research connection";
+function connectionModeLabel(mode: PairingPreview["connectionMode"], t: Translator): string {
+  if (mode === "review") return t("connect.mode.review");
+  if (mode === "research_and_review") return t("connect.mode.both");
+  return t("connect.mode.research");
 }
 
 function delegationLabel(scopes: PairingPreview["delegationScopes"]): string {
@@ -182,23 +184,23 @@ function delegationLabel(scopes: PairingPreview["delegationScopes"]): string {
   return "formalize/prove";
 }
 
-function formatExpiry(value: string): string {
+function formatExpiry(value: string, locale: Locale): string {
   const time = Date.parse(value);
   return Number.isFinite(time)
-    ? new Intl.DateTimeFormat("en-US", { timeZone: "UTC", timeStyle: "short" }).format(time)
+    ? new Intl.DateTimeFormat(locale, { timeZone: "UTC", timeStyle: "short" }).format(time)
     : value;
 }
 
-function pairingStatusLabel(pairing: PairingPreview): string {
-  if (pairing.status === "approved") return "one-time link already approved";
-  if (pairing.status === "expired") return `one-time link expired ${formatExpiry(pairing.expiresAt)}`;
-  return `approval link expires ${formatExpiry(pairing.expiresAt)}`;
+function pairingStatusLabel(pairing: PairingPreview, t: Translator, locale: Locale): string {
+  if (pairing.status === "approved") return t("connect.pairing.approved");
+  if (pairing.status === "expired") return t("connect.pairing.expired", { time: formatExpiry(pairing.expiresAt, locale) });
+  return t("connect.pairing.pending", { time: formatExpiry(pairing.expiresAt, locale) });
 }
 
-function messageFor(cause: unknown): string {
-  const message = cause instanceof Error ? cause.message : "The local connection could not be completed.";
+function messageFor(cause: unknown, t: Translator, locale: Locale): string {
+  const message = cause instanceof Error ? cause.message : t("connect.error.generic");
   if (/Agent id cannot be reused with different ownership or key material/i.test(message)) {
-    return "This approval page was created with an Agent identity that is already bound elsewhere. Close this stale tab, update the Proofweave plugin, and start connect_proofweave again from a new Codex task. The updated Connector creates a fresh identity while preserving the previous Agent and its records.";
+    return t("connect.error.staleIdentity");
   }
-  return message;
+  return locale === "en" ? message : t("connect.error.generic");
 }

@@ -1,0 +1,152 @@
+{
+  "familyNumber": "181",
+  "familyTitle": "The Erdős–Gallai cycle-decomposition conjecture",
+  "manuscripts": [
+    {
+      "id": "A-linear-cycle-and-edge-decomposition-of-every-graph-September-24-2026",
+      "title": "A linear cycle-and-edge decomposition of every graph",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-linear-cycle-and-edge-decomposition-of-every-graph-September-24-2026/main.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Conventions and preliminary results",
+    "Routing with team constraints",
+    "Expansion in small reservoirs",
+    "Splitting at a scale",
+    "Pair folding and resolving batches",
+    "The induction"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There is an absolute constant \\(C>0\\) such that, for every finite simple…",
+      "statement": "There is an absolute constant \\(C>0\\) such that, for every finite simple undirected graph \\(G\\) with \\(n\\) vertices, \\(E(G)\\) has a partition into at most \\(Cn\\) parts, each of which is the edge set…",
+      "section": "Introduction",
+      "manuscript": "A linear cycle-and-edge decomposition of every graph"
+    },
+    {
+      "id": "m1-cor-eulerian-cycles",
+      "kind": "corollary",
+      "label": "Every finite simple undirected Eulerian graph on \\(n\\) vertices has an edge…",
+      "statement": "Every finite simple undirected Eulerian graph on \\(n\\) vertices has an edge partition into at most \\(Cn\\) cycles, with \\(C\\) from . For every fixed \\(,p>0\\), there exist \\(>0\\) and an integer…",
+      "section": "Introduction",
+      "manuscript": "A linear cycle-and-edge decomposition of every graph"
+    },
+    {
+      "id": "m1-thm-lovasz",
+      "kind": "theorem",
+      "label": "Lov\\'asz",
+      "statement": "[Lov\\'asz] The edges of a finite simple graph on \\(n\\) vertices can be partitioned into at most \\(n/2\\) paths and cycles.",
+      "section": "Conventions and preliminary results",
+      "manuscript": "A linear cycle-and-edge decomposition of every graph"
+    },
+    {
+      "id": "m1-cor-endpoint-paths",
+      "kind": "corollary",
+      "label": "Every finite simple graph on \\(n\\) vertices has an edge partition into paths…",
+      "statement": "Every finite simple graph on \\(n\\) vertices has an edge partition into paths such that each vertex is an endpoint of at most two paths. In particular, the partition has at most \\(n\\) paths.",
+      "section": "Conventions and preliminary results",
+      "manuscript": "A linear cycle-and-edge decomposition of every graph"
+    },
+    {
+      "id": "m1-thm-aharoni-haxell",
+      "kind": "theorem",
+      "label": "Aharoni--Haxell",
+      "statement": "[Aharoni--Haxell] Let \\(s\\) be a positive integer and let \\(( H_i)_ i J \\) be a finite indexed family of hypergraphs on a common ground set. Suppose every edge is nonempty and has size at most \\(s\\).…",
+      "section": "Conventions and preliminary results",
+      "manuscript": "A linear cycle-and-edge decomposition of every graph"
+    },
+    {
+      "id": "m1-lem-chernoff",
+      "kind": "lemma",
+      "label": "If \\(X\\) is binomial with mean \\(\\), then \\[ (X/2) e^ -/8 , (X2) e^ -/3 . \\]",
+      "statement": "If \\(X\\) is binomial with mean \\(\\), then \\[ (X/2) e^ -/8 , (X2) e^ -/3 . \\]",
+      "section": "Conventions and preliminary results",
+      "manuscript": "A linear cycle-and-edge decomposition of every graph"
+    },
+    {
+      "id": "m1-lem-routing",
+      "kind": "lemma",
+      "label": "Routing",
+      "statement": "[Routing] Let P be a graph of order r 2 with cut expansion h>0 , and put g=8(r/h) (2r), =2g(1+ r). Let D be a finite set of demands, where demand p has distinct endvertices x_p,y_p V(P) . Suppose…",
+      "section": "Routing with team constraints",
+      "manuscript": "A linear cycle-and-edge decomposition of every graph"
+    },
+    {
+      "id": "m1-lem-edge-split",
+      "kind": "lemma",
+      "label": "Edge splitting",
+      "statement": "[Edge splitting] Fix c>0 and a positive integer l . For all sufficiently large D , if an r -vertex graph P has cut expansion at least h_0 cD^ 0.90 and D^ 0.90 r D^ 1.02 , then its edge set can be…",
+      "section": "Expansion in small reservoirs",
+      "manuscript": "A linear cycle-and-edge decomposition of every graph"
+    },
+    {
+      "id": "m1-lem-vertex-sampling",
+      "kind": "lemma",
+      "label": "Vertex sampling",
+      "statement": "[Vertex sampling] Fix c'>0 and p(0,1) . Let P have order D^ 0.90 r D^ 1.02 and cut expansion at least h=c'D^ 0.90 . Select each vertex independently with probability p to form V' . With probability…",
+      "section": "Expansion in small reservoirs",
+      "manuscript": "A linear cycle-and-edge decomposition of every graph"
+    },
+    {
+      "id": "m1-lem-small-residue",
+      "kind": "lemma",
+      "label": "Small residue",
+      "statement": "[Small residue] Fix >0 and c>0 . For all sufficiently large D , let G be an r -vertex graph with D^ 0.90 r D^ 1.02 containing a spanning subgraph of cut expansion at least cD^ 0.90 . Then E(G) has a…",
+      "section": "Expansion in small reservoirs",
+      "manuscript": "A linear cycle-and-edge decomposition of every graph"
+    },
+    {
+      "id": "m1-lem-scale-split",
+      "kind": "lemma",
+      "label": "Splitting at a scale",
+      "statement": "[Splitting at a scale] There are absolute constants D_ sp and C_0 such that, for every real D D_ sp , every graph G on a nonempty vertex set of order N and with average degree at most D admits the…",
+      "section": "Splitting at a scale",
+      "manuscript": "A linear cycle-and-edge decomposition of every graph"
+    },
+    {
+      "id": "m1-lem-split-vertex-expansion",
+      "kind": "lemma",
+      "label": "Vertex expansion gives a long cycle",
+      "statement": "[Vertex expansion gives a long cycle] Fix =1/32 . For every sufficiently large integer u , put =/^2 u . If a graph H of order u satisfies N_H(U) U U (0< U u2), then H contains a simple cycle of…",
+      "section": "Splitting at a scale",
+      "manuscript": "A linear cycle-and-edge decomposition of every graph"
+    },
+    {
+      "id": "m1-lem-pair-folding",
+      "kind": "lemma",
+      "label": "Pair folding",
+      "statement": "[Pair folding] Let J be a finite simple graph and let X_1,,X_t be pairwise disjoint subsets of its vertex set. Suppose that a1 , that m_i=X_i\\ 8,a^2\\ for every i , and that d_J(x)& a &&for every x_i…",
+      "section": "Pair folding and resolving batches",
+      "manuscript": "A linear cycle-and-edge decomposition of every graph"
+    },
+    {
+      "id": "m1-lem-batch-resolution",
+      "kind": "lemma",
+      "label": "Batch resolution",
+      "statement": "[Batch resolution] For every sufficiently large real D , set \\[ a=D^ 0.01 , L_0=D^ 0.03 , B_0=D^ 0.30 , =D^ 0.90 . \\] Let Y be a finite vertex set. Let W be a finite indexed family of subsets W Y ,…",
+      "section": "Pair folding and resolving batches",
+      "manuscript": "A linear cycle-and-edge decomposition of every graph"
+    },
+    {
+      "id": "m1-lem-prefix-choice",
+      "kind": "lemma",
+      "label": "Selection of a prefix",
+      "statement": "[Selection of a prefix] Let \\((S_j)_ j0 \\) be a nonnegative, finitely supported sequence which is not identically zero. There is an index \\(i\\) with \\(S_i>0\\) such that _ j=0 ^ i+K S_j P_0S_i.",
+      "section": "The induction",
+      "manuscript": "A linear cycle-and-edge decomposition of every graph"
+    },
+    {
+      "id": "m1-prop-induction-bound",
+      "kind": "proposition",
+      "label": "There is an absolute constant \\(C\\) such that every finite simple graph on…",
+      "statement": "There is an absolute constant \\(C\\) such that every finite simple graph on \\(n1\\) vertices has an edge partition into at most \\(C(n)n\\) simple cycles and single edges.",
+      "section": "The induction",
+      "manuscript": "A linear cycle-and-edge decomposition of every graph"
+    }
+  ],
+  "edges": []
+}

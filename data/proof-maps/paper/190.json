@@ -1,0 +1,100 @@
+{
+  "familyNumber": "190",
+  "familyTitle": "Polynomial removal fails for ordered binary matrices",
+  "manuscripts": [
+    {
+      "id": "Polynomial-removal-fails-for-ordered-binary-matrices-September-25-2026",
+      "title": "Polynomial removal fails for ordered binary matrices",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Polynomial-removal-fails-for-ordered-binary-matrices-September-25-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Distance under arbitrary binary changes",
+    "Copies are confined to the leaf diagonal",
+    "Proof of the main theorem"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There is a fixed binary 6666 matrix H with the following property. For every…",
+      "statement": "There is a fixed binary 6666 matrix H with the following property. For every integer h1 , put \\[ n_h=(386h+2)2^h, _h=(386h+2)^ -2 . \\] There is a binary n_h n_h matrix A_h such that \\[ dist_H(A_h)_h,…",
+      "section": "Introduction",
+      "manuscript": "Polynomial removal fails for ordered binary matrices"
+    },
+    {
+      "id": "m1-prop-distance",
+      "kind": "proposition",
+      "label": "Let h 1 , let m=2^h , and let A=A_h be the matrix constructed above, of order…",
+      "statement": "Let h 1 , let m=2^h , and let A=A_h be the matrix constructed above, of order n=d_hm , where d_h=386h+2 . Every H -free binary n n matrix differs from A in at least m^2 entries. Consequently A is…",
+      "section": "Distance under arbitrary binary changes",
+      "manuscript": "Polynomial removal fails for ordered binary matrices"
+    },
+    {
+      "id": "m1-lem-anchor-properties",
+      "kind": "lemma",
+      "label": "Properties of the anchor",
+      "statement": "[Properties of the anchor] The rows of S are pairwise distinct, as are its columns. Every column has at most one zero in the first 32 rows, and every row has at most one zero in the first 32 columns.…",
+      "section": "Copies are confined to the leaf diagonal",
+      "manuscript": "Polynomial removal fails for ordered binary matrices"
+    },
+    {
+      "id": "m1-lem-mode-incidences",
+      "kind": "lemma",
+      "label": "Incidence with the modes",
+      "statement": "[Incidence with the modes] A variable position on either axis belongs to designated sets of at most four modes. Consequently, against any collection containing at most one representative of each…",
+      "section": "Copies are confined to the leaf diagonal",
+      "manuscript": "Polynomial removal fails for ordered binary matrices"
+    },
+    {
+      "id": "m1-lem-nonanchor-traces",
+      "kind": "lemma",
+      "label": "No five non-anchor columns are shattered",
+      "statement": "[No five non-anchor columns are shattered] For any five distinct non-anchor columns of A_h , the non-anchor rows do not realize all 32 binary words on those columns.",
+      "section": "Copies are confined to the leaf diagonal",
+      "manuscript": "Polynomial removal fails for ordered binary matrices"
+    },
+    {
+      "id": "m1-lem-anchor-rigidity",
+      "kind": "lemma",
+      "label": "Anchor rigidity",
+      "statement": "[Anchor rigidity] Every ordered copy of S in A_h uses the row and column anchor groups of a single mode t . On each axis it uses exactly one position from each of that mode's 64 groups, in their…",
+      "section": "Copies are confined to the leaf diagonal",
+      "manuscript": "Polynomial removal fails for ordered binary matrices"
+    },
+    {
+      "id": "m1-cor-body-roles",
+      "kind": "corollary",
+      "label": "The two body roles",
+      "statement": "[The two body roles] In every ordered copy of H in A_h , the first 64 rows and columns are anchor representatives of one mode t . Its two body rows belong respectively to R_1(t), R_2(t) , and its two…",
+      "section": "Copies are confined to the leaf diagonal",
+      "manuscript": "Polynomial removal fails for ordered binary matrices"
+    },
+    {
+      "id": "m1-prop-copy-count",
+      "kind": "proposition",
+      "label": "For every integer h 1 , every ordered copy of H in A_h maps the pattern entry…",
+      "statement": "For every integer h 1 , every ordered copy of H in A_h maps the pattern entry (s+1,s+1) into \\[ L_h =_ p=0 ^ m-1 R_h^+(p) C_h^+(p). \\] In particular, | L_h|=m and N_H(A_h) m n^ 2k-2 , N_H(A_h) n^ 2k…",
+      "section": "Copies are confined to the leaf diagonal",
+      "manuscript": "Polynomial removal fails for ordered binary matrices"
+    },
+    {
+      "id": "m1-cor-canonical-testing",
+      "kind": "corollary",
+      "label": "Canonical row--column sampling",
+      "statement": "[Canonical row--column sampling] Fix h1 and an integer 0 q n_h . Consider a tester that chooses a uniformly random q -element row set R and, independently, a uniformly random q -element column set C…",
+      "section": "Proof of the main theorem",
+      "manuscript": "Polynomial removal fails for ordered binary matrices"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-prop-distance",
+      "to": "m1-thm-main",
+      "label": "prop:distance",
+      "context": "[Proof of Theorem~\\ref{thm:main}] For each integer $h\\geq1$, set \\[ \\epsilon_h=d_h^{-2}=(386h+2)^{-2}, \\qquad n_h=d_h2^h. \\] Proposition~\\ref{prop:distance} shows that every $H$-free binary matrix differs from $A_h$ in at least $m^2=\\epsilon_h n_h^2$ entries. Proposition~\\ref"
+    }
+  ]
+}

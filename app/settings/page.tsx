@@ -14,62 +14,62 @@ import { DelegationSetup } from "../workbench/DelegationSetup";
 import { DelegationSummary } from "../workbench/workbench-sections";
 import { activeLocalCodexInstallation } from "../lib/local-agent-journey";
 import { personalWritesPaused, ReadOnlyPersonalSurface } from "../lib/read-only-personal-surface";
+import { getI18n } from "@/app/i18n/server";
 
 export const dynamic = "force-dynamic";
 
 export default async function SettingsPage() {
+  const { t, locale } = await getI18n();
   const readOnly = personalWritesPaused();
   const user = await getCurrentUser();
   if (readOnly) {
     return <ReadOnlyPersonalSurface
       active="settings"
-      eyebrow="Agent settings · read-only maintenance"
-      title="Agent and account changes are temporarily paused."
-      detail={user
-        ? `You are still signed in as ${user.displayName}. Existing public records remain readable, but connecting or revoking an Agent, changing delegated authority, and creating signing material are unavailable during maintenance.`
-        : "Public research remains readable without an account. Sign-in and Agent controls will return after maintenance."}
+      eyebrow={t("settings.readOnly.eyebrow")}
+      title={t("settings.readOnly.title")}
+      detail={user ? t("settings.readOnly.detailSignedIn", { name: user.displayName }) : t("settings.readOnly.detailSignedOut")}
     />;
   }
   const { profile, storageAvailable } = await loadSettingsProfile(user);
   const connection = activeLocalCodexInstallation(profile);
   const status = !user
-    ? { tone: "provisional" as const, label: "Sign in required" }
+    ? { tone: "provisional" as const, label: t("settings.status.signIn") }
     : !storageAvailable
-      ? { tone: "not-deployed" as const, label: "Storage unavailable" }
+      ? { tone: "not-deployed" as const, label: t("settings.status.storage") }
       : connection
-        ? { tone: "available" as const, label: "Agent approval active" }
+        ? { tone: "available" as const, label: t("settings.status.active") }
         : profile?.delegations.some((delegation) => delegation.revokedAt === null)
-          ? { tone: "provisional" as const, label: "Codex connection required" }
-        : { tone: "provisional" as const, label: "Setup required" };
+          ? { tone: "provisional" as const, label: t("settings.status.codex") }
+        : { tone: "provisional" as const, label: t("settings.status.setup") };
 
   return <SiteFrame className="site-shell app-shell" active="settings" mainClassName="settings-main personal-workspace-main">
       <PersonalWorkspaceFrame active="settings">
       <SectionHeading as="section" className="settings-hero" aria-labelledby="settings-title">
         <div>
-          <p className="eyebrow">Account and Agent controls</p>
-          <PageTitle id="settings-title">Manage your research Agent.</PageTitle>
-          <p>Keep identity, keys, delegated authority, and Agent connections separate from the mathematical work happening in your Workspace.</p>
+          <p className="eyebrow">{t("settings.hero.eyebrow")}</p>
+          <PageTitle id="settings-title">{t("settings.hero.title")}</PageTitle>
+          <p>{t("settings.hero.body")}</p>
         </div>
         <div className="settings-hero-status">
           <ProductStateBadge tone={status.tone}>{status.label}</ProductStateBadge>
-          <span>{user ? user.displayName : "Your contribution record starts after sign-in."}</span>
+          <span>{user ? user.displayName : t("settings.account.start")}</span>
           <Link
             className="settings-account-switch"
             href={user ? providerAwareSignOutPath(user, "/settings") : signInPath("/settings")}
           >
-            {user ? "Change sign-in account" : "Choose a sign-in method"}
+            {user ? t("settings.account.change") : t("settings.account.choose")}
             <span aria-hidden="true">→</span>
           </Link>
         </div>
       </SectionHeading>
 
-      <section className="settings-guide" aria-label="Settings purpose">
-        <div><span>01</span><strong>Identity</strong><p>Your private Person signing key remains on this device.</p></div>
-        <div><span>02</span><strong>Authority</strong><p>Delegations are scoped, signed, and revocable by their owner.</p></div>
-        <div><span>03</span><strong>Connections</strong><p>Local Codex approvals can be inspected or revoked independently.</p></div>
+      <section className="settings-guide" aria-label={t("settings.guide.aria")}>
+        <div><span>01</span><strong>{t("settings.guide.identity.title")}</strong><p>{t("settings.guide.identity.body")}</p></div>
+        <div><span>02</span><strong>{t("settings.guide.authority.title")}</strong><p>{t("settings.guide.authority.body")}</p></div>
+        <div><span>03</span><strong>{t("settings.guide.connections.title")}</strong><p>{t("settings.guide.connections.body")}</p></div>
       </section>
 
-      {profile && <DelegationSummary profile={profile} />}
+      {profile && <DelegationSummary profile={profile} t={t} locale={locale} />}
       <DelegationSetup profile={profile} isAuthenticated={Boolean(user)} signInPath={signInPath("/settings#delegation-setup")} storageAvailable={storageAvailable} />
       {profile && <AgentConnections installations={profile.agentInstallations} />}
       </PersonalWorkspaceFrame>

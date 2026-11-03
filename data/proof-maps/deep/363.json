@@ -1,0 +1,949 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "363",
+  "title": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation",
+  "result": {
+    "id": "paper-result",
+    "label": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation",
+    "statement": "Constructs two distinct global entropy solutions of the three-dimensional periodic hard-sphere Boltzmann equation from the same nonnegative initial density, with bounded velocity support and finite mass, energy and absolute entropy. Both are strongly continuous in L 1 and satisfy exact local conservation of mass, momentum and kinetic energy.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "collision-kernels-and-a-velocity-majorant",
+      "label": "Collision kernels and a velocity majorant",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-datum-and-the-finite-colored-evolutions",
+      "label": "The datum and the finite colored evolutions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "cold-estimates-up-to-the-retirement-times",
+      "label": "Cold estimates up to the retirement times",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "selection-and-continuation-on-the-initial-time-interval",
+      "label": "Selection and continuation on the initial time interval",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-uniform-global-bound-for-the-finite-evolutions",
+      "label": "A uniform global bound for the finite evolutions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "global-limits-and-local-conservation",
+      "label": "Global limits and local conservation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-cap-dilation-and-its-linear-limit",
+      "label": "The cap dilation and its linear limit",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-cap-event-produces-a-nonzero-limit",
+      "label": "A cap event produces a nonzero limit",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "branching-growth-and-the-dilated-horizon",
+      "label": "Branching growth and the dilated horizon",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "separation-of-two-global-solutions",
+      "label": "Separation of two global solutions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "cold-jets-and-uniform-color-estimates",
+      "label": "Cold jets and uniform color estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-approximations-and-cap-selection",
+      "label": "Finite approximations and cap selection",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "fixed-horizon-limits-and-admissibility",
+      "label": "Fixed-horizon limits and admissibility",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation",
+      "title": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Nonuniqueness-with-local-conservation-for-the-hard-sphere-Boltzmann-equation-October-5-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Nonuniqueness with local conservation for the hard-sphere Boltzmann equation.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-con-datum"
+          ]
+        },
+        {
+          "id": "m1-lem-carleman",
+          "role": "collision-kernels-and-a-velocity-majorant",
+          "label": "lemma m1-lem-carleman",
+          "fullLabel": "lemma m1-lem-carleman",
+          "kind": "lemma",
+          "source": "Collision kernels and a velocity majorant",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ker-geometric-slice",
+          "role": "collision-kernels-and-a-velocity-majorant",
+          "label": "lemma m1-ker-geometric-slice",
+          "fullLabel": "lemma m1-ker-geometric-slice",
+          "kind": "lemma",
+          "source": "Collision kernels and a velocity majorant",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sheet-bound",
+          "role": "collision-kernels-and-a-velocity-majorant",
+          "label": "lemma m1-lem-sheet-bound",
+          "fullLabel": "lemma m1-lem-sheet-bound",
+          "kind": "lemma",
+          "source": "Collision kernels and a velocity majorant",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-kernel-tightness",
+          "role": "collision-kernels-and-a-velocity-majorant",
+          "label": "lemma m1-lem-kernel-tightness",
+          "fullLabel": "lemma m1-lem-kernel-tightness",
+          "kind": "lemma",
+          "source": "Collision kernels and a velocity majorant",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ker-parameter-sheets",
+          "role": "collision-kernels-and-a-velocity-majorant",
+          "label": "lemma m1-ker-parameter-sheets",
+          "fullLabel": "lemma m1-ker-parameter-sheets",
+          "kind": "lemma",
+          "source": "Collision kernels and a velocity majorant",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-hot-bound",
+          "role": "collision-kernels-and-a-velocity-majorant",
+          "label": "lemma m1-lem-hot-bound",
+          "fullLabel": "lemma m1-lem-hot-bound",
+          "kind": "lemma",
+          "source": "Collision kernels and a velocity majorant",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-gain-small-mass",
+          "role": "collision-kernels-and-a-velocity-majorant",
+          "label": "lemma m1-lem-gain-small-mass",
+          "fullLabel": "lemma m1-lem-gain-small-mass",
+          "kind": "lemma",
+          "source": "Collision kernels and a velocity majorant",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-con-lattice",
+          "role": "the-datum-and-the-finite-colored-evolutions",
+          "label": "lemma m1-con-lattice",
+          "fullLabel": "lemma m1-con-lattice",
+          "kind": "lemma",
+          "source": "The datum and the finite colored evolutions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-con-datum",
+          "role": "the-datum-and-the-finite-colored-evolutions",
+          "label": "lemma m1-con-datum",
+          "fullLabel": "lemma m1-con-datum",
+          "kind": "lemma",
+          "source": "The datum and the finite colored evolutions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-con-finite-evolution",
+          "role": "the-datum-and-the-finite-colored-evolutions",
+          "label": "proposition m1-con-finite-evolution",
+          "fullLabel": "proposition m1-con-finite-evolution",
+          "kind": "proposition",
+          "source": "The datum and the finite colored evolutions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cold-geometry",
+          "role": "cold-estimates-up-to-the-retirement-times",
+          "label": "lemma m1-cold-geometry",
+          "fullLabel": "lemma m1-cold-geometry",
+          "kind": "lemma",
+          "source": "Cold estimates up to the retirement times",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cold-barrier",
+          "role": "cold-estimates-up-to-the-retirement-times",
+          "label": "lemma m1-cold-barrier",
+          "fullLabel": "lemma m1-cold-barrier",
+          "kind": "lemma",
+          "source": "Cold estimates up to the retirement times",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cold-control",
+          "role": "cold-estimates-up-to-the-retirement-times",
+          "label": "proposition m1-cold-control",
+          "fullLabel": "proposition m1-cold-control",
+          "kind": "proposition",
+          "source": "Cold estimates up to the retirement times",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cold-core-amplitude",
+          "role": "cold-estimates-up-to-the-retirement-times",
+          "label": "lemma m1-cold-core-amplitude",
+          "fullLabel": "lemma m1-cold-core-amplitude",
+          "kind": "lemma",
+          "source": "Cold estimates up to the retirement times",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cold-nonmain",
+          "role": "cold-estimates-up-to-the-retirement-times",
+          "label": "lemma m1-cold-nonmain",
+          "fullLabel": "lemma m1-cold-nonmain",
+          "kind": "lemma",
+          "source": "Cold estimates up to the retirement times",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cold-retirement-size",
+          "role": "cold-estimates-up-to-the-retirement-times",
+          "label": "lemma m1-cold-retirement-size",
+          "fullLabel": "lemma m1-cold-retirement-size",
+          "kind": "lemma",
+          "source": "Cold estimates up to the retirement times",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-early-bath",
+          "role": "selection-and-continuation-on-the-initial-time-interval",
+          "label": "lemma m1-early-bath",
+          "fullLabel": "lemma m1-early-bath",
+          "kind": "lemma",
+          "source": "Selection and continuation on the initial time interval",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-early-source-estimates",
+          "role": "selection-and-continuation-on-the-initial-time-interval",
+          "label": "lemma m1-early-source-estimates",
+          "fullLabel": "lemma m1-early-source-estimates",
+          "kind": "lemma",
+          "source": "Selection and continuation on the initial time interval",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-early-cap-selection",
+          "role": "selection-and-continuation-on-the-initial-time-interval",
+          "label": "proposition m1-early-cap-selection",
+          "fullLabel": "proposition m1-early-cap-selection",
+          "kind": "proposition",
+          "source": "Selection and continuation on the initial time interval",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-early-path-source",
+          "role": "selection-and-continuation-on-the-initial-time-interval",
+          "label": "lemma m1-early-path-source",
+          "fullLabel": "lemma m1-early-path-source",
+          "kind": "lemma",
+          "source": "Selection and continuation on the initial time interval",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-early-continuation",
+          "role": "selection-and-continuation-on-the-initial-time-interval",
+          "label": "proposition m1-early-continuation",
+          "fullLabel": "proposition m1-early-continuation",
+          "kind": "proposition",
+          "source": "Selection and continuation on the initial time interval",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-global-flight-average",
+          "role": "a-uniform-global-bound-for-the-finite-evolutions",
+          "label": "lemma m1-global-flight-average",
+          "fullLabel": "lemma m1-global-flight-average",
+          "kind": "lemma",
+          "source": "A uniform global bound for the finite evolutions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-global-frequency",
+          "role": "a-uniform-global-bound-for-the-finite-evolutions",
+          "label": "lemma m1-global-frequency",
+          "fullLabel": "lemma m1-global-frequency",
+          "kind": "lemma",
+          "source": "A uniform global bound for the finite evolutions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-global-gain",
+          "role": "a-uniform-global-bound-for-the-finite-evolutions",
+          "label": "lemma m1-global-gain",
+          "fullLabel": "lemma m1-global-gain",
+          "kind": "lemma",
+          "source": "A uniform global bound for the finite evolutions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-global-control",
+          "role": "a-uniform-global-bound-for-the-finite-evolutions",
+          "label": "proposition m1-prop-global-control",
+          "fullLabel": "proposition m1-prop-global-control",
+          "kind": "proposition",
+          "source": "A uniform global bound for the finite evolutions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-global-limits",
+          "role": "global-limits-and-local-conservation",
+          "label": "proposition m1-prop-global-limits",
+          "fullLabel": "proposition m1-prop-global-limits",
+          "kind": "proposition",
+          "source": "Global limits and local conservation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-comp-averaging",
+          "role": "global-limits-and-local-conservation",
+          "label": "lemma m1-comp-averaging",
+          "fullLabel": "lemma m1-comp-averaging",
+          "kind": "lemma",
+          "source": "Global limits and local conservation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-blowup-limit",
+          "role": "the-cap-dilation-and-its-linear-limit",
+          "label": "proposition m1-prop-blowup-limit",
+          "fullLabel": "proposition m1-prop-blowup-limit",
+          "kind": "proposition",
+          "source": "The cap dilation and its linear limit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-dil-free-core-comparison",
+          "role": "the-cap-dilation-and-its-linear-limit",
+          "label": "lemma m1-dil-free-core-comparison",
+          "fullLabel": "lemma m1-dil-free-core-comparison",
+          "kind": "lemma",
+          "source": "The cap dilation and its linear limit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-nonzero-limit",
+          "role": "a-cap-event-produces-a-nonzero-limit",
+          "label": "proposition m1-prop-nonzero-limit",
+          "fullLabel": "proposition m1-prop-nonzero-limit",
+          "kind": "proposition",
+          "source": "A cap event produces a nonzero limit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-nc-core-kernels",
+          "role": "a-cap-event-produces-a-nonzero-limit",
+          "label": "lemma m1-nc-core-kernels",
+          "fullLabel": "lemma m1-nc-core-kernels",
+          "kind": "lemma",
+          "source": "A cap event produces a nonzero limit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-nc-endpoint-tightness",
+          "role": "a-cap-event-produces-a-nonzero-limit",
+          "label": "lemma m1-nc-endpoint-tightness",
+          "fullLabel": "lemma m1-nc-endpoint-tightness",
+          "kind": "lemma",
+          "source": "A cap event produces a nonzero limit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-axis-kernel-estimates",
+          "role": "a-cap-event-produces-a-nonzero-limit",
+          "label": "lemma m1-lem-axis-kernel-estimates",
+          "fullLabel": "lemma m1-lem-axis-kernel-estimates",
+          "kind": "lemma",
+          "source": "A cap event produces a nonzero limit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-nc-characteristic-matching",
+          "role": "a-cap-event-produces-a-nonzero-limit",
+          "label": "lemma m1-nc-characteristic-matching",
+          "fullLabel": "lemma m1-nc-characteristic-matching",
+          "kind": "lemma",
+          "source": "A cap event produces a nonzero limit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-nc-two-axial-gains",
+          "role": "a-cap-event-produces-a-nonzero-limit",
+          "label": "lemma m1-nc-two-axial-gains",
+          "fullLabel": "lemma m1-nc-two-axial-gains",
+          "kind": "lemma",
+          "source": "A cap event produces a nonzero limit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-nc-plane-parameters",
+          "role": "a-cap-event-produces-a-nonzero-limit",
+          "label": "lemma m1-nc-plane-parameters",
+          "fullLabel": "lemma m1-nc-plane-parameters",
+          "kind": "lemma",
+          "source": "A cap event produces a nonzero limit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-nc-uniform-pullback",
+          "role": "a-cap-event-produces-a-nonzero-limit",
+          "label": "lemma m1-nc-uniform-pullback",
+          "fullLabel": "lemma m1-nc-uniform-pullback",
+          "kind": "lemma",
+          "source": "A cap event produces a nonzero limit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-five-gain-rank",
+          "role": "a-cap-event-produces-a-nonzero-limit",
+          "label": "lemma m1-lem-five-gain-rank",
+          "fullLabel": "lemma m1-lem-five-gain-rank",
+          "kind": "lemma",
+          "source": "A cap event produces a nonzero limit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-nc-five-nonaxial-gains",
+          "role": "a-cap-event-produces-a-nonzero-limit",
+          "label": "lemma m1-nc-five-nonaxial-gains",
+          "fullLabel": "lemma m1-nc-five-nonaxial-gains",
+          "kind": "lemma",
+          "source": "A cap event produces a nonzero limit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-finite-dilated-horizon",
+          "role": "branching-growth-and-the-dilated-horizon",
+          "label": "proposition m1-prop-finite-dilated-horizon",
+          "fullLabel": "proposition m1-prop-finite-dilated-horizon",
+          "kind": "proposition",
+          "source": "Branching growth and the dilated horizon",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-br-positive-histories",
+          "role": "branching-growth-and-the-dilated-horizon",
+          "label": "lemma m1-br-positive-histories",
+          "fullLabel": "lemma m1-br-positive-histories",
+          "kind": "lemma",
+          "source": "Branching growth and the dilated horizon",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-br-retention",
+          "role": "branching-growth-and-the-dilated-horizon",
+          "label": "lemma m1-br-retention",
+          "fullLabel": "lemma m1-br-retention",
+          "kind": "lemma",
+          "source": "Branching growth and the dilated horizon",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-br-minorization",
+          "role": "branching-growth-and-the-dilated-horizon",
+          "label": "lemma m1-br-minorization",
+          "fullLabel": "lemma m1-br-minorization",
+          "kind": "lemma",
+          "source": "Branching growth and the dilated horizon",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-br-mixing",
+          "role": "branching-growth-and-the-dilated-horizon",
+          "label": "lemma m1-br-mixing",
+          "fullLabel": "lemma m1-br-mixing",
+          "kind": "lemma",
+          "source": "Branching growth and the dilated horizon",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-br-reference-block",
+          "role": "branching-growth-and-the-dilated-horizon",
+          "label": "lemma m1-br-reference-block",
+          "fullLabel": "lemma m1-br-reference-block",
+          "kind": "lemma",
+          "source": "Branching growth and the dilated horizon",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-br-robust-block",
+          "role": "branching-growth-and-the-dilated-horizon",
+          "label": "lemma m1-br-robust-block",
+          "fullLabel": "lemma m1-br-robust-block",
+          "kind": "lemma",
+          "source": "Branching growth and the dilated horizon",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-br-block-growth",
+          "role": "branching-growth-and-the-dilated-horizon",
+          "label": "lemma m1-br-block-growth",
+          "fullLabel": "lemma m1-br-block-growth",
+          "kind": "lemma",
+          "source": "Branching growth and the dilated horizon",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-br-accessibility",
+          "role": "branching-growth-and-the-dilated-horizon",
+          "label": "lemma m1-br-accessibility",
+          "fullLabel": "lemma m1-br-accessibility",
+          "kind": "lemma",
+          "source": "Branching growth and the dilated horizon",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sep-dormant-vanishing",
+          "role": "separation-of-two-global-solutions",
+          "label": "lemma m1-sep-dormant-vanishing",
+          "fullLabel": "lemma m1-sep-dormant-vanishing",
+          "kind": "lemma",
+          "source": "Separation of two global solutions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Nonuniqueness for the periodic hard-sphere Boltzmann equation",
+      "title": "Nonuniqueness for the periodic hard-sphere Boltzmann equation",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Nonuniqueness-for-the-periodic-hard-sphere-Boltzmann-equation-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Nonuniqueness for the periodic hard-sphere Boltzmann equation.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-carleman",
+          "role": "collision-kernels-and-a-velocity-majorant",
+          "label": "lemma m2-lem-carleman",
+          "fullLabel": "lemma m2-lem-carleman",
+          "kind": "lemma",
+          "source": "Collision kernels and a velocity majorant",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-ker-geometric-slice",
+          "role": "collision-kernels-and-a-velocity-majorant",
+          "label": "lemma m2-ker-geometric-slice",
+          "fullLabel": "lemma m2-ker-geometric-slice",
+          "kind": "lemma",
+          "source": "Collision kernels and a velocity majorant",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-sheet-bound",
+          "role": "collision-kernels-and-a-velocity-majorant",
+          "label": "lemma m2-lem-sheet-bound",
+          "fullLabel": "lemma m2-lem-sheet-bound",
+          "kind": "lemma",
+          "source": "Collision kernels and a velocity majorant",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-kernel-tightness",
+          "role": "collision-kernels-and-a-velocity-majorant",
+          "label": "lemma m2-lem-kernel-tightness",
+          "fullLabel": "lemma m2-lem-kernel-tightness",
+          "kind": "lemma",
+          "source": "Collision kernels and a velocity majorant",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-ker-parameter-sheets",
+          "role": "collision-kernels-and-a-velocity-majorant",
+          "label": "lemma m2-ker-parameter-sheets",
+          "fullLabel": "lemma m2-ker-parameter-sheets",
+          "kind": "lemma",
+          "source": "Collision kernels and a velocity majorant",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-hot-bound",
+          "role": "collision-kernels-and-a-velocity-majorant",
+          "label": "lemma m2-lem-hot-bound",
+          "fullLabel": "lemma m2-lem-hot-bound",
+          "kind": "lemma",
+          "source": "Collision kernels and a velocity majorant",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-jet-geometry",
+          "role": "cold-jets-and-uniform-color-estimates",
+          "label": "lemma m2-jet-geometry",
+          "fullLabel": "lemma m2-jet-geometry",
+          "kind": "lemma",
+          "source": "Cold jets and uniform color estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-datum",
+          "role": "cold-jets-and-uniform-color-estimates",
+          "label": "lemma m2-lem-datum",
+          "fullLabel": "lemma m2-lem-datum",
+          "kind": "lemma",
+          "source": "Cold jets and uniform color estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-jet-barrier",
+          "role": "cold-jets-and-uniform-color-estimates",
+          "label": "lemma m2-jet-barrier",
+          "fullLabel": "lemma m2-jet-barrier",
+          "kind": "lemma",
+          "source": "Cold jets and uniform color estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-cold-control",
+          "role": "cold-jets-and-uniform-color-estimates",
+          "label": "proposition m2-prop-cold-control",
+          "fullLabel": "proposition m2-prop-cold-control",
+          "kind": "proposition",
+          "source": "Cold jets and uniform color estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-jet-survival",
+          "role": "cold-jets-and-uniform-color-estimates",
+          "label": "corollary m2-jet-survival",
+          "fullLabel": "corollary m2-jet-survival",
+          "kind": "corollary",
+          "source": "Cold jets and uniform color estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-finite-cap",
+          "role": "finite-approximations-and-cap-selection",
+          "label": "proposition m2-prop-finite-cap",
+          "fullLabel": "proposition m2-prop-finite-cap",
+          "kind": "proposition",
+          "source": "Finite approximations and cap selection",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-admissible-limits",
+          "role": "fixed-horizon-limits-and-admissibility",
+          "label": "proposition m2-prop-admissible-limits",
+          "fullLabel": "proposition m2-prop-admissible-limits",
+          "kind": "proposition",
+          "source": "Fixed-horizon limits and admissibility",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-comp-averaging",
+          "role": "fixed-horizon-limits-and-admissibility",
+          "label": "lemma m2-comp-averaging",
+          "fullLabel": "lemma m2-comp-averaging",
+          "kind": "lemma",
+          "source": "Fixed-horizon limits and admissibility",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-blowup-limit",
+          "role": "the-cap-dilation-and-its-linear-limit",
+          "label": "proposition m2-prop-blowup-limit",
+          "fullLabel": "proposition m2-prop-blowup-limit",
+          "kind": "proposition",
+          "source": "The cap dilation and its linear limit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-nonzero-limit",
+          "role": "a-cap-event-produces-a-nonzero-limit",
+          "label": "proposition m2-prop-nonzero-limit",
+          "fullLabel": "proposition m2-prop-nonzero-limit",
+          "kind": "proposition",
+          "source": "A cap event produces a nonzero limit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-nc-core-kernels",
+          "role": "a-cap-event-produces-a-nonzero-limit",
+          "label": "lemma m2-nc-core-kernels",
+          "fullLabel": "lemma m2-nc-core-kernels",
+          "kind": "lemma",
+          "source": "A cap event produces a nonzero limit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-nc-endpoint-tightness",
+          "role": "a-cap-event-produces-a-nonzero-limit",
+          "label": "lemma m2-nc-endpoint-tightness",
+          "fullLabel": "lemma m2-nc-endpoint-tightness",
+          "kind": "lemma",
+          "source": "A cap event produces a nonzero limit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-nc-characteristic-matching",
+          "role": "a-cap-event-produces-a-nonzero-limit",
+          "label": "lemma m2-nc-characteristic-matching",
+          "fullLabel": "lemma m2-nc-characteristic-matching",
+          "kind": "lemma",
+          "source": "A cap event produces a nonzero limit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-nc-two-axial-gains",
+          "role": "a-cap-event-produces-a-nonzero-limit",
+          "label": "lemma m2-nc-two-axial-gains",
+          "fullLabel": "lemma m2-nc-two-axial-gains",
+          "kind": "lemma",
+          "source": "A cap event produces a nonzero limit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-nc-plane-parameters",
+          "role": "a-cap-event-produces-a-nonzero-limit",
+          "label": "lemma m2-nc-plane-parameters",
+          "fullLabel": "lemma m2-nc-plane-parameters",
+          "kind": "lemma",
+          "source": "A cap event produces a nonzero limit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-nc-uniform-pullback",
+          "role": "a-cap-event-produces-a-nonzero-limit",
+          "label": "lemma m2-nc-uniform-pullback",
+          "fullLabel": "lemma m2-nc-uniform-pullback",
+          "kind": "lemma",
+          "source": "A cap event produces a nonzero limit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-five-gain-rank",
+          "role": "a-cap-event-produces-a-nonzero-limit",
+          "label": "lemma m2-lem-five-gain-rank",
+          "fullLabel": "lemma m2-lem-five-gain-rank",
+          "kind": "lemma",
+          "source": "A cap event produces a nonzero limit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-nc-five-nonaxial-gains",
+          "role": "a-cap-event-produces-a-nonzero-limit",
+          "label": "lemma m2-nc-five-nonaxial-gains",
+          "fullLabel": "lemma m2-nc-five-nonaxial-gains",
+          "kind": "lemma",
+          "source": "A cap event produces a nonzero limit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-finite-dilated-horizon",
+          "role": "branching-growth-and-the-dilated-horizon",
+          "label": "proposition m2-prop-finite-dilated-horizon",
+          "fullLabel": "proposition m2-prop-finite-dilated-horizon",
+          "kind": "proposition",
+          "source": "Branching growth and the dilated horizon",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-br-positive-histories",
+          "role": "branching-growth-and-the-dilated-horizon",
+          "label": "lemma m2-br-positive-histories",
+          "fullLabel": "lemma m2-br-positive-histories",
+          "kind": "lemma",
+          "source": "Branching growth and the dilated horizon",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-br-retention",
+          "role": "branching-growth-and-the-dilated-horizon",
+          "label": "lemma m2-br-retention",
+          "fullLabel": "lemma m2-br-retention",
+          "kind": "lemma",
+          "source": "Branching growth and the dilated horizon",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-br-minorization",
+          "role": "branching-growth-and-the-dilated-horizon",
+          "label": "lemma m2-br-minorization",
+          "fullLabel": "lemma m2-br-minorization",
+          "kind": "lemma",
+          "source": "Branching growth and the dilated horizon",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-br-mixing",
+          "role": "branching-growth-and-the-dilated-horizon",
+          "label": "lemma m2-br-mixing",
+          "fullLabel": "lemma m2-br-mixing",
+          "kind": "lemma",
+          "source": "Branching growth and the dilated horizon",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Nonuniqueness-with-local-conservation-for-the-hard-sphere-Boltzmann-equation-October-5-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Nonuniqueness for the periodic hard-sphere Boltzmann equation",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Nonuniqueness-for-the-periodic-hard-sphere-Boltzmann-equation-September-23-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

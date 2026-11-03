@@ -100,14 +100,30 @@ test("the proof-map index, scaffold, deep maps, and API render with explicit sta
   assert.ok(indexHtml.includes("Every result gets a structure"));
   assert.ok(indexHtml.includes("372"));
   assert.ok(indexHtml.includes("Deep argument map"));
+  assert.ok(indexHtml.includes("Paper-derived structure"));
   assert.ok(indexHtml.includes("Metadata scaffold"));
 
-  const scaffold = await fetchPage("/proof-evolution/openai-math/001");
+  const scaffold = await fetchPage("/proof-evolution/openai-math/068");
   assert.equal(scaffold.status, 200);
   const scaffoldHtml = await scaffold.text();
   assert.ok(scaffoldHtml.includes("Metadata scaffold"));
   assert.ok(scaffoldHtml.includes("Structure skeleton"));
   assert.ok(scaffoldHtml.includes("No theorem-level proof chain has been curated yet"));
+
+  const promoted = await fetchPage("/proof-evolution/openai-math/005");
+  assert.equal(promoted.status, 200);
+  const promotedHtml = await promoted.text();
+  assert.ok(promotedHtml.includes("Deep argument map"));
+  assert.ok(promotedHtml.includes("Follow the paper&#x27;s statements and references."));
+  assert.ok(promotedHtml.includes("Machine-promoted from the paper structure"));
+
+  const leanDerived = await fetchPage("/proof-evolution/openai-math/024");
+  assert.equal(leanDerived.status, 200);
+  const leanDerivedHtml = await leanDerived.text();
+  assert.ok(leanDerivedHtml.includes("Lean-derived structure"));
+  assert.ok(leanDerivedHtml.includes("Comparator metadata from the pinned source."));
+  assert.ok(leanDerivedHtml.includes("unverified metadata"));
+  assert.ok(leanDerivedHtml.includes("Comparator source file"));
 
   const deep = await fetchPage("/proof-evolution/openai-math/032");
   assert.equal(deep.status, 200);
@@ -126,9 +142,47 @@ test("the proof-map index, scaffold, deep maps, and API render with explicit sta
   assert.equal(api.status, 200);
   const payload = await api.json();
   assert.equal(payload.entries.length, 372);
-  assert.equal(payload.summary.deep, 4);
+  assert.equal(payload.summary.deep, 343);
   assert.equal(payload.summary.draft, 0);
-  assert.equal(payload.summary.scaffold, 368);
+  assert.equal(payload.summary.paper, 4);
+  assert.equal(payload.summary.paperStatements, 13629);
+  assert.equal(payload.summary.lean, 18);
+  assert.equal(payload.summary.scaffold, 7);
+});
+
+test("Lean metadata is described accurately in both locales", async () => {
+  for (const [locale, expectedIndex, expectedFamily] of [
+    ["en", "unverified metadata", "Comparator source file"],
+    ["zh-CN", "未经验证的元数据", "Comparator 源文件"],
+  ]) {
+    for (const [path, expected] of [["/proof-evolution", expectedIndex], ["/proof-evolution/openai-math/024", expectedFamily]]) {
+      const response = await runtime.dispatchFetch(`http://localhost${path}`, { headers: { accept: "text/html", cookie: `pw_locale=${locale}` } });
+      assert.equal(response.status, 200);
+      const html = await response.text();
+      assert.ok(html.includes(expected), `${locale} ${path}`);
+      assert.ok(!html.includes("proving theorems"), `${locale} ${path}`);
+      assert.ok(!html.includes("求解定理"), `${locale} ${path}`);
+    }
+  }
+});
+
+test("machine-extracted maps are not presented as curated proof dependencies", async () => {
+  for (const [locale, indexText, familyText] of [
+    ["en", "Extracted relations are unverified", "Machine-extracted paper references"],
+    ["zh-CN", "抽取的关系未经验证", "从论文中机器抽取的引用"],
+  ]) {
+    for (const [path, expected] of [["/proof-evolution", indexText], ["/proof-evolution/openai-math/050", familyText]]) {
+      const response = await runtime.dispatchFetch(`http://localhost${path}`, { headers: { accept: "text/html", cookie: `pw_locale=${locale}` } });
+      assert.equal(response.status, 200);
+      const html = await response.text();
+      assert.ok(html.includes(expected), `${locale} ${path}`);
+      if (path.endsWith("050")) {
+        const visibleHtml = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "");
+        assert.ok(!visibleHtml.includes("theorem-level dependencies are curated"));
+        assert.ok(!visibleHtml.includes("定理级依赖已策展"));
+      }
+    }
+  }
 });
 
 
@@ -175,4 +229,23 @@ test("the Lean coverage index, family section, and API expose real modules", asy
   assert.equal(leanPayload.summary.familiesWithComparators, 242);
   assert.equal(leanPayload.summary.comparatorLinks, 426);
   assert.equal(leanPayload.summary.solutionFetched, 426);
+});
+
+test("reading guides and filters remain available in both locales", async () => {
+  for (const [locale, label, heading] of [
+    ["en", "Reading guide", "Proofweave reading guide"],
+    ["zh-CN", "阅读指南", "Proofweave 阅读指南"],
+  ]) {
+    const headers = { accept: "text/html", cookie: `pw_locale=${locale}` };
+    const list = await runtime.dispatchFetch("http://localhost/publications?reading=guided", { headers });
+    assert.equal(list.status, 200);
+    const listHtml = await list.text();
+    assert.ok(listHtml.includes(label));
+    assert.match(listHtml, /name="reading"/);
+    const family = await runtime.dispatchFetch("http://localhost/publications/openai-math/026", { headers });
+    assert.equal(family.status, 200);
+    const html = await family.text();
+    assert.ok(html.includes(heading));
+    assert.match(html, /id="reading-guide"/);
+  }
 });

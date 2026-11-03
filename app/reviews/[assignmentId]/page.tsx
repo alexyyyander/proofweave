@@ -14,28 +14,31 @@ import { getDelegationRepository } from "@/db/repositories/delegation";
 import { getReviewAssignmentRepository } from "@/db/repositories/reviews";
 import { ReviewAssignmentWorkspace } from "../ReviewAssignmentWorkspace";
 import { personalWritesPaused, ReadOnlyPersonalSurface } from "@/app/lib/read-only-personal-surface";
+import { getI18n } from "@/app/i18n/server";
+import type { Translator } from "@/app/i18n/translate";
 
 export const dynamic = "force-dynamic";
 
 export default async function ReviewAssignmentPage({ params }: { params: Promise<{ assignmentId: string }> }) {
+  const { t } = await getI18n();
   const { assignmentId } = await params;
   const readOnly = personalWritesPaused();
   const user = await getCurrentUser();
-  if (!user) return <ReviewAssignmentMessage signInPath={signInPath(`/reviews/${encodeURIComponent(assignmentId)}`)} />;
+  if (!user) return <ReviewAssignmentMessage signInPath={signInPath(`/reviews/${encodeURIComponent(assignmentId)}`)} t={t} />;
   if (readOnly) {
     return <ReadOnlyPersonalSurface
       active="review"
-      eyebrow="Review workspace · read-only maintenance"
-      title="This private review workspace is temporarily paused."
-      detail="The assignment and its controlled evidence are not loaded during maintenance. Assignment decisions, replay requests, and signed review submissions are unavailable, and no placeholder review record is shown."
+      eyebrow={t("reviewWorkspace.readOnly.eyebrow")}
+      title={t("reviewWorkspace.readOnly.title")}
+      detail={t("reviewWorkspace.readOnly.detail")}
     />;
   }
   const result = await loadReviewAssignment(user, assignmentId);
-  if (result.unavailable) return <ReviewAssignmentMessage unavailable />;
+  if (result.unavailable) return <ReviewAssignmentMessage unavailable t={t} />;
   if (!result.review) notFound();
   return <SiteFrame className="site-shell app-shell" active="review" mainClassName="page-main review-main review-workspace-main personal-workspace-main">
       <PersonalWorkspaceFrame active="reviews">
-        <Breadcrumb><Link href="/reviews">Verification market</Link><span> / </span><span>Review workspace</span></Breadcrumb>
+        <Breadcrumb aria-label={t("common.breadcrumb")}><Link href="/reviews">{t("reviewWorkspace.breadcrumb.market")}</Link><span> / </span><span>{t("reviewWorkspace.breadcrumb.workspace")}</span></Breadcrumb>
         <ReviewAssignmentWorkspace initialReview={result.review} hasReviewDelegation={result.hasReviewDelegation} />
       </PersonalWorkspaceFrame>
     </SiteFrame>;
@@ -55,12 +58,12 @@ async function loadReviewAssignment(user: NonNullable<Awaited<ReturnType<typeof 
   }
 }
 
-function ReviewAssignmentMessage({ signInPath: loginPath, unavailable }: { signInPath?: string; unavailable?: boolean }) {
+function ReviewAssignmentMessage({ signInPath: loginPath, unavailable, t }: { signInPath?: string; unavailable?: boolean; t: Translator }) {
   return <SiteFrame className="site-shell app-shell" active="review" mainClassName="page-main review-main personal-workspace-main">
       <PersonalWorkspaceFrame active="reviews">
-        <Breadcrumb><Link href="/reviews">Verification market</Link><span> / </span><span>Controlled review</span></Breadcrumb>
-        <SectionHeading as="section" className="review-heading"><div><p className="eyebrow">Person-addressed review</p><PageTitle>{unavailable ? "Review work is temporarily unavailable." : "Sign in to open this review workspace."}</PageTitle><p>{unavailable ? "No unverified fallback assignment is shown while storage is unavailable." : "Only the Person assigned to this independent review can inspect its Bundle, replay state, and immutable decision history."}</p></div><Badge className="record-chip">{unavailable ? "Unavailable" : "Personal"}</Badge></SectionHeading>
-        {loginPath && <ActionLink className="button button-primary review-sign-in" href={loginPath}>Sign in to continue <span aria-hidden="true">→</span></ActionLink>}
+        <Breadcrumb aria-label={t("common.breadcrumb")}><Link href="/reviews">{t("reviewWorkspace.breadcrumb.market")}</Link><span> / </span><span>{t("reviewWorkspace.breadcrumb.controlled")}</span></Breadcrumb>
+        <SectionHeading as="section" className="review-heading"><div><p className="eyebrow">{t("reviewWorkspace.message.eyebrow")}</p><PageTitle>{unavailable ? t("reviewWorkspace.message.unavailableTitle") : t("reviewWorkspace.message.signInTitle")}</PageTitle><p>{unavailable ? t("reviewWorkspace.message.unavailableBody") : t("reviewWorkspace.message.signInBody")}</p></div><Badge className="record-chip">{unavailable ? t("reviewWorkspace.message.unavailable") : t("reviewWorkspace.message.personal")}</Badge></SectionHeading>
+        {loginPath && <ActionLink className="button button-primary review-sign-in" href={loginPath}>{t("reviewWorkspace.message.signInAction")} <span aria-hidden="true">→</span></ActionLink>}
       </PersonalWorkspaceFrame>
     </SiteFrame>;
 }

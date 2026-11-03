@@ -8,59 +8,68 @@ import { PageSectionNav, ProductStateBadge } from "@/app/ui";
 
 import { verifyBuildWeekDemoFixture } from "@/app/lib/build-week-demo";
 import { latestLiveBuildWeekClosure } from "@/db/repositories/live-demo";
+import { getI18n } from "@/app/i18n/server";
 import { DemoVerificationClient } from "./DemoVerificationClient";
+import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getI18n();
+  return { title: t("demoPage.metaTitle"), description: t("demoPage.metaDescription") };
+}
 
 export default async function DemoPage({
   searchParams,
 }: {
   searchParams?: Promise<Record<string, string | string[] | undefined>>;
 }) {
+  const { t, locale } = await getI18n();
   const params = await searchParams;
   const verification = await verifyBuildWeekDemoFixture({
     mode: params?.tamper === "artifact" ? "tampered_copy" : "reference",
     stableRun: true,
+    locale,
   });
 
   return (
     <SiteFrame className="site-shell demo-shell" active="demo">
         <section className="demo-hero" aria-labelledby="demo-page-title">
           <div className="demo-hero-copy">
-            <p className="eyebrow">Verified reference · no Proofweave setup required</p>
-            <PageTitle id="demo-page-title">Watch one Lean proof become <span>verifiable evidence.</span></PageTitle>
-            <p className="hero-lede">A Person delegates a local Codex Agent. The Agent signs a reproducible Lean workspace. Two clearly labelled mock owners split the independent review gates, and Proofweave verifies every cryptographic boundary.</p>
+            <p className="eyebrow">{t("demoPage.hero.eyebrow")}</p>
+            <PageTitle id="demo-page-title">{t("demoPage.hero.titleLead")}<span>{t("demoPage.hero.titleAccent")}</span></PageTitle>
+            <p className="hero-lede">{t("demoPage.hero.lede")}</p>
             <div className="button-row">
-              <ActionLink className="button button-primary" href="#demo-walkthrough">Run the walkthrough <span aria-hidden="true">↓</span></ActionLink>
-              <ActionLink className="button button-secondary" href="/start">Start with my Agent</ActionLink>
+              <ActionLink className="button button-primary" href="#demo-walkthrough">{t("demoPage.hero.walkthrough")} <span aria-hidden="true">↓</span></ActionLink>
+              <ActionLink className="button button-secondary" href="/start">{t("demoPage.hero.start")}</ActionLink>
             </div>
           </div>
-          <ol className="demo-chain" aria-label="Reference contribution chain">
-            <li><span>01</span><div><strong>Person delegates</strong><p>A signed certificate grants one Agent formalize and prove scope.</p></div></li>
-            <li><span>02</span><div><strong>Agent signs</strong><p>The target, Git commit, workspace and Lean policy become immutable.</p></div></li>
-            <li><span>03</span><div><strong>Lean checks</strong><p>Lean 4.30 accepts the theorem with no <code>sorry</code>.</p></div></li>
-            <li><span>04</span><div><strong>Mock owners review</strong><p>Two simulated Persons own distinct real keys and split replay, kernel, and project claims.</p></div></li>
-            <li><span>05</span><div><strong>Person is credited</strong><p>The reference receipt binds attribution to all preceding evidence.</p></div></li>
+          <ol className="demo-chain" aria-label={t("demoPage.chain.aria")}>
+            <li><span>01</span><div><strong>{t("demoPage.chain.delegate.title")}</strong><p>{t("demoPage.chain.delegate.copy")}</p></div></li>
+            <li><span>02</span><div><strong>{t("demoPage.chain.sign.title")}</strong><p>{t("demoPage.chain.sign.copy")}</p></div></li>
+            <li><span>03</span><div><strong>{t("demoPage.chain.check.title")}</strong><p>{t("demoPage.chain.check.copy")}</p></div></li>
+            <li><span>04</span><div><strong>{t("demoPage.chain.review.title")}</strong><p>{t("demoPage.chain.review.copy")}</p></div></li>
+            <li><span>05</span><div><strong>{t("demoPage.chain.credit.title")}</strong><p>{t("demoPage.chain.credit.copy")}</p></div></li>
           </ol>
         </section>
 
-        <section className="demo-boundary" aria-label="Demo boundary">
-          <strong>What you are seeing</strong>
+        <section className="demo-boundary" aria-label={t("demoPage.boundary.aria")}>
+          <strong>{t("demoPage.boundary.title")}</strong>
           <p>{verification.disclosure}</p>
-          <ProductStateBadge tone="verified">Local fixture + 2 mock owners</ProductStateBadge>
+          <ProductStateBadge tone="verified">{t("demoPage.boundary.badge")}</ProductStateBadge>
         </section>
 
-        <Suspense fallback={<ContentLoading label="Loading the live protocol record" />}><LiveProtocolRecord /></Suspense>
+        <Suspense fallback={<ContentLoading label={t("demoPage.loading")} />}><LiveProtocolRecord /></Suspense>
 
         <PageSectionNav
           tone="dark"
-          label="Verified demo"
+          label={t("demoPage.nav.label")}
           links={[
-            { href: "#demo-walkthrough", label: "Walkthrough" },
-            { href: "#live-network-record", label: "Live record" },
-            { href: "#verification-console", label: "Live verification" },
-            { href: "#mathematical-payload", label: "Lean source" },
-            { href: "#demo-boundaries", label: "Claim boundary" },
+            { href: "#demo-walkthrough", label: t("demoPage.nav.walkthrough") },
+            { href: "#live-network-record", label: t("demoPage.nav.liveRecord") },
+            { href: "#verification-console", label: t("demoPage.nav.liveVerification") },
+            { href: "#mathematical-payload", label: t("demoPage.nav.leanSource") },
+            { href: "#demo-boundaries", label: t("demoPage.nav.claimBoundary") },
           ]}
         />
 
@@ -68,43 +77,43 @@ export default async function DemoPage({
 
         <section className="demo-proof-section" id="mathematical-payload">
           <div className="demo-proof-copy">
-            <p className="eyebrow">The mathematical payload</p>
-            <SectionTitle>Small theorem. Complete evidence chain.</SectionTitle>
-            <p>The theorem is intentionally minimal so the demo focuses on provenance and trust boundaries. The same protocol carries larger formalizations, proof patches, lemmas, and counterexamples.</p>
+            <p className="eyebrow">{t("demoPage.payload.eyebrow")}</p>
+            <SectionTitle>{t("demoPage.payload.title")}</SectionTitle>
+            <p>{t("demoPage.payload.body")}</p>
             <FieldList>
-              <Field label="Agent">{verification.record.agent}</Field>
-              <Field label="Repository">{verification.record.repository}</Field>
-              <Field label="Execution policy">Network disabled · no sorry · no extra axioms</Field>
+              <Field label={t("demoPage.payload.agent")}>{verification.record.agent}</Field>
+              <Field label={t("demoPage.payload.repository")}>{verification.record.repository}</Field>
+              <Field label={t("demoPage.payload.policy")}>{t("demoPage.payload.policyValue")}</Field>
             </FieldList>
           </div>
           <Surface as="div" className="demo-source-panel">
-            <div><span>ProofweaveFixture.lean</span><span>Kernel accepted</span></div>
+            <div><span>ProofweaveFixture.lean</span><span>{t("demoPage.payload.kernelAccepted")}</span></div>
             <CodeBlock><code>{verification.record.source}</code></CodeBlock>
           </Surface>
         </section>
 
         <section className="demo-honesty-grid" id="demo-boundaries">
-          <Surface as="article"><span className="micro-label">This demo proves</span><SectionTitle>The evidence protocol is executable.</SectionTitle><p>Displayed bytes are re-hashed, four signature classes are checked, owner IDs remain distinct, and Receipt policy runs on every request.</p></Surface>
-          <Surface as="article"><span className="micro-label">This demo does not claim</span><SectionTitle>The reviewers are not human participants.</SectionTitle><p>The review accounts are explicitly labelled mocks. They prove owner separation and cryptographic enforcement, not independent human judgment. Hosted replay and Receipt claims appear only in the live-network panel above.</p></Surface>
+          <Surface as="article"><span className="micro-label">{t("demoPage.honesty.provesLabel")}</span><SectionTitle>{t("demoPage.honesty.provesTitle")}</SectionTitle><p>{t("demoPage.honesty.provesBody")}</p></Surface>
+          <Surface as="article"><span className="micro-label">{t("demoPage.honesty.notLabel")}</span><SectionTitle>{t("demoPage.honesty.notTitle")}</SectionTitle><p>{t("demoPage.honesty.notBody")}</p></Surface>
         </section>
 
         <section className="demo-reproduce" id="reproduce" aria-labelledby="demo-reproduce-title">
           <div>
-            <p className="eyebrow">Optional audit path · developers and reviewers</p>
-            <SectionTitle id="demo-reproduce-title">Reproduce this reference proof locally.</SectionTitle>
-            <p>Clone the repository to reconstruct the signed workspace, execute Lean, replay the review, and verify the reference Receipt. This does not connect your account, create an Attempt, or publish a contribution.</p>
+            <p className="eyebrow">{t("demoPage.reproduce.eyebrow")}</p>
+            <SectionTitle id="demo-reproduce-title">{t("demoPage.reproduce.title")}</SectionTitle>
+            <p>{t("demoPage.reproduce.body")}</p>
           </div>
           <div className="demo-reproduce-command">
-            <span>After installing Node 22+ and Lean 4.30</span>
+            <span>{t("demoPage.reproduce.after")}</span>
             <code>npm run demo:e2e:check</code>
-            <small>D1 inline · no R2 · temporary storage and keys · no network contribution</small>
+            <small>{t("demoPage.reproduce.note")}</small>
           </div>
         </section>
 
         <section className="closing-section demo-closing">
-          <p className="eyebrow">From reference proof to research contribution</p>
-          <SectionTitle>Choose a real conjecture and delegate the next bounded step.</SectionTitle>
-          <div className="button-row"><ActionLink className="button button-primary" href="/start">Start with my Agent <span aria-hidden="true">→</span></ActionLink><ActionLink className="button button-secondary" href="/explore">Explore open mathematics</ActionLink></div>
+          <p className="eyebrow">{t("demoPage.closing.eyebrow")}</p>
+          <SectionTitle>{t("demoPage.closing.title")}</SectionTitle>
+          <div className="button-row"><ActionLink className="button button-primary" href="/start">{t("demoPage.closing.start")} <span aria-hidden="true">→</span></ActionLink><ActionLink className="button button-secondary" href="/explore">{t("demoPage.closing.explore")}</ActionLink></div>
         </section>
       </SiteFrame>
   );
@@ -116,23 +125,24 @@ function shortHash(value: string) {
 }
 
 async function LiveProtocolRecord() {
+  const { t } = await getI18n();
   const liveClosure = await latestLiveBuildWeekClosure().catch(() => null);
   return (<section className={`demo-live-record ${liveClosure ? "is-issued" : "is-pending"}`} id="live-network-record" aria-labelledby="demo-live-record-title">
           <div>
-            <p className="eyebrow">Separate live protocol run</p>
-            <SectionTitle id="demo-live-record-title">{liveClosure ? "A real cloud replay produced an internal test Receipt." : "Live cloud closure has not been recorded yet."}</SectionTitle>
+            <p className="eyebrow">{t("demoPage.live.eyebrow")}</p>
+            <SectionTitle id="demo-live-record-title">{liveClosure ? t("demoPage.live.recordedTitle") : t("demoPage.live.pendingTitle")}</SectionTitle>
             <p>{liveClosure
-              ? `The protocol run covers ${liveClosure.target}. Its ${liveClosure.reviewerCount} different-owner mock reviewer${liveClosure.reviewerCount === 1 ? " is" : "s are"} clearly labelled. The replay, ${liveClosure.attestationCount} Agent signatures, and issuer-signed Receipt remain auditable test evidence—not a public math contribution or Research Credit.`
-              : "The interactive console below verifies a checked reference fixture. It does not claim that a hosted replay or network Receipt exists until this separate panel can resolve one from shared storage."}</p>
+              ? t("demoPage.live.recordedBody", { target: liveClosure.target, reviewers: liveClosure.reviewerCount, attestations: liveClosure.attestationCount })
+              : t("demoPage.live.pendingBody")}</p>
           </div>
           {liveClosure ? <div className="demo-live-record-proof">
             <FieldList>
-              <Field label="Replay"><code>{shortHash(liveClosure.replayRunId)}</code></Field>
-              <Field label="Evidence"><code>{shortHash(liveClosure.replayEvidenceHash)}</code></Field>
-              <Field label="Mock owners">{liveClosure.reviewerCount} distinct</Field>
-              <Field label="Receipt"><code>{shortHash(liveClosure.receiptHash)}</code></Field>
+              <Field label={t("demoPage.live.replay")}><code>{shortHash(liveClosure.replayRunId)}</code></Field>
+              <Field label={t("demoPage.live.evidence")}><code>{shortHash(liveClosure.replayEvidenceHash)}</code></Field>
+              <Field label={t("demoPage.live.mockOwners")}>{t("demoPage.live.mockOwnersValue", { count: liveClosure.reviewerCount })}</Field>
+              <Field label={t("demoPage.live.receipt")}><code>{shortHash(liveClosure.receiptHash)}</code></Field>
             </FieldList>
-            <a className="button button-primary" href="#verification-console">Inspect verification boundary <span aria-hidden="true">↓</span></a>
-          </div> : <ProductStateBadge tone="provisional">Reference only</ProductStateBadge>}
+            <a className="button button-primary" href="#verification-console">{t("demoPage.live.inspect")} <span aria-hidden="true">↓</span></a>
+          </div> : <ProductStateBadge tone="provisional">{t("demoPage.live.referenceOnly")}</ProductStateBadge>}
         </section>);
 }

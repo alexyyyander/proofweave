@@ -1,0 +1,942 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "260",
+  "title": "Spacetime Penrose inequalities: enclosing area, charge, rotation, and anti-de Sitter extensions",
+  "result": {
+    "id": "paper-result",
+    "label": "Spacetime Penrose inequalities: enclosing area, charge, rotation, and anti-de Sitter extensions",
+    "statement": "Proves the sharp enclosing-area spacetime Penrose inequality for smooth one-ended asymptotically flat initial data in every spatial dimension n ≥ 3, under dominant energy, weak future trapping, positive enclosing area, and the stated decay assumptions. It bounds invariant ADM mass below using minimum enclosing area, with equality rigidity under additional horizon hypotheses. Charged upper-area bounds treat dyonic three-dimensional data; the higher-dimensional purely electric extension uses the matched neutral theorem.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "initial-data-and-the-main-theorems",
+      "label": "Initial data and the main theorems",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "full-enclosing-cuts-and-their-minimizing-frontiers",
+      "label": "Full enclosing cuts and their minimizing frontiers",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "charge-preserving-preparation-of-the-asymptotic-end",
+      "label": "Charge-preserving preparation of the asymptotic end",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-filled-scalar-system-and-its-coercive-identity",
+      "label": "The filled scalar system and its coercive identity",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "height-floor-exclusion-and-quantitative-distortion",
+      "label": "Height, floor exclusion, and quantitative distortion",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-elliptic-construction-and-its-physical-end",
+      "label": "The elliptic construction and its physical end",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "charged-comparison-and-the-numerical-inequality",
+      "label": "Charged comparison and the numerical inequality",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "equality-and-multipliers-on-the-original-data",
+      "label": "Equality and multipliers on the original data",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-communicating-stationary-region-and-a-maximal-hypersurfa",
+      "label": "The communicating stationary region and a maximal hypersurface",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "staticity-recovery-of-the-original-data-and-sharpness",
+      "label": "Staticity, recovery of the original data, and sharpness",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "data-conventions-and-the-precise-conclusions",
+      "label": "Data, conventions, and the precise conclusions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "area-positivity-and-preparation-of-the-asymptotic-end",
+      "label": "Area positivity and preparation of the asymptotic end",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "The spacetime Penrose inequality with charge and original-data rigidity",
+      "title": "The spacetime Penrose inequality with charge and original-data rigidity",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-spacetime-Penrose-inequality-with-charge-and-original-data-rigidity-October-5-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from The spacetime Penrose inequality with charge and original-data rigidity.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-numerical",
+          "role": "initial-data-and-the-main-theorems",
+          "label": "theorem m1-thm-numerical",
+          "fullLabel": "theorem m1-thm-numerical",
+          "kind": "theorem",
+          "source": "Initial data and the main theorems",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-en-rest-preparation"
+          ]
+        },
+        {
+          "id": "m1-thm-rigidity",
+          "role": "initial-data-and-the-main-theorems",
+          "label": "theorem m1-thm-rigidity",
+          "fullLabel": "theorem m1-thm-rigidity",
+          "kind": "theorem",
+          "source": "Initial data and the main theorems",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-va-stationary-data",
+            "m1-st-maximal-slice"
+          ]
+        },
+        {
+          "id": "m1-thm-converse",
+          "role": "initial-data-and-the-main-theorems",
+          "label": "theorem m1-thm-converse",
+          "fullLabel": "theorem m1-thm-converse",
+          "kind": "theorem",
+          "source": "Initial data and the main theorems",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ct-flux",
+          "role": "full-enclosing-cuts-and-their-minimizing-frontiers",
+          "label": "lemma m1-ct-flux",
+          "fullLabel": "lemma m1-ct-flux",
+          "kind": "lemma",
+          "source": "Full enclosing cuts and their minimizing frontiers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ct-full-cut-positive",
+          "role": "full-enclosing-cuts-and-their-minimizing-frontiers",
+          "label": "proposition m1-ct-full-cut-positive",
+          "fullLabel": "proposition m1-ct-full-cut-positive",
+          "kind": "proposition",
+          "source": "Full enclosing cuts and their minimizing frontiers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ct-confinement",
+          "role": "full-enclosing-cuts-and-their-minimizing-frontiers",
+          "label": "lemma m1-ct-confinement",
+          "fullLabel": "lemma m1-ct-confinement",
+          "kind": "lemma",
+          "source": "Full enclosing cuts and their minimizing frontiers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ct-perimeter-equivalence",
+          "role": "full-enclosing-cuts-and-their-minimizing-frontiers",
+          "label": "proposition m1-ct-perimeter-equivalence",
+          "fullLabel": "proposition m1-ct-perimeter-equivalence",
+          "kind": "proposition",
+          "source": "Full enclosing cuts and their minimizing frontiers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ct-minimal-obstacle",
+          "role": "full-enclosing-cuts-and-their-minimizing-frontiers",
+          "label": "corollary m1-ct-minimal-obstacle",
+          "fullLabel": "corollary m1-ct-minimal-obstacle",
+          "kind": "corollary",
+          "source": "Full enclosing cuts and their minimizing frontiers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ct-metric-comparison",
+          "role": "full-enclosing-cuts-and-their-minimizing-frontiers",
+          "label": "corollary m1-ct-metric-comparison",
+          "fullLabel": "corollary m1-ct-metric-comparison",
+          "kind": "corollary",
+          "source": "Full enclosing cuts and their minimizing frontiers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ct-strict-compactness",
+          "role": "full-enclosing-cuts-and-their-minimizing-frontiers",
+          "label": "proposition m1-ct-strict-compactness",
+          "fullLabel": "proposition m1-ct-strict-compactness",
+          "kind": "proposition",
+          "source": "Full enclosing cuts and their minimizing frontiers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ct-area-derivative",
+          "role": "full-enclosing-cuts-and-their-minimizing-frontiers",
+          "label": "proposition m1-ct-area-derivative",
+          "fullLabel": "proposition m1-ct-area-derivative",
+          "kind": "proposition",
+          "source": "Full enclosing cuts and their minimizing frontiers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ct-compatible-planes",
+          "role": "full-enclosing-cuts-and-their-minimizing-frontiers",
+          "label": "lemma m1-ct-compatible-planes",
+          "fullLabel": "lemma m1-ct-compatible-planes",
+          "kind": "lemma",
+          "source": "Full enclosing cuts and their minimizing frontiers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-en-conformal",
+          "role": "charge-preserving-preparation-of-the-asymptotic-end",
+          "label": "lemma m1-en-conformal",
+          "fullLabel": "lemma m1-en-conformal",
+          "kind": "lemma",
+          "source": "Charge-preserving preparation of the asymptotic end",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-en-adm-flux",
+          "role": "charge-preserving-preparation-of-the-asymptotic-end",
+          "label": "lemma m1-en-adm-flux",
+          "fullLabel": "lemma m1-en-adm-flux",
+          "kind": "lemma",
+          "source": "Charge-preserving preparation of the asymptotic end",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-en-strictification",
+          "role": "charge-preserving-preparation-of-the-asymptotic-end",
+          "label": "lemma m1-en-strictification",
+          "fullLabel": "lemma m1-en-strictification",
+          "kind": "lemma",
+          "source": "Charge-preserving preparation of the asymptotic end",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-en-timelike-reduction",
+          "role": "charge-preserving-preparation-of-the-asymptotic-end",
+          "label": "lemma m1-en-timelike-reduction",
+          "fullLabel": "lemma m1-en-timelike-reduction",
+          "kind": "lemma",
+          "source": "Charge-preserving preparation of the asymptotic end",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-en-compact-inverses",
+          "role": "charge-preserving-preparation-of-the-asymptotic-end",
+          "label": "lemma m1-en-compact-inverses",
+          "fullLabel": "lemma m1-en-compact-inverses",
+          "kind": "lemma",
+          "source": "Charge-preserving preparation of the asymptotic end",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-en-annular-replacement",
+          "role": "charge-preserving-preparation-of-the-asymptotic-end",
+          "label": "lemma m1-en-annular-replacement",
+          "fullLabel": "lemma m1-en-annular-replacement",
+          "kind": "lemma",
+          "source": "Charge-preserving preparation of the asymptotic end",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-en-rest-preparation",
+          "role": "charge-preserving-preparation-of-the-asymptotic-end",
+          "label": "proposition m1-en-rest-preparation",
+          "fullLabel": "proposition m1-en-rest-preparation",
+          "kind": "proposition",
+          "source": "Charge-preserving preparation of the asymptotic end",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sy-filled-setup",
+          "role": "the-filled-scalar-system-and-its-coercive-identity",
+          "label": "lemma m1-sy-filled-setup",
+          "fullLabel": "lemma m1-sy-filled-setup",
+          "kind": "lemma",
+          "source": "The filled scalar system and its coercive identity",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sy-scalar-identity",
+          "role": "the-filled-scalar-system-and-its-coercive-identity",
+          "label": "proposition m1-sy-scalar-identity",
+          "fullLabel": "proposition m1-sy-scalar-identity",
+          "kind": "proposition",
+          "source": "The filled scalar system and its coercive identity",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sy-coercivity",
+          "role": "the-filled-scalar-system-and-its-coercive-identity",
+          "label": "proposition m1-sy-coercivity",
+          "fullLabel": "proposition m1-sy-coercivity",
+          "kind": "proposition",
+          "source": "The filled scalar system and its coercive identity",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sy-stationary-minimum",
+          "role": "the-filled-scalar-system-and-its-coercive-identity",
+          "label": "lemma m1-sy-stationary-minimum",
+          "fullLabel": "lemma m1-sy-stationary-minimum",
+          "kind": "lemma",
+          "source": "The filled scalar system and its coercive identity",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sy-zero-trace-reduction",
+          "role": "the-filled-scalar-system-and-its-coercive-identity",
+          "label": "lemma m1-sy-zero-trace-reduction",
+          "fullLabel": "lemma m1-sy-zero-trace-reduction",
+          "kind": "lemma",
+          "source": "The filled scalar system and its coercive identity",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-es-height",
+          "role": "height-floor-exclusion-and-quantitative-distortion",
+          "label": "lemma m1-es-height",
+          "fullLabel": "lemma m1-es-height",
+          "kind": "lemma",
+          "source": "Height, floor exclusion, and quantitative distortion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-es-floor",
+          "role": "height-floor-exclusion-and-quantitative-distortion",
+          "label": "lemma m1-es-floor",
+          "fullLabel": "lemma m1-es-floor",
+          "kind": "lemma",
+          "source": "Height, floor exclusion, and quantitative distortion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-es-high-integral",
+          "role": "height-floor-exclusion-and-quantitative-distortion",
+          "label": "lemma m1-es-high-integral",
+          "fullLabel": "lemma m1-es-high-integral",
+          "kind": "lemma",
+          "source": "Height, floor exclusion, and quantitative distortion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-es-sobolev",
+          "role": "height-floor-exclusion-and-quantitative-distortion",
+          "label": "lemma m1-es-sobolev",
+          "fullLabel": "lemma m1-es-sobolev",
+          "kind": "lemma",
+          "source": "Height, floor exclusion, and quantitative distortion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-es-energy",
+          "role": "height-floor-exclusion-and-quantitative-distortion",
+          "label": "lemma m1-es-energy",
+          "fullLabel": "lemma m1-es-energy",
+          "kind": "lemma",
+          "source": "Height, floor exclusion, and quantitative distortion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-es-distortion",
+          "role": "height-floor-exclusion-and-quantitative-distortion",
+          "label": "proposition m1-es-distortion",
+          "fullLabel": "proposition m1-es-distortion",
+          "kind": "proposition",
+          "source": "Height, floor exclusion, and quantitative distortion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-so-rough-gradient",
+          "role": "the-elliptic-construction-and-its-physical-end",
+          "label": "lemma m1-so-rough-gradient",
+          "fullLabel": "lemma m1-so-rough-gradient",
+          "kind": "lemma",
+          "source": "The elliptic construction and its physical end",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-so-potential",
+          "role": "the-elliptic-construction-and-its-physical-end",
+          "label": "lemma m1-so-potential",
+          "fullLabel": "lemma m1-so-potential",
+          "kind": "lemma",
+          "source": "The elliptic construction and its physical end",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-so-coupled-regularity",
+          "role": "the-elliptic-construction-and-its-physical-end",
+          "label": "proposition m1-so-coupled-regularity",
+          "fullLabel": "proposition m1-so-coupled-regularity",
+          "kind": "proposition",
+          "source": "The elliptic construction and its physical end",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-so-trial-trace",
+          "role": "the-elliptic-construction-and-its-physical-end",
+          "label": "proposition m1-so-trial-trace",
+          "fullLabel": "proposition m1-so-trial-trace",
+          "kind": "proposition",
+          "source": "The elliptic construction and its physical end",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-so-filled-solver",
+          "role": "the-elliptic-construction-and-its-physical-end",
+          "label": "theorem m1-so-filled-solver",
+          "fullLabel": "theorem m1-so-filled-solver",
+          "kind": "theorem",
+          "source": "The elliptic construction and its physical end",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cp-mass-cost",
+          "role": "charged-comparison-and-the-numerical-inequality",
+          "label": "lemma m1-cp-mass-cost",
+          "fullLabel": "lemma m1-cp-mass-cost",
+          "kind": "lemma",
+          "source": "Charged comparison and the numerical inequality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cp-height-gap",
+          "role": "charged-comparison-and-the-numerical-inequality",
+          "label": "lemma m1-cp-height-gap",
+          "fullLabel": "lemma m1-cp-height-gap",
+          "kind": "lemma",
+          "source": "Charged comparison and the numerical inequality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cp-curvature",
+          "role": "charged-comparison-and-the-numerical-inequality",
+          "label": "lemma m1-cp-curvature",
+          "fullLabel": "lemma m1-cp-curvature",
+          "kind": "lemma",
+          "source": "Charged comparison and the numerical inequality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cp-flux-projection",
+          "role": "charged-comparison-and-the-numerical-inequality",
+          "label": "lemma m1-cp-flux-projection",
+          "fullLabel": "lemma m1-cp-flux-projection",
+          "kind": "lemma",
+          "source": "Charged comparison and the numerical inequality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cp-outermost-enclosure",
+          "role": "charged-comparison-and-the-numerical-inequality",
+          "label": "lemma m1-cp-outermost-enclosure",
+          "fullLabel": "lemma m1-cp-outermost-enclosure",
+          "kind": "lemma",
+          "source": "Charged comparison and the numerical inequality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cp-contact-exclusion",
+          "role": "charged-comparison-and-the-numerical-inequality",
+          "label": "lemma m1-cp-contact-exclusion",
+          "fullLabel": "lemma m1-cp-contact-exclusion",
+          "kind": "lemma",
+          "source": "Charged comparison and the numerical inequality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cp-charged-comparison",
+          "role": "charged-comparison-and-the-numerical-inequality",
+          "label": "proposition m1-cp-charged-comparison",
+          "fullLabel": "proposition m1-cp-charged-comparison",
+          "kind": "proposition",
+          "source": "Charged comparison and the numerical inequality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cp-numerical-prepared",
+          "role": "charged-comparison-and-the-numerical-inequality",
+          "label": "proposition m1-cp-numerical-prepared",
+          "fullLabel": "proposition m1-cp-numerical-prepared",
+          "kind": "proposition",
+          "source": "Charged comparison and the numerical inequality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-va-area-envelope",
+          "role": "equality-and-multipliers-on-the-original-data",
+          "label": "lemma m1-va-area-envelope",
+          "fullLabel": "lemma m1-va-area-envelope",
+          "kind": "lemma",
+          "source": "Equality and multipliers on the original data",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-va-separation",
+          "role": "equality-and-multipliers-on-the-original-data",
+          "label": "lemma m1-va-separation",
+          "fullLabel": "lemma m1-va-separation",
+          "kind": "lemma",
+          "source": "Equality and multipliers on the original data",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-va-gaussian-jets",
+          "role": "equality-and-multipliers-on-the-original-data",
+          "label": "lemma m1-va-gaussian-jets",
+          "fullLabel": "lemma m1-va-gaussian-jets",
+          "kind": "lemma",
+          "source": "Equality and multipliers on the original data",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-va-trace-support",
+          "role": "equality-and-multipliers-on-the-original-data",
+          "label": "lemma m1-va-trace-support",
+          "fullLabel": "lemma m1-va-trace-support",
+          "kind": "lemma",
+          "source": "Equality and multipliers on the original data",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-va-enlarged-obstacle",
+          "role": "equality-and-multipliers-on-the-original-data",
+          "label": "proposition m1-va-enlarged-obstacle",
+          "fullLabel": "proposition m1-va-enlarged-obstacle",
+          "kind": "proposition",
+          "source": "Equality and multipliers on the original data",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-va-smooth-moments",
+          "role": "equality-and-multipliers-on-the-original-data",
+          "label": "lemma m1-va-smooth-moments",
+          "fullLabel": "lemma m1-va-smooth-moments",
+          "kind": "lemma",
+          "source": "Equality and multipliers on the original data",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-va-normalization",
+          "role": "equality-and-multipliers-on-the-original-data",
+          "label": "lemma m1-va-normalization",
+          "fullLabel": "lemma m1-va-normalization",
+          "kind": "lemma",
+          "source": "Equality and multipliers on the original data",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-va-stationary-data",
+          "role": "equality-and-multipliers-on-the-original-data",
+          "label": "proposition m1-va-stationary-data",
+          "fullLabel": "proposition m1-va-stationary-data",
+          "kind": "proposition",
+          "source": "Equality and multipliers on the original data",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-va-potentials",
+          "role": "equality-and-multipliers-on-the-original-data",
+          "label": "lemma m1-va-potentials",
+          "fullLabel": "lemma m1-va-potentials",
+          "kind": "lemma",
+          "source": "Equality and multipliers on the original data",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-va-boundary",
+          "role": "equality-and-multipliers-on-the-original-data",
+          "label": "proposition m1-va-boundary",
+          "fullLabel": "proposition m1-va-boundary",
+          "kind": "proposition",
+          "source": "Equality and multipliers on the original data",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-st-communication",
+          "role": "the-communicating-stationary-region-and-a-maximal-hypersurfa",
+          "label": "proposition m1-st-communication",
+          "fullLabel": "proposition m1-st-communication",
+          "kind": "proposition",
+          "source": "The communicating stationary region and a maximal hypersurface",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-st-covariant-jets",
+          "role": "the-communicating-stationary-region-and-a-maximal-hypersurfa",
+          "label": "lemma m1-st-covariant-jets",
+          "fullLabel": "lemma m1-st-covariant-jets",
+          "kind": "lemma",
+          "source": "The communicating stationary region and a maximal hypersurface",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-st-smooth-parity",
+          "role": "the-communicating-stationary-region-and-a-maximal-hypersurfa",
+          "label": "lemma m1-st-smooth-parity",
+          "fullLabel": "lemma m1-st-smooth-parity",
+          "kind": "lemma",
+          "source": "The communicating stationary region and a maximal hypersurface",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-st-attachment",
+          "role": "the-communicating-stationary-region-and-a-maximal-hypersurfa",
+          "label": "proposition m1-st-attachment",
+          "fullLabel": "proposition m1-st-attachment",
+          "kind": "proposition",
+          "source": "The communicating stationary region and a maximal hypersurface",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-st-stationary-end",
+          "role": "the-communicating-stationary-region-and-a-maximal-hypersurfa",
+          "label": "proposition m1-st-stationary-end",
+          "fullLabel": "proposition m1-st-stationary-end",
+          "kind": "proposition",
+          "source": "The communicating stationary region and a maximal hypersurface",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-st-temporal-graph",
+          "role": "the-communicating-stationary-region-and-a-maximal-hypersurfa",
+          "label": "lemma m1-st-temporal-graph",
+          "fullLabel": "lemma m1-st-temporal-graph",
+          "kind": "lemma",
+          "source": "The communicating stationary region and a maximal hypersurface",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-st-attachment-causality",
+          "role": "the-communicating-stationary-region-and-a-maximal-hypersurfa",
+          "label": "lemma m1-st-attachment-causality",
+          "fullLabel": "lemma m1-st-attachment-causality",
+          "kind": "lemma",
+          "source": "The communicating stationary region and a maximal hypersurface",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-st-maximal-slice",
+          "role": "the-communicating-stationary-region-and-a-maximal-hypersurfa",
+          "label": "proposition m1-st-maximal-slice",
+          "fullLabel": "proposition m1-st-maximal-slice",
+          "kind": "proposition",
+          "source": "The communicating stationary region and a maximal hypersurface",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-st-maximal-boundary-graph",
+          "role": "the-communicating-stationary-region-and-a-maximal-hypersurfa",
+          "label": "lemma m1-st-maximal-boundary-graph",
+          "fullLabel": "lemma m1-st-maximal-boundary-graph",
+          "kind": "lemma",
+          "source": "The communicating stationary region and a maximal hypersurface",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ri-orbit-graph",
+          "role": "staticity-recovery-of-the-original-data-and-sharpness",
+          "label": "lemma m1-ri-orbit-graph",
+          "fullLabel": "lemma m1-ri-orbit-graph",
+          "kind": "lemma",
+          "source": "Staticity, recovery of the original data, and sharpness",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ri-staticity",
+          "role": "staticity-recovery-of-the-original-data-and-sharpness",
+          "label": "proposition m1-ri-staticity",
+          "fullLabel": "proposition m1-ri-staticity",
+          "kind": "proposition",
+          "source": "Staticity, recovery of the original data, and sharpness",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ri-static-mass",
+          "role": "staticity-recovery-of-the-original-data-and-sharpness",
+          "label": "lemma m1-ri-static-mass",
+          "fullLabel": "lemma m1-ri-static-mass",
+          "kind": "lemma",
+          "source": "Staticity, recovery of the original data, and sharpness",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ri-rn-identification",
+          "role": "staticity-recovery-of-the-original-data-and-sharpness",
+          "label": "proposition m1-ri-rn-identification",
+          "fullLabel": "proposition m1-ri-rn-identification",
+          "kind": "proposition",
+          "source": "Staticity, recovery of the original data, and sharpness",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ri-original-embedding",
+          "role": "staticity-recovery-of-the-original-data-and-sharpness",
+          "label": "proposition m1-ri-original-embedding",
+          "fullLabel": "proposition m1-ri-original-embedding",
+          "kind": "proposition",
+          "source": "Staticity, recovery of the original data, and sharpness",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ri-sharp-examples",
+          "role": "staticity-recovery-of-the-original-data-and-sharpness",
+          "label": "proposition m1-ri-sharp-examples",
+          "fullLabel": "proposition m1-ri-sharp-examples",
+          "kind": "proposition",
+          "source": "Staticity, recovery of the original data, and sharpness",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "A Charged Reduction of the Spacetime Penrose Inequality in Spatial Dimensions at Least Four",
+      "title": "A Charged Reduction of the Spacetime Penrose Inequality in Spatial Dimensions at Least Four",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Charged-Reduction-of-the-Spacetime-Penrose-Inequality-in-Spatial-Dimensions-at-Least-Four-October-5-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from A Charged Reduction of the Spacetime Penrose Inequality in Spatial Dimensions at Least Four.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-neutral-input",
+          "role": "data-conventions-and-the-precise-conclusions",
+          "label": "theorem m2-thm-neutral-input",
+          "fullLabel": "theorem m2-thm-neutral-input",
+          "kind": "theorem",
+          "source": "Data, conventions, and the precise conclusions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-numerical",
+          "role": "data-conventions-and-the-precise-conclusions",
+          "label": "theorem m2-thm-numerical",
+          "fullLabel": "theorem m2-thm-numerical",
+          "kind": "theorem",
+          "source": "Data, conventions, and the precise conclusions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-rigidity",
+          "role": "data-conventions-and-the-precise-conclusions",
+          "label": "theorem m2-thm-rigidity",
+          "fullLabel": "theorem m2-thm-rigidity",
+          "kind": "theorem",
+          "source": "Data, conventions, and the precise conclusions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-converse",
+          "role": "data-conventions-and-the-precise-conclusions",
+          "label": "theorem m2-thm-converse",
+          "fullLabel": "theorem m2-thm-converse",
+          "kind": "theorem",
+          "source": "Data, conventions, and the precise conclusions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prep-positive-area",
+          "role": "area-positivity-and-preparation-of-the-asymptotic-end",
+          "label": "lemma m2-prep-positive-area",
+          "fullLabel": "lemma m2-prep-positive-area",
+          "kind": "lemma",
+          "source": "Area positivity and preparation of the asymptotic end",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prep-conformal",
+          "role": "area-positivity-and-preparation-of-the-asymptotic-end",
+          "label": "lemma m2-prep-conformal",
+          "fullLabel": "lemma m2-prep-conformal",
+          "kind": "lemma",
+          "source": "Area positivity and preparation of the asymptotic end",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prep-end-increase",
+          "role": "area-positivity-and-preparation-of-the-asymptotic-end",
+          "label": "lemma m2-prep-end-increase",
+          "fullLabel": "lemma m2-prep-end-increase",
+          "kind": "lemma",
+          "source": "Area positivity and preparation of the asymptotic end",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prep-compact-inverses",
+          "role": "area-positivity-and-preparation-of-the-asymptotic-end",
+          "label": "lemma m2-prep-compact-inverses",
+          "fullLabel": "lemma m2-prep-compact-inverses",
+          "kind": "lemma",
+          "source": "Area positivity and preparation of the asymptotic end",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prep-strictification",
+          "role": "area-positivity-and-preparation-of-the-asymptotic-end",
+          "label": "lemma m2-prep-strictification",
+          "fullLabel": "lemma m2-prep-strictification",
+          "kind": "lemma",
+          "source": "Area positivity and preparation of the asymptotic end",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prep-strict-direction",
+          "role": "area-positivity-and-preparation-of-the-asymptotic-end",
+          "label": "corollary m2-prep-strict-direction",
+          "fullLabel": "corollary m2-prep-strict-direction",
+          "kind": "corollary",
+          "source": "Area positivity and preparation of the asymptotic end",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prep-rest-preparation",
+          "role": "area-positivity-and-preparation-of-the-asymptotic-end",
+          "label": "proposition m2-prep-rest-preparation",
+          "fullLabel": "proposition m2-prep-rest-preparation",
+          "kind": "proposition",
+          "source": "Area positivity and preparation of the asymptotic end",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prep-source-extension",
+          "role": "area-positivity-and-preparation-of-the-asymptotic-end",
+          "label": "lemma m2-prep-source-extension",
+          "fullLabel": "lemma m2-prep-source-extension",
+          "kind": "lemma",
+          "source": "Area positivity and preparation of the asymptotic end",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "The spacetime Penrose inequality with charge and original-data rigidity",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-spacetime-Penrose-inequality-with-charge-and-original-data-rigidity-October-5-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "A Charged Reduction of the Spacetime Penrose Inequality in Spatial Dimensions at Least Four",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Charged-Reduction-of-the-Spacetime-Penrose-Inequality-in-Spatial-Dimensions-at-Least-Four-October-5-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

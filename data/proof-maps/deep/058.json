@@ -1,0 +1,879 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "058",
+  "title": "Semialgebraic universal covers and bounded domains",
+  "result": {
+    "id": "paper-result",
+    "label": "Semialgebraic universal covers and bounded domains",
+    "statement": "Proves the Kollár–Pardon conjecture: the semialgebraic universal covers of connected normal projective complex varieties are exactly products D C^m F, with D bounded symmetric and F simply connected, normal, and projective. A universal cover is quasi-projective exactly when the bounded symmetric factor is absent. In particular, a smooth projective variety covered by ℂ n has a finite étale cover by an abelian variety.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "assembly-of-the-classification",
+      "label": "Assembly of the classification",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "preparation-kernels-and-projective-holes",
+      "label": "Preparation, kernels, and projective holes",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "localization-with-triangular-recenterings",
+      "label": "Localization with triangular recenterings",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "successive-faces-and-projective-windows",
+      "label": "Successive faces and projective windows",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-intrinsic-quotient",
+      "label": "The intrinsic quotient",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-transverse-action-and-the-fibre-group",
+      "label": "The transverse action and the fibre group",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "compact-fibres-and-the-affine-factor",
+      "label": "Compact fibres and the affine factor",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "quasi-projective-covering-spaces",
+      "label": "Quasi-projective covering spaces",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "smoothness-and-a-proper-intrinsic-distance",
+      "label": "Smoothness and a proper intrinsic distance",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "boundary-preparation-and-independent-supports",
+      "label": "Boundary preparation and independent supports",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-open-cone-of-limiting-interior",
+      "label": "An open cone of limiting interior",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "weighted-scaling-and-the-quadratic-model",
+      "label": "Weighted scaling and the quadratic model",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "symmetry-of-the-quadratic-model",
+      "label": "Symmetry of the quadratic model",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Semialgebraic universal covers of normal projective varieties",
+      "title": "Semialgebraic universal covers of normal projective varieties",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Semialgebraic-universal-covers-of-normal-projective-varieties-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Semialgebraic universal covers of normal projective varieties.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-remmert-semialgebraic",
+          "role": "assembly-of-the-classification",
+          "label": "corollary m1-cor-remmert-semialgebraic",
+          "fullLabel": "corollary m1-cor-remmert-semialgebraic",
+          "kind": "corollary",
+          "source": "Assembly of the classification",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-singer-semialgebraic",
+          "role": "assembly-of-the-classification",
+          "label": "corollary m1-cor-singer-semialgebraic",
+          "fullLabel": "corollary m1-cor-singer-semialgebraic",
+          "kind": "corollary",
+          "source": "Assembly of the classification",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prep-puiseux",
+          "role": "preparation-kernels-and-projective-holes",
+          "label": "lemma m1-prep-puiseux",
+          "fullLabel": "lemma m1-prep-puiseux",
+          "kind": "lemma",
+          "source": "Preparation, kernels, and projective holes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prep-projective-models",
+          "role": "preparation-kernels-and-projective-holes",
+          "label": "lemma m1-prep-projective-models",
+          "fullLabel": "lemma m1-prep-projective-models",
+          "kind": "lemma",
+          "source": "Preparation, kernels, and projective holes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prep-kernel-pseudoconvexity",
+          "role": "preparation-kernels-and-projective-holes",
+          "label": "lemma m1-prep-kernel-pseudoconvexity",
+          "fullLabel": "lemma m1-prep-kernel-pseudoconvexity",
+          "kind": "lemma",
+          "source": "Preparation, kernels, and projective holes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prep-finite-jet-specialization",
+          "role": "preparation-kernels-and-projective-holes",
+          "label": "lemma m1-prep-finite-jet-specialization",
+          "fullLabel": "lemma m1-prep-finite-jet-specialization",
+          "kind": "lemma",
+          "source": "Preparation, kernels, and projective holes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prep-generic-distance-convergence",
+          "role": "preparation-kernels-and-projective-holes",
+          "label": "lemma m1-prep-generic-distance-convergence",
+          "fullLabel": "lemma m1-prep-generic-distance-convergence",
+          "kind": "lemma",
+          "source": "Preparation, kernels, and projective holes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prep-generic-freezing",
+          "role": "preparation-kernels-and-projective-holes",
+          "label": "corollary m1-prep-generic-freezing",
+          "fullLabel": "corollary m1-prep-generic-freezing",
+          "kind": "corollary",
+          "source": "Preparation, kernels, and projective holes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prep-power-diagonalization",
+          "role": "preparation-kernels-and-projective-holes",
+          "label": "lemma m1-prep-power-diagonalization",
+          "fullLabel": "lemma m1-prep-power-diagonalization",
+          "kind": "lemma",
+          "source": "Preparation, kernels, and projective holes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-holes-polynomial-maximum",
+          "role": "preparation-kernels-and-projective-holes",
+          "label": "lemma m1-holes-polynomial-maximum",
+          "fullLabel": "lemma m1-holes-polynomial-maximum",
+          "kind": "lemma",
+          "source": "Preparation, kernels, and projective holes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-holes-boundary-trapping",
+          "role": "preparation-kernels-and-projective-holes",
+          "label": "lemma m1-holes-boundary-trapping",
+          "fullLabel": "lemma m1-holes-boundary-trapping",
+          "kind": "lemma",
+          "source": "Preparation, kernels, and projective holes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-holes-interior-trapping",
+          "role": "preparation-kernels-and-projective-holes",
+          "label": "lemma m1-holes-interior-trapping",
+          "fullLabel": "lemma m1-holes-interior-trapping",
+          "kind": "lemma",
+          "source": "Preparation, kernels, and projective holes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-holes-tangency-propagation",
+          "role": "preparation-kernels-and-projective-holes",
+          "label": "lemma m1-holes-tangency-propagation",
+          "fullLabel": "lemma m1-holes-tangency-propagation",
+          "kind": "lemma",
+          "source": "Preparation, kernels, and projective holes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-holes-thin-analyticity",
+          "role": "preparation-kernels-and-projective-holes",
+          "label": "theorem m1-holes-thin-analyticity",
+          "fullLabel": "theorem m1-holes-thin-analyticity",
+          "kind": "theorem",
+          "source": "Preparation, kernels, and projective holes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-holes-relative-divisor-container",
+          "role": "preparation-kernels-and-projective-holes",
+          "label": "lemma m1-holes-relative-divisor-container",
+          "fullLabel": "lemma m1-holes-relative-divisor-container",
+          "kind": "lemma",
+          "source": "Preparation, kernels, and projective holes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-holes-bounded-containers",
+          "role": "preparation-kernels-and-projective-holes",
+          "label": "lemma m1-holes-bounded-containers",
+          "fullLabel": "lemma m1-holes-bounded-containers",
+          "kind": "lemma",
+          "source": "Preparation, kernels, and projective holes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-holes-projective-propagation",
+          "role": "preparation-kernels-and-projective-holes",
+          "label": "proposition m1-holes-projective-propagation",
+          "fullLabel": "proposition m1-holes-projective-propagation",
+          "kind": "proposition",
+          "source": "Preparation, kernels, and projective holes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-holes-container-propagation",
+          "role": "preparation-kernels-and-projective-holes",
+          "label": "corollary m1-holes-container-propagation",
+          "fullLabel": "corollary m1-holes-container-propagation",
+          "kind": "corollary",
+          "source": "Preparation, kernels, and projective holes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-holes-section-test",
+          "role": "preparation-kernels-and-projective-holes",
+          "label": "corollary m1-holes-section-test",
+          "fullLabel": "corollary m1-holes-section-test",
+          "kind": "corollary",
+          "source": "Preparation, kernels, and projective holes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-loc-theorem",
+          "role": "localization-with-triangular-recenterings",
+          "label": "theorem m1-loc-theorem",
+          "fullLabel": "theorem m1-loc-theorem",
+          "kind": "theorem",
+          "source": "Localization with triangular recenterings",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-loc-puiseux",
+          "role": "localization-with-triangular-recenterings",
+          "label": "lemma m1-loc-puiseux",
+          "fullLabel": "lemma m1-loc-puiseux",
+          "kind": "lemma",
+          "source": "Localization with triangular recenterings",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-loc-paths",
+          "role": "localization-with-triangular-recenterings",
+          "label": "lemma m1-loc-paths",
+          "fullLabel": "lemma m1-loc-paths",
+          "kind": "lemma",
+          "source": "Localization with triangular recenterings",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-loc-matrix-outer",
+          "role": "localization-with-triangular-recenterings",
+          "label": "corollary m1-loc-matrix-outer",
+          "fullLabel": "corollary m1-loc-matrix-outer",
+          "kind": "corollary",
+          "source": "Localization with triangular recenterings",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-win-plaques",
+          "role": "successive-faces-and-projective-windows",
+          "label": "lemma m1-win-plaques",
+          "fullLabel": "lemma m1-win-plaques",
+          "kind": "lemma",
+          "source": "Successive faces and projective windows",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-win-period",
+          "role": "successive-faces-and-projective-windows",
+          "label": "lemma m1-win-period",
+          "fullLabel": "lemma m1-win-period",
+          "kind": "lemma",
+          "source": "Successive faces and projective windows",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-win-seed-bergman",
+          "role": "successive-faces-and-projective-windows",
+          "label": "lemma m1-win-seed-bergman",
+          "fullLabel": "lemma m1-win-seed-bergman",
+          "kind": "lemma",
+          "source": "Successive faces and projective windows",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-win-first-epigraph",
+          "role": "successive-faces-and-projective-windows",
+          "label": "lemma m1-win-first-epigraph",
+          "fullLabel": "lemma m1-win-first-epigraph",
+          "kind": "lemma",
+          "source": "Successive faces and projective windows",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-win-finite-taylor",
+          "role": "successive-faces-and-projective-windows",
+          "label": "lemma m1-win-finite-taylor",
+          "fullLabel": "lemma m1-win-finite-taylor",
+          "kind": "lemma",
+          "source": "Successive faces and projective windows",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-win-siegel-normalization",
+          "role": "successive-faces-and-projective-windows",
+          "label": "lemma m1-win-siegel-normalization",
+          "fullLabel": "lemma m1-win-siegel-normalization",
+          "kind": "lemma",
+          "source": "Successive faces and projective windows",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-win-construction",
+          "role": "successive-faces-and-projective-windows",
+          "label": "theorem m1-win-construction",
+          "fullLabel": "theorem m1-win-construction",
+          "kind": "theorem",
+          "source": "Successive faces and projective windows",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-win-tower-properties",
+          "role": "successive-faces-and-projective-windows",
+          "label": "proposition m1-win-tower-properties",
+          "fullLabel": "proposition m1-win-tower-properties",
+          "kind": "proposition",
+          "source": "Successive faces and projective windows",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-quo-pseudoconvex",
+          "role": "the-intrinsic-quotient",
+          "label": "lemma m1-quo-pseudoconvex",
+          "fullLabel": "lemma m1-quo-pseudoconvex",
+          "kind": "lemma",
+          "source": "The intrinsic quotient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-quo-tower",
+          "role": "the-intrinsic-quotient",
+          "label": "lemma m1-quo-tower",
+          "fullLabel": "lemma m1-quo-tower",
+          "kind": "lemma",
+          "source": "The intrinsic quotient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-quo-guard",
+          "role": "the-intrinsic-quotient",
+          "label": "lemma m1-quo-guard",
+          "fullLabel": "lemma m1-quo-guard",
+          "kind": "lemma",
+          "source": "The intrinsic quotient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-quo-incidence",
+          "role": "the-intrinsic-quotient",
+          "label": "lemma m1-quo-incidence",
+          "fullLabel": "lemma m1-quo-incidence",
+          "kind": "lemma",
+          "source": "The intrinsic quotient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-quo-cutoff-normal",
+          "role": "the-intrinsic-quotient",
+          "label": "lemma m1-quo-cutoff-normal",
+          "fullLabel": "lemma m1-quo-cutoff-normal",
+          "kind": "lemma",
+          "source": "The intrinsic quotient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-quo-trapping",
+          "role": "the-intrinsic-quotient",
+          "label": "corollary m1-quo-trapping",
+          "fullLabel": "corollary m1-quo-trapping",
+          "kind": "corollary",
+          "source": "The intrinsic quotient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-quo-inverse-tightness",
+          "role": "the-intrinsic-quotient",
+          "label": "lemma m1-quo-inverse-tightness",
+          "fullLabel": "lemma m1-quo-inverse-tightness",
+          "kind": "lemma",
+          "source": "The intrinsic quotient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-quo-descent",
+          "role": "the-intrinsic-quotient",
+          "label": "lemma m1-quo-descent",
+          "fullLabel": "lemma m1-quo-descent",
+          "kind": "lemma",
+          "source": "The intrinsic quotient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-quo-projection",
+          "role": "the-intrinsic-quotient",
+          "label": "theorem m1-quo-projection",
+          "fullLabel": "theorem m1-quo-projection",
+          "kind": "theorem",
+          "source": "The intrinsic quotient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-grp-liouville",
+          "role": "the-transverse-action-and-the-fibre-group",
+          "label": "lemma m1-grp-liouville",
+          "fullLabel": "lemma m1-grp-liouville",
+          "kind": "lemma",
+          "source": "The transverse action and the fibre group",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-grp-finite-level-projection",
+          "role": "the-transverse-action-and-the-fibre-group",
+          "label": "lemma m1-grp-finite-level-projection",
+          "fullLabel": "lemma m1-grp-finite-level-projection",
+          "kind": "lemma",
+          "source": "The transverse action and the fibre group",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-grp-countable-core-level",
+          "role": "the-transverse-action-and-the-fibre-group",
+          "label": "lemma m1-grp-countable-core-level",
+          "fullLabel": "lemma m1-grp-countable-core-level",
+          "kind": "lemma",
+          "source": "The transverse action and the fibre group",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-grp-discrete",
+          "role": "the-transverse-action-and-the-fibre-group",
+          "label": "proposition m1-grp-discrete",
+          "fullLabel": "proposition m1-grp-discrete",
+          "kind": "proposition",
+          "source": "The transverse action and the fibre group",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-grp-free-finite-index",
+          "role": "the-transverse-action-and-the-fibre-group",
+          "label": "lemma m1-grp-free-finite-index",
+          "fullLabel": "lemma m1-grp-free-finite-index",
+          "kind": "lemma",
+          "source": "The transverse action and the fibre group",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-grp-discrete-symmetric",
+          "role": "the-transverse-action-and-the-fibre-group",
+          "label": "theorem m1-grp-discrete-symmetric",
+          "fullLabel": "theorem m1-grp-discrete-symmetric",
+          "kind": "theorem",
+          "source": "The transverse action and the fibre group",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-grp-compactifiable-cover",
+          "role": "the-transverse-action-and-the-fibre-group",
+          "label": "lemma m1-grp-compactifiable-cover",
+          "fullLabel": "lemma m1-grp-compactifiable-cover",
+          "kind": "lemma",
+          "source": "The transverse action and the fibre group",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-grp-kernel-abelian",
+          "role": "the-transverse-action-and-the-fibre-group",
+          "label": "theorem m1-grp-kernel-abelian",
+          "fullLabel": "theorem m1-grp-kernel-abelian",
+          "kind": "theorem",
+          "source": "The transverse action and the fibre group",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cmp-characteristic",
+          "role": "compact-fibres-and-the-affine-factor",
+          "label": "lemma m1-cmp-characteristic",
+          "fullLabel": "lemma m1-cmp-characteristic",
+          "kind": "lemma",
+          "source": "Compact fibres and the affine factor",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cmp-albanese",
+          "role": "compact-fibres-and-the-affine-factor",
+          "label": "lemma m1-cmp-albanese",
+          "fullLabel": "lemma m1-cmp-albanese",
+          "kind": "lemma",
+          "source": "Compact fibres and the affine factor",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cmp-affine-base",
+          "role": "compact-fibres-and-the-affine-factor",
+          "label": "proposition m1-cmp-affine-base",
+          "fullLabel": "proposition m1-cmp-affine-base",
+          "kind": "proposition",
+          "source": "Compact fibres and the affine factor",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cmp-closed-rigidity",
+          "role": "compact-fibres-and-the-affine-factor",
+          "label": "lemma m1-cmp-closed-rigidity",
+          "fullLabel": "lemma m1-cmp-closed-rigidity",
+          "kind": "lemma",
+          "source": "Compact fibres and the affine factor",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cmp-chow-base",
+          "role": "compact-fibres-and-the-affine-factor",
+          "label": "lemma m1-cmp-chow-base",
+          "fullLabel": "lemma m1-cmp-chow-base",
+          "kind": "lemma",
+          "source": "Compact fibres and the affine factor",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cmp-polarized-locus",
+          "role": "compact-fibres-and-the-affine-factor",
+          "label": "lemma m1-cmp-polarized-locus",
+          "fullLabel": "lemma m1-cmp-polarized-locus",
+          "kind": "lemma",
+          "source": "Compact fibres and the affine factor",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cmp-product",
+          "role": "compact-fibres-and-the-affine-factor",
+          "label": "proposition m1-cmp-product",
+          "fullLabel": "proposition m1-cmp-product",
+          "kind": "proposition",
+          "source": "Compact fibres and the affine factor",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cmp-converse",
+          "role": "compact-fibres-and-the-affine-factor",
+          "label": "proposition m1-cmp-converse",
+          "fullLabel": "proposition m1-cmp-converse",
+          "kind": "proposition",
+          "source": "Compact fibres and the affine factor",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-quasiprojective",
+          "role": "quasi-projective-covering-spaces",
+          "label": "corollary m1-cor-quasiprojective",
+          "fullLabel": "corollary m1-cor-quasiprojective",
+          "kind": "corollary",
+          "source": "Quasi-projective covering spaces",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-affine-uniformization",
+          "role": "quasi-projective-covering-spaces",
+          "label": "corollary m1-cor-affine-uniformization",
+          "fullLabel": "corollary m1-cor-affine-uniformization",
+          "kind": "corollary",
+          "source": "Quasi-projective covering spaces",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Symmetry of semialgebraic bounded domains with compact quotient",
+      "title": "Symmetry of semialgebraic bounded domains with compact quotient",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Symmetry-of-semialgebraic-bounded-domains-with-compact-quotient-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Symmetry of semialgebraic bounded domains with compact quotient.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m2-thm-quadratic-model"
+          ]
+        },
+        {
+          "id": "m2-lem-singular-montel",
+          "role": "smoothness-and-a-proper-intrinsic-distance",
+          "label": "lemma m2-lem-singular-montel",
+          "fullLabel": "lemma m2-lem-singular-montel",
+          "kind": "lemma",
+          "source": "Smoothness and a proper intrinsic distance",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-smoothness",
+          "role": "smoothness-and-a-proper-intrinsic-distance",
+          "label": "proposition m2-prop-smoothness",
+          "fullLabel": "proposition m2-prop-smoothness",
+          "kind": "proposition",
+          "source": "Smoothness and a proper intrinsic distance",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-proper-distance",
+          "role": "smoothness-and-a-proper-intrinsic-distance",
+          "label": "proposition m2-prop-proper-distance",
+          "fullLabel": "proposition m2-prop-proper-distance",
+          "kind": "proposition",
+          "source": "Smoothness and a proper intrinsic distance",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-continuity",
+          "role": "smoothness-and-a-proper-intrinsic-distance",
+          "label": "lemma m2-lem-continuity",
+          "fullLabel": "lemma m2-lem-continuity",
+          "kind": "lemma",
+          "source": "Smoothness and a proper intrinsic distance",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-rank-dichotomy",
+          "role": "boundary-preparation-and-independent-supports",
+          "label": "lemma m2-lem-rank-dichotomy",
+          "fullLabel": "lemma m2-lem-rank-dichotomy",
+          "kind": "lemma",
+          "source": "Boundary preparation and independent supports",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-ramified-parameters",
+          "role": "boundary-preparation-and-independent-supports",
+          "label": "lemma m2-lem-ramified-parameters",
+          "fullLabel": "lemma m2-lem-ramified-parameters",
+          "kind": "lemma",
+          "source": "Boundary preparation and independent supports",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-boundary-data",
+          "role": "boundary-preparation-and-independent-supports",
+          "label": "proposition m2-prop-boundary-data",
+          "fullLabel": "proposition m2-prop-boundary-data",
+          "kind": "proposition",
+          "source": "Boundary preparation and independent supports",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-supported-point",
+          "role": "boundary-preparation-and-independent-supports",
+          "label": "proposition m2-prop-supported-point",
+          "fullLabel": "proposition m2-prop-supported-point",
+          "kind": "proposition",
+          "source": "Boundary preparation and independent supports",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-disc-family",
+          "role": "an-open-cone-of-limiting-interior",
+          "label": "lemma m2-lem-disc-family",
+          "fullLabel": "lemma m2-lem-disc-family",
+          "kind": "lemma",
+          "source": "An open cone of limiting interior",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-noncollapse",
+          "role": "an-open-cone-of-limiting-interior",
+          "label": "proposition m2-prop-noncollapse",
+          "fullLabel": "proposition m2-prop-noncollapse",
+          "kind": "proposition",
+          "source": "An open cone of limiting interior",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-scaling-limit",
+          "role": "weighted-scaling-and-the-quadratic-model",
+          "label": "proposition m2-prop-scaling-limit",
+          "fullLabel": "proposition m2-prop-scaling-limit",
+          "kind": "proposition",
+          "source": "Weighted scaling and the quadratic model",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-quadratic-model",
+          "role": "weighted-scaling-and-the-quadratic-model",
+          "label": "theorem m2-thm-quadratic-model",
+          "fullLabel": "theorem m2-thm-quadratic-model",
+          "kind": "theorem",
+          "source": "Weighted scaling and the quadratic model",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-model-symmetry",
+          "role": "symmetry-of-the-quadratic-model",
+          "label": "theorem m2-thm-model-symmetry",
+          "fullLabel": "theorem m2-thm-model-symmetry",
+          "kind": "theorem",
+          "source": "Symmetry of the quadratic model",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Semialgebraic universal covers of normal projective varieties",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Semialgebraic-universal-covers-of-normal-projective-varieties-September-24-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Symmetry of semialgebraic bounded domains with compact quotient",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Symmetry-of-semialgebraic-bounded-domains-with-compact-quotient-September-24-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

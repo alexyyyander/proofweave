@@ -5,6 +5,8 @@ import { SectionTitle, CardTitle, Field, Button, EmptyState, FieldList, SectionH
 import { StepNavigation } from "@/app/components/navigation/StepNavigation";
 import { useEffect, useRef, useState } from "react";
 import { type BuildWeekDemoVerification, type DemoVerificationMode } from "@/app/lib/build-week-demo";
+import { useI18n } from "@/app/i18n/client";
+import type { Translator } from "@/app/i18n/translate";
 
 export function DemoVerificationClient({
   initial,
@@ -13,6 +15,7 @@ export function DemoVerificationClient({
   initial: BuildWeekDemoVerification;
   variant?: "full" | "console";
 }) {
+  const { t } = useI18n();
   const [verification, setVerification] = useState(initial);
   const [activeStageIndex, setActiveStageIndex] = useState(0);
   const [isChecking, setIsChecking] = useState(false);
@@ -42,12 +45,12 @@ export function DemoVerificationClient({
       });
       const payload = await response.json().catch(() => null);
       if (!response.ok || !payload || !Array.isArray(payload.checks) || typeof payload.verificationId !== "string") {
-        throw new Error("The reference evidence could not be verified.");
+        throw new Error(t("demo.error"));
       }
       setVerification(payload as BuildWeekDemoVerification);
       setRunSequence((value) => value + 1);
     } catch (cause) {
-      setError(cause instanceof Error ? cause.message : "The reference evidence could not be verified.");
+      setError(cause instanceof Error ? cause.message : t("demo.error"));
     } finally {
       setIsChecking(false);
     }
@@ -58,22 +61,22 @@ export function DemoVerificationClient({
   const isLastStage = activeStageIndex === verification.journey.length - 1;
   const isTamperResult = verification.mode === "tampered_copy";
   const runTitle = isChecking
-    ? requestedMode === "tampered_copy" ? "Testing a one-byte change…" : "Re-verifying signed evidence…"
+    ? requestedMode === "tampered_copy" ? t("demo.run.testingTamper") : t("demo.run.reverifying")
     : isTamperResult && verification.status === "failed"
-      ? "Tamper detected as expected"
+      ? t("demo.run.tamperExpected")
       : verification.status === "verified"
-        ? "Fresh verification completed"
-        : "Verification failed";
+        ? t("demo.run.freshComplete")
+        : t("demo.run.failed");
   const runDetail = isChecking
-    ? "The server is re-hashing current bytes and checking signatures and policy in parallel."
+    ? t("demo.run.verifyingDetail")
     : isTamperResult && verification.status === "failed"
-      ? "A temporary copy changed by one byte failed artifact integrity. The signed reference fixture was not modified."
+      ? t("demo.run.tamperDetail")
       : verification.executionBoundary.statement;
   const verdictLabel = isChecking
-    ? "Verification running"
+    ? t("demo.verdict.running")
     : isTamperResult && verification.status === "failed"
-      ? "Tamper detected"
-      : verification.status === "verified" ? "All checks passed" : "Verification failed";
+      ? t("demo.verdict.tamper")
+      : verification.status === "verified" ? t("demo.verdict.allPassed") : t("demo.verdict.failed");
   const consoleClassName = variant === "console" ? "demo-console demo-console-compact" : "demo-console";
 
   return (
@@ -81,40 +84,40 @@ export function DemoVerificationClient({
       {variant === "full" && <section className="demo-walkthrough" id="demo-walkthrough" aria-labelledby="walkthrough-title">
         <SectionHeading as="div" className="demo-walkthrough-heading">
           <div>
-            <p className="eyebrow">Three-minute walkthrough</p>
-            <SectionTitle id="walkthrough-title">One local contribution. Five evidence gates.</SectionTitle>
-            <p>The researcher path is a checked local reference. The second account is intentionally mocked for demo reliability, while owner separation, keys, hashes, signatures and Receipt policy remain real.</p>
+            <p className="eyebrow">{t("demo.walkthrough.eyebrow")}</p>
+            <SectionTitle id="walkthrough-title">{t("demo.walkthrough.title")}</SectionTitle>
+            <p>{t("demo.walkthrough.body")}</p>
           </div>
-          <span className="demo-mock-disclosure">Mock identity · real verification</span>
+          <span className="demo-mock-disclosure">{t("demo.walkthrough.badge")}</span>
         </SectionHeading>
 
         <div className="demo-walkthrough-layout">
-          <StepNavigation className="demo-stage-tabs" label="Demo evidence gates"
+          <StepNavigation className="demo-stage-tabs" label={t("demo.walkthrough.gatesAria")}
             items={verification.journey.map((stage) => ({
               id: stage.id, number: stage.number, label: <strong>{stage.title}</strong>,
               accessibleLabel: stage.number + " " + stage.title,
-              meta: <i aria-label={stage.passed ? "passed" : "failed"}>{stage.passed ? "Passed" : "Failed"}</i>,
+              meta: <i aria-label={stage.passed ? t("demo.checkState.passed") : t("demo.checkState.failed")}>{stage.passed ? t("demo.checkState.passed") : t("demo.checkState.failed")}</i>,
             }))}
             activeIndex={activeStageIndex} onSelect={setActiveStageIndex} />
 
           <Surface as="article" className="demo-stage-detail" aria-live="polite">
             <div className="demo-stage-detail-topline">
-              <span>{modeLabel(activeStage.actorMode)}</span>
-              <strong>{activeStage.passed ? "Evidence gate passed" : "Evidence gate failed"}</strong>
+              <span>{modeLabel(activeStage.actorMode, t)}</span>
+              <strong>{activeStage.passed ? t("demo.stage.gatePassed") : t("demo.stage.gateFailed")}</strong>
             </div>
-            <p className="demo-stage-number">Gate {activeStage.number}</p>
+            <p className="demo-stage-number">{t("demo.stage.gate", { number: activeStage.number })}</p>
             <CardTitle>{activeStage.title}</CardTitle>
             <p>{activeStage.detail}</p>
             <FieldList>
-              <Field label="Actor">{activeStage.actor}</Field>
-              <Field label="Bound evidence"><code>{shortHash(activeStage.evidence)}</code></Field>
-              {activeStage.actorMode === "mock_second_account" && <div><dt>Owner check</dt><dd>{verification.mockReviewer.independentFromResearcher ? "Different Person ID" : "Conflict"}</dd></div>}
+              <Field label={t("demo.field.actor")}>{activeStage.actor}</Field>
+              <Field label={t("demo.field.boundEvidence")}><code>{shortHash(activeStage.evidence)}</code></Field>
+              {activeStage.actorMode === "mock_second_account" && <div><dt>{t("demo.field.ownerCheck")}</dt><dd>{verification.mockReviewer.independentFromResearcher ? t("demo.ownerCheck.different") : t("demo.ownerCheck.conflict")}</dd></div>}
             </FieldList>
 
             {isLastStage && <div className="demo-credit-preview">
-              <div><span>Researcher preview</span><strong>{verification.creditPreview.researcher[0]?.value ?? 0}</strong><small>{verification.creditPreview.researcher[0]?.label}</small></div>
-              <div><span>Mock reviewer preview</span><strong>{verification.creditPreview.mockReviewer[0]?.value ?? 0}</strong><small>{verification.creditPreview.mockReviewer[0]?.label}</small></div>
-              <p>Receipt-derived, non-transferable and not settled as a Token.</p>
+              <div><span>{t("demo.credit.researcherPreview")}</span><strong>{verification.creditPreview.researcher[0]?.value ?? 0}</strong><small>{verification.creditPreview.researcher[0]?.label}</small></div>
+              <div><span>{t("demo.credit.mockReviewerPreview")}</span><strong>{verification.creditPreview.mockReviewer[0]?.value ?? 0}</strong><small>{verification.creditPreview.mockReviewer[0]?.label}</small></div>
+              <p>{t("demo.credit.note")}</p>
             </div>}
 
             <div className="demo-stage-actions">
@@ -127,10 +130,10 @@ export function DemoVerificationClient({
                 }}
                 disabled={isLastStage && isChecking}
               >
-                {isLastStage ? (isChecking ? "Checking signatures…" : "Verify complete chain") : "Next evidence gate"}
+                {isLastStage ? (isChecking ? t("demo.action.checkingSignatures") : t("demo.action.verifyChain")) : t("demo.action.nextGate")}
                 <span aria-hidden="true">{isLastStage ? "↻" : "→"}</span>
               </Button>
-              {activeStageIndex > 0 && <Button className="demo-text-button" type="button" onClick={() => setActiveStageIndex(0)}>Restart walkthrough</Button>}
+              {activeStageIndex > 0 && <Button className="demo-text-button" type="button" onClick={() => setActiveStageIndex(0)}>{t("demo.action.restart")}</Button>}
             </div>
           </Surface>
         </div>
@@ -139,9 +142,9 @@ export function DemoVerificationClient({
       <section className={consoleClassName} id="verification-console" aria-labelledby="verification-title">
       <SectionHeading as="div" className="demo-console-heading">
         <div>
-          <p className="eyebrow">Live protocol verification</p>
-          <SectionTitle id="verification-title">Verify the evidence, not the story.</SectionTitle>
-          <p>Each request re-hashes the checked-in bytes and verifies detached Ed25519 signatures and policy. The recorded Runner result is checked here; Lean itself is not restarted.</p>
+          <p className="eyebrow">{t("demo.console.eyebrow")}</p>
+          <SectionTitle id="verification-title">{t("demo.console.title")}</SectionTitle>
+          <p>{t("demo.console.body")}</p>
         </div>
         <div className={`demo-verdict ${isChecking ? "is-running" : verification.status === "verified" ? "is-verified" : isTamperResult ? "is-tamper" : "is-failed"}`} aria-live="polite">
           <span>{verdictLabel}</span>
@@ -160,68 +163,68 @@ export function DemoVerificationClient({
         <span className="demo-run-signal" aria-hidden="true">{isChecking ? "↻" : verification.status === "verified" ? "✓" : "!"}</span>
         <EmptyState as="div" className="demo-run-message"><strong>{runTitle}</strong><p>{runDetail}</p></EmptyState>
         <FieldList>
-          <Field label="Request"><code>{isChecking ? "new request" : verification.verificationId}</code></Field>
-          <Field label="Mode">{isChecking ? modeLabelForRun(requestedMode) : modeLabelForRun(verification.mode)}</Field>
-          <Field label="Protocol">{verification.protocolVersion}</Field>
-          <Field label="Server time">{isChecking ? "measuring…" : formatDuration(verification.durationMs)}</Field>
+          <Field label={t("demo.run.field.request")}><code>{isChecking ? t("demo.run.newRequest") : verification.verificationId}</code></Field>
+          <Field label={t("demo.run.field.mode")}>{isChecking ? modeLabelForRun(requestedMode, t) : modeLabelForRun(verification.mode, t)}</Field>
+          <Field label={t("demo.run.field.protocol")}>{verification.protocolVersion}</Field>
+          <Field label={t("demo.run.field.serverTime")}>{isChecking ? t("demo.run.measuring") : formatDuration(verification.durationMs)}</Field>
         </FieldList>
       </div>
 
       <div className="demo-console-grid">
-        <ol className="demo-check-list" aria-label="Reference evidence checks" aria-busy={isChecking}>
+        <ol className="demo-check-list" aria-label={t("demo.checksAria")} aria-busy={isChecking}>
           {verification.checks.map((check, index) => (
             <li key={check.id} className={isChecking ? "is-running" : check.passed ? "is-passed" : "is-failed"}>
               <span className="demo-check-index">{String(index + 1).padStart(2, "0")}</span>
               <div className="demo-check-copy">
                 <strong>{check.label}</strong><p>{check.detail}</p>
                 <details className="demo-check-evidence">
-                  <summary>Inspect computed evidence</summary>
+                  <summary>{t("demo.check.inspect")}</summary>
                   <FieldList>
-                    <Field label="Method">{check.method}</Field>
-                    <Field label="Input">{check.input}</Field>
-                    <Field label="Evidence"><code>{check.evidence}</code></Field>
-                    <Field label="Result">{check.result}</Field>
-                    <Field label="Duration">{formatDuration(check.durationMs)}</Field>
+                    <Field label={t("demo.check.method")}>{check.method}</Field>
+                    <Field label={t("demo.check.input")}>{check.input}</Field>
+                    <Field label={t("demo.check.evidence")}><code>{check.evidence}</code></Field>
+                    <Field label={t("demo.check.result")}>{check.result}</Field>
+                    <Field label={t("demo.check.duration")}>{formatDuration(check.durationMs)}</Field>
                   </FieldList>
                 </details>
               </div>
-              <span className="demo-check-state">{isChecking ? "Checking" : check.passed ? "Passed" : "Failed"}</span>
+              <span className="demo-check-state">{isChecking ? t("demo.checkState.checking") : check.passed ? t("demo.checkState.passed") : t("demo.checkState.failed")}</span>
             </li>
           ))}
         </ol>
 
-        <aside className="demo-record-card" aria-label="Verified reference record">
-          <span className="micro-label">Bound reference record</span>
+        <aside className="demo-record-card" aria-label={t("demo.record.aria")}>
+          <span className="micro-label">{t("demo.record.bound")}</span>
           <CardTitle>{verification.record.target}</CardTitle>
           <FieldList>
-            <Field label="Lean">{shortLeanVersion(verification.record.leanVersion)}</Field>
-            <Field label="Git commit"><code>{shortHash(verification.record.commitSha)}</code></Field>
-            <Field label="Bundle"><code>{shortHash(verification.record.bundleHash)}</code></Field>
-            <Field label="Receipt"><code>{shortHash(verification.record.receiptHash)}</code></Field>
-            <Field label="Credited to">{verification.record.owner}</Field>
-            <Field label="Review owners">{verification.record.reviewers.length} independent</Field>
+            <Field label={t("demo.record.lean")}>{shortLeanVersion(verification.record.leanVersion)}</Field>
+            <Field label={t("demo.record.gitCommit")}><code>{shortHash(verification.record.commitSha)}</code></Field>
+            <Field label={t("demo.record.bundle")}><code>{shortHash(verification.record.bundleHash)}</code></Field>
+            <Field label={t("demo.record.receipt")}><code>{shortHash(verification.record.receiptHash)}</code></Field>
+            <Field label={t("demo.record.creditedTo")}>{verification.record.owner}</Field>
+            <Field label={t("demo.record.reviewOwners")}>{t("demo.record.independent", { count: verification.record.reviewers.length })}</Field>
           </FieldList>
           <div className="demo-execution-boundary">
-            <strong>What this control does</strong>
-            <p>Re-hashes evidence bytes and verifies signatures, owner separation, Runner claims and Receipt policy.</p>
-            <strong>What it does not do</strong>
-            <p>It does not start Lean. A fresh Lean replay is the separate local end-to-end command below.</p>
+            <strong>{t("demo.boundary.controlTitle")}</strong>
+            <p>{t("demo.boundary.controlBody")}</p>
+            <strong>{t("demo.boundary.notTitle")}</strong>
+            <p>{t("demo.boundary.notBody")}</p>
           </div>
           {isTamperResult && verification.status === "failed" && <div className="demo-tamper-result" role="note">
-            <span>Tampering blocked</span>
-            <strong>The signed original is unchanged.</strong>
-            <p>Only a temporary request copy failed artifact integrity.</p>
+            <span>{t("demo.tamper.title")}</span>
+            <strong>{t("demo.tamper.body")}</strong>
+            <p>{t("demo.tamper.detail")}</p>
           </div>}
           <Button className="button button-primary demo-run-button" type="button" onClick={() => { void runChecks("reference"); }} disabled={isChecking}>
-            {isChecking && requestedMode === "reference" ? "Re-hashing & verifying…" : isTamperResult ? "Verify original evidence" : "Re-verify signed evidence"}<span aria-hidden="true">↻</span>
+            {isChecking && requestedMode === "reference" ? t("demo.action.rehashing") : isTamperResult ? t("demo.action.verifyOriginal") : t("demo.action.reverify")}<span aria-hidden="true">↻</span>
           </Button>
           <Button className="demo-tamper-button" type="button" onClick={() => { void runChecks("tampered_copy"); }} disabled={isChecking}>
-            {isChecking && requestedMode === "tampered_copy" ? "Changing one byte…" : "Tamper-test a copy"}
+            {isChecking && requestedMode === "tampered_copy" ? t("demo.action.tampering") : t("demo.action.tamperTest")}
           </Button>
-          <p className="demo-tamper-note">Changes one byte in a temporary request copy. The signed original remains untouched.</p>
+          <p className="demo-tamper-note">{t("demo.tamper.note")}</p>
           <div className="demo-report-links">
-            <a href={isTamperResult ? "/api/demo/verify?tamper=artifact" : "/api/demo/verify"} target="_blank" rel="noreferrer">View verification JSON <span aria-hidden="true">↗</span></a>
-            <span>Checked {formatTime(verification.checkedAt)} · {formatDuration(verification.durationMs)}</span>
+            <a href={isTamperResult ? "/api/demo/verify?tamper=artifact" : "/api/demo/verify"} target="_blank" rel="noreferrer">{t("demo.report.viewJson")} <span aria-hidden="true">↗</span></a>
+            <span>{t("demo.report.checked", { time: formatTime(verification.checkedAt), duration: formatDuration(verification.durationMs) })}</span>
           </div>
           {error && <p className="demo-check-error" role="alert">{error}</p>}
         </aside>
@@ -253,12 +256,12 @@ function formatDuration(value: number) {
   return `${value.toFixed(value < 10 ? 1 : 0)} ms`;
 }
 
-function modeLabelForRun(mode: DemoVerificationMode) {
-  return mode === "tampered_copy" ? "Tamper-test copy" : "Signed reference";
+function modeLabelForRun(mode: DemoVerificationMode, t: Translator) {
+  return mode === "tampered_copy" ? t("demo.mode.tamper") : t("demo.mode.reference");
 }
 
-function modeLabel(mode: BuildWeekDemoVerification["journey"][number]["actorMode"]) {
-  if (mode === "mock_second_account") return "Mock second account";
-  if (mode === "protocol_issuer") return "Protocol issuer";
-  return "Local reference";
+function modeLabel(mode: BuildWeekDemoVerification["journey"][number]["actorMode"], t: Translator) {
+  if (mode === "mock_second_account") return t("demo.stage.mode.mock");
+  if (mode === "protocol_issuer") return t("demo.stage.mode.protocolIssuer");
+  return t("demo.stage.mode.localReference");
 }

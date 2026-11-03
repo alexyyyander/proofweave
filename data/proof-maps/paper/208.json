@@ -1,0 +1,222 @@
+{
+  "familyNumber": "208",
+  "familyTitle": "Finite symmetric tensor categories and the Verlinde tower",
+  "manuscripts": [
+    {
+      "id": "Fiber-functors-for-finite-symmetric-tensor-categories-in-positive-characteristic-September-24-2026",
+      "title": "Fiber functors for finite symmetric tensor categories in positive characteristic",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Fiber-functors-for-finite-symmetric-tensor-categories-in-positive-characteristic-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Finite tensor categories and products",
+    "Restricted tilting modules",
+    "From restricted tiltings to a higher Frobenius functor",
+    "A first nonprojective tensor-power module",
+    "Selecting an embedding by rank support",
+    "Removing the original category from the target",
+    "Classification, uniqueness, and reconstruction"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For every prime p , every algebraically closed field k of characteristic p ,…",
+      "statement": "For every prime p , every algebraically closed field k of characteristic p , and every finite symmetric tensor category C over k , there are an integer n1 and a fiber functor \\[ CVer_ p^n (k). \\]",
+      "section": "Introduction",
+      "manuscript": "Fiber functors for finite symmetric tensor categories in positive characteristic"
+    },
+    {
+      "id": "m1-lem-finite-conventions",
+      "kind": "lemma",
+      "label": "Under the conventions of Theorem~ , the unit of C is simple and C has a…",
+      "statement": "Under the conventions of Theorem~ , the unit of C is simple and C has a projective generator P . The functor =Hom_ C (P,-) is exact and faithful, and C is equivalent as a k -linear abelian category…",
+      "section": "Finite tensor categories and products",
+      "manuscript": "Fiber functors for finite symmetric tensor categories in positive characteristic"
+    },
+    {
+      "id": "m1-lem-combine-functors",
+      "kind": "lemma",
+      "label": "Let A_1,, A_s, Z be finite symmetric tensor categories. Exact k -linear…",
+      "statement": "Let A_1,, A_s, Z be finite symmetric tensor categories. Exact k -linear symmetric tensor functors F_i: A_i Z induce an exact k -linear symmetric tensor functor \\[ H: A_1 A_s Z, H(X_1 X_s)=_i…",
+      "section": "Finite tensor categories and products",
+      "manuscript": "Fiber functors for finite symmetric tensor categories in positive characteristic"
+    },
+    {
+      "id": "m1-thm-restricted-tilting",
+      "kind": "theorem",
+      "label": "Let r1 , let E_r=( Z/p)^r , and let :E_r U(k) be any embedding. Write R_ for…",
+      "statement": "Let r1 , let E_r=( Z/p)^r , and let :E_r U(k) be any embedding. Write R_ for restriction along . For every finite-dimensional kE_r -module D , there is a tilting G -module T such that \\[ R_(St_ r-1 )…",
+      "section": "Restricted tilting modules",
+      "manuscript": "Fiber functors for finite symmetric tensor categories in positive characteristic"
+    },
+    {
+      "id": "m1-prop-bounded-origin",
+      "kind": "proposition",
+      "label": "For every finite-dimensional kE_r -module D , there is a G -equivariant vector…",
+      "statement": "For every finite-dimensional kE_r -module D , there is a G -equivariant vector bundle M on A^2_k such that the stabilizer action on the fibre at e_1=(1,0) restricts to D along . Every simple…",
+      "section": "Restricted tilting modules",
+      "manuscript": "Fiber functors for finite symmetric tensor categories in positive characteristic"
+    },
+    {
+      "id": "m1-lem-bounded-tilting",
+      "kind": "lemma",
+      "label": "Let k be algebraically closed of characteristic p>0 , let m0 , and let M be a…",
+      "statement": "Let k be algebraically closed of characteristic p>0 , let m0 , and let M be a finite-dimensional rational SL_2(k) -module. If every simple composition factor of M is L(h) with 0 h<p^ m+1 , then St_m…",
+      "section": "Restricted tilting modules",
+      "manuscript": "Fiber functors for finite symmetric tensor categories in positive characteristic"
+    },
+    {
+      "id": "m1-lem-formal-comparison",
+      "kind": "lemma",
+      "label": "Comparison with a tilting origin fibre",
+      "statement": "[Comparison with a tilting origin fibre] Let k be an algebraically closed field of arbitrary positive characteristic. Let N be a G -equivariant vector bundle on V , and suppose that its origin fibre…",
+      "section": "Restricted tilting modules",
+      "manuscript": "Fiber functors for finite symmetric tensor categories in positive characteristic"
+    },
+    {
+      "id": "m1-lem-theta-detection",
+      "kind": "lemma",
+      "label": "If T is a tilting module and R(T) is not projective, then (R(T))0 . Moreover,…",
+      "statement": "If T is a tilting module and R(T) is not projective, then (R(T))0 . Moreover, annihilates every E -module induced from a proper subgroup of E .",
+      "section": "From restricted tiltings to a higher Frobenius functor",
+      "manuscript": "Fiber functors for finite symmetric tensor categories in positive characteristic"
+    },
+    {
+      "id": "m1-lem-projective-evaluation",
+      "kind": "lemma",
+      "label": "For every projective Q C and every E -object Z of C , there is a natural…",
+      "statement": "For every projective Q C and every E -object Z of C , there is a natural isomorphism (Hom_ C (Q,-) Id_ W )(_ C (Z)) (Hom_ C (Q,Z)).",
+      "section": "From restricted tiltings to a higher Frobenius functor",
+      "manuscript": "Fiber functors for finite symmetric tensor categories in positive characteristic"
+    },
+    {
+      "id": "m1-prop-higher-exactness",
+      "kind": "proposition",
+      "label": "If there are projective objects P,Q C for which \\[ (Hom_ C (Q,P^ q ))0, \\] then…",
+      "statement": "If there are projective objects P,Q C for which \\[ (Hom_ C (Q,P^ q ))0, \\] then is exact.",
+      "section": "From restricted tiltings to a higher Frobenius functor",
+      "manuscript": "Fiber functors for finite symmetric tensor categories in positive characteristic"
+    },
+    {
+      "id": "m1-lem-norm-projectivity",
+      "kind": "lemma",
+      "label": "Let H be a finite p -group and M a finite-dimensional kH -module. Then M is…",
+      "statement": "Let H be a finite p -group and M a finite-dimensional kH -module. Then M is projective if and only if _H(M) is an isomorphism. For an arbitrary finite group G , the norm map of every projective kG…",
+      "section": "A first nonprojective tensor-power module",
+      "manuscript": "Fiber functors for finite symmetric tensor categories in positive characteristic"
+    },
+    {
+      "id": "m1-lem-internal-norm-products",
+      "kind": "lemma",
+      "label": "Let finite p -groups H_1,,H_s act on objects X_1,,X_s of C , respectively. If…",
+      "statement": "Let finite p -groups H_1,,H_s act on objects X_1,,X_s of C , respectively. If each (X_i) is projective over kH_i , then (X_1 X_s) is projective over k[H_1 H_s] , for the independent actions on the…",
+      "section": "A first nonprojective tensor-power module",
+      "manuscript": "Fiber functors for finite symmetric tensor categories in positive characteristic"
+    },
+    {
+      "id": "m1-prop-first-nonprojective",
+      "kind": "proposition",
+      "label": "There is a least integer r1 for which M(r) is not projective over kE_r . For…",
+      "statement": "There is a least integer r1 for which M(r) is not projective over kE_r . For this r , the restriction of M(r) to every proper subgroup of E_r is projective.",
+      "section": "A first nonprojective tensor-power module",
+      "manuscript": "Fiber functors for finite symmetric tensor categories in positive characteristic"
+    },
+    {
+      "id": "m1-lem-support-independent",
+      "kind": "lemma",
+      "label": "Suppose that M is a nonprojective finite-dimensional kE_r -module and that M|_H…",
+      "statement": "Suppose that M is a nonprojective finite-dimensional kE_r -module and that M|_H is projective for every proper subgroup H<E_r . Every point [_1::_r] of Supp(M) has F_p -linearly independent…",
+      "section": "Selecting an embedding by rank support",
+      "manuscript": "Fiber functors for finite symmetric tensor categories in positive characteristic"
+    },
+    {
+      "id": "m1-lem-steinberg-support",
+      "kind": "lemma",
+      "label": "Let _1,,_r k be linearly independent over F_p , and restrict SL_2…",
+      "statement": "Let _1,,_r k be linearly independent over F_p , and restrict SL_2 -representations along \\[ _:E_rSL_2(k), g_i 1&_i\\\\0&1 . \\] Write R_ for this restriction. Then Supp(R_(St_ r-1 )) =\\ []: _i_i_i^ p^j…",
+      "section": "Selecting an embedding by rank support",
+      "manuscript": "Fiber functors for finite symmetric tensor categories in positive characteristic"
+    },
+    {
+      "id": "m1-lem-moore-selection",
+      "kind": "lemma",
+      "label": "Let _1,,_r k be linearly independent over F_p . There are F_p -linearly…",
+      "statement": "Let _1,,_r k be linearly independent over F_p . There are F_p -linearly independent _1,,_r k such that _ i=1 ^r_i_i^ p^j =0 (0 j r-2). For r=1 the list of equations is empty.",
+      "section": "Selecting an embedding by rank support",
+      "manuscript": "Fiber functors for finite symmetric tensor categories in positive characteristic"
+    },
+    {
+      "id": "m1-prop-support-selection",
+      "kind": "proposition",
+      "label": "Let M be a nonprojective finite-dimensional kE_r -module whose restriction to…",
+      "statement": "Let M be a nonprojective finite-dimensional kE_r -module whose restriction to every proper subgroup is projective. There is an embedding _:E_rSL_2(k) into the upper unipotent subgroup such that \\[…",
+      "section": "Selecting an embedding by rank support",
+      "manuscript": "Fiber functors for finite symmetric tensor categories in positive characteristic"
+    },
+    {
+      "id": "m1-thm-exact-higher-frobenius",
+      "kind": "theorem",
+      "label": "An exact higher Frobenius functor",
+      "statement": "[An exact higher Frobenius functor] Let C be a finite symmetric tensor category over an algebraically closed field k of characteristic p>0 . There are an integer r1 and an embedding E_r U(k) for…",
+      "section": "Selecting an embedding by rank support",
+      "manuscript": "Fiber functors for finite symmetric tensor categories in positive characteristic"
+    },
+    {
+      "id": "m1-lem-ordinary-congruence",
+      "kind": "lemma",
+      "label": "In the commutative ring \\(K_0( C)/pK_0( C)\\), one has \\[ [Y]^p=_ i=1 ^ p-1…",
+      "statement": "In the commutative ring \\(K_0( C)/pK_0( C)\\), one has \\[ [Y]^p=_ i=1 ^ p-1 i[F_i(Y)]. \\] Consequently, for every \\(r1\\), [Y]^ p^r =_ i_1,,i_r=1 ^ p-1 (i_1 i_r) [F_ i_r F_ i_1 (Y)] p.",
+      "section": "Removing the original category from the target",
+      "manuscript": "Fiber functors for finite symmetric tensor categories in positive characteristic"
+    },
+    {
+      "id": "m1-lem-equality-descent",
+      "kind": "lemma",
+      "label": "Let \\(S\\) be a simple object of \\( C\\), and let \\(A B\\) be a composition factor…",
+      "statement": "Let \\(S\\) be a simple object of \\( C\\), and let \\(A B\\) be a composition factor of \\((S)\\). Then \\(d(A) d(S)\\). If equality holds, then \\[ (S) A B, B is invertible, S C_ ex . \\] In this case \\(A\\) is…",
+      "section": "Removing the original category from the target",
+      "manuscript": "Fiber functors for finite symmetric tensor categories in positive characteristic"
+    },
+    {
+      "id": "m1-cor-incompressible-classification",
+      "kind": "corollary",
+      "label": "Finite incompressible classification",
+      "statement": "[Finite incompressible classification] Let k be algebraically closed of characteristic p>0 . A finite symmetric tensor category over k is incompressible if and only if it is equivalent as a k -linear…",
+      "section": "Classification, uniqueness, and reconstruction",
+      "manuscript": "Fiber functors for finite symmetric tensor categories in positive characteristic"
+    },
+    {
+      "id": "m1-cor-characteristic-two-uniqueness",
+      "kind": "corollary",
+      "label": "Uniqueness into the characteristic-two union",
+      "statement": "[Uniqueness into the characteristic-two union] Let k be algebraically closed of characteristic two and let C be a finite symmetric tensor category over k . There is exactly one fiber functor \\[ CVer_…",
+      "section": "Classification, uniqueness, and reconstruction",
+      "manuscript": "Fiber functors for finite symmetric tensor categories in positive characteristic"
+    },
+    {
+      "id": "m1-cor-generalized-tannaka",
+      "kind": "corollary",
+      "label": "Reconstruction over a finite higher Verlinde level",
+      "statement": "[Reconstruction over a finite higher Verlinde level] Let k be algebraically closed of characteristic p>0 , and let C be a finite symmetric tensor category over k . Choose n1 and a fiber functor F: C…",
+      "section": "Classification, uniqueness, and reconstruction",
+      "manuscript": "Fiber functors for finite symmetric tensor categories in positive characteristic"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-prop-bounded-origin",
+      "to": "m1-thm-restricted-tilting",
+      "label": "prop:bounded-origin",
+      "context": "[Proof of Theorem~\\ref{thm:restricted-tilting}] Given $D$, choose $\\mathcal M$ as in Proposition~\\ref{prop:bounded-origin} and put $M_0=\\mathcal M|_0$. Lemma~\\ref{lem:bounded-tilting} makes $\\operatorname{St}_{r-1}\\otimes M_0$ tilting. Apply"
+    },
+    {
+      "from": "m1-lem-bounded-tilting",
+      "to": "m1-thm-restricted-tilting",
+      "label": "lem:bounded-tilting",
+      "context": "[Proof of Theorem~\\ref{thm:restricted-tilting}] Given $D$, choose $\\mathcal M$ as in Proposition~\\ref{prop:bounded-origin} and put $M_0=\\mathcal M|_0$. Lemma~\\ref{lem:bounded-tilting} makes $\\operatorname{St}_{r-1}\\otimes M_0$ tilting. Apply Lemma~\\ref{lem:formal-comparison} to $\\mathcal N=\\operatornam"
+    }
+  ]
+}

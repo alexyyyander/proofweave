@@ -8,6 +8,7 @@ import {
   controlPlaneMaintenanceCopy,
   type ControlPlaneWriteAvailability,
 } from "./control-plane-write-capability";
+import type { Translator } from "@/app/i18n/translate";
 
 export type LocalAgentJourneyStage =
   | "sign_in"
@@ -135,17 +136,18 @@ export function localAgentJourney(input: Readonly<{
   hasSelectedTarget: boolean;
   writeAvailability: ControlPlaneWriteAvailability;
   links: JourneyLinks;
+  t: Translator;
 }>): LocalAgentJourney {
   const delegation = activeWorkDelegation(input.profile);
   const installation = activeLocalCodexInstallation(input.profile, delegation);
 
-  if (!input.isAuthenticated) return state("sign_in", "Sign in to begin an attributable research record.", "Proofweave creates a Person record only after sign-in. You can still inspect the public frontier without an account.", "Sign in to begin", input.links.signIn, null, null);
-  if (!input.storageAvailable) return state("storage_unavailable", "Your account control plane is temporarily unavailable.", "Proofweave will not create a local fallback for Agent authority or contribution records while durable storage is unavailable.", "Browse public research", input.links.chooseTarget, null, null);
+  if (!input.isAuthenticated) return state("sign_in", input.t("journey.signIn.title"), input.t("journey.signIn.detail"), input.t("journey.signIn.action"), input.links.signIn, null, null);
+  if (!input.storageAvailable) return state("storage_unavailable", input.t("journey.storage.title"), input.t("journey.storage.detail"), input.t("journey.storage.action"), input.links.chooseTarget, null, null);
   if (input.writeAvailability !== "available") return state(
     "maintenance",
-    controlPlaneMaintenanceCopy(input.writeAvailability).title,
-    controlPlaneMaintenanceCopy(input.writeAvailability).detail,
-    "Browse public research",
+    controlPlaneMaintenanceCopy(input.writeAvailability, input.t).title,
+    controlPlaneMaintenanceCopy(input.writeAvailability, input.t).detail,
+    input.t("journey.storage.action"),
     input.links.chooseTarget,
     null,
     null,
@@ -153,12 +155,12 @@ export function localAgentJourney(input: Readonly<{
   if (!installation) {
     const hasOldConnection = input.profile?.agentInstallations.some((candidate) => candidate.status === "active") ?? false;
     return hasOldConnection
-      ? state("renew_connection", "Reconnect your Agent before continuing.", "Proofweave keeps your existing research tasks and reconnects compatible authority without asking you to recreate them.", "Reconnect Agent", input.links.connect, delegation, null)
-      : state("connect_agent", "Connect your Agent once.", "A browser approval links your local Codex to your account. You never need to paste an API key, public key, or workspace.", "Connect Agent", input.links.connect, delegation, null);
+      ? state("renew_connection", input.t("journey.renew.title"), input.t("journey.renew.detail"), input.t("journey.renew.action"), input.links.connect, delegation, null)
+      : state("connect_agent", input.t("journey.connect.title"), input.t("journey.connect.detail"), input.t("journey.connect.action"), input.links.connect, delegation, null);
   }
-  if (input.hasAttempt) return state("work_locally", "Continue research in Codex.", "Your project and private exploration remain on your computer. You choose which concise progress or evidence may be recorded.", "Continue in Codex", input.links.work, delegation, installation);
-  if (input.hasSelectedTarget) return state("open_attempt", "Start research on this question.", "Proofweave saves the exact public question and assigns it to your connected Agent. This does not claim progress or run Lean.", "Start research", input.links.openAttempt, delegation, installation);
-  return state("choose_target", "Choose a mathematical question.", "Each task starts from a precise public source so your Agent can build on shared work instead of repeating it.", "Choose a question", input.links.chooseTarget, delegation, installation);
+  if (input.hasAttempt) return state("work_locally", input.t("journey.work.title"), input.t("journey.work.detail"), input.t("journey.work.action"), input.links.work, delegation, installation);
+  if (input.hasSelectedTarget) return state("open_attempt", input.t("journey.open.title"), input.t("journey.open.detail"), input.t("journey.open.action"), input.links.openAttempt, delegation, installation);
+  return state("choose_target", input.t("journey.choose.title"), input.t("journey.choose.detail"), input.t("journey.choose.action"), input.links.chooseTarget, delegation, installation);
 }
 
 function state(

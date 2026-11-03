@@ -1,0 +1,319 @@
+{
+  "familyNumber": "189",
+  "familyTitle": "Cycle–clique Ramsey numbers",
+  "manuscripts": [
+    {
+      "id": "Cycle-clique-Ramsey-numbers-September-25-2026",
+      "title": "Cycle--clique Ramsey numbers",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Cycle-clique-Ramsey-numbers-September-25-2026/Cycle-clique-Ramsey-numbers-September-25-2026.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "A minimal counterexample and neighborhood expansion",
+    "A large clique",
+    "The cases of four- and five-cycles",
+    "From size to independence",
+    "Optimal path systems",
+    "Short paths between representatives",
+    "Excluding large cliques",
+    "The finite path-system argument"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For all integers m n3 with (m,n)(3,3) , \\[ R(C_m,K_n)=(m-1)(n-1)+1. \\] For the…",
+      "statement": "For all integers m n3 with (m,n)(3,3) , \\[ R(C_m,K_n)=(m-1)(n-1)+1. \\] For the excluded pair, R(C_3,K_3)=6 .",
+      "section": "Introduction",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-red-smaller",
+      "kind": "lemma",
+      "label": "For every integer b with 0 b<a , a graph H containing no C_ k+1 and satisfying…",
+      "statement": "For every integer b with 0 b<a , a graph H containing no C_ k+1 and satisfying (H) b has at most kb vertices.",
+      "section": "A minimal counterexample and neighborhood expansion",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-red-expansion",
+      "kind": "lemma",
+      "label": "Independent-set expansion",
+      "statement": "[Independent-set expansion] For every nonempty independent set I in the graph G fixed in , |N_G[I]| k|I|+1. In particular, (G) k and (G) k .",
+      "section": "A minimal counterexample and neighborhood expansion",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-clq-bound",
+      "kind": "theorem",
+      "label": "Let \\(k3\\) and \\(2 a k\\) be integers, and let \\(G\\) be a finite simple graph…",
+      "statement": "Let \\(k3\\) and \\(2 a k\\) be integers, and let \\(G\\) be a finite simple graph such that \\[ |V(G)|=ka+1, (G) a, C_ k+1 G. \\] Suppose also that \\[ |N_G[I]| k|I|+1 for every nonempty independent set I…",
+      "section": "A large clique",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-clq-triangle",
+      "kind": "lemma",
+      "label": "Under the hypotheses of Theorem~ , we have \\(3 t k\\).",
+      "statement": "Under the hypotheses of Theorem~ , we have \\(3 t k\\).",
+      "section": "A large clique",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-clq-layer-interface",
+      "kind": "proposition",
+      "label": "Let \\(k8\\) be an integer, set \\(s= k/2\\), and let \\(G\\) be a nonempty finite…",
+      "statement": "Let \\(k8\\) be an integer, set \\(s= k/2\\), and let \\(G\\) be a nonempty finite simple graph with \\((G) k\\) and \\[ |N_G[I]| k|I|+1 for every nonempty independent set I V(G). \\] Suppose that \\(G\\)…",
+      "section": "A large clique",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-clq-long-path",
+      "kind": "lemma",
+      "label": "Let d 2 , and let F be a finite connected graph with (F) d . Then F contains a…",
+      "statement": "Let d 2 , and let F be a finite connected graph with (F) d . Then F contains a path of order at least \\ |V(F)|,2d+1\\ .",
+      "section": "A large clique",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-clq-coloured-path",
+      "kind": "lemma",
+      "label": "Let s 4 , and let H be a finite connected nonbipartite graph containing no K_s…",
+      "statement": "Let s 4 , and let H be a finite connected nonbipartite graph containing no K_s . Suppose that \\[ (H) s, |N_H[\\ a,b\\ ]| 2s whenever a,b are distinct and nonadjacent. \\] For every nonconstant map…",
+      "section": "A large clique",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-small-cases",
+      "kind": "proposition",
+      "label": "Let k\\ 3,4\\ and let a be an integer with 2 a k . There is no graph G with \\[…",
+      "statement": "Let k\\ 3,4\\ and let a be an integer with 2 a k . There is no graph G with \\[ |V(G)|=ka+1, (G) a, G contains no C_ k+1 , \\] such that |N_G[I]| k|I|+1 for every nonempty independent set I V(G) .",
+      "section": "The cases of four- and five-cycles",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-size-hamiltonian",
+      "kind": "lemma",
+      "label": "Every finite simple 2-connected graph H with (H)2 contains a cycle through all…",
+      "statement": "Every finite simple 2-connected graph H with (H)2 contains a cycle through all its vertices.",
+      "section": "From size to independence",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-size-shortening",
+      "kind": "lemma",
+      "label": "Let H be a finite simple graph on r7 vertices with (H)2 . If H has a…",
+      "statement": "Let H be a finite simple graph on r7 vertices with (H)2 . If H has a Hamiltonian cycle, then it has a cycle on exactly r-1 vertices.",
+      "section": "From size to independence",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-size-test",
+      "kind": "lemma",
+      "label": "Size test",
+      "statement": "[Size test] Let k5 and t1 be integers. Let G be a finite simple graph with no cycle on exactly k+1 vertices and with clique number at most t . For every Y V(G) , \\[ |Y|>\\ k,2t\\ (G[Y])3. \\]",
+      "section": "From size to independence",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-path-interval",
+      "kind": "lemma",
+      "label": "Closing a path system",
+      "statement": "[Closing a path system] Let G be a finite simple graph with no cycle of order k+1 , and let Q be a clique of size t , where 3 t k . Put h=k+1-t . No path system on Q , of total amount q and with v…",
+      "section": "Optimal path systems",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-path-optimality",
+      "kind": "lemma",
+      "label": "Optimality criterion",
+      "statement": "[Optimality criterion] Let R be any path system on Q , with total amount A , with e' assigned paths, and with v' incident clique vertices. Then L+ 1_ \\ e' e\\ A k+1-v' is impossible, where the…",
+      "section": "Optimal path systems",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-path-exterior",
+      "kind": "lemma",
+      "label": "Every vertex of S has at least k+1-|S|1 neighbors in F .",
+      "statement": "Every vertex of S has at least k+1-|S|1 neighbors in F .",
+      "section": "Optimal path systems",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-path-separation",
+      "kind": "lemma",
+      "label": "Separation by forbidden outside paths",
+      "statement": "[Separation by forbidden outside paths] Let X V(G) and let x,y X be distinct. For integers r,s0 , if no outside x -- y path relative to X has parameter d with 1 d r+s+2 , then B_r(x;X) and B_s(y;X)…",
+      "section": "Optimal path systems",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-path-singleton",
+      "kind": "corollary",
+      "label": "Singleton and ball compatibility",
+      "statement": "[Singleton and ball compatibility] Consider two options based at distinct vertices x,y X , with integer radius labels r,s-1 . If r=s=-1 , the two options are disjoint and anticomplete whenever xy…",
+      "section": "Optimal path systems",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-grow-replacement",
+      "kind": "lemma",
+      "label": "Replacing incoming paths",
+      "statement": "[Replacing incoming paths] Fix an orientation of the chains and distinct targets q,q' Q . Suppose an outside path relative to S joins (q) to (q') and has d 1 internal vertices. Let r\\ 0,1,2\\ be the…",
+      "section": "Short paths between representatives",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-grow-one",
+      "kind": "lemma",
+      "label": "One-vertex detours",
+      "statement": "[One-vertex detours] For every orientation of the chains, no outside path relative to S with one internal vertex joins two distinct representatives. Nor can such a path join consecutive vertices of…",
+      "section": "Short paths between representatives",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-grow-weights",
+      "kind": "lemma",
+      "label": "Independence in the second ball",
+      "statement": "[Independence in the second ball] Fix an orientation and x R . Suppose no outside path relative to S with one or two internal vertices joins x to any other representative. Then \\[ (B_2(x;S)) 2. \\]…",
+      "section": "Short paths between representatives",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-grow-short",
+      "kind": "lemma",
+      "label": "A short outside path",
+      "statement": "[A short outside path] Suppose t 9 . For every fixed orientation of the chains of P , two distinct representatives are joined by an outside path relative to S with 1 d 6 internal vertices. By Lemma~…",
+      "section": "Short paths between representatives",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-terminal-increment",
+      "kind": "lemma",
+      "label": "Let \\(t9\\), and let \\( R\\) be a valid path system consisting of some paths of…",
+      "statement": "Let \\(t9\\), and let \\( R\\) be a valid path system consisting of some paths of \\( P\\) and one new path. Suppose that its total amount is \\(L+d\\), where \\(1 d6\\). Then \\[ L=h-1=k-t. \\] Moreover, \\( R\\)…",
+      "section": "Excluding large cliques",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-terminal-classification",
+      "kind": "lemma",
+      "label": "Suppose that, for some orientation of the chains, an outside path with…",
+      "statement": "Suppose that, for some orientation of the chains, an outside path with parameter \\(d\\ 1,,6\\ \\) joins two representatives. Then \\(L=k-t\\), and exactly one of the following alternatives holds: \\(d=2\\),…",
+      "section": "Excluding large cliques",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-terminal-weights",
+      "kind": "lemma",
+      "label": "Under any alternative of Lemma~ , there are at least two nonsingleton chains.…",
+      "statement": "Under any alternative of Lemma~ , there are at least two nonsingleton chains. For every vertex \\(x\\) that is a representative in some orientation, \\[ |B_1(x;S)| t+1, (B_1(x;S))2. \\] If \\(k2t\\), then…",
+      "section": "Excluding large cliques",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-terminal-contradiction",
+      "kind": "proposition",
+      "label": "There is no counterexample \\(G\\) with maximum clique size \\(t9\\).",
+      "statement": "There is no counterexample \\(G\\) with maximum clique size \\(t9\\).",
+      "section": "Excluding large cliques",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-finite-verified",
+      "kind": "proposition",
+      "label": "Finite verification",
+      "statement": "[Finite verification] Let k,t be integers such that 5 k17, \\ 3, k/2\\ t\\ 8,k\\ . There is no finite simple graph G satisfying all of the following: G has no cycle on exactly k+1 vertices, its clique…",
+      "section": "The finite path-system argument",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-finite-coverage",
+      "kind": "lemma",
+      "label": "Pattern coverage",
+      "statement": "[Pattern coverage] For nonnegative integers t,B , the nondecreasing lists of reversal-normalized positive tuples satisfying \\[ _ p P ((p)+1)=t, _ p P (p) B \\] represent exactly once the isomorphism…",
+      "section": "The finite path-system argument",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-finite-labels",
+      "kind": "lemma",
+      "label": "Label construction",
+      "statement": "[Label construction] The construction labels every vertex of S exactly once. It has exactly t clique labels and L interior labels, and \\[ | E(P)|=e, _ (a,b) E(P) (b-a-1)=L. \\] Every interior label…",
+      "section": "The finite path-system argument",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-finite-extension-rule",
+      "kind": "lemma",
+      "label": "Extension rule",
+      "statement": "[Extension rule] Let \\( P\\) be the chosen optimal path system, with total amount \\(L<h=k+1-t\\) and \\(e\\) paths, labelled as in Lemma~ . Fix \\(x<y\\) in \\(S\\), and choose \\(z T(x)\\), \\(w T(y)\\) with…",
+      "section": "The finite path-system argument",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-finite-required-path-rule",
+      "kind": "lemma",
+      "label": "Required-path rule",
+      "statement": "[Required-path rule] Let \\(X S\\), let \\(J\\) be a required-edge graph on \\(X\\), and let \\(x,y X\\) be distinct. If \\(J\\) contains a simple \\(x\\)-\\(y\\) path of length \\(\\), where \\(1 k\\), then \\[ k- M_…",
+      "section": "The finite path-system argument",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-finite-inheritance",
+      "kind": "lemma",
+      "label": "Inheritance under enlargement",
+      "statement": "[Inheritance under enlargement] Suppose \\(S X X'\\). Every forbidden outside-path constraint relative to \\(X\\), for endpoints in \\(X\\), remains valid relative to \\(X'\\).",
+      "section": "The finite path-system argument",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-finite-ball-bounds",
+      "kind": "lemma",
+      "label": "Bounds for exterior balls",
+      "statement": "[Bounds for exterior balls] For i X , put \\[ b_0=k+1-n_X+|\\ j X:0 M_ ij \\ |. \\] Assume b_0>0 , and define \\[ u_0=1+ 1_ \\ b_0 t\\ . \\] For r=1,2 , recursively set A_r(i)&=\\ j X:\\ 1,,r\\ M_ ij \\ ,…",
+      "section": "The finite path-system argument",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-finite-packing",
+      "kind": "lemma",
+      "label": "Packing test",
+      "statement": "[Packing test] Let a family of these options have distinct base vertices. For options based at i,j with radius labels r,s , require 0 M_ ij ,&r=s=-1,\\\\ \\ 1,,r+s+2\\ M_ ij ,&otherwise. If every pair…",
+      "section": "The finite path-system argument",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-finite-strengthening",
+      "kind": "lemma",
+      "label": "Eliminating a path hypothesis",
+      "statement": "[Eliminating a path hypothesis] Let J be a required-edge graph on S , and let M be a matrix of valid forbidden parameters relative to S . Fix distinct i,j S and d\\ 0,1\\ . Form a trial required-edge…",
+      "section": "The finite path-system argument",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    },
+    {
+      "id": "m1-finite-procedure-soundness",
+      "kind": "proposition",
+      "label": "Meaning of a successful finite check",
+      "statement": "[Meaning of a successful finite check] The procedure terminates. An output of 1 or 2 proves that the pattern P cannot be realized by an optimal path system in a graph with the hypotheses above. An…",
+      "section": "The finite path-system argument",
+      "manuscript": "Cycle--clique Ramsey numbers"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-clq-triangle",
+      "to": "m1-clq-bound",
+      "label": "clq:triangle",
+      "context": "[Proof of Theorem~\\ref{clq:bound}] Lemma~\\ref{clq:triangle} gives $3\\le t\\le k$. If $s=\\lfloor k/2\\rfloor\\le3$, this is the required bound. Suppose therefore that $s\\ge4$ and that"
+    },
+    {
+      "from": "m1-finite-coverage",
+      "to": "m1-finite-verified",
+      "label": "finite:coverage",
+      "context": "[Proof of Proposition~\\ref{finite:verified}] Suppose such a graph exists and choose an optimal path system on a maximum clique. Lemma~\\ref{finite:coverage} places its pattern in the enumerated list. Lemma~\\ref{finite:labels} gives its required-edge representation. All assump"
+    }
+  ]
+}

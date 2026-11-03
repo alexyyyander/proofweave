@@ -1,0 +1,695 @@
+{
+  "familyNumber": "143",
+  "familyTitle": "Hilbert's sixteenth problem: uniform bounds for limit cycles",
+  "manuscripts": [
+    {
+      "id": "uniform-bounds-for-planar-polynomial-limit-cycles-September-24-2026",
+      "title": "Uniform bounds for planar polynomial limit cycles",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/uniform-bounds-for-planar-polynomial-limit-cycles-September-24-2026/uniform-bounds-for-planar-polynomial-limit-cycles-September-24-2026.pdf"
+    },
+    {
+      "id": "two-limit-cycles-for-quintic-lienard-systems-September-24-2026",
+      "title": "Two limit cycles for quintic Liénard systems",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/two-limit-cycles-for-quintic-lienard-systems-September-24-2026/two-limit-cycles-for-quintic-lienard-systems-September-24-2026.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Finite logarithmic flags and angular paths",
+    "Separation of packets",
+    "Differentiated packet calculus and regular ordinary charts",
+    "Ordinary elimination and absolute isolated zeros",
+    "The two additive passage models",
+    "One-rate regular and stable passages",
+    "Passages with two logarithmic scales",
+    "Finite real subdivision and passage words",
+    "Terminal passages and their independent arguments",
+    "Projection, matching, and the cycle count",
+    "Arc coordinates and periodic-orbit matching",
+    "Quadratic fitting and its transport law"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-uniform",
+      "kind": "theorem",
+      "label": "Uniform boundedness",
+      "statement": "[Uniform boundedness] For each integer \\(d1\\), there is a finite nonnegative integer \\(B(d)\\) such that every real planar polynomial vector field of degree at most \\(d\\) has at most \\(B(d)\\) limit…",
+      "section": "Introduction",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-flags-saturation",
+      "kind": "lemma",
+      "label": "Finite saturation and preservation of free coordinates",
+      "statement": "[Finite saturation and preservation of free coordinates] A finite collection of large real inputs admits a flag after a fixed linear change of coordinates and the addition of bounded ordinary…",
+      "section": "Finite logarithmic flags and angular paths",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-flags-stability",
+      "kind": "lemma",
+      "label": "Stability under bounded backgrounds",
+      "statement": "[Stability under bounded backgrounds] On a saturated output flag of Lemma~ , bounded variations of the backgrounds at fixed free coordinates preserve the ordered scale hierarchy, uniformly on each…",
+      "section": "Finite logarithmic flags and angular paths",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-flags-path",
+      "kind": "lemma",
+      "label": "Real and angular path estimates",
+      "statement": "[Real and angular path estimates] The paths just constructed pass through the given anchors and preserve the ordered scales under bounded controlled ordinary tests. Put _i=f_i' on the real ray. For…",
+      "section": "Finite logarithmic flags and angular paths",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-flags-contours",
+      "kind": "lemma",
+      "label": "Good contours and buffered sides",
+      "statement": "[Good contours and buffered sides] For a sufficiently small fixed >0 , the upper and lower p -good contours are defined by | f_p|2, ( f_p)= _p(u) . They have collars of fixed small multiples of their…",
+      "section": "Finite logarithmic flags and angular paths",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-flags-background",
+      "kind": "lemma",
+      "label": "Sensitivity to background jets",
+      "statement": "[Sensitivity to background jets] Let q2 be a fixed integer. On |v| C/_p(u) , two controlled background determinations differing by O(|v|^q) , and agreeing on the real path, change any f_l , l p , by…",
+      "section": "Finite logarithmic flags and angular paths",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-flags-exceptional",
+      "kind": "lemma",
+      "label": "The exceptional anchor constant",
+      "statement": "[The exceptional anchor constant] For p<m set D_p=(2+x_p^0) if f_p contains an uncapped slow additive term in Equation~ or Equation~ , and set D_p=1 otherwise. Set D_0=1 . On the buffered level- n…",
+      "section": "Finite logarithmic flags and angular paths",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-flags-safe-columns",
+      "kind": "lemma",
+      "label": "Common safe columns",
+      "statement": "[Common safe columns] Let a fixed finite list of positive real sweeps x_a(u) and real lattices c_a+h_a , h_a>0 , satisfy, uniformly far out, x_a, x_a'>0, _ u U x_a'(u)(U),\\\\ |x_a'' (x_a')^2 |C_a x_a…",
+      "section": "Finite logarithmic flags and angular paths",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-thm-separation",
+      "kind": "theorem",
+      "label": "Separation",
+      "statement": "[Separation] Suppose the data of Definition~ satisfy its requirements on a saturated flag. If all paired terminal coefficients vanish, the actual function is identically zero on the real flag locus…",
+      "section": "Separation of packets",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-separation-proxies",
+      "kind": "lemma",
+      "label": "Holomorphic proxies and Cauchy correction",
+      "statement": "[Holomorphic proxies and Cauchy correction] On a coupled level- p domain, the rates of indices l p have holomorphic proxies Z_l=Z_l+o(1) , uniformly on a slightly smaller domain. Their logarithms…",
+      "section": "Separation of packets",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-separation-growth",
+      "kind": "lemma",
+      "label": "Propagation of coupled growth",
+      "statement": "[Propagation of coupled growth] Suppose the first p-1 transitions have been isolated and coupled. Their coupled function has the level- p bound ^+|G| C Z_p+CD_ p-1 , with the exceptional term absent…",
+      "section": "Separation of packets",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-separation-source-ratios",
+      "kind": "lemma",
+      "label": "Source ratios",
+      "statement": "[Source ratios] In a coupled level- n domain put x= L_n . For n>1 write \\[ i=n-1, g=f_i-f_n, r_0=g'(u_a) _n(u_a) , g_0=g(u_a). \\] At a target on a sufficiently vertical level- i collar, and through…",
+      "section": "Separation of packets",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-separation-weighted",
+      "kind": "lemma",
+      "label": "Weighted maximum estimate",
+      "statement": "[Weighted maximum estimate] Let G be coupled through level n with the growth bound of Lemma~ . Suppose that on the real ray |G(u)| C_N e^ -NZ_n(u) (u u_N),for every fixed N>0. The constants C_N,u_N…",
+      "section": "Separation of packets",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-separation-upgrade",
+      "kind": "lemma",
+      "label": "Upgrade at the preceding transition",
+      "statement": "[Upgrade at the preceding transition] For n>1 , under the hypotheses of Lemma~ , the outer packet of G satisfies |G| Ce^ -cV_ n-1 on sufficiently vertical level- (n-1) collars and their further…",
+      "section": "Separation of packets",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-separation-isolate",
+      "kind": "lemma",
+      "label": "One finite transition",
+      "statement": "[One finite transition] Suppose a prefix is coupled through level p . Fix a child exponent a , and assume that every earlier child has an entire zero subtree and satisfies the upgrade of Lemma~ at…",
+      "section": "Separation of packets",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-separation-terminal",
+      "kind": "lemma",
+      "label": "Comparison of terminal coefficients",
+      "statement": "[Comparison of terminal coefficients] Suppose a complete exponent vector has been isolated on the two sides and coupled, with all earlier subtrees passed as in Lemma~ . Its two terminal ordinary…",
+      "section": "Separation of packets",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-separation-family-uniformity",
+      "kind": "lemma",
+      "label": "Uniformity for a controlled finite request",
+      "statement": "[Uniformity for a controlled finite request] Fix finitely many packet labels, transition budgets, coupled joins, and normalizations, and a family of tests with the common quantitative controls in…",
+      "section": "Separation of packets",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-thm-calculus",
+      "kind": "theorem",
+      "label": "Packet calculus",
+      "statement": "[Packet calculus] Assume the flag estimates of Section~ , the packet separation theorem, and Assumption~ . Start with the primitive data and the initial ordinary backgrounds. The following operations…",
+      "section": "Differentiated packet calculus and regular ordinary charts",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-calculus-support",
+      "kind": "lemma",
+      "label": "Finite coefficient rules",
+      "statement": "[Finite coefficient rules] Finite unions and Minkowski sums of iterated left-finite subsets of ^m are iterated left-finite. Each coefficient in their convolution is a finite sum. If A^m is iterated…",
+      "section": "Differentiated packet calculus and regular ordinary charts",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-calculus-differentiation",
+      "kind": "lemma",
+      "label": "Differentiation of the symbols",
+      "statement": "[Differentiation of the symbols] Every fixed derivative of a raw packet expression has the tree obtained by formal differentiation. The series for D W_i=-DZ_ i,i has zeros before coordinate i and has…",
+      "section": "Differentiated packet calculus and regular ordinary charts",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-calculus-source-pullback",
+      "kind": "lemma",
+      "label": "Propagation of differentiated source errors",
+      "statement": "[Propagation of differentiated source errors] Fix a finite derivative and composition request. Suppose that each primitive defect and each input-sheet defect in its chain rules has one of the…",
+      "section": "Differentiated packet calculus and regular ordinary charts",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-calculus-cleanup",
+      "kind": "lemma",
+      "label": "Differentiated cleanup",
+      "statement": "[Differentiated cleanup] Let K be positive. Keep its raw zero-prefix packets K_j=S^j_ 0,,0 , inserting a zero packet if necessary, and in each of their transitions delete all negative local…",
+      "section": "Differentiated packet calculus and regular ordinary charts",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-calculus-uniform-separation",
+      "kind": "lemma",
+      "label": "Uniform separation for a controlled family",
+      "statement": "[Uniform separation for a controlled family] For one controlled family and one fixed finite coupled calculation, the coupled growth and zero-subtree upgrade constants of Section~ are common to the…",
+      "section": "Differentiated packet calculus and regular ordinary charts",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-calculus-positive-bounds",
+      "kind": "lemma",
+      "label": "Bounds, limits, and free derivatives",
+      "statement": "[Bounds, limits, and free derivatives] The cleaned realizations of a positive expression satisfy all the bounds in part~(2) of Theorem~ . Conversely, real locally uniform boundedness of a raw…",
+      "section": "Differentiated packet calculus and regular ordinary charts",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-calculus-analytic",
+      "kind": "lemma",
+      "label": "Regular analytic operations",
+      "statement": "[Regular analytic operations] Let H be analytic near the limiting tuple of finitely many positive expressions. Applying H to their actual values produces a positive expression with the formal…",
+      "section": "Differentiated packet calculus and regular ordinary charts",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-calculus-interpolation",
+      "kind": "lemma",
+      "label": "Interpolation with fixed lower jets",
+      "statement": "[Interpolation with fixed lower jets] Fix an integer r and a finite higher jet order. Let v0 be small. Suppose a bounded ordinary input has prescribed real jets at u through that higher order, with…",
+      "section": "Differentiated packet calculus and regular ordinary charts",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-calculus-refinement",
+      "kind": "lemma",
+      "label": "Retesting a finite chart recipe",
+      "statement": "[Retesting a finite chart recipe] Enlarge a saturated flag by finitely many permitted insertions without converting its old active free nodes. Suppose the primitive data can be retested on this flag…",
+      "section": "Differentiated packet calculus and regular ordinary charts",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-elimination-promotion",
+      "kind": "lemma",
+      "label": "Promotion and logarithmic sensitivities",
+      "statement": "[Promotion and logarithmic sensitivities] A nonzero ordinary coordinate x_A0 can be replaced, after a saturated flag extension, by x=, =h^ e^ -B >0, \\ 1,-1\\ , where h^ has strictly positive order. A…",
+      "section": "Ordinary elimination and absolute isolated zeros",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-elimination-local-inverse",
+      "kind": "lemma",
+      "label": "A quantitative local inverse estimate",
+      "statement": "[A quantitative local inverse estimate] Suppose a map has, on a ball about q_0 , bounds \\[ \\|D(q_0)^ -1 \\| C r^ -c , \\|D^2\\| C r^ -b , \\] and the available source ball has radius at least c_0r^a .…",
+      "section": "Ordinary elimination and absolute isolated zeros",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-elimination-lift",
+      "kind": "lemma",
+      "label": "Taylor replay at current backgrounds",
+      "statement": "[Taylor replay at current backgrounds] Let an ambient chart have ordinary variables (y,w) near w=0 . Suppose a full-dimensional regular recipe on w=0 has been constructed and is power moderate in a…",
+      "section": "Ordinary elimination and absolute isolated zeros",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-elimination-common-domain",
+      "kind": "lemma",
+      "label": "Common domains for accuracy refinements",
+      "statement": "[Common domains for accuracy refinements] Fix a width r equal to a strict positive-order current monomial times a bounded regular unit with positive limiting value. All power bounds and moderation in…",
+      "section": "Ordinary elimination and absolute isolated zeros",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-prop-elimination-recursion",
+      "kind": "proposition",
+      "label": "Elimination with a deferred floor",
+      "statement": "[Elimination with a deferred floor] Let F be a real positive scalar field on an active chart with n ordinary inputs. The following statements hold simultaneously. In exact mode, along anchors where…",
+      "section": "Ordinary elimination and absolute isolated zeros",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-thm-absolute-zero",
+      "kind": "theorem",
+      "label": "Absolute isolated-zero finiteness",
+      "statement": "[Absolute isolated-zero finiteness] Let a finite real equation system be specified on an open domain with its original strict inequalities and graph ties. Regard all coordinates, including…",
+      "section": "Ordinary elimination and absolute isolated zeros",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-thm-additive-packets",
+      "kind": "theorem",
+      "label": "Additive primitive packets",
+      "statement": "[Additive primitive packets] Under these assumptions, the output maps of and satisfy the packet conditions of Definition~ and the differentiated primitive conditions of Assumption~ . They have no…",
+      "section": "The two additive passage models",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-additive-slow",
+      "kind": "lemma",
+      "label": "Slow coefficients on a common fast radius",
+      "statement": "[Slow coefficients on a common fast radius] The graph, fiber transformation in its convergent state-disk norm, and b in (A) are bounded on the lateral domains. The transformation is close to the…",
+      "section": "The two additive passage models",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-additive-primitives",
+      "kind": "lemma",
+      "label": "Normalized slow primitives",
+      "statement": "[Normalized slow primitives] There are particular formal primitives Y_ e =w^ d_ e _ j0 w^ -j B_ e,j (X,L), d_ e =_ e e d_e, L=(w/q), where B_ e,j is polynomial in L of degree at most the word length…",
+      "section": "The two additive passage models",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-additive-gevrey-operations",
+      "kind": "lemma",
+      "label": "Bounded analytic Gevrey operations",
+      "statement": "[Bounded analytic Gevrey operations] Finite sums and products, analytic operations at bounded arguments with fixed room in their convergence boxes, and regular inverses preserve the normalized Gevrey…",
+      "section": "The two additive passage models",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-prop-additive-charge",
+      "kind": "proposition",
+      "label": "Finite charge expansion",
+      "statement": "[Finite charge expansion] On any sufficiently tight i fringe, through its buffered side, both actual passages have an expansion to an arbitrary fixed charge cutoff, with remainder C_K|Q|^ C_K |P|^…",
+      "section": "The two additive passage models",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-prop-additive-dispersal",
+      "kind": "proposition",
+      "label": "Dispersal and retirement",
+      "statement": "[Dispersal and retirement] Every coefficient furnished by Proposition~ admits, on each lateral determination, a packet tree using only retained free inputs and ordinary inputs. The numerical outer…",
+      "section": "The two additive passage models",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-additive-controlled-family",
+      "kind": "lemma",
+      "label": "Uniformity over a fixed controlled family",
+      "statement": "[Uniformity over a fixed controlled family] The additive constructions satisfy the common-constant requirement of Definition~ . In particular, fix one finite set of labels, derivatives, Taylor…",
+      "section": "The two additive passage models",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-thm-regular-packets",
+      "kind": "theorem",
+      "label": "One-rate passage packets",
+      "statement": "[One-rate passage packets] The following two passage outputs satisfy the packet conditions of Definition~ and the differentiated primitive conditions of Assumption~ . A regular base flow with…",
+      "section": "One-rate regular and stable passages",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-regular-charges",
+      "kind": "lemma",
+      "label": "Finite charge description",
+      "statement": "[Finite charge description] For every integer K0 , the layer output has, on the owning fringe, a description z_ out = _ k=0 ^K P^k_ =0 ^k q^ F_ k ^ [J] (1/q) +O((1+|q|)^ C_K |P|^ K+1 +e^ -c_K|q| ).…",
+      "section": "One-rate regular and stable passages",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-regular-formal",
+      "kind": "lemma",
+      "label": "Slow-strip formal normalization",
+      "statement": "[Slow-strip formal normalization] Put h=1/q . For the layer model there are unique formal series in h and the fast variables of the form \\[ y=u+t(s,E,H,u;h), t=0, u_D= C(s,E,H,u;h), C= C, \\]…",
+      "section": "One-rate regular and stable passages",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-regular-controlled-inputs",
+      "kind": "lemma",
+      "label": "For each fixed finite request, the preceding primitive estimates are uniform on…",
+      "statement": "For each fixed finite request, the preceding primitive estimates are uniform on a controlled family of Definition~ . Finite real-Taylor agreement supplies the geometric comparisons for evaluation of…",
+      "section": "One-rate regular and stable passages",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-thm-mixed-packets",
+      "kind": "theorem",
+      "label": "Mixed passage packets",
+      "statement": "[Mixed passage packets] Suppose that the primary inputs are affine combinations of flag scales with constant coefficients and bounded analytic parts, and that all large basis nodes in those…",
+      "section": "Passages with two logarithmic scales",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-mixed-ratio",
+      "kind": "lemma",
+      "label": "Ratio geometry",
+      "statement": "[Ratio geometry] If a positive primary combination J has leading index p , then J=A_JZ_p(1+_J), A_J>0, where _J is a finite sum of strict-small monomials, of first index greater than p , times…",
+      "section": "Passages with two logarithmic scales",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-mixed-actual",
+      "kind": "lemma",
+      "label": "Continuation in the leading band",
+      "statement": "[Continuation in the leading band] Let i be the leading index of the larger primary action, or the common leading index of L,W when they are comparable. The actual passage is bounded and holomorphic…",
+      "section": "Passages with two logarithmic scales",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-mixed-tree",
+      "kind": "lemma",
+      "label": "Ordered cost and contour bounds",
+      "statement": "[Ordered cost and contour bounds] For comparable slopes put _j=A_j+c_0B_j . These values belong to a finitely generated positive-weight semigroup and satisfy |B_j| K_0_j, _j+_ j' a|j-j'|. For small…",
+      "section": "Passages with two logarithmic scales",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-mixed-poles",
+      "kind": "lemma",
+      "label": "Meromorphic losses and their derivatives",
+      "statement": "[Meromorphic losses and their derivatives] Suppose a fixed outer formula has only finite-order poles on lattices of finitely many positive multiples of C_ , with fixed polynomial factors in C_ and…",
+      "section": "Passages with two logarithmic scales",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-mixed-small-formal",
+      "kind": "lemma",
+      "label": "Small-damping formal replacement",
+      "statement": "[Small-damping formal replacement] Before the first of the n,k transitions, changing the moving cutoff in a fixed coefficient changes its actual value, with fixed derivatives, by O((-a|Z_k| R)) =O(\\…",
+      "section": "Passages with two logarithmic scales",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-mixed-charts",
+      "kind": "lemma",
+      "label": "Compatible layer charts",
+      "statement": "[Compatible layer charts] In these rings there are an output graph , an input coordinate , an output coordinate T=+_ m=1 ^Mt_m u^m for each fixed M , and a balanced polynomial without constant term.…",
+      "section": "Passages with two logarithmic scales",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-mixed-fast-transition",
+      "kind": "lemma",
+      "label": "Fast-damping leading transition",
+      "statement": "[Fast-damping leading transition] On the i fringe, for every fixed desired depth in W the passage has the finite expansion _ out +_ m=1 ^ M e^ -mW e^ m_sL t_ m, out _ in ^ m , _s=(X,Y), up to that…",
+      "section": "Passages with two logarithmic scales",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-mixed-fast-gevrey",
+      "kind": "lemma",
+      "label": "Gevrey estimates for full charts",
+      "statement": "[Gevrey estimates for full charts] For each fixed output fiber order, the full charts and their bounded analytic endpoint operations have consistent Gevrey-- 1 formal expansions in h=1/C_ . On the…",
+      "section": "Passages with two logarithmic scales",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-mixed-controlled-uniformity",
+      "kind": "lemma",
+      "label": "Uniformity for one controlled family",
+      "statement": "[Uniformity for one controlled family] The mixed constructions and their finite dispersion operations have the controlled-family uniformity of Definition~ . For one fixed finite request, their…",
+      "section": "Passages with two logarithmic scales",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-prop-calculus-library-uniformity",
+      "kind": "proposition",
+      "label": "Quantitative primitive input bounds",
+      "statement": "[Quantitative primitive input bounds] For the primitive constructions in Sections~ , , and~ , the family requirement in Assumption~ follows from the estimates on common argument boxes proved in those…",
+      "section": "Passages with two logarithmic scales",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-thm-subdivision-preparation",
+      "kind": "theorem",
+      "label": "Simultaneous globally subanalytic preparation",
+      "statement": "[Simultaneous globally subanalytic preparation] Let X^k and f_1,,f_N:X be globally subanalytic. There is a finite globally subanalytic cell decomposition of X\\ x0\\ such that on each cell the…",
+      "section": "Finite real subdivision and passage words",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-subdivision-clock",
+      "kind": "lemma",
+      "label": "Compatible change of Euler center",
+      "statement": "[Compatible change of Euler center] Suppose that the old clock is D_0=(x-a_0(p))_x . After simultaneous preparation and finite subdivision, all the required data can be represented in an Euler clock…",
+      "section": "Finite real subdivision and passage words",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-subdivision-box-data",
+      "kind": "lemma",
+      "label": "Uniform box data",
+      "statement": "[Uniform box data] After the preceding finite subdivision, each nonzero comparable-scale field has, on a fixed larger state disk D and a smaller real interval I D , a positive globally subanalytic…",
+      "section": "Finite real subdivision and passage words",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-subdivision-resonance-redo",
+      "kind": "lemma",
+      "label": "Termination of the resonant redo",
+      "statement": "[Termination of the resonant redo] Around these finitely many resonances, apply the rational weighting U=u/^ and repeat the preceding rational subdivision once. The old resonance widths and old…",
+      "section": "Finite real subdivision and passage words",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-subdivision-crossing",
+      "kind": "lemma",
+      "label": "Crossings of a boundary arc",
+      "statement": "[Crossings of a boundary arc] A periodic orbit meets each regular boundary arc on which (V,T) has a fixed nonzero sign at most once. A connected nonsingular boundary arc on which this determinant…",
+      "section": "Finite real subdivision and passage words",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-thm-finite-templates",
+      "kind": "theorem",
+      "label": "Finite passage templates",
+      "statement": "[Finite passage templates] For each degree bound d , there is a finite collection of scalar identity pieces, coordinate charts and passage rules, and integers N_d,E_d , with the following properties.…",
+      "section": "Finite real subdivision and passage words",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-thm-terminal-reduction",
+      "kind": "theorem",
+      "label": "Terminal reduction",
+      "statement": "[Terminal reduction] Fix the finite preparation data, exponent lists, and geometric tolerances of Theorem~ . After finitely many further real subanalytic subdivisions, every terminal passage is…",
+      "section": "Terminal passages and their independent arguments",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-terminal-diagonal",
+      "kind": "lemma",
+      "label": "Rational diagonal primitives",
+      "statement": "[Rational diagonal primitives] Let \\(D_r=_j r_jX_j_ X_j \\), with fixed rational \\(r_j\\), and let \\(a(X)\\) be analytic near the origin, uniformly in ordinary parameters. For rational \\(\\), write \\(a=_…",
+      "section": "Terminal passages and their independent arguments",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-terminal-tied-endpoints",
+      "kind": "lemma",
+      "label": "Identity on the nearby tied endpoint graph",
+      "statement": "[Identity on the nearby tied endpoint graph] Every transfer constructed above computes the actual scalar mismatch for all nearby proposed endpoints on its argument graph. The terminal state…",
+      "section": "Terminal passages and their independent arguments",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-terminal-ambient-extension",
+      "kind": "lemma",
+      "label": "Structural extensions and the physical chain rule",
+      "statement": "[Structural extensions and the physical chain rule] The terminal kernels can be chosen on independent-argument neighborhoods so that every layer-vanishing identity required by its primitive theorem…",
+      "section": "Terminal passages and their independent arguments",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-terminal-boundary-corners",
+      "kind": "lemma",
+      "label": "Boundary corners of the chosen domains",
+      "statement": "[Boundary corners of the chosen domains] The independent-argument domains in this section can be chosen so that the following holds for every sequence in any one of them, including a sequence on…",
+      "section": "Terminal passages and their independent arguments",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-thm-projection-count",
+      "kind": "theorem",
+      "label": "Projection count",
+      "statement": "[Projection count] Let F(p,x)=0 be admissible open data as in Definition~ , with p^a , x^n , and m n . Suppose that F_x has row rank m throughout the zero set under consideration and that the data…",
+      "section": "Projection, matching, and the cycle count",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-thm-matching-system",
+      "kind": "theorem",
+      "label": "Matching systems",
+      "statement": "[Matching systems] For each polynomial degree bound d , there are a finite number T(d) and finitely many fixed open analytic systems \\[ F_w(p_w,x_w)=0, g_w(p_w,x_w)>0, w W_d, \\] with the following…",
+      "section": "Projection, matching, and the cycle count",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-counting-jet-lift",
+      "kind": "lemma",
+      "label": "Graph and finite-jet lifting",
+      "statement": "[Graph and finite-jet lifting] Suppose an analytic transfer (u) , on an open set of its original independent arguments u , has an exact analytic decomposition into finitely many transfers, with…",
+      "section": "Projection, matching, and the cycle count",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-counting-cleared-closure",
+      "kind": "lemma",
+      "label": "Cleared finite differential closure",
+      "statement": "[Cleared finite differential closure] Consider one fixed finite collection of primitive functions, their argument graphs, and a finite differential and algebraic construction from them. Assume that,…",
+      "section": "Projection, matching, and the cycle count",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-counting-graph-recovery",
+      "kind": "lemma",
+      "label": "Recovery after graph enlargement",
+      "statement": "[Recovery after graph enlargement] Let u_i be a sequence of isolated solutions of a fixed system, where u denotes its full tuple, including parameters and multipliers. Suppose an exact finite…",
+      "section": "Projection, matching, and the cycle count",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m1-lem-counting-rotation",
+      "kind": "lemma",
+      "label": "Hyperbolic realization of a finite cycle count",
+      "statement": "[Hyperbolic realization of a finite cycle count] For any finite collection of limit cycles of a planar polynomial field V=(P,Q) , a sufficiently small perturbation V_=V+(-Q,P) , of one common nonzero…",
+      "section": "Projection, matching, and the cycle count",
+      "manuscript": "Uniform bounds for planar polynomial limit cycles"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "If F5 , the system has at most two limit cycles in ^2 . Some members of this…",
+      "statement": "If F5 , the system has at most two limit cycles in ^2 . Some members of this class have two limit cycles. Thus its exact maximum is two.",
+      "section": "Introduction",
+      "manuscript": "Two limit cycles for quintic Liénard systems"
+    },
+    {
+      "id": "m2-lem-arc-data",
+      "kind": "lemma",
+      "label": "Global arc coordinates",
+      "statement": "[Global arc coordinates] For every \\(0<h<t\\), the solution through \\((y,u)=((t),t)\\) has exactly two intersections with \\(u=h\\). They are transverse and satisfy \\[ y_<(h,t)<(h)<y_>(h,t). \\] The part…",
+      "section": "Arc coordinates and periodic-orbit matching",
+      "manuscript": "Two limit cycles for quintic Liénard systems"
+    },
+    {
+      "id": "m2-lem-variation",
+      "kind": "lemma",
+      "label": "Variation at fixed height and width",
+      "statement": "[Variation at fixed height and width] Consider a smooth one-parameter family of profiles \\(_\\), with \\(_0=\\), and fix a regular base height \\(h\\) and a width \\(r>0\\). All profiles need only be…",
+      "section": "Arc coordinates and periodic-orbit matching",
+      "manuscript": "Two limit cycles for quintic Liénard systems"
+    },
+    {
+      "id": "m2-lem-arc-scaling",
+      "kind": "lemma",
+      "label": "Smooth scaling at zero width",
+      "statement": "[Smooth scaling at zero width] Near any fixed positive base height, the small-width arc data have smooth parameter-dependent expansions M(h,r)&=13 k(h)r^2+r^3 A(h,r),\\\\ v(h,r)&=23 k(h)r+r^2 B(h,r),\\\\…",
+      "section": "Arc coordinates and periodic-orbit matching",
+      "manuscript": "Two limit cycles for quintic Liénard systems"
+    },
+    {
+      "id": "m2-lem-axis-extension",
+      "kind": "lemma",
+      "label": "Transverse extension to the axis",
+      "statement": "[Transverse extension to the axis] Each peak \\(t>0\\) has finite limiting endpoints \\[ a(t)=_ h0 y_<(h,t)0, b(t)=_ h0 y_>(h,t)0. \\] The set \\[ T_=\\ t>0:a(t)<0<b(t)\\ \\] is either empty or an open ray…",
+      "section": "Arc coordinates and periodic-orbit matching",
+      "manuscript": "Two limit cycles for quintic Liénard systems"
+    },
+    {
+      "id": "m2-prop-cycle-matching",
+      "kind": "proposition",
+      "label": "Periodic-orbit matching",
+      "statement": "[Periodic-orbit matching] For the system x=y-F(x), y=-x, the images of nonconstant periodic solutions are in one-to-one correspondence with the zeros of (r)=M_+(0,r)-M_-(0,r) on the single open…",
+      "section": "Arc coordinates and periodic-orbit matching",
+      "manuscript": "Two limit cycles for quintic Liénard systems"
+    },
+    {
+      "id": "m2-fit-references",
+      "kind": "lemma",
+      "label": "The reference functions are smooth in \\((,s,z)\\) for \\(s>0\\) and are defined at…",
+      "statement": "The reference functions are smooth in \\((,s,z)\\) for \\(s>0\\) and are defined at every finite positive width. They satisfy _s j_=-ssech^2_, _s_ =j_- (2 _ )s, _s L_ = (2 _ )s, with limiting values…",
+      "section": "Quadratic fitting and its transport law",
+      "manuscript": "Two limit cycles for quintic Liénard systems"
+    },
+    {
+      "id": "m2-lem-curvature-comparison",
+      "kind": "lemma",
+      "label": "Curvature comparison",
+      "statement": "[Curvature comparison] Let a smooth profile \\(\\) have an arc with peak height \\(t\\), and parameterize that arc from its peak to a final width \\(r>0\\) by \\(s(0,r]\\). Assume \\(\\) is smooth on a…",
+      "section": "Quadratic fitting and its transport law",
+      "manuscript": "Two limit cycles for quintic Liénard systems"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-thm-finite-templates",
+      "to": "m1-thm-terminal-reduction",
+      "label": "thm:finite-templates",
+      "context": "[Proof of Theorem~\\ref{thm:terminal-reduction}] The real cases above exhaust the constant-state pieces, nozero boxes, simple boxes, and annuli from Theorem~\\ref{thm:finite-templates}; the nonzero-resonance redo is finite. Every additional real cut used a magnitude of a subanalytic variable, a root or"
+    },
+    {
+      "from": "m1-thm-projection-count",
+      "to": "m1-thm-matching-system",
+      "label": "thm:projection-count",
+      "context": "[Completion of the proof of Theorem~\\ref{thm:matching-system}] Fix an arbitrary finite system in the closure required by Theorem~\\ref{thm:projection-count}, including its equations and every original graph and strict domain restriction. Suppose it has a sequence of distinct"
+    },
+    {
+      "from": "m1-thm-matching-system",
+      "to": "m1-thm-uniform",
+      "label": "thm:matching-system",
+      "context": "[Proof of Theorem~\\ref{thm:uniform}] Fix $d$. For every word $w$ of Theorem~\\ref{thm:matching-system} and every one of its maximal-minor charts $I$, apply Theorem~\\ref{thm:projection-count}. Let $N_{w,I}<\\infty$ be the r"
+    }
+  ]
+}

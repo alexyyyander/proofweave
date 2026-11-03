@@ -1,0 +1,684 @@
+{
+  "familyNumber": "263",
+  "familyTitle": "The ionization and generalized ionization conjectures",
+  "manuscripts": [
+    {
+      "id": "Uniform-excess-charge-for-Coulomb-molecules-and-the-outer-radius-of-neutral-atoms-September-24-2026",
+      "title": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Uniform-excess-charge-for-Coulomb-molecules-and-the-outer-radius-of-neutral-atoms-September-24-2026/paper.pdf"
+    },
+    {
+      "id": "Generalized-ionization-energies-for-full-Coulomb-atoms-September-24-2026",
+      "title": "Generalized ionization energies for full Coulomb atoms",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Generalized-ionization-energies-for-full-Coulomb-atoms-September-24-2026/paper.pdf"
+    },
+    {
+      "id": "Generalized-outer-electron-radii-of-neutral-Coulomb-atoms-September-24-2026",
+      "title": "Generalized outer-electron radii of neutral Coulomb atoms",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Generalized-outer-electron-radii-of-neutral-Coulomb-atoms-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "A ground state at the minimum over all sectors",
+    "Common localization and quantum comparisons",
+    "Local screening and electron counts",
+    "Common observation and change-of-law estimates",
+    "Electron counts in large nuclear voids",
+    "Deterministic comparison fields",
+    "Noisy observations and conditional screening",
+    "Outward propagation and the excess-charge bound",
+    "Conditional density and field comparisons",
+    "Outward propagation and an electron deficit",
+    "Returning to the neutral sector",
+    "A uniform positive ionization gap",
+    "The outer tail and the half-electron radius",
+    "Priced sectors and an exterior cutoff",
+    "Conditional density and field comparison at positive price",
+    "Continuing a lower barrier",
+    "The limiting field and its charge",
+    "Fixed particle numbers and the Thomas--Fermi coefficient",
+    "Conditional screening inputs",
+    "Retained data on expanding annuli",
+    "The unique neutral limiting profile",
+    "Expected electron tails and the radius limits"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Uniform excess charge",
+      "statement": "[Uniform excess charge] There is a universal finite constant C such that every nuclear system specified above and every integer n1 satisfy \\[ E_n<E_ n-1 n Z+CM. \\] Moreover, E_n=E_ n-1 whenever…",
+      "section": "Introduction",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-thm-radius",
+      "kind": "theorem",
+      "label": "Uniform outer half-electron radius",
+      "statement": "[Uniform outer half-electron radius] There are universal constants 0<c C< such that, for every integer Z1 and every normalized ground state of H_ Z,Z , \\[ c R(_Z) C. \\]",
+      "section": "Introduction",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-cor-first-ionization",
+      "kind": "corollary",
+      "label": "Two-sided first-ionization bound",
+      "statement": "[Two-sided first-ionization bound] For the full nonrelativistic Coulomb atom specified above, with integer nuclear charge Z1 , one-electron kinetic term -/2 , and two electron spin states, write…",
+      "section": "Introduction",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-lem-sector-compactness",
+      "kind": "lemma",
+      "label": "Monotonicity and strict-binding compactness",
+      "statement": "[Monotonicity and strict-binding compactness] For every fixed nuclear system, E_ n+1 E_n for n0 , and E_1<0 . If E_n<E_ n-1 , there is a normalized Q_n with q_n[]=E_n .",
+      "section": "A ground state at the minimum over all sectors",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-lem-sector-crude",
+      "kind": "lemma",
+      "label": "Reciprocal-potential bound",
+      "statement": "[Reciprocal-potential bound] If E_n<E_ n-1 and every z_m1 , then n3Z .",
+      "section": "A ground state at the minimum over all sectors",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-lem-sector-global-minimum",
+      "kind": "lemma",
+      "label": "Reduction to a global sector minimum",
+      "statement": "[Reduction to a global sector minimum] For every fixed nuclear system there is a largest integer N such that E_N<E_ N-1 . It satisfies N3Z , has a normalized minimizer , and E:=E_N=_ n0 E_n. Any…",
+      "section": "A ground state at the minimum over all sectors",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-lem-sector-multiplier",
+      "kind": "lemma",
+      "label": "Energy cost of a multiplier",
+      "statement": "[Energy cost of a multiplier] Let Q_n be a normalized eigenstate with eigenvalue e_ . If F is a bounded real Lipschitz function of the spatial configuration, invariant under particle permutations,…",
+      "section": "A ground state at the minimum over all sectors",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-lem-atomic-binding",
+      "kind": "lemma",
+      "label": "Atomic binding",
+      "statement": "[Atomic binding] For integer Z1 , E_n<E_ n-1 for 1 n Z . Each of these sectors has a ground state, and every normalized minimizing sequence has an L^2 convergent subsequence with normalized…",
+      "section": "A ground state at the minimum over all sectors",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-lem-atomic-sector",
+      "kind": "lemma",
+      "label": "A minimum over all sectors",
+      "statement": "[A minimum over all sectors] Every strict sector, namely every n with E_n<E_ n-1 , satisfies n2Z+1 . There is consequently a largest strict index N_* , and Z N_*2Z+13Z, E:=_ n0 E_n=E_ N_* . The…",
+      "section": "A ground state at the minimum over all sectors",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-lem-loc-coulomb",
+      "kind": "lemma",
+      "label": "Coulomb duality and radial smearing",
+      "statement": "[Coulomb duality and radial smearing] For compactly supported real f L^ 5/3 (^3) , its Coulomb potential is continuous and belongs to H^1 , and D(f)=1 8 \\|(K*f)\\|_2^2, | fv| CD(f)\\| v\\|_2 (v H^1).…",
+      "section": "Common localization and quantum comparisons",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-lem-loc-kinetic",
+      "kind": "lemma",
+      "label": "Occupation and kinetic energy",
+      "statement": "[Occupation and kinetic energy] If 01 has finite trace, then Tr(-/2) c_^ 5/3 for a universal c>0 . The one-body density matrix of an antisymmetric k -particle vector f is bounded above by \\|f\\|_2^2…",
+      "section": "Common localization and quantum comparisons",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-lem-atomic-global-density",
+      "kind": "lemma",
+      "label": "Global atomic density at an energy offset",
+      "statement": "[Global atomic density at an energy offset] For one nucleus of charge Z1 , every -state in a sector n3Z satisfies _^ 5/3 C(Z^ 7/3 +).",
+      "section": "Common localization and quantum comparisons",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-lem-loc-identity",
+      "kind": "lemma",
+      "label": "Conditional localization identity",
+      "statement": "[Conditional localization identity] With the preceding definitions, set \\[ T_o=12_I_ i I \\|_i_I\\|_2^2. \\] There is a nonnegative localization error satisfying IMS12__i_h (| s_h|^2+| c_h|^2)(x_i) such…",
+      "section": "Common localization and quantum comparisons",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-lem-loc-hole-trial",
+      "kind": "lemma",
+      "label": "Trial particles in a hole",
+      "statement": "[Trial particles in a hole] Fix a conditional core slice with finite energy e_X and field _X as above. Let 0 belong to L^ 5/3 and have compact support. Suppose its packet region supp+B(0,b) has…",
+      "section": "Common localization and quantum comparisons",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-lem-loc-cubes",
+      "kind": "lemma",
+      "label": "Fine density and lower energy bounds",
+      "statement": "[Fine density and lower energy bounds] In the setting of Lemma~ , let n_o be the out particle count. Choose, measurably, any subset of the out particles and set \\[ (x)=_ i\\ retained _b(x-x_i). \\]…",
+      "section": "Common localization and quantum comparisons",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-m-lem-screen-scale",
+      "kind": "lemma",
+      "label": "Properties of the nuclear scale",
+      "statement": "[Properties of the nuclear scale] In the nuclear-scale geometry, a:^3(0,) is L^ -1 -Lipschitz and satisfies Z^ -1/3 a_y<, (B(y,La_y)) a_y^ -3 , (B(y,2La_y))>(2a_y)^ -3 , d_y La_y. If d_y/L>1 , then…",
+      "section": "Local screening and electron counts",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-m-lem-screen-positive-field",
+      "kind": "lemma",
+      "label": "Conditional positive fields",
+      "statement": "[Conditional positive fields] Fix C_01 . Suppose the initial sequence is absent, or its total out support is covered by at most C_0 balls B_z and the sum of its cuts' squared gradients is bounded by…",
+      "section": "Local screening and electron counts",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-m-lem-screen-patch",
+      "kind": "lemma",
+      "label": "Conditional comparison in an interior ball",
+      "statement": "[Conditional comparison in an interior ball] Fix y Y , write a=a_y , m=m_y , e=e_y , and choose 0<<1/100 such that ^ -2 am P. Set b= a . There is a deterministic t_0 and a cut full out on B(y,t_0) ,…",
+      "section": "Local screening and electron counts",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-m-lem-screen-count",
+      "kind": "lemma",
+      "label": "Local second moments",
+      "statement": "[Local second moments] For every normalized -state in any finite sector and every y Y , n_y^2 C((a_y^ -6 ,1)+ a_y). In particular the number P in is at most a universal constant.",
+      "section": "Local screening and electron counts",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-a-prop-screen-local",
+      "kind": "proposition",
+      "label": "Uniform local counts and conditional fields",
+      "statement": "[Uniform local counts and conditional fields] In either geometry, every normalized -state in a finite sector satisfies P C . Fix y Y . Suppose the initial finite sequence of cuts has total out…",
+      "section": "Local screening and electron counts",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-m-lem-screen-density",
+      "kind": "lemma",
+      "label": "Fine comparison and local density",
+      "statement": "[Fine comparison and local density] There is a universal a_0>0 with the following property. If a=a_y<a_0 and is a -state with a^ -7+0.02 , choose the patch of Lemma~ with b=a^ 1+0.2 . Its densities…",
+      "section": "Local screening and electron counts",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-a-eq-screen-near-coulomb",
+      "kind": "corollary",
+      "label": "Raw near-Coulomb bound",
+      "statement": "[Raw near-Coulomb bound] Under the hypotheses of Lemma~ , for 0<u4a , _ |x_i-y|<u 1 |x_i-y| Ca^ -4 (u/a)^ 1/5 .",
+      "section": "Local screening and electron counts",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-a-lem-screen-oscillation",
+      "kind": "lemma",
+      "label": "Interior oscillation",
+      "statement": "[Interior oscillation] For every patch in Lemma~ with (B(y,20a))=0 , and every 0<s' a/2 , almost surely in its data, _ x B(y,s') |W(x)-W(y)| Cs'a(a^ -4 +W(y)_-).",
+      "section": "Local screening and electron counts",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-a-cor-screen-annular",
+      "kind": "corollary",
+      "label": "Annular counts",
+      "statement": "[Annular counts] In the atomic distance geometry, for every 0<<< and u>0 , every normalized -state of finite particle number satisfies \\|\\#\\ i: u<|x_i|< u\\ \\|_2 C_ , ((u^ -3 ,1)+ u). All constants…",
+      "section": "Local screening and electron counts",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-lem-obs-data",
+      "kind": "lemma",
+      "label": "Conditional densities and fields",
+      "statement": "[Conditional densities and fields] There are jointly Borel versions of \\[ _j(y)=_P\\!, H_j(y)=V_s(y)-(K*_j)(y), \\] with the following properties. At every positive-density data tuple, _j0 , _j=n , and…",
+      "section": "Common observation and change-of-law estimates",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-lem-obs-tilt",
+      "kind": "lemma",
+      "label": "Energy cost of a data event",
+      "statement": "[Energy cost of a data event] Suppose is an eigenstate of its sector Hamiltonian with energy e_ , where 0 e_-E D_0 . In particular, e_=E_n for a sector ground state. Suppose further that \\[ _ h=j ^…",
+      "section": "Common observation and change-of-law estimates",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-lem-obs-transfer",
+      "kind": "lemma",
+      "label": "Averaged field transfer",
+      "statement": "[Averaged field transfer] Fix a point y where V_s(y) is finite and a length a>0 . Let A F_j have positive P -probability, and let Q be P conditioned on A , extended by fresh localization labels. Its…",
+      "section": "Common observation and change-of-law estimates",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-lem-maximum",
+      "kind": "lemma",
+      "label": "Maximum of weak subsolutions",
+      "statement": "[Maximum of weak subsolutions] Let O^3 be open, let g be locally bounded, and let F(y,t) be measurable in y , continuous in t , and bounded on compact spatial sets and bounded ranges of t . If…",
+      "section": "Common observation and change-of-law estimates",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-m-lem-void-shell",
+      "kind": "lemma",
+      "label": "A large nuclear void",
+      "statement": "[A large nuclear void] There are universal constants t_0,C>0 with the following property. Let O^3 , t t_0 and T=2^Jt , where J1 is an integer. Suppose that at least one nucleus lies in B(O,t/100) and…",
+      "section": "Electron counts in large nuclear voids",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-m-lem-void-count",
+      "kind": "lemma",
+      "label": "Exterior count",
+      "statement": "[Exterior count] There is a universal constant C such that, for 0<s 1 , \\#\\ i:a_ x_i s\\ CMs^ -3 . The constant is independent of the charges and the distances between nuclei.",
+      "section": "Electron counts in large nuclear voids",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-m-lem-barrier-global-tf",
+      "kind": "lemma",
+      "label": "Global comparison problem",
+      "statement": "[Global comparison problem] Let be as above, with total mass Q>0 . The functional \\[ T_() =^ 5/3 - V_+D(), X_+, \\] has a unique minimizer. Its field W=V_-K* satisfies =kW_+^p, W=-4+ W_+^p, W0, 2Q.…",
+      "section": "Deterministic comparison fields",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-m-lem-barrier-mixture",
+      "kind": "lemma",
+      "label": "Point fields and mixtures",
+      "statement": "[Point fields and mixtures] For one point charge Q>0 at R , the field in Lemma~ satisfies W(x) c(Q |x-R| ,|x-R|^ -4 ). For a single point charge or radial smooth charge of mass Q , its screening…",
+      "section": "Deterministic comparison fields",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-m-lem-barrier-fields",
+      "kind": "lemma",
+      "label": "Two reference fields",
+      "statement": "[Two reference fields] There are fixed constants c_0>0 , >0 , c_>0 , and C< such that, off the nuclei, W_0(x) c_0a_x^ -4 , |h_0(x)| Ca_x^ -4 , and everywhere c_ a_x^ -4 W_s(x) Ca_x^ -4 , | W_s(x)|…",
+      "section": "Deterministic comparison fields",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-m-lem-barrier-oscillation",
+      "kind": "lemma",
+      "label": "Oscillation of offsets",
+      "statement": "[Oscillation of offsets] Fix y and write a=a_y . Let h=h_0 , or let h=W-V_c for an interior Thomas--Fermi patch centered at y satisfying the hypotheses of Lemma~ . Then h has a continuous…",
+      "section": "Deterministic comparison fields",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-m-lem-barrier-kernel",
+      "kind": "lemma",
+      "label": "Kernel and potential estimates",
+      "statement": "[Kernel and potential estimates] Uniformly as r_*0 , a center contributing to Rf(y) satisfies |z-y|2t_y and t_z/t_y=1+O(r_*^w) . Moreover, R1(y)=1+O(r_*^w), \\|_z K_z(y)\\|_ Ct_y^ -4 , \\|_z K_z(y)\\|_2…",
+      "section": "Deterministic comparison fields",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-m-lem-barrier-subsolution",
+      "kind": "lemma",
+      "label": "Comparison barriers",
+      "statement": "[Comparison barriers] There are fixed positive constants ,_0,C'_0,c_b,c' with the following properties for all sufficiently small r_*>0 . For 0<r r_* define _r=_0W_s+C'_0r^ 4 W_s^ 1+ ,…",
+      "section": "Deterministic comparison fields",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-m-lem-barrier-gap",
+      "kind": "lemma",
+      "label": "Gap under doubling",
+      "statement": "[Gap under doubling] Fix (0,1/10) . The barriers in Lemma~ have a fixed constant >0 such that, whenever R_+=2r r_* , b_r-b_ R_+ R_+^ -4 on \\ R_+ a(1+)R_+\\ .",
+      "section": "Deterministic comparison fields",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-m-lem-cond-tail",
+      "kind": "lemma",
+      "label": "Positive conditional-field tail",
+      "statement": "[Positive conditional-field tail] If r/2 a_y5L_1r , then, for a universal C and every s>C , \\ H_j(y)>s a_y^ -4 \\ e\\ -c_ L_1 (s-C)^ 2/5 a_y^ -1+.004 \\ . All estimates hold for sufficiently small r_* ,…",
+      "section": "Noisy observations and conditional screening",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-m-lem-cond-cap",
+      "kind": "lemma",
+      "label": "Spatial cap and its exceptional cost",
+      "statement": "[Spatial cap and its exceptional cost] There are universal thresholds C'_ cap ,C_ cap with the following properties. Define \\[ Q is bad& _QH_j>C'_ cap a_Q^ -4 ,\\\\ B_Q&=\\1_ \\ Q bad\\ _Q(H_j)_+,…",
+      "section": "Noisy observations and conditional screening",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-m-lem-cond-inverse",
+      "kind": "lemma",
+      "label": "One-sided inverse comparisons",
+      "statement": "[One-sided inverse comparisons] Fix j<n , and put r=r_j and R_+=2r . For each deterministic y with r a_y2L_1R_+ , the failure probability of each implication below is less than r^ 40 : _j(y)…",
+      "section": "Noisy observations and conditional screening",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-m-lem-cond-moments",
+      "kind": "lemma",
+      "label": "Conditional-density and reaction moments",
+      "statement": "[Conditional-density and reaction moments] Fix j<n , put r=r_j and R_+=2r , and let r a_y2L_1R_+ . Under the original joint law P= , \\|_j(y)\\|_2 Ct_y^ -3 a_y^ -3 , \\|f_y(H_j(y))\\|_2 Ca_y^ -6 (1+_y^…",
+      "section": "Noisy observations and conditional screening",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-m-prop-outward-step",
+      "kind": "proposition",
+      "label": "One outward step",
+      "statement": "[One outward step] Suppose that u,d_j satisfy the inductive conditions above, including -- , at scale r=r_j . There are an offset u' and a nonnegative error density d , measurable with respect to the…",
+      "section": "Outward propagation and the excess-charge bound",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-m-lem-outward-average",
+      "kind": "lemma",
+      "label": "Forgetting the current observations",
+      "statement": "[Forgetting the current observations] Set \\[ u_ j+1 =, d_ j+1 =. \\] Then u_ j+1 ,d_ j+1 satisfy -- at scale r_ j+1 , with conditional density _ j+1 . They retain continuity and local H^1 regularity…",
+      "section": "Outward propagation and the excess-charge bound",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-m-lem-outward-error",
+      "kind": "lemma",
+      "label": "Integrated error",
+      "statement": "[Integrated error] Starting with u=b_ r_0 and d_0=0 , the preceding construction reaches scale r_n=r_* and produces a deterministic error density with d_n C M r_*^ 17-3w =o(M) along the contradiction…",
+      "section": "Outward propagation and the excess-charge bound",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-a-prop-cond-comparison",
+      "kind": "proposition",
+      "label": "Conditional density determines the field",
+      "statement": "[Conditional density determines the field] There is a universal constant C_ cap with the following property. Fix L_12 , 0<h_l<h_h< , and a sufficiently small >0 ; it suffices to require <h_l/16 .…",
+      "section": "Conditional density and field comparisons",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-a-prop-prop-deficit",
+      "kind": "proposition",
+      "label": "Deficit inside a fixed small ball",
+      "statement": "[Deficit inside a fixed small ball] There is a universal constant c_ def >0 with the following property. For every D_0=E_n E+D_0 \\] obey Z-_\\#\\ i:|x_i|<s/4\\ c_ def s^ -3 >1. All thresholds are…",
+      "section": "Outward propagation and an electron deficit",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-prop-atomic-intermediate",
+      "kind": "proposition",
+      "label": "Intermediate atomic subsolutions",
+      "statement": "[Intermediate atomic subsolutions] There are universal constants ,B,C_ inv >0 and L_1>2 with the following property. Fix D_0< , then take s>0 sufficiently small and integer Z sufficiently large as in…",
+      "section": "Outward propagation and an electron deficit",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-a-lem-tail-harmonic",
+      "kind": "lemma",
+      "label": "Conditional fields on annuli",
+      "statement": "[Conditional fields on annuli] Fix positive constants <'<'< and _0<_0 . Let u>0 , 0<h u/2 , and let be a normalized -state with n3Z , where < is arbitrary. Let Y be the data from a cut whose out…",
+      "section": "Returning to the neutral sector",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-a-lem-tail-deficit-upper",
+      "kind": "lemma",
+      "label": "An upper bound on an inner deficit",
+      "statement": "[An upper bound on an inner deficit] For each fixed t>0 and every normalized -state with n3Z , Z-\\#\\ i:|x_i|<t/4\\ C_t(1+).",
+      "section": "Returning to the neutral sector",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-a-prop-tail-offset",
+      "kind": "proposition",
+      "label": "A bounded offset for neutral sectors",
+      "statement": "[A bounded offset for neutral sectors] There are universal constants C,Z_0< such that, for Z Z_0 , E_ Z-1 E+C.",
+      "section": "Returning to the neutral sector",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-a-prop-tail-gap",
+      "kind": "proposition",
+      "label": "Positive ionization energy",
+      "statement": "[Positive ionization energy] There are universal constants c>0 and Z_2< such that E_ Z-1 -E_Z c(Z Z_2).",
+      "section": "A uniform positive ionization gap",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m1-a-prop-tail-mass",
+      "kind": "proposition",
+      "label": "Uniform exterior mass",
+      "statement": "[Uniform exterior mass] There exist universal C,R_0,Z_3< such that every normalized neutral ground state with Z Z_3 satisfies _ |x|>R _ _Z (x)\\, x C R (R R_0).",
+      "section": "The outer tail and the half-electron radius",
+      "manuscript": "Uniform excess charge for Coulomb molecules and the outer radius of neutral atoms"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Generalized ionization energy",
+      "statement": "[Generalized ionization energy] For full nonrelativistic Coulomb atoms with two electron spin states, I_m(Z) m^ 7/3 a_ >0 whenever m, Zm, where Z>m1 are integers. In particular, _ m _ Z I_m(Z) m^ 7/3…",
+      "section": "Introduction",
+      "manuscript": "Generalized ionization energies for full Coulomb atoms"
+    },
+    {
+      "id": "m2-thm-priced-deficit",
+      "kind": "theorem",
+      "label": "Deficit at a prescribed price",
+      "statement": "[Deficit at a prescribed price] There is a universal number q>0 such that, for every sequence satisfying \\[ =s^ -4 , s0, Zs^3, \\] and every choice of n minimizing E_n+ n , one has \\[ s^3(Z-n) q. \\]…",
+      "section": "Introduction",
+      "manuscript": "Generalized ionization energies for full Coulomb atoms"
+    },
+    {
+      "id": "m2-lem-sector-inputs",
+      "kind": "lemma",
+      "label": "Sector and energy estimates",
+      "statement": "[Sector and energy estimates] The sequence E_n is nonincreasing. If E_n<E_ n-1 , there is a normalized ground state in sector n , and n2Z+13Z . There is a largest such index N_* , with Z N_*3Z , and…",
+      "section": "Priced sectors and an exterior cutoff",
+      "manuscript": "Generalized ionization energies for full Coulomb atoms"
+    },
+    {
+      "id": "m2-lem-local-field-input",
+      "kind": "lemma",
+      "label": "Local fields for arbitrary offsets",
+      "statement": "[Local fields for arbitrary offsets] For every normalized unshifted -state of finite particle number, P_* C . Fix y0 and C_01 . The data X may be trivial. Otherwise, suppose that the initial cut, or…",
+      "section": "Priced sectors and an exterior cutoff",
+      "manuscript": "Generalized ionization energies for full Coulomb atoms"
+    },
+    {
+      "id": "m2-lem-screening-inputs",
+      "kind": "lemma",
+      "label": "Annular screening estimates",
+      "statement": "[Annular screening estimates] Let be a normalized unshifted -state of finite particle number. For fixed 0<<< and every u>0 , \\|\\#\\ i: u|x_i| u\\ \\|_2 C_ , ((u^ -3 ,1)+ u). Suppose in addition that n3Z…",
+      "section": "Priced sectors and an exterior cutoff",
+      "manuscript": "Generalized ionization energies for full Coulomb atoms"
+    },
+    {
+      "id": "m2-lem-priced-rough",
+      "kind": "lemma",
+      "label": "The minimum P() is attained. Along , every minimizing index n is eventually…",
+      "statement": "The minimum P() is attained. Along , every minimizing index n is eventually nonzero and strictly bound. For a normalized ground state in that sector, put D_0=E_n-E . Uniformly over all these choices,…",
+      "section": "Priced sectors and an exterior cutoff",
+      "manuscript": "Generalized ionization energies for full Coulomb atoms"
+    },
+    {
+      "id": "m2-lem-exterior-cutoff",
+      "kind": "lemma",
+      "label": "There is a sufficiently large fixed R_0 such that, for every sequence of…",
+      "statement": "There is a sufficiently large fixed R_0 such that, for every sequence of minimizing sectors and corresponding ground states in , s^3_\\#\\ i:|x_i|>R_0s\\ 0.",
+      "section": "Priced sectors and an exterior cutoff",
+      "manuscript": "Generalized ionization energies for full Coulomb atoms"
+    },
+    {
+      "id": "m2-lem-event-tilt",
+      "kind": "lemma",
+      "label": "Cost of an observation event",
+      "statement": "[Cost of an observation event] Let j<J_* and let A' F_j have probability p>0 . There is a normalized antisymmetric state _ A' in the same sector whose raw law is the raw marginal conditioned on A'…",
+      "section": "Conditional density and field comparison at positive price",
+      "manuscript": "Generalized ionization energies for full Coulomb atoms"
+    },
+    {
+      "id": "m2-prop-inverse-comparison",
+      "kind": "proposition",
+      "label": "Simultaneous inverse comparison",
+      "statement": "[Simultaneous inverse comparison] There is a universal constant C_ cap with the following property. Fix \\[ M2, 0<h_l<h_h<, 0<<h_l/16. \\] For all sufficiently far systems along , at every j<J_* there…",
+      "section": "Conditional density and field comparison at positive price",
+      "manuscript": "Generalized ionization energies for full Coulomb atoms"
+    },
+    {
+      "id": "m2-prop-barrier-invariant",
+      "kind": "proposition",
+      "label": "Conditional barrier invariant",
+      "statement": "[Conditional barrier invariant] There are fixed positive constants ,B,C_ inv and M>2 with the following property. For every sufficiently far system in , use the observations and kernels of with this…",
+      "section": "Continuing a lower barrier",
+      "manuscript": "Generalized ionization energies for full Coulomb atoms"
+    },
+    {
+      "id": "m2-lem-singular-profile",
+      "kind": "lemma",
+      "label": "Unique decaying singular profile",
+      "statement": "[Unique decaying singular profile] There is at most one classical solution F of \\[ F=4 k((F-1)_+)^ 3/2 on ^3\\ 0\\ \\] which tends uniformly to zero at infinity and satisfies c|x|^ -4 F(x) C|x|^ -4 near…",
+      "section": "The limiting field and its charge",
+      "manuscript": "Generalized ionization energies for full Coulomb atoms"
+    },
+    {
+      "id": "m2-prop-fixed-sector-limit",
+      "kind": "proposition",
+      "label": "Let q be the deficit coefficient in . For every sequence of integers Z>m1 such…",
+      "statement": "Let q be the deficit coefficient in . For every sequence of integers Z>m1 such that m and Z/m , E_Z(Z-m)-E_Z(Z) m^ 7/3 37q^ -4/3 .",
+      "section": "Fixed particle numbers and the Thomas--Fermi coefficient",
+      "manuscript": "Generalized ionization energies for full Coulomb atoms"
+    },
+    {
+      "id": "m2-prop-tf-identification",
+      "kind": "proposition",
+      "label": "With the two-spin coefficient T fixed above, _ Z =37q^ -4/3 . The limit holds…",
+      "statement": "With the two-spin coefficient T fixed above, _ Z =37q^ -4/3 . The limit holds through real charges Z>1 . Consequently holds for every fixed real m>0 , with \\[ a_ =37q^ -4/3 >0. \\]",
+      "section": "Fixed particle numbers and the Thomas--Fermi coefficient",
+      "manuscript": "Generalized ionization energies for full Coulomb atoms"
+    },
+    {
+      "id": "m3-intro-main",
+      "kind": "theorem",
+      "label": "Generalized ionization conjecture: radii",
+      "statement": "[Generalized ionization conjecture: radii] Set b_ TF =(81^2/2)^ 1/3 . For every choice of normalized neutral ground states (_Z)_ Z1 of , _ m m^ 1/3 &=b_ TF , \\\\ _ m m^ 1/3 &=b_ TF . All limits are…",
+      "section": "Introduction",
+      "manuscript": "Generalized outer-electron radii of neutral Coulomb atoms"
+    },
+    {
+      "id": "m3-inp-energy-counts",
+      "kind": "proposition",
+      "label": "Uniform offset and raw counts",
+      "statement": "[Uniform offset and raw counts] There are constants D_0,Z_0< such that every normalized neutral ground state with Z Z_0 has offset at most D_0 . For every fixed 0<<< and every u>0 , its raw electron…",
+      "section": "Conditional screening inputs",
+      "manuscript": "Generalized outer-electron radii of neutral Coulomb atoms"
+    },
+    {
+      "id": "m3-inp-comparison-prop",
+      "kind": "proposition",
+      "label": "Conditional comparison",
+      "statement": "[Conditional comparison] There is a universal C_ cap with the following property. Fix L_12 , 0<h_l<h_h< , and 0<<h_l/16 . For all sufficiently small s>0 , depending on these parameters and D_0 , and…",
+      "section": "Conditional screening inputs",
+      "manuscript": "Generalized outer-electron radii of neutral Coulomb atoms"
+    },
+    {
+      "id": "m3-inp-barrier-prop",
+      "kind": "proposition",
+      "label": "Intermediate subsolutions",
+      "statement": "[Intermediate subsolutions] For the fixed constants above, there are B>0 , C_ inv < , s_ bar >0 , and a finite integer threshold Z_ bar (s) for every 0<s s_ bar , such that the following holds. For…",
+      "section": "Conditional screening inputs",
+      "manuscript": "Generalized outer-electron radii of neutral Coulomb atoms"
+    },
+    {
+      "id": "m3-scales-good",
+      "kind": "proposition",
+      "label": "Estimates on retained data",
+      "statement": "[Estimates on retained data] There are deterministic integers q_ and j_<J_ , and events G_ F_ j_ with (G_)1 , such that a_:= r_ j_ s_ . Put _=Z_ s_^3 and, on each retained datum, define F_(x)&=s_^4H_…",
+      "section": "Retained data on expanding annuli",
+      "manuscript": "Generalized outer-electron radii of neutral Coulomb atoms"
+    },
+    {
+      "id": "m3-prof-compactness",
+      "kind": "lemma",
+      "label": "Compactness from the neutral spherical mean",
+      "statement": "[Compactness from the neutral spherical mean] The sequence (F_) is locally uniformly precompact on ^3\\ 0\\ . Every locally uniform subsequential limit F is locally Lipschitz and satisfies F=f(F), F(x)…",
+      "section": "The unique neutral limiting profile",
+      "manuscript": "Generalized outer-electron radii of neutral Coulomb atoms"
+    },
+    {
+      "id": "m3-prof-lower",
+      "kind": "lemma",
+      "label": "Transfer of the positive barrier",
+      "statement": "[Transfer of the positive barrier] Every limit F in Lemma~ satisfies B|x|^ -4 F(x) C_ cap |x|^ -4 (x0).",
+      "section": "The unique neutral limiting profile",
+      "manuscript": "Generalized outer-electron radii of neutral Coulomb atoms"
+    },
+    {
+      "id": "m3-prof-rigidity",
+      "kind": "lemma",
+      "label": "Rigidity of a positive comparable profile",
+      "statement": "[Rigidity of a positive comparable profile] Let F be a continuous distributional solution of F=4 kF^ 3/2 on ^3\\ 0\\ , and suppose \\[ B|x|^ -4 F(x) C|x|^ -4 (x0) \\] for constants 0<B C< . Then…",
+      "section": "The unique neutral limiting profile",
+      "manuscript": "Generalized outer-electron radii of neutral Coulomb atoms"
+    },
+    {
+      "id": "m3-prof-limit",
+      "kind": "proposition",
+      "label": "Convergence of the selected fields",
+      "statement": "[Convergence of the selected fields] For every choice of one retained datum at each index, \\[ F_(x) A_*|x|^ -4 , _(x) _*(x):=kA_*^ 3/2 |x|^ -6 \\] locally uniformly on ^3\\ 0\\ .",
+      "section": "The unique neutral limiting profile",
+      "manuscript": "Generalized outer-electron radii of neutral Coulomb atoms"
+    },
+    {
+      "id": "m3-prof-uniform",
+      "kind": "corollary",
+      "label": "Uniformity on the retained data",
+      "statement": "[Uniformity on the retained data] For each fixed compact annulus A^3\\ 0\\ , \\[ _ G_ \\|_(,\\,)-_*\\|_ C( A) 0. \\] The corresponding assertion holds for F_(,\\,)-A_*||^ -4 .",
+      "section": "The unique neutral limiting profile",
+      "manuscript": "Generalized outer-electron radii of neutral Coulomb atoms"
+    },
+    {
+      "id": "m3-tail-packets",
+      "kind": "lemma",
+      "label": "Packet supports",
+      "statement": "[Packet supports] For each fixed 0<a<b< , all sufficiently large satisfy P_(a,b) N_(a/2,2b) for every raw configuration. Moreover, for every fixed 0<<\\ a,(b-a)/2\\ , all sufficiently large satisfy…",
+      "section": "Expected electron tails and the radius limits",
+      "manuscript": "Generalized outer-electron radii of neutral Coulomb atoms"
+    },
+    {
+      "id": "m3-tail-annular",
+      "kind": "lemma",
+      "label": "Expected annular mass",
+      "statement": "[Expected annular mass] For every fixed 0<a<b< , _ A(a,b) _(x) x & _ A(a,b) _*(x) x, \\\\ s_^3 N_(a,b) & _ A(a,b) _*(x) x.",
+      "section": "Expected electron tails and the radius limits",
+      "manuscript": "Generalized outer-electron radii of neutral Coulomb atoms"
+    },
+    {
+      "id": "m3-tail-tightness",
+      "kind": "lemma",
+      "label": "Exterior tightness",
+      "statement": "[Exterior tightness] There is a constant C , independent of the fixed number M>0 , such that every admissible sequence satisfies _ s_^3 \\#\\ i:|x_i|>Ms_\\ CM^ -3 .",
+      "section": "Expected electron tails and the radius limits",
+      "manuscript": "Generalized outer-electron radii of neutral Coulomb atoms"
+    },
+    {
+      "id": "m3-tail-asymptotic",
+      "kind": "theorem",
+      "label": "Expected exterior asymptotic",
+      "statement": "[Expected exterior asymptotic] Along every admissible sequence, with arbitrary normalized neutral ground states, for each fixed a>0 , s_^3_ |y|>as_ _ _ (y) y b_ TF ^3 a^3 .",
+      "section": "Expected electron tails and the radius limits",
+      "manuscript": "Generalized outer-electron radii of neutral Coulomb atoms"
+    }
+  ],
+  "edges": []
+}

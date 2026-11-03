@@ -1,0 +1,476 @@
+{
+  "familyNumber": "120",
+  "familyTitle": "Almost-linear-time exact matching and prescribed-degree factors in general graphs",
+  "manuscripts": [
+    {
+      "id": "Almost-Linear-Time-Maximum-Cardinality-Matching-in-Sparse-General-Graphs-September-24-2026",
+      "title": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Almost-Linear-Time-Maximum-Cardinality-Matching-in-Sparse-General-Graphs-September-24-2026/main.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Conventions and static primitives",
+    "Matching states and structural operations",
+    "Local projection and the perfect-matching bound",
+    "Priced logarithmic steps",
+    "A resource-preserving static routing sparsifier",
+    "Frozen decompositions and cycle quality",
+    "Maintaining and exposing the cycle backend",
+    "Explicit output and one uniform program",
+    "Prescribed-degree factors"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Exact matching in almost-linear input-size time",
+      "statement": "[Exact matching in almost-linear input-size time] There are a single uniform randomized word-RAM algorithm, fixed constants c_02 and C1 , and a nonincreasing function : N_ 1 R_ 0 with (q)0 as q such…",
+      "section": "Introduction",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-lem-integral-flow",
+      "kind": "lemma",
+      "label": "Static integral flow",
+      "statement": "[Static integral flow] For an explicitly represented directed network of total size at most P , with integral capacities, demands and costs bounded in magnitude by a fixed power of P , exact integral…",
+      "section": "Conventions and static primitives",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-prelim-small-violation",
+      "kind": "lemma",
+      "label": "Integral cuts from a small total violation",
+      "statement": "[Integral cuts from a small total violation] Let every lower and upper arc bound be integral, with lower bound no larger than upper bound. If an exactly conserved real arc vector has total bound…",
+      "section": "Conventions and static primitives",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-lem-capacity-scaling",
+      "kind": "lemma",
+      "label": "One polynomial-capacity implementation",
+      "statement": "[One polynomial-capacity implementation] For maximum flow with nonnegative integral upper capacities of at most b bits, a single fixed polynomial-capacity version of Lemma~ suffices, using b calls on…",
+      "section": "Conventions and static primitives",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-lem-fallback",
+      "kind": "lemma",
+      "label": "Polynomial perfect-matching fallback",
+      "statement": "[Polynomial perfect-matching fallback] There is one uniform deterministic algorithm on explicit loopless graphs of maximum degree three that halts within a fixed polynomial number of finite-word…",
+      "section": "Conventions and static primitives",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-match-bottom-surplus",
+      "kind": "lemma",
+      "label": "Bottom surplus",
+      "statement": "[Bottom surplus] At each settled state and every nonempty \\(X D\\), Lh(X) y^a(X) w(X)>0. Thus \\(h(X)1\\), every bin has weight at most \\(L\\), and a tight set \\(h(X)=1\\) has total weight at most \\(L\\).",
+      "section": "Matching states and structural operations",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-match-deletion",
+      "kind": "lemma",
+      "label": "Deletion and net debt",
+      "statement": "[Deletion and net debt] In a preserved ledger of floor \\(cw\\), redirect each allocation of a surviving row into \\(R\\) to its current assigned edge, adding an equal debt at the recipient bin. This…",
+      "section": "Matching states and structural operations",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-match-top-maintenance",
+      "kind": "lemma",
+      "label": "Top maintenance",
+      "statement": "[Top maintenance] The top ledger can be maintained on the \\(\\)-grid with logarithmic arguments above \\(\\) before pricing and above \\(/10\\) at refreshes. Apart from structural work, repairs cost…",
+      "section": "Matching states and structural operations",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-match-exchange-projection",
+      "kind": "lemma",
+      "label": "Exact exchange projection",
+      "statement": "[Exact exchange projection] An integral maximum flow in the exchange network produces either a zero-debt ledger of floor \\(cw\\) on the whole state, or a nonempty bin set \\(R\\) whose peel leaves such…",
+      "section": "Matching states and structural operations",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-match-tight-contraction",
+      "kind": "lemma",
+      "label": "The tight-set alternative",
+      "statement": "[The tight-set alternative] Suppose holds and an edge joins distinct bins \\(i,j\\). Either the injection can be rearranged to leave both free, or a unique inclusion-minimal \\(X\\ i,j\\ \\) satisfies…",
+      "section": "Matching states and structural operations",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-match-pair-action",
+      "kind": "lemma",
+      "label": "A bounded randomized pair action",
+      "statement": "[A bounded randomized pair action] At a settled state, the preceding searches process a queried distinct-bin edge as follows. A returned contraction is the minimal tight set with a valid…",
+      "section": "Matching states and structural operations",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-match-materialization",
+      "kind": "lemma",
+      "label": "Materializing a bin",
+      "statement": "[Materializing a bin] A current bin can be materialized with any prescribed physical exposure in time linear in its physical size up to logarithmic factors. All current bins can be dissolved at an…",
+      "section": "Matching states and structural operations",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-lem-projection",
+      "kind": "lemma",
+      "label": "Local exact projection",
+      "statement": "[Local exact projection] Suppose an integral parent ledger satisfies in a partition state of a subcubic graph on at most \\(S\\) physical vertices. Its allocations, column residuals, weights, and…",
+      "section": "Local projection and the perfect-matching bound",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-proj-threshold",
+      "kind": "lemma",
+      "label": "Threshold certificate",
+      "statement": "[Threshold certificate] An unfailed, nonsuspended threshold test cannot report \\(LOW\\) if the unlocked optimistic maximum is at least \\(T\\) in scaled units. Its success exit implies that the explored…",
+      "section": "Local projection and the perfect-matching bound",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-proj-local-cut",
+      "kind": "lemma",
+      "label": "Recovering the full residual cut",
+      "statement": "[Recovering the full residual cut] Suppose \\(>0\\), and let \\(v\\) be the full unscaled exchange maximum. Suppose a true explored region of maximum \\(v\\) is available when \\(v>0\\), and an unlocked…",
+      "section": "Local projection and the perfect-matching bound",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-phase-accounting",
+      "kind": "lemma",
+      "label": "Phase accounting",
+      "statement": "[Phase accounting] In a phase with initial deficit \\(K\\), threshold \\(L\\), and target \\(g_*\\), every guarded prefix before completion satisfies _ peels w(R_0)2L(g_*-1)+S^ -800 , \\#\\ blockers\\…",
+      "section": "Local projection and the perfect-matching bound",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-phase-stall",
+      "kind": "lemma",
+      "label": "No false stall without a stochastic failure",
+      "statement": "[No false stall without a stochastic failure] If the subcubic graph has a perfect matching, a settled phase state with fewer than \\(g_*\\) gains admits neither a valid \\(LOW\\) exit nor a permanent…",
+      "section": "Local projection and the perfect-matching bound",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-phase-guard-adequacy",
+      "kind": "lemma",
+      "label": "Eventual adequacy of the guards",
+      "statement": "[Eventual adequacy of the guards] For every sufficiently large fixed \\(a\\) and fixed admissible reliability parameter \\(\\), all deterministic guards of the PM construction are adequate for all…",
+      "section": "Local projection and the perfect-matching bound",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-thm-subcubic",
+      "kind": "theorem",
+      "label": "Fixed-parameter subcubic perfect-matching search",
+      "statement": "[Fixed-parameter subcubic perfect-matching search] For the integers \\(a1000\\) and fixed reliability parameters \\(0 a+1\\), the construction defines a uniform randomized algorithm on loopless subcubic…",
+      "section": "Local projection and the perfect-matching bound",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-lem-priced-steps",
+      "kind": "lemma",
+      "label": "Priced logarithmic steps",
+      "statement": "[Priced logarithmic steps] Suppose a nominal bound R counts the logical vertex and edge births and endpoint insertions over one instance, including retargetings. Mere value or price changes on…",
+      "section": "Priced logarithmic steps",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-lem-flat-cycle",
+      "kind": "lemma",
+      "label": "Flat-cycle backend",
+      "statement": "[Flat-cycle backend] Let M=2^u , where u is divisible by 2a^2 , and suppose S^ 1/a M S^2. Consider a dynamic undirected graph with reference orientations and fixed vertex slots, of total current size…",
+      "section": "Priced logarithmic steps",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-engine-tree-cost",
+      "kind": "lemma",
+      "label": "Augmented forest cost",
+      "statement": "[Augmented forest cost] On a forest of at most N_f subdivided nodes, the preceding operations use O( N_f) amortized tree primitives per link, cut, evert, expose, point operation, or lazy path update.…",
+      "section": "Priced logarithmic steps",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-engine-refresh-bound",
+      "kind": "lemma",
+      "label": "Register accuracy and notification bound",
+      "statement": "[Register accuracy and notification bound] After settlement, holds. The total number of engine refresh reports and copy-disable events is O(D) times the number of successful pricing steps, apart from…",
+      "section": "Priced logarithmic steps",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-lem-routing-helper",
+      "kind": "lemma",
+      "label": "Static routing with resources",
+      "statement": "[Static routing with resources] Let F be an explicitly listed undirected multigraph with identified edge copies, and let v_+ be its number of incident vertex labels. For each edge f , an explicit…",
+      "section": "A resource-preserving static routing sparsifier",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-route-sampling",
+      "kind": "lemma",
+      "label": "Simultaneous cuts and resource loads",
+      "statement": "[Simultaneous cuts and resource loads] For a sampled piece, except with probability at most 4s' , every vertex set X satisfies |_ e X retained _e -| X|| \\ (X),( X)\\ 4 . This event implies the…",
+      "section": "A resource-preserving static routing sparsifier",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-route-overlay",
+      "kind": "lemma",
+      "label": "The median rule",
+      "statement": "[The median rule] There is a median rule for which a piece completing all r_m rounds has an r_m -regular overlay of conductance at least 1/(4r_m) , except with probability at most 4N_p^3 . This…",
+      "section": "A resource-preserving static routing sparsifier",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-route-cheeger",
+      "kind": "lemma",
+      "label": "Mixing from conductance",
+      "statement": "[Mixing from conductance] In a connected undirected multigraph with at least two vertices and conductance , the lazy walk has spectral gap at least ^2/4 . If the graph has at most N_p labels, degree…",
+      "section": "A resource-preserving static routing sparsifier",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-route-router",
+      "kind": "lemma",
+      "label": "Packet and virtual-job router",
+      "statement": "[Packet and virtual-job router] Conditional on an overlay satisfying Lemma~ , the procedure above produces explicit routes for all packets with both maximum length and total traversal congestion on…",
+      "section": "A resource-preserving static routing sparsifier",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-back-base",
+      "kind": "lemma",
+      "label": "Bottom-level search",
+      "statement": "[Bottom-level search] At level d , a query can return individual oriented edges forming a circulation with certified score at least _d/2 , whenever _d>0 . Initialization and each graph operation or…",
+      "section": "Frozen decompositions and cycle quality",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-back-covers",
+      "kind": "lemma",
+      "label": "Verified padded covers",
+      "statement": "[Verified padded covers] For every layer j one can construct K_h partitions of the frozen vertices into cells, with a shortest-path tree in each cell, such that: [label=()] every cell tree has radius…",
+      "section": "Frozen decompositions and cycle quality",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-back-forest-family",
+      "kind": "lemma",
+      "label": "Finite family of routing forests",
+      "statement": "[Finite family of routing forests] There is a family of at most (K_h^2(u+1))^ O(r) forests T^0 with the following property. At each layer, any two distinct lower slots can be prescribed arbitrary OUT…",
+      "section": "Frozen decompositions and cycle quality",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-back-path-law",
+      "kind": "lemma",
+      "label": "Upward route laws",
+      "statement": "[Upward route laws] The independent layer choices L_j(v) define an upward path P(v) in the layered system with all OUT options. For every frozen edge e=vw , its two path laws admit a coupling such…",
+      "section": "Frozen decompositions and cycle quality",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-back-frozen-decomposition",
+      "kind": "lemma",
+      "label": "Frozen decomposition with holes",
+      "statement": "[Frozen decomposition with holes] Fix any state of the epoch and any circulation on its current nonloops. Write =_s+_n for its surviving frozen and new coordinates. There are real coefficients _f on…",
+      "section": "Frozen decompositions and cycle quality",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-back-portals",
+      "kind": "lemma",
+      "label": "Portal grid",
+      "statement": "[Portal grid] A forest admits a set of at most its number of vertices divided by k portals such that every component remaining after portal removal has fewer than k vertices. The set is constructed…",
+      "section": "Frozen decompositions and cycle quality",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-back-compression",
+      "kind": "lemma",
+      "label": "Compression of a forest vector",
+      "statement": "[Compression of a forest vector] If a vector on a forest has divergence only at a specified terminal set, it vanishes off the terminal Steiner subtrees and has constant oriented coefficient along…",
+      "section": "Frozen decompositions and cycle quality",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-lem-backend-reduction",
+      "kind": "lemma",
+      "label": "One-level quality reduction",
+      "statement": "[One-level quality reduction] In every state of an epoch, suppose the active logical path assignments use selected chords and have at most p_* hops. Let L_ best be the largest local correction score…",
+      "section": "Frozen decompositions and cycle quality",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-back-quality-induction",
+      "kind": "corollary",
+      "label": "Quality through the recursion",
+      "statement": "[Quality through the recursion] Assume the path assignments and public forest lifting of Section~ . The backend at level i returns a certified score at least 12 b^ -2(d-i) _i. At the outer level this…",
+      "section": "Frozen decompositions and cycle quality",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-update-classes",
+      "kind": "lemma",
+      "label": "Class edits",
+      "statement": "[Class edits] The leg assignments of Section~ can be maintained with logical degree at most D_ . One input edit induces only a logarithmic factor many logical edit units across all tree--width…",
+      "section": "Maintaining and exposing the cycle backend",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-update-anchor-core",
+      "kind": "lemma",
+      "label": "The anchor core",
+      "statement": "[The anchor core] Suppose the interval from a parent snapshot to a rebuild contains E_0 logical edit units in one tree--width graph. The rebuild can restore using a helper instance on O(E_0) incident…",
+      "section": "Maintaining and exposing the cycle backend",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-update-support",
+      "kind": "lemma",
+      "label": "Cumulative assignment work and support",
+      "statement": "[Cumulative assignment work and support] The initial assignments use at most h_i times a logarithmic factor many support chords. On every epoch prefix of t' h_i edits, the additional support…",
+      "section": "Maintaining and exposing the cycle backend",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-update-compressed-edits",
+      "kind": "lemma",
+      "label": "Compressed graph edits",
+      "statement": "[Compressed graph edits] The single child graph J can be initialized nonempty. Throughout an epoch it uses at most h_ib times a logarithmic factor many active slots and edges, including slots…",
+      "section": "Maintaining and exposing the cycle backend",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-update-flat-lift",
+      "kind": "lemma",
+      "label": "Flat lifting",
+      "statement": "[Flat lifting] The construction is a forest with valid current actual or null edge maps. A child forest-path piece lifts to at most one public forest-path piece, preserving its signed projection and…",
+      "section": "Maintaining and exposing the cycle backend",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-update-multiplicity",
+      "kind": "lemma",
+      "label": "Occurrence multiplicity",
+      "statement": "[Occurrence multiplicity] For all sufficiently large M at fixed parameters, level i has at most D_i public forest vertices over each input slot. In particular the outer multiplicity is at most M^…",
+      "section": "Maintaining and exposing the cycle backend",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-update-recourse",
+      "kind": "lemma",
+      "label": "Forest recourse",
+      "statement": "[Forest recourse] For one parent input edit within an epoch, let Q be the set of child labels assigned or changed, or incident to a changed child edge or changed segment realization. Apart from local…",
+      "section": "Maintaining and exposing the cycle backend",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-update-recurrences",
+      "kind": "lemma",
+      "label": "Recursive work bounds",
+      "statement": "[Recursive work bounds] For a prefix of s graph operations, counting queries and edits and including an operation that terminates partway through, level i has total work and explicit public-log size…",
+      "section": "Maintaining and exposing the cycle backend",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-update-reliability",
+      "kind": "lemma",
+      "label": "Guards and conditional failure",
+      "statement": "[Guards and conditional failure] The construction can enforce all size, multiplicity, arithmetic, and sampling prerequisites by finite checks. For every sufficiently large fixed a and every fixed 0 ,…",
+      "section": "Maintaining and exposing the cycle backend",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-uniform-network",
+      "kind": "lemma",
+      "label": "A linearithmic permutation network",
+      "statement": "[A linearithmic permutation network] For every power of two s1 , there is a directed acyclic network with s distinct input positions and s distinct output positions, of size O(s(s+2)) , in which…",
+      "section": "Explicit output and one uniform program",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-uniform-cardinality",
+      "kind": "lemma",
+      "label": "Exact cardinality to perfect matching",
+      "statement": "[Exact cardinality to perfect matching] Given G and an integer 0 k n/2 , one can construct in O(m+n(n+2)) time a loopless graph H_k of that size such that H_k has a perfect matching if and only if G…",
+      "section": "Explicit output and one uniform program",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-uniform-degree",
+      "kind": "lemma",
+      "label": "Degree reduction",
+      "statement": "[Degree reduction] A loopless graph with v vertices and e edges either has an isolated vertex, certifying absence of a perfect matching, or can be replaced in O(v+e) time by an equivalent…",
+      "section": "Explicit output and one uniform program",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-uniform-fixed-branch",
+      "kind": "lemma",
+      "label": "Every-path performance of a fixed branch",
+      "statement": "[Every-path performance of a fixed branch] For every sufficiently large fixed t , branch t avoids deterministic suspension on all sufficiently large inputs, on every computation path. Its total…",
+      "section": "Explicit output and one uniform program",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-uniform-physical-ram",
+      "kind": "lemma",
+      "label": "Halting and one physical word constant",
+      "statement": "[Halting and one physical word constant] The schedule is realizable by one finite program with a fixed physical word constant c_0 . On every path, including failed paths, it halts after polynomially…",
+      "section": "Explicit output and one uniform program",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-cor-f-factor",
+      "kind": "corollary",
+      "label": "Almost-linear f -factor search",
+      "statement": "[Almost-linear f -factor search] There are a single uniform randomized word-RAM algorithm, fixed constants c_f2 and C_f1 , and a nonincreasing function _f: N_ 1 R_ 0 with _f(q)0 as q such that the…",
+      "section": "Prescribed-degree factors",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    },
+    {
+      "id": "m1-factor-reduction",
+      "kind": "lemma",
+      "label": "Linearithmic factor reduction",
+      "statement": "[Linearithmic factor reduction] For the input of Corollary~ , one can construct a possibly empty simple graph H_f with |V(H_f)|+|E(H_f)|=O(m(n+2)) such that H_f has a perfect matching if and only if…",
+      "section": "Prescribed-degree factors",
+      "manuscript": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-flat-cycle",
+      "to": "m1-lem-priced-steps",
+      "label": "lem:flat-cycle",
+      "context": "[Proof of Lemma~\\ref{lem:priced-steps}] Apply Lemma~\\ref{lem:flat-cycle} to the port graph with prices \\eqref{engine:integer-prices}. Exact point operations and forest updates preserve~\\eqref"
+    },
+    {
+      "from": "m1-route-sampling",
+      "to": "m1-lem-routing-helper",
+      "label": "route:sampling",
+      "context": "[Proof of Lemma~\\ref{lem:routing-helper}] At a fixed cut depth, condition on its input lists before making its fresh samples. Lemma~\\ref{route:sampling} applies to these lists even though earlier cuts were random. Likewise the median potential and the recursive routing e"
+    },
+    {
+      "from": "m1-update-anchor-core",
+      "to": "m1-lem-flat-cycle",
+      "label": "update:anchor-core",
+      "context": "[Completion of the proof of Lemma~\\ref{lem:flat-cycle}] Lemma~\\ref{update:anchor-core} supplies the simple selected-support paths required by Lemma~\\ref{lem:backend-reduction}, with at most $p_*$ hops. Lem"
+    },
+    {
+      "from": "m1-lem-backend-reduction",
+      "to": "m1-lem-flat-cycle",
+      "label": "lem:backend-reduction",
+      "context": "[Completion of the proof of Lemma~\\ref{lem:flat-cycle}] Lemma~\\ref{update:anchor-core} supplies the simple selected-support paths required by Lemma~\\ref{lem:backend-reduction}, with at most $p_*$ hops. Lemma~\\ref{update:compressed-edits} constructs its one child with the required capacity, int"
+    }
+  ]
+}

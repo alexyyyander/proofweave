@@ -952,13 +952,13 @@ test("server-renders the Proofweave welcome page", async () => {
   assert.match(html, /Advance mathematics through your Agent/i);
   assert.match(html, /Public alpha/i);
   assert.match(html, /href="\/demo"/i);
-  assert.match(html, /Watch the proof journey/i);
+  assert.match(html, /Verify a claim/i);
   assert.match(html, /Contribution records/i);
   assert.match(html, /brand-mark/i);
   assert.doesNotMatch(html, /proof-paper-mark/i);
-  assert.match(html, /One theorem[\s\S]*Six evidence moments/i);
+  assert.match(html, /Start a target/i);
   assert.match(html, /id="proof-journey"/i);
-  assert.match(html, /Lean and an independent owner verify the claims/i);
+  assert.match(html, /Two ways in/i);
 });
 
 test("guides a public visitor through the first accountable contribution path", async () => {
@@ -1145,6 +1145,257 @@ test("serves the public research paths", async () => {
   const selectedWorkbenchHtml = await selectedWorkbench.text();
   assert.match(selectedWorkbenchHtml, /Erdős Problem 865: k = 2 variant/i);
   assert.match(selectedWorkbenchHtml, /exact target and source revision stay selected after sign-in/i);
+});
+
+test("serves the localized shell and translated information pages", async () => {
+  const chinese = await render("/about", { headers: { cookie: "pw_locale=zh-CN" } });
+  assert.equal(chinese.status, 200);
+  const chineseHtml = await chinese.text();
+  assert.match(chineseHtml, /<html lang="zh-CN">/);
+  assert.match(chineseHtml, /人与其 Agent 共同参与的研究网络/);
+  assert.match(chineseHtml, /class="page-intro__label">关于</);
+  assert.match(chineseHtml, /本页内容/);
+  assert.match(chineseHtml, /语言：简体中文/);
+  assert.match(chineseHtml, /\/api\/locale\?to=en(?:&amp;|&)next=%2Fzh-CN%2Fabout/);
+
+  const negotiated = await render("/how-it-works", { headers: { "accept-language": "zh-CN,zh;q=0.9,en;q=0.8" } });
+  assert.equal(negotiated.status, 200);
+  assert.match(await negotiated.text(), /从研究目标到贡献记录。/);
+
+  const english = await render("/about", { headers: { cookie: "pw_locale=en" } });
+  assert.match(await english.text(), /A shared research network for people and their Agents/);
+
+  const localizedHeaders = { headers: { cookie: "pw_locale=zh-CN" } };
+  const home = await render("/", localizedHeaders);
+  const homeHtml = await home.text();
+  assert.match(homeHtml, /让一个证明成为/);
+  assert.match(homeHtml, /公开贡献/);
+  assert.match(homeHtml, /个人委派的形式化数学/);
+  assert.match(homeHtml, /核查一项主张/);
+  assert.match(homeHtml, /开始一个目标/);
+  assert.match(homeHtml, /Person 委派有效/);
+  assert.match(homeHtml, /参考证据检查/);
+  assert.doesNotMatch(homeHtml, /筛选工作台任务/);
+
+  const explore = await render("/explore", localizedHeaders);
+  const exploreHtml = await explore.text();
+  assert.match(exploreHtml, /搜索前沿。选择一个确切的下一步行动。/);
+  assert.match(exploreHtml, /可搜索的研究索引/);
+  assert.match(exploreHtml, /目标总数/);
+
+  const publications = await render("/publications", localizedHeaders);
+  const publicationsHtml = await publications.text();
+  assert.match(publicationsHtml, /数学出版物/);
+  assert.match(publicationsHtml, /阅读数学。/);
+  assert.match(publicationsHtml, /浏览合集/);
+  assert.match(publicationsHtml, /已撤稿手稿/);
+  assert.doesNotMatch(publicationsHtml, /筛选工作台任务/);
+  assert.doesNotMatch(publicationsHtml, /自动同步/);
+
+  const exploreDetail = await render("/explore/erdos-865", localizedHeaders);
+  const exploreDetailHtml = await exploreDetail.text();
+  assert.match(exploreDetailHtml, /非形式陈述/);
+  assert.match(exploreDetailHtml, /固定的 Lean 命题/);
+  assert.match(exploreDetailHtml, /先前工作链/);
+  assert.match(exploreDetailHtml, /复用索引/);
+
+  const publicationDetail = await render("/publications/openai-math/084", localizedHeaders);
+  const publicationDetailHtml = await publicationDetail.text();
+  assert.match(publicationDetailHtml, /OpenAI 数学发布 · 结果族 084/);
+  assert.match(publicationDetailHtml, /手稿与引用/);
+  assert.match(publicationDetailHtml, /草稿 · 未经评审/);
+  assert.match(publicationDetailHtml, /论文命题 vs Lean 覆盖/);
+
+  const demo = await render("/demo", localizedHeaders);
+  const demoHtml = await demo.text();
+  assert.match(demoHtml, /已验证参考 · 无需 Proofweave 设置/);
+  assert.match(demoHtml, /你正在看到什么/);
+  assert.match(demoHtml, /此演示证明/);
+  assert.match(demoHtml, /本地固定装置 \+ 2 位模拟所有者/);
+
+  const history = await render("/history", localizedHeaders);
+  const historyHtml = await history.text();
+  assert.match(historyHtml, /从 Erdős 问题到形式化前沿。/);
+  assert.match(historyHtml, /如何阅读这份记录/);
+  assert.match(historyHtml, /Erdős 问题 #728/);
+  assert.match(historyHtml, /Lean 重放台/);
+
+  const privacy = await render("/privacy", localizedHeaders);
+  const privacyHtml = await privacy.text();
+  assert.match(privacyHtml, /你的数学记录可以公开。你的登录信息不需要。/);
+  assert.match(privacyHtml, /服务提供方/);
+  assert.match(privacyHtml, /删除、导出与公开历史/);
+
+  const terms = await render("/terms", localizedHeaders);
+  const termsHtml = await terms.text();
+  assert.match(termsHtml, /谨慎贡献。把每一种状态都视为有界主张。/);
+  assert.match(termsHtml, /内容许可/);
+
+  const support = await render("/support", localizedHeaders);
+  const supportHtml = await support.text();
+  assert.match(supportHtml, /支持 · 公开 alpha/);
+  assert.match(supportHtml, /一般支持/);
+  assert.match(supportHtml, /私有安全公告/);
+
+  const signIn = await render("/sign-in", localizedHeaders);
+  const signInHtml = await signIn.text();
+  assert.match(signInHtml, /继续你的数学贡献记录。/);
+  assert.match(signInHtml, /使用 Google 继续/);
+  assert.match(signInHtml, /一个 Person，多种登录方式。/);
+
+  const integrations = await render("/integrations", localizedHeaders);
+  const integrationsHtml = await integrations.text();
+  assert.match(integrationsHtml, /连接一次，然后回到你的研究。/);
+  assert.match(integrationsHtml, /批准一次你的本地 Codex。/);
+  assert.match(integrationsHtml, /可选详情/);
+
+  const connectCodex = await render("/connect/codex", localizedHeaders);
+  const connectCodexHtml = await connectCodex.text();
+  assert.match(connectCodexHtml, /登录以批准此本地 Codex。/);
+
+  const settings = await render("/settings", localizedHeaders);
+  const settingsHtml = await settings.text();
+  assert.match(settingsHtml, /管理你的研究 Agent。/);
+  assert.match(settingsHtml, /账户与 Agent 控件/);
+  assert.match(settingsHtml, /需要登录/);
+
+  const delegation = await render("/delegations/abc-l1", localizedHeaders);
+  assert.match(await delegation.text(), /未找到委派/);
+
+  const reviews = await render("/reviews", localizedHeaders);
+  const reviewsHtml = await reviews.text();
+  assert.match(reviewsHtml, /验证证据，获得评审信用资格。/);
+  assert.match(reviewsHtml, /开放验证工作/);
+  assert.match(reviewsHtml, /登录以领取并完成评审。/);
+
+  const reviewers = await render("/reviewers", localizedHeaders);
+  const reviewersHtml = await reviewers.text();
+  assert.match(reviewersHtml, /一位不同的 Person，一项有界主张。/);
+  assert.match(reviewersHtml, /你检查什么/);
+  assert.match(reviewersHtml, /容量与限制/);
+
+  const receipts = await render("/receipts", localizedHeaders);
+  const receiptsHtml = await receipts.text();
+  assert.match(receiptsHtml, /已验证贡献，而不是活动计数。/);
+  assert.match(receiptsHtml, /最近收据/);
+
+  const receiptMissing = await render("/receipt/abc-l1", localizedHeaders);
+  assert.match(await receiptMissing.text(), /收据未签发/);
+
+  const evidence = await render("/evidence", localizedHeaders);
+  assert.match(await evidence.text(), /登录以检查受控证据。/);
+
+  const evidenceDetail = await render("/evidence/abc-l1", localizedHeaders);
+  assert.match(await evidenceDetail.text(), /登录以检查受控证据。/);
+
+  const workbench = await render("/workbench", localizedHeaders);
+  const workbenchHtml = await workbench.text();
+  assert.match(workbenchHtml, /你的 Agent 研究的一个私密场所。/);
+  assert.match(workbenchHtml, /登录以开始/);
+  assert.match(workbenchHtml, /筛选工作台任务/);
+
+  const attempt = await render("/workbench/attempts/abc-l1", localizedHeaders);
+  assert.match(await attempt.text(), /登录以检查此研究任务。/);
+
+  const notFound = await render("/publications/openai-math/999", localizedHeaders);
+  const notFoundHtml = await notFound.text();
+  assert.equal(notFound.status, 404);
+  assert.match(notFoundHtml, /此页面不属于记录的一部分。/);
+  assert.match(notFoundHtml, /<meta property="og:locale" content="zh_CN"/);
+
+
+  const dottedNotFound = await render("/publications/openai-math/1.0");
+  assert.equal(dottedNotFound.status, 404);
+  assert.match(await dottedNotFound.text(), /<link rel="canonical" href="https:\/\/proofweave\.org\/publications\/openai-math\/1\.0"/);
+
+  const proofMaps = await render("/proof-evolution", localizedHeaders);
+  const proofMapsHtml = await proofMaps.text();
+  assert.match(proofMapsHtml, /每个结果都有结构。/);
+  assert.match(proofMapsHtml, /深度论证地图/);
+  assert.match(proofMapsHtml, /Lean 派生结构/);
+  assert.match(proofMapsHtml, /论文派生结构/);
+  assert.match(proofMapsHtml, /元数据骨架/);
+
+  const landauSiegel = await render("/proof-evolution/landau-siegel", localizedHeaders);
+  const landauSiegelHtml = await landauSiegel.text();
+  assert.match(landauSiegelHtml, /九页证明如何变成三页证明/);
+  assert.match(landauSiegelHtml, /版本谱系/);
+  assert.match(landauSiegelHtml, /压缩账本/);
+
+  const proofFamily = await render("/proof-evolution/openai-math/032", localizedHeaders);
+  const proofFamilyHtml = await proofFamily.text();
+  assert.match(proofFamilyHtml, /深度论证地图：定理级依赖已策展并定位到源码/);
+  assert.match(proofFamilyHtml, /<title>证明地图 032/);
+
+  const promotedFamily = await render("/proof-evolution/openai-math/005", localizedHeaders);
+  const promotedFamilyHtml = await promotedFamily.text();
+  assert.match(promotedFamilyHtml, /深度论证地图/);
+  assert.match(promotedFamilyHtml, /机器抽取的引用未经评审/);
+  assert.match(promotedFamilyHtml, /<title>证明地图 005/);
+
+  const leanFamily = await render("/proof-evolution/openai-math/024", localizedHeaders);
+  const leanFamilyHtml = await leanFamily.text();
+  assert.match(leanFamilyHtml, /固定来源中的 Comparator 元数据。/);
+  assert.match(leanFamilyHtml, /Comparator 源文件/);
+  assert.match(leanFamilyHtml, /Lean 派生结构/);
+
+  const switchResponse = await render("/api/locale?to=zh-CN", {
+    headers: { referer: "http://localhost/about" },
+    redirect: "manual",
+  });
+  assert.equal(switchResponse.status, 303);
+  assert.match(switchResponse.headers.get("set-cookie") ?? "", /pw_locale=zh-CN/);
+  assert.match(switchResponse.headers.get("location") ?? "", /\/zh-CN\/about$/);
+
+  const switchBack = await render("/api/locale?to=en", {
+    headers: { referer: "http://localhost/zh-CN/about" },
+    redirect: "manual",
+  });
+  assert.equal(switchBack.status, 303);
+  assert.match(switchBack.headers.get("location") ?? "", /\/about$/);
+
+  const prefixed = await render("/zh-CN/about", localizedHeaders);
+  const prefixedHtml = await prefixed.text();
+  assert.equal(prefixed.status, 200);
+  assert.match(prefixedHtml, /<html lang="zh-CN">/);
+  assert.match(prefixedHtml, /class="page-intro__label">关于</);
+  assert.match(prefixedHtml, /<link rel="canonical" href="https:\/\/proofweave\.org\/zh-CN\/about"/);
+  assert.match(prefixedHtml, /href="https:\/\/proofweave\.org\/about"[^>]*hreflang="en"/i);
+
+  const unprefixedChinese = await render("/about", {
+    headers: { cookie: "pw_locale=zh-CN" },
+    redirect: "manual",
+  });
+  assert.equal(unprefixedChinese.status, 307);
+  assert.match(unprefixedChinese.headers.get("location") ?? "", /\/zh-CN\/about$/);
+
+  const negotiatedChinese = await render("/about", {
+    headers: { "accept-language": "zh-CN,zh;q=0.9" },
+    redirect: "manual",
+  });
+  assert.equal(negotiatedChinese.status, 307);
+  assert.match(negotiatedChinese.headers.get("location") ?? "", /\/zh-CN\/about$/);
+
+  const rejectedSwitch = await render("/api/locale?to=fr&next=https://evil.example/", { redirect: "manual" });
+  assert.equal(rejectedSwitch.status, 303);
+  assert.match(rejectedSwitch.headers.get("set-cookie") ?? "", /pw_locale=en/);
+  assert.match(rejectedSwitch.headers.get("location") ?? "", /^http:\/\/localhost\/$/);
+});
+
+test("the home doors reflect the deployment write window and published receipts", async () => {
+  const response = await render("/");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  // This harness runs the participant surface with writes enabled and has not
+  // published a receipt yet, so the first door must fall back to the reference
+  // console and the second must open the research launcher.
+  assert.match(html, /class="home-door" href="\/workbench#research-launcher"/);
+  assert.match(html, /Open the research launcher/);
+  assert.match(html, /Private by default · you decide what is published/);
+  assert.match(html, /class="home-door" href="#verification-console"/);
+  assert.match(html, /Open the verification console/);
+  assert.match(html, /Reference run: \d+\/\d+ checks pass/);
+  assert.doesNotMatch(html, /Browse pinned targets/);
 });
 
 test("uses Explore as the stable parent for public research work", async () => {
@@ -1978,6 +2229,12 @@ test("renders only a hash-checked, issuer-signed receipt from D1", async () => {
   assert.match(html, /This receipt was retracted; the original evidence remains inspectable/i);
   assert.match(html, /Open lifecycle JSON/i);
   assert.match(html, /Download verification bundle/i);
+  assert.match(html, /What this receipt establishes/i);
+  assert.match(html, /no statement-fidelity attestation is attached/i);
+  assert.match(html, /this receipt did not record them/i);
+  assert.match(html, /Review claims carried/i);
+  assert.match(html, /Verify this receipt/);
+  assert.match(html, /sha256 over the canonical receipt/);
 
   const index = await render("/api/receipts");
   assert.equal(index.status, 200);
@@ -2013,6 +2270,9 @@ test("renders only a hash-checked, issuer-signed receipt from D1", async () => {
 
   const issuerKeys = await render("/api/receipts/issuer-keys");
   assert.equal(issuerKeys.status, 200);
+  // Readers run a revocation check against this response, so it must not be
+  // served from a shared cache while it claims to be current.
+  assert.match(issuerKeys.headers.get("cache-control") ?? "", /no-store/i);
   assert.deepEqual(await issuerKeys.json(), {
     issuerKeys: [{
       id: receipt.issuerKeyId,
@@ -2384,7 +2644,7 @@ test("limits Bundle and Runner evidence to the Attempt owner or assigned reviewe
   assert.match(reviewerHtml, /Lean toolchain/i);
   assert.match(reviewerHtml, /Build status/i);
   assert.match(reviewerHtml, /Kernel/i);
-  assert.doesNotMatch(reviewerHtml, /Independent review outcomes/i);
+  assert.doesNotMatch(reviewerHtml, /class="[^"]*evidence-review-outcomes/);
   assert.doesNotMatch(reviewerHtml, new RegExp(fixture.owner.person.id));
   assert.doesNotMatch(reviewerHtml, /Evidence Owner/i);
 
@@ -2456,7 +2716,7 @@ test("scopes Runs, outputs, and review eligibility to one Bundle within a shared
   const rejectedHtml = await rejectedPage.text();
   assert.match(rejectedHtml, /Finish the isolated Lean gate first/i);
   assert.match(rejectedHtml, /Awaiting Lean acceptance/i);
-  assert.doesNotMatch(rejectedHtml, /Send this exact Bundle to independent review/i);
+  assert.doesNotMatch(rejectedHtml, /<h2[^>]*>Send this exact Bundle to independent review/i);
 
   const rejectedSubmit = await render(
     `/api/me/evidence/bundles/${encodeURIComponent(fixture.rejectedManifestHash)}/submit-review`,
@@ -3078,12 +3338,12 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   assert.match(ownerWorkbenchHtml, /five owner-side steps end at Lean acceptance; they do not issue contribution credit/i);
   assert.match(ownerWorkbenchHtml, /different owner must still complete the required independent review gates/i);
   assert.match(ownerWorkbenchHtml, /Staged evidence ledger/i);
-  assert.doesNotMatch(ownerWorkbenchHtml, /Continue with Agent/i);
+  assert.doesNotMatch(ownerWorkbenchHtml, /class="button button-primary submit-button"[^>]*>[^<]*Continue with Agent/i);
   assert.match(ownerWorkbenchHtml, /Bundle staged · provisional/i);
   assert.match(ownerWorkbenchHtml, /Lean kernel status · no Run recorded/i);
   assert.match(ownerWorkbenchHtml, /Runner required/i);
   assert.match(ownerWorkbenchHtml, /Requires a fresh runner execution with kernel, axiom, and sorry evidence/i);
-  assert.doesNotMatch(ownerWorkbenchHtml, /Lean kernel status · accepted/i);
+  assert.doesNotMatch(ownerWorkbenchHtml, /Lean kernel status · accepted<\/div>/i);
   assert.match(ownerWorkbenchHtml, /not a theorem, Lean result, novelty finding, independent review, credit award, or final Contribution Receipt/i);
 
   const workspaceSummaryResponse = await render("/api/me/workspace-summary", { headers: authHeaders });
@@ -3185,7 +3445,7 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   assert.match(historyWorkbenchHtml, /History/i);
   assert.match(historyWorkbenchHtml, /Attempt closed by owner/i);
   assert.match(historyWorkbenchHtml, /This Attempt is retained in your research history/i);
-  assert.doesNotMatch(historyWorkbenchHtml, /Copy Codex brief/i);
+  assert.doesNotMatch(historyWorkbenchHtml, /Technical details \/ Copy Codex brief<\/span>/i);
 
   const currentOwnerAttemptsResponse = await render("/api/me/attempts", { headers: authHeaders });
   const { attempts: currentOwnerAttempts } = await currentOwnerAttemptsResponse.json();
@@ -3313,7 +3573,7 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
 });
 
 test("keeps the production frontend free of the deleted starter preview", async () => {
-  const [page, layout, globals, researchGraphView, packageJson, workbench, runnerWorkflowStatus, delegationSetup, localAgentHandoff, browserKeyStore, sourceSkill, legacyContent] = await Promise.all([
+  const [page, layout, globals, researchGraphView, packageJson, workbench, runnerWorkflowStatus, delegationSetup, localAgentHandoff, browserKeyStore, sourceSkill, legacyContent, englishCopy] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readLocalStyles(new URL("../app/globals.css", import.meta.url)),
@@ -3347,32 +3607,33 @@ test("keeps the production frontend free of the deleted starter preview", async 
       () => "present",
       () => "absent",
     ),
+    readFile(new URL("../app/i18n/dictionaries/en.ts", import.meta.url), "utf8"),
   ]);
 
-  assert.match(page, /Proofweave/);
+  assert.match(page + "\n" + englishCopy, /Proofweave/);
   assert.doesNotMatch(page, /SkeletonPreview|codex-preview|react-loading-skeleton/i);
   assert.doesNotMatch(layout, /codex-preview|_sites-preview/i);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/i);
   assert.match(globals, /@media \(prefers-reduced-motion: reduce\)/);
   assert.match(globals, /hero-proof-page-lift/);
   assert.match(globals, /hero-evidence-pulse/);
-  assert.match(researchGraphView, /Checkpoint evidence gates/);
-  assert.match(researchGraphView, /Receipt recorded/);
-  assert.match(workbench, /No simulated Agent work is created in this workspace/);
-  assert.match(runnerWorkflowStatus, /Proofweave does not render a sample source file or a fictional compiler result/);
-  assert.match(workbench, /Independent review/);
+  assert.match(researchGraphView + "\n" + englishCopy, /Checkpoint evidence gates/);
+  assert.match(researchGraphView + "\n" + englishCopy, /Receipt recorded/);
+  assert.match(workbench + "\n" + englishCopy, /No simulated Agent work is created in this workspace/);
+  assert.match(runnerWorkflowStatus + "\n" + englishCopy, /Proofweave does not render a sample source file or a fictional compiler result/);
+  assert.match(workbench + "\n" + englishCopy, /Independent review/);
   assert.doesNotMatch(workbench, /Run next bounded step|Illustrative only|Example check result|Local preview/);
-  assert.match(delegationSetup, /Connect an accountable research Agent/);
-  assert.match(delegationSetup, /Recommended setup/);
-  assert.match(delegationSetup, /Advanced: manage an existing key or Agent manually/);
-  assert.match(delegationSetup, /No public key or API key is required/);
-  assert.match(delegationSetup, /Proofweave never asks for your ChatGPT password, API key, private key, or workspace/);
+  assert.match(delegationSetup + "\n" + englishCopy, /Connect an accountable research Agent/);
+  assert.match(delegationSetup + "\n" + englishCopy, /Recommended setup/);
+  assert.match(delegationSetup + "\n" + englishCopy, /Advanced: manage an existing key or Agent manually/);
+  assert.match(delegationSetup + "\n" + englishCopy, /No public key or API key is required/);
+  assert.match(delegationSetup + "\n" + englishCopy, /Proofweave never asks for your ChatGPT password, API key, private key, or workspace/);
   assert.doesNotMatch(delegationSetup, /Enter Agent identity/);
-  assert.match(delegationSetup, /Replace or revoke key/);
+  assert.match(delegationSetup + "\n" + englishCopy, /Replace or revoke key/);
   assert.match(localAgentHandoff, /Continue this Proofweave Attempt in Codex/);
-  assert.match(workbench, /Continue in Codex/);
+  assert.match(workbench + "\n" + englishCopy, /Continue in Codex/);
   assert.match(globals, /\.workspace-topbar \{[^}]*z-index:\s*1;/s);
-  assert.match(localAgentHandoff, /Check recorded progress/);
+  assert.match(localAgentHandoff + "\n" + englishCopy, /Check recorded progress/);
   assert.match(localAgentHandoff, /do not call \\`report_progress\\` unless I explicitly confirm/);
   assert.match(localAgentHandoff, /connection_status/);
   assert.match(localAgentHandoff, /continue_research/);

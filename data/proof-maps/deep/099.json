@@ -1,0 +1,664 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "099",
+  "title": "The sharp exponential scale of edit-distance distortion",
+  "result": {
+    "id": "paper-result",
+    "label": "The sharp exponential scale of edit-distance distortion",
+    "statement": "Determines the least distortion of embedding edit distance on words of length at most d into real ℓ 1 : it is ( ( d , d )). Insertions, deletions and substitutions have unit cost. The constants are uniform over all finite alphabets with at least two symbols, even when the alphabet grows with d ; binary words already force the lower bound.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "alignments-and-a-displacement-inequality",
+      "label": "Alignments and a displacement inequality",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "recursive-words-with-incompatible-displacements",
+      "label": "Recursive words with incompatible displacements",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "binary-encoding-and-the-lower-bound",
+      "label": "Binary encoding and the lower bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-upper-bound-uniform-over-finite-alphabets",
+      "label": "An upper bound uniform over finite alphabets",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "alignments-and-tagged-rows",
+      "label": "Alignments and tagged rows",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-circle-construction-with-denominator-resets",
+      "label": "A circle construction with denominator resets",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-logarithmic-width-binary-substitutions",
+      "label": "Two logarithmic-width binary substitutions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "excluded-coordinate-translations-on-a-finite-circle",
+      "label": "Excluded-coordinate translations on a finite circle",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "every-length-cap-and-every-finite-alphabet",
+      "label": "Every length cap and every finite alphabet",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-alphabet-uniform-embedding-by-substring-histograms",
+      "label": "An alphabet-uniform embedding by substring histograms",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "edit-deficits-ordered-rows-and-binary-transfer",
+      "label": "Edit deficits, ordered rows and binary transfer",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-finite-tree-with-nested-periods",
+      "label": "A finite tree with nested periods",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-tree-of-circle-phases",
+      "label": "A tree of circle phases",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "torus-displacements-fourier-detection-and-binary-transfer",
+      "label": "Torus displacements, Fourier detection and binary transfer",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-uniform-two-sided-bound",
+      "label": "The uniform two-sided bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-constant-distortion-code-for-one-prescribed-length",
+      "label": "A constant-distortion code for one prescribed length",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Edit Distance in l1: Matching Bounds up to Constants in the Exponent",
+      "title": "Edit Distance in l1: Matching Bounds up to Constants in the Exponent",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-27",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Edit-Distance-in-l1-Matching-Bounds-up-to-Constants-in-the-Exponent-September-27-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Edit Distance in l1: Matching Bounds up to Constants in the Exponent.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-alignments",
+          "role": "alignments-and-a-displacement-inequality",
+          "label": "lemma m1-lem-alignments",
+          "fullLabel": "lemma m1-lem-alignments",
+          "kind": "lemma",
+          "source": "Alignments and a displacement inequality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-displacement",
+          "role": "alignments-and-a-displacement-inequality",
+          "label": "proposition m1-prop-displacement",
+          "fullLabel": "proposition m1-prop-displacement",
+          "kind": "proposition",
+          "source": "Alignments and a displacement inequality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-cuts",
+          "role": "alignments-and-a-displacement-inequality",
+          "label": "lemma m1-lem-cuts",
+          "fullLabel": "lemma m1-lem-cuts",
+          "kind": "lemma",
+          "source": "Alignments and a displacement inequality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-fourier",
+          "role": "alignments-and-a-displacement-inequality",
+          "label": "lemma m1-lem-fourier",
+          "fullLabel": "lemma m1-lem-fourier",
+          "kind": "lemma",
+          "source": "Alignments and a displacement inequality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-family",
+          "role": "recursive-words-with-incompatible-displacements",
+          "label": "proposition m1-prop-family",
+          "fullLabel": "proposition m1-prop-family",
+          "kind": "proposition",
+          "source": "Recursive words with incompatible displacements",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-marked",
+          "role": "recursive-words-with-incompatible-displacements",
+          "label": "lemma m1-lem-marked",
+          "fullLabel": "lemma m1-lem-marked",
+          "kind": "lemma",
+          "source": "Recursive words with incompatible displacements",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-binary-code",
+          "role": "binary-encoding-and-the-lower-bound",
+          "label": "lemma m1-lem-binary-code",
+          "fullLabel": "lemma m1-lem-binary-code",
+          "kind": "lemma",
+          "source": "Binary encoding and the lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-binary-lower",
+          "role": "binary-encoding-and-the-lower-bound",
+          "label": "proposition m1-prop-binary-lower",
+          "fullLabel": "proposition m1-prop-binary-lower",
+          "kind": "proposition",
+          "source": "Binary encoding and the lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-or",
+          "role": "an-upper-bound-uniform-over-finite-alphabets",
+          "label": "theorem m1-thm-or",
+          "fullLabel": "theorem m1-thm-or",
+          "kind": "theorem",
+          "source": "An upper bound uniform over finite alphabets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-uniform-upper",
+          "role": "an-upper-bound-uniform-over-finite-alphabets",
+          "label": "proposition m1-prop-uniform-upper",
+          "fullLabel": "proposition m1-prop-uniform-upper",
+          "kind": "proposition",
+          "source": "An upper bound uniform over finite alphabets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Finite-Circle Obstructions, Binary Codes, and Histogram Embeddings for Edit Distance",
+      "title": "Finite-Circle Obstructions, Binary Codes, and Histogram Embeddings for Edit Distance",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-27",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Finite-Circle-Obstructions-Binary-Codes-and-Histogram-Embeddings-for-Edit-Distance-September-27-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Finite-Circle Obstructions, Binary Codes, and Histogram Embeddings for Edit Distance.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-pre-metric",
+          "role": "alignments-and-tagged-rows",
+          "label": "lemma m2-pre-metric",
+          "fullLabel": "lemma m2-pre-metric",
+          "kind": "lemma",
+          "source": "Alignments and tagged rows",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-pre-tagged-rows",
+          "role": "alignments-and-tagged-rows",
+          "label": "lemma m2-pre-tagged-rows",
+          "fullLabel": "lemma m2-pre-tagged-rows",
+          "kind": "lemma",
+          "source": "Alignments and tagged rows",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mask-cheap",
+          "role": "a-circle-construction-with-denominator-resets",
+          "label": "lemma m2-mask-cheap",
+          "fullLabel": "lemma m2-mask-cheap",
+          "kind": "lemma",
+          "source": "A circle construction with denominator resets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mask-separation",
+          "role": "a-circle-construction-with-denominator-resets",
+          "label": "lemma m2-mask-separation",
+          "fullLabel": "lemma m2-mask-separation",
+          "kind": "lemma",
+          "source": "A circle construction with denominator resets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mask-reset",
+          "role": "a-circle-construction-with-denominator-resets",
+          "label": "lemma m2-mask-reset",
+          "fullLabel": "lemma m2-mask-reset",
+          "kind": "lemma",
+          "source": "A circle construction with denominator resets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mask-branching",
+          "role": "a-circle-construction-with-denominator-resets",
+          "label": "lemma m2-mask-branching",
+          "fullLabel": "lemma m2-mask-branching",
+          "kind": "lemma",
+          "source": "A circle construction with denominator resets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-code-two-proofs",
+          "role": "two-logarithmic-width-binary-substitutions",
+          "label": "theorem m2-code-two-proofs",
+          "fullLabel": "theorem m2-code-two-proofs",
+          "kind": "theorem",
+          "source": "Two logarithmic-width binary substitutions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-exc-small-cost",
+          "role": "excluded-coordinate-translations-on-a-finite-circle",
+          "label": "lemma m2-lem-exc-small-cost",
+          "fullLabel": "lemma m2-lem-exc-small-cost",
+          "kind": "lemma",
+          "source": "Excluded-coordinate translations on a finite circle",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-exc-alignment",
+          "role": "excluded-coordinate-translations-on-a-finite-circle",
+          "label": "lemma m2-lem-exc-alignment",
+          "fullLabel": "lemma m2-lem-exc-alignment",
+          "kind": "lemma",
+          "source": "Excluded-coordinate translations on a finite circle",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-exc-annihilator",
+          "role": "excluded-coordinate-translations-on-a-finite-circle",
+          "label": "lemma m2-lem-exc-annihilator",
+          "fullLabel": "lemma m2-lem-exc-annihilator",
+          "kind": "lemma",
+          "source": "Excluded-coordinate translations on a finite circle",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-assembly-inversion",
+          "role": "every-length-cap-and-every-finite-alphabet",
+          "label": "lemma m2-assembly-inversion",
+          "fullLabel": "lemma m2-assembly-inversion",
+          "kind": "lemma",
+          "source": "Every length cap and every finite alphabet",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-upper-uniform",
+          "role": "an-alphabet-uniform-embedding-by-substring-histograms",
+          "label": "theorem m2-upper-uniform",
+          "fullLabel": "theorem m2-upper-uniform",
+          "kind": "theorem",
+          "source": "An alphabet-uniform embedding by substring histograms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-upper-metric",
+          "role": "an-alphabet-uniform-embedding-by-substring-histograms",
+          "label": "lemma m2-upper-metric",
+          "fullLabel": "lemma m2-upper-metric",
+          "kind": "lemma",
+          "source": "An alphabet-uniform embedding by substring histograms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-upper-move",
+          "role": "an-alphabet-uniform-embedding-by-substring-histograms",
+          "label": "lemma m2-upper-move",
+          "fullLabel": "lemma m2-upper-move",
+          "kind": "lemma",
+          "source": "An alphabet-uniform embedding by substring histograms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-upper-padding",
+          "role": "an-alphabet-uniform-embedding-by-substring-histograms",
+          "label": "lemma m2-upper-padding",
+          "fullLabel": "lemma m2-upper-padding",
+          "kind": "lemma",
+          "source": "An alphabet-uniform embedding by substring histograms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-upper-partitions",
+          "role": "an-alphabet-uniform-embedding-by-substring-histograms",
+          "label": "lemma m2-upper-partitions",
+          "fullLabel": "lemma m2-upper-partitions",
+          "kind": "lemma",
+          "source": "An alphabet-uniform embedding by substring histograms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-upper-histogram",
+          "role": "an-alphabet-uniform-embedding-by-substring-histograms",
+          "label": "lemma m2-upper-histogram",
+          "fullLabel": "lemma m2-upper-histogram",
+          "kind": "lemma",
+          "source": "An alphabet-uniform embedding by substring histograms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m3",
+      "label": "Tree Constructions for the l1 Distortion of Binary Edit Distance",
+      "title": "Tree Constructions for the l1 Distortion of Binary Edit Distance",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-27",
+      "pages": 0,
+      "color": "#c98b5c",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Tree-Constructions-for-the-l1-Distortion-of-Binary-Edit-Distance-September-27-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Tree Constructions for the l1 Distortion of Binary Edit Distance.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m3-thm-binary",
+          "role": "introduction",
+          "label": "theorem m3-thm-binary",
+          "fullLabel": "theorem m3-thm-binary",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-tagged",
+          "role": "edit-deficits-ordered-rows-and-binary-transfer",
+          "label": "lemma m3-lem-tagged",
+          "fullLabel": "lemma m3-lem-tagged",
+          "kind": "lemma",
+          "source": "Edit deficits, ordered rows and binary transfer",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-cuts",
+          "role": "edit-deficits-ordered-rows-and-binary-transfer",
+          "label": "lemma m3-lem-cuts",
+          "fullLabel": "lemma m3-lem-cuts",
+          "kind": "lemma",
+          "source": "Edit deficits, ordered rows and binary transfer",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-primes",
+          "role": "edit-deficits-ordered-rows-and-binary-transfer",
+          "label": "lemma m3-lem-primes",
+          "fullLabel": "lemma m3-lem-primes",
+          "kind": "lemma",
+          "source": "Edit deficits, ordered rows and binary transfer",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-delimiter",
+          "role": "edit-deficits-ordered-rows-and-binary-transfer",
+          "label": "lemma m3-lem-delimiter",
+          "fullLabel": "lemma m3-lem-delimiter",
+          "kind": "lemma",
+          "source": "Edit deficits, ordered rows and binary transfer",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-orders",
+          "role": "a-finite-tree-with-nested-periods",
+          "label": "lemma m3-lem-orders",
+          "fullLabel": "lemma m3-lem-orders",
+          "kind": "lemma",
+          "source": "A finite tree with nested periods",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-finite-cost",
+          "role": "a-finite-tree-with-nested-periods",
+          "label": "lemma m3-lem-finite-cost",
+          "fullLabel": "lemma m3-lem-finite-cost",
+          "kind": "lemma",
+          "source": "A finite tree with nested periods",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-prop-finite-separation",
+          "role": "a-finite-tree-with-nested-periods",
+          "label": "proposition m3-prop-finite-separation",
+          "fullLabel": "proposition m3-prop-finite-separation",
+          "kind": "proposition",
+          "source": "A finite tree with nested periods",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-finite-fourier",
+          "role": "a-finite-tree-with-nested-periods",
+          "label": "lemma m3-lem-finite-fourier",
+          "fullLabel": "lemma m3-lem-finite-fourier",
+          "kind": "lemma",
+          "source": "A finite tree with nested periods",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-prop-finite-lower",
+          "role": "a-finite-tree-with-nested-periods",
+          "label": "proposition m3-prop-finite-lower",
+          "fullLabel": "proposition m3-prop-finite-lower",
+          "kind": "proposition",
+          "source": "A finite tree with nested periods",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-torus-good-separation",
+          "role": "a-tree-of-circle-phases",
+          "label": "lemma m3-lem-torus-good-separation",
+          "fullLabel": "lemma m3-lem-torus-good-separation",
+          "kind": "lemma",
+          "source": "A tree of circle phases",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-prop-good-probability",
+          "role": "a-tree-of-circle-phases",
+          "label": "proposition m3-prop-good-probability",
+          "fullLabel": "proposition m3-prop-good-probability",
+          "kind": "proposition",
+          "source": "A tree of circle phases",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-torus-costs",
+          "role": "torus-displacements-fourier-detection-and-binary-transfer",
+          "label": "lemma m3-lem-torus-costs",
+          "fullLabel": "lemma m3-lem-torus-costs",
+          "kind": "lemma",
+          "source": "Torus displacements, Fourier detection and binary transfer",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-torus-fourier",
+          "role": "torus-displacements-fourier-detection-and-binary-transfer",
+          "label": "lemma m3-lem-torus-fourier",
+          "fullLabel": "lemma m3-lem-torus-fourier",
+          "kind": "lemma",
+          "source": "Torus displacements, Fourier detection and binary transfer",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-detection",
+          "role": "torus-displacements-fourier-detection-and-binary-transfer",
+          "label": "lemma m3-lem-detection",
+          "fullLabel": "lemma m3-lem-detection",
+          "kind": "lemma",
+          "source": "Torus displacements, Fourier detection and binary transfer",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-thm-companion-upper",
+          "role": "the-uniform-two-sided-bound",
+          "label": "theorem m3-thm-companion-upper",
+          "fullLabel": "theorem m3-thm-companion-upper",
+          "kind": "theorem",
+          "source": "The uniform two-sided bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-cor-matching",
+          "role": "the-uniform-two-sided-bound",
+          "label": "corollary m3-cor-matching",
+          "fullLabel": "corollary m3-cor-matching",
+          "kind": "corollary",
+          "source": "The uniform two-sided bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-thm-804",
+          "role": "a-constant-distortion-code-for-one-prescribed-length",
+          "label": "theorem m3-thm-804",
+          "fullLabel": "theorem m3-thm-804",
+          "kind": "theorem",
+          "source": "A constant-distortion code for one prescribed length",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-random-segments",
+          "role": "a-constant-distortion-code-for-one-prescribed-length",
+          "label": "lemma m3-lem-random-segments",
+          "fullLabel": "lemma m3-lem-random-segments",
+          "kind": "lemma",
+          "source": "A constant-distortion code for one prescribed length",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Edit Distance in l1: Matching Bounds up to Constants in the Exponent",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Edit-Distance-in-l1-Matching-Bounds-up-to-Constants-in-the-Exponent-September-27-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Finite-Circle Obstructions, Binary Codes, and Histogram Embeddings for Edit Distance",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Finite-Circle-Obstructions-Binary-Codes-and-Histogram-Embeddings-for-Edit-Distance-September-27-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Tree Constructions for the l1 Distortion of Binary Edit Distance",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Tree-Constructions-for-the-l1-Distortion-of-Binary-Edit-Distance-September-27-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

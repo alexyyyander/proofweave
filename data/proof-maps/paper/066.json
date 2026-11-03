@@ -1,0 +1,686 @@
+{
+  "familyNumber": "066",
+  "familyTitle": "Bounded klt complements for Fano contractions",
+  "manuscripts": [
+    {
+      "id": "Bounded-klt-complements-for-Fano-contractions-September-25-2026",
+      "title": "Bounded klt complements for Fano contractions",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Bounded-klt-complements-for-Fano-contractions-September-25-2026/Bounded-klt-complements-for-Fano-contractions-September-25-2026.pdf"
+    },
+    {
+      "id": "Uniform-Cartier-sections-for-Fano-type-contractions-September-25-2026",
+      "title": "Uniform Cartier sections for Fano type contractions",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Uniform-Cartier-sections-for-Fano-type-contractions-September-25-2026/Uniform-Cartier-sections-for-Fano-type-contractions-September-25-2026.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "The birational threshold reduction",
+    "The anticanonical cone and a distinguished lc place",
+    "Exact normalized-volume minimization with an lc constraint",
+    "Leading forms and compatible further filtrations",
+    "A deepest weakly essential residual system",
+    "Valuative pushforward of discrepancy functions",
+    "A tower on the residual field",
+    "Uniform estimates and widths",
+    "Bounded axes and specialization of effectivity",
+    "Real valuations and a finite constrained optimization",
+    "Cartier trace and controlled lifting",
+    "Collapsing the cheap parameters",
+    "Expensive layers, rank growth, and the contradiction",
+    "Discriminant comparison and uniform chambers",
+    "Nonvanishing from signed phases"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For every positive integer d and positive rational number there is a positive…",
+      "statement": "For every positive integer d and positive rational number there is a positive integer N=N(d,) with the following property. Let k be an algebraically closed field of characteristic zero, and let f X Z…",
+      "section": "Introduction",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-cor-finite-coefficients",
+      "kind": "corollary",
+      "label": "Fix a positive integer d , a real number >0 , and a finite set I . There is a…",
+      "statement": "Fix a positive integer d , a real number >0 , and a finite set I . There is a positive integer M=M(d,,I) with the following property. Let (X,) be an -lc pair of dimension d with coefficients in I ,…",
+      "section": "Introduction",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-prop-birational-threshold",
+      "kind": "proposition",
+      "label": "For every positive integer d and every >0 there is c(d,)>0 such that, over ,…",
+      "statement": "For every positive integer d and every >0 there is c(d,)>0 such that, over , the following holds. Let f X Z be a birational contraction of d -dimensional normal varieties, let X be of Fano type over…",
+      "section": "The birational threshold reduction",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-lem-threshold-to-complement",
+      "kind": "lemma",
+      "label": "Proposition~ in all dimensions implies Theorem~ over .",
+      "statement": "Proposition~ in all dimensions implies Theorem~ over .",
+      "section": "The birational threshold reduction",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-lem-field-descent",
+      "kind": "lemma",
+      "label": "If Theorem~ holds over with a fixed index depending only on d and , it holds…",
+      "statement": "If Theorem~ holds over with a fixed index depending only on d and , it holds over every algebraically closed field of characteristic zero with a fixed multiple of that index.",
+      "section": "The birational threshold reduction",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-lem-ample-model",
+      "kind": "lemma",
+      "label": "The sequence may be chosen with -K_X ample over Z . This replacement preserves…",
+      "statement": "The sequence may be chosen with -K_X ample over Z . This replacement preserves all discrepancies and the threshold in .",
+      "section": "The birational threshold reduction",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-a-abhyankar",
+      "kind": "lemma",
+      "label": "Monomial charts and restriction",
+      "statement": "[Monomial charts and restriction] A real valuation of a function field of characteristic zero satisfying Abhyankar equality is quasi-monomial on a smooth proper model. The model can dominate a…",
+      "section": "The anticanonical cone and a distinguished lc place",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-a-canonical-cone",
+      "kind": "lemma",
+      "label": "Canonical anticanonical cone",
+      "statement": "[Canonical anticanonical cone] The algebra \\( A\\) is finitely generated and normal, with fraction field \\(k(X)(t)\\). The variety \\(W\\) is klt, and \\[ =t\\, d t \\] has divisor zero on \\(W\\). In…",
+      "section": "The anticanonical cone and a distinguished lc place",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-a-cone-gauss",
+      "kind": "lemma",
+      "label": "Gaussian discrepancy",
+      "statement": "[Gaussian discrepancy] For a prime divisor \\(P\\) over \\(X\\), extend \\(P\\) by the Gauss rule with \\(t\\)-weight \\(q-P(K_X)\\). If \\(q0\\), the extension \\( P\\) is centred on \\(W\\), and \\[…",
+      "section": "The anticanonical cone and a distinguished lc place",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-a-index-hypersurface",
+      "kind": "lemma",
+      "label": "A hypersurface on a fixed-index germ",
+      "statement": "[A hypersurface on a fixed-index germ] Given \\(p2\\) and an integer \\(N>0\\), there is \\((p,N)>0\\) with the following property. If \\((U,G)\\) is klt near a closed point \\(x\\), \\(G0\\), \\( U=p\\), and…",
+      "section": "The anticanonical cone and a distinguished lc place",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-a-initial-lc-place",
+      "kind": "proposition",
+      "label": "A centred lc place detecting the bad sequence",
+      "statement": "[A centred lc place detecting the bad sequence] After passing to a subsequence, there are divisorial valuations \\(u^0\\) centred at \\(o\\), and integers \\(N\\), such that u^0(I_n)=nA_W(u^0), u^0(_z) N…",
+      "section": "The anticanonical cone and a distinguished lc place",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-a-minimizer-comparison",
+      "kind": "lemma",
+      "label": "A uniform comparison at a minimizer",
+      "statement": "[A uniform comparison at a minimizer] Let \\(b\\) minimize normalized volume for a \\(p\\)-dimensional klt pair. For every centred quasi-monomial valuation \\(u\\) and every nonzero \\(F_ U,x \\), u(F)…",
+      "section": "Exact normalized-volume minimization with an lc constraint",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-a-exact-penalization",
+      "kind": "proposition",
+      "label": "Exact penalization",
+      "statement": "[Exact penalization] Let \\(x U\\) be an affine klt germ of dimension \\(p\\), and let \\(I_0,J\\) be nonzero ideals. Suppose \\(c>0\\) is rational, \\((U,I_0^c)\\) is lc, and an lc quasi-monomial place is…",
+      "section": "Exact normalized-volume minimization with an lc constraint",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-a-leading-form",
+      "kind": "lemma",
+      "label": "Leading differential forms",
+      "statement": "[Leading differential forms] Let \\(b\\) be a real Abhyankar valuation of a characteristic-zero function field \\(K/k\\), and choose \\(s_1,,s_q K^*\\) whose initials form a transcendence basis of…",
+      "section": "Leading forms and compatible further filtrations",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-a-adapted-presentation",
+      "kind": "lemma",
+      "label": "Finite adapted presentations",
+      "statement": "[Finite adapted presentations] Let \\(x U\\) be an affine klt germ and let \\(b\\) be a quasi-monomial valuation centred at \\(x\\). Suppose \\(R_b=_b k[U]\\) is finitely generated. One can choose affine…",
+      "section": "Leading forms and compatible further filtrations",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-a-canonical-specialization",
+      "kind": "lemma",
+      "label": "Canonical specialization",
+      "statement": "[Canonical specialization] In Lemma~ , suppose further that \\(R_b\\) is normal and that \\(U\\) has a canonical generator \\(_U\\). Then \\((_U)_b\\) generates the canonical divisor of \\( R_b\\): its divisor…",
+      "section": "Leading forms and compatible further filtrations",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-a-boundary-specialization",
+      "kind": "lemma",
+      "label": "Simultaneous boundary specialization",
+      "statement": "[Simultaneous boundary specialization] In the preceding situation, a rational effective boundary expressed as a sum of divisors of regular equations specializes to the same sum of the divisors of…",
+      "section": "Leading forms and compatible further filtrations",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-a-flattening",
+      "kind": "lemma",
+      "label": "Compatible real flattening",
+      "statement": "[Compatible real flattening] Let \\(b\\) be as in Lemma~ , and let \\(T\\) be the value torus of \\(R=_b k[U]\\), so that \\(b\\) is injective on its character lattice. Let \\(u\\) be a \\(T\\)-invariant…",
+      "section": "Leading forms and compatible further filtrations",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-a-gauss-lifts",
+      "kind": "lemma",
+      "label": "Gauss lifts and the quotient boundary",
+      "statement": "[Gauss lifts and the quotient boundary] For every prime-divisor valuation \\(P\\) over \\(S\\), there is a rational Gaussian extension to \\(k(R)\\), centred on \\( R\\), whose restriction is \\(P\\) and whose…",
+      "section": "A deepest weakly essential residual system",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-a-weak-essentiality",
+      "kind": "proposition",
+      "label": "Weak essentiality",
+      "statement": "[Weak essentiality] On the chosen maximal-rank sequence, there are numbers \\(0\\) such that, for every prime divisor \\(P\\) over \\(S\\) with \\(A^+(P)=0\\), _ H'0,\\ H'_ H P(H') (1+)P(H).",
+      "section": "A deepest weakly essential residual system",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-b-push-threshold",
+      "kind": "lemma",
+      "label": "The minimum in is finite and attained. Pullback terms from the base translate…",
+      "statement": "The minimum in is finite and attained. Pullback terms from the base translate it exactly, and successive pushes compose.",
+      "section": "Valuative pushforward of discrepancy functions",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-b-ordinary-approximation",
+      "kind": "lemma",
+      "label": "Effective generalized klt data with big b-nef part admit an ordinary effective…",
+      "statement": "Effective generalized klt data with big b-nef part admit an ordinary effective klt representative in the same rational adjoint class, whose discrepancies do not exceed the generalized ones.…",
+      "section": "Valuative pushforward of discrepancy functions",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-b-controlled-extraction",
+      "kind": "lemma",
+      "label": "Let \\((Y,B)\\) be an effective klt log Fano pair. Any finite collection of…",
+      "statement": "Let \\((Y,B)\\) be an effective klt log Fano pair. Any finite collection of exceptional prime divisors with discrepancies in \\((0,1]\\) can be extracted on a projective \\(\\)-factorial birational model…",
+      "section": "Valuative pushforward of discrepancy functions",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-b-primary-minimization",
+      "kind": "lemma",
+      "label": "Fix a positive integer \\(r_ ind \\). Let \\(A,C\\) have Calabi--Yau presentations…",
+      "statement": "Fix a positive integer \\(r_ ind \\). Let \\(A,C\\) have Calabi--Yau presentations on \\(Y\\), effective in horizontal trace over \\(V\\). Assume that \\(A\\) is sub-generalized lc over the generic point, that…",
+      "section": "Valuative pushforward of discrepancy functions",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-b-principal-denominators",
+      "kind": "corollary",
+      "label": "In Lemma~ , with the fixed positive integer \\(r_ ind \\) as there, assume in…",
+      "statement": "In Lemma~ , with the fixed positive integer \\(r_ ind \\) as there, assume in addition that \\(r_ ind M_A\\) is principal. Then every value \\((_\\#A)(P)\\) has bounded denominator, in terms only of the…",
+      "section": "Valuative pushforward of discrepancy functions",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-b-push-presentation",
+      "kind": "proposition",
+      "label": "Let \\(a=a_ K,Y + M\\) be a Calabi--Yau presentation, sub-generalized klt over…",
+      "statement": "Let \\(a=a_ K,Y + M\\) be a Calabi--Yau presentation, sub-generalized klt over the generic point of \\(V\\) and effective in horizontal trace. If \\( M\\) is b-semiample or b-nef and big, then \\[ _\\#a=a_…",
+      "section": "Valuative pushforward of discrepancy functions",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-b-scale-bad-primes",
+      "kind": "lemma",
+      "label": "For a sufficiently small fixed e>0 , every prime with A'(P)<e is lc for A^+ .…",
+      "statement": "For a sufficiently small fixed e>0 , every prime with A'(P)<e is lc for A^+ . There are finitely many such primes for each member. At a collapsing level they satisfy \\[ s2 H(P) ea. \\] At the last…",
+      "section": "A tower on the residual field",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-b-scale-birationality",
+      "kind": "lemma",
+      "label": "At every level there is a positive integer k C_1/s such that |kH| is birational…",
+      "statement": "At every level there is a positive integer k C_1/s such that |kH| is birational on S. For a rational divisor this denotes the space of rational functions f with (f)+kH0 ; no bounded Cartier index for…",
+      "section": "A tower on the residual field",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-b-scale-collapse",
+      "kind": "lemma",
+      "label": "At a collapsing level there are a projective -factorial Fano type model Y of K…",
+      "statement": "At a collapsing level there are a projective -factorial Fano type model Y of K , a contraction :Y V with V< S , an effective ample rational Cartier divisor H_V on V , and a rational x s^ -1 with the…",
+      "section": "A tower on the residual field",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-b-scale-inheritance",
+      "kind": "proposition",
+      "label": "At a collapsing level the construction of Lemma~ supplies data at the next…",
+      "statement": "At a collapsing level the construction of Lemma~ supplies data at the next level satisfying all the stated invariants. More precisely, with the CY discrepancy \\[ C=A'+xH=a_K+ M_C, \\] put A^+_ next…",
+      "section": "A tower on the residual field",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-b-scale-terminal",
+      "kind": "lemma",
+      "label": "At the final level one may take Y=S up to a small -factorialization, with…",
+      "statement": "At the final level one may take Y=S up to a small -factorialization, with target a point, and choose a fixed small rational x>0 so that \\[ C=A'+xH=a_K+ M_C, M_C= M'+(x-d') H \\] is effective and…",
+      "section": "A tower on the residual field",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-b-horizontal-estimates",
+      "kind": "lemma",
+      "label": "For every effective rational \\(\\)-Cartier divisor \\(L'\\) on \\( F_i\\) and every…",
+      "statement": "For every effective rational \\(\\)-Cartier divisor \\(L'\\) on \\( F_i\\) and every horizontal test \\(P\\), P(L') C_0(L')C_i(P). If \\( U\\) is rational b-Cartier and b-nef, with trace \\(U_ tr \\) on \\(Y_i\\),…",
+      "section": "Uniform estimates and widths",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-b-pure-upper",
+      "kind": "proposition",
+      "label": "For \\(D_10\\), \\(D_1_ H_1\\) on \\(S_1\\), and every divisorial test \\(P_1\\), with…",
+      "statement": "For \\(D_10\\), \\(D_1_ H_1\\) on \\(S_1\\), and every divisorial test \\(P_1\\), with restriction multiplicities included in \\(P_i=P_1|_ K_i \\), one has D_1(P_1) C_0_i a_i(P_i). For tests trivial on…",
+      "section": "Uniform estimates and widths",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-b-class-lattices",
+      "kind": "lemma",
+      "label": "Integral class data",
+      "statement": "[Integral class data] For projective normal klt varieties of Fano type occurring in a bounded family with bounded polarizations, the groups \\(/torsion\\) can be identified with Euclidean lattices of…",
+      "section": "Uniform estimates and widths",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-b-principal-descent",
+      "kind": "lemma",
+      "label": "Arithmetic principal witnesses",
+      "statement": "[Arithmetic principal witnesses] An integral Weil divisor defined on a proper geometrically integral normal arithmetic fiber which becomes principal geometrically is already principal over the…",
+      "section": "Uniform estimates and widths",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-b-twist-saturation",
+      "kind": "proposition",
+      "label": "If \\( M_0\\), \\(\\|\\| L\\), and \\(L1\\), then there are \\(m n_ 0 \\) and a bounded…",
+      "statement": "If \\( M_0\\), \\(\\|\\| L\\), and \\(L1\\), then there are \\(m n_ 0 \\) and a bounded positive integer \\(d_0\\), with \\(m L\\), such that R_ m+d_0 0, R_ m-d_0 0 .",
+      "section": "Uniform estimates and widths",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-b-coefficient-dimension",
+      "kind": "proposition",
+      "label": "For every occurring weight =m+ of positive cost B'= v() , R_ _i(1+B's_i)^ p_i .…",
+      "statement": "For every occurring weight =m+ of positive cost B'= v() , R_ _i(1+B's_i)^ p_i . At each fixed physical degree \\(m\\), the dimension through cost \\(S'0\\), including constants if present, is at most…",
+      "section": "Uniform estimates and widths",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-b-actual-probes",
+      "kind": "proposition",
+      "label": "Each residual level has \\(p_i\\) actual probes in some \\(V_m\\), of degree and…",
+      "statement": "Each residual level has \\(p_i\\) actual probes in some \\(V_m\\), of degree and cost \\(O(1/s_i)\\), whose initials are in \\(K_i\\) and algebraically independent over \\(K_ i+1 \\). Each torus axis has…",
+      "section": "Uniform estimates and widths",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-b-bounded-axes-estimates",
+      "kind": "proposition",
+      "label": "The bounded axes estimates",
+      "statement": "[The bounded axes estimates] All widths \\(W_j\\) are bounded below by a uniform positive constant. There are cutoffs \\(S_0\\) and a uniform constant \\(C_4\\) such that b= v(weight) C_4m (0<b S_0),\\\\…",
+      "section": "Bounded axes and specialization of effectivity",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-b-pure-descent",
+      "kind": "lemma",
+      "label": "Descent of slow pure sections",
+      "statement": "[Descent of slow pure sections] Suppose, along the sequence, that \\[ g K_1^*, div_ S_1 (g)+MH_10, M_ 0 , Ms_ 0. \\] Then, for all sufficiently late members, \\[ g K_f^*, div_ F (g)+CMH_f0 \\] for a…",
+      "section": "Bounded axes and specialization of effectivity",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-b-guard-model",
+      "kind": "lemma",
+      "label": "A bounded guard model",
+      "statement": "[A bounded guard model] After passing to a subsequence, there are bounded projective \\(\\)-factorial varieties of Fano type \\(F' F\\) and labelled prime divisors on \\(F'\\), of bounded number and…",
+      "section": "Bounded axes and specialization of effectivity",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-b-bounded-guard-boundary",
+      "kind": "lemma",
+      "label": "A bounded auxiliary Calabi--Yau boundary",
+      "statement": "[A bounded auxiliary Calabi--Yau boundary] The models of Lemma~ admit effective integral divisors \\(P'\\) of bounded degree, supported on the marks, such that \\(|P'|\\) is birational. They also admit…",
+      "section": "Bounded axes and specialization of effectivity",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-b-generic-marked-fano",
+      "kind": "lemma",
+      "label": "The geometric generic marked model",
+      "statement": "[The geometric generic marked model] After the finite covers and dense open restrictions just described, the geometric generic marked fibre \\(X^0_ \\) is \\(\\)-factorial and of Fano type. Its marked…",
+      "section": "Bounded axes and specialization of effectivity",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-b-marked-cone-test",
+      "kind": "lemma",
+      "label": "Specializing a finite cone test",
+      "statement": "[Specializing a finite cone test] In , replace the last condition by \\[ _ P\\ marked r_P[P_ ] Eff (X^0_ ). \\] This is a finite rational polyhedral test. After the allowed covers and open restrictions,…",
+      "section": "Bounded axes and specialization of effectivity",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-b-slow-charge-bound",
+      "kind": "proposition",
+      "label": "The slow-charge bound",
+      "statement": "[The slow-charge bound] For sequences of actual candidates above satisfying \\( (m'+|a_j|)s_ 0\\), the ratio \\(|a_j|/m'\\) cannot tend to infinity, with the convention already specified at degree zero.",
+      "section": "Bounded axes and specialization of effectivity",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-c-finite-barrier",
+      "kind": "lemma",
+      "label": "Finite barrier test",
+      "statement": "[Finite barrier test] There are finitely many pairs \\((m_i,F_i)\\), with \\(b_i=m_i+v(F_i)>0\\), such that whenever their minimum ratio, including \\(q_*\\), is at least \\(q_ bar \\), it equals \\(q(w)\\).…",
+      "section": "Real valuations and a finite constrained optimization",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-c-ordered-monomialization",
+      "kind": "lemma",
+      "label": "Ordered monomialization",
+      "statement": "[Ordered monomialization] An ordered-group valuation of a characteristic-zero function field satisfying Abhyankar equality is monomial on a smooth projective model, which may dominate a prescribed…",
+      "section": "Real valuations and a finite constrained optimization",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-c-log-determinant",
+      "kind": "lemma",
+      "label": "Logarithmic determinant",
+      "statement": "[Logarithmic determinant] If \\(a_1,,a_d\\) are a transcendence basis and \\(w\\) is a real Abhyankar valuation in characteristic zero, then \\[ A_ _i d a_i (w)0. \\] Equality holds exactly when the…",
+      "section": "Real valuations and a finite constrained optimization",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-c-invariantization",
+      "kind": "lemma",
+      "label": "Invariantization",
+      "statement": "[Invariantization] Let \\(Q^*\\) be a real Abhyankar valuation of \\(K_w=E( z)\\). Put \\(P=Q^*|_E\\), and let \\(Q\\) be the Gauss valuation with restriction \\(P\\) and the same values as \\(Q^*\\) on \\( z\\).…",
+      "section": "Real valuations and a finite constrained optimization",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-c-flattening",
+      "kind": "lemma",
+      "label": "Flattening a secondary valuation",
+      "statement": "[Flattening a secondary valuation] For the invariant valuation \\(Q\\) of Lemma~ , there are real monomial valuations \\(w_\\), for small \\(>0\\), such that w_(F)&=w(F)+ Q( F),\\\\ A_(w_)&=A_(w)+ A_ _w (Q).…",
+      "section": "Real valuations and a finite constrained optimization",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-c-skeleton",
+      "kind": "lemma",
+      "label": "Retraction and strict discrepancy drop",
+      "statement": "[Retraction and strict discrepancy drop] Resolve on a smooth projective model the divisor supports of \\(^n,F_i,y_j\\). Retraction to its normal crossing skeleton preserves the finite barrier data,…",
+      "section": "Real valuations and a finite constrained optimization",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-c-optimization",
+      "kind": "proposition",
+      "label": "Compact optimization and continuation",
+      "statement": "[Compact optimization and continuation] The optimization in is a finite polyhedral optimization with compact sublevels, and attains its minimum whenever feasible. Every optimizer lies on the fixed…",
+      "section": "Real valuations and a finite constrained optimization",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-c-relative-budget",
+      "kind": "proposition",
+      "label": "Relative optimality and its equality case",
+      "statement": "[Relative optimality and its equality case] For every nontrivial real Abhyankar valuation \\(Q^\\) of \\(L/k'\\), A_ _ w,rel (Q^) _ i\\ active Q^ ( F_i) b_i . An active cap contributes the entry zero. If…",
+      "section": "Real valuations and a finite constrained optimization",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-c-strict-budget",
+      "kind": "corollary",
+      "label": "Strict rational budget",
+      "statement": "[Strict rational budget] On the same geometric generic fibre, one can choose positive rational numbers \\(_i\\) arbitrarily close to \\(/b_i\\), a finite list of additional actual angular functions…",
+      "section": "Real valuations and a finite constrained optimization",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-c-trace-existence",
+      "kind": "lemma",
+      "label": "Strict budget and trace",
+      "statement": "[Strict budget and trace] Let L be a finitely generated field over an algebraically closed field k of characteristic zero, let =/f^ 1/n be a fractional rational volume form, and let I L^* be a…",
+      "section": "Cartier trace and controlled lifting",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-c-trace-initial-survival",
+      "kind": "lemma",
+      "label": "Initial survival",
+      "statement": "[Initial survival] Transport w to a reduction of its monomial chart, using the same positive normal weights. Let x consist of its normal parameters and a unit separating tangential basis. Retain the…",
+      "section": "Cartier trace and controlled lifting",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-c-trace-degree",
+      "kind": "lemma",
+      "label": "Angular degree of a traced output",
+      "statement": "[Angular degree of a traced output] In the retained reductions of the angular algebra, if G V_M , then C^l_(G) V_ m' for some m' n_ 0 with \\[ m'M P_0 +n. \\]",
+      "section": "Cartier trace and controlled lifting",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-c-trace-taylor-flags",
+      "kind": "lemma",
+      "label": "Taylor flags",
+      "statement": "[Taylor flags] Suppose a product of restrictions of homogeneous initials gives a nonzero relative trace as in , and let H denote the lift of that product by the same factors to the full initial…",
+      "section": "Cartier trace and controlled lifting",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-c-trace-finite-data",
+      "kind": "lemma",
+      "label": "Simultaneous finite-data reduction",
+      "statement": "[Simultaneous finite-data reduction] For each single application of the preceding trace constructions one may retain simultaneously the following data on a sufficiently general spread: the specified…",
+      "section": "Cartier trace and controlled lifting",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-c-trace-budget",
+      "kind": "proposition",
+      "label": "Budgeted actual outputs",
+      "statement": "[Budgeted actual outputs] Apply the strict budget on the geometric generic field of K_w over the independent probes g , choosing the optional U_j to include generators of the relative field. Assume…",
+      "section": "Cartier trace and controlled lifting",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-c-cheap-box-count",
+      "kind": "lemma",
+      "label": "Fix r1 and A>0 . There are constants N_0,D_0,C_0 , depending only on r,A , with…",
+      "statement": "Fix r1 and A>0 . There are constants N_0,D_0,C_0 , depending only on r,A , with the following property. Let T1 , let t_1,,t_r be linearly independent over , and let s . For an integer N N_0 , set L=…",
+      "section": "Collapsing the cheap parameters",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-c-cheap-collapse",
+      "kind": "proposition",
+      "label": "There are fixed sufficiently large positive constants B_0 and such that every…",
+      "statement": "There are fixed sufficiently large positive constants B_0 and such that every sufficiently late member of the sequence admits a monomial valuation w_c , Gaussian on y , satisfying \\[ w_c(y)=0,…",
+      "section": "Collapsing the cheap parameters",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-c-cheap-exact-zero",
+      "kind": "lemma",
+      "label": "For each sequence index i , let V_ m,i be nested multiplicative k_i -linear…",
+      "statement": "For each sequence index i , let V_ m,i be nested multiplicative k_i -linear subspaces of a field, containing 1 V_ 0,i , and let v_i,w_i be real valuations trivial on k_i . Suppose there are r probes…",
+      "section": "Collapsing the cheap parameters",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-c-cheap-two-sided",
+      "kind": "proposition",
+      "label": "Fix the constant B_0 of Proposition~ and a positive constant c . For each…",
+      "statement": "Fix the constant B_0 of Proposition~ and a positive constant c . For each sufficiently small fixed >0 , consider any actual monomial valuation w , Gaussian on y , such that w(y)=0 , A_(w)1 , and…",
+      "section": "Collapsing the cheap parameters",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-c-layer-dimension",
+      "kind": "lemma",
+      "label": "Layer dimension",
+      "statement": "[Layer dimension] For every fixed \\(J1\\), on sufficiently late members, E_J J^s_ j s S W_j . The comparison constants are independent of \\(J\\) and \\(\\); the required lateness may depend on both.",
+      "section": "Expensive layers, rank growth, and the contradiction",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-c-rank-increase",
+      "kind": "proposition",
+      "label": "Rank increase in a layer",
+      "statement": "[Rank increase in a layer] There is a bounded \\(J\\), independent of the small fixed \\(\\), such that the old probe initials extend to \\(s\\) algebraically independent homogeneous initials in \\(E_J\\).…",
+      "section": "Expensive layers, rank growth, and the contradiction",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-c-layer-slopes",
+      "kind": "proposition",
+      "label": "Slopes after a rank increase",
+      "statement": "[Slopes after a rank increase] For the enlarged optimization with \\(s\\) probes, on full-dimensional generic cells with \\(|t_j| C W_j\\) and minimum \\(<1/8\\), |_ t_j L_| C_9\\,S/W_j (j s). The same…",
+      "section": "Expensive layers, rank growth, and the contradiction",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-c-integral-rounding",
+      "kind": "proposition",
+      "label": "Integral rounding",
+      "statement": "[Integral rounding] For every absolute tolerance \\(>0\\), a rank increase followed by a bounded integral scaling and rounding of the new parameters changes a small objective bound according to e_ new…",
+      "section": "Expensive layers, rank growth, and the contradiction",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m1-c-divisorial-index",
+      "kind": "proposition",
+      "label": "Bounded divisorial index",
+      "statement": "[Bounded divisorial index] At a final optimizer with \\(d\\) independent probe initials and integral probe parameters, there is a uniformly bounded positive integer \\(e\\) such that \\(ew\\) is a positive…",
+      "section": "Expensive layers, rank growth, and the contradiction",
+      "manuscript": "Bounded klt complements for Fano contractions"
+    },
+    {
+      "id": "m2-lem-a-comparison",
+      "kind": "lemma",
+      "label": "Comparison along long parameter intervals",
+      "statement": "[Comparison along long parameter intervals] Let \\(X S\\) be a sequence of Fano type contractions as above. Suppose \\(a_t\\) are effective generalized CYs over \\(S\\), continuous finite rational…",
+      "section": "Discriminant comparison and uniform chambers",
+      "manuscript": "Uniform Cartier sections for Fano type contractions"
+    },
+    {
+      "id": "m2-lem-a-pullback-phases",
+      "kind": "lemma",
+      "label": "Phases under pure pullback",
+      "statement": "[Phases under pure pullback] Let \\(a\\) be a sequence of klt effective generalized CYs over \\(S\\) in the same Fano type setting, and let \\(H\\) be a sequence of \\( Q\\)-Cartier \\( Q\\)-divisors on the…",
+      "section": "Discriminant comparison and uniform chambers",
+      "manuscript": "Uniform Cartier sections for Fano type contractions"
+    },
+    {
+      "id": "m2-lem-a-linear-chamber",
+      "kind": "lemma",
+      "label": "A uniform linear chamber",
+      "statement": "[A uniform linear chamber] In the same setting suppose \\(a\\) is an lc effective generalized CY over \\(S\\), with values in \\((1/p) Z\\) for fixed \\(p\\), and \\(a+t d\\) for \\(0 t t_0\\) are effective…",
+      "section": "Discriminant comparison and uniform chambers",
+      "manuscript": "Uniform Cartier sections for Fano type contractions"
+    },
+    {
+      "id": "m2-lem-a-lc-place-tools",
+      "kind": "lemma",
+      "label": "Tools at an lc place",
+      "statement": "[Tools at an lc place] Let \\(g:X_1 W\\) be a Mori step as above, and let \\(A_*\\) be an effective generalized CY discrepancy on \\(X_1\\) over \\(S\\). [label=( *)] Suppose that \\(A_*\\) is lc over the…",
+      "section": "Discriminant comparison and uniform chambers",
+      "manuscript": "Uniform Cartier sections for Fano type contractions"
+    },
+    {
+      "id": "m2-prop-a-uniform-charts",
+      "kind": "proposition",
+      "label": "Uniform charts",
+      "statement": "[Uniform charts] At a chosen vertical place in Lemma~ (ii), after a bounded degree extension of \\(k(W)\\) and a chosen extension of the DVR and of the place, there is a toroidal cone representing the…",
+      "section": "Discriminant comparison and uniform chambers",
+      "manuscript": "Uniform Cartier sections for Fano type contractions"
+    },
+    {
+      "id": "m2-lem-a-toroidal-charts",
+      "kind": "lemma",
+      "label": "Bounded toroidal charts",
+      "statement": "[Bounded toroidal charts] For the prescribed place and tailored complement in Proposition~ , there are charts with its stated contact equations and integral-valuation property. The prescribed place…",
+      "section": "Discriminant comparison and uniform chambers",
+      "manuscript": "Uniform Cartier sections for Fano type contractions"
+    },
+    {
+      "id": "m2-lem-a-function-slopes",
+      "kind": "lemma",
+      "label": "Degrees control angular variation",
+      "statement": "[Degrees control angular variation] On a chart of Lemma~ , the order of a nonzero rational function is continuous, homogeneous and finite piecewise linear, including on the faces. If its pole divisor…",
+      "section": "Discriminant comparison and uniform chambers",
+      "manuscript": "Uniform Cartier sections for Fano type contractions"
+    },
+    {
+      "id": "m2-cor-a-horizontal-variants",
+      "kind": "corollary",
+      "label": "Horizontal variants",
+      "statement": "[Horizontal variants] The chart and metric conclusions have the following two variants. [label=( *)] The same tailorable bounded complement and homogeneous chart argument works if we are working over…",
+      "section": "Discriminant comparison and uniform chambers",
+      "manuscript": "Uniform Cartier sections for Fano type contractions"
+    },
+    {
+      "id": "m2-lem-a-lattice-approximation",
+      "kind": "lemma",
+      "label": "Integral approximation",
+      "statement": "[Integral approximation] [label=( *)] Let \\(u_i\\) lie in a fixed nonnegative orthant and \\( u_i\\). After passing to a subsequence there are \\(s_i0^+\\), nonzero nonnegative integral vectors \\(n_i\\),…",
+      "section": "Discriminant comparison and uniform chambers",
+      "manuscript": "Uniform Cartier sections for Fano type contractions"
+    },
+    {
+      "id": "m2-lem-b-phase-nonvanishing",
+      "kind": "lemma",
+      "label": "Phase nonvanishing",
+      "statement": "[Phase nonvanishing] Let (V_i,H_i) be a sequence in bounded dimension, where V_i is projective of Fano type and H_i is a nef and big -Cartier rational Weil divisor. Suppose that, for rational t ,…",
+      "section": "Nonvanishing from signed phases",
+      "manuscript": "Uniform Cartier sections for Fano type contractions"
+    },
+    {
+      "id": "m2-lem-b-seifert",
+      "kind": "lemma",
+      "label": "Bundle construction and discrepancies",
+      "statement": "[Bundle construction and discrepancies] Let V be projective normal, and let H be a -Cartier rational divisor. There is a projective normal compactified Seifert bundle p:Y V with disjoint -Cartier…",
+      "section": "Nonvanishing from signed phases",
+      "manuscript": "Uniform Cartier sections for Fano type contractions"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m2-lem-a-toroidal-charts",
+      "to": "m2-prop-a-uniform-charts",
+      "label": "lem:A-toroidal-charts",
+      "context": "[Proof of Proposition~\\ref{prop:A-uniform-charts}] Lemma~\\ref{lem:A-toroidal-charts} supplies the chart, the prescribed monomial place and the integral orders. We first extend the piecewise-linearity ass"
+    }
+  ]
+}

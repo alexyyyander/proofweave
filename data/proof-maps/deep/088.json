@@ -1,0 +1,137 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "088",
+  "title": "Sharp projection-body inequalities and a counterexample to simplex maximization",
+  "result": {
+    "id": "paper-result",
+    "label": "Sharp projection-body inequalities and a counterexample to simplex maximization",
+    "statement": "Proves Petty's projection-volume conjecture in the remaining dimensions n ≥ 4: ellipsoids uniquely minimize projection-body volume at fixed body volume. Also establishes the full Lutwak–Petty projection inequalities. In contrast, products of simplices exceed Brannen's proposed simplex maximum for normalized projection-body volume by an exponential factor in every sufficiently large dimension.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "facet-vectors-and-cartesian-products",
+      "label": "Facet vectors and Cartesian products",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-simplex-value",
+      "label": "The simplex value",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-counterexample-and-exponential-excess",
+      "label": "The counterexample and exponential excess",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "A product counterexample to the simplex maximum for projection-body volume",
+      "title": "A product counterexample to the simplex maximum for projection-body volume",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-product-counterexample-to-the-simplex-maximum-for-projection-body-volume-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from A product counterexample to the simplex maximum for projection-body volume.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-counterexample",
+          "role": "introduction",
+          "label": "theorem m1-thm-counterexample",
+          "fullLabel": "theorem m1-thm-counterexample",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-prop-product"
+          ]
+        },
+        {
+          "id": "m1-lem-facets",
+          "role": "facet-vectors-and-cartesian-products",
+          "label": "lemma m1-lem-facets",
+          "fullLabel": "lemma m1-lem-facets",
+          "kind": "lemma",
+          "source": "Facet vectors and Cartesian products",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-product",
+          "role": "facet-vectors-and-cartesian-products",
+          "label": "proposition m1-prop-product",
+          "fullLabel": "proposition m1-prop-product",
+          "kind": "proposition",
+          "source": "Facet vectors and Cartesian products",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-affine",
+          "role": "facet-vectors-and-cartesian-products",
+          "label": "lemma m1-lem-affine",
+          "fullLabel": "lemma m1-lem-affine",
+          "kind": "lemma",
+          "source": "Facet vectors and Cartesian products",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-simplex",
+          "role": "the-simplex-value",
+          "label": "proposition m1-prop-simplex",
+          "fullLabel": "proposition m1-prop-simplex",
+          "kind": "proposition",
+          "source": "The simplex value",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-exponential-excess",
+          "role": "the-counterexample-and-exponential-excess",
+          "label": "corollary m1-cor-exponential-excess",
+          "fullLabel": "corollary m1-cor-exponential-excess",
+          "kind": "corollary",
+          "source": "The counterexample and exponential excess",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "A product counterexample to the simplex maximum for projection-body volume",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-product-counterexample-to-the-simplex-maximum-for-projection-body-volume-September-24-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

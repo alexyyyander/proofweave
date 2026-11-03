@@ -1,0 +1,297 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "183",
+  "title": "Power savings for planar halving lines and <i>k</i>-sets",
+  "result": {
+    "id": "paper-result",
+    "label": "Power savings for planar halving lines and <i>k</i>-sets",
+    "statement": "Improves the planar halving-line bound to O(n^ 4/3- ) for sets with no three collinear and an absolute ε > 0. More generally, an n -point set with no three collinear has O(n(k+1)^ 1/3- 0 ) strictly separable k -subsets for 1 k n/2, with an absolute 0 0. The constants and positive exponents are nonquantitative.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "sweeps-activity-and-exchange-graphs",
+      "label": "Sweeps, activity, and exchange graphs",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "rank-coordinates-and-limiting-measures",
+      "label": "Rank coordinates and limiting measures",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "differentiable-coordinates-and-transverse-directions",
+      "label": "Differentiable coordinates and transverse directions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "three-transverse-foliations-determine-the-zoom",
+      "label": "Three transverse foliations determine the zoom",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-spatial-measure-with-dimension-greater-than-seven-quarters",
+      "label": "A spatial measure with dimension greater than seven quarters",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "boundary-activity-and-the-packing-contradiction",
+      "label": "Boundary activity and the packing contradiction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-activity-packing-to-a-power-saving",
+      "label": "From activity packing to a power saving",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "A power saving for planar halving lines",
+      "title": "A power saving for planar halving lines",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-power-saving-for-planar-halving-lines-September-25-2026/main.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from A power saving for planar halving lines.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-halving-power",
+          "role": "introduction",
+          "label": "theorem m1-thm-halving-power",
+          "fullLabel": "theorem m1-thm-halving-power",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-all-ranks",
+          "role": "introduction",
+          "label": "theorem m1-thm-all-ranks",
+          "fullLabel": "theorem m1-thm-all-ranks",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-k-sensitive",
+          "role": "introduction",
+          "label": "corollary m1-cor-k-sensitive",
+          "fullLabel": "corollary m1-cor-k-sensitive",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-thm-all-ranks"
+          ]
+        },
+        {
+          "id": "m1-thm-activity-packing",
+          "role": "sweeps-activity-and-exchange-graphs",
+          "label": "theorem m1-thm-activity-packing",
+          "fullLabel": "theorem m1-thm-activity-packing",
+          "kind": "theorem",
+          "source": "Sweeps, activity, and exchange graphs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-activity-distance",
+          "role": "sweeps-activity-and-exchange-graphs",
+          "label": "lemma m1-lem-activity-distance",
+          "fullLabel": "lemma m1-lem-activity-distance",
+          "kind": "lemma",
+          "source": "Sweeps, activity, and exchange graphs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-greedy-batches",
+          "role": "sweeps-activity-and-exchange-graphs",
+          "label": "lemma m1-lem-greedy-batches",
+          "fullLabel": "lemma m1-lem-greedy-batches",
+          "kind": "lemma",
+          "source": "Sweeps, activity, and exchange graphs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-chain-partitions",
+          "role": "sweeps-activity-and-exchange-graphs",
+          "label": "lemma m1-lem-chain-partitions",
+          "fullLabel": "lemma m1-lem-chain-partitions",
+          "kind": "lemma",
+          "source": "Sweeps, activity, and exchange graphs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-designated-crossing",
+          "role": "sweeps-activity-and-exchange-graphs",
+          "label": "lemma m1-lem-designated-crossing",
+          "fullLabel": "lemma m1-lem-designated-crossing",
+          "kind": "lemma",
+          "source": "Sweeps, activity, and exchange graphs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-edge-vertex-mass",
+          "role": "rank-coordinates-and-limiting-measures",
+          "label": "lemma m1-lem-edge-vertex-mass",
+          "fullLabel": "lemma m1-lem-edge-vertex-mass",
+          "kind": "lemma",
+          "source": "Rank coordinates and limiting measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-nonatomic-time",
+          "role": "rank-coordinates-and-limiting-measures",
+          "label": "lemma m1-lem-nonatomic-time",
+          "fullLabel": "lemma m1-lem-nonatomic-time",
+          "kind": "lemma",
+          "source": "Rank coordinates and limiting measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-edge-crossing-ac",
+          "role": "rank-coordinates-and-limiting-measures",
+          "label": "lemma m1-lem-edge-crossing-ac",
+          "fullLabel": "lemma m1-lem-edge-crossing-ac",
+          "kind": "lemma",
+          "source": "Rank coordinates and limiting measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-monotone-differentiability",
+          "role": "differentiable-coordinates-and-transverse-directions",
+          "label": "lemma m1-lem-monotone-differentiability",
+          "fullLabel": "lemma m1-lem-monotone-differentiability",
+          "kind": "lemma",
+          "source": "Differentiable coordinates and transverse directions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-critical-image-null",
+          "role": "differentiable-coordinates-and-transverse-directions",
+          "label": "lemma m1-lem-critical-image-null",
+          "fullLabel": "lemma m1-lem-critical-image-null",
+          "kind": "lemma",
+          "source": "Differentiable coordinates and transverse directions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-independent-gradients",
+          "role": "differentiable-coordinates-and-transverse-directions",
+          "label": "lemma m1-lem-independent-gradients",
+          "fullLabel": "lemma m1-lem-independent-gradients",
+          "kind": "lemma",
+          "source": "Differentiable coordinates and transverse directions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-separated-tangent-directions",
+          "role": "differentiable-coordinates-and-transverse-directions",
+          "label": "lemma m1-lem-separated-tangent-directions",
+          "fullLabel": "lemma m1-lem-separated-tangent-directions",
+          "kind": "lemma",
+          "source": "Differentiable coordinates and transverse directions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-three-foliation",
+          "role": "three-transverse-foliations-determine-the-zoom",
+          "label": "lemma m1-lem-three-foliation",
+          "fullLabel": "lemma m1-lem-three-foliation",
+          "kind": "lemma",
+          "source": "Three transverse foliations determine the zoom",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-spatial-limit",
+          "role": "a-spatial-measure-with-dimension-greater-than-seven-quarters",
+          "label": "proposition m1-prop-spatial-limit",
+          "fullLabel": "proposition m1-prop-spatial-limit",
+          "kind": "proposition",
+          "source": "A spatial measure with dimension greater than seven quarters",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-three-strips",
+          "role": "boundary-activity-and-the-packing-contradiction",
+          "label": "lemma m1-lem-three-strips",
+          "fullLabel": "lemma m1-lem-three-strips",
+          "kind": "lemma",
+          "source": "Boundary activity and the packing contradiction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-limiting-boundary-activity",
+          "role": "boundary-activity-and-the-packing-contradiction",
+          "label": "lemma m1-lem-limiting-boundary-activity",
+          "fullLabel": "lemma m1-lem-limiting-boundary-activity",
+          "kind": "lemma",
+          "source": "Boundary activity and the packing contradiction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-packing-to-power",
+          "role": "from-activity-packing-to-a-power-saving",
+          "label": "proposition m1-prop-packing-to-power",
+          "fullLabel": "proposition m1-prop-packing-to-power",
+          "kind": "proposition",
+          "source": "From activity packing to a power saving",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "A power saving for planar halving lines",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-power-saving-for-planar-halving-lines-September-25-2026/main.pdf",
+      "kind": "paper"
+    }
+  ]
+}

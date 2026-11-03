@@ -295,6 +295,7 @@ export function buildRunnerEnvironmentReport({
   renderTemplateBuildId = null,
   renderExecutionEnabled = null,
   renderOnlyRunId = null,
+  renderMaxDeliveryAttempts = null,
   executionEnvironments = null,
 } = {}) {
   const environments = validateRunnerEnvironmentsConfig(config);
@@ -324,6 +325,7 @@ export function buildRunnerEnvironmentReport({
     templateBuildId: renderTemplateBuildId,
     executionEnabled: renderExecutionEnabled,
     onlyRunId: renderOnlyRunId,
+    maxDeliveryAttempts: renderMaxDeliveryAttempts,
   }];
   const normalizedRunners = normalizeRunnerInputs(runnerInputs, environmentsByDigest, addInconsistency);
 
@@ -401,7 +403,9 @@ export function buildRunnerEnvironmentReport({
         continue;
       }
       const runner = normalizedRunners.find((candidate) => candidate.environment?.profile === environment.profile);
-      const controlledSingleRun = runner?.controlledSingleRun === true && runner.executionEnabled === "true";
+      const controlledSingleRun = runner?.controlledSingleRun === true
+        && runner.singleDelivery === true
+        && runner.executionEnabled === "true";
       if (
         environment.state === "built_pending_template" ||
         (environment.state === "template_ready" && declaration.executionEnabled && !controlledSingleRun)
@@ -469,6 +473,14 @@ export function buildRunnerEnvironmentReport({
     if (routed && executionSelected && !executing && environmentRunners.every((runner) => runner.executionEnabled !== "true")) {
       executionBlockers.push("runner_execution_disabled");
     }
+    if (
+      routed &&
+      executionSelected &&
+      !executing &&
+      environmentRunners.some((runner) => runner.executionEnabled === "true" && !runner.singleDelivery)
+    ) {
+      executionBlockers.push("controlled_run_delivery_unbounded");
+    }
 
     const conformanceState = environment.conformance === null
       ? "missing"
@@ -528,7 +540,9 @@ export function buildRunnerEnvironmentReport({
     templateMatchesRegistry: runner.templateMatchesRegistry,
     executionEnabled: runner.executionEnabled,
     controlledSingleRun: runner.controlledSingleRun,
+    singleDelivery: runner.singleDelivery,
     onlyRunId: runner.onlyRunId,
+    maxDeliveryAttempts: runner.maxDeliveryAttempts,
   }));
 
   const summary = {
@@ -607,10 +621,17 @@ function normalizeRunnerInputs(inputs, environmentsByDigest, addInconsistency) {
       && (typeof input.onlyRunId !== "string" || input.onlyRunId.trim() === "")) {
       throw new RunnerEnvironmentConfigError(`Runner ${label} RUNNER_ONLY_RUN_ID must be a non-empty identifier when configured.`);
     }
+    if (input.maxDeliveryAttempts !== null && input.maxDeliveryAttempts !== undefined
+      && !/^([1-9]|1[0-9]|20)$/.test(input.maxDeliveryAttempts)) {
+      throw new RunnerEnvironmentConfigError(
+        `Runner ${label} RUNNER_MAX_DELIVERY_ATTEMPTS must be an integer from 1 to 20 when configured.`,
+      );
+    }
     const templateId = input.templateId ?? null;
     const templateBuildId = input.templateBuildId ?? null;
     const executionEnabled = input.executionEnabled ?? null;
     const onlyRunId = input.onlyRunId ?? null;
+    const maxDeliveryAttempts = input.maxDeliveryAttempts ?? null;
     const environment = environmentsByDigest.get(executionImage) ?? null;
     const templateMatchesRegistry = Boolean(
       environment?.template &&
@@ -618,12 +639,17 @@ function normalizeRunnerInputs(inputs, environmentsByDigest, addInconsistency) {
       templateBuildId === environment.template.buildId,
     );
     const controlledSingleRun = onlyRunId !== null;
+    // A controlled window must also bound delivery: the P3 runbook sets
+    // RUNNER_MAX_DELIVERY_ATTEMPTS=1 so a template_ready Runner cannot replay
+    // the single Run. Without it the Runner retries up to its default five times.
+    const singleDelivery = maxDeliveryAttempts === "1";
     const executionSelected = Boolean(
       environment &&
       approvedIndex.byDigest.has(executionImage) &&
       templateMatchesRegistry,
     );
-    const executionPermitted = executionSelected && (environment.state === "approved" || controlledSingleRun);
+    const executionPermitted = executionSelected
+      && (environment.state === "approved" || (controlledSingleRun && singleDelivery));
     const executing = executionPermitted && executionEnabled === "true";
 
     for (const digest of approvedIndex.duplicates) {
@@ -712,6 +738,14 @@ function normalizeRunnerInputs(inputs, environmentsByDigest, addInconsistency) {
           environment.profile,
         );
       }
+      if (environment.state === "template_ready" && executionEnabled === "true" && controlledSingleRun && !singleDelivery) {
+        addInconsistency(
+          "controlled_run_delivery_unbounded",
+          `Runner ${label} opens a controlled single-Run window for ${environment.profile} without`
+            + " RUNNER_MAX_DELIVERY_ATTEMPTS=1; the Run could be delivered more than once.",
+          environment.profile,
+        );
+      }
       if (environmentOwners.has(environment.profile)) {
         addInconsistency(
           "duplicate_runner_environment",
@@ -740,9 +774,11 @@ function normalizeRunnerInputs(inputs, environmentsByDigest, addInconsistency) {
       templateBuildId,
       executionEnabled,
       onlyRunId,
+      maxDeliveryAttempts,
       environment,
       templateMatchesRegistry,
       controlledSingleRun,
+      singleDelivery,
       executionSelected,
       executionPermitted,
       executing,
@@ -783,6 +819,7 @@ export async function buildRunnerEnvironmentReportFromFiles({
         templateBuildId: optionalRenderEnvValue(envVars, "PROOFWEAVE_E2B_TEMPLATE_BUILD_ID"),
         executionEnabled: optionalRenderEnvValue(envVars, "RUNNER_EXECUTION_ENABLED"),
         onlyRunId: optionalRenderEnvValue(envVars, "RUNNER_ONLY_RUN_ID"),
+        maxDeliveryAttempts: optionalRenderEnvValue(envVars, "RUNNER_MAX_DELIVERY_ATTEMPTS"),
       });
     }
   }
@@ -893,6 +930,7 @@ export function formatHumanReport(report) {
         + ` | environment: ${runner.executionEnvironment ?? "unregistered"}`
         + ` | E2B template: ${runner.templateId ?? "not configured"}`
         + ` | RUNNER_EXECUTION_ENABLED: ${runner.executionEnabled ?? "unset"}`
+        + ` | RUNNER_MAX_DELIVERY_ATTEMPTS: ${runner.maxDeliveryAttempts ?? "unset"}`
         + ` | controlled single run: ${yesNo(runner.controlledSingleRun)}`,
     );
   }

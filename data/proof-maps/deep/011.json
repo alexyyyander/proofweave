@@ -1,0 +1,994 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "011",
+  "title": "Prime-factor statistics of `p-1`",
+  "result": {
+    "id": "paper-result",
+    "label": "Prime-factor statistics of `p-1`",
+    "statement": "Proves that the normalized ordered logarithms of the prime factors of p-1, counted with multiplicity, converge jointly to the Poisson–Dirichlet law PD (1) as p ranges uniformly over primes up to x and x . This resolves the Ford–Konyagin–Luca conjecture. It also proves that infinitely many integers n have more than n^ 1- totient preimages, for every ε > 0.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "notation-and-preliminary-estimates",
+      "label": "Notation and preliminary estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "transference-for-dilation-graphs",
+      "label": "Transference for dilation graphs",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "small-ideal-kernels-at-every-frequency",
+      "label": "Small ideal kernels at every frequency",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "lifted-shifted-correlations",
+      "label": "Lifted shifted correlations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-type-ii-estimate",
+      "label": "A Type II estimate",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "extracting-primes-with-smooth-predecessors",
+      "label": "Extracting primes with smooth predecessors",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "large-fibers-of-the-totient-function",
+      "label": "Large fibers of the totient function",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "conventions-and-analytic-inputs",
+      "label": "Conventions and analytic inputs",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-determinant-estimate-with-marks-on-one-side",
+      "label": "A determinant estimate with marks on one side",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "signed-memory-and-the-determinant-moment",
+      "label": "Signed memory and the determinant moment",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-major-term-of-the-determinant-estimate",
+      "label": "The major term of the determinant estimate",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-sided-marked-correlations",
+      "label": "Two-sided marked correlations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "extraction-of-the-prime-statistic",
+      "label": "Extraction of the prime statistic",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "prime-polynomials-and-logarithmic-phases",
+      "label": "Prime polynomials and logarithmic phases",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "conventions-and-classical-estimates",
+      "label": "Conventions and classical estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-long-prime-polynomial",
+      "label": "A long prime polynomial",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-prime-slot-shifted-correlation-with-a-common-parity-twist",
+      "label": "A prime-slot shifted correlation with a common parity twist",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "candidate-weights-and-their-mass",
+      "label": "Candidate weights and their mass",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Weighted dilation graphs, smooth shifted primes and totient fibers",
+      "title": "Weighted dilation graphs, smooth shifted primes and totient fibers",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Weighted-Dilation-Graphs-Smooth-Shifted-Primes-and-Totient-Fibers-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Weighted dilation graphs, smooth shifted primes and totient fibers.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-totient",
+          "role": "introduction",
+          "label": "theorem m1-thm-totient",
+          "fullLabel": "theorem m1-thm-totient",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-smooth",
+          "role": "introduction",
+          "label": "theorem m1-thm-smooth",
+          "fullLabel": "theorem m1-thm-smooth",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-sw",
+          "role": "notation-and-preliminary-estimates",
+          "label": "theorem m1-thm-sw",
+          "fullLabel": "theorem m1-thm-sw",
+          "kind": "theorem",
+          "source": "Notation and preliminary estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-large-sieve",
+          "role": "notation-and-preliminary-estimates",
+          "label": "theorem m1-thm-large-sieve",
+          "fullLabel": "theorem m1-thm-large-sieve",
+          "kind": "theorem",
+          "source": "Notation and preliminary estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-harmonic-sw",
+          "role": "notation-and-preliminary-estimates",
+          "label": "corollary m1-cor-harmonic-sw",
+          "fullLabel": "corollary m1-cor-harmonic-sw",
+          "kind": "corollary",
+          "source": "Notation and preliminary estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-divisor-moments",
+          "role": "notation-and-preliminary-estimates",
+          "label": "lemma m1-lem-divisor-moments",
+          "fullLabel": "lemma m1-lem-divisor-moments",
+          "kind": "lemma",
+          "source": "Notation and preliminary estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-dirichlet-mean",
+          "role": "notation-and-preliminary-estimates",
+          "label": "lemma m1-lem-dirichlet-mean",
+          "fullLabel": "lemma m1-lem-dirichlet-mean",
+          "kind": "lemma",
+          "source": "Notation and preliminary estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-derivative-tests",
+          "role": "notation-and-preliminary-estimates",
+          "label": "lemma m1-lem-derivative-tests",
+          "fullLabel": "lemma m1-lem-derivative-tests",
+          "kind": "lemma",
+          "source": "Notation and preliminary estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-fourier-separation",
+          "role": "notation-and-preliminary-estimates",
+          "label": "lemma m1-lem-fourier-separation",
+          "fullLabel": "lemma m1-lem-fourier-separation",
+          "kind": "lemma",
+          "source": "Notation and preliminary estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sieve",
+          "role": "notation-and-preliminary-estimates",
+          "label": "lemma m1-lem-sieve",
+          "fullLabel": "lemma m1-lem-sieve",
+          "kind": "lemma",
+          "source": "Notation and preliminary estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-rough-sieve-polynomial",
+          "role": "notation-and-preliminary-estimates",
+          "label": "corollary m1-lem-rough-sieve-polynomial",
+          "fullLabel": "corollary m1-lem-rough-sieve-polynomial",
+          "kind": "corollary",
+          "source": "Notation and preliminary estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-physical-schur",
+          "role": "transference-for-dilation-graphs",
+          "label": "lemma m1-lem-physical-schur",
+          "fullLabel": "lemma m1-lem-physical-schur",
+          "kind": "lemma",
+          "source": "Transference for dilation graphs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-transference",
+          "role": "transference-for-dilation-graphs",
+          "label": "theorem m1-thm-transference",
+          "fullLabel": "theorem m1-thm-transference",
+          "kind": "theorem",
+          "source": "Transference for dilation graphs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-transference-crt",
+          "role": "transference-for-dilation-graphs",
+          "label": "lemma m1-lem-transference-crt",
+          "fullLabel": "lemma m1-lem-transference-crt",
+          "kind": "lemma",
+          "source": "Transference for dilation graphs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-memory-identity",
+          "role": "transference-for-dilation-graphs",
+          "label": "lemma m1-lem-memory-identity",
+          "fullLabel": "lemma m1-lem-memory-identity",
+          "kind": "lemma",
+          "source": "Transference for dilation graphs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-memory-absolute",
+          "role": "transference-for-dilation-graphs",
+          "label": "lemma m1-lem-memory-absolute",
+          "fullLabel": "lemma m1-lem-memory-absolute",
+          "kind": "lemma",
+          "source": "Transference for dilation graphs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-rare-transfer",
+          "role": "transference-for-dilation-graphs",
+          "label": "lemma m1-lem-rare-transfer",
+          "fullLabel": "lemma m1-lem-rare-transfer",
+          "kind": "lemma",
+          "source": "Transference for dilation graphs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-clean-norm",
+          "role": "transference-for-dilation-graphs",
+          "label": "lemma m1-lem-clean-norm",
+          "fullLabel": "lemma m1-lem-clean-norm",
+          "kind": "lemma",
+          "source": "Transference for dilation graphs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-transference-pairing",
+          "role": "transference-for-dilation-graphs",
+          "label": "corollary m1-cor-transference-pairing",
+          "fullLabel": "corollary m1-cor-transference-pairing",
+          "kind": "corollary",
+          "source": "Transference for dilation graphs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-ideal",
+          "role": "small-ideal-kernels-at-every-frequency",
+          "label": "theorem m1-thm-ideal",
+          "fullLabel": "theorem m1-thm-ideal",
+          "kind": "theorem",
+          "source": "Small ideal kernels at every frequency",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-bilinear",
+          "role": "small-ideal-kernels-at-every-frequency",
+          "label": "lemma m1-lem-bilinear",
+          "fullLabel": "lemma m1-lem-bilinear",
+          "kind": "lemma",
+          "source": "Small ideal kernels at every frequency",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-comparison-kernel",
+          "role": "small-ideal-kernels-at-every-frequency",
+          "label": "lemma m1-lem-comparison-kernel",
+          "fullLabel": "lemma m1-lem-comparison-kernel",
+          "kind": "lemma",
+          "source": "Small ideal kernels at every frequency",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-shift",
+          "role": "lifted-shifted-correlations",
+          "label": "theorem m1-thm-shift",
+          "fullLabel": "theorem m1-thm-shift",
+          "kind": "theorem",
+          "source": "Lifted shifted correlations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-exceptional-times",
+          "role": "lifted-shifted-correlations",
+          "label": "lemma m1-lem-exceptional-times",
+          "fullLabel": "lemma m1-lem-exceptional-times",
+          "kind": "lemma",
+          "source": "Lifted shifted correlations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sparse-residual",
+          "role": "lifted-shifted-correlations",
+          "label": "lemma m1-lem-sparse-residual",
+          "fullLabel": "lemma m1-lem-sparse-residual",
+          "kind": "lemma",
+          "source": "Lifted shifted correlations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-long-rough-polynomial",
+          "role": "lifted-shifted-correlations",
+          "label": "lemma m1-lem-long-rough-polynomial",
+          "fullLabel": "lemma m1-lem-long-rough-polynomial",
+          "kind": "lemma",
+          "source": "Lifted shifted correlations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-typeii",
+          "role": "a-type-ii-estimate",
+          "label": "theorem m1-thm-typeii",
+          "fullLabel": "theorem m1-thm-typeii",
+          "kind": "theorem",
+          "source": "A Type II estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-candidate-mass",
+          "role": "extracting-primes-with-smooth-predecessors",
+          "label": "proposition m1-prop-candidate-mass",
+          "fullLabel": "proposition m1-prop-candidate-mass",
+          "kind": "proposition",
+          "source": "Extracting primes with smooth predecessors",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-typei",
+          "role": "extracting-primes-with-smooth-predecessors",
+          "label": "proposition m1-prop-typei",
+          "fullLabel": "proposition m1-prop-typei",
+          "kind": "proposition",
+          "source": "Extracting primes with smooth predecessors",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-proxy-discrepancy",
+          "role": "extracting-primes-with-smooth-predecessors",
+          "label": "lemma m1-lem-proxy-discrepancy",
+          "fullLabel": "lemma m1-lem-proxy-discrepancy",
+          "kind": "lemma",
+          "source": "Extracting primes with smooth predecessors",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-proxy-densities",
+          "role": "extracting-primes-with-smooth-predecessors",
+          "label": "lemma m1-lem-proxy-densities",
+          "fullLabel": "lemma m1-lem-proxy-densities",
+          "kind": "lemma",
+          "source": "Extracting primes with smooth predecessors",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-finite-totient-fibers",
+          "role": "large-fibers-of-the-totient-function",
+          "label": "lemma m1-lem-finite-totient-fibers",
+          "fullLabel": "lemma m1-lem-finite-totient-fibers",
+          "kind": "lemma",
+          "source": "Large fibers of the totient function",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "The Poisson-Dirichlet law for prime predecessors",
+      "title": "The Poisson-Dirichlet law for prime predecessors",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Poisson-Dirichlet-Law-for-Prime-Predecessors-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from The Poisson-Dirichlet law for prime predecessors.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-prime-estimates",
+          "role": "conventions-and-analytic-inputs",
+          "label": "lemma m2-lem-prime-estimates",
+          "fullLabel": "lemma m2-lem-prime-estimates",
+          "kind": "lemma",
+          "source": "Conventions and analytic inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-moment-bounds",
+          "role": "conventions-and-analytic-inputs",
+          "label": "lemma m2-lem-moment-bounds",
+          "fullLabel": "lemma m2-lem-moment-bounds",
+          "kind": "lemma",
+          "source": "Conventions and analytic inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-long-prime",
+          "role": "conventions-and-analytic-inputs",
+          "label": "lemma m2-lem-long-prime",
+          "fullLabel": "lemma m2-lem-long-prime",
+          "kind": "lemma",
+          "source": "Conventions and analytic inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-log-phase",
+          "role": "conventions-and-analytic-inputs",
+          "label": "lemma m2-lem-log-phase",
+          "fullLabel": "lemma m2-lem-log-phase",
+          "kind": "lemma",
+          "source": "Conventions and analytic inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-rough-counts",
+          "role": "conventions-and-analytic-inputs",
+          "label": "lemma m2-lem-rough-counts",
+          "fullLabel": "lemma m2-lem-rough-counts",
+          "kind": "lemma",
+          "source": "Conventions and analytic inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-block-sieve",
+          "role": "conventions-and-analytic-inputs",
+          "label": "lemma m2-lem-block-sieve",
+          "fullLabel": "lemma m2-lem-block-sieve",
+          "kind": "lemma",
+          "source": "Conventions and analytic inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-type-ii",
+          "role": "a-determinant-estimate-with-marks-on-one-side",
+          "label": "theorem m2-thm-type-ii",
+          "fullLabel": "theorem m2-thm-type-ii",
+          "kind": "theorem",
+          "source": "A determinant estimate with marks on one side",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-det-good-state",
+          "role": "a-determinant-estimate-with-marks-on-one-side",
+          "label": "lemma m2-det-good-state",
+          "fullLabel": "lemma m2-det-good-state",
+          "kind": "lemma",
+          "source": "A determinant estimate with marks on one side",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-root-residue",
+          "role": "a-determinant-estimate-with-marks-on-one-side",
+          "label": "lemma m2-lem-root-residue",
+          "fullLabel": "lemma m2-lem-root-residue",
+          "kind": "lemma",
+          "source": "A determinant estimate with marks on one side",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-det-root-replacement",
+          "role": "a-determinant-estimate-with-marks-on-one-side",
+          "label": "lemma m2-det-root-replacement",
+          "fullLabel": "lemma m2-det-root-replacement",
+          "kind": "lemma",
+          "source": "A determinant estimate with marks on one side",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-minor-moment",
+          "role": "signed-memory-and-the-determinant-moment",
+          "label": "proposition m2-prop-minor-moment",
+          "fullLabel": "proposition m2-prop-minor-moment",
+          "kind": "proposition",
+          "source": "Signed memory and the determinant moment",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-major-term",
+          "role": "the-major-term-of-the-determinant-estimate",
+          "label": "proposition m2-prop-major-term",
+          "fullLabel": "proposition m2-prop-major-term",
+          "kind": "proposition",
+          "source": "The major term of the determinant estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-maj-long-coefficient",
+          "role": "the-major-term-of-the-determinant-estimate",
+          "label": "lemma m2-maj-long-coefficient",
+          "fullLabel": "lemma m2-maj-long-coefficient",
+          "kind": "lemma",
+          "source": "The major term of the determinant estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-maj-sparse-frequency",
+          "role": "the-major-term-of-the-determinant-estimate",
+          "label": "lemma m2-maj-sparse-frequency",
+          "fullLabel": "lemma m2-maj-sparse-frequency",
+          "kind": "lemma",
+          "source": "The major term of the determinant estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-two-sided",
+          "role": "two-sided-marked-correlations",
+          "label": "theorem m2-thm-two-sided",
+          "fullLabel": "theorem m2-thm-two-sided",
+          "kind": "theorem",
+          "source": "Two-sided marked correlations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-graph-transfer",
+          "role": "two-sided-marked-correlations",
+          "label": "proposition m2-prop-graph-transfer",
+          "fullLabel": "proposition m2-prop-graph-transfer",
+          "kind": "proposition",
+          "source": "Two-sided marked correlations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-ideal-family",
+          "role": "two-sided-marked-correlations",
+          "label": "proposition m2-prop-ideal-family",
+          "fullLabel": "proposition m2-prop-ideal-family",
+          "kind": "proposition",
+          "source": "Two-sided marked correlations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-local-mellin",
+          "role": "two-sided-marked-correlations",
+          "label": "lemma m2-lem-local-mellin",
+          "fullLabel": "lemma m2-lem-local-mellin",
+          "kind": "lemma",
+          "source": "Two-sided marked correlations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-divisor-model",
+          "role": "two-sided-marked-correlations",
+          "label": "lemma m2-lem-divisor-model",
+          "fullLabel": "lemma m2-lem-divisor-model",
+          "kind": "lemma",
+          "source": "Two-sided marked correlations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-interior",
+          "role": "extraction-of-the-prime-statistic",
+          "label": "theorem m2-thm-interior",
+          "fullLabel": "theorem m2-thm-interior",
+          "kind": "theorem",
+          "source": "Extraction of the prime statistic",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-progressions",
+          "role": "extraction-of-the-prime-statistic",
+          "label": "lemma m2-lem-progressions",
+          "fullLabel": "lemma m2-lem-progressions",
+          "kind": "lemma",
+          "source": "Extraction of the prime statistic",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lp-prime-polynomial",
+          "role": "prime-polynomials-and-logarithmic-phases",
+          "label": "lemma m2-lp-prime-polynomial",
+          "fullLabel": "lemma m2-lp-prime-polynomial",
+          "kind": "lemma",
+          "source": "Prime polynomials and logarithmic phases",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lp-pre-primes",
+          "role": "prime-polynomials-and-logarithmic-phases",
+          "label": "lemma m2-lp-pre-primes",
+          "fullLabel": "lemma m2-lp-pre-primes",
+          "kind": "lemma",
+          "source": "Prime polynomials and logarithmic phases",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lp-pre-derivatives",
+          "role": "prime-polynomials-and-logarithmic-phases",
+          "label": "lemma m2-lp-pre-derivatives",
+          "fullLabel": "lemma m2-lp-pre-derivatives",
+          "kind": "lemma",
+          "source": "Prime polynomials and logarithmic phases",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lp-mean-value",
+          "role": "prime-polynomials-and-logarithmic-phases",
+          "label": "lemma m2-lp-mean-value",
+          "fullLabel": "lemma m2-lp-mean-value",
+          "kind": "lemma",
+          "source": "Prime polynomials and logarithmic phases",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lp-log-phase",
+          "role": "prime-polynomials-and-logarithmic-phases",
+          "label": "lemma m2-lp-log-phase",
+          "fullLabel": "lemma m2-lp-log-phase",
+          "kind": "lemma",
+          "source": "Prime polynomials and logarithmic phases",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lp-l-upper",
+          "role": "prime-polynomials-and-logarithmic-phases",
+          "label": "lemma m2-lp-l-upper",
+          "fullLabel": "lemma m2-lp-l-upper",
+          "kind": "lemma",
+          "source": "Prime polynomials and logarithmic phases",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lp-local-log-derivative",
+          "role": "prime-polynomials-and-logarithmic-phases",
+          "label": "lemma m2-lp-local-log-derivative",
+          "fullLabel": "lemma m2-lp-local-log-derivative",
+          "kind": "lemma",
+          "source": "Prime polynomials and logarithmic phases",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lp-zero-free",
+          "role": "prime-polynomials-and-logarithmic-phases",
+          "label": "lemma m2-lp-zero-free",
+          "fullLabel": "lemma m2-lp-zero-free",
+          "kind": "lemma",
+          "source": "Prime polynomials and logarithmic phases",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m3",
+      "label": "Prime Predecessors with an Even Number of Prime Factors",
+      "title": "Prime Predecessors with an Even Number of Prime Factors",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-17",
+      "pages": 0,
+      "color": "#c98b5c",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Prime-Predecessors-with-an-Even-Number-of-Prime-Factors-September-17-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Prime Predecessors with an Even Number of Prime Factors.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m3-thm-main",
+          "role": "introduction",
+          "label": "theorem m3-thm-main",
+          "fullLabel": "theorem m3-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-pre-primes",
+          "role": "conventions-and-classical-estimates",
+          "label": "proposition m3-pre-primes",
+          "fullLabel": "proposition m3-pre-primes",
+          "kind": "proposition",
+          "source": "Conventions and classical estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-pre-moments",
+          "role": "conventions-and-classical-estimates",
+          "label": "proposition m3-pre-moments",
+          "fullLabel": "proposition m3-pre-moments",
+          "kind": "proposition",
+          "source": "Conventions and classical estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-pre-derivatives",
+          "role": "conventions-and-classical-estimates",
+          "label": "proposition m3-pre-derivatives",
+          "fullLabel": "proposition m3-pre-derivatives",
+          "kind": "proposition",
+          "source": "Conventions and classical estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-pre-separation",
+          "role": "conventions-and-classical-estimates",
+          "label": "lemma m3-pre-separation",
+          "fullLabel": "lemma m3-pre-separation",
+          "kind": "lemma",
+          "source": "Conventions and classical estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lp-prime-polynomial",
+          "role": "a-long-prime-polynomial",
+          "label": "lemma m3-lp-prime-polynomial",
+          "fullLabel": "lemma m3-lp-prime-polynomial",
+          "kind": "lemma",
+          "source": "A long prime polynomial",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lp-mean-value",
+          "role": "a-long-prime-polynomial",
+          "label": "lemma m3-lp-mean-value",
+          "fullLabel": "lemma m3-lp-mean-value",
+          "kind": "lemma",
+          "source": "A long prime polynomial",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lp-log-phase",
+          "role": "a-long-prime-polynomial",
+          "label": "lemma m3-lp-log-phase",
+          "fullLabel": "lemma m3-lp-log-phase",
+          "kind": "lemma",
+          "source": "A long prime polynomial",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lp-l-upper",
+          "role": "a-long-prime-polynomial",
+          "label": "lemma m3-lp-l-upper",
+          "fullLabel": "lemma m3-lp-l-upper",
+          "kind": "lemma",
+          "source": "A long prime polynomial",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lp-local-log-derivative",
+          "role": "a-long-prime-polynomial",
+          "label": "lemma m3-lp-local-log-derivative",
+          "fullLabel": "lemma m3-lp-local-log-derivative",
+          "kind": "lemma",
+          "source": "A long prime polynomial",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lp-zero-free",
+          "role": "a-long-prime-polynomial",
+          "label": "lemma m3-lp-zero-free",
+          "fullLabel": "lemma m3-lp-zero-free",
+          "kind": "lemma",
+          "source": "A long prime polynomial",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-sh-correlation",
+          "role": "a-prime-slot-shifted-correlation-with-a-common-parity-twist",
+          "label": "theorem m3-sh-correlation",
+          "fullLabel": "theorem m3-sh-correlation",
+          "kind": "theorem",
+          "source": "A prime-slot shifted correlation with a common parity twist",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-sh-transference",
+          "role": "a-prime-slot-shifted-correlation-with-a-common-parity-twist",
+          "label": "proposition m3-sh-transference",
+          "fullLabel": "proposition m3-sh-transference",
+          "kind": "proposition",
+          "source": "A prime-slot shifted correlation with a common parity twist",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-sh-ideal",
+          "role": "a-prime-slot-shifted-correlation-with-a-common-parity-twist",
+          "label": "proposition m3-sh-ideal",
+          "fullLabel": "proposition m3-sh-ideal",
+          "kind": "proposition",
+          "source": "A prime-slot shifted correlation with a common parity twist",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-sh-mellin-energy",
+          "role": "a-prime-slot-shifted-correlation-with-a-common-parity-twist",
+          "label": "lemma m3-sh-mellin-energy",
+          "fullLabel": "lemma m3-sh-mellin-energy",
+          "kind": "lemma",
+          "source": "A prime-slot shifted correlation with a common parity twist",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-wt-tail",
+          "role": "candidate-weights-and-their-mass",
+          "label": "lemma m3-wt-tail",
+          "fullLabel": "lemma m3-wt-tail",
+          "kind": "lemma",
+          "source": "Candidate weights and their mass",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-wt-mass",
+          "role": "candidate-weights-and-their-mass",
+          "label": "lemma m3-wt-mass",
+          "fullLabel": "lemma m3-wt-mass",
+          "kind": "lemma",
+          "source": "Candidate weights and their mass",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-wt-squarefree",
+          "role": "candidate-weights-and-their-mass",
+          "label": "lemma m3-wt-squarefree",
+          "fullLabel": "lemma m3-wt-squarefree",
+          "kind": "lemma",
+          "source": "Candidate weights and their mass",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Weighted dilation graphs, smooth shifted primes and totient fibers",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Weighted-Dilation-Graphs-Smooth-Shifted-Primes-and-Totient-Fibers-September-24-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "The Poisson-Dirichlet law for prime predecessors",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Poisson-Dirichlet-Law-for-Prime-Predecessors-September-24-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Prime Predecessors with an Even Number of Prime Factors",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Prime-Predecessors-with-an-Even-Number-of-Prime-Factors-September-17-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

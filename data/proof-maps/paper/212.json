@@ -1,0 +1,691 @@
+{
+  "familyNumber": "212",
+  "familyTitle": "Planar first-passage geometry and the absence of bigeodesics",
+  "manuscripts": [
+    {
+      "id": "No-bigeodesics-in-planar-first-passage-percolation-September-24-2026",
+      "title": "No bigeodesics in planar first-passage percolation",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/No-bigeodesics-in-planar-first-passage-percolation-September-24-2026/main.pdf"
+    },
+    {
+      "id": "Strict-convexity-and-differentiability-of-the-planar-exponential-first-passage-limit-shape-September-24-2026",
+      "title": "Strict convexity and differentiability of the planar exponential first-passage limit shape",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Strict-convexity-and-differentiability-of-the-planar-exponential-first-passage-limit-shape-September-24-2026/main.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Geodesics, Busemann functions, and structural input",
+    "Sectors, order, and confinement",
+    "Exceptional labels and opposite coalescence",
+    "A label budget on horizontal lines",
+    "Excluding forks and identifying Busemann pairs",
+    "Finite perturbations with divergent gain",
+    "Boundary comparison without boundary integrability",
+    "Shape estimates and supporting functionals",
+    "Localized crossings",
+    "Characteristic lengths",
+    "Endpoint extensions",
+    "Disjoint witnesses and exclusion of corners",
+    "Differentiability and the boundary",
+    "Exponential passage times and the strict-convexity argument",
+    "Calibration and local roads",
+    "Local gauges for nearly calibrated roads",
+    "Phase conventions and locality of the comparison fields",
+    "Uniform estimates for selected local observations",
+    "Selected access and charged tunnels",
+    "Horizontal links extracted from a long geodesic"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Suppose that \\(G\\) has no atoms and that, for independent \\(X_1,X_2,X_3,X_4\\)…",
+      "statement": "Suppose that \\(G\\) has no atoms and that, for independent \\(X_1,X_2,X_3,X_4\\) with law \\(G\\), \\!<. Then, with probability one, there is no sequence \\((v_i)_ i \\) of pairwise distinct vertices with…",
+      "section": "Introduction",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-lem-finite-minimizers",
+      "kind": "lemma",
+      "label": "Finite minimizers",
+      "statement": "[Finite minimizers] Almost surely every pair of vertices has a unique finite geodesic.",
+      "section": "Geodesics, Busemann functions, and structural input",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-lem-busemann-basic",
+      "kind": "lemma",
+      "label": "Elementary Busemann properties",
+      "statement": "[Elementary Busemann properties] For every ray \\(p\\) and all vertices \\(x,y\\), the limit B_p(x,y)=_ j (T(x,p_j)-T(y,p_j)) exists. It is additive and antisymmetric, satisfies \\( B_p(x,y) T(x,y)\\), and…",
+      "section": "Geodesics, Busemann functions, and structural input",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-thm-structure",
+      "kind": "theorem",
+      "label": "Ahlberg--Hoffman and the shape theorem",
+      "statement": "[Ahlberg--Hoffman and the shape theorem] There are a deterministic norm \\(m\\) on \\(^2\\) and a deterministic closed subset \\(C S\\) with the following properties. [label=( *)] Almost surely, \\[…",
+      "section": "Geodesics, Busemann functions, and structural input",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-cor-fixed-label",
+      "kind": "corollary",
+      "label": "Exclusion of deterministic labels",
+      "statement": "[Exclusion of deterministic labels] For each fixed \\( C\\), almost surely no bigeodesic has an end with label \\(\\). The same holds simultaneously for every member of any countable deterministic subset…",
+      "section": "Geodesics, Busemann functions, and structural input",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-lem-uniform-metric",
+      "kind": "lemma",
+      "label": "Uniform metric approximation",
+      "statement": "[Uniform metric approximation] Almost surely, T(x,y)=m(y-x)+o(|x|+|y|) (|x|+|y|), uniformly over the two endpoints.",
+      "section": "Geodesics, Busemann functions, and structural input",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-lem-finite-change",
+      "kind": "lemma",
+      "label": "Finite modifications",
+      "statement": "[Finite modifications] Suppose two environments differ on a finite set \\(F\\) of edges, and put \\(K=_ e F |t'_e-t_e|\\). Then \\[ |T'(x,y)-T(x,y)| K(x,y^2). \\] If a path is a ray in both environments…",
+      "section": "Geodesics, Busemann functions, and structural input",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-lem-measurable",
+      "kind": "lemma",
+      "label": "Path witnesses and selection",
+      "statement": "[Path witnesses and selection] The conditions that a specified path is a ray or a bigeodesic, that specified rays coalesce, and that a ray's Busemann function is asymptotically linear to a specified…",
+      "section": "Geodesics, Busemann functions, and structural input",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-lem-opposite",
+      "kind": "lemma",
+      "label": "Opposite functionals",
+      "statement": "[Opposite functionals] Let an oriented bigeodesic pass through z , and let p^+ and p^- be its two rays starting at z . Then, for every w^2 , B_ p^+ (z,w)+B_ p^- (z,w) 0. Consequently _ p^- =-_ p^+ .…",
+      "section": "Sectors, order, and confinement",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-lem-charts",
+      "kind": "lemma",
+      "label": "Countably many charts",
+      "statement": "[Countably many charts] There is a deterministic countable set D C , symmetric under negation, and a countable family of charts with the following properties. Each chart is specified by a choice of…",
+      "section": "Sectors, order, and confinement",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-lem-ray-order",
+      "kind": "lemma",
+      "label": "Local ray order",
+      "statement": "[Local ray order] Two upper rays with disjoint tails have a stable left-to-right order at their first visits to the horizontal rows \\ x_2=N\\ as N . If p is to the left of q in this order, then r(_p)…",
+      "section": "Sectors, order, and confinement",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-prop-cone",
+      "kind": "proposition",
+      "label": "Uniform confinement of all rays",
+      "statement": "[Uniform confinement of all rays] Almost surely there is a finite H(z)1 for every z^2 such that every upper ray from z lies in Q^+(z,H(z)) and every lower ray from z lies in Q^-(z,H(z)) . Moreover,…",
+      "section": "Sectors, order, and confinement",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-lem-crossing",
+      "kind": "lemma",
+      "label": "Crossing from separated sites",
+      "statement": "[Crossing from separated sites] Let x_1<y_1 , and suppose upper rays p from x and q from y satisfy \\[ p Q^+(x,H_x), q Q^+(y,H_y). \\] If s(y_1-x_1)>H_x+H_y+|x_2-y_2| and r(_p)>r(_q) , then the rays…",
+      "section": "Sectors, order, and confinement",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-lem-calibrated-rays",
+      "kind": "lemma",
+      "label": "Rays calibrated from an arbitrary vertex",
+      "statement": "[Rays calibrated from an arbitrary vertex] Let p be a ray, let B=B_p , and let x^2 . There is a ray q=(q_j)_ j0 from x such that T(x,q_j)=B(x,q_j)(j0). Moreover, q has the same label as p . In…",
+      "section": "Exceptional labels and opposite coalescence",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-prop-exceptional-countable",
+      "kind": "proposition",
+      "label": "Countability of exceptional labels",
+      "statement": "[Countability of exceptional labels] Almost surely E_I() is at most countable. The same conclusion holds with I replaced by -I .",
+      "section": "Exceptional labels and opposite coalescence",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-lem-independent-exceptional",
+      "kind": "lemma",
+      "label": "Countable exceptional parameters in an independent metric",
+      "statement": "[Countable exceptional parameters in an independent metric] Let V,W be independent environments, each with the iid law . Almost surely, simultaneously for every E_I(V) , all W -rays of label -…",
+      "section": "Exceptional labels and opposite coalescence",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-lem-cut-transfer",
+      "kind": "lemma",
+      "label": "Half-plane transfer",
+      "statement": "[Half-plane transfer] There is a deterministic increasing sequence n_k and an event of probability one for the coupling with the following properties. [label=()] For every finite collection of upper…",
+      "section": "Exceptional labels and opposite coalescence",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-prop-opposite-coalescence",
+      "kind": "proposition",
+      "label": "Coalescence at opposite exceptional labels",
+      "statement": "[Coalescence at opposite exceptional labels] Almost surely, simultaneously for all E_I(U) , every two U -rays of label - coalesce. Almost surely the same statement holds with upper and lower sectors…",
+      "section": "Exceptional labels and opposite coalescence",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-lem-budget-comparison",
+      "kind": "lemma",
+      "label": "Comparison after a finite increase",
+      "statement": "[Comparison after a finite increase] Let T be a base metric and T^k a metric obtained by increasing finitely many edge weights. Both environments are assumed to have the structural properties already…",
+      "section": "A label budget on horizontal lines",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-prop-label-budget",
+      "kind": "proposition",
+      "label": "The label budget",
+      "statement": "[The label budget] Fix a bin (,)_I , an integer spacing l1 , and a gain b>0 . On a common probability space, mark some sites of the horizontal grid k_j=(jl,0) , j . Suppose all sites have the same…",
+      "section": "A label budget on horizontal lines",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-lem-usable",
+      "kind": "lemma",
+      "label": "Usable edges on long simple paths",
+      "statement": "[Usable edges on long simple paths] There exist a_0<b_0 such that p_a=(t_e a_0)>0, q=(t_e<b_0)<1 64 ,\\\\ p_b=(t_e b_0)=1-q>0. Call an edge usable if t_e b_0 , and put =8 q<1 . For each vertex x and…",
+      "section": "A label budget on horizontal lines",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-prop-edge-count",
+      "kind": "proposition",
+      "label": "Expected label count at an edge",
+      "statement": "[Expected label count at an edge] There is a finite constant C , depending only on the chart and the weight law, such that for every lattice edge e and every H1 , N_e(H) C(H+1).",
+      "section": "A label budget on horizontal lines",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-prop-no-forks",
+      "kind": "proposition",
+      "label": "Absence of forks",
+      "statement": "[Absence of forks] Almost surely there is no upper or lower fork in any of the countably many charts under consideration.",
+      "section": "Excluding forks and identifying Busemann pairs",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-cor-same-busemann",
+      "kind": "corollary",
+      "label": "Common Busemann pairs for a common label",
+      "statement": "[Common Busemann pairs for a common label] On one event of probability one, whenever two oriented bigeodesics p,q in any fixed chart have the same upper label, their two Busemann functions agree: B_…",
+      "section": "Excluding forks and identifying Busemann pairs",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-lem-likelihood",
+      "kind": "lemma",
+      "label": "Uniform change of law",
+      "statement": "[Uniform change of law] Every individual environment Y^ k,R and every union environment Y^ k,y,R has law absolutely continuous with respect to . There is a finite constant C , depending only on…",
+      "section": "Finite perturbations with divergent gain",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-lem-posterior",
+      "kind": "lemma",
+      "label": "Conditioning on an individual output",
+      "statement": "[Conditioning on an individual output] Fix k,R . Conditional on the entire individual environment Y^ k,R , the variables (_e:e A_k(R)) are independent Bernoulli variables with respective success…",
+      "section": "Finite perturbations with divergent gain",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-lem-divergent-gain",
+      "kind": "lemma",
+      "label": "Divergent gain along selected prefixes",
+      "statement": "[Divergent gain along selected prefixes] There is a fixed integer R_0 n_0 such that, for each positive integer M , one can choose a deterministic R(M) R_0 with the following property. On E_ k,R(M) ,…",
+      "section": "Finite perturbations with divergent gain",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-prop-tilt-marks",
+      "kind": "proposition",
+      "label": "Marks with an arbitrary toll",
+      "statement": "[Marks with an arbitrary toll] With R_0 fixed as above, for every positive integer M the common coupling defines marks J_M(k)\\ 0,1\\ at all horizontal sites, with the same marginal probability at each…",
+      "section": "Finite perturbations with divergent gain",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-lem-union",
+      "kind": "lemma",
+      "label": "Preservation in a union",
+      "statement": "[Preservation in a union] Fix M , put R=R(M) , and suppose distinct sites k,y are marked. Their selected paths p_k,p_y are bigeodesics in the union metric T^*=T^ k,y,R . Every edge of p_k has the…",
+      "section": "Finite perturbations with divergent gain",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-prop-distinct-marks",
+      "kind": "proposition",
+      "label": "No repeated marked label",
+      "statement": "[No repeated marked label] Almost surely, for each positive integer M , the selected upper labels at distinct marked sites of are distinct.",
+      "section": "Finite perturbations with divergent gain",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-lem-boundary-correction",
+      "kind": "lemma",
+      "label": "Finite boundary correction",
+      "statement": "[Finite boundary correction] For \\(x H^2\\), the limit \\[ D_ G (x) =_ j (T_H(x,v_j)-T(x,v_j)) \\] exists and is finite and nonnegative, where \\((v_j)\\) is any ray of \\( G\\) and the targets are…",
+      "section": "Boundary comparison without boundary integrability",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-lem-zero-boundary-difference",
+      "kind": "lemma",
+      "label": "A nonnegative stationary difference",
+      "statement": "[A nonnegative stationary difference] Let \\((k,l)\\), \\(k,l\\), be a finite, additive stationary process, with \\((k,k+1)0\\) almost surely. If \\((0,n)/n0\\) in probability, then every increment is zero…",
+      "section": "Boundary comparison without boundary integrability",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m1-prop-boundary-uniqueness",
+      "kind": "proposition",
+      "label": "The fixed-functional boundary comparison",
+      "statement": "[The fixed-functional boundary comparison] Two random coalescing geodesics with the same full-plane Busemann linear functional agree almost surely under the assumptions of .",
+      "section": "Boundary comparison without boundary integrability",
+      "manuscript": "No bigeodesics in planar first-passage percolation"
+    },
+    {
+      "id": "m2-thm-exponential-shape",
+      "kind": "theorem",
+      "label": "The exponential limit shape",
+      "statement": "[The exponential limit shape] For independent exponential edge weights of any rate >0 , the norm is Fr\\'echet differentiable on ^2\\ 0\\ , and its unit ball is strictly convex. In particular, \\[…",
+      "section": "Introduction",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-thm-gamma-differentiability",
+      "kind": "theorem",
+      "label": "Differentiability for Gamma weights",
+      "statement": "[Differentiability for Gamma weights] For independent Gamma edge weights with any fixed shape >0 and rate >0 , the norm is Fr\\'echet differentiable at every nonzero vector, and is a C^1 curve.",
+      "section": "Introduction",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-df-ga-moment",
+      "kind": "lemma",
+      "label": "Gamma exponential moments",
+      "statement": "[Gamma exponential moments] For Gamma(,) and < , \\[ e^ =( - )^. \\] If V is the sum over a deterministic set of M distinct edges and M A v , where A,v>0 , then (V>2A v) \\ -A(1- 2)v\\ .",
+      "section": "Shape estimates and supporting functionals",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-df-prelim-supports",
+      "kind": "lemma",
+      "label": "One-sided contact",
+      "statement": "[One-sided contact] The linear functionals f_- , f_+ , and f are bounded above by on ^2 and equal at u . For \\ -,+\\ , with the corresponding numerical sign when multiplied by a scalar,…",
+      "section": "Shape estimates and supporting functionals",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-df-cr-local-travel",
+      "kind": "lemma",
+      "label": "Localized travel",
+      "statement": "[Localized travel] Fix D,,>0 . Uniformly over deterministic vertices p,q^2 with |q-p| Ds , the probability tends to one as s that there is a path from p to q with cost at most \\[ (q-p)+ s \\] whose…",
+      "section": "Localized crossings",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-df-cr-interval-travel",
+      "kind": "lemma",
+      "label": "Travel between intervals",
+      "statement": "[Travel between intervals] Fix D,,>0 . Let I_1,I_2 be deterministic vertical intervals on lattice columns, and suppose that the diameter of I_1 I_2 is at most Ds . Uniformly over their locations,…",
+      "section": "Localized crossings",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-df-cr-oriented-paths",
+      "kind": "lemma",
+      "label": "High-density oriented paths",
+      "statement": "[High-density oriented paths] For every integer k_00 there is =(k_0)>0 with the following property. Let (G_v)_ v^2 be events such that any finite family indexed by sites at pairwise sup distance…",
+      "section": "Localized crossings",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-df-cr-rare-fast",
+      "kind": "lemma",
+      "label": "Rare fast localized crossings",
+      "statement": "[Rare fast localized crossings] Fix A,R,>0 and \\ -,+\\ . As s and n/s , with s real and n a positive integer, ( l there is a path P from x=0 to x=n with \\ H_(P)<- s,\\\\ all of whose vertices satisfy…",
+      "section": "Localized crossings",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-df-gr-tilt",
+      "kind": "lemma",
+      "label": "Rarity at cubic length",
+      "statement": "[Rarity at cubic length] For s=2^k and k , \\[ (E(s,s^3))0. \\]",
+      "section": "Characteristic lengths",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-df-gr-characteristic-lengths",
+      "kind": "lemma",
+      "label": "Characteristic lengths",
+      "statement": "[Characteristic lengths] For every fixed C>0 , (E(s,n))1 as s, 1 n Cs, n. There is therefore an integer k_00 such that, for every k k_0 , the first dyadic integer L_k\\ 1,2,4,\\ satisfying (E(s_k,L_k))…",
+      "section": "Characteristic lengths",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-df-gr-record-scales",
+      "kind": "lemma",
+      "label": "Record scales",
+      "statement": "[Record scales] There is an infinite set K\\ k_0,k_0+1,\\ such that, for k K and every integer 0 j k-k_0 , L_ k-j 2^ -4j L_k.",
+      "section": "Characteristic lengths",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-df-gr-grid-tools",
+      "kind": "lemma",
+      "label": "Simultaneous grid connections",
+      "statement": "[Simultaneous grid connections] There is a constant C_1 , independent of A,R,J,j,k , and for each fixed A,R a sequence _J0 , such that the following holds. For every fixed J1 and all sufficiently…",
+      "section": "Endpoint extensions",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-df-gr-variable-endpoints",
+      "kind": "lemma",
+      "label": "Arbitrary endpoints",
+      "statement": "[Arbitrary endpoints] For every fixed A,R,>0 , ( c there is a finite path P in \\ x AL,\\ r Rs\\ \\\\ with H_+(P)<- s or H_-(P)<- s )0 as k through K . The endpoints of P may be any vertices of the…",
+      "section": "Endpoint extensions",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-df-wi-continuous-bk",
+      "kind": "lemma",
+      "label": "BK for strict path witnesses",
+      "statement": "[BK for strict path witnesses] Let A_1,,A_q be a finite list of events. For each j , suppose A_j is the existence of a path P in a prescribed family of finite lattice paths, all of whose edges belong…",
+      "section": "Disjoint witnesses and exclusion of corners",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-df-wi-chunk-witness",
+      "kind": "lemma",
+      "label": "A cheap full chunk supplies a witness",
+      "statement": "[A cheap full chunk supplies a witness] If a full chunk Q with index (i,h) satisfies H(Q)< s , then its edges contain a path witness for A_ i,h .",
+      "section": "Disjoint witnesses and exclusion of corners",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-df-wi-chunk-defect",
+      "kind": "lemma",
+      "label": "Defect bound from disjoint witnesses",
+      "statement": "[Defect bound from disjoint witnesses] Every chunk, including the remainder, satisfies H(Q)- s-2 s M_Q. A full chunk satisfies the stronger bound H(Q) s-4 s M_Q. If M_ tot denotes the sum of M_Q over…",
+      "section": "Disjoint witnesses and exclusion of corners",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-df-wi-long-paths",
+      "kind": "proposition",
+      "label": "Uniform lower bound for long paths",
+      "statement": "[Uniform lower bound for long paths] At the fixed scale chosen above, almost surely there exists a finite N_0 such that every finite simple path P starting at the origin and having N N_0 full chunks…",
+      "section": "Disjoint witnesses and exclusion of corners",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-df-wi-no-corner",
+      "kind": "proposition",
+      "label": "Absence of corners",
+      "statement": "[Absence of corners] For every b , the two one-sided transverse derivatives at u=(1,b) agree: \\[ a_-=a_+. \\]",
+      "section": "Disjoint witnesses and exclusion of corners",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-df-convex-regularity",
+      "kind": "lemma",
+      "label": "Convex boundary regularity",
+      "statement": "[Convex boundary regularity] For a norm on ^2 , Fr\\'echet differentiability at every nonzero vector is equivalent to uniqueness of the supporting line at every point of its unit sphere. These…",
+      "section": "Differentiability and the boundary",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-model-metric",
+      "kind": "lemma",
+      "label": "Uniform metric estimates",
+      "statement": "[Uniform metric estimates] There are constants C,c>0 such that, for x,y^2 and R=|x-y|_12 , 0 T(x,y)-(y-x) & CR (2+R), \\\\ (|T(x,y)- T(x,y)| t R) & C e^ -ct , t0. Consequently, for any fixed p,C_0< and…",
+      "section": "Exponential passage times and the strict-convexity argument",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-lem-fb-random-cuts",
+      "kind": "lemma",
+      "label": "Random-cut period identity",
+      "statement": "[Random-cut period identity] For any admissible d -road, [P_n(X_ i+1 )-P_n(X_i)]=0, D_n() = Q_n()0. Here denotes the oriented road portion between its marked cuts.",
+      "section": "Calibration and local roads",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-lem-fb-cheap-paths",
+      "kind": "lemma",
+      "label": "No long cheap paths",
+      "statement": "[No long cheap paths] Let V be a finite set of vertices of ^2 . For every integer R1 and t0 , ( c some self-avoiding path starting in V has\\\\[-2pt] at least R edges and cost at most t ) 83 |V|e^ 5t…",
+      "section": "Calibration and local roads",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-prop-fb-upper",
+      "kind": "proposition",
+      "label": "Sublinear initialization",
+      "statement": "[Sublinear initialization] For fixed s,v,w there are admissible pairs of roads with b(n) C_s n(2+n) C'_s n^ 3/4 for all sufficiently large multiples of a fixed integer. The constants may depend on s…",
+      "section": "Calibration and local roads",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-prop-fb-positive",
+      "kind": "proposition",
+      "label": "Uniform positive lower bound",
+      "statement": "[Uniform positive lower bound] There is c_0>0 , depending only on the fixed flat and the dependence radius 10 , such that b(n) c_0 for all sufficiently large admissible n . The constant c_0 is…",
+      "section": "Calibration and local roads",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-found-lem-network",
+      "kind": "lemma",
+      "label": "Local increment comparisons",
+      "statement": "[Local increment comparisons] Let A=v+sw , B=w+sv with 0<s<1/4 , and suppose two road rules have tracking radius r and dependence radius 10 in \\|\\|_* , and expected defect at most on each marked unit…",
+      "section": "Local gauges for nearly calibrated roads",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-found-lem-finite-cell",
+      "kind": "lemma",
+      "label": "Local increments admit a local potential",
+      "statement": "[Local increments admit a local potential] Let (_z)_ z^2 be independent random elements and let V_ z, L^1 , where belongs to an arbitrary label set with a distinguished label 0 . Set F_I=(_z:z I) and…",
+      "section": "Local gauges for nearly calibrated roads",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-found-lem-envelope",
+      "kind": "lemma",
+      "label": "Local envelope",
+      "statement": "[Local envelope] Fix m road labels and parameter windows of length at most L contained in a bounded macroscopic neighborhood of a deterministic cell. There is a nonnegative local random variable U…",
+      "section": "Local gauges for nearly calibrated roads",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-found-lem-gauge-tail",
+      "kind": "lemma",
+      "label": "Linear-scale tail bound",
+      "statement": "[Linear-scale tail bound] Suppose the period excess bound satisfies C_s n^ for some fixed <1 . Fix the neighborhood and finitely many labels of Lemma~ . After subtraction of one common deterministic…",
+      "section": "Local gauges for nearly calibrated roads",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-found-lem-common-gauge",
+      "kind": "lemma",
+      "label": "A gauge from the preserved incoming road",
+      "statement": "[A gauge from the preserved incoming road] Fix deterministic tubes and a baseline road contained in one of them. Write =(_0,_ other ) for all preserved tube weights, where _0 consists exactly of the…",
+      "section": "Local gauges for nearly calibrated roads",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-phases-locality",
+      "kind": "lemma",
+      "label": "Local phases and covariant gauges",
+      "statement": "[Local phases and covariant gauges] The averaged gauges retain the local bounds, means, interpolation identities, and common-tube comparisons of the preceding section. Their support radii and bounds…",
+      "section": "Phase conventions and locality of the comparison fields",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-probability-sparse",
+      "kind": "lemma",
+      "label": "Sparse-path estimate",
+      "statement": "[Sparse-path estimate] Let (I_z)_ z^2 be indicators with (I_z=1) p . Suppose ^2 has a partition into q classes such that the variables within each class are mutually independent. For every integer L0…",
+      "section": "Uniform estimates for selected local observations",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-probability-integrated-tails",
+      "kind": "corollary",
+      "label": "Integrated bound for selected tails",
+      "statement": "[Integrated bound for selected tails] Let (U_z) be nonnegative fields whose dependence range is uniform in a possible law index n , and suppose _ n,z (U_z>t) p(t) . Then, for T0 , _ P_L _ z U_z1_ \\…",
+      "section": "Uniform estimates for selected local observations",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-probability-candidates",
+      "kind": "lemma",
+      "label": "Selection from separated candidates",
+      "statement": "[Selection from separated candidates] A fixed bounded region contains at most J candidate cells. For each cell c , let U_c0 be measurable with respect to a specified subset of one family of…",
+      "section": "Uniform estimates for selected local observations",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-probability-matching",
+      "kind": "lemma",
+      "label": "Bounded-displacement matching",
+      "statement": "[Bounded-displacement matching] Let be a full-rank lattice in ^2 and let T be invertible with | T|=1 . There is a bijection : and a finite b_T such that \\[ |(z)-Tz| b_T(z). \\] For a bounded…",
+      "section": "Uniform estimates for selected local observations",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-probability-thin-geometry",
+      "kind": "lemma",
+      "label": "Thin diagrams and order errors",
+      "statement": "[Thin diagrams and order errors] Fix H,c>0 and a full-rank lattice . Suppose z_1,,z_k satisfy the all-pairs condition E^ -1 (z_j-z_i)-H(1,1) coordinatewise for every i<j, and lie in the parallelogram…",
+      "section": "Uniform estimates for selected local observations",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-probability-weak-two",
+      "kind": "lemma",
+      "label": "Weak second-moment bound",
+      "statement": "[Weak second-moment bound] Under , \\[ _n(Y_z>t) C\\ 1,t^ -2 \\ , t>0. \\]",
+      "section": "Uniform estimates for selected local observations",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-probability-thin-tails",
+      "kind": "lemma",
+      "label": "Negligible selected tails in a thin diagram",
+      "statement": "[Negligible selected tails in a thin diagram] Assume , and fix H,c,m_0 . For N1 , let S(N,) consist of finite site sequences satisfying and , with at most m_0 occurrences per site. Suppose also that…",
+      "section": "Uniform estimates for selected local observations",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-probability-rows",
+      "kind": "lemma",
+      "label": "Uniform row concentration, including omissions",
+      "statement": "[Uniform row concentration, including omissions] For each n , let W^ (n) _ i,j , i,j , be real random variables with |W^ (n) _ i,j | B . Suppose that for every deterministic sequence (j_i) , the…",
+      "section": "Uniform estimates for selected local observations",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-probability-dyadic",
+      "kind": "lemma",
+      "label": "Good dyadic levels",
+      "statement": "[Good dyadic levels] Let U_1^ (n) ,,U_k^ (n) be nonnegative variables with \\[ _n_ a=1 ^k U_a^ (n) A. \\] Fix M_0>0 and an integer J1 . For each n , there is M_n\\ M_0,2M_0,,2^ J-1 M_0\\ such that M_n_…",
+      "section": "Uniform estimates for selected local observations",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-access-conditioning",
+      "kind": "lemma",
+      "label": "A local bound for every observation",
+      "statement": "[A local bound for every observation] There is a local random variable W_c , with the same support as U_c , such that W_c, W_c 2^ m_0 C. The inequalities hold simultaneously for every deterministic…",
+      "section": "Selected access and charged tunnels",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-access-physical",
+      "kind": "lemma",
+      "label": "Realization of center-label costs",
+      "statement": "[Realization of center-label costs] There are exterior intersection occurrences a on W_- and b on W_+ , at bounded parameter distance from their cut windows, such that a precedes every admissible…",
+      "section": "Selected access and charged tunnels",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-access-selected-cuts",
+      "kind": "lemma",
+      "label": "Uniform selected cuts",
+      "statement": "[Uniform selected cuts] Fix a polynomial-box exponent q and an integer m>4 . The integer m can be increased so that m>q . There are fixed radii H_m and K>20H_m , a finite-range field (E_z) , and cuts…",
+      "section": "Selected access and charged tunnels",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-access-accounting",
+      "kind": "lemma",
+      "label": "Tunnel accounting",
+      "statement": "[Tunnel accounting] If a path piece with the specified type has normalized center-label cost c , then c^- Y+W_ c_- /+W_ c_+ /. If Y>0 , the internal minimizer has a physical forward realization…",
+      "section": "Selected access and charged tunnels",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-access-collection",
+      "kind": "proposition",
+      "label": "Uniform finite-volume collection bound",
+      "statement": "[Uniform finite-volume collection bound] For the iid tunnel field associated with any fixed local type and phase template there are constants C,C_0< , independent of n and the input-road rule, such…",
+      "section": "Selected access and charged tunnels",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-links-extreme",
+      "kind": "lemma",
+      "label": "A uniform modulus at an extreme point",
+      "statement": "[A uniform modulus at an extreme point] Let \\(a\\) be an extreme point of the norm ball, let \\(S_=\\ z:(z)=1\\ \\), and let \\(U\\) be a relatively open neighborhood of \\(a\\) in \\(S_\\). For \\(t0\\), put \\[…",
+      "section": "Horizontal links extracted from a long geodesic",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-links-halos",
+      "kind": "lemma",
+      "label": "Removal of bad intervals",
+      "statement": "[Removal of bad intervals] Let \\(x_0,,x_m\\) be successive cuts of a path. All distances in this lemma use the \\((A,B)\\) maximum norm. Suppose \\(K/2|x_ i+1 -x_i| CK\\), and associate to each starting…",
+      "section": "Horizontal links extracted from a long geodesic",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    },
+    {
+      "id": "m2-links-extraction",
+      "kind": "proposition",
+      "label": "Uniform extraction from a long geodesic",
+      "statement": "[Uniform extraction from a long geodesic] For every sufficiently small fixed \\(,>0\\), the final geometric choices above can be made so that there are deterministic \\(_n,_n0\\) and fixed constants…",
+      "section": "Horizontal links extracted from a long geodesic",
+      "manuscript": "Strict convexity and differentiability of the planar exponential first-passage limit shape"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m2-df-wi-no-corner",
+      "to": "m2-thm-gamma-differentiability",
+      "label": "df:wi:no-corner",
+      "context": "[Proof of Theorem~\\ref{thm:gamma-differentiability}] Proposition~\\ref{df:wi:no-corner} gives $a_-=a_+$ for every fixed $b\\in[-1,1]$. The expansion in the proof of Lemma~\\ref{df:convex-regularity}, applied t"
+    }
+  ]
+}

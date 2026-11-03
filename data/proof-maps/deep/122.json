@@ -1,0 +1,265 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "122",
+  "title": "Quantitative trace-reconstruction bounds with a uniform decoder",
+  "result": {
+    "id": "paper-result",
+    "label": "Quantitative trace-reconstruction bounds with a uniform decoder",
+    "statement": "At every fixed deletion probability in (0,1), reconstructing an arbitrary length- n binary string requires n^ ( n) independent traces, ruling out polynomial-sample reconstruction. A uniform decoder achieves quasipolynomial sample and running-time bounds for known fixed rational retention probabilities. When the deletion probability is at most n^ - for fixed ε > 0, both bounds become polynomial in the input and parameter encoding.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-induction-and-global-scales",
+      "label": "The induction and global scales",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "common-mass-smoothing-and-score-moments",
+      "label": "Common mass, smoothing, and score moments",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-initial-pair-at-the-working-deletion-rate",
+      "label": "An initial pair at the working deletion rate",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "one-amplification-block-words-and-overlap",
+      "label": "One amplification block: words and overlap",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-observation-with-randomly-displaced-windows",
+      "label": "An observation with randomly displaced windows",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "likelihood-cancellation-and-the-forced-binary-subtree",
+      "label": "Likelihood cancellation and the forced binary subtree",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "genuine-traces-exact-lengths-and-testing",
+      "label": "Genuine traces, exact lengths, and testing",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Quantitative lower bounds for trace reconstruction",
+      "title": "Quantitative lower bounds for trace reconstruction",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/quantitative-lower-bounds-for-trace-reconstruction-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Quantitative lower bounds for trace reconstruction.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-tv",
+          "role": "introduction",
+          "label": "theorem m1-thm-tv",
+          "fullLabel": "theorem m1-thm-tv",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-scale-margins",
+          "role": "the-induction-and-global-scales",
+          "label": "lemma m1-lem-scale-margins",
+          "fullLabel": "lemma m1-lem-scale-margins",
+          "kind": "lemma",
+          "source": "The induction and global scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-construction",
+          "role": "the-induction-and-global-scales",
+          "label": "proposition m1-prop-construction",
+          "fullLabel": "proposition m1-prop-construction",
+          "kind": "proposition",
+          "source": "The induction and global scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-moment",
+          "role": "common-mass-smoothing-and-score-moments",
+          "label": "lemma m1-lem-moment",
+          "fullLabel": "lemma m1-lem-moment",
+          "kind": "lemma",
+          "source": "Common mass, smoothing, and score moments",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-lift",
+          "role": "common-mass-smoothing-and-score-moments",
+          "label": "lemma m1-lem-lift",
+          "fullLabel": "lemma m1-lem-lift",
+          "kind": "lemma",
+          "source": "Common mass, smoothing, and score moments",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-clipping",
+          "role": "common-mass-smoothing-and-score-moments",
+          "label": "lemma m1-lem-clipping",
+          "fullLabel": "lemma m1-lem-clipping",
+          "kind": "lemma",
+          "source": "Common mass, smoothing, and score moments",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-initial",
+          "role": "an-initial-pair-at-the-working-deletion-rate",
+          "label": "proposition m1-prop-initial",
+          "fullLabel": "proposition m1-prop-initial",
+          "kind": "proposition",
+          "source": "An initial pair at the working deletion rate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-base-kernel",
+          "role": "an-initial-pair-at-the-working-deletion-rate",
+          "label": "lemma m1-lem-base-kernel",
+          "fullLabel": "lemma m1-lem-base-kernel",
+          "kind": "lemma",
+          "source": "An initial pair at the working deletion rate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-base-differences",
+          "role": "an-initial-pair-at-the-working-deletion-rate",
+          "label": "lemma m1-lem-base-differences",
+          "fullLabel": "lemma m1-lem-base-differences",
+          "kind": "lemma",
+          "source": "An initial pair at the working deletion rate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-base-fixed-sums",
+          "role": "an-initial-pair-at-the-working-deletion-rate",
+          "label": "lemma m1-lem-base-fixed-sums",
+          "fullLabel": "lemma m1-lem-base-fixed-sums",
+          "kind": "lemma",
+          "source": "An initial pair at the working deletion rate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-block",
+          "role": "one-amplification-block-words-and-overlap",
+          "label": "proposition m1-prop-block",
+          "fullLabel": "proposition m1-prop-block",
+          "kind": "proposition",
+          "source": "One amplification block: words and overlap",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-binomial-smoothing",
+          "role": "one-amplification-block-words-and-overlap",
+          "label": "lemma m1-lem-binomial-smoothing",
+          "fullLabel": "lemma m1-lem-binomial-smoothing",
+          "kind": "lemma",
+          "source": "One amplification block: words and overlap",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-nested-overlap",
+          "role": "one-amplification-block-words-and-overlap",
+          "label": "lemma m1-lem-nested-overlap",
+          "fullLabel": "lemma m1-lem-nested-overlap",
+          "kind": "lemma",
+          "source": "One amplification block: words and overlap",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-tree-simulation",
+          "role": "an-observation-with-randomly-displaced-windows",
+          "label": "lemma m1-lem-tree-simulation",
+          "fullLabel": "lemma m1-lem-tree-simulation",
+          "kind": "lemma",
+          "source": "An observation with randomly displaced windows",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-tree-score",
+          "role": "likelihood-cancellation-and-the-forced-binary-subtree",
+          "label": "lemma m1-lem-tree-score",
+          "fullLabel": "lemma m1-lem-tree-score",
+          "kind": "lemma",
+          "source": "Likelihood cancellation and the forced binary subtree",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-restoration",
+          "role": "genuine-traces-exact-lengths-and-testing",
+          "label": "lemma m1-lem-restoration",
+          "fullLabel": "lemma m1-lem-restoration",
+          "kind": "lemma",
+          "source": "Genuine traces, exact lengths, and testing",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Quantitative lower bounds for trace reconstruction",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/quantitative-lower-bounds-for-trace-reconstruction-September-24-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

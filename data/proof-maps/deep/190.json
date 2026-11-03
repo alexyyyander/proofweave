@@ -1,0 +1,167 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "190",
+  "title": "Polynomial removal fails for ordered binary matrices",
+  "result": {
+    "id": "paper-result",
+    "label": "Polynomial removal fails for ordered binary matrices",
+    "statement": "Disproves polynomial ordered binary matrix removal with one fixed 66 66 zero–one pattern. Matrices can require many binary-entry changes to become pattern-free while their copy density is smaller than every proposed polynomial bound in that distance. Copies preserve row and column orders and match both zeros and ones.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "distance-under-arbitrary-binary-changes",
+      "label": "Distance under arbitrary binary changes",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "copies-are-confined-to-the-leaf-diagonal",
+      "label": "Copies are confined to the leaf diagonal",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "proof-of-the-main-theorem",
+      "label": "Proof of the main theorem",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Polynomial removal fails for ordered binary matrices",
+      "title": "Polynomial removal fails for ordered binary matrices",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Polynomial-removal-fails-for-ordered-binary-matrices-September-25-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Polynomial removal fails for ordered binary matrices.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-prop-distance"
+          ]
+        },
+        {
+          "id": "m1-prop-distance",
+          "role": "distance-under-arbitrary-binary-changes",
+          "label": "proposition m1-prop-distance",
+          "fullLabel": "proposition m1-prop-distance",
+          "kind": "proposition",
+          "source": "Distance under arbitrary binary changes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-anchor-properties",
+          "role": "copies-are-confined-to-the-leaf-diagonal",
+          "label": "lemma m1-lem-anchor-properties",
+          "fullLabel": "lemma m1-lem-anchor-properties",
+          "kind": "lemma",
+          "source": "Copies are confined to the leaf diagonal",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-mode-incidences",
+          "role": "copies-are-confined-to-the-leaf-diagonal",
+          "label": "lemma m1-lem-mode-incidences",
+          "fullLabel": "lemma m1-lem-mode-incidences",
+          "kind": "lemma",
+          "source": "Copies are confined to the leaf diagonal",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-nonanchor-traces",
+          "role": "copies-are-confined-to-the-leaf-diagonal",
+          "label": "lemma m1-lem-nonanchor-traces",
+          "fullLabel": "lemma m1-lem-nonanchor-traces",
+          "kind": "lemma",
+          "source": "Copies are confined to the leaf diagonal",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-anchor-rigidity",
+          "role": "copies-are-confined-to-the-leaf-diagonal",
+          "label": "lemma m1-lem-anchor-rigidity",
+          "fullLabel": "lemma m1-lem-anchor-rigidity",
+          "kind": "lemma",
+          "source": "Copies are confined to the leaf diagonal",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-body-roles",
+          "role": "copies-are-confined-to-the-leaf-diagonal",
+          "label": "corollary m1-cor-body-roles",
+          "fullLabel": "corollary m1-cor-body-roles",
+          "kind": "corollary",
+          "source": "Copies are confined to the leaf diagonal",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-copy-count",
+          "role": "copies-are-confined-to-the-leaf-diagonal",
+          "label": "proposition m1-prop-copy-count",
+          "fullLabel": "proposition m1-prop-copy-count",
+          "kind": "proposition",
+          "source": "Copies are confined to the leaf diagonal",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-canonical-testing",
+          "role": "proof-of-the-main-theorem",
+          "label": "corollary m1-cor-canonical-testing",
+          "fullLabel": "corollary m1-cor-canonical-testing",
+          "kind": "corollary",
+          "source": "Proof of the main theorem",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Polynomial removal fails for ordered binary matrices",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Polynomial-removal-fails-for-ordered-binary-matrices-September-25-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

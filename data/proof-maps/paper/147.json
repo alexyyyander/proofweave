@@ -1,0 +1,701 @@
+{
+  "familyNumber": "147",
+  "familyTitle": "The near-boundary Birkhoff conjecture",
+  "manuscripts": [
+    {
+      "id": "Continuous-Phase-Foliations-Create-Analytic-Caustic-Collars-September-24-2026",
+      "title": "Continuous Phase Foliations Create Analytic Caustic Collars",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Continuous-Phase-Foliations-Create-Analytic-Caustic-Collars-September-24-2026/paper.pdf"
+    },
+    {
+      "id": "Rigidity-of-Smooth-Billiards-with-a-Continuous-Caustic-Collar-September-24-2026",
+      "title": "Rigidity of Smooth Billiards with a Continuous Caustic Collar",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Rigidity-of-Smooth-Billiards-with-a-Continuous-Caustic-Collar-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "From continuous leaves to periodic invariant graphs",
+    "Analyticity of the boundary",
+    "Joint analyticity at the grazing boundary",
+    "A physical collar of analytic caustics",
+    "Rational caustics and analytic regularity",
+    "A jointly analytic parametrization of the glancing collar",
+    "Endpoint determination and meromorphic continuation",
+    "The shape strip and its intrinsic coordinate",
+    "Normalized chord equations and passage through cones",
+    "Exponential profiles and exclusion of infinite growth",
+    "Critical estimates at a finite shape boundary",
+    "The critical moment law and its first-field model"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Phase-foliation rigidity",
+      "statement": "[Phase-foliation rigidity] Suppose a \\(T\\)-invariant open annulus \\(U M\\) contains \\((/L Z)(0,)\\) for some \\(>0\\). Suppose there is a homeomorphism \\[ H: S^1(0,1) U \\] whose leaves are essential…",
+      "section": "Introduction",
+      "manuscript": "Continuous Phase Foliations Create Analytic Caustic Collars"
+    },
+    {
+      "id": "m1-thm-nb-rigidity",
+      "kind": "theorem",
+      "label": "Physical-collar rigidity, [Definition~1.1 and Theorem~1.2",
+      "statement": "[Physical-collar rigidity, ] A bounded strictly convex planar domain with \\(C^\\) regular boundary of positive curvature and a continuous physical caustic collar is an ellipse.",
+      "section": "Introduction",
+      "manuscript": "Continuous Phase Foliations Create Analytic Caustic Collars"
+    },
+    {
+      "id": "m1-thm-collar-regularity",
+      "kind": "theorem",
+      "label": "Regularity of a phase-foliated collar",
+      "statement": "[Regularity of a phase-foliated collar] Under the hypotheses of Theorem~ , the boundary is real analytic. There are \\(_0>0\\) and a jointly real-analytic map \\[ : T^2 \\] such that \\((,0)\\)…",
+      "section": "Introduction",
+      "manuscript": "Continuous Phase Foliations Create Analytic Caustic Collars"
+    },
+    {
+      "id": "m1-geo-barrier",
+      "kind": "lemma",
+      "label": "Separation barrier",
+      "statement": "[Separation barrier] For each fixed pair of leaves there is a continuous real argument A(,) of (x_0,x_1) , periodic under simultaneous translation of , by 2 . With A_j=A(G_ b_1 ^j(),G_ b_2 ^j()) , it…",
+      "section": "From continuous leaves to periodic invariant graphs",
+      "manuscript": "Continuous Phase Foliations Create Analytic Caustic Collars"
+    },
+    {
+      "id": "m1-prop-graph-collar",
+      "kind": "proposition",
+      "label": "Every leaf in U is a graph p=g_b() . After reversing b if necessary, g_b is…",
+      "statement": "Every leaf in U is a graph p=g_b() . After reversing b if necessary, g_b is strictly decreasing in b , jointly continuous in (,b) , and converges uniformly to h as b0 . The induced angular lifts \\[…",
+      "section": "From continuous leaves to periodic invariant graphs",
+      "manuscript": "Continuous Phase Foliations Create Analytic Caustic Collars"
+    },
+    {
+      "id": "m1-lem-stationary-closure",
+      "kind": "lemma",
+      "label": "There is >0 with the following property. Let q1 and l be integers, and let…",
+      "statement": "There is >0 with the following property. Let q1 and l be integers, and let _0,,_q be a real chain such that \\[ 0<_ j+1 -_j<, _q=_0+2 l, \\] and suppose it is stationary at all interior nodes: _2(_ j-1…",
+      "section": "From continuous leaves to periodic invariant graphs",
+      "manuscript": "Continuous Phase Foliations Create Analytic Caustic Collars"
+    },
+    {
+      "id": "m1-thm-analytic-boundary",
+      "kind": "theorem",
+      "label": "Under the hypotheses of Theorem~ , the support function \\(h\\) and the boundary…",
+      "statement": "Under the hypotheses of Theorem~ , the support function \\(h\\) and the boundary of the table are real analytic.",
+      "section": "Analyticity of the boundary",
+      "manuscript": "Continuous Phase Foliations Create Analytic Caustic Collars"
+    },
+    {
+      "id": "m1-prop-mesh-input",
+      "kind": "proposition",
+      "label": "Stationary meshes, [Lemma~2.3",
+      "statement": "[Stationary meshes, ] Fix an integer \\(m2\\) and a finite bound \\(M\\), and put \\(p=m+2\\), \\(r_0=m+15\\). There are \\(R,K,N\\), depending only on \\(m,M\\), with the following properties. For \\(01\\),…",
+      "section": "Analyticity of the boundary",
+      "manuscript": "Continuous Phase Foliations Create Analytic Caustic Collars"
+    },
+    {
+      "id": "m1-prop-row-input",
+      "kind": "proposition",
+      "label": "Fourier rows, [Proposition~2.4",
+      "statement": "[Fourier rows, ] For fixed \\(m2\\), \\(M<\\), and \\(r_0=m+15\\), there are \\(K,N\\), independent of \\(01\\), such that for \\(\\|f\\|_ r_0, M\\) and \\(|n| N\\), ( C_n)_f(v)=[b_n(f)v]_n, where \\|b_n(f)-1\\|_…",
+      "section": "Analyticity of the boundary",
+      "manuscript": "Continuous Phase Foliations Create Analytic Caustic Collars"
+    },
+    {
+      "id": "m1-ana-vanishing",
+      "kind": "lemma",
+      "label": "For the smooth function \\(u\\) in , \\(C_n(u)=0\\) for every sufficiently large…",
+      "statement": "For the smooth function \\(u\\) in , \\(C_n(u)=0\\) for every sufficiently large \\(|n|\\).",
+      "section": "Analyticity of the boundary",
+      "manuscript": "Continuous Phase Foliations Create Analytic Caustic Collars"
+    },
+    {
+      "id": "m1-ana-wiener",
+      "kind": "lemma",
+      "label": "Fix the bounds in Proposition~ with \\(m=2\\). The row formula extends to a…",
+      "statement": "Fix the bounds in Proposition~ with \\(m=2\\). The row formula extends to a bounded Fourier operator \\[ A(f)=_H+R(f), \\|R(f)\\| C/N, \\] on each Wiener space of width \\(\\). For two bounded inputs, \\[…",
+      "section": "Analyticity of the boundary",
+      "manuscript": "Continuous Phase Foliations Create Analytic Caustic Collars"
+    },
+    {
+      "id": "m1-ana-glancing-interface",
+      "kind": "corollary",
+      "label": "For the actual table, \\(D=D_u\\) is real symmetric and holomorphic in a uniform…",
+      "statement": "For the actual table, \\(D=D_u\\) is real symmetric and holomorphic in a uniform neighborhood of the real diagonal. It is diagonally \\(2\\)-periodic and antisymmetric, and satisfies D(x,x+b)=-b^3 24…",
+      "section": "Analyticity of the boundary",
+      "manuscript": "Continuous Phase Foliations Create Analytic Caustic Collars"
+    },
+    {
+      "id": "m1-thm-joint",
+      "kind": "theorem",
+      "label": "Joint analytic parametrization",
+      "statement": "[Joint analytic parametrization] There are positive numbers \\(s,d\\), with \\(d<s\\), and a function \\(V(y,t)\\), holomorphic on \\(\\ | y|<2s,\\ |t|<d\\ \\), such that \\(V-y\\) is \\(2\\)-periodic in \\(y\\),…",
+      "section": "Joint analyticity at the grazing boundary",
+      "manuscript": "Continuous Phase Foliations Create Analytic Caustic Collars"
+    },
+    {
+      "id": "m1-joint-factorization",
+      "kind": "lemma",
+      "label": "Regularity and factorization",
+      "statement": "[Regularity and factorization] The expressions \\(E\\) and \\(a\\) extend holomorphically across \\(t=0\\), with E(V)(y,0)=(V')^2V'' 4 , a(V)(y,0)=(V')^3 4 . They are even in \\(t\\) whenever \\(V\\) is even,…",
+      "section": "Joint analyticity at the grazing boundary",
+      "manuscript": "Continuous Phase Foliations Create Analytic Caustic Collars"
+    },
+    {
+      "id": "m1-joint-newton",
+      "kind": "proposition",
+      "label": "Uniform Newton step",
+      "statement": "[Uniform Newton step] There are fixed constants \\(C_0,B_0\\), depending only on the fixed analytic action bounds and candidate smallness bounds, for which the following holds. Suppose \\[ \\|E(V)\\|_…",
+      "section": "Joint analyticity at the grazing boundary",
+      "manuscript": "Continuous Phase Foliations Create Analytic Caustic Collars"
+    },
+    {
+      "id": "m1-joint-compatibility",
+      "kind": "lemma",
+      "label": "Rational compatibility",
+      "statement": "[Rational compatibility] Let \\(t_0=2 l/q0\\) be reduced, with \\(q N\\) and \\(|t_0|<d-2\\). Under the hypotheses and polynomial smallness conditions of Proposition~ , there are holomorphic periodic jets…",
+      "section": "Joint analyticity at the grazing boundary",
+      "manuscript": "Continuous Phase Foliations Create Analytic Caustic Collars"
+    },
+    {
+      "id": "m1-joint-division",
+      "kind": "lemma",
+      "label": "Buffered division, [Lemma~3.5",
+      "statement": "[Buffered division, ] Let \\(\\ 1/2,1\\ \\), and suppose a mean-zero periodic function \\(F\\) is holomorphic on \\( D_ j_0 ^\\), with norm at most \\(M\\). Let the fixed integer buffers satisfy \\(b_ buf…",
+      "section": "Joint analyticity at the grazing boundary",
+      "manuscript": "Continuous Phase Foliations Create Analytic Caustic Collars"
+    },
+    {
+      "id": "m1-prop-physical-collar",
+      "kind": "proposition",
+      "label": "There exist \\(_0>0\\) and a jointly real-analytic family \\[ _:^2, 0_0, \\] with…",
+      "statement": "There exist \\(_0>0\\) and a jointly real-analytic family \\[ _:^2, 0_0, \\] with the following properties. The zero leaf parametrizes \\(\\); each positive leaf is a smooth, simple, regular, strictly…",
+      "section": "A physical collar of analytic caustics",
+      "manuscript": "Continuous Phase Foliations Create Analytic Caustic Collars"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "If \\(\\) has a continuous caustic collar, then \\(\\) is an ellipse. Equivalently,…",
+      "statement": "If \\(\\) has a continuous caustic collar, then \\(\\) is an ellipse. Equivalently, there are \\(c^2\\) and a real symmetric positive-definite matrix \\(Q\\) such that \\[ =\\ x^2:(x-c)^TQ(x-c)<1\\ . \\] Circles…",
+      "section": "Introduction",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-thm-analytic",
+      "kind": "theorem",
+      "label": "Analytic regularity",
+      "statement": "[Analytic regularity] Under the hypotheses of , the support function of the table and its boundary are real analytic.",
+      "section": "Rational caustics and analytic regularity",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-lem-rational-periodicity",
+      "kind": "lemma",
+      "label": "There is a one-sided phase collar filled by invariant continuous graphs…",
+      "statement": "There is a one-sided phase collar filled by invariant continuous graphs \\(p=g_b()\\), where \\(b>0\\) increases towards the interior and \\(g_b\\) strictly decreases pointwise. The induced increasing…",
+      "section": "Rational caustics and analytic regularity",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-ana-mesh-lemma",
+      "kind": "lemma",
+      "label": "Fix an integer \\(m2\\), a bound \\(M\\), and put \\(p=m+2\\), \\(r_0=m+15\\). There…",
+      "statement": "Fix an integer \\(m2\\), a bound \\(M\\), and put \\(p=m+2\\), \\(r_0=m+15\\). There are \\(R,K,N\\), depending only on \\(M,m\\), with the following properties. Suppose \\(01\\), \\(u\\) is real symmetric, and…",
+      "section": "Rational caustics and analytic regularity",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-prop-high-frequency-estimate",
+      "kind": "proposition",
+      "label": "For each integer \\(m2\\) and \\(M<\\), take \\(r_0=m+15\\). There are constants…",
+      "statement": "For each integer \\(m2\\) and \\(M<\\), take \\(r_0=m+15\\). There are constants \\(K,N\\), independent of \\(01\\), such that, whenever \\(\\|u\\|_ r_0, M\\) and \\(|n| N\\), the derivative of has the form (…",
+      "section": "Rational caustics and analytic regularity",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-ana-real-periodic-mesh",
+      "kind": "lemma",
+      "label": "For the function \\(u\\) associated with the actual table by , C_n(u)=0 for all…",
+      "statement": "For the function \\(u\\) associated with the actual table by , C_n(u)=0 for all sufficiently large |n|.",
+      "section": "Rational caustics and analytic regularity",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-ana-wiener-estimate",
+      "kind": "lemma",
+      "label": "Fix the bounds in for \\(m=2\\), and increase \\(N\\) if necessary. On the Wiener…",
+      "statement": "Fix the bounds in for \\(m=2\\), and increase \\(N\\) if necessary. On the Wiener space of width \\(\\), the coefficient formula for \\( C(u)\\) defines a bounded operator \\(A(u)\\) satisfying A(u)=_ N +R(u),…",
+      "section": "Rational caustics and analytic regularity",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-ana-analytic-action-interface",
+      "kind": "corollary",
+      "label": "For the actual table, the normalized action in is holomorphic in a neighborhood…",
+      "statement": "For the actual table, the normalized action in is holomorphic in a neighborhood of the real diagonal, diagonally \\(2\\)-periodic, and antisymmetric. It satisfies \\[ D(X,X+T)=-T^3/24+O(T^5),…",
+      "section": "Rational caustics and analytic regularity",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-thm-joint-parametrization",
+      "kind": "theorem",
+      "label": "Joint glancing parametrization",
+      "statement": "[Joint glancing parametrization] There are \\(s,r_1>0\\), with \\(r_1<s\\), and a real-symmetric holomorphic function \\(U(y,t)\\) on \\[ \\ (y,t):| y|<2s,\\ |t|<r_1\\ \\] such that \\(U-y\\) is \\(2\\)-periodic in…",
+      "section": "A jointly analytic parametrization of the glancing collar",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-joint-factorization",
+      "kind": "lemma",
+      "label": "Regularity and automatic factorization",
+      "statement": "[Regularity and automatic factorization] The expressions in -- extend holomorphically to \\(t=0\\), with E(U)(y,0)=(U')^2U'' 4 , a(U)(y,0)=(U')^3 4 . If \\(U\\) is even in \\(t\\), so are \\(E\\) and \\(a\\).…",
+      "section": "A jointly analytic parametrization of the glancing collar",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-prop-joint-newton",
+      "kind": "proposition",
+      "label": "A Newton step across all retained resonances",
+      "statement": "[A Newton step across all retained resonances] There are constants \\(C,B_0\\), depending only on the fixed action domain and the fixed smallness bounds above, with the following property. Suppose…",
+      "section": "A jointly analytic parametrization of the glancing collar",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-joint-rational-jets",
+      "kind": "lemma",
+      "label": "The two rational compatibility conditions",
+      "statement": "[The two rational compatibility conditions] Under the hypotheses of , let \\(t_0=2 l/q0\\) be reduced, with \\(q N\\) and \\(|t_0|<d-2\\). There are holomorphic jets \\(w, w\\) on \\(Y_ 10 \\), real-symmetric…",
+      "section": "A jointly analytic parametrization of the glancing collar",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-joint-fourier-division",
+      "kind": "lemma",
+      "label": "Buffered Fourier division",
+      "statement": "[Buffered Fourier division] Let \\(\\ 1/2,1\\ \\), and suppose a mean-zero periodic function \\(F\\) is holomorphic on \\( D_ j_0 ^\\), with norm at most \\(M\\). Suppose, for \\(1 |n| N\\), its values at the…",
+      "section": "A jointly analytic parametrization of the glancing collar",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-joint-formal-initialization",
+      "kind": "lemma",
+      "label": "Arbitrarily accurate formal initial data",
+      "statement": "[Arbitrarily accurate formal initial data] For every fixed integer \\(m1\\), there are real analytic periodic functions \\(u_1,,u_m\\) such that \\[ U^ (m) (y,t)=y+_ j=1 ^m u_j(y)t^ 2j \\] satisfies \\(E(U^…",
+      "section": "A jointly analytic parametrization of the glancing collar",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-cont-width-relation",
+      "kind": "lemma",
+      "label": "After the parameter disk has been reduced if necessary, h_L(t)=h_X(t)+| t| 2 .",
+      "statement": "After the parameter disk has been reduced if necessary, h_L(t)=h_X(t)+| t| 2 .",
+      "section": "Endpoint determination and meromorphic continuation",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-cont-web-continuation",
+      "kind": "lemma",
+      "label": "Continuation of a finite web relation",
+      "statement": "[Continuation of a finite web relation] Let \\((a,)\\) range over a small real rectangle \\(I(0,_*)\\). Suppose that \\(_i,w_i\\), \\(1 i m\\), and \\(B\\) are analytic in a neighborhood of that rectangle,…",
+      "section": "Endpoint determination and meromorphic continuation",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-thm-lens-lines",
+      "kind": "theorem",
+      "label": "Line-endpoint determination",
+      "statement": "[Line-endpoint determination] Fix an integer \\(k2\\), and put \\(L_i=L(y+it,t)\\). Every intermediate line \\(L_i\\), \\(0<i<k\\), is algebraic over the differential field generated by \\(L_0,L_k\\). For each…",
+      "section": "Endpoint determination and meromorphic continuation",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-thm-lens-points",
+      "kind": "theorem",
+      "label": "Point-endpoint determination",
+      "statement": "[Point-endpoint determination] Let \\(k2\\), and put \\(P_i=X(y+it,t)\\), \\(0 i k\\). Every intermediate point and every edge of this chain is algebraic over the differential field generated by…",
+      "section": "Endpoint determination and meromorphic continuation",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-lem-meromorphic-hartogs",
+      "kind": "lemma",
+      "label": "Product continuation",
+      "statement": "[Product continuation] Let \\(D_w\\) be a connected plane disk and \\(0<<R\\). Suppose that \\(F(w,)\\) is meromorphic on \\[ D_w\\ <||<R\\ . \\] If it extends meromorphically to \\(D_0\\ ||<R\\ \\) for some…",
+      "section": "Endpoint determination and meromorphic continuation",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-cont-disc-sweep",
+      "kind": "corollary",
+      "label": "Continuation along a family of disks",
+      "statement": "[Continuation along a family of disks] Suppose a continuous path in one complex center variable has a neighborhood on which a family of analytic disks is holomorphic in the center and disk variables.…",
+      "section": "Endpoint determination and meromorphic continuation",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-prop-width-superharmonic",
+      "kind": "proposition",
+      "label": "Both \\(h_L\\) and \\(h_X\\) satisfy superharmonic comparison on \\(B\\). They are…",
+      "statement": "Both \\(h_L\\) and \\(h_X\\) satisfy superharmonic comparison on \\(B\\). They are positive lower semicontinuous superharmonic functions, with the identically infinite case admitted.",
+      "section": "Endpoint determination and meromorphic continuation",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-thm-no-patch",
+      "kind": "theorem",
+      "label": "No-patch property",
+      "statement": "[No-patch property] Let \\(F=L\\) or \\(F=X\\), and let \\(t_0 B\\). If \\(h_F(t_0)=H_1<\\), no joint meromorphic patch of the primary branch passes through any point of \\( y=H_1\\). The corresponding…",
+      "section": "Endpoint determination and meromorphic continuation",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-cor-shape-natural-boundary",
+      "kind": "corollary",
+      "label": "Natural boundary of the shape",
+      "statement": "[Natural boundary of the shape] Put \\(H=h_X(0)=h_L(0)\\). The parametrization \\((y)=X(y,0)\\) is meromorphic on \\[ D_H=\\ y:| y|<H\\ . \\] If \\(H<\\), it has no meromorphic continuation patch through any…",
+      "section": "Endpoint determination and meromorphic continuation",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-shape-isotropic-profile",
+      "kind": "lemma",
+      "label": "Rational profiles at an isotropic center",
+      "statement": "[Rational profiles at an isotropic center] Suppose that \\(a\\) has a zero of order \\(n1\\) at \\(p D_H\\). Then \\(n3\\). Set \\[ D_+=n+3, D_-=3-n. \\] There is a germ \\((w)=w+O(1)\\) at infinity such that…",
+      "section": "The shape strip and its intrinsic coordinate",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-shape-simple-centers",
+      "kind": "lemma",
+      "label": "Every isotropic center is simple",
+      "statement": "[Every isotropic center is simple] All zeros and poles of \\(a\\) in \\(D_H\\) are simple. At each such center \\(p\\), the curve has the local symmetry (2p-s)=(s), a(2p-s)=-a(s).",
+      "section": "The shape strip and its intrinsic coordinate",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-thm-isotropic-classification",
+      "kind": "theorem",
+      "label": "Classification in the presence of isotropic centers",
+      "statement": "[Classification in the presence of isotropic centers] If \\(a\\) has a zero or a pole in \\(D_H\\), the boundary is an ellipse.",
+      "section": "The shape strip and its intrinsic coordinate",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-thm-shape-lift",
+      "kind": "theorem",
+      "label": "The global shape lift",
+      "statement": "[The global shape lift] Unless the boundary is a circle, there is a single-valued holomorphic function \\( s\\) on the joint tube T=\\ (y,t):t is in the parameter disk, -h_X( t)< y<h_X(t)\\ such that…",
+      "section": "The shape strip and its intrinsic coordinate",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-lem-f-zeros",
+      "kind": "lemma",
+      "label": "Simple zeros and a holomorphic potential",
+      "statement": "[Simple zeros and a holomorphic potential] Every zero of \\(f\\) in \\(D_H\\) is simple. At each such zero, \\(f''=0\\). Consequently q=f'' f extends holomorphically throughout \\(D_H\\).",
+      "section": "The shape strip and its intrinsic coordinate",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-shape-first-displacement",
+      "kind": "proposition",
+      "label": "The first impact displacement",
+      "statement": "[The first impact displacement] For the normalization , \\[ s(y,t)=y+t^2V(y)+O(t^4), \\] where \\(V\\) is holomorphic and periodic on \\(D_H\\), has zero mean, and satisfies V'=f^2+8q- f^2+8q 120 .",
+      "section": "The shape strip and its intrinsic coordinate",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-lem-kernel-division",
+      "kind": "lemma",
+      "label": "Analytic kernel division",
+      "statement": "[Analytic kernel division] Let \\(Q\\) be holomorphic on a fixed neighborhood of an integration segment from \\(0\\) to \\(J\\). Regard \\(Q\\), \\(J\\), and the initial data \\(F(0),F'(0)\\) for \\(F''=QF\\) as…",
+      "section": "Normalized chord equations and passage through cones",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-cone-profile-action-convergence",
+      "kind": "lemma",
+      "label": "Convergence to a frozen action",
+      "statement": "[Convergence to a frozen action] Fix a compact path of frozen states from the small-field germ to a finite point of one of the two displayed actions above, avoiding kernel and root degeneracies, with…",
+      "section": "Normalized chord equations and passage through cones",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-thm-cone",
+      "kind": "theorem",
+      "label": "Cone passage",
+      "statement": "[Cone passage] Fix \\(1/2<<1\\), a finite target aperture \\(m_0\\), and a fixed \\(_b(0,H/2)\\). There is an input aperture \\(L\\), depending on \\(\\) and \\(m_0\\), with the following property. Fix \\(K<\\),…",
+      "section": "Normalized chord equations and passage through cones",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-cor-quiet-cone",
+      "kind": "corollary",
+      "label": "Coarse bounds and quiet profiles",
+      "statement": "[Coarse bounds and quiet profiles] Let \\(d_n0\\), \\(b_n1\\), and \\(x_n\\). Suppose, on a sufficiently large fixed cone starting at depth \\(d_n\\), that d_n b_n M(s) C(d_n/_s)^, 12<<1. The following…",
+      "section": "Normalized chord equations and passage through cones",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-prop-subcritical-exclusion",
+      "kind": "proposition",
+      "label": "Subcritical growth is impossible",
+      "statement": "[Subcritical growth is impossible] At a finite shape edge, a uniform bound \\(_ s=H- M(s)=O(^ -p_0 )\\) with \\(p_0<1\\) is impossible in the nonisotropic alternative.",
+      "section": "Normalized chord equations and passage through cones",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-cone-no-quiet-witness",
+      "kind": "proposition",
+      "label": "A witness near every center",
+      "statement": "[A witness near every center] Suppose, for all sufficiently small \\(_s\\), that \\[ _s_ s=H-_s M(s) C(1+(1/_s))^A \\] for some fixed \\(C,A\\). Then there are constants \\(L,C_1,C_2,c_*>0\\) such that for…",
+      "section": "Normalized chord equations and passage through cones",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-thm-finite-superlinear-exclusion",
+      "kind": "theorem",
+      "label": "Exclusion of finite superlinear growth",
+      "statement": "[Exclusion of finite superlinear growth] Suppose \\(H<\\), and define \\[ g(k)=_ s=H-e^ -k M(s). \\] In the nonisotropic alternative it is impossible that 1<_ k g(k) k <.",
+      "section": "Normalized chord equations and passage through cones",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-thm-exponential-obstruction",
+      "kind": "theorem",
+      "label": "Exponential-profile obstruction",
+      "statement": "[Exponential-profile obstruction] There is no sequence of centers \\(s_n=x_n+ h_n D_H\\), length scales \\(_n>0\\), and field scales \\(m_n>0\\) with the following properties. Put \\(b_n=_nm_n\\) and…",
+      "section": "Exponential profiles and exclusion of infinite growth",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-profile-deep-data",
+      "kind": "lemma",
+      "label": "Deep passages",
+      "statement": "[Deep passages] Assume the hypotheses in , without assuming its conclusion. Fix \\((1/2,_0)\\) and \\(T_0<\\). There are \\(D_0\\) and \\(C\\), independent of the fixed aperture \\(A\\), with the following…",
+      "section": "Exponential profiles and exclusion of infinite growth",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-profile-energy-model",
+      "kind": "lemma",
+      "label": "Deep model and its uniqueness",
+      "statement": "[Deep model and its uniqueness] On the deep domains of , the passages converge locally uniformly, with derivatives, to a unique holomorphic model \\(S_*(Y,T)\\). With \\(=Tc_0e^ - S_* \\) and \\(J=_Y…",
+      "section": "Exponential profiles and exclusion of infinite growth",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-profile-branch-model",
+      "kind": "lemma",
+      "label": "Regular model and nontrivial continuation",
+      "statement": "[Regular model and nontrivial continuation] The model of , expressed in the variable \\(w=Tc_0e^ - Y \\), is analytic for \\(|w|<R\\), for some \\(R>0\\). It continues through the boundary circle except…",
+      "section": "Exponential profiles and exclusion of infinite growth",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-profile-tracking",
+      "kind": "lemma",
+      "label": "Tracking a regular model corridor",
+      "statement": "[Tracking a regular model corridor] Let a compact corridor of a continued branch of the model in have nonzero kernels and twist, and let \\(T\\) range over a compact set avoiding zero. Suppose two…",
+      "section": "Exponential profiles and exclusion of infinite growth",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-lem-log-deficit",
+      "kind": "lemma",
+      "label": "Log-deficit estimate",
+      "statement": "[Log-deficit estimate] There is an absolute constant \\(C\\) such that the following holds. Let \\(f\\) be holomorphic and not identically zero on the unit disk, suppose \\(|f| K\\), and suppose \\(f''/f\\)…",
+      "section": "Exponential profiles and exclusion of infinite growth",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-thm-infinite-growth-exclusion",
+      "kind": "theorem",
+      "label": "Exclusion of entire and infinite-order growth",
+      "statement": "[Exclusion of entire and infinite-order growth] In the nonisotropic case, \\(H=\\) implies that the table is a circle. If \\(H<\\), then \\[ _ k _x M(x+(H-e^ -k )) k <. \\]",
+      "section": "Exponential profiles and exclusion of infinite growth",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-critical-lem-one-sided",
+      "kind": "lemma",
+      "label": "Under and , there are constants \\(c,z_0,C>0\\) such that, for real \\(t\\) and…",
+      "statement": "Under and , there are constants \\(c,z_0,C>0\\) such that, for real \\(t\\) and \\(z=|t|N(k)/d_k z_0\\), (t) C d_kz^, =1 1+a . Moreover, with m=4(2- ) 4- <2, one has d_kP^-(x+ (H-d_k)) N(k)^2 C b(x,k)^m.…",
+      "section": "Critical estimates at a finite shape boundary",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-critical-lem-disk-bound",
+      "kind": "lemma",
+      "label": "On an inner tile, with a fixed enlargement on the right, (d_kM)^2 C(1+…",
+      "statement": "On an inner tile, with a fixed enlargement on the right, (d_kM)^2 C(1+ d_k^2|W|).",
+      "section": "Critical estimates at a finite shape boundary",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-thm-critical-bootstrap",
+      "kind": "theorem",
+      "label": "Critical moment bootstrap",
+      "statement": "[Critical moment bootstrap] Let \\(N\\) be an envelope as in , assume the first-moment bound , and suppose \\(_ k k_0 (k)/N(k)<\\). Then (k) C N(k), d_k|P| N(k)^2 C. There is \\(>0\\), depending only on…",
+      "section": "Critical estimates at a finite shape boundary",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-prop-weighted-bootstrap",
+      "kind": "proposition",
+      "label": "Let \\(N\\) satisfy the hypotheses of , with fixed constants, and let \\(d_a=e^…",
+      "statement": "Let \\(N\\) satisfy the hypotheses of , with fixed constants, and let \\(d_a=e^ -k_a \\) be a sufficiently small ancestor depth. Let \\(,\\) be as above, with fixed kernel comparison constants. Suppose…",
+      "section": "Critical estimates at a finite shape boundary",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-thm-no-trivial-profile",
+      "kind": "theorem",
+      "label": "Exclusion of vanishing profiles at individual centers",
+      "statement": "[Exclusion of vanishing profiles at individual centers] Consider sequences of levels \\(k_n\\), scales \\(d_n=e^ -k_n \\), and amplitudes \\(B_n=(k_n)\\). Suppose there are envelopes \\(N_n\\) satisfying the…",
+      "section": "Critical estimates at a finite shape boundary",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-critical-prop-power-saving",
+      "kind": "proposition",
+      "label": "Assume that no sequence in exists. Then there are \\(C>0\\) and \\(_1(0,1)\\) such…",
+      "statement": "Assume that no sequence in exists. Then there are \\(C>0\\) and \\(_1(0,1)\\) such that _f(k) C(1+k)^ 1-_1 (k k_0).",
+      "section": "Critical estimates at a finite shape boundary",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-cor-critical-polynomial-bounds",
+      "kind": "corollary",
+      "label": "Assume that no sequence in exists. Then, for all \\(k k_0\\), (k) C(1+k), d_k_x M…",
+      "statement": "Assume that no sequence in exists. Then, for all \\(k k_0\\), (k) C(1+k), d_k_x M C(1+k)^2, d_k_x|P| C(1+k)^4. All fixed tile enlargements have the corresponding bounds.",
+      "section": "Critical estimates at a finite shape boundary",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-critical-lem-growth-charge",
+      "kind": "lemma",
+      "label": "Assume that no sequence in exists, and fix \\(0<<1/2\\). Set \\[…",
+      "statement": "Assume that no sequence in exists, and fix \\(0<<1/2\\). Set \\[ G_f(j)=_x|f(x+(H-e^ -j ))|. \\] There are constants \\(C,c>0\\) and a sufficiently large \\(K_0\\) such that every \\( K_0\\) with \\(_f()^\\)…",
+      "section": "Critical estimates at a finite shape boundary",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-thm-angle-budget-reduction",
+      "kind": "theorem",
+      "label": "Conditional angle-budget reduction",
+      "statement": "[Conditional angle-budget reduction] If no sequence in exists, then for some \\(>0\\) and \\(C<\\), _ k_0 ^K_f(k)^2\\, k C(1+K)^ 2- (K k_0). In particular will establish this conclusion and in the…",
+      "section": "Critical estimates at a finite shape boundary",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-thm-sequence-exclusion",
+      "kind": "theorem",
+      "label": "Exclusion of the critical sequence",
+      "statement": "[Exclusion of the critical sequence] There is no sequence satisfying .",
+      "section": "The critical moment law and its first-field model",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-model-moment-compactness",
+      "kind": "lemma",
+      "label": "Compactness of the moment law",
+      "statement": "[Compactness of the moment law] After passage to a subsequence, \\(m_n\\) converges locally uniformly on \\((0,)\\) to a positive function \\(m\\). It satisfies m(1)=1, m(D) D^ -1 , m is convex as a…",
+      "section": "The critical moment law and its first-field model",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-lem-contact-dichotomy",
+      "kind": "lemma",
+      "label": "Contact dichotomy",
+      "statement": "[Contact dichotomy] Fix \\(c(1/2,1)\\), and define _c(x)=cx+_ v x ((v)-cv). A point is called a contact if \\((x)=_c(x)\\). Exactly one of the following alternatives is needed. [label=( *)] There are…",
+      "section": "The critical moment law and its first-field model",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-model-steep-excluded",
+      "kind": "lemma",
+      "label": "Alternative (i) of is impossible for the moment law of a prohibited sequence.",
+      "statement": "Alternative (i) of is impossible for the moment law of a prohibited sequence.",
+      "section": "The critical moment law and its first-field model",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-model-selected-fields",
+      "kind": "lemma",
+      "label": "The second scale",
+      "statement": "[The second scale] There are depths \\(d'0\\), levels \\(K=- d'\\), normalizations \\(B'=(K)\\), and horizontal centers \\(_n\\) with the following properties. Set F_n(S)=d' B' f(_n+ H+d'S), Q_n(S)=(d' B'…",
+      "section": "The critical moment law and its first-field model",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-prop-pure-model",
+      "kind": "proposition",
+      "label": "The pure first-field model",
+      "statement": "[The pure first-field model] There is a limiting impact coordinate \\(S(T,Y)\\) with the following properties. [label=( *)] For every fixed aperture and every bounded complex parameter range, it is…",
+      "section": "The critical moment law and its first-field model",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-model-graph-filling",
+      "kind": "lemma",
+      "label": "Holomorphic filling of a moving graph",
+      "statement": "[Holomorphic filling of a moving graph] Let \\(\\) be a piecewise smooth Jordan curve, and let \\(U\\) be a connected open neighborhood of a compact path in a complex variable \\(w\\). Suppose \\(A(T,w)\\)…",
+      "section": "The critical moment law and its first-field model",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-prop-model-growth",
+      "kind": "proposition",
+      "label": "Growth of the limiting first field",
+      "statement": "[Growth of the limiting first field] For every compact horizontal interval \\(I\\) and every \\(>0\\), there is a constant \\(C_ I, \\) such that |F(x- D)| C_ I, D^ -- (x I,\\ 0<D<1). Equivalently, _ x I…",
+      "section": "The critical moment law and its first-field model",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-model-normal-epochs",
+      "kind": "lemma",
+      "label": "Common normal epochs",
+      "statement": "[Common normal epochs] Fix \\[ 12<c_1<1-, P_1>(,1+a). \\] There is an unbounded set \\(E(0,)\\), with \\((v,E)=o(v)\\) as \\(v\\), such that every \\(u E\\) satisfies, for all real \\(v\\), L(v)-L(u) c_1(v-u),&v…",
+      "section": "The critical moment law and its first-field model",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    },
+    {
+      "id": "m2-prop-model-witnesses",
+      "kind": "proposition",
+      "label": "Witnesses near every horizontal center",
+      "statement": "[Witnesses near every horizontal center] There is a fixed sufficiently large aperture \\(L_0\\) with the following property. For every compact interval \\(I\\), there is an error function \\(_I(u)0\\), for…",
+      "section": "The critical moment law and its first-field model",
+      "manuscript": "Rigidity of Smooth Billiards with a Continuous Caustic Collar"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-ana-vanishing",
+      "to": "m1-thm-analytic-boundary",
+      "label": "ana:vanishing",
+      "context": "[Proof of Theorem~\\ref{thm:analytic-boundary}] Fix \\(m=2\\), \\(r_0=17\\), and \\[ M>4e(1+|u|_{0,r_0}). \\] Choose \\(N\\) large enough for Lemmas~\\ref{ana:vanishing} and \\ref{ana:wiener}, with \\(\\|R\\|\\le1/2\\) throughout this input ball. These choices precede all choices of approximati"
+    },
+    {
+      "from": "m1-joint-factorization",
+      "to": "m1-joint-newton",
+      "label": "joint:factorization",
+      "context": "[Proof of Proposition~\\ref{joint:newton}] The first division takes \\(F=-E\\). Its mean vanishes by Lemma~\\ref{joint:factorization}. Every nonzero divisor zero for a mode \\(|n|\\le N\\) has reduced denominator at most \\(N\\). At those centers with \\(|t"
+    },
+    {
+      "from": "m1-thm-analytic-boundary",
+      "to": "m1-thm-collar-regularity",
+      "label": "thm:analytic-boundary",
+      "context": "[Proof of Theorem~\\ref{thm:collar-regularity}] Theorem~\\ref{thm:analytic-boundary} proves that the billiard boundary is real analytic. Theorem~\\ref{thm:joint} and Proposition~\\ref{prop:physical-collar}"
+    },
+    {
+      "from": "m2-joint-factorization",
+      "to": "m2-prop-joint-newton",
+      "label": "joint:factorization",
+      "context": "[Proof of \\Cref{prop:joint-newton}] First divide \\(f=-E\\). Its mean is zero by \\Cref{joint:factorization}. For \\(|n|\\le N\\), every nonzero zero of \\(d_n\\) has reduced denominator at most \\(N\\). At those zeros with \\(|t_j|<d-3"
+    }
+  ]
+}

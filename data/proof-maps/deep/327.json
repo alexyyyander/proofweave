@@ -1,0 +1,157 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "327",
+  "title": "Markov type characterizes superreflexivity",
+  "result": {
+    "id": "paper-result",
+    "label": "Markov type characterizes superreflexivity",
+    "statement": "Proves that every real Banach space with Markov type p for some p > 1 admits an equivalent uniformly convex norm, answering Naor's renorming question. Together with the known converse, this characterizes superreflexivity by nontrivial Markov type.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "reduction-to-a-finite-walk",
+      "label": "Reduction to a finite walk",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-charts-for-ordered-motion",
+      "label": "Finite charts for ordered motion",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-levels-from-reduced-words",
+      "label": "Two levels from reduced words",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Nontrivial Markov Type Forces Superreflexivity",
+      "title": "Nontrivial Markov Type Forces Superreflexivity",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Nontrivial-Markov-Type-Forces-Superreflexivity-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Nontrivial Markov Type Forces Superreflexivity.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-lem-ordered-norm"
+          ]
+        },
+        {
+          "id": "m1-lem-ordered-norm",
+          "role": "reduction-to-a-finite-walk",
+          "label": "lemma m1-lem-ordered-norm",
+          "fullLabel": "lemma m1-lem-ordered-norm",
+          "kind": "lemma",
+          "source": "Reduction to a finite walk",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-walks",
+          "role": "reduction-to-a-finite-walk",
+          "label": "proposition m1-prop-walks",
+          "fullLabel": "proposition m1-prop-walks",
+          "kind": "proposition",
+          "source": "Reduction to a finite walk",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-edge-labels",
+          "role": "reduction-to-a-finite-walk",
+          "label": "lemma m1-lem-edge-labels",
+          "fullLabel": "lemma m1-lem-edge-labels",
+          "kind": "lemma",
+          "source": "Reduction to a finite walk",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-order-averaging",
+          "role": "finite-charts-for-ordered-motion",
+          "label": "lemma m1-lem-order-averaging",
+          "fullLabel": "lemma m1-lem-order-averaging",
+          "kind": "lemma",
+          "source": "Finite charts for ordered motion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-chart-transport",
+          "role": "finite-charts-for-ordered-motion",
+          "label": "proposition m1-prop-chart-transport",
+          "fullLabel": "proposition m1-prop-chart-transport",
+          "kind": "proposition",
+          "source": "Finite charts for ordered motion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-action",
+          "role": "two-levels-from-reduced-words",
+          "label": "lemma m1-lem-action",
+          "fullLabel": "lemma m1-lem-action",
+          "kind": "lemma",
+          "source": "Two levels from reduced words",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-two-levels",
+          "role": "two-levels-from-reduced-words",
+          "label": "lemma m1-lem-two-levels",
+          "fullLabel": "lemma m1-lem-two-levels",
+          "kind": "lemma",
+          "source": "Two levels from reduced words",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Nontrivial Markov Type Forces Superreflexivity",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Nontrivial-Markov-Type-Forces-Superreflexivity-September-23-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

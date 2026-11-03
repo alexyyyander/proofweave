@@ -8,6 +8,13 @@ import { getDelegationRepository } from "@/db/repositories/delegation";
 import { getCurrentUser, signInPath, toPersonIdentity } from "@/app/auth";
 import { CodexPairingApproval } from "./CodexPairingApproval";
 import { ReadOnlyPersonalSurface } from "@/app/lib/read-only-personal-surface";
+import { getI18n } from "@/app/i18n/server";
+import type { Metadata } from "next";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getI18n();
+  return { title: t("connect.metaTitle"), description: t("connect.metaDescription") };
+}
 
 export const dynamic = "force-dynamic";
 
@@ -16,6 +23,7 @@ type ConnectCodexPageProps = {
 };
 
 export default async function ConnectCodexPage({ searchParams }: ConnectCodexPageProps) {
+  const { t } = await getI18n();
   const readOnly = !getConnectionOperationState().writesEnabled;
   const query = await searchParams;
   const pairingId = typeof query.pairing === "string" ? query.pairing : "";
@@ -25,10 +33,10 @@ export default async function ConnectCodexPage({ searchParams }: ConnectCodexPag
   if (!user) {
     return <SiteFrame className="site-shell app-shell" active="settings" mainClassName="connect-codex-main">
         <Surface as="section" className="connect-codex-card connect-codex-signin">
-          <p className="eyebrow">Proofweave local connection</p>
-          <PageTitle>Sign in to approve this local Codex.</PageTitle>
-          <p>The browser approval is tied to your Proofweave profile. It never shares your ChatGPT session, password, or API key with the local Connector.</p>
-          <a className="button button-primary" href={signInPath(returnTo)}>Choose a sign-in method <span aria-hidden="true">→</span></a>
+          <p className="eyebrow">{t("connect.signIn.eyebrow")}</p>
+          <PageTitle>{t("connect.signIn.title")}</PageTitle>
+          <p>{t("connect.signIn.body")}</p>
+          <a className="button button-primary" href={signInPath(returnTo)}>{t("connect.signIn.action")} <span aria-hidden="true">→</span></a>
         </Surface>
       </SiteFrame>;
   }
@@ -36,9 +44,9 @@ export default async function ConnectCodexPage({ searchParams }: ConnectCodexPag
   if (readOnly) {
     return <ReadOnlyPersonalSurface
       active="settings"
-      eyebrow="Local Codex connection · read-only maintenance"
-      title="Approving a local Codex is temporarily paused."
-      detail="The pairing request was not opened and no Agent identity, signing key, delegation, or installation record was created. Keep Codex on this computer and try a fresh connection after maintenance."
+      eyebrow={t("connect.readOnly.eyebrow")}
+      title={t("connect.readOnly.title")}
+      detail={t("connect.readOnly.detail")}
     />;
   }
 
@@ -53,17 +61,17 @@ export default async function ConnectCodexPage({ searchParams }: ConnectCodexPag
       {profile ? <>
         <section className="connect-codex-intro">
           <div>
-            <p className="eyebrow">Proofweave local connection · private beta</p>
-            <PageTitle>Approve this Codex on your computer.</PageTitle>
-            <p>One approval creates a public Agent identity, a scoped delegation, and a revocable local installation. Your Agent key and research workspace stay on this computer.</p>
+            <p className="eyebrow">{t("connect.intro.eyebrow")}</p>
+            <PageTitle>{t("connect.intro.title")}</PageTitle>
+            <p>{t("connect.intro.body")}</p>
           </div>
-          <ProductStateBadge tone="provisional">No workspace files are requested</ProductStateBadge>
+          <ProductStateBadge tone="provisional">{t("connect.intro.badge")}</ProductStateBadge>
         </section>
         <CodexPairingApproval profile={profile} pairingId={pairingId} secret={secret} />
       </> : <Surface as="section" className="connect-codex-card">
-        <p className="eyebrow">Proofweave local connection</p>
-        <PageTitle>Connection storage is not ready.</PageTitle>
-        <p>This Beta needs its D1 control-plane migrations before a local Codex can be approved. No local key or workspace data was sent.</p>
+        <p className="eyebrow">{t("connect.storage.eyebrow")}</p>
+        <PageTitle>{t("connect.storage.title")}</PageTitle>
+        <p>{t("connect.storage.body")}</p>
       </Surface>}
     </SiteFrame>;
 }

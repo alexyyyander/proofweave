@@ -1,0 +1,117 @@
+{
+  "familyNumber": "186",
+  "familyTitle": "Uniform influence and sharp thresholds for graph and hypergraph properties",
+  "manuscripts": [
+    {
+      "id": "A-uniform-influence-bound-for-hypergraph-properties-October-5-2026",
+      "title": "A uniform influence bound for hypergraph properties",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-uniform-influence-bound-for-hypergraph-properties-October-5-2026/hypergraph-influences.pdf"
+    },
+    {
+      "id": "A-Sharp-Threshold-Bound-for-Monotone-Graph-Properties-September-25-2026",
+      "title": "A Sharp Threshold Bound for Monotone Graph Properties",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Sharp-Threshold-Bound-for-Monotone-Graph-Properties-September-25-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "A Fourier estimate for small individual influences",
+    "Restriction to a vertex block",
+    "The uniform bound and its threshold consequence",
+    "A low-degree estimate on biased products",
+    "Restricting to the edges incident with a vertex block"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For every integer r3 there is a finite constant C_r such that, for every…",
+      "statement": "For every integer r3 there is a finite constant C_r such that, for every integer n r , every 0<p<1 , and every hypergraph property f:\\ 0,1\\ ^ E_ n,r \\ 0,1\\ , _p(f) C_r ( n)^ r/(r-1) I_p(f). No…",
+      "section": "Introduction",
+      "manuscript": "A uniform influence bound for hypergraph properties"
+    },
+    {
+      "id": "m1-lem-low",
+      "kind": "lemma",
+      "label": "Low-degree mass",
+      "statement": "[Low-degree mass] Let m2 be real and let h:\\ 0,1\\ ^J\\ 0,1\\ satisfy I_i(h) I(h)/m for every i J . With k= m/64 , one has _ 1 |S| k h(S)^2 m^ -1/4 I(h). The sum is empty when k<1 .",
+      "section": "A Fourier estimate for small individual influences",
+      "manuscript": "A uniform influence bound for hypergraph properties"
+    },
+    {
+      "id": "m1-lem-block",
+      "kind": "lemma",
+      "label": "Averaged restriction estimate",
+      "statement": "[Averaged restriction estimate] Let r+1 m n be integers and set k= m/64 . For B chosen uniformly among the m -subsets of [n] , _ S E _B(1|S F_B| k) f(S)^2 m^ -1/4 rm n I_p(f).",
+      "section": "Restriction to a vertex block",
+      "manuscript": "A uniform influence bound for hypergraph properties"
+    },
+    {
+      "id": "m1-lem-capture",
+      "kind": "lemma",
+      "label": "Capturing a support at one vertex",
+      "statement": "[Capturing a support at one vertex] Let n r3 and 1 m n be integers, let k>0 , and put \\[ = r r-1 , L=(k/r)^. \\] Suppose rLm-1 n-1 12. For a uniform m -subset B of [n] and every S E_ n,r with 1|S| L ,…",
+      "section": "Restriction to a vertex block",
+      "manuscript": "A uniform influence bound for hypergraph properties"
+    },
+    {
+      "id": "m1-cor-threshold",
+      "kind": "corollary",
+      "label": "For a nontrivial increasing property of r -uniform hypergraphs on n r vertices,…",
+      "statement": "For a nontrivial increasing property of r -uniform hypergraphs on n r vertices, where r3 , and every 0<<1/2 , \\[ p_ 1- -p_ 2C_r ( n)^ r/(r-1) 1- . \\]",
+      "section": "The uniform bound and its threshold consequence",
+      "manuscript": "A uniform influence bound for hypergraph properties"
+    },
+    {
+      "id": "m2-thm-threshold",
+      "kind": "theorem",
+      "label": "Friedgut--Kalai sharp-threshold conjecture",
+      "statement": "[Friedgut--Kalai sharp-threshold conjecture] For every integer n2 , every nontrivial increasing family P of graphs on n vertices invariant under all vertex permutations, and every 0<<1/2 , p_ 1- (…",
+      "section": "Introduction",
+      "manuscript": "A Sharp Threshold Bound for Monotone Graph Properties"
+    },
+    {
+      "id": "m2-thm-variance",
+      "kind": "theorem",
+      "label": "Variance and influence",
+      "statement": "[Variance and influence] For every integer n2 , every Boolean function f on E_n invariant under vertex permutations, and every 0<p<1 , _p(f) 2^ 17 ( n)^2 I_p(f). No monotonicity assumption is needed.",
+      "section": "Introduction",
+      "manuscript": "A Sharp Threshold Bound for Monotone Graph Properties"
+    },
+    {
+      "id": "m2-lem-low-degree",
+      "kind": "lemma",
+      "label": "Let m2 be real and let h:\\ 0,1\\ ^J\\ 0,1\\ satisfy I_i(h) I(h)/m for every i J .…",
+      "statement": "Let m2 be real and let h:\\ 0,1\\ ^J\\ 0,1\\ satisfy I_i(h) I(h)/m for every i J . If \\[ k= m 64 , \\] then _ 1 |S| k h(S)^2 m^ -1/4 I(h). Every degree cutoff is interpreted literally for integer degrees…",
+      "section": "A low-degree estimate on biased products",
+      "manuscript": "A Sharp Threshold Bound for Monotone Graph Properties"
+    },
+    {
+      "id": "m2-lem-restriction",
+      "kind": "lemma",
+      "label": "Exact averaging over a restriction",
+      "statement": "[Exact averaging over a restriction] Let F E_n , put H=E_n F , and, for y\\ 0,1\\ ^ H , let f_y(x)=f(x,y) for x\\ 0,1\\ ^ F . If y has the Bernoulli- p product law, then, for every real k>0 , _y_ A F\\\\1…",
+      "section": "Restricting to the edges incident with a vertex block",
+      "manuscript": "A Sharp Threshold Bound for Monotone Graph Properties"
+    },
+    {
+      "id": "m2-prop-block",
+      "kind": "proposition",
+      "label": "The block estimate",
+      "statement": "[The block estimate] Let 3 m n be an integer, let B be uniform among the m -element subsets of [n] , and set \\[ F_B=\\ e E_n:e B\\ , k= m 64 . \\] Then _ S E_n _B\\ 1 |S F_B| k\\ f(S)^2 2m n \\,m^ -1/4…",
+      "section": "Restricting to the edges incident with a vertex block",
+      "manuscript": "A Sharp Threshold Bound for Monotone Graph Properties"
+    },
+    {
+      "id": "m2-lem-block-capture",
+      "kind": "lemma",
+      "label": "Capturing low Fourier levels",
+      "statement": "[Capturing low Fourier levels] Suppose t= n16 , and put \\[ m= n, k= m 64 . \\] Then _ S E_n\\\\1 |S| k^2/2 f(S)^2 4m^ -1/4 I(f).",
+      "section": "Restricting to the edges incident with a vertex block",
+      "manuscript": "A Sharp Threshold Bound for Monotone Graph Properties"
+    }
+  ],
+  "edges": []
+}

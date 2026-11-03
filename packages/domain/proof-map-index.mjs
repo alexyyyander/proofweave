@@ -1,6 +1,6 @@
 export const PROOF_MAP_MANIFEST_SCHEMA_VERSION = "pw-proof-map-manifest-v1";
 export const PROOF_MAP_INDEX_SCHEMA_VERSION = "pw-proof-map-index-v1";
-export const PROOF_MAP_STATUSES = ["deep", "draft", "scaffold"];
+export const PROOF_MAP_STATUSES = ["deep", "draft", "paper", "lean", "scaffold"];
 
 function fail(message) {
   throw new Error(`Proof map index: ${message}`);
@@ -81,6 +81,8 @@ export function validateProofMapManifest(manifest, collection) {
 function nextStepFor(status) {
   if (status === "deep") return "Extend version coverage, Lean declaration alignment, and independent review.";
   if (status === "draft") return "Promote the draft chain to a theorem-level argument map; verify dependencies and add Lean alignment.";
+  if (status === "paper") return "Review the extracted references against the proofs, drop non-dependency citations, and curate the verified spine.";
+  if (status === "lean") return "Replace the machine-extracted structure with a curated theorem-level proof spine, then open independent review.";
   return "Extract theorem/lemma statements, build the argument map, align Lean declarations, then open independent review.";
 }
 
@@ -176,15 +178,65 @@ export function validateLeanCoverage(data, collection) {
 }
 
 /**
+ * Validate the machine-extracted paper structure summary. Counts must be
+ * recomputable from the family list, and the source revision must match the
+ * catalog so a structure can never be attributed to a different snapshot.
+ */
+export const PAPER_COVERAGE_SCHEMA_VERSION = "pw-paper-coverage-v1";
+
+export function validatePaperCoverage(data, collection) {
+  if (!isObject(data)) fail("paperCoverage must be an object");
+  if (data.schemaVersion !== PAPER_COVERAGE_SCHEMA_VERSION) fail(`paperCoverage.schemaVersion must be ${PAPER_COVERAGE_SCHEMA_VERSION}`);
+  if (data.status !== "draft") fail('paperCoverage.status must be "draft"');
+  if (data.reviewStatus !== "unreviewed") fail('paperCoverage.reviewStatus must be "unreviewed"');
+  if (typeof data.generatedAt !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(data.generatedAt)) fail("paperCoverage.generatedAt must be YYYY-MM-DD");
+  if (data.commit !== collection.source?.revision) fail("paperCoverage.commit must match the catalog source revision");
+  if (typeof data.sourceNote !== "string" || data.sourceNote.trim() === "") fail("paperCoverage.sourceNote must not be empty");
+  if (!isObject(collection) || !Array.isArray(collection.families)) fail("collection must contain families");
+  if (!Array.isArray(data.families)) fail("paperCoverage.families must be an array");
+  const familyNumbers = new Set(collection.families.map((family) => family.number));
+  const seen = new Set();
+  for (const [index, family] of data.families.entries()) {
+    const label = `paperCoverage.families[${index}]`;
+    if (!isObject(family)) fail(`${label} must be an object`);
+    if (!isFamilyNumber(family.familyNumber)) fail(`${label}.familyNumber must be three digits`);
+    if (!familyNumbers.has(family.familyNumber)) fail(`${label}.familyNumber references unknown family ${family.familyNumber}`);
+    if (seen.has(family.familyNumber)) fail(`duplicate paperCoverage family ${family.familyNumber}`);
+    seen.add(family.familyNumber);
+    if (typeof family.familyTitle !== "string" || family.familyTitle.trim() === "") fail(`${label}.familyTitle must not be empty`);
+    for (const field of ["manuscripts", "sections", "statements", "edges"]) {
+      if (!Number.isInteger(family[field]) || family[field] < 0) fail(`${label}.${field} must be a non-negative integer`);
+    }
+    if (family.manuscripts < 1) fail(`${label}.manuscripts must be at least 1`);
+    if (family.statements < 1) fail(`${label}.statements must be at least 1`);
+  }
+  const recomputed = {
+    families: collection.families.length,
+    familiesWithStructure: data.families.length,
+    papers: data.families.reduce((total, family) => total + family.manuscripts, 0),
+    sections: data.families.reduce((total, family) => total + family.sections, 0),
+    statements: data.families.reduce((total, family) => total + family.statements, 0),
+    edges: data.families.reduce((total, family) => total + family.edges, 0),
+  };
+  for (const [field, value] of Object.entries(recomputed)) {
+    if (data.summary?.[field] !== value) fail(`paperCoverage.summary.${field} should be ${value}`);
+  }
+  return data;
+}
+
+/**
  * @param {any} collection
  * @param {any} manifest
  * @param {any} [leanCoverage]
+ * @param {any} [paperCoverage]
  * @returns {any}
  */
-export function buildProofMapIndex(collection, manifest, leanCoverage = null) {
+export function buildProofMapIndex(collection, manifest, leanCoverage = null, paperCoverage = null) {
   validateProofMapManifest(manifest, collection);
   if (leanCoverage) validateLeanCoverage(leanCoverage, collection);
+  if (paperCoverage) validatePaperCoverage(paperCoverage, collection);
   const leanByFamily = new Map((leanCoverage?.families ?? []).map((family) => [family.familyNumber, family]));
+  const paperByFamily = new Map((paperCoverage?.families ?? []).map((family) => [family.familyNumber, family]));
   const deep = new Map(manifest.deep.map((entry) => [entry.familyNumber, entry]));
   const draft = new Map(manifest.draft.map((entry) => [entry.familyNumber, entry]));
   const stageLabels = new Map(manifest.stages.map((stage) => [stage.id, stage.label]));
@@ -192,7 +244,15 @@ export function buildProofMapIndex(collection, manifest, leanCoverage = null) {
   const entries = collection.families.map((family) => {
     const deepEntry = deep.get(family.number);
     const draftEntry = draft.get(family.number);
-    const status = deepEntry ? "deep" : draftEntry ? "draft" : "scaffold";
+    const leanFamily = leanByFamily.get(family.number);
+    const paperFamily = paperByFamily.get(family.number);
+    // A machine-extracted structure needs at least one pinned comparator with a
+    // named proving theorem; a solution module alone cannot describe a chain.
+    const leanEntry = Boolean(leanFamily?.comparators?.some((comparator) => comparator.theoremNames.length > 0));
+    // Paper-derived structures rank above Lean-only structures: they carry the
+    // paper's own theorem-like statements and proof references.
+    const paperEntry = Boolean(paperFamily && paperFamily.statements > 0);
+    const status = deepEntry ? "deep" : draftEntry ? "draft" : paperEntry ? "paper" : leanEntry ? "lean" : "scaffold";
     const curated = deepEntry ?? draftEntry;
     const claimText = publicationPlainText(family.claim);
     const titleText = publicationPlainText(family.title);
@@ -200,7 +260,6 @@ export function buildProofMapIndex(collection, manifest, leanCoverage = null) {
     const comparatorCount = family.scope?.comparatorLinks?.length ?? 0;
     const formalizedManuscripts = family.manuscripts.filter((manuscript) => manuscript.citedByScopeDocument || manuscript.listedInFormalizationIndex).length;
     const manuscriptCount = family.manuscripts.length;
-    const leanFamily = leanByFamily.get(family.number);
     return {
       familyNumber: family.number,
       title: titleText,
@@ -227,6 +286,12 @@ export function buildProofMapIndex(collection, manifest, leanCoverage = null) {
         textualSorry: leanFamily.textualSorry,
         textualAxioms: leanFamily.textualAxioms,
       } : { comparators: 0, solutions: 0, theoremNames: 0, status: "none", textualSorry: 0, textualAxioms: 0 },
+      paper: paperFamily ? {
+        manuscripts: paperFamily.manuscripts,
+        sections: paperFamily.sections,
+        statements: paperFamily.statements,
+        edges: paperFamily.edges,
+      } : { manuscripts: 0, sections: 0, statements: 0, edges: 0 },
     };
   });
 
@@ -241,6 +306,10 @@ export function buildProofMapIndex(collection, manifest, leanCoverage = null) {
     formalizedManuscripts: entries.reduce((total, entry) => total + entry.formalizedManuscripts, 0),
     deep: statusCounts.deep,
     draft: statusCounts.draft,
+    paper: statusCounts.paper,
+    paperStatements: entries.reduce((total, entry) => total + entry.paper.statements, 0),
+    paperEdges: entries.reduce((total, entry) => total + entry.paper.edges, 0),
+    lean: statusCounts.lean,
     scaffold: statusCounts.scaffold,
     proofweaveReplays: 0,
     leanFamilies: entries.filter((entry) => entry.lean.status === "extracted" || entry.lean.status === "partial").length,
@@ -264,6 +333,8 @@ export function buildProofMapIndex(collection, manifest, leanCoverage = null) {
       families: subject.families,
       deep: entries.filter((entry) => entry.subject === subject.name && entry.status === "deep").length,
       draft: entries.filter((entry) => entry.subject === subject.name && entry.status === "draft").length,
+      paper: entries.filter((entry) => entry.subject === subject.name && entry.status === "paper").length,
+      lean: entries.filter((entry) => entry.subject === subject.name && entry.status === "lean").length,
       scaffold: entries.filter((entry) => entry.subject === subject.name && entry.status === "scaffold").length,
     })),
     entries,

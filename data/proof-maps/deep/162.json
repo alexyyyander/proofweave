@@ -1,0 +1,494 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "162",
+  "title": "Counterexamples to Ryser’s covering conjecture",
+  "result": {
+    "id": "paper-result",
+    "label": "Counterexamples to Ryser’s covering conjecture",
+    "statement": "Disproves Ryser's covering conjecture by constructing intersecting (q+1)-partite, (q+1)-uniform hypergraphs with covering number q+1, rather than the predicted bound q , for every sufficiently large prime q . A separate construction over extension fields also disproves Gyárfás's monochromatic tree-cover conjecture.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-modified-line-partitions-to-a-hypergraph",
+      "label": "From modified line partitions to a hypergraph",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "deletion-lines-and-concentration-of-core-covers",
+      "label": "Deletion lines and concentration of core covers",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "random-merged-pairs-and-their-candidate-graph",
+      "label": "Random merged pairs and their candidate graph",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "selecting-split-lines",
+      "label": "Selecting split lines",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "excluding-small-covers-at-affine-pencils",
+      "label": "Excluding small covers at affine pencils",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "elementary-incidence-and-concentration-estimates",
+      "label": "Elementary incidence and concentration estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-uniform-incidence-bound",
+      "label": "A uniform incidence bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "line-covers-after-random-deletions",
+      "label": "Line covers after random deletions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "selecting-compatible-translates",
+      "label": "Selecting compatible translates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-configuration-with-two-coordinatizations",
+      "label": "A configuration with two coordinatizations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "ambient-placement",
+      "label": "Ambient placement",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-hypergraph-and-its-covering-number",
+      "label": "The hypergraph and its covering number",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Balanced counterexamples to Ryser's conjecture at prime orders",
+      "title": "Balanced counterexamples to Ryser's conjecture at prime orders",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-27",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Balanced-Counterexamples-to-Rysers-Conjecture-at-Prime-Orders-September-27-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Balanced counterexamples to Ryser's conjecture at prime orders.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-prop-candidate-graph"
+          ]
+        },
+        {
+          "id": "m1-cor-tree-cover",
+          "role": "introduction",
+          "label": "corollary m1-cor-tree-cover",
+          "fullLabel": "corollary m1-cor-tree-cover",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-deterministic-reduction",
+          "role": "from-modified-line-partitions-to-a-hypergraph",
+          "label": "proposition m1-prop-deterministic-reduction",
+          "fullLabel": "proposition m1-prop-deterministic-reduction",
+          "kind": "proposition",
+          "source": "From modified line partitions to a hypergraph",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-deletion",
+          "role": "deletion-lines-and-concentration-of-core-covers",
+          "label": "theorem m1-thm-deletion",
+          "fullLabel": "theorem m1-thm-deletion",
+          "kind": "theorem",
+          "source": "Deletion lines and concentration of core covers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-profile-counting",
+          "role": "deletion-lines-and-concentration-of-core-covers",
+          "label": "lemma m1-lem-profile-counting",
+          "fullLabel": "lemma m1-lem-profile-counting",
+          "kind": "lemma",
+          "source": "Deletion lines and concentration of core covers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-prime-stability",
+          "role": "deletion-lines-and-concentration-of-core-covers",
+          "label": "lemma m1-lem-prime-stability",
+          "fullLabel": "lemma m1-lem-prime-stability",
+          "kind": "lemma",
+          "source": "Deletion lines and concentration of core covers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-core-pencil",
+          "role": "deletion-lines-and-concentration-of-core-covers",
+          "label": "corollary m1-cor-core-pencil",
+          "fullLabel": "corollary m1-cor-core-pencil",
+          "kind": "corollary",
+          "source": "Deletion lines and concentration of core covers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-candidate-graph",
+          "role": "random-merged-pairs-and-their-candidate-graph",
+          "label": "proposition m1-prop-candidate-graph",
+          "fullLabel": "proposition m1-prop-candidate-graph",
+          "kind": "proposition",
+          "source": "Random merged pairs and their candidate graph",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-pattern-moments",
+          "role": "random-merged-pairs-and-their-candidate-graph",
+          "label": "lemma m1-lem-pattern-moments",
+          "fullLabel": "lemma m1-lem-pattern-moments",
+          "kind": "lemma",
+          "source": "Random merged pairs and their candidate graph",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sel-selection",
+          "role": "selecting-split-lines",
+          "label": "proposition m1-sel-selection",
+          "fullLabel": "proposition m1-sel-selection",
+          "kind": "proposition",
+          "source": "Selecting split lines",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sel-tail-cylinder",
+          "role": "selecting-split-lines",
+          "label": "lemma m1-sel-tail-cylinder",
+          "fullLabel": "lemma m1-sel-tail-cylinder",
+          "kind": "lemma",
+          "source": "Selecting split lines",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sel-deletion-domination",
+          "role": "selecting-split-lines",
+          "label": "corollary m1-sel-deletion-domination",
+          "fullLabel": "corollary m1-sel-deletion-domination",
+          "kind": "corollary",
+          "source": "Selecting split lines",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-pencil-local",
+          "role": "excluding-small-covers-at-affine-pencils",
+          "label": "proposition m1-prop-pencil-local",
+          "fullLabel": "proposition m1-prop-pencil-local",
+          "kind": "proposition",
+          "source": "Excluding small covers at affine pencils",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-pencil-reuse",
+          "role": "excluding-small-covers-at-affine-pencils",
+          "label": "lemma m1-lem-pencil-reuse",
+          "fullLabel": "lemma m1-lem-pencil-reuse",
+          "kind": "lemma",
+          "source": "Excluding small covers at affine pencils",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-pencil-small-reuse",
+          "role": "excluding-small-covers-at-affine-pencils",
+          "label": "lemma m1-lem-pencil-small-reuse",
+          "fullLabel": "lemma m1-lem-pencil-small-reuse",
+          "kind": "lemma",
+          "source": "Excluding small covers at affine pencils",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-pencil-two-reuses",
+          "role": "excluding-small-covers-at-affine-pencils",
+          "label": "lemma m1-lem-pencil-two-reuses",
+          "fullLabel": "lemma m1-lem-pencil-two-reuses",
+          "kind": "lemma",
+          "source": "Excluding small covers at affine pencils",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-affine-second-moment",
+          "role": "elementary-incidence-and-concentration-estimates",
+          "label": "lemma m1-lem-affine-second-moment",
+          "fullLabel": "lemma m1-lem-affine-second-moment",
+          "kind": "lemma",
+          "source": "Elementary incidence and concentration estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-bounded-drift-concentration",
+          "role": "elementary-incidence-and-concentration-estimates",
+          "label": "lemma m1-lem-bounded-drift-concentration",
+          "fullLabel": "lemma m1-lem-bounded-drift-concentration",
+          "kind": "lemma",
+          "source": "Elementary incidence and concentration estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-independent-trial-jumps",
+          "role": "elementary-incidence-and-concentration-estimates",
+          "label": "lemma m1-lem-independent-trial-jumps",
+          "fullLabel": "lemma m1-lem-independent-trial-jumps",
+          "kind": "lemma",
+          "source": "Elementary incidence and concentration estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "A counterexample to Ryser's covering conjecture",
+      "title": "A counterexample to Ryser's covering conjecture",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Counterexample-to-Rysers-Covering-Conjecture-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from A counterexample to Ryser's covering conjecture.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-tree-cover",
+          "role": "introduction",
+          "label": "corollary m2-cor-tree-cover",
+          "fullLabel": "corollary m2-cor-tree-cover",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-incidence",
+          "role": "a-uniform-incidence-bound",
+          "label": "theorem m2-thm-incidence",
+          "fullLabel": "theorem m2-thm-incidence",
+          "kind": "theorem",
+          "source": "A uniform incidence bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-inc-sumset-estimates",
+          "role": "a-uniform-incidence-bound",
+          "label": "lemma m2-inc-sumset-estimates",
+          "fullLabel": "lemma m2-inc-sumset-estimates",
+          "kind": "lemma",
+          "source": "A uniform incidence bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-inc-simultaneous-extraction",
+          "role": "a-uniform-incidence-bound",
+          "label": "lemma m2-inc-simultaneous-extraction",
+          "fullLabel": "lemma m2-inc-simultaneous-extraction",
+          "kind": "lemma",
+          "source": "A uniform incidence bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-inc-scalar-coverings",
+          "role": "a-uniform-incidence-bound",
+          "label": "lemma m2-inc-scalar-coverings",
+          "fullLabel": "lemma m2-inc-scalar-coverings",
+          "kind": "lemma",
+          "source": "A uniform incidence bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-inc-no-approximate-subfield",
+          "role": "a-uniform-incidence-bound",
+          "label": "lemma m2-inc-no-approximate-subfield",
+          "fullLabel": "lemma m2-inc-no-approximate-subfield",
+          "kind": "lemma",
+          "source": "A uniform incidence bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-martingale",
+          "role": "line-covers-after-random-deletions",
+          "label": "lemma m2-lem-martingale",
+          "fullLabel": "lemma m2-lem-martingale",
+          "kind": "lemma",
+          "source": "Line covers after random deletions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-linecover",
+          "role": "line-covers-after-random-deletions",
+          "label": "lemma m2-lem-linecover",
+          "fullLabel": "lemma m2-lem-linecover",
+          "kind": "lemma",
+          "source": "Line covers after random deletions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-selection",
+          "role": "selecting-compatible-translates",
+          "label": "theorem m2-thm-selection",
+          "fullLabel": "theorem m2-thm-selection",
+          "kind": "theorem",
+          "source": "Selecting compatible translates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-sel-domination",
+          "role": "selecting-compatible-translates",
+          "label": "lemma m2-sel-domination",
+          "fullLabel": "lemma m2-sel-domination",
+          "kind": "lemma",
+          "source": "Selecting compatible translates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-gadget",
+          "role": "a-configuration-with-two-coordinatizations",
+          "label": "lemma m2-lem-gadget",
+          "fullLabel": "lemma m2-lem-gadget",
+          "kind": "lemma",
+          "source": "A configuration with two coordinatizations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-con-deletion-count",
+          "role": "ambient-placement",
+          "label": "lemma m2-con-deletion-count",
+          "fullLabel": "lemma m2-con-deletion-count",
+          "kind": "lemma",
+          "source": "Ambient placement",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-con-pool-properties",
+          "role": "ambient-placement",
+          "label": "lemma m2-con-pool-properties",
+          "fullLabel": "lemma m2-con-pool-properties",
+          "kind": "lemma",
+          "source": "Ambient placement",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-con-intersection",
+          "role": "the-hypergraph-and-its-covering-number",
+          "label": "proposition m2-con-intersection",
+          "fullLabel": "proposition m2-con-intersection",
+          "kind": "proposition",
+          "source": "The hypergraph and its covering number",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-con-label-action",
+          "role": "the-hypergraph-and-its-covering-number",
+          "label": "lemma m2-con-label-action",
+          "fullLabel": "lemma m2-con-label-action",
+          "kind": "lemma",
+          "source": "The hypergraph and its covering number",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Balanced counterexamples to Ryser's conjecture at prime orders",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Balanced-Counterexamples-to-Rysers-Conjecture-at-Prime-Orders-September-27-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "A counterexample to Ryser's covering conjecture",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Counterexample-to-Rysers-Covering-Conjecture-September-23-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

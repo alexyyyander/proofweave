@@ -1,0 +1,690 @@
+{
+  "familyNumber": "271",
+  "familyTitle": "Bloch's law, its lattice correction, and the spherical magnetization law",
+  "manuscripts": [
+    {
+      "id": "Blochs-Law-for-Finite-Range-Heisenberg-Ferromagnets-in-Three-Dimensions-October-5-2026",
+      "title": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Blochs-Law-for-Finite-Range-Heisenberg-Ferromagnets-in-Three-Dimensions-October-5-2026/bloch-law-heisenberg.pdf"
+    },
+    {
+      "id": "The-first-lattice-correction-to-Blochs-law-October-5-2026",
+      "title": "The first lattice correction to Bloch's law",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-first-lattice-correction-to-Blochs-law-October-5-2026/first-lattice-correction-bloch-law.pdf"
+    },
+    {
+      "id": "The-spherical-magnetization-law-for-the-three-dimensional-quantum-Heisenberg-ferromagnet-October-5-2026",
+      "title": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-spherical-magnetization-law-for-the-three-dimensional-quantum-Heisenberg-ferromagnet-October-5-2026/spherical-magnetization.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Exchange pictures and pinned returns",
+    "Kernels and the geometry of available slots",
+    "A uniform sparse-pin estimate",
+    "The long-return remainder",
+    "Finite returns and the Bloch coefficient",
+    "From pinned returns to spontaneous magnetization",
+    "Pinned cycles and the return walk",
+    "A capacity comparison on one period",
+    "Sparse obstacles and local propagation",
+    "The ideal potential and its profiles",
+    "Comparison sources and their cancellation",
+    "The scalar error at the trial potential",
+    "Residuals in the dual energy norm",
+    "From the pinned comparison to magnetization",
+    "Exchange cycles, pins, and zero-free traces",
+    "Sparse pins on the torus",
+    "Spatial comparison at a vanishing field",
+    "Removing the field and comparing spatial scales",
+    "Equilibrium states and vanishing replica cross terms",
+    "Pressure tangents and the equilibrium magnetization radius"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Bloch's law",
+      "statement": "[Bloch's law] For every fixed S\\ 12,1,32,\\ and every interaction satisfying , _ ^ 3/2 (S-m_ S,J ()) = (3/2) 8^ 3/2 D_ S,J .",
+      "section": "Introduction",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-prop-loop-representation",
+      "kind": "proposition",
+      "label": "Loop representation",
+      "statement": "[Loop representation] For every finite cube, every >0 , and every real h , Z_(h):= e^ -(H^J_ S,N -hM_ S,N ) =e^ w_/4 \\, E_ b _ e^ hM() . At zero field the Gibbs spectral law of total magnetization is…",
+      "section": "Exchange pictures and pinned returns",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-lem-dense-boundary",
+      "kind": "lemma",
+      "label": "Dense boundary cuts",
+      "statement": "[Dense boundary cuts] Let F be a finite deterministic pin set and let T_n be increasing finite sets of times containing zero, with dense union. Set \\[ D_n=F(\\ 1,,\\ T_n), D=F D_0. \\] Almost surely, n_…",
+      "section": "Exchange pictures and pinned returns",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-lem-factorial",
+      "kind": "lemma",
+      "label": "Factorial domination",
+      "statement": "[Factorial domination] For an allowed or finite pin set D , an integer j1 , and a nonnegative measurable function F on X_^j , E_D_ (u_1,,u_j)(_ m )^j_ F(u_1,,u_j) 2^j F\\,d_ b ^ j . Here the sum is…",
+      "section": "Exchange pictures and pinned returns",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-prop-pin-identities",
+      "kind": "proposition",
+      "label": "Pin identities",
+      "statement": "[Pin identities] For E,T as above, d_E(i)= r(E,\\ i\\ ) 1+r(E,\\ i\\ ) (i E), P_E(T B_E)(2r(E,T))^ m_T .",
+      "section": "Exchange pictures and pinned returns",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-prop-exposure",
+      "kind": "proposition",
+      "label": "Exposure disintegration",
+      "statement": "[Exposure disintegration] Almost surely under P_P , g_P( a)>0 and the conditional remaining-picture law given H is Q_ a (\\, G_P) . More precisely, for a deterministic initial label set A V_ , let _A…",
+      "section": "Exchange pictures and pinned returns",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-lem-exterior-moments",
+      "kind": "lemma",
+      "label": "Exterior moments",
+      "statement": "[Exterior moments] Suppose a random permutation matrix on a finite set is a distributional limit of products of independent Bernoulli transpositions and deterministic permutations. If K= E , then…",
+      "section": "Exchange pictures and pinned returns",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-prop-next-pin-kernel",
+      "kind": "proposition",
+      "label": "Conditional next-pin kernel",
+      "statement": "[Conditional next-pin kernel] Let V=I B be a finite set with I . Suppose a random permutation matrix satisfies , and let K= E . Let G_I be the event that every cycle meets I . On G_I , let be the…",
+      "section": "Exchange pictures and pinned returns",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-prop-fresh-walk",
+      "kind": "proposition",
+      "label": "Fresh-walk identity",
+      "statement": "[Fresh-walk identity] For almost every exposure under P_P and every i T , \\[ P_P( R_i(E,T) H)=q_i( a). \\] In particular, m_Tr(E,T)= E_P_ i T q_i( a).",
+      "section": "Exchange pictures and pinned returns",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-prop-nash",
+      "kind": "proposition",
+      "label": "Local Nash inequality",
+      "statement": "[Local Nash inequality] Suppose \\(R R_0\\) and \\(t\\) is regular for \\(z\\) at radius \\(R\\). Every nonnegative function \\(v\\) on \\( H_t\\), supported on slots above \\( B_R(z)\\), satisfies \\|v\\|_2^ 10/3 C…",
+      "section": "Kernels and the geometry of available slots",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-lem-routed-flow",
+      "kind": "lemma",
+      "label": "Routed unit flows: geometric input",
+      "statement": "[Routed unit flows: geometric input] Consider an available-slot nearest-neighbor graph on \\(^3\\), with at most \\(\\) slots per site, all pairs of available slots above each nearest-neighbor site edge…",
+      "section": "Kernels and the geometry of available slots",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-prop-sparse-energy",
+      "kind": "proposition",
+      "label": "Energy of sparse sources",
+      "statement": "[Energy of sparse sources] Let \\(R R_0\\), and let \\((z_i)_ i=1 ^m\\) be a sparse list of centers, counting repetitions. At a fixed slice let \\(I \\ 1,,m\\ \\) be any subset for which the slice is regular…",
+      "section": "Kernels and the geometry of available slots",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-lem-near-flow",
+      "kind": "lemma",
+      "label": "Decay up to the localization radius",
+      "statement": "[Decay up to the localization radius] The same flows as in Lemma~ satisfy |F_a(e)| C(1+h)^ -2 if h=(e,y) R. The constant and the lower threshold \\(R_0\\) are independent of \\(R\\).",
+      "section": "Kernels and the geometry of available slots",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-prop-spread-energy",
+      "kind": "proposition",
+      "label": "Spread-source energy",
+      "statement": "[Spread-source energy] Suppose \\(R R_0\\), \\(1 R\\), and the slice \\(t\\) is regular for \\(z\\) at radius \\(R\\). Let \\(0\\) be supported on available slots above \\( B_R(z)\\), with \\[ \\|\\|_11, \\|\\|_2 C_1^…",
+      "section": "Kernels and the geometry of available slots",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-lem-blocking",
+      "kind": "lemma",
+      "label": "Blocking at deterministic times",
+      "statement": "[Blocking at deterministic times] Assume \\( I(P)\\). At every deterministic time \\(t\\), in every coset, a prescribed set \\(A\\) of distinct coordinate sites satisfies P_P(A O_t^)& Cp^6 &&if |A|=6, \\\\…",
+      "section": "A uniform sparse-pin estimate",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-lem-component-tail",
+      "kind": "lemma",
+      "label": "Component tail",
+      "statement": "[Component tail] There are \\(_0,c,C,>0\\) such that, if \\(_0\\) and \\( I(P)\\) holds, then P_P(w O_t^, rad_w C_t^(w) h) C(-ch^), h1. This holds for every deterministic time \\(t\\), coset \\(\\), and…",
+      "section": "A uniform sparse-pin estimate",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-prop-irregularity",
+      "kind": "proposition",
+      "label": "Probability of an irregular slice",
+      "statement": "[Probability of an irregular slice] Under \\( I(P)\\), for \\(_0\\), every deterministic time \\(t\\), anchor \\(z Z^3\\), and radius \\(R1\\) satisfy P_P(t is not regular for z at radius R)…",
+      "section": "A uniform sparse-pin estimate",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-lem-localization",
+      "kind": "lemma",
+      "label": "Localization",
+      "statement": "[Localization] One may choose \\(a\\) in independently of \\(K\\) so that the following holds, without assuming \\( I(P)\\). Let \\(i\\) be a deterministic slot point that is almost surely a hole under the…",
+      "section": "A uniform sparse-pin estimate",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-prop-diffusion",
+      "kind": "proposition",
+      "label": "Diffusion on a good exposure",
+      "statement": "[Diffusion on a good exposure] Fix an exposure good for \\(z,R_K\\). Let a kernel be a subinterval of a concatenation of full traversals in arbitrary directions, localized throughout at \\(z\\). For…",
+      "section": "A uniform sparse-pin estimate",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-lem-hitting-energy",
+      "kind": "lemma",
+      "label": "Hitting energy",
+      "statement": "[Hitting energy] Let \\(E\\) be allowed and let \\(T\\) be a finite set of slot points at a deterministic cut \\(\\), disjoint from \\(E\\). Put \\(P=E T\\), \\(m_T=|T|\\), and \\(=T\\). At almost every exposure…",
+      "section": "A uniform sparse-pin estimate",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-lem-suffix-energy",
+      "kind": "lemma",
+      "label": "Suffix energy",
+      "statement": "[Suffix energy] With these definitions and zero extension to the available-slot graph at the split, _I D_ t_d(u) (Y_d(u))\\,du 12(\\|y\\|_2^2-\\|U_d^*y\\|_2^2) E_y. Moreover \\(\\|Y_d(u)\\|_\\|y\\|_\\).",
+      "section": "A uniform sparse-pin estimate",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-thm-sparse-pins",
+      "kind": "theorem",
+      "label": "Uniform sparse-pin estimate",
+      "statement": "[Uniform sparse-pin estimate] There is \\(_1<\\), independent of the cube and pins, such that for every \\(_1\\), every allowed pin set \\(E\\), and every nonempty sparse set \\(T\\) at one deterministic…",
+      "section": "A uniform sparse-pin estimate",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-lem-return-expansion",
+      "kind": "lemma",
+      "label": "Finite return expansion",
+      "statement": "[Finite return expansion] For almost every exposure, define \\[ v=_ n=1 ^ K-1 Q^n, y=g-v, E_y= y,A_Qy, \\] with the empty sum interpreted as zero. Then \\(E_y0\\), \\(\\|y\\|_ K+1\\), and the fresh return…",
+      "section": "The long-return remainder",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-prop-long-tail",
+      "kind": "proposition",
+      "label": "Long-return bound",
+      "statement": "[Long-return bound] For every fixed integer \\(K1\\), as \\(\\), E_P C K^ -1/2 ^ -3/2 +o_K(^ -3/2 ). Here \\(C\\) depends only on the fixed interaction, spin, and geometric choices, and is independent of…",
+      "section": "The long-return remainder",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-cor-singleton-bound",
+      "kind": "corollary",
+      "label": "Uniform singleton sparsity",
+      "statement": "[Uniform singleton sparsity] For every sufficiently large \\(\\), uniformly in all allowed pin sets \\(E\\), cubes, cuts, and slot-time points \\(i E\\), r(E,\\ i\\ ) C^ -3/2 . Consequently, for every…",
+      "section": "The long-return remainder",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-lem-ideal-kernel",
+      "kind": "lemma",
+      "label": "Ideal return coefficient",
+      "statement": "[Ideal return coefficient] The full site kernel satisfies _ y,w p_t(y,w) C(1+t)^ -3/2 , p_t(x,x)=t^ -3/2 (+o(1)). The first estimate holds for all \\(t0\\); the second is as \\(t\\). For every fixed…",
+      "section": "Finite returns and the Bloch coefficient",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-prop-finite-word",
+      "kind": "proposition",
+      "label": "Finite direction words",
+      "statement": "[Finite direction words] For every fixed \\(K\\), | E_P[(W_R( d))_ ii ] -( W_R( d))_ ii | =o_K(^ -3/2 ). The error is uniform over \\(1 n2K\\), all direction words of length \\(n\\), all cubes,…",
+      "section": "Finite returns and the Bloch coefficient",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-thm-return-bounds",
+      "kind": "theorem",
+      "label": "One-slot bounds with the sharp coefficient",
+      "statement": "[One-slot bounds with the sharp coefficient] There is a constant \\(C<\\), independent of \\(K\\), with the following property. For every integer \\(K1\\) there are \\(_K<\\) and a nonnegative function…",
+      "section": "Finite returns and the Bloch coefficient",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-prop-pressure-equivalence",
+      "kind": "proposition",
+      "label": "Boundary pressure equivalence",
+      "statement": "[Boundary pressure equivalence] For every fixed >0 and h0 , _ N p_N^+(h)=p_(h).",
+      "section": "From pinned returns to spontaneous magnetization",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m1-lem-pin-mixture",
+      "kind": "lemma",
+      "label": "Extra-pin mixture",
+      "statement": "[Extra-pin mixture] For h0 , the colored-picture law defining Z^+_(h) is a mixture of the zero-field pinned laws with pin sets E=D_0 F , where F consists of time-zero slots. Under the mixing law, (i…",
+      "section": "From pinned returns to spontaneous magnetization",
+      "manuscript": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "For every fixed S\\ 12,1,32,\\ , \\[ _ ( S)^ 5/2 =0. \\]",
+      "statement": "For every fixed S\\ 12,1,32,\\ , \\[ _ ( S)^ 5/2 =0. \\]",
+      "section": "Introduction",
+      "manuscript": "The first lattice correction to Bloch's law"
+    },
+    {
+      "id": "m2-cor-expansion",
+      "kind": "corollary",
+      "label": "For every fixed positive half-integer S , \\[ S-m_S() = (3/2) 8^ 3/2 ( S)^ -3/2…",
+      "statement": "For every fixed positive half-integer S , \\[ S-m_S() = (3/2) 8^ 3/2 ( S)^ -3/2 +3 (5/2) 128^ 3/2 ( S)^ -5/2 +o(( S)^ -5/2 ). \\]",
+      "section": "Introduction",
+      "manuscript": "The first lattice correction to Bloch's law"
+    },
+    {
+      "id": "m2-prop-loopinputs",
+      "kind": "proposition",
+      "label": "Loop and pin inputs",
+      "statement": "[Loop and pin inputs] The following statements hold at every finite volume and >0 . If q_ is the number of slot edges and c() the number of cycles, then \\[ e^ - H_ S, =e^ q_/4 _ b 2^ c() . \\] The…",
+      "section": "Pinned cycles and the return walk",
+      "manuscript": "The first lattice correction to Bloch's law"
+    },
+    {
+      "id": "m2-lem-kernelenergy",
+      "kind": "lemma",
+      "label": "Contraction and energy loss",
+      "statement": "[Contraction and energy loss] At fixed exposure, every killed interval kernel and its adjoint are substochastic in both counting sums and contract counting ^p for p=1,2, . Between instantaneous…",
+      "section": "Pinned cycles and the return walk",
+      "manuscript": "The first lattice correction to Bloch's law"
+    },
+    {
+      "id": "m2-prop-comparison",
+      "kind": "proposition",
+      "label": "Uniform comparison away from pins",
+      "statement": "[Uniform comparison away from pins] For every fixed positive half-integer S there are _0(S)< and a function _S()0 as such that the following holds for every _0(S) . Let be any finite cube, let E=D_0…",
+      "section": "A capacity comparison on one period",
+      "manuscript": "The first lattice correction to Bloch's law"
+    },
+    {
+      "id": "m2-lem-capacity",
+      "kind": "lemma",
+      "label": "Finite capacity comparison",
+      "statement": "[Finite capacity comparison] For the preceding data, put y=f-h . Then A^*f&=(1-q), \\\\ e_y&=y _- , \\\\ q-(1-c) &=h _+ +y _+ . No assumption of almost-sure killing is required. Suppose, in addition,…",
+      "section": "A capacity comparison on one period",
+      "manuscript": "The first lattice correction to Bloch's law"
+    },
+    {
+      "id": "m2-prop-geometryinputs",
+      "kind": "proposition",
+      "label": "Imported geometric estimates",
+      "statement": "[Imported geometric estimates] For all sufficiently large , every allowed pin set D , every deterministic time, every anchor x , and every R_0 above a fixed threshold, the following bounds hold. Put…",
+      "section": "Sparse obstacles and local propagation",
+      "manuscript": "The first lattice correction to Bloch's law"
+    },
+    {
+      "id": "m2-prop-snapshot",
+      "kind": "proposition",
+      "label": "Uniform snapshot sparsity",
+      "statement": "[Uniform snapshot sparsity] For every allowed pin set D and every set T of distinct slot points at one deterministic time, with 1 |T|6 , _D(T B_D) C^ |T| . The bound is uniform in the finite cube,…",
+      "section": "Sparse obstacles and local propagation",
+      "manuscript": "The first lattice correction to Bloch's law"
+    },
+    {
+      "id": "m2-lem-isolatedpath",
+      "kind": "lemma",
+      "label": "Domination of an isolated strand",
+      "statement": "[Domination of an isolated strand] Fix an allowed pin set P , a deterministic slot v , and an interval [s,t] of positive length less than containing no seam in its interior. Follow the picture's…",
+      "section": "Sparse obstacles and local propagation",
+      "manuscript": "The first lattice correction to Bloch's law"
+    },
+    {
+      "id": "m2-prop-good",
+      "kind": "proposition",
+      "label": "Good exposures",
+      "statement": "[Good exposures] Under _P there is an event G with _P( G^c)=o(^ -5/2 ) having the following properties in B_ 12R_* (x) , in either direction of traversal. A strand makes at most c_0L inter-site steps…",
+      "section": "Sparse obstacles and local propagation",
+      "manuscript": "The first lattice correction to Bloch's law"
+    },
+    {
+      "id": "m2-lem-heatbound",
+      "kind": "lemma",
+      "label": "Local heat bound",
+      "statement": "[Local heat bound] On G , a fresh-walk interval kernel of elapsed length u , additionally killed on exit from B_ R_* (x) , has maximum entry at most C(1+u)^ -3/2 . The bound holds for either time…",
+      "section": "Sparse obstacles and local propagation",
+      "manuscript": "The first lattice correction to Bloch's law"
+    },
+    {
+      "id": "m2-lem-localization",
+      "kind": "lemma",
+      "label": "Displacement of the fresh walk",
+      "statement": "[Displacement of the fresh walk] On G , from any slot above B_ 6R (x) and any starting slice, a fresh walk run for elapsed time u2 in either direction stays within site distance C(1+u/L)L^ 3/4 of its…",
+      "section": "Sparse obstacles and local propagation",
+      "manuscript": "The first lattice correction to Bloch's law"
+    },
+    {
+      "id": "m2-lem-flowoverlap",
+      "kind": "lemma",
+      "label": "Flow overlap",
+      "statement": "[Flow overlap] At a fully regular slice on G , choose the unit flows in for available slots a,a' over B_ 6R (x) . Then _e|J_a(e)J_ a' (e)| C 1+(a,a') , where the distance is between their sites.",
+      "section": "Sparse obstacles and local propagation",
+      "manuscript": "The first lattice correction to Bloch's law"
+    },
+    {
+      "id": "m2-lem-freebounds",
+      "kind": "lemma",
+      "label": "Bounds for the free profiles",
+      "statement": "[Bounds for the free profiles] For fixed S and all sufficiently large , the following bounds hold uniformly in the direction, elapsed time, site, and slot. For the full smooth profile u_s , its…",
+      "section": "The ideal potential and its profiles",
+      "manuscript": "The first lattice correction to Bloch's law"
+    },
+    {
+      "id": "m2-lem-signedsource",
+      "kind": "lemma",
+      "label": "Signed source identity",
+      "statement": "[Signed source identity] Fix a good picture in G and one directed block I=[u,v] . Let Z_s be an isolated obstacle strand starting above B_ 4R (x) on this block, with its specified sides at…",
+      "section": "Comparison sources and their cancellation",
+      "manuscript": "The first lattice correction to Bloch's law"
+    },
+    {
+      "id": "m2-lem-cancellation",
+      "kind": "lemma",
+      "label": "Block source bounds",
+      "statement": "[Block source bounds] On a picture in G , let a strand start above z B_ 4R (x) in a directed block of length between L and 2L . For the smooth profile part, take W=W . For a point-profile part,…",
+      "section": "Comparison sources and their cancellation",
+      "manuscript": "The first lattice correction to Bloch's law"
+    },
+    {
+      "id": "m2-lem-sourcebins",
+      "kind": "lemma",
+      "label": "Bin source bounds",
+      "statement": "[Bin source bounds] On a picture in G , the obstacle sources assigned to one strand in one directed bin, starting above z B_ 4R (x) at elapsed time s , have total variation at most H_(W(z)+W_d(z)),…",
+      "section": "Comparison sources and their cancellation",
+      "manuscript": "The first lattice correction to Bloch's law"
+    },
+    {
+      "id": "m2-lem-duhamel",
+      "kind": "lemma",
+      "label": "Two-source Duhamel identity",
+      "statement": "[Two-source Duhamel identity] For the comparison sources just defined, _+ h =s^+(ds) b_s +_ s t T_ t,s s^+(ds) s^-(dt) . In the second integral the reverse sources are indexed by forward physical…",
+      "section": "Comparison sources and their cancellation",
+      "manuscript": "The first lattice correction to Bloch's law"
+    },
+    {
+      "id": "m2-prop-scalar",
+      "kind": "proposition",
+      "label": "Scalar estimate",
+      "statement": "[Scalar estimate] With the scales of , under the interiority and pin assumptions of Section~ , _P =o(^ -5/2 ). The error is uniform in the finite cube, the deterministic pin set, and the injection…",
+      "section": "The scalar error at the trial potential",
+      "manuscript": "The first lattice correction to Bloch's law"
+    },
+    {
+      "id": "m2-lem-boxmoment",
+      "kind": "lemma",
+      "label": "Box moment bound",
+      "statement": "[Box moment bound] Partition the sites into cubes Q of side comparable to F1 . At any deterministic slice let O be its obstacle slots, and let w be a nonnegative deterministic site weight of finite…",
+      "section": "The scalar error at the trial potential",
+      "manuscript": "The first lattice correction to Bloch's law"
+    },
+    {
+      "id": "m2-prop-dualenergy",
+      "kind": "proposition",
+      "label": "Dual energy estimate",
+      "statement": "[Dual energy estimate] Fix \\(S\\), and use the scales in . Suppose that \\(B_ 50R_* (x)\\) lies in the interior of the finite cube and that no point of \\(E\\) lies above this ball. Let \\( G\\) be the good…",
+      "section": "Residuals in the dual energy norm",
+      "manuscript": "The first lattice correction to Bloch's law"
+    },
+    {
+      "id": "m2-lem-blockflow",
+      "kind": "lemma",
+      "label": "One-block flow bound",
+      "statement": "[One-block flow bound] For the first collection of sources, fix a block \\(I_j\\) on \\( G\\). Propagate its sources to a fully regular slice \\(t\\) of \\(I_ j+1 \\), interpreting \\(I_ n+1 =+I_1\\) in a copy…",
+      "section": "Residuals in the dual energy norm",
+      "manuscript": "The first lattice correction to Bloch's law"
+    },
+    {
+      "id": "m2-lem-earlysourceenergy",
+      "kind": "lemma",
+      "label": "Diffusion of the early sources",
+      "statement": "[Diffusion of the early sources] Let \\(_d^ early \\) be the terminal mass of the point-profile obstacle sources at elapsed times in \\([0,/2)\\), and let \\(M\\) be their total variation before…",
+      "section": "Residuals in the dual energy norm",
+      "manuscript": "The first lattice correction to Bloch's law"
+    },
+    {
+      "id": "m2-lem-surfacecost",
+      "kind": "lemma",
+      "label": "Surface cost of boundary pins",
+      "statement": "[Surface cost of boundary pins] For every finite >0 , every t0 , and every finite cube, 0 p_N(t)-p_N^+(t) (2)(+24^2) | _N| V_N . In particular p_N^+(t) p_ S, (t) for each fixed >0 and t0 .",
+      "section": "From the pinned comparison to magnetization",
+      "manuscript": "The first lattice correction to Bloch's law"
+    },
+    {
+      "id": "m3-thm-main",
+      "kind": "theorem",
+      "label": "Spherical magnetization law",
+      "statement": "[Spherical magnetization law] For each fixed S there is a finite _0(S) such that, for every fixed finite _0(S) , one has m=m_ S, >0 and _ L\\ even \\!(1V_ a=1 ^3t_aM_L^a) _ ,L =1 4 _ S^2 e^ m t n (n) =…",
+      "section": "Introduction",
+      "manuscript": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet"
+    },
+    {
+      "id": "m3-lem-pin-inputs",
+      "kind": "lemma",
+      "label": "Finite pin inputs",
+      "statement": "[Finite pin inputs] For the finite picture above the following assertions hold. [label=(),leftmargin=*] For every finite E and nonempty single-time T disjoint from E , P_E(T B_E) (2r(E,T))^ |T| .…",
+      "section": "Exchange cycles, pins, and zero-free traces",
+      "manuscript": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet"
+    },
+    {
+      "id": "m3-lem-next-pin",
+      "kind": "lemma",
+      "label": "Conditional next-pin kernel",
+      "statement": "[Conditional next-pin kernel] Let have an admissible permutation law on a finite set V=I D , and put K= . Let G_I be the event that every permutation cycle meets I . On G_I , let be the permutation…",
+      "section": "Exchange cycles, pins, and zero-free traces",
+      "manuscript": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet"
+    },
+    {
+      "id": "m3-lem-trace-zero-free",
+      "kind": "lemma",
+      "label": "Zero-free layered traces",
+      "statement": "[Zero-free layered traces] On finitely many qubit slots, take a finite cyclic product of permutation layers and tensor products of single-slot matrices, with at least one permutation layer. Each…",
+      "section": "Exchange cycles, pins, and zero-free traces",
+      "manuscript": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet"
+    },
+    {
+      "id": "m3-lem-strip-maps",
+      "kind": "lemma",
+      "label": "Single-slot maps",
+      "statement": "[Single-slot maps] In this basis, matrices in SL_2() , real in the s^3 coordinates, act by automorphisms of the unit disk. If z>0 , the matrix e^ zs^2 sends the closed disk strictly into the open…",
+      "section": "Exchange cycles, pins, and zero-free traces",
+      "manuscript": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet"
+    },
+    {
+      "id": "m3-prop-sparse-pins",
+      "kind": "proposition",
+      "label": "Sparse-pin bound",
+      "statement": "[Sparse-pin bound] Fix \\(S\\) and \\(C_s\\). There is \\(_0<\\) such that, for every fixed \\(_0\\), there is \\(L_*()<\\) with the following property. For every even \\(L L_*()\\), every \\(q\\) satisfying \\(L^…",
+      "section": "Sparse pins on the torus",
+      "manuscript": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet"
+    },
+    {
+      "id": "m3-lem-lattice-inputs",
+      "kind": "lemma",
+      "label": "Lattice Nash inequality and unit flows",
+      "statement": "[Lattice Nash inequality and unit flows] In an available-slot graph regular at \\(z\\) with radius \\(A A_0\\), put \\[ D(v)=12_ \\ i,j\\ available edge (v_i-v_j)^2. \\] Every nonnegative \\(v\\) supported…",
+      "section": "Sparse pins on the torus",
+      "manuscript": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet"
+    },
+    {
+      "id": "m3-lem-torus-blocking",
+      "kind": "lemma",
+      "label": "Blocking and component tails",
+      "statement": "[Blocking and component tails] Under \\( I(P)\\), at any deterministic time \\(t\\), _P(A' O_t)& Cp^6 &&for six prescribed distinct sites, \\\\ _P(A' O_t)&(C p)^ |A'| &&for a nonempty sparse set of sites.…",
+      "section": "Sparse pins on the torus",
+      "manuscript": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet"
+    },
+    {
+      "id": "m3-lem-torus-diffusion",
+      "kind": "lemma",
+      "label": "Regularity and localized diffusion",
+      "statement": "[Regularity and localized diffusion] Assume \\( I(P)\\) and . For every deterministic time and anchor, failure of regularity has probability at most _A=CA^3p^6+C(-cA^ ). Call an exposure good at the…",
+      "section": "Sparse pins on the torus",
+      "manuscript": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet"
+    },
+    {
+      "id": "m3-lem-torus-flow-pairing",
+      "kind": "lemma",
+      "label": "Sparse-source pairing on the torus",
+      "statement": "[Sparse-source pairing on the torus] At a fixed slice let \\((z_i)_ i=1 ^ m_T \\) be a sparse list, including repetitions. Retain any subset of its members at which the lifted graph is regular with…",
+      "section": "Sparse pins on the torus",
+      "manuscript": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet"
+    },
+    {
+      "id": "m3-cor-positive-magnetization",
+      "kind": "corollary",
+      "label": "Positive spontaneous magnetization",
+      "statement": "[Positive spontaneous magnetization] For every fixed \\(S\\) and all sufficiently large finite \\(\\), \\[ m_ S, S(1-^ -9/10 )>0. \\]",
+      "section": "Sparse pins on the torus",
+      "manuscript": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet"
+    },
+    {
+      "id": "m3-prop-weak-field",
+      "kind": "proposition",
+      "label": "Weak-field spatial estimate",
+      "statement": "[Weak-field spatial estimate] Fix S . For all sufficiently large there are C_,R_0()< with the following property. Let L be even, let R_0() R L , and partition _L into rectangular cells whose side…",
+      "section": "Spatial comparison at a vanishing field",
+      "manuscript": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet"
+    },
+    {
+      "id": "m3-lem-soft-resolvent",
+      "kind": "lemma",
+      "label": "Soft-pin identities",
+      "statement": "[Soft-pin identities] Given the exposure a , for i,j H , i j , (i is pinned a) &=q(D^ -1 )_ ii , \\\\ (i,j are pinned, next pin from i is j a) &=q^2 w (D^ -1 )_ ij . Moreover, D^ -1 N. For f_i=f_ x_i…",
+      "section": "Spatial comparison at a vanishing field",
+      "manuscript": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet"
+    },
+    {
+      "id": "m3-lem-hole-cancellation",
+      "kind": "lemma",
+      "label": "Cancellation after exposure",
+      "statement": "[Cancellation after exposure] For every cell B , |_ i H\\ _i B f_i| C|B|/q.",
+      "section": "Spatial comparison at a vanishing field",
+      "manuscript": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet"
+    },
+    {
+      "id": "m3-lem-skeleton-graph",
+      "kind": "lemma",
+      "label": "Communication costs and closed classes",
+      "statement": "[Communication costs and closed classes] An endpoint edge from i to j satisfies (u_i-u_j)^2 C_ e_i . For a contact edge witnessed by a fixed-position interval of length 1 , (u_i-u_j)^2 C_^ -1…",
+      "section": "Spatial comparison at a vanishing field",
+      "manuscript": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet"
+    },
+    {
+      "id": "m3-lem-bad-box-tail",
+      "kind": "lemma",
+      "label": "Bad-box tails",
+      "statement": "[Bad-box tails] There are _0,c,C,_1>0 and, for each _0 , a number _0()>0 such that for every 0<_0() , uniformly in the admissible volumes and pin parameters of this section, \\ z is bad and its bad…",
+      "section": "Spatial comparison at a vanishing field",
+      "manuscript": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet"
+    },
+    {
+      "id": "m3-lem-good-box-paths",
+      "kind": "lemma",
+      "label": "Local paths near good boxes",
+      "statement": "[Local paths near good boxes] Choose a representative cut hole i(z) in every good box z . Any two cut holes in one good box, and representative holes in two nearest-neighbor good boxes, can be joined…",
+      "section": "Spatial comparison at a vanishing field",
+      "manuscript": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet"
+    },
+    {
+      "id": "m3-lem-hull-comparison",
+      "kind": "lemma",
+      "label": "Comparison across a cell and out of a hull",
+      "statement": "[Comparison across a cell and out of a hull] There is a constant C_ such that the following hold for every usable B . For fine nearest neighbors x,x' within its lift, |U_B(x)-U_B(x')|^2 C_ n^6^ -1 _…",
+      "section": "Spatial comparison at a vanishing field",
+      "manuscript": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet"
+    },
+    {
+      "id": "m3-lem-cell-resolvent",
+      "kind": "lemma",
+      "label": "Cellwise approximation of the resolvent",
+      "statement": "[Cellwise approximation of the resolvent] There are random numbers c_B , one per cell, such that _B_ i H\\ _i B (u_i-c_B)^2 C_ N R^ -1/20 .",
+      "section": "Spatial comparison at a vanishing field",
+      "manuscript": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet"
+    },
+    {
+      "id": "m3-lem-strip-curvature",
+      "kind": "lemma",
+      "label": "Strip curvature",
+      "statement": "[Strip curvature] Let F be holomorphic on \\ z:| z|<a_0\\ , real and even on the real axis, with F(0)=0 . Suppose that, for some K< , \\[ 0 F(x) K|x|, F(x+iy) F(x) (x,\\ |y|<a_0). \\] For each a(0,a_0)…",
+      "section": "Removing the field and comparing spatial scales",
+      "manuscript": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet"
+    },
+    {
+      "id": "m3-prop-zero-field",
+      "kind": "proposition",
+      "label": "Fix S and a sufficiently large finite . There are R_0=R_0(S,) , C_< , and >0…",
+      "statement": "Fix S and a sufficiently large finite . There are R_0=R_0(S,) , C_< , and >0 with the following property. Let L R R_0 , with L even, and partition _L into rectangular cells whose side lengths lie in…",
+      "section": "Removing the field and comparing spatial scales",
+      "manuscript": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet"
+    },
+    {
+      "id": "m3-prop-scale-comparison",
+      "kind": "proposition",
+      "label": "Fix S and a sufficiently large finite . For every sufficiently large fixed R_*…",
+      "statement": "Fix S and a sufficiently large finite . For every sufficiently large fixed R_* and all sufficiently large even L , there is a deterministic rectangular partition P_*(L) of _L whose side lengths lie…",
+      "section": "Removing the field and comparing spatial scales",
+      "manuscript": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet"
+    },
+    {
+      "id": "m3-prop-variational-framework",
+      "kind": "proposition",
+      "label": "The mean entropy exists on S_ TI , is upper semicontinuous and affine, and…",
+      "statement": "The mean entropy exists on S_ TI , is upper semicontinuous and affine, and P_a(t)=_ S_ TI \\ s()+e_0()+t(a)\\ . In particular, writing P_0= p_ S, (0) , the set \\[ E_= \\ S_ TI : s()+e_0()=P_0\\ \\] is a…",
+      "section": "Equilibrium states and vanishing replica cross terms",
+      "manuscript": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet"
+    },
+    {
+      "id": "m3-lem-ergodic-variance",
+      "kind": "lemma",
+      "label": "Ergodic averages",
+      "statement": "[Ergodic averages] If is an extreme translation-invariant state and A is a self-adjoint local observable, then \\[ _ n =0. \\]",
+      "section": "Equilibrium states and vanishing replica cross terms",
+      "manuscript": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet"
+    },
+    {
+      "id": "m3-lem-replica-cross",
+      "kind": "lemma",
+      "label": "Replica cross terms",
+      "statement": "[Replica cross terms] Fix S and a sufficiently large finite . Let be any translation-invariant equilibrium state of j unperturbed replicas. For distinct replicas r,s , axes a,b , and finitely…",
+      "section": "Equilibrium states and vanishing replica cross terms",
+      "manuscript": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet"
+    },
+    {
+      "id": "m3-prop-harmonic-tangent",
+      "kind": "proposition",
+      "label": "Harmonic pressure tangent",
+      "statement": "[Harmonic pressure tangent] For every integer B2 there is D_B>0 such that, for every integer W2B , the function in has a harmonic extension v_ B,W from the positive real axis to H=\\ z: z>0\\…",
+      "section": "Pressure tangents and the equilibrium magnetization radius",
+      "manuscript": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet"
+    }
+  ],
+  "edges": []
+}

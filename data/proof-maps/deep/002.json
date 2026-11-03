@@ -1,0 +1,944 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "002",
+  "title": "The full BSD formula from low Selmer corank",
+  "result": {
+    "id": "paper-result",
+    "label": "The full BSD formula from low Selmer corank",
+    "statement": "Proves the full Birch–Swinnerton-Dyer leading-term formula for every elliptic curve over ℚ whose full q -power Selmer group has corank zero or one for some prime q , including finiteness of the Tate–Shafarevich group. With result 006, this gives full BSD for a density-one set of quadratic twists of every elliptic curve over ℚ.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "arithmetic-inputs-and-exact-normalizations",
+      "label": "Arithmetic inputs and exact normalizations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "integral-cohomology-and-determinant-comparisons",
+      "label": "Integral cohomology and determinant comparisons",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "auxiliary-primes-and-residual-concentration",
+      "label": "Auxiliary primes and residual concentration",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-single-curve-determinant-and-its-central-value",
+      "label": "The single-curve determinant and its central value",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-analytic-series-and-the-pair-comparison",
+      "label": "The analytic series and the pair comparison",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "theta-congruences-at-a-characteristic-zero-point",
+      "label": "Theta congruences at a characteristic-zero point",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "content-at-a-character-and-extraction-of-a-primitive-class",
+      "label": "Content at a character and extraction of a primitive class",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "removing-the-divisors-of-the-integral-quotient",
+      "label": "Removing the divisors of the integral quotient",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-central-value-and-the-exact-formula",
+      "label": "The central value and the exact formula",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "arithmetic-reduction-and-conventions",
+      "label": "Arithmetic reduction and conventions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-tame-deformation-and-its-selmer-length",
+      "label": "A tame deformation and its Selmer length",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank",
+      "title": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-07",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Exact-Birch-Swinnerton-Dyer-Formula-from-Low-Selmer-Corank-October-7-2026/exact-bsd-low-selmer-corank.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-classical-low-corank"
+          ]
+        },
+        {
+          "id": "m1-classical-low-corank",
+          "role": "arithmetic-inputs-and-exact-normalizations",
+          "label": "theorem m1-classical-low-corank",
+          "fullLabel": "theorem m1-classical-low-corank",
+          "kind": "theorem",
+          "source": "Arithmetic inputs and exact normalizations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-classical-two-primary",
+          "role": "arithmetic-inputs-and-exact-normalizations",
+          "label": "theorem m1-classical-two-primary",
+          "fullLabel": "theorem m1-classical-two-primary",
+          "kind": "theorem",
+          "source": "Arithmetic inputs and exact normalizations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-classical-analytic-low-rank",
+          "role": "arithmetic-inputs-and-exact-normalizations",
+          "label": "theorem m1-classical-analytic-low-rank",
+          "fullLabel": "theorem m1-classical-analytic-low-rank",
+          "kind": "theorem",
+          "source": "Arithmetic inputs and exact normalizations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-classical-isogeny",
+          "role": "arithmetic-inputs-and-exact-normalizations",
+          "label": "proposition m1-classical-isogeny",
+          "fullLabel": "proposition m1-classical-isogeny",
+          "kind": "proposition",
+          "source": "Arithmetic inputs and exact normalizations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-classical-twist-density",
+          "role": "arithmetic-inputs-and-exact-normalizations",
+          "label": "theorem m1-classical-twist-density",
+          "fullLabel": "theorem m1-classical-twist-density",
+          "kind": "theorem",
+          "source": "Arithmetic inputs and exact normalizations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-classical-auxiliary-fields",
+          "role": "arithmetic-inputs-and-exact-normalizations",
+          "label": "lemma m1-classical-auxiliary-fields",
+          "fullLabel": "lemma m1-classical-auxiliary-fields",
+          "kind": "lemma",
+          "source": "Arithmetic inputs and exact normalizations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-classical-gross-zagier",
+          "role": "arithmetic-inputs-and-exact-normalizations",
+          "label": "theorem m1-classical-gross-zagier",
+          "fullLabel": "theorem m1-classical-gross-zagier",
+          "kind": "theorem",
+          "source": "Arithmetic inputs and exact normalizations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-classical-discrepancy-identity",
+          "role": "arithmetic-inputs-and-exact-normalizations",
+          "label": "proposition m1-classical-discrepancy-identity",
+          "fullLabel": "proposition m1-classical-discrepancy-identity",
+          "kind": "proposition",
+          "source": "Arithmetic inputs and exact normalizations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-models-finite-models",
+          "role": "integral-cohomology-and-determinant-comparisons",
+          "label": "lemma m1-models-finite-models",
+          "fullLabel": "lemma m1-models-finite-models",
+          "kind": "lemma",
+          "source": "Integral cohomology and determinant comparisons",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-models-orthogonality",
+          "role": "integral-cohomology-and-determinant-comparisons",
+          "label": "lemma m1-models-orthogonality",
+          "fullLabel": "lemma m1-models-orthogonality",
+          "kind": "lemma",
+          "source": "Integral cohomology and determinant comparisons",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-models-evaluations",
+          "role": "integral-cohomology-and-determinant-comparisons",
+          "label": "lemma m1-models-evaluations",
+          "fullLabel": "lemma m1-models-evaluations",
+          "kind": "lemma",
+          "source": "Integral cohomology and determinant comparisons",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-models-line-switch",
+          "role": "integral-cohomology-and-determinant-comparisons",
+          "label": "lemma m1-models-line-switch",
+          "fullLabel": "lemma m1-models-line-switch",
+          "kind": "lemma",
+          "source": "Integral cohomology and determinant comparisons",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-models-square-switch",
+          "role": "integral-cohomology-and-determinant-comparisons",
+          "label": "lemma m1-models-square-switch",
+          "fullLabel": "lemma m1-models-square-switch",
+          "kind": "lemma",
+          "source": "Integral cohomology and determinant comparisons",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-models-strict-finite",
+          "role": "integral-cohomology-and-determinant-comparisons",
+          "label": "lemma m1-models-strict-finite",
+          "fullLabel": "lemma m1-models-strict-finite",
+          "kind": "lemma",
+          "source": "Integral cohomology and determinant comparisons",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-models-haar",
+          "role": "integral-cohomology-and-determinant-comparisons",
+          "label": "lemma m1-models-haar",
+          "fullLabel": "lemma m1-models-haar",
+          "kind": "lemma",
+          "source": "Integral cohomology and determinant comparisons",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-models-kummer-volume",
+          "role": "integral-cohomology-and-determinant-comparisons",
+          "label": "lemma m1-models-kummer-volume",
+          "fullLabel": "lemma m1-models-kummer-volume",
+          "kind": "lemma",
+          "source": "Integral cohomology and determinant comparisons",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-models-series-division",
+          "role": "integral-cohomology-and-determinant-comparisons",
+          "label": "lemma m1-models-series-division",
+          "fullLabel": "lemma m1-models-series-division",
+          "kind": "lemma",
+          "source": "Integral cohomology and determinant comparisons",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-models-poles",
+          "role": "integral-cohomology-and-determinant-comparisons",
+          "label": "lemma m1-models-poles",
+          "fullLabel": "lemma m1-models-poles",
+          "kind": "lemma",
+          "source": "Integral cohomology and determinant comparisons",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-models-field-points",
+          "role": "integral-cohomology-and-determinant-comparisons",
+          "label": "lemma m1-models-field-points",
+          "fullLabel": "lemma m1-models-field-points",
+          "kind": "lemma",
+          "source": "Integral cohomology and determinant comparisons",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-vertical-auxiliary-tuples",
+          "role": "auxiliary-primes-and-residual-concentration",
+          "label": "lemma m1-vertical-auxiliary-tuples",
+          "fullLabel": "lemma m1-vertical-auxiliary-tuples",
+          "kind": "lemma",
+          "source": "Auxiliary primes and residual concentration",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-vertical-tests",
+          "role": "auxiliary-primes-and-residual-concentration",
+          "label": "proposition m1-vertical-tests",
+          "fullLabel": "proposition m1-vertical-tests",
+          "kind": "proposition",
+          "source": "Auxiliary primes and residual concentration",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-vertical-scalar-localization",
+          "role": "auxiliary-primes-and-residual-concentration",
+          "label": "lemma m1-vertical-scalar-localization",
+          "fullLabel": "lemma m1-vertical-scalar-localization",
+          "kind": "lemma",
+          "source": "Auxiliary primes and residual concentration",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-vertical-parity",
+          "role": "auxiliary-primes-and-residual-concentration",
+          "label": "lemma m1-vertical-parity",
+          "fullLabel": "lemma m1-vertical-parity",
+          "kind": "lemma",
+          "source": "Auxiliary primes and residual concentration",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-vertical-lift-test",
+          "role": "auxiliary-primes-and-residual-concentration",
+          "label": "lemma m1-vertical-lift-test",
+          "fullLabel": "lemma m1-vertical-lift-test",
+          "kind": "lemma",
+          "source": "Auxiliary primes and residual concentration",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-vertical-obstruction-span",
+          "role": "auxiliary-primes-and-residual-concentration",
+          "label": "lemma m1-vertical-obstruction-span",
+          "fullLabel": "lemma m1-vertical-obstruction-span",
+          "kind": "lemma",
+          "source": "Auxiliary primes and residual concentration",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-vertical-enlargement",
+          "role": "auxiliary-primes-and-residual-concentration",
+          "label": "lemma m1-vertical-enlargement",
+          "fullLabel": "lemma m1-vertical-enlargement",
+          "kind": "lemma",
+          "source": "Auxiliary primes and residual concentration",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-vertical-horizontal-directions",
+          "role": "auxiliary-primes-and-residual-concentration",
+          "label": "lemma m1-vertical-horizontal-directions",
+          "fullLabel": "lemma m1-vertical-horizontal-directions",
+          "kind": "lemma",
+          "source": "Auxiliary primes and residual concentration",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-single-relative-lattice",
+          "role": "the-single-curve-determinant-and-its-central-value",
+          "label": "lemma m1-single-relative-lattice",
+          "fullLabel": "lemma m1-single-relative-lattice",
+          "kind": "lemma",
+          "source": "The single-curve determinant and its central value",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-single-siegel-traces",
+          "role": "the-single-curve-determinant-and-its-central-value",
+          "label": "proposition m1-single-siegel-traces",
+          "fullLabel": "proposition m1-single-siegel-traces",
+          "kind": "proposition",
+          "source": "The single-curve determinant and its central value",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-single-kato-calibration",
+          "role": "the-single-curve-determinant-and-its-central-value",
+          "label": "lemma m1-single-kato-calibration",
+          "fullLabel": "lemma m1-single-kato-calibration",
+          "kind": "lemma",
+          "source": "The single-curve determinant and its central value",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-single-period-law",
+          "role": "the-single-curve-determinant-and-its-central-value",
+          "label": "proposition m1-single-period-law",
+          "fullLabel": "proposition m1-single-period-law",
+          "kind": "proposition",
+          "source": "The single-curve determinant and its central value",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-single-integral",
+          "role": "the-single-curve-determinant-and-its-central-value",
+          "label": "proposition m1-single-integral",
+          "fullLabel": "proposition m1-single-integral",
+          "kind": "proposition",
+          "source": "The single-curve determinant and its central value",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-single-line",
+          "role": "the-single-curve-determinant-and-its-central-value",
+          "label": "lemma m1-single-line",
+          "fullLabel": "lemma m1-single-line",
+          "kind": "lemma",
+          "source": "The single-curve determinant and its central value",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-single-logarithm",
+          "role": "the-single-curve-determinant-and-its-central-value",
+          "label": "proposition m1-single-logarithm",
+          "fullLabel": "proposition m1-single-logarithm",
+          "kind": "proposition",
+          "source": "The single-curve determinant and its central value",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-single-height-direction",
+          "role": "the-single-curve-determinant-and-its-central-value",
+          "label": "lemma m1-single-height-direction",
+          "fullLabel": "lemma m1-single-height-direction",
+          "kind": "lemma",
+          "source": "The single-curve determinant and its central value",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-single-cup",
+          "role": "the-single-curve-determinant-and-its-central-value",
+          "label": "lemma m1-single-cup",
+          "fullLabel": "lemma m1-single-cup",
+          "kind": "lemma",
+          "source": "The single-curve determinant and its central value",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-single-spectral",
+          "role": "the-single-curve-determinant-and-its-central-value",
+          "label": "lemma m1-single-spectral",
+          "fullLabel": "lemma m1-single-spectral",
+          "kind": "lemma",
+          "source": "The single-curve determinant and its central value",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-single-center",
+          "role": "the-single-curve-determinant-and-its-central-value",
+          "label": "proposition m1-single-center",
+          "fullLabel": "proposition m1-single-center",
+          "kind": "proposition",
+          "source": "The single-curve determinant and its central value",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pair-primitive",
+          "role": "the-analytic-series-and-the-pair-comparison",
+          "label": "proposition m1-pair-primitive",
+          "fullLabel": "proposition m1-pair-primitive",
+          "kind": "proposition",
+          "source": "The analytic series and the pair comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pair-interpolation",
+          "role": "the-analytic-series-and-the-pair-comparison",
+          "label": "proposition m1-pair-interpolation",
+          "fullLabel": "proposition m1-pair-interpolation",
+          "kind": "proposition",
+          "source": "The analytic series and the pair comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pair-trace",
+          "role": "the-analytic-series-and-the-pair-comparison",
+          "label": "lemma m1-pair-trace",
+          "fullLabel": "lemma m1-pair-trace",
+          "kind": "lemma",
+          "source": "The analytic series and the pair comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pair-descent",
+          "role": "the-analytic-series-and-the-pair-comparison",
+          "label": "lemma m1-pair-descent",
+          "fullLabel": "lemma m1-pair-descent",
+          "kind": "lemma",
+          "source": "The analytic series and the pair comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pair-vertical-primitivity",
+          "role": "the-analytic-series-and-the-pair-comparison",
+          "label": "proposition m1-pair-vertical-primitivity",
+          "fullLabel": "proposition m1-pair-vertical-primitivity",
+          "kind": "proposition",
+          "source": "The analytic series and the pair comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pair-finite-divisibility",
+          "role": "the-analytic-series-and-the-pair-comparison",
+          "label": "proposition m1-pair-finite-divisibility",
+          "fullLabel": "proposition m1-pair-finite-divisibility",
+          "kind": "proposition",
+          "source": "The analytic series and the pair comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pair-local-lines",
+          "role": "the-analytic-series-and-the-pair-comparison",
+          "label": "lemma m1-pair-local-lines",
+          "fullLabel": "lemma m1-pair-local-lines",
+          "kind": "lemma",
+          "source": "The analytic series and the pair comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pair-derivatives",
+          "role": "the-analytic-series-and-the-pair-comparison",
+          "label": "lemma m1-pair-derivatives",
+          "fullLabel": "lemma m1-pair-derivatives",
+          "kind": "lemma",
+          "source": "The analytic series and the pair comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pair-integral-quotient",
+          "role": "the-analytic-series-and-the-pair-comparison",
+          "label": "corollary m1-pair-integral-quotient",
+          "fullLabel": "corollary m1-pair-integral-quotient",
+          "kind": "corollary",
+          "source": "The analytic series and the pair comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-theta-auxiliary-data",
+          "role": "theta-congruences-at-a-characteristic-zero-point",
+          "label": "lemma m1-theta-auxiliary-data",
+          "fullLabel": "lemma m1-theta-auxiliary-data",
+          "kind": "lemma",
+          "source": "Theta congruences at a characteristic-zero point",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-theta-test-point",
+          "role": "theta-congruences-at-a-characteristic-zero-point",
+          "label": "lemma m1-theta-test-point",
+          "fullLabel": "lemma m1-theta-test-point",
+          "kind": "lemma",
+          "source": "Theta congruences at a characteristic-zero point",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-theta-canonical-levels",
+          "role": "theta-congruences-at-a-characteristic-zero-point",
+          "label": "lemma m1-theta-canonical-levels",
+          "fullLabel": "lemma m1-theta-canonical-levels",
+          "kind": "lemma",
+          "source": "Theta congruences at a characteristic-zero point",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-theta-p-operators",
+          "role": "theta-congruences-at-a-characteristic-zero-point",
+          "label": "lemma m1-theta-p-operators",
+          "fullLabel": "lemma m1-theta-p-operators",
+          "kind": "lemma",
+          "source": "Theta congruences at a characteristic-zero point",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-theta-cut-moments",
+          "role": "theta-congruences-at-a-characteristic-zero-point",
+          "label": "lemma m1-theta-cut-moments",
+          "fullLabel": "lemma m1-theta-cut-moments",
+          "kind": "lemma",
+          "source": "Theta congruences at a characteristic-zero point",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-theta-integral-family",
+          "role": "theta-congruences-at-a-characteristic-zero-point",
+          "label": "proposition m1-theta-integral-family",
+          "fullLabel": "proposition m1-theta-integral-family",
+          "kind": "proposition",
+          "source": "Theta congruences at a characteristic-zero point",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-theta-fourier-measure",
+          "role": "theta-congruences-at-a-characteristic-zero-point",
+          "label": "lemma m1-theta-fourier-measure",
+          "fullLabel": "lemma m1-theta-fourier-measure",
+          "kind": "lemma",
+          "source": "Theta congruences at a characteristic-zero point",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-theta-toric-limit",
+          "role": "theta-congruences-at-a-characteristic-zero-point",
+          "label": "proposition m1-theta-toric-limit",
+          "fullLabel": "proposition m1-theta-toric-limit",
+          "kind": "proposition",
+          "source": "Theta congruences at a characteristic-zero point",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-theta-boundary-small",
+          "role": "theta-congruences-at-a-characteristic-zero-point",
+          "label": "proposition m1-theta-boundary-small",
+          "fullLabel": "proposition m1-theta-boundary-small",
+          "kind": "proposition",
+          "source": "Theta congruences at a characteristic-zero point",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-extraction-theta-implication",
+          "role": "content-at-a-character-and-extraction-of-a-primitive-class",
+          "label": "proposition m1-extraction-theta-implication",
+          "fullLabel": "proposition m1-extraction-theta-implication",
+          "kind": "proposition",
+          "source": "Content at a character and extraction of a primitive class",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-extraction-content",
+          "role": "content-at-a-character-and-extraction-of-a-primitive-class",
+          "label": "lemma m1-extraction-content",
+          "fullLabel": "lemma m1-extraction-content",
+          "kind": "lemma",
+          "source": "Content at a character and extraction of a primitive class",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-extraction-cusp",
+          "role": "content-at-a-character-and-extraction-of-a-primitive-class",
+          "label": "lemma m1-extraction-cusp",
+          "fullLabel": "lemma m1-extraction-cusp",
+          "kind": "lemma",
+          "source": "Content at a character and extraction of a primitive class",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-extraction-binary",
+          "role": "content-at-a-character-and-extraction-of-a-primitive-class",
+          "label": "lemma m1-extraction-binary",
+          "fullLabel": "lemma m1-extraction-binary",
+          "kind": "lemma",
+          "source": "Content at a character and extraction of a primitive class",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-extraction-cyclotomic",
+          "role": "content-at-a-character-and-extraction-of-a-primitive-class",
+          "label": "lemma m1-extraction-cyclotomic",
+          "fullLabel": "lemma m1-extraction-cyclotomic",
+          "kind": "lemma",
+          "source": "Content at a character and extraction of a primitive class",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-extraction-no-line",
+          "role": "content-at-a-character-and-extraction-of-a-primitive-class",
+          "label": "lemma m1-extraction-no-line",
+          "fullLabel": "lemma m1-extraction-no-line",
+          "kind": "lemma",
+          "source": "Content at a character and extraction of a primitive class",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-unit-quotient-regularity",
+          "role": "removing-the-divisors-of-the-integral-quotient",
+          "label": "lemma m1-unit-quotient-regularity",
+          "fullLabel": "lemma m1-unit-quotient-regularity",
+          "kind": "lemma",
+          "source": "Removing the divisors of the integral quotient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-unit-association",
+          "role": "removing-the-divisors-of-the-integral-quotient",
+          "label": "lemma m1-unit-association",
+          "fullLabel": "lemma m1-unit-association",
+          "kind": "lemma",
+          "source": "Removing the divisors of the integral quotient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-unit-augmented-alternating",
+          "role": "removing-the-divisors-of-the-integral-quotient",
+          "label": "lemma m1-unit-augmented-alternating",
+          "fullLabel": "lemma m1-unit-augmented-alternating",
+          "kind": "lemma",
+          "source": "Removing the divisors of the integral quotient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-unit-tangent-minors",
+          "role": "removing-the-divisors-of-the-integral-quotient",
+          "label": "lemma m1-unit-tangent-minors",
+          "fullLabel": "lemma m1-unit-tangent-minors",
+          "kind": "lemma",
+          "source": "Removing the divisors of the integral quotient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-unit-simultaneous-jumps",
+          "role": "removing-the-divisors-of-the-integral-quotient",
+          "label": "proposition m1-unit-simultaneous-jumps",
+          "fullLabel": "proposition m1-unit-simultaneous-jumps",
+          "kind": "proposition",
+          "source": "Removing the divisors of the integral quotient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-unit-unit-comparison",
+          "role": "removing-the-divisors-of-the-integral-quotient",
+          "label": "theorem m1-unit-unit-comparison",
+          "fullLabel": "theorem m1-unit-unit-comparison",
+          "kind": "theorem",
+          "source": "Removing the divisors of the integral quotient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-center-exact-factor",
+          "role": "the-central-value-and-the-exact-formula",
+          "label": "proposition m1-center-exact-factor",
+          "fullLabel": "proposition m1-center-exact-factor",
+          "kind": "proposition",
+          "source": "The central value and the exact formula",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-center-pair-discrepancy",
+          "role": "the-central-value-and-the-exact-formula",
+          "label": "corollary m1-center-pair-discrepancy",
+          "fullLabel": "corollary m1-center-pair-discrepancy",
+          "kind": "corollary",
+          "source": "The central value and the exact formula",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-center-cm-zero",
+          "role": "the-central-value-and-the-exact-formula",
+          "label": "lemma m1-center-cm-zero",
+          "fullLabel": "lemma m1-center-cm-zero",
+          "kind": "lemma",
+          "source": "The central value and the exact formula",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-center-odd-valuations",
+          "role": "the-central-value-and-the-exact-formula",
+          "label": "proposition m1-center-odd-valuations",
+          "fullLabel": "proposition m1-center-odd-valuations",
+          "kind": "proposition",
+          "source": "The central value and the exact formula",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "The Selmer converse for elliptic curves at every prime",
+      "title": "The Selmer converse for elliptic curves at every prime",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-07",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Selmer-converse-for-elliptic-curves-at-every-prime-October-7-2026/main.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from The Selmer converse for elliptic curves at every prime.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-two-converse-input",
+          "role": "arithmetic-reduction-and-conventions",
+          "label": "theorem m2-thm-two-converse-input",
+          "fullLabel": "theorem m2-thm-two-converse-input",
+          "kind": "theorem",
+          "source": "Arithmetic reduction and conventions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-twist-density-input",
+          "role": "arithmetic-reduction-and-conventions",
+          "label": "theorem m2-thm-twist-density-input",
+          "fullLabel": "theorem m2-thm-twist-density-input",
+          "kind": "theorem",
+          "source": "Arithmetic reduction and conventions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-auxiliary-fields",
+          "role": "arithmetic-reduction-and-conventions",
+          "label": "lemma m2-lem-auxiliary-fields",
+          "fullLabel": "lemma m2-lem-auxiliary-fields",
+          "kind": "lemma",
+          "source": "Arithmetic reduction and conventions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-arithmetic-reduction",
+          "role": "arithmetic-reduction-and-conventions",
+          "label": "proposition m2-prop-arithmetic-reduction",
+          "fullLabel": "proposition m2-prop-arithmetic-reduction",
+          "kind": "proposition",
+          "source": "Arithmetic reduction and conventions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-base-green",
+          "role": "a-tame-deformation-and-its-selmer-length",
+          "label": "lemma m2-lem-base-green",
+          "fullLabel": "lemma m2-lem-base-green",
+          "kind": "lemma",
+          "source": "A tame deformation and its Selmer length",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-tame-primes",
+          "role": "a-tame-deformation-and-its-selmer-length",
+          "label": "proposition m2-prop-tame-primes",
+          "fullLabel": "proposition m2-prop-tame-primes",
+          "kind": "proposition",
+          "source": "A tame deformation and its Selmer length",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Exact-Birch-Swinnerton-Dyer-Formula-from-Low-Selmer-Corank-October-7-2026/exact-bsd-low-selmer-corank.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "The Selmer converse for elliptic curves at every prime",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Selmer-converse-for-elliptic-curves-at-every-prime-October-7-2026/main.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "The two-primary Birch–Swinnerton-Dyer formula in Selmer corank at most one",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-two-primary-Birch-Swinnerton-Dyer-formula-in-Selmer-corank-at-most-one-October-6-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

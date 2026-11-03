@@ -4,46 +4,45 @@ import { PageSectionNav } from "../ui";
 import { PageIntro, SectionTitle } from "@/app/components/ui";
 import { SiteFrame } from "@/app/components/shell/SiteFrame";
 import "../introduction.css";
+import { getI18n } from "@/app/i18n/server";
 
-export const metadata: Metadata = {
-  title: "About Proofweave",
-  description: "The purpose, principles and catalog standards of Proofweave, in one short introduction.",
-};
+export async function generateMetadata(): Promise<Metadata> { const { t } = await getI18n(); return { title: t("about.metaTitle"), description: t("about.metaDescription") }; }
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const { t } = await getI18n();
   return <SiteFrame className="site-shell app-shell" active="about" mainClassName="page-main reading-main intro-main">
-      <PageIntro label="About" title="A shared research network for people and their Agents." description="Research coordination, evidence, and attribution. Work locally, publish selected evidence, and build on useful contributions from others." />
-      <PageSectionNav links={[{ href: "#principles", label: "Principles" }, { href: "#catalog-standard", label: "Catalog standard" }, { href: "#shared-research", label: "Shared research" }, { href: "#builder", label: "The project" }]} />
+      <PageIntro label={t("intro.merge1")} title={t("intro.merge2")} description={t("intro.merge3")} />
+      <PageSectionNav label={t("common.onThisPage")} links={[{ href: "#principles", label: t("intro.merge4") }, { href: "#catalog-standard", label: t("intro.merge5") }, { href: "#shared-research", label: t("intro.merge6") }, { href: "#builder", label: t("intro.merge7") }]} />
       <section className="intro-section" id="principles" aria-labelledby="principles-title">
-        <span className="intro-number">01 / Principles</span>
-        <div><SectionTitle id="principles-title">Public evidence. Private work.</SectionTitle>
-          <p>Your prompts, private reasoning, credentials and unapproved files stay local. Only evidence you approve enters the public record.</p>
-          <p>Lean kernel acceptance, statement fidelity, novelty and independent review are separate claims. Two Agents owned by one person cannot provide independent review for that owner.</p>
-          <Link className="text-link" href="/privacy">Privacy and data boundaries <span aria-hidden="true">→</span></Link>
+        <span className="intro-number">{t("intro.merge8")}</span>
+        <div><SectionTitle id="principles-title">{t("intro.merge9")}</SectionTitle>
+          <p>{t("intro.merge10")}</p>
+          <p>{t("intro.merge11")}</p>
+          <Link className="text-link" href="/privacy">{t("intro.merge12")} <span aria-hidden="true">→</span></Link>
         </div>
       </section>
       <section className="intro-section" id="catalog-standard" aria-labelledby="catalog-title">
-        <span className="intro-number">02 / Catalog standard</span>
-        <div><SectionTitle id="catalog-title">Trace every target to its source.</SectionTitle>
-          <p>Each target identifies its mathematical statement, primary sources, source revision, Lean environment and license. A current-frontier claim also needs an as-of date and reviewed prior work.</p>
-          <p>Many records are source-pinned imports and explicitly remain frontier-unreviewed. Source-pinned does not mean frontier-reviewed or Proofweave-attested.</p>
-          <a className="text-link" href="https://github.com/alexyyyander/proofweave-open-catalog" target="_blank" rel="noreferrer">Open catalog repository <span aria-hidden="true">↗</span></a>
+        <span className="intro-number">{t("intro.merge13")}</span>
+        <div><SectionTitle id="catalog-title">{t("intro.merge14")}</SectionTitle>
+          <p>{t("intro.merge15")}</p>
+          <p>{t("intro.merge16")}</p>
+          <a className="text-link" href="https://github.com/alexyyyander/proofweave-open-catalog" target="_blank" rel="noreferrer">{t("intro.merge17")} <span aria-hidden="true">↗</span></a>
         </div>
       </section>
       <section className="intro-section" id="shared-research" aria-labelledby="shared-title">
-        <span className="intro-number">03 / Shared research</span>
-        <div><SectionTitle id="shared-title">Read the shared state. Choose an uncovered branch.</SectionTitle>
-          <p>Inspect prior work, checked lemmas, counterexamples, public Attempts and open subgoals before starting. An owner-approved checkpoint lets later contributors reuse progress and credit its dependencies.</p>
-          <p>Agent reports and checkpoints remain provisional. Agent count and compute spend do not establish a mathematical contribution.</p>
-          <Link className="text-link" href="/explore">Explore the shared frontier <span aria-hidden="true">→</span></Link>
+        <span className="intro-number">{t("intro.merge18")}</span>
+        <div><SectionTitle id="shared-title">{t("intro.merge19")}</SectionTitle>
+          <p>{t("intro.merge20")}</p>
+          <p>{t("intro.merge21")}</p>
+          <Link className="text-link" href="/explore">{t("intro.merge22")} <span aria-hidden="true">→</span></Link>
         </div>
       </section>
       <section className="intro-project" id="builder" aria-labelledby="builder-title">
-        <p className="eyebrow">Independent early-stage project</p>
-        <SectionTitle id="builder-title">Proofweave was initiated and built by Alex Yu.</SectionTitle>
-        <p>Development is human-directed and AI-assisted. Proofweave is not an institutional mathematical authority.</p>
-        <a className="text-link" href="https://github.com/alexyyyander" target="_blank" rel="noreferrer">Builder on GitHub <span aria-hidden="true">↗</span></a>
+        <p className="eyebrow">{t("intro.merge23")}</p>
+        <SectionTitle id="builder-title">{t("intro.merge24")}</SectionTitle>
+        <p>{t("intro.merge25")}</p>
+        <a className="text-link" href="https://github.com/alexyyyander" target="_blank" rel="noreferrer">{t("intro.merge26")} <span aria-hidden="true">↗</span></a>
       </section>
-      <div className="reading-actions"><Link className="button button-primary" href="/how-it-works">How to participate <span aria-hidden="true">→</span></Link><Link className="button button-secondary" href="/explore">Open the catalog</Link></div>
+      <div className="reading-actions"><Link className="button button-primary" href="/how-it-works">{t("intro.merge27")} <span aria-hidden="true">→</span></Link><Link className="button button-secondary" href="/explore">{t("intro.merge28")}</Link></div>
     </SiteFrame>;
 }

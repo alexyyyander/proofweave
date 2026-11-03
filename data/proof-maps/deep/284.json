@@ -1,0 +1,215 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "284",
+  "title": "The optimal quartic separation between randomized and quantum queries",
+  "result": {
+    "id": "paper-result",
+    "label": "The optimal quartic separation between randomized and quantum queries",
+    "statement": "Shows that the universal bound R(f)=O((1+Q(f))^4) for total Boolean functions is sharp in its exponent, ruling out every smaller power and disproving the conjectured cubic relation. Here R and Q are randomized and quantum worst-case bit-query complexities with error at most 1/3; computation between queries is unrestricted.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-addressed-certificate-with-outward-pointers",
+      "label": "An addressed certificate with outward pointers",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "quantum-search-with-probabilistic-comparisons",
+      "label": "Quantum search with probabilistic comparisons",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-randomized-lower-bound",
+      "label": "The randomized lower bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-universal-quartic-bound",
+      "label": "The universal quartic bound",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "A Nearly Quartic Separation Between Randomized and Quantum Query Complexity",
+      "title": "A Nearly Quartic Separation Between Randomized and Quantum Query Complexity",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Nearly-Quartic-Separation-Between-Randomized-and-Quantum-Query-Complexity-October-5-2026/quartic-query-separation.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from A Nearly Quartic Separation Between Randomized and Quantum Query Complexity.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-prop-quantum"
+          ]
+        },
+        {
+          "id": "m1-lem-forrelation",
+          "role": "an-addressed-certificate-with-outward-pointers",
+          "label": "lemma m1-lem-forrelation",
+          "fullLabel": "lemma m1-lem-forrelation",
+          "kind": "lemma",
+          "source": "An addressed certificate with outward pointers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-local-tests",
+          "role": "an-addressed-certificate-with-outward-pointers",
+          "label": "lemma m1-lem-local-tests",
+          "fullLabel": "lemma m1-lem-local-tests",
+          "kind": "lemma",
+          "source": "An addressed certificate with outward pointers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-amplification",
+          "role": "quantum-search-with-probabilistic-comparisons",
+          "label": "lemma m1-lem-amplification",
+          "fullLabel": "lemma m1-lem-amplification",
+          "kind": "lemma",
+          "source": "Quantum search with probabilistic comparisons",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-tournament",
+          "role": "quantum-search-with-probabilistic-comparisons",
+          "label": "proposition m1-prop-tournament",
+          "fullLabel": "proposition m1-prop-tournament",
+          "kind": "proposition",
+          "source": "Quantum search with probabilistic comparisons",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-quantum",
+          "role": "quantum-search-with-probabilistic-comparisons",
+          "label": "proposition m1-prop-quantum",
+          "fullLabel": "proposition m1-prop-quantum",
+          "kind": "proposition",
+          "source": "Quantum search with probabilistic comparisons",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-adaptive-product",
+          "role": "the-randomized-lower-bound",
+          "label": "lemma m1-lem-adaptive-product",
+          "fullLabel": "lemma m1-lem-adaptive-product",
+          "kind": "lemma",
+          "source": "The randomized lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-classical",
+          "role": "the-randomized-lower-bound",
+          "label": "proposition m1-prop-classical",
+          "fullLabel": "proposition m1-prop-classical",
+          "kind": "proposition",
+          "source": "The randomized lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-quartic-upper",
+          "role": "the-universal-quartic-bound",
+          "label": "theorem m1-thm-quartic-upper",
+          "fullLabel": "theorem m1-thm-quartic-upper",
+          "kind": "theorem",
+          "source": "The universal quartic bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-lem-bs-lambda",
+            "m1-lem-degree-lambda"
+          ]
+        },
+        {
+          "id": "m1-lem-adversary",
+          "role": "the-universal-quartic-bound",
+          "label": "lemma m1-lem-adversary",
+          "fullLabel": "lemma m1-lem-adversary",
+          "kind": "lemma",
+          "source": "The universal quartic bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-bs-lambda",
+          "role": "the-universal-quartic-bound",
+          "label": "lemma m1-lem-bs-lambda",
+          "fullLabel": "lemma m1-lem-bs-lambda",
+          "kind": "lemma",
+          "source": "The universal quartic bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-degree-lambda",
+          "role": "the-universal-quartic-bound",
+          "label": "lemma m1-lem-degree-lambda",
+          "fullLabel": "lemma m1-lem-degree-lambda",
+          "kind": "lemma",
+          "source": "The universal quartic bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-degree-bs",
+          "role": "the-universal-quartic-bound",
+          "label": "lemma m1-lem-degree-bs",
+          "fullLabel": "lemma m1-lem-degree-bs",
+          "kind": "lemma",
+          "source": "The universal quartic bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "A Nearly Quartic Separation Between Randomized and Quantum Query Complexity",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Nearly-Quartic-Separation-Between-Randomized-and-Quantum-Query-Complexity-October-5-2026/quartic-query-separation.pdf",
+      "kind": "paper"
+    }
+  ]
+}

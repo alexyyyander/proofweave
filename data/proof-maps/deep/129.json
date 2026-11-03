@@ -1,0 +1,405 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "129",
+  "title": "Exponential state costs for two-way automata",
+  "result": {
+    "id": "paper-result",
+    "label": "Exponential state costs for two-way automata",
+    "statement": "Proves exponential lower bounds both for complementing two-way nondeterministic finite automata and for simulating one-way nondeterministic automata by two-way deterministic ones. The latter resolves the Sakoda–Sipser state-succinctness conjecture over growing finite alphabets; both results rule out polynomial state bounds independent of alphabet size.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "path-diagrams-and-missing-recurrent-classes",
+      "label": "Path diagrams and missing recurrent classes",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-loss-budget-for-nested-idempotents",
+      "label": "A loss budget for nested idempotents",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-exponential-bound-for-order-reversing-images",
+      "label": "An exponential bound for order-reversing images",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-computations-and-the-main-lower-bound",
+      "label": "Finite computations and the main lower bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "matching-and-relation-corners",
+      "label": "Matching and relation corners",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-exponential-rank-loss-bound",
+      "label": "An exponential rank-loss bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "local-matching-representation-of-deterministic-machines",
+      "label": "Local matching representation of deterministic machines",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-relation-products-to-the-state-lower-bound",
+      "label": "From relation products to the state lower bound",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "An exponential state lower bound for two-way nondeterministic complementation",
+      "title": "An exponential state lower bound for two-way nondeterministic complementation",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-exponential-state-lower-bound-for-two-way-nondeterministic-complementation-September-25-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from An exponential state lower bound for two-way nondeterministic complementation.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-main-theorem",
+          "role": "introduction",
+          "label": "theorem m1-main-theorem",
+          "fullLabel": "theorem m1-main-theorem",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-amp-image",
+          "role": "path-diagrams-and-missing-recurrent-classes",
+          "label": "theorem m1-amp-image",
+          "fullLabel": "theorem m1-amp-image",
+          "kind": "theorem",
+          "source": "Path diagrams and missing recurrent classes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-auto-representation",
+          "role": "path-diagrams-and-missing-recurrent-classes",
+          "label": "lemma m1-auto-representation",
+          "fullLabel": "lemma m1-auto-representation",
+          "kind": "lemma",
+          "source": "Path diagrams and missing recurrent classes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-auto-order-reversal",
+          "role": "path-diagrams-and-missing-recurrent-classes",
+          "label": "proposition m1-auto-order-reversal",
+          "fullLabel": "proposition m1-auto-order-reversal",
+          "kind": "proposition",
+          "source": "Path diagrams and missing recurrent classes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-diag-missing",
+          "role": "path-diagrams-and-missing-recurrent-classes",
+          "label": "lemma m1-diag-missing",
+          "fullLabel": "lemma m1-diag-missing",
+          "kind": "lemma",
+          "source": "Path diagrams and missing recurrent classes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-diag-rectangles",
+          "role": "path-diagrams-and-missing-recurrent-classes",
+          "label": "lemma m1-diag-rectangles",
+          "fullLabel": "lemma m1-diag-rectangles",
+          "kind": "lemma",
+          "source": "Path diagrams and missing recurrent classes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-diag-transport",
+          "role": "path-diagrams-and-missing-recurrent-classes",
+          "label": "lemma m1-diag-transport",
+          "fullLabel": "lemma m1-diag-transport",
+          "kind": "lemma",
+          "source": "Path diagrams and missing recurrent classes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-nest-absorption",
+          "role": "a-loss-budget-for-nested-idempotents",
+          "label": "lemma m1-nest-absorption",
+          "fullLabel": "lemma m1-nest-absorption",
+          "kind": "lemma",
+          "source": "A loss budget for nested idempotents",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-nest-containment",
+          "role": "a-loss-budget-for-nested-idempotents",
+          "label": "lemma m1-nest-containment",
+          "fullLabel": "lemma m1-nest-containment",
+          "kind": "lemma",
+          "source": "A loss budget for nested idempotents",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-nest-chain",
+          "role": "a-loss-budget-for-nested-idempotents",
+          "label": "proposition m1-nest-chain",
+          "fullLabel": "proposition m1-nest-chain",
+          "kind": "proposition",
+          "source": "A loss budget for nested idempotents",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-amp-minimal-corner",
+          "role": "an-exponential-bound-for-order-reversing-images",
+          "label": "lemma m1-amp-minimal-corner",
+          "fullLabel": "lemma m1-amp-minimal-corner",
+          "kind": "lemma",
+          "source": "An exponential bound for order-reversing images",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-amp-relation-corner",
+          "role": "an-exponential-bound-for-order-reversing-images",
+          "label": "lemma m1-amp-relation-corner",
+          "fullLabel": "lemma m1-amp-relation-corner",
+          "kind": "lemma",
+          "source": "An exponential bound for order-reversing images",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-amp-single-edge",
+          "role": "an-exponential-bound-for-order-reversing-images",
+          "label": "proposition m1-amp-single-edge",
+          "fullLabel": "proposition m1-amp-single-edge",
+          "kind": "proposition",
+          "source": "An exponential bound for order-reversing images",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-auto-source",
+          "role": "finite-computations-and-the-main-lower-bound",
+          "label": "lemma m1-auto-source",
+          "fullLabel": "lemma m1-auto-source",
+          "kind": "lemma",
+          "source": "Finite computations and the main lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-auto-determinization",
+          "role": "finite-computations-and-the-main-lower-bound",
+          "label": "corollary m1-auto-determinization",
+          "fullLabel": "corollary m1-auto-determinization",
+          "kind": "corollary",
+          "source": "Finite computations and the main lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "An exponential two-way deterministic state lower bound for one-way liveness",
+      "title": "An exponential two-way deterministic state lower bound for one-way liveness",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-exponential-two-way-deterministic-state-lower-bound-for-one-way-liveness-September-25-2026/main.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from An exponential two-way deterministic state lower bound for one-way liveness.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [],
+          "mentions": [
+            "m2-prop-small-nfa"
+          ]
+        },
+        {
+          "id": "m2-cor-no-polynomial",
+          "role": "introduction",
+          "label": "corollary m2-cor-no-polynomial",
+          "fullLabel": "corollary m2-cor-no-polynomial",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-rank-basic",
+          "role": "matching-and-relation-corners",
+          "label": "lemma m2-lem-rank-basic",
+          "fullLabel": "lemma m2-lem-rank-basic",
+          "kind": "lemma",
+          "source": "Matching and relation corners",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-corners",
+          "role": "matching-and-relation-corners",
+          "label": "lemma m2-lem-corners",
+          "fullLabel": "lemma m2-lem-corners",
+          "kind": "lemma",
+          "source": "Matching and relation corners",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-unit-lifts",
+          "role": "matching-and-relation-corners",
+          "label": "lemma m2-lem-unit-lifts",
+          "fullLabel": "lemma m2-lem-unit-lifts",
+          "kind": "lemma",
+          "source": "Matching and relation corners",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-relation-corner",
+          "role": "matching-and-relation-corners",
+          "label": "lemma m2-lem-relation-corner",
+          "fullLabel": "lemma m2-lem-relation-corner",
+          "kind": "lemma",
+          "source": "Matching and relation corners",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-rank-loss",
+          "role": "an-exponential-rank-loss-bound",
+          "label": "theorem m2-thm-rank-loss",
+          "fullLabel": "theorem m2-thm-rank-loss",
+          "kind": "theorem",
+          "source": "An exponential rank-loss bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-divisor-degree",
+          "role": "an-exponential-rank-loss-bound",
+          "label": "corollary m2-cor-divisor-degree",
+          "fullLabel": "corollary m2-cor-divisor-degree",
+          "kind": "corollary",
+          "source": "An exponential rank-loss bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-machine-diagrams",
+          "role": "local-matching-representation-of-deterministic-machines",
+          "label": "theorem m2-thm-machine-diagrams",
+          "fullLabel": "theorem m2-thm-machine-diagrams",
+          "kind": "theorem",
+          "source": "Local matching representation of deterministic machines",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-sink-tree",
+          "role": "local-matching-representation-of-deterministic-machines",
+          "label": "lemma m2-lem-sink-tree",
+          "fullLabel": "lemma m2-lem-sink-tree",
+          "kind": "lemma",
+          "source": "Local matching representation of deterministic machines",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-tree-tour",
+          "role": "local-matching-representation-of-deterministic-machines",
+          "label": "lemma m2-lem-tree-tour",
+          "fullLabel": "lemma m2-lem-tree-tour",
+          "kind": "lemma",
+          "source": "Local matching representation of deterministic machines",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-small-nfa",
+          "role": "from-relation-products-to-the-state-lower-bound",
+          "label": "proposition m2-prop-small-nfa",
+          "fullLabel": "proposition m2-prop-small-nfa",
+          "kind": "proposition",
+          "source": "From relation products to the state lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-syntactic-quotient",
+          "role": "from-relation-products-to-the-state-lower-bound",
+          "label": "lemma m2-lem-syntactic-quotient",
+          "fullLabel": "lemma m2-lem-syntactic-quotient",
+          "kind": "lemma",
+          "source": "From relation products to the state lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "An exponential state lower bound for two-way nondeterministic complementation",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-exponential-state-lower-bound-for-two-way-nondeterministic-complementation-September-25-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "An exponential two-way deterministic state lower bound for one-way liveness",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-exponential-two-way-deterministic-state-lower-bound-for-one-way-liveness-September-25-2026/main.pdf",
+      "kind": "paper"
+    }
+  ]
+}

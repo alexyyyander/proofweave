@@ -1,0 +1,236 @@
+{
+  "familyNumber": "020",
+  "familyTitle": "Squarefree quartics and power-free polynomial values",
+  "manuscripts": [
+    {
+      "id": "Squarefree-values-of-quartics-and-power-free-values-of-polynomials-September-24-2026",
+      "title": "Squarefree values of quartics and power-free values of polynomials",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Squarefree-values-of-quartics-and-power-free-values-of-polynomials-September-24-2026/manuscript.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "From a large-prime tail to the exact density",
+    "Affine counting with adaptive auxiliary primes",
+    "Arithmetic factorization and paired boxes",
+    "Bihomogeneous determinant cuts",
+    "Lattice coordinates and exceptional fibers",
+    "Weighted Hilbert bounds from selected pairs",
+    "The additional geometry for quartics",
+    "Curve alternatives",
+    "Parameters and an exact finite certificate",
+    "The cyclotomic quartic as a worked example"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-density",
+      "kind": "theorem",
+      "label": "Let f be irreducible over , of degree d with 4 d8 , and put k=d-2 . If holds,…",
+      "statement": "Let f be irreducible over , of degree d with 4 d8 , and put k=d-2 . If holds, then \\[ S_ f,k (X)=c_ f,k X+o_f(X), c_ f,k =_p(1- _f(p^k) p^k )>0. \\] No primitivity or sign condition on the leading…",
+      "section": "Introduction",
+      "manuscript": "Squarefree values of quartics and power-free values of polynomials"
+    },
+    {
+      "id": "m1-cor-all-degrees",
+      "kind": "corollary",
+      "label": "Let f be irreducible over of degree d4 , and put k=d-2 . If f has no fixed…",
+      "statement": "Let f be irreducible over of degree d4 , and put k=d-2 . If f has no fixed prime k th-power divisor, then \\[ S_ f,k (X)=c_ f,k X+o_f(X), c_ f,k =_p(1- _f(p^k) p^k )>0. \\]",
+      "section": "Introduction",
+      "manuscript": "Squarefree values of quartics and power-free values of polynomials"
+    },
+    {
+      "id": "m1-cor-separable-products",
+      "kind": "corollary",
+      "label": "Separable products and simultaneous values",
+      "statement": "[Separable products and simultaneous values] Fix an integer k2 . Let F\\ 0\\ be separable over , with every nonconstant irreducible factor of degree at most k+2 . If _F(p^k)<p^k for every prime p ,…",
+      "section": "Introduction",
+      "manuscript": "Squarefree values of quartics and power-free values of polynomials"
+    },
+    {
+      "id": "m1-prop-large-prime-tail",
+      "kind": "proposition",
+      "label": "Let f be primitive and irreducible, with positive leading coefficient and…",
+      "statement": "Let f be primitive and irreducible, with positive leading coefficient and degree 4 d8 . Put k=d-2 . There exists =_f>0 such that \\[ \\#\\ n:X<n2X,\\ p^k f(n) for some prime p>X\\ _f X^ 1- . \\]",
+      "section": "Introduction",
+      "manuscript": "Squarefree values of quartics and power-free values of polynomials"
+    },
+    {
+      "id": "m1-prop-sieve-transfer",
+      "kind": "proposition",
+      "label": "Sieve transfer",
+      "statement": "[Sieve transfer] Let f be irreducible over , of degree d2 , and let k2 . Suppose that _f(p^k)<p^k for every prime p . Write \\[ f=s c g, s\\ -1,1\\ , c, \\] where c is the positive content of f and g is…",
+      "section": "From a large-prime tail to the exact density",
+      "manuscript": "Squarefree values of quartics and power-free values of polynomials"
+    },
+    {
+      "id": "m1-lem-density-content",
+      "kind": "lemma",
+      "label": "Removing sign and content",
+      "statement": "[Removing sign and content] Let f be irreducible over , of degree at least two, and let k2 . Suppose that _f(p^k)<p^k for every prime p , and write f=s c g , where s\\ -1,1\\ , c is the positive…",
+      "section": "From a large-prime tail to the exact density",
+      "manuscript": "Squarefree values of quartics and power-free values of polynomials"
+    },
+    {
+      "id": "m1-thm-affine-counting",
+      "kind": "theorem",
+      "label": "Fix integers 1 r N , a degree bound e_0 , a constant C , positive coordinate…",
+      "statement": "Fix integers 1 r N , a degree bound e_0 , a constant C , positive coordinate weights _l , and positive numbers _1,,_r . For X2 , let S^N satisfy \\[ |z_l| C X^ _l (z S), \\] and suppose S lies on an…",
+      "section": "Affine counting with adaptive auxiliary primes",
+      "manuscript": "Squarefree values of quartics and power-free values of polynomials"
+    },
+    {
+      "id": "m1-lem-affine-patches",
+      "kind": "lemma",
+      "label": "Let S satisfy the box bound in Theorem~ . For every algebraic set Z'^N of…",
+      "statement": "Let S satisfy the box bound in Theorem~ . For every algebraic set Z'^N of degree at most e , there is a list of boundedly many patches (A,G,) with A Z' that covers S Z' . Their degrees are bounded,…",
+      "section": "Affine counting with adaptive auxiliary primes",
+      "manuscript": "Squarefree values of quartics and power-free values of polynomials"
+    },
+    {
+      "id": "m1-lem-affine-residue-cut",
+      "kind": "lemma",
+      "label": "Fix >0 and a bound on the degree of a patch (A,G,) and its equations, with h=…",
+      "statement": "Fix >0 and a bound on the degree of a patch (A,G,) and its equations, with h= A>0 . Suppose A satisfies . Let z S A be covered by the patch, and let Q be distinct primes such that \\[ q(z)(q Q), _ q Q…",
+      "section": "Affine counting with adaptive auxiliary primes",
+      "manuscript": "Squarefree values of quartics and power-free values of polynomials"
+    },
+    {
+      "id": "m1-lem-affine-deletion",
+      "kind": "lemma",
+      "label": "Deletion estimate",
+      "statement": "[Deletion estimate] Fix z S , all blocks except the i -th, and a prime pool P_i disjoint from those blocks, whose primes lie between X^ and C_rX^ , where >0 is fixed and | P_i| . Choose t uniformly…",
+      "section": "Affine counting with adaptive auxiliary primes",
+      "manuscript": "Squarefree values of quartics and power-free values of polynomials"
+    },
+    {
+      "id": "m1-lem-balanced-factorization",
+      "kind": "lemma",
+      "label": "Balanced factorization",
+      "statement": "[Balanced factorization] There are a positive integer and a fixed finite list of integral ideals c of K with the following property. For all sufficiently large X , each pair (n,p) above admits…",
+      "section": "Arithmetic factorization and paired boxes",
+      "manuscript": "Squarefree values of quartics and power-free values of polynomials"
+    },
+    {
+      "id": "m1-lem-paired-boxes",
+      "kind": "lemma",
+      "label": "Paired boxes",
+      "statement": "[Paired boxes] Fix 0<w<1 and an integer M X^w . Partition each of the s - and t -cubes into grid boxes of side M^ -1 . For the selected points in any fixed arithmetic and coordinate chart, the…",
+      "section": "Arithmetic factorization and paired boxes",
+      "manuscript": "Squarefree values of quartics and power-free values of polynomials"
+    },
+    {
+      "id": "m1-lem-bicone",
+      "kind": "lemma",
+      "label": "The defining ideal of \\( B\\) is prime and is a complete intersection of \\(d-2\\)…",
+      "statement": "The defining ideal of \\( B\\) is prime and is a complete intersection of \\(d-2\\) equations of bidegree \\((k,1)\\). The dimension of \\( V\\) is \\(d\\). If \\(A,B\\) tend to infinity with fixed positive…",
+      "section": "Bihomogeneous determinant cuts",
+      "manuscript": "Squarefree values of quartics and power-free values of polynomials"
+    },
+    {
+      "id": "m1-prop-archimedean-cuts",
+      "kind": "proposition",
+      "label": "Fix positive upper exponents _+,b_+ . Consider a paired box as in Lemma~ , with…",
+      "statement": "Fix positive upper exponents _+,b_+ . Consider a paired box as in Lemma~ , with integer coordinates satisfying \\[ |x_i| X^ _+/d , |y_i| X^ b_+/d . \\] Assume that its normalized chart variables have…",
+      "section": "Bihomogeneous determinant cuts",
+      "manuscript": "Squarefree values of quartics and power-free values of polynomials"
+    },
+    {
+      "id": "m1-lem-lattice-basis",
+      "kind": "lemma",
+      "label": "Let ^d be a full lattice of covolume , and let _1 be its shortest nonzero…",
+      "statement": "Let ^d be a full lattice of covolume , and let _1 be its shortest nonzero Euclidean length. There is a lattice basis b_1,,b_d with \\[ _ i=1 ^d\\|b_i\\| C_d. \\] In this basis, every v with \\|v\\| C has…",
+      "section": "Lattice coordinates and exceptional fibers",
+      "manuscript": "Squarefree values of quartics and power-free values of polynomials"
+    },
+    {
+      "id": "m1-prop-lattice-boxes",
+      "kind": "proposition",
+      "label": "For the paired boxes of Lemma~ , assume the coordinate bounds above and fix…",
+      "statement": "For the paired boxes of Lemma~ , assume the coordinate bounds above and fix parameters satisfying . The paired boxes can be grouped into finitely many ranges indexed by j= , _ 0 , with j m/d . The…",
+      "section": "Lattice coordinates and exceptional fibers",
+      "manuscript": "Squarefree values of quartics and power-free values of polynomials"
+    },
+    {
+      "id": "m1-lem-quartic-fibers",
+      "kind": "lemma",
+      "label": "Suppose d=4 , and let Z be an initial bounded-degree set from Proposition~ ,…",
+      "statement": "Suppose d=4 , and let Z be an initial bounded-degree set from Proposition~ , restricted to the open a_1a_2a_3a_40 . Use coordinates (a,n) there, with b_i=(n-_i)/a_i^2 . Assume either that Z3 , or…",
+      "section": "Lattice coordinates and exceptional fibers",
+      "manuscript": "Squarefree values of quartics and power-free values of polynomials"
+    },
+    {
+      "id": "m1-prop-weighted-hilbert",
+      "kind": "proposition",
+      "label": "For each nonzero coefficient polynomial \\(f_I\\), define \\[ _ i,I =ord_ n-_i…",
+      "statement": "For each nonzero coefficient polynomial \\(f_I\\), define \\[ _ i,I =ord_ n-_i f_I, e_i=_I(I_i+k_ i,I ), \\] and put D=_I\\ U|I|+(kU+V) f_I\\ -U_i e_i. Then \\(D>0\\), and the weighted filtered Hilbert…",
+      "section": "Weighted Hilbert bounds from selected pairs",
+      "manuscript": "Squarefree values of quartics and power-free values of polynomials"
+    },
+    {
+      "id": "m1-prop-quartic-surface",
+      "kind": "proposition",
+      "label": "Let Y be a geometrically irreducible surface defined over in the rational…",
+      "statement": "Let Y be a geometrically irreducible surface defined over in the rational coordinates of the arithmetic boxes. Suppose that it meets the open a_1a_2a_3a_40 , satisfies \\[ a_i^2b_i=n-_i(1 i4), \\] and…",
+      "section": "The additional geometry for quartics",
+      "manuscript": "Squarefree values of quartics and power-free values of polynomials"
+    },
+    {
+      "id": "m1-prop-quintic-discard",
+      "kind": "proposition",
+      "label": "There are finitely many polynomials L[t] of degree five with distinct critical…",
+      "statement": "There are finitely many polynomials L[t] of degree five with distinct critical points z_1=0,z_2=1,z_3,z_4 satisfying \\[ (z_i)=_i(1 i4). \\] Let F_f be this finite family and put \\[ E_f= \\ n:n=(z) for…",
+      "section": "The additional geometry for quartics",
+      "manuscript": "Squarefree values of quartics and power-free values of polynomials"
+    },
+    {
+      "id": "m1-lem-rational-values",
+      "kind": "lemma",
+      "label": "Integral values of a rational function",
+      "statement": "[Integral values of a rational function] Fix a positive integer D and positive constants A,B,C_0 . For every >0 and X2 , let R(s) be a nonpolynomial rational function whose reduced numerator and…",
+      "section": "Curve alternatives",
+      "manuscript": "Squarefree values of quartics and power-free values of polynomials"
+    },
+    {
+      "id": "m1-prop-curve-alternatives",
+      "kind": "proposition",
+      "label": "Curve alternatives",
+      "statement": "[Curve alternatives] Put \\[ g=(d-1)(k-1)+ 1_ d=4 , _1(U,V)=\\ U/2,(U,V/g)\\ . \\] Fix a degree bound E , and let C be a geometrically irreducible curve of degree at most E , defined over , in the…",
+      "section": "Curve alternatives",
+      "manuscript": "Squarefree values of quartics and power-free values of polynomials"
+    },
+    {
+      "id": "m1-prop-parameter-certificate",
+      "kind": "proposition",
+      "label": "Parameter choice",
+      "statement": "[Parameter choice] For each d\\ 4,5,6,7,8\\ , the stopping index in is the one listed in Table~ . For every integer K_0 z<z_d , there are positive rational numbers t_*,w such that, with m=(d-1)w ,…",
+      "section": "Parameters and an exact finite certificate",
+      "manuscript": "Squarefree values of quartics and power-free values of polynomials"
+    },
+    {
+      "id": "m1-cor-cyclotomic-density",
+      "kind": "corollary",
+      "label": "Put \\[ c_8=_ p18 (1-4 p^2 ). \\] Then c_8>3/4 , and \\[ \\#\\ 1 n X:n^4+1 is…",
+      "statement": "Put \\[ c_8=_ p18 (1-4 p^2 ). \\] Then c_8>3/4 , and \\[ \\#\\ 1 n X:n^4+1 is squarefree\\ =c_8X+o(X). \\] Consequently, for every sufficiently large real N , \\[ \\#\\ n:N n2N,\\ n^4+1 is squarefree\\ N/2. \\]",
+      "section": "The cyclotomic quartic as a worked example",
+      "manuscript": "Squarefree values of quartics and power-free values of polynomials"
+    },
+    {
+      "id": "m1-prop-cyclotomic-central",
+      "kind": "proposition",
+      "label": "With _0=10^ -6 , there exists _0>0 such that \\[ \\#\\ n:N n2N,\\ p^2 n^4+1 for…",
+      "statement": "With _0=10^ -6 , there exists _0>0 such that \\[ \\#\\ n:N n2N,\\ p^2 n^4+1 for some prime N^ 1-_0 p N^ 3/2+_0 \\ N^ 1-_0 . \\]",
+      "section": "The cyclotomic quartic as a worked example",
+      "manuscript": "Squarefree values of quartics and power-free values of polynomials"
+    },
+    {
+      "id": "m1-lem-cyclotomic-pell",
+      "kind": "lemma",
+      "label": "Uniformly in the positive integer D , the number of positive integer pairs…",
+      "statement": "Uniformly in the positive integer D , the number of positive integer pairs (n,q) with N n2N and n^4+1=Dq^2 is O(1+ N) . Consequently, for every fixed >0 , the number of inputs in this interval with…",
+      "section": "The cyclotomic quartic as a worked example",
+      "manuscript": "Squarefree values of quartics and power-free values of polynomials"
+    }
+  ],
+  "edges": []
+}

@@ -1,0 +1,625 @@
+{
+  "familyNumber": "350",
+  "familyTitle": "Yau’s nodal bounds: surfaces and higher dimensions",
+  "manuscripts": [
+    {
+      "id": "Sharp-nodal-length-on-smooth-surfaces-September-23-2026",
+      "title": "Sharp nodal length on smooth surfaces",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Sharp-nodal-length-on-smooth-surfaces-September-23-2026/paper.pdf"
+    },
+    {
+      "id": "Smooth-counterexamples-to-Yaus-nodal-upper-bound-in-dimensions-three-and-four-September-23-2026",
+      "title": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Smooth-counterexamples-to-Yaus-nodal-upper-bound-in-dimensions-three-and-four-September-23-2026/paper.pdf"
+    },
+    {
+      "id": "Power-law-violations-of-Yaus-nodal-upper-bound-September-23-2026",
+      "title": "Power-law violations of Yau's nodal upper bound",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Power-law-violations-of-Yaus-nodal-upper-bound-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction and main result",
+    "Subharmonic limits of tilted norms",
+    "Affine improvement under subdivision",
+    "Descent and stability",
+    "Persistence and packing",
+    "Nodal length at the wavelength scale",
+    "Introduction",
+    "Profiles with large mean gradient",
+    "Finite complex waves and robust nodal-area witnesses",
+    "Exactification in dimension three",
+    "Simplicity with the eigenfunction fixed",
+    "Persistence and one fixed smooth metric",
+    "Background modes and strict envelopes",
+    "Finite-order waves and real noncancellation",
+    "Stable sign data and nodal measure",
+    "Realization by an ordinary metric",
+    "Simplicity, persistence, and one fixed metric",
+    "Framework and the quantitative step",
+    "Envelopes with a fixed power gain",
+    "Local packets below an envelope",
+    "Exact eigenfunctions and a fixed metric"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Let (M,g) be a closed connected C^ Riemannian surface. There is a finite…",
+      "statement": "Let (M,g) be a closed connected C^ Riemannian surface. There is a finite constant C=C(M,g) such that every nonzero real Laplace eigenfunction satisfying \\[ -_g u= u, >0, \\] obeys \\[ H_g^1(Z_u) C. \\]…",
+      "section": "Introduction and main result",
+      "manuscript": "Sharp nodal length on smooth surfaces"
+    },
+    {
+      "id": "m1-lem-profile-extraction",
+      "kind": "lemma",
+      "label": "Extraction of a logarithmic profile",
+      "statement": "[Extraction of a logarithmic profile] Let X be an open subset of ^2 or a compact smooth surface. Suppose that S_j and that _j are nonnegative Borel measures on X with _j(X) 1 . There are a…",
+      "section": "Subharmonic limits of tilted norms",
+      "manuscript": "Sharp nodal length on smooth surfaces"
+    },
+    {
+      "id": "m1-thm-subharmonic-profile",
+      "kind": "theorem",
+      "label": "Subharmonicity of logarithmic profiles",
+      "statement": "[Subharmonicity of logarithmic profiles] On a fixed planar disk , let real smooth functions U_j,p_j satisfy \\[ U_j+K_j^2p_jU_j=0, \\] where K_j0 . Let S_j>0 , B_j^2 , and D_j=S_j+|B_j| . Assume S_j,…",
+      "section": "Subharmonic limits of tilted norms",
+      "manuscript": "Sharp nodal length on smooth surfaces"
+    },
+    {
+      "id": "m1-lem-carleman",
+      "kind": "lemma",
+      "label": "A local Carleman estimate",
+      "statement": "[A local Carleman estimate] Assume the coefficient and parameter hypotheses of Theorem~ . After passing to a subsequence, write \\[ S_j/D_j d, B_j/D_j b, d0, d+|b|=1. \\] Let be a real smooth function…",
+      "section": "Subharmonic limits of tilted norms",
+      "manuscript": "Sharp nodal length on smooth surfaces"
+    },
+    {
+      "id": "m1-lem-exceptional-gradient",
+      "kind": "lemma",
+      "label": "Removal of the exceptional gradient",
+      "statement": "[Removal of the exceptional gradient] Let W[-,) be upper semicontinuous and locally bounded above on a connected planar domain. Suppose every smooth function touching W from above at a finite point…",
+      "section": "Subharmonic limits of tilted norms",
+      "manuscript": "Sharp nodal length on smooth surfaces"
+    },
+    {
+      "id": "m1-prop-initial-growth",
+      "kind": "proposition",
+      "label": "Initial growth on a fixed disk",
+      "statement": "[Initial growth on a fixed disk] Let (M,g) be a fixed smooth closed connected surface, and let G M be a fixed nonempty open coordinate disk. There is a finite constant C=C(M,g,G) such that every…",
+      "section": "Subharmonic limits of tilted norms",
+      "manuscript": "Sharp nodal length on smooth surfaces"
+    },
+    {
+      "id": "m1-lem-potential-decomposition",
+      "kind": "lemma",
+      "label": "Uniform potential decomposition",
+      "statement": "[Uniform potential decomposition] Let \\(V\\) be subharmonic on \\(_R\\), with \\[ V0, _ _1 V-1. \\] Then \\(V_ L^1(_8) \\) and the mass of its Riesz measure \\((2)^ -1 V\\) on \\(_5\\) are uniformly bounded.…",
+      "section": "Affine improvement under subdivision",
+      "manuscript": "Sharp nodal length on smooth surfaces"
+    },
+    {
+      "id": "m1-lem-affine-profile",
+      "kind": "lemma",
+      "label": "Affine correction of a profile",
+      "statement": "[Affine correction of a profile] Let \\(V\\), \\(h\\), and \\(\\) be as in Lemma~ . Subdivide the unit square \\([-1/2,1/2]^2\\) into \\(A^2\\) squares, where \\(A>10R\\), put \\(=A^ -1 \\), and denote their…",
+      "section": "Affine improvement under subdivision",
+      "manuscript": "Sharp nodal length on smooth surfaces"
+    },
+    {
+      "id": "m1-prop-subdivision",
+      "kind": "proposition",
+      "label": "One subdivision step",
+      "statement": "[One subdivision step] There are an integer \\(A>10R\\) and constants \\(C_0,C_1>0\\), depending only on the fixed coordinate coefficient bounds and \\(R\\), with the following property. Let \\(Q\\) be an…",
+      "section": "Affine improvement under subdivision",
+      "manuscript": "Sharp nodal length on smooth surfaces"
+    },
+    {
+      "id": "m1-lem-descent",
+      "kind": "lemma",
+      "label": "One step of descent",
+      "statement": "[One step of descent] There is a fixed \\(L>0\\) such that, at any nonterminal square \\(Q\\), if \\(N(Q)>L\\) or \\(b>L\\), one can assign a tilt \\(b_q\\) to each child \\(q\\) so that, writing \\(m=m(Q,b)\\),…",
+      "section": "Descent and stability",
+      "manuscript": "Sharp nodal length on smooth surfaces"
+    },
+    {
+      "id": "m1-lem-stopped-descent",
+      "kind": "lemma",
+      "label": "Stopped descent",
+      "statement": "[Stopped descent] Start at \\(I\\) with a prescribed tilt \\(b_I\\). Whenever a step is made, choose the child tilts by Lemma~ , and suppose that its applicability condition holds at every square from…",
+      "section": "Descent and stability",
+      "manuscript": "Sharp nodal length on smooth surfaces"
+    },
+    {
+      "id": "m1-lem-large-slope",
+      "kind": "lemma",
+      "label": "Large slope forces large growth",
+      "statement": "[Large slope forces large growth] For the fixed \\(L\\) in Lemma~ , there are constants \\(B_*1\\) and \\(_*>0\\) such that every admissible square with \\(s(Q)1\\) and \\(K_Q a_0\\) satisfies b B_*, m(Q,b)_*b…",
+      "section": "Descent and stability",
+      "manuscript": "Sharp nodal length on smooth surfaces"
+    },
+    {
+      "id": "m1-prop-stability",
+      "kind": "proposition",
+      "label": "Stability of large growth",
+      "statement": "[Stability of large growth] There are constants \\(P1\\) and \\(>0\\) with the following property. Suppose a square \\(I\\) and a tilt \\(b_I\\) satisfy b_I P, m(I,b_I)b_I. Then at least half the paths from…",
+      "section": "Descent and stability",
+      "manuscript": "Sharp nodal length on smooth surfaces"
+    },
+    {
+      "id": "m1-lem-entry-bound",
+      "kind": "lemma",
+      "label": "Growth at an entry",
+      "statement": "[Growth at an entry] For all sufficiently large fixed H , every entry Q and its grid parent Q^p satisfy N(Q^p) H, H<N(Q) A^2 (H+C_0 a_0 ).",
+      "section": "Persistence and packing",
+      "manuscript": "Sharp nodal length on smooth surfaces"
+    },
+    {
+      "id": "m1-prop-persistence",
+      "kind": "proposition",
+      "label": "Persistence near an entry",
+      "statement": "[Persistence near an entry] There are a finite threshold H , a number >0 , and an integer J0 such that every entry Q admits a measurable set Y_Q D_*Q , where D_*=20A , with |Y_Q|&|Q|,\\\\ \\#\\ F E:\\…",
+      "section": "Persistence and packing",
+      "manuscript": "Sharp nodal length on smooth surfaces"
+    },
+    {
+      "id": "m1-lem-packing",
+      "kind": "lemma",
+      "label": "Packing from nearby witnesses",
+      "statement": "[Packing from nearby witnesses] Let F be a finite family of squares in the A -adic subdivision tree of a square Q_0 , where A2 . Suppose there are fixed D1 , >0 , and an integer J0 such that every Q…",
+      "section": "Persistence and packing",
+      "manuscript": "Sharp nodal length on smooth surfaces"
+    },
+    {
+      "id": "m1-thm-mean-growth",
+      "kind": "theorem",
+      "label": "Bounded mean growth",
+      "statement": "[Bounded mean growth] For the finite trees considered in this section, let T_ term be the collection of terminal squares and let s_ term be their common side length. There is a constant C ,…",
+      "section": "Persistence and packing",
+      "manuscript": "Sharp nodal length on smooth surfaces"
+    },
+    {
+      "id": "m1-thm-local-length",
+      "kind": "theorem",
+      "label": "Roy-Fortin",
+      "statement": "[Roy-Fortin] There are constants _0>0 and C>0 with the following property. Let F be a nonzero real solution of \\[ F+qF=0on _3, q C^(_3), q_<_0. \\] If \\[ = F_ L^(_ 5/2 ) F_ L^(_ 1/4 ) , \\] then \\[…",
+      "section": "Nodal length at the wavelength scale",
+      "manuscript": "Sharp nodal length on smooth surfaces"
+    },
+    {
+      "id": "m1-lem-wavelength-length",
+      "kind": "lemma",
+      "label": "Nodal length from local L^2 growth",
+      "statement": "[Nodal length from local L^2 growth] Fix the coefficient bounds and coordinate neighborhood from Section~ . There is an >0 such that, for every admissible square I of side s with ks , H^1(I Z_u)…",
+      "section": "Nodal length at the wavelength scale",
+      "manuscript": "Sharp nodal length on smooth surfaces"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Let g_* be the round metric on ^3 . Every neighborhood of g_* in the C^…",
+      "statement": "Let g_* be the round metric on ^3 . Every neighborhood of g_* in the C^ topology contains a smooth Riemannian metric g_ for which there are nonzero smooth real functions u_j and positive numbers _j…",
+      "section": "Introduction",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-thm-four",
+      "kind": "theorem",
+      "label": "There are a smooth Riemannian metric g_ on S^2^2 , nonzero smooth real…",
+      "statement": "There are a smooth Riemannian metric g_ on S^2^2 , nonzero smooth real functions u_j , and positive numbers _j such that \\[ -_ g_ u_j=_j u_j, ^3_ g_ (Z_ u_j ) _j . \\]",
+      "section": "Introduction",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-prop-profile-amplification",
+      "kind": "proposition",
+      "label": "Amplification of the mean gradient",
+      "statement": "[Amplification of the mean gradient] Let be a coordinate cube with compact closure in a smooth three-dimensional Riemannian manifold. Suppose that is smooth on a neighborhood of , is strict there,…",
+      "section": "Profiles with large mean gradient",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-lem-profile-localization",
+      "kind": "lemma",
+      "label": "Disjoint patches and averaging",
+      "statement": "[Disjoint patches and averaging] Let U be an open subset of a relatively compact coordinate cube, and let be a finite measure given by a positive smooth density. Given an open neighborhood of each…",
+      "section": "Profiles with large mean gradient",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-lem-profile-preparation",
+      "kind": "lemma",
+      "label": "Preparation",
+      "statement": "[Preparation] Under the hypotheses of Proposition~ , let 0<_p1/3 and >0 . There is a smooth strict function , with nonvanishing gradient on , such that \\[ (-), \\|-\\|_ C^0() <, |a_-a_|_p|a_| on . \\]…",
+      "section": "Profiles with large mean gradient",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-lem-radial-corrugation",
+      "kind": "lemma",
+      "label": "Transverse radial corrugation",
+      "statement": "[Transverse radial corrugation] There are constants >0 and g_0>0 , depending only on the fixed function F , with the following property. Let be full with nonvanishing gradient on a neighborhood of…",
+      "section": "Profiles with large mean gradient",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-prop-spherical-profiles",
+      "kind": "proposition",
+      "label": "Spherical profiles",
+      "statement": "[Spherical profiles] There is a C^2 neighborhood U of g_* such that the following holds. For every smooth g U , every 1/5 t3/10 , and every T,>0 , there is a smooth real function on ^3 with \\[ _0=…",
+      "section": "Profiles with large mean gradient",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-lem-phase-hessian",
+      "kind": "lemma",
+      "label": "Admissible phase Hessians",
+      "statement": "[Admissible phase Hessians] Let H be a real symmetric form on a three-dimensional Euclidean space, and let z=a+ib , where a,b are real, a b , and |b|^2=1+|a|^2 . If a0 and H(a,a)+H(b,b)>0 , there is…",
+      "section": "Finite complex waves and robust nodal-area witnesses",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-lem-finite-waves",
+      "kind": "lemma",
+      "label": "Localized finite-order waves",
+      "statement": "[Localized finite-order waves] For every pair of nonnegative integers m,D , there are common normal coordinate balls about the points of K_1 and three waves at every center p K_1 , for all…",
+      "section": "Finite complex waves and robust nodal-area witnesses",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-prop-sign-functional",
+      "kind": "proposition",
+      "label": "Persistence and area comparison for sign tests",
+      "statement": "[Persistence and area comparison for sign tests] The functional F_n is lower semicontinuous for uniform convergence of real functions. It is unchanged by multiplication by a nonzero real constant or…",
+      "section": "Finite complex waves and robust nodal-area witnesses",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-lem-wave-noncancellation",
+      "kind": "lemma",
+      "label": "Uniform exponent in real-jet noncancellation",
+      "statement": "[Uniform exponent in real-jet noncancellation] Fix any nonnegative integers m_*,D_* . Construct the waves with those residual requirements and with all derivative bounds needed through order (m_*,2)…",
+      "section": "Finite complex waves and robust nodal-area witnesses",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-lem-wave-sign-expectation",
+      "kind": "lemma",
+      "label": "Profile-independent sign gain",
+      "statement": "[Profile-independent sign gain] With a fixed sufficiently small >0 as above, there is a constant c_ sign >0 , independent of the fixed profile and of the wave accuracy orders, such that for all…",
+      "section": "Finite complex waves and robust nodal-area witnesses",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-prop-wave-superposition",
+      "kind": "proposition",
+      "label": "Simultaneous wave realization",
+      "statement": "[Simultaneous wave realization] Under the hypotheses of this section, fix arbitrary nonnegative integers m_*,D_* . For every sufficiently large integer n there is a smooth real U_n satisfying and ,…",
+      "section": "Finite complex waves and robust nodal-area witnesses",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-lem-exact-quotients",
+      "kind": "lemma",
+      "label": "Scalar correction",
+      "statement": "[Scalar correction] Let \\((M,g)\\) be a fixed closed smooth Riemannian manifold. Fix an integer \\(B1\\), and let \\(h0\\) and \\(D_*>0\\) be integers. Suppose that, for all sufficiently large integers…",
+      "section": "Exactification in dimension three",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-lem-metric-conductivity",
+      "kind": "lemma",
+      "label": "Metric conductivity",
+      "statement": "[Metric conductivity] Let \\((M,g)\\) be a smooth three-dimensional Riemannian manifold and let \\(A\\) be a smooth positive \\(g\\)-self-adjoint endomorphism of \\(TM\\). Put \\(d= A\\), with determinant…",
+      "section": "Exactification in dimension three",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-lem-exact-positive-factor",
+      "kind": "lemma",
+      "label": "A positive conjugating factor",
+      "statement": "[A positive conjugating factor] Let \\((M,g)\\) be a fixed closed smooth three-dimensional Riemannian manifold. Given integers \\(k_20\\) and \\(P_21\\), choose an even integer \\(l4\\) with \\(l>k_2+3/2\\),…",
+      "section": "Exactification in dimension three",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-prop-exactification",
+      "kind": "proposition",
+      "label": "Exactification with an unchanged exterior",
+      "statement": "[Exactification with an unchanged exterior] Let \\(g\\) be a fixed smooth metric on \\(^3\\), and fix \\(0<t_2<t_3<1\\). Assume that \\(g=g_*\\) on \\(\\ r t_2\\ \\), where \\(g_*\\) is the unit round metric and…",
+      "section": "Exactification in dimension three",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-lem-nondegenerate-pencil",
+      "kind": "lemma",
+      "label": "A space of symmetric forms",
+      "statement": "[A space of symmetric forms] Let V be a finite-dimensional real vector space and let LSym^2(V^*) be a linear subspace. Suppose that, for each v0 , some B L satisfies B(v,v)0 . Then L contains a…",
+      "section": "Simplicity with the eigenfunction fixed",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-prop-pinned-simplicity",
+      "kind": "proposition",
+      "label": "Simplicity with the eigenfunction fixed",
+      "statement": "[Simplicity with the eigenfunction fixed] Let h be a smooth metric on ^3 and let u be a nonzero real smooth function satisfying \\[ -_hu=_nu, _n=n(n+2), n2. \\] Suppose that, on an annulus A=\\ a<r<b\\…",
+      "section": "Simplicity with the eigenfunction fixed",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-lem-simple-eigenpair-continuity",
+      "kind": "lemma",
+      "label": "Continuity near a simple eigenvalue",
+      "statement": "[Continuity near a simple eigenvalue] Let M be a closed smooth manifold, let h_0 be a smooth Riemannian metric, and suppose that _0>0 is a simple eigenvalue of -_ h_0 with real eigenfunction u_0…",
+      "section": "Persistence and one fixed smooth metric",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-prop-one-step",
+      "kind": "proposition",
+      "label": "One construction step",
+      "statement": "[One construction step] Suppose that g V agrees with g_* on r R_0 , where \\[ 15 R_0<R_13 10 . \\] Let N be any C^ neighborhood of g , let A>0 , and let N2 be an integer. There are an integer n N , a…",
+      "section": "Persistence and one fixed smooth metric",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-env-background-mode",
+      "kind": "lemma",
+      "label": "Background modes",
+      "statement": "[Background modes] For every integer k1 , set \\[ _k=2k^2+k, u_k^0=^kp(k), =+z. \\] Then u_k^0 is a smooth real eigenfunction on M with (_ g_0 +_k)u_k^0=0 . Set f_0= p on a neighborhood of P . There is…",
+      "section": "Background modes and strict envelopes",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-env-amplify",
+      "kind": "lemma",
+      "label": "Uniform amplification",
+      "statement": "[Uniform amplification] There is d_*>0 , depending only on the comparison constant K and fixed auxiliary functions, with the following property. Suppose h is smooth, satisfies near D , and f is a…",
+      "section": "Background modes and strict envelopes",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-env-gaps",
+      "kind": "lemma",
+      "label": "Gaps and arbitrary growth",
+      "statement": "[Gaps and arbitrary growth] Fix h U with supp(h-g_0) P . There are nested open coordinate boxes \\[ Dsupp(h-g_0) U_0 U_1 U_2 U_3 U_4 P. \\] For every L_*>0 there is a smooth strict envelope f for h on…",
+      "section": "Background modes and strict envelopes",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-wave-packets",
+      "kind": "proposition",
+      "label": "Finite-order packets",
+      "statement": "[Finite-order packets] For any integers ,J0 , and all sufficiently large integers k , there are packets indexed by \\[ Y_k=(k^ -1 Z^4) U_3, y Y_k, 1 j3, \\] of the form p_ yj,k (x)=e^ k_ yj (x) A_ yj,k…",
+      "section": "Finite-order waves and real noncancellation",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-wave-residual",
+      "kind": "lemma",
+      "label": "Weighted residual bounds",
+      "statement": "[Weighted residual bounds] For any predetermined integers ,J0 , choose the packets of Proposition~ with derivative order and residual power J+6 . On E_k , the function in equals u_k^0 outside a…",
+      "section": "Finite-order waves and real noncancellation",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-wave-noncancellation",
+      "kind": "lemma",
+      "label": "Real noncancellation",
+      "statement": "[Real noncancellation] For every fixed choice of the preceding finite accuracy orders, the event G_k= E_k \\ \\, |(u(x),k^ -1 du(x))| k^ -200 W(x) for every x U_2\\,\\ has probability tending to one as k…",
+      "section": "Finite-order waves and real noncancellation",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-score-measure",
+      "kind": "lemma",
+      "label": "The score bounds nodal measure",
+      "statement": "[The score bounds nodal measure] There is c_ H >0 , independent of the subdivision, k , and the envelope, such that, for every g U and every real C(M) , H_g^3(\\ =0\\ ) c_ H S().",
+      "section": "Stable sign data and nodal measure",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-score-expectation",
+      "kind": "lemma",
+      "label": "Expected score",
+      "statement": "[Expected score] One can choose c_0>0 and c_ E >0 , using only uniform metric comparability, such that the Gaussian superposition satisfies, for all sufficiently large integers k , E S(u) c_ E T_k.…",
+      "section": "Stable sign data and nodal measure",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-score-good",
+      "kind": "proposition",
+      "label": "A simultaneous good realization",
+      "statement": "[A simultaneous good realization] For every predetermined pair of finite orders ,J0 , all sufficiently large integers k admit a choice of the real Gaussian coefficients for which the smooth real…",
+      "section": "Stable sign data and nodal measure",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-corr-realization",
+      "kind": "lemma",
+      "label": "Ordinary-metric realization",
+      "statement": "[Ordinary-metric realization] Fix the background \\(M,g_0,P,u_k^0,_k\\) of Lemma~ , patches \\(U_2 U_3 U_4 P\\), a smooth metric \\(h\\) such that \\(h-g_0\\) has compact support in \\(U_2\\), and a fixed…",
+      "section": "Realization by an ordinary metric",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-corr-weighted",
+      "kind": "lemma",
+      "label": "Weighted correction",
+      "statement": "[Weighted correction] Under -- , there are a smooth symmetric contravariant tensor \\(F\\) and a smooth scalar \\(\\), both compactly supported in \\(U_2\\), such that _h((h^ -1 +F)\\,du) +_k(1+)u=0. For…",
+      "section": "Realization by an ordinary metric",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-corr-conformal",
+      "kind": "lemma",
+      "label": "The conformal factor",
+      "statement": "[The conformal factor] Fix the smooth metric \\(h\\) on the closed four-manifold \\(M\\), and an even integer \\(s>2\\). There are \\(>0\\) and \\(C_s\\), depending only on \\(h,s\\) and the fixed Sobolev norms,…",
+      "section": "Realization by an ordinary metric",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-corr-localization",
+      "kind": "lemma",
+      "label": "Determinant repair on the collar",
+      "statement": "[Determinant repair on the collar] For the data , suppose that \\( Z-1\\) is sufficiently small in \\(C^1\\) and \\(>0\\). Then an ordinary smooth metric \\(g_*\\), equal to \\(g_0\\) outside a compact subset…",
+      "section": "Realization by an ordinary metric",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-spec-simple",
+      "kind": "lemma",
+      "label": "Simplicity preserving an eigenfunction",
+      "statement": "[Simplicity preserving an eigenfunction] Let g be a smooth metric on M , and suppose \\[ -_g t=_k t, k1, \\] \\[ g=g_0, t=u_k^0 outside a compact subset of P. \\] In every smooth-topology neighborhood of…",
+      "section": "Simplicity, persistence, and one fixed metric",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-spec-persistence",
+      "kind": "lemma",
+      "label": "Open persistence of a fixed score",
+      "statement": "[Open persistence of a fixed score] Suppose g U has a simple positive eigenvalue with real eigenfunction t , and, for a fixed sign score and N>0 , \\[ >N, c_ H S(t)>N. \\] There is a smooth-topology…",
+      "section": "Simplicity, persistence, and one fixed metric",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m2-spec-one-step",
+      "kind": "proposition",
+      "label": "An arbitrarily close step",
+      "statement": "[An arbitrarily close step] Let h U and suppose h-g_0 has compact support in P . For every smooth-topology neighborhood O of h , every N>0 , and every integer k_ , there are an integer k k_ , a…",
+      "section": "Simplicity, persistence, and one fixed metric",
+      "manuscript": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four"
+    },
+    {
+      "id": "m3-thm-main",
+      "kind": "theorem",
+      "label": "There exist a smooth Riemannian metric g on S^4 S^1 , a number _0>0 , and…",
+      "statement": "There exist a smooth Riemannian metric g on S^4 S^1 , a number _0>0 , and nonzero real smooth functions u_j with positive eigenvalues _j such that \\[ -_g u_j=_j u_j, _j, _g^4( (u_j)) _j^ 1/2+_0 . \\]…",
+      "section": "Introduction",
+      "manuscript": "Power-law violations of Yau's nodal upper bound"
+    },
+    {
+      "id": "m3-prop-step",
+      "kind": "proposition",
+      "label": "There exist a C^1 neighborhood U of the round pair (g_0^ -1 ,1) among smooth…",
+      "statement": "There exist a C^1 neighborhood U of the round pair (g_0^ -1 ,1) among smooth positive pairs, a chart as above, and a number >0 with the following property. Fix a smooth pair (A,) U , numbers \\[ 14…",
+      "section": "Framework and the quantitative step",
+      "manuscript": "Power-law violations of Yau's nodal upper bound"
+    },
+    {
+      "id": "m3-lem-seed",
+      "kind": "lemma",
+      "label": "There are a number a_*>0 , a smooth real function h_0 on B , a C^1 neighborhood…",
+      "statement": "There are a number a_*>0 , a smooth real function h_0 on B , a C^1 neighborhood G of g_0 among smooth metrics, and a coordinate chart \\ t>1/2\\ with open sets U_0 V such that the following assertions…",
+      "section": "Envelopes with a fixed power gain",
+      "manuscript": "Power-law violations of Yau's nodal upper bound"
+    },
+    {
+      "id": "m3-lem-corrugation",
+      "kind": "lemma",
+      "label": "Under fixed ellipticity and C^1 metric bounds in the coordinate patch, there…",
+      "statement": "Under fixed ellipticity and C^1 metric bounds in the coordinate patch, there are constants C_ p ^*>0 , c_ p ^*>0 and >0 with the following property. For any C_ p C_ p ^* and 0<c_ p c_ p ^* , one may…",
+      "section": "Envelopes with a fixed power gain",
+      "manuscript": "Power-law violations of Yau's nodal upper bound"
+    },
+    {
+      "id": "m3-prop-envelope",
+      "kind": "proposition",
+      "label": "After fixing the data of Lemma~ and possibly shrinking G , there are common…",
+      "statement": "After fixing the data of Lemma~ and possibly shrinking G , there are common constants >0 and c>0 with the following property. For every smooth G G and all sufficiently large k , there is a smooth…",
+      "section": "Envelopes with a fixed power gain",
+      "manuscript": "Power-law violations of Yau's nodal upper bound"
+    },
+    {
+      "id": "m3-lem-phase-hessian",
+      "kind": "lemma",
+      "label": "A dominated characteristic Hessian",
+      "statement": "[A dominated characteristic Hessian] Let \\(e_1,v\\) be orthonormal vectors in \\(^4\\), let \\(0 b<1\\), and let \\(H\\) be a real symmetric matrix such that \\[ |H| k^ 4 , J'=b^2H(e_1,e_1)+H(v,v) k^ -2 . \\]…",
+      "section": "Local packets below an envelope",
+      "manuscript": "Power-law violations of Yau's nodal upper bound"
+    },
+    {
+      "id": "m3-lem-polynomial-inverse",
+      "kind": "lemma",
+      "label": "Polynomial directional inverses",
+      "statement": "[Polynomial directional inverses] Let \\( P_m\\) be the space of complex homogeneous polynomials of degree \\(m\\) on \\(^4\\), equipped with the coefficient norm in a fixed monomial basis. Fix \\(0<c C<\\).…",
+      "section": "Local packets below an envelope",
+      "manuscript": "Power-law violations of Yau's nodal upper bound"
+    },
+    {
+      "id": "m3-prop-packets",
+      "kind": "proposition",
+      "label": "Packets with arbitrary finite accuracy",
+      "statement": "[Packets with arbitrary finite accuracy] Fix a nonnegative integer \\(J\\) and a real number \\(M>0\\). Finite construction orders can be chosen, before taking \\(k\\) large, so that every center \\(z\\)…",
+      "section": "Local packets below an envelope",
+      "manuscript": "Power-law violations of Yau's nodal upper bound"
+    },
+    {
+      "id": "m3-lem-scaled-packets",
+      "kind": "lemma",
+      "label": "Packets on a wavelength ball",
+      "statement": "[Packets on a wavelength ball] Fix the finite construction orders in Proposition~ and a fixed finite number \\(K_10\\). Let \\( W\\) be the collection of all four packets from each of finitely many…",
+      "section": "Local packets below an envelope",
+      "manuscript": "Power-law violations of Yau's nodal upper bound"
+    },
+    {
+      "id": "m3-lem-noncancellation",
+      "kind": "lemma",
+      "label": "A quantitative nonvanishing first jet",
+      "statement": "[A quantitative nonvanishing first jet] For every fixed choice of the finite packet orders, the construction above satisfies ( B_k\\ _ x B |u(x)|+| u(x)|_ g_0 W(x) k^ -500 \\ )1. The exponent 500 is…",
+      "section": "Exact eigenfunctions and a fixed metric",
+      "manuscript": "Power-law violations of Yau's nodal upper bound"
+    },
+    {
+      "id": "m3-lem-signs",
+      "kind": "lemma",
+      "label": "For every fixed choice of the packet orders in , there exist p_*,c_*>0 ,…",
+      "statement": "For every fixed choice of the packet orders in , there exist p_*,c_*>0 , independent of k , such that for all sufficiently large allowed frequencies, the probability that u has a sign certificate in…",
+      "section": "Exact eigenfunctions and a fixed metric",
+      "manuscript": "Power-law violations of Yau's nodal upper bound"
+    },
+    {
+      "id": "m3-lem-correction",
+      "kind": "lemma",
+      "label": "Let (A,) be a fixed smooth positive pair, let u be real and smooth, and let W…",
+      "statement": "Let (A,) be a fixed smooth positive pair, let u be real and smooth, and let W be a smooth positive weight. Suppose that \\[ |u|+| u|_ g_0 k^ -500 W. \\] Fix an integer R0 . Suppose that \\[ |D^qu| C_qk^…",
+      "section": "Exact eigenfunctions and a fixed metric",
+      "manuscript": "Power-law violations of Yau's nodal upper bound"
+    },
+    {
+      "id": "m3-lem-simplicity",
+      "kind": "lemma",
+      "label": "Suppose a smooth positive pair has a real eigenfunction u at k^2=N(N+3) , with…",
+      "statement": "Suppose a smooth positive pair has a real eigenfunction u at k^2=N(N+3) , with N>1 . Suppose there is an open region on which the pair equals the round pair and u=u_* , containing a point with 0<t<1…",
+      "section": "Exact eigenfunctions and a fixed metric",
+      "manuscript": "Power-law violations of Yau's nodal upper bound"
+    },
+    {
+      "id": "m3-lem-persistence",
+      "kind": "lemma",
+      "label": "Let a smooth positive pair P=(A,) have a simple positive base eigenvalue and a…",
+      "statement": "Let a smooth positive pair P=(A,) have a simple positive base eigenvalue and a real eigenfunction with a sign certificate C . If I(0,) is an open interval containing , there are an integer s1 and >0…",
+      "section": "Exact eigenfunctions and a fixed metric",
+      "manuscript": "Power-law violations of Yau's nodal upper bound"
+    },
+    {
+      "id": "m3-corollary-15",
+      "kind": "corollary",
+      "label": "For every integer n>5 there is a smooth closed connected n -dimensional…",
+      "statement": "For every integer n>5 there is a smooth closed connected n -dimensional Riemannian manifold and a fixed _0>0 with the same divergence of nodal measure divided by ^ 1/2+_0 .",
+      "section": "Exact eigenfunctions and a fixed metric",
+      "manuscript": "Power-law violations of Yau's nodal upper bound"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-carleman",
+      "to": "m1-thm-subharmonic-profile",
+      "label": "lem:carleman",
+      "context": "[Proof of Theorem~\\ref{thm:subharmonic-profile}] Fix such a profile $V$ and pass to a further subsequence so that $S_j/D_j\\to d$ and $B_j/D_j\\to b$ as in Lemma~\\ref{lem:carleman}. The profile bounds remain valid on this subsequence. Suppose a smooth $\\chi$ touches $V$ from above at a finite poin"
+    }
+  ]
+}

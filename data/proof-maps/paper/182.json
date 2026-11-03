@@ -1,0 +1,398 @@
+{
+  "familyNumber": "182",
+  "familyTitle": "Power savings for intersective polynomial differences and prime arguments",
+  "manuscripts": [
+    {
+      "id": "A-Power-Saving-for-Polynomial-Differences-at-Prime-Arguments-October-5-2026",
+      "title": "A Power Saving for Polynomial Differences at Prime Arguments",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Power-Saving-for-Polynomial-Differences-at-Prime-Arguments-October-5-2026/prime-argument-polynomial-differences.pdf"
+    },
+    {
+      "id": "A-power-saving-for-square-difference-free-sets-September-24-2026",
+      "title": "A power saving for square-difference-free sets",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-power-saving-for-square-difference-free-sets-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Auxiliary polynomials and local admissibility",
+    "Reflection-positive laws on residue tuples",
+    "Multilinear estimates and Fourier lifts",
+    "Prime estimates",
+    "A kernel on differences at prime arguments",
+    "Descent to shorter intervals",
+    "Finite-field square constraints",
+    "Finite reflection-positive probability laws",
+    "Signed multilinear forms and conductor decay",
+    "Uniform moment bounds for Fourier lifts",
+    "A signed kernel for actual square differences",
+    "Comparison along square-step progressions",
+    "Contraction on ordered intervals",
+    "Exceptional terms and the power-saving induction"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Let h be prime-intersective, of degree at least two and with positive leading…",
+      "statement": "Let h be prime-intersective, of degree at least two and with positive leading coefficient. There exist constants c_h>0 and C_h1 such that, for every positive integer N and every A , \\[ (A-A)\\ h(p):p…",
+      "section": "Introduction",
+      "manuscript": "A Power Saving for Polynomial Differences at Prime Arguments"
+    },
+    {
+      "id": "m1-lem-auxiliary",
+      "kind": "lemma",
+      "label": "Auxiliary family",
+      "statement": "[Auxiliary family] For every l1 , the polynomial h_l belongs to , has degree k and positive leading coefficient a_l , and all its coefficients are O_h(a_l) . We have h_1=h and T_1(x)=x . For every D1…",
+      "section": "Auxiliary polynomials and local admissibility",
+      "manuscript": "A Power Saving for Polynomial Differences at Prime Arguments"
+    },
+    {
+      "id": "m1-lem-local-sums",
+      "kind": "lemma",
+      "label": "Local exponential sums",
+      "statement": "[Local exponential sums] There is an integer P_1>(k,2) , depending only on h , such that for every l1 and every prime p P_1 , at least p/2 arguments in _p are allowed regular. For every integer v…",
+      "section": "Auxiliary polynomials and local admissibility",
+      "manuscript": "A Power Saving for Polynomial Differences at Prime Arguments"
+    },
+    {
+      "id": "m1-lem-local-lifting",
+      "kind": "lemma",
+      "label": "Uniform lifting classes",
+      "statement": "[Uniform lifting classes] For every prime p<P_1 , there is an integer S_p0 , depending only on h and p , such that, for every l1 , some integer x satisfies p T_l(x), v_p(h_l'(x)) S_p. Set…",
+      "section": "Auxiliary polynomials and local admissibility",
+      "manuscript": "A Power Saving for Polynomial Differences at Prime Arguments"
+    },
+    {
+      "id": "m1-lem-admissible-cycle",
+      "kind": "lemma",
+      "label": "A fixed admissible cycle length",
+      "statement": "[A fixed admissible cycle length] Fix an integer L>2 such that 4 L>2, p^ E_p L(p<P_1). For every l1 and every prime p , there are L admissible residues y_0,,y_ L-1 modulo p^ E_p , with repetitions…",
+      "section": "Auxiliary polynomials and local admissibility",
+      "manuscript": "A Power Saving for Polynomial Differences at Prime Arguments"
+    },
+    {
+      "id": "m1-prop-tuple-laws",
+      "kind": "proposition",
+      "label": "Tuple laws",
+      "statement": "[Tuple laws] There is a threshold P>P_1 , depending only on h , with the following property. For every l1 and prime p P , there are a probability measure _ l,p on _p^V and a submeasure 0_ l,p _ l,p…",
+      "section": "Reflection-positive laws on residue tuples",
+      "manuscript": "A Power Saving for Polynomial Differences at Prime Arguments"
+    },
+    {
+      "id": "m1-lem-graph-estimates",
+      "kind": "lemma",
+      "label": "Weighted graph estimates",
+      "statement": "[Weighted graph estimates] Let G be a fixed finite directed graph with no loops and with at most one edge on each unordered pair of vertices. Give its vertices independent uniform labels Y_x_p , and…",
+      "section": "Reflection-positive laws on residue tuples",
+      "manuscript": "A Power Saving for Polynomial Differences at Prime Arguments"
+    },
+    {
+      "id": "m1-prop-signed-holder",
+      "kind": "proposition",
+      "label": "Signed H\\\"older inequality",
+      "statement": "[Signed H\\\"older inequality] For every positive integer \\(l\\), finite set \\( P\\) of primes at least \\(P\\), and real functions \\(g,g_v:X_ P \\), Z_ l, P (g)0, | Z_ l, P ((g_v)_ v V )| _ v V Z_ l, P…",
+      "section": "Multilinear estimates and Fourier lifts",
+      "manuscript": "A Power Saving for Polynomial Differences at Prime Arguments"
+    },
+    {
+      "id": "m1-lem-seminorm",
+      "kind": "lemma",
+      "label": "Seminorm and changes of coordinates",
+      "statement": "[Seminorm and changes of coordinates] The map \\(g\\|g\\|_ l, P \\) is a seminorm on the real functions on \\(X_ P \\). It satisfies \\[ | E g|\\|g\\|_ l, P , \\| E_Bg\\|_ l, P B =\\| E_Bg\\|_ l, P \\|g\\|_ l, P .…",
+      "section": "Multilinear estimates and Fourier lifts",
+      "manuscript": "A Power Saving for Polynomial Differences at Prime Arguments"
+    },
+    {
+      "id": "m1-lem-large-denominator",
+      "kind": "lemma",
+      "label": "Large-denominator estimate",
+      "statement": "[Large-denominator estimate] Fix \\(l1\\) and a finite prime set \\( P\\) as above. At each prime choose either \\(_p=_ l,p \\) or \\(_p=_ l,p ^ \\). Let \\(g_v:X_ P \\) be arbitrary functions. If, in one…",
+      "section": "Multilinear estimates and Fourier lifts",
+      "manuscript": "A Power Saving for Polynomial Differences at Prime Arguments"
+    },
+    {
+      "id": "m1-prop-lift-moments",
+      "kind": "proposition",
+      "label": "Uniform lift moments",
+      "statement": "[Uniform lift moments] Let \\( P\\) be any finite set of primes, \\(Q1\\), and let \\(I\\) be a consecutive integer interval with \\(|I|10Q^6\\). For every integer \\(r1\\), every \\(>0\\), every function…",
+      "section": "Multilinear estimates and Fourier lifts",
+      "manuscript": "A Power Saving for Polynomial Differences at Prime Arguments"
+    },
+    {
+      "id": "m1-lem-lift-specialization",
+      "kind": "lemma",
+      "label": "Specialization of residue coordinates",
+      "statement": "[Specialization of residue coordinates] Let \\(B P\\), fix \\(z_B X_B\\), and let \\(G:X_ P \\). For \\(1 s<\\), \\[ \\|G(z_B,)\\|_ L^s(X_ P B ) q_B^ 1/s \\|G\\|_ L^s(X_ P ) . \\] In particular, a Fourier lift or…",
+      "section": "Multilinear estimates and Fourier lifts",
+      "manuscript": "A Power Saving for Polynomial Differences at Prime Arguments"
+    },
+    {
+      "id": "m1-thm-zero-free-input",
+      "kind": "theorem",
+      "label": "Zero-free input, [Theorem~1.1",
+      "statement": "[Zero-free input, ] For every integer b1 and every Dirichlet character modulo b , the Dirichlet L -function L(s,) has no zero in s>7/8 . This includes imprimitive characters and the trivial character…",
+      "section": "Prime estimates",
+      "manuscript": "A Power Saving for Polynomial Differences at Prime Arguments"
+    },
+    {
+      "id": "m1-prop-prime-progressions",
+      "kind": "proposition",
+      "label": "Uniform distribution in residue classes",
+      "statement": "[Uniform distribution in residue classes] Uniformly for Y2 , 0 x Y , integers b1 , and reduced residue classes c modulo b , _ n x\\ c b '(n) =x (b) +O(Y^ 31/32 ^2(2bY)). For a nonreduced class modulo…",
+      "section": "Prime estimates",
+      "manuscript": "A Power Saving for Polynomial Differences at Prime Arguments"
+    },
+    {
+      "id": "m1-prop-prime-minor-arcs",
+      "kind": "proposition",
+      "label": "Prime polynomial sums",
+      "statement": "[Prime polynomial sums] For fixed k2 and 0<<1 , there is a constant c_m=c_m(k,)(0,1/4) with the following property. If Y is sufficiently large, I is an interval, and f has degree at most k with…",
+      "section": "Prime estimates",
+      "manuscript": "A Power Saving for Polynomial Differences at Prime Arguments"
+    },
+    {
+      "id": "m1-lem-rational-spacing",
+      "kind": "lemma",
+      "label": "Rational spacing",
+      "statement": "[Rational spacing] Suppose (a,q)=1 , q2 , and |-a/q| q^ -2 . For R1 and M1 , _ 1 r R (M,\\| r\\|^ -1 ) (R/q+1)(M+q(2q)).",
+      "section": "Prime estimates",
+      "manuscript": "A Power Saving for Polynomial Differences at Prime Arguments"
+    },
+    {
+      "id": "m1-lem-prime-differencing",
+      "kind": "lemma",
+      "label": "One-variable and mixed differencing",
+      "statement": "[One-variable and mixed differencing] Let k2 , and let f have degree at most k , with coefficient b_k of x^k . If J is an interval of integers of length at most an integer M1 , and m is a positive…",
+      "section": "Prime estimates",
+      "manuscript": "A Power Saving for Polynomial Differences at Prime Arguments"
+    },
+    {
+      "id": "m1-prop-pair-cancellation",
+      "kind": "proposition",
+      "label": "Cancellation for an ordered pair",
+      "statement": "[Cancellation for an ordered pair] Suppose N is sufficiently large, l N^ , and D=M_0_ p B p N^ , where B is a finite set of primes at least P . Let J_1,J_2:[N] have modulus at most one and be…",
+      "section": "A kernel on differences at prime arguments",
+      "manuscript": "A Power Saving for Polynomial Differences at Prime Arguments"
+    },
+    {
+      "id": "m1-lem-kernel-comparison",
+      "kind": "lemma",
+      "label": "Comparison of the two kernels",
+      "statement": "[Comparison of the two kernels] For the data and ranges of Proposition~ , _ / |S_0()-S_1()| H^ -/2 .",
+      "section": "A kernel on differences at prime arguments",
+      "manuscript": "A Power Saving for Polynomial Differences at Prime Arguments"
+    },
+    {
+      "id": "m1-lem-residue-specialization",
+      "kind": "lemma",
+      "label": "Residue specialization",
+      "statement": "[Residue specialization] Let N1 , A , s M_0 , and let I be a nonempty consecutive interval. Let B P_N , write q_B=_ p B p , D=M_0q_B , and S= P_N B . Fix the coordinates indexed by B of L_ I, P_N,Q…",
+      "section": "Descent to shorter intervals",
+      "manuscript": "A Power Saving for Polynomial Differences at Prime Arguments"
+    },
+    {
+      "id": "m1-prop-shorter-scale",
+      "kind": "proposition",
+      "label": "Comparison with shorter intervals",
+      "statement": "[Comparison with shorter intervals] For all sufficiently large N , every l1 , and every set A avoiding at l , the following holds. Let B P_N satisfy q_B N^ , and put \\[ D=M_0q_B, L_D=(D), n_B=N L_D ,…",
+      "section": "Descent to shorter intervals",
+      "manuscript": "A Power Saving for Polynomial Differences at Prime Arguments"
+    },
+    {
+      "id": "m1-prop-descent-cancellation",
+      "kind": "proposition",
+      "label": "Cancellation on the nonexceptional laws",
+      "statement": "[Cancellation on the nonexceptional laws] For all sufficiently large N , all 1 l N^ , every A avoiding at l , and every good assignment (s_v)_ v V , |_ v V G_ s_v (z_v)\\, d_ p P_N (_ l,p -_ l,p )| N^…",
+      "section": "Descent to shorter intervals",
+      "manuscript": "A Power Saving for Polynomial Differences at Prime Arguments"
+    },
+    {
+      "id": "m1-prop-descent-recurrence",
+      "kind": "proposition",
+      "label": "Recurrence",
+      "statement": "[Recurrence] There is a constant C_1 such that for every sufficiently large N and 1 l N^ , Y_l(N) &C_1N^ - +(1+u_N),\\\\ u_N= &(1+M_0^kN^ k-1 )^d-1=o(1). The constant and the sufficiently-large…",
+      "section": "Descent to shorter intervals",
+      "manuscript": "A Power Saving for Polynomial Differences at Prime Arguments"
+    },
+    {
+      "id": "m1-prop-uniform-descent",
+      "kind": "proposition",
+      "label": "Uniform power decay",
+      "statement": "[Uniform power decay] There are constants a_0,b_0>0 and C_01 , depending only on h , such that for all integers l,N1 , Y_l(N) C_0l^ b_0 N^ -a_0 .",
+      "section": "Descent to shorter intervals",
+      "manuscript": "A Power Saving for Polynomial Differences at Prime Arguments"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "There are absolute constants c>0 and C< such that, for every integer N1 and…",
+      "statement": "There are absolute constants c>0 and C< such that, for every integer N1 and every square-difference-free set A , \\[ |A| C N^ 1-c . \\] Equivalently, every subset of [N] larger than C N^ 1-c contains…",
+      "section": "Introduction",
+      "manuscript": "A power saving for square-difference-free sets"
+    },
+    {
+      "id": "m2-lem-graph-count",
+      "kind": "lemma",
+      "label": "Counting directed square constraints",
+      "statement": "[Counting directed square constraints] Let \\(p\\) be an odd prime and let \\(G=(W,E)\\) be a finite directed graph with no loops and at most one edge on each unordered pair of distinct vertices. Put…",
+      "section": "Finite-field square constraints",
+      "manuscript": "A power saving for square-difference-free sets"
+    },
+    {
+      "id": "m2-lem-list-mixing",
+      "kind": "lemma",
+      "label": "Mixing between two lists",
+      "statement": "[Mixing between two lists] Let \\(I,J\\) be finite disjoint sets, and let \\(G\\) be a directed graph on \\(I J\\) whose \\(m\\) edges all join \\(I\\) to \\(J\\), with at most one edge on each unordered pair.…",
+      "section": "Finite-field square constraints",
+      "manuscript": "A power saving for square-difference-free sets"
+    },
+    {
+      "id": "m2-prop-tuple-laws",
+      "kind": "proposition",
+      "label": "Tuple laws",
+      "statement": "[Tuple laws] There is an absolute integer \\(P\\) such that, for every prime \\(p P\\), there are a probability measure \\(_p\\) on \\( F_p^V\\) and a nonnegative submeasure \\(_p_p\\) whose mass satisfies \\[…",
+      "section": "Finite reflection-positive probability laws",
+      "manuscript": "A power saving for square-difference-free sets"
+    },
+    {
+      "id": "m2-lem-tuple-component-symmetry",
+      "kind": "lemma",
+      "label": "Symmetry of the component matrices",
+      "statement": "[Symmetry of the component matrices] For every allowed mark set \\(S\\) and every reflection \\(\\), the measure \\(_ p,S \\) is invariant under the permutation \\((z_v)(z_ v )\\). Its matrix at that cut is…",
+      "section": "Finite reflection-positive probability laws",
+      "manuscript": "A power saving for square-difference-free sets"
+    },
+    {
+      "id": "m2-lem-marked-positive",
+      "kind": "lemma",
+      "label": "Marked-cut lower bound",
+      "statement": "[Marked-cut lower bound] Put \\[ =9 10 ^ h-1 , =(e^-1)^n, c_* = m_ t_0+1 ^ -n >0. \\] For every \\(S\\) with \\(|S| t_0+1\\), every cut in a marked block \\(b S\\), and every real \\(F: F_p^ V_+ R\\), Q_ p,S ^…",
+      "section": "Finite reflection-positive probability laws",
+      "manuscript": "A power saving for square-difference-free sets"
+    },
+    {
+      "id": "m2-lem-unmarked-error",
+      "kind": "lemma",
+      "label": "Unmarked-cut error",
+      "statement": "[Unmarked-cut error] Let \\(b S\\) specify a cut and suppose \\(s=|S| t_0\\). Let \\(Y_+\\) consist of the lists at plus addresses, and let \\(I_+(Y_+)\\) impose only the constraints internal to those…",
+      "section": "Finite reflection-positive probability laws",
+      "manuscript": "A power saving for square-difference-free sets"
+    },
+    {
+      "id": "m2-lem-tuple-marking-domination",
+      "kind": "lemma",
+      "label": "Domination after marking a block",
+      "statement": "[Domination after marking a block] Let \\(b S\\), \\(|S| t_0\\), and set \\(S'=S\\ b\\ \\). For the cut in block \\(b\\) and every real half-label function \\(F\\), Q_ p,S' ^ b (F) c_*r^ -n D_ p,S ^ b (F).…",
+      "section": "Finite reflection-positive probability laws",
+      "manuscript": "A power saving for square-difference-free sets"
+    },
+    {
+      "id": "m2-lem-conditional-mixing",
+      "kind": "lemma",
+      "label": "Conditional mixing and pair marginals",
+      "statement": "[Conditional mixing and pair marginals] For the fixed index set \\(V\\) and the measures constructed above, there is an absolute threshold \\(P\\) such that the following statements hold for every prime…",
+      "section": "Finite reflection-positive probability laws",
+      "manuscript": "A power saving for square-difference-free sets"
+    },
+    {
+      "id": "m2-prop-signed-holder",
+      "kind": "proposition",
+      "label": "Signed H\\\"older inequality",
+      "statement": "[Signed H\\\"older inequality] For every finite prime set \\( P\\) as above and real functions \\(g,g_v:X_ P R\\), one has Z_ P (g)0, | Z_ P ((g_v)_ v V )| _ v V Z_ P (g_v)^ 1/d . The inequality includes…",
+      "section": "Signed multilinear forms and conductor decay",
+      "manuscript": "A power saving for square-difference-free sets"
+    },
+    {
+      "id": "m2-lem-functional-properties",
+      "kind": "lemma",
+      "label": "Seminorm properties",
+      "statement": "[Seminorm properties] The map \\(g\\|g\\|_ P \\) is a seminorm on the real functions on \\(X_ P \\), and | E g|\\|g\\|_ P . For \\(a_p F_p\\) and \\(r_p Q_p^*\\), let \\(A(x)_p=r_px_p+a_p\\). Then \\|g A\\|_ P…",
+      "section": "Signed multilinear forms and conductor decay",
+      "manuscript": "A power saving for square-difference-free sets"
+    },
+    {
+      "id": "m2-lem-conductor-decay",
+      "kind": "lemma",
+      "label": "Conductor decay",
+      "statement": "[Conductor decay] Let \\( P\\) be a finite set of primes at least \\(P\\), and at each prime choose \\(_p\\) to be either \\(_p\\) or \\(_p^\\). Let \\(R1\\), and let \\(g_w:X_ P C\\), \\(w V\\), be functions.…",
+      "section": "Signed multilinear forms and conductor decay",
+      "manuscript": "A power saving for square-difference-free sets"
+    },
+    {
+      "id": "m2-lem-lift-moments",
+      "kind": "lemma",
+      "label": "Uniform moments of Fourier lifts",
+      "statement": "[Uniform moments of Fourier lifts] Let \\(Q1\\), let \\(I\\) have length \\(L10Q^6\\), and suppose \\(\\|f\\|_ M\\). Let \\( F\\) be any subfamily of \\(\\ U P:q_U Q\\ \\), and put \\[ k=\\ |U|:U P,\\ q_U Q\\ . \\] For…",
+      "section": "Uniform moment bounds for Fourier lifts",
+      "manuscript": "A power saving for square-difference-free sets"
+    },
+    {
+      "id": "m2-lem-lift-specialization",
+      "kind": "lemma",
+      "label": "Specialization of lifts",
+      "statement": "[Specialization of lifts] Let \\(B P\\), let \\(z_B X_B\\), and let \\(G:X_ P C\\). For every finite \\(p1\\), \\|G(z_B,)\\|_ L^p(X_ P B ) q_B^ 1/p \\|G\\|_ L^p(X_ P ) . In the setting of Lemma~ , this gives,…",
+      "section": "Uniform moment bounds for Fourier lifts",
+      "manuscript": "A power saving for square-difference-free sets"
+    },
+    {
+      "id": "m2-prop-square-kernel",
+      "kind": "proposition",
+      "label": "Ordered square-kernel estimate",
+      "statement": "[Ordered square-kernel estimate] Let N1 be an integer, put H=N^ /2 , and let D=8d_0 N^ , where d_0 is odd and squarefree. Suppose F,J:[N] C satisfy |F|,|J|1 and are supported in residue classes a,b…",
+      "section": "A signed kernel for actual square differences",
+      "manuscript": "A power saving for square-difference-free sets"
+    },
+    {
+      "id": "m2-lem-exact-fiber",
+      "kind": "lemma",
+      "label": "Exact coefficients on a fiber",
+      "statement": "[Exact coefficients on a fiber] Let \\(N1\\), let \\(A\\), and define \\(f_s\\) by . Let \\(I\\) be a nonempty interval, let \\(B P_N\\), and put \\[ q_B=_ p B p, S= P_N B, D=M_0q_B. \\] Fix \\(s M_0\\) and \\(z_B…",
+      "section": "Comparison along square-step progressions",
+      "manuscript": "A power saving for square-difference-free sets"
+    },
+    {
+      "id": "m2-prop-scale-transfer",
+      "kind": "proposition",
+      "label": "Comparison with a shorter interval",
+      "statement": "[Comparison with a shorter interval] There are constants \\(C_ tr <\\) and \\(N_ tr \\) with the following property. Let \\(N N_ tr \\), let \\(A\\) be square-difference-free, and let \\(B P_N\\) satisfy \\(q_B…",
+      "section": "Comparison along square-step progressions",
+      "manuscript": "A power saving for square-difference-free sets"
+    },
+    {
+      "id": "m2-lem-good-residues",
+      "kind": "lemma",
+      "label": "Existence of good residue assignments",
+      "statement": "[Existence of good residue assignments] The proportion defined in~ satisfies \\[ M_0^ -23 >0. \\]",
+      "section": "Contraction on ordered intervals",
+      "manuscript": "A power saving for square-difference-free sets"
+    },
+    {
+      "id": "m2-prop-nonexceptional-contraction",
+      "kind": "proposition",
+      "label": "Contraction for good residue assignments",
+      "statement": "[Contraction for good residue assignments] There are absolute constants \\(C\\) and \\(N_0\\) such that, whenever \\(N N_0\\), \\(A\\) has no positive square difference, and \\( s\\) is good, one has |_ v V L_…",
+      "section": "Contraction on ordered intervals",
+      "manuscript": "A power saving for square-difference-free sets"
+    },
+    {
+      "id": "m2-prop-induction-recurrence",
+      "kind": "proposition",
+      "label": "There are absolute constants K< and N_12 such that, for every integer N N_1 ,…",
+      "statement": "There are absolute constants K< and N_12 such that, for every integer N N_1 , Y(N) & K N^ -_0 +(1+u_N)((1-) Y(n_) +\\! _ B P_N\\ _B N^ _B Y(n_B)), \\\\ u_N&=(1+M_0^2N^ 2-1 )^d-1. In particular, u_N0 as N…",
+      "section": "Exceptional terms and the power-saving induction",
+      "manuscript": "A power saving for square-difference-free sets"
+    },
+    {
+      "id": "m2-thm-functional-decay",
+      "kind": "theorem",
+      "label": "There are absolute constants a_0>0 and C_0< such that, for every positive…",
+      "statement": "There are absolute constants a_0>0 and C_0< such that, for every positive integer N and every square-difference-free set A , \\[ Y(N,A) C_0N^ -a_0 . \\]",
+      "section": "Exceptional terms and the power-saving induction",
+      "manuscript": "A power saving for square-difference-free sets"
+    }
+  ],
+  "edges": []
+}

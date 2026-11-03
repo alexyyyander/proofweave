@@ -1,0 +1,586 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "255",
+  "title": "Quasi-isometric recognition of virtually polycyclic groups",
+  "result": {
+    "id": "paper-result",
+    "label": "Quasi-isometric recognition of virtually polycyclic groups",
+    "statement": "Proves that every finitely generated group quasi-isometric to a finitely generated virtually polycyclic group is virtually polycyclic, resolving the Eskin–Fisher–Whyte lattice-recognition conjecture. Equivalently, a group quasi-isometric to a lattice in a connected simply connected solvable Lie group is virtually a uniform lattice in some such Lie group, possibly a different one.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "cartan-models-and-the-canonical-height",
+      "label": "Cartan models and the canonical height",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "weighted-boxes-and-path-packing",
+      "label": "Weighted boxes and path packing",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "polynomial-images-and-recurrent-switches",
+      "label": "Polynomial images and recurrent switches",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "stationary-height-slopes",
+      "label": "Stationary height slopes",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "affine-limits-of-chart-profiles",
+      "label": "Affine limits of chart profiles",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "agreement-of-neighboring-linear-labels",
+      "label": "Agreement of neighboring linear labels",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "comparing-the-offsets-of-neighboring-sheets",
+      "label": "Comparing the offsets of neighboring sheets",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-random-charts-to-uniform-height-control",
+      "label": "From random charts to uniform height control",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "quotient-boundaries-and-bounded-height-error",
+      "label": "Quotient boundaries and bounded height error",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-bounded-heights-to-polycyclicity",
+      "label": "From bounded heights to polycyclicity",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Quasi-isometric recognition of virtually polycyclic groups",
+      "title": "Quasi-isometric recognition of virtually polycyclic groups",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/quasi-isometric-recognition-of-virtually-polycyclic-groups-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Quasi-isometric recognition of virtually polycyclic groups.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-recognition",
+          "role": "introduction",
+          "label": "theorem m1-thm-recognition",
+          "fullLabel": "theorem m1-thm-recognition",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-lem-model-reduction"
+          ]
+        },
+        {
+          "id": "m1-cor-lattice-recognition",
+          "role": "introduction",
+          "label": "corollary m1-cor-lattice-recognition",
+          "fullLabel": "corollary m1-cor-lattice-recognition",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-bounded-height",
+          "role": "introduction",
+          "label": "theorem m1-thm-bounded-height",
+          "fullLabel": "theorem m1-thm-bounded-height",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-lem-lipschitz-pairs"
+          ]
+        },
+        {
+          "id": "m1-lem-cartan-model",
+          "role": "cartan-models-and-the-canonical-height",
+          "label": "lemma m1-lem-cartan-model",
+          "fullLabel": "lemma m1-lem-cartan-model",
+          "kind": "lemma",
+          "source": "Cartan models and the canonical height",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-d-scaling",
+          "role": "cartan-models-and-the-canonical-height",
+          "label": "lemma m1-lem-d-scaling",
+          "fullLabel": "lemma m1-lem-d-scaling",
+          "kind": "lemma",
+          "source": "Cartan models and the canonical height",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-canonical-height",
+          "role": "cartan-models-and-the-canonical-height",
+          "label": "lemma m1-lem-canonical-height",
+          "fullLabel": "lemma m1-lem-canonical-height",
+          "kind": "lemma",
+          "source": "Cartan models and the canonical height",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-box-calculus",
+          "role": "weighted-boxes-and-path-packing",
+          "label": "lemma m1-lem-box-calculus",
+          "fullLabel": "lemma m1-lem-box-calculus",
+          "kind": "lemma",
+          "source": "Weighted boxes and path packing",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-support-symmetries",
+          "role": "weighted-boxes-and-path-packing",
+          "label": "lemma m1-lem-support-symmetries",
+          "fullLabel": "lemma m1-lem-support-symmetries",
+          "kind": "lemma",
+          "source": "Weighted boxes and path packing",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-product-schemes",
+          "role": "weighted-boxes-and-path-packing",
+          "label": "lemma m1-lem-product-schemes",
+          "fullLabel": "lemma m1-lem-product-schemes",
+          "kind": "lemma",
+          "source": "Weighted boxes and path packing",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-log-distortion",
+          "role": "weighted-boxes-and-path-packing",
+          "label": "lemma m1-lem-log-distortion",
+          "fullLabel": "lemma m1-lem-log-distortion",
+          "kind": "lemma",
+          "source": "Weighted boxes and path packing",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-support-switch-paths",
+          "role": "weighted-boxes-and-path-packing",
+          "label": "lemma m1-lem-support-switch-paths",
+          "fullLabel": "lemma m1-lem-support-switch-paths",
+          "kind": "lemma",
+          "source": "Weighted boxes and path packing",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-path-packing",
+          "role": "weighted-boxes-and-path-packing",
+          "label": "lemma m1-lem-path-packing",
+          "fullLabel": "lemma m1-lem-path-packing",
+          "kind": "lemma",
+          "source": "Weighted boxes and path packing",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-polynomial-path-packing",
+          "role": "weighted-boxes-and-path-packing",
+          "label": "lemma m1-lem-polynomial-path-packing",
+          "fullLabel": "lemma m1-lem-polynomial-path-packing",
+          "kind": "lemma",
+          "source": "Weighted boxes and path packing",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-fixed-sheet-packing",
+          "role": "weighted-boxes-and-path-packing",
+          "label": "lemma m1-lem-fixed-sheet-packing",
+          "fullLabel": "lemma m1-lem-fixed-sheet-packing",
+          "kind": "lemma",
+          "source": "Weighted boxes and path packing",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-lift-multiplicity",
+          "role": "weighted-boxes-and-path-packing",
+          "label": "lemma m1-lem-lift-multiplicity",
+          "fullLabel": "lemma m1-lem-lift-multiplicity",
+          "kind": "lemma",
+          "source": "Weighted boxes and path packing",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-polynomial-image",
+          "role": "polynomial-images-and-recurrent-switches",
+          "label": "lemma m1-lem-polynomial-image",
+          "fullLabel": "lemma m1-lem-polynomial-image",
+          "kind": "lemma",
+          "source": "Polynomial images and recurrent switches",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-backward-recurrence",
+          "role": "polynomial-images-and-recurrent-switches",
+          "label": "lemma m1-lem-backward-recurrence",
+          "fullLabel": "lemma m1-lem-backward-recurrence",
+          "kind": "lemma",
+          "source": "Polynomial images and recurrent switches",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-restricted-products",
+          "role": "polynomial-images-and-recurrent-switches",
+          "label": "corollary m1-cor-restricted-products",
+          "fullLabel": "corollary m1-cor-restricted-products",
+          "kind": "corollary",
+          "source": "Polynomial images and recurrent switches",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-lipschitz-pairs",
+          "role": "stationary-height-slopes",
+          "label": "lemma m1-lem-lipschitz-pairs",
+          "fullLabel": "lemma m1-lem-lipschitz-pairs",
+          "kind": "lemma",
+          "source": "Stationary height slopes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-pair-sections",
+          "role": "stationary-height-slopes",
+          "label": "lemma m1-lem-pair-sections",
+          "fullLabel": "lemma m1-lem-pair-sections",
+          "kind": "lemma",
+          "source": "Stationary height slopes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-cohomological-slope",
+          "role": "stationary-height-slopes",
+          "label": "lemma m1-lem-cohomological-slope",
+          "fullLabel": "lemma m1-lem-cohomological-slope",
+          "kind": "lemma",
+          "source": "Stationary height slopes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-stationary-volume",
+          "role": "stationary-height-slopes",
+          "label": "lemma m1-lem-stationary-volume",
+          "fullLabel": "lemma m1-lem-stationary-volume",
+          "kind": "lemma",
+          "source": "Stationary height slopes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-inverse-coupling",
+          "role": "stationary-height-slopes",
+          "label": "lemma m1-lem-inverse-coupling",
+          "fullLabel": "lemma m1-lem-inverse-coupling",
+          "kind": "lemma",
+          "source": "Stationary height slopes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-stationary-slopes",
+          "role": "stationary-height-slopes",
+          "label": "proposition m1-prop-stationary-slopes",
+          "fullLabel": "proposition m1-prop-stationary-slopes",
+          "kind": "proposition",
+          "source": "Stationary height slopes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-stationary-increments",
+          "role": "stationary-height-slopes",
+          "label": "corollary m1-cor-stationary-increments",
+          "fullLabel": "corollary m1-cor-stationary-increments",
+          "kind": "corollary",
+          "source": "Stationary height slopes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-profile-interior-slack",
+          "role": "affine-limits-of-chart-profiles",
+          "label": "lemma m1-lem-profile-interior-slack",
+          "fullLabel": "lemma m1-lem-profile-interior-slack",
+          "kind": "lemma",
+          "source": "Affine limits of chart profiles",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-occupation-invariance",
+          "role": "affine-limits-of-chart-profiles",
+          "label": "lemma m1-lem-occupation-invariance",
+          "fullLabel": "lemma m1-lem-occupation-invariance",
+          "kind": "lemma",
+          "source": "Affine limits of chart profiles",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-profile-convex-increments",
+          "role": "affine-limits-of-chart-profiles",
+          "label": "lemma m1-lem-profile-convex-increments",
+          "fullLabel": "lemma m1-lem-profile-convex-increments",
+          "kind": "lemma",
+          "source": "Affine limits of chart profiles",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-profile-segment-volume",
+          "role": "affine-limits-of-chart-profiles",
+          "label": "lemma m1-lem-profile-segment-volume",
+          "fullLabel": "lemma m1-lem-profile-segment-volume",
+          "kind": "lemma",
+          "source": "Affine limits of chart profiles",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-affinity-criterion",
+          "role": "affine-limits-of-chart-profiles",
+          "label": "lemma m1-lem-affinity-criterion",
+          "fullLabel": "lemma m1-lem-affinity-criterion",
+          "kind": "lemma",
+          "source": "Affine limits of chart profiles",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-affine-profiles",
+          "role": "affine-limits-of-chart-profiles",
+          "label": "proposition m1-prop-affine-profiles",
+          "fullLabel": "proposition m1-prop-affine-profiles",
+          "kind": "proposition",
+          "source": "Affine limits of chart profiles",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-affine-profile-concentration",
+          "role": "affine-limits-of-chart-profiles",
+          "label": "corollary m1-cor-affine-profile-concentration",
+          "fullLabel": "corollary m1-cor-affine-profile-concentration",
+          "kind": "corollary",
+          "source": "Affine limits of chart profiles",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-neighbor-labels",
+          "role": "agreement-of-neighboring-linear-labels",
+          "label": "proposition m1-prop-neighbor-labels",
+          "fullLabel": "proposition m1-prop-neighbor-labels",
+          "kind": "proposition",
+          "source": "Agreement of neighboring linear labels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-prop-affine-profiles"
+          ]
+        },
+        {
+          "id": "m1-lem-tuple-lift-volume",
+          "role": "agreement-of-neighboring-linear-labels",
+          "label": "lemma m1-lem-tuple-lift-volume",
+          "fullLabel": "lemma m1-lem-tuple-lift-volume",
+          "kind": "lemma",
+          "source": "Agreement of neighboring linear labels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-cone-quotients",
+          "role": "comparing-the-offsets-of-neighboring-sheets",
+          "label": "lemma m1-lem-cone-quotients",
+          "fullLabel": "lemma m1-lem-cone-quotients",
+          "kind": "lemma",
+          "source": "Comparing the offsets of neighboring sheets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-strict-width-tiling",
+          "role": "comparing-the-offsets-of-neighboring-sheets",
+          "label": "lemma m1-lem-strict-width-tiling",
+          "fullLabel": "lemma m1-lem-strict-width-tiling",
+          "kind": "lemma",
+          "source": "Comparing the offsets of neighboring sheets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-neighbor-offsets",
+          "role": "comparing-the-offsets-of-neighboring-sheets",
+          "label": "proposition m1-prop-neighbor-offsets",
+          "fullLabel": "proposition m1-prop-neighbor-offsets",
+          "kind": "proposition",
+          "source": "Comparing the offsets of neighboring sheets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-suffix-concentration",
+          "role": "from-random-charts-to-uniform-height-control",
+          "label": "lemma m1-lem-suffix-concentration",
+          "fullLabel": "lemma m1-lem-suffix-concentration",
+          "kind": "lemma",
+          "source": "From random charts to uniform height control",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-scale-stabilization",
+          "role": "from-random-charts-to-uniform-height-control",
+          "label": "lemma m1-lem-scale-stabilization",
+          "fullLabel": "lemma m1-lem-scale-stabilization",
+          "kind": "lemma",
+          "source": "From random charts to uniform height control",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-uniform-sublinear",
+          "role": "from-random-charts-to-uniform-height-control",
+          "label": "proposition m1-prop-uniform-sublinear",
+          "fullLabel": "proposition m1-prop-uniform-sublinear",
+          "kind": "proposition",
+          "source": "From random charts to uniform height control",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-ray-boundaries",
+          "role": "quotient-boundaries-and-bounded-height-error",
+          "label": "lemma m1-lem-ray-boundaries",
+          "fullLabel": "lemma m1-lem-ray-boundaries",
+          "kind": "lemma",
+          "source": "Quotient boundaries and bounded height error",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-boundary-volume",
+          "role": "quotient-boundaries-and-bounded-height-error",
+          "label": "lemma m1-lem-boundary-volume",
+          "fullLabel": "lemma m1-lem-boundary-volume",
+          "kind": "lemma",
+          "source": "Quotient boundaries and bounded height error",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-leaf-height",
+          "role": "quotient-boundaries-and-bounded-height-error",
+          "label": "lemma m1-lem-leaf-height",
+          "fullLabel": "lemma m1-lem-leaf-height",
+          "kind": "lemma",
+          "source": "Quotient boundaries and bounded height error",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-haar-averaging",
+          "role": "quotient-boundaries-and-bounded-height-error",
+          "label": "lemma m1-lem-haar-averaging",
+          "fullLabel": "lemma m1-lem-haar-averaging",
+          "kind": "lemma",
+          "source": "Quotient boundaries and bounded height error",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-model-reduction",
+          "role": "from-bounded-heights-to-polycyclicity",
+          "label": "lemma m1-lem-model-reduction",
+          "fullLabel": "lemma m1-lem-model-reduction",
+          "kind": "lemma",
+          "source": "From bounded heights to polycyclicity",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-height-kernel-growth",
+          "role": "from-bounded-heights-to-polycyclicity",
+          "label": "lemma m1-lem-height-kernel-growth",
+          "fullLabel": "lemma m1-lem-height-kernel-growth",
+          "kind": "lemma",
+          "source": "From bounded heights to polycyclicity",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-recognition-from-height",
+          "role": "from-bounded-heights-to-polycyclicity",
+          "label": "proposition m1-prop-recognition-from-height",
+          "fullLabel": "proposition m1-prop-recognition-from-height",
+          "kind": "proposition",
+          "source": "From bounded heights to polycyclicity",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Quasi-isometric recognition of virtually polycyclic groups",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/quasi-isometric-recognition-of-virtually-polycyclic-groups-September-24-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

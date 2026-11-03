@@ -1,0 +1,361 @@
+{
+  "familyNumber": "229",
+  "familyTitle": "Exact three- and four-state reconstruction thresholds and four-state tree capacity",
+  "manuscripts": [
+    {
+      "id": "The-Reconstruction-Threshold-for-the-Ferromagnetic-Four-State-Potts-Model-October-5-2026",
+      "title": "The Reconstruction Threshold for the Ferromagnetic Four-State Potts Model",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Reconstruction-Threshold-for-the-Ferromagnetic-Four-State-Potts-Model-October-5-2026/four-state-potts.pdf"
+    },
+    {
+      "id": "A-Capacity-Criterion-for-Four-State-Potts-Reconstruction-on-Trees-October-5-2026",
+      "title": "A Capacity Criterion for Four-State Potts Reconstruction on Trees",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Capacity-Criterion-for-Four-State-Potts-Reconstruction-on-Trees-October-5-2026/four-state-capacity.pdf"
+    },
+    {
+      "id": "The-exact-reconstruction-threshold-for-the-three-state-symmetric-channel-September-25-2026",
+      "title": "The exact reconstruction threshold for the three-state symmetric channel",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-exact-reconstruction-threshold-for-the-three-state-symmetric-channel-September-25-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Symmetric posterior experiments",
+    "A preserved constraint on posterior laws",
+    "Decay on the tree",
+    "Exact polynomial certificates",
+    "Finite verification",
+    "Posterior experiments and the companion input",
+    "From reconstruction to capacity",
+    "Local estimates for information loss",
+    "Posterior experiments and reductions",
+    "Positive channels at equality",
+    "Negative equality: exclusion of small fixed points",
+    "Negative equality: a global weighted logarithm inequality",
+    "A finite certificate at the coloring boundary",
+    "The radial inequality"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For the channel , if d^21 , then \\[ _ n a_n(d,)=0 \\] in each of the following…",
+      "statement": "For the channel , if d^21 , then \\[ _ n a_n(d,)=0 \\] in each of the following models: the rooted d -ary tree, for every integer d2 ; the Poisson (d) Galton--Watson tree, for every real d>0 . In…",
+      "section": "Introduction",
+      "manuscript": "The Reconstruction Threshold for the Ferromagnetic Four-State Potts Model"
+    },
+    {
+      "id": "m1-lem-bayes-product",
+      "kind": "lemma",
+      "label": "Bayes product",
+      "statement": "[Bayes product] Let two experiments have the same uniform input and observations that are independent conditional on that input. Let and be their individual posterior laws. For p,q , define \\[…",
+      "section": "Symmetric posterior experiments",
+      "manuscript": "The Reconstruction Threshold for the Ferromagnetic Four-State Potts Model"
+    },
+    {
+      "id": "m1-lem-channel",
+      "kind": "lemma",
+      "label": "Passage through one edge",
+      "statement": "[Passage through one edge] Let I be uniform on [4] , let J be obtained from I through the channel P_ , and let Y be an experiment about J , independent of I conditional on J . If is the posterior law…",
+      "section": "Symmetric posterior experiments",
+      "manuscript": "The Reconstruction Threshold for the Ferromagnetic Four-State Potts Model"
+    },
+    {
+      "id": "m1-prop-polynomial-inequalities",
+      "kind": "proposition",
+      "label": "Polynomial inequalities",
+      "statement": "[Polynomial inequalities] For every p,q , the polynomials in satisfy F(p)0 , G(p)0 , and H(p)-1/2 . For x=Lp and 0 t1 , H(tx) t^3H(x). Moreover, [zA(P)](p,q) & A(p)+A(q)-H(p)F(q)-F(p)H(q)-D_0(p,q),…",
+      "section": "A preserved constraint on posterior laws",
+      "manuscript": "The Reconstruction Threshold for the Ferromagnetic Four-State Potts Model"
+    },
+    {
+      "id": "m1-prop-cone-closure",
+      "kind": "proposition",
+      "label": "Closure and moment saving",
+      "statement": "[Closure and moment saving] The class C is preserved by a channel step with , by conditionally independent products of experiments, and by mixtures whose mixing label is observed and independent of…",
+      "section": "A preserved constraint on posterior laws",
+      "manuscript": "The Reconstruction Threshold for the Ferromagnetic Four-State Potts Model"
+    },
+    {
+      "id": "m1-prop-tree-recursion",
+      "kind": "proposition",
+      "label": "Moment recursion",
+      "statement": "[Moment recursion] In either tree family of Theorem~ , the posterior law _n is symmetric and satisfies H\\, d_n0 for every n0 . Let D denote the offspring count, so D=d on the regular tree and D has…",
+      "section": "Decay on the tree",
+      "manuscript": "The Reconstruction Threshold for the Ferromagnetic Four-State Potts Model"
+    },
+    {
+      "id": "m1-lem-scalar-checks",
+      "kind": "lemma",
+      "label": "Single-posterior certificate",
+      "statement": "[Single-posterior certificate] For every p , \\[ H(p)-12, F(p)0, G(p)0. \\] Moreover, if x=Lp and 01 , then H( x)^3H(x) , where H in this formula is regarded as a polynomial in the three coordinates.",
+      "section": "Exact polynomial certificates",
+      "manuscript": "The Reconstruction Threshold for the Ferromagnetic Four-State Potts Model"
+    },
+    {
+      "id": "m1-lem-type-t",
+      "kind": "lemma",
+      "label": "Type T certificate",
+      "statement": "[Type T certificate] For either row of , form the polynomial T=K+_ ((N_+mz_^ k+1 )t_k(z_)-mz_). If its homogeneous coefficient matrix in bidegree (k+6,k+6) has no negative entries, then R0 on the…",
+      "section": "Exact polynomial certificates",
+      "manuscript": "The Reconstruction Threshold for the Ferromagnetic Four-State Potts Model"
+    },
+    {
+      "id": "m1-lem-type-p",
+      "kind": "lemma",
+      "label": "Type P certificate",
+      "statement": "[Type P certificate] Suppose is defined for every . If K+_ (J_-c_ W_3) has nonnegative homogeneous coefficients in bidegree (6,6) , then R0 on the product of simplices.",
+      "section": "Exact polynomial certificates",
+      "manuscript": "The Reconstruction Threshold for the Ferromagnetic Four-State Potts Model"
+    },
+    {
+      "id": "m1-lem-subdivision",
+      "kind": "lemma",
+      "label": "Midpoint subdivision",
+      "statement": "[Midpoint subdivision] Let _0,,_3 be the unit vectors in the barycentric coordinate space. Replace vertex a_i by (a_i+a_j)/2 , where i j , leaving the other vertices unchanged. For an ordinary…",
+      "section": "Finite verification",
+      "manuscript": "The Reconstruction Threshold for the Ferromagnetic Four-State Potts Model"
+    },
+    {
+      "id": "m1-prop-finite-verification",
+      "kind": "proposition",
+      "label": "Finite sign verification",
+      "statement": "[Finite sign verification] For each row of , the decision rule above terminates without failure, with the counts in Table~ . Every terminal cell is accepted by Type T or Type P. Consequently both…",
+      "section": "Finite verification",
+      "manuscript": "The Reconstruction Threshold for the Ferromagnetic Four-State Potts Model"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Let T be an infinite rooted tree with at most B< children per vertex, and let…",
+      "statement": "Let T be an infinite rooted tree with at most B< children per vertex, and let 0<<1 . For the broadcast model , \\[ a_(T,)>0 _ 3, (T)>0. \\]",
+      "section": "Introduction",
+      "manuscript": "A Capacity Criterion for Four-State Potts Reconstruction on Trees"
+    },
+    {
+      "id": "m2-prop-companion",
+      "kind": "proposition",
+      "label": "Companion input, [Proposition~3.2 and Equations~(3.8)--(3.9)",
+      "statement": "[Companion input, ] There is a class of symmetric posterior laws containing the revealing and uninformative laws and preserved by channel steps with any parameter in [0,1] and by conditionally…",
+      "section": "Posterior experiments and the companion input",
+      "manuscript": "A Capacity Criterion for Four-State Potts Reconstruction on Trees"
+    },
+    {
+      "id": "m2-lem-flow",
+      "kind": "lemma",
+      "label": "A flow from recursive labels",
+      "statement": "[A flow from recursive labels] Suppose nonnegative finite labels (z_v)_ v T satisfy z_v_ w(v) r z_w 1+z_w^2 . Then there is a flow of mass z_ whose potential is at most one on every ray. In…",
+      "section": "From reconstruction to capacity",
+      "manuscript": "A Capacity Criterion for Four-State Potts Reconstruction on Trees"
+    },
+    {
+      "id": "m2-lem-local-moments",
+      "kind": "lemma",
+      "label": "Fix 0<<1 . Let , be symmetric posterior laws, with obtained by a channel step…",
+      "statement": "Fix 0<<1 . Let , be symmetric posterior laws, with obtained by a channel step of parameter . There is a finite constant C=C() such that m() & m()+m() -C(h()m()+m()h()), \\\\ h() & h()+h()+C m()m(). The…",
+      "section": "Local estimates for information loss",
+      "manuscript": "A Capacity Criterion for Four-State Potts Reconstruction on Trees"
+    },
+    {
+      "id": "m3-thm-threshold",
+      "kind": "theorem",
+      "label": "Exact threshold",
+      "statement": "[Exact threshold] For every integer b2 in the regular model and every real d>1 in the Poisson model, reconstruction occurs if and only if \\[ d^2>1, \\] with d=b in the regular case. At every…",
+      "section": "Introduction",
+      "manuscript": "The exact reconstruction threshold for the three-state symmetric channel"
+    },
+    {
+      "id": "m3-cor-sbm",
+      "kind": "corollary",
+      "label": "Exact weak-recovery threshold for three communities",
+      "statement": "[Exact weak-recovery threshold for three communities] In the model above, the following statements hold. [label=()] If (a-b)^2 3(a+2b) , then every sequence of estimators _n using only G_n and…",
+      "section": "Introduction",
+      "manuscript": "The exact reconstruction threshold for the three-state symmetric channel"
+    },
+    {
+      "id": "m3-fnd-ordered",
+      "kind": "lemma",
+      "label": "Removing sibling orders",
+      "statement": "[Removing sibling orders] The ordered and unlabelled depth observations are equivalent for inference of the root spin. In particular, they have the same reconstruction advantage and the same…",
+      "section": "Posterior experiments and reductions",
+      "manuscript": "The exact reconstruction threshold for the three-state symmetric channel"
+    },
+    {
+      "id": "m3-fnd-norms",
+      "kind": "lemma",
+      "label": "Total variation and the posterior second moment",
+      "statement": "[Total variation and the posterior second moment] For every posterior vector, | | 3 \\|p-Unif( S)\\|_ TV 23||. Consequently, writing \\(_= x_\\) for the depth experiment and \\(a_\\) for its mean total…",
+      "section": "Posterior experiments and reductions",
+      "manuscript": "The exact reconstruction threshold for the three-state symmetric channel"
+    },
+    {
+      "id": "m3-fnd-recursion",
+      "kind": "proposition",
+      "label": "Density evolution",
+      "statement": "[Density evolution] Let \\(Q_\\) be the marginal likelihood law of the depth-\\(\\) root experiment. Then Q_ +1 = R_ ,D (Q_), Q_0=13_ i S _ 3 e_i , where \\( e_i\\) is the coordinate unit vector and, for…",
+      "section": "Posterior experiments and reductions",
+      "manuscript": "The exact reconstruction threshold for the three-state symmetric channel"
+    },
+    {
+      "id": "m3-fnd-limit",
+      "kind": "proposition",
+      "label": "The limiting posterior",
+      "statement": "[The limiting posterior] On a common realization of the tree and spins, the root posterior likelihood vectors \\(m^ () \\) converge almost surely to a vector \\(m^ () \\). Their laws converge weakly to a…",
+      "section": "Posterior experiments and reductions",
+      "manuscript": "The exact reconstruction threshold for the three-state symmetric channel"
+    },
+    {
+      "id": "m3-fnd-log-integrability",
+      "kind": "lemma",
+      "label": "Logarithms at interior channel parameters",
+      "statement": "[Logarithms at interior channel parameters] If \\(-1/2<<1\\), every fixed point of \\( R_ ,D \\) has strictly positive coordinates almost surely. Every polynomial in its coordinates and their logarithms…",
+      "section": "Posterior experiments and reductions",
+      "manuscript": "The exact reconstruction threshold for the three-state symmetric channel"
+    },
+    {
+      "id": "m3-fnd-survival",
+      "kind": "lemma",
+      "label": "The extinction factor",
+      "statement": "[The extinction factor] Let \\(s=1\\) in the regular model and let \\(s\\) be the survival probability in the Poisson model. For the limiting experiment, ^2 s, || . In the Poisson model with \\(d>1\\),…",
+      "section": "Posterior experiments and reductions",
+      "manuscript": "The exact reconstruction threshold for the three-state symmetric channel"
+    },
+    {
+      "id": "m3-fnd-supercritical",
+      "kind": "proposition",
+      "label": "A linear estimator",
+      "statement": "[A linear estimator] In either model, \\(d^2>1\\) implies reconstruction, for either sign of \\(\\).",
+      "section": "Posterior experiments and reductions",
+      "manuscript": "The exact reconstruction threshold for the three-state symmetric channel"
+    },
+    {
+      "id": "m3-fnd-degradation",
+      "kind": "proposition",
+      "label": "Channel and offspring degradation",
+      "statement": "[Channel and offspring degradation] At every finite depth, each of the following changes produces a degraded root experiment: replacing \\(\\) by \\(c\\), where \\(0 c1\\); replacing a regular offspring…",
+      "section": "Posterior experiments and reductions",
+      "manuscript": "The exact reconstruction threshold for the three-state symmetric channel"
+    },
+    {
+      "id": "m3-pos-moment-bounds",
+      "kind": "lemma",
+      "label": "Put \\[ c_0=37 27 , q=c_0 2+ , c=c_0+2 q. \\] Then 0 J- q, c . If \\(s=1\\) in the…",
+      "statement": "Put \\[ c_0=37 27 , q=c_0 2+ , c=c_0+2 q. \\] Then 0 J- q, c . If \\(s=1\\) in the regular model and \\(s\\) is the survival probability in the Poisson model, then ^2 s c^2 , s c^2 .",
+      "section": "Positive channels at equality",
+      "manuscript": "The exact reconstruction threshold for the three-state symmetric channel"
+    },
+    {
+      "id": "m3-pos-correlation-bound",
+      "kind": "lemma",
+      "label": "In either offspring model, 3H 3 ^2 2(1+2/3) - 2.",
+      "statement": "In either offspring model, 3H 3 ^2 2(1+2/3) - 2.",
+      "section": "Positive channels at equality",
+      "manuscript": "The exact reconstruction threshold for the three-state symmetric channel"
+    },
+    {
+      "id": "m3-pos-nonreconstruction",
+      "kind": "proposition",
+      "label": "At every positive equality parameter \\(d^2=1\\), the limiting posterior is…",
+      "statement": "At every positive equality parameter \\(d^2=1\\), the limiting posterior is uniform in both tree models. Consequently reconstruction is impossible for \\(0 d^ -1/2 \\).",
+      "section": "Positive channels at equality",
+      "manuscript": "The exact reconstruction threshold for the three-state symmetric channel"
+    },
+    {
+      "id": "m3-loc-criterion",
+      "kind": "proposition",
+      "label": "Local gap at negative equality",
+      "statement": "[Local gap at negative equality] Every nontrivial permutation-invariant fixed point at da^2=1 satisfies >1/20 . This includes a=1/2 in both offspring models.",
+      "section": "Negative equality: exclusion of small fixed points",
+      "manuscript": "The exact reconstruction threshold for the three-state symmetric channel"
+    },
+    {
+      "id": "m3-loc-pair",
+      "kind": "lemma",
+      "label": "Certified pair inequalities",
+      "statement": "[Certified pair inequalities] For any current and child posterior vectors, including vectors on the boundary of the simplex, and any 0 a1/2 , d_n& 13 2 Xz, -79 250 Xz d_e11Xz, \\\\…",
+      "section": "Negative equality: exclusion of small fixed points",
+      "manuscript": "The exact reconstruction threshold for the three-state symmetric channel"
+    },
+    {
+      "id": "m3-wei-theorem",
+      "kind": "proposition",
+      "label": "Global exclusion away from coloring",
+      "statement": "[Global exclusion away from coloring] At =-a , d=a^ -2 , the uniform posterior law is the only permutation-invariant fixed point in either of the following ranges: regular offspring, with integer d…",
+      "section": "Negative equality: a global weighted logarithm inequality",
+      "manuscript": "The exact reconstruction threshold for the three-state symmetric channel"
+    },
+    {
+      "id": "m3-wei-identities",
+      "kind": "lemma",
+      "label": "Weighted fixed-point identities",
+      "statement": "[Weighted fixed-point identities] Let 0<a<1/2 , d=a^ -2 , and let the fixed point be nontrivial. Set (t)= t^ D , A= G_e, z=d(1-A), h=1- (A) d(1-A) , 1-= '(A)d. Then 0<A<1 , 0<<1 , and T=h T, W=(1-)…",
+      "section": "Negative equality: a global weighted logarithm inequality",
+      "manuscript": "The exact reconstruction threshold for the three-state symmetric channel"
+    },
+    {
+      "id": "m3-wei-scalarbounds",
+      "kind": "lemma",
+      "label": "Scalar bounds",
+      "statement": "[Scalar bounds] In the regular range of Proposition~ , or in its Poisson range, one can use constants \\[ (H,U)=(1 16 ,15 32 ) \\] to obtain h h:=1-2-H^2- H2^3, z z:=+U^2. For Poisson offspring the…",
+      "section": "Negative equality: a global weighted logarithm inequality",
+      "manuscript": "The exact reconstruction threshold for the three-state symmetric channel"
+    },
+    {
+      "id": "m3-wei-positive",
+      "kind": "lemma",
+      "label": "Certified global inequality",
+      "statement": "[Certified global inequality] For each row of~ , every posterior probability vector, every a in that row's closed band, and every .031 , the polynomial~ satisfies P>0 .",
+      "section": "Negative equality: a global weighted logarithm inequality",
+      "manuscript": "The exact reconstruction threshold for the three-state symmetric channel"
+    },
+    {
+      "id": "m3-grid-spread",
+      "kind": "lemma",
+      "label": "Barycentric refinement",
+      "statement": "[Barycentric refinement] Suppose that for every old datum y there are probabilities _y(z) on a finite set of posterior vectors such that _z_y(z)z=p(y) . Then the posterior law (z)=_y(z)(dy) defines…",
+      "section": "A finite certificate at the coloring boundary",
+      "manuscript": "The exact reconstruction threshold for the three-state symmetric channel"
+    },
+    {
+      "id": "m3-grid-completion",
+      "kind": "lemma",
+      "label": "Symmetric completion by pure posteriors",
+      "statement": "[Symmetric completion by pure posteriors] Let a finite symmetric posterior law have orbit masses W_o , and suppose 0 L_o W_o for each orbit. The law retaining masses L_o and putting the remaining…",
+      "section": "A finite certificate at the coloring boundary",
+      "manuscript": "The exact reconstruction threshold for the three-state symmetric channel"
+    },
+    {
+      "id": "m3-grid-negative-completion",
+      "kind": "proposition",
+      "label": "Completion of the negative threshold",
+      "statement": "[Completion of the negative threshold] For both tree models, every admissible negative parameter with da^21 is non-reconstructible (with d=b for a regular tree).",
+      "section": "A finite certificate at the coloring boundary",
+      "manuscript": "The exact reconstruction threshold for the three-state symmetric channel"
+    },
+    {
+      "id": "m3-rad-lemma",
+      "kind": "lemma",
+      "label": "Radial inequality",
+      "statement": "[Radial inequality] Let m=(m_1,m_2,m_3) have positive coordinates and m=1 , where w=13_ i=1 ^3w_i . Put \\[ v=m-1, x=12v^2, g= m, u_i= m_i-g, \\] \\[ J=12v m, B=12m u^2, F(m)=3g+4J+45B. \\] Since I=g+2J…",
+      "section": "The radial inequality",
+      "manuscript": "The exact reconstruction threshold for the three-state symmetric channel"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m3-fnd-supercritical",
+      "to": "m3-thm-threshold",
+      "label": "fnd:supercritical",
+      "context": "[Proof of Theorem~\\ref{thm:threshold}] Proposition~\\ref{fnd:supercritical} proves reconstruction whenever $d\\lambda^2>1$. Conversely, Proposition~\\ref{pos:nonreconstruction} proves non-reconstr"
+    },
+    {
+      "from": "m3-pos-nonreconstruction",
+      "to": "m3-thm-threshold",
+      "label": "pos:nonreconstruction",
+      "context": "[Proof of Theorem~\\ref{thm:threshold}] Proposition~\\ref{fnd:supercritical} proves reconstruction whenever $d\\lambda^2>1$. Conversely, Proposition~\\ref{pos:nonreconstruction} proves non-reconstruction for $0\\le\\lambda\\le d^{-1/2}$, and Proposition~\\ref{grid:negative-completion} proves it for e"
+    }
+  ]
+}

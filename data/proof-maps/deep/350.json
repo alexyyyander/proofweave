@@ -1,0 +1,914 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "350",
+  "title": "Yau’s nodal bounds: surfaces and higher dimensions",
+  "result": {
+    "id": "paper-result",
+    "label": "Yau’s nodal bounds: surfaces and higher dimensions",
+    "statement": "Proves the sharp C upper bound for nodal length on every fixed smooth closed surface, completing Yau's conjecture there. The upper bound fails for fixed smooth metrics in dimensions three and four, including metrics on S 3 arbitrarily close to round. In dimension five, nodal measure can grow faster than ^ 1/2+ 0 for some fixed 0 0, ruling out even arbitrarily small power losses.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction-and-main-result",
+      "label": "Introduction and main result",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "subharmonic-limits-of-tilted-norms",
+      "label": "Subharmonic limits of tilted norms",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "affine-improvement-under-subdivision",
+      "label": "Affine improvement under subdivision",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "descent-and-stability",
+      "label": "Descent and stability",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "persistence-and-packing",
+      "label": "Persistence and packing",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "nodal-length-at-the-wavelength-scale",
+      "label": "Nodal length at the wavelength scale",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "profiles-with-large-mean-gradient",
+      "label": "Profiles with large mean gradient",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-complex-waves-and-robust-nodal-area-witnesses",
+      "label": "Finite complex waves and robust nodal-area witnesses",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "exactification-in-dimension-three",
+      "label": "Exactification in dimension three",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "simplicity-with-the-eigenfunction-fixed",
+      "label": "Simplicity with the eigenfunction fixed",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "persistence-and-one-fixed-smooth-metric",
+      "label": "Persistence and one fixed smooth metric",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "background-modes-and-strict-envelopes",
+      "label": "Background modes and strict envelopes",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-order-waves-and-real-noncancellation",
+      "label": "Finite-order waves and real noncancellation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "stable-sign-data-and-nodal-measure",
+      "label": "Stable sign data and nodal measure",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "realization-by-an-ordinary-metric",
+      "label": "Realization by an ordinary metric",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "simplicity-persistence-and-one-fixed-metric",
+      "label": "Simplicity, persistence, and one fixed metric",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "framework-and-the-quantitative-step",
+      "label": "Framework and the quantitative step",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "envelopes-with-a-fixed-power-gain",
+      "label": "Envelopes with a fixed power gain",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "local-packets-below-an-envelope",
+      "label": "Local packets below an envelope",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "exact-eigenfunctions-and-a-fixed-metric",
+      "label": "Exact eigenfunctions and a fixed metric",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Sharp nodal length on smooth surfaces",
+      "title": "Sharp nodal length on smooth surfaces",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Sharp-nodal-length-on-smooth-surfaces-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Sharp nodal length on smooth surfaces.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction-and-main-result",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction and main result",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-profile-extraction",
+          "role": "subharmonic-limits-of-tilted-norms",
+          "label": "lemma m1-lem-profile-extraction",
+          "fullLabel": "lemma m1-lem-profile-extraction",
+          "kind": "lemma",
+          "source": "Subharmonic limits of tilted norms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-subharmonic-profile",
+          "role": "subharmonic-limits-of-tilted-norms",
+          "label": "theorem m1-thm-subharmonic-profile",
+          "fullLabel": "theorem m1-thm-subharmonic-profile",
+          "kind": "theorem",
+          "source": "Subharmonic limits of tilted norms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-carleman",
+          "role": "subharmonic-limits-of-tilted-norms",
+          "label": "lemma m1-lem-carleman",
+          "fullLabel": "lemma m1-lem-carleman",
+          "kind": "lemma",
+          "source": "Subharmonic limits of tilted norms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-exceptional-gradient",
+          "role": "subharmonic-limits-of-tilted-norms",
+          "label": "lemma m1-lem-exceptional-gradient",
+          "fullLabel": "lemma m1-lem-exceptional-gradient",
+          "kind": "lemma",
+          "source": "Subharmonic limits of tilted norms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-initial-growth",
+          "role": "subharmonic-limits-of-tilted-norms",
+          "label": "proposition m1-prop-initial-growth",
+          "fullLabel": "proposition m1-prop-initial-growth",
+          "kind": "proposition",
+          "source": "Subharmonic limits of tilted norms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-potential-decomposition",
+          "role": "affine-improvement-under-subdivision",
+          "label": "lemma m1-lem-potential-decomposition",
+          "fullLabel": "lemma m1-lem-potential-decomposition",
+          "kind": "lemma",
+          "source": "Affine improvement under subdivision",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-affine-profile",
+          "role": "affine-improvement-under-subdivision",
+          "label": "lemma m1-lem-affine-profile",
+          "fullLabel": "lemma m1-lem-affine-profile",
+          "kind": "lemma",
+          "source": "Affine improvement under subdivision",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-subdivision",
+          "role": "affine-improvement-under-subdivision",
+          "label": "proposition m1-prop-subdivision",
+          "fullLabel": "proposition m1-prop-subdivision",
+          "kind": "proposition",
+          "source": "Affine improvement under subdivision",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-descent",
+          "role": "descent-and-stability",
+          "label": "lemma m1-lem-descent",
+          "fullLabel": "lemma m1-lem-descent",
+          "kind": "lemma",
+          "source": "Descent and stability",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-stopped-descent",
+          "role": "descent-and-stability",
+          "label": "lemma m1-lem-stopped-descent",
+          "fullLabel": "lemma m1-lem-stopped-descent",
+          "kind": "lemma",
+          "source": "Descent and stability",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-large-slope",
+          "role": "descent-and-stability",
+          "label": "lemma m1-lem-large-slope",
+          "fullLabel": "lemma m1-lem-large-slope",
+          "kind": "lemma",
+          "source": "Descent and stability",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-stability",
+          "role": "descent-and-stability",
+          "label": "proposition m1-prop-stability",
+          "fullLabel": "proposition m1-prop-stability",
+          "kind": "proposition",
+          "source": "Descent and stability",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-entry-bound",
+          "role": "persistence-and-packing",
+          "label": "lemma m1-lem-entry-bound",
+          "fullLabel": "lemma m1-lem-entry-bound",
+          "kind": "lemma",
+          "source": "Persistence and packing",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-persistence",
+          "role": "persistence-and-packing",
+          "label": "proposition m1-prop-persistence",
+          "fullLabel": "proposition m1-prop-persistence",
+          "kind": "proposition",
+          "source": "Persistence and packing",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-packing",
+          "role": "persistence-and-packing",
+          "label": "lemma m1-lem-packing",
+          "fullLabel": "lemma m1-lem-packing",
+          "kind": "lemma",
+          "source": "Persistence and packing",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-mean-growth",
+          "role": "persistence-and-packing",
+          "label": "theorem m1-thm-mean-growth",
+          "fullLabel": "theorem m1-thm-mean-growth",
+          "kind": "theorem",
+          "source": "Persistence and packing",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-local-length",
+          "role": "nodal-length-at-the-wavelength-scale",
+          "label": "theorem m1-thm-local-length",
+          "fullLabel": "theorem m1-thm-local-length",
+          "kind": "theorem",
+          "source": "Nodal length at the wavelength scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-wavelength-length",
+          "role": "nodal-length-at-the-wavelength-scale",
+          "label": "lemma m1-lem-wavelength-length",
+          "fullLabel": "lemma m1-lem-wavelength-length",
+          "kind": "lemma",
+          "source": "Nodal length at the wavelength scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four",
+      "title": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Smooth-counterexamples-to-Yaus-nodal-upper-bound-in-dimensions-three-and-four-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Smooth counterexamples to Yau's nodal upper bound in dimensions three and four.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-four",
+          "role": "introduction",
+          "label": "theorem m2-thm-four",
+          "fullLabel": "theorem m2-thm-four",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-profile-amplification",
+          "role": "profiles-with-large-mean-gradient",
+          "label": "proposition m2-prop-profile-amplification",
+          "fullLabel": "proposition m2-prop-profile-amplification",
+          "kind": "proposition",
+          "source": "Profiles with large mean gradient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-profile-localization",
+          "role": "profiles-with-large-mean-gradient",
+          "label": "lemma m2-lem-profile-localization",
+          "fullLabel": "lemma m2-lem-profile-localization",
+          "kind": "lemma",
+          "source": "Profiles with large mean gradient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-profile-preparation",
+          "role": "profiles-with-large-mean-gradient",
+          "label": "lemma m2-lem-profile-preparation",
+          "fullLabel": "lemma m2-lem-profile-preparation",
+          "kind": "lemma",
+          "source": "Profiles with large mean gradient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-radial-corrugation",
+          "role": "profiles-with-large-mean-gradient",
+          "label": "lemma m2-lem-radial-corrugation",
+          "fullLabel": "lemma m2-lem-radial-corrugation",
+          "kind": "lemma",
+          "source": "Profiles with large mean gradient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-spherical-profiles",
+          "role": "profiles-with-large-mean-gradient",
+          "label": "proposition m2-prop-spherical-profiles",
+          "fullLabel": "proposition m2-prop-spherical-profiles",
+          "kind": "proposition",
+          "source": "Profiles with large mean gradient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-phase-hessian",
+          "role": "finite-complex-waves-and-robust-nodal-area-witnesses",
+          "label": "lemma m2-lem-phase-hessian",
+          "fullLabel": "lemma m2-lem-phase-hessian",
+          "kind": "lemma",
+          "source": "Finite complex waves and robust nodal-area witnesses",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-finite-waves",
+          "role": "finite-complex-waves-and-robust-nodal-area-witnesses",
+          "label": "lemma m2-lem-finite-waves",
+          "fullLabel": "lemma m2-lem-finite-waves",
+          "kind": "lemma",
+          "source": "Finite complex waves and robust nodal-area witnesses",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-sign-functional",
+          "role": "finite-complex-waves-and-robust-nodal-area-witnesses",
+          "label": "proposition m2-prop-sign-functional",
+          "fullLabel": "proposition m2-prop-sign-functional",
+          "kind": "proposition",
+          "source": "Finite complex waves and robust nodal-area witnesses",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-wave-noncancellation",
+          "role": "finite-complex-waves-and-robust-nodal-area-witnesses",
+          "label": "lemma m2-lem-wave-noncancellation",
+          "fullLabel": "lemma m2-lem-wave-noncancellation",
+          "kind": "lemma",
+          "source": "Finite complex waves and robust nodal-area witnesses",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-wave-sign-expectation",
+          "role": "finite-complex-waves-and-robust-nodal-area-witnesses",
+          "label": "lemma m2-lem-wave-sign-expectation",
+          "fullLabel": "lemma m2-lem-wave-sign-expectation",
+          "kind": "lemma",
+          "source": "Finite complex waves and robust nodal-area witnesses",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-wave-superposition",
+          "role": "finite-complex-waves-and-robust-nodal-area-witnesses",
+          "label": "proposition m2-prop-wave-superposition",
+          "fullLabel": "proposition m2-prop-wave-superposition",
+          "kind": "proposition",
+          "source": "Finite complex waves and robust nodal-area witnesses",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-exact-quotients",
+          "role": "exactification-in-dimension-three",
+          "label": "lemma m2-lem-exact-quotients",
+          "fullLabel": "lemma m2-lem-exact-quotients",
+          "kind": "lemma",
+          "source": "Exactification in dimension three",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-metric-conductivity",
+          "role": "exactification-in-dimension-three",
+          "label": "lemma m2-lem-metric-conductivity",
+          "fullLabel": "lemma m2-lem-metric-conductivity",
+          "kind": "lemma",
+          "source": "Exactification in dimension three",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-exact-positive-factor",
+          "role": "exactification-in-dimension-three",
+          "label": "lemma m2-lem-exact-positive-factor",
+          "fullLabel": "lemma m2-lem-exact-positive-factor",
+          "kind": "lemma",
+          "source": "Exactification in dimension three",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-exactification",
+          "role": "exactification-in-dimension-three",
+          "label": "proposition m2-prop-exactification",
+          "fullLabel": "proposition m2-prop-exactification",
+          "kind": "proposition",
+          "source": "Exactification in dimension three",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-nondegenerate-pencil",
+          "role": "simplicity-with-the-eigenfunction-fixed",
+          "label": "lemma m2-lem-nondegenerate-pencil",
+          "fullLabel": "lemma m2-lem-nondegenerate-pencil",
+          "kind": "lemma",
+          "source": "Simplicity with the eigenfunction fixed",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-pinned-simplicity",
+          "role": "simplicity-with-the-eigenfunction-fixed",
+          "label": "proposition m2-prop-pinned-simplicity",
+          "fullLabel": "proposition m2-prop-pinned-simplicity",
+          "kind": "proposition",
+          "source": "Simplicity with the eigenfunction fixed",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-simple-eigenpair-continuity",
+          "role": "persistence-and-one-fixed-smooth-metric",
+          "label": "lemma m2-lem-simple-eigenpair-continuity",
+          "fullLabel": "lemma m2-lem-simple-eigenpair-continuity",
+          "kind": "lemma",
+          "source": "Persistence and one fixed smooth metric",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-one-step",
+          "role": "persistence-and-one-fixed-smooth-metric",
+          "label": "proposition m2-prop-one-step",
+          "fullLabel": "proposition m2-prop-one-step",
+          "kind": "proposition",
+          "source": "Persistence and one fixed smooth metric",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-env-background-mode",
+          "role": "background-modes-and-strict-envelopes",
+          "label": "lemma m2-env-background-mode",
+          "fullLabel": "lemma m2-env-background-mode",
+          "kind": "lemma",
+          "source": "Background modes and strict envelopes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-env-amplify",
+          "role": "background-modes-and-strict-envelopes",
+          "label": "lemma m2-env-amplify",
+          "fullLabel": "lemma m2-env-amplify",
+          "kind": "lemma",
+          "source": "Background modes and strict envelopes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-env-gaps",
+          "role": "background-modes-and-strict-envelopes",
+          "label": "lemma m2-env-gaps",
+          "fullLabel": "lemma m2-env-gaps",
+          "kind": "lemma",
+          "source": "Background modes and strict envelopes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-wave-packets",
+          "role": "finite-order-waves-and-real-noncancellation",
+          "label": "proposition m2-wave-packets",
+          "fullLabel": "proposition m2-wave-packets",
+          "kind": "proposition",
+          "source": "Finite-order waves and real noncancellation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-wave-residual",
+          "role": "finite-order-waves-and-real-noncancellation",
+          "label": "lemma m2-wave-residual",
+          "fullLabel": "lemma m2-wave-residual",
+          "kind": "lemma",
+          "source": "Finite-order waves and real noncancellation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-wave-noncancellation",
+          "role": "finite-order-waves-and-real-noncancellation",
+          "label": "lemma m2-wave-noncancellation",
+          "fullLabel": "lemma m2-wave-noncancellation",
+          "kind": "lemma",
+          "source": "Finite-order waves and real noncancellation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-score-measure",
+          "role": "stable-sign-data-and-nodal-measure",
+          "label": "lemma m2-score-measure",
+          "fullLabel": "lemma m2-score-measure",
+          "kind": "lemma",
+          "source": "Stable sign data and nodal measure",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-score-expectation",
+          "role": "stable-sign-data-and-nodal-measure",
+          "label": "lemma m2-score-expectation",
+          "fullLabel": "lemma m2-score-expectation",
+          "kind": "lemma",
+          "source": "Stable sign data and nodal measure",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-score-good",
+          "role": "stable-sign-data-and-nodal-measure",
+          "label": "proposition m2-score-good",
+          "fullLabel": "proposition m2-score-good",
+          "kind": "proposition",
+          "source": "Stable sign data and nodal measure",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-corr-realization",
+          "role": "realization-by-an-ordinary-metric",
+          "label": "lemma m2-corr-realization",
+          "fullLabel": "lemma m2-corr-realization",
+          "kind": "lemma",
+          "source": "Realization by an ordinary metric",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-corr-weighted",
+          "role": "realization-by-an-ordinary-metric",
+          "label": "lemma m2-corr-weighted",
+          "fullLabel": "lemma m2-corr-weighted",
+          "kind": "lemma",
+          "source": "Realization by an ordinary metric",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-corr-conformal",
+          "role": "realization-by-an-ordinary-metric",
+          "label": "lemma m2-corr-conformal",
+          "fullLabel": "lemma m2-corr-conformal",
+          "kind": "lemma",
+          "source": "Realization by an ordinary metric",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-corr-localization",
+          "role": "realization-by-an-ordinary-metric",
+          "label": "lemma m2-corr-localization",
+          "fullLabel": "lemma m2-corr-localization",
+          "kind": "lemma",
+          "source": "Realization by an ordinary metric",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-spec-simple",
+          "role": "simplicity-persistence-and-one-fixed-metric",
+          "label": "lemma m2-spec-simple",
+          "fullLabel": "lemma m2-spec-simple",
+          "kind": "lemma",
+          "source": "Simplicity, persistence, and one fixed metric",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-spec-persistence",
+          "role": "simplicity-persistence-and-one-fixed-metric",
+          "label": "lemma m2-spec-persistence",
+          "fullLabel": "lemma m2-spec-persistence",
+          "kind": "lemma",
+          "source": "Simplicity, persistence, and one fixed metric",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-spec-one-step",
+          "role": "simplicity-persistence-and-one-fixed-metric",
+          "label": "proposition m2-spec-one-step",
+          "fullLabel": "proposition m2-spec-one-step",
+          "kind": "proposition",
+          "source": "Simplicity, persistence, and one fixed metric",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m3",
+      "label": "Power-law violations of Yau's nodal upper bound",
+      "title": "Power-law violations of Yau's nodal upper bound",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#c98b5c",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Power-law-violations-of-Yaus-nodal-upper-bound-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Power-law violations of Yau's nodal upper bound.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m3-thm-main",
+          "role": "introduction",
+          "label": "theorem m3-thm-main",
+          "fullLabel": "theorem m3-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-prop-step",
+          "role": "framework-and-the-quantitative-step",
+          "label": "proposition m3-prop-step",
+          "fullLabel": "proposition m3-prop-step",
+          "kind": "proposition",
+          "source": "Framework and the quantitative step",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-seed",
+          "role": "envelopes-with-a-fixed-power-gain",
+          "label": "lemma m3-lem-seed",
+          "fullLabel": "lemma m3-lem-seed",
+          "kind": "lemma",
+          "source": "Envelopes with a fixed power gain",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-corrugation",
+          "role": "envelopes-with-a-fixed-power-gain",
+          "label": "lemma m3-lem-corrugation",
+          "fullLabel": "lemma m3-lem-corrugation",
+          "kind": "lemma",
+          "source": "Envelopes with a fixed power gain",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-prop-envelope",
+          "role": "envelopes-with-a-fixed-power-gain",
+          "label": "proposition m3-prop-envelope",
+          "fullLabel": "proposition m3-prop-envelope",
+          "kind": "proposition",
+          "source": "Envelopes with a fixed power gain",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-phase-hessian",
+          "role": "local-packets-below-an-envelope",
+          "label": "lemma m3-lem-phase-hessian",
+          "fullLabel": "lemma m3-lem-phase-hessian",
+          "kind": "lemma",
+          "source": "Local packets below an envelope",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-polynomial-inverse",
+          "role": "local-packets-below-an-envelope",
+          "label": "lemma m3-lem-polynomial-inverse",
+          "fullLabel": "lemma m3-lem-polynomial-inverse",
+          "kind": "lemma",
+          "source": "Local packets below an envelope",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-prop-packets",
+          "role": "local-packets-below-an-envelope",
+          "label": "proposition m3-prop-packets",
+          "fullLabel": "proposition m3-prop-packets",
+          "kind": "proposition",
+          "source": "Local packets below an envelope",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-scaled-packets",
+          "role": "local-packets-below-an-envelope",
+          "label": "lemma m3-lem-scaled-packets",
+          "fullLabel": "lemma m3-lem-scaled-packets",
+          "kind": "lemma",
+          "source": "Local packets below an envelope",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-noncancellation",
+          "role": "exact-eigenfunctions-and-a-fixed-metric",
+          "label": "lemma m3-lem-noncancellation",
+          "fullLabel": "lemma m3-lem-noncancellation",
+          "kind": "lemma",
+          "source": "Exact eigenfunctions and a fixed metric",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-signs",
+          "role": "exact-eigenfunctions-and-a-fixed-metric",
+          "label": "lemma m3-lem-signs",
+          "fullLabel": "lemma m3-lem-signs",
+          "kind": "lemma",
+          "source": "Exact eigenfunctions and a fixed metric",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-correction",
+          "role": "exact-eigenfunctions-and-a-fixed-metric",
+          "label": "lemma m3-lem-correction",
+          "fullLabel": "lemma m3-lem-correction",
+          "kind": "lemma",
+          "source": "Exact eigenfunctions and a fixed metric",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-simplicity",
+          "role": "exact-eigenfunctions-and-a-fixed-metric",
+          "label": "lemma m3-lem-simplicity",
+          "fullLabel": "lemma m3-lem-simplicity",
+          "kind": "lemma",
+          "source": "Exact eigenfunctions and a fixed metric",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-persistence",
+          "role": "exact-eigenfunctions-and-a-fixed-metric",
+          "label": "lemma m3-lem-persistence",
+          "fullLabel": "lemma m3-lem-persistence",
+          "kind": "lemma",
+          "source": "Exact eigenfunctions and a fixed metric",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-corollary-15",
+          "role": "exact-eigenfunctions-and-a-fixed-metric",
+          "label": "corollary m3-corollary-15",
+          "fullLabel": "corollary m3-corollary-15",
+          "kind": "corollary",
+          "source": "Exact eigenfunctions and a fixed metric",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Sharp nodal length on smooth surfaces",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Sharp-nodal-length-on-smooth-surfaces-September-23-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Smooth counterexamples to Yau's nodal upper bound in dimensions three and four",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Smooth-counterexamples-to-Yaus-nodal-upper-bound-in-dimensions-three-and-four-September-23-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Power-law violations of Yau's nodal upper bound",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Power-law-violations-of-Yaus-nodal-upper-bound-September-23-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

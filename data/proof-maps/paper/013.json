@@ -1,0 +1,153 @@
+{
+  "familyNumber": "013",
+  "familyTitle": "Ostmann’s inverse Goldbach conjecture",
+  "manuscripts": [
+    {
+      "id": "the-additive-indecomposability-of-the-primes-September-24-2026",
+      "title": "The additive indecomposability of the primes",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/the-additive-indecomposability-of-the-primes-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Finite summands and residue supports",
+    "Quadratic characters with arbitrary translating centres",
+    "Translated characters of higher order",
+    "A supply of nonsparse additive transforms",
+    "A finite-field tree comparison",
+    "A positive statistic and its binary-tree transfers",
+    "Arithmetic comparison of the histories"
+  ],
+  "nodes": [
+    {
+      "id": "m1-cor-ostmann",
+      "kind": "theorem",
+      "label": "Ostmann's conjecture",
+      "statement": "[Ostmann's conjecture] If A,B_0 satisfy |A|,|B|2 , then (A+B) P is infinite. Equivalently, every finite modification of P is additively indecomposable into two sets with at least two elements each.",
+      "section": "Introduction",
+      "manuscript": "The additive indecomposability of the primes"
+    },
+    {
+      "id": "m1-lem-shifted-sieve",
+      "kind": "lemma",
+      "label": "Fixed shifts",
+      "statement": "[Fixed shifts] Let b_1,,b_j be distinct nonnegative integers, where j1 is fixed. If C_0 and each c+b_i is prime for all sufficiently large c C , then \\[ C(Y)_ b_1,,b_j Y ( Y)^j . \\] The implicit…",
+      "section": "Finite summands and residue supports",
+      "manuscript": "The additive indecomposability of the primes"
+    },
+    {
+      "id": "m1-lem-finite-factor",
+      "kind": "lemma",
+      "label": "Finite summands",
+      "statement": "[Finite summands] If A,B_0 have at least two elements each and A+B agrees with P outside a finite set, then both A and B are infinite.",
+      "section": "Finite summands and residue supports",
+      "manuscript": "The additive indecomposability of the primes"
+    },
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Two infinite summands",
+      "statement": "[Two infinite summands] There do not exist two infinite sets A,B_0 such that (A+B) P is finite.",
+      "section": "Finite summands and residue supports",
+      "manuscript": "The additive indecomposability of the primes"
+    },
+    {
+      "id": "m1-lem-size",
+      "kind": "lemma",
+      "label": "Square-root bounds",
+      "statement": "[Square-root bounds] Under the assumed decomposition with both summands infinite, Y ( Y)^3 A(Y),B(Y) Y( Y)^2.",
+      "section": "Finite summands and residue supports",
+      "manuscript": "The additive indecomposability of the primes"
+    },
+    {
+      "id": "m1-lem-collision",
+      "kind": "lemma",
+      "label": "Collision stability",
+      "statement": "[Collision stability] Let b1 be fixed. Suppose , are probability measures on \\[ A( X+N_*,X], D respectively, and that every point mass is at most ( X)^b/ X . Put Q= X/( X)^ b+1 . Then _ p Q p(…",
+      "section": "Finite summands and residue supports",
+      "manuscript": "The additive indecomposability of the primes"
+    },
+    {
+      "id": "m1-prop-quadratic",
+      "kind": "proposition",
+      "label": "Under the assumed eventual decomposition of the primes, _ T p 2T p p _ t_p |_ x…",
+      "statement": "Under the assumed eventual decomposition of the primes, _ T p 2T p p _ t_p |_ x S_p _p(x-t)|=o(T) (T).",
+      "section": "Quadratic characters with arbitrary translating centres",
+      "manuscript": "The additive indecomposability of the primes"
+    },
+    {
+      "id": "m1-cor-quad-harmonic",
+      "kind": "corollary",
+      "label": "For fixed 0<< , as L_* , \\[ _ L_* p L_* 1p _ t_p |_ x S_p _p(x-t)|=o(L_*). \\]",
+      "statement": "For fixed 0<< , as L_* , \\[ _ L_* p L_* 1p _ t_p |_ x S_p _p(x-t)|=o(L_*). \\]",
+      "section": "Quadratic characters with arbitrary translating centres",
+      "manuscript": "The additive indecomposability of the primes"
+    },
+    {
+      "id": "m1-prop-characters",
+      "kind": "proposition",
+      "label": "For every fixed \\(0<<\\), one has _ L p L 1p _ t_p,\\ \\ multiplicative \\\\ ()>2 |_…",
+      "statement": "For every fixed \\(0<<\\), one has _ L p L 1p _ t_p,\\ \\ multiplicative \\\\ ()>2 |_ x S_p (x-t)|=o(L) (L).",
+      "section": "Translated characters of higher order",
+      "manuscript": "The additive indecomposability of the primes"
+    },
+    {
+      "id": "m1-cor-mixed-flatness",
+      "kind": "corollary",
+      "label": "Define \\[ F_p(x)= _ S_p (x)-_p _p(1- _p) , g_p(v)= p\\,_ x_p F_p(x)e_p(-vx). \\]…",
+      "statement": "Define \\[ F_p(x)= _ S_p (x)-_p _p(1- _p) , g_p(v)= p\\,_ x_p F_p(x)e_p(-vx). \\] For every fixed \\(0<<\\), outside a set of primes of harmonic mass \\(o(L)\\) in \\( L p L\\), one has uniformly _p=12+o(1),…",
+      "section": "Translated characters of higher order",
+      "manuscript": "The additive indecomposability of the primes"
+    },
+    {
+      "id": "m1-prop-supply",
+      "kind": "proposition",
+      "label": "There is an absolute constant \\(_0>0\\) such that, for all sufficiently large…",
+      "statement": "There is an absolute constant \\(_0>0\\) such that, for all sufficiently large \\(L\\), _ .05L p .9L\\\\ 1/3 _p 2/3\\\\ _p _0 1p \\ \\ .15L .",
+      "section": "A supply of nonsparse additive transforms",
+      "manuscript": "The additive indecomposability of the primes"
+    },
+    {
+      "id": "m1-lem-supply-local-contraction",
+      "kind": "lemma",
+      "label": "For sufficiently small \\(_0\\), uniformly for \\(p S\\) and complex \\(u,v\\) with…",
+      "statement": "For sufficiently small \\(_0\\), uniformly for \\(p S\\) and complex \\(u,v\\) with \\(|u|,|v|1.03\\), \\[ \\|L_p(u,v)\\|1+C/p, |U_p(u,v)|1+C/p. \\] For all sufficiently large such primes, \\|L_p(1,1)\\|…",
+      "section": "A supply of nonsparse additive transforms",
+      "manuscript": "The additive indecomposability of the primes"
+    },
+    {
+      "id": "m1-lem-supply-total-prime-error",
+      "kind": "lemma",
+      "label": "Fix \\(C_K>0\\), and let \\(\\) be a fixed smooth function compactly supported in…",
+      "statement": "Fix \\(C_K>0\\), and let \\(\\) be a fixed smooth function compactly supported in \\((1/2,1)\\). Among primitive characters of conductor at most \\(Q_b\\), omit the possible exceptional character in the…",
+      "section": "A supply of nonsparse additive transforms",
+      "manuscript": "The additive indecomposability of the primes"
+    },
+    {
+      "id": "m1-lem-tree-comparison",
+      "kind": "lemma",
+      "label": "Tree comparison",
+      "statement": "[Tree comparison] In a single diagram let the leaf variables be independent uniform elements of U . Then |W|^23^r. For two diagrams of the same depth, partition the leaves in each into b nonempty…",
+      "section": "A finite-field tree comparison",
+      "manuscript": "The additive indecomposability of the primes"
+    },
+    {
+      "id": "m1-prop-comparisons",
+      "kind": "proposition",
+      "label": "Comparison estimates",
+      "statement": "[Comparison estimates] In either of the two outer environments, the following estimates hold uniformly over the indicated assignments. For one assignment, _ 0<|s| V_l G|A_l(s)|^2 (r(_0+Cm)+o_k(m)).…",
+      "section": "A positive statistic and its binary-tree transfers",
+      "manuscript": "The additive indecomposability of the primes"
+    },
+    {
+      "id": "m1-lem-arith-progression",
+      "kind": "lemma",
+      "label": "Fix a row of . There is at most one primitive real character _* , with…",
+      "statement": "Fix a row of . There is at most one primitive real character _* , with conductor at most (( L)) , and one associated real zero _*<1 which must be retained in the following formula. If \\[ M_* e^ L ,…",
+      "section": "Arithmetic comparison of the histories",
+      "manuscript": "The additive indecomposability of the primes"
+    }
+  ],
+  "edges": []
+}

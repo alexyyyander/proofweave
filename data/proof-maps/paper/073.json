@@ -1,0 +1,403 @@
+{
+  "familyNumber": "073",
+  "familyTitle": "The Falconer distance conjecture",
+  "manuscripts": [
+    {
+      "id": "The-Falconer-distance-conjecture-in-all-dimensions-September-23-2026",
+      "title": "The Falconer distance conjecture in all dimensions",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Falconer-distance-conjecture-in-all-dimensions-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Conventions and preliminary facts",
+    "Regularization and multiplication of fibre bounds",
+    "An angular projection gain",
+    "Preparation of the pair measures",
+    "Profiles and angular tests",
+    "Spherical oscillatory integrals and distance shells",
+    "The graph estimate",
+    "Single-profile state reductions",
+    "The two-depth potential",
+    "Entry, shell summation, and the limiting distance measure"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Let \\(d2\\) be an integer and let \\(E^d\\) be compact. If \\(_H E>d/2\\), then \\[…",
+      "statement": "Let \\(d2\\) be an integer and let \\(E^d\\) be compact. If \\(_H E>d/2\\), then \\[ ^1((E))>0. \\]",
+      "section": "Introduction",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-conv-energy",
+      "kind": "lemma",
+      "label": "Let \\(\\) be supported in a bounded subset of \\(^d\\). [label=()] If \\((B(z,r)) C…",
+      "statement": "Let \\(\\) be supported in a bounded subset of \\(^d\\). [label=()] If \\((B(z,r)) C r^s\\) for \\(0<r1\\), then \\(I_t()<\\) for every \\(0<t<s\\). If \\(I_t()<\\), then for every \\(>0\\) there is a compact…",
+      "section": "Conventions and preliminary facts",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-conv-uniformity",
+      "kind": "lemma",
+      "label": "Sequential uniformity principle",
+      "statement": "[Sequential uniformity principle] For fixed background parameters, let \\( C(,R)\\) be classes of data, increasing in the allowed loss \\(>0\\). Let \\( G(c,R)\\) be conclusions, weakening as the gain…",
+      "section": "Conventions and preliminary facts",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-reg-regularization",
+      "kind": "lemma",
+      "label": "Regular classes",
+      "statement": "[Regular classes] Let n1 , let be a probability on a unit dyadic cube in ^n , and put R=2^N . For every fixed 0<<1 and all sufficiently large N , there are pairwise disjoint sets E_ , each a union of…",
+      "section": "Regularization and multiplication of fibre bounds",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-reg-pruning-multiplication",
+      "kind": "lemma",
+      "label": "Density pruning and multiplication",
+      "statement": "[Density pruning and multiplication] Let be a source probability and a finite pin measure, both on ^n , and let 0 a_0<<a_J N be a fixed finite collection of dyadic depths. Suppose pin--source…",
+      "section": "Regularization and multiplication of fibre bounds",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-ang-linear-gain",
+      "kind": "theorem",
+      "label": "Linear projection gain",
+      "statement": "[Linear projection gain] Fix k2 and \\[ k-1 q k-12<t<k. \\] Fix a tube-width constant C . In the case q=k-1 , also fix >0 . There exist ,c>0 such that, for all sufficiently small , the following holds.…",
+      "section": "An angular projection gain",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-ang-furstenberg",
+      "kind": "theorem",
+      "label": "Planar discretized Furstenberg estimate",
+      "statement": "[Planar discretized Furstenberg estimate] Let 0<b<1 and b<f<2 . There is _0>0 such that the following holds for sufficiently small . Suppose that P is a nonempty bounded (,f,^ -_0 ) -set and that…",
+      "section": "An angular projection gain",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-ang-planar-measures",
+      "kind": "lemma",
+      "label": "Planar measure incidence obstruction",
+      "statement": "[Planar measure incidence obstruction] Fix 0<b<1 and b<f<2 . There is no sequence 0 with the following data. Let , be subprobabilities on Borel label sets X,W in Euclidean spaces, and let \\[ p:X^2,…",
+      "section": "An angular projection gain",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-ang-haar",
+      "kind": "lemma",
+      "label": "Haar band estimates",
+      "statement": "[Haar band estimates] Let 0 h n-1 , and let V be a Haar-random codimension- h linear subspace of ^n . For a unit vector w , \\[ \\ (w,V)\\ ^h. \\] If j n-h unit vectors w_1,,w_j have singular values d_1…",
+      "section": "An angular projection gain",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-ang-slice-selection",
+      "kind": "lemma",
+      "label": "Selection of slices",
+      "statement": "[Selection of slices] Let 0 h n-2 . Let point and direction subprobabilities , in ^n have t - and q -ball bounds with subpower losses, where t,q>h . Assume the directions lie in a fixed small…",
+      "section": "An angular projection gain",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-ang-loomis-whitney",
+      "kind": "lemma",
+      "label": "Transverse tube counting",
+      "statement": "[Transverse tube counting] Let v_1,,v_m be unit vectors in ^m , m2 , and suppose |(v_1,,v_m)|>0 . If a bounded set A is covered, for each i , by M_i tubes of width C parallel to v_i , then \\[ |A|_…",
+      "section": "An angular projection gain",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-ang-weak-radial",
+      "kind": "lemma",
+      "label": "Weak radial estimate",
+      "statement": "[Weak radial estimate] Fix k2 , >0 , and \\[ k-2<<(k-1)^2 k . \\] For every e>0 there exist ,c>0 with the following property for sufficiently small . Suppose that a probability in a bounded subset of…",
+      "section": "An angular projection gain",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-ang-bad-directions",
+      "kind": "corollary",
+      "label": "Small mass of bad directions",
+      "statement": "[Small mass of bad directions] Fix the parameters of Theorem~ . There are c_1,_1>0 such that the following holds at sufficiently small . Let be a bounded point probability satisfying the t -ball…",
+      "section": "An angular projection gain",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-prep-contact",
+      "kind": "lemma",
+      "label": "A contact interval",
+      "statement": "[A contact interval] Suppose m:[0,1] is nondecreasing and Lipschitz, m(0)=0 , and m(u) su . If q<t<s , there exist 0<A<B<1 , with B<2A , such that m(w)& qw &&(0 w A), \\\\ m(w)-m(A)& t(w-A)&&(A w B),…",
+      "section": "Preparation of the pair measures",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-prep-one-scale",
+      "kind": "lemma",
+      "label": "One-scale improvement",
+      "statement": "[One-scale improvement] Fix k2 , k-12<s<k , k-1 q<k-12 , and >0 . Fix bounded support, separation, and s -Frostman constants, as well as a plate-bound constant C . There are _0,c>0 such that the…",
+      "section": "Preparation of the pair measures",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-prep-thin-upgrade",
+      "kind": "proposition",
+      "label": "Thin-tube upgrade",
+      "statement": "[Thin-tube upgrade] Let k2 and k-12<s<k . Let , be bounded, separated s -Frostman probabilities in ^ k+1 . Suppose that the two directional measures of G_N have plate bounds Cu^ , uniformly for 2^ -N…",
+      "section": "Preparation of the pair measures",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-prep-classical-plane",
+      "kind": "lemma",
+      "label": "The classical distance threshold",
+      "statement": "[The classical distance threshold] Let be a compactly supported probability in ^n , n2 , with an s -ball bound for some s>(n+1)/2 . Then the distances between points of form a set of positive…",
+      "section": "Preparation of the pair measures",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-prep-projections",
+      "kind": "lemma",
+      "label": "Simultaneous projected Frostman bounds",
+      "statement": "[Simultaneous projected Frostman bounds] Let E^d be compact and _HE>S=d/2 . There is a probability on E with a ball exponent strictly greater than S . Finitely many successive generic orthogonal…",
+      "section": "Preparation of the pair measures",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-prep-radial-lp",
+      "kind": "lemma",
+      "label": "Radial L^p estimate",
+      "statement": "[Radial L^p estimate] Let h1 and 0<<(h,1) . Let , be bounded, separated probabilities in ^ h+1 with finite I_ h+ energies. For some p>1 , the radial measures (_x)_\\# have jointly measurable densities…",
+      "section": "Preparation of the pair measures",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-prep-integer-caps",
+      "kind": "lemma",
+      "label": "Integer caps and lifting",
+      "statement": "[Integer caps and lifting] Under the uniform conclusion of Lemma~ , for every e>0 and R=2^N one can remove pair mass O(R^ -e(p-1)/2 ) so that the two remaining directional measures give every cap of…",
+      "section": "Preparation of the pair measures",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-prep-coarse-filter",
+      "kind": "lemma",
+      "label": "Coarse exclusion of heavy plates",
+      "statement": "[Coarse exclusion of heavy plates] Let k2 , and let _1,_2 be bounded separated s -Frostman probabilities in ^ k+1 , with k-12<s<k . Suppose =_1+_2 gives zero mass to every affine hyperplane. For…",
+      "section": "Preparation of the pair measures",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-prep-starting-pairs",
+      "kind": "proposition",
+      "label": "Starting pair measures",
+      "statement": "[Starting pair measures] Let E^d be compact, d2 , and _HE>S=d/2 . Either Lemma~ already proves that its distance set has positive Lebesgue measure, or the following construction is possible. After a…",
+      "section": "Preparation of the pair measures",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-test-profile-bounds",
+      "kind": "lemma",
+      "label": "Profile bounds",
+      "statement": "[Profile bounds] There is a dimensional constant C_d such that \\[ A_0=0, |A_i-A_j| d|i-j|/N, A_n n/N-C_d. \\] Every occupied depth- n cube has mass M(n)R^ C_d . In particular, a ball of radius C2^ -g…",
+      "section": "Profiles and angular tests",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-test-half-dimensional-fourier",
+      "kind": "lemma",
+      "label": "Half-dimensional Fourier estimate",
+      "statement": "[Half-dimensional Fourier estimate] Let 1 H R , K,L1 , and S=d/2 . Suppose is a probability in a fixed bounded subset of ^d with \\[ (B(x,r)) Kr^S(H^ -1 r1), \\] and is a subprobability on S^ d-1 with…",
+      "section": "Profiles and angular tests",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-test-exceptional-directions",
+      "kind": "lemma",
+      "label": "Exceptional directions",
+      "statement": "[Exceptional directions] The constant C_d in Definition~ can be chosen depending only on d so that the following holds for all fixed parameters and sufficiently large N . If is any spherical…",
+      "section": "Profiles and angular tests",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-test-smooth-masks",
+      "kind": "lemma",
+      "label": "Masks with a directional buffer",
+      "statement": "[Masks with a directional buffer] For a descriptor t of nominal length l' , put \\[ D_ l' =(1,2^ l' R^ -50 ). \\] For all sufficiently large N , every 0 i<J_0 admits a mask w_ i, t (x,w) , measurable…",
+      "section": "Profiles and angular tests",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-test-product-symbols",
+      "kind": "lemma",
+      "label": "Products and retained supports",
+      "statement": "[Products and retained supports] Consider a product with one factor for each occurrence in one or more descriptor lists whose total size is at most N^ C_* , with C_* fixed independently of N . A…",
+      "section": "Profiles and angular tests",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-test-descriptor-properties",
+      "kind": "lemma",
+      "label": "Descriptor geometry",
+      "statement": "[Descriptor geometry] For a nonterminal [a,t] , the union of the blocks eligible for its choice is an integer interval [a_*,t_*] with \\[ a+q_0 a_* a+2q_0, t-2q_0 t_* t-q_0, A_n A_p(a_* n t_*). \\] The…",
+      "section": "Profiles and angular tests",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-osc-symbol-bounds",
+      "kind": "lemma",
+      "label": "Derivative bounds and reached anchors",
+      "statement": "[Derivative bounds and reached anchors] Let L be the largest nominal length in the symbol's list, or in all lists for a product of symbols, with L=0 when those lists are empty, and put D_*=R^(1,2^L…",
+      "section": "Spherical oscillatory integrals and distance shells",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-osc-shell-conversion",
+      "kind": "proposition",
+      "label": "Weighted shell conversion",
+      "statement": "[Weighted shell conversion] Let 0 a v N be integer depths, and let X,Y be separated cells at depth a of one or two classes. Let m_x(w) and n_y(w) be products of the undifferentiated masks at one…",
+      "section": "Spherical oscillatory integrals and distance shells",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-osc-stationary",
+      "kind": "lemma",
+      "label": "Direct and inverse sphere expansions",
+      "statement": "[Direct and inverse sphere expansions] Suppose b C^(S^ n_* ) obeys \\|b\\|_ C^m C_m A^m at the finitely many orders needed below, where A1 . Let 0 , e=/|| , =r|| , and r>0 . A cutoff is assumed to…",
+      "section": "Spherical oscillatory integrals and distance shells",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-osc-spatial-separation",
+      "kind": "lemma",
+      "label": "Separated spatial expansion",
+      "statement": "[Separated spatial expansion] On separated depth- a cells, for every fixed j0 there are bounded measurable functions f_ on X and g_ on Y and constants c_ such that (D(x,y)2^a)^ -j =_ c_ f_(x)g_(y),…",
+      "section": "Spherical oscillatory integrals and distance shells",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-graph-estimate",
+      "kind": "proposition",
+      "label": "Graph estimate for the independent angular energy",
+      "statement": "[Graph estimate for the independent angular energy] Let _1,_2 be two regularized class laws, possibly equal, and write M_j , A_ j,n , I_j and k_j for their profiles and associated quantities from…",
+      "section": "The graph estimate",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-graph-localization",
+      "kind": "lemma",
+      "label": "Nonstationary localization",
+      "statement": "[Nonstationary localization] Under , replacing the expanded independent energy by its sum over the retained edges changes it by O(R^ -T ) , for every fixed T>0 . This replacement is made in the…",
+      "section": "The graph estimate",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-graph-degrees",
+      "kind": "lemma",
+      "label": "Both degrees of the retained graph",
+      "statement": "[Both degrees of the retained graph] For each fixed cap pair, both the row degrees and the column degrees of the retained graph are at most D_ gr = R^ _ j=1,2 k_j(a,p)+O_d()+o(1) . This estimate does…",
+      "section": "The graph estimate",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-graph-separated-form",
+      "kind": "corollary",
+      "label": "The separated angular form",
+      "statement": "[The separated angular form] Under the hypotheses of Proposition~ , suppose also that X,Y and their supported laws have the separated geometry used to define H_F^ X,Y (a,v) in Section~ . Then holds…",
+      "section": "The graph estimate",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-rec-binning",
+      "kind": "lemma",
+      "label": "Binning positive measures",
+      "statement": "[Binning positive measures] Let \\(,\\) be finite positive measures on the line and let \\(>0\\). Write \\[ B_() =_ j Z ([j,(j+1)))^2. \\] For any fixed \\(C1\\), B_() &()\\ |s-s'|\\ , \\\\ _ u R ()\\ |s-s'-u| C\\…",
+      "section": "Single-profile state reductions",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-rec-reductions",
+      "kind": "proposition",
+      "label": "State reductions",
+      "statement": "[State reductions] Suppose the current state is nonterminal, its smoothing index satisfies i<J_0 , and N is sufficiently large with all parameters fixed. For every prescribed T>0 , it is bounded,…",
+      "section": "Single-profile state reductions",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-ledger-payment",
+      "kind": "lemma",
+      "label": "Payment of the costs",
+      "statement": "[Payment of the costs] If a reduction of Proposition~ has a potentially positive cost and parent interval \\(J\\) and child interval \\(J'\\), then \\( V(J')\\) is defined and cost V(J')- V(J). For every…",
+      "section": "The two-depth potential",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-ledger-termination",
+      "kind": "lemma",
+      "label": "Finite policy and smoothing budget",
+      "statement": "[Finite policy and smoothing budget] Every branch of the state reductions has at most \\(20/\\) non-low transitions and at most \\(1/\\) low transitions, for sufficiently small fixed parameters and…",
+      "section": "The two-depth potential",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-ledger-bound",
+      "kind": "theorem",
+      "label": "Single-profile angular bound",
+      "statement": "[Single-profile angular bound] Let \\( H_0^ [c,N] (c,N)\\) be a recursive angular state of nonterminal width, as in Definition~ . Fix its initial derivative budget \\(B\\) and its common numerical…",
+      "section": "The two-depth potential",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-asm-entry",
+      "kind": "lemma",
+      "label": "Entry depth",
+      "statement": "[Entry depth] Fix 0<<(/10,1/10) . If is sufficiently small in terms of d,, , then, for all sufficiently large N , the integer c=\\ n\\ 0,,N\\ : (A_ 1,n ,A_ 2,n )\\ is defined and satisfies & N 2d…",
+      "section": "Entry, shell summation, and the limiting distance measure",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-asm-retained-measures",
+      "kind": "lemma",
+      "label": "Restoration of mass",
+      "statement": "[Restoration of mass] There is >0 , depending on the fixed parameters and starting measures, such that 0_N_N, \\|_N-_N\\|_ 2^ - N . Moreover _N decreases to the nonzero finite positive measure…",
+      "section": "Entry, shell summation, and the limiting distance measure",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-asm-shell-decay",
+      "kind": "proposition",
+      "label": "Decay of the approximating distance measures",
+      "statement": "[Decay of the approximating distance measures] The fixed parameters can be chosen, in the order ,,, , so that some >0 satisfies _ 2^ N-1 |r|2^ N+1 | _N(r)|^2\\,dr 2^ - N for all sufficiently large N .",
+      "section": "Entry, shell summation, and the limiting distance measure",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-asm-monotone-shell",
+      "kind": "lemma",
+      "label": "Monotone measure shell criterion",
+      "statement": "[Monotone measure shell criterion] Let (_N)_ N K be finite positive Borel measures on with _ N+1 _N , and let _=_N_N . Let _N be finite complex Borel measures such that _ N K \\|_N-_N\\|_ <, _ N K (_…",
+      "section": "Entry, shell summation, and the limiting distance measure",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    },
+    {
+      "id": "m1-asm-completion",
+      "kind": "proposition",
+      "label": "For the starting pair in Proposition~ , there is a nonzero finite positive…",
+      "statement": "For the starting pair in Proposition~ , there is a nonzero finite positive measure, absolutely continuous with respect to ^1 , carried by the original distance set (E) . Consequently ^1((E))>0 .",
+      "section": "Entry, shell summation, and the limiting distance measure",
+      "manuscript": "The Falconer distance conjecture in all dimensions"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-graph-localization",
+      "to": "m1-graph-estimate",
+      "label": "graph:localization",
+      "context": "[Proof of Proposition~\\ref{graph:estimate}] Apply Lemma~\\ref{graph:localization}. For fixed $r,w_1,w_2$ in a cap pair, take absolute values only of the retained terms. In the row--column indexing ab"
+    }
+  ]
+}

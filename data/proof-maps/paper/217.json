@@ -1,0 +1,465 @@
+{
+  "familyNumber": "217",
+  "familyTitle": "The low-temperature Sherrington–Kirkpatrick fluctuation law",
+  "manuscripts": [
+    {
+      "id": "The-low-temperature-Sherrington-Kirkpatrick-free-energy-limiting-law-September-24-2026",
+      "title": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-low-temperature-Sherrington-Kirkpatrick-free-energy-limiting-law-September-24-2026/The-low-temperature-Sherrington-Kirkpatrick-free-energy-limiting-law-September-24-2026.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Hierarchical Gaussian calculus",
+    "Scalar reference paths and admissible perturbations",
+    "Reduction to pressure increments",
+    "Inverting the scalar pair kernel",
+    "Global scalar-trial accuracy",
+    "Weighted comparison budgets",
+    "Statistics for the genuine paths",
+    "Finite pressure expansion and power count"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Limiting law",
+      "statement": "[Limiting law] For every fixed real >1 , there is a nondegenerate Borel probability measure _ such that \\[ X_n()\\ \\ _ as n through all integers. \\] The measure _ has mean zero, variance one, and a…",
+      "section": "Introduction",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-thm-moments",
+      "kind": "theorem",
+      "label": "Moment convergence at the fluctuation scale",
+      "statement": "[Moment convergence at the fluctuation scale] For each fixed >1 , there are real numbers a_k=a_k() , k1 , with the following property. For every integer k1 , there are constants c_k>0 and C_k< such…",
+      "section": "Introduction",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-def-law",
+      "kind": "proposition",
+      "label": "Moment specification",
+      "statement": "[Moment specification] Fix >1 and let C=_ l=2 ^ l^ -2 . For an integer k1 , draw an integer J2 with \\[ P(J=l)= l^ -2 C. \\] Conditional on J , draw k+1 independent copies F_J^ c,0 ,,F_J^ c,k of the…",
+      "section": "Introduction",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-cor-skcw",
+      "kind": "corollary",
+      "label": "SK--Curie--Weiss fluctuations below unit coupling",
+      "statement": "[SK--Curie--Weiss fluctuations below unit coupling] Fix >1 and 0<1 . Using the same independent standard Gaussian couplings as in , define the exponent and log partition function \\[ H_n^ CW (;,) = n…",
+      "section": "Introduction",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-cor-disorder-chaos",
+      "kind": "corollary",
+      "label": "Upper disorder-chaos scales in zero-field SK",
+      "statement": "[Upper disorder-chaos scales in zero-field SK] Fix >1 and n2 . Put E_n=\\ (i,j):1 i<j n\\ and M=|E_n|=n(n-1)/2 , and let g' be an independent copy of g=(g_ ij )_ (i,j) E_n in . Write _ g,h for…",
+      "section": "Introduction",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-found-estimates",
+      "kind": "lemma",
+      "label": "Pressure, source, and single-path estimates",
+      "statement": "[Pressure, source, and single-path estimates] For the positive laws just defined, the following identities and inequalities hold at every fixed size. The moment bounds in -- hold for every fixed real…",
+      "section": "Hierarchical Gaussian calculus",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-found-cavity-quotient",
+      "kind": "lemma",
+      "label": "Finite cavity quotient",
+      "statement": "[Finite cavity quotient] For overlap-polynomial \\(P\\) invariant as after , on any fixed finite-label tree including \\(ij\\), one has through order \\(k-1\\) \\[ = + Rem _k+O(m^ -1 ), \\] where \\( Rem _k\\)…",
+      "section": "Hierarchical Gaussian calculus",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-found-reference-change",
+      "kind": "lemma",
+      "label": "Change of scalar reference",
+      "statement": "[Change of scalar reference] Apply at a monotone reference \\(K'\\), then Taylor-expand its deterministic scalar coefficients from \\(K\\) to \\(K'\\). At any consistent total truncation, the result is the…",
+      "section": "Hierarchical Gaussian calculus",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-found-row-derivative",
+      "kind": "lemma",
+      "label": "Differentiated row identity",
+      "statement": "[Differentiated row identity] Let a dot vary \\(b,h,K,q\\) at fixed interval length \\(a\\), and let \\( D \\) differentiate including its scalar coefficients, with the formal rule \\( D =-e\\) for any fixed…",
+      "section": "Hierarchical Gaussian calculus",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-found-size-increment",
+      "kind": "lemma",
+      "label": "Finite increments in the number of sites",
+      "statement": "[Finite increments in the number of sites] At fixed clocks and \\(s\\), assume that \\(bq^2\\) is nondecreasing. For every fixed positive integer \\(j\\), the change from \\(m_m\\) to \\((m+j)_ m+j \\),…",
+      "section": "Hierarchical Gaussian calculus",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-paths-base-profile",
+      "kind": "lemma",
+      "label": "Regular scalar profile and a strict top plateau",
+      "statement": "[Regular scalar profile and a strict top plateau] At fixed \\(T>1\\), the scalar minimizing distribution has support \\([0,_*]\\), satisfies \\(_0()=/T\\) there, and has a positive initial density. Its…",
+      "section": "Scalar reference paths and admissible perturbations",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-paths-lift",
+      "kind": "lemma",
+      "label": "Quantitative scalar lift",
+      "statement": "[Quantitative scalar lift] Uniformly (extending by a terminal annealed clock), \\[ ll b_1, 1-b_'(t)\\ c(t^2,1) & (t0),\\\\ 1-b_'(t)\\ C t^2 & (0 _*;\\ active side),\\\\ t(v) v, q(v) v & near 0, q(v) v…",
+      "section": "Scalar reference paths and admissible perturbations",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-paths-parameter-regularity",
+      "kind": "lemma",
+      "label": "Parameter derivatives of the scalar references",
+      "statement": "[Parameter derivatives of the scalar references] Let the direct and smoothed scalar references have the parameters in , with \\(12^ 1/6 \\); the smoothed reference is at final strength. The following…",
+      "section": "Scalar reference paths and admissible perturbations",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-paths-switch",
+      "kind": "proposition",
+      "label": "Comparison of the two regularizations",
+      "statement": "[Comparison of the two regularizations] At final strength \\(=x^ p_* \\), with \\((_ lin ,_e)=(1,0)\\), the direct and smoothed systems satisfy , uniformly with the same parameters \\(,\\). Their scalar…",
+      "section": "Scalar reference paths and admissible perturbations",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-prop-increment",
+      "kind": "proposition",
+      "label": "Stopped pressure increments",
+      "statement": "[Stopped pressure increments] There is a choice of the exponents in and a constant \\(c>0\\) with the following property. For every sufficiently small fixed \\(>0\\), every fixed \\(q>0\\), and \\(s=q x^ 1+…",
+      "section": "Reduction to pressure increments",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-red-lem-augmentation",
+      "kind": "lemma",
+      "label": "Augmentation along the physical paths",
+      "statement": "[Augmentation along the physical paths] Let \\(G_m\\) be the continuation in , and let \\( E_ x/2 \\) be an independent exponential random variable of rate \\(x/2\\). Along every physical path used above,…",
+      "section": "Reduction to pressure increments",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-red-lem-site-smoothing",
+      "kind": "lemma",
+      "label": "Stencil and neighboring-site errors",
+      "statement": "[Stencil and neighboring-site errors] For any sequence \\(Z_m\\), supported or restricted to the relevant neighborhood of the center, \\[ d dn _m w_m(n)Z_m =_m w_m(n)_ j=0 ^r c_j Z_ m+j +O_r\\!(D^ -r-1…",
+      "section": "Reduction to pressure increments",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-red-prop-dyadic",
+      "kind": "proposition",
+      "label": "Dyadic transform comparison",
+      "statement": "[Dyadic transform comparison] Assume Proposition~ . There is \\(c'>0\\), independent of sufficiently small fixed \\(\\), such that for every fixed positive test coefficient \\(q\\), every integer \\(N'\\),…",
+      "section": "Reduction to pressure increments",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-red-prop-moments",
+      "kind": "proposition",
+      "label": "Consequences of the increment bound",
+      "statement": "[Consequences of the increment bound] Assume Proposition~ . For every fixed integer \\(k1\\), the moments \\( EY_n^k\\) converge at a positive power rate. Their limiting second moment is finite and…",
+      "section": "Reduction to pressure increments",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-red-prop-identification",
+      "kind": "proposition",
+      "label": "Validity of the law specification",
+      "statement": "[Validity of the law specification] Under Proposition~ , the constants in Proposition~ are well defined by an absolutely convergent series after the indicated expectations. They are precisely the…",
+      "section": "Reduction to pressure increments",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-inv-pair-inverse",
+      "kind": "proposition",
+      "label": "Pair inverse with absolute attachment domination",
+      "statement": "[Pair inverse with absolute attachment domination] The kernel is considered on extensions of any fixed finite list of old labels. A pair function \\(u_ ab \\) may depend on the topology with those…",
+      "section": "Inverting the scalar pair kernel",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-inv-sector-response",
+      "kind": "lemma",
+      "label": "Scalar response on the two sectors",
+      "statement": "[Scalar response on the two sectors] Use the finite resolution above, and put \\(m_t=V_z(K_t,Z_ K_t )\\), \\(_t=V_ zz (K_t,Z_ K_t )\\). Let \\( E_t\\) condition on the scalar prefix through \\(K_t\\). On the…",
+      "section": "Inverting the scalar pair kernel",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-global-trial-gap",
+      "kind": "proposition",
+      "label": "Accuracy before field seeding",
+      "statement": "[Accuracy before field seeding] For the direct paths, use the matrix \\(b\\) of and the unmasked, unseeded field \\(h_*=t-bq\\) in the untilted system. Fix \\(T>1\\) and the exponent choices of Section~ .…",
+      "section": "Global scalar-trial accuracy",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-global-residual-blocks",
+      "kind": "lemma",
+      "label": "Residual blocks and integrated increments",
+      "statement": "[Residual blocks and integrated increments] Fix a positive path law with terminal mass \\(a\\), and parametrize a deterministic increasing family of revealed cuts by \\(s\\). At a cut \\(s\\), let branches…",
+      "section": "Global scalar-trial accuracy",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-global-buffer-brackets",
+      "kind": "lemma",
+      "label": "Buffer brackets and a common past",
+      "statement": "[Buffer brackets and a common past] Fix a full single-path positive law with terminal mass \\(a\\) and deterministic revealed cuts. Let \\(w\\) be one such cut, and let \\(_-\\), \\(_+\\) be deterministic…",
+      "section": "Global scalar-trial accuracy",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-bud-targets",
+      "kind": "proposition",
+      "label": "Uniform weighted comparison budgets",
+      "statement": "[Uniform weighted comparison budgets] The averaging bounds needed are, on all segments of Proposition~ , uniformly, \\[ E__ U^4, \\] where one can use ordinary dyads with fixed comparable enlargements,…",
+      "section": "Weighted comparison budgets",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-bud-geometry",
+      "kind": "lemma",
+      "label": "Modified optimizer geometry",
+      "statement": "[Modified optimizer geometry] For every minimizer in , the first-variation potential can be normalized so that its derivative is \\[ H '=C(r), p=-r C'/C . \\] The minimizing density equals the cap M_j…",
+      "section": "Weighted comparison budgets",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-bud-coarse-profile",
+      "kind": "proposition",
+      "label": "Comparability and the calibrated initial slope",
+      "statement": "[Comparability and the calibrated initial slope] For every optimizer in , uniformly, \\[ r(v) v\\ (w_c v1), _ c u v C u |r(v)-q(v)|=o(u) \\] for each fixed \\(0<c<C\\) (fixed numeric multiples, not the…",
+      "section": "Weighted comparison budgets",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-bud-outer-moments",
+      "kind": "lemma",
+      "label": "Moments under outer regularity",
+      "statement": "[Moments under outer regularity] For every fixed 2 p< , at every specified revelation cut and fork, \\[ \\|X_v\\|_p_pv+w, \\|Q_v\\|_p_p v+w \\] where Q_v is the overlap of a pair splitting at mass v . On a…",
+      "section": "Weighted comparison budgets",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-bud-outer-second",
+      "kind": "lemma",
+      "label": "Second moments with an enhanced floor",
+      "statement": "[Second moments with an enhanced floor] Under the same outer-regularity hypotheses, on regular mass dyads, with B_f=X^ 3/2 ^ s_0/2 ^ -5/12 , \\[ (avgD^2)^ 1/2 _ (x^6/(C(v)v))^ 1/3 +x^3/(vC(v)) +m^ /2…",
+      "section": "Weighted comparison budgets",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-bud-common-star",
+      "kind": "lemma",
+      "label": "A common calibration cut",
+      "statement": "[A common calibration cut] On compact target bands with cw v Cw and r=O(w) , \\[ D^2\\,dv=o(w^3), D^2\\,dr=o(w^3), _0^ C'W D_v\\,dv=o(w^2) \\] for every fixed C' . There is a deterministic nonfloor cut *…",
+      "section": "Weighted comparison budgets",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-bud-modified-closure",
+      "kind": "proposition",
+      "label": "Closure for the modified constraints",
+      "statement": "[Closure for the modified constraints] Along any fixed sequence of optimizers with the strong-removal hypotheses above and fixed outer-comparability constants, the following estimate holds for…",
+      "section": "Weighted comparison budgets",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-bud-strengthening",
+      "kind": "lemma",
+      "label": "Finite strengthening",
+      "statement": "[Finite strengthening] On a slightly smaller interval interior to \\(I_j\\), at each stage, \\[ |-_0| u a_j Z \\] for almost every global parameter, simultaneously for all its optimizers, where \\(Z1\\)…",
+      "section": "Weighted comparison budgets",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-bud-envelope",
+      "kind": "lemma",
+      "label": "Stage cost and an envelope common to all minimizers",
+      "statement": "[Stage cost and an envelope common to all minimizers] Suppose the preceding stage satisfies . At the new stage the average optimized excess is at most \\(O(x^ 4-2 u^ 1/3 )\\). For almost every global…",
+      "section": "Weighted comparison budgets",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-bud-curvature",
+      "kind": "lemma",
+      "label": "Scalar curvature in a buffer",
+      "statement": "[Scalar curvature in a buffer] By the scalar second derivative identity we now have uniformly a.e. in the inner buffer \\[ d^2 dr^2 =-A_* ((r)-_0(r))+o(d_0), \\] where \\(A_*\\) converges to a positive…",
+      "section": "Weighted comparison budgets",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-bud-box-moments",
+      "kind": "lemma",
+      "label": "Moments on moving boxes",
+      "statement": "[Moments on moving boxes] Uniformly inside the buffer and for these averages, for every fixed moment order, we have \\[ \\|_i\\|_p_p d_0, avg\\|_i\\|_2^2 d_0^2^ 0.14 , avg\\|Q_i-|X_i|^2\\|_2^2 _ ^ - u^2…",
+      "section": "Weighted comparison budgets",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-bud-free-forks",
+      "kind": "lemma",
+      "label": "Integrated errors at free forks",
+      "statement": "[Integrated errors at free forks] Uniformly, \\[ _0^ c_Hu D_v dv&_ u^2 T_1, T_1=A+B_f+y_c^2,\\\\ _0^ c_Hu D_v^2dv&_ u^3 T_2, T_2=A^2+B_f^2+A^ 3/2 y_c+A y_c^ 5/3 ,\\\\ (avg_ v w D_v^2)^ 1/2 &_ u A (w…",
+      "section": "Weighted comparison budgets",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-bud-high-primitive",
+      "kind": "lemma",
+      "label": "High projection and centered primitives",
+      "statement": "[High projection and centered primitives] Work in the buffered violation constructed above, with \\(d_0=uL\\), \\(L a_ goal Z\\), \\(h_1=u(L,)\\), and \\(G_1=((L^2,),)\\). Here \\(Z1\\) is the deterministic…",
+      "section": "Weighted comparison budgets",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-bud-power-margins",
+      "kind": "lemma",
+      "label": "Strict power margins",
+      "statement": "[Strict power margins] For clarity, here is some power accounting used here and below (write \\(\\) in such estimates for polynomial gains). Uniformly under , , \\(a_ goal Z L1\\), we have \\[ T_2,\\ A…",
+      "section": "Weighted comparison budgets",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-bud-closure",
+      "kind": "proposition",
+      "label": "Buffered one-row closure",
+      "statement": "[Buffered one-row closure] In any of the boxes of we claim \\[ avg|S_i-_s(K_s(i))|=o(u^3 P_1). \\]",
+      "section": "Weighted comparison budgets",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-prop-statistics-pointwise",
+      "kind": "proposition",
+      "label": "Pointwise moments",
+      "statement": "[Pointwise moments] Assume the direct-path hypotheses above and Y=o(1) , or their low-region size-path variant. For every fixed 1 p< the following estimates hold: ll \\||X_v|^2\\|_p+\\|L_v\\|_p+\\|Q_…",
+      "section": "Statistics for the genuine paths",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-lem-statistics-widths",
+      "kind": "lemma",
+      "label": "Width construction",
+      "statement": "[Width construction] The preceding construction gives a deterministic envelope with the size, integral, and defect bounds stated in Proposition~ . The random moment bounds will be proved in the next…",
+      "section": "Statistics for the genuine paths",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-lem-statistics-integrated",
+      "kind": "lemma",
+      "label": "Integrated variance estimates",
+      "statement": "[Integrated variance estimates] For every fixed integer k0 , the following bounds hold. All quantities on the right are untilted; in particular this convention applies to \\(S,D\\): E W\\,e(v)^ 2k…",
+      "section": "Statistics for the genuine paths",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-lem-statistics-localized",
+      "kind": "lemma",
+      "label": "Large-envelope localization",
+      "statement": "[Large-envelope localization] There is also a localized bound for the direct path. For any sufficiently small fixed \\('>0\\), on all the bands in together, _ \\ e(v) x^ ' \\ D_v^2\\,dv _ x^ -C_0' z_1^0…",
+      "section": "Statistics for the genuine paths",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-lem-statistics-lower-band",
+      "kind": "lemma",
+      "label": "The lower band",
+      "statement": "[The lower band] At \\(v C Y\\) we will discard \\(v<x\\) or treat it by raw bounds. For dyads of size \\(w Y\\) restricted to \\(v x\\), put \\(_w=x^3 Y/( _1(w,U)^ 3/2 )\\), \\(E_0=g_B Y^2=x^3 Y/( _1U^ 3/2…",
+      "section": "Statistics for the genuine paths",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-lem-statistics-centered",
+      "kind": "lemma",
+      "label": "Centered polynomial integrals",
+      "statement": "[Centered polynomial integrals] Fix a dyad \\(v r\\), \\(r Y\\), and a deterministic polynomial \\(P_v\\) of total degree \\(j1\\) in the centered inserted value. Assume its remaining deterministic powers…",
+      "section": "Statistics for the genuine paths",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-cor-statistics-low-projection",
+      "kind": "corollary",
+      "label": "Projection to a common low cut",
+      "statement": "[Projection to a common low cut] One more consequence of , is the following: for \\(Y c'\\) up to a sufficiently small fixed scale, a pair split well before \\(c'\\) (say mass \\( c'/8\\)) changes in…",
+      "section": "Statistics for the genuine paths",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-lem-statistics-coarse-switch",
+      "kind": "lemma",
+      "label": "Coarse and switch contributions",
+      "statement": "[Coarse and switch contributions] For sufficiently small fixed >0 , the direct-strength contribution from Y>x^ satisfies the direct part of Proposition~ . The two final-strength multiplier changes…",
+      "section": "Statistics for the genuine paths",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-prop-statistics-size-accuracy",
+      "kind": "proposition",
+      "label": "Uniform all-moment accuracy",
+      "statement": "[Uniform all-moment accuracy] Here \\(=x^ p_* \\); assume \\(p_*\\) sufficiently small. Uniformly at every parameter value on smoothed size paths in the untilted system there is a fixed \\(_*>0\\),…",
+      "section": "Statistics for the genuine paths",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-cor-statistics-cap",
+      "kind": "corollary",
+      "label": "A deterministic cap on the low scale",
+      "statement": "[A deterministic cap on the low scale] For and the low statistics on size paths we may cap Y at x^ _*/3 , decreasing p_* if necessary, and still write Y=UZ . Indeed gives |S_v-q(v)|^2 x^ 2_* ,…",
+      "section": "Statistics for the genuine paths",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-prop-statistics-high",
+      "kind": "proposition",
+      "label": "High-mass means and variances",
+      "statement": "[High-mass means and variances] Take \\(Z\\) as at the end of ; by take also \\(Z_g1,\\ E_ Z_g^21\\) with \\( v^2\\,dv x^ 4+c Z_g^2\\) untilted. Choose V_i=x^ a_i (0 i2), p_* a_2 a_1 a_0(c,_*). There are…",
+      "section": "Statistics for the genuine paths",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-lem-statistics-low-sources",
+      "kind": "lemma",
+      "label": "Low sources with a retained high pair",
+      "statement": "[Low sources with a retained high pair] Consider an allocation with bounded degree and bounded topology weights. The old prescribed topology is either absent or consists of one pair splitting at mass…",
+      "section": "Statistics for the genuine paths",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-exp-lem-centered-count",
+      "kind": "lemma",
+      "label": "Centered allocation estimate",
+      "statement": "[Centered allocation estimate] Fix \\(j2\\) pair factors. Each factor is either \\(\\), possibly projected, or a deterministic function bounded by \\(O_(e(v))\\); use \\(e=Y\\) on the lower band. Fix the…",
+      "section": "Finite pressure expansion and power count",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    },
+    {
+      "id": "m1-exp-prop-low-coefficients",
+      "kind": "proposition",
+      "label": "Coefficients after compression",
+      "statement": "[Coefficients after compression] Fix the dyadic restrictions on the base factors and a cut \\(c w\\) within the region where the small inverse is regular. A sufficiently large fixed separation factor…",
+      "section": "Finite pressure expansion and power count",
+      "manuscript": "The low-temperature Sherrington–Kirkpatrick free-energy limiting law"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-global-residual-blocks",
+      "to": "m1-prop-statistics-pointwise",
+      "label": "global:residual-blocks",
+      "context": "[Proof of Proposition~\\ref{prop:statistics-pointwise}] All estimates in this proof use the untilted positive law with fixed path data. Lemma~\\ref{global:residual-blocks} supplies the conditional block decomposition \\eqref{eq:global-block-decomposition} and its integrated-increment bounds."
+    }
+  ]
+}

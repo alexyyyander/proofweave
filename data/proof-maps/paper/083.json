@@ -1,0 +1,424 @@
+{
+  "familyNumber": "083",
+  "familyTitle": "Hilbert transforms along Lipschitz directions",
+  "manuscripts": [
+    {
+      "id": "A-uniform-Hilbert-transform-estimate-for-Lipschitz-directions-September-25-2026",
+      "title": "A uniform Hilbert transform estimate for Lipschitz directions",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-uniform-Hilbert-transform-estimate-for-Lipschitz-directions-September-25-2026/main.pdf"
+    }
+  ],
+  "sections": [
+    "Short transforms and band reduction",
+    "Ordinary tiles and the popular forest",
+    "Reference-line concentration and significant directions",
+    "A strict finite Fourier inequality with constant one",
+    "Angular hierarchy and predicted factors",
+    "Residual terms and integration along paths",
+    "Interpolation, boundary averaging, and completion"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There are absolute constants \\(a_*(0,1/2)\\) and \\(C_*<\\) such that every…",
+      "statement": "There are absolute constants \\(a_*(0,1/2)\\) and \\(C_*<\\) such that every Lipschitz field \\(v:^2 S^1\\) with \\((v)1\\) satisfies \\[ _ 0<<a_* H_ v,a_* ^ f _ L^2(^2) C_*f_ L^2(^2) (f S(^2)). \\] Its…",
+      "section": "Short transforms and band reduction",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-red-kakeya",
+      "kind": "theorem",
+      "label": "Lacey--Li",
+      "statement": "[Lacey--Li] Let \\(v:^2 S^1\\) be Lipschitz and \\(0<<1\\). Restrict to rectangles satisfying \\[ L(R) 1 100(v) , R v^ -1 (EX(R)) R, \\] where the first restriction is void when \\((v)=0\\). Then \\[ M_ v,…",
+      "section": "Short transforms and band reduction",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-red-fixed-time",
+      "kind": "lemma",
+      "label": "For \\( t\\,C_ Lip <1\\), define \\[ A_t h(x,y)=h(x-t,y-tu(x,y)). \\] For \\(1 p<\\),…",
+      "statement": "For \\( t\\,C_ Lip <1\\), define \\[ A_t h(x,y)=h(x-t,y-tu(x,y)). \\] For \\(1 p<\\), A_t h_p (1- t\\,C_ Lip )^ -1/p h_p, and \\(A_t\\) is a contraction on \\(L^\\). Consequently, replacing either symmetric…",
+      "section": "Short transforms and band reduction",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-thm-band-restricted",
+      "kind": "theorem",
+      "label": "Restricted estimate on a vertical band",
+      "statement": "[Restricted estimate on a vertical band] For the fixed absolute constants in , there is an absolute \\(C\\) such that, for every field \\(u\\) with \\( u1\\) and \\((u) C_ Lip \\), every \\(0<<a\\), every…",
+      "section": "Short transforms and band reduction",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-red-restricted-strong",
+      "kind": "lemma",
+      "label": "Suppose a bilinear form \\( B\\) satisfies \\[ B(f,g) C_0(1+|(|F|/|E|)|)^ -3…",
+      "statement": "Suppose a bilinear form \\( B\\) satisfies \\[ B(f,g) C_0(1+|(|F|/|E|)|)^ -3 |F||E| (|f|_F,\\ |g|_E) \\] on finite-measure sets in a fixed measurable domain. Then \\[ B(f,g) C C_0 f_2 g_2 \\] for finite…",
+      "section": "Short transforms and band reduction",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-red-carleson",
+      "kind": "lemma",
+      "label": "The required Carleson embedding",
+      "statement": "[The required Carleson embedding] For every fixed integer \\(c\\), every \\(q L^()\\), and every \\(h L^2()\\), _k (_kq)S_ k+c h _2^2 C_c q_^2 h_2^2.",
+      "section": "Short transforms and band reduction",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-red-commutator",
+      "kind": "lemma",
+      "label": "Let \\(b W^ 1, ()\\), and let \\(T= m(D)\\), where \\( m\\) is smooth away from zero…",
+      "statement": "Let \\(b W^ 1, ()\\), and let \\(T= m(D)\\), where \\( m\\) is smooth away from zero and \\[ A( m) =_ 0 r4 _ 0 ||^r| m^ (r) ()|<. \\] Then [b,T] h_2 C A( m)b'_ h_2. The commutator is initially defined on the…",
+      "section": "Short transforms and band reduction",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-red-composition-commutator",
+      "kind": "corollary",
+      "label": "For \\( t b_0\\) and \\(T\\) as in , TC_t h-C_tTh_2 C A( m) t\\, h_2. The constant…",
+      "statement": "For \\( t b_0\\) and \\(T\\) as in , TC_t h-C_tTh_2 C A( m) t\\, h_2. The constant is uniform over \\( u1\\), \\((u) C_ Lip \\).",
+      "section": "Short transforms and band reduction",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-red-band-implies-main",
+      "kind": "proposition",
+      "label": "The uniform restricted estimate in implies .",
+      "statement": "The uniform restricted estimate in implies .",
+      "section": "Short transforms and band reduction",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-red-time-reduction",
+      "kind": "lemma",
+      "label": "For any fixed \\(1<p<\\), the contribution of \\((,)<|t|<a\\) to \\(HP_w\\) has…",
+      "statement": "For any fixed \\(1<p<\\), the contribution of \\((,)<|t|<a\\) to \\(HP_w\\) has \\(L^p\\) norm at most \\(C_p(1+L)\\) if \\(L L_0\\), and at most a fixed \\(C_p\\) otherwise. On the remaining times below \\(w\\),…",
+      "section": "Short transforms and band reduction",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-red-scale-truncation",
+      "kind": "lemma",
+      "label": "For dyadic \\(0<r R\\), _| _ \\ r<|t|<R\\ t -_ r R k_(t) | t C. Also, _ |t||_ r R…",
+      "statement": "For dyadic \\(0<r R\\), _| _ \\ r<|t|<R\\ t -_ r R k_(t) | t C. Also, _ |t||_ r R k_(t)| t C R. Both constants are independent of the number of scales. Changing either spatial endpoint by a fixed factor…",
+      "section": "Short transforms and band reduction",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-red-bin-levels",
+      "kind": "lemma",
+      "label": "Amplitude levels after bin projection",
+      "statement": "[Amplitude levels after bin projection] Let \\(h:^2 H\\) satisfy \\[ h_ Q, h_1 Q M_0, h_2^2 C_0M_0, \\] where \\(M_0>0\\) and \\(Q C(C L^ 0.9 )\\). Write \\[ A_i=\\ 2^ i-1 <h( )_ H 2^i\\ , a_i=2^i|A_i|/M_0. \\]…",
+      "section": "Short transforms and band reduction",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-red-packet-representation",
+      "kind": "proposition",
+      "label": "Packet representation",
+      "statement": "[Packet representation] The diagonal form \\[ _j A_ u, L Q_j f_j,g_j \\] is a sum, with absolutely summable scalar coefficients, of averages of forms . Each form satisfies , uniformly in \\(w,m, L\\),…",
+      "section": "Short transforms and band reduction",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-red-model-suffices",
+      "kind": "proposition",
+      "label": "Suppose that the following bounds hold, uniformly for every admissible finite…",
+      "statement": "Suppose that the following bounds hold, uniformly for every admissible finite form \\(_ S \\) in , with the fixed packet constants there. The field \\(u:^2\\) is bounded and measurable, the sets…",
+      "section": "Short transforms and band reduction",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-tile-prop-model",
+      "kind": "proposition",
+      "label": "Ordinary model estimates",
+      "statement": "[Ordinary model estimates] Let the bin Hilbert space be \\( H=^J\\), where \\(J C_ bin m\\). If \\(g(z)_ H _E(z)\\) and \\(D_E(s)\\) for every \\(s S\\), with \\(0< C\\), then |_ S (f,g)| C(1+(2m))^C^ 1/4 |E|^…",
+      "section": "Ordinary tiles and the popular forest",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-tile-lem-synthesis",
+      "kind": "lemma",
+      "label": "Separated synthesis",
+      "statement": "[Separated synthesis] Let \\( T\\) be separated tiles satisfying , and let \\(_s\\) be either of their packet families \\(_s\\) or \\(_s\\). For every fixed \\(J_0\\), \\| p_ T,J_0 _ s T c_s_s\\|_2 & C_ J_0 (_ s…",
+      "section": "Ordinary tiles and the popular forest",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-tile-lem-size",
+      "kind": "lemma",
+      "label": "Size selection",
+      "statement": "[Size selection] Suppose \\(size(v) C_*\\), with \\(C_*\\) fixed. One can remove a collection of trees so that the remaining size is at most \\(\\) and _T|R_T| C^ -2 f_2^2. The removed tiles partition into…",
+      "section": "Ordinary tiles and the popular forest",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-tile-lem-density",
+      "kind": "lemma",
+      "label": "Density selection",
+      "statement": "[Density selection] For \\(0< C\\), all tiles with \\(D_E(s)>\\) can be assigned to keeper boxes \\(R_T\\), of dyadic length \\(l_T\\), width \\(W\\), and slope \\(t_T\\), with the following properties. There…",
+      "section": "Ordinary tiles and the popular forest",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-tile-lem-tree",
+      "kind": "lemma",
+      "label": "Tree bound",
+      "statement": "[Tree bound] Suppose a scalar tree \\( T\\) satisfies \\(D_E(s)\\) on its tiles and has size at most \\(\\). If \\(|g|_E\\), then |_ T (f,g)| C|R_T|. The size assumption can be replaced by the same bound on…",
+      "section": "Ordinary tiles and the popular forest",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-forest-prop-count",
+      "kind": "proposition",
+      "label": "For the tops in , n_ L^ 2, ( D) C L^C S. More precisely, if \\[ D_*(2K_0,\\,2L^…",
+      "statement": "For the tops in , n_ L^ 2, ( D) C L^C S. More precisely, if \\[ D_*(2K_0,\\,2L^ C_ as ,\\,2), \\] then one may take the right-hand side to be \\(C L^ C_ as D_*^3 S\\), provided \\(D_*\\) is chosen within an…",
+      "section": "Ordinary tiles and the popular forest",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-forest-lem-mask",
+      "kind": "lemma",
+      "label": "The mask has Fourier support q_T \\ (,): |+s_T|r_L L^A l_T , ||r_L L^A W \\ . For…",
+      "statement": "The mask has Fourier support q_T \\ (,): |+s_T|r_L L^A l_T , ||r_L L^A W \\ . For sufficiently large \\(L\\), with all other exponents fixed, |q_T(z)|& (-L L) &&if _T(z)>K_0, \\\\ |q_T(z)|h_T(z)^ -1 & C…",
+      "section": "Ordinary tiles and the popular forest",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-conc-single-scale",
+      "kind": "lemma",
+      "label": "For a fixed scale =w/d , and any subcollection of tiles satisfying at this…",
+      "statement": "For a fixed scale =w/d , and any subcollection of tiles satisfying at this scale, _ _s= a_s_ H B_ s,n ^ t (z) C_n. There are fixed constants 0<c<1<C' for which f_d(z)&=C( _ \\ cdu(z)-t C'B^4d\\ +…",
+      "section": "Reference-line concentration and significant directions",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-conc-coefficient-carleson",
+      "kind": "lemma",
+      "label": "For every t -box Q of width W , the main coefficients satisfy _ z_s…",
+      "statement": "For every t -box Q of width W , the main coefficients satisfy _ z_s Q\\\\_slength(Q) a_s^ main _ H ^2R_s CQ. The same estimate holds after restricting to any fixed subcollection.",
+      "section": "Reference-line concentration and significant directions",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-conc-annular-variation",
+      "kind": "lemma",
+      "label": "Suppose F_k L^2(; H) has Fourier support in \\ :c_a2^k C_a2^k\\ , with fixed…",
+      "statement": "Suppose F_k L^2(; H) has Fourier support in \\ :c_a2^k C_a2^k\\ , with fixed positive c_a,C_a . Then V_3(F_k)_ L^2() C_ c_a,C_a (_kF_k_2^2)^ 1/2 . The constant is independent of the finite index range…",
+      "section": "Reference-line concentration and significant directions",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-conc-john-nirenberg",
+      "kind": "lemma",
+      "label": "Let I be a finite interval and let f be a locally integrable scalar function on…",
+      "statement": "Let I be a finite interval and let f be a locally integrable scalar function on I . Suppose that for each dyadic subinterval J of I , J^ -1 _Jf-f_J A , where f_J denotes its average. Then, for every…",
+      "section": "Reference-line concentration and significant directions",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-conc-line-moments",
+      "kind": "proposition",
+      "label": "For every slope t , every collection satisfying , every line Y_t=y_0 , every…",
+      "statement": "For every slope t , every collection satisfying , every line Y_t=y_0 , every horizontal interval I of length l on that line, and every b2 , the normalized L^b(I) norms of E_t , S_t , and \\[ V_3(_…",
+      "section": "Reference-line concentration and significant directions",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-conc-top-good",
+      "kind": "corollary",
+      "label": "For every fixed J_*>0 there are a fixed exponent C_ top and a measurable set X_…",
+      "statement": "For every fixed J_*>0 there are a fixed exponent C_ top and a measurable set X_ top with X_ top S e^ -J_*L such that, for all tops T and all z X_ top , _ J \\ _ v W ( F_ T, J (z+(0,v)) _ H + D F_ T, J…",
+      "section": "Reference-line concentration and significant directions",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-conc-mask-removal",
+      "kind": "proposition",
+      "label": "Given any fixed H>0 , choose A sufficiently large after K_1 and C_ top , and…",
+      "statement": "Given any fixed H>0 , choose A sufficiently large after K_1 and C_ top , and then choose a sufficiently large fixed count threshold exponent C_n . There is a measurable set F_ conc F such that \\[ F…",
+      "section": "Reference-line concentration and significant directions",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-count-simultaneous",
+      "kind": "proposition",
+      "label": "There is a fixed exponent C_D with the following property. For every fixed J>0…",
+      "statement": "There is a fixed exponent C_D with the following property. For every fixed J>0 and all sufficiently large L , there is a measurable set E_ count ^2 such that | E_ count | S e^ -JL . Define Z_0=F_…",
+      "section": "Reference-line concentration and significant directions",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-count-line-lemma",
+      "kind": "lemma",
+      "label": "Let (f_b)_ b B be a countable family of measurable functions on such that 0…",
+      "statement": "Let (f_b)_ b B be a countable family of measurable functions on such that 0 f_b1 and _b f_b C_0 , where C_01 . Fix H>0 and 0<1 . There is a measurable function N: with the following properties. If…",
+      "section": "Reference-line concentration and significant directions",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-phase-finite-fourier",
+      "kind": "proposition",
+      "label": "Finite Fourier gain",
+      "statement": "[Finite Fourier gain] Let \\(_1,,_d\\), where \\(d D\\), satisfy \\( _i- _j>0\\) for \\(i j\\). Let \\(\\) be any positive probability measure on \\(\\) such that \\((-_0,_0)\\). Then, for every finite \\(p4\\) and…",
+      "section": "A strict finite Fourier inequality with constant one",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-phase-quantile-gap",
+      "kind": "lemma",
+      "label": "A quantitative gap away from a single coefficient",
+      "statement": "[A quantitative gap away from a single coefficient] For a separated frequency list as above, define \\[ Q=\\ (i,j,k,l): |_i+_j-_k-_l| <_0\\ . \\] Let \\(x_i0\\), \\(_i x_i=1\\), and put \\[ Q(x)=_ (i,j,k,l) Q…",
+      "section": "A strict finite Fourier inequality with constant one",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-hier-weight-variation",
+      "kind": "lemma",
+      "label": "Full-root variation bound",
+      "statement": "[Full-root variation bound] Fix an eligible path from a root v_0(T) through level k . At every spatial point, _ i=0 ^ k-1 R_i K n_ v_0(T) n_ v_k(T) , _ i=0 ^ k-1 P_i = n_ v_0(T) n_ v_k(T) . For a…",
+      "section": "Angular hierarchy and predicted factors",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-hier-amplitudes",
+      "kind": "lemma",
+      "label": "Amplitude bounds",
+      "statement": "[Amplitude bounds] On Z_0 , for 0_ , A_v( ,z)_ H L^C(1+ _2)n_v(z). More precisely, the contribution of any one eligible top T to A_v , also when restricted to any interval of packet lengths, is…",
+      "section": "Angular hierarchy and predicted factors",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-hier-mass-motion",
+      "kind": "lemma",
+      "label": "Mass motion",
+      "statement": "[Mass motion] Fix R,J,j as above and an interval I of horizontal length H_j on a line of slope s_R . Consider the masses n_J,n_c,m_c in , the masses used in the factors _c , and those used in any…",
+      "section": "Angular hierarchy and predicted factors",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-hier-moving-weights",
+      "kind": "lemma",
+      "label": "Moving weights",
+      "statement": "[Moving weights] In the setting of , fix a top T contributing to A_c , and take endpoint weights _k=_ T,i_ j+1 ,k . If z_0 I Z_0 and the parameters satisfy , then, uniformly for z' I , ( _k(z'))_k_…",
+      "section": "Angular hierarchy and predicted factors",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-hier-amplitude-motion",
+      "kind": "lemma",
+      "label": "Predictable amplitude motion",
+      "statement": "[Predictable amplitude motion] Fix a block child c of J , a path top R eligible in J , and an H_j cell on a line of slope s_R . Let t_c be the angular center of c . If z_0 Z_0 lies in that cell and…",
+      "section": "Angular hierarchy and predicted factors",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-hier-good-paths",
+      "kind": "lemma",
+      "label": "Good paths",
+      "statement": "[Good paths] There is a fixed exponent C_ path , chosen independently of the mass cutoff below, such that the following construction is valid. Call R bad at z if any of E_R(z), S_R(z), V_ R, (z) ,…",
+      "section": "Angular hierarchy and predicted factors",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-hier-path-expansion",
+      "kind": "lemma",
+      "label": "Expansion into top paths",
+      "statement": "[Expansion into top paths] Fix z Z , a root, a shift, and parameters as above. Starting from a node with n_J>M , expand V_J=_J (n_J-_c n_c+_c V_c), and stop a branch on first reaching a node of mass…",
+      "section": "Angular hierarchy and predicted factors",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-hier-marking",
+      "kind": "lemma",
+      "label": "Drops and marking",
+      "statement": "[Drops and marking] At a point of Z_0 , the active path drops satisfy _ j:\\,n_j>M u_j 1+^+n_0 M C L. On each line of slope s_R , mark an H_j cell I when _ z I n_j(z)>M, _ z I h_j^*(z)12. Every point…",
+      "section": "Angular hierarchy and predicted factors",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-pred-marked-comparison",
+      "kind": "proposition",
+      "label": "Averaging factors on marked cells",
+      "statement": "[Averaging factors on marked cells] There is an absolute \\(c_ av >0\\) with the following property, for all sufficiently large \\(L\\). On a fixed line of slope \\(s_R\\), each marked \\(H_j\\)-cell \\(I\\)…",
+      "section": "Angular hierarchy and predicted factors",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-pred-fourier-average",
+      "kind": "lemma",
+      "label": "Fourier-supported averaging",
+      "statement": "[Fourier-supported averaging] There is a fixed sufficiently small \\('>0\\) such that, with Q=G^ 3/4 _ j+1 , =' Q/w, every positive probability \\(\\) satisfying \\((-,)\\) obeys \\(\\,1\\).",
+      "section": "Angular hierarchy and predicted factors",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-res-block-square",
+      "kind": "lemma",
+      "label": "Square summation of residual blocks",
+      "statement": "[Square summation of residual blocks] At a point z Z where R is a good path, (_j B_ J_j (z) ^2)^ 1/2 L^ C_b . Here the sum can be restricted to any subset of the possible blocks. The fixed exponent…",
+      "section": "Residual terms and integration along paths",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-res-common-weight-variation",
+      "kind": "lemma",
+      "label": "Variation of the common coefficients",
+      "statement": "[Variation of the common coefficients] Uniformly over the segments and their starting indices, _ i_j k<i_f |_j(k)| +_ k=i_j ^ i_f-2 |_j(k+1)-_j(k)| L^ C_w . The exponent C_w is fixed before M is…",
+      "section": "Residual terms and integration along paths",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-res-path-product",
+      "kind": "theorem",
+      "label": "Integrated path product",
+      "statement": "[Integrated path product] With M chosen by , the estimate holds for every path top R , every shift, and every vertex parameter with _2 L^2 . Its constants are independent of the tile collection,…",
+      "section": "Residual terms and integration along paths",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-assembly-vertices",
+      "kind": "proposition",
+      "label": "Vertex estimate",
+      "statement": "[Vertex estimate] For every nonempty root \\(v\\), every shift \\(\\), and every parameter with \\[ = e_, \\|\\|_2 L^2, \\] one has \\|n_v^ /p-1 A_v()\\|_ L^p(Z; H) L^C S^ 1/p . The constant and exponent are…",
+      "section": "Interpolation, boundary averaging, and completion",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-assembly-interpolation",
+      "kind": "lemma",
+      "label": "Interpolation of the shift parameters",
+      "statement": "[Interpolation of the shift parameters] Equation~ also holds at \\[ ^ c =(/K,,/K). \\]",
+      "section": "Interpolation, boundary averaging, and completion",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-assembly-boundary-loss",
+      "kind": "lemma",
+      "label": "Expected boundary loss",
+      "statement": "[Expected boundary loss] Let \\(=4G^ -1/4 \\). For \\(z Z_0\\), _\\|P_q(z)- W_(z)\\| L^C n(z). Here the expectation is normalized Lebesgue measure for the common translation modulo \\(d(0)\\); independent…",
+      "section": "Interpolation, boundary averaging, and completion",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-assembly-improved-model",
+      "kind": "theorem",
+      "label": "Improvement for the popular model",
+      "statement": "[Improvement for the popular model] The popular adjoint sum satisfies Equation~ ; namely, \\[ _F\\|P\\| L^ -20 N|F|. \\]",
+      "section": "Interpolation, boundary averaging, and completion",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    },
+    {
+      "id": "m1-assembly-all-model-estimates",
+      "kind": "theorem",
+      "label": "The three model estimates",
+      "statement": "[The three model estimates] For the packet forms in , let \\(u\\) be a bounded measurable real slope, let \\(F,E^2\\) be measurable sets of positive finite measure, and suppose \\(\\|f\\|_ H _F\\) and…",
+      "section": "Interpolation, boundary averaging, and completion",
+      "manuscript": "A uniform Hilbert transform estimate for Lipschitz directions"
+    }
+  ],
+  "edges": []
+}

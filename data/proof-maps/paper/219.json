@@ -1,0 +1,438 @@
+{
+  "familyNumber": "219",
+  "familyTitle": "GOE bulk universality for regular graphs with weak Anderson disorder",
+  "manuscripts": [
+    {
+      "id": "Fixed-energy-universality-for-weak-Anderson-disorder-on-random-regular-graphs-October-5-2026",
+      "title": "Fixed-energy universality for weak Anderson disorder on random regular graphs",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Fixed-energy-universality-for-weak-Anderson-disorder-on-random-regular-graphs-October-5-2026/fixed-energy-universality-weak-anderson-disorder-random-regular-graphs.pdf"
+    },
+    {
+      "id": "GOE-bulk-universality-for-fixed-degree-random-regular-graphs-September-23-2026",
+      "title": "GOE bulk universality for fixed-degree random regular graphs",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/GOE-bulk-universality-for-fixed-degree-random-regular-graphs-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Boundary Green functions and stability on the tree",
+    "A distributional local law on the finite graph",
+    "Empirical eigenvector laws and conditional entropy",
+    "Conditional Gaussian rigidity",
+    "Limiting resolvents and potential resampling",
+    "Gaussian insertion by potential permutations",
+    "Identification by finite-matrix Dyson Brownian motion",
+    "Spectral input and tree identities",
+    "Gaussian moments at sampled edges",
+    "Endpoint resolvents and microscopic limits",
+    "Continuous switches and Gaussian insertion"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Fixed-energy universality",
+      "statement": "[Fixed-energy universality] For every d3 and every 0<<2d-1 , there is w_0=w_0(d,)>0 with the following property. For each fixed 0<w<w_0 , the restriction of _ d,w to an open neighborhood of \\[ I_ d,…",
+      "section": "Introduction",
+      "manuscript": "Fixed-energy universality for weak Anderson disorder on random regular graphs"
+    },
+    {
+      "id": "m1-prop-tree-stability",
+      "kind": "proposition",
+      "label": "Tree stability",
+      "statement": "[Tree stability] There is an integer 1 , depending only on b,J , with the following properties. Given any finite order p_*>0 and a sufficiently small prescribed number _ tree >0 , one can choose…",
+      "section": "Boundary Green functions and stability on the tree",
+      "manuscript": "Fixed-energy universality for weak Anderson disorder on random regular graphs"
+    },
+    {
+      "id": "m1-lem-tree-log",
+      "kind": "lemma",
+      "label": "Tree covariance and logarithmic integrability",
+      "statement": "[Tree covariance and logarithmic integrability] Fix a finite exponent p_01 before choosing the disorder threshold. Taking the finite order p_* in Proposition~ sufficiently large, the full-root Green…",
+      "section": "Boundary Green functions and stability on the tree",
+      "manuscript": "Fixed-energy universality for weak Anderson disorder on random regular graphs"
+    },
+    {
+      "id": "m1-cor-tree-density",
+      "kind": "corollary",
+      "label": "Continuous positive density of states",
+      "statement": "[Continuous positive density of states] For the above smallness choices, the restriction of _ d,w to the interior of J has the continuous strictly positive density _ d,w (e)=1 m_o(e+i0). In…",
+      "section": "Boundary Green functions and stability on the tree",
+      "manuscript": "Fixed-energy universality for weak Anderson disorder on random regular graphs"
+    },
+    {
+      "id": "m1-prop-local-law",
+      "kind": "proposition",
+      "label": "Distributional local law",
+      "statement": "[Distributional local law] There are c,C>0 and y_0< such that, for y=n y_0 , \\ W_2(P_H,Q_)+W_2(P_H^0,Q_^0)>y^ -c \\ Cy^ -c . Here W_2 is transportation distance for the Euclidean metric on the disk.…",
+      "section": "A distributional local law on the finite graph",
+      "manuscript": "Fixed-energy universality for weak Anderson disorder on random regular graphs"
+    },
+    {
+      "id": "m1-lem-spectral-averaging",
+      "kind": "lemma",
+      "label": "Spectral averaging and compression tails",
+      "statement": "[Spectral averaging and compression tails] Let H=A+(V_v) , where A is a real symmetric matrix independent of the iid uniform potentials V_v . For >0 , \\, G_ vv () C_w, \\,1_I(H) C_w n|I| for every…",
+      "section": "A distributional local law on the finite graph",
+      "manuscript": "Fixed-energy universality for weak Anderson disorder on random regular graphs"
+    },
+    {
+      "id": "m1-lem-ward",
+      "kind": "lemma",
+      "label": "Ward estimate for independently sampled locations",
+      "statement": "[Ward estimate for independently sampled locations] Let v,v' be independent uniform vertices, conditionally on H . Then _ H,v,v' |G_ vv' ()|^2 =1 n \\,(1n G()) C_w y . The same estimate applies to…",
+      "section": "A distributional local law on the finite graph",
+      "manuscript": "Fixed-energy universality for weak Anderson disorder on random regular graphs"
+    },
+    {
+      "id": "m1-prop-empirical-recursion",
+      "kind": "proposition",
+      "label": "Empirical recursion",
+      "statement": "[Empirical recursion] For each fixed j1 there are c,C,y_0>0 such that, when y y_0 , \\ W_2(P_H,_j(P_H))>y^ -c \\ Cy^ -c . The same assertion holds with P_H^0 on the left and _j^0(P_H) on the right.…",
+      "section": "A distributional local law on the finite graph",
+      "manuscript": "Fixed-energy universality for weak Anderson disorder on random regular graphs"
+    },
+    {
+      "id": "m1-cor-local-consequences",
+      "kind": "corollary",
+      "label": "Consequences of the local law",
+      "statement": "[Consequences of the local law] Fix E in the interior of J and s . The following statements hold. At =E+(s+iy)/n , in the order n and then y , the diagonal G_ vv () at a uniform vertex, jointly with…",
+      "section": "A distributional local law on the finite graph",
+      "manuscript": "Fixed-energy universality for weak Anderson disorder on random regular graphs"
+    },
+    {
+      "id": "m1-prop-marked-limits",
+      "kind": "proposition",
+      "label": "Marked subsequential limits",
+      "statement": "[Marked subsequential limits] Every sequence of admissible sizes tending to infinity has a subsequence on which \\(_n\\) converges in law to a locally finite point measure \\(\\). On a further…",
+      "section": "Empirical eigenvector laws and conditional entropy",
+      "manuscript": "Fixed-energy universality for weak Anderson disorder on random regular graphs"
+    },
+    {
+      "id": "m1-lem-conditional-mean",
+      "kind": "lemma",
+      "label": "Conditional centering",
+      "statement": "[Conditional centering] For almost every empirical law in Proposition~ , _ L [U_v]=0 at every vertex v.",
+      "section": "Empirical eigenvector laws and conditional entropy",
+      "manuscript": "Fixed-energy universality for weak Anderson disorder on random regular graphs"
+    },
+    {
+      "id": "m1-prop-conditional-entropy",
+      "kind": "proposition",
+      "label": "Entropy conditional on the tree environment",
+      "statement": "[Entropy conditional on the tree environment] For almost every empirical law \\( L\\) with \\(m1\\) colors, and for every fixed height in any prescribed countable set of positive heights, & H(F^_ star )…",
+      "section": "Empirical eigenvector laws and conditional entropy",
+      "manuscript": "Fixed-energy universality for weak Anderson disorder on random regular graphs"
+    },
+    {
+      "id": "m1-lem-tree-precision",
+      "kind": "lemma",
+      "label": "Star and edge precision",
+      "statement": "[Star and edge precision] The centered Gaussian with covariance \\(K_o\\) is supported on the \\(d\\)-dimensional hyperplane C:=(V_o-E)Z+_ i=1 ^dX_i=0. In the coordinate volume \\((C)\\,dZ_i dX_i\\),…",
+      "section": "Conditional Gaussian rigidity",
+      "manuscript": "Fixed-energy universality for weak Anderson disorder on random regular graphs"
+    },
+    {
+      "id": "m1-lem-tree-log-potential",
+      "kind": "lemma",
+      "label": "Tree logarithmic potential",
+      "statement": "[Tree logarithmic potential] At positive height, with all tree Green functions evaluated at \\(\\), -U()=_|m_o| + d2_|1-g_i g'|. Both sides have finite limits as \\(=E+i\\), \\(0\\). Denote the limit of…",
+      "section": "Conditional Gaussian rigidity",
+      "manuscript": "Fixed-energy universality for weak Anderson disorder on random regular graphs"
+    },
+    {
+      "id": "m1-prop-gaussian-marks",
+      "kind": "proposition",
+      "label": "Gaussian marks at sampled roots",
+      "statement": "[Gaussian marks at sampled roots] Within almost every empirical law \\( L\\) of Proposition~ , the conditional root marks have law _ L (U_o) =N(0, m_o(E+i0) _m). In particular the colors are…",
+      "section": "Conditional Gaussian rigidity",
+      "manuscript": "Fixed-energy universality for weak Anderson disorder on random regular graphs"
+    },
+    {
+      "id": "m1-lem-discrepancy",
+      "kind": "lemma",
+      "label": "Count discrepancy",
+      "statement": "[Count discrepancy] There is a deterministic >0 such that, almost surely, ([v,u])=(u-v)+O(R^ 1- ), -R v u R, R, uniformly in v,u . The implicit constant may depend on the realization. The same…",
+      "section": "Limiting resolvents and potential resampling",
+      "manuscript": "Fixed-energy universality for weak Anderson disorder on random regular graphs"
+    },
+    {
+      "id": "m1-prop-marked-resolvent",
+      "kind": "proposition",
+      "label": "Marked resolvent representation",
+      "statement": "[Marked resolvent representation] Almost surely, for every finite k and every z , M_k(z)=A_k+_j b_jb_j^ T x_j-z . The principal values converge locally uniformly. Moreover, M_k(z) is positive…",
+      "section": "Limiting resolvents and potential resampling",
+      "manuscript": "Fixed-energy universality for weak Anderson disorder on random regular graphs"
+    },
+    {
+      "id": "m1-prop-transform-regularity",
+      "kind": "proposition",
+      "label": "Uniform transform regularity",
+      "statement": "[Uniform transform regularity] There is a deterministic >0 such that, almost surely, for every fixed 0<<1 , m(e+iy)=i+O(y^ - ), |e| R, R^ y R^2, R. The implicit constant may depend on and the…",
+      "section": "Limiting resolvents and potential resampling",
+      "manuscript": "Fixed-energy universality for weak Anderson disorder on random regular graphs"
+    },
+    {
+      "id": "m1-prop-potential-switch",
+      "kind": "proposition",
+      "label": "Potential-switch identity",
+      "statement": "[Potential-switch identity] Fix k . At site k , fix a measure-preserving map T_:[-w,w] and an event B_ measurable in its root-excluded tree environment. Set \\[ D_=1_ B_ (T_(V_)-V_), D=(D_1,,D_k). \\]…",
+      "section": "Limiting resolvents and potential resampling",
+      "manuscript": "Fixed-energy universality for weak Anderson disorder on random regular graphs"
+    },
+    {
+      "id": "m1-prop-gaussian-insertion",
+      "kind": "proposition",
+      "label": "Gaussian insertion",
+      "statement": "[Gaussian insertion] On the preceding extension of any microscopic subsequential law, let \\( W_r\\) be the upper-left \\(m_I\\)-dimensional block of an infinite raw GOE array independent of \\( E\\), and…",
+      "section": "Gaussian insertion by potential permutations",
+      "manuscript": "Fixed-energy universality for weak Anderson disorder on random regular graphs"
+    },
+    {
+      "id": "m1-sw-weighted-blocks",
+      "kind": "lemma",
+      "label": "Weighted block estimates",
+      "statement": "[Weighted block estimates] For \\( A=I,F\\), put \\(a_I=h_1\\), \\(a_F=K\\). With probability tending to one, \\|U_ A (A'_ A A -s_1) U_ A \\| polylog(r) ( T/a_ A +). Moreover, for \\(P_0=U_IA'_ IF U_F\\),…",
+      "section": "Gaussian insertion by potential permutations",
+      "manuscript": "Fixed-energy universality for weak Anderson disorder on random regular graphs"
+    },
+    {
+      "id": "m1-sw-schur",
+      "kind": "lemma",
+      "label": "Far block and Schur correction",
+      "statement": "[Far block and Schur correction] Let \\[ _F=polylog(r) (1+T K + TK+). \\] Then \\|U_F^ -1 (G_F-D_F^ -1 )U_F^ -1 \\|_F=o(1) with probability tending to one, and \\( G_F=o_ (1)\\). For the Schur correction…",
+      "section": "Gaussian insertion by potential permutations",
+      "manuscript": "Fixed-energy universality for weak Anderson disorder on random regular graphs"
+    },
+    {
+      "id": "m1-sw-trace-cut",
+      "kind": "lemma",
+      "label": "Inner resolvent and trace cut",
+      "statement": "[Inner resolvent and trace cut] For every fixed \\(z\\), \\|U_I^ -1 G_I(z)U_I^ -1 \\|=O_ (h_1), and (D_x+A'-z)^ -1 =(D_I+A'_ II -z)^ -1 +o_ (1). The same estimates hold jointly for a fixed finite list of…",
+      "section": "Gaussian insertion by potential permutations",
+      "manuscript": "Fixed-energy universality for weak Anderson disorder on random regular graphs"
+    },
+    {
+      "id": "m1-sw-lindeberg",
+      "kind": "lemma",
+      "label": "Gaussian replacement",
+      "statement": "[Gaussian replacement] Conditional on almost every realization of \\( E\\), bounded smooth tests with bounded derivatives of finitely many trace values have expectation difference \\(o(1)\\) between \\[…",
+      "section": "Gaussian insertion by potential permutations",
+      "manuscript": "Fixed-energy universality for weak Anderson disorder on random regular graphs"
+    },
+    {
+      "id": "m1-thm-dbm-input",
+      "kind": "theorem",
+      "label": "Fixed-energy DBM input",
+      "statement": "[Fixed-energy DBM input] Suppose a sequence of deterministic diagonal matrices \\(V\\) of dimension \\(m\\) satisfies and , with fixed constants. Fix \\(>0\\), and suppose g m^ t m^ - G^2. Assume also that…",
+      "section": "Identification by finite-matrix Dyson Brownian motion",
+      "manuscript": "Fixed-energy universality for weak Anderson disorder on random regular graphs"
+    },
+    {
+      "id": "m1-lem-density-adjustment",
+      "kind": "lemma",
+      "label": "For almost every realization of \\( E\\), the matrices \\(V_*\\) are eventually…",
+      "statement": "For almost every realization of \\( E\\), the matrices \\(V_*\\) are eventually regular with \\[ g= T^ 1/2 m_I , G=m_I^ -1/8 . \\] They satisfy the hypotheses and with \\(m=m_I\\) and \\(==\\). Moreover, \\[ _…",
+      "section": "Identification by finite-matrix Dyson Brownian motion",
+      "manuscript": "Fixed-energy universality for weak Anderson disorder on random regular graphs"
+    },
+    {
+      "id": "m1-lem-goe-counts",
+      "kind": "lemma",
+      "label": "For every compact interval \\(J\\) and every \\(b>0\\), \\[ _ m1 (b\\, G_m(J))<. \\]",
+      "statement": "For every compact interval \\(J\\) and every \\(b>0\\), \\[ _ m1 (b\\, G_m(J))<. \\]",
+      "section": "Identification by finite-matrix Dyson Brownian motion",
+      "manuscript": "Fixed-energy universality for weak Anderson disorder on random regular graphs"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "For every fixed integer \\(d3\\), every fixed \\(E(-2d-1,2d-1)\\), and every…",
+      "statement": "For every fixed integer \\(d3\\), every fixed \\(E(-2d-1,2d-1)\\), and every nonnegative continuous compactly supported \\(h:\\), \\[ | \\!(- h_ n,d,E ) - \\!(- h_n^ GOE ) |0 \\] as \\(n\\) through all…",
+      "section": "Introduction",
+      "manuscript": "GOE bulk universality for fixed-degree random regular graphs"
+    },
+    {
+      "id": "m2-lem-model",
+      "kind": "lemma",
+      "label": "In the configuration model with \\(d\\) stubs at each of \\(n\\) labelled vertices,…",
+      "statement": "In the configuration model with \\(d\\) stubs at each of \\(n\\) labelled vertices, conditioning the matching to give a simple graph produces the uniform simple labelled \\(d\\)-regular graph. Moreover, \\[…",
+      "section": "Spectral input and tree identities",
+      "manuscript": "GOE bulk universality for fixed-degree random regular graphs"
+    },
+    {
+      "id": "m2-prop-spectral-input",
+      "kind": "proposition",
+      "label": "Spectral input",
+      "statement": "[Spectral input] There are constants \\(c_0,c_1>0\\), \\(B<\\), and a fixed open interval \\(I_E\\) containing \\(E\\), with closure contained in \\((-2d-1,2d-1)\\), such that the following hold with…",
+      "section": "Spectral input and tree identities",
+      "manuscript": "GOE bulk universality for fixed-degree random regular graphs"
+    },
+    {
+      "id": "m2-lem-tree-identities",
+      "kind": "lemma",
+      "label": "Let \\(q()\\) be the solution of \\[ =q^ -1 +(d-1)q \\] which tends to zero at…",
+      "statement": "Let \\(q()\\) be the solution of \\[ =q^ -1 +(d-1)q \\] which tends to zero at infinity in the upper half-plane. Then \\[ -m_d()=1 -dq() . \\] The regular-tree resolvent has diagonal entry \\(m_d()\\) and…",
+      "section": "Spectral input and tree identities",
+      "manuscript": "GOE bulk universality for fixed-degree random regular graphs"
+    },
+    {
+      "id": "m2-prop-edge-moments",
+      "kind": "proposition",
+      "label": "Uniform endpoint moments",
+      "statement": "[Uniform endpoint moments] Fix positive integers \\(k,\\) and a nonnegative integer \\(q\\). There are constants \\(c,C>0\\) and events of graphs of probability tending to one with the following property.…",
+      "section": "Gaussian moments at sampled edges",
+      "manuscript": "GOE bulk universality for fixed-degree random regular graphs"
+    },
+    {
+      "id": "m2-ent-type-count",
+      "kind": "lemma",
+      "label": "Uniform type count",
+      "statement": "[Uniform type count] Suppose \\(M=M_n\\) and, for some fixed \\(>0\\), \\(M^ d+1 n n^ 1- \\). With probability tending to one, simultaneously for every pair of histograms \\(T,Q\\), the number of vertex…",
+      "section": "Gaussian moments at sampled edges",
+      "manuscript": "GOE bulk universality for fixed-degree random regular graphs"
+    },
+    {
+      "id": "m2-ent-star-edge",
+      "kind": "lemma",
+      "label": "Star--edge entropy",
+      "statement": "[Star--edge entropy] On events of graphs of probability tending to one, uniformly over the choices of \\(V\\) and \\(01\\), H(F_ star )- d2 H(F_ edge ) 1n H(Y_ global )-O(n^ -c ), where \\(Y_ global \\) is…",
+      "section": "Gaussian moments at sampled edges",
+      "manuscript": "GOE bulk universality for fixed-degree random regular graphs"
+    },
+    {
+      "id": "m2-ent-projected-entropy",
+      "kind": "lemma",
+      "label": "Projected-star entropy",
+      "statement": "[Projected-star entropy] On the graph events above, uniformly for \\(01\\) and each \\(i\\), H( B_V+G) - d2 H(P_i( B_V+G)) -O(n^ -c ). Moreover \\(B_V\\) has mean zero and second-moment matrix \\(_D+O(n^…",
+      "section": "Gaussian moments at sampled edges",
+      "manuscript": "GOE bulk universality for fixed-degree random regular graphs"
+    },
+    {
+      "id": "m2-ent-tensor",
+      "kind": "lemma",
+      "label": "Tensor coercivity",
+      "statement": "[Tensor coercivity] For every fixed \\(j3\\), there exists \\(c_j>0\\) such that every symmetric \\(j\\)-tensor \\(H\\) on \\(D\\) satisfying \\(_i^ j P_i^ j H=P_i^ j H\\) for all \\(i\\) obeys \\|H\\|^2-12_ i=1…",
+      "section": "Gaussian moments at sampled edges",
+      "manuscript": "GOE bulk universality for fixed-degree random regular graphs"
+    },
+    {
+      "id": "m2-ent-gaussian-criterion",
+      "kind": "lemma",
+      "label": "Entropy criterion for Gaussian moments",
+      "statement": "[Entropy criterion for Gaussian moments] Fix an integer \\(q2\\). Let \\(B_n\\) be random vectors in \\(D\\) with \\(\\|B_n\\| K_n\\) almost surely, where \\(K_n=n^ o(1) \\) is deterministic. Suppose that for…",
+      "section": "Gaussian moments at sampled edges",
+      "manuscript": "GOE bulk universality for fixed-degree random regular graphs"
+    },
+    {
+      "id": "m2-prop-endpoint-control",
+      "kind": "proposition",
+      "label": "Endpoint control",
+      "statement": "[Endpoint control] There is a deterministic \\(>0\\), depending only on \\(d,E\\), with the following property. For every fixed \\(k1\\) and \\(D>0\\), there are constants \\(C_ k,D <\\) and \\(y_ k,D <\\) such…",
+      "section": "Endpoint resolvents and microscopic limits",
+      "manuscript": "GOE bulk universality for fixed-degree random regular graphs"
+    },
+    {
+      "id": "m2-prop-microscopic-limit",
+      "kind": "proposition",
+      "label": "Microscopic limits",
+      "statement": "[Microscopic limits] From every sequence of admissible sizes tending to infinity one can extract a subsequence along which \\[ (_n,m_n,(M_ n,k )_ k1 ) \\ \\ (,m,(M_k)_ k1 ) \\] jointly, in the local…",
+      "section": "Endpoint resolvents and microscopic limits",
+      "manuscript": "GOE bulk universality for fixed-degree random regular graphs"
+    },
+    {
+      "id": "m2-prop-continuous-switching",
+      "kind": "proposition",
+      "label": "Continuous switching symmetry",
+      "statement": "[Continuous switching symmetry] For every fixed \\(k2\\) and every \\(O O(k)\\), the joint analytic-function law of \\((m,M_k)\\) is invariant under \\( T_O\\).",
+      "section": "Continuous switches and Gaussian insertion",
+      "manuscript": "GOE bulk universality for fixed-degree random regular graphs"
+    },
+    {
+      "id": "m2-prop-gaussian-insertion",
+      "kind": "proposition",
+      "label": "Gaussian insertion",
+      "statement": "[Gaussian insertion] The coefficients in satisfy \\|\\| C, cT s_2 CT, |s_1| CT, with deterministic positive constants. Moreover, as \\(r\\), m_ r +(H_r-z)^ -1 \\ \\ m(z) jointly at every finite list of…",
+      "section": "Continuous switches and Gaussian insertion",
+      "manuscript": "GOE bulk universality for fixed-degree random regular graphs"
+    },
+    {
+      "id": "m2-sw-weighted-blocks",
+      "kind": "lemma",
+      "label": "Weighted block estimates",
+      "statement": "[Weighted block estimates] For \\( A=I,F\\), put \\(a_I=h\\), \\(a_F=K\\). With probability tending to one, \\|U_ A (A'_ A A -s_1) U_ A \\| polylog(r) ( T/a_ A +). Moreover, for \\(P_0=U_IA'_ IF U_F\\),…",
+      "section": "Continuous switches and Gaussian insertion",
+      "manuscript": "GOE bulk universality for fixed-degree random regular graphs"
+    },
+    {
+      "id": "m2-sw-schur",
+      "kind": "lemma",
+      "label": "Far block and Schur correction",
+      "statement": "[Far block and Schur correction] Let \\[ _F=polylog(r) (1+T K + TK+). \\] Then \\|U_F^ -1 (G_F-D_F^ -1 )U_F^ -1 \\|_F=o(1) with probability tending to one, and \\( G_F=o_ (1)\\). For \\(=A'_ IF G_FA'_ FI…",
+      "section": "Continuous switches and Gaussian insertion",
+      "manuscript": "GOE bulk universality for fixed-degree random regular graphs"
+    },
+    {
+      "id": "m2-sw-trace-cut",
+      "kind": "lemma",
+      "label": "Inner resolvent and trace cut",
+      "statement": "[Inner resolvent and trace cut] For every fixed \\(z_+\\), \\|U_I^ -1 G_I(z)U_I^ -1 \\|=O_ (h), and (D+A'-z)^ -1 =(D_I+A'_ II -z)^ -1 +o_ (1). The same estimates hold jointly for a fixed finite list of…",
+      "section": "Continuous switches and Gaussian insertion",
+      "manuscript": "GOE bulk universality for fixed-degree random regular graphs"
+    },
+    {
+      "id": "m2-sw-lindeberg",
+      "kind": "lemma",
+      "label": "Gaussian replacement",
+      "statement": "[Gaussian replacement] Conditional on almost every \\(\\), bounded smooth tests with bounded derivatives of finitely many trace values have expectation difference \\(o(1)\\) between \\[ D_I+A'_ II and…",
+      "section": "Continuous switches and Gaussian insertion",
+      "manuscript": "GOE bulk universality for fixed-degree random regular graphs"
+    },
+    {
+      "id": "m2-thm-dbm-input",
+      "kind": "theorem",
+      "label": "Fixed-energy DBM input",
+      "statement": "[Fixed-energy DBM input] Suppose a sequence of deterministic diagonal matrices \\(V\\) of dimension \\(m\\) satisfies and , with fixed constants. Fix \\(>0\\), and suppose g m^ t m^ - G^2. Assume also that…",
+      "section": "Identification by finite-matrix Dyson Brownian motion",
+      "manuscript": "GOE bulk universality for fixed-degree random regular graphs"
+    },
+    {
+      "id": "m2-dbm-regularity-density",
+      "kind": "lemma",
+      "label": "For almost every \\(\\), the matrices \\(V_*\\) are eventually regular with \\[ g=…",
+      "statement": "For almost every \\(\\), the matrices \\(V_*\\) are eventually regular with \\[ g= T^ 1/2 q_* , G=q_*^ -1/8 . \\] They satisfy the hypotheses and with \\(m=q_*\\) and \\(==\\). Moreover, \\[ _ fc,t_* (0)1. \\]…",
+      "section": "Identification by finite-matrix Dyson Brownian motion",
+      "manuscript": "GOE bulk universality for fixed-degree random regular graphs"
+    },
+    {
+      "id": "m2-lem-goe-counts",
+      "kind": "lemma",
+      "label": "For every compact interval \\(J\\) and every \\(b>0\\), \\[ _ m1 (b\\, G_m(J))<. \\]",
+      "statement": "For every compact interval \\(J\\) and every \\(b>0\\), \\[ _ m1 (b\\, G_m(J))<. \\]",
+      "section": "Identification by finite-matrix Dyson Brownian motion",
+      "manuscript": "GOE bulk universality for fixed-degree random regular graphs"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m2-ent-type-count",
+      "to": "m2-prop-edge-moments",
+      "label": "ent:type-count",
+      "context": "[Proof of Proposition~\\ref{prop:edge-moments}] Condition on a graph in the common events of Lemmas~\\ref{ent:type-count} and \\ref{ent:projected-entropy} and Proposition~\\ref{prop:spectral-input}. Apply Lemma~\\ref{ent:gaussian-criterion}, wi"
+    },
+    {
+      "from": "m2-ent-projected-entropy",
+      "to": "m2-prop-edge-moments",
+      "label": "ent:projected-entropy",
+      "context": "[Proof of Proposition~\\ref{prop:edge-moments}] Condition on a graph in the common events of Lemmas~\\ref{ent:type-count} and \\ref{ent:projected-entropy} and Proposition~\\ref{prop:spectral-input}. Apply Lemma~\\ref{ent:gaussian-criterion}, with \\(q\\) replaced by \\(\\max(q,2)"
+    },
+    {
+      "from": "m2-prop-microscopic-limit",
+      "to": "m2-thm-main",
+      "label": "prop:microscopic-limit",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Start with any sequence of admissible graph sizes tending to infinity. Proposition~\\ref{prop:microscopic-limit} supplies a further subsequence on which the unscaled microscopic measures \\(\\nu_n\\) converge in law to a process \\(\\nu\\"
+    }
+  ]
+}

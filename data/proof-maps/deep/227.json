@@ -1,0 +1,960 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "227",
+  "title": "Critical SK autocorrelation processes and dynamics across the temperature transition",
+  "result": {
+    "id": "paper-result",
+    "label": "Critical SK autocorrelation processes and dynamics across the temperature transition",
+    "statement": "For zero-field Gaussian SK heat-bath dynamics with rate-one updates per spin, proves worst-start cutoff on the n scale for fixed 0 1, mixing time n^ 2/3+o(1) at β = 1, and stretched-exponential mixing from a Gibbs-sampled fixed starting configuration for β > 1, in probability over disorder. At criticality, rescaled stationary and quench autocorrelation processes have universal random limits for Gaussian and Rademacher disorder; the quench limit relaxes to the stationary limit.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-stationary-edge-input",
+      "label": "The stationary edge input",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "gaussian-estimates-at-the-bottom-edge-scales",
+      "label": "Gaussian estimates at the bottom edge scales",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "warming-at-the-critical-time-scale",
+      "label": "Warming at the critical time scale",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "positive-time-gaussian-limits-and-the-uniform-start",
+      "label": "Positive-time Gaussian limits and the uniform start",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "selection-of-the-entrance-law",
+      "label": "Selection of the entrance law",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "smooth-truncation-of-clock-histories",
+      "label": "Smooth truncation of clock histories",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "projecting-the-clock-scores",
+      "label": "Projecting the clock scores",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "replacement-and-functional-universality",
+      "label": "Replacement and functional universality",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-conditioned-edge-measure-and-the-gaussian-inputs",
+      "label": "The conditioned edge measure and the Gaussian inputs",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "quantitative-estimates-for-the-observations",
+      "label": "Quantitative estimates for the observations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "conditional-variance-at-the-exact-cap-scale",
+      "label": "Conditional variance at the exact cap scale",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-gradient-on-the-conditioned-edge-measure",
+      "label": "The gradient on the conditioned edge measure",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "microscopic-relaxation-and-the-effective-coefficient",
+      "label": "Microscopic relaxation and the effective coefficient",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model",
+      "title": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Universality-of-critical-quench-autocorrelations-in-the-Sherrington-Kirkpatrick-model-October-5-2026/main.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-prop-edge-estimates"
+          ],
+          "objectUses": [
+            "m1-thm-warming"
+          ]
+        },
+        {
+          "id": "m1-prop-stationary-inputs",
+          "role": "the-stationary-edge-input",
+          "label": "proposition m1-prop-stationary-inputs",
+          "fullLabel": "proposition m1-prop-stationary-inputs",
+          "kind": "proposition",
+          "source": "The stationary edge input",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-edge-estimates",
+          "role": "gaussian-estimates-at-the-bottom-edge-scales",
+          "label": "proposition m1-prop-edge-estimates",
+          "fullLabel": "proposition m1-prop-edge-estimates",
+          "kind": "proposition",
+          "source": "Gaussian estimates at the bottom edge scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-edge-norm-density",
+            "m1-edge-spherical-tails"
+          ]
+        },
+        {
+          "id": "m1-edge-spectral",
+          "role": "gaussian-estimates-at-the-bottom-edge-scales",
+          "label": "lemma m1-edge-spectral",
+          "fullLabel": "lemma m1-edge-spectral",
+          "kind": "lemma",
+          "source": "Gaussian estimates at the bottom edge scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-edge-norm-density",
+          "role": "gaussian-estimates-at-the-bottom-edge-scales",
+          "label": "lemma m1-edge-norm-density",
+          "fullLabel": "lemma m1-edge-norm-density",
+          "kind": "lemma",
+          "source": "Gaussian estimates at the bottom edge scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-edge-spherical-tails",
+          "role": "gaussian-estimates-at-the-bottom-edge-scales",
+          "label": "lemma m1-edge-spherical-tails",
+          "fullLabel": "lemma m1-edge-spherical-tails",
+          "kind": "lemma",
+          "source": "Gaussian estimates at the bottom edge scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-edge-limit-growth",
+          "role": "gaussian-estimates-at-the-bottom-edge-scales",
+          "label": "corollary m1-edge-limit-growth",
+          "fullLabel": "corollary m1-edge-limit-growth",
+          "kind": "corollary",
+          "source": "Gaussian estimates at the bottom edge scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-edge-gram-cell",
+          "role": "gaussian-estimates-at-the-bottom-edge-scales",
+          "label": "lemma m1-edge-gram-cell",
+          "fullLabel": "lemma m1-edge-gram-cell",
+          "kind": "lemma",
+          "source": "Gaussian estimates at the bottom edge scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-edge-replica-comparison",
+          "role": "gaussian-estimates-at-the-bottom-edge-scales",
+          "label": "lemma m1-edge-replica-comparison",
+          "fullLabel": "lemma m1-edge-replica-comparison",
+          "kind": "lemma",
+          "source": "Gaussian estimates at the bottom edge scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-edge-cube-caps",
+          "role": "gaussian-estimates-at-the-bottom-edge-scales",
+          "label": "lemma m1-edge-cube-caps",
+          "fullLabel": "lemma m1-edge-cube-caps",
+          "kind": "lemma",
+          "source": "Gaussian estimates at the bottom edge scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-edge-path-annuli",
+          "role": "gaussian-estimates-at-the-bottom-edge-scales",
+          "label": "lemma m1-edge-path-annuli",
+          "fullLabel": "lemma m1-edge-path-annuli",
+          "kind": "lemma",
+          "source": "Gaussian estimates at the bottom edge scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-edge-score-covariance",
+          "role": "gaussian-estimates-at-the-bottom-edge-scales",
+          "label": "lemma m1-edge-score-covariance",
+          "fullLabel": "lemma m1-edge-score-covariance",
+          "kind": "lemma",
+          "source": "Gaussian estimates at the bottom edge scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-edge-annular-extension",
+          "role": "gaussian-estimates-at-the-bottom-edge-scales",
+          "label": "lemma m1-edge-annular-extension",
+          "fullLabel": "lemma m1-edge-annular-extension",
+          "kind": "lemma",
+          "source": "Gaussian estimates at the bottom edge scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-edge-positive-curvature",
+          "role": "gaussian-estimates-at-the-bottom-edge-scales",
+          "label": "lemma m1-edge-positive-curvature",
+          "fullLabel": "lemma m1-edge-positive-curvature",
+          "kind": "lemma",
+          "source": "Gaussian estimates at the bottom edge scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-warming",
+          "role": "warming-at-the-critical-time-scale",
+          "label": "theorem m1-thm-warming",
+          "fullLabel": "theorem m1-thm-warming",
+          "kind": "theorem",
+          "source": "Warming at the critical time scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-warm-profiles",
+          "role": "warming-at-the-critical-time-scale",
+          "label": "proposition m1-warm-profiles",
+          "fullLabel": "proposition m1-warm-profiles",
+          "kind": "proposition",
+          "source": "Warming at the critical time scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-warm-small-profile",
+          "role": "warming-at-the-critical-time-scale",
+          "label": "lemma m1-warm-small-profile",
+          "fullLabel": "lemma m1-warm-small-profile",
+          "kind": "lemma",
+          "source": "Warming at the critical time scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-warm-product",
+          "role": "warming-at-the-critical-time-scale",
+          "label": "lemma m1-warm-product",
+          "fullLabel": "lemma m1-warm-product",
+          "kind": "lemma",
+          "source": "Warming at the critical time scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-warm-posterior-mean",
+          "role": "warming-at-the-critical-time-scale",
+          "label": "lemma m1-warm-posterior-mean",
+          "fullLabel": "lemma m1-warm-posterior-mean",
+          "kind": "lemma",
+          "source": "Warming at the critical time scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-warm-large-retention",
+          "role": "warming-at-the-critical-time-scale",
+          "label": "lemma m1-warm-large-retention",
+          "fullLabel": "lemma m1-warm-large-retention",
+          "kind": "lemma",
+          "source": "Warming at the critical time scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-warm-log-layer",
+          "role": "warming-at-the-critical-time-scale",
+          "label": "lemma m1-warm-log-layer",
+          "fullLabel": "lemma m1-warm-log-layer",
+          "kind": "lemma",
+          "source": "Warming at the critical time scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-warm-entropy-profile",
+          "role": "warming-at-the-critical-time-scale",
+          "label": "lemma m1-warm-entropy-profile",
+          "fullLabel": "lemma m1-warm-entropy-profile",
+          "kind": "lemma",
+          "source": "Warming at the critical time scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-warm-support-profile",
+          "role": "warming-at-the-critical-time-scale",
+          "label": "lemma m1-warm-support-profile",
+          "fullLabel": "lemma m1-warm-support-profile",
+          "kind": "lemma",
+          "source": "Warming at the critical time scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-warm-kernel-log-tail",
+          "role": "warming-at-the-critical-time-scale",
+          "label": "corollary m1-warm-kernel-log-tail",
+          "fullLabel": "corollary m1-warm-kernel-log-tail",
+          "kind": "corollary",
+          "source": "Warming at the critical time scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-gaussian-subsequence",
+          "role": "positive-time-gaussian-limits-and-the-uniform-start",
+          "label": "proposition m1-prop-gaussian-subsequence",
+          "fullLabel": "proposition m1-prop-gaussian-subsequence",
+          "kind": "proposition",
+          "source": "Positive-time Gaussian limits and the uniform start",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-uniform-seed-escape",
+          "role": "positive-time-gaussian-limits-and-the-uniform-start",
+          "label": "proposition m1-prop-uniform-seed-escape",
+          "fullLabel": "proposition m1-prop-uniform-seed-escape",
+          "kind": "proposition",
+          "source": "Positive-time Gaussian limits and the uniform start",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-entrance-selection",
+          "role": "selection-of-the-entrance-law",
+          "label": "theorem m1-thm-entrance-selection",
+          "fullLabel": "theorem m1-thm-entrance-selection",
+          "kind": "theorem",
+          "source": "Selection of the entrance law",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-entr-angular-realization",
+          "role": "selection-of-the-entrance-law",
+          "label": "lemma m1-entr-angular-realization",
+          "fullLabel": "lemma m1-entr-angular-realization",
+          "kind": "lemma",
+          "source": "Selection of the entrance law",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-entr-kernels",
+          "role": "selection-of-the-entrance-law",
+          "label": "lemma m1-entr-kernels",
+          "fullLabel": "lemma m1-entr-kernels",
+          "kind": "lemma",
+          "source": "Selection of the entrance law",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-entr-stochastic-kernels",
+          "role": "selection-of-the-entrance-law",
+          "label": "lemma m1-entr-stochastic-kernels",
+          "fullLabel": "lemma m1-entr-stochastic-kernels",
+          "kind": "lemma",
+          "source": "Selection of the entrance law",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-entr-volterra",
+          "role": "selection-of-the-entrance-law",
+          "label": "lemma m1-entr-volterra",
+          "fullLabel": "lemma m1-entr-volterra",
+          "kind": "lemma",
+          "source": "Selection of the entrance law",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-entr-escaping-seeds",
+          "role": "selection-of-the-entrance-law",
+          "label": "lemma m1-entr-escaping-seeds",
+          "fullLabel": "lemma m1-entr-escaping-seeds",
+          "kind": "lemma",
+          "source": "Selection of the entrance law",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-hist-static-support",
+          "role": "smooth-truncation-of-clock-histories",
+          "label": "lemma m1-hist-static-support",
+          "fullLabel": "lemma m1-hist-static-support",
+          "kind": "lemma",
+          "source": "Smooth truncation of clock histories",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-hist-cutoff-hazards",
+          "role": "smooth-truncation-of-clock-histories",
+          "label": "lemma m1-hist-cutoff-hazards",
+          "fullLabel": "lemma m1-hist-cutoff-hazards",
+          "kind": "lemma",
+          "source": "Smooth truncation of clock histories",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-hist-kernel-caps",
+          "role": "smooth-truncation-of-clock-histories",
+          "label": "lemma m1-hist-kernel-caps",
+          "fullLabel": "lemma m1-hist-kernel-caps",
+          "kind": "lemma",
+          "source": "Smooth truncation of clock histories",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-hist-gaussian-survival",
+          "role": "smooth-truncation-of-clock-histories",
+          "label": "lemma m1-hist-gaussian-survival",
+          "fullLabel": "lemma m1-hist-gaussian-survival",
+          "kind": "lemma",
+          "source": "Smooth truncation of clock histories",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-hist-conditional-interior",
+          "role": "smooth-truncation-of-clock-histories",
+          "label": "lemma m1-hist-conditional-interior",
+          "fullLabel": "lemma m1-hist-conditional-interior",
+          "kind": "lemma",
+          "source": "Smooth truncation of clock histories",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-hist-history-overlaps",
+          "role": "smooth-truncation-of-clock-histories",
+          "label": "lemma m1-hist-history-overlaps",
+          "fullLabel": "lemma m1-hist-history-overlaps",
+          "kind": "lemma",
+          "source": "Smooth truncation of clock histories",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-hist-crude-ratios",
+          "role": "smooth-truncation-of-clock-histories",
+          "label": "lemma m1-hist-crude-ratios",
+          "fullLabel": "lemma m1-hist-crude-ratios",
+          "kind": "lemma",
+          "source": "Smooth truncation of clock histories",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-score-hellinger",
+          "role": "projecting-the-clock-scores",
+          "label": "lemma m1-score-hellinger",
+          "fullLabel": "lemma m1-score-hellinger",
+          "kind": "lemma",
+          "source": "Projecting the clock scores",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-score-raw-size",
+          "role": "projecting-the-clock-scores",
+          "label": "lemma m1-score-raw-size",
+          "fullLabel": "lemma m1-score-raw-size",
+          "kind": "lemma",
+          "source": "Projecting the clock scores",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-score-one-insertion",
+          "role": "projecting-the-clock-scores",
+          "label": "lemma m1-score-one-insertion",
+          "fullLabel": "lemma m1-score-one-insertion",
+          "kind": "lemma",
+          "source": "Projecting the clock scores",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-score-raw-projection",
+          "role": "projecting-the-clock-scores",
+          "label": "lemma m1-score-raw-projection",
+          "fullLabel": "lemma m1-score-raw-projection",
+          "kind": "lemma",
+          "source": "Projecting the clock scores",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-clock-scores",
+          "role": "projecting-the-clock-scores",
+          "label": "proposition m1-prop-clock-scores",
+          "fullLabel": "proposition m1-prop-clock-scores",
+          "kind": "proposition",
+          "source": "Projecting the clock scores",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-universality",
+          "role": "replacement-and-functional-universality",
+          "label": "proposition m1-prop-universality",
+          "fullLabel": "proposition m1-prop-universality",
+          "kind": "proposition",
+          "source": "Replacement and functional universality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-repl-history-derivatives",
+          "role": "replacement-and-functional-universality",
+          "label": "lemma m1-repl-history-derivatives",
+          "fullLabel": "lemma m1-repl-history-derivatives",
+          "kind": "lemma",
+          "source": "Replacement and functional universality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-repl-observable-derivatives",
+          "role": "replacement-and-functional-universality",
+          "label": "lemma m1-repl-observable-derivatives",
+          "fullLabel": "lemma m1-repl-observable-derivatives",
+          "kind": "lemma",
+          "source": "Replacement and functional universality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-repl-comparison",
+          "role": "replacement-and-functional-universality",
+          "label": "lemma m1-repl-comparison",
+          "fullLabel": "lemma m1-repl-comparison",
+          "kind": "lemma",
+          "source": "Replacement and functional universality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Functional universality of critical SK autocorrelations",
+      "title": "Functional universality of critical SK autocorrelations",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Functional-universality-of-critical-SK-autocorrelations-October-5-2026/critical-sk-autocorrelations.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Functional universality of critical SK autocorrelations.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-edge-spectral",
+          "role": "the-conditioned-edge-measure-and-the-gaussian-inputs",
+          "label": "lemma m2-lem-edge-spectral",
+          "fullLabel": "lemma m2-lem-edge-spectral",
+          "kind": "lemma",
+          "source": "The conditioned edge measure and the Gaussian inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-edge-conditioned-law",
+          "role": "the-conditioned-edge-measure-and-the-gaussian-inputs",
+          "label": "proposition m2-prop-edge-conditioned-law",
+          "fullLabel": "proposition m2-prop-edge-conditioned-law",
+          "kind": "proposition",
+          "source": "The conditioned edge measure and the Gaussian inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-edge-bulk-weight",
+          "role": "the-conditioned-edge-measure-and-the-gaussian-inputs",
+          "label": "lemma m2-lem-edge-bulk-weight",
+          "fullLabel": "lemma m2-lem-edge-bulk-weight",
+          "kind": "lemma",
+          "source": "The conditioned edge measure and the Gaussian inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-edge-biased-law",
+          "role": "the-conditioned-edge-measure-and-the-gaussian-inputs",
+          "label": "lemma m2-lem-edge-biased-law",
+          "fullLabel": "lemma m2-lem-edge-biased-law",
+          "kind": "lemma",
+          "source": "The conditioned edge measure and the Gaussian inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-edge-cap-inputs",
+          "role": "the-conditioned-edge-measure-and-the-gaussian-inputs",
+          "label": "proposition m2-prop-edge-cap-inputs",
+          "fullLabel": "proposition m2-prop-edge-cap-inputs",
+          "kind": "proposition",
+          "source": "The conditioned edge measure and the Gaussian inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-edge-static-interpolation",
+          "role": "the-conditioned-edge-measure-and-the-gaussian-inputs",
+          "label": "lemma m2-lem-edge-static-interpolation",
+          "fullLabel": "lemma m2-lem-edge-static-interpolation",
+          "kind": "lemma",
+          "source": "The conditioned edge measure and the Gaussian inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-observations-annulus",
+          "role": "quantitative-estimates-for-the-observations",
+          "label": "lemma m2-lem-observations-annulus",
+          "fullLabel": "lemma m2-lem-observations-annulus",
+          "kind": "lemma",
+          "source": "Quantitative estimates for the observations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-observations-replicas",
+          "role": "quantitative-estimates-for-the-observations",
+          "label": "lemma m2-lem-observations-replicas",
+          "fullLabel": "lemma m2-lem-observations-replicas",
+          "kind": "lemma",
+          "source": "Quantitative estimates for the observations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-observations-static",
+          "role": "quantitative-estimates-for-the-observations",
+          "label": "corollary m2-cor-observations-static",
+          "fullLabel": "corollary m2-cor-observations-static",
+          "kind": "corollary",
+          "source": "Quantitative estimates for the observations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-observations-means",
+          "role": "quantitative-estimates-for-the-observations",
+          "label": "corollary m2-cor-observations-means",
+          "fullLabel": "corollary m2-cor-observations-means",
+          "kind": "corollary",
+          "source": "Quantitative estimates for the observations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-observations-score",
+          "role": "quantitative-estimates-for-the-observations",
+          "label": "lemma m2-lem-observations-score",
+          "fullLabel": "lemma m2-lem-observations-score",
+          "kind": "lemma",
+          "source": "Quantitative estimates for the observations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-observations-curvature",
+          "role": "quantitative-estimates-for-the-observations",
+          "label": "lemma m2-lem-observations-curvature",
+          "fullLabel": "lemma m2-lem-observations-curvature",
+          "kind": "lemma",
+          "source": "Quantitative estimates for the observations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-observations-angular",
+          "role": "quantitative-estimates-for-the-observations",
+          "label": "lemma m2-lem-observations-angular",
+          "fullLabel": "lemma m2-lem-observations-angular",
+          "kind": "lemma",
+          "source": "Quantitative estimates for the observations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-variance-main",
+          "role": "conditional-variance-at-the-exact-cap-scale",
+          "label": "proposition m2-prop-variance-main",
+          "fullLabel": "proposition m2-prop-variance-main",
+          "kind": "proposition",
+          "source": "Conditional variance at the exact cap scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-variance-curvature",
+          "role": "conditional-variance-at-the-exact-cap-scale",
+          "label": "proposition m2-prop-variance-curvature",
+          "fullLabel": "proposition m2-prop-variance-curvature",
+          "kind": "proposition",
+          "source": "Conditional variance at the exact cap scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-variance-extension",
+          "role": "conditional-variance-at-the-exact-cap-scale",
+          "label": "lemma m2-lem-variance-extension",
+          "fullLabel": "lemma m2-lem-variance-extension",
+          "kind": "lemma",
+          "source": "Conditional variance at the exact cap scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-variance-radial",
+          "role": "conditional-variance-at-the-exact-cap-scale",
+          "label": "lemma m2-lem-variance-radial",
+          "fullLabel": "lemma m2-lem-variance-radial",
+          "kind": "lemma",
+          "source": "Conditional variance at the exact cap scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-variance-compression",
+          "role": "conditional-variance-at-the-exact-cap-scale",
+          "label": "lemma m2-lem-variance-compression",
+          "fullLabel": "lemma m2-lem-variance-compression",
+          "kind": "lemma",
+          "source": "Conditional variance at the exact cap scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-variance-start",
+          "role": "conditional-variance-at-the-exact-cap-scale",
+          "label": "lemma m2-lem-variance-start",
+          "fullLabel": "lemma m2-lem-variance-start",
+          "kind": "lemma",
+          "source": "Conditional variance at the exact cap scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-gradient-domain",
+          "role": "the-gradient-on-the-conditioned-edge-measure",
+          "label": "proposition m2-prop-gradient-domain",
+          "fullLabel": "proposition m2-prop-gradient-domain",
+          "kind": "proposition",
+          "source": "The gradient on the conditioned edge measure",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-gradient-compensated",
+          "role": "the-gradient-on-the-conditioned-edge-measure",
+          "label": "lemma m2-lem-gradient-compensated",
+          "fullLabel": "lemma m2-lem-gradient-compensated",
+          "kind": "lemma",
+          "source": "The gradient on the conditioned edge measure",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-gradient-smoothing",
+          "role": "the-gradient-on-the-conditioned-edge-measure",
+          "label": "lemma m2-lem-gradient-smoothing",
+          "fullLabel": "lemma m2-lem-gradient-smoothing",
+          "kind": "lemma",
+          "source": "The gradient on the conditioned edge measure",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-gradient-observation",
+          "role": "the-gradient-on-the-conditioned-edge-measure",
+          "label": "proposition m2-prop-gradient-observation",
+          "fullLabel": "proposition m2-prop-gradient-observation",
+          "kind": "proposition",
+          "source": "The gradient on the conditioned edge measure",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-micro-moment-measure",
+          "role": "microscopic-relaxation-and-the-effective-coefficient",
+          "label": "proposition m2-prop-micro-moment-measure",
+          "fullLabel": "proposition m2-prop-micro-moment-measure",
+          "kind": "proposition",
+          "source": "Microscopic relaxation and the effective coefficient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-micro-contractions",
+          "role": "microscopic-relaxation-and-the-effective-coefficient",
+          "label": "lemma m2-lem-micro-contractions",
+          "fullLabel": "lemma m2-lem-micro-contractions",
+          "kind": "lemma",
+          "source": "Microscopic relaxation and the effective coefficient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-micro-weighted-recursion",
+          "role": "microscopic-relaxation-and-the-effective-coefficient",
+          "label": "lemma m2-lem-micro-weighted-recursion",
+          "fullLabel": "lemma m2-lem-micro-weighted-recursion",
+          "kind": "lemma",
+          "source": "Microscopic relaxation and the effective coefficient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-micro-moment-density",
+          "role": "microscopic-relaxation-and-the-effective-coefficient",
+          "label": "corollary m2-cor-micro-moment-density",
+          "fullLabel": "corollary m2-cor-micro-moment-density",
+          "kind": "corollary",
+          "source": "Microscopic relaxation and the effective coefficient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-micro-recovery",
+          "role": "microscopic-relaxation-and-the-effective-coefficient",
+          "label": "lemma m2-lem-micro-recovery",
+          "fullLabel": "lemma m2-lem-micro-recovery",
+          "kind": "lemma",
+          "source": "Microscopic relaxation and the effective coefficient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-micro-positivity",
+          "role": "microscopic-relaxation-and-the-effective-coefficient",
+          "label": "lemma m2-lem-micro-positivity",
+          "fullLabel": "lemma m2-lem-micro-positivity",
+          "kind": "lemma",
+          "source": "Microscopic relaxation and the effective coefficient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-micro-divergence",
+          "role": "microscopic-relaxation-and-the-effective-coefficient",
+          "label": "lemma m2-lem-micro-divergence",
+          "fullLabel": "lemma m2-lem-micro-divergence",
+          "kind": "lemma",
+          "source": "Microscopic relaxation and the effective coefficient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-micro-relaxation",
+          "role": "microscopic-relaxation-and-the-effective-coefficient",
+          "label": "theorem m2-thm-micro-relaxation",
+          "fullLabel": "theorem m2-thm-micro-relaxation",
+          "kind": "theorem",
+          "source": "Microscopic relaxation and the effective coefficient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Universality-of-critical-quench-autocorrelations-in-the-Sherrington-Kirkpatrick-model-October-5-2026/main.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Functional universality of critical SK autocorrelations",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Functional-universality-of-critical-SK-autocorrelations-October-5-2026/critical-sk-autocorrelations.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "A spectral gap throughout the high-temperature Sherrington–Kirkpatrick phase",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-spectral-gap-throughout-the-high-temperature-Sherrington-Kirkpatrick-phase-September-24-2026/main.pdf",
+      "kind": "paper"
+    }
+  ]
+}

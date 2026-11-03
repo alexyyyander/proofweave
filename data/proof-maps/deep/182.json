@@ -1,0 +1,602 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "182",
+  "title": "Power savings for intersective polynomial differences and prime arguments",
+  "result": {
+    "id": "paper-result",
+    "label": "Power savings for intersective polynomial differences and prime arguments",
+    "statement": "For every fixed intersective integer polynomial h of degree k ≥ 2 with positive leading coefficient, proves that a subset of 1, ,N avoiding nonzero values h(1),h(2), as differences has size Oh(N^ 1-ck ), with ck 0 depending only on degree. Here intersective means having a root modulo every modulus. For prime arguments, a power saving also holds when h has a unit root modulo every modulus, with exponent allowed to depend on h .",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "auxiliary-polynomials-and-local-admissibility",
+      "label": "Auxiliary polynomials and local admissibility",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "reflection-positive-laws-on-residue-tuples",
+      "label": "Reflection-positive laws on residue tuples",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "multilinear-estimates-and-fourier-lifts",
+      "label": "Multilinear estimates and Fourier lifts",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "prime-estimates",
+      "label": "Prime estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-kernel-on-differences-at-prime-arguments",
+      "label": "A kernel on differences at prime arguments",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "descent-to-shorter-intervals",
+      "label": "Descent to shorter intervals",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-field-square-constraints",
+      "label": "Finite-field square constraints",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-reflection-positive-probability-laws",
+      "label": "Finite reflection-positive probability laws",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "signed-multilinear-forms-and-conductor-decay",
+      "label": "Signed multilinear forms and conductor decay",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "uniform-moment-bounds-for-fourier-lifts",
+      "label": "Uniform moment bounds for Fourier lifts",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-signed-kernel-for-actual-square-differences",
+      "label": "A signed kernel for actual square differences",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "comparison-along-square-step-progressions",
+      "label": "Comparison along square-step progressions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "contraction-on-ordered-intervals",
+      "label": "Contraction on ordered intervals",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "exceptional-terms-and-the-power-saving-induction",
+      "label": "Exceptional terms and the power-saving induction",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "A Power Saving for Polynomial Differences at Prime Arguments",
+      "title": "A Power Saving for Polynomial Differences at Prime Arguments",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Power-Saving-for-Polynomial-Differences-at-Prime-Arguments-October-5-2026/prime-argument-polynomial-differences.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from A Power Saving for Polynomial Differences at Prime Arguments.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-auxiliary",
+          "role": "auxiliary-polynomials-and-local-admissibility",
+          "label": "lemma m1-lem-auxiliary",
+          "fullLabel": "lemma m1-lem-auxiliary",
+          "kind": "lemma",
+          "source": "Auxiliary polynomials and local admissibility",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-local-sums",
+          "role": "auxiliary-polynomials-and-local-admissibility",
+          "label": "lemma m1-lem-local-sums",
+          "fullLabel": "lemma m1-lem-local-sums",
+          "kind": "lemma",
+          "source": "Auxiliary polynomials and local admissibility",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-local-lifting",
+          "role": "auxiliary-polynomials-and-local-admissibility",
+          "label": "lemma m1-lem-local-lifting",
+          "fullLabel": "lemma m1-lem-local-lifting",
+          "kind": "lemma",
+          "source": "Auxiliary polynomials and local admissibility",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-admissible-cycle",
+          "role": "auxiliary-polynomials-and-local-admissibility",
+          "label": "lemma m1-lem-admissible-cycle",
+          "fullLabel": "lemma m1-lem-admissible-cycle",
+          "kind": "lemma",
+          "source": "Auxiliary polynomials and local admissibility",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-tuple-laws",
+          "role": "reflection-positive-laws-on-residue-tuples",
+          "label": "proposition m1-prop-tuple-laws",
+          "fullLabel": "proposition m1-prop-tuple-laws",
+          "kind": "proposition",
+          "source": "Reflection-positive laws on residue tuples",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-graph-estimates",
+          "role": "reflection-positive-laws-on-residue-tuples",
+          "label": "lemma m1-lem-graph-estimates",
+          "fullLabel": "lemma m1-lem-graph-estimates",
+          "kind": "lemma",
+          "source": "Reflection-positive laws on residue tuples",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-signed-holder",
+          "role": "multilinear-estimates-and-fourier-lifts",
+          "label": "proposition m1-prop-signed-holder",
+          "fullLabel": "proposition m1-prop-signed-holder",
+          "kind": "proposition",
+          "source": "Multilinear estimates and Fourier lifts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-seminorm",
+          "role": "multilinear-estimates-and-fourier-lifts",
+          "label": "lemma m1-lem-seminorm",
+          "fullLabel": "lemma m1-lem-seminorm",
+          "kind": "lemma",
+          "source": "Multilinear estimates and Fourier lifts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-large-denominator",
+          "role": "multilinear-estimates-and-fourier-lifts",
+          "label": "lemma m1-lem-large-denominator",
+          "fullLabel": "lemma m1-lem-large-denominator",
+          "kind": "lemma",
+          "source": "Multilinear estimates and Fourier lifts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-lift-moments",
+          "role": "multilinear-estimates-and-fourier-lifts",
+          "label": "proposition m1-prop-lift-moments",
+          "fullLabel": "proposition m1-prop-lift-moments",
+          "kind": "proposition",
+          "source": "Multilinear estimates and Fourier lifts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-lift-specialization",
+          "role": "multilinear-estimates-and-fourier-lifts",
+          "label": "lemma m1-lem-lift-specialization",
+          "fullLabel": "lemma m1-lem-lift-specialization",
+          "kind": "lemma",
+          "source": "Multilinear estimates and Fourier lifts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-zero-free-input",
+          "role": "prime-estimates",
+          "label": "theorem m1-thm-zero-free-input",
+          "fullLabel": "theorem m1-thm-zero-free-input",
+          "kind": "theorem",
+          "source": "Prime estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-prime-progressions",
+          "role": "prime-estimates",
+          "label": "proposition m1-prop-prime-progressions",
+          "fullLabel": "proposition m1-prop-prime-progressions",
+          "kind": "proposition",
+          "source": "Prime estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-prime-minor-arcs",
+          "role": "prime-estimates",
+          "label": "proposition m1-prop-prime-minor-arcs",
+          "fullLabel": "proposition m1-prop-prime-minor-arcs",
+          "kind": "proposition",
+          "source": "Prime estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-rational-spacing",
+          "role": "prime-estimates",
+          "label": "lemma m1-lem-rational-spacing",
+          "fullLabel": "lemma m1-lem-rational-spacing",
+          "kind": "lemma",
+          "source": "Prime estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-prime-differencing",
+          "role": "prime-estimates",
+          "label": "lemma m1-lem-prime-differencing",
+          "fullLabel": "lemma m1-lem-prime-differencing",
+          "kind": "lemma",
+          "source": "Prime estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-pair-cancellation",
+          "role": "a-kernel-on-differences-at-prime-arguments",
+          "label": "proposition m1-prop-pair-cancellation",
+          "fullLabel": "proposition m1-prop-pair-cancellation",
+          "kind": "proposition",
+          "source": "A kernel on differences at prime arguments",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-kernel-comparison",
+          "role": "a-kernel-on-differences-at-prime-arguments",
+          "label": "lemma m1-lem-kernel-comparison",
+          "fullLabel": "lemma m1-lem-kernel-comparison",
+          "kind": "lemma",
+          "source": "A kernel on differences at prime arguments",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-residue-specialization",
+          "role": "descent-to-shorter-intervals",
+          "label": "lemma m1-lem-residue-specialization",
+          "fullLabel": "lemma m1-lem-residue-specialization",
+          "kind": "lemma",
+          "source": "Descent to shorter intervals",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-shorter-scale",
+          "role": "descent-to-shorter-intervals",
+          "label": "proposition m1-prop-shorter-scale",
+          "fullLabel": "proposition m1-prop-shorter-scale",
+          "kind": "proposition",
+          "source": "Descent to shorter intervals",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-descent-cancellation",
+          "role": "descent-to-shorter-intervals",
+          "label": "proposition m1-prop-descent-cancellation",
+          "fullLabel": "proposition m1-prop-descent-cancellation",
+          "kind": "proposition",
+          "source": "Descent to shorter intervals",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-descent-recurrence",
+          "role": "descent-to-shorter-intervals",
+          "label": "proposition m1-prop-descent-recurrence",
+          "fullLabel": "proposition m1-prop-descent-recurrence",
+          "kind": "proposition",
+          "source": "Descent to shorter intervals",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-uniform-descent",
+          "role": "descent-to-shorter-intervals",
+          "label": "proposition m1-prop-uniform-descent",
+          "fullLabel": "proposition m1-prop-uniform-descent",
+          "kind": "proposition",
+          "source": "Descent to shorter intervals",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "A power saving for square-difference-free sets",
+      "title": "A power saving for square-difference-free sets",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-power-saving-for-square-difference-free-sets-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from A power saving for square-difference-free sets.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-graph-count",
+          "role": "finite-field-square-constraints",
+          "label": "lemma m2-lem-graph-count",
+          "fullLabel": "lemma m2-lem-graph-count",
+          "kind": "lemma",
+          "source": "Finite-field square constraints",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-list-mixing",
+          "role": "finite-field-square-constraints",
+          "label": "lemma m2-lem-list-mixing",
+          "fullLabel": "lemma m2-lem-list-mixing",
+          "kind": "lemma",
+          "source": "Finite-field square constraints",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-tuple-laws",
+          "role": "finite-reflection-positive-probability-laws",
+          "label": "proposition m2-prop-tuple-laws",
+          "fullLabel": "proposition m2-prop-tuple-laws",
+          "kind": "proposition",
+          "source": "Finite reflection-positive probability laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-tuple-component-symmetry",
+          "role": "finite-reflection-positive-probability-laws",
+          "label": "lemma m2-lem-tuple-component-symmetry",
+          "fullLabel": "lemma m2-lem-tuple-component-symmetry",
+          "kind": "lemma",
+          "source": "Finite reflection-positive probability laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-marked-positive",
+          "role": "finite-reflection-positive-probability-laws",
+          "label": "lemma m2-lem-marked-positive",
+          "fullLabel": "lemma m2-lem-marked-positive",
+          "kind": "lemma",
+          "source": "Finite reflection-positive probability laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-unmarked-error",
+          "role": "finite-reflection-positive-probability-laws",
+          "label": "lemma m2-lem-unmarked-error",
+          "fullLabel": "lemma m2-lem-unmarked-error",
+          "kind": "lemma",
+          "source": "Finite reflection-positive probability laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-tuple-marking-domination",
+          "role": "finite-reflection-positive-probability-laws",
+          "label": "lemma m2-lem-tuple-marking-domination",
+          "fullLabel": "lemma m2-lem-tuple-marking-domination",
+          "kind": "lemma",
+          "source": "Finite reflection-positive probability laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-conditional-mixing",
+          "role": "finite-reflection-positive-probability-laws",
+          "label": "lemma m2-lem-conditional-mixing",
+          "fullLabel": "lemma m2-lem-conditional-mixing",
+          "kind": "lemma",
+          "source": "Finite reflection-positive probability laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-signed-holder",
+          "role": "signed-multilinear-forms-and-conductor-decay",
+          "label": "proposition m2-prop-signed-holder",
+          "fullLabel": "proposition m2-prop-signed-holder",
+          "kind": "proposition",
+          "source": "Signed multilinear forms and conductor decay",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-functional-properties",
+          "role": "signed-multilinear-forms-and-conductor-decay",
+          "label": "lemma m2-lem-functional-properties",
+          "fullLabel": "lemma m2-lem-functional-properties",
+          "kind": "lemma",
+          "source": "Signed multilinear forms and conductor decay",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-conductor-decay",
+          "role": "signed-multilinear-forms-and-conductor-decay",
+          "label": "lemma m2-lem-conductor-decay",
+          "fullLabel": "lemma m2-lem-conductor-decay",
+          "kind": "lemma",
+          "source": "Signed multilinear forms and conductor decay",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-lift-moments",
+          "role": "uniform-moment-bounds-for-fourier-lifts",
+          "label": "lemma m2-lem-lift-moments",
+          "fullLabel": "lemma m2-lem-lift-moments",
+          "kind": "lemma",
+          "source": "Uniform moment bounds for Fourier lifts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-lift-specialization",
+          "role": "uniform-moment-bounds-for-fourier-lifts",
+          "label": "lemma m2-lem-lift-specialization",
+          "fullLabel": "lemma m2-lem-lift-specialization",
+          "kind": "lemma",
+          "source": "Uniform moment bounds for Fourier lifts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-square-kernel",
+          "role": "a-signed-kernel-for-actual-square-differences",
+          "label": "proposition m2-prop-square-kernel",
+          "fullLabel": "proposition m2-prop-square-kernel",
+          "kind": "proposition",
+          "source": "A signed kernel for actual square differences",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-exact-fiber",
+          "role": "comparison-along-square-step-progressions",
+          "label": "lemma m2-lem-exact-fiber",
+          "fullLabel": "lemma m2-lem-exact-fiber",
+          "kind": "lemma",
+          "source": "Comparison along square-step progressions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-scale-transfer",
+          "role": "comparison-along-square-step-progressions",
+          "label": "proposition m2-prop-scale-transfer",
+          "fullLabel": "proposition m2-prop-scale-transfer",
+          "kind": "proposition",
+          "source": "Comparison along square-step progressions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-good-residues",
+          "role": "contraction-on-ordered-intervals",
+          "label": "lemma m2-lem-good-residues",
+          "fullLabel": "lemma m2-lem-good-residues",
+          "kind": "lemma",
+          "source": "Contraction on ordered intervals",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-nonexceptional-contraction",
+          "role": "contraction-on-ordered-intervals",
+          "label": "proposition m2-prop-nonexceptional-contraction",
+          "fullLabel": "proposition m2-prop-nonexceptional-contraction",
+          "kind": "proposition",
+          "source": "Contraction on ordered intervals",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-induction-recurrence",
+          "role": "exceptional-terms-and-the-power-saving-induction",
+          "label": "proposition m2-prop-induction-recurrence",
+          "fullLabel": "proposition m2-prop-induction-recurrence",
+          "kind": "proposition",
+          "source": "Exceptional terms and the power-saving induction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-functional-decay",
+          "role": "exceptional-terms-and-the-power-saving-induction",
+          "label": "theorem m2-thm-functional-decay",
+          "fullLabel": "theorem m2-thm-functional-decay",
+          "kind": "theorem",
+          "source": "Exceptional terms and the power-saving induction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "A Power Saving for Polynomial Differences at Prime Arguments",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Power-Saving-for-Polynomial-Differences-at-Prime-Arguments-October-5-2026/prime-argument-polynomial-differences.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "A power saving for square-difference-free sets",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-power-saving-for-square-difference-free-sets-September-24-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

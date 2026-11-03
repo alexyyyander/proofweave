@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 import { test } from "node:test";
 import { validateDeepProofMap } from "../packages/domain/deep-proof-map.mjs";
 
@@ -7,16 +7,33 @@ const base = new URL("../", import.meta.url);
 const collection = JSON.parse(await readFile(new URL("data/publications/openai-math.json", base), "utf8"));
 const lean = JSON.parse(await readFile(new URL("data/proof-maps/lean-coverage.json", base), "utf8"));
 const manifest = JSON.parse(await readFile(new URL("data/proof-maps/manifest.json", base), "utf8"));
-const deep = new Map(await Promise.all(["032", "084", "159"].map(async (number) => [
-  number,
-  JSON.parse(await readFile(new URL(`data/proof-maps/deep/${number}.json`, base), "utf8")),
-])));
+const deepFiles = (await readdir(new URL("data/proof-maps/deep", base))).filter((name) => name.endsWith(".json"));
+const deep = new Map(await Promise.all(deepFiles.map(async (file) => {
+  const number = file.replace(/\.json$/, "");
+  return [number, JSON.parse(await readFile(new URL(`data/proof-maps/deep/${file}`, base), "utf8"))];
+})));
 
 function clone(value) {
   return JSON.parse(JSON.stringify(value));
 }
 
-test("the three deep maps validate against the catalog and Lean coverage", () => {
+test("machine-extracted maps never infer that a paper node proves the family result", () => {
+  const machineMaps = [...deep.values()].filter((data) => data.machineDerived);
+  assert.ok(machineMaps.length > 0);
+  for (const data of machineMaps) {
+    assert.deepEqual(data.finalEdges, []);
+    for (const strategy of data.strategies) {
+      assert.ok(strategy.nodes.every((node) => node.role !== "result"));
+      assert.ok(strategy.nodes.every((node) => node.detail.includes("original statement")));
+    }
+  }
+  const forged = clone(deep.get("004"));
+  forged.finalEdges.push({ from: `${forged.strategies[0].id}:${forged.strategies[0].nodes[0].id}`, to: forged.result.id, type: "proves", label: "inferred" });
+  assert.throws(() => validateDeepProofMap(forged, collection, lean), /must not infer final edges/);
+});
+
+test("every deep map validates against the catalog and Lean coverage", () => {
+  assert.equal(deep.size, 342);
   for (const [number, data] of deep) {
     assert.equal(validateDeepProofMap(data, collection, lean), data);
     assert.equal(data.familyNumber, number);

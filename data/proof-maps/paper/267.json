@@ -1,0 +1,688 @@
+{
+  "familyNumber": "267",
+  "familyTitle": "Positive-temperature Bose–Einstein condensation and exact quantum depletion",
+  "manuscripts": [
+    {
+      "id": "Bose-Einstein-condensation-at-positive-temperature-in-the-dilute-hard-sphere-gas-October-5-2026",
+      "title": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Bose-Einstein-condensation-at-positive-temperature-in-the-dilute-hard-sphere-gas-October-5-2026/positive-temperature-hard-spheres.pdf"
+    },
+    {
+      "id": "Quantum-Depletion-and-Momentum-Distribution-in-the-Dilute-Hard-Sphere-Bose-Gas-October-5-2026",
+      "title": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Quantum-Depletion-and-Momentum-Distribution-in-the-Dilute-Hard-Sphere-Bose-Gas-October-5-2026/Quantum-Depletion-in-the-Dilute-Hard-Sphere-Bose-Gas.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "A scaled formulation",
+    "Local kinetic energy and particle-number costs",
+    "Localization and joint spatial estimates",
+    "A thermal slab and joint trajectory estimates",
+    "Moving a path through a neighboring cell",
+    "Exposing the environment and retaining movable groups",
+    "Paths through a sparse set of obstacles",
+    "A common measure and positive occupation",
+    "Scaled variables and ground-state estimates",
+    "Local energy bounds with retained excitations",
+    "Count fluctuations and local one-body covariance",
+    "Short trajectories and local certificates",
+    "Smoothed deletion measures and their local comparison",
+    "Random routes and encounters away from a common endpoint",
+    "Transport between distant smoothed deletion measures",
+    "Control of long-wavelength excitations",
+    "From local covariances to the momentum distribution"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For every a>0 , there is _*(a)>0 such that for each fixed 0<<_*(a) there is a…",
+      "statement": "For every a>0 , there is _*(a)>0 such that for each fixed 0<<_*(a) there is a fixed temperature T=T(a,)>0 for which \\[ _ L \\ /L^3 u_ 0,L ,^ (1) _ N,L,T u_ 0,L N >0. \\] The exclusion distance,…",
+      "section": "Introduction",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-thm-scaled",
+      "kind": "theorem",
+      "label": "Scaled occupation bound",
+      "statement": "[Scaled occupation bound] There are constants _02 , D_*< , and c_*>0 such that B_ occ c_* whenever the parameters satisfy , D D_* , and K is sufficiently large. The lower threshold for K can be…",
+      "section": "A scaled formulation",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-lem-cube",
+      "kind": "lemma",
+      "label": "Cube energy",
+      "statement": "[Cube energy] Let Q^3 be a cube of side l , and let F H^1(Q^n) vanish almost everywhere whenever some pair has distance at most r . No boundary condition is imposed on the outer faces. Then _ i=1 ^n_…",
+      "section": "Local kinetic energy and particle-number costs",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-lem-close",
+      "kind": "lemma",
+      "label": "Close-neighbor energy",
+      "statement": "[Close-neighbor energy] For 0<r<s<1 , every hard-core form function satisfies q_I[F] c_ near rs^ -3 \\#\\ i I:d_i^I2s\\ |F|^2, c_ near =27 2621443 .",
+      "section": "Local kinetic energy and particle-number costs",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-lem-entropy",
+      "kind": "lemma",
+      "label": "Kinetic control of entropy",
+      "statement": "[Kinetic control of entropy] Let O be an open subset of _K with Dirichlet kinetic energy, or the whole torus with periodic kinetic energy. For every fixed a>0 and every symmetric trace-one j…",
+      "section": "Local kinetic energy and particle-number costs",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-lem-insertion",
+      "kind": "lemma",
+      "label": "Normalized insertion",
+      "statement": "[Normalized insertion] Let w be a real normalized smooth one-particle orbital and F an n -particle hard-core form function. Suppose that on the support of F at most k old positions lie within…",
+      "section": "Local kinetic energy and particle-number costs",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-prop-increments",
+      "kind": "proposition",
+      "label": "Particle-number free-energy bounds",
+      "statement": "[Particle-number free-energy bounds] For sufficiently large D , uniformly in K100 , 0<T D^ -1 , and the fixed window, F_N& c N, \\\\ F_ N+k & F_N+c k (0 k N), \\\\ F_j^ (-W) -F_ j-1 ^ (-W) & C (1 j2N).…",
+      "section": "Local kinetic energy and particle-number costs",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-lem-localization",
+      "kind": "lemma",
+      "label": "Two-color localization",
+      "statement": "[Two-color localization] Let p,q be real Lipschitz functions with p^2+q^2=1 , and suppose p is compactly supported in an open set O , or take O=_K . For a finite-energy symmetric J -particle state ,…",
+      "section": "Localization and joint spatial estimates",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-lem-tilt",
+      "kind": "lemma",
+      "label": "Diagonal tilt",
+      "statement": "[Diagonal tilt] For a bounded real symmetric Lipschitz function G of N positions, set \\[ g=e^G, M_G=_ e^ 2G , _g=M_G^ -1 g g. \\] Then F_N(_g)-F_N _ _g | G|^2 +T(2_ _g G- M_G). Here | G|^2=_i|_iG|^2 .",
+      "section": "Localization and joint spatial estimates",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-prop-local-penalty",
+      "kind": "proposition",
+      "label": "Weighted local free-energy penalty",
+      "statement": "[Weighted local free-energy penalty] There are c,C>0 , independent of b , such that for every 0 J N , every bounded measurable 0 W1 , and every finite-energy symmetric trace-one state , F_J^ (-W)…",
+      "section": "Localization and joint spatial estimates",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-cor-field-density",
+      "kind": "corollary",
+      "label": "Density bound in a small field",
+      "statement": "[Density bound in a small field] In the J -particle equilibrium state with 0 J N and 0 W1 , every set A of sites satisfies n_ _ _ v A B_v CD|A|.",
+      "section": "Localization and joint spatial estimates",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-prop-low-count",
+      "kind": "proposition",
+      "label": "Joint low-count bound",
+      "statement": "[Joint low-count bound] One can choose _0 sufficiently large and then >0 sufficiently small so that, for every set of sites A and all sufficiently large D , \\ n_v< D for every v A\\ e^ -cD|A| . The…",
+      "section": "Localization and joint spatial estimates",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-prop-close-count",
+      "kind": "proposition",
+      "label": "Joint close-count bound",
+      "statement": "[Joint close-count bound] For every fixed >0 , one can choose b>0 sufficiently small and then D sufficiently large so that, for every set of sites A , \\ C_v D for every v A\\ p_D^ |A| , p_D=(-c bD^…",
+      "section": "Localization and joint spatial estimates",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-prop-purification",
+      "kind": "proposition",
+      "label": "Thermal purification",
+      "statement": "[Thermal purification] Equation~ defines a probability measure. At every fixed time s , its position marginal is \\[ ( X)=Z_N^ -1 B_^ sym (X,X)\\, X. \\] The joint law of X(t) and W' has density…",
+      "section": "A thermal slab and joint trajectory estimates",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-lem-free-cutoffs",
+      "kind": "lemma",
+      "label": "Free cutoff bounds",
+      "statement": "[Free cutoff bounds] Fix t>0 . For every q>0 , a free Brownian path on [0,2t] fails regularity with probability at most C_ q,t D^ -q , uniformly in its starting point, K , and the allowed -window.…",
+      "section": "A thermal slab and joint trajectory estimates",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-prop-certificates",
+      "kind": "proposition",
+      "label": "Joint certificate supply",
+      "statement": "[Joint certificate supply] For each prescribed p_1>0 , one can choose H_1 large, then t>0 sufficiently small, and then D_0 sufficiently large, such that, for every set A of distinct cell centers, \\…",
+      "section": "A thermal slab and joint trajectory estimates",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-lem-marked-kernel",
+      "kind": "lemma",
+      "label": "Marked-path kernel",
+      "statement": "[Marked-path kernel] For a fixed numerical c_1>1 , which can be taken to be 3 , K_n(y,z) l_n p_n(y)p_n(z) [e^ c_1_ O_n ](y,z), l_n=C(n+1)e^ C(n+1) e^ -cn^2/t ^ 1/3 , where _ O_n has Dirichlet…",
+      "section": "A thermal slab and joint trajectory estimates",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-lem-sandwich",
+      "kind": "lemma",
+      "label": "Trace bound for a Lipschitz sandwich",
+      "statement": "[Trace bound for a Lipschitz sandwich] For the preceding finite-color space and operators, set \\[ W_0=2a/+c_1| a|^2, H= H-_ i=1 ^N W_0(x_i). \\] For every real q>0 , _ H_e X_0^q _ H_e e^ -q H .",
+      "section": "A thermal slab and joint trajectory estimates",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-prop-trajectory-moment",
+      "kind": "proposition",
+      "label": "Joint trajectory moment",
+      "statement": "[Joint trajectory moment] Use any of the three events E and the coefficients l_n,_n,M_n from Equations~ and . For a sufficiently large fixed constant C_0 , assume C_0 _ n0 _n1. Then for every…",
+      "section": "A thermal slab and joint trajectory estimates",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-lem-gaussian-packing",
+      "kind": "lemma",
+      "label": "Averaged Gaussian density",
+      "statement": "[Averaged Gaussian density] Let y_1,,y_m^3 have pairwise distances at least s_0 , where m D/2 and s_0=bD^ -1/3 . Fix u^3 and 0<s t/2 . The average of the time- s densities of duration- t Brownian…",
+      "section": "Moving a path through a neighboring cell",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-lem-averaged-hit",
+      "kind": "lemma",
+      "label": "Averaged collision bound",
+      "statement": "[Averaged collision bound] Fix m D/2 pairs (y_i,z_i) with y_i B_v and |z_i-v|3 . Assume that each of the two endpoint lists is s_0 -separated. Let c be a deterministic regular torus path whose outer…",
+      "section": "Moving a path through a neighboring cell",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-lem-single-hit",
+      "kind": "lemma",
+      "label": "A single replacement",
+      "statement": "[A single replacement] Let y B_v , |z-v|3 , and let c be a deterministic regular path satisfying d(y,c(0))>s_0 and d(z,c(2t))>s_0 . For either Q=Q_ y,z ^ B , with any target cell B , or Q=Q_ y,z ^ 0…",
+      "section": "Moving a path through a neighboring cell",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-cor-success-supply",
+      "kind": "corollary",
+      "label": "Supply of successful labels",
+      "statement": "[Supply of successful labels] Consider a collection of deterministic torus paths with endpoints (y_j,z_j) , and fix a cell v . Suppose that at most H_1D of these paths visit the ball of radius 12…",
+      "section": "Moving a path through a neighboring cell",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-lem-useful-labels",
+      "kind": "lemma",
+      "label": "Useful labels in a certified cell",
+      "statement": "[Useful labels in a certified cell] At a cell with a certificate there are at least D/2 eligible labels. After t has been chosen sufficiently small and D sufficiently large, at least nine tenths of…",
+      "section": "Exposing the environment and retaining movable groups",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-lem-conditional-law",
+      "kind": "lemma",
+      "label": "Exact conditional law",
+      "statement": "[Exact conditional law] For almost every exposed datum the normalizers in Equation~ are positive, and the conditional law of the unexposed trajectories is _ I (_ I ) =1 Z_ I _ \\ all pairs in I avoid…",
+      "section": "Exposing the environment and retaining movable groups",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-prop-group-supply",
+      "kind": "proposition",
+      "label": "Unconditional supply of good cells",
+      "statement": "[Unconditional supply of good cells] For any prescribed p>0 , the constants before M can be chosen as above, and then M can be chosen sufficiently large, so that for sufficiently large D and K , _ B…",
+      "section": "Exposing the environment and retaining movable groups",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-prop-group-comparison",
+      "kind": "proposition",
+      "label": "Density and deterministic compatibility",
+      "statement": "[Density and deterministic compatibility] There is a constant G2 , fixed after t and independent of D,K,M , such that _i^U P_i, 0 _i^U P_i G, _i^U P_i P_i=1. There is also e_D0 , uniform in the…",
+      "section": "Exposing the environment and retaining movable groups",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-prop-good-paths",
+      "kind": "proposition",
+      "label": "Good paths with bounded encounters",
+      "statement": "[Good paths with bounded encounters] Fix an integer R1 . There are constants p_0,>0 , C_ path < , and an integer K_0 , depending only on R , with the following property. Suppose K K_0 and holds with…",
+      "section": "Paths through a sparse set of obstacles",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-lem-skeleton",
+      "kind": "lemma",
+      "label": "Skeleton encounters",
+      "statement": "[Skeleton encounters] For two independent skeletons just constructed, there are absolute constants c_ hit >0 and C_ hit < such that, for every integer R_s1 , e^ _sJ_ occ ^ (R_s) C_ hit , _s= c_ hit…",
+      "section": "Paths through a sparse set of obstacles",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-lattice-boundary",
+      "kind": "lemma",
+      "label": "Exterior shell",
+      "statement": "[Exterior shell] The set fill(C) lies in the coordinate bounding box of C . The exterior vertices at maximum distance one from C form a nearest-neighbor connected set, denoted _*^ ext C , with at…",
+      "section": "Paths through a sparse set of obstacles",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-lattice-small-lifts",
+      "kind": "lemma",
+      "label": "Small periodic components",
+      "statement": "[Small periodic components] Suppose K>2a , and a range- a component on L_K has m vertices with am<K . Each of its lifts to ^3 is a finite component projecting bijectively onto it. The coordinate span…",
+      "section": "Paths through a sparse set of obstacles",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-lem-affinity",
+      "kind": "lemma",
+      "label": "A common finite measure",
+      "statement": "[A common finite measure] Let P,Q be finite nonnegative measures and let be a finite measure of mass m>0 , absolutely continuous with respect to both. If \\[ ( P )^2 P C_P, ( Q )^2 Q C_Q, \\] then…",
+      "section": "A common measure and positive occupation",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-lem-tag-normalization",
+      "kind": "lemma",
+      "label": "Tag normalization",
+      "statement": "[Tag normalization] For each ordered pair of cells, (P_ vw ,Q_ vw ) 1D_ g=1 ^ G_D ( P_g, Q_g).",
+      "section": "A common measure and positive occupation",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m1-lem-cancellation",
+      "kind": "lemma",
+      "label": "Cancellation away from an overlap",
+      "statement": "[Cancellation away from an overlap] Consider two changes S,T of the preceding kind, with G1 , and put U=S T . Suppose that the following conditions hold. There is There are decompositions S=C_S F_S…",
+      "section": "A common measure and positive occupation",
+      "manuscript": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "For every a>0 , every bounded continuous real function f on ^3 , and every >0 ,…",
+      "statement": "For every a>0 , every bounded continuous real function f on ^3 , and every >0 , there is _0(a,f,)>0 with the following property. Fix 0<<_0 and put = a^3 . For every sequence N_j,L_j with N_j/L_j^3 ,…",
+      "section": "Introduction",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-cor-depletion",
+      "kind": "corollary",
+      "label": "In the same iterated limit, uniformly over all ground states, \\[ 1-B_ N,L,a ()…",
+      "statement": "In the same iterated limit, uniformly over all ground states, \\[ 1-B_ N,L,a () =8 3 a^3+o( a^3). \\]",
+      "section": "Introduction",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-set-ground-space",
+      "kind": "lemma",
+      "label": "Ground spaces and allowed slices",
+      "statement": "[Ground spaces and allowed slices] For every nonempty allowed configuration set with nontrivial form domain, the full labelled and bosonic Dirichlet operators have compact resolvent and the same…",
+      "section": "Scaled variables and ground-state estimates",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-set-removal",
+      "kind": "proposition",
+      "label": "Removal energies",
+      "statement": "[Removal energies] For all sufficiently large D , uniformly in , E_N-E_ N-m C m(0 m N). At fixed K,r , the ratio E_n/n is nondecreasing among positive particle numbers having nonempty form domain.",
+      "section": "Scaled variables and ground-state estimates",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-set-low-counts",
+      "kind": "proposition",
+      "label": "Joint low-count bound",
+      "statement": "[Joint low-count bound] One can fix _0 sufficiently large and then _*>0 sufficiently small so that every normalized nonnegative bosonic ground function satisfies, for every A L , \\ n_ B_v <_*D for…",
+      "section": "Scaled variables and ground-state estimates",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-set-count-mgf",
+      "kind": "proposition",
+      "label": "Count exponential moments",
+      "statement": "[Count exponential moments] For A L set \\[ f_A(X)=_ i=1 ^N e^ -d_K(x_i,A) , f_ =0, \\] where the distance is to the set of site centers. Every normalized nonnegative bosonic ground function obeys e^ z…",
+      "section": "Scaled variables and ground-state estimates",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-set-close-tail",
+      "kind": "proposition",
+      "label": "Joint close-neighbor tail",
+      "statement": "[Joint close-neighbor tail] For each particle label i let d_i(X)=_ k i d_K(x_i,x_k) , with the value + if N=1 . Given >0 , one can choose b_*>0 sufficiently small, and then D sufficiently large, so…",
+      "section": "Scaled variables and ground-state estimates",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-en-rough-bound",
+      "kind": "lemma",
+      "label": "Rough box bound",
+      "statement": "[Rough box bound] There are constants \\(c,C>0\\) and an exponent \\(c_ r >0\\), independent of the sufficiently small box exponent \\(\\), such that, for \\(0 n6Dv_b\\), H_n &4 r n^2 v_b -Cv_bD^ 1-c_ r…",
+      "section": "Local energy bounds with retained excitations",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-en-cutoff-error",
+      "kind": "lemma",
+      "label": "Form error of the excitation cutoff",
+      "statement": "[Form error of the excitation cutoff] Let \\(\\) belong to the form domain of \\(H_n\\), and let \\(V_n=_ i<j v(x_i-x_j)\\). Then |_ j=1 ^3 F_j,H_nF_j -,H_n| C M^2 . For any one-particle operator \\(a\\)…",
+      "section": "Local energy bounds with retained excitations",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-en-sharp",
+      "kind": "lemma",
+      "label": "Energy with a retained quasiparticle term",
+      "statement": "[Energy with a retained quasiparticle term] For n in and a bosonic n -particle vector in the form domain of H_b satisfying =\\1_ \\ n_L M/4\\ , ,H_b \\ v_be_r(n/v_b)-Cv_bQ^ -1/4 \\ \\|\\|^2 +cE^ -2…",
+      "section": "Local energy bounds with retained excitations",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-en-small-gap",
+      "kind": "lemma",
+      "label": "A small-gap version of the quadratic--cubic bound",
+      "statement": "[A small-gap version of the quadratic--cubic bound] Let n satisfy , |z|^22n , and =\\1_ \\ n_+ n,\\ n_L M/4\\ . For every fixed >0 and sufficiently large D , , H_0(z) & 4 c_ L (a')^ 5/2 v_b_z^ 5/2 \\|\\|^2…",
+      "section": "Local energy bounds with retained excitations",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-en-cosine-correction",
+      "kind": "lemma",
+      "label": "Exceptional cosine coefficients",
+      "statement": "[Exceptional cosine coefficients] Let n satisfy , let |z|^22n , and restrict the excitation space to n_+ n and n_L M/4 . On this space the exact cosine expansion may replace the coefficients in…",
+      "section": "Local energy bounds with retained excitations",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-en-energy-outputs",
+      "kind": "proposition",
+      "label": "The four energy outputs",
+      "statement": "[The four energy outputs] There are arbitrarily small fixed u>0 and then 0<w<u/10000 for which the following statements hold. Use the nested partitions fixed in , with B D^u , R D^w , and d=1/j . For…",
+      "section": "Count fluctuations and local one-body covariance",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-en-surplus",
+      "kind": "lemma",
+      "label": "The energy surplus",
+      "statement": "[The energy surplus] For E Q=D^ , =u or w , the following quantities have sum at most CVQ^ -1/5 : the box-count penalty \\[ _b Dv_b\\, h(n_b Dv_b -1) in expectation; \\] on middle-sector high pieces,…",
+      "section": "Count fluctuations and local one-body covariance",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-en-fourth-block",
+      "kind": "lemma",
+      "label": "A fourth moment from excitations",
+      "statement": "[A fourth moment from excitations] On the n -particle space, for every vector , \\|X^2\\|^2 Cn^2,(n_++2)^2.",
+      "section": "Count fluctuations and local one-body covariance",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-mom-local-covariance",
+      "kind": "proposition",
+      "label": "Uniform local covariance",
+      "statement": "[Uniform local covariance] Use the nested partitions and limiting convention of Section~ , with the exponents chosen above. Let A=_ b C_B A_b , where the one-particle operators A_b on L^2(b) are…",
+      "section": "Count fluctuations and local one-body covariance",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-en-observable",
+      "kind": "lemma",
+      "label": "A matrix observable comparison",
+      "statement": "[A matrix observable comparison] Let E=B , n satisfy , and |z|^22n . For 0 A_b W and an excitation vector in the form domain of n_+ , put \\[ Q_z()=_ p0 D_p(z)\\|b_p(z)\\|^2, T_A(z)=_ p0 (A_b)_ pp…",
+      "section": "Count fluctuations and local one-body covariance",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-lp-good-probability",
+      "kind": "proposition",
+      "label": "Probability of certificates",
+      "statement": "[Probability of certificates] The constants in Definition~ can be chosen so that P\\ v is bad\\ C(x)D^ -1-1/8 , P\\ A consists of bad sites\\ p^ |A| for every site v and every set A of distinct sites.…",
+      "section": "Short trajectories and local certificates",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-lp-collision",
+      "kind": "lemma",
+      "label": "Collision with one allowed path",
+      "statement": "[Collision with one allowed path] Fix the exposed data in a good neighborhood. Let k be a deterministic path satisfying its individual cutoffs, and let i k have the eligible endpoints. Under B_i ,…",
+      "section": "Short trajectories and local certificates",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-lp-insertion",
+      "kind": "proposition",
+      "label": "Uniform insertion probabilities",
+      "statement": "[Uniform insertion probabilities] Fix good data in all neighborhoods met by the following trials. In the first three assertions existing unexposed paths may take any values satisfying their…",
+      "section": "Short trajectories and local certificates",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-lp-trial-density",
+      "kind": "corollary",
+      "label": "Conditional density domination",
+      "statement": "[Conditional density domination] Fix good data and a set of route labels S I with a bounded number of labels per site. In a product of their free bridge probabilities, condition on individual cutoffs…",
+      "section": "Short trajectories and local certificates",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-palm-local-comparison",
+      "kind": "proposition",
+      "label": "Local comparison of smoothed deletion measures",
+      "statement": "[Local comparison of smoothed deletion measures] With the exponents and partitions of Proposition~ , every normalized nonnegative bosonic ground function satisfies 1 | C_d| _ v w |s_v-s_w|^4…",
+      "section": "Smoothed deletion measures and their local comparison",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-palm-reference",
+      "kind": "lemma",
+      "label": "Density of the smoothed deletion measure",
+      "statement": "[Density of the smoothed deletion measure] The projection of P_ aug,v just described is P_v . The mass of P_v equals T_v^ rel . Its average over either partition is one.",
+      "section": "Smoothed deletion measures and their local comparison",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-palm-counts",
+      "kind": "lemma",
+      "label": "Fluctuations of the number of flagged particles",
+      "statement": "[Fluctuations of the number of flagged particles] The count estimates of Proposition~ imply 1 | C_R| _ v C_R |T_v^ rel -1|^2 & C(D^ -1-w/6 +D^ -1+x R^ -3 ), \\\\ 1 | C_d| _ v C_d |T_v^ rel -1|^4 &…",
+      "section": "Smoothed deletion measures and their local comparison",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-palm-omissions",
+      "kind": "lemma",
+      "label": "Cost of omissions",
+      "statement": "[Cost of omissions] For every indicated cell v , the mass in P_ aug,v of tags outside I is at most C_ x,j D^ -1-1/8 , uniformly in v . The mass lost by a failure of the required good neighborhood is…",
+      "section": "Smoothed deletion measures and their local comparison",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-palm-transport",
+      "kind": "lemma",
+      "label": "Two-copy midpoint transport",
+      "statement": "[Two-copy midpoint transport] For adjacent d -cells on the retained data event one can choose of length m C_x , with C_x=O(x^ -1/2 ) , and construct two path copies with these properties: All…",
+      "section": "Smoothed deletion measures and their local comparison",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-palm-likelihood",
+      "kind": "lemma",
+      "label": "Cancellation of the conditional normalizer",
+      "statement": "[Cancellation of the conditional normalizer] The left-output likelihood, with the weight h_ w,j included but the divisor T_w omitted, is, on admissible reference values, L_S(z;) = a_S(o;)h_ w,j (o)…",
+      "section": "Smoothed deletion measures and their local comparison",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-palm-two-switches",
+      "kind": "lemma",
+      "label": "Two switched interactions",
+      "statement": "[Two switched interactions] Write _ lk for the collision bound in Lemma~ , and set \\[ _* = C_xD^ -19/100 . \\] Suppose either that the four changed sets are disjoint, or that they have exactly one…",
+      "section": "Smoothed deletion measures and their local comparison",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-palm-fourth",
+      "kind": "lemma",
+      "label": "The fourth moment of the averaged centered likelihood",
+      "statement": "[The fourth moment of the averaged centered likelihood] For adjacent d -cells v,w , let an overbar denote the average over the route and interior label choices at fixed tags and datum. Restrict the…",
+      "section": "Smoothed deletion measures and their local comparison",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-palm-augmented-comparison",
+      "kind": "proposition",
+      "label": "Fourth-moment comparison before projection",
+      "statement": "[Fourth-moment comparison before projection] For sufficiently small x>0 , depending on the previously chosen exponent u , the measures above satisfy 1 | C_d| _ v w \\ |_v-1|^4\\, P_ aug,v +|_w-1|^4\\,…",
+      "section": "Smoothed deletion measures and their local comparison",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-rt-routes",
+      "kind": "proposition",
+      "label": "Routes with rare encounters away from the common end",
+      "statement": "[Routes with rare encounters away from the common end] There are \\(p_0,,c,C>0\\) and \\(R_0\\) with the following property. Suppose \\(R R_0\\), \\(K C_0R\\), and holds with \\(p p_0\\). Put \\(h= R^ 1/2 \\).…",
+      "section": "Random routes and encounters away from a common endpoint",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-rt-prediction",
+      "kind": "lemma",
+      "label": "Put \\(=2/3\\). For every integer \\(T1\\) there is an integer-valued process…",
+      "statement": "Put \\(=2/3\\). For every integer \\(T1\\) there is an integer-valued process \\((S_j)_ j=0 ^T\\), with \\(S_0=0\\) and \\(|S_ j+1 -S_j|=1\\), such that _ x Z P(S_ u+k =x S_0,,S_u) 6^ k^ - (k1,\\ u+k T).",
+      "section": "Random routes and encounters away from a common endpoint",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-rt-ordered",
+      "kind": "lemma",
+      "label": "Ordered tests against moving targets",
+      "statement": "[Ordered tests against moving targets] At each time \\(s\\ 0,,T\\ \\), let \\(A_s(l)\\) be a union of at most two deterministic squares of maximum radius \\(l\\), with arbitrary centers, in the transverse…",
+      "section": "Random routes and encounters away from a common endpoint",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-long-comparison",
+      "kind": "proposition",
+      "label": "Distant comparison of deletion measures",
+      "statement": "[Distant comparison of deletion measures] For sufficiently small x>0 relative to the previously fixed exponents, the functions s_v of Lemma~ satisfy 1 | A_ K,R | _ (v,w) A_ K,R |s_v(Y')-s_w(Y')|^2\\,…",
+      "section": "Transport between distant smoothed deletion measures",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-long-mass",
+      "kind": "lemma",
+      "label": "Mass of the transport",
+      "statement": "[Mass of the transport] For some c_3>0 , the mass of this common measure satisfies, after averaging over (v,w) A_ K,R , _ vw (1) -C D^ -1-c_3 -o_K(1).",
+      "section": "Transport between distant smoothed deletion measures",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-long-normalizers",
+      "kind": "lemma",
+      "label": "Reference normalizers",
+      "statement": "[Reference normalizers] If S T= , then 1Z_S^-Z_T^- Z_U (CB_ ST ). If q=|S T| is arbitrary, then Z_S^-Z_T^- Z_U C^q(CB_ ST ). All normalizers are strictly positive. In the disjoint case, if H is any…",
+      "section": "Transport between distant smoothed deletion measures",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-long-transitions",
+      "kind": "lemma",
+      "label": "Comparison of transition factors",
+      "statement": "[Comparison of transition factors] Use the same latent originals and the same generated variables in the original and separate protocols. The original integrand is bounded by the separate integrand…",
+      "section": "Transport between distant smoothed deletion measures",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-long-kernel",
+      "kind": "lemma",
+      "label": "Selected outputs of sequential kernels",
+      "statement": "[Selected outputs of sequential kernels] Let ( x) be a probability measure of latent variables, followed by a finite ordered list of subprobability kernels. At stage r the kernel generates a primary…",
+      "section": "Transport between distant smoothed deletion measures",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-long-shared-density",
+      "kind": "lemma",
+      "label": "Uniform marginal bound",
+      "statement": "[Uniform marginal bound] Divide the separate output measure M_S^- by its reference normalizer Z_S^- , and omit its original tag indicator if desired. For any q specified primary output labels, its…",
+      "section": "Transport between distant smoothed deletion measures",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-long-product",
+      "kind": "lemma",
+      "label": "Disjoint and shared changed sets",
+      "statement": "[Disjoint and shared changed sets] At almost every fixed admissible outside of U=S T , the likelihoods of the two original transports satisfy the following bounds. If S,T are disjoint, then +C e^ C…",
+      "section": "Transport between distant smoothed deletion measures",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-long-label-average",
+      "kind": "lemma",
+      "label": "Endpoint sums and label matches",
+      "statement": "[Endpoint sums and label matches] At fixed retained data and route sites, the label average of the error in , together with the contribution of all choices having S T , is at most C D^ -1+(x) J_*e^…",
+      "section": "Transport between distant smoothed deletion measures",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-long-augmented-moments",
+      "kind": "proposition",
+      "label": "Augmented moments",
+      "statement": "[Augmented moments] For some c_4>0 , the left augmented likelihood satisfies _ v,w ^2\\, P_ aug ,v +CD^ -1-c_4 +o_K(1) after averaging over A_ K,R . Its mass satisfies , and the same estimates hold…",
+      "section": "Transport between distant smoothed deletion measures",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-asm-far-pairs",
+      "kind": "lemma",
+      "label": "Distant pairs control the variance",
+      "statement": "[Distant pairs control the variance] Let H be a complex Hilbert space and let f_z H , z(/M)^3 . Set \\[ I_M=\\ h\\ 0,,M-1\\ :.30M h .45M\\ , f=M^ -3 _z f_z. \\] For all sufficiently large M , there is an…",
+      "section": "Control of long-wavelength excitations",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-asm-rms-interpolation",
+      "kind": "lemma",
+      "label": "RMS interpolation",
+      "statement": "[RMS interpolation] For any finite nonempty array of nonnegative numbers y_i , with uniform averaging denoted by E_i , put a= E_i y_i^2 and m= E_i y_i . Then ( a-m)^212 E_ i,i' (y_i-y_ i' )^4…",
+      "section": "Control of long-wavelength excitations",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-asm-infrared",
+      "kind": "proposition",
+      "label": "Remaining excitations",
+      "statement": "[Remaining excitations] Put Q_R=P_R-P_0 . Uniformly over normalized, possibly complex, bosonic ground vectors, D\\|(Q_R)_1\\|_2^216_j+o(1)+o_K(1), where _j0 . The coefficient 16 is independent of j ;…",
+      "section": "Control of long-wavelength excitations",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    },
+    {
+      "id": "m2-mom-shift-average",
+      "kind": "lemma",
+      "label": "Averaging box boundaries",
+      "statement": "[Averaging box boundaries] If K>2(B+H) and |h| H , then \\|T_h-Avg_ C S T_h^ C \\| CH+R B .",
+      "section": "From local covariances to the momentum distribution",
+      "manuscript": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m2-en-surplus",
+      "to": "m2-mom-local-covariance",
+      "label": "en:surplus",
+      "context": "[Proof of Proposition~\\ref{mom:local-covariance}] Apply the sector restrictions and excitation cutoffs used in Lemma~\\ref{en:surplus}, now with $E=B$ and $Q=D^u$. A box-wise operator evaluates by summing over these restrictions. For each fixed box the o"
+    }
+  ]
+}

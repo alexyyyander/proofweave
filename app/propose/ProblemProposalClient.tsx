@@ -5,9 +5,21 @@ import { SectionTitle, Badge, Button, EmptyState, Input, SectionHeading, Surface
 import Link from "next/link";
 import { useEffect, useState, type FormEvent } from "react";
 
-import { type ProblemProposal } from "@/db/repositories/problem-proposals";
+import { type ProblemProposal, type ProblemProposalStatus } from "@/db/repositories/problem-proposals";
+import { useI18n } from "@/app/i18n/client";
+import type { Locale } from "@/app/i18n/config";
+import type { TranslationKey } from "@/app/i18n/translate";
+
+const statusKeys: Record<ProblemProposalStatus, TranslationKey> = {
+  submitted: "propose.status.submitted",
+  under_review: "propose.status.under_review",
+  accepted: "propose.status.accepted",
+  rejected: "propose.status.rejected",
+  withdrawn: "propose.status.withdrawn",
+};
 
 export function ProblemProposalClient() {
+  const { t, locale } = useI18n();
   const [proposals, setProposals] = useState<readonly ProblemProposal[]>([]);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -19,18 +31,18 @@ export function ProblemProposalClient() {
       .then(async (response) => {
         const payload = await response.json().catch(() => null);
         if (!response.ok || !Array.isArray(payload?.proposals)) {
-          throw new Error(payload?.error?.message ?? "Proofweave could not load your proposals.");
+          throw new Error(locale === "en" ? payload?.error?.message ?? "Proofweave could not load your proposals." : t("propose.error.load"));
         }
         if (live) setProposals(payload.proposals as ProblemProposal[]);
       })
       .catch((error) => {
-        if (live) setNotice({ tone: "error", message: error instanceof Error ? error.message : "Proofweave could not load your proposals." });
+        if (live) setNotice({ tone: "error", message: locale === "en" && error instanceof Error ? error.message : t("propose.error.load") });
       })
       .finally(() => {
         if (live) setLoading(false);
       });
     return () => { live = false; };
-  }, []);
+  }, [locale, t]);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -55,16 +67,13 @@ export function ProblemProposalClient() {
       });
       const payload = await response.json().catch(() => null);
       if (!response.ok || !payload?.proposal) {
-        throw new Error(payload?.error?.message ?? "Proofweave could not record this proposal.");
+        throw new Error(locale === "en" ? payload?.error?.message ?? "Proofweave could not record this proposal." : t("propose.error.record"));
       }
       setProposals((current) => [payload.proposal as ProblemProposal, ...current.filter((item) => item.id !== payload.proposal.id)]);
       form.reset();
-      setNotice({
-        tone: "success",
-        message: "Proposal recorded with your Person attribution. It now awaits catalog curation; no theorem claim or Credit was created.",
-      });
+      setNotice({ tone: "success", message: t("propose.notice.recorded") });
     } catch (error) {
-      setNotice({ tone: "error", message: error instanceof Error ? error.message : "Proofweave could not record this proposal." });
+      setNotice({ tone: "error", message: locale === "en" && error instanceof Error ? error.message : t("propose.error.record") });
     } finally {
       setSubmitting(false);
     }
@@ -73,40 +82,40 @@ export function ProblemProposalClient() {
   return <div className="proposal-layout">
     <Surface as="section" className="proposal-form-panel" aria-labelledby="proposal-form-title">
       <SectionHeading as="div" className="proposal-panel-heading">
-        <div><p className="eyebrow">New curator request</p><SectionTitle id="proposal-form-title">Describe the mathematical target.</SectionTitle></div>
-        <Badge className="record-chip">Person-attributed</Badge>
+        <div><p className="eyebrow">{t("propose.form.eyebrow")}</p><SectionTitle id="proposal-form-title">{t("propose.form.title")}</SectionTitle></div>
+        <Badge className="record-chip">{t("propose.form.badge")}</Badge>
       </SectionHeading>
       <form className="proposal-form" onSubmit={submit}>
-        <label>Working title<Input name="title" minLength={5} maxLength={240} required placeholder="A concise name for the conjecture or formalization target" /></label>
-        <label>Domain<Input name="domain" minLength={2} maxLength={120} required placeholder="e.g. Algebraic geometry · MSC 14" /></label>
-        <label className="proposal-wide-field">Informal statement<Textarea name="informalStatement" minLength={20} maxLength={8000} required rows={7} placeholder="State the claim precisely enough that a curator can identify its hypotheses, conclusion, and intended scope." /></label>
-        <label className="proposal-wide-field">Why this target matters<Textarea name="motivation" minLength={10} maxLength={4000} required rows={4} placeholder="Explain the source, open gap, expected reuse, or why formal verification would be valuable." /></label>
-        <label className="proposal-wide-field">Primary source URL <span>Optional · HTTPS</span><Input name="sourceUrl" type="url" maxLength={1000} pattern="https://.*" placeholder="https://arxiv.org/... or a stable published source" /></label>
+        <label>{t("propose.field.title")}<Input name="title" minLength={5} maxLength={240} required placeholder={t("propose.field.titlePlaceholder")} /></label>
+        <label>{t("propose.field.domain")}<Input name="domain" minLength={2} maxLength={120} required placeholder={t("propose.field.domainPlaceholder")} /></label>
+        <label className="proposal-wide-field">{t("propose.field.statement")}<Textarea name="informalStatement" minLength={20} maxLength={8000} required rows={7} placeholder={t("propose.field.statementPlaceholder")} /></label>
+        <label className="proposal-wide-field">{t("propose.field.motivation")}<Textarea name="motivation" minLength={10} maxLength={4000} required rows={4} placeholder={t("propose.field.motivationPlaceholder")} /></label>
+        <label className="proposal-wide-field">{t("propose.field.sourceUrl")} <span>{t("propose.field.optional")}</span><Input name="sourceUrl" type="url" maxLength={1000} pattern="https://.*" placeholder={t("propose.field.sourceUrlPlaceholder")} /></label>
         <div className="proposal-submit-row">
-          <p>Submission creates an immutable proposal plus its first status event. Catalog acceptance, Lean replay, independent review, Receipt, and Credit remain separate steps.</p>
-          <Button className="button button-primary" type="submit" disabled={submitting}>{submitting ? "Recording…" : "Submit for curation"}<span aria-hidden="true">→</span></Button>
+          <p>{t("propose.submit.note")}</p>
+          <Button className="button button-primary" type="submit" disabled={submitting}>{submitting ? t("propose.submit.recording") : t("propose.submit.action")}<span aria-hidden="true">→</span></Button>
         </div>
         {notice ? <p className={`proposal-notice is-${notice.tone}`} role={notice.tone === "error" ? "alert" : "status"}>{notice.message}</p> : null}
       </form>
     </Surface>
 
     <aside className="proposal-history" aria-labelledby="proposal-history-title">
-      <SectionHeading as="div" className="proposal-panel-heading"><div><p className="eyebrow">Your submission ledger</p><SectionTitle id="proposal-history-title">Proposal history</SectionTitle></div><Badge className="record-chip">{proposals.length}</Badge></SectionHeading>
-      {loading ? <p className="proposal-history-empty">Loading your attributed proposals…</p> : proposals.length === 0
-        ? <EmptyState as="div" className="proposal-history-empty"><strong>No proposals yet.</strong><p>Your first accepted proposal will later receive a pinned source snapshot and Lean environment before Agents can work on it.</p></EmptyState>
+      <SectionHeading as="div" className="proposal-panel-heading"><div><p className="eyebrow">{t("propose.history.eyebrow")}</p><SectionTitle id="proposal-history-title">{t("propose.history.title")}</SectionTitle></div><Badge className="record-chip">{proposals.length}</Badge></SectionHeading>
+      {loading ? <p className="proposal-history-empty">{t("propose.history.loading")}</p> : proposals.length === 0
+        ? <EmptyState as="div" className="proposal-history-empty"><strong>{t("propose.history.emptyTitle")}</strong><p>{t("propose.history.emptyBody")}</p></EmptyState>
         : <ol className="proposal-list">{proposals.map((proposal) => <li key={proposal.id}>
-          <div><span className={`proposal-status is-${proposal.status.replace("_", "-")}`}>{proposal.status.replace("_", " ")}</span><time dateTime={proposal.submittedAt}>{formatDate(proposal.submittedAt)}</time></div>
+          <div><span className={`proposal-status is-${proposal.status.replace("_", "-")}`}>{t(statusKeys[proposal.status])}</span><time dateTime={proposal.submittedAt}>{formatDate(proposal.submittedAt, locale)}</time></div>
           <strong>{proposal.title}</strong>
           <p>{proposal.domain}</p>
           <code>{proposal.id}</code>
-          {proposal.sourceUrl ? <a href={proposal.sourceUrl} target="_blank" rel="noreferrer">Open cited source ↗</a> : null}
+          {proposal.sourceUrl ? <a href={proposal.sourceUrl} target="_blank" rel="noreferrer">{t("propose.history.openSource")} ↗</a> : null}
         </li>)}</ol>}
-      <p className="proposal-history-boundary">Accepted proposals enter a separate curator-controlled catalog import. To work on an existing pinned target now, <Link href="/explore">return to Explore →</Link></p>
+      <p className="proposal-history-boundary">{t("propose.history.boundaryA")} <Link href="/explore">{t("propose.history.boundaryLink")} →</Link></p>
     </aside>
   </div>;
 }
 
-function formatDate(value: string) {
+function formatDate(value: string, locale: Locale) {
   const date = new Date(value);
-  return Number.isNaN(date.valueOf()) ? value : new Intl.DateTimeFormat("en-US", { timeZone: "UTC", dateStyle: "medium", timeStyle: "short" }).format(date);
+  return Number.isNaN(date.valueOf()) ? value : new Intl.DateTimeFormat(locale, { timeZone: "UTC", dateStyle: "medium", timeStyle: "short" }).format(date);
 }

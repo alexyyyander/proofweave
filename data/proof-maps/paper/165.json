@@ -1,0 +1,184 @@
+{
+  "familyNumber": "165",
+  "familyTitle": "The Harary–Hill and Zarankiewicz crossing-number formulas",
+  "manuscripts": [
+    {
+      "id": "The-crossing-number-of-complete-graphs-September-23-2026",
+      "title": "The crossing number of complete graphs",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-crossing-number-of-complete-graphs-September-23-2026/paper.pdf"
+    },
+    {
+      "id": "The-crossing-number-of-complete-bipartite-graphs-September-23-2026",
+      "title": "The crossing number of complete bipartite graphs",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-crossing-number-of-complete-bipartite-graphs-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Signed intersections of cycles",
+    "An even-node order detector",
+    "The lower bound",
+    "A matching two-page drawing",
+    "Normalization of continuous-arc drawings",
+    "A subspace intersection inequality",
+    "Signed intersections and cycle relations",
+    "Detecting spoke orders by matrices of full rank"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For every integer \\(n3\\), \\[ (K_n)=Z(n):= 14 n2 n-12 n-22 n-32. \\]",
+      "statement": "For every integer \\(n3\\), \\[ (K_n)=Z(n):= 14 n2 n-12 n-22 n-32. \\]",
+      "section": "Introduction",
+      "manuscript": "The crossing number of complete graphs"
+    },
+    {
+      "id": "m1-lem-cycles",
+      "kind": "lemma",
+      "label": "Cycle pairing",
+      "statement": "[Cycle pairing] For any two cycles \\(z,z'\\), one has \\(J(z,z')=0\\).",
+      "section": "Signed intersections of cycles",
+      "manuscript": "The crossing number of complete graphs"
+    },
+    {
+      "id": "m1-lem-weights",
+      "kind": "lemma",
+      "label": "Interpolation weights",
+      "statement": "[Interpolation weights] For distinct real nodes \\(u_1,,u_N\\), put \\(G(t)=_ p=1 ^ N (t-u_p)\\). Then \\[ _ p=1 ^ N A(u_p) G'(u_p) =0 if A N-2. \\]",
+      "section": "An even-node order detector",
+      "manuscript": "The crossing number of complete graphs"
+    },
+    {
+      "id": "m1-lem-triangles",
+      "kind": "lemma",
+      "label": "Two-triangle interpolation",
+      "statement": "[Two-triangle interpolation] Let \\(s2\\) and let \\(u_1,,u_ 2s \\) be distinct real numbers. Set \\[ L_s=\\ (p,q):1 q<p s\\ \\;\\;\\ (p,q):s<p<q2s\\ . \\] Evaluation at \\((u_p,u_q)\\), \\((p,q) L_s\\), is an…",
+      "section": "An even-node order detector",
+      "manuscript": "The crossing number of complete graphs"
+    },
+    {
+      "id": "m1-lem-detector",
+      "kind": "lemma",
+      "label": "Order detection",
+      "statement": "[Order detection] The pairing \\(M\\) on \\(_ s-1,s-2 _ s-2,s-1 \\) is nonsingular. Consequently, A_ s-2,s-2 , M(A,B)=0\\ for every B_ s-1,s-1 A=0.",
+      "section": "An even-node order detector",
+      "manuscript": "The crossing number of complete graphs"
+    },
+    {
+      "id": "m1-lem-tests",
+      "kind": "lemma",
+      "label": "Polynomial cycle tests",
+      "statement": "[Polynomial cycle tests] For every polynomial \\(H(x,u,y,v)\\) of degree at most \\(n-2\\) separately in each variable, _ i,p,k,q J([ip],[kq])w_iw_pw_kw_q H(t_i,t_p,t_k,t_q)=0.",
+      "section": "The lower bound",
+      "manuscript": "The crossing number of complete graphs"
+    },
+    {
+      "id": "m1-lem-injectivity",
+      "kind": "lemma",
+      "label": "Injectivity",
+      "statement": "[Injectivity] The map \\(E\\) is injective.",
+      "section": "The lower bound",
+      "manuscript": "The crossing number of complete graphs"
+    },
+    {
+      "id": "m1-prop-odd",
+      "kind": "proposition",
+      "label": "Odd lower bound",
+      "statement": "[Odd lower bound] Every normalized minimum drawing of \\(K_ 2s+1 \\), \\(s2\\), has at least \\(s 2 ^ 2 \\) crossings.",
+      "section": "The lower bound",
+      "manuscript": "The crossing number of complete graphs"
+    },
+    {
+      "id": "m1-cor-lower",
+      "kind": "corollary",
+      "label": "For every \\(n3\\), \\((K_n) Z(n)\\).",
+      "statement": "For every \\(n3\\), \\((K_n) Z(n)\\).",
+      "section": "The lower bound",
+      "manuscript": "The crossing number of complete graphs"
+    },
+    {
+      "id": "m1-prop-upper",
+      "kind": "proposition",
+      "label": "This drawing has exactly \\(Z(n)\\) crossings for every \\(n3\\).",
+      "statement": "This drawing has exactly \\(Z(n)\\) crossings for every \\(n3\\).",
+      "section": "A matching two-page drawing",
+      "manuscript": "The crossing number of complete graphs"
+    },
+    {
+      "id": "m1-lem-normalization",
+      "kind": "lemma",
+      "label": "For every finite simple graph, a minimum ordinary drawing can be chosen…",
+      "statement": "For every finite simple graph, a minimum ordinary drawing can be chosen polygonal, straight near every vertex and crossing, and without crossings between edges having a common endpoint.",
+      "section": "Normalization of continuous-arc drawings",
+      "manuscript": "The crossing number of complete graphs"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "For all positive integers m,n , \\[ (K_ m,n )=d_m d_n. \\]",
+      "statement": "For all positive integers m,n , \\[ (K_ m,n )=d_m d_n. \\]",
+      "section": "Introduction",
+      "manuscript": "The crossing number of complete bipartite graphs"
+    },
+    {
+      "id": "m2-lem-subspace",
+      "kind": "lemma",
+      "label": "Subspace intersection bound",
+      "statement": "[Subspace intersection bound] Let W be a real vector space of dimension N , and let U_1,,U_m,V_1,,V_m be subspaces of W , where m1 . If U_i V_i=\\ 0\\ for every i , then _ i,j=1 ^ m (U_i V_j) m^2 4 N.",
+      "section": "A subspace intersection inequality",
+      "manuscript": "The crossing number of complete bipartite graphs"
+    },
+    {
+      "id": "m2-cor-rank-sum",
+      "kind": "corollary",
+      "label": "Rank sum for differences",
+      "statement": "[Rank sum for differences] Let X_1,,X_m,Y_1,,Y_m be real d d matrices. If X_i-Y_i is invertible for every i , then _ 1 i,j m\\ j (X_i-Y_j)2d_m d, d_m= m2 m-1 2 . The sum is over ordered pairs of…",
+      "section": "A subspace intersection inequality",
+      "manuscript": "The crossing number of complete bipartite graphs"
+    },
+    {
+      "id": "m2-lem-cycle-pairing",
+      "kind": "lemma",
+      "label": "Cycle pairing",
+      "statement": "[Cycle pairing] Let z,y^ E(K_ m,n ) be the signed edge vectors of two oriented simple graph cycles: an entry is 1 or -1 according as the traversal agrees or disagrees with the fixed edge orientation,…",
+      "section": "Signed intersections and cycle relations",
+      "manuscript": "The crossing number of complete bipartite graphs"
+    },
+    {
+      "id": "m2-lem-additive",
+      "kind": "lemma",
+      "label": "Additive block relation",
+      "statement": "[Additive block relation] For every 1 i,k m , J^ ik -J^ i1 -J^ 1k +J^ 11 L.",
+      "section": "Signed intersections and cycle relations",
+      "manuscript": "The crossing number of complete bipartite graphs"
+    },
+    {
+      "id": "m2-lem-triangular-basis",
+      "kind": "lemma",
+      "label": "Two-triangle interpolation",
+      "statement": "[Two-triangle interpolation] For any pairwise distinct real numbers x_1,,x_ 2s+1 , set Q_s= \\ (p,q):1 q<p s+1\\ \\ (p,q):s+1<p<q2s+1\\ . The values at (x_p,x_q) for (p,q) Q_s determine uniquely a…",
+      "section": "Detecting spoke orders by matrices of full rank",
+      "manuscript": "The crossing number of complete bipartite graphs"
+    },
+    {
+      "id": "m2-lem-detector",
+      "kind": "lemma",
+      "label": "Rank detector",
+      "statement": "[Rank detector] Fix any pairwise distinct real numbers x_1,,x_n , where n=2s+1 and d=s^2 . There is a linear map :^ n n ^ d d with the following properties. [label=( *)] annihilates every additive…",
+      "section": "Detecting spoke orders by matrices of full rank",
+      "manuscript": "The crossing number of complete bipartite graphs"
+    },
+    {
+      "id": "m2-lem-normalization",
+      "kind": "lemma",
+      "label": "Drawing normalization",
+      "statement": "[Drawing normalization] An admissible continuous-arc drawing of a finite simple graph can be replaced by a polygonal drawing with no more crossing points, with edges straight near every vertex and…",
+      "section": "Normalization of continuous-arc drawings",
+      "manuscript": "The crossing number of complete bipartite graphs"
+    }
+  ],
+  "edges": []
+}

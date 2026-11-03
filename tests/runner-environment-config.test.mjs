@@ -301,6 +301,8 @@ test("render.yaml parser reads every Runner service with its own env vars", () =
     '        value: "true"',
     "      - key: RUNNER_ONLY_RUN_ID",
     "        value: run:controlled",
+    "      - key: RUNNER_MAX_DELIVERY_ATTEMPTS",
+    '        value: "1"',
     "    healthCheckPath: /healthz",
     "",
   ].join("\n"));
@@ -312,6 +314,7 @@ test("render.yaml parser reads every Runner service with its own env vars", () =
   assert.equal(services[1].name, "proofweave-trusted-runner-427");
   assert.equal(services[1].envVars.get("RUNNER_EXECUTION_ENABLED").value, "true");
   assert.equal(services[1].envVars.get("RUNNER_ONLY_RUN_ID").value, "run:controlled");
+  assert.equal(services[1].envVars.get("RUNNER_MAX_DELIVERY_ATTEMPTS").value, "1");
 });
 
 test("configuration validation rejects schema, digest, template, and state violations", () => {
@@ -626,6 +629,7 @@ test("a controlled single Run permits a template_ready execution environment", (
     renderTemplateBuildId: pendingTemplate.buildId,
     renderExecutionEnabled: "true",
     renderOnlyRunId: "run:first-closure",
+    renderMaxDeliveryAttempts: "1",
     executionEnvironments: [
       { leanToolchain: lean427, mathlibRevision: mathlib427, executionEnabled: true },
     ],
@@ -634,11 +638,39 @@ test("a controlled single Run permits a template_ready execution environment", (
   assert.equal(report.ok, true);
   assert.deepEqual(report.inconsistencies, []);
   assert.equal(report.deployment.render.controlledSingleRun, true);
+  assert.equal(report.deployment.render.singleDelivery, true);
   assert.equal(report.deployment.render.onlyRunId, "run:first-closure");
+  assert.equal(report.deployment.render.maxDeliveryAttempts, "1");
   assert.equal(report.summary.executing, 1);
   const staged = report.environments.find((entry) => entry.profile === "mathlib-4.27-a3a10");
   assert.equal(staged.executionSelected, true);
   assert.equal(staged.executing, true);
+});
+
+test("a controlled single Run without bounded delivery is an inconsistency", () => {
+  const report = buildRunnerEnvironmentReport({
+    config: fixtureConfig([approvedEnvironment(), templateReadyEnvironment()]),
+    workerApprovedImages: [pendingImageBinding()],
+    renderApprovedImages: [pendingImageBinding()],
+    renderExecutionImage: pendingDigest,
+    renderTemplateId: pendingTemplate.id,
+    renderTemplateBuildId: pendingTemplate.buildId,
+    renderExecutionEnabled: "true",
+    renderOnlyRunId: "run:first-closure",
+    executionEnvironments: [
+      { leanToolchain: lean427, mathlibRevision: mathlib427, executionEnabled: true },
+    ],
+  });
+
+  assert.equal(report.ok, false);
+  assert.equal(report.deployment.render.controlledSingleRun, true);
+  assert.equal(report.deployment.render.singleDelivery, false);
+  assert.ok(report.inconsistencies.some((entry) => entry.code === "controlled_run_delivery_unbounded"));
+  assert.ok(report.inconsistencies.some((entry) => entry.code === "execution_environment_not_approved"));
+  const staged = report.environments.find((entry) => entry.profile === "mathlib-4.27-a3a10");
+  assert.equal(staged.executionSelected, true);
+  assert.equal(staged.executing, false);
+  assert.ok(staged.executionBlockers.includes("controlled_run_delivery_unbounded"));
 });
 
 test("a template_ready execution declaration without an exact Run remains an inconsistency", () => {
@@ -1130,6 +1162,62 @@ test("generator emits only the execution environment unless additional profiles 
   assert.equal(report.values.PROOFWEAVE_E2B_RUNNER_IMAGE, pendingDigest);
 });
 
+test("generator emits the worker execution declaration disabled by default", () => {
+  const stagingConfig = fixtureConfig([approvedEnvironment(), templateReadyEnvironment()]);
+  const report = generateRunnerEnvironmentConfig({
+    config: stagingConfig,
+    profiles: ["mathlib-4.31-9a948", "mathlib-4.27-a3a10"],
+    surface: "worker",
+  });
+
+  assert.deepEqual(report.executionEnabledProfiles, []);
+  assert.deepEqual(report.values.RUNNER_EXECUTION_ENVIRONMENTS_JSON, [
+    { leanToolchain: lean431, mathlibRevision: mathlib431, executionEnabled: false },
+    { leanToolchain: lean427, mathlibRevision: mathlib427, executionEnabled: false },
+  ]);
+  const envOutput = formatEnvironmentAssignments(report.values);
+  assert.match(envOutput, /RUNNER_EXECUTION_ENVIRONMENTS_JSON='/);
+  assert.doesNotMatch(envOutput, /PROOFWEAVE_E2B/);
+
+  const enabled = generateRunnerEnvironmentConfig({
+    config: stagingConfig,
+    profiles: ["mathlib-4.31-9a948", "mathlib-4.27-a3a10"],
+    surface: "worker",
+    enableExecutionProfiles: ["mathlib-4.31-9a948"],
+  });
+  assert.deepEqual(enabled.executionEnabledProfiles, ["mathlib-4.31-9a948"]);
+  assert.equal(enabled.values.RUNNER_EXECUTION_ENVIRONMENTS_JSON[0].executionEnabled, true);
+  assert.equal(enabled.values.RUNNER_EXECUTION_ENVIRONMENTS_JSON[1].executionEnabled, false);
+
+  assert.throws(
+    () => generateRunnerEnvironmentConfig({
+      config: stagingConfig,
+      profiles: ["mathlib-4.31-9a948"],
+      surface: "worker",
+      enableExecutionProfiles: ["mathlib-4.27-a3a10"],
+    }),
+    /not in the generated allowlist/,
+  );
+  assert.throws(
+    () => generateRunnerEnvironmentConfig({
+      config: stagingConfig,
+      profiles: ["mathlib-4.27-a3a10"],
+      surface: "worker",
+      enableExecutionProfiles: ["mathlib-4.27-a3a10"],
+    }),
+    /only an approved environment/,
+  );
+  assert.throws(
+    () => generateRunnerEnvironmentConfig({
+      config: stagingConfig,
+      executionProfile: "mathlib-4.31-9a948",
+      surface: "render",
+      enableExecutionProfiles: ["mathlib-4.31-9a948"],
+    }),
+    /only available with --surface worker/,
+  );
+});
+
 test("generator stages a template_ready environment but refuses built_pending_template", async () => {
   const stagingConfig = fixtureConfig([approvedEnvironment(), templateReadyEnvironment()]);
   const report = generateRunnerEnvironmentConfig({
@@ -1198,6 +1286,15 @@ test("generator CLI emits env and json output and fails closed on bad input", as
   const help = runCli(["--help"], generatorPath);
   assert.equal(help.status, 0);
   assert.match(help.stdout, /Usage:/);
+
+  const worker = runCli(["--surface", "worker", "--format", "json"], generatorPath);
+  assert.equal(worker.status, 0, worker.stderr);
+  const workerReport = JSON.parse(worker.stdout);
+  assert.deepEqual(workerReport.profiles, ["mathlib-4.31-9a948"]);
+  assert.deepEqual(workerReport.values.RUNNER_EXECUTION_ENVIRONMENTS_JSON, [
+    { leanToolchain: lean431, mathlibRevision: mathlib431, executionEnabled: false },
+  ]);
+  assert.equal(runCli(["--surface", "render", "--enable-execution", "mathlib-4.31-9a948"], generatorPath).status, 1);
 
   assert.equal(runCli(["--profile", "mathlib-4.27-a3a10"], generatorPath).status, 1);
   assert.equal(runCli(["--unknown"], generatorPath).status, 1);

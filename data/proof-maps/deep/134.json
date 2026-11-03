@@ -1,0 +1,853 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "134",
+  "title": "Generalized star height at most three",
+  "result": {
+    "id": "paper-result",
+    "label": "Generalized star height at most three",
+    "statement": "Every regular language over a finite alphabet has a generalized regular expression with at most three nested Kleene stars, allowing union, concatenation and complement over the same alphabet. This establishes an absolute bound independent of automaton size, resolving the uniform-boundedness version of the generalized star-height problem.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-computations-and-split-expressions",
+      "label": "Finite computations and split expressions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-finite-tag-clock",
+      "label": "A finite tag clock",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "local-markers-and-episode-ends",
+      "label": "Local markers and episode ends",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-outer-splits-and-five-residual-witnesses",
+      "label": "Two outer splits and five residual witnesses",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "aligned-splits-for-the-residual-witnesses",
+      "label": "Aligned splits for the residual witnesses",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "choosing-the-parameters",
+      "label": "Choosing the parameters",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "expressions-the-final-suffix-and-the-uniform-bound",
+      "label": "Expressions, the final suffix, and the uniform bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "algebra-and-split-computations",
+      "label": "Algebra and split computations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "markers-and-several-scales-of-cuts",
+      "label": "Markers and several scales of cuts",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "episodes-and-exact-end-detection",
+      "label": "Episodes and exact end detection",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "three-split-constructions",
+      "label": "Three split constructions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "compilation-over-the-original-alphabet",
+      "label": "Compilation over the original alphabet",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-robust-tag-clock",
+      "label": "A robust tag clock",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "local-markers-and-periodic-continuations",
+      "label": "Local markers and periodic continuations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-schedules-for-the-two-splits",
+      "label": "Finite schedules for the two splits",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "episodes-and-a-common-end-for-independent-guesses",
+      "label": "Episodes and a common end for independent guesses",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-first-split-transmitting-a-state-with-a-clock",
+      "label": "The first split: transmitting a state with a clock",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "recovering-the-cut-on-exceptional-episodes",
+      "label": "Recovering the cut on exceptional episodes",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-second-split-transmitting-a-table-through-the-stencil",
+      "label": "The second split: transmitting a table through the stencil",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "expressions-over-the-original-alphabet",
+      "label": "Expressions over the original alphabet",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Finite Monoid Computations and a Uniform Generalized Star-Height Bound",
+      "title": "Finite Monoid Computations and a Uniform Generalized Star-Height Bound",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Finite-Monoid-Computations-and-a-Uniform-Generalized-Star-Height-Bound-September-25-2026/Finite-Monoid-Computations-and-a-Uniform-Generalized-Star-Height-Bound-September-25-2026.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Finite Monoid Computations and a Uniform Generalized Star-Height Bound.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-prop-parameters"
+          ]
+        },
+        {
+          "id": "m1-lem-split",
+          "role": "finite-computations-and-split-expressions",
+          "label": "lemma m1-lem-split",
+          "fullLabel": "lemma m1-lem-split",
+          "kind": "lemma",
+          "source": "Finite computations and split expressions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-affine-recovery",
+          "role": "finite-computations-and-split-expressions",
+          "label": "lemma m1-lem-affine-recovery",
+          "fullLabel": "lemma m1-lem-affine-recovery",
+          "kind": "lemma",
+          "source": "Finite computations and split expressions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-prediction",
+          "role": "finite-computations-and-split-expressions",
+          "label": "lemma m1-lem-prediction",
+          "fullLabel": "lemma m1-lem-prediction",
+          "kind": "lemma",
+          "source": "Finite computations and split expressions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-clock",
+          "role": "a-finite-tag-clock",
+          "label": "lemma m1-lem-clock",
+          "fullLabel": "lemma m1-lem-clock",
+          "kind": "lemma",
+          "source": "A finite tag clock",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-markers",
+          "role": "local-markers-and-episode-ends",
+          "label": "lemma m1-lem-markers",
+          "fullLabel": "lemma m1-lem-markers",
+          "kind": "lemma",
+          "source": "Local markers and episode ends",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-periodic-overlap",
+          "role": "local-markers-and-episode-ends",
+          "label": "lemma m1-lem-periodic-overlap",
+          "fullLabel": "lemma m1-lem-periodic-overlap",
+          "kind": "lemma",
+          "source": "Local markers and episode ends",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-search-crossings",
+          "role": "local-markers-and-episode-ends",
+          "label": "lemma m1-lem-search-crossings",
+          "fullLabel": "lemma m1-lem-search-crossings",
+          "kind": "lemma",
+          "source": "Local markers and episode ends",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-prefix-code",
+          "role": "local-markers-and-episode-ends",
+          "label": "lemma m1-lem-prefix-code",
+          "fullLabel": "lemma m1-lem-prefix-code",
+          "kind": "lemma",
+          "source": "Local markers and episode ends",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-shared-anchor",
+          "role": "local-markers-and-episode-ends",
+          "label": "lemma m1-lem-shared-anchor",
+          "fullLabel": "lemma m1-lem-shared-anchor",
+          "kind": "lemma",
+          "source": "Local markers and episode ends",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-decoded-end",
+          "role": "local-markers-and-episode-ends",
+          "label": "lemma m1-lem-decoded-end",
+          "fullLabel": "lemma m1-lem-decoded-end",
+          "kind": "lemma",
+          "source": "Local markers and episode ends",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-main-split",
+          "role": "two-outer-splits-and-five-residual-witnesses",
+          "label": "lemma m1-lem-main-split",
+          "fullLabel": "lemma m1-lem-main-split",
+          "kind": "lemma",
+          "source": "Two outer splits and five residual witnesses",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-periodic-split",
+          "role": "two-outer-splits-and-five-residual-witnesses",
+          "label": "lemma m1-lem-periodic-split",
+          "fullLabel": "lemma m1-lem-periodic-split",
+          "kind": "lemma",
+          "source": "Two outer splits and five residual witnesses",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-witness-coverage",
+          "role": "two-outer-splits-and-five-residual-witnesses",
+          "label": "lemma m1-lem-witness-coverage",
+          "fullLabel": "lemma m1-lem-witness-coverage",
+          "kind": "lemma",
+          "source": "Two outer splits and five residual witnesses",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-total-tables",
+          "role": "aligned-splits-for-the-residual-witnesses",
+          "label": "lemma m1-lem-total-tables",
+          "fullLabel": "lemma m1-lem-total-tables",
+          "kind": "lemma",
+          "source": "Aligned splits for the residual witnesses",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-time-decoder",
+          "role": "aligned-splits-for-the-residual-witnesses",
+          "label": "lemma m1-lem-time-decoder",
+          "fullLabel": "lemma m1-lem-time-decoder",
+          "kind": "lemma",
+          "source": "Aligned splits for the residual witnesses",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-bad-histories",
+          "role": "aligned-splits-for-the-residual-witnesses",
+          "label": "lemma m1-lem-bad-histories",
+          "fullLabel": "lemma m1-lem-bad-histories",
+          "kind": "lemma",
+          "source": "Aligned splits for the residual witnesses",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-aligned-stage",
+          "role": "aligned-splits-for-the-residual-witnesses",
+          "label": "lemma m1-lem-aligned-stage",
+          "fullLabel": "lemma m1-lem-aligned-stage",
+          "kind": "lemma",
+          "source": "Aligned splits for the residual witnesses",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-parameters",
+          "role": "choosing-the-parameters",
+          "label": "proposition m1-prop-parameters",
+          "fullLabel": "proposition m1-prop-parameters",
+          "kind": "proposition",
+          "source": "Choosing the parameters",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-template",
+          "role": "expressions-the-final-suffix-and-the-uniform-bound",
+          "label": "lemma m1-lem-template",
+          "fullLabel": "lemma m1-lem-template",
+          "kind": "lemma",
+          "source": "Expressions, the final suffix, and the uniform bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-component-cost",
+          "role": "expressions-the-final-suffix-and-the-uniform-bound",
+          "label": "proposition m1-prop-component-cost",
+          "fullLabel": "proposition m1-prop-component-cost",
+          "kind": "proposition",
+          "source": "Expressions, the final suffix, and the uniform bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-final-suffix",
+          "role": "expressions-the-final-suffix-and-the-uniform-bound",
+          "label": "lemma m1-lem-final-suffix",
+          "fullLabel": "lemma m1-lem-final-suffix",
+          "kind": "lemma",
+          "source": "Expressions, the final suffix, and the uniform bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Generalized Star Height at Most Four",
+      "title": "Generalized Star Height at Most Four",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Generalized-Star-Height-at-Most-Four-September-25-2026/Generalized-Star-Height-at-Most-Four-September-25-2026.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Generalized Star Height at Most Four.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m2-prop-components"
+          ],
+          "objectUses": [
+            "m2-lem-split"
+          ]
+        },
+        {
+          "id": "m2-lem-split",
+          "role": "algebra-and-split-computations",
+          "label": "lemma m2-lem-split",
+          "fullLabel": "lemma m2-lem-split",
+          "kind": "lemma",
+          "source": "Algebra and split computations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-affine-recovery",
+          "role": "algebra-and-split-computations",
+          "label": "lemma m2-lem-affine-recovery",
+          "fullLabel": "lemma m2-lem-affine-recovery",
+          "kind": "lemma",
+          "source": "Algebra and split computations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-affine-line",
+          "role": "algebra-and-split-computations",
+          "label": "lemma m2-lem-affine-line",
+          "fullLabel": "lemma m2-lem-affine-line",
+          "kind": "lemma",
+          "source": "Algebra and split computations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-clock",
+          "role": "a-finite-tag-clock",
+          "label": "lemma m2-lem-clock",
+          "fullLabel": "lemma m2-lem-clock",
+          "kind": "lemma",
+          "source": "A finite tag clock",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-markers",
+          "role": "markers-and-several-scales-of-cuts",
+          "label": "lemma m2-lem-markers",
+          "fullLabel": "lemma m2-lem-markers",
+          "kind": "lemma",
+          "source": "Markers and several scales of cuts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-periodic-extension",
+          "role": "markers-and-several-scales-of-cuts",
+          "label": "lemma m2-lem-periodic-extension",
+          "fullLabel": "lemma m2-lem-periodic-extension",
+          "kind": "lemma",
+          "source": "Markers and several scales of cuts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-boundary-transport",
+          "role": "markers-and-several-scales-of-cuts",
+          "label": "lemma m2-lem-boundary-transport",
+          "fullLabel": "lemma m2-lem-boundary-transport",
+          "kind": "lemma",
+          "source": "Markers and several scales of cuts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-inner-ambiguity",
+          "role": "markers-and-several-scales-of-cuts",
+          "label": "proposition m2-prop-inner-ambiguity",
+          "fullLabel": "proposition m2-prop-inner-ambiguity",
+          "kind": "proposition",
+          "source": "Markers and several scales of cuts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-end-ambiguity",
+          "role": "episodes-and-exact-end-detection",
+          "label": "lemma m2-lem-end-ambiguity",
+          "fullLabel": "lemma m2-lem-end-ambiguity",
+          "kind": "lemma",
+          "source": "Episodes and exact end detection",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-placement",
+          "role": "episodes-and-exact-end-detection",
+          "label": "lemma m2-lem-placement",
+          "fullLabel": "lemma m2-lem-placement",
+          "kind": "lemma",
+          "source": "Episodes and exact end detection",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-prefix-code",
+          "role": "episodes-and-exact-end-detection",
+          "label": "lemma m2-lem-prefix-code",
+          "fullLabel": "lemma m2-lem-prefix-code",
+          "kind": "lemma",
+          "source": "Episodes and exact end detection",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-end-guard",
+          "role": "episodes-and-exact-end-detection",
+          "label": "lemma m2-lem-end-guard",
+          "fullLabel": "lemma m2-lem-end-guard",
+          "kind": "lemma",
+          "source": "Episodes and exact end detection",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-main-split",
+          "role": "three-split-constructions",
+          "label": "proposition m2-prop-main-split",
+          "fullLabel": "proposition m2-prop-main-split",
+          "kind": "proposition",
+          "source": "Three split constructions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-table-lift",
+          "role": "three-split-constructions",
+          "label": "lemma m2-lem-table-lift",
+          "fullLabel": "lemma m2-lem-table-lift",
+          "kind": "lemma",
+          "source": "Three split constructions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-sequence-lift",
+          "role": "three-split-constructions",
+          "label": "lemma m2-lem-sequence-lift",
+          "fullLabel": "lemma m2-lem-sequence-lift",
+          "kind": "lemma",
+          "source": "Three split constructions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-aligned-splits",
+          "role": "three-split-constructions",
+          "label": "proposition m2-prop-aligned-splits",
+          "fullLabel": "proposition m2-prop-aligned-splits",
+          "kind": "proposition",
+          "source": "Three split constructions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-recursive-recovery",
+          "role": "three-split-constructions",
+          "label": "proposition m2-prop-recursive-recovery",
+          "fullLabel": "proposition m2-prop-recursive-recovery",
+          "kind": "proposition",
+          "source": "Three split constructions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-templates",
+          "role": "compilation-over-the-original-alphabet",
+          "label": "lemma m2-lem-templates",
+          "fullLabel": "lemma m2-lem-templates",
+          "kind": "lemma",
+          "source": "Compilation over the original alphabet",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-components",
+          "role": "compilation-over-the-original-alphabet",
+          "label": "proposition m2-prop-components",
+          "fullLabel": "proposition m2-prop-components",
+          "kind": "proposition",
+          "source": "Compilation over the original alphabet",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-remainder",
+          "role": "compilation-over-the-original-alphabet",
+          "label": "lemma m2-lem-remainder",
+          "fullLabel": "lemma m2-lem-remainder",
+          "kind": "lemma",
+          "source": "Compilation over the original alphabet",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m3",
+      "label": "Generalized Star Height at Most Three",
+      "title": "Generalized Star Height at Most Three",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#c98b5c",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Generalized-Star-Height-at-Most-Three-September-25-2026/article.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Generalized Star Height at Most Three.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m3-thm-main",
+          "role": "introduction",
+          "label": "theorem m3-thm-main",
+          "fullLabel": "theorem m3-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m3-compile-components"
+          ]
+        },
+        {
+          "id": "m3-alg-split",
+          "role": "finite-computations-and-split-expressions",
+          "label": "lemma m3-alg-split",
+          "fullLabel": "lemma m3-alg-split",
+          "kind": "lemma",
+          "source": "Finite computations and split expressions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-alg-affine-recovery",
+          "role": "finite-computations-and-split-expressions",
+          "label": "lemma m3-alg-affine-recovery",
+          "fullLabel": "lemma m3-alg-affine-recovery",
+          "kind": "lemma",
+          "source": "Finite computations and split expressions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-alg-homogeneous-lift",
+          "role": "finite-computations-and-split-expressions",
+          "label": "lemma m3-alg-homogeneous-lift",
+          "fullLabel": "lemma m3-alg-homogeneous-lift",
+          "kind": "lemma",
+          "source": "Finite computations and split expressions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-alg-shift-table",
+          "role": "finite-computations-and-split-expressions",
+          "label": "lemma m3-alg-shift-table",
+          "fullLabel": "lemma m3-alg-shift-table",
+          "kind": "lemma",
+          "source": "Finite computations and split expressions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-clock-robust",
+          "role": "a-robust-tag-clock",
+          "label": "lemma m3-clock-robust",
+          "fullLabel": "lemma m3-clock-robust",
+          "kind": "lemma",
+          "source": "A robust tag clock",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-marker-local",
+          "role": "local-markers-and-periodic-continuations",
+          "label": "lemma m3-marker-local",
+          "fullLabel": "lemma m3-marker-local",
+          "kind": "lemma",
+          "source": "Local markers and periodic continuations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-marker-periodic",
+          "role": "local-markers-and-periodic-continuations",
+          "label": "lemma m3-marker-periodic",
+          "fullLabel": "lemma m3-marker-periodic",
+          "kind": "lemma",
+          "source": "Local markers and periodic continuations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-schedule-inner-cuts",
+          "role": "finite-schedules-for-the-two-splits",
+          "label": "lemma m3-schedule-inner-cuts",
+          "fullLabel": "lemma m3-schedule-inner-cuts",
+          "kind": "lemma",
+          "source": "Finite schedules for the two splits",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-schedule-periodic-cuts",
+          "role": "finite-schedules-for-the-two-splits",
+          "label": "lemma m3-schedule-periodic-cuts",
+          "fullLabel": "lemma m3-schedule-periodic-cuts",
+          "kind": "lemma",
+          "source": "Finite schedules for the two splits",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-schedule-margins",
+          "role": "episodes-and-a-common-end-for-independent-guesses",
+          "label": "lemma m3-schedule-margins",
+          "fullLabel": "lemma m3-schedule-margins",
+          "kind": "lemma",
+          "source": "Episodes and a common end for independent guesses",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-episode-prefix-code",
+          "role": "episodes-and-a-common-end-for-independent-guesses",
+          "label": "lemma m3-episode-prefix-code",
+          "fullLabel": "lemma m3-episode-prefix-code",
+          "kind": "lemma",
+          "source": "Episodes and a common end for independent guesses",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-episode-shared-end",
+          "role": "episodes-and-a-common-end-for-independent-guesses",
+          "label": "lemma m3-episode-shared-end",
+          "fullLabel": "lemma m3-episode-shared-end",
+          "kind": "lemma",
+          "source": "Episodes and a common end for independent guesses",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-outer-split",
+          "role": "the-first-split-transmitting-a-state-with-a-clock",
+          "label": "proposition m3-outer-split",
+          "fullLabel": "proposition m3-outer-split",
+          "kind": "proposition",
+          "source": "The first split: transmitting a state with a clock",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-decode-anchor-list",
+          "role": "recovering-the-cut-on-exceptional-episodes",
+          "label": "lemma m3-decode-anchor-list",
+          "fullLabel": "lemma m3-decode-anchor-list",
+          "kind": "lemma",
+          "source": "Recovering the cut on exceptional episodes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-decode-sparsity",
+          "role": "recovering-the-cut-on-exceptional-episodes",
+          "label": "proposition m3-decode-sparsity",
+          "fullLabel": "proposition m3-decode-sparsity",
+          "kind": "proposition",
+          "source": "Recovering the cut on exceptional episodes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-decode-decoder",
+          "role": "recovering-the-cut-on-exceptional-episodes",
+          "label": "lemma m3-decode-decoder",
+          "fullLabel": "lemma m3-decode-decoder",
+          "kind": "lemma",
+          "source": "Recovering the cut on exceptional episodes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-inner-split",
+          "role": "the-second-split-transmitting-a-table-through-the-stencil",
+          "label": "proposition m3-inner-split",
+          "fullLabel": "proposition m3-inner-split",
+          "kind": "proposition",
+          "source": "The second split: transmitting a table through the stencil",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-compile-templates",
+          "role": "expressions-over-the-original-alphabet",
+          "label": "lemma m3-compile-templates",
+          "fullLabel": "lemma m3-compile-templates",
+          "kind": "lemma",
+          "source": "Expressions over the original alphabet",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-compile-components",
+          "role": "expressions-over-the-original-alphabet",
+          "label": "proposition m3-compile-components",
+          "fullLabel": "proposition m3-compile-components",
+          "kind": "proposition",
+          "source": "Expressions over the original alphabet",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-compile-remainder",
+          "role": "expressions-over-the-original-alphabet",
+          "label": "lemma m3-compile-remainder",
+          "fullLabel": "lemma m3-compile-remainder",
+          "kind": "lemma",
+          "source": "Expressions over the original alphabet",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Finite Monoid Computations and a Uniform Generalized Star-Height Bound",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Finite-Monoid-Computations-and-a-Uniform-Generalized-Star-Height-Bound-September-25-2026/Finite-Monoid-Computations-and-a-Uniform-Generalized-Star-Height-Bound-September-25-2026.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Generalized Star Height at Most Four",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Generalized-Star-Height-at-Most-Four-September-25-2026/Generalized-Star-Height-at-Most-Four-September-25-2026.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Generalized Star Height at Most Three",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Generalized-Star-Height-at-Most-Three-September-25-2026/article.pdf",
+      "kind": "paper"
+    }
+  ]
+}

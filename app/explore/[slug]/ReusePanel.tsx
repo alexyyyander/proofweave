@@ -11,6 +11,8 @@ import {
   SectionTitle,
   Surface,
 } from "@/app/components/ui";
+import { getI18n } from "@/app/i18n/server";
+import type { Translator } from "@/app/i18n/translate";
 
 import styles from "./ReusePanel.module.css";
 
@@ -53,13 +55,14 @@ export type ReuseIndexView = Readonly<{
   unavailableReason?: string;
 }>;
 
-export function ReusePanel({
+export async function ReusePanel({
   index,
   problemSlug,
 }: {
   index: ReuseIndexView;
   problemSlug: string;
 }) {
+  const { t } = await getI18n();
   const { relatedTargets, priorWork, reusableLeanPaths, boundary, unavailableReason } = index;
   const relatedUnavailable = unavailableReason === "catalog_unavailable"
     || unavailableReason === "missing_current_target"
@@ -72,36 +75,36 @@ export function ReusePanel({
     <section className={styles.section} id="reuse-index" aria-labelledby="reuse-index-title">
       <SectionHeading as="div" className={styles.heading}>
         <div className={styles.headingCopy}>
-          <p className="eyebrow">Reuse index · read-only</p>
-          <SectionTitle id="reuse-index-title">Check for existing work before starting.</SectionTitle>
-          <p>Possible duplicate, related, and prior-work signals are computed from public catalog metadata. They point at material worth reusing; they are not findings about novelty or correctness.</p>
+          <p className="eyebrow">{t("explore.reuse.eyebrow")}</p>
+          <SectionTitle id="reuse-index-title">{t("explore.reuse.title")}</SectionTitle>
+          <p>{t("explore.reuse.body")}</p>
         </div>
         <FieldList layout="stacked" className={styles.stats}>
-          <Field label="Prior work">{priorWork.count}</Field>
-          <Field label="Related targets">{relatedTargets.length}</Field>
-          <Field label="Lean paths">{reusableLeanPaths.length}</Field>
+          <Field label={t("explore.reuse.priorWork")}>{priorWork.count}</Field>
+          <Field label={t("explore.reuse.relatedTargets")}>{relatedTargets.length}</Field>
+          <Field label={t("explore.reuse.leanPaths")}>{reusableLeanPaths.length}</Field>
         </FieldList>
       </SectionHeading>
 
       <div className={styles.boundary}>
-        <span>Possible duplicate ≠ decision</span>
-        <span>Related ≠ equivalence</span>
-        <span>Prior work ≠ endorsement</span>
+        <span>{t("explore.reuse.boundary.duplicate")}</span>
+        <span>{t("explore.reuse.boundary.related")}</span>
+        <span>{t("explore.reuse.boundary.prior")}</span>
         <strong>{boundary.statement}</strong>
       </div>
 
       {unavailableReason && (
         <div className={styles.notice} role="status">
-          <strong>Reuse index is incomplete.</strong>
-          <p>{unavailableReasonText(unavailableReason)}</p>
+          <strong>{t("explore.reuse.notice.title")}</strong>
+          <p>{unavailableReasonText(unavailableReason, t)}</p>
         </div>
       )}
 
       <div className={styles.grid}>
         <Surface as="article" className={styles.panel}>
           <div className={styles.panelHeading}>
-            <span>Related targets</span>
-            <span className="mono-label">max 5</span>
+            <span>{t("explore.reuse.related.title")}</span>
+            <span className="mono-label">{t("explore.reuse.related.max")}</span>
           </div>
           {relatedTargets.length > 0 ? (
             <ul className={styles.relatedList}>
@@ -112,9 +115,9 @@ export function ReusePanel({
                   </CardTitle>
                   <div className={styles.relatedMeta}>
                     <Badge tone={target.label === "possible_duplicate" ? "warning" : "neutral"}>
-                      {target.label === "possible_duplicate" ? "Possible duplicate" : "Related"}
+                      {target.label === "possible_duplicate" ? t("explore.reuse.badge.duplicate") : t("explore.reuse.badge.related")}
                     </Badge>
-                    <span className={styles.score}>score {target.score.toFixed(3)}</span>
+                    <span className={styles.score}>{t("explore.reuse.score", { score: target.score.toFixed(3) })}</span>
                   </div>
                 </li>
               ))}
@@ -123,13 +126,13 @@ export function ReusePanel({
             <EmptyState as="div" className={styles.empty}>
               <strong>
                 {relatedUnavailable
-                  ? "Related targets are unavailable."
-                  : "No related targets cleared the similarity threshold."}
+                  ? t("explore.reuse.related.unavailable")
+                  : t("explore.reuse.related.none")}
               </strong>
               <p>
                 {relatedUnavailable
-                  ? unavailableReasonText(unavailableReason ?? "internal_error")
-                  : "Scores compare normalized public titles and statements. No match is not evidence that this target is new; search the catalog before assuming the work has not been done."}
+                  ? unavailableReasonText(unavailableReason ?? "internal_error", t)
+                  : t("explore.reuse.related.noneBody")}
               </p>
             </EmptyState>
           )}
@@ -137,8 +140,8 @@ export function ReusePanel({
 
         <Surface as="article" className={styles.panel}>
           <div className={styles.panelHeading}>
-            <span>Reusable Lean paths</span>
-            <span className="mono-label">{reusableLeanPaths.length} recorded</span>
+            <span>{t("explore.reuse.lean.title")}</span>
+            <span className="mono-label">{t("explore.reuse.lean.recorded", { count: reusableLeanPaths.length })}</span>
           </div>
           {reusableLeanPaths.length > 0 ? (
             <ul className={styles.leanList}>
@@ -151,7 +154,7 @@ export function ReusePanel({
                     {path.sourceSystem && <span>{path.sourceSystem}</span>}
                     {path.declaration && <code>{path.declaration}</code>}
                     {path.commit && <code>@{path.commit.slice(0, 12)}</code>}
-                    {path.status && <span className={styles.leanStatus}>{statusLabel(path.status)}</span>}
+                    {path.status && <span className={styles.leanStatus}>{statusLabel(path.status, t)}</span>}
                   </div>
                 </li>
               ))}
@@ -160,13 +163,13 @@ export function ReusePanel({
             <EmptyState as="div" className={styles.empty}>
               <strong>
                 {leanUnavailable
-                  ? "Reusable Lean paths are unavailable."
-                  : "No reusable Lean path is recorded yet."}
+                  ? t("explore.reuse.lean.unavailable")
+                  : t("explore.reuse.lean.none")}
               </strong>
               <p>
                 {leanUnavailable
-                  ? unavailableReasonText(unavailableReason ?? "internal_error")
-                  : "Curated prior-work records can carry a Lean repository, commit, and declaration. None is attached to this target's public record yet."}
+                  ? unavailableReasonText(unavailableReason ?? "internal_error", t)
+                  : t("explore.reuse.lean.noneBody")}
               </p>
             </EmptyState>
           )}
@@ -183,11 +186,11 @@ export function ReusePanel({
         <div className={styles.footerMeta}>
           <p>
             {priorWork.count === 0
-              ? "No prior-work entries are recorded yet."
-              : `${priorWork.curatedRecords} curated records · ${priorWork.sharedCheckpoints} shared checkpoints · ${priorWork.externalWorks} external works`}
+              ? t("explore.reuse.footer.noPrior")
+              : t("explore.reuse.footer.counts", { curated: priorWork.curatedRecords, shared: priorWork.sharedCheckpoints, external: priorWork.externalWorks })}
           </p>
           <ActionLink className="text-link" href={`/api/catalog/${encodeURIComponent(problemSlug)}/reuse`}>
-            Read-only JSON for Agents <span aria-hidden="true">→</span>
+            {t("explore.reuse.footer.json")} <span aria-hidden="true">→</span>
           </ActionLink>
         </div>
       </div>
@@ -195,35 +198,35 @@ export function ReusePanel({
   );
 }
 
-function unavailableReasonText(reason: string): string {
+function unavailableReasonText(reason: string, t: Translator): string {
   switch (reason) {
     case "catalog_unavailable":
-      return "The public catalog list could not be read, so related targets are not shown right now.";
+      return t("explore.reuse.reason.catalog");
     case "curated_research_unavailable":
-      return "The curated prior-work registry is not active in this control plane, so recorded Lean paths and curated counts are not shown.";
+      return t("explore.reuse.reason.curated");
     case "research_graph_unavailable":
-      return "The shared research graph is not active in this control plane, so shared checkpoints and external works are excluded from the prior-work count.";
+      return t("explore.reuse.reason.graph");
     case "missing_current_target":
-      return "The current target could not be resolved, so no reuse hints were computed.";
+      return t("explore.reuse.reason.missing");
     case "internal_error":
-      return "The reuse index could not be built from the available public data.";
+      return t("explore.reuse.reason.internal");
     default:
-      return "Part of the reuse index is unavailable.";
+      return t("explore.reuse.reason.default");
   }
 }
 
-function statusLabel(status: string): string {
+function statusLabel(status: string, t: Translator): string {
   switch (status) {
     case "lean_reproduced":
-      return "Lean reproduced · record state";
+      return t("explore.reuse.status.lean_reproduced");
     case "curator_reviewed":
-      return "Curator reviewed";
+      return t("explore.reuse.status.curator_reviewed");
     case "source_asserted":
-      return "Source asserted";
+      return t("explore.reuse.status.source_asserted");
     case "disputed":
-      return "Disputed";
+      return t("explore.reuse.status.disputed");
     case "superseded":
-      return "Superseded";
+      return t("explore.reuse.status.superseded");
     default:
       return status.replaceAll("_", " ");
   }

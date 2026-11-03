@@ -1,0 +1,619 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "133",
+  "title": "The computational complexity of Weisfeiler–Leman refinement",
+  "result": {
+    "id": "paper-result",
+    "label": "The computational complexity of Weisfeiler–Leman refinement",
+    "statement": "Proves unconditional n^ (k) deterministic time lower bounds for joint and separate k -dimensional Weisfeiler–Leman equivalence, for sufficiently large fixed k in the specified sequential adjacency-matrix models. With dimension as input, joint equivalence is EXPTIME-complete even on subcubic graphs; deciding whether refinement identifies a graph is also EXPTIME-complete.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "wl-refinement-and-homomorphism-tests",
+      "label": "WL refinement and homomorphism tests",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "choices-and-parity-lifts",
+      "label": "Choices and parity lifts",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "extracting-a-choice-from-a-bounded-bag-witness",
+      "label": "Extracting a choice from a bounded-bag witness",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-eth-lower-bound",
+      "label": "The ETH lower bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "weisfeiler-leman-refinement-and-the-bijective-game",
+      "label": "Weisfeiler--Leman refinement and the bijective game",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "encoding-comparisons-by-locally-reconstructible-graphs",
+      "label": "Encoding comparisons by locally reconstructible graphs",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "wire-comparisons-and-global-offsets",
+      "label": "Wire comparisons and global offsets",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "exact-projection-and-a-local-game-strategy",
+      "label": "Exact projection and a local game strategy",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-computation-described-by-product-schemas",
+      "label": "A computation described by product schemas",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-acceptance-to-identification",
+      "label": "From acceptance to identification",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "weisfeiler-leman-conventions-and-the-bijective-game",
+      "label": "Weisfeiler--Leman conventions and the bijective game",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-compressed-graph-representation-of-arc-consistency",
+      "label": "A compressed graph representation of arc consistency",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "encoding-computations-by-short-consistency-instances",
+      "label": "Encoding computations by short consistency instances",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-language-hard-at-every-sufficiently-large-length",
+      "label": "A language hard at every sufficiently large length",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "quantitative-transfer-and-the-time-lower-bound",
+      "label": "Quantitative transfer and the time lower bound",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Parity lifts and bounded-treewidth witnesses for Weisfeiler–Leman equivalence",
+      "title": "Parity lifts and bounded-treewidth witnesses for Weisfeiler–Leman equivalence",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Parity-lifts-and-bounded-treewidth-witnesses-for-Weisfeiler-Leman-equivalence-September-25-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Parity lifts and bounded-treewidth witnesses for Weisfeiler–Leman equivalence.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-choice-reduction",
+          "role": "introduction",
+          "label": "theorem m1-thm-choice-reduction",
+          "fullLabel": "theorem m1-thm-choice-reduction",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-eth",
+          "role": "introduction",
+          "label": "theorem m1-thm-eth",
+          "fullLabel": "theorem m1-thm-eth",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-hom-implies-wl",
+          "role": "wl-refinement-and-homomorphism-tests",
+          "label": "lemma m1-lem-hom-implies-wl",
+          "fullLabel": "lemma m1-lem-hom-implies-wl",
+          "kind": "lemma",
+          "source": "WL refinement and homomorphism tests",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-test-detected",
+          "role": "wl-refinement-and-homomorphism-tests",
+          "label": "lemma m1-lem-test-detected",
+          "fullLabel": "lemma m1-lem-test-detected",
+          "kind": "lemma",
+          "source": "WL refinement and homomorphism tests",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-lift-duality",
+          "role": "choices-and-parity-lifts",
+          "label": "lemma m1-lem-lift-duality",
+          "fullLabel": "lemma m1-lem-lift-duality",
+          "kind": "lemma",
+          "source": "Choices and parity lifts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-choice-witness",
+          "role": "choices-and-parity-lifts",
+          "label": "lemma m1-lem-choice-witness",
+          "fullLabel": "lemma m1-lem-choice-witness",
+          "kind": "lemma",
+          "source": "Choices and parity lifts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-extract-choice",
+          "role": "extracting-a-choice-from-a-bounded-bag-witness",
+          "label": "lemma m1-lem-extract-choice",
+          "fullLabel": "lemma m1-lem-extract-choice",
+          "kind": "lemma",
+          "source": "Extracting a choice from a bounded-bag witness",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sparsification",
+          "role": "the-eth-lower-bound",
+          "label": "lemma m1-lem-sparsification",
+          "fullLabel": "lemma m1-lem-sparsification",
+          "kind": "lemma",
+          "source": "The ETH lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sat-choice",
+          "role": "the-eth-lower-bound",
+          "label": "lemma m1-lem-sat-choice",
+          "fullLabel": "lemma m1-lem-sat-choice",
+          "kind": "lemma",
+          "source": "The ETH lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-uniform",
+          "role": "the-eth-lower-bound",
+          "label": "proposition m1-prop-uniform",
+          "fullLabel": "proposition m1-prop-uniform",
+          "kind": "proposition",
+          "source": "The ETH lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "The complexity of identifying a graph by Weisfeiler–Leman refinement",
+      "title": "The complexity of identifying a graph by Weisfeiler–Leman refinement",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-complexity-of-identifying-a-graph-by-Weisfeiler-Leman-refinement-September-25-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from The complexity of identifying a graph by Weisfeiler–Leman refinement.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-wl-game",
+          "role": "weisfeiler-leman-refinement-and-the-bijective-game",
+          "label": "lemma m2-lem-wl-game",
+          "fullLabel": "lemma m2-lem-wl-game",
+          "kind": "lemma",
+          "source": "Weisfeiler--Leman refinement and the bijective game",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-monotonicity",
+          "role": "weisfeiler-leman-refinement-and-the-bijective-game",
+          "label": "lemma m2-lem-monotonicity",
+          "fullLabel": "lemma m2-lem-monotonicity",
+          "kind": "lemma",
+          "source": "Weisfeiler--Leman refinement and the bijective game",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-degree",
+          "role": "weisfeiler-leman-refinement-and-the-bijective-game",
+          "label": "lemma m2-lem-degree",
+          "fullLabel": "lemma m2-lem-degree",
+          "kind": "lemma",
+          "source": "Weisfeiler--Leman refinement and the bijective game",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-upper",
+          "role": "weisfeiler-leman-refinement-and-the-bijective-game",
+          "label": "proposition m2-prop-upper",
+          "fullLabel": "proposition m2-prop-upper",
+          "kind": "proposition",
+          "source": "Weisfeiler--Leman refinement and the bijective game",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-mate",
+          "role": "encoding-comparisons-by-locally-reconstructible-graphs",
+          "label": "proposition m2-prop-mate",
+          "fullLabel": "proposition m2-prop-mate",
+          "kind": "proposition",
+          "source": "Encoding comparisons by locally reconstructible graphs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-isomorphism",
+          "role": "encoding-comparisons-by-locally-reconstructible-graphs",
+          "label": "proposition m2-prop-isomorphism",
+          "fullLabel": "proposition m2-prop-isomorphism",
+          "kind": "proposition",
+          "source": "Encoding comparisons by locally reconstructible graphs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-image-consistency",
+          "role": "wire-comparisons-and-global-offsets",
+          "label": "proposition m2-prop-image-consistency",
+          "fullLabel": "proposition m2-prop-image-consistency",
+          "kind": "proposition",
+          "source": "Wire comparisons and global offsets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-cycle-lifting",
+          "role": "wire-comparisons-and-global-offsets",
+          "label": "lemma m2-lem-cycle-lifting",
+          "fullLabel": "lemma m2-lem-cycle-lifting",
+          "kind": "lemma",
+          "source": "Wire comparisons and global offsets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-global-offsets",
+          "role": "wire-comparisons-and-global-offsets",
+          "label": "proposition m2-prop-global-offsets",
+          "fullLabel": "proposition m2-prop-global-offsets",
+          "kind": "proposition",
+          "source": "Wire comparisons and global offsets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-special-twist",
+          "role": "exact-projection-and-a-local-game-strategy",
+          "label": "theorem m2-thm-special-twist",
+          "fullLabel": "theorem m2-thm-special-twist",
+          "kind": "theorem",
+          "source": "Exact projection and a local game strategy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-small-type-support",
+          "role": "exact-projection-and-a-local-game-strategy",
+          "label": "lemma m2-lem-small-type-support",
+          "fullLabel": "lemma m2-lem-small-type-support",
+          "kind": "lemma",
+          "source": "Exact projection and a local game strategy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-wrapping-address",
+          "role": "exact-projection-and-a-local-game-strategy",
+          "label": "lemma m2-lem-wrapping-address",
+          "fullLabel": "lemma m2-lem-wrapping-address",
+          "kind": "lemma",
+          "source": "Exact projection and a local game strategy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-exact-projection",
+          "role": "exact-projection-and-a-local-game-strategy",
+          "label": "proposition m2-prop-exact-projection",
+          "fullLabel": "proposition m2-prop-exact-projection",
+          "kind": "proposition",
+          "source": "Exact projection and a local game strategy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-computation",
+          "role": "a-computation-described-by-product-schemas",
+          "label": "proposition m2-prop-computation",
+          "fullLabel": "proposition m2-prop-computation",
+          "kind": "proposition",
+          "source": "A computation described by product schemas",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-acceptance",
+          "role": "from-acceptance-to-identification",
+          "label": "proposition m2-prop-acceptance",
+          "fullLabel": "proposition m2-prop-acceptance",
+          "kind": "proposition",
+          "source": "From acceptance to identification",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-rejection",
+          "role": "from-acceptance-to-identification",
+          "label": "proposition m2-prop-rejection",
+          "fullLabel": "proposition m2-prop-rejection",
+          "kind": "proposition",
+          "source": "From acceptance to identification",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-unary",
+          "role": "from-acceptance-to-identification",
+          "label": "corollary m2-cor-unary",
+          "fullLabel": "corollary m2-cor-unary",
+          "kind": "corollary",
+          "source": "From acceptance to identification",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m3",
+      "label": "Unconditional time lower bounds for Weisfeiler–Leman equivalence",
+      "title": "Unconditional time lower bounds for Weisfeiler–Leman equivalence",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#c98b5c",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Unconditional-time-lower-bounds-for-Weisfeiler-Leman-equivalence-September-25-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Unconditional time lower bounds for Weisfeiler–Leman equivalence.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m3-thm-main",
+          "role": "introduction",
+          "label": "theorem m3-thm-main",
+          "fullLabel": "theorem m3-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-game-wl",
+          "role": "weisfeiler-leman-conventions-and-the-bijective-game",
+          "label": "lemma m3-game-wl",
+          "fullLabel": "lemma m3-game-wl",
+          "kind": "lemma",
+          "source": "Weisfeiler--Leman conventions and the bijective game",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-game-union",
+          "role": "weisfeiler-leman-conventions-and-the-bijective-game",
+          "label": "lemma m3-game-union",
+          "fullLabel": "lemma m3-game-union",
+          "kind": "lemma",
+          "source": "Weisfeiler--Leman conventions and the bijective game",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-comp-reduction",
+          "role": "a-compressed-graph-representation-of-arc-consistency",
+          "label": "theorem m3-comp-reduction",
+          "fullLabel": "theorem m3-comp-reduction",
+          "kind": "theorem",
+          "source": "A compressed graph representation of arc consistency",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-comp-necessity",
+          "role": "a-compressed-graph-representation-of-arc-consistency",
+          "label": "lemma m3-comp-necessity",
+          "fullLabel": "lemma m3-comp-necessity",
+          "kind": "lemma",
+          "source": "A compressed graph representation of arc consistency",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-comp-support",
+          "role": "a-compressed-graph-representation-of-arc-consistency",
+          "label": "lemma m3-comp-support",
+          "fullLabel": "lemma m3-comp-support",
+          "kind": "lemma",
+          "source": "A compressed graph representation of arc consistency",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-comp-wrapping",
+          "role": "a-compressed-graph-representation-of-arc-consistency",
+          "label": "lemma m3-comp-wrapping",
+          "fullLabel": "lemma m3-comp-wrapping",
+          "kind": "lemma",
+          "source": "A compressed graph representation of arc consistency",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-comp-projection",
+          "role": "a-compressed-graph-representation-of-arc-consistency",
+          "label": "lemma m3-comp-projection",
+          "fullLabel": "lemma m3-comp-projection",
+          "kind": "lemma",
+          "source": "A compressed graph representation of arc consistency",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-comp-sufficiency",
+          "role": "a-compressed-graph-representation-of-arc-consistency",
+          "label": "lemma m3-comp-sufficiency",
+          "fullLabel": "lemma m3-comp-sufficiency",
+          "kind": "lemma",
+          "source": "A compressed graph representation of arc consistency",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-circ-simulation",
+          "role": "encoding-computations-by-short-consistency-instances",
+          "label": "proposition m3-circ-simulation",
+          "fullLabel": "proposition m3-circ-simulation",
+          "kind": "proposition",
+          "source": "Encoding computations by short consistency instances",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-circ-construction",
+          "role": "encoding-computations-by-short-consistency-instances",
+          "label": "lemma m3-circ-construction",
+          "fullLabel": "lemma m3-circ-construction",
+          "kind": "lemma",
+          "source": "Encoding computations by short consistency instances",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-circ-computation",
+          "role": "encoding-computations-by-short-consistency-instances",
+          "label": "theorem m3-circ-computation",
+          "fullLabel": "theorem m3-circ-computation",
+          "kind": "theorem",
+          "source": "Encoding computations by short consistency instances",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-diag-simulation",
+          "role": "a-language-hard-at-every-sufficiently-large-length",
+          "label": "lemma m3-diag-simulation",
+          "fullLabel": "lemma m3-diag-simulation",
+          "kind": "lemma",
+          "source": "A language hard at every sufficiently large length",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-diag-language",
+          "role": "a-language-hard-at-every-sufficiently-large-length",
+          "label": "theorem m3-diag-language",
+          "fullLabel": "theorem m3-diag-language",
+          "kind": "theorem",
+          "source": "A language hard at every sufficiently large length",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-trans-instances",
+          "role": "quantitative-transfer-and-the-time-lower-bound",
+          "label": "lemma m3-trans-instances",
+          "fullLabel": "lemma m3-trans-instances",
+          "kind": "lemma",
+          "source": "Quantitative transfer and the time lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-trans-cutoff",
+          "role": "quantitative-transfer-and-the-time-lower-bound",
+          "label": "lemma m3-trans-cutoff",
+          "fullLabel": "lemma m3-trans-cutoff",
+          "kind": "lemma",
+          "source": "Quantitative transfer and the time lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Parity lifts and bounded-treewidth witnesses for Weisfeiler–Leman equivalence",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Parity-lifts-and-bounded-treewidth-witnesses-for-Weisfeiler-Leman-equivalence-September-25-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "The complexity of identifying a graph by Weisfeiler–Leman refinement",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-complexity-of-identifying-a-graph-by-Weisfeiler-Leman-refinement-September-25-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Unconditional time lower bounds for Weisfeiler–Leman equivalence",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Unconditional-time-lower-bounds-for-Weisfeiler-Leman-equivalence-September-25-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

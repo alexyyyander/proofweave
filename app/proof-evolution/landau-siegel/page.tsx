@@ -5,15 +5,20 @@ import type { ArgumentMapData, LeanStructureData, ProofEvolutionData } from "@/a
 import proofEvolution from "@/data/proof-evolution/landau-siegel.json";
 import leanStructure from "@/data/proof-evolution/lean-structure.json";
 import argumentMap from "@/data/proof-evolution/argument-map.json";
+import { getI18n } from "@/app/i18n/server";
 import { ProofEvolutionClient } from "./ProofEvolutionClient";
 import "./proof-evolution.css";
 
-export const metadata: Metadata = {
-  title: "Landau–Siegel proof evolution",
-  description: "A versioned map of the Landau–Siegel real-zero proof, from OpenAI's 9-page argument to Barreto's 3-page Wronskian proof, with Lean coverage.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getI18n();
+  return {
+    title: t("proofMaps.landau.metaTitle"),
+    description: t("proofMaps.landau.metaDescription"),
+  };
+}
 
-export default function LandauSiegelProofEvolutionPage() {
+export default async function LandauSiegelProofEvolutionPage() {
+  const { t } = await getI18n();
   const data = proofEvolution as ProofEvolutionData;
   return (
     <SiteFrame
@@ -22,29 +27,29 @@ export default function LandauSiegelProofEvolutionPage() {
       mainClassName="page-main proof-evolution-main"
     >
       <PageIntro
-        label="Proof evolution · Prototype"
-        title="How a nine-page proof became a three-page proof"
-        description="A versioned map of the Landau–Siegel real-zero proof: OpenAI's interpolation determinant, Banks's explicit-constant exposition, Kerr's and Green's simplifications, Barreto's Wronskian proof, and the Lean formalization that currently follows the longer route."
+        label={t("proofMaps.landau.label")}
+        title={t("proofMaps.landau.title")}
+        description={t("proofMaps.landau.description")}
         meta={<>
-          <span>Curated 2026-10-30</span>
-          <span>Draft · not a Proofweave verification</span>
-          <span>{data.versions.length} versions · {data.tracks.length} theorem tracks</span>
+          <span>{t("proofMaps.landau.metaCurated")}</span>
+          <span>{t("proofMaps.landau.metaDraft")}</span>
+          <span>{t("proofMaps.landau.metaVersions", { versions: data.versions.length, tracks: data.tracks.length })}</span>
         </>}
         actions={<>
-          <ActionLink variant="primary" href="#argument-map">Open the argument map</ActionLink>
-          <ActionLink variant="secondary" href="#lean-structure">Lean structure</ActionLink>
-          <ActionLink variant="secondary" href="#lean">Lean coverage</ActionLink>
-          <ActionLink variant="secondary" href="/publications">Back to publications</ActionLink>
+          <ActionLink variant="primary" href="#argument-map">{t("proofMaps.landau.actionArgumentMap")}</ActionLink>
+          <ActionLink variant="secondary" href="#lean-structure">{t("proofMaps.landau.actionLeanStructure")}</ActionLink>
+          <ActionLink variant="secondary" href="#lean">{t("proofMaps.landau.actionLeanCoverage")}</ActionLink>
+          <ActionLink variant="secondary" href="/publications">{t("proofMaps.landau.actionPublications")}</ActionLink>
         </>}
         aside={<>
-          <strong>At a glance</strong>
+          <strong>{t("proofMaps.landau.asideTitle")}</strong>
           <FieldList layout="stacked">
-            <Field label="Shortest human proof">3 pages · Barreto</Field>
-            <Field label="Formalized upstream">9-page OpenAI route</Field>
-            <Field label="Same-theorem lineage">OpenAI → Kerr / Green → Barreto</Field>
-            <Field label="Status">Curated, unreviewed, no kernel replay</Field>
+            <Field label={t("proofMaps.landau.fieldShortest")}>{t("proofMaps.landau.fieldShortestValue")}</Field>
+            <Field label={t("proofMaps.landau.fieldFormalized")}>{t("proofMaps.landau.fieldFormalizedValue")}</Field>
+            <Field label={t("proofMaps.landau.fieldLineage")}>{t("proofMaps.landau.fieldLineageValue")}</Field>
+            <Field label={t("proofMaps.landau.fieldStatus")}>{t("proofMaps.landau.fieldStatusValue")}</Field>
           </FieldList>
-          <Badge tone="warning">Draft · unreviewed</Badge>
+          <Badge tone="warning">{t("proofMaps.landau.badgeDraft")}</Badge>
         </>}
       />
       <ProofEvolutionClient data={data} leanStructure={leanStructure as LeanStructureData} argumentMap={argumentMap as ArgumentMapData} />

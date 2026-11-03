@@ -1,0 +1,497 @@
+{
+  "familyNumber": "037",
+  "familyTitle": "The ordinary-double-point volume gap",
+  "manuscripts": [
+    {
+      "id": "The-ordinary-double-point-gap-in-every-dimension-September-24-2026",
+      "title": "The ordinary-double-point gap in every dimension",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-ordinary-double-point-gap-in-every-dimension-September-24-2026/paper.pdf"
+    },
+    {
+      "id": "The-normalized-volume-gap-in-dimension-four-September-24-2026",
+      "title": "The normalized-volume gap in dimension four",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-normalized-volume-gap-in-dimension-four-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Normalized volume and the cone reduction",
+    "Small stabilizers",
+    "Jet cones and the canonical interior point",
+    "Adjoint jets and the saturated semigroup",
+    "Two filtrations and a second stabilizer",
+    "The slice estimate and the supremum bootstrap",
+    "Equality at the original germ and global consequences",
+    "Volume conventions and the cone reduction",
+    "Stabilizers and discrepancies",
+    "Hilbert series and short weights",
+    "The log canonical threshold",
+    "A terminal threefold section and the main theorem"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "The ordinary double point gap",
+      "statement": "[The ordinary double point gap] Let \\(n2\\), and let \\(x\\) be a singular closed point of a normal complex algebraic \\(n\\)-fold \\(X\\). Suppose that \\(K_X\\) is \\(\\)-Cartier and that \\(X\\) is klt near…",
+      "section": "Introduction",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-cor-global",
+      "kind": "corollary",
+      "label": "Global volume bounds",
+      "statement": "[Global volume bounds] Let \\(V\\) be an \\(n\\)-dimensional K-semistable \\(\\)-Fano variety, where \\(n2\\). If \\(V\\) is singular, then \\[ (-K_V)^n 2(n^2-1 n )^n<2n^n. \\] If \\(V^n\\), then \\((-K_V)^n2n^n\\),…",
+      "section": "Introduction",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-cone-product",
+      "kind": "lemma",
+      "label": "A smooth factor",
+      "statement": "[A smooth factor] Let \\(y Y\\) be an \\(N\\)-dimensional klt germ, where \\(N1\\). Then \\[ d((y,0),Y^1) d(y,Y). \\]",
+      "section": "Normalized volume and the cone reduction",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-cone-edim",
+      "kind": "lemma",
+      "label": "Lifting generators",
+      "statement": "[Lifting generators] Let \\(v\\) be a finite-discrepancy valuation of a klt germ, with finitely generated positively graded associated graded ring \\(_v R\\). Then \\[ (R)(_v R). \\]",
+      "section": "Normalized volume and the cone reduction",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-end-odp-value",
+      "kind": "lemma",
+      "label": "The ODP minimum",
+      "statement": "[The ODP minimum] For \\(n2\\), the ordinary double point \\(Q_n\\) has \\[ (0,Q_n)=2(n-1)^n. \\]",
+      "section": "Normalized volume and the cone reduction",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-inp-fourfold",
+      "kind": "theorem",
+      "label": "The fourfold gap",
+      "statement": "[The fourfold gap] Let \\(x\\) be a singular closed point of a normal complex algebraic fourfold \\(X\\). Suppose that \\(K_X\\) is \\(\\)-Cartier and \\(X\\) is klt near \\(x\\), with zero boundary. Then \\[…",
+      "section": "Normalized volume and the cone reduction",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-cone-reduction",
+      "kind": "proposition",
+      "label": "Cone reduction",
+      "statement": "[Cone reduction] Under , there is a singular K-polystable Fano cone \\(C= S\\), with vertex \\(o\\), such that \\[ d(o,C)=d(x,X), (X,x)(C,o). \\] The puncture \\(C\\ o\\ \\) is smooth, \\(S\\) is a normal…",
+      "section": "Normalized volume and the cone reduction",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-cone-approximation",
+      "kind": "lemma",
+      "label": "Fast primitive approximations",
+      "statement": "[Fast primitive approximations] There are primitive positive integral cocharacters \\(_i\\), of canonical weights \\(r_i=A(_i)_ >0 \\), such that _i=r_i n +_i, _i0 in the real cocharacter space. If the…",
+      "section": "Normalized volume and the cone reduction",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-cone-orbifold",
+      "kind": "lemma",
+      "label": "The quotient orbifold",
+      "statement": "[The quotient orbifold] For a primitive positive integral grading \\(\\), of canonical weight \\(r\\), let \\[ B=[(C\\ o\\ )/]. \\] Then \\(B\\) is a smooth effective proper orbifold of dimension \\(N\\), with…",
+      "section": "Normalized volume and the cone reduction",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-small-classification",
+      "kind": "theorem",
+      "label": "Small-stabilizer classification",
+      "statement": "[Small-stabilizer classification] Let \\(_i\\) be primitive positive integral gradings satisfying _i=r_i n +_i, r_i=A(_i), \\|_i\\|0, m_ (_i)r_i N . For all sufficiently large \\(i\\), every stabilizer is…",
+      "section": "Small stabilizers",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-small-deformation",
+      "kind": "lemma",
+      "label": "Deformations with a fixed lift",
+      "statement": "[Deformations with a fixed lift] Let \\(b_1',,b_n'\\ 1,,m\\ \\) represent the characters of \\(_m\\) on \\(T_ C,P \\), with the trivial character represented by \\(m\\). Every component through \\(F\\) of the…",
+      "section": "Small stabilizers",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-small-finite-evaluation",
+      "kind": "lemma",
+      "label": "Finite evaluation",
+      "statement": "[Finite evaluation] The morphism in Equation~ is finite and surjective. Its fiber over \\(o\\) is supported at the unique contracted map.",
+      "section": "Small stabilizers",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-small-norm-tensor",
+      "kind": "lemma",
+      "label": "A tensor of negative integral weight",
+      "statement": "[A tensor of negative integral weight] Let \\(b\\) be the degree of the finite evaluation in Lemma~ . There is a nonzero algebraic section \\[ s H^0(C^,^bT_ C^ ) \\] of integral-grading weight \\(-bm\\).",
+      "section": "Small stabilizers",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-small-tensor-bound",
+      "kind": "lemma",
+      "label": "Tensor weight bound",
+      "statement": "[Tensor weight bound] Let \\(b1\\), and let \\(s\\) be a nonzero homogeneous algebraic section of \\(^bT_ C^ \\), of \\(\\)-weight \\(\\), with vector fields weighted as derivations. Then \\[ -b. \\]",
+      "section": "Small stabilizers",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-small-character-estimate",
+      "kind": "lemma",
+      "label": "Character estimate",
+      "statement": "[Character estimate] There is a constant \\(c>0\\) with the following property for all sufficiently close gradings in Equation~ . If a nonzero rank-\\(b\\) tensor on \\(C^\\) has integral-grading weight…",
+      "section": "Small stabilizers",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-jet-setup",
+      "kind": "proposition",
+      "label": "Jet setup",
+      "statement": "[Jet setup] The following assertions hold. [label=( *)] is an additive semigroup with one-dimensional leaves, and its generated group is exactly . Every finite compatible Taylor jet is realized by…",
+      "section": "Jet cones and the canonical interior point",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-jet-test",
+      "kind": "lemma",
+      "label": "The degree and Taylor-order test",
+      "statement": "[The degree and Taylor-order test] For _ 0 , the rule v_(_j s_j) =_ s_j0 \\ Nj r +_z(s_j)\\ defines a valuation centered at the vertex. It is divisorial up to positive rescaling, and A_C(v_)&=N+N, \\\\…",
+      "section": "Jet cones and the canonical interior point",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-jet-moments",
+      "kind": "lemma",
+      "label": "The two moment inequalities",
+      "statement": "[The two moment inequalities] Along the fixed-cone sequence of gradings, there are numbers _0 tending to zero such that H2s, E[(1+B_0(X))e^ -B_0(X) ]-_ H. For an exact minimizing rational grading one…",
+      "section": "Jet cones and the canonical interior point",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-prob-bound",
+      "kind": "theorem",
+      "label": "The exponential bound",
+      "statement": "[The exponential bound] For u=4/3 one has _ N1 \\ _ a ^N\\\\ _i a_i=0 e^u u E g(u+a X) =C_*:=34e^ 4/3 - e3<2. The supremum over dimensions is approached by the vectors (2,-2/(N-1),,-2/(N-1)) as N .",
+      "section": "Jet cones and the canonical interior point",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-prob-logconcavity",
+      "kind": "lemma",
+      "label": "Log-concavity and a barycenter half-space bound",
+      "statement": "[Log-concavity and a barycenter half-space bound] A nonzero mean-zero linear combination of independent mean-one exponentials has a positive continuous log-concave density on the whole real line.…",
+      "section": "Jet cones and the canonical interior point",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-prob-single-crossing",
+      "kind": "lemma",
+      "label": "Strict single crossing",
+      "statement": "[Strict single crossing] Let Z have a positive log-concave probability density on , and let E be an independent mean-one exponential. If \\[ E k(Z+c_*E)=0, \\] then E k(Z+cE)>0 for every c<c_* and E…",
+      "section": "Jet cones and the canonical interior point",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-prob-critical-points",
+      "kind": "lemma",
+      "label": "Finite critical points",
+      "statement": "[Finite critical points] Fix u>0 and N2 . Every nonzero finite local maximum of \\[ a E g(u+_ i=1 ^N a_iX_i), _i a_i=0, \\] has, after permutation, the form a=(t,-t/(N-1),,-t/(N-1))(t>0).",
+      "section": "Jet cones and the canonical interior point",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-jet-interior",
+      "kind": "theorem",
+      "label": "Canonical interior point",
+      "statement": "[Canonical interior point] For every sufficiently large grading in the subsequence under consideration, c_0=(r,1) K in the original degree coordinates. Equivalently, f(1)<N . For an exact minimizing…",
+      "section": "Jet cones and the canonical interior point",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-adj-vanishing",
+      "kind": "lemma",
+      "label": "Orbifold vanishing",
+      "statement": "[Orbifold vanishing] Let X be a smooth proper Deligne--Mumford stack over , with trivial generic stabilizer and projective coarse space. Let be an effective rational divisor with simple normal…",
+      "section": "Adjoint jets and the saturated semigroup",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-adj-implication",
+      "kind": "lemma",
+      "label": "Adjoint lattice points",
+      "statement": "[Adjoint lattice points] For the orbifold jet data above, (j,), (j,)+c_0 K (j,).",
+      "section": "Adjoint jets and the saturated semigroup",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-adj-saturation",
+      "kind": "theorem",
+      "label": "The saturated jet semigroup",
+      "statement": "[The saturated jet semigroup] Suppose c_0 K . Then the following statements hold: K is a rational polyhedral cone. Every facet has a primitive nonnegative support form ^* satisfying (c_0)=1 . The…",
+      "section": "Adjoint jets and the saturated semigroup",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-filt-first-ring",
+      "kind": "lemma",
+      "label": "The Taylor graded ring",
+      "statement": "[The Taylor graded ring] The algebra S is finitely generated, normal, Cohen--Macaulay, and Gorenstein. Its canonical module has a homogeneous generator of bidegree (r,N) . There is a section v S_m…",
+      "section": "Two filtrations and a second stabilizer",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-filt-discrepancy",
+      "kind": "lemma",
+      "label": "Rees discrepancy comparison",
+      "statement": "[Rees discrepancy comparison] Suppose F respects original degree, has finite length in each original homogeneous piece, and _F S is finitely generated. Suppose also that X= R_F is normal and…",
+      "section": "Two filtrations and a second stabilizer",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-filt-reduced",
+      "kind": "lemma",
+      "label": "Reducedness of the quotient",
+      "statement": "[Reducedness of the quotient] Under Equation~ , D is reduced.",
+      "section": "Two filtrations and a second stabilizer",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-filt-structure",
+      "kind": "proposition",
+      "label": "The two-filtration structure",
+      "statement": "[The two-filtration structure] The filtration W is multiplicative, with G=_WS D[ v], _W v=1, _W|_D=T. Here v is a regular polynomial variable of original degree m . Moreover _WG(z)=(1-z)^ -n ,…",
+      "section": "Two filtrations and a second stabilizer",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-filt-free-grading",
+      "kind": "lemma",
+      "label": "Free gradings and polynomial rings",
+      "statement": "[Free gradings and polynomial rings] Let E be a finitely generated positively graded reduced equidimensional Cohen--Macaulay -algebra of dimension N2 , with E_0= and E(z)=(1-z)^ -N . If the grading…",
+      "section": "Two filtrations and a second stabilizer",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-filt-stabilizer",
+      "kind": "corollary",
+      "label": "A nontrivial second stabilizer",
+      "statement": "[A nontrivial second stabilizer] There is a nonvertex closed point of D whose T -grading stabilizer has order h2 .",
+      "section": "Two filtrations and a second stabilizer",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-boot-slice-tests",
+      "kind": "lemma",
+      "label": "The uniformizing slice and its tests",
+      "statement": "[The uniformizing slice and its tests] There is a normal Gorenstein algebraic germ y Y of dimension n , preserved by _h , with a nonzero function _Y_ Y,y of character -1 , such that Y is klt away…",
+      "section": "The slice estimate and the supremum bootstrap",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-boot-slice-klt",
+      "kind": "lemma",
+      "label": "The slice is klt",
+      "statement": "[The slice is klt] The germ y Y is klt.",
+      "section": "The slice estimate and the supremum bootstrap",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-boot-slice-singular",
+      "kind": "lemma",
+      "label": "Singularity of the slice",
+      "statement": "[Singularity of the slice] The germ y Y is singular.",
+      "section": "The slice estimate and the supremum bootstrap",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-boot-character-shares",
+      "kind": "lemma",
+      "label": "Equal leading character lengths",
+      "statement": "[Equal leading character lengths] Let R=_ Y,y and let _t=\\ g R:u_*(g) t\\ . For every character /h , \\[ _(R/_t)_ = h\\,n! t^n+o(t^n) (t). \\]",
+      "section": "The slice estimate and the supremum bootstrap",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-boot-refined-estimate",
+      "kind": "proposition",
+      "label": "The refined slice estimate",
+      "statement": "[The refined slice estimate] For the minimizing slice valuation and its restriction, (w) _ 0 x1 \\ x^n ^n +(1-x)^n h \\ .",
+      "section": "The slice estimate and the supremum bootstrap",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-boot-holder",
+      "kind": "lemma",
+      "label": "Optimization",
+      "statement": "[Optimization] For the fixed cone and large-stabilizer construction, d(o,C) & ((N/n) +A'/n )^n (^ n/N +(h/)^ 1/N )^N \\\\ & (N/n)^n+(A'/n)^n/h p_n 2 +M_n 2 . Equality in the middle, Hölder, inequality…",
+      "section": "The slice estimate and the supremum bootstrap",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-boot-upper",
+      "kind": "theorem",
+      "label": "The upper bound",
+      "statement": "[The upper bound] Assume the local ODP volume theorem in all dimensions smaller than n . Then M_n p_n . Equivalently, every singular boundary-zero klt n -dimensional germ satisfies \\[ (x,X) 2(n-1)^n.…",
+      "section": "The slice estimate and the supremum bootstrap",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-boot-equality-data",
+      "kind": "lemma",
+      "label": "Consequences of equality",
+      "statement": "[Consequences of equality] One has h=2 , d(y,Y)=p_n , and A'=N . After rescaling u_* so that =1 , the resulting restriction w satisfies A'=N, =2, A_C(w)=2N, (w)=2^ -N , w=2N n _. The optimal…",
+      "section": "The slice estimate and the supremum bootstrap",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-boot-strict-count",
+      "kind": "lemma",
+      "label": "The distinguished section cannot have value greater than two",
+      "statement": "[The distinguished section cannot have value greater than two] In the normalization of Lemma~ , the section v S_m used to define the two filtrations satisfies w(v)2 .",
+      "section": "The slice estimate and the supremum bootstrap",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-boot-rounding",
+      "kind": "lemma",
+      "label": "Rounding the maximal stabilizer",
+      "statement": "[Rounding the maximal stabilizer] Along the fast gradings of the fixed equality cone, the large-stabilizer construction implies Nm_ r for every sufficiently far term.",
+      "section": "The slice estimate and the supremum bootstrap",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-boot-equality-cone",
+      "kind": "theorem",
+      "label": "The equality cone",
+      "statement": "[The equality cone] If a singular cone obtained in Proposition~ satisfies d(o,C)=p_n , then it is the standard ordinary double point cone.",
+      "section": "The slice estimate and the supremum bootstrap",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-end-hypersurface-test",
+      "kind": "lemma",
+      "label": "A hypersurface test",
+      "statement": "[A hypersurface test] Let \\(x X\\) be a klt hypersurface germ of dimension \\(n\\), with equation \\(F\\) in regular ambient parameters \\(z_0,,z_n\\). For positive rational weights \\(w_0,,w_n\\), write…",
+      "section": "Equality at the original germ and global consequences",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m1-end-hypersurface",
+      "kind": "proposition",
+      "label": "Hypersurface equality",
+      "statement": "[Hypersurface equality] If \\(x X\\) is a singular klt hypersurface germ of dimension \\(n2\\), then \\[ (x,X)2(n-1)^n. \\] If equality holds, the quadratic part of a local equation is nondegenerate, and…",
+      "section": "Equality at the original germ and global consequences",
+      "manuscript": "The ordinary-double-point gap in every dimension"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Let \\(x X\\) be a singular closed point of a normal complex algebraic variety of…",
+      "statement": "Let \\(x X\\) be a singular closed point of a normal complex algebraic variety of dimension four. Suppose that \\(K_X\\) is \\(\\)-Cartier and that \\(X\\) is klt near \\(x\\), with boundary zero. Then \\[…",
+      "section": "Introduction",
+      "manuscript": "The normalized-volume gap in dimension four"
+    },
+    {
+      "id": "m2-lem-edim",
+      "kind": "lemma",
+      "label": "Let \\(v\\) be a valuation centered at a klt point \\(x\\), of finite log…",
+      "statement": "Let \\(v\\) be a valuation centered at a klt point \\(x\\), of finite log discrepancy. If \\(gr_v R\\) is finitely generated, then \\[ (R) (gr_v R). \\]",
+      "section": "Volume conventions and the cone reduction",
+      "manuscript": "The normalized-volume gap in dimension four"
+    },
+    {
+      "id": "m2-prop-cone",
+      "kind": "proposition",
+      "label": "Suppose that \\(x X\\) satisfies the hypotheses of Theorem~ and that \\[…",
+      "statement": "Suppose that \\(x X\\) satisfies the hypotheses of Theorem~ and that \\[ V:=(x,X)162. \\] There is a positively graded affine fourfold \\(C= S\\), with vertex \\(o\\), such that: [label=()] \\(C\\) is…",
+      "section": "Volume conventions and the cone reduction",
+      "manuscript": "The normalized-volume gap in dimension four"
+    },
+    {
+      "id": "m2-lem-extraction",
+      "kind": "lemma",
+      "label": "There is a proper birational morphism \\(: C C\\), an isomorphism away from…",
+      "statement": "There is a proper birational morphism \\(: C C\\), an isomorphism away from \\(o\\), with reduced exceptional fiber \\(E\\), such that \\[ K_ C =^*K_C+(r-1)E. \\] At a point of \\(E\\) represented by a…",
+      "section": "Stabilizers and discrepancies",
+      "manuscript": "The normalized-volume gap in dimension four"
+    },
+    {
+      "id": "m2-lem-jet",
+      "kind": "lemma",
+      "label": "If a punctured-cone point has stabilizer order \\(m\\), then for every rational…",
+      "statement": "If a punctured-cone point has stabilizer order \\(m\\), then for every rational \\(>0\\), V (r+3)^4\\, h (1+(mh)^ 1/3 )^3 .",
+      "section": "Stabilizers and discrepancies",
+      "manuscript": "The normalized-volume gap in dimension four"
+    },
+    {
+      "id": "m2-prop-stabilizer",
+      "kind": "proposition",
+      "label": "For all integral gradings sufficiently close to the minimizing ray in…",
+      "statement": "For all integral gradings sufficiently close to the minimizing ray in Proposition~ , every stabilizer order on \\(C\\ o\\ \\) satisfies m< r 5/2 . Consequently A_C(F)3 for every primitive prime divisor…",
+      "section": "Stabilizers and discrepancies",
+      "manuscript": "The normalized-volume gap in dimension four"
+    },
+    {
+      "id": "m2-lem-hilbert",
+      "kind": "lemma",
+      "label": "Hilbert-series identity",
+      "statement": "[Hilbert-series identity] If \\(F\\) is a Schwartz function whose smooth Fourier transform, in the convention \\( F(t)=_ F(y)e^ -2 iyt y\\), is supported in \\((-1,1)\\), then _ F_T=_ F(y)P_T(y) y.",
+      "section": "Hilbert series and short weights",
+      "manuscript": "The normalized-volume gap in dimension four"
+    },
+    {
+      "id": "m2-lem-canonical-positive",
+      "kind": "lemma",
+      "label": "Canonical-module positivity",
+      "statement": "[Canonical-module positivity] Suppose \\(n2\\). If there is a homogeneous injection _T^ [q] T lowering weights by \\(e>0\\), for some integer \\(q1\\), then every nonzero homogeneous section of \\(_T\\) has…",
+      "section": "Hilbert series and short weights",
+      "manuscript": "The normalized-volume gap in dimension four"
+    },
+    {
+      "id": "m2-prop-short",
+      "kind": "proposition",
+      "label": "Short-interval nonvanishing",
+      "statement": "[Short-interval nonvanishing] Let \\(D=5/3\\). [label=()] The ring \\(S\\), with the rescaled grading , has a nonzero homogeneous element of weight in \\((0,D)\\). Let \\(T\\) satisfy the hypotheses of…",
+      "section": "Hilbert series and short weights",
+      "manuscript": "The normalized-volume gap in dimension four"
+    },
+    {
+      "id": "m2-prop-threshold",
+      "kind": "proposition",
+      "label": "At the vertex, \\[ _o(C;_o)>32. \\]",
+      "statement": "At the vertex, \\[ _o(C;_o)>32. \\]",
+      "section": "The log canonical threshold",
+      "manuscript": "The normalized-volume gap in dimension four"
+    },
+    {
+      "id": "m2-prop-section",
+      "kind": "proposition",
+      "label": "For the cone \\(C\\) of Proposition~ , a general affine hyperplane section…",
+      "statement": "For the cone \\(C\\) of Proposition~ , a general affine hyperplane section through \\(o\\) is a terminal Gorenstein threefold near \\(o\\). In particular, \\[ (o,C)5. \\]",
+      "section": "A terminal threefold section and the main theorem",
+      "manuscript": "The normalized-volume gap in dimension four"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-inp-fourfold",
+      "to": "m1-thm-main",
+      "label": "inp:fourfold",
+      "context": "[Proof of Theorem~\\ref{thm:main}] The cases \\(n=2,3,4\\) were established in Section~\\ref{sec:cones}, the last by Theorem~\\ref{inp:fourfold}. Suppose the theorem is known in lower dimensions and let \\(n=N+1\\ge5\\). The supremum argument of Theorem~\\ref{boot:upp"
+    },
+    {
+      "from": "m2-prop-cone",
+      "to": "m2-thm-main",
+      "label": "prop:cone",
+      "context": "[Proof of Theorem~\\ref{thm:main}] If \\(\\nvol(x,X)<162\\), the bound is already strict. Otherwise Proposition~\\ref{prop:cone} and Proposition~\\ref{prop:section} give \\[ \\edim(x,X)\\le5. \\] A singular normal complex algebraic fourfold germ of embe"
+    }
+  ]
+}

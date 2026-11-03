@@ -1,0 +1,108 @@
+{
+  "familyNumber": "248",
+  "familyTitle": "Thompson's group <i>F</i> is nonamenable",
+  "manuscripts": [
+    {
+      "id": "Thompsons-group-F-is-nonamenable-September-23-2026",
+      "title": "Thompson's group F is nonamenable",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Thompsons-group-F-is-nonamenable-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Recursive colors and finite averages",
+    "Consequences",
+    "An explicit map with positive displacement"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Thompson's group \\(F\\) is not amenable.",
+      "statement": "Thompson's group \\(F\\) is not amenable.",
+      "section": "Introduction",
+      "manuscript": "Thompson's group F is nonamenable"
+    },
+    {
+      "id": "m1-lem-displacement",
+      "kind": "lemma",
+      "label": "Benyamini--Sternfeld",
+      "statement": "[Benyamini--Sternfeld] There are a real Hilbert space \\(H\\), a Lipschitz map \\(f:B B\\) on its closed unit ball, and a constant \\(>0\\) such that \\[ f(x)-x(x B). \\]",
+      "section": "Introduction",
+      "manuscript": "Thompson's group F is nonamenable"
+    },
+    {
+      "id": "m1-dyad-eventual",
+      "kind": "lemma",
+      "label": "For each g F , the partitions gT^ (n) are basic for all sufficiently large n ,…",
+      "statement": "For each g F , the partitions gT^ (n) are basic for all sufficiently large n , and their meshes tend to zero. In particular, given a finite set K F and a finite family J of basic intervals, there is…",
+      "section": "Recursive colors and finite averages",
+      "manuscript": "Thompson's group F is nonamenable"
+    },
+    {
+      "id": "m1-dyad-transport",
+      "kind": "lemma",
+      "label": "If I<J and I'<J' are pairs of internal basic intervals, there is an h F whose…",
+      "statement": "If I<J and I'<J' are pairs of internal basic intervals, there is an h F whose restrictions carry I affinely onto I' and J affinely onto J' .",
+      "section": "Recursive colors and finite averages",
+      "manuscript": "Thompson's group F is nonamenable"
+    },
+    {
+      "id": "m1-avg-boundary",
+      "kind": "proposition",
+      "label": "For every nonempty finite set A F , _ h S |hA | |A| ^2/L^2-4/D 4(1-1/D) >0.",
+      "statement": "For every nonempty finite set A F , _ h S |hA | |A| ^2/L^2-4/D 4(1-1/D) >0.",
+      "section": "Recursive colors and finite averages",
+      "manuscript": "Thompson's group F is nonamenable"
+    },
+    {
+      "id": "m1-cor-nonunitarizable",
+      "kind": "corollary",
+      "label": "For every \\(>0\\), there are a separable complex Hilbert space \\(H\\) and a…",
+      "statement": "For every \\(>0\\), there are a separable complex Hilbert space \\(H\\) and a representation \\(:FGL(H)\\) such that \\(_ g F (g)1+\\), but no bounded invertible operator \\(S\\) on \\(H\\) makes every \\(S(g)S^…",
+      "section": "Consequences",
+      "manuscript": "Thompson's group F is nonamenable"
+    },
+    {
+      "id": "m1-cor-percolation",
+      "kind": "corollary",
+      "label": "For every such generating set \\(S\\), \\[ T_ p_c _ 22 <, p_c<p_ 22 p_u. \\] For…",
+      "statement": "For every such generating set \\(S\\), \\[ T_ p_c _ 22 <, p_c<p_ 22 p_u. \\] For each fixed \\(p(p_c,p_u)\\), there are almost surely infinitely many infinite open clusters. Moreover, there are…",
+      "section": "Consequences",
+      "manuscript": "Thompson's group F is nonamenable"
+    },
+    {
+      "id": "m1-aux-map",
+      "kind": "proposition",
+      "label": "Let H=L^2([0,1];^2) be a real Hilbert space and let B=\\ x H:x1\\ . There is a…",
+      "statement": "Let H=L^2([0,1];^2) be a real Hilbert space and let B=\\ x H:x1\\ . There is a globally Lipschitz map f:B B such that \\[ f(x)=1, f(x)-x12 (x B). \\]",
+      "section": "An explicit map with positive displacement",
+      "manuscript": "Thompson's group F is nonamenable"
+    },
+    {
+      "id": "m1-aux-tube",
+      "kind": "lemma",
+      "label": "The curve is injective, has a bounded Lipschitz derivative, and \\[ c:=_ t…",
+      "statement": "The curve is injective, has a bounded Lipschitz derivative, and \\[ c:=_ t '(t)=18. \\] Its unit tangent u(t)='(t)/ '(t) is Lipschitz, u(t) v(t) 0 , and u(t)=v(t) for t1 . There is a radius 0<<1/32…",
+      "section": "An explicit map with positive displacement",
+      "manuscript": "Thompson's group F is nonamenable"
+    },
+    {
+      "id": "m1-aux-rotation",
+      "kind": "lemma",
+      "label": "There is a family of orthogonal operators R_t:H H , Lipschitz in operator norm,…",
+      "statement": "There is a family of orthogonal operators R_t:H H , Lipschitz in operator norm, such that R_tu(t)=v(t) and R_t is the identity for t1 .",
+      "section": "An explicit map with positive displacement",
+      "manuscript": "Thompson's group F is nonamenable"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-aux-tube",
+      "to": "m1-aux-map",
+      "label": "aux:tube",
+      "context": "[Proof of Proposition~\\ref{aux:map}] Fix the tube radius from Lemma~\\ref{aux:tube} and the rotations from Lemma~\\ref{aux:rotation}. Set \\[ b(t)=\\min\\{a(t),-1/8\\},\\qquad q(t)=b(t)-a(t)=-\\max\\{a(t)+1/8,"
+    }
+  ]
+}

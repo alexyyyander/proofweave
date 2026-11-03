@@ -1,0 +1,192 @@
+{
+  "familyNumber": "155",
+  "familyTitle": "A counterexample to periodic tiling in dimension three",
+  "manuscripts": [
+    {
+      "id": "A-translational-tile-with-no-fully-periodic-tiling-in-dimension-three-September-23-2026",
+      "title": "A translational tile with no fully periodic tiling in dimension three",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-translational-tile-with-no-fully-periodic-tiling-in-dimension-three-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "A word rule with no vertical period",
+    "Encoding symbols in a cyclic finite coordinate",
+    "Forcing activity and excluding full periodicity",
+    "A common solution of the tiling equations",
+    "Stacking the system into one tile",
+    "Passing to three-dimensional space"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There is a finite nonempty set T^3 such that: [label=( *)] T tiles ^3 by…",
+      "statement": "There is a finite nonempty set T^3 such that: [label=( *)] T tiles ^3 by translations, but no translation set A with A T=^3 is invariant under a subgroup of finite index in ^3 ; the set =T+[0,1]^3…",
+      "section": "Introduction",
+      "manuscript": "A translational tile with no fully periodic tiling in dimension three"
+    },
+    {
+      "id": "m1-word-affine",
+      "kind": "lemma",
+      "label": "Global affine approximation",
+      "statement": "[Global affine approximation] If W satisfies the line rule, there are A,B,C , not all zero, such that \\[ W(n,m)=An+Bm+C whenever An+Bm+C0. \\]",
+      "section": "A word rule with no vertical period",
+      "manuscript": "A translational tile with no fully periodic tiling in dimension three"
+    },
+    {
+      "id": "m1-word-vertical",
+      "kind": "lemma",
+      "label": "Vertical nondegeneracy",
+      "statement": "[Vertical nondegeneracy] Let H(n,m)=An+Bm+C be any affine form supplied by . Every column of W is nonconstant if and only if B0 . In that case every positive vertical period of W is divisible by p .",
+      "section": "A word rule with no vertical period",
+      "manuscript": "A translational tile with no fully periodic tiling in dimension three"
+    },
+    {
+      "id": "m1-word-obstruction",
+      "kind": "proposition",
+      "label": "The vertical-period obstruction",
+      "statement": "[The vertical-period obstruction] There is no array W I satisfying the line rule, having every column nonconstant, and having a positive vertical period.",
+      "section": "A word rule with no vertical period",
+      "manuscript": "A translational tile with no fully periodic tiling in dimension three"
+    },
+    {
+      "id": "m1-word-model",
+      "kind": "lemma",
+      "label": "A model for the line rule",
+      "statement": "[A model for the line rule] For t\\ 0\\ , let ord_p(t) be the largest nonnegative integer r for which p^r t , and define \\[ f(t)=t p^ ord_p(t) p, f(0)=1. \\] Then f , and the array W(n,m)=f(m) satisfies…",
+      "section": "A word rule with no vertical period",
+      "manuscript": "A translational tile with no fully periodic tiling in dimension three"
+    },
+    {
+      "id": "m1-enc-invariance",
+      "kind": "lemma",
+      "label": "Fix a channel i and a shift ^2 K . There is a finite nonempty tile F_ i, G such…",
+      "statement": "Fix a channel i and a shift ^2 K . There is a finite nonempty tile F_ i, G such that, for every graph satisfying , \\[ A F_ i, =G c_i(b-)=c_i(b) for every b^2 K. \\] This equation imposes no…",
+      "section": "Encoding symbols in a cyclic finite coordinate",
+      "manuscript": "A translational tile with no fully periodic tiling in dimension three"
+    },
+    {
+      "id": "m1-enc-exclusion",
+      "kind": "lemma",
+      "label": "Exclusion of simultaneous activity",
+      "statement": "[Exclusion of simultaneous activity] Let C=(i_1,,i_t) be a nonempty cyclically ordered list of distinct channels, and choose a label j(i) J_i for each i C . There is a finite family of finite…",
+      "section": "Encoding symbols in a cyclic finite coordinate",
+      "manuscript": "A translational tile with no fully periodic tiling in dimension three"
+    },
+    {
+      "id": "m1-act-fibre-criterion",
+      "kind": "lemma",
+      "label": "Activation fibre criterion",
+      "statement": "[Activation fibre criterion] Suppose A H_0=G , so that A is a graph over (x,k) . For a target base point (x,k) and a batch with horizontal offset h , write x'=x-h, k_i'=k_i-l, k_'=k_( i). For an…",
+      "section": "Forcing activity and excluding full periodicity",
+      "manuscript": "A translational tile with no fully periodic tiling in dimension three"
+    },
+    {
+      "id": "m1-act-ordinary",
+      "kind": "lemma",
+      "label": "Ordinary activation",
+      "statement": "[Ordinary activation] Every ordinary channel has at least one active label at every x^2 in any common solution of the equations specified so far.",
+      "section": "Forcing activity and excluding full periodicity",
+      "manuscript": "A translational tile with no fully periodic tiling in dimension three"
+    },
+    {
+      "id": "m1-act-seed",
+      "kind": "lemma",
+      "label": "Seed activation",
+      "statement": "[Seed activation] Each of the two seeds has its label active at some point of ^2 in any common solution of the equations specified so far.",
+      "section": "Forcing activity and excluding full periodicity",
+      "manuscript": "A translational tile with no fully periodic tiling in dimension three"
+    },
+    {
+      "id": "m1-act-nonperiodic",
+      "kind": "proposition",
+      "label": "No common solution of this finite system is invariant under a finite-index…",
+      "statement": "No common solution of this finite system is invariant under a finite-index subgroup of G .",
+      "section": "Forcing activity and excluding full periodicity",
+      "manuscript": "A translational tile with no fully periodic tiling in dimension three"
+    },
+    {
+      "id": "m1-model-block-inverse",
+      "kind": "lemma",
+      "label": "Block inverse",
+      "statement": "[Block inverse] Fix i,j , a target horizontal coordinate x_1 , and a target low coordinate k_i K_i . For each (l,) K_i_i , choose an integer h_1(l,) satisfying \\[ h_1(l,) lr_i, h_1(l,)^a()a_i,…",
+      "section": "A common solution of the tiling equations",
+      "manuscript": "A translational tile with no fully periodic tiling in dimension three"
+    },
+    {
+      "id": "m1-model-system",
+      "kind": "theorem",
+      "label": "There are a finite cyclic group V and finitely many nonempty finite sets…",
+      "statement": "There are a finite cyclic group V and finitely many nonempty finite sets F_1,,F_s G=^2 V for which the simultaneous tiling equations \\[ A F_=G(1 s) \\] have a common solution, but no common solution…",
+      "section": "A common solution of the tiling equations",
+      "manuscript": "A translational tile with no fully periodic tiling in dimension three"
+    },
+    {
+      "id": "m1-stack-partition",
+      "kind": "lemma",
+      "label": "A partition with full difference sets",
+      "statement": "[A partition with full difference sets] For every positive integer s and every finite set of primes, there is a prime q outside that set and a partition \\[ q=E_1 E_s \\] into nonempty sets satisfying…",
+      "section": "Stacking the system into one tile",
+      "manuscript": "A translational tile with no fully periodic tiling in dimension three"
+    },
+    {
+      "id": "m1-stack-equivalence",
+      "kind": "proposition",
+      "label": "Stacking and periodicity",
+      "statement": "[Stacking and periodicity] Let H be an abelian group, let F_1,,F_s H be finite nonempty sets, and let E_1,,E_s be a partition as in . Define \\[ F^ st =_ =1 ^s(F_ E_) Hq. \\] There is a common solution…",
+      "section": "Stacking the system into one tile",
+      "manuscript": "A translational tile with no fully periodic tiling in dimension three"
+    },
+    {
+      "id": "m1-stack-cyclic",
+      "kind": "corollary",
+      "label": "One tile with a cyclic finite coordinate",
+      "statement": "[One tile with a cyclic finite coordinate] For some positive integer Q , there is a finite nonempty set F=^2Q which tiles but admits no fully periodic tiling.",
+      "section": "Stacking the system into one tile",
+      "manuscript": "A translational tile with no fully periodic tiling in dimension three"
+    },
+    {
+      "id": "m1-geom-random-representatives",
+      "kind": "lemma",
+      "label": "Rigid representatives",
+      "statement": "[Rigid representatives] For a sufficiently large integer m2 , one can choose \\[ T_0=\\ t(v):v\\ 0,,m-1\\ ^3\\ , t(v) v m, \\] such that, with T_*=T_0\\ t(0)\\ , T_*-T_* \\ d^3:d_ m, \\ d m^3\\ .",
+      "section": "Passing to three-dimensional space",
+      "manuscript": "A translational tile with no fully periodic tiling in dimension three"
+    },
+    {
+      "id": "m1-geom-existence",
+      "kind": "proposition",
+      "label": "The tile T tiles ^3 , and tiles ^3 up to null sets.",
+      "statement": "The tile T tiles ^3 , and tiles ^3 up to null sets.",
+      "section": "Passing to three-dimensional space",
+      "manuscript": "A translational tile with no fully periodic tiling in dimension three"
+    },
+    {
+      "id": "m1-geom-rounding",
+      "kind": "lemma",
+      "label": "Rounding in the closed box",
+      "statement": "[Rounding in the closed box] Let m2 , and suppose that ^3 satisfies _ m and m^3 . There is d^3 m^3 such that \\[ d_ m, -d_<1. \\]",
+      "section": "Passing to three-dimensional space",
+      "manuscript": "A translational tile with no fully periodic tiling in dimension three"
+    },
+    {
+      "id": "m1-geom-grid",
+      "kind": "lemma",
+      "label": "A periodic assembly has grid centers",
+      "statement": "[A periodic assembly has grid centers] Suppose copies c+_ (c) , with types (c)\\ 0,1\\ , form an almost-everywhere tiling of ^3 . Assume the assembly, including its types, is invariant under a…",
+      "section": "Passing to three-dimensional space",
+      "manuscript": "A translational tile with no fully periodic tiling in dimension three"
+    },
+    {
+      "id": "m1-geom-no-periodic",
+      "kind": "proposition",
+      "label": "The Euclidean tile has no almost-everywhere translational tiling whose…",
+      "statement": "The Euclidean tile has no almost-everywhere translational tiling whose translation set is invariant under a full-rank lattice in ^3 .",
+      "section": "Passing to three-dimensional space",
+      "manuscript": "A translational tile with no fully periodic tiling in dimension three"
+    }
+  ],
+  "edges": []
+}

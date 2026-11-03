@@ -1,0 +1,695 @@
+{
+  "familyNumber": "331",
+  "familyTitle": "Reflexive midpoint convexity and diamond distortion",
+  "manuscripts": [
+    {
+      "id": "Asymptotic-midpoint-uniform-convexity-and-unbounded-diamond-distortion-in-a-reflexive-tree-space-September-27-2026",
+      "title": "Asymptotic midpoint uniform convexity and unbounded diamond distortion in a reflexive tree space",
+      "date": "2026-09-27",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Asymptotic-midpoint-uniform-convexity-and-unbounded-diamond-distortion-in-a-reflexive-tree-space-September-27-2026/manuscript.pdf"
+    },
+    {
+      "id": "Midpoint-lenses-in-segment-spaces-September-27-2026",
+      "title": "Midpoint lenses in segment spaces",
+      "date": "2026-09-27",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Midpoint-lenses-in-segment-spaces-September-27-2026/manuscript.pdf"
+    },
+    {
+      "id": "Diamond-distortion-from-midpoint-and-tree-energies-September-27-2026",
+      "title": "Distortion of countably branching diamonds from midpoint and tree energies",
+      "date": "2026-09-27",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Diamond-distortion-from-midpoint-and-tree-energies-September-27-2026/manuscript.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "The coordinate structure of the forest",
+    "Why no equivalent norm is AUC",
+    "A paired extension of segment tests",
+    "From approximate midpoints to diamonds",
+    "The infinite-height coordinate predual",
+    "Finite convex representations",
+    "Cancellation at the boundary",
+    "Asymptotic midpoint growth",
+    "Coordinate variants and bounded paths",
+    "The infinite-height renorming obstruction",
+    "Clipping cumulative segment sums",
+    "Frontier shifts and separated families",
+    "A radial deficit and separate endpoint laws",
+    "Further consequences of the joint budget",
+    "Atomic gauges and finite-coordinate polars",
+    "A finite-coordinate toolkit",
+    "Stability from a nearly norming head test",
+    "Endpoint distributions and conditional recovery",
+    "Original coefficients: cancellation and recovery",
+    "Alternative cancellation estimates",
+    "Signs determined by the target tail",
+    "Choosing signs at the boundary",
+    "Trimming by maximal splitting gain",
+    "Sequential cancellation in the forest",
+    "Qualitative midpoint arguments in infinite height"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "The space X=J^* defined by is infinite dimensional, separable, and reflexive,…",
+      "statement": "The space X=J^* defined by is infinite dimensional, separable, and reflexive, and has no equivalent AUC norm. Its given norm satisfies \\[ _X(t)1+t^2/12-1(t>0). \\] For every integer k0 , every…",
+      "section": "Introduction",
+      "manuscript": "Asymptotic midpoint uniform convexity and unbounded diamond distortion in a reflexive tree space"
+    },
+    {
+      "id": "m1-lem-forest-structure",
+      "kind": "lemma",
+      "label": "The space X defined by is infinite dimensional, separable, and reflexive, and…",
+      "statement": "The space X defined by is infinite dimensional, separable, and reflexive, and the coordinate functionals have dense span in X . Let H F be finite and ancestral, meaning that it contains every…",
+      "section": "The coordinate structure of the forest",
+      "manuscript": "Asymptotic midpoint uniform convexity and unbounded diamond distortion in a reflexive tree space"
+    },
+    {
+      "id": "m1-lem-cones",
+      "kind": "lemma",
+      "label": "For every finite ancestral H , Q_HJ=(_ g G_H J(U_g))_ _2 , \\|Q_Hx\\|^2=_ g G_H…",
+      "statement": "For every finite ancestral H , Q_HJ=(_ g G_H J(U_g))_ _2 , \\|Q_Hx\\|^2=_ g G_H \\|x|_ J(U_g) \\|^2(x X). The gate-coordinate map x(x(e_g))_ g G_H is a contraction from X to _2(G_H) .",
+      "section": "The coordinate structure of the forest",
+      "manuscript": "Asymptotic midpoint uniform convexity and unbounded diamond distortion in a reflexive tree space"
+    },
+    {
+      "id": "m1-lem-modulus-conventions",
+      "kind": "lemma",
+      "label": "Modulus conventions",
+      "statement": "[Modulus conventions] For an infinite-dimensional real Banach space Y with norm N , let m_N be the modulus obtained from by replacing the average by \\ N(x+ty),N(x-ty)\\ . Then, for t>0 , \\[…",
+      "section": "Why no equivalent norm is AUC",
+      "manuscript": "Asymptotic midpoint uniform convexity and unbounded diamond distortion in a reflexive tree space"
+    },
+    {
+      "id": "m1-lem-bounded-tree",
+      "kind": "lemma",
+      "label": "Bounded trees",
+      "statement": "[Bounded trees] Let Y be a real Banach space. Suppose that for every integer h1 there are vectors (u_s^ (h) )_ s N^ h and constants m,M,c>0 , independent of h , such that \\[ m\\|u_s^ (h) \\| M, \\|u_ s^…",
+      "section": "Why no equivalent norm is AUC",
+      "manuscript": "Asymptotic midpoint uniform convexity and unbounded diamond distortion in a reflexive tree space"
+    },
+    {
+      "id": "m1-lem-paired",
+      "kind": "lemma",
+      "label": "Let H F be finite and ancestral. If x,y X satisfy x=P_Hx and y=Q_Hy , then…",
+      "statement": "Let H F be finite and ancestral. If x,y X satisfy x=P_Hx and y=Q_Hy , then \\|x+y\\|+\\|x-y\\| 2 \\|x\\|^2+\\|y\\|^2/12. More generally, for all s,t>0 , \\|x+ty\\|+\\|x-ty\\| 2 \\|x\\|+st\\|y\\| 1+12s^2 .",
+      "section": "A paired extension of segment tests",
+      "manuscript": "Asymptotic midpoint uniform convexity and unbounded diamond distortion in a reflexive tree space"
+    },
+    {
+      "id": "m1-lem-lens",
+      "kind": "lemma",
+      "label": "Let R>0 , >0 , x X , and (y_j)_ j1 X satisfy \\[ \\|x y_j\\| R,\\|y_i-y_j\\|>0 (i…",
+      "statement": "Let R>0 , >0 , x X , and (y_j)_ j1 X satisfy \\[ \\|x y_j\\| R,\\|y_i-y_j\\|>0 (i j). \\] Then R^2-\\|x\\|^2^2/48.",
+      "section": "From approximate midpoints to diamonds",
+      "manuscript": "Asymptotic midpoint uniform convexity and unbounded diamond distortion in a reflexive tree space"
+    },
+    {
+      "id": "m2-thm-main-tail",
+      "kind": "theorem",
+      "label": "Let Y be either the finite-height forest dual X=J^* or the infinite-height…",
+      "statement": "Let Y be either the finite-height forest dual X=J^* or the infinite-height coordinate predual B_ . For every finite ancestral H , every x,y Y with x=P_Hx , and every R0 with \\|x+y\\|,\\|x-y\\| R ,…",
+      "section": "Introduction",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-lem-forest-structure",
+      "kind": "lemma",
+      "label": "The space X defined by is infinite dimensional, separable, and reflexive, and…",
+      "statement": "The space X defined by is infinite dimensional, separable, and reflexive, and the coordinate functionals have dense span in X . Let H F be finite and ancestral, meaning that it contains every…",
+      "section": "The coordinate structure of the forest",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-lem-cones",
+      "kind": "lemma",
+      "label": "For every finite ancestral H , Q_HJ=(_ g G_H J(U_g))_ _2 , \\|Q_Hx\\|^2=_ g G_H…",
+      "statement": "For every finite ancestral H , Q_HJ=(_ g G_H J(U_g))_ _2 , \\|Q_Hx\\|^2=_ g G_H \\|x|_ J(U_g) \\|^2(x X). The gate-coordinate map x(x(e_g))_ g G_H is a contraction from X to _2(G_H) .",
+      "section": "The coordinate structure of the forest",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-binf-projections",
+      "kind": "lemma",
+      "label": "Finite heads and their complements",
+      "statement": "[Finite heads and their complements] Let H T_ be finite and ancestral. The coordinate projections P_H and Q_H=I-P_H are contractive on J_ and B_ . The range of P_H is finite dimensional, and finite…",
+      "section": "The infinite-height coordinate predual",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-binf-finite-hull",
+      "kind": "lemma",
+      "label": "Finite polar hull and completed atomic ball",
+      "statement": "[Finite polar hull and completed atomic ball] For finite ancestral H , the unit ball of P_HB_ is the convex hull of represented atoms with all segments in H . Each point is a convex combination of at…",
+      "section": "The infinite-height coordinate predual",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-binf-cones",
+      "kind": "lemma",
+      "label": "Exterior square sums",
+      "statement": "[Exterior square sums] For a finite test u=Q_Hu , (u)^2=_ g G_H (u1_ U_g )^2. After completion, Q_HJ_=(_ g G_H J_(U_g))_ _2 . For x B_ , \\|Q_Hx\\|^2=_ g G_H \\|x|_ J_(U_g) \\|^2. The map x(x(e_g))_ g…",
+      "section": "The infinite-height coordinate predual",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-lem-finite-hull",
+      "kind": "lemma",
+      "label": "For a finite ancestral set K , the unit ball of P_KX is the convex hull of the…",
+      "statement": "For a finite ancestral set K , the unit ball of P_KX is the convex hull of the atoms whose segments lie in K . Each member is a convex combination of at most |K|+1 such atoms. If 0 x=P_Hx for a…",
+      "section": "Finite convex representations",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-cor-closed-atomic-ball",
+      "kind": "corollary",
+      "label": "The completed atomic ball",
+      "statement": "[The completed atomic ball] Let A be the set of all represented atoms in X . Then \\[ B_X= conv A ^ \\,\\|\\| . \\] Every segment functional d_S has norm one.",
+      "section": "Finite convex representations",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-lem-opposite-crossing",
+      "kind": "lemma",
+      "label": "With the preceding notation, two disjoint segment families S, S' satisfy 2_…",
+      "statement": "With the preceding notation, two disjoint segment families S, S' satisfy 2_ g:\\,b_ S (g)b_ S' (g)<0 |b_ S (g)b_ S' (g)| L_ S +L_ S' .",
+      "section": "Cancellation at the boundary",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-mol-cor-all-radius-averaged",
+      "kind": "corollary",
+      "label": "In either of the segment-atomic completions considered above, (t) 1+t^2/4-1 2…",
+      "statement": "In either of the segment-atomic completions considered above, (t) 1+t^2/4-1 2 (t>0).",
+      "section": "Asymptotic midpoint growth",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-foundation-order-convex",
+      "kind": "lemma",
+      "label": "Let E be a set of vertices whose intersection with every segment is empty or a…",
+      "statement": "Let E be a set of vertices whose intersection with every segment is empty or a segment. The coordinate projection P_E is contractive on both J and X=J^* . Its range on J is the completion of c_ 00…",
+      "section": "Coordinate variants and bounded paths",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-foundation-height-variants",
+      "kind": "proposition",
+      "label": "Let I be countable and let (h_i)_ i I be nonnegative integers. On the disjoint…",
+      "statement": "Let I be countable and let (h_i)_ i I be nonnegative integers. On the disjoint forest \\[ F_ h =_ i I (\\ i\\ N^ h_i ) \\] define J_ h by the same disjoint-segment norm and set X_ h =J_ h ^* . If J(h)…",
+      "section": "Coordinate variants and bounded paths",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-foundation-weak-null-growth",
+      "kind": "lemma",
+      "label": "Let x S_N , let (z_j) be weakly null, and suppose N(z_j) t>0 for every j . For…",
+      "statement": "Let x S_N , let (z_j) be weakly null, and suppose N(z_j) t>0 for every j . For every 0<<_N(t) , all sufficiently large j satisfy \\[ N(x+z_j)>1+. \\]",
+      "section": "Coordinate variants and bounded paths",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-foundation-bounded-tree",
+      "kind": "proposition",
+      "label": "Suppose an infinite-dimensional real Banach space (Z,\\|\\|) contains, for every…",
+      "statement": "Suppose an infinite-dimensional real Banach space (Z,\\|\\|) contains, for every positive integer k , vectors (u_s)_ s N^ k such that \\[ 0<m\\|u_s\\| M, \\|u_ s^ j -u_s\\| c>0, \\] where m,M,c are…",
+      "section": "Coordinate variants and bounded paths",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-foundation-forest-obstruction",
+      "kind": "corollary",
+      "label": "If the finite component heights h_i in Proposition~ are unbounded, then every…",
+      "statement": "If the finite component heights h_i in Proposition~ are unbounded, then every equivalent norm N on X_ h with a\\|x\\| N(x) b\\|x\\| satisfies \\[ _N(a/b)=_N(a/(2b))=0. \\]",
+      "section": "Coordinate variants and bounded paths",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-binf-obstruction",
+      "kind": "proposition",
+      "label": "The bounded-path obstruction",
+      "statement": "[The bounded-path obstruction] The unit root-path vectors in B_ have unit child increments which are weakly null among the children of each fixed vertex. Every sequence of distinct coordinate vectors…",
+      "section": "The infinite-height renorming obstruction",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-stab-sign-obstruction",
+      "kind": "proposition",
+      "label": "In B_ , the root paths h_v=d_ [o,v] and the coordinates e_v^* have norm one,…",
+      "statement": "In B_ , the root paths h_v=d_ [o,v] and the coordinates e_v^* have norm one, and the children (e_ v^ j ^*)_j of each fixed vertex are weakly null. If a\\|z\\| N(z) b\\|z\\| , with 0<a b< , then…",
+      "section": "The infinite-height renorming obstruction",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-clip-crossing",
+      "kind": "lemma",
+      "label": "An inward crossing estimate",
+      "statement": "[An inward crossing estimate] Let f=P_Hf and v=Q_Hv be finite tests. Use either the cone budgets m_g or q_g , or the last-head budgets in ; write c_j for the chosen budget of a cone or region. Fix…",
+      "section": "Clipping cumulative segment sums",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-clip-two-clips",
+      "kind": "lemma",
+      "label": "Two cumulative clips",
+      "statement": "[Two cumulative clips] For every s>0 and finite tests f=P_Hf , v=Q_Hv , there are h_1,h_2 supported on suppv such that v=h_1-h_2, (h_j)(v), (f+sh_j)^2(f)^2+3s^2(v)^2(j=1,2). Equivalently, v=k_1+k_2…",
+      "section": "Clipping cumulative segment sums",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-clip-paired-modulus",
+      "kind": "corollary",
+      "label": "The averaged clipping estimate",
+      "statement": "[The averaged clipping estimate] For the infinite-height coordinate predual B_ and the finite-height forest space X , \\[ _Z(t)1+t^2/12-1(t>0). \\]",
+      "section": "Clipping cumulative segment sums",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-dir-primal-add-head-tail-lens",
+      "kind": "proposition",
+      "label": "If \\(x=P_Hx\\) and \\(y=Q_Hy\\), then _ \\|x y\\|\\|x\\|^2+\\|y\\|^2/12. If \\(0<1\\) and…",
+      "statement": "If \\(x=P_Hx\\) and \\(y=Q_Hy\\), then _ \\|x y\\|\\|x\\|^2+\\|y\\|^2/12. If \\(0<1\\) and \\(w,Z_1,Z_2, X\\) satisfy \\(\\|w Z_j\\|1\\) and \\(\\|Z_j-Z_l\\|2\\) for \\(j l\\), then \\(\\|w\\|1-^2/24\\).",
+      "section": "Clipping cumulative segment sums",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-clip-selection-prop",
+      "kind": "proposition",
+      "label": "Selection before testing",
+      "statement": "[Selection before testing] Suppose x=P_Hx , \\|x\\|=1 , y P_H , and v=Q_Hv , (v)1 , and y(v)>\\|y\\|/2 . For every s>0 , each of the following constructions produces an exterior test w with \\[…",
+      "section": "Clipping cumulative segment sums",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-clip-frontier-prop",
+      "kind": "proposition",
+      "label": "Frontier shift and selected endpoint",
+      "statement": "[Frontier shift and selected endpoint] For finite f=P_Hf and v=Q_Hv with (f),(v)1 , and every s>0 , there is a finitely supported gate vector a such that (a)1, (a v)2, (f+s(a v))^21+12s^2. For either…",
+      "section": "Frontier shifts and separated families",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-dir-primal-add-independent-threshold",
+      "kind": "lemma",
+      "label": "On either the finite-height forest or the infinite tree, let \\(f=P_Hf\\),…",
+      "statement": "On either the finite-height forest or the infinite tree, let \\(f=P_Hf\\), \\(v=Q_Hv\\) be finite tests with \\((f),(v)1\\). Let finitely many \\(a_g0\\) satisfy \\(_ga_g^21\\) and \\(|v([g,u])| a_g\\) on every…",
+      "section": "Frontier shifts and separated families",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-dir-primal-add-separated",
+      "kind": "proposition",
+      "label": "For each \\(D1\\), there exists \\(c_D>0\\) such that, if \\(x,z_i X\\), \\(1\\|x\\|…",
+      "statement": "For each \\(D1\\), there exists \\(c_D>0\\) such that, if \\(x,z_i X\\), \\(1\\|x\\| D\\), \\(\\|z_i\\|2D\\), and \\(\\|z_i-z_j\\|1\\) for distinct indices in an infinite sequence, then some \\(i\\) satisfies \\(_ \\|x…",
+      "section": "Frontier shifts and separated families",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-thm-tail",
+      "kind": "proposition",
+      "label": "A radial-deficit estimate",
+      "statement": "[A radial-deficit estimate] For a finite ancestral H , x=P_Hx , and arbitrary y X with \\|x y\\| R , one has \\|Q_Hy\\|(2+6)R(R-\\|x\\|).",
+      "section": "A radial deficit and separate endpoint laws",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-cor-max-modulus",
+      "kind": "corollary",
+      "label": "For the specified dual norm on X , \\[ _X(t) 1+t^2/4-1 2 (t>0). \\]",
+      "statement": "For the specified dual norm on X , \\[ _X(t) 1+t^2/4-1 2 (t>0). \\]",
+      "section": "A radial deficit and separate endpoint laws",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-prop-endpoint",
+      "kind": "proposition",
+      "label": "Let 0 d<1 , let H be finite and ancestral, and suppose x=P_Hx , \\|x\\|1-d , and…",
+      "statement": "Let 0 d<1 , let H be finite and ancestral, and suppose x=P_Hx , \\|x\\|1-d , and \\|x y\\|1 . Fix a head norming test p with (p)=1 and x(p)=\\|x\\| , and a finite ancestral set K H . For each \\ -1,1\\…",
+      "section": "A radial deficit and separate endpoint laws",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-mol-prop-conditional-joint",
+      "kind": "proposition",
+      "label": "Under the hypotheses of Theorem~ , assume in addition that P_Hy=0 and r=\\|x\\|>0…",
+      "statement": "Under the hypotheses of Theorem~ , assume in addition that P_Hy=0 and r=\\|x\\|>0 , and put =R^2-r^2 . Fix a head norming test p=P_Hp with (p)=1 and x(p)=r . For every finite ancestral K H and each…",
+      "section": "Further consequences of the joint budget",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-presentation-identity",
+      "kind": "proposition",
+      "label": "The coordinate identity satisfies a(x)=q(x)=\\|x\\| on c_ 00 ( F) and extends to…",
+      "statement": "The coordinate identity satisfies a(x)=q(x)=\\|x\\| on c_ 00 ( F) and extends to surjective linear isometries \\[ X_a=X_q=X=J^*. \\] The finite unit balls and completed atomic ball are therefore exactly…",
+      "section": "Atomic gauges and finite-coordinate polars",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-presentation-subtrees",
+      "kind": "proposition",
+      "label": "Let (r_j) be a finite or countable family of incomparable vertices, and put…",
+      "statement": "Let (r_j) be a finite or countable family of incomparable vertices, and put U_j=\\ v:r_j v\\ . For x X_a supported in _jU_j , \\[ a(x)^2=_j a(P_ U_j x)^2. \\]",
+      "section": "Atomic gauges and finite-coordinate polars",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-stab-coef-pointwise",
+      "kind": "lemma",
+      "label": "For every represented atom, the exact identity is 2L(A)=1-_i c_i^2+D(A)+E(A).…",
+      "statement": "For every represented atom, the exact identity is 2L(A)=1-_i c_i^2+D(A)+E(A). In particular, D(A)+_i(c_i-s_i)^2 =1+_i c_i^2-2A(p)2L(A). The full coefficient replacement satisfies \\…",
+      "section": "A finite-coordinate toolkit",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-stab-coef-head-conflict",
+      "kind": "lemma",
+      "label": "Two represented atoms A,B , tested against the same p , satisfy 2_…",
+      "statement": "Two represented atoms A,B , tested against the same p , satisfy 2_ g:s_g(A)s_g(B)<0 |s_g(A)s_g(B)| D(A)+D(B). There are two direct proofs: one discards a suffix of the longer head, and the other…",
+      "section": "A finite-coordinate toolkit",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-stab-coef-original-products",
+      "kind": "lemma",
+      "label": "For the original crossing coefficients, _g(-c_g(A)c_g(B))_+…",
+      "statement": "For the original crossing coefficients, _g(-c_g(A)c_g(B))_+ L(A)+L(B)+2L(A)+2L(B), where r_+=(r,0) .",
+      "section": "A finite-coordinate toolkit",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-stab-coef-gate-bound",
+      "kind": "lemma",
+      "label": "Let A have a finite law of represented atoms and suppose E L(A) k , where k0 .…",
+      "statement": "Let A have a finite law of represented atoms and suppose E L(A) k , where k0 . Write \\[ =\\| E c(A)\\|_2, M_c=( E|c_g(A)|)_g, M_s=( E|s_g(A)|)_g. \\] Then \\| E s(A)\\|_2&+2k, \\\\ \\|M_s\\|_2^2&(+2k)^2+4k,…",
+      "section": "A finite-coordinate toolkit",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-stab-coef-tail-assembly",
+      "kind": "lemma",
+      "label": "Rooted mixtures and tail assembly",
+      "statement": "[Rooted mixtures and tail assembly] Let G be a finite antichain and, for each g G , let \\[ f_g=_j a_ g,j d_ [g,w_ g,j ] , M_g=_j|a_ g,j |, \\] where every sum is finite. Then \\|_g f_g\\|\\|(M_g)_g\\|_2.…",
+      "section": "A finite-coordinate toolkit",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-stab-weighted",
+      "kind": "theorem",
+      "label": "Let z_1,,z_m B_Z and let _1,,_m>0 with _i_i=1 . Put \\[ z=_i_i z_i, _i=1-z_i(p),…",
+      "statement": "Let z_1,,z_m B_Z and let _1,,_m>0 with _i_i=1 . Put \\[ z=_i_i z_i, _i=1-z_i(p), =1-z(p)=_i_i_i, =\\|Q_Hz\\|. \\] Then, for each i , \\|Q_Hz_i\\| _i^ -1 (+2 )^2+4 +2 _i. All deficits are nonnegative, and…",
+      "section": "Stability from a nearly norming head test",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-stab-bounded-multiplier",
+      "kind": "corollary",
+      "label": "Bounded multipliers",
+      "statement": "[Bounded multipliers] Let A be a finite random represented atom, and let be a real random variable on the same probability space with ||1 . Set x= EA , u= E( A) , =1-x(p) , and =\\|Q_Hx\\| . Then…",
+      "section": "Stability from a nearly norming head test",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-stab-supported-pair",
+      "kind": "corollary",
+      "label": "Let z_+,z_- B_Z . If z=(z_++z_-)/2 is supported on H and \\|z\\|1- , where 0<<1 ,…",
+      "statement": "Let z_+,z_- B_Z . If z=(z_++z_-)/2 is supported on H and \\|z\\|1- , where 0<<1 , then \\|Q_Hz_\\|(2+26). More generally, let R>0 , d0 , and h_+,h_- Z satisfy \\|h_\\| R , with h_++h_- supported on H . If…",
+      "section": "Stability from a nearly norming head test",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-stab-original-crossing",
+      "kind": "proposition",
+      "label": "Let z_1,z_2 B_Z , z=(z_1+z_2)/2 , and let H be finite ancestral. For a head…",
+      "statement": "Let z_1,z_2 B_Z , z=(z_1+z_2)/2 , and let H be finite ancestral. For a head test p , put =1-z(p) and =\\|(z(e_g))_ g G_H \\|_2 . Then \\|Q_Hz_i\\|2+(62+6). In particular, choosing a norming head test…",
+      "section": "Stability from a nearly norming head test",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-stab-small-center-tail",
+      "kind": "proposition",
+      "label": "Let 0<e<1/4 , let x Z satisfy \\|x\\|=1 , and let H be finite ancestral with…",
+      "statement": "Let 0<e<1/4 , let x Z satisfy \\|x\\|=1 , and let H be finite ancestral with \\|Q_Hx\\| e . Suppose p=P_Hp , (p)=1 , and x(p)1-e . For every u P_H , \\ \\|x+u\\|,\\|x-u\\|\\ 1+e \\|u\\|25 e.",
+      "section": "Stability from a nearly norming head test",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-stab-averaged-gain",
+      "kind": "corollary",
+      "label": "For either coordinate model, \\[ _Z(t) t^2/1024(0<t<1). \\] For every t>0 and…",
+      "statement": "For either coordinate model, \\[ _Z(t) t^2/1024(0<t<1). \\] For every t>0 and every 0<e<1/4 with 25 e<t , one also has _Z(t) e/2 .",
+      "section": "Stability from a nearly norming head test",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-molw-average",
+      "kind": "theorem",
+      "label": "Let A T_ be finite and ancestral, let x B_ be supported in A , and let z P_A .…",
+      "statement": "Let A T_ be finite and ancestral, let x B_ be supported in A , and let z P_A . Write \\[ r=\\|x\\|, L_+=\\|x+z\\|, L_-=\\|x-z\\|, L=L_++L_- 2 . \\] Then L_+,L_- r and \\|z\\| CL(L-r), C=2+6.",
+      "section": "Endpoint distributions and conditional recovery",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-molw-modulus",
+      "kind": "corollary",
+      "label": "For every t>0 , put (t)= 1+4(t/C)^2-1 2 , C=2+6. Then the averaged asymptotic…",
+      "statement": "For every t>0 , put (t)= 1+4(t/C)^2-1 2 , C=2+6. Then the averaged asymptotic modulus of B_ satisfies _ B_ (t)(t)/2>0 . The bound holds when the cofinite infimum allows every perturbation direction…",
+      "section": "Endpoint distributions and conditional recovery",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-mola-conditional",
+      "kind": "proposition",
+      "label": "Let H be finite and ancestor-closed, x=P_Hx , and x+h,x-h B_X , with arbitrary…",
+      "statement": "Let H be finite and ancestor-closed, x=P_Hx , and x+h,x-h B_X , with arbitrary h X . Suppose 0<d<1 and \\|x\\|1-d . For every >0 , choose finite represented-atom laws with means z_ such that \\|z_-(x…",
+      "section": "Endpoint distributions and conditional recovery",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-mol-closed-hull-signed",
+      "kind": "proposition",
+      "label": "In the forest space X=J^* , let H be finite and ancestral, x=P_Hx , y=Q_Hy ,…",
+      "statement": "In the forest space X=J^* , let H be finite and ancestral, x=P_Hx , y=Q_Hy , and x y B_X . Put d=1-\\|x\\| . For every >0 , the finite atomic approximation argument gives \\|y\\| e_+ e_ ^2+4(d+ ),…",
+      "section": "Endpoint distributions and conditional recovery",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-molb-unscaled-tail",
+      "kind": "proposition",
+      "label": "Let >0 and x X satisfy \\|x\\|=1 . There are a finite ancestral head H and a test…",
+      "statement": "Let >0 and x X satisfy \\|x\\|=1 . There are a finite ancestral head H and a test p=P_Hp J such that (p)1, x(p)1-, \\|Q_Hx\\|. For this same head and every y X satisfying \\|x+y\\|,\\|x-y\\|1+ , put h=6+^2 .…",
+      "section": "Endpoint distributions and conditional recovery",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-stab-coef-exact-tail",
+      "kind": "proposition",
+      "label": "Let H be finite and ancestral, x=P_Hx , P_Hz=0 , and \\|x z\\|1 . Put d=1-\\|x\\|…",
+      "statement": "Let H be finite and ancestral, x=P_Hx , P_Hz=0 , and \\|x z\\|1 . Put d=1-\\|x\\| and \\[ _ coef (d)=2(2d+ 6d+42d ) (d0). \\] The original coefficients give both \\|z\\|&(12+22) d, \\\\ \\|z\\|&_ coef (d). More…",
+      "section": "Original coefficients: cancellation and recovery",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-mola-actual",
+      "kind": "proposition",
+      "label": "In the forest space X , suppose H is finite and ancestor-closed, x=P_Hx ,…",
+      "statement": "In the forest space X , suppose H is finite and ancestor-closed, x=P_Hx , y=Q_Hy , and \\|x+y\\|,\\|x-y\\|1 . Then \\[ \\|y\\| g(1-\\|x\\|), g(s)=2s+ 6s+42s (s0). \\]",
+      "section": "Original coefficients: cancellation and recovery",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-stab-coef-unit-head-lens",
+      "kind": "corollary",
+      "label": "If x=P_Hx has norm one, P_Hy=0 , and \\|x y\\| R for R1 , then \\|y\\|(12+22)R(R-1).",
+      "statement": "If x=P_Hx has norm one, P_Hy=0 , and \\|x y\\| R for R1 , then \\|y\\|(12+22)R(R-1).",
+      "section": "Original coefficients: cancellation and recovery",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-stab-coef-approximate-tail",
+      "kind": "proposition",
+      "label": "Let H be finite and ancestral, x=P_Hx have norm one, and P_Hy=0 . For d>0 , the…",
+      "statement": "Let H be finite and ancestral, x=P_Hx have norm one, and P_Hy=0 . For d>0 , the assumptions \\|x y\\|1+d imply \\|y\\|(1+d)(72+4) d. In particular, \\|y\\|32 d when 0<d1 .",
+      "section": "Original coefficients: cancellation and recovery",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-molb-prop-original-lens",
+      "kind": "proposition",
+      "label": "For \\(0<<1\\) and every unit \\(x X\\), one can choose a finite ancestor-closed…",
+      "statement": "For \\(0<<1\\) and every unit \\(x X\\), one can choose a finite ancestor-closed \\(H\\) such that \\(\\|x y\\|1+\\) implies \\[ \\|Qy\\|():=(1+) \\ 2 (2+6 )^2 +4(3+6 ) +26 +\\ . \\] In particular \\(()0\\) as \\(0\\).",
+      "section": "Original coefficients: cancellation and recovery",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-molx-actual-center-fourth",
+      "kind": "proposition",
+      "label": "For 0<<1 and x B_X with \\|x\\|1- , there is a finite ancestral set H , depending…",
+      "statement": "For 0<<1 and x B_X with \\|x\\|1- , there is a finite ancestral set H , depending only on x and , such that every y X with x y B_X satisfies \\|Q_Hy\\| G_ orig () :=+26 +2 (2+6 )^2 +12+46 . In particular…",
+      "section": "Original coefficients: cancellation and recovery",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-stab-coef-modulus-conversions",
+      "kind": "proposition",
+      "label": "For 0<t<1 , each of the following conclusions holds. If e>0 satisfies \\[…",
+      "statement": "For 0<t<1 , each of the following conclusions holds. If e>0 satisfies \\[ (12+22)(1+e)e<t/2, \\] then _Z(t) e/4 . If 0<c<1 , R=1+4c , and R_ coef (5c/R)<t , then _Z(t) c . If d>0 , 3d<1 , and (1+2d)_…",
+      "section": "Original coefficients: cancellation and recovery",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-stab-coef-conditional-modulus",
+      "kind": "proposition",
+      "label": "For 0<t<1 , set =(t/25)^2 . If x_0=P_Hx_0 and y are unit vectors, P_Hy=0 , and…",
+      "statement": "For 0<t<1 , set =(t/25)^2 . If x_0=P_Hx_0 and y are unit vectors, P_Hy=0 , and both are finitely supported, then \\ \\|x_0+ty\\|,\\|x_0-ty\\|\\ >1+. For general unit y P_H , the same inequality holds with…",
+      "section": "Original coefficients: cancellation and recovery",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-molb-lem-matching",
+      "kind": "lemma",
+      "label": "Fix a primal unit vector \\(z\\) supported on \\(H\\), and a finite probability…",
+      "statement": "Fix a primal unit vector \\(z\\) supported on \\(H\\), and a finite probability distribution of represented atoms \\(A_=_Ic_ I 1_I\\), with probabilities \\(p_\\). Write \\[ b_ I =z(I), L_=1-_Ib_ I ^2,…",
+      "section": "Alternative cancellation estimates",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-molb-prop-matching-lens",
+      "kind": "proposition",
+      "label": "For \\(0<h<1/4\\) and every unit \\(x X\\), there is a finite ancestor-closed…",
+      "statement": "For \\(0<h<1/4\\) and every unit \\(x X\\), there is a finite ancestor-closed \\(H\\), depending only on \\(x,h\\), such that \\(\\|x y\\|1+h\\) implies \\|Qy\\| h+(1+h) .",
+      "section": "Alternative cancellation estimates",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-molx-minimum-tail",
+      "kind": "proposition",
+      "label": "Let X=J^* be the finite-height forest space defined by , with the atomic and…",
+      "statement": "Let X=J^* be the finite-height forest space defined by , with the atomic and polar norm identifications of Proposition~ . For a finite ancestor-closed set A F , let P_A be coordinate restriction on X…",
+      "section": "Alternative cancellation estimates",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-molc-oriented-lens",
+      "kind": "proposition",
+      "label": "Let A be a nonempty finite ancestral set and let x,y B_ with x=P_Ax and P_Ay=0…",
+      "statement": "Let A be a nonempty finite ancestral set and let x,y B_ with x=P_Ax and P_Ay=0 . For every 0 , \\[ \\ \\|x+y\\|,\\|x-y\\|\\ 1, \\|x\\|1- \\|y\\| (2+10). \\]",
+      "section": "Alternative cancellation estimates",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-molb-prop-target-signs",
+      "kind": "proposition",
+      "label": "Suppose \\(Px=x\\), \\(Qy=y\\), and \\(\\|x y\\|1\\). Then \\|y\\|(22+26)1-\\|x\\|…",
+      "statement": "Suppose \\(Px=x\\), \\(Qy=y\\), and \\(\\|x y\\|1\\). Then \\|y\\|(22+26)1-\\|x\\| 81-\\|x\\|. Consequently, if \\(\\|p u_j\\|1\\) and \\(\\|u_i-u_j\\|>0\\) for all distinct \\(i,j\\) in an infinite sequence, then…",
+      "section": "Signs determined by the target tail",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-stab-sign-parent-lens",
+      "kind": "proposition",
+      "label": "Let H be finite and ancestral, x=P_Hx with \\|x\\|=1 , and u P_H . For every L>1…",
+      "statement": "Let H be finite and ancestral, x=P_Hx with \\|x\\|=1 , and u P_H . For every L>1 , \\ \\|x+u\\|,\\|x-u\\|\\ <L \\|u\\| 3(L^2-1 +2 1-L^ -2 2 ).",
+      "section": "Choosing signs at the boundary",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-stab-sign-parent-modulus",
+      "kind": "corollary",
+      "label": "Let b_L=L^2-1+2 (1-L^ -2 )/2 for L>1 . If 0<t<1 and L is chosen so that 3b_L<t…",
+      "statement": "Let b_L=L^2-1+2 (1-L^ -2 )/2 for L>1 . If 0<t<1 and L is chosen so that 3b_L<t , then \\[ _Z(t) (L-1)/8>0. \\]",
+      "section": "Choosing signs at the boundary",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-stab-sign-forest-parent-lens",
+      "kind": "corollary",
+      "label": "A forest lens from preferred parent signs",
+      "statement": "[A forest lens from preferred parent signs] In the forest space X , let h=P_Hh , P_Hu=0 , and h+u,h-u B_X . Then \\|u\\|3(2+2)1-\\|h\\|.",
+      "section": "Choosing signs at the boundary",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-stab-sign-exit-lens",
+      "kind": "proposition",
+      "label": "Let x=P_Hx , \\|x\\|=1 , and y P_H . Put C_ ex =2+32 . For every >0 , with =/(1+)…",
+      "statement": "Let x=P_Hx , \\|x\\|=1 , and y P_H . Put C_ ex =2+32 . For every >0 , with =/(1+) , \\ \\|x+y\\|,\\|x-y\\|\\ 1+ \\|y\\| 1+ 3C_ ex .",
+      "section": "Choosing signs at the boundary",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-stab-sign-exit-modulus",
+      "kind": "corollary",
+      "label": "For 0<t<1 and C_ ex =2+32 , \\[ _ B_ (t)t^2 576C_ ex ^2 . \\]",
+      "statement": "For 0<t<1 and C_ ex =2+32 , \\[ _ B_ (t)t^2 576C_ ex ^2 . \\]",
+      "section": "Choosing signs at the boundary",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-stab-trim-vanishing-lens",
+      "kind": "proposition",
+      "label": "There are no sequences of finite ancestral sets H_n , finite-head unit vectors…",
+      "statement": "There are no sequences of finite ancestral sets H_n , finite-head unit vectors x_n=P_ H_n x_n , and finitely supported z_n P_ H_n such that \\[ \\ \\|x_n+z_n\\|,\\|x_n-z_n\\|\\ 1, _n\\|z_n\\|>0. \\] The same…",
+      "section": "Trimming by maximal splitting gain",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-stab-trim-modulus",
+      "kind": "corollary",
+      "label": "For the coordinate segment space, _ B_ (t)>0 for every 0<t<1 .",
+      "statement": "For the coordinate segment space, _ B_ (t)>0 for every 0<t<1 .",
+      "section": "Trimming by maximal splitting gain",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-mol-finite-head-pair",
+      "kind": "lemma",
+      "label": "Let P be a bounded finite-rank projection on a Banach space and let (u_j) be an…",
+      "statement": "Let P be a bounded finite-rank projection on a Banach space and let (u_j) be an infinite bounded sequence. For every >0 there are distinct i,j with \\|P(u_i-u_j)\\|< . If in addition x u_j R B and…",
+      "section": "Sequential cancellation in the forest",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-mola-sequential",
+      "kind": "lemma",
+      "label": "For each positive integer n , let H_n be a finite ancestor-closed subset of the…",
+      "statement": "For each positive integer n , let H_n be a finite ancestor-closed subset of the finite-height forest, and let x_n,y_n X satisfy \\[ P_ H_n x_n=x_n, P_ H_n y_n=0, \\|x_n+y_n\\|,\\|x_n-y_n\\|1. \\] If…",
+      "section": "Sequential cancellation in the forest",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-mola-uniform-sequential",
+      "kind": "corollary",
+      "label": "For every >0 there is >0 such that, for every finite ancestor-closed H and all…",
+      "statement": "For every >0 there is >0 such that, for every finite ancestor-closed H and all x=P_Hx , y=Q_Hy with \\|x y\\|1 and \\|x\\|>1- , one has \\|y\\|< . The given norm is asymptotically midpoint uniformly…",
+      "section": "Sequential cancellation in the forest",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-mola-separated-sequential",
+      "kind": "corollary",
+      "label": "For every >0 there is >0 such that any infinite -separated family (v_j)…",
+      "statement": "For every >0 there is >0 such that any infinite -separated family (v_j) satisfying x v_j B_X has \\|x\\|1- .",
+      "section": "Sequential cancellation in the forest",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-molx-coordinate-null",
+      "kind": "corollary",
+      "label": "Let x X and let (z_j) X satisfy x z_j B_X and z_j(e_v)0 for every forest vertex…",
+      "statement": "Let x X and let (z_j) X satisfy x z_j B_X and z_j(e_v)0 for every forest vertex v . Then, with C=2+26<7 , _ j \\|z_j\\| C1-\\|x\\|71-\\|x\\|.",
+      "section": "Sequential cancellation in the forest",
+      "manuscript": "Midpoint lenses in segment spaces"
+    },
+    {
+      "id": "m2-molc-sequential-positive",
+      "kind": "proposition",
+      "label": "For each fixed 0<t<1 , the space B_ satisfies _ B_ (t)>0 .",
+      "statement": "For each fixed 0<t<1 , the space B_ satisfies _ B_ (t)>0 .",
+      "section": "Qualitative midpoint arguments in infinite height",
+      "manuscript": "Midpoint lenses in segment spaces"
+    }
+  ],
+  "edges": []
+}

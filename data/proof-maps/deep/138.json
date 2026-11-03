@@ -1,0 +1,392 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "138",
+  "title": "Subset Sum in `O(2^ 0.49n )` time",
+  "result": {
+    "id": "paper-result",
+    "label": "Subset Sum in `O(2^ 0.49n )` time",
+    "statement": "Gives a uniform randomized classical algorithm for worst-case Subset Sum in ordinary O(2^ 0.49n ) word-RAM time on polynomial-bit inputs, where n counts the integers. The time bound holds on every execution and success probability is at least 2/3 on every input. Inputs may repeat positive integers; words have O(n+b) bits for maximum input bit length b .",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "isolation-distinct-sums-and-prime-collisions",
+      "label": "Isolation, distinct sums, and prime collisions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-fixed-filtering-construction",
+      "label": "A fixed filtering construction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "estimating-a-modular-checksum",
+      "label": "Estimating a modular checksum",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "extracting-the-modular-aliases",
+      "label": "Extracting the modular aliases",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "counting-and-enumeration-tools",
+      "label": "Counting and enumeration tools",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "compressing-repeated-sums",
+      "label": "Compressing repeated sums",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "representations-and-bounded-parent-dictionaries",
+      "label": "Representations and bounded parent dictionaries",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "weighted-disjointness-in-bounded-space",
+      "label": "Weighted disjointness in bounded space",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "survival-within-the-resource-budgets",
+      "label": "Survival within the resource budgets",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-single-uniform-bounded-algorithm",
+      "label": "A single uniform bounded algorithm",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Subset Sum in Time $`O(2^{0.49n})`$",
+      "title": "Subset Sum in Time $`O(2^{0.49n})`$",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-04",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Subset-Sum-in-Time-2-power-0-49n-October-4-2026/subset-sum.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Subset Sum in Time $`O(2^{0.49n})`$.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-isolation",
+          "role": "isolation-distinct-sums-and-prime-collisions",
+          "label": "lemma m1-lem-isolation",
+          "fullLabel": "lemma m1-lem-isolation",
+          "kind": "lemma",
+          "source": "Isolation, distinct sums, and prime collisions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-deficiency",
+          "role": "isolation-distinct-sums-and-prime-collisions",
+          "label": "lemma m1-lem-deficiency",
+          "fullLabel": "lemma m1-lem-deficiency",
+          "kind": "lemma",
+          "source": "Isolation, distinct sums, and prime collisions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-half-variance",
+          "role": "isolation-distinct-sums-and-prime-collisions",
+          "label": "lemma m1-lem-half-variance",
+          "fullLabel": "lemma m1-lem-half-variance",
+          "kind": "lemma",
+          "source": "Isolation, distinct sums, and prime collisions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-preliminary",
+          "role": "isolation-distinct-sums-and-prime-collisions",
+          "label": "proposition m1-prop-preliminary",
+          "fullLabel": "proposition m1-prop-preliminary",
+          "kind": "proposition",
+          "source": "Isolation, distinct sums, and prime collisions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-prime-collision",
+          "role": "isolation-distinct-sums-and-prime-collisions",
+          "label": "lemma m1-lem-prime-collision",
+          "fullLabel": "lemma m1-lem-prime-collision",
+          "kind": "lemma",
+          "source": "Isolation, distinct sums, and prime collisions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-filtering-moments",
+          "role": "a-fixed-filtering-construction",
+          "label": "proposition m1-prop-filtering-moments",
+          "fullLabel": "proposition m1-prop-filtering-moments",
+          "kind": "proposition",
+          "source": "A fixed filtering construction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lemma-finite-filtering",
+          "role": "a-fixed-filtering-construction",
+          "label": "lemma m1-lemma-finite-filtering",
+          "fullLabel": "lemma m1-lemma-finite-filtering",
+          "kind": "lemma",
+          "source": "A fixed filtering construction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-checksum",
+          "role": "estimating-a-modular-checksum",
+          "label": "theorem m1-thm-checksum",
+          "fullLabel": "theorem m1-thm-checksum",
+          "kind": "theorem",
+          "source": "Estimating a modular checksum",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lemma-checksum-tables",
+          "role": "estimating-a-modular-checksum",
+          "label": "lemma m1-lemma-checksum-tables",
+          "fullLabel": "lemma m1-lemma-checksum-tables",
+          "kind": "lemma",
+          "source": "Estimating a modular checksum",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-aliases",
+          "role": "extracting-the-modular-aliases",
+          "label": "theorem m1-thm-aliases",
+          "fullLabel": "theorem m1-thm-aliases",
+          "kind": "theorem",
+          "source": "Extracting the modular aliases",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sparse-distinction",
+          "role": "extracting-the-modular-aliases",
+          "label": "lemma m1-lem-sparse-distinction",
+          "fullLabel": "lemma m1-lem-sparse-distinction",
+          "kind": "lemma",
+          "source": "Extracting the modular aliases",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "A Low-Space Algorithm for Worst-Case Subset Sum",
+      "title": "A Low-Space Algorithm for Worst-Case Subset Sum",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-26",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Low-Space-Algorithm-for-Worst-Case-Subset-Sum-September-26-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from A Low-Space Algorithm for Worst-Case Subset Sum.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-target",
+          "role": "introduction",
+          "label": "corollary m2-cor-target",
+          "fullLabel": "corollary m2-cor-target",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-deficiency",
+          "role": "counting-and-enumeration-tools",
+          "label": "lemma m2-lem-deficiency",
+          "fullLabel": "lemma m2-lem-deficiency",
+          "kind": "lemma",
+          "source": "Counting and enumeration tools",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-entropy",
+          "role": "counting-and-enumeration-tools",
+          "label": "lemma m2-lem-entropy",
+          "fullLabel": "lemma m2-lem-entropy",
+          "kind": "lemma",
+          "source": "Counting and enumeration tools",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-prime",
+          "role": "counting-and-enumeration-tools",
+          "label": "lemma m2-lem-prime",
+          "fullLabel": "lemma m2-lem-prime",
+          "kind": "lemma",
+          "source": "Counting and enumeration tools",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-streams",
+          "role": "counting-and-enumeration-tools",
+          "label": "lemma m2-lem-streams",
+          "fullLabel": "lemma m2-lem-streams",
+          "kind": "lemma",
+          "source": "Counting and enumeration tools",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-compressed",
+          "role": "compressing-repeated-sums",
+          "label": "lemma m2-lem-compressed",
+          "fullLabel": "lemma m2-lem-compressed",
+          "kind": "lemma",
+          "source": "Compressing repeated sums",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-alg-validity",
+          "role": "representations-and-bounded-parent-dictionaries",
+          "label": "lemma m2-alg-validity",
+          "fullLabel": "lemma m2-alg-validity",
+          "kind": "lemma",
+          "source": "Representations and bounded parent dictionaries",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-prefix",
+          "role": "representations-and-bounded-parent-dictionaries",
+          "label": "lemma m2-lem-prefix",
+          "fullLabel": "lemma m2-lem-prefix",
+          "kind": "lemma",
+          "source": "Representations and bounded parent dictionaries",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-separator",
+          "role": "weighted-disjointness-in-bounded-space",
+          "label": "lemma m2-lem-separator",
+          "fullLabel": "lemma m2-lem-separator",
+          "kind": "lemma",
+          "source": "Weighted disjointness in bounded space",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-separator-reuse",
+          "role": "weighted-disjointness-in-bounded-space",
+          "label": "corollary m2-cor-separator-reuse",
+          "fullLabel": "corollary m2-cor-separator-reuse",
+          "kind": "corollary",
+          "source": "Weighted disjointness in bounded space",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-representation",
+          "role": "survival-within-the-resource-budgets",
+          "label": "lemma m2-lem-representation",
+          "fullLabel": "lemma m2-lem-representation",
+          "kind": "lemma",
+          "source": "Survival within the resource budgets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-resources",
+          "role": "survival-within-the-resource-budgets",
+          "label": "lemma m2-lem-resources",
+          "fullLabel": "lemma m2-lem-resources",
+          "kind": "lemma",
+          "source": "Survival within the resource budgets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-samplers",
+          "role": "a-single-uniform-bounded-algorithm",
+          "label": "lemma m2-lem-samplers",
+          "fullLabel": "lemma m2-lem-samplers",
+          "kind": "lemma",
+          "source": "A single uniform bounded algorithm",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Subset Sum in Time $`O(2^{0.49n})`$",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Subset-Sum-in-Time-2-power-0-49n-October-4-2026/subset-sum.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "A Low-Space Algorithm for Worst-Case Subset Sum",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Low-Space-Algorithm-for-Worst-Case-Subset-Sum-September-26-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

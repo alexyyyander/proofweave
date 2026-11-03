@@ -1,0 +1,488 @@
+{
+  "familyNumber": "265",
+  "familyTitle": "Area laws and tensor networks for two-dimensional gapped systems",
+  "manuscripts": [
+    {
+      "id": "A-two-dimensional-area-law-from-a-global-spectral-gap-September-24-2026",
+      "title": "A two-dimensional area law from a global spectral gap",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-two-dimensional-area-law-from-a-global-spectral-gap-September-24-2026/paper.pdf"
+    },
+    {
+      "id": "Polynomial-PEPS-approximation-of-gapped-square-grid-ground-states-September-24-2026",
+      "title": "Polynomial PEPS approximation of gapped square-grid ground states",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Polynomial-PEPS-approximation-of-gapped-square-grid-ground-states-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Entropy and induced-graph locality",
+    "Marginal tails and an initial box estimate",
+    "Positive constraints and truncation near a finite set",
+    "Two conditional operator estimates",
+    "Symmetric replicas and entropy metrics",
+    "Transport through finite trees of metrics",
+    "Norm comparisons from an auxiliary pair",
+    "Scanning collars and improving the entropy bound",
+    "Amplifying the collar estimate",
+    "Two families of regions and the area bound",
+    "Conventions and entropy inputs",
+    "Information bounds for separated regions",
+    "Adaptive finite-rank constraints on small patches",
+    "Compression of distributed density networks",
+    "Encoded frames and changes of ownership",
+    "A finite planar distribution protocol",
+    "From the protocol to a PEPS"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-area",
+      "kind": "theorem",
+      "label": "Area law",
+      "statement": "[Area law] For every q,R,J as above and every >0 , there is a finite constant C=C(q,R,J,) with the following property. Suppose that is a finite induced square-lattice domain and that the Hamiltonian…",
+      "section": "Introduction",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-cor-rectangles",
+      "kind": "corollary",
+      "label": "The conclusion of Theorem~ holds for every subset of a finite rectangular…",
+      "statement": "The conclusion of Theorem~ holds for every subset of a finite rectangular square lattice with bounded on-site and nearest-neighbor interactions and a unique ground state separated by a fixed global…",
+      "section": "Introduction",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-lem-continuity",
+      "kind": "lemma",
+      "label": "Continuity with a fixed controlled system",
+      "statement": "[Continuity with a fixed controlled system] Let , be density operators on finite-dimensional D E , and put =12 - _11 and d_D= D . Then |S(D|E)_-S(D|E)_| 2 d_D+(1+) h( 1+ ) C(e d_D). The same…",
+      "section": "Entropy and induced-graph locality",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-lem-zero-boundary",
+      "kind": "lemma",
+      "label": "A cut with no crossing edge",
+      "statement": "[A cut with no crossing edge] Under the hypotheses of Theorem~ , if _ A= , then S_(A)=0 .",
+      "section": "Entropy and induced-graph locality",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-lem-tail",
+      "kind": "lemma",
+      "label": "Marginal moment and tail bounds",
+      "statement": "[Marginal moment and tail bounds] Let H=_ v V H_v be a finite tensor product of finite-dimensional Hilbert spaces. Let H=_ i I h_i , where I is finite, each h_i is self-adjoint, h_i c_0 for a fixed…",
+      "section": "Marginal tails and an initial box estimate",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-lem-initial-buffer",
+      "kind": "lemma",
+      "label": "Conditional entropy in a buffered rectangle",
+      "statement": "[Conditional entropy in a buffered rectangle] There are integers C_ pad 1 and a constant C_ buf , depending only on q,R,J, , with the following property. Let Q be safe, let r1 be an integer, and let…",
+      "section": "Marginal tails and an initial box estimate",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-prop-initial-box",
+      "kind": "proposition",
+      "label": "Initial safe-box estimate",
+      "statement": "[Initial safe-box estimate] There are constants C< and e_0(0,1) , depending only on q,R,J, , such that F_ box (r) Cr^ 1+e_0 (r1).",
+      "section": "Marginal tails and an initial box estimate",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-lem-quasilocal-lr",
+      "kind": "lemma",
+      "label": "Graph-distance propagation",
+      "statement": "[Graph-distance propagation] Let _t(B)=e^ itH Be^ -itH . There are positive constants C,v,c such that, for every original support X_i , every operator A supported in X_i , every site y , and every…",
+      "section": "Positive constraints and truncation near a finite set",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-lem-quasilocal-filter",
+      "kind": "lemma",
+      "label": "A compactly supported spectral filter",
+      "statement": "[A compactly supported spectral filter] Fix an integer p1 , put =p/(p+1) , and let >0 . Define the real even function \\[ ()= e,&||<,\\\\ 0,&||. \\] Then C_c^( R) , (0)=1 , and the real even function \\[…",
+      "section": "Positive constraints and truncation near a finite set",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-prop-positive",
+      "kind": "proposition",
+      "label": "Positive replacement of the Hamiltonian",
+      "statement": "[Positive replacement of the Hamiltonian] Suppose H=E_0 , \\|\\|=1 , and \\[ H-E_0I(I-P_), P_=||. \\] For each integer p1 and =p/(p+1) , there are operators k_i , indexed by the original supports and…",
+      "section": "Positive constraints and truncation near a finite set",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-lem-quasilocal-roots",
+      "kind": "lemma",
+      "label": "Square roots and local channels",
+      "statement": "[Square roots and local channels] For the constraints of Proposition~ , define \\[ G_i=(I-k_i)^ 1/2 , K_i=k_i^ 1/2 , G_ i,l =(I-k_ i,l )^ 1/2 , K_ i,l =k_ i,l ^ 1/2 . \\] These are positive…",
+      "section": "Positive constraints and truncation near a finite set",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-prop-truncation",
+      "kind": "proposition",
+      "label": "Truncation near a finite set",
+      "statement": "[Truncation near a finite set] Use Proposition~ with p=1 , so =1/2 . Fix C_0>0 . There is a constant C_1 , depending only on q,R,J,,C_0 , with the following property for every real n2 and every…",
+      "section": "Positive constraints and truncation near a finite set",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-lem-movement",
+      "kind": "lemma",
+      "label": "Conditional movement estimate",
+      "statement": "[Conditional movement estimate] Let be a unit pure vector on four finite-dimensional systems P,x,U,F , and let _D denote its marginal on D . Set \\[ d= x, =(ed), =S(x|P)_+S(x|U)_ =I(x:F|U)_=I(x:F|P)_.…",
+      "section": "Two conditional operator estimates",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-lem-conditional-phases",
+      "kind": "lemma",
+      "label": "Marginal-phase comparison",
+      "statement": "[Marginal-phase comparison] Let be a unit pure vector on finite-dimensional systems P,x,U,F , write _D for its marginals, and put d= x and =I(x:F|U)_ . For >0 define \\[ y=(1,), R_= y+ (ed/y), \\] and…",
+      "section": "Two conditional operator estimates",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-lem-skew",
+      "kind": "lemma",
+      "label": "Conditional skew estimate",
+      "statement": "[Conditional skew estimate] Let be a unit pure vector on P,x,U,F , put Y=xU , and write _D for its marginals. Suppose P=P_0P_1 and that 0 h I is supported on P_0x . Set \\[ d_h=( P_0)( x), _h=(ed_h),…",
+      "section": "Two conditional operator estimates",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-lem-schur",
+      "kind": "lemma",
+      "label": "Schur-label estimates",
+      "statement": "[Schur-label estimates] For the finite-dimensional tensor systems just defined, the following statements hold. For k of length at most q , put l_i=_i+q-i for 1 i q . Then V^ (q) _ =_ i<j l_i-l_j j-i…",
+      "section": "Symmetric replicas and entropy metrics",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-replicas-metric",
+      "kind": "lemma",
+      "label": "Integral formula and marked ratios",
+      "statement": "[Integral formula and marked ratios] The operators in are positive definite and central. Uniformly in their labels, (k)^ -1 e^ -tF_ Q,k W_ Q,k (k)e^ -tF_ Q,k . On S_k , W_ Q,k =W_ Q^c,k exactly. For…",
+      "section": "Symmetric replicas and entropy metrics",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-lem-relative-pin",
+      "kind": "lemma",
+      "label": "Relative coherent pin",
+      "statement": "[Relative coherent pin] Let P,x,Y_0,F partition the fixed finite system V , put Y=xY_0 , and let \\[ A_k=A_k(P,xY_0,F), B_k=A_k(Px,Y_0,F), C_ x,k =A_k^ -1/2 B_kA_k^ -1/2 . \\] Suppose 0<t<1/4 , a=2t ,…",
+      "section": "Symmetric replicas and entropy metrics",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-lem-symbol",
+      "kind": "lemma",
+      "label": "Marked-copy scalar symbols",
+      "statement": "[Marked-copy scalar symbols] Fix a partition P,Y,F of V , 0<t<1/4 , and a one-copy operator h supported on PY . Let A_k be , and define on S_k \\[ O_k=A_k^ -1/2 h A_k^ 1/2 , f_=, _P^t_Y^ -t h_P^ -t…",
+      "section": "Symmetric replicas and entropy metrics",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-transport-means",
+      "kind": "lemma",
+      "label": "Properties of a finite mean tree",
+      "statement": "[Properties of a finite mean tree] Let T be a weighted binary tree with terminal weights w_j and positive definite inputs A_j , and let M be its root. The root commutes with invertible congruence, is…",
+      "section": "Transport through finite trees of metrics",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-transport-cp",
+      "kind": "lemma",
+      "label": "Normalized derivative maps",
+      "statement": "[Normalized derivative maps] At a binary vertex with output M and a child D of positive edge weight w , define _D(Z)=1w M^ -1/2 _D M[D^ 1/2 ZD^ 1/2 ]M^ -1/2 . Here _D is the Fr\\'echet derivative with…",
+      "section": "Transport through finite trees of metrics",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-transport-fourier",
+      "kind": "lemma",
+      "label": "The two Fourier multipliers",
+      "statement": "[The two Fourier multipliers] For real z , g_s(z)=_ e^ iuz m_s(u)\\,du, m_s(u)>0, _ m_s(u)\\,du=2s. For s=1/4 , the functions h_(z)= e^ sz -1 2(z/2) = e^ sz/2 g_ s/2 (z) have Fourier densities q_(u)=…",
+      "section": "Transport through finite trees of metrics",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-prop-transport",
+      "kind": "proposition",
+      "label": "Entropy and energy transport",
+      "statement": "[Entropy and energy transport] Fix a finite one-copy space, history and conditional choice trees, partitions, cross-band commutation, positive parameter a , and positive contractions with designated…",
+      "section": "Transport through finite trees of metrics",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-prop-comparators",
+      "kind": "proposition",
+      "label": "Upper and lower norm comparisons",
+      "statement": "[Upper and lower norm comparisons] Fix the positive gapped Hamiltonian and physical target X above, a finite collection of status partitions satisfying , a typical Schmidt set satisfying , and a mean…",
+      "section": "Norm comparisons from an auxiliary pair",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-scanner-histories",
+      "kind": "lemma",
+      "label": "Geometry and probabilities of the scan",
+      "statement": "[Geometry and probabilities of the scan] Under -- , the preceding construction has the following properties for all sufficiently large \\(n\\). Every splitting designated support is a graph…",
+      "section": "Scanning collars and improving the entropy bound",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-prop-scanner",
+      "kind": "proposition",
+      "label": "The scanner estimate",
+      "statement": "[The scanner estimate] Assume and , and let \\(0<e<1\\) satisfy \\( e\\). Suppose S_(X) C_e n^ 1+e , S_(Q_j) C_e(nL^e+n)(0 j L). Let \\(=n^ - \\), where \\(>0\\) is fixed, and suppose \\(a r_0^2\\) is…",
+      "section": "Scanning collars and improving the entropy bound",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-scanner-templates",
+      "kind": "lemma",
+      "label": "Rows, coverings, and shell entropy",
+      "statement": "[Rows, coverings, and shell entropy] For \\(C_ tpl \\) sufficiently large, a template satisfies |T| Cns_0, |T_j T_ j-1 | n(1 j s_0), |_ ^2 T_j| Cn(0 j s_0). Suppose it is separated from the cut and,…",
+      "section": "Scanning collars and improving the entropy bound",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-prop-small-box",
+      "kind": "proposition",
+      "label": "Improved safe-box estimate",
+      "statement": "[Improved safe-box estimate] There is a constant \\(C\\), depending only on the Hamiltonian parameters, such that \\[ F_ box (r) Cr^ 1+e_* (r1), e_*=210^ -6 . \\]",
+      "section": "Scanning collars and improving the entropy bound",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-prop-collar",
+      "kind": "proposition",
+      "label": "A sublinear collar bound",
+      "statement": "[A sublinear collar bound] Let \\(T\\) be a template separated from the cut, with parameters \\((n,s_0)\\) as in Definition~ . Set \\[ L= n^ 1-10^ -5 , X=A T, S_0=A T_L, \\] and suppose \\(L s_0\\). For all…",
+      "section": "Scanning collars and improving the entropy bound",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-lem-amplification-local-products",
+      "kind": "lemma",
+      "label": "Local constraint products",
+      "statement": "[Local constraint products] Let positive contractions k_i , anchored at a_i with bounded multiplicity, satisfy \\[ \\|k_i-E_ i,l k_i\\| C e^ -c l^ (l0), \\] where E_ i,l is conditional expectation onto…",
+      "section": "Amplifying the collar estimate",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-prop-amplification",
+      "kind": "proposition",
+      "label": "Amplification",
+      "statement": "[Amplification] Fix C_0>0 and let ,, be as in . Suppose n2 , L= n^ 1- , and \\[ X=A T, S_0=A T_L, Y=S_0 X, Z'= S_0. \\] Assume that |S_0| C_0n^2 , that each of the three cuts X,Y,S_0 has at most C_0n…",
+      "section": "Amplifying the collar estimate",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-geometry-cancellation",
+      "kind": "lemma",
+      "label": "Two-family entropy cancellation",
+      "statement": "[Two-family entropy cancellation] Let be a pure state on a finite tensor product with site set . Suppose that \\[ A=D _ i I_0 X_i _ i I_1 X_i \\] is a partition into disjoint sets, and fix an order on…",
+      "section": "Two families of regions and the area bound",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-prop-two-families",
+      "kind": "proposition",
+      "label": "Two families with separated birth templates",
+      "statement": "[Two families with separated birth templates] Fix the constants D_0 and C_ tpl in Definition~ , and a lower scale threshold n_*1 . There is a constant C with the following property. Let be a finite…",
+      "section": "Two families of regions and the area bound",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-geometry-initial-stars",
+      "kind": "lemma",
+      "label": "Isolated stars of the initial mesh",
+      "statement": "[Isolated stars of the initial mesh] There is an absolute constant a_0>0 , independent of the layer and the chosen shifts, such that, on taking k_0 sufficiently large: Distinct marks v,w satisfy v-w_…",
+      "section": "Two families of regions and the area bound",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-geometry-repair-induction",
+      "kind": "lemma",
+      "label": "Uniform repair induction",
+      "statement": "[Uniform repair induction] For a sufficiently small fixed choice of a_0 and the corresponding threshold S_* , every active mark (v,S) at every generation has a terminal-square-free isolated star…",
+      "section": "Two families of regions and the area bound",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m1-geometry-birth-separation",
+      "kind": "lemma",
+      "label": "Birth-template separation",
+      "statement": "[Birth-template separation] There is a fixed c_1>0 such that the following holds. Let B be the closed birth region of an initial belt tile of side scale u=t_k , or of a replacement tile whose removal…",
+      "section": "Two families of regions and the area bound",
+      "manuscript": "A two-dimensional area law from a global spectral gap"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Fix an integer q2 and constants J,>0 . There are constants C,c>0 , depending…",
+      "statement": "Fix an integer q2 and constants J,>0 . There are constants C,c>0 , depending only on q,J, , with the following property. For every L2 , consider any Hermitian Hamiltonian H=_ v_L h_v+_ e E(_L) h_e,…",
+      "section": "Introduction",
+      "manuscript": "Polynomial PEPS approximation of gapped square-grid ground states"
+    },
+    {
+      "id": "m2-prop-area-law",
+      "kind": "proposition",
+      "label": "Entropy area law, [Theorem~1.1 and Corollary~1.2",
+      "statement": "[Entropy area law, ] Under -- , there is C_A=C_A(q,J,) such that every A satisfies \\[ S_(A) C_A|_ A|, _ A=\\ \\ x,y\\ E():x A, \\ y A\\ . \\] The same constant works for every L and every Hamiltonian in…",
+      "section": "Conventions and entropy inputs",
+      "manuscript": "Polynomial PEPS approximation of gapped square-grid ground states"
+    },
+    {
+      "id": "m2-lem-fidelity",
+      "kind": "lemma",
+      "label": "For normalized finite-dimensional states, F(,) e^ -D()/2 , D(_ AC _A_C)=I(A:C),…",
+      "statement": "For normalized finite-dimensional states, F(,) e^ -D()/2 , D(_ AC _A_C)=I(A:C), Moreover, after enlarging the purifying space if necessary, an isometry on that space realizes overlap F(,) between…",
+      "section": "Conventions and entropy inputs",
+      "manuscript": "Polynomial PEPS approximation of gapped square-grid ground states"
+    },
+    {
+      "id": "m2-prop-coarse",
+      "kind": "proposition",
+      "label": "Coarse information outside a sublinear collar",
+      "statement": "[Coarse information outside a sublinear collar] Fix an integer N_01 and a constant A_01 . There are <1 , C< , and u_0< such that the following holds. Let u u_0 and let T be the full ambient lattice…",
+      "section": "Information bounds for separated regions",
+      "manuscript": "Polynomial PEPS approximation of gapped square-grid ground states"
+    },
+    {
+      "id": "m2-lem-cell-cmi",
+      "kind": "lemma",
+      "label": "Conditional information of one cell",
+      "statement": "[Conditional information of one cell] Fix c>0 . Tile the plane by an axis-parallel grid of squares of side s1 . Let G be the physical sample of one cell, let B be the physical sample of any union of…",
+      "section": "Information bounds for separated regions",
+      "manuscript": "Polynomial PEPS approximation of gapped square-grid ground states"
+    },
+    {
+      "id": "m2-lem-reset",
+      "kind": "lemma",
+      "label": "Information reset",
+      "statement": "[Information reset] For every fixed p>0 there is C_p< with the following property for all sufficiently large L . Let R,C be disjoint, let R_0 R and C_0 C , and suppose \\[ I_(R:C) b, b0. \\] If _(R_0,…",
+      "section": "Information bounds for separated regions",
+      "manuscript": "Polynomial PEPS approximation of gapped square-grid ground states"
+    },
+    {
+      "id": "m2-prop-angular",
+      "kind": "proposition",
+      "label": "Information under angular separation",
+      "statement": "[Information under angular separation] Fix a>0 , A_01 , an integer m_00 , and p>0 . There is D< such that the following holds for all sufficiently large L . Let V be a set of at most m_0 marked…",
+      "section": "Information bounds for separated regions",
+      "manuscript": "Polynomial PEPS approximation of gapped square-grid ground states"
+    },
+    {
+      "id": "m2-prop-patch",
+      "kind": "proposition",
+      "label": "Adaptive patch constraint",
+      "statement": "[Adaptive patch constraint] Fix \\(B_0>0\\) and \\(p>0\\). There are constants \\(C,c>0\\), depending only on \\(q,J,,B_0,p\\), with the following property. For every \\(L2\\), center \\(z R^2\\), and \\(0<u B_0…",
+      "section": "Adaptive finite-rank constraints on small patches",
+      "manuscript": "Polynomial PEPS approximation of gapped square-grid ground states"
+    },
+    {
+      "id": "m2-lem-effects",
+      "kind": "lemma",
+      "label": "Elimination of normalized pair effects",
+      "statement": "[Elimination of normalized pair effects] Let G be a contraction with an expansion G=_ c_ M_ into K allowed monomials on a fixed set of parties. Suppose each monomial has at most r pair effects. For…",
+      "section": "Compression of distributed density networks",
+      "manuscript": "Polynomial PEPS approximation of gapped square-grid ground states"
+    },
+    {
+      "id": "m2-thm-compression",
+      "kind": "theorem",
+      "label": "Distributed density compression",
+      "statement": "[Distributed density compression] Consider a family of distributed constructions indexed by L2 with the following uniform properties. The number of parties and gates is uniformly polynomial. The…",
+      "section": "Compression of distributed density networks",
+      "manuscript": "Polynomial PEPS approximation of gapped square-grid ground states"
+    },
+    {
+      "id": "m2-lem-group-tensor",
+      "kind": "lemma",
+      "label": "Whole-group tensor bound",
+      "statement": "[Whole-group tensor bound] Let a finite graph carry at each vertex a Hilbert-space tensor of norm at most one. Contract its internal edges by the usual coordinate pairing, and suppose there are no…",
+      "section": "Encoded frames and changes of ownership",
+      "manuscript": "Polynomial PEPS approximation of gapped square-grid ground states"
+    },
+    {
+      "id": "m2-lem-small-rewrite",
+      "kind": "lemma",
+      "label": "Small-patch rewrite",
+      "statement": "[Small-patch rewrite] Consider old and new one-sheet frames. Only a bounded number of their holes are affected; all other holes, encodings, and tag owners agree. Suppose there are m=O(1) additional…",
+      "section": "Encoded frames and changes of ownership",
+      "manuscript": "Polynomial PEPS approximation of gapped square-grid ground states"
+    },
+    {
+      "id": "m2-lem-splitting",
+      "kind": "lemma",
+      "label": "Splitting consequence",
+      "statement": "[Splitting consequence] Let T,U,E partition , and let b=I_(T:E) . There are finite-dimensional spaces B_T and B_E , an isometry \\[ V: H_U B_T B_E, \\] and normalized vectors s H_T B_T and s' H_E B_E…",
+      "section": "Encoded frames and changes of ownership",
+      "manuscript": "Polynomial PEPS approximation of gapped square-grid ground states"
+    },
+    {
+      "id": "m2-lem-birth",
+      "kind": "lemma",
+      "label": "Homogeneous birth and death",
+      "statement": "[Homogeneous birth and death] In an encoded frame, let T be a set of raw sites owned by P_ and disjoint from every outer hole footprint. The proposed birth changes only the owner of T , from P_ to Q_…",
+      "section": "Encoded frames and changes of ownership",
+      "manuscript": "Polynomial PEPS approximation of gapped square-grid ground states"
+    },
+    {
+      "id": "m2-lem-exchange",
+      "kind": "lemma",
+      "label": "Two-sheet exchange",
+      "statement": "[Two-sheet exchange] Consider two encoded frames, and a plane region Y . Suppose every hole's entire outer square lies on one side of Y . Inside Y , exchange the two raw ownership assignments and the…",
+      "section": "Encoded frames and changes of ownership",
+      "manuscript": "Polynomial PEPS approximation of gapped square-grid ground states"
+    },
+    {
+      "id": "m2-prop-protocol",
+      "kind": "proposition",
+      "label": "Distribution through a dyadic hierarchy",
+      "statement": "[Distribution through a dyadic hierarchy] For all sufficiently large L , there is a protocol with the following properties. All constants in this statement are uniform in the Hamiltonian and L .…",
+      "section": "A finite planar distribution protocol",
+      "manuscript": "Polynomial PEPS approximation of gapped square-grid ground states"
+    },
+    {
+      "id": "m2-lem-geometry-angular",
+      "kind": "lemma",
+      "label": "Separation of the unmodified bands",
+      "statement": "[Separation of the unmodified bands] There is a fixed a_0>0 such that every unmodified elementary birth or death above has changed region R of diameter O(n) and surrounding guide f satisfying (y, \\ f…",
+      "section": "A finite planar distribution protocol",
+      "manuscript": "Polynomial PEPS approximation of gapped square-grid ground states"
+    },
+    {
+      "id": "m2-lem-columns",
+      "kind": "lemma",
+      "label": "Let be a unit vector on a tensor product of finite-dimensional spaces. If an…",
+      "statement": "Let be a unit vector on a tensor product of finite-dimensional spaces. If an operator satisfies -| |_1<1 , then some product-basis column v=|z is nonzero and satisfies \\[ _\\|v v -e^ i \\| 2. \\] Fixing…",
+      "section": "From the protocol to a PEPS",
+      "manuscript": "Polynomial PEPS approximation of gapped square-grid ground states"
+    },
+    {
+      "id": "m2-lem-routing",
+      "kind": "lemma",
+      "label": "The links of the party network can be routed on the padded grid with constant…",
+      "statement": "The links of the party network can be routed on the padded grid with constant edge congestion. After reflection into the genuine L L grid, congestion is still constant and physical output coordinates…",
+      "section": "From the protocol to a PEPS",
+      "manuscript": "Polynomial PEPS approximation of gapped square-grid ground states"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-zero-boundary",
+      "to": "m1-thm-area",
+      "label": "lem:zero-boundary",
+      "context": "[Proof of Theorem~\\ref{thm:area}] The empty domain and the empty or full region have zero entropy. Put $b=|\\partial_\\Lambda A|$. If $b=0$, Lemma~\\ref{lem:zero-boundary} gives $S_\\Omega(A)=0$. Assume $b>0$. Choose $n_*$ large enough for Proposition~\\ref{prop:collar} and Proposition~\\ref"
+    }
+  ]
+}

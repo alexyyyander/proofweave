@@ -1,0 +1,429 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "204",
+  "title": "Tensor saturation for even spin groups",
+  "result": {
+    "id": "paper-result",
+    "label": "Tensor saturation for even spin groups",
+    "statement": "Proves saturation factor one for Spin (2n), n ≥ 2: for three dominant integral weights whose sum lies in the root lattice, an invariant at any common positive integral dilation already gives an invariant at the original weights. This resolves the type- D part of the simply-laced saturation conjecture.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "real-moments-and-schedules",
+      "label": "Real moments and schedules",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "lattices-and-continuation-of-schedules",
+      "label": "Lattices and continuation of schedules",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-strict-comparison-count-and-simultaneous-switches",
+      "label": "A strict comparison count and simultaneous switches",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-integral-schedules-to-tensor-intertwiners",
+      "label": "From integral schedules to tensor intertwiners",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "removing-a-zero-tail-and-completing-the-proof",
+      "label": "Removing a zero tail and completing the proof",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Tensor saturation for even spin groups",
+      "title": "Tensor saturation for even spin groups",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Tensor-Saturation-for-Even-Spin-Groups-September-24-2026/Tensor-Saturation-for-Even-Spin-Groups-September-24-2026.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Tensor saturation for even spin groups.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-basic-schedule",
+          "role": "real-moments-and-schedules",
+          "label": "proposition m1-prop-basic-schedule",
+          "fullLabel": "proposition m1-prop-basic-schedule",
+          "kind": "proposition",
+          "source": "Real moments and schedules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-real-decreasing-paths"
+          ]
+        },
+        {
+          "id": "m1-lem-coefficient",
+          "role": "real-moments-and-schedules",
+          "label": "lemma m1-lem-coefficient",
+          "fullLabel": "lemma m1-lem-coefficient",
+          "kind": "lemma",
+          "source": "Real moments and schedules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-flag-composition",
+          "role": "real-moments-and-schedules",
+          "label": "lemma m1-lem-flag-composition",
+          "fullLabel": "lemma m1-lem-flag-composition",
+          "kind": "lemma",
+          "source": "Real moments and schedules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-invariant-moment",
+          "role": "real-moments-and-schedules",
+          "label": "lemma m1-lem-invariant-moment",
+          "fullLabel": "lemma m1-lem-invariant-moment",
+          "kind": "lemma",
+          "source": "Real moments and schedules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-schedule-moment",
+          "role": "real-moments-and-schedules",
+          "label": "lemma m1-lem-schedule-moment",
+          "fullLabel": "lemma m1-lem-schedule-moment",
+          "kind": "lemma",
+          "source": "Real moments and schedules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-real-strict-approximation",
+          "role": "real-moments-and-schedules",
+          "label": "lemma m1-real-strict-approximation",
+          "fullLabel": "lemma m1-real-strict-approximation",
+          "kind": "lemma",
+          "source": "Real moments and schedules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-real-triangles",
+          "role": "real-moments-and-schedules",
+          "label": "lemma m1-real-triangles",
+          "fullLabel": "lemma m1-real-triangles",
+          "kind": "lemma",
+          "source": "Real moments and schedules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-real-decreasing-paths",
+          "role": "real-moments-and-schedules",
+          "label": "lemma m1-real-decreasing-paths",
+          "fullLabel": "lemma m1-real-decreasing-paths",
+          "kind": "lemma",
+          "source": "Real moments and schedules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-real-variation",
+          "role": "real-moments-and-schedules",
+          "label": "lemma m1-real-variation",
+          "fullLabel": "lemma m1-real-variation",
+          "kind": "lemma",
+          "source": "Real moments and schedules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-real-exposure",
+          "role": "real-moments-and-schedules",
+          "label": "lemma m1-real-exposure",
+          "fullLabel": "lemma m1-real-exposure",
+          "kind": "lemma",
+          "source": "Real moments and schedules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-real-polytope",
+          "role": "real-moments-and-schedules",
+          "label": "lemma m1-real-polytope",
+          "fullLabel": "lemma m1-real-polytope",
+          "kind": "lemma",
+          "source": "Real moments and schedules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-real-covers",
+          "role": "real-moments-and-schedules",
+          "label": "lemma m1-real-covers",
+          "fullLabel": "lemma m1-real-covers",
+          "kind": "lemma",
+          "source": "Real moments and schedules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-real-blocker",
+          "role": "real-moments-and-schedules",
+          "label": "corollary m1-real-blocker",
+          "fullLabel": "corollary m1-real-blocker",
+          "kind": "corollary",
+          "source": "Real moments and schedules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-integral-schedule",
+          "role": "lattices-and-continuation-of-schedules",
+          "label": "theorem m1-thm-integral-schedule",
+          "fullLabel": "theorem m1-thm-integral-schedule",
+          "kind": "theorem",
+          "source": "Lattices and continuation of schedules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-prop-strict-count"
+          ]
+        },
+        {
+          "id": "m1-lem-block-reduction",
+          "role": "lattices-and-continuation-of-schedules",
+          "label": "lemma m1-lem-block-reduction",
+          "fullLabel": "lemma m1-lem-block-reduction",
+          "kind": "lemma",
+          "source": "Lattices and continuation of schedules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-hard-case",
+          "role": "lattices-and-continuation-of-schedules",
+          "label": "lemma m1-lem-hard-case",
+          "fullLabel": "lemma m1-lem-hard-case",
+          "kind": "lemma",
+          "source": "Lattices and continuation of schedules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-int-closedness",
+          "role": "lattices-and-continuation-of-schedules",
+          "label": "lemma m1-int-closedness",
+          "fullLabel": "lemma m1-int-closedness",
+          "kind": "lemma",
+          "source": "Lattices and continuation of schedules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-int-half-kernel",
+          "role": "lattices-and-continuation-of-schedules",
+          "label": "lemma m1-int-half-kernel",
+          "fullLabel": "lemma m1-int-half-kernel",
+          "kind": "lemma",
+          "source": "Lattices and continuation of schedules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-continuation",
+          "role": "lattices-and-continuation-of-schedules",
+          "label": "proposition m1-prop-continuation",
+          "fullLabel": "proposition m1-prop-continuation",
+          "kind": "proposition",
+          "source": "Lattices and continuation of schedules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-direct-links",
+          "role": "lattices-and-continuation-of-schedules",
+          "label": "lemma m1-lem-direct-links",
+          "fullLabel": "lemma m1-lem-direct-links",
+          "kind": "lemma",
+          "source": "Lattices and continuation of schedules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-knot-profile-rigidity",
+          "role": "a-strict-comparison-count-and-simultaneous-switches",
+          "label": "lemma m1-knot-profile-rigidity",
+          "fullLabel": "lemma m1-knot-profile-rigidity",
+          "kind": "lemma",
+          "source": "A strict comparison count and simultaneous switches",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-strict-count",
+          "role": "a-strict-comparison-count-and-simultaneous-switches",
+          "label": "proposition m1-prop-strict-count",
+          "fullLabel": "proposition m1-prop-strict-count",
+          "kind": "proposition",
+          "source": "A strict comparison count and simultaneous switches",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-plateau",
+          "role": "a-strict-comparison-count-and-simultaneous-switches",
+          "label": "lemma m1-lem-plateau",
+          "fullLabel": "lemma m1-lem-plateau",
+          "kind": "lemma",
+          "source": "A strict comparison count and simultaneous switches",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-knot-count",
+          "role": "a-strict-comparison-count-and-simultaneous-switches",
+          "label": "proposition m1-prop-knot-count",
+          "fullLabel": "proposition m1-prop-knot-count",
+          "kind": "proposition",
+          "source": "A strict comparison count and simultaneous switches",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-knot-matching",
+          "role": "a-strict-comparison-count-and-simultaneous-switches",
+          "label": "lemma m1-knot-matching",
+          "fullLabel": "lemma m1-knot-matching",
+          "kind": "lemma",
+          "source": "A strict comparison count and simultaneous switches",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-columns",
+          "role": "from-integral-schedules-to-tensor-intertwiners",
+          "label": "proposition m1-prop-columns",
+          "fullLabel": "proposition m1-prop-columns",
+          "kind": "proposition",
+          "source": "From integral schedules to tensor intertwiners",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-col-folding",
+          "role": "from-integral-schedules-to-tensor-intertwiners",
+          "label": "lemma m1-col-folding",
+          "fullLabel": "lemma m1-col-folding",
+          "kind": "lemma",
+          "source": "From integral schedules to tensor intertwiners",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-col-common-walls",
+          "role": "from-integral-schedules-to-tensor-intertwiners",
+          "label": "lemma m1-col-common-walls",
+          "fullLabel": "lemma m1-col-common-walls",
+          "kind": "lemma",
+          "source": "From integral schedules to tensor intertwiners",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-zero-tail",
+          "role": "removing-a-zero-tail-and-completing-the-proof",
+          "label": "proposition m1-prop-zero-tail",
+          "fullLabel": "proposition m1-prop-zero-tail",
+          "kind": "proposition",
+          "source": "Removing a zero tail and completing the proof",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-preprojective",
+          "role": "removing-a-zero-tail-and-completing-the-proof",
+          "label": "proposition m1-prop-preprojective",
+          "fullLabel": "proposition m1-prop-preprojective",
+          "kind": "proposition",
+          "source": "Removing a zero tail and completing the proof",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-tail-threshold-bounds",
+          "role": "removing-a-zero-tail-and-completing-the-proof",
+          "label": "lemma m1-tail-threshold-bounds",
+          "fullLabel": "lemma m1-tail-threshold-bounds",
+          "kind": "lemma",
+          "source": "Removing a zero tail and completing the proof",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-filtered-intersection",
+          "role": "removing-a-zero-tail-and-completing-the-proof",
+          "label": "lemma m1-lem-filtered-intersection",
+          "fullLabel": "lemma m1-lem-filtered-intersection",
+          "kind": "lemma",
+          "source": "Removing a zero tail and completing the proof",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-tail-centralizer",
+          "role": "removing-a-zero-tail-and-completing-the-proof",
+          "label": "lemma m1-tail-centralizer",
+          "fullLabel": "lemma m1-tail-centralizer",
+          "kind": "lemma",
+          "source": "Removing a zero tail and completing the proof",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Tensor saturation for even spin groups",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Tensor-Saturation-for-Even-Spin-Groups-September-24-2026/Tensor-Saturation-for-Even-Spin-Groups-September-24-2026.pdf",
+      "kind": "paper"
+    }
+  ]
+}

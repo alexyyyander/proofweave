@@ -1,0 +1,500 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "012",
+  "title": "Independent largest prime factors of consecutive integers",
+  "result": {
+    "id": "paper-result",
+    "label": "Independent largest prime factors of consecutive integers",
+    "statement": "Resolves the Erdős–Pomerance joint Dickman conjecture: the logarithmic sizes of the largest prime factors of n and n+1 are asymptotically independent in ordinary natural density. In particular, the integers satisfying P^+(n) P^+(n+1) have density 1/2.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "large-prime-labels-and-their-short-averages",
+      "label": "Large-prime labels and their short averages",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "arithmetic-preliminaries-at-an-auxiliary-log-scale",
+      "label": "Arithmetic preliminaries at an auxiliary log scale",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "amplifying-a-mixed-correlation",
+      "label": "Amplifying a mixed correlation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-mixed-amplification-to-an-independent-site-kernel",
+      "label": "From mixed amplification to an independent-site kernel",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-second-moment-for-the-latent-rows",
+      "label": "A second moment for the latent rows",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "smoothing-channels-on-logarithmic-and-residue-space",
+      "label": "Smoothing channels on logarithmic and residue space",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "integral-approximation-by-endpoint-features",
+      "label": "Integral approximation by endpoint features",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "sampling-the-integral-cut-comparison",
+      "label": "Sampling the integral cut comparison",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "vanishing-of-the-main-energy",
+      "label": "Vanishing of the main energy",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "marginals-the-joint-law-and-the-ordering-corollary",
+      "label": "Marginals, the joint law, and the ordering corollary",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "The joint Dickman law for consecutive integers",
+      "title": "The joint Dickman law for consecutive integers",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-joint-Dickman-law-for-consecutive-integers-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from The joint Dickman law for consecutive integers.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-comparison",
+          "role": "introduction",
+          "label": "corollary m1-cor-comparison",
+          "fullLabel": "corollary m1-cor-comparison",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-labels-marginal",
+          "role": "large-prime-labels-and-their-short-averages",
+          "label": "lemma m1-lem-labels-marginal",
+          "fullLabel": "lemma m1-lem-labels-marginal",
+          "kind": "lemma",
+          "source": "Large-prime labels and their short averages",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-mixed",
+          "role": "large-prime-labels-and-their-short-averages",
+          "label": "proposition m1-prop-mixed",
+          "fullLabel": "proposition m1-prop-mixed",
+          "kind": "proposition",
+          "source": "Large-prime labels and their short averages",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-labels-short",
+          "role": "large-prime-labels-and-their-short-averages",
+          "label": "lemma m1-lem-labels-short",
+          "fullLabel": "lemma m1-lem-labels-short",
+          "kind": "lemma",
+          "source": "Large-prime labels and their short averages",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-labels-real-mr",
+          "role": "large-prime-labels-and-their-short-averages",
+          "label": "theorem m1-thm-labels-real-mr",
+          "fullLabel": "theorem m1-thm-labels-real-mr",
+          "kind": "theorem",
+          "source": "Large-prime labels and their short averages",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-labels-complex-mrt",
+          "role": "large-prime-labels-and-their-short-averages",
+          "label": "theorem m1-thm-labels-complex-mrt",
+          "fullLabel": "theorem m1-thm-labels-complex-mrt",
+          "kind": "theorem",
+          "source": "Large-prime labels and their short averages",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-labels-character-distance",
+          "role": "large-prime-labels-and-their-short-averages",
+          "label": "lemma m1-lem-labels-character-distance",
+          "fullLabel": "lemma m1-lem-labels-character-distance",
+          "kind": "lemma",
+          "source": "Large-prime labels and their short averages",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-arith-classical-sd",
+          "role": "arithmetic-preliminaries-at-an-auxiliary-log-scale",
+          "label": "lemma m1-lem-arith-classical-sd",
+          "fullLabel": "lemma m1-lem-arith-classical-sd",
+          "kind": "lemma",
+          "source": "Arithmetic preliminaries at an auxiliary log scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-arith-rough-sd",
+          "role": "arithmetic-preliminaries-at-an-auxiliary-log-scale",
+          "label": "lemma m1-lem-arith-rough-sd",
+          "fullLabel": "lemma m1-lem-arith-rough-sd",
+          "kind": "lemma",
+          "source": "Arithmetic preliminaries at an auxiliary log scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-arith-local-laws",
+          "role": "arithmetic-preliminaries-at-an-auxiliary-log-scale",
+          "label": "proposition m1-prop-arith-local-laws",
+          "fullLabel": "proposition m1-prop-arith-local-laws",
+          "kind": "proposition",
+          "source": "Arithmetic preliminaries at an auxiliary log scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-arith-weighted-sieve",
+          "role": "arithmetic-preliminaries-at-an-auxiliary-log-scale",
+          "label": "lemma m1-lem-arith-weighted-sieve",
+          "fullLabel": "lemma m1-lem-arith-weighted-sieve",
+          "kind": "lemma",
+          "source": "Arithmetic preliminaries at an auxiliary log scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-arith-coefficient-moments",
+          "role": "arithmetic-preliminaries-at-an-auxiliary-log-scale",
+          "label": "lemma m1-lem-arith-coefficient-moments",
+          "fullLabel": "lemma m1-lem-arith-coefficient-moments",
+          "kind": "lemma",
+          "source": "Arithmetic preliminaries at an auxiliary log scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-arith-form-bounds",
+          "role": "arithmetic-preliminaries-at-an-auxiliary-log-scale",
+          "label": "lemma m1-lem-arith-form-bounds",
+          "fullLabel": "lemma m1-lem-arith-form-bounds",
+          "kind": "lemma",
+          "source": "Arithmetic preliminaries at an auxiliary log scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-arith-regularity-loss",
+          "role": "arithmetic-preliminaries-at-an-auxiliary-log-scale",
+          "label": "lemma m1-lem-arith-regularity-loss",
+          "fullLabel": "lemma m1-lem-arith-regularity-loss",
+          "kind": "lemma",
+          "source": "Arithmetic preliminaries at an auxiliary log scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-amp-divisor-moments",
+          "role": "amplifying-a-mixed-correlation",
+          "label": "lemma m1-lem-amp-divisor-moments",
+          "fullLabel": "lemma m1-lem-amp-divisor-moments",
+          "kind": "lemma",
+          "source": "Amplifying a mixed correlation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-amp-site-model",
+          "role": "amplifying-a-mixed-correlation",
+          "label": "lemma m1-lem-amp-site-model",
+          "fullLabel": "lemma m1-lem-amp-site-model",
+          "kind": "lemma",
+          "source": "Amplifying a mixed correlation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-amp-small-ball",
+          "role": "amplifying-a-mixed-correlation",
+          "label": "lemma m1-lem-amp-small-ball",
+          "fullLabel": "lemma m1-lem-amp-small-ball",
+          "kind": "lemma",
+          "source": "Amplifying a mixed correlation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-preservation",
+          "role": "amplifying-a-mixed-correlation",
+          "label": "lemma m1-lem-preservation",
+          "fullLabel": "lemma m1-lem-preservation",
+          "kind": "lemma",
+          "source": "Amplifying a mixed correlation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-amp-energy",
+          "role": "amplifying-a-mixed-correlation",
+          "label": "proposition m1-prop-amp-energy",
+          "fullLabel": "proposition m1-prop-amp-energy",
+          "kind": "proposition",
+          "source": "Amplifying a mixed correlation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-graph-edge-mass",
+          "role": "from-mixed-amplification-to-an-independent-site-kernel",
+          "label": "lemma m1-lem-graph-edge-mass",
+          "fullLabel": "lemma m1-lem-graph-edge-mass",
+          "kind": "lemma",
+          "source": "From mixed amplification to an independent-site kernel",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-graph-row-mean",
+          "role": "from-mixed-amplification-to-an-independent-site-kernel",
+          "label": "lemma m1-lem-graph-row-mean",
+          "fullLabel": "lemma m1-lem-graph-row-mean",
+          "kind": "lemma",
+          "source": "From mixed amplification to an independent-site kernel",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-graph-root-comparison",
+          "role": "from-mixed-amplification-to-an-independent-site-kernel",
+          "label": "proposition m1-prop-graph-root-comparison",
+          "fullLabel": "proposition m1-prop-graph-root-comparison",
+          "kind": "proposition",
+          "source": "From mixed amplification to an independent-site kernel",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-moments-rows",
+          "role": "a-second-moment-for-the-latent-rows",
+          "label": "proposition m1-prop-moments-rows",
+          "fullLabel": "proposition m1-prop-moments-rows",
+          "kind": "proposition",
+          "source": "A second moment for the latent rows",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-moments-multiplicity",
+          "role": "a-second-moment-for-the-latent-rows",
+          "label": "lemma m1-lem-moments-multiplicity",
+          "fullLabel": "lemma m1-lem-moments-multiplicity",
+          "kind": "lemma",
+          "source": "A second moment for the latent rows",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-channels-operators",
+          "role": "smoothing-channels-on-logarithmic-and-residue-space",
+          "label": "proposition m1-prop-channels-operators",
+          "fullLabel": "proposition m1-prop-channels-operators",
+          "kind": "proposition",
+          "source": "Smoothing channels on logarithmic and residue space",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-channels-two-splits",
+          "role": "smoothing-channels-on-logarithmic-and-residue-space",
+          "label": "lemma m1-lem-channels-two-splits",
+          "fullLabel": "lemma m1-lem-channels-two-splits",
+          "kind": "lemma",
+          "source": "Smoothing channels on logarithmic and residue space",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-channels-low-exclusive",
+          "role": "smoothing-channels-on-logarithmic-and-residue-space",
+          "label": "lemma m1-lem-channels-low-exclusive",
+          "fullLabel": "lemma m1-lem-channels-low-exclusive",
+          "kind": "lemma",
+          "source": "Smoothing channels on logarithmic and residue space",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-channels-features",
+          "role": "smoothing-channels-on-logarithmic-and-residue-space",
+          "label": "corollary m1-cor-channels-features",
+          "fullLabel": "corollary m1-cor-channels-features",
+          "kind": "corollary",
+          "source": "Smoothing channels on logarithmic and residue space",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-kernel-cutoffs",
+          "role": "integral-approximation-by-endpoint-features",
+          "label": "lemma m1-lem-kernel-cutoffs",
+          "fullLabel": "lemma m1-lem-kernel-cutoffs",
+          "kind": "lemma",
+          "source": "Integral approximation by endpoint features",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-kernel-comparison",
+          "role": "integral-approximation-by-endpoint-features",
+          "label": "proposition m1-prop-kernel-comparison",
+          "fullLabel": "proposition m1-prop-kernel-comparison",
+          "kind": "proposition",
+          "source": "Integral approximation by endpoint features",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-sampling-comparison",
+          "role": "sampling-the-integral-cut-comparison",
+          "label": "proposition m1-prop-sampling-comparison",
+          "fullLabel": "proposition m1-prop-sampling-comparison",
+          "kind": "proposition",
+          "source": "Sampling the integral cut comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sampling-good",
+          "role": "sampling-the-integral-cut-comparison",
+          "label": "lemma m1-lem-sampling-good",
+          "fullLabel": "lemma m1-lem-sampling-good",
+          "kind": "lemma",
+          "source": "Sampling the integral cut comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sampling-skeleton",
+          "role": "sampling-the-integral-cut-comparison",
+          "label": "lemma m1-lem-sampling-skeleton",
+          "fullLabel": "lemma m1-lem-sampling-skeleton",
+          "kind": "lemma",
+          "source": "Sampling the integral cut comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sampling-conditional-mean",
+          "role": "sampling-the-integral-cut-comparison",
+          "label": "lemma m1-lem-sampling-conditional-mean",
+          "fullLabel": "lemma m1-lem-sampling-conditional-mean",
+          "kind": "lemma",
+          "source": "Sampling the integral cut comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-conclusion-features",
+          "role": "vanishing-of-the-main-energy",
+          "label": "lemma m1-lem-conclusion-features",
+          "fullLabel": "lemma m1-lem-conclusion-features",
+          "kind": "lemma",
+          "source": "Vanishing of the main energy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-conclusion-periodic",
+          "role": "vanishing-of-the-main-energy",
+          "label": "lemma m1-lem-conclusion-periodic",
+          "fullLabel": "lemma m1-lem-conclusion-periodic",
+          "kind": "lemma",
+          "source": "Vanishing of the main energy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-conclusion-main-vanishes",
+          "role": "vanishing-of-the-main-energy",
+          "label": "proposition m1-prop-conclusion-main-vanishes",
+          "fullLabel": "proposition m1-prop-conclusion-main-vanishes",
+          "kind": "proposition",
+          "source": "Vanishing of the main energy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-distribution-dickman",
+          "role": "marginals-the-joint-law-and-the-ordering-corollary",
+          "label": "lemma m1-lem-distribution-dickman",
+          "fullLabel": "lemma m1-lem-distribution-dickman",
+          "kind": "lemma",
+          "source": "Marginals, the joint law, and the ordering corollary",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "The joint Dickman law for consecutive integers",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-joint-Dickman-law-for-consecutive-integers-September-24-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

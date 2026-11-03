@@ -1,0 +1,571 @@
+{
+  "familyNumber": "102",
+  "familyTitle": "The Unique Games Conjecture and optimal approximation thresholds",
+  "manuscripts": [
+    {
+      "id": "The-Unique-Games-Theorem-September-23-2026",
+      "title": "The Unique Games Theorem",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Unique-Games-Theorem-September-23-2026/paper.pdf"
+    },
+    {
+      "id": "A-Direct-Proof-of-Optimal-Max-Cut-Hardness-September-23-2026",
+      "title": "A Direct Proof of Optimal Max-Cut Hardness",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Direct-Proof-of-Optimal-Max-Cut-Hardness-September-23-2026/paper.pdf"
+    },
+    {
+      "id": "The-Factor-Two-Hardness-Threshold-for-Vertex-Cover-September-23-2026",
+      "title": "The Factor-Two Hardness Threshold for Vertex Cover",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Factor-Two-Hardness-Threshold-for-Vertex-Cover-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "A latent alphabet gadget",
+    "The outer questions and the permutation test",
+    "Matrix extraction and Fourier decoding",
+    "Clean coordinates and the soundness gap",
+    "Completion of the reduction",
+    "Approximation consequences",
+    "Finite formulations of the consequences",
+    "Preliminaries",
+    "A tree code with complementary traversals",
+    "The Max-Cut reduction",
+    "Fourier structure of the tree code",
+    "A vector-valued hashing lemma",
+    "From excess stability to a label",
+    "Decoding with a hidden coordinate",
+    "The affine game supplied by the 2-to-1 Games Theorem",
+    "Conversion to simple unweighted graphs",
+    "The source problem and construction parameters",
+    "The graph and completeness",
+    "A fixed function from an independent set",
+    "A restriction preserving own-question variance",
+    "Lists from own-question conditional means",
+    "Pair decoding and soundness"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-ugc",
+      "kind": "theorem",
+      "label": "Unique Games Theorem",
+      "statement": "[Unique Games Theorem] For every fixed \\(,(0,1/2)\\), there are an integer \\(s1\\) and a deterministic polynomial-time reduction from \\(3SAT\\) to explicit unweighted Unique Games instances \\(G_\\) over…",
+      "section": "Introduction",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-lem-latent",
+      "kind": "lemma",
+      "label": "Latent alphabet gadget",
+      "statement": "[Latent alphabet gadget] For every p_*>0 there is an integer r_* such that, for every sufficiently large integer , the following objects exist: a finite-dimensional binary space V containing an…",
+      "section": "A latent alphabet gadget",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-lem-latent-block",
+      "kind": "lemma",
+      "label": "For every line A , the space U_A is binary linear of dimension b . For a A and…",
+      "statement": "For every line A , the space U_A is binary linear of dimension b . For a A and x X , one has D(x,a) D_A ; for a,a' A , one has D(a,a')=0 . The trace annihilator of D_A in B^*=F^3 is A , and the…",
+      "section": "A latent alphabet gadget",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-lem-latent-block-noise",
+      "kind": "lemma",
+      "label": "Response to one block update",
+      "statement": "[Response to one block update] Fix a line A . For independent uniform (x,y) X B and U_A\\ 0\\ , \\[ =1-. \\]",
+      "section": "A latent alphabet gadget",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-lem-latent-block-kernel",
+      "kind": "lemma",
+      "label": "Kernel of a block restriction",
+      "statement": "[Kernel of a block restriction] Let S B^* and let :S X^* be binary linear. For each line A , define \\[ _ A, :S U_A^*, _ A, (z)=(_z,z)|_ U_A . \\] Under the trace identification, write _z(x)=Tr(g(z) x)…",
+      "section": "A latent alphabet gadget",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-lem-latent-generic",
+      "kind": "lemma",
+      "label": "For each fixed r1 , a uniformly random binary r -dimensional subspace of F^3 is…",
+      "statement": "For each fixed r1 , a uniformly random binary r -dimensional subspace of F^3 is generic with probability tending to one as d .",
+      "section": "A latent alphabet gadget",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-lem-latent-noise",
+      "kind": "lemma",
+      "label": "For independent uniform u P_t and noise _t , p_t:= =(1-q^ -3 )(1-)^t.",
+      "statement": "For independent uniform u P_t and noise _t , p_t:= =(1-q^ -3 )(1-)^t.",
+      "section": "A latent alphabet gadget",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-lem-latent-lift-factorization",
+      "kind": "lemma",
+      "label": "Let a lift with domain S be given on P_t , where t1 . For each child (A,J) ,…",
+      "statement": "Let a lift with domain S be given on P_t , where t1 . For each child (A,J) , restriction to that child's shift space factors through _ t-1 . The resulting characters on the child output space B have…",
+      "section": "A latent alphabet gadget",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-prop-latent-full-lift-detection",
+      "kind": "proposition",
+      "label": "Set s= H_ r_0 8 . Every full lift on P_s detects _s with probability at least…",
+      "statement": "Set s= H_ r_0 8 . Every full lift on P_s detects _s with probability at least 1/4 : 14.",
+      "section": "A latent alphabet gadget",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-thm-parity",
+      "kind": "theorem",
+      "label": "Weighted parity gap",
+      "statement": "[Weighted parity gap] For every fixed rational \\(>0\\), there is a deterministic polynomial-time reduction from Boolean satisfiability to weighted parity instances, with binary-encoded rational…",
+      "section": "The outer questions and the permutation test",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-lem-distinct-parity",
+      "kind": "lemma",
+      "label": "Making positions distinct",
+      "statement": "[Making positions distinct] From a weighted parity instance \\( E\\) one can deterministically construct, in polynomial time, an instance \\( E'\\) in which the three variable IDs of every occurrence are…",
+      "section": "The outer questions and the permutation test",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-lem-outer-completeness",
+      "kind": "lemma",
+      "label": "Completeness of the outer matrix test",
+      "statement": "[Completeness of the outer matrix test] If \\( E\\) has an assignment of value at least \\(1-\\), and the latent map satisfies \\[ _ x uniform in V,\\ a [C(x+a) C(x)] p_*, \\] then \\[ ( G) 1-k-p_* 2 . \\]",
+      "section": "The outer questions and the permutation test",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-thm-shortcode",
+      "kind": "theorem",
+      "label": "Equality soundness for degree-two shortcode",
+      "statement": "[Equality soundness for degree-two shortcode] For every (0,1) there are (0,1] , an integer r_ s 1 , and an integer _0 , depending only on , with the following property. For every _0 there is…",
+      "section": "Matrix extraction and Fourier decoding",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-prop-matrix-decoding",
+      "kind": "proposition",
+      "label": "Matrix decoding",
+      "statement": "[Matrix decoding] Choose the latent and shortcode parameters in the order specified by Equation~ , fixing V=K W before k . There are a constant >0 and an integer k_08 , depending only on these fixed…",
+      "section": "Matrix extraction and Fourier decoding",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-lem-matrix-spectral",
+      "kind": "lemma",
+      "label": "Spectral comparison",
+      "statement": "[Spectral comparison] If the table family passes Equation~ with probability at least 0.99 , then _ U,T _ M,a,l [F_U(M,T)=F_U(M+a l^,T)] 0.9\\,2^ -r_* , where a is uniform in K and the other matrix and…",
+      "section": "Matrix extraction and Fourier decoding",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-lem-good-row-advice",
+      "kind": "lemma",
+      "label": "Good row advice and its short answer set",
+      "statement": "[Good row advice and its short answer set] For all sufficiently large k , a table family with matrix-test acceptance at least 0.99 satisfies _ U,T,A,M [(U,T,A,AM) is good] g_0, g_0=10^2\\,2^ - r_ s…",
+      "section": "Matrix extraction and Fourier decoding",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-lem-projected-tv",
+      "kind": "lemma",
+      "label": "The padded matrix is asymptotically uniform",
+      "statement": "[The padded matrix is asymptotically uniform] Conditional on every U , the distribution of \\[ (M,T)=(M_O,T_O) \\] has total variation distance o(1) from the unrestricted uniform distribution on…",
+      "section": "Matrix extraction and Fourier decoding",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-lem-projected-witness",
+      "kind": "lemma",
+      "label": "Transfer of a chosen witness",
+      "statement": "[Transfer of a chosen witness] Suppose the matrix-test acceptance is at least 0.99 . For all sufficiently large cubes k , a set of probability at least _1= g_0 8 \\,2^ - r_ s >0 of the joint data D in…",
+      "section": "Matrix extraction and Fourier decoding",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-lem-fourier-coset-decoding",
+      "kind": "lemma",
+      "label": "A transferred slice gives agreement",
+      "statement": "[A transferred slice gives agreement] Fix joint data satisfying Lemma~ . Conditional on these data, the two rules just defined, using independent randomness, agree under with probability at least 2^…",
+      "section": "Matrix extraction and Fourier decoding",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-thm-repetition",
+      "kind": "theorem",
+      "label": "Projection-game repetition",
+      "statement": "[Projection-game repetition] Let G be a finite bipartite projection game, with an arbitrary probability distribution on its constraint occurrences. Question sets and answer alphabets may be arbitrary…",
+      "section": "Clean coordinates and the soundness gap",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-lem-clean",
+      "kind": "lemma",
+      "label": "Clean-coordinate bound",
+      "statement": "[Clean-coordinate bound] If ( E) 4/5 , every pair of local randomized strategies in the advice experiment satisfies (1- \\,2^ - W-r_ s 3600 )^k \\!( - 2^ - W-r_ s 3600 \\,k^ 1/3 ). In particular, the…",
+      "section": "Clean coordinates and the soundness gap",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-prop-matrix-gap",
+      "kind": "proposition",
+      "label": "A fixed gap with adjustable completeness",
+      "statement": "[A fixed gap with adjustable completeness] Fix p_*>0 and choose the latent and shortcode data in the order of Equation~ . For every sufficiently large cube k , the matrix game G constructed from a…",
+      "section": "Clean coordinates and the soundness gap",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-lem-unweighted-subdivision",
+      "kind": "lemma",
+      "label": "Rounding and subdivision",
+      "statement": "[Rounding and subdivision] Let H be a finite permutation-constraint game with h1 positive rational occurrence weights summing to one. For every positive rational , put Q= h/ . There is a…",
+      "section": "Completion of the reduction",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-cor-raghavendra-consequence",
+      "kind": "corollary",
+      "label": "Raghavendra's consequence",
+      "statement": "[Raghavendra's consequence] Let \\(J\\) be a fixed \\(\\)-instance with \\(A=OPT(J)<B=SDP_ R (J)\\). For every fixed \\(0<<(B-A)/2\\), it is NP-hard to distinguish \\(\\)-instances \\(I\\) satisfying \\[ OPT(I)…",
+      "section": "Approximation consequences",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-cor-ordering-csp",
+      "kind": "corollary",
+      "label": "Ordering-CSP consequence",
+      "statement": "[Ordering-CSP consequence] Fix \\(k2\\) and \\( S_k\\), and put \\(_=||/k!\\). For every fixed \\(0<<(1-_)/2\\), it is NP-hard to distinguish finite weighted \\(\\)-ordering-CSP instances \\(I\\) satisfying \\[…",
+      "section": "Approximation consequences",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-cor-cut-clustering",
+      "kind": "corollary",
+      "label": "Cut, deletion, and clustering hardness",
+      "statement": "[Cut, deletion, and clustering hardness] For every fixed real constant \\(C>1\\), it is NP-hard to approximate each of the four minimization problems above within factor \\(C\\). For Sparsest Cut, this…",
+      "section": "Approximation consequences",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-lem-simple-strong-left",
+      "kind": "lemma",
+      "label": "Simple strong-left games",
+      "statement": "[Simple strong-left games] Fix \\(0<,<1\\) and integers \\(d,H1\\). There are integers \\(h,R1\\), with \\(h H\\) and \\(d h\\), and a deterministic polynomial-time reduction from \\(3SAT\\) to nonempty explicit…",
+      "section": "Finite formulations of the consequences",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-prop-finite-ordering-transfer",
+      "kind": "proposition",
+      "label": "Finite ordering transfer",
+      "statement": "[Finite ordering transfer] Fix \\(k2\\) and \\( S_k\\), put \\(_=||/k!\\), and fix \\(0<<(1-_)/2\\). There are integers \\(q,H1\\) and positive rationals \\(,<1\\), depending only on \\(k,,\\), with the following…",
+      "section": "Finite formulations of the consequences",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-lem-ordering-local-data",
+      "kind": "lemma",
+      "label": "Rational local ordering data",
+      "statement": "[Rational local ordering data] For every integer \\(q1\\) and rational \\(>0\\), there are a finite local instance \\(J=(U, C,)\\), with \\(|U|=m2\\), and probability laws \\(_c\\) on \\([m]^k\\) with the…",
+      "section": "Finite formulations of the consequences",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-lem-ordering-collision",
+      "kind": "lemma",
+      "label": "Uniform collision estimate",
+      "statement": "[Uniform collision estimate] For every \\(0<<1/2\\), there is \\(_0()>0\\). For each \\(m2\\), there is a nonnegative function \\(r_c^ m, (t)0\\) as \\(t0\\) with the following property, uniformly over all…",
+      "section": "Finite formulations of the consequences",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m1-lem-ordering-rounding",
+      "kind": "lemma",
+      "label": "A simplex-valued local estimate",
+      "statement": "[A simplex-valued local estimate] Let \\(J,_c,\\) be the data of Lemma~ , and fix \\(0<<1\\). For an integer \\(R1\\), choose \\(c\\) with probability \\(_c\\). Conditional on this one choice of \\(c\\), choose…",
+      "section": "Finite formulations of the consequences",
+      "manuscript": "The Unique Games Theorem"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "For every fixed with <1 , it is NP-hard to approximate Max-Cut within a factor…",
+      "statement": "For every fixed with <1 , it is NP-hard to approximate Max-Cut within a factor of . This holds for simple unweighted graphs.",
+      "section": "Introduction",
+      "manuscript": "A Direct Proof of Optimal Max-Cut Hardness"
+    },
+    {
+      "id": "m2-thm-gap",
+      "kind": "theorem",
+      "label": "Fix a rational t(0,1) and a constant 0<<(t-B(t))/4 . For graphs equipped with a…",
+      "statement": "Fix a rational t(0,1) and a constant 0<<(t-B(t))/4 . For graphs equipped with a rational probability distribution on edges, it is NP-hard to distinguish YES:&1+t 2 -,\\\\ NO:&1+B(t) 2 +, where is the…",
+      "section": "Introduction",
+      "manuscript": "A Direct Proof of Optimal Max-Cut Hardness"
+    },
+    {
+      "id": "m2-lem-mis",
+      "kind": "lemma",
+      "label": "Majority Is Stablest with a degree cutoff",
+      "statement": "[Majority Is Stablest with a degree cutoff] Fix 0<t<1 and >0 . There are an integer K1 and >0 , depending only on t, , such that every h:^ with h=0 satisfies \\[ (_a^ K (h)< for all a) _t(h) B(t)+. \\]",
+      "section": "Preliminaries",
+      "manuscript": "A Direct Proof of Optimal Max-Cut Hardness"
+    },
+    {
+      "id": "m2-prop-affine-games",
+      "kind": "proposition",
+      "label": "Affine 2-to-1 Games Theorem",
+      "statement": "[Affine 2-to-1 Games Theorem] For every constant b(0,1) there is an integer n 1 such that, for every constant a(0,1-b) , the following promise problem is NP-hard. Its input is a weighted bipartite…",
+      "section": "Preliminaries",
+      "manuscript": "A Direct Proof of Optimal Max-Cut Hardness"
+    },
+    {
+      "id": "m2-lem-tree-correlation",
+      "kind": "lemma",
+      "label": "Complementary traversal and correlation",
+      "statement": "[Complementary traversal and correlation] For every fixed collection of tables F , the root output as a multilinear polynomial in the k leaf signs has only degree- d monomials. Each such monomial…",
+      "section": "A tree code with complementary traversals",
+      "manuscript": "A Direct Proof of Optimal Max-Cut Hardness"
+    },
+    {
+      "id": "m2-lem-completeness",
+      "kind": "lemma",
+      "label": "Completeness",
+      "statement": "[Completeness] If ( G)1-a , the graph has a cut of value at least (1-2Ta) 1+t r^ 2d 2 1+t 2 -t-2Ta. The first lower bound is useful when 2Ta1 , which is the regime used below.",
+      "section": "The Max-Cut reduction",
+      "manuscript": "A Direct Proof of Optimal Max-Cut Hardness"
+    },
+    {
+      "id": "m2-lem-cut-stability",
+      "kind": "lemma",
+      "label": "Stability identity",
+      "statement": "[Stability identity] For every cut of the constructed graph, ()=12+ 12_t^ F_ D ( G_ y ) -12_t^ F_ D ( A_ y ), where both expectations are over y, D,R,F_ out . In particular, ()12+ 12_t^ F_ D ( G_ y ).",
+      "section": "The Max-Cut reduction",
+      "manuscript": "A Direct Proof of Optimal Max-Cut Hardness"
+    },
+    {
+      "id": "m2-lem-row-symmetry",
+      "kind": "lemma",
+      "label": "Row symmetries",
+      "statement": "[Row symmetries] Let f be a function of the code. Every nonzero row Fourier coefficient of f satisfies, at each internal node v , q_ v,g0 +q_ v,g1 =q_v(g). For a table collection F , let F^ v,-…",
+      "section": "Fourier structure of the tree code",
+      "manuscript": "A Direct Proof of Optimal Max-Cut Hardness"
+    },
+    {
+      "id": "m2-lem-unsplit",
+      "kind": "lemma",
+      "label": "Average cost of the unsplit projection",
+      "statement": "[Average cost of the unsplit projection] Let f be a function of the code with |f|1 , let r=1-/d with 0<<1/2 , and let f=T_rf . Choose the random slice independently of f . Then _ J_0, D _ v D (I-S_v)…",
+      "section": "Fourier structure of the tree code",
+      "manuscript": "A Direct Proof of Optimal Max-Cut Hardness"
+    },
+    {
+      "id": "m2-lem-shift-coordinates",
+      "kind": "lemma",
+      "label": "Free-shift coordinates",
+      "statement": "[Free-shift coordinates] The change of coordinates \\[ H^k H^ 2s H^ k-2s , R((L_ g,b ),) \\] is a linear bijection. In particular, under uniform rows the free shifts are independent uniforms…",
+      "section": "Fourier structure of the tree code",
+      "manuscript": "A Direct Proof of Optimal Max-Cut Hardness"
+    },
+    {
+      "id": "m2-lem-hashing",
+      "kind": "lemma",
+      "label": "Vector-valued hashing",
+      "statement": "[Vector-valued hashing] Let H be a finite-dimensional vector space over , write _q(u)=(-1)^ q(u) for q H^* and u H , let V be a real Hilbert space, let s1 be an integer, and let \\[ c(q,z) V, q H^*,…",
+      "section": "A vector-valued hashing lemma",
+      "manuscript": "A Direct Proof of Optimal Max-Cut Hardness"
+    },
+    {
+      "id": "m2-prop-extraction",
+      "kind": "proposition",
+      "label": "Dimension-independent extraction",
+      "statement": "[Dimension-independent extraction] Fix t(0,1) , 0<<1-B(t) , and 0<<1/2 . There are tree parameters s2,m1 and constants p_*,>0 , depending only on t,, , with the following property. For any affine…",
+      "section": "From excess stability to a label",
+      "manuscript": "A Direct Proof of Optimal Max-Cut Hardness"
+    },
+    {
+      "id": "m2-lem-unsmooth",
+      "kind": "lemma",
+      "label": "Removing smoothing",
+      "statement": "[Removing smoothing] For every fixed y , D , v , , F_ out , and label q A , m_q( G_ y ;,F_ out ) _ E,\\, e y m_q(G_ e ;+E_,F_ out ). Here the noise E is independent of the conditionally sampled edge…",
+      "section": "Decoding with a hidden coordinate",
+      "manuscript": "A Direct Proof of Optimal Max-Cut Hardness"
+    },
+    {
+      "id": "m2-lem-planting",
+      "kind": "lemma",
+      "label": "Hiding the planted coordinate",
+      "statement": "[Hiding the planted coordinate] Let U be the unplanted law and P the planted law after forgetting the mark. Both laws are taken on the full data \\[ ( e,J_0, D,v,F_ out , ,R^ new ,B). \\] Then ( P, U)…",
+      "section": "Decoding with a hidden coordinate",
+      "manuscript": "A Direct Proof of Optimal Max-Cut Hardness"
+    },
+    {
+      "id": "m2-lem-restriction",
+      "kind": "lemma",
+      "label": "Restriction of shift mass",
+      "statement": "[Restriction of shift mass] Fix a context and the outside tables. Let f( L,F_ D ) be a function on H^ 2s and the slice tables. Suppose its shift Fourier support has the common-pair-sum property \\[ Q_…",
+      "section": "Decoding with a hidden coordinate",
+      "manuscript": "A Direct Proof of Optimal Max-Cut Hardness"
+    },
+    {
+      "id": "m2-prop-decoding",
+      "kind": "proposition",
+      "label": "Decoding",
+      "statement": "[Decoding] Suppose the extraction conclusion of Proposition~ holds with constants p_*,>0 . If T satisfies Equation~ , then the original affine game has value at least ( G) 2^ -2s p_* 2 .",
+      "section": "Decoding with a hidden coordinate",
+      "manuscript": "A Direct Proof of Optimal Max-Cut Hardness"
+    },
+    {
+      "id": "m2-lem-affine-validity-invariance",
+      "kind": "lemma",
+      "label": "The invariant-list assertion on admissible advice spaces",
+      "statement": "[The invariant-list assertion on admissible advice spaces] Let X have dimension 3k_0 , let H X have dimension k_0 , and let h:H be linear. Suppose a table F assigns a linear function to every -space,…",
+      "section": "The affine game supplied by the 2-to-1 Games Theorem",
+      "manuscript": "A Direct Proof of Optimal Max-Cut Hardness"
+    },
+    {
+      "id": "m2-lem-unweighted",
+      "kind": "lemma",
+      "label": "Let G be a graph on N vertices with nonnegative rational weights w_ uv on…",
+      "statement": "Let G be a graph on N vertices with nonnegative rational weights w_ uv on unordered distinct vertex pairs, and _ u<v w_ uv 1 . For every fixed '>0 , one can construct in deterministic polynomial time…",
+      "section": "Conversion to simple unweighted graphs",
+      "manuscript": "A Direct Proof of Optimal Max-Cut Hardness"
+    },
+    {
+      "id": "m3-thm-gap",
+      "kind": "theorem",
+      "label": "Explicit cover gap",
+      "statement": "[Explicit cover gap] For every fixed integer \\(m4\\), there is a deterministic polynomial-time reduction from \\(3SAT\\) to finite simple undirected unweighted graphs with the following guarantees: \\[…",
+      "section": "Introduction",
+      "manuscript": "The Factor-Two Hardness Threshold for Vertex Cover"
+    },
+    {
+      "id": "m3-thm-hardness",
+      "kind": "corollary",
+      "label": "For every fixed real \\(\\) with \\(1<2\\), approximating Vertex Cover within…",
+      "statement": "For every fixed real \\(\\) with \\(1<2\\), approximating Vertex Cover within factor \\(\\) is NP-hard. Thus, unless \\( P=NP\\), no deterministic polynomial-time algorithm achieves factor \\(2-\\) for any…",
+      "section": "Introduction",
+      "manuscript": "The Factor-Two Hardness Threshold for Vertex Cover"
+    },
+    {
+      "id": "m3-src-hardness",
+      "kind": "theorem",
+      "label": "Perfect-completeness Label Cover hardness",
+      "statement": "[Perfect-completeness Label Cover hardness] For every fixed rational \\((0,1)\\), there are nonempty constant alphabets and a deterministic polynomial-time reduction from \\(3SAT\\) to instances of the…",
+      "section": "The source problem and construction parameters",
+      "manuscript": "The Factor-Two Hardness Threshold for Vertex Cover"
+    },
+    {
+      "id": "m3-graph-norm",
+      "kind": "lemma",
+      "label": "Compatibility norm",
+      "statement": "[Compatibility norm] The family I is hereditary and contains every coordinate singleton. Formula~ defines a norm. For each fixed query i , the increment is linear in s and obeys z(i,s)\\|s\\|_.",
+      "section": "The graph and completeness",
+      "manuscript": "The Factor-Two Hardness Threshold for Vertex Cover"
+    },
+    {
+      "id": "m3-graph-local-norm",
+      "kind": "lemma",
+      "label": "Local evaluation of the norm",
+      "statement": "[Local evaluation of the norm] Let B Q be a set of query blocks supporting z^ P . Then z=_ I I:\\\\ (i, ) I\\ \\ i B |_ (i,) I z_ i, |. For z=S_v+S_w , this maximum can be evaluated by at most (1+r)^ 2d…",
+      "section": "The graph and completeness",
+      "manuscript": "The Factor-Two Hardness Threshold for Vertex Cover"
+    },
+    {
+      "id": "m3-graph-polynomial",
+      "kind": "proposition",
+      "label": "Deterministic polynomial construction",
+      "statement": "[Deterministic polynomial construction] For a fixed integer m4 , a fixed even square d satisfying , and fixed source alphabets, the graph G can be output explicitly in deterministic time polynomial…",
+      "section": "The graph and completeness",
+      "manuscript": "The Factor-Two Hardness Threshold for Vertex Cover"
+    },
+    {
+      "id": "m3-graph-anticoncentration",
+      "kind": "lemma",
+      "label": "Midpoint-grid tail",
+      "statement": "[Midpoint-grid tail] If T_1,,T_d are independent uniform elements of T , then >12-2(a+1 d ) >12-1m.",
+      "section": "The graph and completeness",
+      "manuscript": "The Factor-Two Hardness Threshold for Vertex Cover"
+    },
+    {
+      "id": "m3-graph-completeness",
+      "kind": "proposition",
+      "label": "Completeness",
+      "statement": "[Completeness] If ()=1 , then G has an independent set of size greater than (1/2-1/m)n . Consequently, \\[ (G)<(12+1m)n. \\]",
+      "section": "The graph and completeness",
+      "manuscript": "The Factor-Two Hardness Threshold for Vertex Cover"
+    },
+    {
+      "id": "m3-ana-function",
+      "kind": "lemma",
+      "label": "Separation, variance, and oscillation",
+      "statement": "[Separation, variance, and oscillation] Suppose an independent set contains at least \\(b_0n\\) vertices with \\(S_v>t\\). There is a fixed nonempty finite set \\(A_*^ P \\) such that \\[ _ v V(G) [S_v A_*]…",
+      "section": "A fixed function from an independent set",
+      "manuscript": "The Factor-Two Hardness Threshold for Vertex Cover"
+    },
+    {
+      "id": "m3-res-private-variance",
+      "kind": "lemma",
+      "label": "Own-question variance under a restriction",
+      "statement": "[Own-question variance under a restriction] Let \\(>0\\) and let \\(h\\) be an integer with \\(2 h d\\). Suppose the bounded Borel measurable function \\(f\\) on \\(\\) satisfies _ s f( c, s)=0 for every c,…",
+      "section": "A restriction preserving own-question variance",
+      "manuscript": "The Factor-Two Hardness Threshold for Vertex Cover"
+    },
+    {
+      "id": "m3-ana-gradient",
+      "kind": "lemma",
+      "label": "A gradient rule in the compatibility hull",
+      "statement": "[A gradient rule in the compatibility hull] There is a deterministic measurable rule \\(g=(g_j)_ j J ^ J \\), defined at every batch query and real-weight tuple, that equals \\(_ i \\) outside a finite…",
+      "section": "Lists from own-question conditional means",
+      "manuscript": "The Factor-Two Hardness Threshold for Vertex Cover"
+    },
+    {
+      "id": "m3-ana-cube",
+      "kind": "lemma",
+      "label": "Conditional cube variance",
+      "statement": "[Conditional cube variance] For each \\(j J\\) and supported own tuple \\(u\\), the function \\(H_j(u,)\\) is \\(1\\)-Lipschitz with respect to \\(\\|\\|_\\). For almost every own \\(s^r\\), _ s^ (t') H_j(u,s)= g_…",
+      "section": "Lists from own-question conditional means",
+      "manuscript": "The Factor-Two Hardness Threshold for Vertex Cover"
+    },
+    {
+      "id": "m3-ana-lists",
+      "kind": "proposition",
+      "label": "Local lists and compatible hits",
+      "statement": "[Local lists and compatible hits] The functions \\( L_j\\) are deterministic total measurable maps returning at most \\(\\) valid labels. Once \\(,F,J, a\\) and the conditional kernels above are fixed,…",
+      "section": "Lists from own-question conditional means",
+      "manuscript": "The Factor-Two Hardness Threshold for Vertex Cover"
+    },
+    {
+      "id": "m3-dec-pair",
+      "kind": "lemma",
+      "label": "Decoding a pair",
+      "statement": "[Decoding a pair] For every fixed \\(J, a\\) and fixed list maps satisfying , (E_ jk )^2 (j,k J,\\ j<k), Z1+ h2^2 =32-1 2h <32.",
+      "section": "Pair decoding and soundness",
+      "manuscript": "The Factor-Two Hardness Threshold for Vertex Cover"
+    },
+    {
+      "id": "m3-dec-soundness",
+      "kind": "corollary",
+      "label": "Soundness",
+      "statement": "[Soundness] For the graph constructed in , assume . If \\(()\\), every independent set has size strictly less than \\(n/m\\). Consequently \\((G)>(1-1/m)n\\).",
+      "section": "Pair decoding and soundness",
+      "manuscript": "The Factor-Two Hardness Threshold for Vertex Cover"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-projected-witness",
+      "to": "m1-prop-matrix-decoding",
+      "label": "lem:projected-witness",
+      "context": "[Proof of Proposition~\\ref{prop:matrix-decoding}] Use the two decoders above. Lemma~\\ref{lem:projected-witness} supplies a set of joint data of probability at least $\\gamma_1$, and Lemma~\\ref{lem:fourier-coset-decoding} gives the s"
+    }
+  ]
+}

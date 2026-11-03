@@ -1,0 +1,552 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "125",
+  "title": "The metric <i>k</i>-median approximation threshold and recovery",
+  "result": {
+    "id": "paper-result",
+    "label": "The metric <i>k</i>-median approximation threshold and recovery",
+    "statement": "Gives a deterministic polynomial-time (1+2/e+ )-approximation for finite rational metric k -median with specified candidate facilities, for every fixed ε > 0. Assuming P NP, the optimal infimum approximation factor is 1+2/e.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "conventions-and-reduction-to-bounded-integral-distances",
+      "label": "Conventions and reduction to bounded integral distances",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "local-search-and-anchored-comparison-clusters",
+      "label": "Local search and anchored comparison clusters",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "joint-sampling-of-leaders-and-removals",
+      "label": "Joint sampling of leaders and removals",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "completing-sampled-prefixes-and-recovering-the-budget",
+      "label": "Completing sampled prefixes and recovering the budget",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "sharper-recovery-when-few-clusters-are-unanchored",
+      "label": "Sharper recovery when few clusters are unanchored",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-surplus-construction-and-its-execution-certificate",
+      "label": "The surplus construction and its execution certificate",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "strictness-at-a-bounded-opening-price",
+      "label": "Strictness at a bounded opening price",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-low-sensitivity-case",
+      "label": "The low sensitivity case",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-stability-dichotomy-and-the-final-algorithm",
+      "label": "The stability dichotomy and the final algorithm",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "preliminaries-and-the-reduction",
+      "label": "Preliminaries and the reduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "preparing-the-openings",
+      "label": "Preparing the openings",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-finite-inequality-for-the-drift",
+      "label": "A finite inequality for the drift",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "tapered-iterative-rounding",
+      "label": "Tapered iterative rounding",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "deterministic-implementation-and-completion",
+      "label": "Deterministic implementation and completion",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Single-exponential recovery and bounded-price strictness for metric k-median",
+      "title": "Single-exponential recovery and bounded-price strictness for metric k-median",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Single-Exponential-Recovery-and-Bounded-Price-Strictness-for-Metric-k-Median-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Single-exponential recovery and bounded-price strictness for metric k-median.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-ref-recovery",
+          "role": "introduction",
+          "label": "theorem m1-ref-recovery",
+          "fullLabel": "theorem m1-ref-recovery",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-main-theorem",
+          "role": "introduction",
+          "label": "theorem m1-main-theorem",
+          "fullLabel": "theorem m1-main-theorem",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pre-rounding",
+          "role": "conventions-and-reduction-to-bounded-integral-distances",
+          "label": "lemma m1-pre-rounding",
+          "fullLabel": "lemma m1-pre-rounding",
+          "kind": "lemma",
+          "source": "Conventions and reduction to bounded integral distances",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-loc-descent",
+          "role": "local-search-and-anchored-comparison-clusters",
+          "label": "lemma m1-loc-descent",
+          "fullLabel": "lemma m1-loc-descent",
+          "kind": "lemma",
+          "source": "Local search and anchored comparison clusters",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-loc-swap",
+          "role": "local-search-and-anchored-comparison-clusters",
+          "label": "lemma m1-loc-swap",
+          "fullLabel": "lemma m1-loc-swap",
+          "kind": "lemma",
+          "source": "Local search and anchored comparison clusters",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-loc-anchoring",
+          "role": "local-search-and-anchored-comparison-clusters",
+          "label": "theorem m1-loc-anchoring",
+          "fullLabel": "theorem m1-loc-anchoring",
+          "kind": "theorem",
+          "source": "Local search and anchored comparison clusters",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sam-computable-radius",
+          "role": "joint-sampling-of-leaders-and-removals",
+          "label": "lemma m1-sam-computable-radius",
+          "fullLabel": "lemma m1-sam-computable-radius",
+          "kind": "lemma",
+          "source": "Joint sampling of leaders and removals",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sam-dummy-metric",
+          "role": "joint-sampling-of-leaders-and-removals",
+          "label": "lemma m1-sam-dummy-metric",
+          "fullLabel": "lemma m1-sam-dummy-metric",
+          "kind": "lemma",
+          "source": "Joint sampling of leaders and removals",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sam-radius-budget",
+          "role": "joint-sampling-of-leaders-and-removals",
+          "label": "lemma m1-sam-radius-budget",
+          "fullLabel": "lemma m1-sam-radius-budget",
+          "kind": "lemma",
+          "source": "Joint sampling of leaders and removals",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sam-probability",
+          "role": "joint-sampling-of-leaders-and-removals",
+          "label": "lemma m1-sam-probability",
+          "fullLabel": "lemma m1-sam-probability",
+          "kind": "lemma",
+          "source": "Joint sampling of leaders and removals",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sam-near-clients",
+          "role": "joint-sampling-of-leaders-and-removals",
+          "label": "lemma m1-sam-near-clients",
+          "fullLabel": "lemma m1-sam-near-clients",
+          "kind": "lemma",
+          "source": "Joint sampling of leaders and removals",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sam-sampling-mass",
+          "role": "joint-sampling-of-leaders-and-removals",
+          "label": "lemma m1-sam-sampling-mass",
+          "fullLabel": "lemma m1-sam-sampling-mass",
+          "kind": "lemma",
+          "source": "Joint sampling of leaders and removals",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sam-successful-prefix",
+          "role": "joint-sampling-of-leaders-and-removals",
+          "label": "theorem m1-sam-successful-prefix",
+          "fullLabel": "theorem m1-sam-successful-prefix",
+          "kind": "theorem",
+          "source": "Joint sampling of leaders and removals",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-comp-partition-max",
+          "role": "completing-sampled-prefixes-and-recovering-the-budget",
+          "label": "lemma m1-comp-partition-max",
+          "fullLabel": "lemma m1-comp-partition-max",
+          "kind": "lemma",
+          "source": "Completing sampled prefixes and recovering the budget",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-comp-surrogate-properties",
+          "role": "completing-sampled-prefixes-and-recovering-the-budget",
+          "label": "lemma m1-comp-surrogate-properties",
+          "fullLabel": "lemma m1-comp-surrogate-properties",
+          "kind": "lemma",
+          "source": "Completing sampled prefixes and recovering the budget",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-comp-completion",
+          "role": "completing-sampled-prefixes-and-recovering-the-budget",
+          "label": "theorem m1-comp-completion",
+          "fullLabel": "theorem m1-comp-completion",
+          "kind": "theorem",
+          "source": "Completing sampled prefixes and recovering the budget",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-comp-recovery",
+          "role": "completing-sampled-prefixes-and-recovering-the-budget",
+          "label": "theorem m1-comp-recovery",
+          "fullLabel": "theorem m1-comp-recovery",
+          "kind": "theorem",
+          "source": "Completing sampled prefixes and recovering the budget",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ref-two-stage",
+          "role": "sharper-recovery-when-few-clusters-are-unanchored",
+          "label": "lemma m1-ref-two-stage",
+          "fullLabel": "lemma m1-ref-two-stage",
+          "kind": "lemma",
+          "source": "Sharper recovery when few clusters are unanchored",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ref-charges",
+          "role": "sharper-recovery-when-few-clusters-are-unanchored",
+          "label": "lemma m1-ref-charges",
+          "fullLabel": "lemma m1-ref-charges",
+          "kind": "lemma",
+          "source": "Sharper recovery when few clusters are unanchored",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-imp-cglss",
+          "role": "the-surplus-construction-and-its-execution-certificate",
+          "label": "theorem m1-imp-cglss",
+          "fullLabel": "theorem m1-imp-cglss",
+          "kind": "theorem",
+          "source": "The surplus construction and its execution certificate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-imp-surplus-history",
+          "role": "the-surplus-construction-and-its-execution-certificate",
+          "label": "lemma m1-imp-surplus-history",
+          "fullLabel": "lemma m1-imp-surplus-history",
+          "kind": "lemma",
+          "source": "The surplus construction and its execution certificate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-str-strictness",
+          "role": "strictness-at-a-bounded-opening-price",
+          "label": "lemma m1-str-strictness",
+          "fullLabel": "lemma m1-str-strictness",
+          "kind": "lemma",
+          "source": "Strictness at a bounded opening price",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sur-low-sensitivity",
+          "role": "the-low-sensitivity-case",
+          "label": "proposition m1-sur-low-sensitivity",
+          "fullLabel": "proposition m1-sur-low-sensitivity",
+          "kind": "proposition",
+          "source": "The low sensitivity case",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-asm-sensitive",
+          "role": "the-stability-dichotomy-and-the-final-algorithm",
+          "label": "lemma m1-asm-sensitive",
+          "fullLabel": "lemma m1-asm-sensitive",
+          "kind": "lemma",
+          "source": "The stability dichotomy and the final algorithm",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-asm-integral",
+          "role": "the-stability-dichotomy-and-the-final-algorithm",
+          "label": "proposition m1-asm-integral",
+          "fullLabel": "proposition m1-asm-integral",
+          "kind": "proposition",
+          "source": "The stability dichotomy and the final algorithm",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "The approximation threshold for metric k-median",
+      "title": "The approximation threshold for metric k-median",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Approximation-Threshold-for-Metric-k-Median-September-24-2026/main.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from The approximation threshold for metric k-median.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-threshold",
+          "role": "introduction",
+          "label": "corollary m2-cor-threshold",
+          "fullLabel": "corollary m2-cor-threshold",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-li-svensson",
+          "role": "preliminaries-and-the-reduction",
+          "label": "theorem m2-thm-li-svensson",
+          "fullLabel": "theorem m2-thm-li-svensson",
+          "kind": "theorem",
+          "source": "Preliminaries and the reduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-preparation",
+          "role": "preparing-the-openings",
+          "label": "theorem m2-thm-preparation",
+          "fullLabel": "theorem m2-thm-preparation",
+          "kind": "theorem",
+          "source": "Preparing the openings",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-prep-weighted-rounding",
+          "role": "preparing-the-openings",
+          "label": "lemma m2-lem-prep-weighted-rounding",
+          "fullLabel": "lemma m2-lem-prep-weighted-rounding",
+          "kind": "lemma",
+          "source": "Preparing the openings",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-finite-inequality",
+          "role": "a-finite-inequality-for-the-drift",
+          "label": "theorem m2-thm-finite-inequality",
+          "fullLabel": "theorem m2-thm-finite-inequality",
+          "kind": "theorem",
+          "source": "A finite inequality for the drift",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-scalar-bounds",
+          "role": "a-finite-inequality-for-the-drift",
+          "label": "lemma m2-lem-scalar-bounds",
+          "fullLabel": "lemma m2-lem-scalar-bounds",
+          "kind": "lemma",
+          "source": "A finite inequality for the drift",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-grid-rounding",
+          "role": "tapered-iterative-rounding",
+          "label": "theorem m2-thm-grid-rounding",
+          "fullLabel": "theorem m2-thm-grid-rounding",
+          "kind": "theorem",
+          "source": "Tapered iterative rounding",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-rnd-count",
+          "role": "tapered-iterative-rounding",
+          "label": "lemma m2-lem-rnd-count",
+          "fullLabel": "lemma m2-lem-rnd-count",
+          "kind": "lemma",
+          "source": "Tapered iterative rounding",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-rnd-completion",
+          "role": "tapered-iterative-rounding",
+          "label": "lemma m2-lem-rnd-completion",
+          "fullLabel": "lemma m2-lem-rnd-completion",
+          "kind": "lemma",
+          "source": "Tapered iterative rounding",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-rnd-batch",
+          "role": "tapered-iterative-rounding",
+          "label": "lemma m2-lem-rnd-batch",
+          "fullLabel": "lemma m2-lem-rnd-batch",
+          "kind": "lemma",
+          "source": "Tapered iterative rounding",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-rnd-average",
+          "role": "tapered-iterative-rounding",
+          "label": "lemma m2-lem-rnd-average",
+          "fullLabel": "lemma m2-lem-rnd-average",
+          "kind": "lemma",
+          "source": "Tapered iterative rounding",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-rnd-survival",
+          "role": "tapered-iterative-rounding",
+          "label": "lemma m2-lem-rnd-survival",
+          "fullLabel": "lemma m2-lem-rnd-survival",
+          "kind": "lemma",
+          "source": "Tapered iterative rounding",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-affine-support",
+          "role": "deterministic-implementation-and-completion",
+          "label": "lemma m2-lem-affine-support",
+          "fullLabel": "lemma m2-lem-affine-support",
+          "kind": "lemma",
+          "source": "Deterministic implementation and completion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-pseudo",
+          "role": "deterministic-implementation-and-completion",
+          "label": "theorem m2-thm-pseudo",
+          "fullLabel": "theorem m2-thm-pseudo",
+          "kind": "theorem",
+          "source": "Deterministic implementation and completion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Single-exponential recovery and bounded-price strictness for metric k-median",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Single-Exponential-Recovery-and-Bounded-Price-Strictness-for-Metric-k-Median-September-24-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "The approximation threshold for metric k-median",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Approximation-Threshold-for-Metric-k-Median-September-24-2026/main.pdf",
+      "kind": "paper"
+    }
+  ]
+}

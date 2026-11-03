@@ -1,0 +1,966 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "261",
+  "title": "Localization and delocalization in the Anderson model",
+  "result": {
+    "id": "paper-result",
+    "label": "Localization and delocalization in the Anderson model",
+    "statement": "Resolves the predicted spectral contrast for the lattice Anderson model with independent uniform site potentials. In dimension two, every positive disorder strength gives almost surely pure-point spectrum. In every fixed dimension d ≥ 3, sufficiently weak positive disorder gives purely absolutely continuous spectrum on a fixed open interval with nonzero spectral weight.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-finite-volume-certificate-and-the-matrix-state",
+      "label": "A finite-volume certificate and the matrix state",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-initial-state-and-its-comparison-forms",
+      "label": "The initial state and its comparison forms",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-algebra-and-estimates-of-an-ordinary-sweep",
+      "label": "The algebra and estimates of an ordinary sweep",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "local-trials-and-the-ordinary-sweep",
+      "label": "Local trials and the ordinary sweep",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "clearing-a-small-pending-component",
+      "label": "Clearing a small pending component",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "committing-clearings-and-restoring-the-stage-bounds",
+      "label": "Committing clearings and restoring the stage bounds",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "failure-histories-and-removal-of-pending-sites",
+      "label": "Failure histories and removal of pending sites",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-the-certificate-to-pure-absolute-continuity",
+      "label": "From the certificate to pure absolute continuity",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "scattering-matrices-and-analytic-estimates",
+      "label": "Scattering matrices and analytic estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-resonant-cell-law",
+      "label": "The resonant cell law",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-weighted-projected-impedance-estimate",
+      "label": "A weighted projected impedance estimate",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "transmission-through-a-cell",
+      "label": "Transmission through a cell",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-hierarchy-of-probability-splits-and-energy-comparisons",
+      "label": "A hierarchy of probability splits and energy comparisons",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "screening-and-affine-energies-at-a-fixed-stage",
+      "label": "Screening and affine energies at a fixed stage",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "vanishing-of-the-limiting-energy-in-two-dimensions",
+      "label": "Vanishing of the limiting energy in two dimensions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-fixed-energy-fractional-moment-estimate",
+      "label": "A fixed-energy fractional-moment estimate",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three",
+      "title": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Absolutely-Continuous-Spectrum-for-Weak-Disorder-Anderson-Models-in-Dimensions-at-Least-Three-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-prop-certificate"
+          ]
+        },
+        {
+          "id": "m1-cor-coexistence",
+          "role": "introduction",
+          "label": "corollary m1-cor-coexistence",
+          "fullLabel": "corollary m1-cor-coexistence",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-certificate",
+          "role": "a-finite-volume-certificate-and-the-matrix-state",
+          "label": "proposition m1-prop-certificate",
+          "fullLabel": "proposition m1-prop-certificate",
+          "kind": "proposition",
+          "source": "A finite-volume certificate and the matrix state",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-prop-deterministic-induction"
+          ]
+        },
+        {
+          "id": "m1-lem-conditional-freshness",
+          "role": "a-finite-volume-certificate-and-the-matrix-state",
+          "label": "lemma m1-lem-conditional-freshness",
+          "fullLabel": "lemma m1-lem-conditional-freshness",
+          "kind": "lemma",
+          "source": "A finite-volume certificate and the matrix state",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-dual-forms",
+          "role": "the-initial-state-and-its-comparison-forms",
+          "label": "lemma m1-lem-dual-forms",
+          "fullLabel": "lemma m1-lem-dual-forms",
+          "kind": "lemma",
+          "source": "The initial state and its comparison forms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-fourier-charge",
+          "role": "the-initial-state-and-its-comparison-forms",
+          "label": "lemma m1-lem-fourier-charge",
+          "fullLabel": "lemma m1-lem-fourier-charge",
+          "kind": "lemma",
+          "source": "The initial state and its comparison forms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-cube-weight",
+          "role": "the-initial-state-and-its-comparison-forms",
+          "label": "lemma m1-lem-cube-weight",
+          "fullLabel": "lemma m1-lem-cube-weight",
+          "kind": "lemma",
+          "source": "The initial state and its comparison forms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-lattice-counting",
+          "role": "the-initial-state-and-its-comparison-forms",
+          "label": "lemma m1-lem-lattice-counting",
+          "fullLabel": "lemma m1-lem-lattice-counting",
+          "kind": "lemma",
+          "source": "The initial state and its comparison forms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-initial-bottom-density",
+          "role": "the-initial-state-and-its-comparison-forms",
+          "label": "lemma m1-lem-initial-bottom-density",
+          "fullLabel": "lemma m1-lem-initial-bottom-density",
+          "kind": "lemma",
+          "source": "The initial state and its comparison forms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-initialization",
+          "role": "the-initial-state-and-its-comparison-forms",
+          "label": "proposition m1-prop-initialization",
+          "fullLabel": "proposition m1-prop-initialization",
+          "kind": "proposition",
+          "source": "The initial state and its comparison forms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-duplication",
+          "role": "the-algebra-and-estimates-of-an-ordinary-sweep",
+          "label": "lemma m1-lem-duplication",
+          "fullLabel": "lemma m1-lem-duplication",
+          "kind": "lemma",
+          "source": "The algebra and estimates of an ordinary sweep",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-single-update",
+          "role": "the-algebra-and-estimates-of-an-ordinary-sweep",
+          "label": "lemma m1-lem-single-update",
+          "fullLabel": "lemma m1-lem-single-update",
+          "kind": "lemma",
+          "source": "The algebra and estimates of an ordinary sweep",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sweep-prestate",
+          "role": "the-algebra-and-estimates-of-an-ordinary-sweep",
+          "label": "lemma m1-lem-sweep-prestate",
+          "fullLabel": "lemma m1-lem-sweep-prestate",
+          "kind": "lemma",
+          "source": "The algebra and estimates of an ordinary sweep",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sweep-j",
+          "role": "the-algebra-and-estimates-of-an-ordinary-sweep",
+          "label": "lemma m1-lem-sweep-j",
+          "fullLabel": "lemma m1-lem-sweep-j",
+          "kind": "lemma",
+          "source": "The algebra and estimates of an ordinary sweep",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sweep-laplacian",
+          "role": "the-algebra-and-estimates-of-an-ordinary-sweep",
+          "label": "lemma m1-lem-sweep-laplacian",
+          "fullLabel": "lemma m1-lem-sweep-laplacian",
+          "kind": "lemma",
+          "source": "The algebra and estimates of an ordinary sweep",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sweep-lag",
+          "role": "the-algebra-and-estimates-of-an-ordinary-sweep",
+          "label": "lemma m1-lem-sweep-lag",
+          "fullLabel": "lemma m1-lem-sweep-lag",
+          "kind": "lemma",
+          "source": "The algebra and estimates of an ordinary sweep",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sweep-fourth",
+          "role": "the-algebra-and-estimates-of-an-ordinary-sweep",
+          "label": "lemma m1-lem-sweep-fourth",
+          "fullLabel": "lemma m1-lem-sweep-fourth",
+          "kind": "lemma",
+          "source": "The algebra and estimates of an ordinary sweep",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-sweep-increments",
+          "role": "the-algebra-and-estimates-of-an-ordinary-sweep",
+          "label": "proposition m1-prop-sweep-increments",
+          "fullLabel": "proposition m1-prop-sweep-increments",
+          "kind": "proposition",
+          "source": "The algebra and estimates of an ordinary sweep",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-locality",
+          "role": "local-trials-and-the-ordinary-sweep",
+          "label": "lemma m1-lem-locality",
+          "fullLabel": "lemma m1-lem-locality",
+          "kind": "lemma",
+          "source": "Local trials and the ordinary sweep",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-inverse-row",
+          "role": "local-trials-and-the-ordinary-sweep",
+          "label": "lemma m1-lem-inverse-row",
+          "fullLabel": "lemma m1-lem-inverse-row",
+          "kind": "lemma",
+          "source": "Local trials and the ordinary sweep",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-local-prospective",
+          "role": "local-trials-and-the-ordinary-sweep",
+          "label": "lemma m1-lem-local-prospective",
+          "fullLabel": "lemma m1-lem-local-prospective",
+          "kind": "lemma",
+          "source": "Local trials and the ordinary sweep",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-local-pullback",
+          "role": "local-trials-and-the-ordinary-sweep",
+          "label": "lemma m1-lem-local-pullback",
+          "fullLabel": "lemma m1-lem-local-pullback",
+          "kind": "lemma",
+          "source": "Local trials and the ordinary sweep",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-local-transfer",
+          "role": "local-trials-and-the-ordinary-sweep",
+          "label": "lemma m1-lem-local-transfer",
+          "fullLabel": "lemma m1-lem-local-transfer",
+          "kind": "lemma",
+          "source": "Local trials and the ordinary sweep",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-matrix-concentration",
+          "role": "local-trials-and-the-ordinary-sweep",
+          "label": "lemma m1-lem-matrix-concentration",
+          "fullLabel": "lemma m1-lem-matrix-concentration",
+          "kind": "lemma",
+          "source": "Local trials and the ordinary sweep",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-local-trial",
+          "role": "local-trials-and-the-ordinary-sweep",
+          "label": "lemma m1-lem-local-trial",
+          "fullLabel": "lemma m1-lem-local-trial",
+          "kind": "lemma",
+          "source": "Local trials and the ordinary sweep",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-ordinary-sweep",
+          "role": "local-trials-and-the-ordinary-sweep",
+          "label": "proposition m1-prop-ordinary-sweep",
+          "fullLabel": "proposition m1-prop-ordinary-sweep",
+          "kind": "proposition",
+          "source": "Local trials and the ordinary sweep",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-core-completion",
+          "role": "clearing-a-small-pending-component",
+          "label": "lemma m1-lem-core-completion",
+          "fullLabel": "lemma m1-lem-core-completion",
+          "kind": "lemma",
+          "source": "Clearing a small pending component",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-clearing-range-localization",
+          "role": "clearing-a-small-pending-component",
+          "label": "lemma m1-lem-clearing-range-localization",
+          "fullLabel": "lemma m1-lem-clearing-range-localization",
+          "kind": "lemma",
+          "source": "Clearing a small pending component",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-core-decay",
+          "role": "clearing-a-small-pending-component",
+          "label": "corollary m1-cor-core-decay",
+          "fullLabel": "corollary m1-cor-core-decay",
+          "kind": "corollary",
+          "source": "Clearing a small pending component",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-leverage-drift",
+          "role": "clearing-a-small-pending-component",
+          "label": "lemma m1-lem-leverage-drift",
+          "fullLabel": "lemma m1-lem-leverage-drift",
+          "kind": "lemma",
+          "source": "Clearing a small pending component",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-clearing-heat-count",
+          "role": "clearing-a-small-pending-component",
+          "label": "lemma m1-lem-clearing-heat-count",
+          "fullLabel": "lemma m1-lem-clearing-heat-count",
+          "kind": "lemma",
+          "source": "Clearing a small pending component",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-clearing-trial",
+          "role": "clearing-a-small-pending-component",
+          "label": "proposition m1-prop-clearing-trial",
+          "fullLabel": "proposition m1-prop-clearing-trial",
+          "kind": "proposition",
+          "source": "Clearing a small pending component",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-assembly-metric",
+          "role": "committing-clearings-and-restoring-the-stage-bounds",
+          "label": "lemma m1-lem-assembly-metric",
+          "fullLabel": "lemma m1-lem-assembly-metric",
+          "kind": "lemma",
+          "source": "Committing clearings and restoring the stage bounds",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-clearing-locality",
+          "role": "committing-clearings-and-restoring-the-stage-bounds",
+          "label": "lemma m1-lem-clearing-locality",
+          "fullLabel": "lemma m1-lem-clearing-locality",
+          "kind": "lemma",
+          "source": "Committing clearings and restoring the stage bounds",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-committed-assembly",
+          "role": "committing-clearings-and-restoring-the-stage-bounds",
+          "label": "proposition m1-prop-committed-assembly",
+          "fullLabel": "proposition m1-prop-committed-assembly",
+          "kind": "proposition",
+          "source": "Committing clearings and restoring the stage bounds",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-reset",
+          "role": "committing-clearings-and-restoring-the-stage-bounds",
+          "label": "proposition m1-prop-reset",
+          "fullLabel": "proposition m1-prop-reset",
+          "kind": "proposition",
+          "source": "Committing clearings and restoring the stage bounds",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-deterministic-induction",
+          "role": "committing-clearings-and-restoring-the-stage-bounds",
+          "label": "proposition m1-prop-deterministic-induction",
+          "fullLabel": "proposition m1-prop-deterministic-induction",
+          "kind": "proposition",
+          "source": "Committing clearings and restoring the stage bounds",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-witness-bound",
+          "role": "failure-histories-and-removal-of-pending-sites",
+          "label": "proposition m1-prop-witness-bound",
+          "fullLabel": "proposition m1-prop-witness-bound",
+          "kind": "proposition",
+          "source": "Failure histories and removal of pending sites",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-threshold",
+          "role": "failure-histories-and-removal-of-pending-sites",
+          "label": "proposition m1-prop-threshold",
+          "fullLabel": "proposition m1-prop-threshold",
+          "kind": "proposition",
+          "source": "Failure histories and removal of pending sites",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-spectral-averaging",
+          "role": "from-the-certificate-to-pure-absolute-continuity",
+          "label": "lemma m1-lem-spectral-averaging",
+          "fullLabel": "lemma m1-lem-spectral-averaging",
+          "kind": "lemma",
+          "source": "From the certificate to pure absolute continuity",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-certificate-readout",
+          "role": "from-the-certificate-to-pure-absolute-continuity",
+          "label": "proposition m1-prop-certificate-readout",
+          "fullLabel": "proposition m1-prop-certificate-readout",
+          "kind": "proposition",
+          "source": "From the certificate to pure absolute continuity",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder",
+      "title": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Pure-Point-Spectrum-for-the-Two-Dimensional-Anderson-Model-at-Every-Positive-Disorder-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-main-theorem",
+          "role": "introduction",
+          "label": "theorem m2-main-theorem",
+          "fullLabel": "theorem m2-main-theorem",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mat-ward",
+          "role": "scattering-matrices-and-analytic-estimates",
+          "label": "lemma m2-mat-ward",
+          "fullLabel": "lemma m2-mat-ward",
+          "kind": "lemma",
+          "source": "Scattering matrices and analytic estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mat-closure",
+          "role": "scattering-matrices-and-analytic-estimates",
+          "label": "lemma m2-mat-closure",
+          "fullLabel": "lemma m2-mat-closure",
+          "kind": "lemma",
+          "source": "Scattering matrices and analytic estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mat-energy-closure",
+          "role": "scattering-matrices-and-analytic-estimates",
+          "label": "lemma m2-mat-energy-closure",
+          "fullLabel": "lemma m2-mat-energy-closure",
+          "kind": "lemma",
+          "source": "Scattering matrices and analytic estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mat-cutoff",
+          "role": "scattering-matrices-and-analytic-estimates",
+          "label": "lemma m2-mat-cutoff",
+          "fullLabel": "lemma m2-mat-cutoff",
+          "kind": "lemma",
+          "source": "Scattering matrices and analytic estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mat-weak",
+          "role": "scattering-matrices-and-analytic-estimates",
+          "label": "lemma m2-mat-weak",
+          "fullLabel": "lemma m2-mat-weak",
+          "kind": "lemma",
+          "source": "Scattering matrices and analytic estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mat-phase",
+          "role": "scattering-matrices-and-analytic-estimates",
+          "label": "lemma m2-mat-phase",
+          "fullLabel": "lemma m2-mat-phase",
+          "kind": "lemma",
+          "source": "Scattering matrices and analytic estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cell-geometry",
+          "role": "the-resonant-cell-law",
+          "label": "lemma m2-cell-geometry",
+          "fullLabel": "lemma m2-cell-geometry",
+          "kind": "lemma",
+          "source": "The resonant cell law",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cell-profile",
+          "role": "the-resonant-cell-law",
+          "label": "lemma m2-cell-profile",
+          "fullLabel": "lemma m2-cell-profile",
+          "kind": "lemma",
+          "source": "The resonant cell law",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cell-branch",
+          "role": "the-resonant-cell-law",
+          "label": "proposition m2-cell-branch",
+          "fullLabel": "proposition m2-cell-branch",
+          "kind": "proposition",
+          "source": "The resonant cell law",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-imp-weighted",
+          "role": "a-weighted-projected-impedance-estimate",
+          "label": "proposition m2-imp-weighted",
+          "fullLabel": "proposition m2-imp-weighted",
+          "kind": "proposition",
+          "source": "A weighted projected impedance estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-imp-comparison",
+          "role": "a-weighted-projected-impedance-estimate",
+          "label": "lemma m2-imp-comparison",
+          "fullLabel": "lemma m2-imp-comparison",
+          "kind": "lemma",
+          "source": "A weighted projected impedance estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-imp-polynomials",
+          "role": "a-weighted-projected-impedance-estimate",
+          "label": "lemma m2-imp-polynomials",
+          "fullLabel": "lemma m2-imp-polynomials",
+          "kind": "lemma",
+          "source": "A weighted projected impedance estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-imp-resolution",
+          "role": "a-weighted-projected-impedance-estimate",
+          "label": "lemma m2-imp-resolution",
+          "fullLabel": "lemma m2-imp-resolution",
+          "kind": "lemma",
+          "source": "A weighted projected impedance estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-imp-schur-estimates",
+          "role": "a-weighted-projected-impedance-estimate",
+          "label": "lemma m2-imp-schur-estimates",
+          "fullLabel": "lemma m2-imp-schur-estimates",
+          "kind": "lemma",
+          "source": "A weighted projected impedance estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-imp-schur-interface",
+          "role": "a-weighted-projected-impedance-estimate",
+          "label": "corollary m2-imp-schur-interface",
+          "fullLabel": "corollary m2-imp-schur-interface",
+          "kind": "corollary",
+          "source": "A weighted projected impedance estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-trans-cell",
+          "role": "transmission-through-a-cell",
+          "label": "proposition m2-trans-cell",
+          "fullLabel": "proposition m2-trans-cell",
+          "kind": "proposition",
+          "source": "Transmission through a cell",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-trans-envelope",
+          "role": "transmission-through-a-cell",
+          "label": "proposition m2-trans-envelope",
+          "fullLabel": "proposition m2-trans-envelope",
+          "kind": "proposition",
+          "source": "Transmission through a cell",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-hier-sampling",
+          "role": "a-hierarchy-of-probability-splits-and-energy-comparisons",
+          "label": "proposition m2-hier-sampling",
+          "fullLabel": "proposition m2-hier-sampling",
+          "kind": "proposition",
+          "source": "A hierarchy of probability splits and energy comparisons",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-hier-hidden",
+          "role": "a-hierarchy-of-probability-splits-and-energy-comparisons",
+          "label": "lemma m2-hier-hidden",
+          "fullLabel": "lemma m2-hier-hidden",
+          "kind": "lemma",
+          "source": "A hierarchy of probability splits and energy comparisons",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-hier-comparison",
+          "role": "a-hierarchy-of-probability-splits-and-energy-comparisons",
+          "label": "theorem m2-hier-comparison",
+          "fullLabel": "theorem m2-hier-comparison",
+          "kind": "theorem",
+          "source": "A hierarchy of probability splits and energy comparisons",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-hier-cap",
+          "role": "a-hierarchy-of-probability-splits-and-energy-comparisons",
+          "label": "lemma m2-hier-cap",
+          "fullLabel": "lemma m2-hier-cap",
+          "kind": "lemma",
+          "source": "A hierarchy of probability splits and energy comparisons",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-hier-charges",
+          "role": "a-hierarchy-of-probability-splits-and-energy-comparisons",
+          "label": "lemma m2-hier-charges",
+          "fullLabel": "lemma m2-hier-charges",
+          "kind": "lemma",
+          "source": "A hierarchy of probability splits and energy comparisons",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-screen-observation",
+          "role": "screening-and-affine-energies-at-a-fixed-stage",
+          "label": "lemma m2-screen-observation",
+          "fullLabel": "lemma m2-screen-observation",
+          "kind": "lemma",
+          "source": "Screening and affine energies at a fixed stage",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-screen-projected",
+          "role": "screening-and-affine-energies-at-a-fixed-stage",
+          "label": "proposition m2-screen-projected",
+          "fullLabel": "proposition m2-screen-projected",
+          "kind": "proposition",
+          "source": "Screening and affine energies at a fixed stage",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-screen-paths",
+          "role": "screening-and-affine-energies-at-a-fixed-stage",
+          "label": "proposition m2-screen-paths",
+          "fullLabel": "proposition m2-screen-paths",
+          "kind": "proposition",
+          "source": "Screening and affine energies at a fixed stage",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-screen-walls",
+          "role": "screening-and-affine-energies-at-a-fixed-stage",
+          "label": "proposition m2-screen-walls",
+          "fullLabel": "proposition m2-screen-walls",
+          "kind": "proposition",
+          "source": "Screening and affine energies at a fixed stage",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-screen-limits",
+          "role": "screening-and-affine-energies-at-a-fixed-stage",
+          "label": "proposition m2-screen-limits",
+          "fullLabel": "proposition m2-screen-limits",
+          "kind": "proposition",
+          "source": "Screening and affine energies at a fixed stage",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-screen-profiles",
+          "role": "screening-and-affine-energies-at-a-fixed-stage",
+          "label": "proposition m2-screen-profiles",
+          "fullLabel": "proposition m2-screen-profiles",
+          "kind": "proposition",
+          "source": "Screening and affine energies at a fixed stage",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-screen-limit",
+          "role": "screening-and-affine-energies-at-a-fixed-stage",
+          "label": "proposition m2-screen-limit",
+          "fullLabel": "proposition m2-screen-limit",
+          "kind": "proposition",
+          "source": "Screening and affine energies at a fixed stage",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-van-zero",
+          "role": "vanishing-of-the-limiting-energy-in-two-dimensions",
+          "label": "proposition m2-van-zero",
+          "fullLabel": "proposition m2-van-zero",
+          "kind": "proposition",
+          "source": "Vanishing of the limiting energy in two dimensions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-van-adjustment",
+          "role": "vanishing-of-the-limiting-energy-in-two-dimensions",
+          "label": "lemma m2-van-adjustment",
+          "fullLabel": "lemma m2-van-adjustment",
+          "kind": "lemma",
+          "source": "Vanishing of the limiting energy in two dimensions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-van-barrier",
+          "role": "vanishing-of-the-limiting-energy-in-two-dimensions",
+          "label": "lemma m2-van-barrier",
+          "fullLabel": "lemma m2-van-barrier",
+          "kind": "lemma",
+          "source": "Vanishing of the limiting energy in two dimensions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-van-good",
+          "role": "vanishing-of-the-limiting-energy-in-two-dimensions",
+          "label": "lemma m2-van-good",
+          "fullLabel": "lemma m2-van-good",
+          "kind": "lemma",
+          "source": "Vanishing of the limiting energy in two dimensions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-van-analytic-bounds",
+          "role": "vanishing-of-the-limiting-energy-in-two-dimensions",
+          "label": "lemma m2-van-analytic-bounds",
+          "fullLabel": "lemma m2-van-analytic-bounds",
+          "kind": "lemma",
+          "source": "Vanishing of the limiting energy in two dimensions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-boot-fractional",
+          "role": "a-fixed-energy-fractional-moment-estimate",
+          "label": "theorem m2-boot-fractional",
+          "fullLabel": "theorem m2-boot-fractional",
+          "kind": "theorem",
+          "source": "A fixed-energy fractional-moment estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-boot-twist",
+          "role": "a-fixed-energy-fractional-moment-estimate",
+          "label": "lemma m2-boot-twist",
+          "fullLabel": "lemma m2-boot-twist",
+          "kind": "lemma",
+          "source": "A fixed-energy fractional-moment estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-boot-tilted",
+          "role": "a-fixed-energy-fractional-moment-estimate",
+          "label": "lemma m2-boot-tilted",
+          "fullLabel": "lemma m2-boot-tilted",
+          "kind": "lemma",
+          "source": "A fixed-energy fractional-moment estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-boot-return",
+          "role": "a-fixed-energy-fractional-moment-estimate",
+          "label": "lemma m2-boot-return",
+          "fullLabel": "lemma m2-boot-return",
+          "kind": "lemma",
+          "source": "A fixed-energy fractional-moment estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Absolutely-Continuous-Spectrum-for-Weak-Disorder-Anderson-Models-in-Dimensions-at-Least-Three-September-23-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Pure-Point-Spectrum-for-the-Two-Dimensional-Anderson-Model-at-Every-Positive-Disorder-September-23-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

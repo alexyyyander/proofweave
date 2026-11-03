@@ -1,0 +1,192 @@
+{
+  "familyNumber": "183",
+  "familyTitle": "Power savings for planar halving lines and <i>k</i>-sets",
+  "manuscripts": [
+    {
+      "id": "A-power-saving-for-planar-halving-lines-September-25-2026",
+      "title": "A power saving for planar halving lines",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-power-saving-for-planar-halving-lines-September-25-2026/main.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Sweeps, activity, and exchange graphs",
+    "Rank coordinates and limiting measures",
+    "Differentiable coordinates and transverse directions",
+    "Three transverse foliations determine the zoom",
+    "A spatial measure with dimension greater than seven quarters",
+    "Boundary activity and the packing contradiction",
+    "From activity packing to a power saving"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-halving-power",
+      "kind": "theorem",
+      "label": "There exist absolute constants >0 , C< , and n_0 such that, for every even n…",
+      "statement": "There exist absolute constants >0 , C< , and n_0 such that, for every even n n_0 and every n -point set P R^2 with no three collinear, \\[ h(P) C n^ 4/3- . \\]",
+      "section": "Introduction",
+      "manuscript": "A power saving for planar halving lines"
+    },
+    {
+      "id": "m1-thm-all-ranks",
+      "kind": "theorem",
+      "label": "Uniform bound over all ranks",
+      "statement": "[Uniform bound over all ranks] There are absolute constants >0 and C< such that for every integer N1 , every generic N -point planar configuration P , and every integer 0 k N , \\[ S_k(P) C N^ 4/3- .…",
+      "section": "Introduction",
+      "manuscript": "A power saving for planar halving lines"
+    },
+    {
+      "id": "m1-cor-k-sensitive",
+      "kind": "corollary",
+      "label": "Planar k -sets and straight-line levels",
+      "statement": "[Planar k -sets and straight-line levels] There are absolute constants _0>0 and C_0< such that, for every integer n2 and every integer 1 k n/2 , the number of k -sets of any n -point set Q R^2 with…",
+      "section": "Introduction",
+      "manuscript": "A power saving for planar halving lines"
+    },
+    {
+      "id": "m1-thm-activity-packing",
+      "kind": "theorem",
+      "label": "Uniform activity packing",
+      "statement": "[Uniform activity packing] For every >0 there is Q_< such that, for every generic N -point configuration, every rank, and every integer 1 b N with N/b Q_ , any collection of intervals with disjoint…",
+      "section": "Sweeps, activity, and exchange graphs",
+      "manuscript": "A power saving for planar halving lines"
+    },
+    {
+      "id": "m1-lem-activity-distance",
+      "kind": "lemma",
+      "label": "Activity and endpoint distance",
+      "statement": "[Activity and endpoint distance] Fix a generic N -point set and a rank k . For an integer b4 , any collection of intervals of activity at least b can be divided into two classes. At rank k+ b/4 the…",
+      "section": "Sweeps, activity, and exchange graphs",
+      "manuscript": "A power saving for planar halving lines"
+    },
+    {
+      "id": "m1-lem-greedy-batches",
+      "kind": "lemma",
+      "label": "Greedy batches",
+      "statement": "[Greedy batches] Fix a rank and an integer d1 , and put a= d/2 . Starting at the first state, end a batch at the first subsequent state at distance a from its start, and repeat while possible. If R…",
+      "section": "Sweeps, activity, and exchange graphs",
+      "manuscript": "A power saving for planar halving lines"
+    },
+    {
+      "id": "m1-lem-chain-partitions",
+      "kind": "lemma",
+      "label": "Two chain partitions",
+      "statement": "[Two chain partitions] For a consecutive window of batches, let S be the number of distinct endpoints of its exchange edges. Those edges partition into at most aS convex polygonal chains, and also…",
+      "section": "Sweeps, activity, and exchange graphs",
+      "manuscript": "A power saving for planar halving lines"
+    },
+    {
+      "id": "m1-lem-designated-crossing",
+      "kind": "lemma",
+      "label": "Crossings with designated endpoints",
+      "statement": "[Crossings with designated endpoints] Let a simple graph be drawn with straight segments on v distinct points, with no vertex in an edge interior and no crossings of incident edges. Suppose every…",
+      "section": "Sweeps, activity, and exchange graphs",
+      "manuscript": "A power saving for planar halving lines"
+    },
+    {
+      "id": "m1-lem-edge-vertex-mass",
+      "kind": "lemma",
+      "label": "Edge mass and vertex mass",
+      "statement": "[Edge mass and vertex mass] For every window J and every Borel set F Z , _J(F)^3 C s_J^3_J(F). In particular . The same estimate holds if additional labels in a compact metrizable space are attached…",
+      "section": "Rank coordinates and limiting measures",
+      "manuscript": "A power saving for planar halving lines"
+    },
+    {
+      "id": "m1-lem-nonatomic-time",
+      "kind": "lemma",
+      "label": "No atoms in conditional time",
+      "statement": "[No atoms in conditional time] For -almost every z , the probability measure h_z is nonatomic.",
+      "section": "Rank coordinates and limiting measures",
+      "manuscript": "A power saving for planar halving lines"
+    },
+    {
+      "id": "m1-lem-edge-crossing-ac",
+      "kind": "lemma",
+      "label": "Edge mass sees crossings",
+      "statement": "[Edge mass sees crossings] For every window K , _K_ I,J K,\\ I J= _ IJ , where the sum specifies null sets. Thus, if a Borel set F Z is null for every _ IJ with I,J K disjoint windows, then _K(F)=0 .",
+      "section": "Rank coordinates and limiting measures",
+      "manuscript": "A power saving for planar halving lines"
+    },
+    {
+      "id": "m1-lem-monotone-differentiability",
+      "kind": "lemma",
+      "label": "A bounded Borel function on an open rectangle in R^2 that is monotone in each…",
+      "statement": "A bounded Borel function on an open rectangle in R^2 that is monotone in each coordinate is Fr\\'echet differentiable almost everywhere with respect to planar Lebesgue measure.",
+      "section": "Differentiable coordinates and transverse directions",
+      "manuscript": "A power saving for planar halving lines"
+    },
+    {
+      "id": "m1-lem-critical-image-null",
+      "kind": "lemma",
+      "label": "Let F: R^2 be any map, where R^2 is open. The image of the set of points at…",
+      "statement": "Let F: R^2 be any map, where R^2 is open. The image of the set of points at which F is Fr\\'echet differentiable and rankDF<2 has planar outer measure zero.",
+      "section": "Differentiable coordinates and transverse directions",
+      "manuscript": "A power saving for planar halving lines"
+    },
+    {
+      "id": "m1-lem-independent-gradients",
+      "kind": "lemma",
+      "label": "After discarding a further |_E -null set, every label z E has the following…",
+      "statement": "After discarding a further |_E -null set, every label z E has the following property: if J K is dyadic and h_z(J)>0 , then some disjoint dyadic C,D J satisfy \\[ f_C(p)\\\\ f_D(p) 0. \\]",
+      "section": "Differentiable coordinates and transverse directions",
+      "manuscript": "A power saving for planar halving lines"
+    },
+    {
+      "id": "m1-lem-separated-tangent-directions",
+      "kind": "lemma",
+      "label": "If s<t lie in K^ and h_z((s,t))>0 , then D_p(s) D_p(t)= . There are three times…",
+      "statement": "If s<t lie in K^ and h_z((s,t))>0 , then D_p(s) D_p(t)= . There are three times _1<_2<_3 in K^ for which these intervals are singletons with distinct projective directions.",
+      "section": "Differentiable coordinates and transverse directions",
+      "manuscript": "A power saving for planar halving lines"
+    },
+    {
+      "id": "m1-lem-three-foliation",
+      "kind": "lemma",
+      "label": "Three-foliation compactness",
+      "statement": "[Three-foliation compactness] Let _j R^2 be open sets containing every compact subset of R^2 for all sufficiently large j . Let F_j: R^2_j be homeomorphisms. Put v_1=(1,0) , v_2=(0,1) and v_3=(1,1) .…",
+      "section": "Three transverse foliations determine the zoom",
+      "manuscript": "A power saving for planar halving lines"
+    },
+    {
+      "id": "m1-prop-spatial-limit",
+      "kind": "proposition",
+      "label": "There is a Borel set G E with _ K_0 (G)>0 , a further subsequence, and a…",
+      "statement": "There is a Borel set G E with _ K_0 (G)>0 , a further subsequence, and a translation and uniform rescaling of each normalized Euclidean plane with the following properties. Over every p(G) the…",
+      "section": "A spatial measure with dimension greater than seven quarters",
+      "manuscript": "A power saving for planar halving lines"
+    },
+    {
+      "id": "m1-lem-three-strips",
+      "kind": "lemma",
+      "label": "Three strips",
+      "statement": "[Three strips] Let P be a finite subset of R^2 , let B be a bounded open set, and let D1 satisfy |x| D for x B . Suppose that M_0,,M_m P have the same cardinality and are given by strictly separating…",
+      "section": "Boundary activity and the packing contradiction",
+      "manuscript": "A power saving for planar halving lines"
+    },
+    {
+      "id": "m1-lem-limiting-boundary-activity",
+      "kind": "lemma",
+      "label": "Limiting boundary activity",
+      "statement": "[Limiting boundary activity] For each dyadic J K_0 , _J(G)2b_J+C_G_J^ d-1 .",
+      "section": "Boundary activity and the packing contradiction",
+      "manuscript": "A power saving for planar halving lines"
+    },
+    {
+      "id": "m1-prop-packing-to-power",
+      "kind": "proposition",
+      "label": "Suppose that, for every >0 , there is R_< such that for every generic planar…",
+      "statement": "Suppose that, for every >0 , there is R_< such that for every generic planar configuration of N points, every rank, and every integer 1 b N with N/b R_ , the number of step-disjoint intervals of…",
+      "section": "From activity packing to a power saving",
+      "manuscript": "A power saving for planar halving lines"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-thm-all-ranks",
+      "to": "m1-cor-k-sensitive",
+      "label": "thm:all-ranks",
+      "context": "[Proof of Corollary~\\ref{cor:k-sensitive}] Take $\\varepsilon$ from Theorem~\\ref{thm:all-ranks} and set $\\varepsilon_0=\\min\\{\\varepsilon,1/6\\}$ and $\\beta=4/3-\\varepsilon_0>1$. The theorem remains valid with exponen"
+    }
+  ]
+}

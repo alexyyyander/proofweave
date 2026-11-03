@@ -1,0 +1,84 @@
+{
+  "familyNumber": "150",
+  "familyTitle": "Weak mixing of triangular billiards with an irrational angle",
+  "manuscripts": [
+    {
+      "id": "Weak-mixing-of-triangular-billiards-with-an-irrational-angle-October-5-2026",
+      "title": "Weak mixing of triangular billiards with an irrational angle",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Weak-mixing-of-triangular-billiards-with-an-irrational-angle-October-5-2026/weak-mixing-triangular-billiards.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "The double and its angular coefficients",
+    "Localized energy and individual coefficient bounds",
+    "Side reflections and weak mixing"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "The unit-speed billiard flow in every nondegenerate Euclidean triangle with at…",
+      "statement": "The unit-speed billiard flow in every nondegenerate Euclidean triangle with at least one angle irrational relative to \\(\\) is weakly mixing for normalized Liouville measure.",
+      "section": "Introduction",
+      "manuscript": "Weak mixing of triangular billiards with an irrational angle"
+    },
+    {
+      "id": "m1-prop-rigidity",
+      "kind": "proposition",
+      "label": "Transverse rigidity",
+      "statement": "[Transverse rigidity] Let \\(M\\) be the regular oriented double of a fixed nondegenerate Euclidean triangle, and let \\(_t\\) be its geodesic flow on \\(SM\\) with normalized Liouville measure. Suppose…",
+      "section": "The double and its angular coefficients",
+      "manuscript": "Weak mixing of triangular billiards with an irrational angle"
+    },
+    {
+      "id": "m1-lem-energy",
+      "kind": "lemma",
+      "label": "Localized coefficient estimate",
+      "statement": "[Localized coefficient estimate] Let \\(w L^2(SM)\\) have compact spatial support in \\(M\\) and be smooth in position with values in angular \\(L^2\\) in every flat chart. Suppose \\(Aw\\) vanishes over \\(M…",
+      "section": "Localized energy and individual coefficient bounds",
+      "manuscript": "Weak mixing of triangular billiards with an irrational angle"
+    },
+    {
+      "id": "m1-lem-smoothing",
+      "kind": "lemma",
+      "label": "Spatial regularization",
+      "statement": "[Spatial regularization] For every integer \\(0\\), the preceding operators satisfy ^ ^ S_ u_ L^2(r>K) C_u_2. Their derivatives here are taken before zero extension. The output is smooth in position…",
+      "section": "Localized energy and individual coefficient bounds",
+      "manuscript": "Weak mixing of triangular billiards with an irrational angle"
+    },
+    {
+      "id": "m1-lem-bounded-modes",
+      "kind": "lemma",
+      "label": "Individual coefficient regularity",
+      "statement": "[Individual coefficient regularity] Suppose \\(h L^(SM)\\), \\(h_ H\\), and \\((X-i)h=0\\) locally in distributions on the regular bundle. Every Fourier coefficient then has a global square-integrable flat…",
+      "section": "Localized energy and individual coefficient bounds",
+      "manuscript": "Weak mixing of triangular billiards with an irrational angle"
+    },
+    {
+      "id": "m1-prop-eigenfunctions",
+      "kind": "proposition",
+      "label": "Let \\(Q\\) be a nondegenerate Euclidean triangle with an angle irrational…",
+      "statement": "Let \\(Q\\) be a nondegenerate Euclidean triangle with an angle irrational relative to \\(\\). If \\(F L^2(Q S^1,)\\) satisfies \\[ F_t=e^ i t Fin L^2 (t) \\] for some \\(\\), then \\(F\\) is constant almost…",
+      "section": "Side reflections and weak mixing",
+      "manuscript": "Weak mixing of triangular billiards with an irrational angle"
+    },
+    {
+      "id": "m1-lem-spectral",
+      "kind": "lemma",
+      "label": "Let \\((,)\\) be a standard probability space and \\(_t\\) a measure-preserving…",
+      "statement": "Let \\((,)\\) be a standard probability space and \\(_t\\) a measure-preserving flow whose composition operators form a strongly continuous unitary group on complex \\(L^2()\\). If the only flow…",
+      "section": "Side reflections and weak mixing",
+      "manuscript": "Weak mixing of triangular billiards with an irrational angle"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-prop-eigenfunctions",
+      "to": "m1-thm-main",
+      "label": "prop:eigenfunctions",
+      "context": "[Proof of Theorem~\\ref{thm:main}] The billiard composition group is strongly continuous by the construction in Section~\\ref{sec:geometry}. Proposition~\\ref{prop:eigenfunctions} eliminates every nonconstant eigenfunction, so Lemma~\\ref{lem:spectral} proves ergodicity of the product flow."
+    }
+  ]
+}

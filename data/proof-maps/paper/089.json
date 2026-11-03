@@ -1,0 +1,516 @@
+{
+  "familyNumber": "089",
+  "familyTitle": "Bounded-distortion <i>L</i><sub>1</sub> embeddings of planar and bounded-treewidth graphs",
+  "manuscripts": [
+    {
+      "id": "Planar-Graph-Metrics-Embed-into-L1-with-Constant-Distortion-September-23-2026",
+      "title": "Planar Graph Metrics Embed into L1 with Constant Distortion",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Planar-Graph-Metrics-Embed-into-L1-with-Constant-Distortion-September-23-2026/paper.pdf"
+    },
+    {
+      "id": "L1-Embeddings-of-Graphs-of-Bounded-Treewidth-September-23-2026",
+      "title": "L1 Embeddings of Graphs of Bounded Treewidth",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/L1-Embeddings-of-Graphs-of-Bounded-Treewidth-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Columns and thin bands",
+    "Threshold sets and local coordinates",
+    "Interpolation by single-source distance functions",
+    "The main update and a packing bound for secondary seeds",
+    "Ordered fields and separation on the two arcs",
+    "The secondary update",
+    "Preserving charts and assembling the embedding",
+    "A consequence for almost-embeddable families",
+    "Cut measures and transport along a decomposition",
+    "Particles and reservations",
+    "Separating pairs in a common bag",
+    "The anchor construction",
+    "Uniform lower comparison"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There is a finite universal constant C1 with the following property. For every…",
+      "statement": "There is a finite universal constant C1 with the following property. For every finite connected planar graph G=(V,E) with strictly positive real edge lengths, there exist a measure space (, F,) and a…",
+      "section": "Introduction",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-geo-geodesics",
+      "kind": "lemma",
+      "label": "Realization and shortest paths",
+      "statement": "[Realization and shortest paths] The function d_I is a metric on each component of X_I . Its finite distances are attained by paths using each column at most once. Components of X_I correspond…",
+      "section": "Columns and thin bands",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-geo-realization",
+      "kind": "proposition",
+      "label": "Planar graphs admit column models",
+      "statement": "[Planar graphs admit column models] Every finite connected planar graph with positive edge lengths has an isometric realization of its geometric edge metric in a noncrossing column model satisfying…",
+      "section": "Columns and thin bands",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-geo-chord-separation",
+      "kind": "lemma",
+      "label": "Chord separation",
+      "statement": "[Chord separation] Let uv be an edge of a noncrossing circular graph. Any graph path from the strict interior of one circular u -- v arc to the strict interior of the other visits u or v .",
+      "section": "Columns and thin bands",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-geo-gap",
+      "kind": "lemma",
+      "label": "Gaps of a connected set",
+      "statement": "[Gaps of a connected set] Let S be a nonempty connected vertex set in a noncrossing circular graph. Every graph path avoiding S lies in one of the open circular gaps between consecutive vertices of S…",
+      "section": "Columns and thin bands",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-geo-skipping",
+      "kind": "lemma",
+      "label": "Skipping a column",
+      "statement": "[Skipping a column] Give an open circular arc its linear order, and assume its complementary closed arc contains a column index. Let a vertex walk stay in the open arc, and let an index i lie…",
+      "section": "Columns and thin bands",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-geo-outerplanar",
+      "kind": "lemma",
+      "label": "Outerplanarity",
+      "statement": "[Outerplanarity] Every active graph G_I is outerplanar and has no K_ 2,3 minor.",
+      "section": "Columns and thin bands",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-geo-sublevel",
+      "kind": "lemma",
+      "label": "Connected distance sublevels",
+      "statement": "[Connected distance sublevels] Fix a component of X_I , a source o in it, and a height H I . Put q_i=d_I(o,(i,H)) , taking q_i=+ outside that component. For every real t , the nonempty set \\ i:q_i t\\…",
+      "section": "Columns and thin bands",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-geo-portals",
+      "kind": "lemma",
+      "label": "Two portals",
+      "statement": "[Two portals] Let C be a component of the subgraph of G_J induced by \\ i:b_i t\\ . An entrance column of C is an index in C adjacent to an index with radial value below t . If entrance columns exist,…",
+      "section": "Columns and thin bands",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-geo-cells",
+      "kind": "lemma",
+      "label": "Diameter of cells",
+      "statement": "[Diameter of cells] Assume a D/1000 . Every radial cell is compact and path-connected, and has weak diameter at most 10D in d_J . Its frontier is compact, possibly empty.",
+      "section": "Columns and thin bands",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-geo-padding",
+      "kind": "lemma",
+      "label": "Padding and separation of cell interiors",
+      "statement": "[Padding and separation of cell interiors] Let v=(i,H) X_J , and let T=+D Z be the radial threshold set. If (b_i,T)>+2a, then every point reachable from v by a band path of length at most has all its…",
+      "section": "Columns and thin bands",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-geo-portal-levels",
+      "kind": "lemma",
+      "label": "Successive portal levels",
+      "statement": "[Successive portal levels] Fix a step >1000a . At depth n1 take the components of \\ b_i n\\ and give each its entrance portals from Lemma~ . The depth-zero node is the whole component, with its sole…",
+      "section": "Columns and thin bands",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-sets-vertical",
+      "kind": "lemma",
+      "label": "Vertical control and rebasing",
+      "statement": "[Vertical control and rebasing] For two points whose sets are expressed in common chart variables, ( A_v A_w) =\\ |h(v)-h(w)|,|P(v)-P(w)|\\ . If _ vert (P)<1 and P respects switches, the sets are…",
+      "section": "Threshold sets and local coordinates",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-sets-component-refinement",
+      "kind": "lemma",
+      "label": "Component refinement",
+      "statement": "[Component refinement] Suppose a system of sets is nested increasingly on each column, respects switches, and has symmetric-difference measure at most vertical length. It defines an L_1 pseudometric…",
+      "section": "Threshold sets and local coordinates",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-int-interpolation",
+      "kind": "theorem",
+      "label": "Thin-band interpolation",
+      "statement": "[Thin-band interpolation] Let 0<<1 , let E>0 , and set =E/8, a_0=10^ -6 , q=/20,\\\\ _0=/1000, M=15/+3, N=6(M+1). Suppose 0<a a_0 , and let p:Y be (1-) -Lipschitz for d_J . There is a random function…",
+      "section": "Interpolation by single-source distance functions",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-int-deterministic",
+      "kind": "lemma",
+      "label": "Accuracy and equality collars",
+      "statement": "[Accuracy and equality collars] Every node formula F_ has error at most 5 at every portal of a child of , and error at most 6 on its own layer. At a nonroot node with parent , if \\[ _ d_J (v,K_)…",
+      "section": "Interpolation by single-source distance functions",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-int-common-formula",
+      "kind": "lemma",
+      "label": "For x Y and 0<_0 , one node , determined without the interpolation noises,…",
+      "statement": "For x Y and 0<_0 , one node , determined without the interpolation noises, satisfies Q=F_ on B_ d_J (x,) , including equality of selected atom names. If n is the depth of , every point of this ball…",
+      "section": "Interpolation by single-source distance functions",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-int-depth",
+      "kind": "lemma",
+      "label": "Bounded depth of a selected atom",
+      "statement": "[Bounded depth of a selected atom] For the node supplied by Lemma~ , every atom selected by F_ on the ball originates in or one of its last M ancestors. Consequently at most N atom names can be…",
+      "section": "Interpolation by single-source distance functions",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-int-near-tie",
+      "kind": "lemma",
+      "label": "Fresh-noise comparison",
+      "statement": "[Fresh-noise comparison] For any two distinct named atoms in the deterministic list of Lemma~ , any fixed x Y , and t0 , (|A(x)-A'(x)| t)(2t+)/q. The same bound holds when one atom is replaced by any…",
+      "section": "Interpolation by single-source distance functions",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-int-comparisons",
+      "kind": "corollary",
+      "label": "Comparison with other branches",
+      "statement": "[Comparison with other branches] Condition on arbitrary prior data. Let W be the union of a nonempty family of band paths issuing from a fixed point x , each of length at most . The set W and these…",
+      "section": "Interpolation by single-source distance functions",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-main-validity",
+      "kind": "lemma",
+      "label": "Validity and size of the main replacement",
+      "statement": "[Validity and size of the main replacement] The simultaneous replacements~ respect switches, preserve vertical nesting and the vertical upper bound for system A, and admit ordinary charts on every…",
+      "section": "The main update and a packing bound for secondary seeds",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-main-ray",
+      "kind": "lemma",
+      "label": "Main raise or a descending path",
+      "statement": "[Main raise or a descending path] Suppose w satisfies the height and radial interior requirements for its width- D cell, and that the cell is available. For every choice of the interpolation…",
+      "section": "The main update and a packing bound for secondary seeds",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-main-pair-separation",
+      "kind": "corollary",
+      "label": "Separation supplied by the main test",
+      "statement": "[Separation supplied by the main test] Let (x,y) be an eligible pair satisfying the interior requirements, 1 d(x,y)2 , and |s(x)-s(y)| E_A . If either endpoint has no descending path, then,…",
+      "section": "The main update and a packing bound for secondary seeds",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-pack-barrier",
+      "kind": "lemma",
+      "label": "Label mass at a separating tip",
+      "statement": "[Label mass at a separating tip] Suppose a retained pair has a non-neighbor link separating its representatives strictly, with tip e at a height in J_2 , such that d(e,x)1 or d(e,y)1 . If s(e)<s(w)-j…",
+      "section": "The main update and a packing bound for secondary seeds",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-pack-bound",
+      "kind": "proposition",
+      "label": "Restricted packing bound",
+      "statement": "[Restricted packing bound] Fix a narrow band J_2 . In any component of X_ J_2 , every closed d_ J_2 -ball of radius 4R meets seeds from at most M_ pack =2+1600R/g groups. This bound is independent of…",
+      "section": "The main update and a packing bound for secondary seeds",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-ord-support",
+      "kind": "lemma",
+      "label": "Ordered support of a point distance",
+      "statement": "[Ordered support of a point distance] Suppose that k,w belong to one component of X_I . There is an ordered field L of slope bound 1 such that \\[ L(k)=0, L(w)=d_I(k,w), L(v) d_I(k,v)(v X_I), \\] where…",
+      "section": "Ordered fields and separation on the two arcs",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-ord-transverse-lipschitz",
+      "kind": "lemma",
+      "label": "The field t_s is well defined on X_I , respects all switches, and is 4…",
+      "statement": "The field t_s is well defined on X_I , respects all switches, and is 4 -Lipschitz for d_I .",
+      "section": "Ordered fields and separation on the two arcs",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-ord-overlap",
+      "kind": "lemma",
+      "label": "Overlapping traversals on one arc",
+      "statement": "[Overlapping traversals on one arc] Let J I have width . Suppose that s is ordered with slope bound 4 , and that paths _x,_y in X_J use only columns of the same open arc. Assume that _x stays within…",
+      "section": "Ordered fields and separation on the two arcs",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-ord-two-side",
+      "kind": "lemma",
+      "label": "Quantitative separation on the two arcs",
+      "statement": "[Quantitative separation on the two arcs] Set R=10^ -8 . Let s be an ordered field of slope bound 4 on X_I . Suppose that x,y X_I satisfy \\[ 1 d(x,y)2, d_I(x,y)=d(x,y), |s(x)-s(y)|10^ -3 R. \\] Let J…",
+      "section": "Ordered fields and separation on the two arcs",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-sec-validity",
+      "kind": "lemma",
+      "label": "Validity of secondary clipping",
+      "statement": "[Validity of secondary clipping] The secondary update preserves the nested-set and chart invariants. Its movement at each point, measured in symmetric difference, is bounded by a universal constant…",
+      "section": "The secondary update",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-sec-admitted-success",
+      "kind": "lemma",
+      "label": "Separation at admitted seeds",
+      "statement": "[Separation at admitted seeds] If a surviving pair has a seed admitted for one comparison orientation, then the no-change and secondary-clipping modes together give a probability bounded below by a…",
+      "section": "The secondary update",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-sec-increment-bound",
+      "kind": "lemma",
+      "label": "Increment bound",
+      "statement": "[Increment bound] If Q>2000/R , all increments of one ordered identifier together have d_I -Lipschitz constant at most K=100 . They preserve the nested sets, introduce no chart interfaces, and move…",
+      "section": "The secondary update",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-sec-remaining",
+      "kind": "lemma",
+      "label": "The remaining pairs",
+      "statement": "[The remaining pairs] Suppose a surviving pair has no admitted endpoint in either ordered orientation. Then the increment mode separates it by a positive universal amount with uniformly positive…",
+      "section": "The secondary update",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-pad-success",
+      "kind": "proposition",
+      "label": "Movement and success",
+      "statement": "[Movement and success] There are constants M< and b,p>0 such that the following hold at every step of scale r . [label=()] At every point of X , in either system, the symmetric-difference movement of…",
+      "section": "Preserving charts and assembling the embedding",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-pad-persistence",
+      "kind": "proposition",
+      "label": "Chart persistence",
+      "statement": "[Chart persistence] There exist constants C_0< and _0>0 such that the following holds. Condition on the past at a step of scale r . Suppose a fixed closed ball B_d(v, r) lies in a single old region…",
+      "section": "Preserving charts and assembling the embedding",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m1-cor-almost-embeddable",
+      "kind": "corollary",
+      "label": "Fixed almost-embeddable families",
+      "statement": "[Fixed almost-embeddable families] Fix nonnegative integers g,k,w,a , and interpret AE(g,(k,w),a) exactly as the almost-embeddable family of Lee and Sidiropoulos~ . Let h_0=h_0(g,k,w,a)_0 be the…",
+      "section": "A consequence for almost-embeddable families",
+      "manuscript": "Planar Graph Metrics Embed into L1 with Constant Distortion"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "For every integer k2 there is a finite constant C_k1 with the following…",
+      "statement": "For every integer k2 there is a finite constant C_k1 with the following property. If a finite connected graph G=(V,E) admits a tree decomposition with bags of size at most k , then, for every…",
+      "section": "Introduction",
+      "manuscript": "L1 Embeddings of Graphs of Bounded Treewidth"
+    },
+    {
+      "id": "m2-lem-separator",
+      "kind": "lemma",
+      "label": "Separator properties",
+      "statement": "[Separator properties] The following statements hold for a tree decomposition of a connected graph. If a bag B lies on the tree path between bags A and C , every graph path from a vertex of A to a…",
+      "section": "Cut measures and transport along a decomposition",
+      "manuscript": "L1 Embeddings of Graphs of Bounded Treewidth"
+    },
+    {
+      "id": "m2-lem-gluing",
+      "kind": "lemma",
+      "label": "Markov gluing",
+      "statement": "[Markov gluing] Every consistent family of bag measures has a canonical Markov gluing _ on _V , of mass m , with trace _t on each bag. It is independent of the chosen root and is symmetric when every…",
+      "section": "Cut measures and transport along a decomposition",
+      "manuscript": "L1 Embeddings of Graphs of Bounded Treewidth"
+    },
+    {
+      "id": "m2-thm-markov-flow",
+      "kind": "theorem",
+      "label": "Symmetric Markov flow bound [Theorem~4.4",
+      "statement": "[Symmetric Markov flow bound ] For every integer w2 there is a finite constant C(w)1 with the following property. Suppose a symmetric Markov flow graph has at most w states per layer, first layer \\…",
+      "section": "Cut measures and transport along a decomposition",
+      "manuscript": "L1 Embeddings of Graphs of Bounded Treewidth"
+    },
+    {
+      "id": "m2-prop-uncertainty",
+      "kind": "proposition",
+      "label": "Transport of uncertainty",
+      "statement": "[Transport of uncertainty] Let be a consistent family of symmetric bag measures, with bags of size at most k . Consider the path B_0,,B_r from a bag containing y to a bag containing z , and let P=B_j…",
+      "section": "Cut measures and transport along a decomposition",
+      "manuscript": "L1 Embeddings of Graphs of Bounded Treewidth"
+    },
+    {
+      "id": "m2-lem-height-gap",
+      "kind": "lemma",
+      "label": "Height-gap test",
+      "statement": "[Height-gap test] Let P V , z V , and t>0 . Suppose that F(z) has distance at least t from both endpoints of [-M,M] and that \\[ |F(z)-F(s)| t(s P). \\] For =(_F^M)^ sym , one has \\[ E_(z P) t. \\]",
+      "section": "Cut measures and transport along a decomposition",
+      "manuscript": "L1 Embeddings of Graphs of Bounded Treewidth"
+    },
+    {
+      "id": "m2-lem-launch-gap",
+      "kind": "lemma",
+      "label": "Uncertainty at a paired launch",
+      "statement": "[Uncertainty at a paired launch] Let A V and let f,g:V R satisfy g|_A=0 and f+g,f-g^V . Set \\[ =(_ f+g ^M)^ sym +(_ f-g ^M)^ sym . \\] Then, for every z V , E_(z A)2|g(z)|. Moreover, for every u,v V ,…",
+      "section": "Cut measures and transport along a decomposition",
+      "manuscript": "L1 Embeddings of Graphs of Bounded Treewidth"
+    },
+    {
+      "id": "m2-lem-trace-update",
+      "kind": "lemma",
+      "label": "Affine trace update",
+      "statement": "[Affine trace update] Let P V , and suppose that particles F_1,F_2 admit a common weak increasing order on P . Put f=(F_1+F_2)/2 , and let g:V R vanish on P . If the four functions F_1,F_2,f+g,f-g…",
+      "section": "Particles and reservations",
+      "manuscript": "L1 Embeddings of Graphs of Bounded Treewidth"
+    },
+    {
+      "id": "m2-lem-particle-bounds",
+      "kind": "lemma",
+      "label": "Uniform particle bounds",
+      "statement": "[Uniform particle bounds] After any finite sequence of updates starting from zero particles, \\[ Lip(F_i) L(N-1), |F_i(v)| B(N-1) (1 i N,\\ v V). \\] These bounds hold for arbitrary choices of the…",
+      "section": "Particles and reservations",
+      "manuscript": "L1 Embeddings of Graphs of Bounded Treewidth"
+    },
+    {
+      "id": "m2-prop-particle-realization",
+      "kind": "proposition",
+      "label": "Realization by particles",
+      "statement": "[Realization by particles] Suppose a finite schedule requires at most q simultaneous reserved pairs in each memory copy, including any temporary reservation made before another is released. Updates…",
+      "section": "Particles and reservations",
+      "manuscript": "L1 Embeddings of Graphs of Bounded Treewidth"
+    },
+    {
+      "id": "m2-thm-padded",
+      "kind": "theorem",
+      "label": "Padded partitions",
+      "statement": "[Padded partitions] There are constants (0,1/8] and (0,1] such that, for every metric as above and every r>0 , there is a random partition P of V satisfying \\[ diam(C) r(C P), P (x V). \\] Here P(x)…",
+      "section": "Separating pairs in a common bag",
+      "manuscript": "L1 Embeddings of Graphs of Bounded Treewidth"
+    },
+    {
+      "id": "m2-lem-disjoint-bumps",
+      "kind": "lemma",
+      "label": "Disjoint nonnegative bumps",
+      "statement": "[Disjoint nonnegative bumps] Let E_1,,E_m be pairwise disjoint subsets of a metric space. For each i , let _i be a nonnegative 1 -Lipschitz function vanishing outside E_i , and let u_i . Then _i…",
+      "section": "Separating pairs in a common bag",
+      "manuscript": "L1 Embeddings of Graphs of Bounded Treewidth"
+    },
+    {
+      "id": "m2-prop-cobag",
+      "kind": "proposition",
+      "label": "The co-bag embedding",
+      "statement": "[The co-bag embedding] For every rooted tree decomposition with nonempty bags of size at most k , there is an L_1 pseudometric D_ bag on V and constants U_ bag < and a_ bag >0 , depending only on k ,…",
+      "section": "Separating pairs in a common bag",
+      "manuscript": "L1 Embeddings of Graphs of Bounded Treewidth"
+    },
+    {
+      "id": "m2-lem-ordinary-noise",
+      "kind": "lemma",
+      "label": "Ordinary launch noise",
+      "statement": "[Ordinary launch noise] Let A V be nonempty, put h(z)=d(z,A) , and let 0<<1/4 . One can sample a random function \\[ g= h+v, \\] using randomness independent of any previously sampled data. The…",
+      "section": "The anchor construction",
+      "manuscript": "L1 Embeddings of Graphs of Bounded Treewidth"
+    },
+    {
+      "id": "m2-lem-cache-defined",
+      "kind": "lemma",
+      "label": "The cache is well defined",
+      "statement": "[The cache is well defined] The displayed distance list is nonincreasing, and an eligible eviction always exists. The cache has at most n_0 entries after an eviction and at most n_0+1 simultaneous…",
+      "section": "The anchor construction",
+      "manuscript": "L1 Embeddings of Graphs of Bounded Treewidth"
+    },
+    {
+      "id": "m2-lem-anchor-tests",
+      "kind": "lemma",
+      "label": "Tests along a reservation",
+      "statement": "[Tests along a reservation] Let a path of bags run from a bag containing y to a later bag containing z . If an anchor A lies on this path and its reservation lasts from A through the later bag, then…",
+      "section": "The anchor construction",
+      "manuscript": "L1 Embeddings of Graphs of Bounded Treewidth"
+    },
+    {
+      "id": "m2-prop-combined-lower",
+      "kind": "proposition",
+      "label": "Uniform lower comparison",
+      "statement": "[Uniform lower comparison] For each fixed k2 there is a constant _k>0 such that, for every admissible weighted graph with a tree decomposition of bag size at most k and every pair of vertices u,v ,…",
+      "section": "Uniform lower comparison",
+      "manuscript": "L1 Embeddings of Graphs of Bounded Treewidth"
+    },
+    {
+      "id": "m2-lem-finite-limiting-rules",
+      "kind": "lemma",
+      "label": "Finite limiting rules",
+      "statement": "[Finite limiting rules] Of finitely many alternatives whose union holds eventually, at least one holds eventually. Finitely many eventual assertions hold simultaneously eventually. A sequence in…",
+      "section": "Uniform lower comparison",
+      "manuscript": "L1 Embeddings of Graphs of Bounded Treewidth"
+    },
+    {
+      "id": "m2-lem-youngest-crossing",
+      "kind": "lemma",
+      "label": "A youngest crossing anchor",
+      "statement": "[A youngest crossing anchor] There are at most n_0+1 distinct crossing anchor sequences. The set is nonempty and has a youngest member A_* .",
+      "section": "Uniform lower comparison",
+      "manuscript": "L1 Embeddings of Graphs of Bounded Treewidth"
+    },
+    {
+      "id": "m2-lem-old-distant-anchor",
+      "kind": "lemma",
+      "label": "The crossing anchor is old and distant",
+      "statement": "[The crossing anchor is old and distant] The launch of A_* is strictly above S , and D_0>H eventually. In particular, A_* is present at every selected early bag from S onward.",
+      "section": "Uniform lower comparison",
+      "manuscript": "L1 Embeddings of Graphs of Bounded Treewidth"
+    },
+    {
+      "id": "m2-lem-anchor-obstruction",
+      "kind": "lemma",
+      "label": "A geometric obstruction at every early sequence",
+      "statement": "[A geometric obstruction at every early sequence] Let B be any selected early sequence of bags from S to X and let p B be nearest to x . Put =d(x,B) . There is a sequence q B such that, eventually, 4…",
+      "section": "Uniform lower comparison",
+      "manuscript": "L1 Embeddings of Graphs of Bounded Treewidth"
+    },
+    {
+      "id": "m2-lem-protected-successor",
+      "kind": "lemma",
+      "label": "Protection of the immediate successor",
+      "statement": "[Protection of the immediate successor] At any selected early eviction test B , suppose the immediate successor A' of A_* in the inclusive cache list was launched at or after S . Then A' is protected…",
+      "section": "Uniform lower comparison",
+      "manuscript": "L1 Embeddings of Graphs of Bounded Treewidth"
+    },
+    {
+      "id": "m2-lem-younger-crossing",
+      "kind": "lemma",
+      "label": "A younger crossing anchor exists",
+      "statement": "[A younger crossing anchor exists] Under the normalized failure assumption , there is a crossing anchor younger than A_* .",
+      "section": "Uniform lower comparison",
+      "manuscript": "L1 Embeddings of Graphs of Bounded Treewidth"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m2-prop-cobag",
+      "to": "m2-thm-main",
+      "label": "prop:cobag",
+      "context": "[Proof of Theorem~\\ref{thm:main}] The one-vertex graph is immediate. For every other admissible graph, Proposition~\\ref{prop:cobag} and the anchor construction give finite cut pseudometrics $D_{\\mathrm{bag}}$ and $D_{\\mathrm{anc}}$ satisfying the unif"
+    }
+  ]
+}

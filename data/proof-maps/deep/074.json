@@ -1,0 +1,949 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "074",
+  "title": "Kakeya in three and four dimensions",
+  "result": {
+    "id": "paper-result",
+    "label": "Kakeya in three and four dimensions",
+    "statement": "Resolves the Kakeya maximal conjecture in three dimensions and the Hausdorff-dimension conjecture in four. In three dimensions, the radius- δ tube maximal operator maps L^3( R^3) to L^3(S^2) with norm O ( ^ - ) for every ε > 0. In four dimensions, every set containing a unit segment in every direction has Hausdorff dimension four.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "weighted-configurations-and-critical-exponents",
+      "label": "Weighted configurations and critical exponents",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "geometric-inputs-and-their-weighted-forms",
+      "label": "Geometric inputs and their weighted forms",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "local-bounds-planar-filling-and-positive-temporal-deficit",
+      "label": "Local bounds, planar filling, and positive temporal deficit",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "construction-of-a-stationary-equality",
+      "label": "Construction of a stationary equality",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-estimates-for-the-stationary-configuration",
+      "label": "Two estimates for the stationary configuration",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "entropy-increments-in-moving-frames",
+      "label": "Entropy increments in moving frames",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "projection-constraints-from-two-frames",
+      "label": "Projection constraints from two frames",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "planar-projection-and-product-pinning-proofs",
+      "label": "Planar projection and product-pinning proofs",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "closing-the-contradiction-and-the-maximal-estimate",
+      "label": "Closing the contradiction and the maximal estimate",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "nikodym-and-curved-kakeya-consequences",
+      "label": "Nikodym and curved Kakeya consequences",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "weighted-models-and-the-reduction-from-arbitrary-kakeya-sets",
+      "label": "Weighted models and the reduction from arbitrary Kakeya sets",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "comparison-of-algebraic-sheets-and-extension-of-terminal-tim",
+      "label": "Comparison of algebraic sheets and extension of terminal time",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "critical-paths-and-actual-improvements",
+      "label": "Critical paths and actual improvements",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "The Kakeya maximal conjecture in three dimensions",
+      "title": "The Kakeya maximal conjecture in three dimensions",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Kakeya-maximal-conjecture-in-three-dimensions-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from The Kakeya maximal conjecture in three dimensions.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-prop-critical-vanishing"
+          ]
+        },
+        {
+          "id": "m1-lem-critical-existence",
+          "role": "weighted-configurations-and-critical-exponents",
+          "label": "lemma m1-lem-critical-existence",
+          "fullLabel": "lemma m1-lem-critical-existence",
+          "kind": "lemma",
+          "source": "Weighted configurations and critical exponents",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-finite-cleaning",
+          "role": "weighted-configurations-and-critical-exponents",
+          "label": "lemma m1-lem-finite-cleaning",
+          "fullLabel": "lemma m1-lem-finite-cleaning",
+          "kind": "lemma",
+          "source": "Weighted configurations and critical exponents",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-regularization",
+          "role": "weighted-configurations-and-critical-exponents",
+          "label": "lemma m1-lem-regularization",
+          "fullLabel": "lemma m1-lem-regularization",
+          "kind": "lemma",
+          "source": "Weighted configurations and critical exponents",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-active-weight-cleaning",
+          "role": "weighted-configurations-and-critical-exponents",
+          "label": "corollary m1-cor-active-weight-cleaning",
+          "fullLabel": "corollary m1-cor-active-weight-cleaning",
+          "kind": "corollary",
+          "source": "Weighted configurations and critical exponents",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-profile-cost",
+          "role": "weighted-configurations-and-critical-exponents",
+          "label": "lemma m1-lem-profile-cost",
+          "fullLabel": "lemma m1-lem-profile-cost",
+          "kind": "lemma",
+          "source": "Weighted configurations and critical exponents",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-critical-point",
+          "role": "weighted-configurations-and-critical-exponents",
+          "label": "lemma m1-lem-critical-point",
+          "fullLabel": "lemma m1-lem-critical-point",
+          "kind": "lemma",
+          "source": "Weighted configurations and critical exponents",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-hybrid-equality",
+          "role": "weighted-configurations-and-critical-exponents",
+          "label": "lemma m1-lem-hybrid-equality",
+          "fullLabel": "lemma m1-lem-hybrid-equality",
+          "kind": "lemma",
+          "source": "Weighted configurations and critical exponents",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-set-input",
+          "role": "geometric-inputs-and-their-weighted-forms",
+          "label": "theorem m1-thm-set-input",
+          "fullLabel": "theorem m1-thm-set-input",
+          "kind": "theorem",
+          "source": "Geometric inputs and their weighted forms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-weighted-convex-set",
+          "role": "geometric-inputs-and-their-weighted-forms",
+          "label": "lemma m1-lem-weighted-convex-set",
+          "fullLabel": "lemma m1-lem-weighted-convex-set",
+          "kind": "lemma",
+          "source": "Geometric inputs and their weighted forms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-weighted-set",
+          "role": "geometric-inputs-and-their-weighted-forms",
+          "label": "lemma m1-lem-weighted-set",
+          "fullLabel": "lemma m1-lem-weighted-set",
+          "kind": "lemma",
+          "source": "Geometric inputs and their weighted forms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-furstenberg-input",
+          "role": "geometric-inputs-and-their-weighted-forms",
+          "label": "theorem m1-thm-furstenberg-input",
+          "fullLabel": "theorem m1-thm-furstenberg-input",
+          "kind": "theorem",
+          "source": "Geometric inputs and their weighted forms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-weighted-furstenberg",
+          "role": "geometric-inputs-and-their-weighted-forms",
+          "label": "corollary m1-cor-weighted-furstenberg",
+          "fullLabel": "corollary m1-cor-weighted-furstenberg",
+          "kind": "corollary",
+          "source": "Geometric inputs and their weighted forms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-multilinear-input",
+          "role": "geometric-inputs-and-their-weighted-forms",
+          "label": "theorem m1-thm-multilinear-input",
+          "fullLabel": "theorem m1-thm-multilinear-input",
+          "kind": "theorem",
+          "source": "Geometric inputs and their weighted forms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-multilinear-cubes",
+          "role": "geometric-inputs-and-their-weighted-forms",
+          "label": "corollary m1-cor-multilinear-cubes",
+          "fullLabel": "corollary m1-cor-multilinear-cubes",
+          "kind": "corollary",
+          "source": "Geometric inputs and their weighted forms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-local-bound",
+          "role": "local-bounds-planar-filling-and-positive-temporal-deficit",
+          "label": "proposition m1-prop-local-bound",
+          "fullLabel": "proposition m1-prop-local-bound",
+          "kind": "proposition",
+          "source": "Local bounds, planar filling, and positive temporal deficit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-loc-slack-caps",
+          "role": "local-bounds-planar-filling-and-positive-temporal-deficit",
+          "label": "lemma m1-loc-slack-caps",
+          "fullLabel": "lemma m1-loc-slack-caps",
+          "kind": "lemma",
+          "source": "Local bounds, planar filling, and positive temporal deficit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-loc-short-block-plane",
+          "role": "local-bounds-planar-filling-and-positive-temporal-deficit",
+          "label": "lemma m1-loc-short-block-plane",
+          "fullLabel": "lemma m1-loc-short-block-plane",
+          "kind": "lemma",
+          "source": "Local bounds, planar filling, and positive temporal deficit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-plate-nikodym",
+          "role": "local-bounds-planar-filling-and-positive-temporal-deficit",
+          "label": "lemma m1-lem-plate-nikodym",
+          "fullLabel": "lemma m1-lem-plate-nikodym",
+          "kind": "lemma",
+          "source": "Local bounds, planar filling, and positive temporal deficit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-prefix-extension",
+          "role": "local-bounds-planar-filling-and-positive-temporal-deficit",
+          "label": "lemma m1-lem-prefix-extension",
+          "fullLabel": "lemma m1-lem-prefix-extension",
+          "kind": "lemma",
+          "source": "Local bounds, planar filling, and positive temporal deficit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-flat-delay",
+          "role": "local-bounds-planar-filling-and-positive-temporal-deficit",
+          "label": "lemma m1-lem-flat-delay",
+          "fullLabel": "lemma m1-lem-flat-delay",
+          "kind": "lemma",
+          "source": "Local bounds, planar filling, and positive temporal deficit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-loc-flat-saturation",
+          "role": "local-bounds-planar-filling-and-positive-temporal-deficit",
+          "label": "lemma m1-loc-flat-saturation",
+          "fullLabel": "lemma m1-loc-flat-saturation",
+          "kind": "lemma",
+          "source": "Local bounds, planar filling, and positive temporal deficit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-anisotropic",
+          "role": "local-bounds-planar-filling-and-positive-temporal-deficit",
+          "label": "lemma m1-lem-anisotropic",
+          "fullLabel": "lemma m1-lem-anisotropic",
+          "kind": "lemma",
+          "source": "Local bounds, planar filling, and positive temporal deficit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-positive-deficit",
+          "role": "local-bounds-planar-filling-and-positive-temporal-deficit",
+          "label": "lemma m1-lem-positive-deficit",
+          "fullLabel": "lemma m1-lem-positive-deficit",
+          "kind": "lemma",
+          "source": "Local bounds, planar filling, and positive temporal deficit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-derivative-capture",
+          "role": "construction-of-a-stationary-equality",
+          "label": "lemma m1-lem-derivative-capture",
+          "fullLabel": "lemma m1-lem-derivative-capture",
+          "kind": "lemma",
+          "source": "Construction of a stationary equality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-nested-cuts",
+          "role": "construction-of-a-stationary-equality",
+          "label": "lemma m1-lem-nested-cuts",
+          "fullLabel": "lemma m1-lem-nested-cuts",
+          "kind": "lemma",
+          "source": "Construction of a stationary equality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-angle-packing",
+          "role": "construction-of-a-stationary-equality",
+          "label": "lemma m1-lem-angle-packing",
+          "fullLabel": "lemma m1-lem-angle-packing",
+          "kind": "lemma",
+          "source": "Construction of a stationary equality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-canonical",
+          "role": "construction-of-a-stationary-equality",
+          "label": "proposition m1-prop-canonical",
+          "fullLabel": "proposition m1-prop-canonical",
+          "kind": "proposition",
+          "source": "Construction of a stationary equality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-stationary-shape",
+          "role": "construction-of-a-stationary-equality",
+          "label": "lemma m1-lem-stationary-shape",
+          "fullLabel": "lemma m1-lem-stationary-shape",
+          "kind": "lemma",
+          "source": "Construction of a stationary equality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-stationary-data",
+          "role": "construction-of-a-stationary-equality",
+          "label": "proposition m1-prop-stationary-data",
+          "fullLabel": "proposition m1-prop-stationary-data",
+          "kind": "proposition",
+          "source": "Construction of a stationary equality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-estimate-cleaning",
+          "role": "two-estimates-for-the-stationary-configuration",
+          "label": "lemma m1-lem-estimate-cleaning",
+          "fullLabel": "lemma m1-lem-estimate-cleaning",
+          "kind": "lemma",
+          "source": "Two estimates for the stationary configuration",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-angular-frostman",
+          "role": "two-estimates-for-the-stationary-configuration",
+          "label": "lemma m1-lem-angular-frostman",
+          "fullLabel": "lemma m1-lem-angular-frostman",
+          "kind": "lemma",
+          "source": "Two estimates for the stationary configuration",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-conditional-x",
+          "role": "two-estimates-for-the-stationary-configuration",
+          "label": "lemma m1-lem-conditional-x",
+          "fullLabel": "lemma m1-lem-conditional-x",
+          "kind": "lemma",
+          "source": "Two estimates for the stationary configuration",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-gap-density",
+          "role": "entropy-increments-in-moving-frames",
+          "label": "lemma m1-lem-gap-density",
+          "fullLabel": "lemma m1-lem-gap-density",
+          "kind": "lemma",
+          "source": "Entropy increments in moving frames",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-remove-label",
+          "role": "entropy-increments-in-moving-frames",
+          "label": "lemma m1-lem-remove-label",
+          "fullLabel": "lemma m1-lem-remove-label",
+          "kind": "lemma",
+          "source": "Entropy increments in moving frames",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-normal-position-rate",
+          "role": "entropy-increments-in-moving-frames",
+          "label": "corollary m1-cor-normal-position-rate",
+          "fullLabel": "corollary m1-cor-normal-position-rate",
+          "kind": "corollary",
+          "source": "Entropy increments in moving frames",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-entropy-demand",
+          "role": "entropy-increments-in-moving-frames",
+          "label": "proposition m1-prop-entropy-demand",
+          "fullLabel": "proposition m1-prop-entropy-demand",
+          "kind": "proposition",
+          "source": "Entropy increments in moving frames",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-velocity-trace",
+          "role": "entropy-increments-in-moving-frames",
+          "label": "lemma m1-lem-velocity-trace",
+          "fullLabel": "lemma m1-lem-velocity-trace",
+          "kind": "lemma",
+          "source": "Entropy increments in moving frames",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-stripe-demand",
+          "role": "entropy-increments-in-moving-frames",
+          "label": "lemma m1-lem-stripe-demand",
+          "fullLabel": "lemma m1-lem-stripe-demand",
+          "kind": "lemma",
+          "source": "Entropy increments in moving frames",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-projection-rates",
+          "role": "projection-constraints-from-two-frames",
+          "label": "proposition m1-prop-projection-rates",
+          "fullLabel": "proposition m1-prop-projection-rates",
+          "kind": "proposition",
+          "source": "Projection constraints from two frames",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-pr-relative-frame",
+          "role": "projection-constraints-from-two-frames",
+          "label": "lemma m1-lem-pr-relative-frame",
+          "fullLabel": "lemma m1-lem-pr-relative-frame",
+          "kind": "lemma",
+          "source": "Projection constraints from two frames",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-blowup-counts",
+          "role": "projection-constraints-from-two-frames",
+          "label": "lemma m1-lem-blowup-counts",
+          "fullLabel": "lemma m1-lem-blowup-counts",
+          "kind": "lemma",
+          "source": "Projection constraints from two frames",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-pinning",
+          "role": "projection-constraints-from-two-frames",
+          "label": "lemma m1-lem-pinning",
+          "fullLabel": "lemma m1-lem-pinning",
+          "kind": "lemma",
+          "source": "Projection constraints from two frames",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-pair-information",
+          "role": "projection-constraints-from-two-frames",
+          "label": "lemma m1-lem-pair-information",
+          "fullLabel": "lemma m1-lem-pair-information",
+          "kind": "lemma",
+          "source": "Projection constraints from two frames",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-robust-projection",
+          "role": "projection-constraints-from-two-frames",
+          "label": "lemma m1-lem-robust-projection",
+          "fullLabel": "lemma m1-lem-robust-projection",
+          "kind": "lemma",
+          "source": "Projection constraints from two frames",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-pr-projection-transfer",
+          "role": "projection-constraints-from-two-frames",
+          "label": "lemma m1-lem-pr-projection-transfer",
+          "fullLabel": "lemma m1-lem-pr-projection-transfer",
+          "kind": "lemma",
+          "source": "Projection constraints from two frames",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-pr-ray-improvement",
+          "role": "planar-projection-and-product-pinning-proofs",
+          "label": "lemma m1-lem-pr-ray-improvement",
+          "fullLabel": "lemma m1-lem-pr-ray-improvement",
+          "kind": "lemma",
+          "source": "Planar projection and product-pinning proofs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-critical-vanishing",
+          "role": "closing-the-contradiction-and-the-maximal-estimate",
+          "label": "proposition m1-prop-critical-vanishing",
+          "fullLabel": "proposition m1-prop-critical-vanishing",
+          "kind": "proposition",
+          "source": "Closing the contradiction and the maximal estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-maximal-reduction",
+          "role": "closing-the-contradiction-and-the-maximal-estimate",
+          "label": "proposition m1-prop-maximal-reduction",
+          "fullLabel": "proposition m1-prop-maximal-reduction",
+          "kind": "proposition",
+          "source": "Closing the contradiction and the maximal estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-nikodym-space-forms",
+          "role": "nikodym-and-curved-kakeya-consequences",
+          "label": "corollary m1-cor-nikodym-space-forms",
+          "fullLabel": "corollary m1-cor-nikodym-space-forms",
+          "kind": "corollary",
+          "source": "Nikodym and curved Kakeya consequences",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-curved-kakeya-local",
+          "role": "nikodym-and-curved-kakeya-consequences",
+          "label": "corollary m1-cor-curved-kakeya-local",
+          "fullLabel": "corollary m1-cor-curved-kakeya-local",
+          "kind": "corollary",
+          "source": "Nikodym and curved Kakeya consequences",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Every four-dimensional Kakeya set has full Hausdorff dimension",
+      "title": "Every four-dimensional Kakeya set has full Hausdorff dimension",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Every-four-dimensional-Kakeya-set-has-full-Hausdorff-dimension-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Every four-dimensional Kakeya set has full Hausdorff dimension.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-a01-density-operations",
+          "role": "weighted-models-and-the-reduction-from-arbitrary-kakeya-sets",
+          "label": "lemma m2-a01-density-operations",
+          "fullLabel": "lemma m2-a01-density-operations",
+          "kind": "lemma",
+          "source": "Weighted models and the reduction from arbitrary Kakeya sets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-a01-flattening",
+          "role": "weighted-models-and-the-reduction-from-arbitrary-kakeya-sets",
+          "label": "lemma m2-a01-flattening",
+          "fullLabel": "lemma m2-a01-flattening",
+          "kind": "lemma",
+          "source": "Weighted models and the reduction from arbitrary Kakeya sets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-a01-homogenization",
+          "role": "weighted-models-and-the-reduction-from-arbitrary-kakeya-sets",
+          "label": "lemma m2-a01-homogenization",
+          "fullLabel": "lemma m2-a01-homogenization",
+          "kind": "lemma",
+          "source": "Weighted models and the reduction from arbitrary Kakeya sets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-a01-angular-coarsening",
+          "role": "weighted-models-and-the-reduction-from-arbitrary-kakeya-sets",
+          "label": "lemma m2-a01-angular-coarsening",
+          "fullLabel": "lemma m2-a01-angular-coarsening",
+          "kind": "lemma",
+          "source": "Weighted models and the reduction from arbitrary Kakeya sets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-quadratic-sublevel",
+          "role": "weighted-models-and-the-reduction-from-arbitrary-kakeya-sets",
+          "label": "lemma m2-lem-quadratic-sublevel",
+          "fullLabel": "lemma m2-lem-quadratic-sublevel",
+          "kind": "lemma",
+          "source": "Weighted models and the reduction from arbitrary Kakeya sets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-a01-saturation",
+          "role": "weighted-models-and-the-reduction-from-arbitrary-kakeya-sets",
+          "label": "lemma m2-a01-saturation",
+          "fullLabel": "lemma m2-a01-saturation",
+          "kind": "lemma",
+          "source": "Weighted models and the reduction from arbitrary Kakeya sets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-a01-witness-budgets",
+          "role": "weighted-models-and-the-reduction-from-arbitrary-kakeya-sets",
+          "label": "lemma m2-a01-witness-budgets",
+          "fullLabel": "lemma m2-a01-witness-budgets",
+          "kind": "lemma",
+          "source": "Weighted models and the reduction from arbitrary Kakeya sets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-a01-largest-axis",
+          "role": "weighted-models-and-the-reduction-from-arbitrary-kakeya-sets",
+          "label": "lemma m2-a01-largest-axis",
+          "fullLabel": "lemma m2-a01-largest-axis",
+          "kind": "lemma",
+          "source": "Weighted models and the reduction from arbitrary Kakeya sets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-normalization",
+          "role": "weighted-models-and-the-reduction-from-arbitrary-kakeya-sets",
+          "label": "lemma m2-lem-normalization",
+          "fullLabel": "lemma m2-lem-normalization",
+          "kind": "lemma",
+          "source": "Weighted models and the reduction from arbitrary Kakeya sets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-weighted-planks",
+          "role": "weighted-models-and-the-reduction-from-arbitrary-kakeya-sets",
+          "label": "lemma m2-lem-weighted-planks",
+          "fullLabel": "lemma m2-lem-weighted-planks",
+          "kind": "lemma",
+          "source": "Weighted models and the reduction from arbitrary Kakeya sets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-a01-horizon-bound",
+          "role": "weighted-models-and-the-reduction-from-arbitrary-kakeya-sets",
+          "label": "proposition m2-a01-horizon-bound",
+          "fullLabel": "proposition m2-a01-horizon-bound",
+          "kind": "proposition",
+          "source": "Weighted models and the reduction from arbitrary Kakeya sets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-model-reduction",
+          "role": "weighted-models-and-the-reduction-from-arbitrary-kakeya-sets",
+          "label": "theorem m2-thm-model-reduction",
+          "fullLabel": "theorem m2-thm-model-reduction",
+          "kind": "theorem",
+          "source": "Weighted models and the reduction from arbitrary Kakeya sets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-algebraic-norm",
+          "role": "comparison-of-algebraic-sheets-and-extension-of-terminal-tim",
+          "label": "lemma m2-lem-algebraic-norm",
+          "fullLabel": "lemma m2-lem-algebraic-norm",
+          "kind": "lemma",
+          "source": "Comparison of algebraic sheets and extension of terminal time",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-a02-algebraic-path",
+          "role": "comparison-of-algebraic-sheets-and-extension-of-terminal-tim",
+          "label": "lemma m2-a02-algebraic-path",
+          "fullLabel": "lemma m2-a02-algebraic-path",
+          "kind": "lemma",
+          "source": "Comparison of algebraic sheets and extension of terminal time",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-two-color-matching",
+          "role": "comparison-of-algebraic-sheets-and-extension-of-terminal-tim",
+          "label": "lemma m2-lem-two-color-matching",
+          "fullLabel": "lemma m2-lem-two-color-matching",
+          "kind": "lemma",
+          "source": "Comparison of algebraic sheets and extension of terminal time",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-a02-local-graph-matching",
+          "role": "comparison-of-algebraic-sheets-and-extension-of-terminal-tim",
+          "label": "corollary m2-a02-local-graph-matching",
+          "fullLabel": "corollary m2-a02-local-graph-matching",
+          "kind": "corollary",
+          "source": "Comparison of algebraic sheets and extension of terminal time",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-terminal-extension",
+          "role": "comparison-of-algebraic-sheets-and-extension-of-terminal-tim",
+          "label": "lemma m2-lem-terminal-extension",
+          "fullLabel": "lemma m2-lem-terminal-extension",
+          "kind": "lemma",
+          "source": "Comparison of algebraic sheets and extension of terminal time",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-a03-composition",
+          "role": "critical-paths-and-actual-improvements",
+          "label": "lemma m2-a03-composition",
+          "fullLabel": "lemma m2-a03-composition",
+          "kind": "lemma",
+          "source": "Critical paths and actual improvements",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-a03-positive-rate",
+          "role": "critical-paths-and-actual-improvements",
+          "label": "lemma m2-a03-positive-rate",
+          "fullLabel": "lemma m2-a03-positive-rate",
+          "kind": "lemma",
+          "source": "Critical paths and actual improvements",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-critical-path",
+          "role": "critical-paths-and-actual-improvements",
+          "label": "proposition m2-prop-critical-path",
+          "fullLabel": "proposition m2-prop-critical-path",
+          "kind": "proposition",
+          "source": "Critical paths and actual improvements",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-a03-zero-depth",
+          "role": "critical-paths-and-actual-improvements",
+          "label": "corollary m2-a03-zero-depth",
+          "fullLabel": "corollary m2-a03-zero-depth",
+          "kind": "corollary",
+          "source": "Critical paths and actual improvements",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-a03-excluded-improvements",
+          "role": "critical-paths-and-actual-improvements",
+          "label": "lemma m2-a03-excluded-improvements",
+          "fullLabel": "lemma m2-a03-excluded-improvements",
+          "kind": "lemma",
+          "source": "Critical paths and actual improvements",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-a03-finite-guard",
+          "role": "critical-paths-and-actual-improvements",
+          "label": "lemma m2-a03-finite-guard",
+          "fullLabel": "lemma m2-a03-finite-guard",
+          "kind": "lemma",
+          "source": "Critical paths and actual improvements",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-tangent-palette",
+          "role": "critical-paths-and-actual-improvements",
+          "label": "proposition m2-prop-tangent-palette",
+          "fullLabel": "proposition m2-prop-tangent-palette",
+          "kind": "proposition",
+          "source": "Critical paths and actual improvements",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-a03-finite-state-conditioning",
+          "role": "critical-paths-and-actual-improvements",
+          "label": "lemma m2-a03-finite-state-conditioning",
+          "fullLabel": "lemma m2-a03-finite-state-conditioning",
+          "kind": "lemma",
+          "source": "Critical paths and actual improvements",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-a03-time-slice",
+          "role": "critical-paths-and-actual-improvements",
+          "label": "lemma m2-a03-time-slice",
+          "fullLabel": "lemma m2-a03-time-slice",
+          "kind": "lemma",
+          "source": "Critical paths and actual improvements",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-candidate-upgrade",
+          "role": "critical-paths-and-actual-improvements",
+          "label": "proposition m2-prop-candidate-upgrade",
+          "fullLabel": "proposition m2-prop-candidate-upgrade",
+          "kind": "proposition",
+          "source": "Critical paths and actual improvements",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-a03-actual-lists",
+          "role": "critical-paths-and-actual-improvements",
+          "label": "lemma m2-a03-actual-lists",
+          "fullLabel": "lemma m2-a03-actual-lists",
+          "kind": "lemma",
+          "source": "Critical paths and actual improvements",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "The Kakeya maximal conjecture in three dimensions",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Kakeya-maximal-conjecture-in-three-dimensions-September-23-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Every four-dimensional Kakeya set has full Hausdorff dimension",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Every-four-dimensional-Kakeya-set-has-full-Hausdorff-dimension-September-24-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

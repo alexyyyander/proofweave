@@ -1,0 +1,550 @@
+{
+  "familyNumber": "154",
+  "familyTitle": "Pointwise multiple ergodic averages for mixing transformations",
+  "manuscripts": [
+    {
+      "id": "Pointwise-Multiple-Ergodic-Averages-for-Mixing-Transformations-October-4-2026",
+      "title": "Pointwise Multiple Ergodic Averages for Mixing Transformations",
+      "date": "2026-10-04",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Pointwise-Multiple-Ergodic-Averages-for-Mixing-Transformations-October-4-2026/multiple-ergodic-averages.pdf"
+    },
+    {
+      "id": "Pointwise-convergence-of-fourfold-ergodic-averages-for-mixing-transformations-October-4-2026",
+      "title": "Pointwise convergence of fourfold ergodic averages for mixing transformations",
+      "date": "2026-10-04",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Pointwise-convergence-of-fourfold-ergodic-averages-for-mixing-transformations-October-4-2026/fourfold-ergodic-averages.pdf"
+    },
+    {
+      "id": "Triple-ergodic-averages-with-distinct-integer-slopes-October-4-2026",
+      "title": "Triple ergodic averages with distinct integer slopes",
+      "date": "2026-10-04",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Triple-ergodic-averages-with-distinct-integer-slopes-October-4-2026/triple-ergodic-distinct-slopes.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Dynamical inputs and standard models",
+    "Selected lengths and their joining laws",
+    "Channels and closure under selected laws",
+    "Minimal correlations and saturated extensions",
+    "The square argument",
+    "Tensor packing",
+    "Convergence inputs and relative structure",
+    "Selected laws and their distal parameters",
+    "Packing tensors into a subspace of small dimension",
+    "Channels and preservation of independence",
+    "Activating an additional output role",
+    "Pointwise convergence for the proper subsets of four times",
+    "The local estimate and the coefficient algebra",
+    "From the local estimate to pointwise convergence",
+    "Quadratic structure and localization for the new slopes",
+    "Short blocks, rational shifts, and the core estimate",
+    "Parameter choice and completion of the local estimate"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Suppose that T satisfies . For every integer n2 and every fixed f_1,,f_n L^() ,…",
+      "statement": "Suppose that T satisfies . For every integer n2 and every fixed f_1,,f_n L^() , \\[ A_N(f_1,,f_n)(x) _ j=1 ^n_X f_j for -almost every x, \\] as N tends to infinity through all positive integers. The…",
+      "section": "Introduction",
+      "manuscript": "Pointwise Multiple Ergodic Averages for Mixing Transformations"
+    },
+    {
+      "id": "m1-thm-multiple-mixing",
+      "kind": "theorem",
+      "label": "Higher-order mixing, companion input",
+      "statement": "[Higher-order mixing, companion input] Let T be an invertible mixing probability-preserving transformation. For any fixed s2 , g_1,,g_s L^() , and integer times t_1,,t_s , \\[ _X_ j=1 ^s g_j(T^ t_j…",
+      "section": "Dynamical inputs and standard models",
+      "manuscript": "Pointwise Multiple Ergodic Averages for Mixing Transformations"
+    },
+    {
+      "id": "m1-prop-smooth-input",
+      "kind": "proposition",
+      "label": "Smooth triple averages, companion input",
+      "statement": "[Smooth triple averages, companion input] Let R be any invertible probability-preserving transformation, and let b_1,b_2,b_3 be distinct nonzero integers with greatest common divisor one. For bounded…",
+      "section": "Dynamical inputs and standard models",
+      "manuscript": "Pointwise Multiple Ergodic Averages for Mixing Transformations"
+    },
+    {
+      "id": "m1-prop-structure",
+      "kind": "proposition",
+      "label": "Relative structure",
+      "statement": "[Relative structure] The following statements hold for standard probability-preserving systems, without an ergodicity assumption. Every system Y has a maximal measure-distal factor W_Y , and Y W_Y is…",
+      "section": "Dynamical inputs and standard models",
+      "manuscript": "Pointwise Multiple Ergodic Averages for Mixing Transformations"
+    },
+    {
+      "id": "m1-lem-relative-norm",
+      "kind": "lemma",
+      "label": "Relative norm convergence",
+      "statement": "[Relative norm convergence] Suppose Y B is relatively weakly mixing for R . For distinct nonzero integers a_1,,a_d and bounded G_1,,G_d , \\|1N_ l=1 ^N (_ i=1 ^dG_i R^ a_il -_ i=1 ^d R^ a_il )\\|_2 0.",
+      "section": "Dynamical inputs and standard models",
+      "manuscript": "Pointwise Multiple Ergodic Averages for Mixing Transformations"
+    },
+    {
+      "id": "m1-lem-triple-convergence",
+      "kind": "lemma",
+      "label": "Triple pointwise convergence",
+      "statement": "[Triple pointwise convergence] On any standard invertible probability-preserving system, averages of at most three bounded functions at distinct positive integer slopes converge almost everywhere…",
+      "section": "Dynamical inputs and standard models",
+      "manuscript": "Pointwise Multiple Ergodic Averages for Mixing Transformations"
+    },
+    {
+      "id": "m1-lem-selected-witness",
+      "kind": "lemma",
+      "label": "Selected positive witness",
+      "statement": "[Selected positive witness] There are a finite set F containing 1 and measurable functions N_a:C[2^a,) , a , independent of the phase, with N_a(x,u)\\ c2^k:c F,\\ k a\\ , N_a(x,u)=2^a(x E_*), such that…",
+      "section": "Selected lengths and their joining laws",
+      "manuscript": "Pointwise Multiple Ergodic Averages for Mixing Transformations"
+    },
+    {
+      "id": "m1-prop-selected-law",
+      "kind": "proposition",
+      "label": "Selected joining laws",
+      "statement": "[Selected joining laws] Every flow Y over C has a unique probability law _Y on Y^I satisfying, for all bounded measurable functions G_i on Y , _ Y^I _ i I G_i(y_i)\\,_Y =_ a U _Y1 N_a(_Yy) _0^…",
+      "section": "Selected lengths and their joining laws",
+      "manuscript": "Pointwise Multiple Ergodic Averages for Mixing Transformations"
+    },
+    {
+      "id": "m1-prop-selected-parameters",
+      "kind": "proposition",
+      "label": "Parameter and small-marginal laws",
+      "statement": "[Parameter and small-marginal laws] For every flow Y over C and bounded measurable H_i on W_Y , _ _Y _ i I H_i(P_i) =_ L _Y1L_0^L _ i I H_i(_Y(S_Y^ it y)) \\, t\\, m_Y(y). For every nonempty J I with…",
+      "section": "Selected lengths and their joining laws",
+      "manuscript": "Pointwise Multiple Ergodic Averages for Mixing Transformations"
+    },
+    {
+      "id": "m1-lem-normalized-joining",
+      "kind": "lemma",
+      "label": "Normalized joining flow",
+      "statement": "[Normalized joining flow] For b I , define M_b(Y)= (Y^I,_Y, S_ M_b(Y) ^t(y_i)_i=(S_Y^ it/b y_i)_i). This is a standard probability-preserving flow over C via (y_i)_i_Y(y_b) , and projection onto slot…",
+      "section": "Selected lengths and their joining laws",
+      "manuscript": "Pointwise Multiple Ergodic Averages for Mixing Transformations"
+    },
+    {
+      "id": "m1-lem-positive-witness",
+      "kind": "lemma",
+      "label": "The retained positive correlation",
+      "statement": "[The retained positive correlation] With the functions and phase test of Lemma~ , _ C^I (((z_i))_i) _ i J_0 f_i((z_i))\\,_C>0. The phase array in this integral is measurable in the distal parameter…",
+      "section": "Selected lengths and their joining laws",
+      "manuscript": "Pointwise Multiple Ergodic Averages for Mixing Transformations"
+    },
+    {
+      "id": "m1-lem-channel-conditioning",
+      "kind": "lemma",
+      "label": "Conditioning and extensions",
+      "statement": "[Conditioning and extensions] For a channel Y , both identities in hold with conditioning on its maximal measure-distal factor W_Y in place of V . Every flow extension of Y over C is a channel with…",
+      "section": "Channels and closure under selected laws",
+      "manuscript": "Pointwise Multiple Ergodic Averages for Mixing Transformations"
+    },
+    {
+      "id": "m1-prop-channel-closure",
+      "kind": "proposition",
+      "label": "Channel closure",
+      "statement": "[Channel closure] Let Y be a channel and b I . On M_b(Y) take _Y(y_b) as original factor and take every D_(y_i) , i I , as an output, in the old group of . These data make M_b(Y) a channel.",
+      "section": "Channels and closure under selected laws",
+      "manuscript": "Pointwise Multiple Ergodic Averages for Mixing Transformations"
+    },
+    {
+      "id": "m1-cor-channel-copied-law",
+      "kind": "corollary",
+      "label": "For every channel Y , the copied spatial list (d_Y(y_i))_ i I under _Y has its…",
+      "statement": "For every channel Y , the copied spatial list (d_Y(y_i))_ i I under _Y has its full product law conditional on P=(_Y(y_i))_ i I .",
+      "section": "Channels and closure under selected laws",
+      "manuscript": "Pointwise Multiple Ergodic Averages for Mixing Transformations"
+    },
+    {
+      "id": "m1-lem-minimum-product",
+      "kind": "lemma",
+      "label": "Product laws below the minimum support",
+      "statement": "[Product laws below the minimum support] On any channel, choose fewer than k distinct slots and designate one allowed spatial list at each. Under its selected law, these lists, jointly, have their…",
+      "section": "Minimal correlations and saturated extensions",
+      "manuscript": "Pointwise Multiple Ergodic Averages for Mixing Transformations"
+    },
+    {
+      "id": "m1-lem-saturation",
+      "kind": "lemma",
+      "label": "Simultaneous saturation",
+      "statement": "[Simultaneous saturation] Every standard flow Y over C has a standard flow extension Y_* Y over C with the following property. For every further standard flow extension :Y' Y_* over C , every f L^2(_…",
+      "section": "Minimal correlations and saturated extensions",
+      "manuscript": "Pointwise Multiple Ergodic Averages for Mixing Transformations"
+    },
+    {
+      "id": "m1-lem-regrouped-channel",
+      "kind": "lemma",
+      "label": "The regrouped channel",
+      "statement": "[The regrouped channel] The preceding output lists and groups make Z a channel over its original factor _Y(y_b) .",
+      "section": "Minimal correlations and saturated extensions",
+      "manuscript": "Pointwise Multiple Ergodic Averages for Mixing Transformations"
+    },
+    {
+      "id": "m1-lem-row-column",
+      "kind": "lemma",
+      "label": "The row--column identity",
+      "statement": "[The row--column identity] Under _Z , =_Y g(p,y)u(E_b,y)\\, m_ Y,w (y). Moreover, in a single Z -state with law m_Z , the conditional law of its slot- b state given e is m_ Y,(e) .",
+      "section": "The square argument",
+      "manuscript": "Pointwise Multiple Ergodic Averages for Mixing Transformations"
+    },
+    {
+      "id": "m1-lem-parameter-independence",
+      "kind": "lemma",
+      "label": "Parameter independence",
+      "statement": "[Parameter independence] Under _Z , the random variables p and E_b are conditionally independent given w .",
+      "section": "The square argument",
+      "manuscript": "Pointwise Multiple Ergodic Averages for Mixing Transformations"
+    },
+    {
+      "id": "m1-thm-packing",
+      "kind": "theorem",
+      "label": "Tensor packing",
+      "statement": "[Tensor packing] There is a universal constant C with the following property. Let 0<1 , and let d1 and L0 be integers. Let x_1,,x_m and y_1,,y_m lie in the unit balls of real Hilbert spaces H_1,H_2 .…",
+      "section": "Tensor packing",
+      "manuscript": "Pointwise Multiple Ergodic Averages for Mixing Transformations"
+    },
+    {
+      "id": "m1-lem-packing-gaussian",
+      "kind": "lemma",
+      "label": "Gaussian matrix estimate",
+      "statement": "[Gaussian matrix estimate] Let B_1,,B_r be matrices between two finite-dimensional real Hilbert spaces, and put \\[ H_j= 0&B_j\\_j^*&0 , S=_ j=1 ^rH_j^2. \\] If S_ op d and S2d for some d1 , then for…",
+      "section": "Tensor packing",
+      "manuscript": "Pointwise Multiple Ergodic Averages for Mixing Transformations"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Let (X, F,) be a probability space and let T:X X be invertible, bimeasurable,…",
+      "statement": "Let (X, F,) be a probability space and let T:X X be invertible, bimeasurable, measure preserving, and mixing in the sense of . For every f_1,f_2,f_3,f_4 L^() , \\[ 1N_ n=1 ^N f_1(T^nx)f_2(T^ 2n…",
+      "section": "Introduction",
+      "manuscript": "Pointwise convergence of fourfold ergodic averages for mixing transformations"
+    },
+    {
+      "id": "m2-lem-lower-length",
+      "kind": "lemma",
+      "label": "Lower-length convergence",
+      "statement": "[Lower-length convergence] Let (Y,m,R) be an invertible probability-preserving transformation on a standard probability space. If J I and g_i L^(m) for i J , then \\[ 1N_ n=1 ^N_ i J g_i(R^ in y) \\]…",
+      "section": "Convergence inputs and relative structure",
+      "manuscript": "Pointwise convergence of fourfold ergodic averages for mixing transformations"
+    },
+    {
+      "id": "m2-prop-structure",
+      "kind": "proposition",
+      "label": "Relative structure",
+      "statement": "[Relative structure] The following statements hold for standard probability-preserving systems. There is a maximal measure-distal factor W_Y . It contains the invariant factor, and Y W_Y is…",
+      "section": "Convergence inputs and relative structure",
+      "manuscript": "Pointwise convergence of fourfold ergodic averages for mixing transformations"
+    },
+    {
+      "id": "m2-lem-relative-norm",
+      "kind": "lemma",
+      "label": "A relatively weakly mixing characteristic factor",
+      "statement": "[A relatively weakly mixing characteristic factor] Suppose Y B is relatively weakly mixing for an invertible transformation R . If a_1,,a_d are distinct nonzero integers and g_1,,g_d are bounded,…",
+      "section": "Convergence inputs and relative structure",
+      "manuscript": "Pointwise convergence of fourfold ergodic averages for mixing transformations"
+    },
+    {
+      "id": "m2-prop-selectors",
+      "kind": "proposition",
+      "label": "Selectors witnessing failure",
+      "statement": "[Selectors witnessing failure] If Theorem~ fails, there are real functions f_i L^() with \\|f_i\\|_1 and f_i\\,=0 , a finite set F , measurable functions \\[ N_a:C\\ c2^k:c F,\\ k a\\ , a1, \\] a continuous…",
+      "section": "Selected laws and their distal parameters",
+      "manuscript": "Pointwise convergence of fourfold ergodic averages for mixing transformations"
+    },
+    {
+      "id": "m2-prop-selected",
+      "kind": "proposition",
+      "label": "Selected laws",
+      "statement": "[Selected laws] Formula~ defines a probability measure _Y on Y^I with the following properties. Every marginal is m_Y , and _Y is invariant under (y_i)_i(S_Y^ it y_i)_i for every t . If :Y' Y is an…",
+      "section": "Selected laws and their distal parameters",
+      "manuscript": "Pointwise convergence of fourfold ergodic averages for mixing transformations"
+    },
+    {
+      "id": "m2-lem-parameter-distal",
+      "kind": "lemma",
+      "label": "Distal parameters after normalization",
+      "statement": "[Distal parameters after normalization] The full parameter array (_Y(y_i))_ i I is a distal factor of the time-one map of M_b(Y) , and hence belongs to its maximal distal factor. The same assertion…",
+      "section": "Selected laws and their distal parameters",
+      "manuscript": "Pointwise convergence of fourfold ergodic averages for mixing transformations"
+    },
+    {
+      "id": "m2-thm-packing",
+      "kind": "theorem",
+      "label": "Tensor packing",
+      "statement": "[Tensor packing] There is a universal constant C with the following property. Let 0<1 , d1 , and L0 be given, with d,L integers. Let x_1,,x_m and y_1,,y_m lie in the unit balls of real Hilbert spaces…",
+      "section": "Packing tensors into a subspace of small dimension",
+      "manuscript": "Pointwise convergence of fourfold ergodic averages for mixing transformations"
+    },
+    {
+      "id": "m2-lem-packing-gaussian",
+      "kind": "lemma",
+      "label": "A Gaussian matrix estimate",
+      "statement": "[A Gaussian matrix estimate] Let B_1,,B_r be matrices between two finite-dimensional real Hilbert spaces, and put \\[ H_j= 0&B_j\\\\ B_j^*&0 , S=_ j=1 ^r H_j^2. \\] If S_ op d and S2d for some d1 , then…",
+      "section": "Packing tensors into a subspace of small dimension",
+      "manuscript": "Pointwise convergence of fourfold ergodic averages for mixing transformations"
+    },
+    {
+      "id": "m2-lem-channel-distal",
+      "kind": "lemma",
+      "label": "For a channel Y , both conditional product identities in -- also hold when…",
+      "statement": "For a channel Y , both conditional product identities in -- also hold when conditioning on its maximal measure-distal factor W_Y . Every flow extension of Y , equipped with the pulled-back original…",
+      "section": "Channels and preservation of independence",
+      "manuscript": "Pointwise convergence of fourfold ergodic averages for mixing transformations"
+    },
+    {
+      "id": "m2-prop-channel-closure",
+      "kind": "proposition",
+      "label": "Closure under selected laws",
+      "statement": "[Closure under selected laws] Let Y be a channel and b I . On M_b(Y) use _Y(y_b) as original factor. For each j\\ 1,2,3\\ , let the new group j contain the outputs D_(y_i) with D_j and i I . With these…",
+      "section": "Channels and preservation of independence",
+      "manuscript": "Pointwise convergence of fourfold ergodic averages for mixing transformations"
+    },
+    {
+      "id": "m2-cor-channel-array-distal",
+      "kind": "corollary",
+      "label": "In Proposition~ , let P=(_Y(y_i))_ i I be the array of old distal parameters.…",
+      "statement": "In Proposition~ , let P=(_Y(y_i))_ i I be the array of old distal parameters. The spatial coordinates of all copied outputs are independent with their product law conditionally on P . The…",
+      "section": "Channels and preservation of independence",
+      "manuscript": "Pointwise convergence of fourfold ergodic averages for mixing transformations"
+    },
+    {
+      "id": "m2-prop-role-bound",
+      "kind": "proposition",
+      "label": "Every nonzero correlation has at most two output roles. In particular, the…",
+      "statement": "Every nonzero correlation has at most two output roles. In particular, the maximal number r just defined satisfies r2 .",
+      "section": "Activating an additional output role",
+      "manuscript": "Pointwise convergence of fourfold ergodic averages for mixing transformations"
+    },
+    {
+      "id": "m2-prop-saturation",
+      "kind": "proposition",
+      "label": "Every standard flow over C has a standard extension Y with the following…",
+      "statement": "Every standard flow over C has a standard extension Y with the following property. For every further standard extension :Y' Y over C , every f L^2(_Y) , and every l\\ 0\\ I , _ _ Y' [f^I D_l(Y')] =_ _Y…",
+      "section": "Activating an additional output role",
+      "manuscript": "Pointwise convergence of fourfold ergodic averages for mixing transformations"
+    },
+    {
+      "id": "m2-lem-regrouped-channel",
+      "kind": "lemma",
+      "label": "With these outputs and groups, Z is a channel over its slot- b copy of C .",
+      "statement": "With these outputs and groups, Z is a channel over its slot- b copy of C .",
+      "section": "Activating an additional output role",
+      "manuscript": "Pointwise convergence of fourfold ergodic averages for mixing transformations"
+    },
+    {
+      "id": "m2-lem-square-conditional",
+      "kind": "lemma",
+      "label": "In the square just defined, the conditional law of column b given E is its _Y…",
+      "statement": "In the square just defined, the conditional law of column b given E is its _Y law given p . Moreover, _ _Z [q( z_b) E,(y_i)_ i I ] =u(E_b,y_b). In particular, the conditional law of y_b given E is…",
+      "section": "Activating an additional output role",
+      "manuscript": "Pointwise convergence of fourfold ergodic averages for mixing transformations"
+    },
+    {
+      "id": "m2-lem-parameter-reanchoring",
+      "kind": "lemma",
+      "label": "Under _Z , the variables p and E_b are conditionally independent given w=P_ bb .",
+      "statement": "Under _Z , the variables p and E_b are conditionally independent given w=P_ bb .",
+      "section": "Activating an additional output role",
+      "manuscript": "Pointwise convergence of fourfold ergodic averages for mixing transformations"
+    },
+    {
+      "id": "m2-lem-independent-hilbert-vectors",
+      "kind": "lemma",
+      "label": "Let V be a square-integrable random vector in a separable real Hilbert space,…",
+      "statement": "Let V be a square-integrable random vector in a separable real Hilbert space, and let V' be an independent copy. If V V' =0 almost surely, then V=0 almost surely.",
+      "section": "Activating an additional output role",
+      "manuscript": "Pointwise convergence of fourfold ergodic averages for mixing transformations"
+    },
+    {
+      "id": "m2-prop-activation",
+      "kind": "proposition",
+      "label": "For the saturated channel Y and maximal nonzero correlation chosen above, the…",
+      "statement": "For the saturated channel Y and maximal nonzero correlation chosen above, the regrouped channel Z has a nonzero correlation with output roles A\\ b\\ .",
+      "section": "Activating an additional output role",
+      "manuscript": "Pointwise convergence of fourfold ergodic averages for mixing transformations"
+    },
+    {
+      "id": "m2-prop-ll-depth",
+      "kind": "proposition",
+      "label": "The local analytic input with changed coefficients",
+      "statement": "[The local analytic input with changed coefficients] Let S=\\ 0\\ J , where J is a three-element subset of \\ 1,2,3,4\\ . Let T be a finite rooted dyadic tree with root K_* and largest depth d , and let…",
+      "section": "Pointwise convergence for the proper subsets of four times",
+      "manuscript": "Pointwise convergence of fourfold ergodic averages for mixing transformations"
+    },
+    {
+      "id": "m2-prop-ll-oscillation",
+      "kind": "proposition",
+      "label": "Oscillation for the four triples",
+      "statement": "[Oscillation for the four triples] Let (Y,,R) be an invertible probability preserving system, let J\\ 1,2,3,4\\ have three elements, and let the functions g_j:Y , j J , be measurable with |g_j|1 . For…",
+      "section": "Pointwise convergence for the proper subsets of four times",
+      "manuscript": "Pointwise convergence of fourfold ergodic averages for mixing transformations"
+    },
+    {
+      "id": "m3-thm-main",
+      "kind": "theorem",
+      "label": "For every system satisfying~ , every triple of pairwise distinct nonzero…",
+      "statement": "For every system satisfying~ , every triple of pairwise distinct nonzero integers _1,_2,_3 , and every bounded measurable f_1,f_2,f_3:X , the averages in~ satisfy \\[ A_N(x)_ j=1 ^3_X f_j\\,d for…",
+      "section": "Introduction",
+      "manuscript": "Triple ergodic averages with distinct integer slopes"
+    },
+    {
+      "id": "m3-thm-local",
+      "kind": "theorem",
+      "label": "Local estimate with variation in depth",
+      "statement": "[Local estimate with variation in depth] Fix the primitive distinct integers b_0=0,b_1,b_2,b_3 and the parameters _0,C_0 . Let T be a finite dyadic tree with root J and largest depth d , and let I T…",
+      "section": "The local estimate and the coefficient algebra",
+      "manuscript": "Triple ergodic averages with distinct integer slopes"
+    },
+    {
+      "id": "m3-lem-algebra",
+      "kind": "lemma",
+      "label": "Coefficient identities",
+      "statement": "[Coefficient identities] There exist integers e_0,e_1,e_2,e_3 and nonzero integers c_0,c_1,c_2,c_3 such that _ j=0 ^3e_j=0, _ j=0 ^3e_jb_j=1, and _ j=0 ^3c_jb_j^a=0(a=0,1,2). The nullspace over of…",
+      "section": "The local estimate and the coefficient algebra",
+      "manuscript": "Triple ergodic averages with distinct integer slopes"
+    },
+    {
+      "id": "m3-lem-tr-kernel",
+      "kind": "lemma",
+      "label": "Realizing a scale difference",
+      "statement": "[Realizing a scale difference] There exist a dyadic integer \\(D1\\), a constant \\(C_01\\), and a real function \\( W C_c^(^2)\\), depending only on \\(\\) and the slopes, with the following property. For…",
+      "section": "From the local estimate to pointwise convergence",
+      "manuscript": "Triple ergodic averages with distinct integer slopes"
+    },
+    {
+      "id": "m3-lem-tr-real",
+      "kind": "lemma",
+      "label": "A real-line test",
+      "statement": "[A real-line test] Let \\(0 k_- k_+\\), and partition \\(\\ k_-,,k_+\\ \\) into \\(w\\) nonempty consecutive blocks. Suppose that bounded Borel functions \\(h_1,h_2,h_3\\) and \\(h_ 0,k \\) are supported in a…",
+      "section": "From the local estimate to pointwise convergence",
+      "manuscript": "Triple ergodic averages with distinct integer slopes"
+    },
+    {
+      "id": "m3-lem-tr-integer",
+      "kind": "lemma",
+      "label": "An integer-sequence test",
+      "statement": "[An integer-sequence test] Under the scale and block hypotheses of Lemma~ , let \\(h_1,h_2,h_3\\) and \\(h_ 0,k \\) instead be sequences on \\(\\), supported in a common integer interval of cardinality…",
+      "section": "From the local estimate to pointwise convergence",
+      "manuscript": "Triple ergodic averages with distinct integer slopes"
+    },
+    {
+      "id": "m3-prop-tr-oscillation",
+      "kind": "proposition",
+      "label": "Finite orbit oscillation",
+      "statement": "[Finite orbit oscillation] For every deterministic list \\(0 k_1<<k_ w+1 \\), _ i=1 ^w_X _ k_i k_ i+1 |V_^-V_ k_i ^|\\,d C''_ ,b w. This holds on every invertible probability preserving system, with a…",
+      "section": "From the local estimate to pointwise convergence",
+      "manuscript": "Triple ergodic averages with distinct integer slopes"
+    },
+    {
+      "id": "m3-lem-tr-cauchy",
+      "kind": "lemma",
+      "label": "Oscillation implies convergence",
+      "statement": "[Oscillation implies convergence] Let \\((Z_k)_ k0 \\) be a uniformly bounded sequence of measurable complex functions on a probability space. Suppose that, for every deterministic \\(0 k_1<<k_ w+1 \\),…",
+      "section": "From the local estimate to pointwise convergence",
+      "manuscript": "Triple ergodic averages with distinct integer slopes"
+    },
+    {
+      "id": "m3-lem-tr-vdc",
+      "kind": "lemma",
+      "label": "The Hilbert space van der Corput criterion",
+      "statement": "[The Hilbert space van der Corput criterion] Let \\((u_n)_ n1 \\) be bounded vectors in a complex Hilbert space, with inner product linear in the first variable. If the limits \\[ _h=_ N 1N _ n=1 ^ N-h…",
+      "section": "From the local estimate to pointwise convergence",
+      "manuscript": "Triple ergodic averages with distinct integer slopes"
+    },
+    {
+      "id": "m3-lem-tr-norm",
+      "kind": "lemma",
+      "label": "Norm convergence at distinct slopes",
+      "statement": "[Norm convergence at distinct slopes] If \\(S\\) is mixing, \\(a_1,,a_r\\) are distinct nonzero integers, and \\(g_1,,g_r\\) are bounded measurable functions, then 1N_ n=1 ^N_ j=1 ^rg_j S^ a_jn _ j=1…",
+      "section": "From the local estimate to pointwise convergence",
+      "manuscript": "Triple ergodic averages with distinct integer slopes"
+    },
+    {
+      "id": "m3-lem-tr-density",
+      "kind": "lemma",
+      "label": "Profiles approximate interval indicators",
+      "statement": "[Profiles approximate interval indicators] For every \\(c\\) and \\(>0\\), there is an averaging profile \\(\\) with \\[ \\|-h_c\\|_ L^1() <, h_c=c^ -1 1_ (0,c] . \\]",
+      "section": "From the local estimate to pointwise convergence",
+      "manuscript": "Triple ergodic averages with distinct integer slopes"
+    },
+    {
+      "id": "m3-lem-local-absolute",
+      "kind": "lemma",
+      "label": "Local absolute bound",
+      "statement": "[Local absolute bound] If \\(1 p_j\\) and \\(_jp_j^ -1 2\\), then \\[ |I|^ -2 _ ^2 |w_I(x,t)| _ j=0 ^3z_j(x+b_jt)\\,dx\\,dt C_b_ j=0 ^3z_j_ p_j,I . \\] The assertion also holds for Hilbert-valued inputs,…",
+      "section": "Quadratic structure and localization for the new slopes",
+      "manuscript": "Triple ergodic averages with distinct integer slopes"
+    },
+    {
+      "id": "m3-lem-progression-separation",
+      "kind": "lemma",
+      "label": "Progression separation",
+      "statement": "[Progression separation] Let \\(i,k,a,l\\) be the four distinct roles and let \\(_i,_k\\) be bounded chart atoms of complexity at most \\(H\\). On \\(y_j=x+b_jt\\), their product has an absolutely convergent…",
+      "section": "Quadratic structure and localization for the new slopes",
+      "manuscript": "Triple ergodic averages with distinct integer slopes"
+    },
+    {
+      "id": "m3-lem-local-detection",
+      "kind": "lemma",
+      "label": "Local detection",
+      "statement": "[Local detection] Fix \\(q>2\\) and \\(C_11\\). Suppose that the four inputs \\(R,h,u,v\\), in any slot order, satisfy \\[ R_ 2,I C_1, h_ q,I 1, u_ 2,I , v_ 2,I 1, |H_I(R,h,u,v)|>, \\] where \\(0<<1/2\\).…",
+      "section": "Quadratic structure and localization for the new slopes",
+      "manuscript": "Triple ergodic averages with distinct integer slopes"
+    },
+    {
+      "id": "m3-lem-tag-separation",
+      "kind": "lemma",
+      "label": "Separation of distinct tags",
+      "statement": "[Separation of distinct tags] For single-column complexities at most \\((C_ q,b k^C)\\) and \\((1/) C_ q,b k^C\\), the edge height can be chosen with \\( H_ ed C_ q,b k^C\\) so that tags at graph distance…",
+      "section": "Quadratic structure and localization for the new slopes",
+      "manuscript": "Triple ergodic averages with distinct integer slopes"
+    },
+    {
+      "id": "m3-lem-same-tag-test",
+      "kind": "lemma",
+      "label": "Uniform same-tag test",
+      "statement": "[Uniform same-tag test] Fix an original tag \\(v\\) and its original source columns within the complexity budget \\((C_ q,b k^C)\\). There are fixed template families in all four slots, consisting of…",
+      "section": "Quadratic structure and localization for the new slopes",
+      "manuscript": "Triple ergodic averages with distinct integer slopes"
+    },
+    {
+      "id": "m3-prop-short-block-b",
+      "kind": "proposition",
+      "label": "Short-block comparison",
+      "statement": "[Short-block comparison] Let \\(2<q<3\\). Let a finite dyadic tree piece have root \\(R\\), with internal summation intervals in at most \\(K\\) consecutive depths and within the original range of at most…",
+      "section": "Short blocks, rational shifts, and the core estimate",
+      "manuscript": "Triple ergodic averages with distinct integer slopes"
+    },
+    {
+      "id": "m3-lem-height-b",
+      "kind": "lemma",
+      "label": "Height stabilization",
+      "statement": "[Height stabilization] For a nonexceptional primary, all but \\(O(d_ R')\\) heights \\(h\\ 0,,J_*\\ \\) have the following property: two of its modes in one CURRENT component at height \\(h\\) are directly…",
+      "section": "Short blocks, rational shifts, and the core estimate",
+      "manuscript": "Triple ergodic averages with distinct integer slopes"
+    },
+    {
+      "id": "m3-lem-sparse-b",
+      "kind": "lemma",
+      "label": "Sparse mass",
+      "statement": "[Sparse mass] Let \\(J\\ 0,1,2,3\\ \\) consist of three or four core roles. In each role let a finite label set \\( A_i\\) be identified injectively with real numbers, with \\(| A_i| M\\), \\(M1\\). Let \\(d0\\)…",
+      "section": "Short blocks, rational shifts, and the core estimate",
+      "manuscript": "Triple ergodic averages with distinct integer slopes"
+    },
+    {
+      "id": "m3-prop-absorption",
+      "kind": "proposition",
+      "label": "Normalized absorption",
+      "statement": "[Normalized absorption] For the fixed q chosen above and every sufficiently small >0 , there is A_< , independent of N , such that the following holds. Suppose a finite rooted dyadic subtree has root…",
+      "section": "Parameter choice and completion of the local estimate",
+      "manuscript": "Triple ergodic averages with distinct integer slopes"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m2-prop-selectors",
+      "to": "m2-thm-main",
+      "label": "prop:selectors",
+      "context": "[Proof of Theorem~\\ref{thm:main}] If the required pointwise conclusion failed, the standard coding reduction and Proposition~\\ref{prop:selectors} would supply the fixed selectors and a nonzero correlation with no output roles. A maximal role number $r$ would theref"
+    }
+  ]
+}

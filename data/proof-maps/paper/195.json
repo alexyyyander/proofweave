@@ -1,0 +1,94 @@
+{
+  "familyNumber": "195",
+  "familyTitle": "A counterexample to the small Cohen–Macaulay module conjecture",
+  "manuscripts": [
+    {
+      "id": "A-Complete-Local-Domain-Without-a-Small-Cohen-Macaulay-Module-September-23-2026",
+      "title": "A Complete Local Domain without a Small Cohen–Macaulay Module",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Complete-Local-Domain-Without-a-Small-Cohen-Macaulay-Module-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Balancing slopes by modifications",
+    "A Chern-character inequality from a divisor",
+    "The numerical obstruction",
+    "The counterexample",
+    "An explicit surface and its polarization"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There exists a three-dimensional complete Noetherian normal local domain R…",
+      "statement": "There exists a three-dimensional complete Noetherian normal local domain R containing , with residue field , such that no nonzero finitely generated R -module has depth three.",
+      "section": "Introduction",
+      "manuscript": "A Complete Local Domain without a Small Cohen–Macaulay Module"
+    },
+    {
+      "id": "m1-thm-obstruction",
+      "kind": "theorem",
+      "label": "Let X be a smooth integral projective surface over , and let H be an ample…",
+      "statement": "Let X be a smooth integral projective surface over , and let H be an ample globally generated divisor. If R(X,H) admits a small Cohen--Macaulay module, then K_X^2-2c_2(X) 6H^2.",
+      "section": "Introduction",
+      "manuscript": "A Complete Local Domain without a Small Cohen–Macaulay Module"
+    },
+    {
+      "id": "m1-lem-balance",
+      "kind": "lemma",
+      "label": "Let W be an integral Noetherian scheme, let i:X W be an effective Cartier…",
+      "statement": "Let W be an integral Noetherian scheme, let i:X W be an effective Cartier divisor that is a smooth integral projective surface over , and suppose its ideal restricts to an ample line bundle _X(H) .…",
+      "section": "Balancing slopes by modifications",
+      "manuscript": "A Complete Local Domain without a Small Cohen–Macaulay Module"
+    },
+    {
+      "id": "m1-lem-lattice",
+      "kind": "lemma",
+      "label": "Let V be an integral Noetherian scheme with an effective Cartier divisor D^2 ,…",
+      "statement": "Let V be an integral Noetherian scheme with an effective Cartier divisor D^2 , whose ideal satisfies |_D_D(1) . Suppose L' is a coherent torsion-free sheaf on V and L'|_ V D _ V D ^N , where N>0 .…",
+      "section": "A Chern-character inequality from a divisor",
+      "manuscript": "A Complete Local Domain without a Small Cohen–Macaulay Module"
+    },
+    {
+      "id": "m1-lem-factor",
+      "kind": "lemma",
+      "label": "Let f:X^2 be finite, with X a smooth integral projective complex surface and…",
+      "statement": "Let f:X^2 be finite, with X a smooth integral projective complex surface and H=f^*_ ^2 (1) ample. Put h=H^2 . For every nonzero torsion-free H -slope-semistable sheaf G on X , \\[…",
+      "section": "The numerical obstruction",
+      "manuscript": "A Complete Local Domain without a Small Cohen–Macaulay Module"
+    },
+    {
+      "id": "m1-cor-affine-local",
+      "kind": "corollary",
+      "label": "Let X and H be the surface and polarization constructed in Proposition~ for n=7…",
+      "statement": "Let X and H be the surface and polarization constructed in Proposition~ for n=7 , and put \\[ T=T(X,H), n=T_ >0 . \\] Then T is a finitely generated graded three-dimensional -domain, n is maximal with…",
+      "section": "The counterexample",
+      "manuscript": "A Complete Local Domain without a Small Cohen–Macaulay Module"
+    },
+    {
+      "id": "m1-prop-surface",
+      "kind": "proposition",
+      "label": "For each prime n3 , there is a smooth integral projective complex surface X…",
+      "statement": "For each prime n3 , there is a smooth integral projective complex surface X with an ample globally generated divisor H such that \\[ H^2=5n^3, K_X^2-2c_2(X)=n^3(n^2-10). \\]",
+      "section": "An explicit surface and its polarization",
+      "manuscript": "A Complete Local Domain without a Small Cohen–Macaulay Module"
+    },
+    {
+      "id": "m1-lem-cover-smooth",
+      "kind": "lemma",
+      "label": "The surface X is smooth and =d=n^5 . The map is unramified outside and has…",
+      "statement": "The surface X is smooth and =d=n^5 . The map is unramified outside and has ramification index n along every component of . More precisely, near a point at which exactly s\\ 0,1,2\\ components of meet,…",
+      "section": "An explicit surface and its polarization",
+      "manuscript": "A Complete Local Domain without a Small Cohen–Macaulay Module"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-prop-surface",
+      "to": "m1-thm-main",
+      "label": "prop:surface",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Take the surface and polarization of Proposition~\\ref{prop:surface} with $n=7$. Their invariants are \\[ H^2=5\\cdot7^3=1715,\\qquad K_X^2-2c_2(X)=39\\cdot7^3=13377>10290=6H^2. \\] The ring"
+    }
+  ]
+}

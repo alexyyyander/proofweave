@@ -1,0 +1,969 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "267",
+  "title": "Positive-temperature Bose–Einstein condensation and exact quantum depletion",
+  "result": {
+    "id": "paper-result",
+    "label": "Positive-temperature Bose–Einstein condensation and exact quantum depletion",
+    "statement": "Proves Bose–Einstein condensation for the exact canonical Gibbs state of the three-dimensional hard-sphere gas: each fixed exclusion distance and sufficiently small fixed density admit a strictly positive temperature, independent of volume, with positive condensate fraction in the thermodynamic limit. At zero temperature, proves the Bogoliubov leading quantum-depletion law for hard spheres and fixed bounded nonnegative radial finite-range potentials of positive scattering length, taking the thermodynamic limit before the dilute limit.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-scaled-formulation",
+      "label": "A scaled formulation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "local-kinetic-energy-and-particle-number-costs",
+      "label": "Local kinetic energy and particle-number costs",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "localization-and-joint-spatial-estimates",
+      "label": "Localization and joint spatial estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-thermal-slab-and-joint-trajectory-estimates",
+      "label": "A thermal slab and joint trajectory estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "moving-a-path-through-a-neighboring-cell",
+      "label": "Moving a path through a neighboring cell",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "exposing-the-environment-and-retaining-movable-groups",
+      "label": "Exposing the environment and retaining movable groups",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "paths-through-a-sparse-set-of-obstacles",
+      "label": "Paths through a sparse set of obstacles",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-common-measure-and-positive-occupation",
+      "label": "A common measure and positive occupation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "scaled-variables-and-ground-state-estimates",
+      "label": "Scaled variables and ground-state estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "local-energy-bounds-with-retained-excitations",
+      "label": "Local energy bounds with retained excitations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "count-fluctuations-and-local-one-body-covariance",
+      "label": "Count fluctuations and local one-body covariance",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "short-trajectories-and-local-certificates",
+      "label": "Short trajectories and local certificates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "smoothed-deletion-measures-and-their-local-comparison",
+      "label": "Smoothed deletion measures and their local comparison",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "random-routes-and-encounters-away-from-a-common-endpoint",
+      "label": "Random routes and encounters away from a common endpoint",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "transport-between-distant-smoothed-deletion-measures",
+      "label": "Transport between distant smoothed deletion measures",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "control-of-long-wavelength-excitations",
+      "label": "Control of long-wavelength excitations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-local-covariances-to-the-momentum-distribution",
+      "label": "From local covariances to the momentum distribution",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas",
+      "title": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Bose-Einstein-condensation-at-positive-temperature-in-the-dilute-hard-sphere-gas-October-5-2026/positive-temperature-hard-spheres.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-scaled",
+          "role": "a-scaled-formulation",
+          "label": "theorem m1-thm-scaled",
+          "fullLabel": "theorem m1-thm-scaled",
+          "kind": "theorem",
+          "source": "A scaled formulation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-cube",
+          "role": "local-kinetic-energy-and-particle-number-costs",
+          "label": "lemma m1-lem-cube",
+          "fullLabel": "lemma m1-lem-cube",
+          "kind": "lemma",
+          "source": "Local kinetic energy and particle-number costs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-close",
+          "role": "local-kinetic-energy-and-particle-number-costs",
+          "label": "lemma m1-lem-close",
+          "fullLabel": "lemma m1-lem-close",
+          "kind": "lemma",
+          "source": "Local kinetic energy and particle-number costs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-entropy",
+          "role": "local-kinetic-energy-and-particle-number-costs",
+          "label": "lemma m1-lem-entropy",
+          "fullLabel": "lemma m1-lem-entropy",
+          "kind": "lemma",
+          "source": "Local kinetic energy and particle-number costs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-insertion",
+          "role": "local-kinetic-energy-and-particle-number-costs",
+          "label": "lemma m1-lem-insertion",
+          "fullLabel": "lemma m1-lem-insertion",
+          "kind": "lemma",
+          "source": "Local kinetic energy and particle-number costs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-increments",
+          "role": "local-kinetic-energy-and-particle-number-costs",
+          "label": "proposition m1-prop-increments",
+          "fullLabel": "proposition m1-prop-increments",
+          "kind": "proposition",
+          "source": "Local kinetic energy and particle-number costs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-localization",
+          "role": "localization-and-joint-spatial-estimates",
+          "label": "lemma m1-lem-localization",
+          "fullLabel": "lemma m1-lem-localization",
+          "kind": "lemma",
+          "source": "Localization and joint spatial estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-tilt",
+          "role": "localization-and-joint-spatial-estimates",
+          "label": "lemma m1-lem-tilt",
+          "fullLabel": "lemma m1-lem-tilt",
+          "kind": "lemma",
+          "source": "Localization and joint spatial estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-local-penalty",
+          "role": "localization-and-joint-spatial-estimates",
+          "label": "proposition m1-prop-local-penalty",
+          "fullLabel": "proposition m1-prop-local-penalty",
+          "kind": "proposition",
+          "source": "Localization and joint spatial estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-field-density",
+          "role": "localization-and-joint-spatial-estimates",
+          "label": "corollary m1-cor-field-density",
+          "fullLabel": "corollary m1-cor-field-density",
+          "kind": "corollary",
+          "source": "Localization and joint spatial estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-low-count",
+          "role": "localization-and-joint-spatial-estimates",
+          "label": "proposition m1-prop-low-count",
+          "fullLabel": "proposition m1-prop-low-count",
+          "kind": "proposition",
+          "source": "Localization and joint spatial estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-close-count",
+          "role": "localization-and-joint-spatial-estimates",
+          "label": "proposition m1-prop-close-count",
+          "fullLabel": "proposition m1-prop-close-count",
+          "kind": "proposition",
+          "source": "Localization and joint spatial estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-purification",
+          "role": "a-thermal-slab-and-joint-trajectory-estimates",
+          "label": "proposition m1-prop-purification",
+          "fullLabel": "proposition m1-prop-purification",
+          "kind": "proposition",
+          "source": "A thermal slab and joint trajectory estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-free-cutoffs",
+          "role": "a-thermal-slab-and-joint-trajectory-estimates",
+          "label": "lemma m1-lem-free-cutoffs",
+          "fullLabel": "lemma m1-lem-free-cutoffs",
+          "kind": "lemma",
+          "source": "A thermal slab and joint trajectory estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-certificates",
+          "role": "a-thermal-slab-and-joint-trajectory-estimates",
+          "label": "proposition m1-prop-certificates",
+          "fullLabel": "proposition m1-prop-certificates",
+          "kind": "proposition",
+          "source": "A thermal slab and joint trajectory estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-marked-kernel",
+          "role": "a-thermal-slab-and-joint-trajectory-estimates",
+          "label": "lemma m1-lem-marked-kernel",
+          "fullLabel": "lemma m1-lem-marked-kernel",
+          "kind": "lemma",
+          "source": "A thermal slab and joint trajectory estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sandwich",
+          "role": "a-thermal-slab-and-joint-trajectory-estimates",
+          "label": "lemma m1-lem-sandwich",
+          "fullLabel": "lemma m1-lem-sandwich",
+          "kind": "lemma",
+          "source": "A thermal slab and joint trajectory estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-trajectory-moment",
+          "role": "a-thermal-slab-and-joint-trajectory-estimates",
+          "label": "proposition m1-prop-trajectory-moment",
+          "fullLabel": "proposition m1-prop-trajectory-moment",
+          "kind": "proposition",
+          "source": "A thermal slab and joint trajectory estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-gaussian-packing",
+          "role": "moving-a-path-through-a-neighboring-cell",
+          "label": "lemma m1-lem-gaussian-packing",
+          "fullLabel": "lemma m1-lem-gaussian-packing",
+          "kind": "lemma",
+          "source": "Moving a path through a neighboring cell",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-averaged-hit",
+          "role": "moving-a-path-through-a-neighboring-cell",
+          "label": "lemma m1-lem-averaged-hit",
+          "fullLabel": "lemma m1-lem-averaged-hit",
+          "kind": "lemma",
+          "source": "Moving a path through a neighboring cell",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-single-hit",
+          "role": "moving-a-path-through-a-neighboring-cell",
+          "label": "lemma m1-lem-single-hit",
+          "fullLabel": "lemma m1-lem-single-hit",
+          "kind": "lemma",
+          "source": "Moving a path through a neighboring cell",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-success-supply",
+          "role": "moving-a-path-through-a-neighboring-cell",
+          "label": "corollary m1-cor-success-supply",
+          "fullLabel": "corollary m1-cor-success-supply",
+          "kind": "corollary",
+          "source": "Moving a path through a neighboring cell",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-useful-labels",
+          "role": "exposing-the-environment-and-retaining-movable-groups",
+          "label": "lemma m1-lem-useful-labels",
+          "fullLabel": "lemma m1-lem-useful-labels",
+          "kind": "lemma",
+          "source": "Exposing the environment and retaining movable groups",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-conditional-law",
+          "role": "exposing-the-environment-and-retaining-movable-groups",
+          "label": "lemma m1-lem-conditional-law",
+          "fullLabel": "lemma m1-lem-conditional-law",
+          "kind": "lemma",
+          "source": "Exposing the environment and retaining movable groups",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-group-supply",
+          "role": "exposing-the-environment-and-retaining-movable-groups",
+          "label": "proposition m1-prop-group-supply",
+          "fullLabel": "proposition m1-prop-group-supply",
+          "kind": "proposition",
+          "source": "Exposing the environment and retaining movable groups",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-group-comparison",
+          "role": "exposing-the-environment-and-retaining-movable-groups",
+          "label": "proposition m1-prop-group-comparison",
+          "fullLabel": "proposition m1-prop-group-comparison",
+          "kind": "proposition",
+          "source": "Exposing the environment and retaining movable groups",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-good-paths",
+          "role": "paths-through-a-sparse-set-of-obstacles",
+          "label": "proposition m1-prop-good-paths",
+          "fullLabel": "proposition m1-prop-good-paths",
+          "kind": "proposition",
+          "source": "Paths through a sparse set of obstacles",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-skeleton",
+          "role": "paths-through-a-sparse-set-of-obstacles",
+          "label": "lemma m1-lem-skeleton",
+          "fullLabel": "lemma m1-lem-skeleton",
+          "kind": "lemma",
+          "source": "Paths through a sparse set of obstacles",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lattice-boundary",
+          "role": "paths-through-a-sparse-set-of-obstacles",
+          "label": "lemma m1-lattice-boundary",
+          "fullLabel": "lemma m1-lattice-boundary",
+          "kind": "lemma",
+          "source": "Paths through a sparse set of obstacles",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lattice-small-lifts",
+          "role": "paths-through-a-sparse-set-of-obstacles",
+          "label": "lemma m1-lattice-small-lifts",
+          "fullLabel": "lemma m1-lattice-small-lifts",
+          "kind": "lemma",
+          "source": "Paths through a sparse set of obstacles",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-affinity",
+          "role": "a-common-measure-and-positive-occupation",
+          "label": "lemma m1-lem-affinity",
+          "fullLabel": "lemma m1-lem-affinity",
+          "kind": "lemma",
+          "source": "A common measure and positive occupation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-tag-normalization",
+          "role": "a-common-measure-and-positive-occupation",
+          "label": "lemma m1-lem-tag-normalization",
+          "fullLabel": "lemma m1-lem-tag-normalization",
+          "kind": "lemma",
+          "source": "A common measure and positive occupation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-cancellation",
+          "role": "a-common-measure-and-positive-occupation",
+          "label": "lemma m1-lem-cancellation",
+          "fullLabel": "lemma m1-lem-cancellation",
+          "kind": "lemma",
+          "source": "A common measure and positive occupation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas",
+      "title": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Quantum-Depletion-and-Momentum-Distribution-in-the-Dilute-Hard-Sphere-Bose-Gas-October-5-2026/Quantum-Depletion-in-the-Dilute-Hard-Sphere-Bose-Gas.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-depletion",
+          "role": "introduction",
+          "label": "corollary m2-cor-depletion",
+          "fullLabel": "corollary m2-cor-depletion",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-set-ground-space",
+          "role": "scaled-variables-and-ground-state-estimates",
+          "label": "lemma m2-set-ground-space",
+          "fullLabel": "lemma m2-set-ground-space",
+          "kind": "lemma",
+          "source": "Scaled variables and ground-state estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-set-removal",
+          "role": "scaled-variables-and-ground-state-estimates",
+          "label": "proposition m2-set-removal",
+          "fullLabel": "proposition m2-set-removal",
+          "kind": "proposition",
+          "source": "Scaled variables and ground-state estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-set-low-counts",
+          "role": "scaled-variables-and-ground-state-estimates",
+          "label": "proposition m2-set-low-counts",
+          "fullLabel": "proposition m2-set-low-counts",
+          "kind": "proposition",
+          "source": "Scaled variables and ground-state estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-set-count-mgf",
+          "role": "scaled-variables-and-ground-state-estimates",
+          "label": "proposition m2-set-count-mgf",
+          "fullLabel": "proposition m2-set-count-mgf",
+          "kind": "proposition",
+          "source": "Scaled variables and ground-state estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-set-close-tail",
+          "role": "scaled-variables-and-ground-state-estimates",
+          "label": "proposition m2-set-close-tail",
+          "fullLabel": "proposition m2-set-close-tail",
+          "kind": "proposition",
+          "source": "Scaled variables and ground-state estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-en-rough-bound",
+          "role": "local-energy-bounds-with-retained-excitations",
+          "label": "lemma m2-en-rough-bound",
+          "fullLabel": "lemma m2-en-rough-bound",
+          "kind": "lemma",
+          "source": "Local energy bounds with retained excitations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-en-cutoff-error",
+          "role": "local-energy-bounds-with-retained-excitations",
+          "label": "lemma m2-en-cutoff-error",
+          "fullLabel": "lemma m2-en-cutoff-error",
+          "kind": "lemma",
+          "source": "Local energy bounds with retained excitations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-en-sharp",
+          "role": "local-energy-bounds-with-retained-excitations",
+          "label": "lemma m2-en-sharp",
+          "fullLabel": "lemma m2-en-sharp",
+          "kind": "lemma",
+          "source": "Local energy bounds with retained excitations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-en-small-gap",
+          "role": "local-energy-bounds-with-retained-excitations",
+          "label": "lemma m2-en-small-gap",
+          "fullLabel": "lemma m2-en-small-gap",
+          "kind": "lemma",
+          "source": "Local energy bounds with retained excitations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-en-cosine-correction",
+          "role": "local-energy-bounds-with-retained-excitations",
+          "label": "lemma m2-en-cosine-correction",
+          "fullLabel": "lemma m2-en-cosine-correction",
+          "kind": "lemma",
+          "source": "Local energy bounds with retained excitations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-en-energy-outputs",
+          "role": "count-fluctuations-and-local-one-body-covariance",
+          "label": "proposition m2-en-energy-outputs",
+          "fullLabel": "proposition m2-en-energy-outputs",
+          "kind": "proposition",
+          "source": "Count fluctuations and local one-body covariance",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-en-surplus",
+          "role": "count-fluctuations-and-local-one-body-covariance",
+          "label": "lemma m2-en-surplus",
+          "fullLabel": "lemma m2-en-surplus",
+          "kind": "lemma",
+          "source": "Count fluctuations and local one-body covariance",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-en-fourth-block",
+          "role": "count-fluctuations-and-local-one-body-covariance",
+          "label": "lemma m2-en-fourth-block",
+          "fullLabel": "lemma m2-en-fourth-block",
+          "kind": "lemma",
+          "source": "Count fluctuations and local one-body covariance",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mom-local-covariance",
+          "role": "count-fluctuations-and-local-one-body-covariance",
+          "label": "proposition m2-mom-local-covariance",
+          "fullLabel": "proposition m2-mom-local-covariance",
+          "kind": "proposition",
+          "source": "Count fluctuations and local one-body covariance",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m2-en-surplus"
+          ]
+        },
+        {
+          "id": "m2-en-observable",
+          "role": "count-fluctuations-and-local-one-body-covariance",
+          "label": "lemma m2-en-observable",
+          "fullLabel": "lemma m2-en-observable",
+          "kind": "lemma",
+          "source": "Count fluctuations and local one-body covariance",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lp-good-probability",
+          "role": "short-trajectories-and-local-certificates",
+          "label": "proposition m2-lp-good-probability",
+          "fullLabel": "proposition m2-lp-good-probability",
+          "kind": "proposition",
+          "source": "Short trajectories and local certificates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lp-collision",
+          "role": "short-trajectories-and-local-certificates",
+          "label": "lemma m2-lp-collision",
+          "fullLabel": "lemma m2-lp-collision",
+          "kind": "lemma",
+          "source": "Short trajectories and local certificates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lp-insertion",
+          "role": "short-trajectories-and-local-certificates",
+          "label": "proposition m2-lp-insertion",
+          "fullLabel": "proposition m2-lp-insertion",
+          "kind": "proposition",
+          "source": "Short trajectories and local certificates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lp-trial-density",
+          "role": "short-trajectories-and-local-certificates",
+          "label": "corollary m2-lp-trial-density",
+          "fullLabel": "corollary m2-lp-trial-density",
+          "kind": "corollary",
+          "source": "Short trajectories and local certificates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-palm-local-comparison",
+          "role": "smoothed-deletion-measures-and-their-local-comparison",
+          "label": "proposition m2-palm-local-comparison",
+          "fullLabel": "proposition m2-palm-local-comparison",
+          "kind": "proposition",
+          "source": "Smoothed deletion measures and their local comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-palm-reference",
+          "role": "smoothed-deletion-measures-and-their-local-comparison",
+          "label": "lemma m2-palm-reference",
+          "fullLabel": "lemma m2-palm-reference",
+          "kind": "lemma",
+          "source": "Smoothed deletion measures and their local comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-palm-counts",
+          "role": "smoothed-deletion-measures-and-their-local-comparison",
+          "label": "lemma m2-palm-counts",
+          "fullLabel": "lemma m2-palm-counts",
+          "kind": "lemma",
+          "source": "Smoothed deletion measures and their local comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-palm-omissions",
+          "role": "smoothed-deletion-measures-and-their-local-comparison",
+          "label": "lemma m2-palm-omissions",
+          "fullLabel": "lemma m2-palm-omissions",
+          "kind": "lemma",
+          "source": "Smoothed deletion measures and their local comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-palm-transport",
+          "role": "smoothed-deletion-measures-and-their-local-comparison",
+          "label": "lemma m2-palm-transport",
+          "fullLabel": "lemma m2-palm-transport",
+          "kind": "lemma",
+          "source": "Smoothed deletion measures and their local comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-palm-likelihood",
+          "role": "smoothed-deletion-measures-and-their-local-comparison",
+          "label": "lemma m2-palm-likelihood",
+          "fullLabel": "lemma m2-palm-likelihood",
+          "kind": "lemma",
+          "source": "Smoothed deletion measures and their local comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-palm-two-switches",
+          "role": "smoothed-deletion-measures-and-their-local-comparison",
+          "label": "lemma m2-palm-two-switches",
+          "fullLabel": "lemma m2-palm-two-switches",
+          "kind": "lemma",
+          "source": "Smoothed deletion measures and their local comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-palm-fourth",
+          "role": "smoothed-deletion-measures-and-their-local-comparison",
+          "label": "lemma m2-palm-fourth",
+          "fullLabel": "lemma m2-palm-fourth",
+          "kind": "lemma",
+          "source": "Smoothed deletion measures and their local comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-palm-augmented-comparison",
+          "role": "smoothed-deletion-measures-and-their-local-comparison",
+          "label": "proposition m2-palm-augmented-comparison",
+          "fullLabel": "proposition m2-palm-augmented-comparison",
+          "kind": "proposition",
+          "source": "Smoothed deletion measures and their local comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-rt-routes",
+          "role": "random-routes-and-encounters-away-from-a-common-endpoint",
+          "label": "proposition m2-rt-routes",
+          "fullLabel": "proposition m2-rt-routes",
+          "kind": "proposition",
+          "source": "Random routes and encounters away from a common endpoint",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-rt-prediction",
+          "role": "random-routes-and-encounters-away-from-a-common-endpoint",
+          "label": "lemma m2-rt-prediction",
+          "fullLabel": "lemma m2-rt-prediction",
+          "kind": "lemma",
+          "source": "Random routes and encounters away from a common endpoint",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-rt-ordered",
+          "role": "random-routes-and-encounters-away-from-a-common-endpoint",
+          "label": "lemma m2-rt-ordered",
+          "fullLabel": "lemma m2-rt-ordered",
+          "kind": "lemma",
+          "source": "Random routes and encounters away from a common endpoint",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-long-comparison",
+          "role": "transport-between-distant-smoothed-deletion-measures",
+          "label": "proposition m2-long-comparison",
+          "fullLabel": "proposition m2-long-comparison",
+          "kind": "proposition",
+          "source": "Transport between distant smoothed deletion measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-long-mass",
+          "role": "transport-between-distant-smoothed-deletion-measures",
+          "label": "lemma m2-long-mass",
+          "fullLabel": "lemma m2-long-mass",
+          "kind": "lemma",
+          "source": "Transport between distant smoothed deletion measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-long-normalizers",
+          "role": "transport-between-distant-smoothed-deletion-measures",
+          "label": "lemma m2-long-normalizers",
+          "fullLabel": "lemma m2-long-normalizers",
+          "kind": "lemma",
+          "source": "Transport between distant smoothed deletion measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-long-transitions",
+          "role": "transport-between-distant-smoothed-deletion-measures",
+          "label": "lemma m2-long-transitions",
+          "fullLabel": "lemma m2-long-transitions",
+          "kind": "lemma",
+          "source": "Transport between distant smoothed deletion measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-long-kernel",
+          "role": "transport-between-distant-smoothed-deletion-measures",
+          "label": "lemma m2-long-kernel",
+          "fullLabel": "lemma m2-long-kernel",
+          "kind": "lemma",
+          "source": "Transport between distant smoothed deletion measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-long-shared-density",
+          "role": "transport-between-distant-smoothed-deletion-measures",
+          "label": "lemma m2-long-shared-density",
+          "fullLabel": "lemma m2-long-shared-density",
+          "kind": "lemma",
+          "source": "Transport between distant smoothed deletion measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-long-product",
+          "role": "transport-between-distant-smoothed-deletion-measures",
+          "label": "lemma m2-long-product",
+          "fullLabel": "lemma m2-long-product",
+          "kind": "lemma",
+          "source": "Transport between distant smoothed deletion measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-long-label-average",
+          "role": "transport-between-distant-smoothed-deletion-measures",
+          "label": "lemma m2-long-label-average",
+          "fullLabel": "lemma m2-long-label-average",
+          "kind": "lemma",
+          "source": "Transport between distant smoothed deletion measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-long-augmented-moments",
+          "role": "transport-between-distant-smoothed-deletion-measures",
+          "label": "proposition m2-long-augmented-moments",
+          "fullLabel": "proposition m2-long-augmented-moments",
+          "kind": "proposition",
+          "source": "Transport between distant smoothed deletion measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-asm-far-pairs",
+          "role": "control-of-long-wavelength-excitations",
+          "label": "lemma m2-asm-far-pairs",
+          "fullLabel": "lemma m2-asm-far-pairs",
+          "kind": "lemma",
+          "source": "Control of long-wavelength excitations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-asm-rms-interpolation",
+          "role": "control-of-long-wavelength-excitations",
+          "label": "lemma m2-asm-rms-interpolation",
+          "fullLabel": "lemma m2-asm-rms-interpolation",
+          "kind": "lemma",
+          "source": "Control of long-wavelength excitations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-asm-infrared",
+          "role": "control-of-long-wavelength-excitations",
+          "label": "proposition m2-asm-infrared",
+          "fullLabel": "proposition m2-asm-infrared",
+          "kind": "proposition",
+          "source": "Control of long-wavelength excitations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mom-shift-average",
+          "role": "from-local-covariances-to-the-momentum-distribution",
+          "label": "lemma m2-mom-shift-average",
+          "fullLabel": "lemma m2-mom-shift-average",
+          "kind": "lemma",
+          "source": "From local covariances to the momentum distribution",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Bose–Einstein condensation at positive temperature in the dilute hard-sphere gas",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Bose-Einstein-condensation-at-positive-temperature-in-the-dilute-hard-sphere-gas-October-5-2026/positive-temperature-hard-spheres.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Quantum Depletion and Momentum Distribution in the Dilute Hard-Sphere Bose Gas",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Quantum-Depletion-and-Momentum-Distribution-in-the-Dilute-Hard-Sphere-Bose-Gas-October-5-2026/Quantum-Depletion-in-the-Dilute-Hard-Sphere-Bose-Gas.pdf",
+      "kind": "paper"
+    }
+  ]
+}

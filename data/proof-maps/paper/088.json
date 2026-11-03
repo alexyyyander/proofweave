@@ -1,0 +1,76 @@
+{
+  "familyNumber": "088",
+  "familyTitle": "Sharp projection-body inequalities and a counterexample to simplex maximization",
+  "manuscripts": [
+    {
+      "id": "A-product-counterexample-to-the-simplex-maximum-for-projection-body-volume-September-24-2026",
+      "title": "A product counterexample to the simplex maximum for projection-body volume",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-product-counterexample-to-the-simplex-maximum-for-projection-body-volume-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Facet vectors and Cartesian products",
+    "The simplex value",
+    "The counterexample and exponential excess"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-counterexample",
+      "kind": "theorem",
+      "label": "Let \\(T_ 10 =(0,e_1,,e_ 10 )^ 10 \\), where the \\(e_i\\) are the coordinate unit…",
+      "statement": "Let \\(T_ 10 =(0,e_1,,e_ 10 )^ 10 \\), where the \\(e_i\\) are the coordinate unit vectors, and let \\(K=T_ 10 T_ 10 ^ 20 \\). Then \\[ R_ 20 (K) c_ 20 = 12120 10 212^ 20 =22\\,355\\,476 22\\,020\\,096 >1. \\]…",
+      "section": "Introduction",
+      "manuscript": "A product counterexample to the simplex maximum for projection-body volume"
+    },
+    {
+      "id": "m1-lem-facets",
+      "kind": "lemma",
+      "label": "Let \\(P^d\\), \\(d2\\), be a full-dimensional convex polytope. For each facet…",
+      "statement": "Let \\(P^d\\), \\(d2\\), be a full-dimensional convex polytope. For each facet \\(F\\), let \\(s_F\\) be its \\((d-1)\\)-dimensional volume and \\(_F\\) its outward unit normal. Then h_ P (u)=12_Fs_F|_F,u|, u^d,…",
+      "section": "Facet vectors and Cartesian products",
+      "manuscript": "A product counterexample to the simplex maximum for projection-body volume"
+    },
+    {
+      "id": "m1-prop-product",
+      "kind": "proposition",
+      "label": "Let \\(A^r\\) and \\(B^s\\) be full-dimensional convex polytopes, where \\(r,s2\\).…",
+      "statement": "Let \\(A^r\\) and \\(B^s\\) be full-dimensional convex polytopes, where \\(r,s2\\). In the orthogonal product space \\(^ r+s =^r^s\\), (A B)=(|B| A)(|A| B). In particular, R_ r+s (A B)=R_r(A)R_s(B).",
+      "section": "Facet vectors and Cartesian products",
+      "manuscript": "A product counterexample to the simplex maximum for projection-body volume"
+    },
+    {
+      "id": "m1-lem-affine",
+      "kind": "lemma",
+      "label": "Let \\(P^d\\), \\(d2\\), be a convex body. For every invertible linear map…",
+      "statement": "Let \\(P^d\\), \\(d2\\), be a convex body. For every invertible linear map \\(L^d^d\\), \\[ (LP)=| L|L^ -t P, R_d(LP)=R_d(P), \\] where \\(L^ -t \\) denotes the inverse transpose. Translations also preserve…",
+      "section": "Facet vectors and Cartesian products",
+      "manuscript": "A product counterexample to the simplex maximum for projection-body volume"
+    },
+    {
+      "id": "m1-prop-simplex",
+      "kind": "proposition",
+      "label": "For \\(d2\\), the standard simplex \\(T_d=(0,e_1,,e_d)^d\\) satisfies \\[ |T_d|=1 d!…",
+      "statement": "For \\(d2\\), the standard simplex \\(T_d=(0,e_1,,e_d)^d\\) satisfies \\[ |T_d|=1 d! , | T_d|=d+1 ((d-1)!)^d , R_d(T_d)=c_d. \\] Every full-dimensional \\(d\\)-simplex has the same value \\(c_d\\).",
+      "section": "The simplex value",
+      "manuscript": "A product counterexample to the simplex maximum for projection-body volume"
+    },
+    {
+      "id": "m1-cor-exponential-excess",
+      "kind": "corollary",
+      "label": "There exist a constant \\(>1\\) and an integer \\(N20\\) such that, for every…",
+      "statement": "There exist a constant \\(>1\\) and an integer \\(N20\\) such that, for every integer \\(n N\\), some full-dimensional convex polytope \\(K_n^n\\) satisfies \\[ R_n(K_n) R_n(T_n) ^n. \\] The polytopes \\(K_n\\)…",
+      "section": "The counterexample and exponential excess",
+      "manuscript": "A product counterexample to the simplex maximum for projection-body volume"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-prop-product",
+      "to": "m1-thm-counterexample",
+      "label": "prop:product",
+      "context": "[Proof of Theorem~\\ref{thm:counterexample}] The product \\(K=T_{10}\\times T_{10}\\) is compact and convex with nonempty interior in \\(\\R^{20}\\). Propositions~\\ref{prop:product} and~\\ref{prop:simplex} give \\[ R_{20}(K)=R_{10}(T_{10})^2 =\\left(\\frac{11\\cdot10^{10}}{10!}\\right)^2. \\] Cons"
+    }
+  ]
+}

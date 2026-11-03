@@ -1,0 +1,427 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "244",
+  "title": "The Partition Principle does not imply Choice",
+  "result": {
+    "id": "paper-result",
+    "label": "The Partition Principle does not imply Choice",
+    "statement": "Assuming ZF is consistent, constructs a model in which every surjective image of a set injects into that set, yet the axiom of choice fails. Choice for ordinal-indexed families still holds. From any countable transitive model of ZFC, a separate construction gives a transitive symmetric extension with these properties and no new countable sequences of ground-model elements.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-monoid-of-diagrams",
+      "label": "A monoid of diagrams",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "product-forcing-and-support-locality",
+      "label": "Product forcing and support locality",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "exact-fibers-of-a-symbolic-quotient",
+      "label": "Exact fibers of a symbolic quotient",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "components-of-subdiagrams-and-their-stabilizers",
+      "label": "Components of subdiagrams and their stabilizers",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "equivariant-assignments-and-the-quotient-bijection",
+      "label": "Equivariant assignments and the quotient bijection",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-quotient-classification-to-the-partition-principle",
+      "label": "From quotient classification to the Partition Principle",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-consistency-deduction",
+      "label": "The consistency deduction",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "The Partition Principle does not imply Choice",
+      "title": "The Partition Principle does not imply Choice",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Partition-Principle-does-not-imply-Choice-September-24-2026/partition-principle-without-choice.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from The Partition Principle does not imply Choice.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main-consistency",
+          "role": "introduction",
+          "label": "theorem m1-thm-main-consistency",
+          "fullLabel": "theorem m1-thm-main-consistency",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-lem-constructible-consistency"
+          ]
+        },
+        {
+          "id": "m1-thm-main-transitive",
+          "role": "introduction",
+          "label": "theorem m1-thm-main-transitive",
+          "fullLabel": "theorem m1-thm-main-transitive",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-mono-countable-ideal",
+          "role": "a-monoid-of-diagrams",
+          "label": "lemma m1-lem-mono-countable-ideal",
+          "fullLabel": "lemma m1-lem-mono-countable-ideal",
+          "kind": "lemma",
+          "source": "A monoid of diagrams",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-monoid",
+          "role": "a-monoid-of-diagrams",
+          "label": "theorem m1-thm-monoid",
+          "fullLabel": "theorem m1-thm-monoid",
+          "kind": "theorem",
+          "source": "A monoid of diagrams",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-mono-probe-algebra",
+          "role": "a-monoid-of-diagrams",
+          "label": "lemma m1-lem-mono-probe-algebra",
+          "fullLabel": "lemma m1-lem-mono-probe-algebra",
+          "kind": "lemma",
+          "source": "A monoid of diagrams",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-mono-probe-heights",
+          "role": "a-monoid-of-diagrams",
+          "label": "lemma m1-lem-mono-probe-heights",
+          "fullLabel": "lemma m1-lem-mono-probe-heights",
+          "kind": "lemma",
+          "source": "A monoid of diagrams",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-mono-merger",
+          "role": "a-monoid-of-diagrams",
+          "label": "lemma m1-lem-mono-merger",
+          "fullLabel": "lemma m1-lem-mono-merger",
+          "kind": "lemma",
+          "source": "A monoid of diagrams",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-mono-simulation",
+          "role": "a-monoid-of-diagrams",
+          "label": "lemma m1-lem-mono-simulation",
+          "fullLabel": "lemma m1-lem-mono-simulation",
+          "kind": "lemma",
+          "source": "A monoid of diagrams",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-mono-profile-persistence",
+          "role": "a-monoid-of-diagrams",
+          "label": "lemma m1-lem-mono-profile-persistence",
+          "fullLabel": "lemma m1-lem-mono-profile-persistence",
+          "kind": "lemma",
+          "source": "A monoid of diagrams",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-mono-descent",
+          "role": "a-monoid-of-diagrams",
+          "label": "lemma m1-lem-mono-descent",
+          "fullLabel": "lemma m1-lem-mono-descent",
+          "kind": "lemma",
+          "source": "A monoid of diagrams",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-cohen-properties",
+          "role": "product-forcing-and-support-locality",
+          "label": "lemma m1-lem-cohen-properties",
+          "fullLabel": "lemma m1-lem-cohen-properties",
+          "kind": "lemma",
+          "source": "Product forcing and support locality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-diagram-amalgamation",
+          "role": "product-forcing-and-support-locality",
+          "label": "lemma m1-lem-diagram-amalgamation",
+          "fullLabel": "lemma m1-lem-diagram-amalgamation",
+          "kind": "lemma",
+          "source": "Product forcing and support locality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-symmetric-model",
+          "role": "product-forcing-and-support-locality",
+          "label": "theorem m1-thm-symmetric-model",
+          "fullLabel": "theorem m1-thm-symmetric-model",
+          "kind": "theorem",
+          "source": "Product forcing and support locality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-local-decision",
+          "role": "product-forcing-and-support-locality",
+          "label": "lemma m1-lem-local-decision",
+          "fullLabel": "lemma m1-lem-local-decision",
+          "kind": "lemma",
+          "source": "Product forcing and support locality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-support-descent",
+          "role": "product-forcing-and-support-locality",
+          "label": "lemma m1-lem-support-descent",
+          "fullLabel": "lemma m1-lem-support-descent",
+          "kind": "lemma",
+          "source": "Product forcing and support locality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-presentation",
+          "role": "product-forcing-and-support-locality",
+          "label": "proposition m1-prop-presentation",
+          "fullLabel": "proposition m1-prop-presentation",
+          "kind": "proposition",
+          "source": "Product forcing and support locality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-ordinal-choice",
+          "role": "product-forcing-and-support-locality",
+          "label": "proposition m1-prop-ordinal-choice",
+          "fullLabel": "proposition m1-prop-ordinal-choice",
+          "kind": "proposition",
+          "source": "Product forcing and support locality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-not-choice",
+          "role": "product-forcing-and-support-locality",
+          "label": "proposition m1-prop-not-choice",
+          "fullLabel": "proposition m1-prop-not-choice",
+          "kind": "proposition",
+          "source": "Product forcing and support locality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-no-countable-sequences",
+          "role": "product-forcing-and-support-locality",
+          "label": "proposition m1-prop-no-countable-sequences",
+          "fullLabel": "proposition m1-prop-no-countable-sequences",
+          "kind": "proposition",
+          "source": "Product forcing and support locality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-local-quotient-bound",
+          "role": "exact-fibers-of-a-symbolic-quotient",
+          "label": "lemma m1-lem-local-quotient-bound",
+          "fullLabel": "lemma m1-lem-local-quotient-bound",
+          "kind": "lemma",
+          "source": "Exact fibers of a symbolic quotient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-availability-ideals",
+          "role": "exact-fibers-of-a-symbolic-quotient",
+          "label": "lemma m1-lem-availability-ideals",
+          "fullLabel": "lemma m1-lem-availability-ideals",
+          "kind": "lemma",
+          "source": "Exact fibers of a symbolic quotient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-exact-fibers",
+          "role": "exact-fibers-of-a-symbolic-quotient",
+          "label": "lemma m1-lem-exact-fibers",
+          "fullLabel": "lemma m1-lem-exact-fibers",
+          "kind": "lemma",
+          "source": "Exact fibers of a symbolic quotient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-contraction-fibers",
+          "role": "components-of-subdiagrams-and-their-stabilizers",
+          "label": "lemma m1-lem-contraction-fibers",
+          "fullLabel": "lemma m1-lem-contraction-fibers",
+          "kind": "lemma",
+          "source": "Components of subdiagrams and their stabilizers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-countable-germs",
+          "role": "components-of-subdiagrams-and-their-stabilizers",
+          "label": "lemma m1-lem-countable-germs",
+          "fullLabel": "lemma m1-lem-countable-germs",
+          "kind": "lemma",
+          "source": "Components of subdiagrams and their stabilizers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-least-code-covariance",
+          "role": "equivariant-assignments-and-the-quotient-bijection",
+          "label": "lemma m1-lem-least-code-covariance",
+          "fullLabel": "lemma m1-lem-least-code-covariance",
+          "kind": "lemma",
+          "source": "Equivariant assignments and the quotient bijection",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-coset-selector",
+          "role": "equivariant-assignments-and-the-quotient-bijection",
+          "label": "lemma m1-lem-coset-selector",
+          "fullLabel": "lemma m1-lem-coset-selector",
+          "kind": "lemma",
+          "source": "Equivariant assignments and the quotient bijection",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-quotient-classification",
+          "role": "equivariant-assignments-and-the-quotient-bijection",
+          "label": "theorem m1-thm-quotient-classification",
+          "fullLabel": "theorem m1-thm-quotient-classification",
+          "kind": "theorem",
+          "source": "Equivariant assignments and the quotient bijection",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lemma-pp-reduction",
+          "role": "from-quotient-classification-to-the-partition-principle",
+          "label": "lemma m1-lemma-pp-reduction",
+          "fullLabel": "lemma m1-lemma-pp-reduction",
+          "kind": "lemma",
+          "source": "From quotient classification to the Partition Principle",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lemma-explicit-choice-failure",
+          "role": "from-quotient-classification-to-the-partition-principle",
+          "label": "lemma m1-lemma-explicit-choice-failure",
+          "fullLabel": "lemma m1-lemma-explicit-choice-failure",
+          "kind": "lemma",
+          "source": "From quotient classification to the Partition Principle",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-construction-summary",
+          "role": "from-quotient-classification-to-the-partition-principle",
+          "label": "theorem m1-thm-construction-summary",
+          "fullLabel": "theorem m1-thm-construction-summary",
+          "kind": "theorem",
+          "source": "From quotient classification to the Partition Principle",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-constructible-consistency",
+          "role": "the-consistency-deduction",
+          "label": "lemma m1-lem-constructible-consistency",
+          "fullLabel": "lemma m1-lem-constructible-consistency",
+          "kind": "lemma",
+          "source": "The consistency deduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-symmetric-forcing-schema",
+          "role": "the-consistency-deduction",
+          "label": "lemma m1-lem-symmetric-forcing-schema",
+          "fullLabel": "lemma m1-lem-symmetric-forcing-schema",
+          "kind": "lemma",
+          "source": "The consistency deduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-arbitrary-model-symmetric-truth",
+          "role": "the-consistency-deduction",
+          "label": "lemma m1-lem-arbitrary-model-symmetric-truth",
+          "fullLabel": "lemma m1-lem-arbitrary-model-symmetric-truth",
+          "kind": "lemma",
+          "source": "The consistency deduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "The Partition Principle does not imply Choice",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Partition-Principle-does-not-imply-Choice-September-24-2026/partition-principle-without-choice.pdf",
+      "kind": "paper"
+    }
+  ]
+}

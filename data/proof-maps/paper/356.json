@@ -1,0 +1,397 @@
+{
+  "familyNumber": "356",
+  "familyTitle": "Gigli’s characterization of Alexandrov curvature",
+  "manuscripts": [
+    {
+      "id": "Giglis-distributional-curvature-characterization-of-Alexandrov-spaces-September-24-2026",
+      "title": "Gigli’s distributional curvature characterization of Alexandrov spaces",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Giglis-distributional-curvature-characterization-of-Alexandrov-spaces-September-24-2026/main.pdf"
+    },
+    {
+      "id": "Weak-Hessian-bounds-along-every-geodesic-in-RCD-spaces-September-24-2026",
+      "title": "Weak Hessian bounds along every geodesic in RCD spaces",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Weak-Hessian-bounds-along-every-geodesic-in-RCD-spaces-September-24-2026/weak-hessian-geodesics.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Calculus and background results",
+    "From Alexandrov comparison to the tensor bound",
+    "From the tensor bound to an index inequality",
+    "Frames along geodesics and Hessian comparison",
+    "From Hessian bounds to triangle comparison",
+    "Test functions, approximation and Bochner measures",
+    "Bounded changes of measure and the generator domain",
+    "From a weak Hessian bound to variable curvature"
+  ],
+  "nodes": [
+    {
+      "id": "m1-main-equivalence",
+      "kind": "theorem",
+      "label": "Gigli's characterization",
+      "statement": "[Gigli's characterization] Let \\(n2\\) be an integer, let \\(\\), and let \\((M,d)\\) be a complete separable metric space. The following conditions are equivalent. [label=( *)] \\((M,d)\\) is an…",
+      "section": "Introduction",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-pre-approximation",
+      "kind": "lemma",
+      "label": "Cutoffs and approximation",
+      "statement": "[Cutoffs and approximation] The following approximations are available. For a compact set \\(E\\) in an open set \\(U\\), there is \\(^\\) with \\(01\\), equal to one on a neighborhood of \\(E\\), and…",
+      "section": "Calculus and background results",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-pre-tensor-continuity",
+      "kind": "lemma",
+      "label": "Lipschitz weights and continuity of the tensor",
+      "statement": "[Lipschitz weights and continuity of the tensor] For fixed test fields the formula defines a functional on compactly supported Lipschitz weights. It has the form \\[ f fA+ f,B m, A L^1_ loc (m), B…",
+      "section": "Calculus and background results",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-fwd-curvature",
+      "kind": "theorem",
+      "label": "Let \\((M,d)\\) be a complete \\(n\\)-dimensional Alexandrov space with curvature…",
+      "statement": "Let \\((M,d)\\) be a complete \\(n\\)-dimensional Alexandrov space with curvature bounded below by \\(\\), where \\(n2\\), and put \\(m= H^n_d\\). Then \\((M,d,m)\\) is \\(((n-1),n)\\), its measure has full…",
+      "section": "From Alexandrov comparison to the tensor bound",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-fwd-flow",
+      "kind": "lemma",
+      "label": "Short-flow density expansion",
+      "statement": "[Short-flow density expansion] The flows above exist and are invertible modulo null sets. Their forward and inverse compression constants are \\(1+O(h)\\), their displacements are \\(O(h)\\), and their…",
+      "section": "From Alexandrov comparison to the tensor bound",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-fwd-configuration",
+      "kind": "lemma",
+      "label": "Fourth-order configuration inequality",
+      "statement": "[Fourth-order configuration inequality] For the above centered finite law and flows, put \\[ a^h_A(z):=d(z,F^h_ 1,A (z)), e^h_ AB (z):=d(F^h_ 1,A (z),F^h_ 1,B (z)). \\] Then a^h_A h |A|, e^h_ AB h…",
+      "section": "From Alexandrov comparison to the tensor bound",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-fwd-density",
+      "kind": "lemma",
+      "label": "Optimal density first variation",
+      "statement": "[Optimal density first variation] Put \\(D=B-A\\) and \\(C_s=(1-s)A+sB\\). The densities \\(^h_s\\) have common compact support and a uniform \\(L^\\) bound. They satisfy _ 0 s1 \\|^h_s-f\\|_ L^2 ^2=O(h^2),…",
+      "section": "From Alexandrov comparison to the tensor bound",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-fwd-dual",
+      "kind": "lemma",
+      "label": "Dual expansion and radial defect",
+      "statement": "[Dual expansion and radial defect] With the preceding notation, J^h_ AB & h(u_B-u_A)(^h_B-^h_A) -h^2 2 f|D|^2 -h^3_0^1 f C_s,T_D s \\\\ &+h^4K_ AB (S)+o(h^4), \\\\ K_ AB (S):= & 12 \\\\ &-_0^1 s. For the…",
+      "section": "From Alexandrov comparison to the tensor bound",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-fwd-algebra",
+      "kind": "lemma",
+      "label": "Square completion and curvature identity",
+      "statement": "[Square completion and curvature identity] For every ordered pair, K_ AB =12_0^1 s. For the radial coefficients use \\(q_ 0A =0\\). Then 2 E K_ 0A - E K_ AB = &13 E [P(A,B;A,B)-P(A,A;B,B)] \\\\ &+12 E f|…",
+      "section": "From Alexandrov comparison to the tensor bound",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-fwd-defect",
+      "kind": "proposition",
+      "label": "A localized error estimate",
+      "statement": "[A localized error estimate] For the finite centered law above, every semiconcave compactly supported Lipschitz \\(f0\\), and every family \\(q_ AB W^ 1,2 (M)\\), 6 f\\, E|A B|^2 16 ER(A,B,B,A)(f) +12 E…",
+      "section": "From Alexandrov comparison to the tensor bound",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-fwd-weight-approximation",
+      "kind": "lemma",
+      "label": "Semiconcave approximation of the weight",
+      "statement": "[Semiconcave approximation of the weight] If \\(f0\\) is compactly supported and Lipschitz, then there are nonnegative compactly supported semiconcave functions \\(f_j\\), with support in \\(suppf\\), such…",
+      "section": "From Alexandrov comparison to the tensor bound",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-fwd-gradient-selection",
+      "kind": "lemma",
+      "label": "Approximation by finitely many gradient choices",
+      "statement": "[Approximation by finitely many gradient choices] Let \\(f0\\) be compactly supported and Lipschitz, and let \\(V_1,,V_N L^2(TM)\\). For every \\(>0\\), there are finitely many nonnegative Lipschitz…",
+      "section": "From Alexandrov comparison to the tensor bound",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-fwd-gradient-bound",
+      "kind": "proposition",
+      "label": "The curvature bound on compact test gradients",
+      "statement": "[The curvature bound on compact test gradients] For every \\(U,V G\\) and every nonnegative compactly supported Lipschitz \\(f\\), R(U,V,V,U)(f) f|U V|^2.",
+      "section": "From Alexandrov comparison to the tensor bound",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-fwd-coefficients",
+      "kind": "lemma",
+      "label": "Continuous coefficients on a fixed gradient family",
+      "statement": "[Continuous coefficients on a fixed gradient family] Fix \\(E_1,,E_N G\\). Then holds for nonnegative compact test weights and fields of the form \\[ X=_ i=1 ^N a_iE_i, Y=_ i=1 ^N b_iE_i, a_i,b_i(M). \\]",
+      "section": "From Alexandrov comparison to the tensor bound",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-fwd-field-approximation",
+      "kind": "lemma",
+      "label": "Local approximation with strong second derivatives",
+      "statement": "[Local approximation with strong second derivatives] Let \\(b(M)\\), and let \\(E M\\) be compact. There are compactly supported test functions \\(b_j\\) with bounded Laplacian such that their gradients…",
+      "section": "From Alexandrov comparison to the tensor bound",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-heat-index",
+      "kind": "theorem",
+      "label": "Index inequality along calibrated paths",
+      "statement": "[Index inequality along calibrated paths] Let \\(n2\\) be an integer and let \\((M,d,m)\\), with \\(m= H^n\\), be a full-support \\(((n-1),n)\\) space satisfying for every global \\(X,Y(M)\\) and every…",
+      "section": "From the tensor bound to an index inequality",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-heat-analytic-inputs",
+      "kind": "lemma",
+      "label": "Heat estimates and bounded data",
+      "statement": "[Heat estimates and bounded data] Let \\(P_s=(s)\\). On \\(0<s S<\\) one has | P_sh|& e^ -Ks P_s| h|,\\\\ | P_sh|^2& C_Ss^ -1 P_s(h^2),\\\\ | P_sh|^2& C_Ss^ -1 P_s(| h|^2), with the usual Sobolev hypothesis…",
+      "section": "From the tensor bound to an index inequality",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-heat-regularity",
+      "kind": "lemma",
+      "label": "Regularity, equations, and endpoint traces",
+      "statement": "[Regularity, equations, and endpoint traces] For each fixed \\(c>0\\), on compact spatial sets and compact time intervals in \\((0,1)\\), the factors in have bounded Lipschitz generator powers and…",
+      "section": "From the tensor bound to an index inequality",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-heat-kernel-ratio",
+      "kind": "lemma",
+      "label": "The terminal-time kernel ratio",
+      "statement": "[The terminal-time kernel ratio] For each \\(A<\\) there is \\(C_A<\\) such that, if \\(0<s1\\), \\(g>0\\) is bounded and \\(( g)s A\\), then (P_sg^2)^ 1/2 P_sg C_A everywhere. The constant is independent of…",
+      "section": "From the tensor bound to an index inequality",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-heat-density-laplacian",
+      "kind": "lemma",
+      "label": "Density and lower Laplacian control",
+      "statement": "[Density and lower Laplacian control] For each \\(0<<1\\) there are \\(C_\\) and nonnegative functions \\(e_c\\) on \\((,1)\\) such that _ t1 \\|_t^c\\|_ C_, c b^c-e_c(t), \\|e_c\\|_ L^1(,1) 0. The lower bound…",
+      "section": "From the tensor bound to an index inequality",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-heat-weighted-estimates",
+      "kind": "lemma",
+      "label": "Weighted second-order estimates",
+      "statement": "[Weighted second-order estimates] For every bounded set \\(E\\) and \\(0<<1\\), _^1\\!_E^c (|H_ b^c |^2+|H_ ^c |^2 +| b^c|^2+|^c|^2 +|w_c|^4 c^2 ) m t C_ ,E . Furthermore, for every fixed \\(T L^2((,1)…",
+      "section": "From the tensor bound to an index inequality",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-heat-riccati-identity",
+      "kind": "lemma",
+      "label": "Weak differentiated-Hessian identity",
+      "statement": "[Weak differentiated-Hessian identity] Let \\(z\\) be a local test function, \\(a= z\\), \\(Y\\) a compact test gradient, and \\(h\\) a compact Lipschitz multiplier. Define (_aH_z)(Y,Y)(h) =- H_z(Y,Y)(ha) m…",
+      "section": "From the tensor bound to an index inequality",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-heat-error-cancellation",
+      "kind": "lemma",
+      "label": "A uniform lower bound for the acceleration error",
+      "statement": "[A uniform lower bound for the acceleration error] For every admissible trial \\(Y\\), there are numbers \\(_c0\\) such that, for every \\(<T<1\\), _^T H_ |w_c|^2/2+c b^c (Y_t,Y_t)(_t^c) t -_c. The bound…",
+      "section": "From the tensor bound to an index inequality",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-heat-viscous-index",
+      "kind": "proposition",
+      "label": "The viscous index estimate",
+      "statement": "[The viscous index estimate] If the trial satisfies \\(Y_=0\\), then H_ _1^c+c f (Y_1,Y_1)(f) _^1\\!_t^c (|_tY+_ v_c Y|^2 -|Y v_c|^2) m t+_c, where \\(_c0\\).",
+      "section": "From the tensor bound to an index inequality",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-heat-laplace-principle",
+      "kind": "lemma",
+      "label": "The logarithmic heat limit",
+      "statement": "[The logarithmic heat limit] As \\(c0\\), _t^c_t=Q_tu locally uniformly on (0,1] M. At each fixed positive time the convergence is also weak in \\(W^ 1,2 _ loc \\).",
+      "section": "From the tensor bound to an index inequality",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-heat-curve-compactness",
+      "kind": "lemma",
+      "label": "Compactness with uniform moment tails",
+      "statement": "[Compactness with uniform moment tails] For each \\(0<<1\\), the probability curves \\(_t^c=_t^c m\\) are uniformly Lipschitz in \\(W_2\\) on \\([,1]\\), with a constant independent of \\(c\\). Their second…",
+      "section": "From the tensor bound to an index inequality",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-heat-action-limit",
+      "kind": "lemma",
+      "label": "The action identity and its limiting equality",
+      "statement": "[The action identity and its limiting equality] Along a subsequence as in Lemma~ , there is a measurable vector field \\(V_t\\), with \\(|V_t| L\\) \\(_t t m\\)-almost everywhere, such that \\(_t+( V)=0\\).…",
+      "section": "From the tensor bound to an index inequality",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-heat-common-paths",
+      "kind": "lemma",
+      "label": "Common calibrated paths and their velocities",
+      "statement": "[Common calibrated paths and their velocities] There is a Borel prescription \\(S:x S(x)(M)\\), defined outside one \\(m\\)-null set and with \\(S(x)_1=x\\), such that \\(S(x)\\) satisfies . For every \\(f…",
+      "section": "From the tensor bound to an index inequality",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-frames-countable-frames",
+      "kind": "proposition",
+      "label": "Countable harmonic frames",
+      "statement": "[Countable harmonic frames] There is a countable family \\ g_j\\ _ j1 of compact test functions, a set N of 2 -capacity zero, and a Borel set S R_n N with H^ n-1 (S)=0 such that the following holds. At…",
+      "section": "Frames along geodesics and Hessian comparison",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-frames-content-null",
+      "kind": "lemma",
+      "label": "Small local content",
+      "statement": "[Small local content] Let E be a subset of a separable metric space and let s>0 . If H^s_(E B(x,r))=o(r^s) as r0for every x E, then H^s(E)=0 . It suffices to assume along all sufficiently small…",
+      "section": "Frames along geodesics and Hessian comparison",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-frames-energy-content",
+      "kind": "lemma",
+      "label": "Energy controls the content of a rank defect",
+      "statement": "[Energy controls the content of a rank defect] Work in a bounded region where and the Poincar\\'e inequality hold with fixed constants. There are an enlargement factor L and _0>0 with the following…",
+      "section": "Frames along geodesics and Hessian comparison",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-frames-path-avoidance",
+      "kind": "lemma",
+      "label": "Entire-path avoidance and representatives",
+      "statement": "[Entire-path avoidance and representatives] Let a<b and let be a finite plan concentrated on L -Lipschitz paths with bounded positions. Suppose (e_t)_\\# C m for every t . For each fixed polar set N…",
+      "section": "Frames along geodesics and Hessian comparison",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-frames-regular-paths",
+      "kind": "lemma",
+      "label": "Regularity at every time",
+      "statement": "[Regularity at every time] Let be a bounded-position geodesic plan on [a,b] whose marginals have uniformly bounded densities. Then almost every path lies in R_n for every t .",
+      "section": "Frames along geodesics and Hessian comparison",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-frames-path-calculus",
+      "kind": "proposition",
+      "label": "Finite-dimensional calculus along a path",
+      "statement": "[Finite-dimensional calculus along a path] Fix a countable family as in Proposition~ . Let be an optimal geodesic plan on [a,b] with bounded positions, bounded speed, and uniformly…",
+      "section": "Frames along geodesics and Hessian comparison",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-frames-trial-density",
+      "kind": "lemma",
+      "label": "Countable trials with prescribed global endpoints",
+      "statement": "[Countable trials with prescribed global endpoints] Fix 0<<1 , a compact test gradient Z , and a countable family in Proposition~ whose gradients include Z . There is a countable collection Y_ ,Z of…",
+      "section": "Frames along geodesics and Hessian comparison",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-frames-terminal-trace",
+      "kind": "lemma",
+      "label": "Terminal gradient trace",
+      "statement": "[Terminal gradient trace] For the radial calibrated paths just described, the terminal representative supplied by Proposition~ satisfies v(1)= q(_1) almost surely. In particular | q|=r almost…",
+      "section": "Frames along geodesics and Hessian comparison",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-frames-hessian",
+      "kind": "theorem",
+      "label": "Distributional Hessian comparison",
+      "statement": "[Distributional Hessian comparison] Let \\(n2\\) be an integer, let \\( R\\), and let \\((M,d,m)\\), with \\(m= H^n\\), be a full-support \\(((n-1),n)\\) space satisfying for every global \\(X,Y(M)\\) and every…",
+      "section": "Frames along geodesics and Hessian comparison",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-weight-every-geodesic",
+      "kind": "theorem",
+      "label": "Weak Hessian bounds along every geodesic",
+      "statement": "[Weak Hessian bounds along every geodesic] Let \\((M,d,m)\\) be a full-support \\((K,N)\\) space, where \\(K R\\) and \\(1<N<\\). Let \\(F\\) be bounded and globally Lipschitz, and let \\(G\\) be bounded and…",
+      "section": "From Hessian bounds to triangle comparison",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-weight-distance-modification",
+      "kind": "lemma",
+      "label": "A global bounded modification",
+      "statement": "[A global bounded modification] Assume the conclusion of Theorem~ , and write \\(R_*=R_>0\\) for its radius. There are numbers \\(0<a<b<R_*\\), depending only on \\(\\) and the chosen \\(R_*\\), such that…",
+      "section": "From Hessian bounds to triangle comparison",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m1-weight-alexandrov",
+      "kind": "theorem",
+      "label": "Alexandrov comparison",
+      "statement": "[Alexandrov comparison] Under hypothesis (B) of Theorem~ , \\((M,d)\\) is an \\(n\\)-dimensional Alexandrov space of curvature at least \\(\\).",
+      "section": "From Hessian bounds to triangle comparison",
+      "manuscript": "Gigli’s distributional curvature characterization of Alexandrov spaces"
+    },
+    {
+      "id": "m2-weight-every-geodesic",
+      "kind": "theorem",
+      "label": "Weak Hessian bounds along every geodesic",
+      "statement": "[Weak Hessian bounds along every geodesic] Let \\((M,d,m)\\) be a full-support \\((K,N)\\) space, where \\(K R\\) and \\(1<N<\\). Let \\(F M R\\) be bounded and globally Lipschitz, and let \\(G M R\\) be bounded…",
+      "section": "Introduction",
+      "manuscript": "Weak Hessian bounds along every geodesic in RCD spaces"
+    },
+    {
+      "id": "m2-pre-approximation",
+      "kind": "lemma",
+      "label": "Cutoffs and approximation",
+      "statement": "[Cutoffs and approximation] The following approximations are available. For a compact set \\(E\\) in an open set \\(U\\), there is \\(^\\) with \\(01\\), equal to one on a neighborhood of \\(E\\), and…",
+      "section": "Test functions, approximation and Bochner measures",
+      "manuscript": "Weak Hessian bounds along every geodesic in RCD spaces"
+    },
+    {
+      "id": "m2-weight-resolvent",
+      "kind": "lemma",
+      "label": "Bounded drift",
+      "statement": "[Bounded drift] Let \\((M,d,m)\\) be a full-support \\((K,N)\\) space, with \\(1<N<\\), and let \\(V\\) be bounded and globally Lipschitz. Set \\(m_V=e^V m\\), and let \\(_V\\) be the generator of the Cheeger…",
+      "section": "Bounded changes of measure and the generator domain",
+      "manuscript": "Weak Hessian bounds along every geodesic in RCD spaces"
+    },
+    {
+      "id": "m2-weight-variable-cd",
+      "kind": "proposition",
+      "label": "A distributional Hessian bound changes curvature",
+      "statement": "[A distributional Hessian bound changes curvature] Let \\((M,d,m)\\) be a full-support \\((K,N)\\) space, where \\(K R\\) and \\(1<N<\\). Let \\(F M R\\) be bounded and globally Lipschitz, and let \\(G M R\\) be…",
+      "section": "From a weak Hessian bound to variable curvature",
+      "manuscript": "Weak Hessian bounds along every geodesic in RCD spaces"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-fwd-gradient-bound",
+      "to": "m1-fwd-curvature",
+      "label": "fwd:gradient-bound",
+      "context": "[Proof of Theorem~\\ref{fwd:curvature}] It remains to extend Proposition~\\ref{fwd:gradient-bound}; the RCD and support conclusions were noted at the beginning of the section. Fix a nonnegative compactly supported test"
+    },
+    {
+      "from": "m1-heat-laplace-principle",
+      "to": "m1-heat-index",
+      "label": "heat:laplace-principle",
+      "context": "[Proof of Theorem~\\ref{heat:index}] First take \\(f\\in\\mathcal F\\). On the common compact support of the trial, Lemma~\\ref{heat:laplace-principle} and the uniform gradient bounds imply \\[ H_{\\phi_1^c+c\\log f}(Z,Z)(f) \\longrightarrow H_{\\Phi_1}(Z,Z)(f). \\] Indeed \\eq"
+    }
+  ]
+}

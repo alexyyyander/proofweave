@@ -1,0 +1,493 @@
+{
+  "familyNumber": "313",
+  "familyTitle": "Finite generation for the `K(n)` -local sphere",
+  "manuscripts": [
+    {
+      "id": "Finite-generation-for-the-Kn-local-sphere-September-24-2026",
+      "title": "Finite generation for the K(n)-local sphere",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Finite-generation-for-the-Kn-local-sphere-September-24-2026/Finite-generation-for-the-Kn-local-sphere-September-24-2026.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Continuous coefficients and full-group duality",
+    "Finite markings and integral models",
+    "The completed tower and its extension-space quotient",
+    "Kummer calculations with uniform supports",
+    "Compact supports on independent extension tuples",
+    "Natural root diagrams and Cartier transfers",
+    "The Laurent model for analytic compact supports",
+    "The residue quotient and the finite stable image",
+    "Pro-objects, finite extensions, and transfer countability",
+    "Finiteness of the compact coefficient cohomology",
+    "Integral homotopy of the local sphere"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For every prime p , every integer n 1 , and every integer t , the -module \\[ _t…",
+      "statement": "For every prime p , every integer n 1 , and every integer t , the -module \\[ _t L_ K(n) S_p^ \\] is finitely generated. Equivalently, for every finite p -local spectrum F , the module _t L_ K(n) F is…",
+      "section": "Introduction",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-lemma-2",
+      "kind": "lemma",
+      "label": "Exact cochains",
+      "statement": "[Exact cochains] lem:cts-exact Consider an exact sequence of underlying vector spaces \\[ 0 M' '' 0 \\] whose maps and actions respect complete steps. Suppose that: [label=( *)] a bounded-step…",
+      "section": "Continuous coefficients and full-group duality",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-lemma-3",
+      "kind": "lemma",
+      "label": "Compact envelopes and comparison",
+      "statement": "[Compact envelopes and comparison] lem:cts-comparison Let M satisfy . [label=( *)] Every compact subset of a step of M is contained in a compact G -stable -subspace N lying in one complete step. The…",
+      "section": "Continuous coefficients and full-group duality",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-lemma-4",
+      "kind": "lemma",
+      "label": "Equivariant local sections",
+      "statement": "[Equivariant local sections] lem:cts-local-section Let K be a normal uniform open subgroup of G , and let X be a profinite G -space on which K acts freely. Suppose that X Y=K X has a continuous K…",
+      "section": "Continuous coefficients and full-group duality",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-proposition-5",
+      "kind": "proposition",
+      "label": "A uniform finite-isotropy bound",
+      "statement": "[A uniform finite-isotropy bound] prop:cts-isotropy-bound Fix a normal uniform open subgroup K G , and put d_G= G and a_G=[G:K] . If M is trace-admissible, then \\[ H^j(G,M)=0(j>a_Gd_G). \\] The same…",
+      "section": "Continuous coefficients and full-group duality",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-proposition-6",
+      "kind": "proposition",
+      "label": "Full-group duality",
+      "statement": "[Full-group duality] prop:cts-full-duality Assume that the orientation character of G is trivial over . For every trace-admissible M there are natural isomorphisms \\[ H_i(G,M) H^ d_G-i (G,M) (i). \\]…",
+      "section": "Continuous coefficients and full-group duality",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-lemma-7",
+      "kind": "lemma",
+      "label": "lem:mark-powered-division The algebra D_m(,b) is finite free of rank p^ n-b…",
+      "statement": "lem:mark-powered-division The algebra D_m(,b) is finite free of rank p^ n-b over A_m . Its construction and action are intrinsic to relative Frobenius and commute with restriction to a deeper height…",
+      "section": "Finite markings and integral models",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-eq-mark-jet-equations",
+      "kind": "proposition",
+      "label": "Integral connected-jet models",
+      "statement": "[Integral connected-jet models] prop:mark-jets For each h0 , the connected marking through exponent p^h has a finite free model H_ m,h over A_m . There are coordinates a_0,,a_h and polynomials in…",
+      "section": "Finite markings and integral models",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-proposition-9",
+      "kind": "proposition",
+      "label": "A whole model for a finite marking",
+      "statement": "[A whole model for a finite marking] prop:mark-whole-model For each such U there are a finite free A_m -algebra A' , with integral multiplication laws in a fixed basis, and a G -invariant idempotent…",
+      "section": "Finite markings and integral models",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-proposition-10",
+      "kind": "proposition",
+      "label": "The lift algebras are root algebras",
+      "statement": "[The lift algebras are root algebras] prop:mark-roots At level , the reduced closure over A_m of lifted geometric \\' e tale bases has coordinate algebra \\[ R_ m, =]. \\] If s_i=t_ i, ^ p^ m , the…",
+      "section": "Finite markings and integral models",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-lem-mark-associated-coefficients",
+      "kind": "lemma",
+      "label": "Basic coefficients on the marked torsor",
+      "statement": "[Basic coefficients on the marked torsor] At full markings, each basic coefficient in is associated to a finite-dimensional translation representation over . Its torsor, representation, and maps…",
+      "section": "Finite markings and integral models",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-proposition-12",
+      "kind": "proposition",
+      "label": "Geometric hypotheses for the isotropy bound",
+      "statement": "[Geometric hypotheses for the isotropy bound] prop:mark-finite-isotropy Suppose U is a torsion-free product marking subgroup as above. Every finite subgroup F G acts geometrically freely on B_U .…",
+      "section": "Finite markings and integral models",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-lemma-13",
+      "kind": "lemma",
+      "label": "Boundary comparison under the next-height hypothesis",
+      "statement": "[Boundary comparison under the next-height hypothesis] lem:mark-strips Assume that H^i_(G,M) is finite for every M C_ m+1 and every i0 . Let L be either a member of C_m or A'_ A_m M for M C_m , where…",
+      "section": "Finite markings and integral models",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-lemma-14",
+      "kind": "lemma",
+      "label": "The covariant Honda action",
+      "statement": "[The covariant Honda action] lem:tower-honda-action The Honda universal-cover sheaf identifies covariantly with H_j . This identification intertwines the original rational Honda endomorphisms with…",
+      "section": "The completed tower and its extension-space quotient",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-thm-tower-comparison",
+      "kind": "theorem",
+      "label": "Completed tower comparison",
+      "statement": "[Completed tower comparison] There is a choice of a fixed determinant-height normalization for which [Z_/G]( N_m^r)_ ind . The map Z_( N_m^r)_ ind is a G=P_n -torsor. The comparison commutes with…",
+      "section": "The completed tower and its extension-space quotient",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-lemma-16",
+      "kind": "lemma",
+      "label": "The analytic \\' e tale-marking tower",
+      "statement": "[The analytic \\' e tale-marking tower] lem:tower-etale-comparison Let Z_^ et denote the completed perfected tower of ordered \\' e tale Tate-module markings over X_m . There is a relative analytic…",
+      "section": "The completed tower and its extension-space quotient",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-eq-tower-support-descent",
+      "kind": "lemma",
+      "label": "Compact torsors and support bounds",
+      "statement": "[Compact torsors and support bounds] lem:tower-supports The two compact torsors \\[ Z_U\\ \\ Z_ \\ ( N_m^r)_ ind , with groups U and G, \\] transport the preceding systems of support bounds cofinally. For…",
+      "section": "The completed tower and its extension-space quotient",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-lemma-18",
+      "kind": "lemma",
+      "label": "Countable Banach inverse limits",
+      "statement": "[Countable Banach inverse limits]lem:kum-banach-limits Let (E_j,f_j) be a countable inverse system of complete nonarchimedean normed vector spaces, with continuous linear maps f_j:E_ j+1 E_j having…",
+      "section": "Kummer calculations with uniform supports",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-eq-kum-difference",
+      "kind": "proposition",
+      "label": "Uniform relative narrowing",
+      "statement": "[Uniform relative narrowing]prop:kum-annulus The Kummer tower on A_S[a,b] gives a natural complex (A_S[a,b],^) -1M_R[a,b]], (T^u)=^uT^u, in degrees 0,1 . If a<a'<b'<b, a'/a e^, b/b' e^, restriction…",
+      "section": "Kummer calculations with uniform supports",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-eq-kum-line-values",
+      "kind": "proposition",
+      "label": "Relative line and disc calculations",
+      "statement": "[Relative line and disc calculations]prop:kum-line The following statements hold over S , naturally under base change, with arbitrary retained compact profinite parameters. [label=( *)] There is a…",
+      "section": "Kummer calculations with uniform supports",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-lemma-21",
+      "kind": "lemma",
+      "label": "Low degrees of shrinking graph supports",
+      "statement": "[Low degrees of shrinking graph supports] lem:kum-low-support Let X be a bounded relative chart in an untilted affine space over a base v-sheaf B , with a slightly larger chart available for collars,…",
+      "section": "Kummer calculations with uniform supports",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-lemma-22",
+      "kind": "lemma",
+      "label": "Lattice transitions",
+      "statement": "[Lattice transitions] lem:ind-lattice-transitions Let L be a lattice of rank e in a finite-dimensional -vector space, and let L'=p^ -1 L . With trivial characteristic- p coefficients, continuous…",
+      "section": "Compact supports on independent extension tuples",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-eq-ind-whole-fp",
+      "kind": "proposition",
+      "label": "The whole extension space",
+      "statement": "[The whole extension space] prop:ind-whole For every s 0 there are natural comparisons _c( N_m^s D,) & E_ D [-(m+2)s], \\\\ _c( N_m^s D,^) & R_ D [-(m+2)s]. A geometric Kummer orientation is…",
+      "section": "Compact supports on independent extension tuples",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-eq-ind-persistent-lattice",
+      "kind": "proposition",
+      "label": "Uniform graph tubes",
+      "statement": "[Uniform graph tubes] prop:ind-tubes Let a quasicompact perfectoid chart over carry untilted coordinates z_1,,z_t whose classes in N_m are independent. Restrict to a bounded part of this chart and to…",
+      "section": "Compact supports on independent extension tuples",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-eq-ind-rank-triangle",
+      "kind": "lemma",
+      "label": "The excision term",
+      "statement": "[The excision term] lem:ind-germ-excision There is a natural triangle _c(X_ s, t+1 , E) _c(X_ s, t , E) G_ s,t ( E) _c(X_ s, t+1 , E)[1], where G_ s,t is computed by shrinking neighborhood germs of…",
+      "section": "Compact supports on independent extension tuples",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-thm-ind-comparison",
+      "kind": "theorem",
+      "label": "Scalar comparison and admissibility",
+      "statement": "[Scalar comparison and admissibility] For every s0 and every compact profinite D , extension of constants induces natural quasi-isomorphisms E_ D _ _c(Y_s,) &\\ \\ _c(Y_s D,), \\\\ R_ D _ _c(Y_s,) &\\ \\…",
+      "section": "Compact supports on independent extension tuples",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-lemma-27",
+      "kind": "lemma",
+      "label": "lem:ind-admissible-cohomology Let H be a compact p -adic analytic group and let…",
+      "statement": "lem:ind-admissible-cohomology Let H be a compact p -adic analytic group and let V be a countable smooth admissible -module. Then H^a_ (H,V) is finite-dimensional for every a . Let H act trivially on…",
+      "section": "Compact supports on independent extension tuples",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-corollary-28",
+      "kind": "corollary",
+      "label": "Finite equivariant cohomology",
+      "statement": "[Finite equivariant cohomology] cor:ind-finite Let 1 m<n , r=n-m , and let U P_m_r() be a sufficiently deep product open subgroup as in . Let Z_U be the perfected analytic cover associated with B_U…",
+      "section": "Compact supports on independent extension tuples",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-eq-ind-ordinary-functions",
+      "kind": "corollary",
+      "label": "Functions on the independent locus",
+      "statement": "[Functions on the independent locus] cor:ind-functions For every s0 , (Y_s,^)=, (Y_s D,^) =R_ D . The identifications are by pullback of scalars. For s1 , projection Y_s Y_ s-1 has relative…",
+      "section": "Compact supports on independent extension tuples",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-eq-trans-root-functor",
+      "kind": "proposition",
+      "label": "Natural roots of finite diagrams",
+      "statement": "[Natural roots of finite diagrams] prop:trans-roots Assume m>1 . With the powers in , there is a natural G -equivariant isomorphism V_ _q(E) (V_E)^ 1/h . It is compatible with the natural auxiliary…",
+      "section": "Natural root diagrams and Cartier transfers",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-eq-trans-cartier-functional",
+      "kind": "proposition",
+      "label": "Invariant volume and scalar comparison",
+      "statement": "[Invariant volume and scalar comparison] prop:trans-volume After one finite marking shrink to a pro- p subgroup, ^1_ R/ has a G -invariant frame. In particular it has a G -invariant volume generator…",
+      "section": "Natural root diagrams and Cartier transfers",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-eq-trans-s",
+      "kind": "proposition",
+      "label": "The fixed normalized transfer",
+      "statement": "[The fixed normalized transfer] prop:trans-cartier At the finite marking stage of , the operator S(f)= ^ _0 (f) (f R) is continuous, -linear, and G -equivariant. It satisfies S(b^ h_0 f)=bS(f) . For…",
+      "section": "Natural root diagrams and Cartier transfers",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-lem-trans-diagram-bound",
+      "kind": "lemma",
+      "label": "One bound for a fixed finite diagram",
+      "statement": "[One bound for a fixed finite diagram] Fix a finite Yoneda diagram of translation representations, descend it at a finite marking stage, and fix a cohomological degree. Its successive boundary maps…",
+      "section": "Natural root diagrams and Cartier transfers",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-eq-laurent-descent",
+      "kind": "proposition",
+      "label": "Laurent support comparison",
+      "statement": "[Laurent support comparison]prop:laurent-model With the uniform compact-support convention of , there are natural quasi-isomorphisms _c(Z_U,^; D) W_ D [-r], _c(Z_U,^; D)^ =1 W_ D [-r]. They are…",
+      "section": "The Laurent model for analytic compact supports",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-lemma-35",
+      "kind": "lemma",
+      "label": "lem:laurent-action The G -action on W and on W_ D is jointly continuous from a…",
+      "statement": "lem:laurent-action The G -action on W and on W_ D is jointly continuous from a complete step, with a compact set of group and parameter values, into a complete step. It is uniformly equicontinuous…",
+      "section": "The Laurent model for analytic compact supports",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-corollary-36",
+      "kind": "corollary",
+      "label": "cor:laurent-finite At every sufficiently deep product marking level used in ,…",
+      "statement": "cor:laurent-finite At every sufficiently deep product marking level used in , both H^a_ (G,W) and H_i^ (G,W) are finite-dimensional over for every a,i0 . Since is finite, these are finite groups.",
+      "section": "The Laurent model for analytic compact supports",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-prop-cutoff-residue",
+      "kind": "proposition",
+      "label": "The discrete residue quotient",
+      "statement": "[The discrete residue quotient] The finite-level pairings extend uniquely to an exact sequence of -modules 0 W_+ W \\ \\ Q0. The map is continuous on every complete coefficient step into the discrete…",
+      "section": "The residue quotient and the finite stable image",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-eq-cutoff-contraction",
+      "kind": "lemma",
+      "label": "Contraction in one complete positive step",
+      "statement": "[Contraction in one complete positive step] lem:cutoff-contraction For every integer 0 and every tuple w W_+^ , there are an integer a_*0 , a complete weighted step written in the original whole…",
+      "section": "The residue quotient and the finite stable image",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-lemma-39",
+      "kind": "lemma",
+      "label": "A countable-index analytic subgroup",
+      "statement": "[A countable-index analytic subgroup] lem:cutoff-polish Let Z be a Polish topological group and B Z an analytic subgroup in the sense of descriptive set theory: B is a continuous image of a Polish…",
+      "section": "The residue quotient and the finite stable image",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-lem-cutoff-positive-acyclic",
+      "kind": "lemma",
+      "label": "For the completed-resolution group homology of , \\[ H_i(G,W_+)=0(i0). \\]",
+      "statement": "For the completed-resolution group homology of , \\[ H_i(G,W_+)=0(i0). \\]",
+      "section": "The residue quotient and the finite stable image",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-thm-cutoff-stable",
+      "kind": "theorem",
+      "label": "Finite stable transfer image",
+      "statement": "[Finite stable transfer image] For every i0 the compact vector space M_i=H^i(G, P) satisfies I_i:=_ a0 S^aM_iis finite. No uniform bound on its size as the prime, height, degree, or finite marking…",
+      "section": "The residue quotient and the finite stable image",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-lemma-42",
+      "kind": "lemma",
+      "label": "lem:cutoff-compact-operator Let M be a profinite -vector space and let S:M M be…",
+      "statement": "lem:cutoff-compact-operator Let M be a profinite -vector space and let S:M M be a continuous linear map. Assume that I=_ a0 S^aM and M/SM are finite. Then S is an automorphism of I , and V=M/I is a…",
+      "section": "The residue quotient and the finite stable image",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-eq-cutoff-consecutive-hypothesis",
+      "kind": "proposition",
+      "label": "The compact localized intersection",
+      "statement": "[The compact localized intersection] prop:cutoff-compact Fix i0 and N1 . Suppose S^NX_i/S^ N+1 X_iis countable. Then S^NM_i/S^ N+1 M_i is finite, and (S^NM_i)/I_i is a finitely generated ] -module…",
+      "section": "The residue quotient and the finite stable image",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-thm-pro-countability",
+      "kind": "theorem",
+      "label": "Countability at fixed marking levels",
+      "statement": "[Countability at fixed marking levels] Assume the next-height coefficient-finiteness hypothesis of . There is an index _0 such that \\[ H^i_ cts (G,B_ U_ ) is countable-dimensional over \\] for every…",
+      "section": "Pro-objects, finite extensions, and transfer countability",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-lemma-45",
+      "kind": "lemma",
+      "label": "lem:pro-constants For an abelian category B , the constant objects in Pro( B)…",
+      "statement": "lem:pro-constants For an abelian category B , the constant objects in Pro( B) are closed under kernels and cokernels of maps between them, and under extensions. If a decreasing system of subobjects…",
+      "section": "Pro-objects, finite extensions, and transfer countability",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-proposition-46",
+      "kind": "proposition",
+      "label": "Uniform image stabilization",
+      "statement": "[Uniform image stabilization] prop:pro-stabilization For every i , the pro-object T^ \\,i () is constant, and its canonical projection to T^i() is monic. It is annihilated by m . Moreover, there is an…",
+      "section": "Pro-objects, finite extensions, and transfer countability",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-lemma-47",
+      "kind": "lemma",
+      "label": "Finite-length extension comparison",
+      "statement": "[Finite-length extension comparison] lem:pro-finite-ext For finite-length -modules E,F , the natural map \\[ Ext^j_ C (E,F) Ext^j_(E,F) \\] is an isomorphism for every j . Here the left side is Yoneda…",
+      "section": "Pro-objects, finite extensions, and transfer countability",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-proposition-48",
+      "kind": "proposition",
+      "label": "A surjective top operation",
+      "statement": "[A surjective top operation] prop:pro-top-operation Suppose T^() is not zero, and let b be its largest nonzero degree. There is an allowed power index s=q_0^ a_s and a generator \\[ e_sExt^d_( N_s,)…",
+      "section": "Pro-objects, finite extensions, and transfer countability",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-lemma-49",
+      "kind": "lemma",
+      "label": "Finite forgetting kernel",
+      "statement": "[Finite forgetting kernel] lem:pro-common-shrink Let U be a uniform pro- p marking subgroup, and let E,F be finite objects of R_U . Each group Ext^j_ R_U (E,F) is finite. There is one open subgroup…",
+      "section": "Pro-objects, finite extensions, and transfer countability",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-eq-pro-composite-extension",
+      "kind": "lemma",
+      "label": "A fixed extension through all transfers",
+      "statement": "[A fixed extension through all transfers] lem:pro-high-transfer Fix the index s and generator e_s of , and choose a generator e'_0Ext^d_(,) . There is one sufficiently deep marking subgroup U_* such…",
+      "section": "Pro-objects, finite extensions, and transfer countability",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-thm-coeff-finite",
+      "kind": "theorem",
+      "label": "For every 1 m n , every coefficient module M in over A_m , and every i0 , the…",
+      "statement": "For every 1 m n , every coefficient module M in over A_m , and every i0 , the group \\[ H^i_ (P_n,M) \\] is finite. In particular, this holds for every integer periodicity twist of A_m .",
+      "section": "Finiteness of the compact coefficient cohomology",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-lemma-52",
+      "kind": "lemma",
+      "label": "lem:coeff-finite-representations Assume the coefficient finiteness assertion at…",
+      "statement": "lem:coeff-finite-representations Assume the coefficient finiteness assertion at height m+1 . For a basic coefficient M over A_m , including any fixed tensor product of the basic division-tuple…",
+      "section": "Finiteness of the compact coefficient cohomology",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-lemma-53",
+      "kind": "lemma",
+      "label": "lem:coeff-finite-descent Let M_B be a finite locally free B -module with the…",
+      "statement": "lem:coeff-finite-descent Let M_B be a finite locally free B -module with the coefficient action of G , and let U J be a finite marking level. If \\[ H^i_ (G,B_U_B M_B) \\] is countable for every i0 ,…",
+      "section": "Finiteness of the compact coefficient cohomology",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-corollary-54",
+      "kind": "corollary",
+      "label": "cor:coeff-morava Let E_n be Morava E -theory for the height- n Honda group over…",
+      "statement": "cor:coeff-morava Let E_n be Morava E -theory for the height- n Honda group over F_ p^n , and let \\[ G_n=P_n( F_ p^n / F_p) \\] be its extended stabilizer. For every i0 and every t Z , both groups \\[…",
+      "section": "Finiteness of the compact coefficient cohomology",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-proposition-55",
+      "kind": "proposition",
+      "label": "prop:sphere-modp For every prime p , every n1 , and every j Z , the group \\[…",
+      "statement": "prop:sphere-modp For every prime p , every n1 , and every j Z , the group \\[ _jL_ K(n) (S/p) \\] is finite.",
+      "section": "Integral homotopy of the local sphere",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-lemma-56",
+      "kind": "lemma",
+      "label": "lem:sphere-completion Let X be a derived p -complete spectrum. If _j(X/p) is…",
+      "statement": "lem:sphere-completion Let X be a derived p -complete spectrum. If _j(X/p) is finite for every j Z , then _jX is finitely generated over for every j Z . Conversely, finite generation of all _jX over…",
+      "section": "Integral homotopy of the local sphere",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-eq-sphere-ranks",
+      "kind": "corollary",
+      "label": "cor:sphere-ranks For every prime p , every n1 , and every j Z , the free rank…",
+      "statement": "cor:sphere-ranks For every prime p , every n1 , and every j Z , the free rank is r_ p,n,j =\\#\\ I\\ 1,,n\\ : _ i I (1-2i)=j\\ . Equivalently, these ranks are the graded dimensions of the exterior…",
+      "section": "Integral homotopy of the local sphere",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    },
+    {
+      "id": "m1-proposition-58",
+      "kind": "proposition",
+      "label": "prop:sphere-height-one Let p be odd. Then, for every j Z , \\[ _jL_ K(1) S_p^ ,…",
+      "statement": "prop:sphere-height-one Let p be odd. Then, for every j Z , \\[ _jL_ K(1) S_p^ , & j=0 or j=-1,\\\\ Z/p^ \\,1+_p(t) , & j=2t-1,0 t(p-1) Z,\\\\ 0, & otherwise. \\] The displayed groups include all additive…",
+      "section": "Integral homotopy of the local sphere",
+      "manuscript": "Finite generation for the K(n)-local sphere"
+    }
+  ],
+  "edges": []
+}

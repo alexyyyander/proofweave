@@ -1,0 +1,952 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "308",
+  "title": "Finite Smith–Toda complexes at every height",
+  "result": {
+    "id": "paper-result",
+    "label": "Finite Smith–Toda complexes at every height",
+    "statement": "For every n ≥ 0, constructs a finite Smith–Toda spectrum at a prime p depending on n , with Brown–Peterson homology BP/(p,v1, ,vn) and the canonical comodule structure. Thus Smith–Toda complexes exist at every height when the prime may vary; an explicit example realizes V(4) at p = 1009.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "ultraproducts-gradings-and-finite-cells",
+      "label": "Ultraproducts, gradings, and finite cells",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "uniform-localization-of-permutation-powers",
+      "label": "Uniform localization of permutation powers",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-euler-layer-and-ordinary-reduction",
+      "label": "The Euler layer and ordinary reduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "universal-coefficients-for-successive-cycles",
+      "label": "Universal coefficients for successive cycles",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "connectivity-at-weights-growing-with-the-prime",
+      "label": "Connectivity at weights growing with the prime",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "normalization-and-successive-attaching-classes",
+      "label": "Normalization and successive attaching classes",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-cobordism-calculation",
+      "label": "The cobordism calculation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "hurewicz-detection-and-finite-realization",
+      "label": "Hurewicz detection and finite realization",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "brown-peterson-coordinates-and-the-adams-novikov-resolution",
+      "label": "Brown--Peterson coordinates and the Adams--Novikov resolution",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "filtered-cobar-preliminaries",
+      "label": "Filtered cobar preliminaries",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-unital-complexes-through-height-three",
+      "label": "The unital complexes through height three",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-height-four-obstruction-calculation",
+      "label": "The height-four obstruction calculation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "eliminating-two-obstruction-degrees-by-frobenius",
+      "label": "Eliminating two obstruction degrees by Frobenius",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-final-obstruction-and-the-finite-cofiber",
+      "label": "The final obstruction and the finite cofiber",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Finite Smith–Toda Complexes at Varying Primes",
+      "title": "Finite Smith–Toda Complexes at Varying Primes",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Finite-Smith-Toda-Complexes-at-Varying-Primes-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Finite Smith–Toda Complexes at Varying Primes.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-found-ultraproduct",
+          "role": "ultraproducts-gradings-and-finite-cells",
+          "label": "proposition m1-found-ultraproduct",
+          "fullLabel": "proposition m1-found-ultraproduct",
+          "kind": "proposition",
+          "source": "Ultraproducts, gradings, and finite cells",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-found-rectification",
+          "role": "ultraproducts-gradings-and-finite-cells",
+          "label": "lemma m1-found-rectification",
+          "fullLabel": "lemma m1-found-rectification",
+          "kind": "lemma",
+          "source": "Ultraproducts, gradings, and finite cells",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-found-free-null",
+          "role": "ultraproducts-gradings-and-finite-cells",
+          "label": "lemma m1-found-free-null",
+          "fullLabel": "lemma m1-found-free-null",
+          "kind": "lemma",
+          "source": "Ultraproducts, gradings, and finite cells",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-found-picard-grading",
+          "role": "ultraproducts-gradings-and-finite-cells",
+          "label": "lemma m1-found-picard-grading",
+          "fullLabel": "lemma m1-found-picard-grading",
+          "kind": "lemma",
+          "source": "Ultraproducts, gradings, and finite cells",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-found-mapping-pairings",
+          "role": "ultraproducts-gradings-and-finite-cells",
+          "label": "lemma m1-found-mapping-pairings",
+          "fullLabel": "lemma m1-found-mapping-pairings",
+          "kind": "lemma",
+          "source": "Ultraproducts, gradings, and finite cells",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-found-finite-cell-morita",
+          "role": "ultraproducts-gradings-and-finite-cells",
+          "label": "proposition m1-found-finite-cell-morita",
+          "fullLabel": "proposition m1-found-finite-cell-morita",
+          "kind": "proposition",
+          "source": "Ultraproducts, gradings, and finite cells",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-found-koszul-realization",
+          "role": "ultraproducts-gradings-and-finite-cells",
+          "label": "proposition m1-found-koszul-realization",
+          "fullLabel": "proposition m1-found-koszul-realization",
+          "kind": "proposition",
+          "source": "Ultraproducts, gradings, and finite cells",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-power-localizations",
+          "role": "uniform-localization-of-permutation-powers",
+          "label": "lemma m1-power-localizations",
+          "fullLabel": "lemma m1-power-localizations",
+          "kind": "lemma",
+          "source": "Uniform localization of permutation powers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-power-prime-to-p",
+          "role": "uniform-localization-of-permutation-powers",
+          "label": "lemma m1-power-prime-to-p",
+          "fullLabel": "lemma m1-power-prime-to-p",
+          "kind": "lemma",
+          "source": "Uniform localization of permutation powers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-power-exactness",
+          "role": "uniform-localization-of-permutation-powers",
+          "label": "lemma m1-power-exactness",
+          "fullLabel": "lemma m1-power-exactness",
+          "kind": "lemma",
+          "source": "Uniform localization of permutation powers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-power-graded-localization",
+          "role": "uniform-localization-of-permutation-powers",
+          "label": "lemma m1-power-graded-localization",
+          "fullLabel": "lemma m1-power-graded-localization",
+          "kind": "lemma",
+          "source": "Uniform localization of permutation powers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-power-operation",
+          "role": "uniform-localization-of-permutation-powers",
+          "label": "proposition m1-power-operation",
+          "fullLabel": "proposition m1-power-operation",
+          "kind": "proposition",
+          "source": "Uniform localization of permutation powers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-layer-acyclic-sphere",
+          "role": "the-euler-layer-and-ordinary-reduction",
+          "label": "lemma m1-layer-acyclic-sphere",
+          "fullLabel": "lemma m1-layer-acyclic-sphere",
+          "kind": "lemma",
+          "source": "The Euler layer and ordinary reduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-layer-even-trivializations",
+          "role": "the-euler-layer-and-ordinary-reduction",
+          "label": "lemma m1-layer-even-trivializations",
+          "fullLabel": "lemma m1-layer-even-trivializations",
+          "kind": "lemma",
+          "source": "The Euler layer and ordinary reduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-layer-norm-model",
+          "role": "the-euler-layer-and-ordinary-reduction",
+          "label": "lemma m1-layer-norm-model",
+          "fullLabel": "lemma m1-layer-norm-model",
+          "kind": "lemma",
+          "source": "The Euler layer and ordinary reduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-layer-partial-thom",
+          "role": "the-euler-layer-and-ordinary-reduction",
+          "label": "lemma m1-layer-partial-thom",
+          "fullLabel": "lemma m1-layer-partial-thom",
+          "kind": "lemma",
+          "source": "The Euler layer and ordinary reduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-layer-coefficient-algebra",
+          "role": "the-euler-layer-and-ordinary-reduction",
+          "label": "lemma m1-layer-coefficient-algebra",
+          "fullLabel": "lemma m1-layer-coefficient-algebra",
+          "kind": "lemma",
+          "source": "The Euler layer and ordinary reduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-layer-odd-vanishing",
+          "role": "the-euler-layer-and-ordinary-reduction",
+          "label": "lemma m1-layer-odd-vanishing",
+          "fullLabel": "lemma m1-layer-odd-vanishing",
+          "kind": "lemma",
+          "source": "The Euler layer and ordinary reduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-layer-comparison",
+          "role": "the-euler-layer-and-ordinary-reduction",
+          "label": "proposition m1-layer-comparison",
+          "fullLabel": "proposition m1-layer-comparison",
+          "kind": "proposition",
+          "source": "The Euler layer and ordinary reduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-layer-first-koszul",
+          "role": "the-euler-layer-and-ordinary-reduction",
+          "label": "corollary m1-layer-first-koszul",
+          "fullLabel": "corollary m1-layer-first-koszul",
+          "kind": "corollary",
+          "source": "The Euler layer and ordinary reduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-layer-completion",
+          "role": "the-euler-layer-and-ordinary-reduction",
+          "label": "lemma m1-layer-completion",
+          "fullLabel": "lemma m1-layer-completion",
+          "kind": "lemma",
+          "source": "The Euler layer and ordinary reduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-universal-triangular",
+          "role": "universal-coefficients-for-successive-cycles",
+          "label": "lemma m1-universal-triangular",
+          "fullLabel": "lemma m1-universal-triangular",
+          "kind": "lemma",
+          "source": "Universal coefficients for successive cycles",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-universal-filtered-cells",
+          "role": "universal-coefficients-for-successive-cycles",
+          "label": "lemma m1-universal-filtered-cells",
+          "fullLabel": "lemma m1-universal-filtered-cells",
+          "kind": "lemma",
+          "source": "Universal coefficients for successive cycles",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-universal-associated-graded",
+          "role": "universal-coefficients-for-successive-cycles",
+          "label": "lemma m1-universal-associated-graded",
+          "fullLabel": "lemma m1-universal-associated-graded",
+          "kind": "lemma",
+          "source": "Universal coefficients for successive cycles",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-universal-primewise-models",
+          "role": "universal-coefficients-for-successive-cycles",
+          "label": "proposition m1-universal-primewise-models",
+          "fullLabel": "proposition m1-universal-primewise-models",
+          "kind": "proposition",
+          "source": "Universal coefficients for successive cycles",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-universal-whole-module",
+          "role": "universal-coefficients-for-successive-cycles",
+          "label": "proposition m1-universal-whole-module",
+          "fullLabel": "proposition m1-universal-whole-module",
+          "kind": "proposition",
+          "source": "Universal coefficients for successive cycles",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-conn-stable-elements",
+          "role": "connectivity-at-weights-growing-with-the-prime",
+          "label": "lemma m1-conn-stable-elements",
+          "fullLabel": "lemma m1-conn-stable-elements",
+          "kind": "lemma",
+          "source": "Connectivity at weights growing with the prime",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-conn-symmetric",
+          "role": "connectivity-at-weights-growing-with-the-prime",
+          "label": "proposition m1-conn-symmetric",
+          "fullLabel": "proposition m1-conn-symmetric",
+          "kind": "proposition",
+          "source": "Connectivity at weights growing with the prime",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-conn-estimate",
+          "role": "connectivity-at-weights-growing-with-the-prime",
+          "label": "proposition m1-conn-estimate",
+          "fullLabel": "proposition m1-conn-estimate",
+          "kind": "proposition",
+          "source": "Connectivity at weights growing with the prime",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-conn-degree-gap",
+          "role": "connectivity-at-weights-growing-with-the-prime",
+          "label": "lemma m1-conn-degree-gap",
+          "fullLabel": "lemma m1-conn-degree-gap",
+          "kind": "lemma",
+          "source": "Connectivity at weights growing with the prime",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-conn-k-test",
+          "role": "connectivity-at-weights-growing-with-the-prime",
+          "label": "proposition m1-conn-k-test",
+          "fullLabel": "proposition m1-conn-k-test",
+          "kind": "proposition",
+          "source": "Connectivity at weights growing with the prime",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-norm-amitsur",
+          "role": "normalization-and-successive-attaching-classes",
+          "label": "lemma m1-norm-amitsur",
+          "fullLabel": "lemma m1-norm-amitsur",
+          "kind": "lemma",
+          "source": "Normalization and successive attaching classes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-norm-target-locality",
+          "role": "normalization-and-successive-attaching-classes",
+          "label": "lemma m1-norm-target-locality",
+          "fullLabel": "lemma m1-norm-target-locality",
+          "kind": "lemma",
+          "source": "Normalization and successive attaching classes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-norm-normalization",
+          "role": "normalization-and-successive-attaching-classes",
+          "label": "lemma m1-norm-normalization",
+          "fullLabel": "lemma m1-norm-normalization",
+          "kind": "lemma",
+          "source": "Normalization and successive attaching classes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-norm-naturality",
+          "role": "normalization-and-successive-attaching-classes",
+          "label": "lemma m1-norm-naturality",
+          "fullLabel": "lemma m1-norm-naturality",
+          "kind": "lemma",
+          "source": "Normalization and successive attaching classes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-norm-attachment",
+          "role": "normalization-and-successive-attaching-classes",
+          "label": "lemma m1-norm-attachment",
+          "fullLabel": "lemma m1-norm-attachment",
+          "kind": "lemma",
+          "source": "Normalization and successive attaching classes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-norm-construction",
+          "role": "normalization-and-successive-attaching-classes",
+          "label": "proposition m1-norm-construction",
+          "fullLabel": "proposition m1-norm-construction",
+          "kind": "proposition",
+          "source": "Normalization and successive attaching classes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-norm-recovery",
+          "role": "normalization-and-successive-attaching-classes",
+          "label": "proposition m1-norm-recovery",
+          "fullLabel": "proposition m1-norm-recovery",
+          "kind": "proposition",
+          "source": "Normalization and successive attaching classes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cob-regularity",
+          "role": "the-cobordism-calculation",
+          "label": "lemma m1-cob-regularity",
+          "fullLabel": "lemma m1-cob-regularity",
+          "kind": "lemma",
+          "source": "The cobordism calculation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cob-cohomology",
+          "role": "the-cobordism-calculation",
+          "label": "lemma m1-cob-cohomology",
+          "fullLabel": "lemma m1-cob-cohomology",
+          "kind": "lemma",
+          "source": "The cobordism calculation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cob-euler-divisibility",
+          "role": "the-cobordism-calculation",
+          "label": "lemma m1-cob-euler-divisibility",
+          "fullLabel": "lemma m1-cob-euler-divisibility",
+          "kind": "lemma",
+          "source": "The cobordism calculation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cob-power-rules",
+          "role": "the-cobordism-calculation",
+          "label": "lemma m1-cob-power-rules",
+          "fullLabel": "lemma m1-cob-power-rules",
+          "kind": "lemma",
+          "source": "The cobordism calculation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cob-euler-power",
+          "role": "the-cobordism-calculation",
+          "label": "lemma m1-cob-euler-power",
+          "fullLabel": "lemma m1-cob-euler-power",
+          "kind": "lemma",
+          "source": "The cobordism calculation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cob-coefficient-relation",
+          "role": "the-cobordism-calculation",
+          "label": "proposition m1-cob-coefficient-relation",
+          "fullLabel": "proposition m1-cob-coefficient-relation",
+          "kind": "proposition",
+          "source": "The cobordism calculation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-real-cofiber-quotient",
+          "role": "hurewicz-detection-and-finite-realization",
+          "label": "lemma m1-real-cofiber-quotient",
+          "fullLabel": "lemma m1-real-cofiber-quotient",
+          "kind": "lemma",
+          "source": "Hurewicz detection and finite realization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-real-t-injectivity",
+          "role": "hurewicz-detection-and-finite-realization",
+          "label": "lemma m1-real-t-injectivity",
+          "fullLabel": "lemma m1-real-t-injectivity",
+          "kind": "lemma",
+          "source": "Hurewicz detection and finite realization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-real-raw-powers",
+          "role": "hurewicz-detection-and-finite-realization",
+          "label": "lemma m1-real-raw-powers",
+          "fullLabel": "lemma m1-real-raw-powers",
+          "kind": "lemma",
+          "source": "Hurewicz detection and finite realization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-real-thom-comparisons",
+          "role": "hurewicz-detection-and-finite-realization",
+          "label": "lemma m1-real-thom-comparisons",
+          "fullLabel": "lemma m1-real-thom-comparisons",
+          "kind": "lemma",
+          "source": "Hurewicz detection and finite realization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-real-hurewicz",
+          "role": "hurewicz-detection-and-finite-realization",
+          "label": "proposition m1-real-hurewicz",
+          "fullLabel": "proposition m1-real-hurewicz",
+          "kind": "proposition",
+          "source": "Hurewicz detection and finite realization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-real-finite-descent",
+          "role": "hurewicz-detection-and-finite-realization",
+          "label": "lemma m1-real-finite-descent",
+          "fullLabel": "lemma m1-real-finite-descent",
+          "kind": "lemma",
+          "source": "Hurewicz detection and finite realization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "A finite Smith–Toda complex V(4) at the prime 1009",
+      "title": "A finite Smith–Toda complex V(4) at the prime 1009",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-finite-Smith-Toda-complex-V4-at-the-prime-1009-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from A finite Smith–Toda complex V(4) at the prime 1009.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-intro-main",
+          "role": "introduction",
+          "label": "theorem m2-intro-main",
+          "fullLabel": "theorem m2-intro-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-fw-coordinates",
+          "role": "brown-peterson-coordinates-and-the-adams-novikov-resolution",
+          "label": "lemma m2-fw-coordinates",
+          "fullLabel": "lemma m2-fw-coordinates",
+          "kind": "lemma",
+          "source": "Brown--Peterson coordinates and the Adams--Novikov resolution",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-fw-v5-relation",
+          "role": "brown-peterson-coordinates-and-the-adams-novikov-resolution",
+          "label": "lemma m2-fw-v5-relation",
+          "fullLabel": "lemma m2-fw-v5-relation",
+          "kind": "lemma",
+          "source": "Brown--Peterson coordinates and the Adams--Novikov resolution",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-fw-normalized-bound",
+          "role": "brown-peterson-coordinates-and-the-adams-novikov-resolution",
+          "label": "lemma m2-fw-normalized-bound",
+          "fullLabel": "lemma m2-fw-normalized-bound",
+          "kind": "lemma",
+          "source": "Brown--Peterson coordinates and the Adams--Novikov resolution",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-fw-range-comparison",
+          "role": "brown-peterson-coordinates-and-the-adams-novikov-resolution",
+          "label": "lemma m2-fw-range-comparison",
+          "fullLabel": "lemma m2-fw-range-comparison",
+          "kind": "lemma",
+          "source": "Brown--Peterson coordinates and the Adams--Novikov resolution",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-fw-anss",
+          "role": "brown-peterson-coordinates-and-the-adams-novikov-resolution",
+          "label": "proposition m2-fw-anss",
+          "fullLabel": "proposition m2-fw-anss",
+          "kind": "proposition",
+          "source": "Brown--Peterson coordinates and the Adams--Novikov resolution",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-fw-anss-pairing",
+          "role": "brown-peterson-coordinates-and-the-adams-novikov-resolution",
+          "label": "proposition m2-fw-anss-pairing",
+          "fullLabel": "proposition m2-fw-anss-pairing",
+          "kind": "proposition",
+          "source": "Brown--Peterson coordinates and the Adams--Novikov resolution",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-fw-sparsity",
+          "role": "brown-peterson-coordinates-and-the-adams-novikov-resolution",
+          "label": "corollary m2-fw-sparsity",
+          "fullLabel": "corollary m2-fw-sparsity",
+          "kind": "corollary",
+          "source": "Brown--Peterson coordinates and the Adams--Novikov resolution",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-fw-additive-comparison",
+          "role": "brown-peterson-coordinates-and-the-adams-novikov-resolution",
+          "label": "lemma m2-fw-additive-comparison",
+          "fullLabel": "lemma m2-fw-additive-comparison",
+          "kind": "lemma",
+          "source": "Brown--Peterson coordinates and the Adams--Novikov resolution",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-may-page",
+          "role": "filtered-cobar-preliminaries",
+          "label": "lemma m2-may-page",
+          "fullLabel": "lemma m2-may-page",
+          "kind": "lemma",
+          "source": "Filtered cobar preliminaries",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-low-algebraic-vanishing",
+          "role": "the-unital-complexes-through-height-three",
+          "label": "lemma m2-low-algebraic-vanishing",
+          "fullLabel": "lemma m2-low-algebraic-vanishing",
+          "kind": "lemma",
+          "source": "The unital complexes through height three",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-low-finite-localization",
+          "role": "the-unital-complexes-through-height-three",
+          "label": "lemma m2-low-finite-localization",
+          "fullLabel": "lemma m2-low-finite-localization",
+          "kind": "lemma",
+          "source": "The unital complexes through height three",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-low-v3",
+          "role": "the-unital-complexes-through-height-three",
+          "label": "proposition m2-low-v3",
+          "fullLabel": "proposition m2-low-v3",
+          "kind": "proposition",
+          "source": "The unital complexes through height three",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-low-p-null",
+          "role": "the-unital-complexes-through-height-three",
+          "label": "corollary m2-low-p-null",
+          "fullLabel": "corollary m2-low-p-null",
+          "kind": "corollary",
+          "source": "The unital complexes through height three",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-may-target-bound",
+          "role": "the-height-four-obstruction-calculation",
+          "label": "lemma m2-may-target-bound",
+          "fullLabel": "lemma m2-may-target-bound",
+          "kind": "lemma",
+          "source": "The height-four obstruction calculation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-may-first-list",
+          "role": "the-height-four-obstruction-calculation",
+          "label": "lemma m2-may-first-list",
+          "fullLabel": "lemma m2-may-first-list",
+          "kind": "lemma",
+          "source": "The height-four obstruction calculation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-may-injectivity",
+          "role": "the-height-four-obstruction-calculation",
+          "label": "proposition m2-may-injectivity",
+          "fullLabel": "proposition m2-may-injectivity",
+          "kind": "proposition",
+          "source": "The height-four obstruction calculation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-may-first-differential",
+          "role": "the-height-four-obstruction-calculation",
+          "label": "proposition m2-may-first-differential",
+          "fullLabel": "proposition m2-may-first-differential",
+          "kind": "proposition",
+          "source": "The height-four obstruction calculation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-may-remaining-list",
+          "role": "the-height-four-obstruction-calculation",
+          "label": "proposition m2-may-remaining-list",
+          "fullLabel": "proposition m2-may-remaining-list",
+          "kind": "proposition",
+          "source": "The height-four obstruction calculation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-may-comparison",
+          "role": "the-height-four-obstruction-calculation",
+          "label": "lemma m2-may-comparison",
+          "fullLabel": "lemma m2-may-comparison",
+          "kind": "lemma",
+          "source": "The height-four obstruction calculation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frob-extension",
+          "role": "eliminating-two-obstruction-degrees-by-frobenius",
+          "label": "lemma m2-frob-extension",
+          "fullLabel": "lemma m2-frob-extension",
+          "kind": "lemma",
+          "source": "Eliminating two obstruction degrees by Frobenius",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frob-action",
+          "role": "eliminating-two-obstruction-degrees-by-frobenius",
+          "label": "lemma m2-frob-action",
+          "fullLabel": "lemma m2-frob-action",
+          "kind": "lemma",
+          "source": "Eliminating two obstruction degrees by Frobenius",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frob-coefficients",
+          "role": "eliminating-two-obstruction-degrees-by-frobenius",
+          "label": "lemma m2-frob-coefficients",
+          "fullLabel": "lemma m2-frob-coefficients",
+          "kind": "lemma",
+          "source": "Eliminating two obstruction degrees by Frobenius",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frob-quotient-groups",
+          "role": "eliminating-two-obstruction-degrees-by-frobenius",
+          "label": "lemma m2-frob-quotient-groups",
+          "fullLabel": "lemma m2-frob-quotient-groups",
+          "kind": "lemma",
+          "source": "Eliminating two obstruction degrees by Frobenius",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frob-k2",
+          "role": "eliminating-two-obstruction-degrees-by-frobenius",
+          "label": "proposition m2-frob-k2",
+          "fullLabel": "proposition m2-frob-k2",
+          "kind": "proposition",
+          "source": "Eliminating two obstruction degrees by Frobenius",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frob-kpminus1",
+          "role": "eliminating-two-obstruction-degrees-by-frobenius",
+          "label": "proposition m2-frob-kpminus1",
+          "fullLabel": "proposition m2-frob-kpminus1",
+          "kind": "proposition",
+          "source": "Eliminating two obstruction degrees by Frobenius",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frob-vanishing",
+          "role": "eliminating-two-obstruction-degrees-by-frobenius",
+          "label": "corollary m2-frob-vanishing",
+          "fullLabel": "corollary m2-frob-vanishing",
+          "kind": "corollary",
+          "source": "Eliminating two obstruction degrees by Frobenius",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-top-small-stems",
+          "role": "the-final-obstruction-and-the-finite-cofiber",
+          "label": "lemma m2-top-small-stems",
+          "fullLabel": "lemma m2-top-small-stems",
+          "kind": "lemma",
+          "source": "The final obstruction and the finite cofiber",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-top-sphere-classes",
+          "role": "the-final-obstruction-and-the-finite-cofiber",
+          "label": "lemma m2-top-sphere-classes",
+          "fullLabel": "lemma m2-top-sphere-classes",
+          "kind": "lemma",
+          "source": "The final obstruction and the finite cofiber",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Finite Smith–Toda Complexes at Varying Primes",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Finite-Smith-Toda-Complexes-at-Varying-Primes-September-23-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "A finite Smith–Toda complex V(4) at the prime 1009",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-finite-Smith-Toda-complex-V4-at-the-prime-1009-September-23-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

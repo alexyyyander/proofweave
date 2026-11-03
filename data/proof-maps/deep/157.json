@@ -1,0 +1,974 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "157",
+  "title": "Graph coloring, clique minors, and Colin de Verdière invariants",
+  "result": {
+    "id": "paper-result",
+    "label": "Graph coloring, clique minors, and Colin de Verdière invariants",
+    "statement": "Disproves Hadwiger's conjecture even for fractional coloring: arbitrarily large finite simple graphs with independence number at most two satisfy (G) h(G), where h(G) is the largest clique-minor order. Also disproves the fractional Colin de Verdière chromatic bound (G) (G)+1. In the positive direction, every finite nonempty graph satisfies list (G) C h(G) for a universal constant C .",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-hole-relation-and-its-tensor-realization",
+      "label": "The hole relation and its tensor realization",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-supersaturation-to-a-finite-graph",
+      "label": "From supersaturation to a finite graph",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "frame-laws-and-preparation-of-unit-laws",
+      "label": "Frame laws and preparation of unit laws",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "low-rank-moments-and-mixing-forms",
+      "label": "Low-rank moments and mixing forms",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "recipes-and-realization-of-the-gradients",
+      "label": "Recipes and realization of the gradients",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-overlapping-key-distributions-to-four-holes",
+      "label": "From overlapping key distributions to four holes",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "phase-estimates-before-key-collisions",
+      "label": "Phase estimates before key collisions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "preparation-of-the-two-endpoint-statuses",
+      "label": "Preparation of the two-endpoint statuses",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "leaf-histograms-and-mixed-law-estimates",
+      "label": "Leaf histograms and mixed-law estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "weak-product-testing",
+      "label": "Weak product testing",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-common-limit-for-successful-queries",
+      "label": "A common limit for successful queries",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "solving-the-status-constraints",
+      "label": "Solving the status constraints",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-inverse-polynomial-option-and-completion-of-the-proof",
+      "label": "The inverse-polynomial option and completion of the proof",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-trees-for-lorentz-blocks",
+      "label": "Finite trees for Lorentz blocks",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-matrix-obstruction",
+      "label": "The matrix obstruction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-tensor-geometry-and-the-hole-relation",
+      "label": "The tensor geometry and the hole relation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-distribution-problem-and-its-preliminary-tools",
+      "label": "The distribution problem and its preliminary tools",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "A counterexample to Hadwiger's conjecture",
+      "title": "A counterexample to Hadwiger's conjecture",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-counterexample-to-Hadwigers-conjecture-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from A counterexample to Hadwiger's conjecture.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-hadwiger",
+          "role": "introduction",
+          "label": "corollary m1-cor-hadwiger",
+          "fullLabel": "corollary m1-cor-hadwiger",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-hole-triangle-free",
+          "role": "the-hole-relation-and-its-tensor-realization",
+          "label": "lemma m1-lem-hole-triangle-free",
+          "fullLabel": "lemma m1-lem-hole-triangle-free",
+          "kind": "lemma",
+          "source": "The hole relation and its tensor realization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-cut-kernel",
+          "role": "the-hole-relation-and-its-tensor-realization",
+          "label": "lemma m1-lem-cut-kernel",
+          "fullLabel": "lemma m1-lem-cut-kernel",
+          "kind": "lemma",
+          "source": "The hole relation and its tensor realization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-raw-supersaturation",
+          "role": "from-supersaturation-to-a-finite-graph",
+          "label": "theorem m1-thm-raw-supersaturation",
+          "fullLabel": "theorem m1-thm-raw-supersaturation",
+          "kind": "theorem",
+          "source": "From supersaturation to a finite graph",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-entropy-support",
+          "role": "from-supersaturation-to-a-finite-graph",
+          "label": "lemma m1-lem-entropy-support",
+          "fullLabel": "lemma m1-lem-entropy-support",
+          "kind": "lemma",
+          "source": "From supersaturation to a finite graph",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-terminal-cut",
+          "role": "from-supersaturation-to-a-finite-graph",
+          "label": "lemma m1-lem-terminal-cut",
+          "fullLabel": "lemma m1-lem-terminal-cut",
+          "kind": "lemma",
+          "source": "From supersaturation to a finite graph",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-raw-to-graph",
+          "role": "from-supersaturation-to-a-finite-graph",
+          "label": "proposition m1-prop-raw-to-graph",
+          "fullLabel": "proposition m1-prop-raw-to-graph",
+          "kind": "proposition",
+          "source": "From supersaturation to a finite graph",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-matching-minor",
+          "role": "from-supersaturation-to-a-finite-graph",
+          "label": "proposition m1-prop-matching-minor",
+          "fullLabel": "proposition m1-prop-matching-minor",
+          "kind": "proposition",
+          "source": "From supersaturation to a finite graph",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-paired-frame-orbit",
+          "role": "frame-laws-and-preparation-of-unit-laws",
+          "label": "lemma m1-lem-paired-frame-orbit",
+          "fullLabel": "lemma m1-lem-paired-frame-orbit",
+          "kind": "lemma",
+          "source": "Frame laws and preparation of unit laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-gram-frame-normalization",
+          "role": "frame-laws-and-preparation-of-unit-laws",
+          "label": "lemma m1-lem-gram-frame-normalization",
+          "fullLabel": "lemma m1-lem-gram-frame-normalization",
+          "kind": "lemma",
+          "source": "Frame laws and preparation of unit laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-frame-images",
+          "role": "frame-laws-and-preparation-of-unit-laws",
+          "label": "lemma m1-lem-frame-images",
+          "fullLabel": "lemma m1-lem-frame-images",
+          "kind": "lemma",
+          "source": "Frame laws and preparation of unit laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-raw-intersections",
+          "role": "frame-laws-and-preparation-of-unit-laws",
+          "label": "lemma m1-lem-raw-intersections",
+          "fullLabel": "lemma m1-lem-raw-intersections",
+          "kind": "lemma",
+          "source": "Frame laws and preparation of unit laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-peeling",
+          "role": "frame-laws-and-preparation-of-unit-laws",
+          "label": "lemma m1-lem-peeling",
+          "fullLabel": "lemma m1-lem-peeling",
+          "kind": "lemma",
+          "source": "Frame laws and preparation of unit laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-walsh",
+          "role": "frame-laws-and-preparation-of-unit-laws",
+          "label": "lemma m1-lem-walsh",
+          "fullLabel": "lemma m1-lem-walsh",
+          "kind": "lemma",
+          "source": "Frame laws and preparation of unit laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-base-moments",
+          "role": "low-rank-moments-and-mixing-forms",
+          "label": "lemma m1-lem-base-moments",
+          "fullLabel": "lemma m1-lem-base-moments",
+          "kind": "lemma",
+          "source": "Low-rank moments and mixing forms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-label-support",
+          "role": "low-rank-moments-and-mixing-forms",
+          "label": "lemma m1-lem-label-support",
+          "fullLabel": "lemma m1-lem-label-support",
+          "kind": "lemma",
+          "source": "Low-rank moments and mixing forms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sparse-pin-labels",
+          "role": "low-rank-moments-and-mixing-forms",
+          "label": "lemma m1-lem-sparse-pin-labels",
+          "fullLabel": "lemma m1-lem-sparse-pin-labels",
+          "kind": "lemma",
+          "source": "Low-rank moments and mixing forms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-generic-mixers",
+          "role": "low-rank-moments-and-mixing-forms",
+          "label": "lemma m1-lem-generic-mixers",
+          "fullLabel": "lemma m1-lem-generic-mixers",
+          "kind": "lemma",
+          "source": "Low-rank moments and mixing forms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-small-tables",
+          "role": "recipes-and-realization-of-the-gradients",
+          "label": "lemma m1-lem-small-tables",
+          "fullLabel": "lemma m1-lem-small-tables",
+          "kind": "lemma",
+          "source": "Recipes and realization of the gradients",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-gradient-realization",
+          "role": "recipes-and-realization-of-the-gradients",
+          "label": "theorem m1-thm-gradient-realization",
+          "fullLabel": "theorem m1-thm-gradient-realization",
+          "kind": "theorem",
+          "source": "Recipes and realization of the gradients",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-collision",
+          "role": "from-overlapping-key-distributions-to-four-holes",
+          "label": "proposition m1-prop-collision",
+          "fullLabel": "proposition m1-prop-collision",
+          "kind": "proposition",
+          "source": "From overlapping key distributions to four holes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-phase-alternative",
+          "role": "phase-estimates-before-key-collisions",
+          "label": "theorem m1-thm-phase-alternative",
+          "fullLabel": "theorem m1-thm-phase-alternative",
+          "kind": "theorem",
+          "source": "Phase estimates before key collisions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-no-cover-rank",
+          "role": "phase-estimates-before-key-collisions",
+          "label": "lemma m1-lem-no-cover-rank",
+          "fullLabel": "lemma m1-lem-no-cover-rank",
+          "kind": "lemma",
+          "source": "Phase estimates before key collisions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-injection",
+          "role": "phase-estimates-before-key-collisions",
+          "label": "lemma m1-lem-injection",
+          "fullLabel": "lemma m1-lem-injection",
+          "kind": "lemma",
+          "source": "Phase estimates before key collisions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-tiny-cover",
+          "role": "phase-estimates-before-key-collisions",
+          "label": "lemma m1-lem-tiny-cover",
+          "fullLabel": "lemma m1-lem-tiny-cover",
+          "kind": "lemma",
+          "source": "Phase estimates before key collisions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-status-preparation",
+          "role": "preparation-of-the-two-endpoint-statuses",
+          "label": "proposition m1-prop-status-preparation",
+          "fullLabel": "proposition m1-prop-status-preparation",
+          "kind": "proposition",
+          "source": "Preparation of the two-endpoint statuses",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-lem-injection"
+          ]
+        },
+        {
+          "id": "m1-lem-empty-status",
+          "role": "preparation-of-the-two-endpoint-statuses",
+          "label": "lemma m1-lem-empty-status",
+          "fullLabel": "lemma m1-lem-empty-status",
+          "kind": "lemma",
+          "source": "Preparation of the two-endpoint statuses",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-synthetic-slice",
+          "role": "preparation-of-the-two-endpoint-statuses",
+          "label": "lemma m1-lem-synthetic-slice",
+          "fullLabel": "lemma m1-lem-synthetic-slice",
+          "kind": "lemma",
+          "source": "Preparation of the two-endpoint statuses",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-zero-delta",
+          "role": "preparation-of-the-two-endpoint-statuses",
+          "label": "lemma m1-lem-zero-delta",
+          "fullLabel": "lemma m1-lem-zero-delta",
+          "kind": "lemma",
+          "source": "Preparation of the two-endpoint statuses",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-histogram-control",
+          "role": "leaf-histograms-and-mixed-law-estimates",
+          "label": "lemma m1-lem-histogram-control",
+          "fullLabel": "lemma m1-lem-histogram-control",
+          "kind": "lemma",
+          "source": "Leaf histograms and mixed-law estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-histogram-gram-normalization",
+          "role": "leaf-histograms-and-mixed-law-estimates",
+          "label": "lemma m1-lem-histogram-gram-normalization",
+          "fullLabel": "lemma m1-lem-histogram-gram-normalization",
+          "kind": "lemma",
+          "source": "Leaf histograms and mixed-law estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-histogram-batch-comparison",
+          "role": "leaf-histograms-and-mixed-law-estimates",
+          "label": "lemma m1-lem-histogram-batch-comparison",
+          "fullLabel": "lemma m1-lem-histogram-batch-comparison",
+          "kind": "lemma",
+          "source": "Leaf histograms and mixed-law estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-reference-product",
+          "role": "leaf-histograms-and-mixed-law-estimates",
+          "label": "lemma m1-lem-reference-product",
+          "fullLabel": "lemma m1-lem-reference-product",
+          "kind": "lemma",
+          "source": "Leaf histograms and mixed-law estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-histogram-many-queries",
+          "role": "leaf-histograms-and-mixed-law-estimates",
+          "label": "lemma m1-lem-histogram-many-queries",
+          "fullLabel": "lemma m1-lem-histogram-many-queries",
+          "kind": "lemma",
+          "source": "Leaf histograms and mixed-law estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-typicality",
+          "role": "leaf-histograms-and-mixed-law-estimates",
+          "label": "lemma m1-lem-typicality",
+          "fullLabel": "lemma m1-lem-typicality",
+          "kind": "lemma",
+          "source": "Leaf histograms and mixed-law estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-binary-mixing",
+          "role": "leaf-histograms-and-mixed-law-estimates",
+          "label": "lemma m1-lem-binary-mixing",
+          "fullLabel": "lemma m1-lem-binary-mixing",
+          "kind": "lemma",
+          "source": "Leaf histograms and mixed-law estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-histogram-quadratic-bias",
+          "role": "leaf-histograms-and-mixed-law-estimates",
+          "label": "lemma m1-lem-histogram-quadratic-bias",
+          "fullLabel": "lemma m1-lem-histogram-quadratic-bias",
+          "kind": "lemma",
+          "source": "Leaf histograms and mixed-law estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-unary-positivity",
+          "role": "leaf-histograms-and-mixed-law-estimates",
+          "label": "lemma m1-lem-unary-positivity",
+          "fullLabel": "lemma m1-lem-unary-positivity",
+          "kind": "lemma",
+          "source": "Leaf histograms and mixed-law estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-weak-product",
+          "role": "weak-product-testing",
+          "label": "theorem m1-thm-weak-product",
+          "fullLabel": "theorem m1-thm-weak-product",
+          "kind": "theorem",
+          "source": "Weak product testing",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-product-twisted-regularity",
+          "role": "weak-product-testing",
+          "label": "lemma m1-lem-product-twisted-regularity",
+          "fullLabel": "lemma m1-lem-product-twisted-regularity",
+          "kind": "lemma",
+          "source": "Weak product testing",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-product-terminal-remainder",
+          "role": "weak-product-testing",
+          "label": "lemma m1-lem-product-terminal-remainder",
+          "fullLabel": "lemma m1-lem-product-terminal-remainder",
+          "kind": "lemma",
+          "source": "Weak product testing",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-weak-product-factorized-integration",
+          "role": "weak-product-testing",
+          "label": "corollary m1-cor-weak-product-factorized-integration",
+          "fullLabel": "corollary m1-cor-weak-product-factorized-integration",
+          "kind": "corollary",
+          "source": "Weak product testing",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-limit-global-projection",
+          "role": "a-common-limit-for-successful-queries",
+          "label": "lemma m1-lem-limit-global-projection",
+          "fullLabel": "lemma m1-lem-limit-global-projection",
+          "kind": "lemma",
+          "source": "A common limit for successful queries",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-limit-model",
+          "role": "a-common-limit-for-successful-queries",
+          "label": "lemma m1-lem-limit-model",
+          "fullLabel": "lemma m1-lem-limit-model",
+          "kind": "lemma",
+          "source": "A common limit for successful queries",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-limit-zero-product",
+          "role": "a-common-limit-for-successful-queries",
+          "label": "lemma m1-lem-limit-zero-product",
+          "fullLabel": "lemma m1-lem-limit-zero-product",
+          "kind": "lemma",
+          "source": "A common limit for successful queries",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-limit-density",
+          "role": "a-common-limit-for-successful-queries",
+          "label": "lemma m1-lem-limit-density",
+          "fullLabel": "lemma m1-lem-limit-density",
+          "kind": "lemma",
+          "source": "A common limit for successful queries",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-limit-overlap",
+          "role": "a-common-limit-for-successful-queries",
+          "label": "proposition m1-prop-limit-overlap",
+          "fullLabel": "proposition m1-prop-limit-overlap",
+          "kind": "proposition",
+          "source": "A common limit for successful queries",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-status-duality",
+          "role": "solving-the-status-constraints",
+          "label": "lemma m1-lem-status-duality",
+          "fullLabel": "lemma m1-lem-status-duality",
+          "kind": "lemma",
+          "source": "Solving the status constraints",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-status-global-prediction",
+          "role": "solving-the-status-constraints",
+          "label": "lemma m1-lem-status-global-prediction",
+          "fullLabel": "lemma m1-lem-status-global-prediction",
+          "kind": "lemma",
+          "source": "Solving the status constraints",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-status-predicted",
+          "role": "solving-the-status-constraints",
+          "label": "lemma m1-lem-status-predicted",
+          "fullLabel": "lemma m1-lem-status-predicted",
+          "kind": "lemma",
+          "source": "Solving the status constraints",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-status-span",
+          "role": "solving-the-status-constraints",
+          "label": "lemma m1-lem-status-span",
+          "fullLabel": "lemma m1-lem-status-span",
+          "kind": "lemma",
+          "source": "Solving the status constraints",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-fresh-lists",
+          "role": "solving-the-status-constraints",
+          "label": "lemma m1-lem-fresh-lists",
+          "fullLabel": "lemma m1-lem-fresh-lists",
+          "kind": "lemma",
+          "source": "Solving the status constraints",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-positive-overlap",
+          "role": "solving-the-status-constraints",
+          "label": "proposition m1-prop-positive-overlap",
+          "fullLabel": "proposition m1-prop-positive-overlap",
+          "kind": "proposition",
+          "source": "Solving the status constraints",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-rare-large-set-hit",
+          "role": "the-inverse-polynomial-option-and-completion-of-the-proof",
+          "label": "lemma m1-lem-rare-large-set-hit",
+          "fullLabel": "lemma m1-lem-rare-large-set-hit",
+          "kind": "lemma",
+          "source": "The inverse-polynomial option and completion of the proof",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-rare-superlevel-nets",
+          "role": "the-inverse-polynomial-option-and-completion-of-the-proof",
+          "label": "lemma m1-lem-rare-superlevel-nets",
+          "fullLabel": "lemma m1-lem-rare-superlevel-nets",
+          "kind": "lemma",
+          "source": "The inverse-polynomial option and completion of the proof",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-rare-overlap",
+          "role": "the-inverse-polynomial-option-and-completion-of-the-proof",
+          "label": "proposition m1-prop-rare-overlap",
+          "fullLabel": "proposition m1-prop-rare-overlap",
+          "kind": "proposition",
+          "source": "The inverse-polynomial option and completion of the proof",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "A counterexample to the Colin de Verdière chromatic conjecture",
+      "title": "A counterexample to the Colin de Verdière chromatic conjecture",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-counterexample-to-the-Colin-de-Verdiere-chromatic-conjecture-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from A counterexample to the Colin de Verdière chromatic conjecture.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-base-graphs",
+          "role": "introduction",
+          "label": "theorem m2-thm-base-graphs",
+          "fullLabel": "theorem m2-thm-base-graphs",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-fractional-spectral",
+          "role": "introduction",
+          "label": "corollary m2-cor-fractional-spectral",
+          "fullLabel": "corollary m2-cor-fractional-spectral",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-list-spectral",
+          "role": "introduction",
+          "label": "corollary m2-cor-list-spectral",
+          "fullLabel": "corollary m2-cor-list-spectral",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mt-flat-normalization",
+          "role": "finite-trees-for-lorentz-blocks",
+          "label": "lemma m2-mt-flat-normalization",
+          "fullLabel": "lemma m2-mt-flat-normalization",
+          "kind": "lemma",
+          "source": "Finite trees for Lorentz blocks",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mt-finite-metric",
+          "role": "finite-trees-for-lorentz-blocks",
+          "label": "lemma m2-mt-finite-metric",
+          "fullLabel": "lemma m2-mt-finite-metric",
+          "kind": "lemma",
+          "source": "Finite trees for Lorentz blocks",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mt-segment-comparison",
+          "role": "finite-trees-for-lorentz-blocks",
+          "label": "lemma m2-mt-segment-comparison",
+          "fullLabel": "lemma m2-mt-segment-comparison",
+          "kind": "lemma",
+          "source": "Finite trees for Lorentz blocks",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mt-finite-tree",
+          "role": "finite-trees-for-lorentz-blocks",
+          "label": "proposition m2-mt-finite-tree",
+          "fullLabel": "proposition m2-mt-finite-tree",
+          "kind": "proposition",
+          "source": "Finite trees for Lorentz blocks",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mt-load-matching",
+          "role": "finite-trees-for-lorentz-blocks",
+          "label": "lemma m2-mt-load-matching",
+          "fullLabel": "lemma m2-mt-load-matching",
+          "kind": "lemma",
+          "source": "Finite trees for Lorentz blocks",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mt-single-bag",
+          "role": "finite-trees-for-lorentz-blocks",
+          "label": "lemma m2-mt-single-bag",
+          "fullLabel": "lemma m2-mt-single-bag",
+          "kind": "lemma",
+          "source": "Finite trees for Lorentz blocks",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mt-weighted-bag",
+          "role": "finite-trees-for-lorentz-blocks",
+          "label": "lemma m2-mt-weighted-bag",
+          "fullLabel": "lemma m2-mt-weighted-bag",
+          "kind": "lemma",
+          "source": "Finite trees for Lorentz blocks",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mt-common-bag",
+          "role": "finite-trees-for-lorentz-blocks",
+          "label": "proposition m2-mt-common-bag",
+          "fullLabel": "proposition m2-mt-common-bag",
+          "kind": "proposition",
+          "source": "Finite trees for Lorentz blocks",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-matrix-obstruction",
+          "role": "the-matrix-obstruction",
+          "label": "theorem m2-thm-matrix-obstruction",
+          "fullLabel": "theorem m2-thm-matrix-obstruction",
+          "kind": "theorem",
+          "source": "The matrix obstruction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mr-positive-block",
+          "role": "the-matrix-obstruction",
+          "label": "lemma m2-mr-positive-block",
+          "fullLabel": "lemma m2-mr-positive-block",
+          "kind": "lemma",
+          "source": "The matrix obstruction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mr-spectral-support",
+          "role": "the-matrix-obstruction",
+          "label": "lemma m2-mr-spectral-support",
+          "fullLabel": "lemma m2-mr-spectral-support",
+          "kind": "lemma",
+          "source": "The matrix obstruction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mr-matching",
+          "role": "the-matrix-obstruction",
+          "label": "lemma m2-mr-matching",
+          "fullLabel": "lemma m2-mr-matching",
+          "kind": "lemma",
+          "source": "The matrix obstruction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mr-trace-cross",
+          "role": "the-matrix-obstruction",
+          "label": "lemma m2-mr-trace-cross",
+          "fullLabel": "lemma m2-mr-trace-cross",
+          "kind": "lemma",
+          "source": "The matrix obstruction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-cut-kernel",
+          "role": "the-tensor-geometry-and-the-hole-relation",
+          "label": "lemma m2-lem-cut-kernel",
+          "fullLabel": "lemma m2-lem-cut-kernel",
+          "kind": "lemma",
+          "source": "The tensor geometry and the hole relation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-hole-triangle-free",
+          "role": "the-tensor-geometry-and-the-hole-relation",
+          "label": "lemma m2-lem-hole-triangle-free",
+          "fullLabel": "lemma m2-lem-hole-triangle-free",
+          "kind": "lemma",
+          "source": "The tensor geometry and the hole relation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-paired-frame-orbit",
+          "role": "the-distribution-problem-and-its-preliminary-tools",
+          "label": "lemma m2-lem-paired-frame-orbit",
+          "fullLabel": "lemma m2-lem-paired-frame-orbit",
+          "kind": "lemma",
+          "source": "The distribution problem and its preliminary tools",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-frame-images",
+          "role": "the-distribution-problem-and-its-preliminary-tools",
+          "label": "lemma m2-lem-frame-images",
+          "fullLabel": "lemma m2-lem-frame-images",
+          "kind": "lemma",
+          "source": "The distribution problem and its preliminary tools",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-channel-thinning",
+          "role": "the-distribution-problem-and-its-preliminary-tools",
+          "label": "lemma m2-lem-channel-thinning",
+          "fullLabel": "lemma m2-lem-channel-thinning",
+          "kind": "lemma",
+          "source": "The distribution problem and its preliminary tools",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-distribution-tests",
+          "role": "the-distribution-problem-and-its-preliminary-tools",
+          "label": "theorem m2-thm-distribution-tests",
+          "fullLabel": "theorem m2-thm-distribution-tests",
+          "kind": "theorem",
+          "source": "The distribution problem and its preliminary tools",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "A counterexample to Hadwiger's conjecture",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-counterexample-to-Hadwigers-conjecture-September-23-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "A counterexample to the Colin de Verdière chromatic conjecture",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-counterexample-to-the-Colin-de-Verdiere-chromatic-conjecture-September-23-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "A linear list-coloring bound in terms of the Hadwiger number",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-linear-list-coloring-bound-in-terms-of-the-Hadwiger-number-September-23-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

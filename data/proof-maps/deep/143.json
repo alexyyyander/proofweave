@@ -1,0 +1,948 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "143",
+  "title": "Hilbert's sixteenth problem: uniform bounds for limit cycles",
+  "result": {
+    "id": "paper-result",
+    "label": "Hilbert's sixteenth problem: uniform bounds for limit cycles",
+    "statement": "Resolves the uniform boundedness assertion in Hilbert's sixteenth problem: the number of isolated periodic orbits of a real planar polynomial vector field is bounded by a finite constant depending only on its degree. For classical quintic Liénard systems, the exact maximum is two limit cycles.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-logarithmic-flags-and-angular-paths",
+      "label": "Finite logarithmic flags and angular paths",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "separation-of-packets",
+      "label": "Separation of packets",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "differentiated-packet-calculus-and-regular-ordinary-charts",
+      "label": "Differentiated packet calculus and regular ordinary charts",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "ordinary-elimination-and-absolute-isolated-zeros",
+      "label": "Ordinary elimination and absolute isolated zeros",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-two-additive-passage-models",
+      "label": "The two additive passage models",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "one-rate-regular-and-stable-passages",
+      "label": "One-rate regular and stable passages",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "passages-with-two-logarithmic-scales",
+      "label": "Passages with two logarithmic scales",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-real-subdivision-and-passage-words",
+      "label": "Finite real subdivision and passage words",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "terminal-passages-and-their-independent-arguments",
+      "label": "Terminal passages and their independent arguments",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "projection-matching-and-the-cycle-count",
+      "label": "Projection, matching, and the cycle count",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "arc-coordinates-and-periodic-orbit-matching",
+      "label": "Arc coordinates and periodic-orbit matching",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "quadratic-fitting-and-its-transport-law",
+      "label": "Quadratic fitting and its transport law",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Uniform bounds for planar polynomial limit cycles",
+      "title": "Uniform bounds for planar polynomial limit cycles",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/uniform-bounds-for-planar-polynomial-limit-cycles-September-24-2026/uniform-bounds-for-planar-polynomial-limit-cycles-September-24-2026.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Uniform bounds for planar polynomial limit cycles.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-uniform",
+          "role": "introduction",
+          "label": "theorem m1-thm-uniform",
+          "fullLabel": "theorem m1-thm-uniform",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-thm-matching-system"
+          ]
+        },
+        {
+          "id": "m1-lem-flags-saturation",
+          "role": "finite-logarithmic-flags-and-angular-paths",
+          "label": "lemma m1-lem-flags-saturation",
+          "fullLabel": "lemma m1-lem-flags-saturation",
+          "kind": "lemma",
+          "source": "Finite logarithmic flags and angular paths",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-flags-stability",
+          "role": "finite-logarithmic-flags-and-angular-paths",
+          "label": "lemma m1-lem-flags-stability",
+          "fullLabel": "lemma m1-lem-flags-stability",
+          "kind": "lemma",
+          "source": "Finite logarithmic flags and angular paths",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-flags-path",
+          "role": "finite-logarithmic-flags-and-angular-paths",
+          "label": "lemma m1-lem-flags-path",
+          "fullLabel": "lemma m1-lem-flags-path",
+          "kind": "lemma",
+          "source": "Finite logarithmic flags and angular paths",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-flags-contours",
+          "role": "finite-logarithmic-flags-and-angular-paths",
+          "label": "lemma m1-lem-flags-contours",
+          "fullLabel": "lemma m1-lem-flags-contours",
+          "kind": "lemma",
+          "source": "Finite logarithmic flags and angular paths",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-flags-background",
+          "role": "finite-logarithmic-flags-and-angular-paths",
+          "label": "lemma m1-lem-flags-background",
+          "fullLabel": "lemma m1-lem-flags-background",
+          "kind": "lemma",
+          "source": "Finite logarithmic flags and angular paths",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-flags-exceptional",
+          "role": "finite-logarithmic-flags-and-angular-paths",
+          "label": "lemma m1-lem-flags-exceptional",
+          "fullLabel": "lemma m1-lem-flags-exceptional",
+          "kind": "lemma",
+          "source": "Finite logarithmic flags and angular paths",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-flags-safe-columns",
+          "role": "finite-logarithmic-flags-and-angular-paths",
+          "label": "lemma m1-lem-flags-safe-columns",
+          "fullLabel": "lemma m1-lem-flags-safe-columns",
+          "kind": "lemma",
+          "source": "Finite logarithmic flags and angular paths",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-separation",
+          "role": "separation-of-packets",
+          "label": "theorem m1-thm-separation",
+          "fullLabel": "theorem m1-thm-separation",
+          "kind": "theorem",
+          "source": "Separation of packets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-separation-proxies",
+          "role": "separation-of-packets",
+          "label": "lemma m1-lem-separation-proxies",
+          "fullLabel": "lemma m1-lem-separation-proxies",
+          "kind": "lemma",
+          "source": "Separation of packets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-separation-growth",
+          "role": "separation-of-packets",
+          "label": "lemma m1-lem-separation-growth",
+          "fullLabel": "lemma m1-lem-separation-growth",
+          "kind": "lemma",
+          "source": "Separation of packets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-separation-source-ratios",
+          "role": "separation-of-packets",
+          "label": "lemma m1-lem-separation-source-ratios",
+          "fullLabel": "lemma m1-lem-separation-source-ratios",
+          "kind": "lemma",
+          "source": "Separation of packets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-separation-weighted",
+          "role": "separation-of-packets",
+          "label": "lemma m1-lem-separation-weighted",
+          "fullLabel": "lemma m1-lem-separation-weighted",
+          "kind": "lemma",
+          "source": "Separation of packets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-separation-upgrade",
+          "role": "separation-of-packets",
+          "label": "lemma m1-lem-separation-upgrade",
+          "fullLabel": "lemma m1-lem-separation-upgrade",
+          "kind": "lemma",
+          "source": "Separation of packets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-separation-isolate",
+          "role": "separation-of-packets",
+          "label": "lemma m1-lem-separation-isolate",
+          "fullLabel": "lemma m1-lem-separation-isolate",
+          "kind": "lemma",
+          "source": "Separation of packets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-separation-terminal",
+          "role": "separation-of-packets",
+          "label": "lemma m1-lem-separation-terminal",
+          "fullLabel": "lemma m1-lem-separation-terminal",
+          "kind": "lemma",
+          "source": "Separation of packets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-separation-family-uniformity",
+          "role": "separation-of-packets",
+          "label": "lemma m1-lem-separation-family-uniformity",
+          "fullLabel": "lemma m1-lem-separation-family-uniformity",
+          "kind": "lemma",
+          "source": "Separation of packets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-calculus",
+          "role": "differentiated-packet-calculus-and-regular-ordinary-charts",
+          "label": "theorem m1-thm-calculus",
+          "fullLabel": "theorem m1-thm-calculus",
+          "kind": "theorem",
+          "source": "Differentiated packet calculus and regular ordinary charts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-calculus-support",
+          "role": "differentiated-packet-calculus-and-regular-ordinary-charts",
+          "label": "lemma m1-lem-calculus-support",
+          "fullLabel": "lemma m1-lem-calculus-support",
+          "kind": "lemma",
+          "source": "Differentiated packet calculus and regular ordinary charts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-calculus-differentiation",
+          "role": "differentiated-packet-calculus-and-regular-ordinary-charts",
+          "label": "lemma m1-lem-calculus-differentiation",
+          "fullLabel": "lemma m1-lem-calculus-differentiation",
+          "kind": "lemma",
+          "source": "Differentiated packet calculus and regular ordinary charts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-calculus-source-pullback",
+          "role": "differentiated-packet-calculus-and-regular-ordinary-charts",
+          "label": "lemma m1-lem-calculus-source-pullback",
+          "fullLabel": "lemma m1-lem-calculus-source-pullback",
+          "kind": "lemma",
+          "source": "Differentiated packet calculus and regular ordinary charts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-calculus-cleanup",
+          "role": "differentiated-packet-calculus-and-regular-ordinary-charts",
+          "label": "lemma m1-lem-calculus-cleanup",
+          "fullLabel": "lemma m1-lem-calculus-cleanup",
+          "kind": "lemma",
+          "source": "Differentiated packet calculus and regular ordinary charts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-calculus-uniform-separation",
+          "role": "differentiated-packet-calculus-and-regular-ordinary-charts",
+          "label": "lemma m1-lem-calculus-uniform-separation",
+          "fullLabel": "lemma m1-lem-calculus-uniform-separation",
+          "kind": "lemma",
+          "source": "Differentiated packet calculus and regular ordinary charts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-calculus-positive-bounds",
+          "role": "differentiated-packet-calculus-and-regular-ordinary-charts",
+          "label": "lemma m1-lem-calculus-positive-bounds",
+          "fullLabel": "lemma m1-lem-calculus-positive-bounds",
+          "kind": "lemma",
+          "source": "Differentiated packet calculus and regular ordinary charts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-calculus-analytic",
+          "role": "differentiated-packet-calculus-and-regular-ordinary-charts",
+          "label": "lemma m1-lem-calculus-analytic",
+          "fullLabel": "lemma m1-lem-calculus-analytic",
+          "kind": "lemma",
+          "source": "Differentiated packet calculus and regular ordinary charts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-calculus-interpolation",
+          "role": "differentiated-packet-calculus-and-regular-ordinary-charts",
+          "label": "lemma m1-lem-calculus-interpolation",
+          "fullLabel": "lemma m1-lem-calculus-interpolation",
+          "kind": "lemma",
+          "source": "Differentiated packet calculus and regular ordinary charts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-calculus-refinement",
+          "role": "differentiated-packet-calculus-and-regular-ordinary-charts",
+          "label": "lemma m1-lem-calculus-refinement",
+          "fullLabel": "lemma m1-lem-calculus-refinement",
+          "kind": "lemma",
+          "source": "Differentiated packet calculus and regular ordinary charts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-elimination-promotion",
+          "role": "ordinary-elimination-and-absolute-isolated-zeros",
+          "label": "lemma m1-lem-elimination-promotion",
+          "fullLabel": "lemma m1-lem-elimination-promotion",
+          "kind": "lemma",
+          "source": "Ordinary elimination and absolute isolated zeros",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-elimination-local-inverse",
+          "role": "ordinary-elimination-and-absolute-isolated-zeros",
+          "label": "lemma m1-lem-elimination-local-inverse",
+          "fullLabel": "lemma m1-lem-elimination-local-inverse",
+          "kind": "lemma",
+          "source": "Ordinary elimination and absolute isolated zeros",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-elimination-lift",
+          "role": "ordinary-elimination-and-absolute-isolated-zeros",
+          "label": "lemma m1-lem-elimination-lift",
+          "fullLabel": "lemma m1-lem-elimination-lift",
+          "kind": "lemma",
+          "source": "Ordinary elimination and absolute isolated zeros",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-elimination-common-domain",
+          "role": "ordinary-elimination-and-absolute-isolated-zeros",
+          "label": "lemma m1-lem-elimination-common-domain",
+          "fullLabel": "lemma m1-lem-elimination-common-domain",
+          "kind": "lemma",
+          "source": "Ordinary elimination and absolute isolated zeros",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-elimination-recursion",
+          "role": "ordinary-elimination-and-absolute-isolated-zeros",
+          "label": "proposition m1-prop-elimination-recursion",
+          "fullLabel": "proposition m1-prop-elimination-recursion",
+          "kind": "proposition",
+          "source": "Ordinary elimination and absolute isolated zeros",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-absolute-zero",
+          "role": "ordinary-elimination-and-absolute-isolated-zeros",
+          "label": "theorem m1-thm-absolute-zero",
+          "fullLabel": "theorem m1-thm-absolute-zero",
+          "kind": "theorem",
+          "source": "Ordinary elimination and absolute isolated zeros",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-additive-packets",
+          "role": "the-two-additive-passage-models",
+          "label": "theorem m1-thm-additive-packets",
+          "fullLabel": "theorem m1-thm-additive-packets",
+          "kind": "theorem",
+          "source": "The two additive passage models",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-additive-slow",
+          "role": "the-two-additive-passage-models",
+          "label": "lemma m1-lem-additive-slow",
+          "fullLabel": "lemma m1-lem-additive-slow",
+          "kind": "lemma",
+          "source": "The two additive passage models",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-additive-primitives",
+          "role": "the-two-additive-passage-models",
+          "label": "lemma m1-lem-additive-primitives",
+          "fullLabel": "lemma m1-lem-additive-primitives",
+          "kind": "lemma",
+          "source": "The two additive passage models",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-additive-gevrey-operations",
+          "role": "the-two-additive-passage-models",
+          "label": "lemma m1-lem-additive-gevrey-operations",
+          "fullLabel": "lemma m1-lem-additive-gevrey-operations",
+          "kind": "lemma",
+          "source": "The two additive passage models",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-additive-charge",
+          "role": "the-two-additive-passage-models",
+          "label": "proposition m1-prop-additive-charge",
+          "fullLabel": "proposition m1-prop-additive-charge",
+          "kind": "proposition",
+          "source": "The two additive passage models",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-additive-dispersal",
+          "role": "the-two-additive-passage-models",
+          "label": "proposition m1-prop-additive-dispersal",
+          "fullLabel": "proposition m1-prop-additive-dispersal",
+          "kind": "proposition",
+          "source": "The two additive passage models",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-additive-controlled-family",
+          "role": "the-two-additive-passage-models",
+          "label": "lemma m1-lem-additive-controlled-family",
+          "fullLabel": "lemma m1-lem-additive-controlled-family",
+          "kind": "lemma",
+          "source": "The two additive passage models",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-regular-packets",
+          "role": "one-rate-regular-and-stable-passages",
+          "label": "theorem m1-thm-regular-packets",
+          "fullLabel": "theorem m1-thm-regular-packets",
+          "kind": "theorem",
+          "source": "One-rate regular and stable passages",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-regular-charges",
+          "role": "one-rate-regular-and-stable-passages",
+          "label": "lemma m1-lem-regular-charges",
+          "fullLabel": "lemma m1-lem-regular-charges",
+          "kind": "lemma",
+          "source": "One-rate regular and stable passages",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-regular-formal",
+          "role": "one-rate-regular-and-stable-passages",
+          "label": "lemma m1-lem-regular-formal",
+          "fullLabel": "lemma m1-lem-regular-formal",
+          "kind": "lemma",
+          "source": "One-rate regular and stable passages",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-regular-controlled-inputs",
+          "role": "one-rate-regular-and-stable-passages",
+          "label": "lemma m1-lem-regular-controlled-inputs",
+          "fullLabel": "lemma m1-lem-regular-controlled-inputs",
+          "kind": "lemma",
+          "source": "One-rate regular and stable passages",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-mixed-packets",
+          "role": "passages-with-two-logarithmic-scales",
+          "label": "theorem m1-thm-mixed-packets",
+          "fullLabel": "theorem m1-thm-mixed-packets",
+          "kind": "theorem",
+          "source": "Passages with two logarithmic scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-mixed-ratio",
+          "role": "passages-with-two-logarithmic-scales",
+          "label": "lemma m1-lem-mixed-ratio",
+          "fullLabel": "lemma m1-lem-mixed-ratio",
+          "kind": "lemma",
+          "source": "Passages with two logarithmic scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-mixed-actual",
+          "role": "passages-with-two-logarithmic-scales",
+          "label": "lemma m1-lem-mixed-actual",
+          "fullLabel": "lemma m1-lem-mixed-actual",
+          "kind": "lemma",
+          "source": "Passages with two logarithmic scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-mixed-tree",
+          "role": "passages-with-two-logarithmic-scales",
+          "label": "lemma m1-lem-mixed-tree",
+          "fullLabel": "lemma m1-lem-mixed-tree",
+          "kind": "lemma",
+          "source": "Passages with two logarithmic scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-mixed-poles",
+          "role": "passages-with-two-logarithmic-scales",
+          "label": "lemma m1-lem-mixed-poles",
+          "fullLabel": "lemma m1-lem-mixed-poles",
+          "kind": "lemma",
+          "source": "Passages with two logarithmic scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-mixed-small-formal",
+          "role": "passages-with-two-logarithmic-scales",
+          "label": "lemma m1-lem-mixed-small-formal",
+          "fullLabel": "lemma m1-lem-mixed-small-formal",
+          "kind": "lemma",
+          "source": "Passages with two logarithmic scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-mixed-charts",
+          "role": "passages-with-two-logarithmic-scales",
+          "label": "lemma m1-lem-mixed-charts",
+          "fullLabel": "lemma m1-lem-mixed-charts",
+          "kind": "lemma",
+          "source": "Passages with two logarithmic scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-mixed-fast-transition",
+          "role": "passages-with-two-logarithmic-scales",
+          "label": "lemma m1-lem-mixed-fast-transition",
+          "fullLabel": "lemma m1-lem-mixed-fast-transition",
+          "kind": "lemma",
+          "source": "Passages with two logarithmic scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-mixed-fast-gevrey",
+          "role": "passages-with-two-logarithmic-scales",
+          "label": "lemma m1-lem-mixed-fast-gevrey",
+          "fullLabel": "lemma m1-lem-mixed-fast-gevrey",
+          "kind": "lemma",
+          "source": "Passages with two logarithmic scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-mixed-controlled-uniformity",
+          "role": "passages-with-two-logarithmic-scales",
+          "label": "lemma m1-lem-mixed-controlled-uniformity",
+          "fullLabel": "lemma m1-lem-mixed-controlled-uniformity",
+          "kind": "lemma",
+          "source": "Passages with two logarithmic scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-calculus-library-uniformity",
+          "role": "passages-with-two-logarithmic-scales",
+          "label": "proposition m1-prop-calculus-library-uniformity",
+          "fullLabel": "proposition m1-prop-calculus-library-uniformity",
+          "kind": "proposition",
+          "source": "Passages with two logarithmic scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-subdivision-preparation",
+          "role": "finite-real-subdivision-and-passage-words",
+          "label": "theorem m1-thm-subdivision-preparation",
+          "fullLabel": "theorem m1-thm-subdivision-preparation",
+          "kind": "theorem",
+          "source": "Finite real subdivision and passage words",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-subdivision-clock",
+          "role": "finite-real-subdivision-and-passage-words",
+          "label": "lemma m1-lem-subdivision-clock",
+          "fullLabel": "lemma m1-lem-subdivision-clock",
+          "kind": "lemma",
+          "source": "Finite real subdivision and passage words",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-subdivision-box-data",
+          "role": "finite-real-subdivision-and-passage-words",
+          "label": "lemma m1-lem-subdivision-box-data",
+          "fullLabel": "lemma m1-lem-subdivision-box-data",
+          "kind": "lemma",
+          "source": "Finite real subdivision and passage words",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-subdivision-resonance-redo",
+          "role": "finite-real-subdivision-and-passage-words",
+          "label": "lemma m1-lem-subdivision-resonance-redo",
+          "fullLabel": "lemma m1-lem-subdivision-resonance-redo",
+          "kind": "lemma",
+          "source": "Finite real subdivision and passage words",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-subdivision-crossing",
+          "role": "finite-real-subdivision-and-passage-words",
+          "label": "lemma m1-lem-subdivision-crossing",
+          "fullLabel": "lemma m1-lem-subdivision-crossing",
+          "kind": "lemma",
+          "source": "Finite real subdivision and passage words",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-finite-templates",
+          "role": "finite-real-subdivision-and-passage-words",
+          "label": "theorem m1-thm-finite-templates",
+          "fullLabel": "theorem m1-thm-finite-templates",
+          "kind": "theorem",
+          "source": "Finite real subdivision and passage words",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-terminal-reduction",
+          "role": "terminal-passages-and-their-independent-arguments",
+          "label": "theorem m1-thm-terminal-reduction",
+          "fullLabel": "theorem m1-thm-terminal-reduction",
+          "kind": "theorem",
+          "source": "Terminal passages and their independent arguments",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-thm-finite-templates"
+          ]
+        },
+        {
+          "id": "m1-lem-terminal-diagonal",
+          "role": "terminal-passages-and-their-independent-arguments",
+          "label": "lemma m1-lem-terminal-diagonal",
+          "fullLabel": "lemma m1-lem-terminal-diagonal",
+          "kind": "lemma",
+          "source": "Terminal passages and their independent arguments",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-terminal-tied-endpoints",
+          "role": "terminal-passages-and-their-independent-arguments",
+          "label": "lemma m1-lem-terminal-tied-endpoints",
+          "fullLabel": "lemma m1-lem-terminal-tied-endpoints",
+          "kind": "lemma",
+          "source": "Terminal passages and their independent arguments",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-terminal-ambient-extension",
+          "role": "terminal-passages-and-their-independent-arguments",
+          "label": "lemma m1-lem-terminal-ambient-extension",
+          "fullLabel": "lemma m1-lem-terminal-ambient-extension",
+          "kind": "lemma",
+          "source": "Terminal passages and their independent arguments",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-terminal-boundary-corners",
+          "role": "terminal-passages-and-their-independent-arguments",
+          "label": "lemma m1-lem-terminal-boundary-corners",
+          "fullLabel": "lemma m1-lem-terminal-boundary-corners",
+          "kind": "lemma",
+          "source": "Terminal passages and their independent arguments",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-projection-count",
+          "role": "projection-matching-and-the-cycle-count",
+          "label": "theorem m1-thm-projection-count",
+          "fullLabel": "theorem m1-thm-projection-count",
+          "kind": "theorem",
+          "source": "Projection, matching, and the cycle count",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-matching-system",
+          "role": "projection-matching-and-the-cycle-count",
+          "label": "theorem m1-thm-matching-system",
+          "fullLabel": "theorem m1-thm-matching-system",
+          "kind": "theorem",
+          "source": "Projection, matching, and the cycle count",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-thm-projection-count"
+          ]
+        },
+        {
+          "id": "m1-lem-counting-jet-lift",
+          "role": "projection-matching-and-the-cycle-count",
+          "label": "lemma m1-lem-counting-jet-lift",
+          "fullLabel": "lemma m1-lem-counting-jet-lift",
+          "kind": "lemma",
+          "source": "Projection, matching, and the cycle count",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-counting-cleared-closure",
+          "role": "projection-matching-and-the-cycle-count",
+          "label": "lemma m1-lem-counting-cleared-closure",
+          "fullLabel": "lemma m1-lem-counting-cleared-closure",
+          "kind": "lemma",
+          "source": "Projection, matching, and the cycle count",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-counting-graph-recovery",
+          "role": "projection-matching-and-the-cycle-count",
+          "label": "lemma m1-lem-counting-graph-recovery",
+          "fullLabel": "lemma m1-lem-counting-graph-recovery",
+          "kind": "lemma",
+          "source": "Projection, matching, and the cycle count",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-counting-rotation",
+          "role": "projection-matching-and-the-cycle-count",
+          "label": "lemma m1-lem-counting-rotation",
+          "fullLabel": "lemma m1-lem-counting-rotation",
+          "kind": "lemma",
+          "source": "Projection, matching, and the cycle count",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Two limit cycles for quintic Liénard systems",
+      "title": "Two limit cycles for quintic Liénard systems",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/two-limit-cycles-for-quintic-lienard-systems-September-24-2026/two-limit-cycles-for-quintic-lienard-systems-September-24-2026.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Two limit cycles for quintic Liénard systems.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-arc-data",
+          "role": "arc-coordinates-and-periodic-orbit-matching",
+          "label": "lemma m2-lem-arc-data",
+          "fullLabel": "lemma m2-lem-arc-data",
+          "kind": "lemma",
+          "source": "Arc coordinates and periodic-orbit matching",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-variation",
+          "role": "arc-coordinates-and-periodic-orbit-matching",
+          "label": "lemma m2-lem-variation",
+          "fullLabel": "lemma m2-lem-variation",
+          "kind": "lemma",
+          "source": "Arc coordinates and periodic-orbit matching",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-arc-scaling",
+          "role": "arc-coordinates-and-periodic-orbit-matching",
+          "label": "lemma m2-lem-arc-scaling",
+          "fullLabel": "lemma m2-lem-arc-scaling",
+          "kind": "lemma",
+          "source": "Arc coordinates and periodic-orbit matching",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-axis-extension",
+          "role": "arc-coordinates-and-periodic-orbit-matching",
+          "label": "lemma m2-lem-axis-extension",
+          "fullLabel": "lemma m2-lem-axis-extension",
+          "kind": "lemma",
+          "source": "Arc coordinates and periodic-orbit matching",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-cycle-matching",
+          "role": "arc-coordinates-and-periodic-orbit-matching",
+          "label": "proposition m2-prop-cycle-matching",
+          "fullLabel": "proposition m2-prop-cycle-matching",
+          "kind": "proposition",
+          "source": "Arc coordinates and periodic-orbit matching",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-fit-references",
+          "role": "quadratic-fitting-and-its-transport-law",
+          "label": "lemma m2-fit-references",
+          "fullLabel": "lemma m2-fit-references",
+          "kind": "lemma",
+          "source": "Quadratic fitting and its transport law",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-curvature-comparison",
+          "role": "quadratic-fitting-and-its-transport-law",
+          "label": "lemma m2-lem-curvature-comparison",
+          "fullLabel": "lemma m2-lem-curvature-comparison",
+          "kind": "lemma",
+          "source": "Quadratic fitting and its transport law",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Uniform bounds for planar polynomial limit cycles",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/uniform-bounds-for-planar-polynomial-limit-cycles-September-24-2026/uniform-bounds-for-planar-polynomial-limit-cycles-September-24-2026.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Two limit cycles for quintic Liénard systems",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/two-limit-cycles-for-quintic-lienard-systems-September-24-2026/two-limit-cycles-for-quintic-lienard-systems-September-24-2026.pdf",
+      "kind": "paper"
+    }
+  ]
+}

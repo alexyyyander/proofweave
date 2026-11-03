@@ -1,0 +1,689 @@
+{
+  "familyNumber": "033",
+  "familyTitle": "Iitaka subadditivity, variation, and logarithmic additivity",
+  "manuscripts": [
+    {
+      "id": "Orbifold-and-logarithmic-Iitaka-subadditivity-September-26-2026",
+      "title": "Orbifold and logarithmic Iitaka subadditivity",
+      "date": "2026-09-26",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Orbifold-and-logarithmic-Iitaka-subadditivity-September-26-2026/paper.pdf"
+    },
+    {
+      "id": "Logarithmic-Kodaira-dimension-and-whole-fiber-variation-September-26-2026",
+      "title": "Logarithmic Kodaira dimension and whole-fiber variation",
+      "date": "2026-09-26",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Logarithmic-Kodaira-dimension-and-whole-fiber-variation-September-26-2026/paper.pdf"
+    },
+    {
+      "id": "The-reverse-logarithmic-Kodaira-inequality-and-additivity-September-26-2026",
+      "title": "The reverse logarithmic Kodaira inequality and additivity",
+      "date": "2026-09-26",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-reverse-logarithmic-Kodaira-inequality-and-additivity-September-26-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "The relative Iitaka reduction and its Hodge line",
+    "The adjoint-addition principle",
+    "Adjoint positivity of an extreme Hodge line",
+    "Addition with a log-general-type fiber",
+    "Return to the original fibration and consequences",
+    "Minimal root covers for reduced boundaries",
+    "Supplementary projective calculations",
+    "The parameter field detected by logarithmic forms",
+    "The root cover and its Hodge line",
+    "A birational constancy criterion",
+    "General-type models over a logarithmic base",
+    "Markings and a constant finite normalization"
+  ],
+  "nodes": [
+    {
+      "id": "m1-main-orbifold",
+      "kind": "theorem",
+      "label": "Orbifold subadditivity",
+      "statement": "[Orbifold subadditivity] Let X be a smooth compact connected complex manifold in Fujiki class C , let be a rational SNC boundary, and let f:X Y be a surjective holomorphic map with connected fibers…",
+      "section": "Introduction",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-setup-log-modification",
+      "kind": "lemma",
+      "label": "Logarithmic modifications",
+      "statement": "[Logarithmic modifications] Let p:Z' Z be a proper bimeromorphic holomorphic map between smooth compact manifolds. Suppose that has simple normal crossing support and coefficients in , and set \\[…",
+      "section": "The relative Iitaka reduction and its Hodge line",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-setup-exceptional-descent",
+      "kind": "corollary",
+      "label": "Descent across exceptional centers",
+      "statement": "[Descent across exceptional centers] In the situation of , a meromorphic m -pluricanonical form on Z' satisfying the boundary bounds of m' at every nonexceptional prime descends to a section of…",
+      "section": "The relative Iitaka reduction and its Hodge line",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-setup-modification-compatibility",
+      "kind": "corollary",
+      "label": "Fibers, composition, and a fixed base",
+      "statement": "[Fibers, composition, and a fixed base] Let p:(Z',')(Z,) be a modification with the boundary rule of . Then: [label=( *)] If p is a modification over a fixed base, it induces a logarithmic…",
+      "section": "The relative Iitaka reduction and its Hodge line",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-setup-flattening",
+      "kind": "lemma",
+      "label": "Flattening and the exceptional reference",
+      "statement": "[Flattening and the exceptional reference] Let g_0:(Z_0,_0) T_0 be a fibration from a smooth compact pair with rational SNC boundary in [0,1] to a smooth compact manifold. There are a smooth-base…",
+      "section": "The relative Iitaka reduction and its Hodge line",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-setup-simultaneous",
+      "kind": "corollary",
+      "label": "Simultaneous model control",
+      "statement": "[Simultaneous model control] Suppose a smooth pair (X_1,_1) has a fibration f_1:X_1 Y to a fixed smooth base, and every prime divisor contracted by f_1 into codimension at least two has coefficient…",
+      "section": "The relative Iitaka reduction and its Hodge line",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-application-relative-iitaka",
+      "kind": "lemma",
+      "label": "Relative Iitaka construction",
+      "statement": "[Relative Iitaka construction] Let \\(f:(X,) Y\\) be a fibration between smooth compact manifolds in Fujiki class \\( C\\), with \\(\\) a rational SNC boundary in \\([0,1]\\). Suppose that \\[ k=(F,K_F+_F) 0…",
+      "section": "The relative Iitaka reduction and its Hodge line",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-rankone-comparison",
+      "kind": "proposition",
+      "label": "The rank-one comparison",
+      "statement": "[The rank-one comparison] Let g:(X,) W be a fibration with connected fibers from a smooth compact K\\\"ahler manifold to a smooth compact manifold in class C . Suppose that is an SNC boundary with…",
+      "section": "The relative Iitaka reduction and its Hodge line",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-rankone-eigenspace",
+      "kind": "lemma",
+      "label": "The tautological form spans the root-character part of F^dH^d( G H,) on a…",
+      "statement": "The tautological form spans the root-character part of F^dH^d( G H,) on a general fiber of the cyclic cover. In particular, that part has dimension one.",
+      "section": "The relative Iitaka reduction and its Hodge line",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-rankone-descent",
+      "kind": "lemma",
+      "label": "A positive tensor power of these local Hodge lines is the highest Hodge line of…",
+      "statement": "A positive tensor power of these local Hodge lines is the highest Hodge line of a complex direct summand of a global real-polarizable integral pure variation on W^ .",
+      "section": "The relative Iitaka reduction and its Hodge line",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-rankone-extension",
+      "kind": "lemma",
+      "label": "The projection of the rank-one top eigenspace to its nonzero pure weight grade…",
+      "statement": "The projection of the rank-one top eigenspace to its nonzero pure weight grade is an isomorphism on canonical extensions after unipotentization. Consequently it is an isomorphism of parabolic…",
+      "section": "The relative Iitaka reduction and its Hodge line",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-application-composition",
+      "kind": "lemma",
+      "label": "Composition of inf-multiplicity bounds",
+      "statement": "[Composition of inf-multiplicity bounds] Suppose that \\(XgWhY\\) is a diagram of surjective maps between smooth spaces, and \\(,T,C\\) are rational boundaries on these spaces. If \\[ T B(g,), C B(h g,),…",
+      "section": "The relative Iitaka reduction and its Hodge line",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-period-adjoint",
+      "kind": "theorem",
+      "label": "Adjoint-positivity input",
+      "statement": "[Adjoint-positivity input] Let B be a smooth compact connected manifold in class C and B^ B a dense Zariski open set with SNC complement. Let V be a pure real-polarizable variation of Hodge…",
+      "section": "The adjoint-addition principle",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-generaltype-addition",
+      "kind": "proposition",
+      "label": "Let \\(h V Y\\) be a surjective holomorphic map with connected fibers between…",
+      "statement": "Let \\(h V Y\\) be a surjective holomorphic map with connected fibers between smooth compact complex manifolds in Fujiki class \\( C\\). Let \\(T\\) and \\(C\\) be effective rational divisors with simple…",
+      "section": "The adjoint-addition principle",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-application-weak-effectivity",
+      "kind": "lemma",
+      "label": "Effectivity after a big base twist",
+      "statement": "[Effectivity after a big base twist] Let p:(W,T) S be surjective, with W smooth compact in class C , S smooth projective, and T a rational SNC boundary. Suppose one fixed divisible relative log…",
+      "section": "The adjoint-addition principle",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-addition-principle",
+      "kind": "proposition",
+      "label": "Adjoint addition",
+      "statement": "[Adjoint addition] Let h:W Y be a fibration between smooth compact manifolds in class C . Let T,C be rational SNC boundaries with C B(h,T) , and suppose every prime of W whose image has codimension…",
+      "section": "The adjoint-addition principle",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-period-numerics",
+      "kind": "lemma",
+      "label": "Curvature and numerical dimension",
+      "statement": "[Curvature and numerical dimension] Let T be a smooth compact Kähler manifold, let E T be a simple normal crossing divisor, and let A be the parabolic extension of the rank-one highest step of a…",
+      "section": "Adjoint positivity of an extreme Hodge line",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-period-boundary",
+      "kind": "lemma",
+      "label": "Restriction to a boundary component",
+      "statement": "[Restriction to a boundary component] In the unipotent case of , let E_i be a smooth boundary component and N_i its monodromy logarithm. On the open stratum of E_i , the limiting highest line occurs…",
+      "section": "Adjoint positivity of an extreme Hodge line",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-period-adjoint-reduction",
+      "kind": "lemma",
+      "label": "Rational adjoint reduction",
+      "statement": "[Rational adjoint reduction] In the setting of , let G be the identity component of the rational Zariski closure of monodromy. Then G is semisimple. Its adjoint local system is a rationally polarized…",
+      "section": "Adjoint positivity of an extreme Hodge line",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-period-stabilizer",
+      "kind": "lemma",
+      "label": "Generic stabilizers of adjoint periods",
+      "statement": "[Generic stabilizers of adjoint periods] Let G be a connected semisimple adjoint group over , and let A_ be a rationally polarized integral variation whose fiber is g_ =Lie(G) and whose connected…",
+      "section": "Adjoint positivity of an extreme Hodge line",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-period-quotient",
+      "kind": "proposition",
+      "label": "The projective period quotient",
+      "statement": "[The projective period quotient] In , after modifications there is a map p:B' S with connected fibers to a smooth projective variety and a nef rational line P with ^*L=p^*P . On a dense open subset…",
+      "section": "Adjoint positivity of an extreme Hodge line",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-period-rankloss",
+      "kind": "lemma",
+      "label": "Strict loss of rank at the marked boundary",
+      "statement": "[Strict loss of rank at the marked boundary] For every component D_i of D , (P|_ D_i )<(P).",
+      "section": "Adjoint positivity of an extreme Hodge line",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-period-subtract",
+      "kind": "lemma",
+      "label": "Let Z be a smooth projective variety, J a nef rational divisor, A a rational…",
+      "statement": "Let Z be a smooth projective variety, J a nef rational divisor, A a rational divisor, and D=_ i=1 ^s d_iE_i an effective rational divisor with smooth prime components. Suppose A+D is big and \\[ (J|_…",
+      "section": "Adjoint positivity of an extreme Hodge line",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-generaltype-selection",
+      "kind": "lemma",
+      "label": "Let \\(Y\\) be an irreducible compact complex space. For each positive integer…",
+      "statement": "Let \\(Y\\) be an irreducible compact complex space. For each positive integer \\(j\\), suppose that \\(q_j Q_j Y\\) is a proper surjective map from an irreducible compact complex space and that, over a…",
+      "section": "Addition with a log-general-type fiber",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-generaltype-stable-comparison",
+      "kind": "lemma",
+      "label": "Analytic comparison with a stable family",
+      "statement": "[Analytic comparison with a stable family] Let \\(h V Y\\) be a surjective holomorphic map with connected fibers, where \\(V\\) is a smooth compact Kähler manifold and \\(Y\\) is a smooth compact manifold…",
+      "section": "Addition with a log-general-type fiber",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-generaltype-stable-orders",
+      "kind": "lemma",
+      "label": "In the situation of , pull back a holomorphic section of a divisible multiple…",
+      "statement": "In the situation of , pull back a holomorphic section of a divisible multiple of \\(K_ V/R + A\\), and compare it with relative pluriforms on the main component of \\(V_Y Y'\\). It satisfies the…",
+      "section": "Addition with a log-general-type fiber",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-generaltype-relative-system",
+      "kind": "lemma",
+      "label": "Under the hypotheses of , there is a positive integer \\(b_0\\) and a…",
+      "statement": "Under the hypotheses of , there is a positive integer \\(b_0\\) and a finite-dimensional space \\[ S H^0_ mer (V, O_V(b_0K_ V/Y )) \\] whose associated meromorphic map has rank \\( F\\) on general…",
+      "section": "Addition with a log-general-type fiber",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-generaltype-expose-valuation",
+      "kind": "lemma",
+      "label": "Let \\(h V Y\\) be a proper surjective holomorphic map of irreducible compact…",
+      "statement": "Let \\(h V Y\\) be a proper surjective holomorphic map of irreducible compact complex spaces, with \\(Y\\) smooth. If a prime divisor \\(E\\) of a smooth \\(V\\) does not dominate \\(Y\\), there is a…",
+      "section": "Addition with a log-general-type fiber",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-spec-base-comparison",
+      "kind": "lemma",
+      "label": "Comparison with a logarithmic base",
+      "statement": "[Comparison with a logarithmic base] Let f:(X,) Y be a fibration of smooth compact complex manifolds, where has rational coefficients in [0,1] and simple normal crossing support. Let D_Y be a reduced…",
+      "section": "Return to the original fibration and consequences",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-spec-logarithmic",
+      "kind": "corollary",
+      "label": "Logarithmic subadditivity",
+      "statement": "[Logarithmic subadditivity] Let f:X Y be a surjective morphism with connected fibers between smooth connected projective complex varieties. Let D_X,D_Y be reduced simple normal crossing divisors,…",
+      "section": "Return to the original fibration and consequences",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-spec-ordinary",
+      "kind": "corollary",
+      "label": "Ordinary subadditivity in characteristic zero",
+      "statement": "[Ordinary subadditivity in characteristic zero] Let k be an algebraically closed field of characteristic zero, and let f:X Y be a surjective morphism with connected fibers between smooth connected…",
+      "section": "Return to the original fibration and consequences",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-spec-core-dimension",
+      "kind": "corollary",
+      "label": "Kodaira dimension along the core",
+      "statement": "[Kodaira dimension along the core] Let (X,) be a smooth compact orbifold pair in Fujiki class C , with rational simple normal crossing boundary coefficients in [0,1] . Let C=C(X,) be its core base…",
+      "section": "Return to the original fibration and consequences",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-spec-core-tower",
+      "kind": "corollary",
+      "label": "Campana's decomposition of the core",
+      "statement": "[Campana's decomposition of the core] Let (X,) be as in Corollary~ , and set n= X . Starting from (X,) , successively take the -rational quotient r and the Moishezon--Iitaka fibration M of its stable…",
+      "section": "Return to the original fibration and consequences",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-lem-reduced-cyclic-top",
+      "kind": "lemma",
+      "label": "The cyclic cover of a logarithmic Kodaira-zero pair",
+      "statement": "[The cyclic cover of a logarithmic Kodaira-zero pair] Let (J,D) be a smooth geometrically integral projective pair over a field K of characteristic zero. Assume that D is reduced and has simple…",
+      "section": "Minimal root covers for reduced boundaries",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-cor-reduced-integral-moduli",
+      "kind": "corollary",
+      "label": "An integral pure realization of the moduli line",
+      "statement": "[An integral pure realization of the moduli line] Let x:X W be a projective fibration between smooth complex projective varieties, with geometrically integral generic fiber J . Let D_X be a reduced…",
+      "section": "Minimal root covers for reduced boundaries",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-lem-rankone-normalization",
+      "kind": "lemma",
+      "label": "Normalization of the rank-one boundary",
+      "statement": "[Normalization of the rank-one boundary] Let x:X' W be a projective fibration on smooth models, let D' be an effective reduced SNC divisor, and suppose that its geometric generic fiber (J,D_J) has…",
+      "section": "Minimal root covers for reduced boundaries",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-lem-normalized-models",
+      "kind": "lemma",
+      "label": "Permitted models after normalization",
+      "statement": "[Permitted models after normalization] Suppose that (W,T) is smooth with effective SNC rational boundary and that the moduli divisor M is a rational Cartier divisor on W . For a smooth modification…",
+      "section": "Minimal root covers for reduced boundaries",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-p1logcbfalt-section-test",
+      "kind": "lemma",
+      "label": "Divisorial section test",
+      "statement": "[Divisorial section test] Let \\(V\\) be normal and \\(D\\) an integral Weil divisor. A rational section belongs to \\(H^0(V,D)\\) if and only if it satisfies the corresponding order inequality at every…",
+      "section": "Supplementary projective calculations",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-p1logcbfalt-finite",
+      "kind": "lemma",
+      "label": "Finite pullback",
+      "statement": "[Finite pullback] If \\(:V' V\\) is a dominant generically finite morphism of normal projective varieties and \\(D\\) is a rational Cartier divisor on \\(V\\), then \\[ (V',^*D)=(V,D). \\] If \\((V,D)=0\\),…",
+      "section": "Supplementary projective calculations",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-p1logcbfalt-log-pullback",
+      "kind": "lemma",
+      "label": "Logarithmic pullback",
+      "statement": "[Logarithmic pullback] Let \\(:V Y\\) be a dominant generically finite morphism of smooth projective varieties. Let \\(D_Y\\) be a reduced snc divisor, and let \\(B\\) be a boundary on \\(V\\) satisfying…",
+      "section": "Supplementary projective calculations",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-p1logcbfalt-iitaka",
+      "kind": "lemma",
+      "label": "Relative Iitaka fibration",
+      "statement": "[Relative Iitaka fibration] Let \\(p:V B\\) be a dominant projective morphism, with \\(V\\) smooth projective, and let \\(D\\) be a rational divisor whose restriction to the geometric generic fiber has…",
+      "section": "Supplementary projective calculations",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m1-p1logcbfalt-easy-addition",
+      "kind": "lemma",
+      "label": "Easy addition",
+      "statement": "[Easy addition] Let \\(p:V B\\) be dominant and projective, with \\(V\\) smooth projective and integral very general fiber \\(G\\), and let \\(D\\) be a rational divisor on \\(V\\). Then \\[ (V,D) B+(G,D|_G).…",
+      "section": "Supplementary projective calculations",
+      "manuscript": "Orbifold and logarithmic Iitaka subadditivity"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Logarithmic variation",
+      "statement": "[Logarithmic variation] Let f:U V be a projective surjective morphism with connected fibers between smooth connected quasi-projective complex varieties. Assume (V)0 , and let F be its geometric…",
+      "section": "Introduction",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-thm-projective-variation",
+      "kind": "corollary",
+      "label": "Projective Iitaka--Viehweg inequality",
+      "statement": "[Projective Iitaka--Viehweg inequality] Let f:X Y be a surjective morphism with connected fibers between smooth connected projective complex varieties, with (Y)0 . For its geometric generic fiber F ,…",
+      "section": "Introduction",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-cor-nonuniruled-rigidity",
+      "kind": "corollary",
+      "label": "Variation and birational isotriviality",
+      "statement": "[Variation and birational isotriviality] Let f:U V be a smooth projective surjection with connected fibers between smooth connected complex quasi-projective varieties. Assume that every closed fiber…",
+      "section": "Introduction",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-spec-logarithmic",
+      "kind": "theorem",
+      "label": "Reduced-SNC logarithmic subadditivity",
+      "statement": "[Reduced-SNC logarithmic subadditivity] Let f:X Y be a surjective morphism with connected fibers between smooth connected projective complex varieties. Let D_X,D_Y be reduced simple normal crossing…",
+      "section": "The parameter field detected by logarithmic forms",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-prelim-sections",
+      "kind": "lemma",
+      "label": "Exceptional section comparison",
+      "statement": "[Exceptional section comparison] Let \\((X,)\\) be a smooth pair with effective SNC rational boundary of coefficients at most one. Let \\(:X' X\\) be a smooth log resolution, and let \\('\\) be the strict…",
+      "section": "The parameter field detected by logarithmic forms",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-num-finite",
+      "kind": "lemma",
+      "label": "Finite pullback",
+      "statement": "[Finite pullback] If :V' V is a dominant generically finite morphism of normal projective varieties and D is a rational Cartier divisor on V , then \\[ (V',^*D)=(V,D). \\]",
+      "section": "The parameter field detected by logarithmic forms",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-prelim-generic",
+      "kind": "lemma",
+      "label": "Fields, sections, and specialization",
+      "statement": "[Fields, sections, and specialization] For a proper variety and a line bundle, global sections and their multiplication maps commute with extension of the ground field. Consequently Iitaka dimension…",
+      "section": "The parameter field detected by logarithmic forms",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-prelim-addition",
+      "kind": "lemma",
+      "label": "Upper addition and interpolation",
+      "statement": "[Upper addition and interpolation] For a projective fibration \\(u:T R\\) and a rational divisor \\(D\\) with nonempty divisible section systems, the dimension of its section-system image is at most the…",
+      "section": "The parameter field detected by logarithmic forms",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-it-compactification",
+      "kind": "lemma",
+      "label": "There are smooth connected projective compactifications X and Y of U and V ,…",
+      "statement": "There are smooth connected projective compactifications X and Y of U and V , respectively, and a surjective morphism X Y with connected fibers extending f , such that the reduced divisors \\[ D_X=X U,…",
+      "section": "The parameter field detected by logarithmic forms",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-it-diagram",
+      "kind": "proposition",
+      "label": "There are smooth connected projective varieties X_*,X',W,Z , a birational…",
+      "statement": "There are smooth connected projective varieties X_*,X',W,Z , a birational morphism X' X_* , and morphisms \\[ X'xWgY, h:W Z, q=h x, \\] with the following properties. [label=( *)] The variety X_* is a…",
+      "section": "The parameter field detected by logarithmic forms",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-it-contraction",
+      "kind": "lemma",
+      "label": "For very general z Z , the form in induces nonzero sections of m(K_ W_z…",
+      "statement": "For very general z Z , the form in induces nonzero sections of m(K_ W_z +D_W^0|_ W_z ) by contraction with suitable p_1 tangent directions at z . In particular, \\[ (W_z,K_ W_z +D_W^0|_ W_z )0. \\]",
+      "section": "The parameter field detected by logarithmic forms",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-it-zerofiber",
+      "kind": "lemma",
+      "label": "Let J be the smooth geometric generic fiber of x , or a simultaneous very…",
+      "statement": "Let J be the smooth geometric generic fiber of x , or a simultaneous very general complex fiber. Then (W_z,K_ W_z +D_W^0|_ W_z )=0, (J)=(J,K_J+D'|_J)=0. The source-fiber equalities hold on the same…",
+      "section": "The parameter field detected by logarithmic forms",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-it-dimensions",
+      "kind": "proposition",
+      "label": "The models of Proposition~ may be chosen together with smooth connected…",
+      "statement": "The models of Proposition~ may be chosen together with smooth connected projective varieties S,T_0 and morphisms in the commutative diagram [column sep=large,row sep=large] X' & W & Z \\\\ Y & S & T_0…",
+      "section": "The parameter field detected by logarithmic forms",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-ro-root",
+      "kind": "lemma",
+      "label": "The root cover",
+      "statement": "[The root cover] Let p be the least positive integer for which H^0(J,pK_J)0 . A generator _J determines a geometrically connected cyclic cover of J . Every smooth projective resolution J of its…",
+      "section": "The root cover and its Hodge line",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-hodge-extensions",
+      "kind": "lemma",
+      "label": "Parabolic extension",
+      "statement": "[Parabolic extension] Let P be smooth projective, let D be a reduced SNC divisor, and let L^ be the highest line of a polarized integral pure variation on P D . Its rational parabolic extension L is…",
+      "section": "The root cover and its Hodge line",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-ro-divisors",
+      "kind": "proposition",
+      "label": "Divisorial normalization",
+      "statement": "[Divisorial normalization] For a prime divisor P on W , and for a prime divisor Q on the actual source X' dominating P , set m_Q&=_Q(x^*P), r_Q=1p_Q(_J), d_Q=coeff_Q(D'),\\\\ t_P&=_ Q P\\ on X' r_Q+d_Q…",
+      "section": "The root cover and its Hodge line",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-ro-zero-boundary",
+      "kind": "corollary",
+      "label": "A zero boundary coefficient",
+      "statement": "[A zero boundary coefficient] If an actual coefficient B_P in Proposition~ is zero, some actual source component Q over P satisfies d_Q=0, m_Q=1, 1+r_Q m_Q =_ Q' P 1+r_ Q' m_ Q' . The same conclusion…",
+      "section": "The root cover and its Hodge line",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-ro-metric",
+      "kind": "proposition",
+      "label": "The Hodge order",
+      "statement": "[The Hodge order] At every prime P of W , the parabolic order of the root form is _P-1 . Consequently M_ _P(_P-1)P, T_ B+M.",
+      "section": "The root cover and its Hodge line",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-ro-extraction",
+      "kind": "lemma",
+      "label": "Extracting source divisorial valuations",
+      "statement": "[Extracting source divisorial valuations] Let T_* be a fixed smooth projective model of the source of a dominant rational map to a smooth projective variety R . After resolving the map, making a…",
+      "section": "The root cover and its Hodge line",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-ro-transfer",
+      "kind": "proposition",
+      "label": "The Iitaka-fiber section bound",
+      "statement": "[The Iitaka-fiber section bound] The models in Proposition~ can be chosen, with the divisors of Proposition~ recomputed on them, so that (W_z,K_ W_z +B|_ W_z +M|_ W_z )0 for very general z Z . The…",
+      "section": "The root cover and its Hodge line",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-period-adjoint",
+      "kind": "theorem",
+      "label": "Full-period adjoint comparison",
+      "statement": "[Full-period adjoint comparison] Let B be a smooth compact connected manifold in Fujiki class C , and let B^ B be a dense Zariski open whose complement is an SNC divisor. Let V be a real-polarizable…",
+      "section": "The root cover and its Hodge line",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-hd-adjoint",
+      "kind": "proposition",
+      "label": "Projective adjoint comparison",
+      "statement": "[Projective adjoint comparison] Let P be smooth connected projective, let D be reduced SNC, and let L be the rational parabolic extension of the entire highest Hodge line of a polarizable integral…",
+      "section": "The root cover and its Hodge line",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-ro-weak-addition",
+      "kind": "lemma",
+      "label": "Paying for a weak-positivity twist",
+      "statement": "[Paying for a weak-positivity twist] Let a:T_1 R be a surjective morphism between smooth connected projective varieties. Let be an effective rational SNC boundary with coefficients in [0,1] , and let…",
+      "section": "The root cover and its Hodge line",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-ro-trivial",
+      "kind": "proposition",
+      "label": "Triviality on the Iitaka fiber",
+      "statement": "[Triviality on the Iitaka fiber] For very general z Z , M|_ W_z _ 0, (W_z,K_ W_z +B|_ W_z )=0. These assertions also hold on the geometric generic h -fiber.",
+      "section": "The root cover and its Hodge line",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-hodge-degree-zero",
+      "kind": "corollary",
+      "label": "Degree zero on a curve",
+      "statement": "[Degree zero on a curve] In Lemma~ , suppose that P is a smooth projective curve. If L=0 , the projective highest-line map is constant on the connected universal cover of P D . Equivalently, L^ is a…",
+      "section": "The root cover and its Hodge line",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-lem-finite-character",
+      "kind": "corollary",
+      "label": "Finite character of a line",
+      "statement": "[Finite character of a line] Let V be a polarized integral variation of Hodge structures on a connected smooth complex algebraic variety. Every rank-one complex local subsystem of V_ has finite…",
+      "section": "The root cover and its Hodge line",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-hodge-restricted-character",
+      "kind": "corollary",
+      "label": "Restriction and finite character",
+      "statement": "[Restriction and finite character] Let T be a connected smooth complex algebraic variety mapping into the domain of a polarized integral pure variation whose entire highest Hodge step is a line. If…",
+      "section": "The root cover and its Hodge line",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-ro-flat-character",
+      "kind": "corollary",
+      "label": "Flatness and finite character on the Iitaka fiber",
+      "statement": "[Flatness and finite character on the Iitaka fiber] For very general z Z , the projective entire top line of the restricted root-cover variation is constant on the connected good locus of W_z , and…",
+      "section": "The root cover and its Hodge line",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-cc-criterion",
+      "kind": "theorem",
+      "label": "Birational constancy over a curve",
+      "statement": "[Birational constancy over a curve] Let ^:P^ C^ be a smooth projective morphism with connected fibers, where C^ is a smooth connected complex algebraic curve. Suppose that its very general fiber D…",
+      "section": "A birational constancy criterion",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-cc-preparation",
+      "kind": "lemma",
+      "label": "After a finite change of the curve there are a smooth projective curve C , a…",
+      "statement": "After a finite change of the curve there are a smooth projective curve C , a smooth projective variety P of dimension n+1 , and a projective morphism :P C whose restriction over a nonempty open is…",
+      "section": "A birational constancy criterion",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-cc-operator",
+      "kind": "lemma",
+      "label": "A meromorphic differential operator",
+      "statement": "[A meromorphic differential operator] The vector field v extends meromorphically to a neighborhood of each general fiber, with poles bounded by E . After shrinking the base disk, it is the symbol of…",
+      "section": "A birational constancy criterion",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-cc-zeros",
+      "kind": "lemma",
+      "label": "The pullback of to a resolution of every irreducible component of E is zero.",
+      "statement": "The pullback of to a resolution of every irreducible component of E is zero.",
+      "section": "A birational constancy criterion",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-cc-loci",
+      "kind": "corollary",
+      "label": "Constant-line loci",
+      "statement": "[Constant-line loci] Let : P B be a smooth projective morphism with connected fibers over a smooth connected complex algebraic variety. Let T B be a connected smooth algebraic locus on which the very…",
+      "section": "A birational constancy criterion",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-ro-constancy",
+      "kind": "proposition",
+      "label": "Constancy in the h -fiber directions",
+      "statement": "[Constancy in the h -fiber directions] For very general z Z , the geometric generic fiber of the J -family over W_z is birational to the base change of a smooth projective variety over . More…",
+      "section": "A birational constancy criterion",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-num-boundary",
+      "kind": "lemma",
+      "label": "The inverse boundary",
+      "statement": "[The inverse boundary] Let D_I be a reduced SNC divisor on I . Then \\[ R_p+(p^*D_I)_ p^*D_I. \\] If B is an effective rational boundary satisfying B(p^*D_I)_ , it follows that K_H+B=K_ V_p…",
+      "section": "General-type models over a logarithmic base",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-num-alteration",
+      "kind": "lemma",
+      "label": "Comparison at the original divisors",
+      "statement": "[Comparison at the original divisors] Let C be an effective rational horizontal boundary on H , log smooth over the generic point of I , and fix a finite extension of k(I) . After enlarging it to a…",
+      "section": "General-type models over a logarithmic base",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-num-model-pair",
+      "kind": "proposition",
+      "label": "Model-pair variation over a logarithmic base",
+      "statement": "[Model-pair variation over a logarithmic base] Let B be an effective rational SNC boundary on H , and let D_I be a reduced SNC divisor on I , such that \\[ B(p^*D_I)_ , (I,K_I+D_I)0. \\] Suppose the…",
+      "section": "General-type models over a logarithmic base",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    },
+    {
+      "id": "m2-mk-setup",
+      "kind": "lemma",
+      "label": "Let H_0,I,P_0 be the geometric generic fibers over T_0 of W,S,Z , respectively.…",
+      "statement": "Let H_0,I,P_0 be the geometric generic fibers over T_0 of W,S,Z , respectively. Write B_0 and D_I for the restrictions of B and D_S . These are smooth projective varieties over b , with the indicated…",
+      "section": "Markings and a constant finite normalization",
+      "manuscript": "Logarithmic Kodaira dimension and whole-fiber variation"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-period-quotient",
+      "to": "m1-period-adjoint",
+      "label": "period:quotient",
+      "context": "[Proof of \\Cref{period:adjoint}] Apply \\Cref{period:quotient}. If its target is a point there is nothing further to prove. Otherwise mark the divisor $D$ as above. The adjoint va"
+    }
+  ]
+}

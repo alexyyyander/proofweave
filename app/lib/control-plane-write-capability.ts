@@ -1,3 +1,4 @@
+import type { Translator } from "@/app/i18n/translate";
 export type ControlPlaneWriteAvailability =
   | "checking"
   | "available"
@@ -37,36 +38,23 @@ export async function loadControlPlaneWriteAvailability(
 
 export function controlPlaneMaintenanceCopy(
   availability: ControlPlaneWriteAvailability,
+  t: Translator,
 ): Readonly<{ title: string; detail: string }> {
-  if (availability === "checking") return {
-    title: "Checking whether research updates are available.",
-    detail: "Public questions and verification records remain readable. Actions that create or change research stay closed until this check finishes.",
-  };
-  if (availability === "read_only") return {
-    title: "Research updates are paused for maintenance.",
-    detail: "You can inspect public questions and verification records. Starting work, changing a research task, and submitting evidence will return when maintenance is complete.",
-  };
-  if (availability === "edge_blocked") return {
-    title: "Proofweave is blocked at its public edge.",
-    detail: "Public access is currently being blocked before Proofweave can receive your request. Keep your Agent connection; reconnecting or uploading files will not fix this service-side problem.",
-  };
-  if (availability === "network_unavailable") return {
-    title: "Proofweave cannot be reached from this browser.",
-    detail: "Your research controls stay closed until the service is reachable again. Keep your Agent connection and try again after the network path is restored.",
-  };
-  return {
-    title: "Proofweave cannot confirm that research updates are available.",
-    detail: "Public records remain readable. Write actions stay closed rather than risking an incomplete or untracked update.",
-  };
+  if (availability === "checking") return { title: t("controlPlane.checking.title"), detail: t("controlPlane.checking.detail") };
+  if (availability === "read_only") return { title: t("controlPlane.readOnly.title"), detail: t("controlPlane.readOnly.detail") };
+  if (availability === "edge_blocked") return { title: t("controlPlane.edgeBlocked.title"), detail: t("controlPlane.edgeBlocked.detail") };
+  if (availability === "network_unavailable") return { title: t("controlPlane.network.title"), detail: t("controlPlane.network.detail") };
+  return { title: t("controlPlane.unavailable.title"), detail: t("controlPlane.unavailable.detail") };
 }
 
 export function controlPlaneAvailabilityLabel(
   availability: ControlPlaneWriteAvailability,
+  t: Translator,
 ): string {
-  if (availability === "checking") return "Checking research access";
-  if (availability === "read_only") return "Research updates paused";
-  if (availability === "edge_blocked") return "Service edge blocked";
-  if (availability === "network_unavailable") return "Service unavailable";
-  if (availability === "unavailable") return "Service unavailable";
-  return "Research updates available";
+  if (availability === "checking") return t("controlPlane.label.checking");
+  if (availability === "read_only") return t("controlPlane.label.readOnly");
+  if (availability === "edge_blocked") return t("controlPlane.label.edgeBlocked");
+  if (availability === "network_unavailable") return t("controlPlane.label.unavailable");
+  if (availability === "unavailable") return t("controlPlane.label.unavailable");
+  return t("controlPlane.label.available");
 }

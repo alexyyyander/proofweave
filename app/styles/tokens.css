@@ -5,7 +5,7 @@
   --type-body: 14px;
   --type-caption: 12px;
   --type-control: 14px;
-  --font-editorial: Georgia, "Times New Roman", serif;
+  --font-editorial: Georgia, "Times New Roman", "Songti SC", "Noto Serif CJK SC", serif;
   --page-content-width: 1120px;
   --type-page-title: 40px;
   --type-page-description: 16px;
@@ -13,7 +13,9 @@
   --type-page-meta: 13px;
   --ink: #152239;
   --ink-soft: #45546a;
-  --ink-faint: #718096;
+  /* Faint labels stay at or above WCAG AA (4.5:1) on every light surface
+     token; the worst case is 4.73:1 on the #eae8df demo sections. */
+  --ink-faint: #5b6678;
   --navy: #0b1830;
   --paper: #fbfaf6;
   --paper-deep: #f1efe7;
@@ -83,6 +85,6 @@
 
 /* next/font variables live on body; aliases must resolve in that scope. */
 body {
-  --font-ui: var(--font-geist-sans), Arial, Helvetica, sans-serif;
-  --font-code: var(--font-geist-mono), monospace;
+  --font-ui: var(--font-geist-sans), Arial, Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  --font-code: var(--font-geist-mono), "SFMono-Regular", Menlo, "Noto Sans Mono CJK SC", monospace;
 }

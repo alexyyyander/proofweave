@@ -1,0 +1,290 @@
+{
+  "familyNumber": "116",
+  "familyTitle": "Uniform black-box noncommutative identity testing across characteristics",
+  "manuscripts": [
+    {
+      "id": "Uniform-Matrix-Hitting-Points-in-Every-Positive-Characteristic-October-4-2026",
+      "title": "Uniform Matrix Hitting Points in Every Positive Characteristic",
+      "date": "2026-10-04",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Uniform-Matrix-Hitting-Points-in-Every-Positive-Characteristic-October-4-2026/uniform-matrix-hitting-points-positive-characteristic.pdf"
+    },
+    {
+      "id": "One-Rational-Matrix-Hitting-Point-for-Noncommutative-Formulas-September-24-2026",
+      "title": "One Rational Matrix Hitting Point for Noncommutative Formulas",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/One-Rational-Matrix-Hitting-Point-for-Noncommutative-Formulas-September-24-2026/One-Rational-Matrix-Hitting-Point-for-Noncommutative-Formulas-September-24-2026.pdf"
+    },
+    {
+      "id": "Polynomial-Hitting-Lists-for-Noncommutative-Rational-Formulas-September-24-2026",
+      "title": "Polynomial Hitting Lists for Noncommutative Rational Formulas",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Polynomial-Hitting-Lists-for-Noncommutative-Rational-Formulas-September-24-2026/Polynomial-Hitting-Lists-for-Noncommutative-Rational-Formulas-September-24-2026.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Independent word series from a multiplicative shift",
+    "From formulas to finite shift systems",
+    "An order bound for multiplicative-shift systems",
+    "Truncation and construction over the prime field",
+    "A faithful encoding by iterated integrals",
+    "From formulas to differential systems",
+    "A bound on the order of vanishing",
+    "The rational hitting point",
+    "Rectangular tests from subspace expansion",
+    "Deformation inside a division algebra",
+    "Encoding a formula and its evaluation domain",
+    "A rational hitting list and its bit complexity",
+    "A universal rank-detecting list"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There is a deterministic Turing machine and absolute positive integers C,k with…",
+      "statement": "There is a deterministic Turing machine and absolute positive integers C,k with the following property. Given a prime p in binary and positive integers n,s in unary, the machine outputs a positive…",
+      "section": "Introduction",
+      "manuscript": "Uniform Matrix Hitting Points in Every Positive Characteristic"
+    },
+    {
+      "id": "m1-lem-poles",
+      "kind": "lemma",
+      "label": "A rational difference obstruction",
+      "statement": "[A rational difference obstruction] With K , , and b_1,,b_n as above, suppose \\[ _ i=1 ^n c_i b_i=(R)-R, c_i K, R K(z). \\] Then c_1==c_n=0 .",
+      "section": "Independent word series from a multiplicative shift",
+      "manuscript": "Uniform Matrix Hitting Points in Every Positive Characteristic"
+    },
+    {
+      "id": "m1-thm-words",
+      "kind": "proposition",
+      "label": "Word-series independence",
+      "statement": "[Word-series independence] For every field F and every positive integer n , the series (h_w)_ w\\ 1,,n\\ ^* in~ are linearly independent over F(t)(z) .",
+      "section": "Independent word series from a multiplicative shift",
+      "manuscript": "Uniform Matrix Hitting Points in Every Positive Characteristic"
+    },
+    {
+      "id": "m1-lem-acyclic-representation",
+      "kind": "lemma",
+      "label": "Coefficient representation of a path program",
+      "statement": "[Coefficient representation of a path program] Let F be a field, and let a path program with m 1 vertices have value f=_w f_w x_w . There are a row u F^ 1 m , a column v F^ m 1 , and strictly upper…",
+      "section": "From formulas to finite shift systems",
+      "manuscript": "Uniform Matrix Hitting Points in Every Positive Characteristic"
+    },
+    {
+      "id": "m1-lem-formula-representation",
+      "kind": "lemma",
+      "label": "Formula representation",
+      "statement": "[Formula representation] Let F be a field, and let f be computed by a noncommutative formula of size at most s , counting all vertices including scalar leaves. Then f is the value of an acyclic…",
+      "section": "From formulas to finite shift systems",
+      "manuscript": "Uniform Matrix Hitting Points in Every Positive Characteristic"
+    },
+    {
+      "id": "m1-prop-formula-system",
+      "kind": "proposition",
+      "label": "Shift system for a coefficient representation",
+      "statement": "[Shift system for a coefficient representation] Let F be a field of characteristic p and put K=F(t) . Suppose u F^ 1 m , v F^ m 1 , and strictly upper triangular B_1,,B_n_m(F) represent the…",
+      "section": "From formulas to finite shift systems",
+      "manuscript": "Uniform Matrix Hitting Points in Every Positive Characteristic"
+    },
+    {
+      "id": "m1-thm-order",
+      "kind": "theorem",
+      "label": "Order bound",
+      "statement": "[Order bound] Let K be a field, let K^ have infinite multiplicative order, and let be the automorphism of K((z)) that fixes K and sends z to z . Let m 1 and 0 be integers. Suppose that H_m(K[[z]])…",
+      "section": "An order bound for multiplicative-shift systems",
+      "manuscript": "Uniform Matrix Hitting Points in Every Positive Characteristic"
+    },
+    {
+      "id": "m1-lem-coefficient-descent",
+      "kind": "lemma",
+      "label": "Descent by a finite coefficient ring",
+      "statement": "[Descent by a finite coefficient ring] Let k be a field, let n,N,E1 , and let V_1,,V_n_N(k[t]_ (t) ) . Reduce their entries modulo t^E , and replace each resulting entry by its matrix of…",
+      "section": "Truncation and construction over the prime field",
+      "manuscript": "Uniform Matrix Hitting Points in Every Positive Characteristic"
+    },
+    {
+      "id": "m1-cor-path-programs",
+      "kind": "corollary",
+      "label": "There is a deterministic algorithm which, on input (bin(p),1^n,1^m) with p…",
+      "statement": "There is a deterministic algorithm which, on input (bin(p),1^n,1^m) with p prime and n,m1 , outputs a tuple in _d(_p)^n detecting every nonzero polynomial computed by an acyclic…",
+      "section": "Truncation and construction over the prime field",
+      "manuscript": "Uniform Matrix Hitting Points in Every Positive Characteristic"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "There is a deterministic algorithm which, given integers n,s1 , constructs a…",
+      "statement": "There is a deterministic algorithm which, given integers n,s1 , constructs a tuple \\[ T_ n,s _d()^n, d 2ns^2, \\] in time polynomial in n,s , measured in bit operations. The numerators and…",
+      "section": "Introduction",
+      "manuscript": "One Rational Matrix Hitting Point for Noncommutative Formulas"
+    },
+    {
+      "id": "m2-lem-word-independence",
+      "kind": "lemma",
+      "label": "Linear independence of the word series",
+      "statement": "[Linear independence of the word series] For every integer n1 , every integer D0 , and every characteristic-zero field F , the series \\[ \\ h_w: w is a word on [n],\\ |w| D\\ \\] are linearly independent…",
+      "section": "A faithful encoding by iterated integrals",
+      "manuscript": "One Rational Matrix Hitting Point for Noncommutative Formulas"
+    },
+    {
+      "id": "m2-lem-formula-representation",
+      "kind": "lemma",
+      "label": "Acyclic coefficient representation",
+      "statement": "[Acyclic coefficient representation] Let F be a field, and let f F x_1,,x_n be computed by a fan-in-two formula with at most s gates, counting leaves. There are an integer m 2s , a row u F^ 1 m , a…",
+      "section": "From formulas to differential systems",
+      "manuscript": "One Rational Matrix Hitting Point for Noncommutative Formulas"
+    },
+    {
+      "id": "m2-prop-formula-system",
+      "kind": "proposition",
+      "label": "The system associated to a formula",
+      "statement": "[The system associated to a formula] Let F have characteristic zero, and let 0 f F x_1,,x_n have a formula of size at most s . There are m2s , a nonzero constant row u , a constant column v , and an…",
+      "section": "From formulas to differential systems",
+      "manuscript": "One Rational Matrix Hitting Point for Noncommutative Formulas"
+    },
+    {
+      "id": "m2-lem-wronskian",
+      "kind": "lemma",
+      "label": "Let F be a field of characteristic zero and let V F[[z]] be a vector space of…",
+      "statement": "Let F be a field of characteristic zero and let V F[[z]] be a vector space of finite positive dimension k over F . There is a basis b_1,,b_k of V with distinct orders 0 a_1<<a_k . For this basis,…",
+      "section": "A bound on the order of vanishing",
+      "manuscript": "One Rational Matrix Hitting Point for Noncommutative Formulas"
+    },
+    {
+      "id": "m2-thm-multiplicity",
+      "kind": "theorem",
+      "label": "Multiplicity estimate of Moura",
+      "statement": "[Multiplicity estimate of Moura] Let F be a field of characteristic zero, and let n,m1 . Suppose that q F[z] has degree n and q(0)0 , that PMat_m(F[z]) has entries of degree at most n-1 , and that \\[…",
+      "section": "A bound on the order of vanishing",
+      "manuscript": "One Rational Matrix Hitting Point for Noncommutative Formulas"
+    },
+    {
+      "id": "m2-prop-path-programs",
+      "kind": "proposition",
+      "label": "For every pair of integers n,m1 , the matrices in , with \\[ d=(n-1) m2+m, \\]…",
+      "statement": "For every pair of integers n,m1 , the matrices in , with \\[ d=(n-1) m2+m, \\] form a rational hitting point for the following class over every characteristic-zero field F : nonzero polynomials f=_w…",
+      "section": "The rational hitting point",
+      "manuscript": "One Rational Matrix Hitting Point for Noncommutative Formulas"
+    },
+    {
+      "id": "m3-thm-main",
+      "kind": "theorem",
+      "label": "There are a deterministic Turing machine G and fixed positive integers C,k with…",
+      "statement": "There are a deterministic Turing machine G and fixed positive integers C,k with the following property. Given 1^n,1^s , where n,s1 , the machine outputs a finite list H_ n,s of n -tuples of rational…",
+      "section": "Introduction",
+      "manuscript": "Polynomial Hitting Lists for Noncommutative Rational Formulas"
+    },
+    {
+      "id": "m3-prop-rectangular",
+      "kind": "proposition",
+      "label": "Rectangular rank bound",
+      "statement": "[Rectangular rank bound] Let 1 q B and A_0,,A_n_q() . Suppose that, for some extension field E/ , some integer e1 , and some X_1,,X_n_e(E) , the matrix \\[ A_0 I_e+_ i=1 ^n A_i X_i \\] is invertible.…",
+      "section": "Rectangular tests from subspace expansion",
+      "manuscript": "Polynomial Hitting Lists for Noncommutative Rational Formulas"
+    },
+    {
+      "id": "m3-lem-wronskian-orders",
+      "kind": "lemma",
+      "label": "Wronskian order bound",
+      "statement": "[Wronskian order bound] With the notation above, at the w=n+1 points 0,,n one has _ i=0 ^n_ j=1 ^h d_ ij h(d-1)+wh 2 .",
+      "section": "Rectangular tests from subspace expansion",
+      "manuscript": "Polynomial Hitting Lists for Noncommutative Rational Formulas"
+    },
+    {
+      "id": "m3-lem-integral-reduction",
+      "kind": "lemma",
+      "label": "Integral bases of Laurent-series subspaces",
+      "statement": "[Integral bases of Laurent-series subspaces] Every k -dimensional subspace U F^D has a basis u_1,,u_k O^D whose reductions are linearly independent. For such a basis, U O^D=_ j=1 ^k O u_j, _ U=k.",
+      "section": "Rectangular tests from subspace expansion",
+      "manuscript": "Polynomial Hitting Lists for Noncommutative Rational Formulas"
+    },
+    {
+      "id": "m3-lem-small-expansion",
+      "kind": "lemma",
+      "label": "Small-subspace expansion",
+      "statement": "[Small-subspace expansion] For every k -dimensional subspace U P_N(F) with 1 k B , _F(_ i=0 ^n T_iU)>(w-1)k.",
+      "section": "Rectangular tests from subspace expansion",
+      "manuscript": "Polynomial Hitting Lists for Noncommutative Rational Formulas"
+    },
+    {
+      "id": "m3-lem-division-lift",
+      "kind": "lemma",
+      "label": "A matrix lift into a division algebra",
+      "statement": "[A matrix lift into a division algebra] Let d 1 , let K be a field of characteristic zero, and let K be a primitive d th root of unity. On the standard basis e_0,,e_ d-1 of K^d , with subscripts…",
+      "section": "Deformation inside a division algebra",
+      "manuscript": "Polynomial Hitting Lists for Noncommutative Rational Formulas"
+    },
+    {
+      "id": "m3-prop-pencil-deformation",
+      "kind": "proposition",
+      "label": "Full-rank deformed pencils",
+      "statement": "[Full-rank deformed pencils] Fix a primitive M th root of unity , and lift the padded matrices R_0(t),,R_n(t) by Lemma~ with d=M and K=()(t) . Let \\[ L(x)=A_0+_ i=1 ^n A_i x_i, A_i_q(), 1 q B, \\] be…",
+      "section": "Deformation inside a division algebra",
+      "manuscript": "Polynomial Hitting Lists for Noncommutative Rational Formulas"
+    },
+    {
+      "id": "m3-lem-invertible-witness",
+      "kind": "lemma",
+      "label": "An invertible witness for a nonzero formula",
+      "statement": "[An invertible witness for a nonzero formula] Every admissible nonzero rational formula over has a defined evaluation at matrices over an extension field of for which its value is invertible.",
+      "section": "Deformation inside a division algebra",
+      "manuscript": "Polynomial Hitting Lists for Noncommutative Rational Formulas"
+    },
+    {
+      "id": "m3-lem-formula-realization",
+      "kind": "lemma",
+      "label": "Affine realization of a subtree",
+      "statement": "[Affine realization of a subtree] For each subtree h there are an affine pencil L_h of order q_h , a constant rational row u_h of length q_h , and a constant rational column v_h of length q_h , such…",
+      "section": "Encoding a formula and its evaluation domain",
+      "manuscript": "Polynomial Hitting Lists for Noncommutative Rational Formulas"
+    },
+    {
+      "id": "m3-prop-formula-certificates",
+      "kind": "proposition",
+      "label": "Pencil certificates for the original formula tree",
+      "statement": "[Pencil certificates for the original formula tree] Let be a formula of size at most s , and put B=2s+1 . Form the indexed collection C_ consisting of L_h for every inverse-node occurrence h of ,…",
+      "section": "Encoding a formula and its evaluation domain",
+      "manuscript": "Polynomial Hitting Lists for Noncommutative Rational Formulas"
+    },
+    {
+      "id": "m3-prop-generator-hitting",
+      "kind": "proposition",
+      "label": "Every nonzero admissible formula of size at most~ s has a defined, invertible…",
+      "statement": "Every nonzero admissible formula of size at most~ s has a defined, invertible evaluation at a tuple in~ H_ n,s .",
+      "section": "A rational hitting list and its bit complexity",
+      "manuscript": "Polynomial Hitting Lists for Noncommutative Rational Formulas"
+    },
+    {
+      "id": "m3-cor-pencil-hitting",
+      "kind": "corollary",
+      "label": "Let L=A_0+_ i=1 ^n A_i x_i be a rational affine linear pencil of order q B that…",
+      "statement": "Let L=A_0+_ i=1 ^n A_i x_i be a rational affine linear pencil of order q B that admits an invertible matrix evaluation over an extension field of~ . There is a tuple X H_ n,s for which L(X) is…",
+      "section": "A rational hitting list and its bit complexity",
+      "manuscript": "Polynomial Hitting Lists for Noncommutative Rational Formulas"
+    },
+    {
+      "id": "m3-prop-generator-complexity",
+      "kind": "proposition",
+      "label": "The list H_ n,s can be constructed and written by one deterministic Turing…",
+      "statement": "The list H_ n,s can be constructed and written by one deterministic Turing machine in a number of bit operations bounded by a fixed polynomial in n+s+1 . Its entire binary encoding has length bounded…",
+      "section": "A rational hitting list and its bit complexity",
+      "manuscript": "Polynomial Hitting Lists for Noncommutative Rational Formulas"
+    },
+    {
+      "id": "m3-cor-rank-detecting-list",
+      "kind": "corollary",
+      "label": "Let a,b1 and k0 , and put P=a+b+k+1 . From these parameters in unary, a…",
+      "statement": "Let a,b1 and k0 , and put P=a+b+k+1 . From these parameters in unary, a deterministic generator constructs a nonempty finite list R_ a,b,k of pairs \\[ (e,X), e1, X=(X_1,,X_k)_e()^k, \\] in a fixed…",
+      "section": "A universal rank-detecting list",
+      "manuscript": "Polynomial Hitting Lists for Noncommutative Rational Formulas"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m3-prop-generator-hitting",
+      "to": "m3-thm-main",
+      "label": "prop:generator-hitting",
+      "context": "[Completion of the proof of Theorem~\\ref{thm:main}] Use the generator just defined. Proposition~\\ref{prop:generator-hitting} gives the universal hitting property, with invertible and therefore nonzero output values. Proposition~\\ref{prop:genera"
+    }
+  ]
+}

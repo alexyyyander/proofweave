@@ -1,0 +1,688 @@
+{
+  "familyNumber": "002",
+  "familyTitle": "The full BSD formula from low Selmer corank",
+  "manuscripts": [
+    {
+      "id": "Exact-Birch-Swinnerton-Dyer-Formula-from-Low-Selmer-Corank-October-7-2026",
+      "title": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank",
+      "date": "2026-10-07",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Exact-Birch-Swinnerton-Dyer-Formula-from-Low-Selmer-Corank-October-7-2026/exact-bsd-low-selmer-corank.pdf"
+    },
+    {
+      "id": "The-Selmer-converse-for-elliptic-curves-at-every-prime-October-7-2026",
+      "title": "The Selmer converse for elliptic curves at every prime",
+      "date": "2026-10-07",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Selmer-converse-for-elliptic-curves-at-every-prime-October-7-2026/main.pdf"
+    },
+    {
+      "id": "The-two-primary-Birch-Swinnerton-Dyer-formula-in-Selmer-corank-at-most-one-October-6-2026",
+      "title": "The two-primary Birch–Swinnerton-Dyer formula in Selmer corank at most one",
+      "date": "2026-10-06",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-two-primary-Birch-Swinnerton-Dyer-formula-in-Selmer-corank-at-most-one-October-6-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Arithmetic inputs and exact normalizations",
+    "Integral cohomology and determinant comparisons",
+    "Auxiliary primes and residual concentration",
+    "The single-curve determinant and its central value",
+    "The analytic series and the pair comparison",
+    "Theta congruences at a characteristic-zero point",
+    "Content at a character and extraction of a primitive class",
+    "Removing the divisors of the integral quotient",
+    "The central value and the exact formula",
+    "Arithmetic reduction and conventions",
+    "A tame deformation and its Selmer length"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Let E/ be an elliptic curve and let q be any prime. If s_q(E)\\ 0,1\\ , then \\[…",
+      "statement": "Let E/ be an elliptic curve and let q be any prime. If s_q(E)\\ 0,1\\ , then \\[ r(E)=a(E)=s_q(E), \\#(E/)<, \\] and, with r=r(E) and the preceding normalizations, L^ (r) (E,1) r! = _E_E\\,\\#(E/) _ finite…",
+      "section": "Introduction",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-classical-low-corank",
+      "kind": "theorem",
+      "label": "Unrestricted low-corank converse",
+      "statement": "[Unrestricted low-corank converse] For every elliptic curve A/ , every prime q , and u\\ 0,1\\ , the equality s_q(A)=u implies \\[ a(A)=r(A)=u, \\#(A/)<. \\]",
+      "section": "Arithmetic inputs and exact normalizations",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-classical-two-primary",
+      "kind": "theorem",
+      "label": "Two-primary leading term",
+      "statement": "[Two-primary leading term] For every elliptic curve A/ with s_2(A)1 , the quotient Q_A of , with the total real period and the full-lattice regulator of , is a positive rational number, and \\[…",
+      "section": "Arithmetic inputs and exact normalizations",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-classical-analytic-low-rank",
+      "kind": "theorem",
+      "label": "Analytic rank zero and one",
+      "statement": "[Analytic rank zero and one] If an elliptic curve A/ has a(A)1 , then r(A)=a(A) and the entire group (A/) is finite.",
+      "section": "Arithmetic inputs and exact normalizations",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-classical-isogeny",
+      "kind": "proposition",
+      "label": "Isogeny invariance",
+      "statement": "[Isogeny invariance] Suppose A and A' are isogenous elliptic curves over of analytic rank at most one. Then \\[ Q_A \\#(A/) = Q_ A' \\#(A'/) . \\] In particular X(A)=X(A') . Over a number field, the…",
+      "section": "Arithmetic inputs and exact normalizations",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-classical-twist-density",
+      "kind": "theorem",
+      "label": "Analytic twist densities",
+      "statement": "[Analytic twist densities] For every elliptic curve A/ , among nonzero squarefree integers d ordered by |d| , the twists A^d of analytic rank zero and one each have density 1/2 . Consequently the set…",
+      "section": "Arithmetic inputs and exact normalizations",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-classical-auxiliary-fields",
+      "kind": "lemma",
+      "label": "Compatible auxiliary fields",
+      "statement": "[Compatible auxiliary fields] Let E/ have conductor N and analytic rank r\\ 0,1\\ . There exist coprime negative odd fundamental discriminants D,D'<-4 such that, for \\[ K=( D), F=(DD'), L=( D,D'), \\]…",
+      "section": "Arithmetic inputs and exact normalizations",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-classical-gross-zagier",
+      "kind": "theorem",
+      "label": "Split Gross--Zagier normalization",
+      "statement": "[Split Gross--Zagier normalization] With the preceding conventions, D odd fundamental, (D,N)=1 , all level primes split, and O_K^=\\ 1\\ , one has d_K 8^2(f,f)_N L'(f/K,1) &=2H_ abs,f (P_X), \\\\…",
+      "section": "Arithmetic inputs and exact normalizations",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-classical-discrepancy-identity",
+      "kind": "proposition",
+      "label": "Full-index discrepancy identity",
+      "statement": "[Full-index discrepancy identity] Assume L(E/K,s) has a simple zero under the hypotheses of Theorem~ . Then Q_E \\#(E/) Q_ E^D \\#(E^D/) =[E(K): P_K]^2 c_E^2_ c_(E)^2\\,\\#(E/K) . The index on the right…",
+      "section": "Arithmetic inputs and exact normalizations",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-models-finite-models",
+      "kind": "lemma",
+      "label": "Finite models and marked operations",
+      "statement": "[Finite models and marked operations] Consider continuous-cochain diagrams over finite local Artin rings of p -power characteristic, with finite free coefficient modules and compatible coefficient…",
+      "section": "Integral cohomology and determinant comparisons",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-models-orthogonality",
+      "kind": "lemma",
+      "label": "Exact local complements",
+      "statement": "[Exact local complements] Let paired perfect local maps U_v L_v and U'_v L'_v have a specified nullhomotopy of their cup restriction. Suppose the induced morphism \\[ L'_v/U'_v U_v^ \\] is an…",
+      "section": "Integral cohomology and determinant comparisons",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-models-evaluations",
+      "kind": "lemma",
+      "label": "Evaluation detection",
+      "statement": "[Evaluation detection] Let G_R(M) be an unrestricted limiting global model as in Lemma~ . After any field specialization, including R(_p[[ u]]) , its degree-one cohomology injects into abstract…",
+      "section": "Integral cohomology and determinant comparisons",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-models-line-switch",
+      "kind": "lemma",
+      "label": "Line switch",
+      "statement": "[Line switch] Over a DVR A with residue field k , suppose local finite and transverse coordinates are split free lines in degree one, with perfect mixed pairing. The lower condition contains all H^0…",
+      "section": "Integral cohomology and determinant comparisons",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-models-square-switch",
+      "kind": "lemma",
+      "label": "Square switch",
+      "statement": "[Square switch] In the preceding local diagram over a DVR A with residue field k , let F,S be split free planes. Retain all H^0 in the lower condition and omit H^2 from the upper condition. Assume…",
+      "section": "Integral cohomology and determinant comparisons",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-models-strict-finite",
+      "kind": "lemma",
+      "label": "Strict versus finite conditions",
+      "statement": "[Strict versus finite conditions] At a split pair w, w , let C_* be strict at w and full at w , and let C_F impose exactly complementary finite conditions U_w,U_ w . Keep all other conditions fixed…",
+      "section": "Integral cohomology and determinant comparisons",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-models-haar",
+      "kind": "lemma",
+      "label": "Local Haar factors",
+      "statement": "[Local Haar factors] For the minimal differential, write P_(1)=L_(E,1)^ -1 , _= E(_)[p^] , and _ _E E(_p)=p^l_p . Then _=v_p(c_ P_(1))( p), _p-l=v_p(c_pP_p(1)). The connected real period _0 on a…",
+      "section": "Integral cohomology and determinant comparisons",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-models-kummer-volume",
+      "kind": "lemma",
+      "label": "Global Kummer volume",
+      "statement": "[Global Kummer volume] Let K be imaginary quadratic, suppose E(K) has rank one and (E/K) is finite, and let C_ Kum impose the full integral Kummer conditions. Put _g=v_p(\\#E(K)_ tors ) and…",
+      "section": "Integral cohomology and determinant comparisons",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-models-series-division",
+      "kind": "lemma",
+      "label": "Division from high characters",
+      "statement": "[Division from high characters] Let O be one of these complete integer DVRs and let L,B O[[t, u]] . Suppose L0( ,t) , where is a uniformizer. If, for every sufficiently high finite p -power character…",
+      "section": "Integral cohomology and determinant comparisons",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-models-poles",
+      "kind": "lemma",
+      "label": "Persistence of poles",
+      "statement": "[Persistence of poles] Suppose integral stage numerators and denominators in a genuine variable converge coefficientwise along the ultrafilter, with nonzero limiting denominator. If every stage…",
+      "section": "Integral cohomology and determinant comparisons",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-models-field-points",
+      "kind": "lemma",
+      "label": "Points on a horizontal divisor",
+      "statement": "[Points on a horizontal divisor] For a characteristic-zero height-one divisor in a bounded _p -power-series ring, finitely many functions nonzero on that divisor can be kept nonzero at a point whose…",
+      "section": "Integral cohomology and determinant comparisons",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-vertical-auxiliary-tuples",
+      "kind": "lemma",
+      "label": "Auxiliary tuples",
+      "statement": "[Auxiliary tuples] For any finite list of fixed split support and test primes, the tame tuple may be chosen to have the following properties. Its limiting elliptic Frobenius actions have determinant…",
+      "section": "Auxiliary primes and residual concentration",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-vertical-tests",
+      "kind": "proposition",
+      "label": "Residual concentration",
+      "statement": "[Residual concentration] After adjoining finitely many more tame variables, the separate rational and imaginary tuples satisfy ll (a)&G_RR_ (p) is a free line in degree one;\\\\[2pt] (b)&L_w,L'_w0(p,t)…",
+      "section": "Auxiliary primes and residual concentration",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-vertical-scalar-localization",
+      "kind": "lemma",
+      "label": "Scalar localization",
+      "statement": "[Scalar localization] For the constant roots coefficient, global degree-two localization is injective on these residual tests. In particular a cup of two paired classes which is locally zero has a…",
+      "section": "Auxiliary primes and residual concentration",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-vertical-parity",
+      "kind": "lemma",
+      "label": "Conjugate parity",
+      "statement": "[Conjugate parity] For an absolutely simple residual elliptic plane over K , each one-sided strict space above has even dimension. The same alternation statement holds on characteristic-zero…",
+      "section": "Auxiliary primes and residual concentration",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-vertical-lift-test",
+      "kind": "lemma",
+      "label": "Necessary first-order lift test",
+      "statement": "[Necessary first-order lift test] Let x be an old strict class and d a class in its paired opposite space. Choose a primitive u of their scalar cup, du=x d . For whole spaces of such classes, fix…",
+      "section": "Auxiliary primes and residual concentration",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-vertical-obstruction-span",
+      "kind": "lemma",
+      "label": "Obstruction span",
+      "statement": "[Obstruction span] For the residual tests above, finitely many new tame directions have necessary lift matrices whose linear span contains every s(s+a) matrix over k_r in the rational problem, every…",
+      "section": "Auxiliary primes and residual concentration",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-vertical-enlargement",
+      "kind": "lemma",
+      "label": "Preservation under enlargement",
+      "statement": "[Preservation under enlargement] Property~ (b) persists when further tame primes are adjoined, provided each has a nonzero Frobenius exponent in the preceding artificial variables. On setting the new…",
+      "section": "Auxiliary primes and residual concentration",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-vertical-horizontal-directions",
+      "kind": "lemma",
+      "label": "Directions at horizontal tests",
+      "statement": "[Directions at horizontal tests] Fix finitely many characteristic-zero height-one field tests of a tuple satisfying~ (b), with at least two old artificial variables. One may adjoin finitely many tame…",
+      "section": "Auxiliary primes and residual concentration",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-single-relative-lattice",
+      "kind": "lemma",
+      "label": "The relative lattice",
+      "statement": "[The relative lattice] Relative pullback and Poincare duality give an integral Galois map \\[ H^1(Y_1(L_0),_p)(1) T. \\] For \\(A=1\\), an integral combination \\(=_ n__\\) of finitely many symbols…",
+      "section": "The single-curve determinant and its central value",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-single-siegel-traces",
+      "kind": "proposition",
+      "label": "Integrality and traces",
+      "statement": "[Integrality and traces] The classes just constructed are integral away from \\(pn_2\\) and compatible with division traces and with corestriction as the \\(p\\)-part of \\(M\\) grows with \\(A,c,d,\\)…",
+      "section": "The single-curve determinant and its central value",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-single-kato-calibration",
+      "kind": "lemma",
+      "label": "Full-level calibration",
+      "statement": "[Full-level calibration] In square order, before projection to the elliptic curve, the dual exponential of is M^ -2 (c^2E_P-cE_ cP )(d^2E_Q-dE_ dQ )\\,dq q . The sign is determined by cup, pairing,…",
+      "section": "The single-curve determinant and its central value",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-single-period-law",
+      "kind": "proposition",
+      "label": "The period coordinate",
+      "statement": "[The period coordinate] In square or unfilled rectangular order, for every finite even character \\(\\) of conductor dividing \\(M\\), the coordinate of \\(^*(z_)\\) in \\(\\), in compatible field…",
+      "section": "The single-curve determinant and its central value",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-single-integral",
+      "kind": "proposition",
+      "label": "Integral normalized coordinate",
+      "statement": "[Integral normalized coordinate] The generic cohomology of \\(G\\) is a line in degree one, and \\(z\\) is nonzero on that line. If \\(U_0 R\\) is its coordinate in the inverse determinant relative to an…",
+      "section": "The single-curve determinant and its central value",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-single-line",
+      "kind": "lemma",
+      "label": "Line comparison for a smoothed system",
+      "statement": "[Line comparison for a smoothed system] In any of these three settings, suppose that the chosen square or rectangular system class \\(z_ sys \\) is generically nonzero. Then the global complex has a…",
+      "section": "The single-curve determinant and its central value",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-single-logarithm",
+      "kind": "proposition",
+      "label": "Exact logarithmic comparison",
+      "statement": "[Exact logarithmic comparison] If \\(_ s=1 L(E,s)=1\\) and \\(P E()\\) is nontorsion, then _ z_b (_ P)^2 = d_0L'(E,1) _0H(P) . The right-hand quotient is rational, and is interpreted in \\(_p\\). The…",
+      "section": "The single-curve determinant and its central value",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-single-height-direction",
+      "kind": "lemma",
+      "label": "A nonzero height direction",
+      "statement": "[A nonzero height direction] The horizontal sequence can be chosen to define bilinear tame heights whose rational limits satisfy \\[ h_^ K_b (P_1,P_2)=2h_^(P_1,P_2) (P_1,P_2 E()), h_^(P,P)0. \\] These…",
+      "section": "The single-curve determinant and its central value",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-single-cup",
+      "kind": "lemma",
+      "label": "Cup comparison",
+      "statement": "[Cup comparison] For the sequence of Lemma~ , Z'_ P =(2-a_*) _ z_b _ P h_^(P,P).",
+      "section": "The single-curve determinant and its central value",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-single-spectral",
+      "kind": "lemma",
+      "label": "Spectral-height identity",
+      "statement": "[Spectral-height identity] For the horizontal sequence just constructed, C_0_0L(f,1)Z' d_0 =(2-a_*) h_^ K_b (Q_X,Q_X) _ .",
+      "section": "The single-curve determinant and its central value",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-single-center",
+      "kind": "proposition",
+      "label": "Central coordinate",
+      "statement": "[Central coordinate] The element \\(U\\) of Proposition~ satisfies X(E)=v_p(U(0))0. This holds at every odd coefficient prime, for all reduction types and all residual representations of the non-CM…",
+      "section": "The single-curve determinant and its central value",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-pair-primitive",
+      "kind": "proposition",
+      "label": "Integral logarithmic primitive",
+      "statement": "[Integral logarithmic primitive] On the canonical ordinary locus define \\[ f^ [p] =(1-a_pV_p+p_pV_p^2)f, F_0=_ j d_ mod ^ (p-1)p^j-1 f^ [p] , F=_ q S^ P_q(V_q)F_0. \\] The limits are integral…",
+      "section": "The analytic series and the pair comparison",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-pair-interpolation",
+      "kind": "proposition",
+      "label": "Finite characters and the center",
+      "statement": "[Finite characters and the center] Let \\(\\) be a sufficiently high finite character of \\(\\), and let \\(_l=_\\) have primitive conductor \\(p^m\\). Put \\(=_s\\), and let \\(X\\) be the point with parameter…",
+      "section": "The analytic series and the pair comparison",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-pair-trace",
+      "kind": "lemma",
+      "label": "Removal of tame conductor variables",
+      "statement": "[Removal of tame conductor variables] Choose each new base disk by a descending isogeny from the preceding conductor. Setting a new tame variable equal to zero multiplies each single analytic series…",
+      "section": "The analytic series and the pair comparison",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-pair-descent",
+      "kind": "lemma",
+      "label": "Descent of the analytic ideals",
+      "statement": "[Descent of the analytic ideals] The principal ideals generated by \\(b_w^+\\), \\(b_w^-\\), \\(b_w^0\\), and \\(B_w\\) descend to \\(R\\). Each actual series differs from a generator over \\(R\\) by an integral…",
+      "section": "The analytic series and the pair comparison",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-pair-vertical-primitivity",
+      "kind": "proposition",
+      "label": "Vertical analytic primitivity",
+      "statement": "[Vertical analytic primitivity] For each of the tuples under consideration and either \\(p\\)-adic place, p B_w.",
+      "section": "The analytic series and the pair comparison",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-pair-finite-divisibility",
+      "kind": "proposition",
+      "label": "Divisibility at high finite characters",
+      "statement": "[Divisibility at high finite characters] For every sufficiently high finite \\(\\), B_w(, u) L_w(, u)A_'. With the same global character variable, the two nonzero quotients for \\(w\\) and \\( w\\) are…",
+      "section": "The analytic series and the pair comparison",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-pair-local-lines",
+      "kind": "lemma",
+      "label": "The two local Kummer lines",
+      "statement": "[The two local Kummer lines] At each \\(p\\)-adic place and after fixing \\(\\) as above, degree-one local cohomology splits over \\(A_\\) into a free Kummer line and its free complementary line. The…",
+      "section": "The analytic series and the pair comparison",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-pair-derivatives",
+      "kind": "lemma",
+      "label": "Inert derivative coordinates",
+      "statement": "[Inert derivative coordinates] There are fresh inert good prime sequences \\(\\), with \\(-1\\) and Tate Frobenius tending to \\(J=_T()\\) for complex conjugation \\(\\), for which the limiting local…",
+      "section": "The analytic series and the pair comparison",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-pair-integral-quotient",
+      "kind": "corollary",
+      "label": "The integral comparison quotient",
+      "statement": "[The integral comparison quotient] Using the descended analytic ideals, the fraction \\[ U_w=B_w/L_w \\] is represented by an integral series, and \\(p U_w\\). Removing any newly added tame variables…",
+      "section": "The analytic series and the pair comparison",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-theta-auxiliary-data",
+      "kind": "lemma",
+      "label": "Auxiliary tests",
+      "statement": "[Auxiliary tests] One may choose two sets of fixed finite theta data with the following properties. Their extra rational good primes requiring nonspherical target controls are split completely in L ,…",
+      "section": "Theta congruences at a characteristic-zero point",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-theta-test-point",
+      "kind": "lemma",
+      "label": "Choice of a point",
+      "statement": "[Choice of a point] Let p be a horizontal divisor on which b_w^0 vanishes. Fix a strict side for each of the two elliptic representations, and suppose both corresponding primitive strict cohomology…",
+      "section": "Theta congruences at a characteristic-zero point",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-theta-canonical-levels",
+      "kind": "lemma",
+      "label": "Canonical levels",
+      "statement": "[Canonical levels] At each finite depth s , the ordinary branch of the normalization in level J(s) on which the rank-three flag is multiplicative adds only finite etale character-group flags and…",
+      "section": "Theta congruences at a characteristic-zero point",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-theta-p-operators",
+      "kind": "lemma",
+      "label": "The two p -operators",
+      "statement": "[The two p -operators] For every i,m , the unnormalized right-coset operators U_j=[J(s_i)diag(1_j,p^ -1 1_ 4-j )J(s_i)] , j=2,3 , act on by p^2 . In weight (m,m,1;-1) the integral ordinary…",
+      "section": "Theta congruences at a characteristic-zero point",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-theta-cut-moments",
+      "kind": "lemma",
+      "label": "Bounded cuts of unary moments",
+      "statement": "[Bounded cuts of unary moments] Fix the integral position lattices, additive characters, Igusa frames, and the finite tests away from p used for a finite product of unary theta functions. Moving tame…",
+      "section": "Theta congruences at a characteristic-zero point",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-theta-integral-family",
+      "kind": "proposition",
+      "label": "Integral theta sections",
+      "statement": "[Integral theta sections] There is a fixed integer c0 such that p^c_ i,m is an integral ordinary section on the canonical branch, coefficientwise in O[G_i] . The same c works for all increasing…",
+      "section": "Theta congruences at a characteristic-zero point",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-theta-fourier-measure",
+      "kind": "lemma",
+      "label": "CM translations and bounded Fourier projection",
+      "statement": "[CM translations and bounded Fourier projection] Choose connected and etale Tate coordinates e_p,f_p at a split ordinary CM point. The translation n(j/p^b) gives the lattice \\[…",
+      "section": "Theta congruences at a characteristic-zero point",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-theta-toric-limit",
+      "kind": "proposition",
+      "label": "The toric weight limits",
+      "statement": "[The toric weight limits] At every fixed stage i , the periods P_ j,i (m) have coefficientwise limits as positive m tends to zero on the chosen p -adic branch and tends to infinity ordinarily. The…",
+      "section": "Theta congruences at a characteristic-zero point",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-theta-boundary-small",
+      "kind": "proposition",
+      "label": "Vanishing of all constant terms",
+      "statement": "[Vanishing of all constant terms] Assume b_w^0(z_0)=0 , and choose the auxiliary tests and local parameters of Lemma~ . After the fixed clearing of Proposition~ , weights m_i may be chosen so that…",
+      "section": "Theta congruences at a characteristic-zero point",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-extraction-theta-implication",
+      "kind": "proposition",
+      "label": "Theta implication",
+      "statement": "[Theta implication] Let p be a horizontal height-one prime of the deformation ring, with the auxiliary tuple conditions of Section~ . If b_w^0 p , then, over (R/ p) , at least one of \\[ H^1_ prim,a…",
+      "section": "Content at a character and extraction of a primitive class",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-extraction-content",
+      "kind": "lemma",
+      "label": "Content with the local controls",
+      "statement": "[Content with the local controls] There are controlled theta sections at z_0 , of weights m_i as above and depths s_i , whose constant terms tend uniformly to zero and whose ordinary positive…",
+      "section": "Content at a character and extraction of a primitive class",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-extraction-cusp",
+      "kind": "lemma",
+      "label": "Uniform cusp congruence",
+      "statement": "[Uniform cusp congruence] After one fixed reduction of precision, the sections in Lemma~ give finite integral operator orders T_i^0 on classical cusp spaces and maps \\[ _i^0: T_i^0 O_k/(p^ M_i ),…",
+      "section": "Content at a character and extraction of a primitive class",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-extraction-binary",
+      "kind": "lemma",
+      "label": "Binary separation at an inertia test",
+      "statement": "[Binary separation at an inertia test] On an actual system with _v0 , the generalized 1 -primary projection P_v^ bin of _(_v) is defined and satisfies \\[ (_()-1)P_v^ bin =0 ( I_v). \\] Together with…",
+      "section": "Content at a character and extraction of a primitive class",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-extraction-cyclotomic",
+      "kind": "lemma",
+      "label": "The cyclotomic corner",
+      "statement": "[The cyclotomic corner] The corner modules satisfy D_ xy =D_ xf D_ fy .",
+      "section": "Content at a character and extraction of a primitive class",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-extraction-no-line",
+      "kind": "lemma",
+      "label": "Exclusion of the last stable line at arbitrary depth",
+      "statement": "[Exclusion of the last stable line at arbitrary depth] The image of D_ fy is nonzero in every characteristic-zero field evaluation of the ambient ring. Consequently Fitt_ 0, T (D_ fy )=0 .",
+      "section": "Content at a character and extraction of a primitive class",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-unit-quotient-regularity",
+      "kind": "lemma",
+      "label": "At a horizontal height-one prime the primitive one-sided complexes are perfect…",
+      "statement": "At a horizontal height-one prime the primitive one-sided complexes are perfect of amplitude [1,2] and Euler characteristic zero. If M_ a,w is the determinant of their differential, then \\[ L_ 0,w…",
+      "section": "Removing the divisors of the integral quotient",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-unit-association",
+      "kind": "lemma",
+      "label": "Equality of the two quotient ideals",
+      "statement": "[Equality of the two quotient ideals] For every auxiliary tuple satisfying the preceding requirements, (U_w)=(U_ w ) in R .",
+      "section": "Removing the divisors of the integral quotient",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-unit-augmented-alternating",
+      "kind": "lemma",
+      "label": "Augmented alternating matrices",
+      "statement": "[Augmented alternating matrices] Let k have characteristic zero and let s1 . On \\[ W_s=Alt_s(k)Mat_ s,2 (k) \\] the locus where [A B] has rank less than s has codimension at least two. If s_0,s_1 are…",
+      "section": "Removing the divisors of the integral quotient",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-unit-tangent-minors",
+      "kind": "lemma",
+      "label": "First-order tests and formal codimension",
+      "statement": "[First-order tests and formal codimension] Let (A, m,k) be a regular local ring with chark=0 . Let D:A^s A^r , r s1 , have entries in m , and let D_1 be its linear part on the tangent space T_A=_k(…",
+      "section": "Removing the divisors of the integral quotient",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-unit-simultaneous-jumps",
+      "kind": "proposition",
+      "label": "The new tame directions can be chosen so that, for every such q , the following…",
+      "statement": "The new tame directions can be chosen so that, for every such q , the following two loci have codimension at least two in S_ ( q, y) : the locus where both one-sided primitive complexes for a single…",
+      "section": "Removing the divisors of the integral quotient",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-unit-unit-comparison",
+      "kind": "theorem",
+      "label": "The two quotients U_w are units. Their specialization with all artificial…",
+      "statement": "The two quotients U_w are units. Their specialization with all artificial variables zero gives an integral unit comparison between the analytic series and strict determinant on the true…",
+      "section": "Removing the divisors of the integral quotient",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-center-exact-factor",
+      "kind": "proposition",
+      "label": "Let C_w^ s=1 (0) be the actual central strict/full complex after all artificial…",
+      "statement": "Let C_w^ s=1 (0) be the actual central strict/full complex after all artificial variables have been removed. Its differential determinant satisfies -v_p(L_w^ s=1 (0)) &=d(C_w^ s=1 (0),1)\\\\…",
+      "section": "The central value and the exact formula",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-center-pair-discrepancy",
+      "kind": "corollary",
+      "label": "For every elliptic curve of analytic rank zero or one, including CM curves, and…",
+      "statement": "For every elliptic curve of analytic rank zero or one, including CM curves, and for the imaginary twist in Lemma~ , X(E)+X(E^D)=0.",
+      "section": "The central value and the exact formula",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-center-cm-zero",
+      "kind": "lemma",
+      "label": "If E/ has complex multiplication and L(E,1)0 , the exact BSD formula holds for…",
+      "statement": "If E/ has complex multiplication and L(E,1)0 , the exact BSD formula holds for E with the normalizations of Section~ .",
+      "section": "The central value and the exact formula",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m1-center-odd-valuations",
+      "kind": "proposition",
+      "label": "For every elliptic curve E/ of analytic rank zero or one and every odd prime p…",
+      "statement": "For every elliptic curve E/ of analytic rank zero or one and every odd prime p , \\[ v_p(Q_E)=v_p(\\#(E/)). \\]",
+      "section": "The central value and the exact formula",
+      "manuscript": "Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "The unrestricted low-corank Selmer converse",
+      "statement": "[The unrestricted low-corank Selmer converse] For every elliptic curve A_0/ , every prime p , and r\\ 0,1\\ , \\[ s_p(A_0)=r a(A_0)=_ A_0()=r, \\#(A_0/)<. \\] There is no restriction on reduction type,…",
+      "section": "Introduction",
+      "manuscript": "The Selmer converse for elliptic curves at every prime"
+    },
+    {
+      "id": "m2-thm-two-converse-input",
+      "kind": "theorem",
+      "label": "Established converse at 2",
+      "statement": "[Established converse at 2 ] If E/ is any elliptic curve and _ _2 _ 2^ (E/)=r\\ 0,1\\ , then \\[ _ s=1 L(E,s)= E()=r, (E/) is finite. \\]",
+      "section": "Arithmetic reduction and conventions",
+      "manuscript": "The Selmer converse for elliptic curves at every prime"
+    },
+    {
+      "id": "m2-thm-twist-density-input",
+      "kind": "theorem",
+      "label": "Established analytic twist-density theorem",
+      "statement": "[Established analytic twist-density theorem] For any elliptic curve E/ , among nonzero squarefree integers d ordered by |d| , the quadratic twists E^ (d) of analytic rank zero and one each have…",
+      "section": "Arithmetic reduction and conventions",
+      "manuscript": "The Selmer converse for elliptic curves at every prime"
+    },
+    {
+      "id": "m2-lem-auxiliary-fields",
+      "kind": "lemma",
+      "label": "There are coprime negative odd fundamental discriminants D,D' such that every…",
+      "statement": "There are coprime negative odd fundamental discriminants D,D' such that every prime dividing 2Np splits in both quadratic fields, \\[ (D |D'| )=1, \\] and each of A_0^D,A_0^ D' ,A_0^ DD' has the…",
+      "section": "Arithmetic reduction and conventions",
+      "manuscript": "The Selmer converse for elliptic curves at every prime"
+    },
+    {
+      "id": "m2-prop-arithmetic-reduction",
+      "kind": "proposition",
+      "label": "With these choices, \\[ H^1_f(K,V)=1, H^1_f(K,V^ DD' )=1. \\] The second line…",
+      "statement": "With these choices, \\[ H^1_f(K,V)=1, H^1_f(K,V^ DD' )=1. \\] The second line localizes nontrivially at both places of K over p . Let y A_0(K) be the norm of the conductor-one Heegner point under a…",
+      "section": "Arithmetic reduction and conventions",
+      "manuscript": "The Selmer converse for elliptic curves at every prime"
+    },
+    {
+      "id": "m2-lem-base-green",
+      "kind": "lemma",
+      "label": "If the compact Selmer line of W/K has nonzero localization, then H^1_…",
+      "statement": "If the compact Selmer line of W/K has nonzero localization, then H^1_ (K,W)=H^1_ (K,W)=0 . The only remaining possibility is the following strict case in the V summand: r=1 , and the compact Selmer…",
+      "section": "A tame deformation and its Selmer length",
+      "manuscript": "The Selmer converse for elliptic curves at every prime"
+    },
+    {
+      "id": "m2-prop-tame-primes",
+      "kind": "proposition",
+      "label": "There are rational primes q_i S , split completely in L , distinguished places…",
+      "statement": "There are rational primes q_i S , split completely in L , distinguished places q_i of K above them, cyclic p -quotients _i of the ring class group of conductor q_i , and surjections \\[ _i:G_K_i/p^…",
+      "section": "A tame deformation and its Selmer length",
+      "manuscript": "The Selmer converse for elliptic curves at every prime"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-classical-low-corank",
+      "to": "m1-thm-main",
+      "label": "classical:low-corank",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Apply the low-corank converse (Theorem~\\ref{classical:low-corank}) at the prime $q$ in the hypothesis. It gives $a(E)=r(E)=s_q(E)\\in\\{0,1\\}$ and finiteness of the whole $\\Sha(E/\\Q)$."
+    }
+  ]
+}

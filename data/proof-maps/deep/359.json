@@ -1,0 +1,702 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "359",
+  "title": "Negative Kähler curvature without bounded holomorphic coordinates",
+  "result": {
+    "id": "paper-result",
+    "label": "Negative Kähler curvature without bounded holomorphic coordinates",
+    "statement": "Constructs a contractible domain in ℂ 3 with a complete negatively pinched Kähler metric but no bounded holomorphic coordinates, disproving bounded-domain uniformization in this setting. A higher-dimensional example has sectional curvature at most −1 and only constant bounded holomorphic functions; its curvature is not bounded below.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-inputs-and-the-bounded-map-obstruction",
+      "label": "Two inputs and the bounded-map obstruction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "separated-homogeneous-peaks",
+      "label": "Separated homogeneous peaks",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "positive-representing-densities",
+      "label": "Positive representing densities",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "regularized-logarithmic-tests",
+      "label": "Regularized logarithmic tests",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-controlled-base-potential",
+      "label": "The controlled base potential",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-global-hartogs-metric",
+      "label": "The global Hartogs metric",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "curvature-on-real-two-planes",
+      "label": "Curvature on real two-planes",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "uniform-pinching-on-real-two-planes",
+      "label": "Uniform pinching on real two-planes",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-tube-transfer",
+      "label": "The tube transfer",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "polynomial-tests-for-bounded-holomorphic-functions",
+      "label": "Polynomial tests for bounded holomorphic functions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-fiber-legendre-transform-and-its-curvature",
+      "label": "The fiber Legendre transform and its curvature",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-spatially-varying-quiet-fiber-profile",
+      "label": "A spatially varying quiet fiber profile",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "radial-spatial-geometry-and-aligned-profiles",
+      "label": "Radial spatial geometry and aligned profiles",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "changing-the-fiber-center",
+      "label": "Changing the fiber center",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "assembly-of-the-complete-base",
+      "label": "Assembly of the complete base",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "A negatively pinched Kähler threefold without bounded holomorphic coordinates",
+      "title": "A negatively pinched Kähler threefold without bounded holomorphic coordinates",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-negatively-pinched-Kahler-threefold-without-bounded-holomorphic-coordinates-September-25-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from A negatively pinched Kähler threefold without bounded holomorphic coordinates.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-main-theorem",
+          "role": "introduction",
+          "label": "theorem m1-main-theorem",
+          "fullLabel": "theorem m1-main-theorem",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-base-existence",
+          "role": "two-inputs-and-the-bounded-map-obstruction",
+          "label": "proposition m1-base-existence",
+          "fullLabel": "proposition m1-base-existence",
+          "kind": "proposition",
+          "source": "Two inputs and the bounded-map obstruction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-metric-transfer",
+          "role": "two-inputs-and-the-bounded-map-obstruction",
+          "label": "proposition m1-metric-transfer",
+          "fullLabel": "proposition m1-metric-transfer",
+          "kind": "proposition",
+          "source": "Two inputs and the bounded-map obstruction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [],
+          "objectUses": [
+            "m1-metric-complete"
+          ]
+        },
+        {
+          "id": "m1-map-obstruction",
+          "role": "two-inputs-and-the-bounded-map-obstruction",
+          "label": "lemma m1-map-obstruction",
+          "fullLabel": "lemma m1-map-obstruction",
+          "kind": "lemma",
+          "source": "Two inputs and the bounded-map obstruction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-peaks-mean-criterion",
+          "role": "separated-homogeneous-peaks",
+          "label": "lemma m1-peaks-mean-criterion",
+          "fullLabel": "lemma m1-peaks-mean-criterion",
+          "kind": "lemma",
+          "source": "Separated homogeneous peaks",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-peaks-bounds",
+          "role": "separated-homogeneous-peaks",
+          "label": "lemma m1-peaks-bounds",
+          "fullLabel": "lemma m1-peaks-bounds",
+          "kind": "lemma",
+          "source": "Separated homogeneous peaks",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-peaks-patches",
+          "role": "separated-homogeneous-peaks",
+          "label": "lemma m1-peaks-patches",
+          "fullLabel": "lemma m1-peaks-patches",
+          "kind": "lemma",
+          "source": "Separated homogeneous peaks",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-peaks-profiles",
+          "role": "separated-homogeneous-peaks",
+          "label": "lemma m1-peaks-profiles",
+          "fullLabel": "lemma m1-peaks-profiles",
+          "kind": "lemma",
+          "source": "Separated homogeneous peaks",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-density-smooth",
+          "role": "positive-representing-densities",
+          "label": "lemma m1-density-smooth",
+          "fullLabel": "lemma m1-density-smooth",
+          "kind": "lemma",
+          "source": "Positive representing densities",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-density-main",
+          "role": "positive-representing-densities",
+          "label": "theorem m1-density-main",
+          "fullLabel": "theorem m1-density-main",
+          "kind": "theorem",
+          "source": "Positive representing densities",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-density-moments",
+          "role": "positive-representing-densities",
+          "label": "lemma m1-density-moments",
+          "fullLabel": "lemma m1-density-moments",
+          "kind": "lemma",
+          "source": "Positive representing densities",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-density-orbit-growth",
+          "role": "positive-representing-densities",
+          "label": "lemma m1-density-orbit-growth",
+          "fullLabel": "lemma m1-density-orbit-growth",
+          "kind": "lemma",
+          "source": "Positive representing densities",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-density-weighted-derivative",
+          "role": "positive-representing-densities",
+          "label": "lemma m1-density-weighted-derivative",
+          "fullLabel": "lemma m1-density-weighted-derivative",
+          "kind": "lemma",
+          "source": "Positive representing densities",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-density-normalized-patch",
+          "role": "positive-representing-densities",
+          "label": "lemma m1-density-normalized-patch",
+          "fullLabel": "lemma m1-density-normalized-patch",
+          "kind": "lemma",
+          "source": "Positive representing densities",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-tests-averaging",
+          "role": "regularized-logarithmic-tests",
+          "label": "lemma m1-tests-averaging",
+          "fullLabel": "lemma m1-tests-averaging",
+          "kind": "lemma",
+          "source": "Regularized logarithmic tests",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-tests-negative",
+          "role": "regularized-logarithmic-tests",
+          "label": "proposition m1-tests-negative",
+          "fullLabel": "proposition m1-tests-negative",
+          "kind": "proposition",
+          "source": "Regularized logarithmic tests",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-tests-later",
+          "role": "regularized-logarithmic-tests",
+          "label": "lemma m1-tests-later",
+          "fullLabel": "lemma m1-tests-later",
+          "kind": "lemma",
+          "source": "Regularized logarithmic tests",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-base-convergence",
+          "role": "the-controlled-base-potential",
+          "label": "lemma m1-base-convergence",
+          "fullLabel": "lemma m1-base-convergence",
+          "kind": "lemma",
+          "source": "The controlled base potential",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-base-minorant",
+          "role": "the-controlled-base-potential",
+          "label": "lemma m1-base-minorant",
+          "fullLabel": "lemma m1-base-minorant",
+          "kind": "lemma",
+          "source": "The controlled base potential",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-base-chart-estimates",
+          "role": "the-controlled-base-potential",
+          "label": "lemma m1-base-chart-estimates",
+          "fullLabel": "lemma m1-base-chart-estimates",
+          "kind": "lemma",
+          "source": "The controlled base potential",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-metric-complete",
+          "role": "the-global-hartogs-metric",
+          "label": "lemma m1-metric-complete",
+          "fullLabel": "lemma m1-metric-complete",
+          "kind": "lemma",
+          "source": "The global Hartogs metric",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-curv-tensor",
+          "role": "curvature-on-real-two-planes",
+          "label": "proposition m1-curv-tensor",
+          "fullLabel": "proposition m1-curv-tensor",
+          "kind": "proposition",
+          "source": "Curvature on real two-planes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-curv-real-plane",
+          "role": "curvature-on-real-two-planes",
+          "label": "lemma m1-curv-real-plane",
+          "fullLabel": "lemma m1-curv-real-plane",
+          "kind": "lemma",
+          "source": "Curvature on real two-planes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-curv-gram",
+          "role": "curvature-on-real-two-planes",
+          "label": "lemma m1-curv-gram",
+          "fullLabel": "lemma m1-curv-gram",
+          "kind": "lemma",
+          "source": "Curvature on real two-planes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-curv-errors",
+          "role": "curvature-on-real-two-planes",
+          "label": "lemma m1-curv-errors",
+          "fullLabel": "lemma m1-curv-errors",
+          "kind": "lemma",
+          "source": "Curvature on real two-planes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pinch-algebra",
+          "role": "uniform-pinching-on-real-two-planes",
+          "label": "lemma m1-pinch-algebra",
+          "fullLabel": "lemma m1-pinch-algebra",
+          "kind": "lemma",
+          "source": "Uniform pinching on real two-planes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pinch-positivity",
+          "role": "uniform-pinching-on-real-two-planes",
+          "label": "lemma m1-pinch-positivity",
+          "fullLabel": "lemma m1-pinch-positivity",
+          "kind": "lemma",
+          "source": "Uniform pinching on real two-planes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "One-sided negative sectional curvature and the holomorphic Liouville property",
+      "title": "One-sided negative sectional curvature and the holomorphic Liouville property",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/One-sided-negative-sectional-curvature-and-the-holomorphic-Liouville-property-September-25-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from One-sided negative sectional curvature and the holomorphic Liouville property.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m2-tube-transfer"
+          ]
+        },
+        {
+          "id": "m2-tube-transfer",
+          "role": "the-tube-transfer",
+          "label": "lemma m2-tube-transfer",
+          "fullLabel": "lemma m2-tube-transfer",
+          "kind": "lemma",
+          "source": "The tube transfer",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-tube-negative-plane",
+          "role": "the-tube-transfer",
+          "label": "corollary m2-tube-negative-plane",
+          "fullLabel": "corollary m2-tube-negative-plane",
+          "kind": "corollary",
+          "source": "The tube transfer",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-grid-polynomials",
+          "role": "polynomial-tests-for-bounded-holomorphic-functions",
+          "label": "lemma m2-grid-polynomials",
+          "fullLabel": "lemma m2-grid-polynomials",
+          "kind": "lemma",
+          "source": "Polynomial tests for bounded holomorphic functions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-grid-phases",
+          "role": "polynomial-tests-for-bounded-holomorphic-functions",
+          "label": "lemma m2-grid-phases",
+          "fullLabel": "lemma m2-grid-phases",
+          "kind": "lemma",
+          "source": "Polynomial tests for bounded holomorphic functions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-grid-frequency",
+          "role": "polynomial-tests-for-bounded-holomorphic-functions",
+          "label": "lemma m2-grid-frequency",
+          "fullLabel": "lemma m2-grid-frequency",
+          "kind": "lemma",
+          "source": "Polynomial tests for bounded holomorphic functions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-grid-criterion",
+          "role": "polynomial-tests-for-bounded-holomorphic-functions",
+          "label": "proposition m2-grid-criterion",
+          "fullLabel": "proposition m2-grid-criterion",
+          "kind": "proposition",
+          "source": "Polynomial tests for bounded holomorphic functions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-fiber-metric",
+          "role": "the-fiber-legendre-transform-and-its-curvature",
+          "label": "lemma m2-fiber-metric",
+          "fullLabel": "lemma m2-fiber-metric",
+          "kind": "lemma",
+          "source": "The fiber Legendre transform and its curvature",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-fiber-blocks",
+          "role": "the-fiber-legendre-transform-and-its-curvature",
+          "label": "lemma m2-fiber-blocks",
+          "fullLabel": "lemma m2-fiber-blocks",
+          "kind": "lemma",
+          "source": "The fiber Legendre transform and its curvature",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-fiber-ranktwo",
+          "role": "the-fiber-legendre-transform-and-its-curvature",
+          "label": "lemma m2-fiber-ranktwo",
+          "fullLabel": "lemma m2-fiber-ranktwo",
+          "kind": "lemma",
+          "source": "The fiber Legendre transform and its curvature",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-fiber-perturbation",
+          "role": "the-fiber-legendre-transform-and-its-curvature",
+          "label": "lemma m2-fiber-perturbation",
+          "fullLabel": "lemma m2-fiber-perturbation",
+          "kind": "lemma",
+          "source": "The fiber Legendre transform and its curvature",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-quiet-scalar",
+          "role": "a-spatially-varying-quiet-fiber-profile",
+          "label": "lemma m2-quiet-scalar",
+          "fullLabel": "lemma m2-quiet-scalar",
+          "kind": "lemma",
+          "source": "A spatially varying quiet fiber profile",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-quiet-profile",
+          "role": "a-spatially-varying-quiet-fiber-profile",
+          "label": "proposition m2-quiet-profile",
+          "fullLabel": "proposition m2-quiet-profile",
+          "kind": "proposition",
+          "source": "A spatially varying quiet fiber profile",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-quiet-shear",
+          "role": "a-spatially-varying-quiet-fiber-profile",
+          "label": "proposition m2-quiet-shear",
+          "fullLabel": "proposition m2-quiet-shear",
+          "kind": "proposition",
+          "source": "A spatially varying quiet fiber profile",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-radial-odes",
+          "role": "radial-spatial-geometry-and-aligned-profiles",
+          "label": "lemma m2-radial-odes",
+          "fullLabel": "lemma m2-radial-odes",
+          "kind": "lemma",
+          "source": "Radial spatial geometry and aligned profiles",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-radial-curvature",
+          "role": "radial-spatial-geometry-and-aligned-profiles",
+          "label": "lemma m2-radial-curvature",
+          "fullLabel": "lemma m2-radial-curvature",
+          "kind": "lemma",
+          "source": "Radial spatial geometry and aligned profiles",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-radial-scaled",
+          "role": "radial-spatial-geometry-and-aligned-profiles",
+          "label": "lemma m2-radial-scaled",
+          "fullLabel": "lemma m2-radial-scaled",
+          "kind": "lemma",
+          "source": "Radial spatial geometry and aligned profiles",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-radial-aligned",
+          "role": "radial-spatial-geometry-and-aligned-profiles",
+          "label": "proposition m2-radial-aligned",
+          "fullLabel": "proposition m2-radial-aligned",
+          "kind": "proposition",
+          "source": "Radial spatial geometry and aligned profiles",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-center-change",
+          "role": "changing-the-fiber-center",
+          "label": "proposition m2-center-change",
+          "fullLabel": "proposition m2-center-change",
+          "kind": "proposition",
+          "source": "Changing the fiber center",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-center-interpolation",
+          "role": "changing-the-fiber-center",
+          "label": "lemma m2-center-interpolation",
+          "fullLabel": "lemma m2-center-interpolation",
+          "kind": "lemma",
+          "source": "Changing the fiber center",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-assembly-base",
+          "role": "assembly-of-the-complete-base",
+          "label": "proposition m2-assembly-base",
+          "fullLabel": "proposition m2-assembly-base",
+          "kind": "proposition",
+          "source": "Assembly of the complete base",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-assembly-well-bounds",
+          "role": "assembly-of-the-complete-base",
+          "label": "lemma m2-assembly-well-bounds",
+          "fullLabel": "lemma m2-assembly-well-bounds",
+          "kind": "lemma",
+          "source": "Assembly of the complete base",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-assembly-height",
+          "role": "assembly-of-the-complete-base",
+          "label": "lemma m2-assembly-height",
+          "fullLabel": "lemma m2-assembly-height",
+          "kind": "lemma",
+          "source": "Assembly of the complete base",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-assembly-quiet-check",
+          "role": "assembly-of-the-complete-base",
+          "label": "lemma m2-assembly-quiet-check",
+          "fullLabel": "lemma m2-assembly-quiet-check",
+          "kind": "lemma",
+          "source": "Assembly of the complete base",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-assembly-post",
+          "role": "assembly-of-the-complete-base",
+          "label": "lemma m2-assembly-post",
+          "fullLabel": "lemma m2-assembly-post",
+          "kind": "lemma",
+          "source": "Assembly of the complete base",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-assembly-change-order",
+          "role": "assembly-of-the-complete-base",
+          "label": "lemma m2-assembly-change-order",
+          "fullLabel": "lemma m2-assembly-change-order",
+          "kind": "lemma",
+          "source": "Assembly of the complete base",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-assembly-reset",
+          "role": "assembly-of-the-complete-base",
+          "label": "lemma m2-assembly-reset",
+          "fullLabel": "lemma m2-assembly-reset",
+          "kind": "lemma",
+          "source": "Assembly of the complete base",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "A negatively pinched Kähler threefold without bounded holomorphic coordinates",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-negatively-pinched-Kahler-threefold-without-bounded-holomorphic-coordinates-September-25-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "One-sided negative sectional curvature and the holomorphic Liouville property",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/One-sided-negative-sectional-curvature-and-the-holomorphic-Liouville-property-September-25-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

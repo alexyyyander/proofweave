@@ -1,0 +1,665 @@
+{
+  "familyNumber": "079",
+  "familyTitle": "Local smoothing in three dimensions",
+  "manuscripts": [
+    {
+      "id": "Critical-local-smoothing-for-the-three-dimensional-wave-equation-September-24-2026",
+      "title": "Critical local smoothing for the three-dimensional wave equation",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Critical-local-smoothing-for-the-three-dimensional-wave-equation-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Scales, energies, and limiting arguments",
+    "Cylinder experiments and extremal configurations",
+    "Lower-dimensional estimates",
+    "Canonical names and conditional observations",
+    "Interior phase inequalities",
+    "Completion of the cylinder estimate",
+    "Round cones and the reduction of thin shapes"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Critical local smoothing",
+      "statement": "[Critical local smoothing] For every >0 there exists C_< such that Uf_ L^3(^3) C_J^ f_ L^3(^3) (f S(^3)).",
+      "section": "Introduction",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-lem-fw-uniform",
+      "kind": "lemma",
+      "label": "Uniform bound within a fixed setup",
+      "statement": "[Uniform bound within a fixed setup] Suppose in . Fix a family A_s such that every sequence of choices E_k A_ s_k , s_k0 , is admissible in one fixed polynomial setup. In particular, all negligible…",
+      "section": "Scales, energies, and limiting arguments",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-lem-fw-energy",
+      "kind": "lemma",
+      "label": "Disjoint row restrictions and copies",
+      "statement": "[Disjoint row restrictions and copies] Let V: H K be an isometry and let P_1,,P_N be mutually orthogonal projections on K . For g_j=V^*P_jVg , _ j=1 ^Ng_j_ H ^2 _ j=1 ^NP_jVg_ K ^2 g_ H ^2. If…",
+      "section": "Scales, energies, and limiting arguments",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-lem-fw-finite-extraction",
+      "kind": "lemma",
+      "label": "Extraction from finitely many classes",
+      "statement": "[Extraction from finitely many classes] Let q1 , and suppose that a nonnegative functional F satisfies \\[ F(g_1++g_N)^ 1/q _ j=1 ^N F(g_j)^ 1/q . \\] Then some j satisfies F(g_j) N^ -q F(_i g_i) .…",
+      "section": "Scales, energies, and limiting arguments",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-lem-fw-closure",
+      "kind": "lemma",
+      "label": "Extrema of bounded exponent data",
+      "statement": "[Extrema of bounded exponent data] Let K^ m+1 be a nonempty compact set of feasible limiting data (g,x_1,,x_m) . Set G=_K g , minimize x_1 on K\\ g=G\\ , and then successively minimize x_j on the slice…",
+      "section": "Scales, energies, and limiting arguments",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-lem-fw-strict-improvement",
+      "kind": "lemma",
+      "label": "Strict improvement in a closure",
+      "statement": "[Strict improvement in a closure] Let K^ k+1 be a closed set of feasible data. Suppose that c_0 is the minimum of the last coordinate c on the nonempty slice K\\ z=z_0\\ . There cannot be data…",
+      "section": "Scales, energies, and limiting arguments",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-lem-fw-pullback",
+      "kind": "lemma",
+      "label": "Pullback of a strict exponent contradiction",
+      "statement": "[Pullback of a strict exponent contradiction] Let be an upper exponent as in . Suppose that, for each integer m , a construction produces an admissible sequence in a fixed setup S_m with upper…",
+      "section": "Scales, energies, and limiting arguments",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-lem-fw-capacity",
+      "kind": "lemma",
+      "label": "Capacity tails",
+      "statement": "[Capacity tails] Suppose that, given Y , the variable X has at most N possible values almost surely. For every u0 , \\ (X Y)<e^ -u /N\\ e^ -u . If N s^ -C for a fixed C , then \\ i_s(X Y)>C+t\\ s^t for…",
+      "section": "Scales, energies, and limiting arguments",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-lem-fw-restriction",
+      "kind": "lemma",
+      "label": "Stability under restriction",
+      "statement": "[Stability under restriction] Let Q=P(\\, E) , where P(E)=q>0 , and let X be a finite name with arbitrary conditioning data Y . If q s^ , then, outside a set of Q -probability at most 2s^ , i_s^Q(X…",
+      "section": "Scales, energies, and limiting arguments",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-lem-fw-information",
+      "kind": "lemma",
+      "label": "Negligible information and positive restrictions",
+      "statement": "[Negligible information and positive restrictions] Let U,V be finite names, with arbitrary conditioning data Y . Put L=(1/s) and \\[ j=P(U V,Y) P(U Y) . \\] Then P\\ j<-r\\ e^ -r for r0 , and j=I_P(U;V…",
+      "section": "Scales, energies, and limiting arguments",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-cyl-localization",
+      "kind": "lemma",
+      "label": "Symmetries and Gaussian localization",
+      "statement": "[Symmetries and Gaussian localization] The models are invariant under translations, base boosts, dilation in base units (r,r,r^2) , normal dilation, affine time normalization, and subtraction of one…",
+      "section": "Cylinder experiments and extremal configurations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-cyl-polynomial-tests",
+      "kind": "lemma",
+      "label": "Polynomial test reduction",
+      "statement": "[Polynomial test reduction] At every stage of a polynomial setup, the base and normal cutoff and density conditions hold with enlarged fixed powers. To any prescribed polynomial regularity floor or…",
+      "section": "Cylinder experiments and extremal configurations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-thm-cylinder",
+      "kind": "theorem",
+      "label": "Cylinder exponent bound",
+      "statement": "[Cylinder exponent bound] For the classical and hybrid cylinder experiments with the regularity weight parameter 0<<1 , \\[ _ cl /2, _ hyb /2. \\]",
+      "section": "Cylinder experiments and extremal configurations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-cyl-one-time",
+      "kind": "lemma",
+      "label": "One-time bound",
+      "statement": "[One-time bound] For a polynomial test at a cut of length , an experiment with -regular input satisfies _I(Q) s^ -o(1) w(Q)^ 1+/2 . Consequently is finite.",
+      "section": "Cylinder experiments and extremal configurations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-cyl-peeling",
+      "kind": "lemma",
+      "label": "Regularity peeling",
+      "statement": "[Regularity peeling] At a fixed cut, a state can be decomposed coherently into subpower many row projections followed by synthesis. Apart from a remainder at any prescribed polynomial floor, each…",
+      "section": "Cylinder experiments and extremal configurations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-cyl-split-saturation",
+      "kind": "proposition",
+      "label": "Saturation of a preserving split",
+      "statement": "[Saturation of a preserving split] Retain the terminal family in Equation~ . After any finite sequence of inserted operators or splittings that preserves its extremal exponent, every dominant…",
+      "section": "Cylinder experiments and extremal configurations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-cyl-matched-chain",
+      "kind": "proposition",
+      "label": "Matched-chain construction",
+      "statement": "[Matched-chain construction] On any fixed finite depth mesh 0 i_0<<i_b=1 , an extremizing family can be modified by finitely many masks, preserving its terminal exponent on the original label family,…",
+      "section": "Cylinder experiments and extremal configurations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-cyl-intersection",
+      "kind": "lemma",
+      "label": "Two-shear intersection",
+      "statement": "[Two-shear intersection] Normalize one starting interval and the later test widths to _i=r_j=f_j=1 , and put =_j/_i . Let Q^-, Q^- be two projected tests, with bounded base footprints and normal…",
+      "section": "Cylinder experiments and extremal configurations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-cyl-group-extraction",
+      "kind": "lemma",
+      "label": "Group extraction",
+      "statement": "[Group extraction] Consider a fixed positive depth gap [i,j] in a documented configuration, with ordinary pre-gate regularity at i . Partition its starting rows into groups, including their starting…",
+      "section": "Cylinder experiments and extremal configurations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-cyl-planck-floor",
+      "kind": "proposition",
+      "label": "Bottom Planck floor",
+      "statement": "[Bottom Planck floor] If the hybrid exponent satisfies _ hyb >_ cl for the same weight, then every hybrid extremizing family at ,p has H/(sf_1^2)=s^ o(1) . At every fixed positive documented depth,…",
+      "section": "Cylinder experiments and extremal configurations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-cyl-profiles",
+      "kind": "lemma",
+      "label": "Finite costs and compact profiles",
+      "statement": "[Finite costs and compact profiles] The preceding minima have feasible finite values. Normalize r_1=f_1=1 . Along successively finer matched meshes one may extract Lipschitz limits u(i)=_s r_i,…",
+      "section": "Cylinder experiments and extremal configurations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-cyl-shape-constraints",
+      "kind": "proposition",
+      "label": "Shape constraints",
+      "statement": "[Shape constraints] If c>0 , then \\[ b_2(i) c(i-1), \\] with equality at every depth when c1 . If c=0<c_1 , then b_1(i)=c_1(i-1) , and the quadratic terms of every gate shear may be replaced by their…",
+      "section": "Cylinder experiments and extremal configurations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-cyl-affine",
+      "kind": "proposition",
+      "label": "Affine extremal configurations",
+      "statement": "[Affine extremal configurations] If at least one relevant minimal cost is positive, one can pass to extremizing documented configurations with u(i)=J(1-i), J0, b_2(i)=q(i-1),&c>0,\\\\…",
+      "section": "Cylinder experiments and extremal configurations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-cyl-rarity",
+      "kind": "lemma",
+      "label": "Rarity transport",
+      "statement": "[Rarity transport] Let i<j . Let U be a measurable event of retained j -rows and S a measurable event of retained i -rows. Suppose every correspondence predecessor in the active essential support of…",
+      "section": "Cylinder experiments and extremal configurations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-cyl-borel-paths",
+      "kind": "lemma",
+      "label": "Measurable completion events and causal restrictions",
+      "statement": "[Measurable completion events and causal restrictions] Fix an inner scale, a finite stack of cuts, a finite query list, and a correspondence truncation. [label=( *)] The side and row data admit…",
+      "section": "Cylinder experiments and extremal configurations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-cyl-flattening",
+      "kind": "lemma",
+      "label": "Forward flattening of scores",
+      "statement": "[Forward flattening of scores] At finitely many gates in forward order, prescribe finitely many finite-valued measurable row names, each having polynomially many values. Conditional names may also…",
+      "section": "Cylinder experiments and extremal configurations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-cyl-profile-transfer",
+      "kind": "lemma",
+      "label": "Transfer of conditional profiles",
+      "statement": "[Transfer of conditional profiles] Suppose names on the i - and j -row laws have the following finite-list relations on every connecting path. Given a common exact variable y , each conditioning name…",
+      "section": "Cylinder experiments and extremal configurations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-cyl-time-prediction",
+      "kind": "lemma",
+      "label": "Time prediction",
+      "statement": "[Time prediction] Let i<j l . Suppose a conditioning name at l has relay names at j and i such that an i -row gives at most s^ -o(1) possibilities for the relay at j , and that relay gives at most s^…",
+      "section": "Cylinder experiments and extremal configurations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-cyl-phase-name",
+      "kind": "lemma",
+      "label": "Recoverable phase names",
+      "statement": "[Recoverable phase names] Let a finite phase-cell name be observed on a later law. Suppose that, for each name, all its predecessors at an ordinary-regularized gate i are covered by s^ -o(1)…",
+      "section": "Cylinder experiments and extremal configurations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-low-gwz",
+      "kind": "theorem",
+      "label": "Wave-envelope estimate and extensions",
+      "statement": "[Wave-envelope estimate and extensions] Let L 2 , and let the Fourier transform of F be supported in an O(L^ -1 ) -neighborhood of a fixed compact annular patch of the cone in ^3 . Use a smooth,…",
+      "section": "Lower-dimensional estimates",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-low-kinetic",
+      "kind": "lemma",
+      "label": "Kinetic estimate for parabolic rays",
+      "statement": "[Kinetic estimate for parabolic rays] Let 0<<1/2 . Let be a finite positive measure on rays z=(X,B,Y) , of total mass E , supported where |X|1 . Assume, for every center and ^2 R1 , \\[ \\ |X-x| R,\\…",
+      "section": "Lower-dimensional estimates",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-low-scalar",
+      "kind": "proposition",
+      "label": "Scalar-channel estimate",
+      "statement": "[Scalar-channel estimate] Suppose the root analyzed measure has mass e and satisfies \\[ _0\\ |N-n| f,\\ |D-b| f\\ b_0 f^ 1- (f>0,\\ f d_1). \\] Here the subscript 1 means time length one. At all terminal…",
+      "section": "Lower-dimensional estimates",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-low-memory",
+      "kind": "lemma",
+      "label": "Memory bound for documented labels",
+      "statement": "[Memory bound for documented labels] Use an affine documented configuration as in Equation~ , with ordinary regularity imposed immediately before the relevant gates. Fix 0<i=j-h<j1 , set =s^h , and,…",
+      "section": "Lower-dimensional estimates",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-low-zero-memory",
+      "kind": "corollary",
+      "label": "Memory when both costs vanish",
+      "statement": "[Memory when both costs vanish] If c_2=c_1=0 , Equation~ holds with j=1 and L=1 for every fixed terminal depth gap, without assuming affine profiles.",
+      "section": "Lower-dimensional estimates",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-low-hybrid-zero",
+      "kind": "proposition",
+      "label": "Exclusion of a strictly nonclassical zero-cost case",
+      "statement": "[Exclusion of a strictly nonclassical zero-cost case] Suppose _ hyb >0 and _ hyb >_ cl . The minimizing hybrid families cannot have c_2=c_1=0 .",
+      "section": "Lower-dimensional estimates",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-low-ren-wang",
+      "kind": "theorem",
+      "label": "Discretized planar Furstenberg estimate",
+      "statement": "[Discretized planar Furstenberg estimate] Let 0<a 1 , 0<b 2 , and >0 . There are >0 and _0>0 with the following property. Work in fixed bounded coordinate charts for points and affine lines in the…",
+      "section": "Lower-dimensional estimates",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-low-likelihood",
+      "kind": "lemma",
+      "label": "Likelihood and list comparisons",
+      "statement": "[Likelihood and list comparisons] For arbitrary additional side information D' and >0 , i_(U D) i_(U D,D')- outside a set of probability at most ^ . If I(U;D' D)=o((1/)) , the difference of these…",
+      "section": "Lower-dimensional estimates",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-low-conditional-incidence",
+      "kind": "lemma",
+      "label": "Conditional planar incidence bootstrap",
+      "statement": "[Conditional planar incidence bootstrap] Fix a,g(0,1] and >0 . There are a finite collection of pairs 0<z' z1 and a tolerance >0 with the following property. Let (Q, L,D) vary with 0 , where Q and L…",
+      "section": "Lower-dimensional estimates",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-low-classical-names",
+      "kind": "lemma",
+      "label": "Geometric and probabilistic bounds for the boosted names",
+      "statement": "[Geometric and probabilistic bounds for the boosted names] Suppose >/2 . The preceding configuration has the following properties, simultaneously on every fixed finite list of depth queries. A…",
+      "section": "Lower-dimensional estimates",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-low-classical-zero-cost",
+      "kind": "proposition",
+      "label": "Exclusion of classical zero costs",
+      "statement": "[Exclusion of classical zero costs] A classical cylinder extremal configuration with >/2 cannot have both minimal shear costs equal to zero.",
+      "section": "Lower-dimensional estimates",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-names-refinement",
+      "kind": "lemma",
+      "label": "Refinement and comparison",
+      "statement": "[Refinement and comparison] Fix a template and \\(g\\). If both \\(a\\) and \\(v\\) increase, the finer canonical name determines the coarser one up to bounded lists. The relative branching exponent is…",
+      "section": "Canonical names and conditional observations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-names-canonical-entropy",
+      "kind": "proposition",
+      "label": "Canonical entropy and endpoint recovery",
+      "statement": "[Canonical entropy and endpoint recovery] On its domain of use, the excess satisfies E(a,v)= H(a,v)- D_0-(p+d)a-W(a,v)0. For hybrid names this assertion is used only when \\(g=0,w<0\\), and at their…",
+      "section": "Canonical names and conditional observations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-names-angular-trace",
+      "kind": "lemma",
+      "label": "Angular trace and time stationarity",
+      "statement": "[Angular trace and time stationarity] At almost every interior \\((a,v)\\), and at almost every \\(v\\) for each fixed admissible \\(a\\), there is \\(m(a,v)\\) such that U(v+p'h;a,v)=m(a,v)p'h+o(h)(p'0).…",
+      "section": "Canonical names and conditional observations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-names-mixed-trace",
+      "kind": "lemma",
+      "label": "Mixed coefficient trace",
+      "statement": "[Mixed coefficient trace] Let \\(V_*\\) be an absolute scalar parameter and \\(S\\) a fixed side variable. Flatten \\[ H(x,z)= H_s([V_*]_x S,t_z). \\] The \\(x\\)-derivatives lie in \\([0,1]\\) and decrease…",
+      "section": "Canonical names and conditional observations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-names-memory",
+      "kind": "proposition",
+      "label": "Memory consequences",
+      "statement": "[Memory consequences] Put \\(k_0=1-d\\) and \\[ L_ raw =\\ 1,(1+Q)/2,1+C_ rate \\ , (Q,C_ rate )= (q,q-J),&curvature families,\\\\ (0,c_1),&pure linear. \\] Whenever the left label comparison in Proposition~…",
+      "section": "Canonical names and conditional observations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-names-common-phase",
+      "kind": "lemma",
+      "label": "Common phase",
+      "statement": "[Common phase] Given an admissible side \\(Z\\), choose a representative point of its support and let \\(C_*\\) be its root canonical name. Subtract the displayed root shear, center and boost in that…",
+      "section": "Canonical names and conditional observations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-names-mark-dimension",
+      "kind": "proposition",
+      "label": "Conditional angular dimension",
+      "statement": "[Conditional angular dimension] Conditional on \\(Z\\), the time mark has lower surprise \\(dp'\\) at every tested positive prefix \\(p'\\), to arbitrary strict tolerance. At a typical time root, the joint…",
+      "section": "Canonical names and conditional observations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-names-separation",
+      "kind": "proposition",
+      "label": "Angular separation",
+      "statement": "[Angular separation] In an equality quadratic family with \\(c>0\\), the conditional \\((,r)\\) law for an admissible side avoids arbitrary affine lines with a positive power. At \\(c=1\\) this assertion…",
+      "section": "Canonical names and conditional observations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-names-replica-budgets",
+      "kind": "proposition",
+      "label": "Replica information budgets",
+      "statement": "[Replica information budgets] At almost every interior admissible root there are arbitrarily small tangent gaps with sufficiently accurate preceding experiments such that, for any fixed finite…",
+      "section": "Canonical names and conditional observations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-names-walks",
+      "kind": "corollary",
+      "label": "Stationary conditional walks",
+      "statement": "[Stationary conditional walks] One may resample the common side and its phase successively from their joint law conditional on \\(C_*,,Q_i\\), optionally retaining an angular prefix bin. Each leg…",
+      "section": "Canonical names and conditional observations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-names-score-limits",
+      "kind": "lemma",
+      "label": "Pathwise score limits",
+      "statement": "[Pathwise score limits] Suppose a finite collection of name arrays A_q , with depths in a bounded interval, has the following properties. Coarser names are determined from finer names up to lists of…",
+      "section": "Canonical names and conditional observations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-names-score-trace",
+      "kind": "lemma",
+      "label": "Monotone diagonal trace",
+      "statement": "[Monotone diagonal trace] Let H(q,r) be continuous for 0<r q<T , with H(r,r)=0 . Assume that H(,r) is nondecreasing and K -Lipschitz, uniformly in r , and that \\[ H(b,r')-H(a,r') H(b,r)-H(a,r) (r r'…",
+      "section": "Canonical names and conditional observations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-names-score-future-prefix",
+      "kind": "corollary",
+      "label": "Prefixes with future conditioning",
+      "statement": "[Prefixes with future conditioning] Let F_q,U_q,V_q satisfy Lemma~ , and suppose F_q,D determines U_q,V_q to exponent-zero lists. For almost every fixed p , almost surely in the limiting score law,…",
+      "section": "Canonical names and conditional observations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-names-score-law-change",
+      "kind": "lemma",
+      "label": "Changes of probability law",
+      "statement": "[Changes of probability law] Let P_,Q_ be probability laws with KL(P_ Q_)=o(L_) . At samples drawn from P_ , their scores for any fixed finite collection of names, including conditional scores with…",
+      "section": "Canonical names and conditional observations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-names-projection-rule",
+      "kind": "proposition",
+      "label": "Conditional projection rule",
+      "statement": "[Conditional projection rule] Let 0 S2 , 0<b1 , and 0 . Let Z be a bounded planar source, W a record determining a direction g(W) , and D common side data. Assume I(Z;W D)=o((1/)). Suppose there is…",
+      "section": "Canonical names and conditional observations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-names-radial-finite",
+      "kind": "lemma",
+      "label": "Finite radial exclusion",
+      "statement": "[Finite radial exclusion] Assume the discretized Furstenberg estimate . For 0<A<d1 there are _0>0 and _0>0 with the following property. There do not exist 0<<_0 , a Borel measure of mass at most one,…",
+      "section": "Canonical names and conditional observations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-names-radial-dichotomy",
+      "kind": "proposition",
+      "label": "Radial dichotomy",
+      "statement": "[Radial dichotomy] Let _i=(_i,r_i) and _j=(_j,r_j) be conditionally independent, identically distributed planar marks given Z . Suppose their bounded-depth records obey the preceding score calculus,…",
+      "section": "Canonical names and conditional observations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-names-parent-direction-transfer",
+      "kind": "lemma",
+      "label": "Parent-centered directions and comparison laws",
+      "statement": "[Parent-centered directions and comparison laws] Let \\(P\\) be a law of a side variable \\(Z\\), finitely many full records \\( V\\), and a finite auxiliary name \\(A\\). Suppose that the record marginal is…",
+      "section": "Canonical names and conditional observations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-names-radial-low-product",
+      "kind": "lemma",
+      "label": "A low-exponent pin estimate",
+      "statement": "[A low-exponent pin estimate] Fix 0<d1 . There is a constant C_d with the following property, for every fixed >0 and all sufficiently small >0 depending on . Let have mass at most one and time…",
+      "section": "Canonical names and conditional observations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-names-radial-pin-product",
+      "kind": "proposition",
+      "label": "Pin-product alternatives",
+      "statement": "[Pin-product alternatives] In addition to the hypotheses of Proposition~ , assume the following. The score calculus and the preceding conditional projection rule apply to all fixed finite queries…",
+      "section": "Canonical names and conditional observations",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-int-differential-cost",
+      "kind": "proposition",
+      "label": "Differential cost",
+      "statement": "[Differential cost] For admissible interior tangent data, _a H d+ (1,c)( w+|x_i|) +|1-c| | _i|,&c<1,\\\\ |G_i|,&c>1, where the last term is omitted at c=1 . In the linear case, _v H+1 . In the…",
+      "section": "Interior phase inequalities",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-int-modes-geometric",
+      "kind": "lemma",
+      "label": "Angular and commutator modes",
+      "statement": "[Angular and commutator modes] The angular fiber direction is _i= (1,-_i,2r_i;0,0,0), &(dX,dB,dP;H,J,K)quadratic,\\\\ (1,-_i,r_i,-_ir_i;0), &(dX,dB,dN,dD;H)linear. Any nondegenerate scalar component in…",
+      "section": "Interior phase inequalities",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-int-boost",
+      "kind": "lemma",
+      "label": "Projection amplification",
+      "statement": "[Projection amplification] Let a planar pair have joint local rate S , possibly after conditioning on common finer readings. Suppose that a scalar projection of rate x leaves a residual rate at least…",
+      "section": "Interior phase inequalities",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-int-basic-rates",
+      "kind": "proposition",
+      "label": "Basic phase rates",
+      "statement": "[Basic phase rates] Put l_* = (1,d+m) . For quadratic data with m>0 and radial spreading, write C_z=(H,J,K) . Then |W_i C_z| l_*, |C_z|-|x_i| m+l_*, -|C_z|2m+l_*. When the quadratic G_i is used and…",
+      "section": "Interior phase inequalities",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-int-many-leg",
+      "kind": "lemma",
+      "label": "A many-leg vertical rate",
+      "statement": "[A many-leg vertical rate] For linear admissible tangent data with m>0 , |H| l_*. For each strict-error application a sufficiently large finite number of replicas suffices.",
+      "section": "Interior phase inequalities",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-int-mark-motion",
+      "kind": "lemma",
+      "label": "Mark-motion comparison",
+      "statement": "[Mark-motion comparison] Assume m>0 . Fix a record j and resample one or two sides R_s independently from the conditional kernel with the same Q_j, D as a target F . Put A_s=X_F-X_ R_s . Each A_s ,…",
+      "section": "Interior phase inequalities",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-int-orientation-rates",
+      "kind": "proposition",
+      "label": "Orientation rates",
+      "statement": "[Orientation rates] For quadratic data with m>0 and radial spreading, |x_i| d. If also c<1 , set a_*=(d-c)_+ and n_* =(1,d+) . Then |x_i| n_*, |H x_i| a_*, |C_z|-|x_i| a_*+, |_i| l_*+a_*+|x_i|. For…",
+      "section": "Interior phase inequalities",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-int-double",
+      "kind": "proposition",
+      "label": "Two time innovations",
+      "statement": "[Two time innovations] For linear admissible data with m>0 and crossing, ll |_i|2d+l_* ,&c<1,\\ =0,\\\\ w-|x_i|2d,&c=1,\\\\ w-|G_i|2d,&c>1.",
+      "section": "Interior phase inequalities",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-int-horizontal-width",
+      "kind": "proposition",
+      "label": "Horizontal width",
+      "statement": "[Horizontal width] For quadratic admissible tangent data, e2m . If m>0 and radial spreading holds, e2m+d.",
+      "section": "Interior phase inequalities",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-int-binary",
+      "kind": "proposition",
+      "label": "Binary time estimate",
+      "statement": "[Binary time estimate] Assume quadratic admissible data, m>0 , c>3 , and line avoidance. At a binary layer p2p , freeze contact coefficients at F_p , and let \\[ b_ miss (p)=p^ -1 H_ (F_ 2p F_ p,2p ,…",
+      "section": "Interior phase inequalities",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-int-actions",
+      "kind": "proposition",
+      "label": "Admissible local actions",
+      "statement": "[Admissible local actions] On a valid branch of , the actions listed below satisfy (_a-k_v)E2. Except where explicitly allowed, assume m>0 , radial spreading in the quadratic case, crossing in the…",
+      "section": "Interior phase inequalities",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-act-line-test",
+      "kind": "lemma",
+      "label": "Fixed-width line estimate",
+      "statement": "[Fixed-width line estimate] Let 0 . Let C be a common root name and let side data Z determine C , a quadratic phase F=(X,B,P,Y,N,D) , and coefficients (_F,_F) . The normalized phase, coefficients,…",
+      "section": "Completion of the cylinder estimate",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-act-stationary-boundary",
+      "kind": "lemma",
+      "label": "The stationary equality boundary",
+      "statement": "[The stationary equality boundary] In the classical equality configuration q=c_2=1 , J=0 , the exact-side quadratic replica construction has the radial spreading property at almost every strong time…",
+      "section": "Completion of the cylinder estimate",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-act-strict-boundary",
+      "kind": "proposition",
+      "label": "Strict affine boundary",
+      "statement": "[Strict affine boundary] Suppose c_2=1 and q<1 , with no lower bound on q . Use the artificial quadratic template ending at D , and set v_0=u(D) ; in the hybrid case take D=1 . If the boundary prefix…",
+      "section": "Completion of the cylinder estimate",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-act-finite-step",
+      "kind": "lemma",
+      "label": "Finite off-gap motion",
+      "statement": "[Finite off-gap motion] Consider either an unclipped classical quadratic equality branch with b'=c>3 , b_1'>0 , and uniform strong-prediction slack p_*(a)>b(a)+v , or a classical linear branch with…",
+      "section": "Completion of the cylinder estimate",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-act-off-gap-path",
+      "kind": "lemma",
+      "label": "Off-gap path contradiction",
+      "statement": "[Off-gap path contradiction] Suppose that on an open time interval and in a sufficiently narrow right neighborhood of v=Jt the following hold. The profiles E,E^g are nonnegative and uniformly…",
+      "section": "Completion of the cylinder estimate",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-rt-packet-locality",
+      "kind": "lemma",
+      "label": "Packet locality",
+      "statement": "[Packet locality] For ' and |u| , the kernel of V_ ' U(u)V_^* vanishes unless |A'-A| d_ ' . On this angular support its absolute value is at most C_N q_^2H (1+|b'-b-uA| q_ +|y'-y-u|A|^2-2A (b'-b-uA)|…",
+      "section": "Round cones and the reduction of thin shapes",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-rt-covering",
+      "kind": "lemma",
+      "label": "Enlarged tests",
+      "statement": "[Enlarged tests] Suppose P2 . Enlarge the normalized round bounds by fixed powers of P , allow coefficients bounded by fixed powers of P with discriminant one, and replace both sublevels by P^Cf .…",
+      "section": "Round cones and the reduction of thin shapes",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-rt-single",
+      "kind": "lemma",
+      "label": "Single-time estimate",
+      "statement": "[Single-time estimate] Relative to regularity at a parent cut, the energy in a test of widths (r,f) at any one descendant of relative length satisfies m s^ -o(1) r^4 f^ 1- . The same conclusion holds…",
+      "section": "Round cones and the reduction of thin shapes",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    },
+    {
+      "id": "m1-rt-free-composition",
+      "kind": "proposition",
+      "label": "Composition of free gaps",
+      "statement": "[Composition of free gaps] Inserting finitely many admissible pointwise row contractions followed by synthesis, as in Definition~ , at fixed depths does not increase . Repeated operations at the same…",
+      "section": "Round cones and the reduction of thin shapes",
+      "manuscript": "Critical local smoothing for the three-dimensional wave equation"
+    }
+  ],
+  "edges": []
+}

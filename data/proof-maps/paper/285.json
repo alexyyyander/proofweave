@@ -1,0 +1,690 @@
+{
+  "familyNumber": "285",
+  "familyTitle": "Counterexamples to Baum–Connes and Kadison–Kaplansky",
+  "manuscripts": [
+    {
+      "id": "A-Torsion-Free-Counterexample-to-Reduced-Baum-Connes-Injectivity-September-23-2026",
+      "title": "A torsion-free counterexample to reduced Baum–Connes injectivity",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Torsion-Free-Counterexample-to-Reduced-Baum-Connes-Injectivity-September-23-2026/paper.pdf"
+    },
+    {
+      "id": "A-Torsion-Free-Counterexample-to-the-Kadison-Kaplansky-Projection-Conjecture-September-23-2026",
+      "title": "A torsion-free counterexample to the Kadison–Kaplansky projection conjecture",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Torsion-Free-Counterexample-to-the-Kadison-Kaplansky-Projection-Conjecture-September-23-2026/paper.pdf"
+    },
+    {
+      "id": "An-Irrational-Trace-Counterexample-to-Reduced-Baum-Connes-September-23-2026",
+      "title": "An irrational-trace counterexample to reduced Baum–Connes",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-Irrational-Trace-Counterexample-to-Reduced-Baum-Connes-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "A finite alphabet with deterministic recovery",
+    "Expansion and the sequential probability law",
+    "Pruning coherent returns and bicycles",
+    "Diffuse Heisenberg symbols and voltage approximation",
+    "The graphical group and its embedded sheets",
+    "Disjoint domains, cone chains, and an integral detector",
+    "Realization of the Bott cancellation in the reduced algebra",
+    "From a small matrix projection to a scalar projection",
+    "Conventions, parameters, and the matrix target",
+    "The finite-alphabet tower before pruning",
+    "Uniform expansion before pruning",
+    "Pruning and unique recovery of long paths",
+    "Geometry of the voltage cover and torsion-freeness"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There exist a finitely generated torsion-free discrete group \\(\\), an injective…",
+      "statement": "There exist a finitely generated torsion-free discrete group \\(\\), an injective homomorphism \\(i:^2 \\), and a class \\(c H^2(B;)\\) such that \\[ (Bi)^*c [T^2] =1, i_*()=0in K_0( ), \\] where \\(\\) is a…",
+      "section": "Introduction",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-coefficient-pools",
+      "kind": "lemma",
+      "label": "Coefficient choice",
+      "statement": "[Coefficient choice] For sufficiently large s , the injections can be chosen so that, within every fixed family and extra slice and on either side, the following holds. If n is its number of slots,…",
+      "section": "A finite alphabet with deterministic recovery",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-incidence-inversion",
+      "kind": "lemma",
+      "label": "Inversion and uniform coordinates",
+      "statement": "[Inversion and uniform coordinates] For every choice of tables the auxiliary prescription has exactly one edge at every specified endpoint and slot. In a fixed extra slice it is biregular of degrees…",
+      "section": "A finite alphabet with deterministic recovery",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-gate-deletions",
+      "kind": "lemma",
+      "label": "Uniform gate budget",
+      "statement": "[Uniform gate budget] For every fixed set of tables, the fraction deleted for gate reasons from either state space at any height is at most _ gate =600T2^bD\\,2^ -8s . On a surviving edge both…",
+      "section": "A finite alphabet with deterministic recovery",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-tower-recovery",
+      "kind": "lemma",
+      "label": "Padded-prefix recovery",
+      "statement": "[Padded-prefix recovery] Let two immersed paths in the gate-surviving graph have the same oriented label word. At corresponding A positions of radius at least 2j+1 , both raw streams agree through…",
+      "section": "A finite alphabet with deterministic recovery",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-separation-deletions",
+      "kind": "lemma",
+      "label": "Uniform separation budget",
+      "statement": "[Uniform separation budget] The fraction deleted for separation from either side at any height is at most _ sep =2( 2^ -Mb/2 1-2^ -Mb/2 + 2^ -_ sep H_0 1-2^ -_ sep b ).",
+      "section": "A finite alphabet with deterministic recovery",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-prop-tower-labels",
+      "kind": "proposition",
+      "label": "The deterministic labeled tower",
+      "statement": "[The deterministic labeled tower] For every fixed finite type set and every sufficiently large s as above, the construction has the following properties. The auxiliary state sizes are . In a fixed…",
+      "section": "A finite alphabet with deterministic recovery",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-fresh-matching-coordinates",
+      "kind": "lemma",
+      "label": "Fresh matching coordinates",
+      "statement": "[Fresh matching coordinates] Fix a family occurrence, an extra slice, and every table before its last common source block. Under the independent uniform current-table law, its auxiliary incidence is…",
+      "section": "Expansion and the sequential probability law",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-conditional-fourier",
+      "kind": "lemma",
+      "label": "Conditional on data C , let U_2^t and V_2^w be independent uniform vectors,…",
+      "statement": "Conditional on data C , let U_2^t and V_2^w be independent uniform vectors, independent also of auxiliary data W . For a in a set of q_0 slots let K_a:_2^t_2^w be linear, let o_a=o_a(C,W) , and let…",
+      "section": "Expansion and the sequential probability law",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-conditional-mean",
+      "kind": "lemma",
+      "label": "The conditional mean",
+      "statement": "[The conditional mean] For every fixed earlier-table history, every marked cutoff, and every extra-bit slice, \\[ \\|M:1_B^1_A^\\| :=5 <3/5. \\] The same bound holds for the complete adjacent-height…",
+      "section": "Expansion and the sequential probability law",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-prop-sequential-law",
+      "kind": "proposition",
+      "label": "Sequential selection",
+      "statement": "[Sequential selection] There is a probability law on all the permutation tables such that every auxiliary incidence has centered singular norm at most the fixed number <1 in . At each individual…",
+      "section": "Expansion and the sequential probability law",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-coherent-junction",
+      "kind": "lemma",
+      "label": "The two junction coefficients are different",
+      "statement": "[The two junction coefficients are different] At the identified endpoints of a minimal coherent return, the two outward incident coefficient names are different.",
+      "section": "Pruning coherent returns and bicycles",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-pruning-reconstruction",
+      "kind": "lemma",
+      "label": "Unique reconstruction and free-coordinate count",
+      "statement": "[Unique reconstruction and free-coordinate count] Fix a coherent-path pattern with different junction coefficients, and fix its free endpoint u-bits. For any realization of the universal tables there…",
+      "section": "Pruning coherent returns and bicycles",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-pruning-rank-process",
+      "kind": "lemma",
+      "label": "Predictable accumulated rank",
+      "statement": "[Predictable accumulated rank] Suppose that, at each of finitely many source blocks, a test is selected from F_ <t , and its product-law probability is at most 2^ -R_t . The nonnegative integers R_t…",
+      "section": "Pruning coherent returns and bicycles",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-pruning-terminal-codimension",
+      "kind": "lemma",
+      "label": "Terminal compatibility",
+      "statement": "[Terminal compatibility] If both incident common cutoffs equal the receiving vertex's own cutoff, the terminal constraints from two independent incident evaluations have product-law probability…",
+      "section": "Pruning coherent returns and bicycles",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-pruning-key-prefix",
+      "kind": "lemma",
+      "label": "A repeated terminal key identifies receiver prefixes",
+      "statement": "[A repeated terminal key identifies receiver prefixes] Suppose two distinct tested terminal edge occurrences at the same source block use the same table key. Their receiving vertices have the same…",
+      "section": "Pruning coherent returns and bicycles",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-pruning-end-guard",
+      "kind": "lemma",
+      "label": "Key separation outside the end guard",
+      "statement": "[Key separation outside the end guard] In every minimal coherent return, all terminal keys tested outside the end guard are distinct at each source block.",
+      "section": "Pruning coherent returns and bicycles",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-pruning-return-count",
+      "kind": "lemma",
+      "label": "Expected coherent-return count",
+      "statement": "[Expected coherent-return count] For sufficiently large s/b and then H_0/s , the expected number of minimal coherent returns based on either side at height i , counted over all bands containing them,…",
+      "section": "Pruning coherent returns and bicycles",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-pruning-base-girth",
+      "kind": "lemma",
+      "label": "The first deletion gives base girth",
+      "statement": "[The first deletion gives base girth] No nonempty cyclically reduced closed path based at height i in X^ (1) has length at most .93m_i .",
+      "section": "Pruning coherent returns and bicycles",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-pruning-theta-keys",
+      "kind": "lemma",
+      "label": "Terminal keys in a surviving theta",
+      "statement": "[Terminal keys in a surviving theta] Let a theta in X^ (1) have e<1.52m_i edges and a root at height i , and set H=H_i . At every source-block update, the terminal keys used at its distinct vertices…",
+      "section": "Pruning coherent returns and bicycles",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-pruning-triple-ranks",
+      "kind": "lemma",
+      "label": "Ranks at the two branch vertices",
+      "statement": "[Ranks at the two branch vertices] One branch-vertex relation in an ordinary full block with three open gates has product-law probability 2^ -s . If two same-side branch vertices have different…",
+      "section": "Pruning coherent returns and bicycles",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-pruning-theta-count",
+      "kind": "lemma",
+      "label": "Expected theta count",
+      "statement": "[Expected theta count] For sufficiently large allowed parameters, the expected number of rooted embedded bicycles in X^ (1) of length below 1.52m_i , based on either side at height i , is at most \\[…",
+      "section": "Pruning coherent returns and bicycles",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-heisenberg-law",
+      "kind": "lemma",
+      "label": "Heisenberg laws contain a bicycle used four times",
+      "statement": "[Heisenberg laws contain a bicycle used four times] Let W be a nonempty closed edge path in X , reduced as a based edge path: no two consecutive traversals in its linear ordering are mutually…",
+      "section": "Pruning coherent returns and bicycles",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-prop-pruning",
+      "kind": "proposition",
+      "label": "Pruned old graph",
+      "statement": "[Pruned old graph] Given any >0 , the allowed parameters and the universal tables can be chosen so that the additional two deletions in this Section remove less than an fraction of each A_i and B_i .…",
+      "section": "Pruning coherent returns and bicycles",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-supported-spreading",
+      "kind": "lemma",
+      "label": "Supported spreading",
+      "statement": "[Supported spreading] For sufficiently large initial height, the family of projections \\[ (y)^jE_i(y)^ -j , j J_i, \\] is pairwise orthogonal. Consequently \\[ E_iT_i^*T_iE_i=E_i, P_i=T_iE_iT_i^* \\] is…",
+      "section": "Diffuse Heisenberg symbols and voltage approximation",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-prop-sampled-symbols",
+      "kind": "proposition",
+      "label": "Simultaneously sampled symbols",
+      "statement": "[Simultaneously sampled symbols] Fix b, a finite matrix dimension, a positive accuracy \\(\\), and a finite list of compact smooth symbol profiles and height selections as above. The list may include…",
+      "section": "Diffuse Heisenberg symbols and voltage approximation",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-fourier-envelope",
+      "kind": "lemma",
+      "label": "Fourier envelope",
+      "statement": "[Fourier envelope] Let \\(i-k1\\), and let \\(f\\) belong to the profile family , expressed at reference height \\(i\\). Write \\[ T_i fT_k^*=_ n,l,c A_ n,l,c (x^ny^lz^c), N=N_i, Z=Z_i, J=J_i. \\] For every…",
+      "section": "Diffuse Heisenberg symbols and voltage approximation",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-product-sampler",
+      "kind": "lemma",
+      "label": "Finite product sampler",
+      "statement": "[Finite product sampler] For every fixed \\(>0\\), each symbol in Lemma~ has a finite distribution of pairs \\((W,v)\\), with \\(W M_( C)\\) and \\(v=x^ny^lz^c\\), satisfying \\[ W M_, E[W (v)]-T_ifT_k^*_1.…",
+      "section": "Diffuse Heisenberg symbols and voltage approximation",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-polynomial-avoidance",
+      "kind": "lemma",
+      "label": "Polynomial avoidance",
+      "statement": "[Polynomial avoidance] Use independent edge draws as in Lemma~ . For a fixed base walk, reuse its one voltage variable on every occurrence of an unoriented edge and use its inverse in the reverse…",
+      "section": "Diffuse Heisenberg symbols and voltage approximation",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-heisenberg-folner-test",
+      "kind": "lemma",
+      "label": "Heisenberg boxes and regular norm",
+      "statement": "[Heisenberg boxes and regular norm] Suppose a finite set of group elements and their inverses have coordinates bounded by \\(2^ a_0H \\), with \\(H1\\). For every fixed B there is a finite box \\( B_H\\),…",
+      "section": "Diffuse Heisenberg symbols and voltage approximation",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-moment-support-rank",
+      "kind": "lemma",
+      "label": "Length versus cycle rank",
+      "statement": "[Length versus cycle rank] Let S be a finite connected metric graph of total length at most Kg and girth greater than g. Then \\[ H_1(S; Q) \\ 1,20K\\ ^2. \\]",
+      "section": "Diffuse Heisenberg symbols and voltage approximation",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-repeated-edge-count",
+      "kind": "lemma",
+      "label": "Repeated-edge walk count",
+      "statement": "[Repeated-edge walk count] Let a graph have maximum degree \\(1\\). Consider length-\\(2h\\) closed walks from a fixed vertex, with no unoriented edge occurring exactly once. Multiple edges are treated…",
+      "section": "Diffuse Heisenberg symbols and voltage approximation",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-centered-voltage-block",
+      "kind": "lemma",
+      "label": "Centered block concentration",
+      "statement": "[Centered block concentration] Fix a surviving incidence type and one of its same or adjacent layer blocks. Assign independent samples from Lemma~ to its unoriented edges. Let \\(X_ ik \\) be its…",
+      "section": "Diffuse Heisenberg symbols and voltage approximation",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-private-completion",
+      "kind": "lemma",
+      "label": "Private completion",
+      "statement": "[Private completion] There is a connected, countable, folded labeled graph X containing X_ o as its old subgraph, and an extension of the voltages, with the following properties. Each added edge has…",
+      "section": "The graphical group and its embedded sheets",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-word-diagram",
+      "kind": "lemma",
+      "label": "Elementary word-diagram construction",
+      "statement": "[Elementary word-diagram construction] If a finite word w is trivial in , there is a finite plane multigraph diagram with exterior contour reading the literal word w . More precisely, if in the free…",
+      "section": "The graphical group and its embedded sheets",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-null-path-closes",
+      "kind": "lemma",
+      "label": "Closure of a null-labeled source path",
+      "statement": "[Closure of a null-labeled source path] A path in X whose label is trivial in has equal initial and terminal vertices.",
+      "section": "The graphical group and its embedded sheets",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-prop-graphical-realization",
+      "kind": "proposition",
+      "label": "Graphical realization",
+      "statement": "[Graphical realization] There is an injective map of vertices and formal oriented edges \\[ j XCay(,S) \\] preserving labels and sending (v_*,1) to the identity. The subgroup of vertices over v_*…",
+      "section": "The graphical group and its embedded sheets",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-sheet-polygon",
+      "kind": "lemma",
+      "label": "The exterior-arc bound",
+      "statement": "[The exterior-arc bound] Let Q_1,,Q_k be distinct sheets, k2 , and let g_i Q_i Q_ i+1 , with indices modulo k . Contacts may coincide. Choose a source path in Q_i from g_ i-1 to g_i for each i .…",
+      "section": "The graphical group and its embedded sheets",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-allowed-domain-sets",
+      "kind": "lemma",
+      "label": "Allowed removed sets",
+      "statement": "[Allowed removed sets] For an old vertex v Q , set \\[ B_Q(v)=\\ w V(Q):d_Q(v,w) m_Q(v)\\ . \\] The graphs Star_Q(B_Q(v)) and Star_Q(\\ w\\ ) , for a private vertex w , are forests. The empty set also has…",
+      "section": "Disjoint domains, cone chains, and an integral detector",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-sheet-peeling",
+      "kind": "lemma",
+      "label": "Finite peeling",
+      "statement": "[Finite peeling] Every nonempty finite family F has a sheet Q for which I_ F (Q) is either empty, contained in B_Q(v) for some old contact v , or equal to a singleton private contact. Consequently…",
+      "section": "Disjoint domains, cone chains, and an integral detector",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-sheet-cycle-coordinates",
+      "kind": "lemma",
+      "label": "Direct cycle coordinates",
+      "statement": "[Direct cycle coordinates] For every commutative coefficient ring R , the sum of the inclusions is an isomorphism _R:_ Q Q Z_1(Q;R) Z_1( C;R), (c_Q)_Q_Qc_Q. Both the direct sum and every chain…",
+      "section": "Disjoint domains, cone chains, and an integral detector",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-prop-domains",
+      "kind": "proposition",
+      "label": "Simultaneous disjoint domains",
+      "statement": "[Simultaneous disjoint domains] There are sets R_Q V(Q) , one for each sheet, such that each R_Q is empty, an old-centered ball B_Q(v) , or a private singleton, and the sets D_Q=V(Q) R_Q have the…",
+      "section": "Disjoint domains, cone chains, and an integral detector",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-sheet-incidences",
+      "kind": "lemma",
+      "label": "Incidence coordinates",
+      "statement": "[Incidence coordinates] The map sending a sheet incidence to its physical vertex and its base type is a bijection \\ (Q,u):Q Q,\\ u V(Q)\\ V(X). In particular, a physical vertex occurs in at most n_i^…",
+      "section": "Disjoint domains, cone chains, and an integral detector",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-cone-exact",
+      "kind": "lemma",
+      "label": "Exact cone chains",
+      "statement": "[Exact cone chains] For every commutative coefficient ring R , the augmented cellular complex 0 C_2( Z;R) _2 C_1( Z;R) _1 C_0( Z;R) 0 is exact. This assertion depends on finite cycle coordinates, not…",
+      "section": "Disjoint domains, cone chains, and an integral detector",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-free-resolution-comparison",
+      "kind": "lemma",
+      "label": "Comparison of free resolutions",
+      "statement": "[Comparison of free resolutions] Let P_ M and Q_ N be exact augmented complexes of free modules over a ring A . Every homomorphism M N lifts to a chain map P_ Q_ . Any two such lifts are chain…",
+      "section": "Disjoint domains, cone chains, and an integral detector",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-no-prime-torsion",
+      "kind": "lemma",
+      "label": "No prime-order subgroup",
+      "statement": "[No prime-order subgroup] The group is torsion-free.",
+      "section": "Disjoint domains, cone chains, and an integral detector",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-explicit-heisenberg-detector",
+      "kind": "lemma",
+      "label": "A primitive Heisenberg detector",
+      "statement": "[A primitive Heisenberg detector] In the coordinates of Equation~ , the integer function ((,,), (',',')) ='+ 2 ' is a normalized group 2 -cocycle. Its class c_ evaluates to -1 on the torus with…",
+      "section": "Disjoint domains, cone chains, and an integral detector",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-degree-two-restriction",
+      "kind": "lemma",
+      "label": "Integral restriction is onto in degree two",
+      "statement": "[Integral restriction is onto in degree two] The inclusion of the deck subgroup induces a surjection H^2(B;) H^2(B;).",
+      "section": "Disjoint domains, cone chains, and an integral detector",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-prop-torsion-detector",
+      "kind": "proposition",
+      "label": "Torsion-freeness and the integral detector",
+      "statement": "[Torsion-freeness and the integral detector] The graphical group is torsion-free. The map i_:^2 sending the ordered basis to (z,x) is injective, and there is a class c_ H^2(B;) such that…",
+      "section": "Disjoint domains, cone chains, and an integral detector",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-assembly-trimming",
+      "kind": "lemma",
+      "label": "Uniform trimming estimate",
+      "statement": "[Uniform trimming estimate] For a construction whose constants have already been fixed, \\[ \\|(1-D_Q)E_ Q,i \\|^2 C_2^ -690H_i , _:=\\|(1-D)E\\| C_2^ -345H_0 . \\] In particular H_ 0, can be chosen so…",
+      "section": "Realization of the Bott cancellation in the reduced algebra",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-assembly-synthesis",
+      "kind": "lemma",
+      "label": "Synthesis on the active carriers",
+      "statement": "[Synthesis on the active carriers] Let n_i be the number of surviving old base vertices on both sides of height i . Then \\| J(1-D)E_i\\|^2 n_i_Q\\|(1-D_Q)E_ Q,i \\|^2 C_2^ -689H_i . Consequently J E…",
+      "section": "Realization of the Bott cancellation in the reduced algebra",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-deleted-incidence",
+      "kind": "lemma",
+      "label": "Deleting a small fraction of vertices",
+      "statement": "[Deleting a small fraction of vertices] There are contractions U_ ik on the surviving spaces that send normalized constants exactly to normalized constants in both directions, have centered norm at…",
+      "section": "Realization of the Bott cancellation in the reduced algebra",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-finite-profile-realization",
+      "kind": "lemma",
+      "label": "Finite formulas for a prescribed profile family",
+      "statement": "[Finite formulas for a prescribed profile family] Fix a finite collection of band profiles f=(f_ ik )_ |i-k|1 of the kind above, a fixed finite matrix size, and a target error >0 . One can choose the…",
+      "section": "Realization of the Bott cancellation in the reduced algebra",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-source-reduced-membership",
+      "kind": "lemma",
+      "label": "Reduced membership of the source algebra",
+      "statement": "[Reduced membership of the source algebra] The constructions can be chosen so that ( B) Q_r .",
+      "section": "Realization of the Bott cancellation in the reduced algebra",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-supported-bott-rotation",
+      "kind": "lemma",
+      "label": "Supported Bott transport",
+      "statement": "[Supported Bott transport] Let B be a C^* -algebra, e M_m() a projection, and a=a^* M_m(B) such that e+a is a projection in M_m(B^+) . Suppose v B is bounded, acts as v I_m on the matrix factor, and…",
+      "section": "Realization of the Bott cancellation in the reduced algebra",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-eventual-coordinate-equality",
+      "kind": "lemma",
+      "label": "Eventual coordinate equality",
+      "statement": "[Eventual coordinate equality] Let B_ be unital C^* -algebras and let P_,Q_ M_m(B_) be projections in a fixed size. If their classes agree in K_0(( B_)/( B_)) , then [P_]=[Q_] in K_0(B_) for all…",
+      "section": "Realization of the Bott cancellation in the reduced algebra",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-prop-reduced-bott-vanishing",
+      "kind": "proposition",
+      "label": "Reduced Bott vanishing",
+      "statement": "[Reduced Bott vanishing] For all sufficiently large in the chosen compatible sequence, the image of the rank-zero Bott generator of K_0(( z,x)) is zero integrally in K_0((_)) .",
+      "section": "Realization of the Bott cancellation in the reduced algebra",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m1-lem-finite-subgroup-witness",
+      "kind": "lemma",
+      "label": "A finite witness lies in a finitely generated subgroup",
+      "statement": "[A finite witness lies in a finitely generated subgroup] Let H be finitely generated, and let P,Q be fixed finite matrix projections over (H) . If their images have equal K_0 classes over () , then…",
+      "section": "Realization of the Bott cancellation in the reduced algebra",
+      "manuscript": "A torsion-free counterexample to reduced Baum–Connes injectivity"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "There exist a finitely generated torsion-free discrete group \\(\\) and a…",
+      "statement": "There exist a finitely generated torsion-free discrete group \\(\\) and a projection \\(e C_r^*()\\) such that \\[ 0<_ (e)<12. \\] In particular, \\(e\\) is neither zero nor the identity.",
+      "section": "Introduction",
+      "manuscript": "A torsion-free counterexample to the Kadison–Kaplansky projection conjecture"
+    },
+    {
+      "id": "m2-scalar-subgroup",
+      "kind": "lemma",
+      "label": "Reduced subgroup inclusion",
+      "statement": "[Reduced subgroup inclusion] If \\(\\) is a subgroup of a discrete group \\(K\\), the inclusion of group algebras extends to an isometric unital inclusion \\(C_r^*() C_r^*(K)\\), preserving the canonical…",
+      "section": "From a small matrix projection to a scalar projection",
+      "manuscript": "A torsion-free counterexample to the Kadison–Kaplansky projection conjecture"
+    },
+    {
+      "id": "m2-scalar-compression",
+      "kind": "proposition",
+      "label": "Scalar compression after a free product",
+      "statement": "[Scalar compression after a free product] Let \\(\\) be a discrete group and \\(p M_N(C_r^*())\\) a projection with \\[ 0<a:=_ ,N (p)<12. \\] Put \\(K= F_N\\), where \\(t_1,,t_N\\) freely generate \\( F_N\\),…",
+      "section": "From a small matrix projection to a scalar projection",
+      "manuscript": "A torsion-free counterexample to the Kadison–Kaplansky projection conjecture"
+    },
+    {
+      "id": "m2-setup-matrix-target",
+      "kind": "theorem",
+      "label": "Matrix construction",
+      "statement": "[Matrix construction] There exist a finitely generated torsion-free discrete group \\(\\), a finite integer \\(N1\\), and a self-adjoint element \\(T M_N( C[])\\), in its regular representation, with a…",
+      "section": "Conventions, parameters, and the matrix target",
+      "manuscript": "A torsion-free counterexample to the Kadison–Kaplansky projection conjecture"
+    },
+    {
+      "id": "m2-tow-coefficient-choice",
+      "kind": "lemma",
+      "label": "Choice of coefficients and spills",
+      "statement": "[Choice of coefficients and spills] The injections and spills can be chosen so that the following holds for every family, separately on each side. Let \\( I\\) be the set of slots for its one adjacent…",
+      "section": "The finite-alphabet tower before pruning",
+      "manuscript": "A torsion-free counterexample to the Kadison–Kaplansky projection conjecture"
+    },
+    {
+      "id": "m2-tow-matching-clusters",
+      "kind": "lemma",
+      "label": "The independent matching variables",
+      "statement": "[The independent matching variables] Fix an actual pair \\((i,k)\\) and every table at its lower marked positions. The current last-block tables can be sampled so that the remaining random choices in…",
+      "section": "The finite-alphabet tower before pruning",
+      "manuscript": "A torsion-free counterexample to the Kadison–Kaplansky projection conjecture"
+    },
+    {
+      "id": "m2-exp-fourier",
+      "kind": "lemma",
+      "label": "Conditional Fourier estimate",
+      "statement": "[Conditional Fourier estimate] Let C denote conditioned data. Conditional on C , let U F_2^t and V F_2^m be independent uniform vectors, independent also of auxiliary data W . For 1 a q let M_a:…",
+      "section": "Uniform expansion before pruning",
+      "manuscript": "A torsion-free counterexample to the Kadison–Kaplansky projection conjecture"
+    },
+    {
+      "id": "m2-exp-mean-gap",
+      "kind": "lemma",
+      "label": "Uniform gap for the mean",
+      "statement": "[Uniform gap for the mean] For every height pair, and every fixed choice of its lower-cutoff tables, the mean incidence M satisfies \\[ \\|M:1_B^ 1_A^\\| 1610^ -3 +0.55 <0.8. \\] The bound is uniform in…",
+      "section": "Uniform expansion before pruning",
+      "manuscript": "A torsion-free counterexample to the Kadison–Kaplansky projection conjecture"
+    },
+    {
+      "id": "m2-exp-cut-tail",
+      "kind": "lemma",
+      "label": "Tail for a cut",
+      "statement": "[Tail for a cut] With lower tables fixed, for every nonempty Z of volume at most E , \\[ P\\ b(Z)<v(Z)/20\\ (-v(Z)/400). \\]",
+      "section": "Uniform expansion before pruning",
+      "manuscript": "A torsion-free counterexample to the Kadison–Kaplansky projection conjecture"
+    },
+    {
+      "id": "m2-exp-realized-gap",
+      "kind": "proposition",
+      "label": "Expansion of the realized incidence",
+      "statement": "[Expansion of the realized incidence] For all sufficiently large , independently of the height pair and of its previously fixed lower tables, its current tables can be chosen so that holds. For this…",
+      "section": "Uniform expansion before pruning",
+      "manuscript": "A torsion-free counterexample to the Kadison–Kaplansky projection conjecture"
+    },
+    {
+      "id": "m2-prune-prefix-recovery",
+      "kind": "lemma",
+      "label": "Recovery of stream prefixes",
+      "statement": "[Recovery of stream prefixes] Suppose two nonbacktracking paths in \\(Y^\\#\\) have the same oriented label word. At corresponding \\(A\\)-positions of radius at least \\(2j+1\\), both padded streams agree…",
+      "section": "Pruning and unique recovery of long paths",
+      "manuscript": "A torsion-free counterexample to the Kadison–Kaplansky projection conjecture"
+    },
+    {
+      "id": "m2-prune-cycle-count",
+      "kind": "corollary",
+      "label": "Few short cyclic paths at one layer",
+      "statement": "[Few short cyclic paths at one layer] Fix a layer and a side. A nonempty cyclically reduced oriented label word is the word of at most one based cyclically nonbacktracking closed path with its base…",
+      "section": "Pruning and unique recovery of long paths",
+      "manuscript": "A torsion-free counterexample to the Kadison–Kaplansky projection conjecture"
+    },
+    {
+      "id": "m2-prune-tower-properties",
+      "kind": "proposition",
+      "label": "The tower properties",
+      "statement": "[The tower properties] For all sufficiently large \\(\\), the preceding choices give a graph \\(Y^0\\) on sets of sizes \\(|A_i|=d2^ H_i \\) and \\(|B_i|=2^ H_i \\), and its induced subgraph \\(Y\\), with…",
+      "section": "Pruning and unique recovery of long paths",
+      "manuscript": "A torsion-free counterexample to the Kadison–Kaplansky projection conjecture"
+    },
+    {
+      "id": "m2-prune-constant-compression",
+      "kind": "corollary",
+      "label": "Effect of deletion on constant spaces",
+      "statement": "[Effect of deletion on constant spaces] Let \\(\\) be the orthogonal projection that retains the vertices of \\(Y\\) in the counting Hilbert space of the full tower, with any additional Hilbert-space…",
+      "section": "Pruning and unique recovery of long paths",
+      "manuscript": "A torsion-free counterexample to the Kadison–Kaplansky projection conjecture"
+    },
+    {
+      "id": "m2-geo-main",
+      "kind": "theorem",
+      "label": "Geometric conclusion",
+      "statement": "[Geometric conclusion] There are absolute constants C_*,C_ such that, for sufficiently large , the preceding hypotheses have the following consequences. Every component map :C X is an embedding.…",
+      "section": "Geometry of the voltage cover and torsion-freeness",
+      "manuscript": "A torsion-free counterexample to the Kadison–Kaplansky projection conjecture"
+    },
+    {
+      "id": "m2-geo-reductions",
+      "kind": "lemma",
+      "label": "Reduction rules",
+      "statement": "[Reduction rules] In either minimum diagram the following statements hold. No bounded face has a freely trivial label word. No edge separating two distinct bounded faces has aligned source…",
+      "section": "Geometry of the voltage cover and torsion-freeness",
+      "manuscript": "A torsion-free counterexample to the Kadison–Kaplansky projection conjecture"
+    },
+    {
+      "id": "m2-geo-arcs",
+      "kind": "lemma",
+      "label": "Short arcs and Euler count",
+      "statement": "[Short arcs and Euler count] Every arc incident with a bounded face has length less than L_i , when read from an endpoint in layer i on that face. Its length is also less than L_i on any…",
+      "section": "Geometry of the voltage cover and torsion-freeness",
+      "manuscript": "A torsion-free counterexample to the Kadison–Kaplansky projection conjecture"
+    },
+    {
+      "id": "m2-geo-embeddings",
+      "kind": "proposition",
+      "label": "Embeddings",
+      "statement": "[Embeddings] All component label maps C X are injective on vertices and formal edges. The indexed copies of Theorem~ are therefore defined.",
+      "section": "Geometry of the voltage cover and torsion-freeness",
+      "manuscript": "A torsion-free counterexample to the Kadison–Kaplansky projection conjecture"
+    },
+    {
+      "id": "m2-geo-chain-filling",
+      "kind": "lemma",
+      "label": "Short chain fillings",
+      "statement": "[Short chain fillings] In X the integral oriented chain of any edge loop of length n is a sum of at most 12n oriented chains of edge loops of length at most four.",
+      "section": "Geometry of the voltage cover and torsion-freeness",
+      "manuscript": "A torsion-free counterexample to the Kadison–Kaplansky projection conjecture"
+    },
+    {
+      "id": "m2-geo-thin",
+      "kind": "lemma",
+      "label": "Thin triangles from short chain fillings",
+      "statement": "[Thin triangles from short chain fillings] Let a connected graph with unit edge lengths have the conclusion of Lemma~ . Every geodesic triangle on its vertices is D_0 -thin, where one may take…",
+      "section": "Geometry of the voltage cover and torsion-freeness",
+      "manuscript": "A torsion-free counterexample to the Kadison–Kaplansky projection conjecture"
+    },
+    {
+      "id": "m2-geo-avoidance",
+      "kind": "lemma",
+      "label": "A short path avoiding one center",
+      "statement": "[A short path avoiding one center] Fix a positive integer L . For sufficiently large , uniformly in Q and i , if a path in X of length at most L joins u,x Q , with u in layer i , and avoids c_Q ,…",
+      "section": "Geometry of the voltage cover and torsion-freeness",
+      "manuscript": "A torsion-free counterexample to the Kadison–Kaplansky projection conjecture"
+    },
+    {
+      "id": "m2-geo-balls",
+      "kind": "proposition",
+      "label": "One ball for all earlier intersections",
+      "statement": "[One ball for all earlier intersections] There is a well-order of the indexed copies for which the first three assertions of Theorem~ hold.",
+      "section": "Geometry of the voltage cover and torsion-freeness",
+      "manuscript": "A torsion-free counterexample to the Kadison–Kaplansky projection conjecture"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-prop-graphical-realization",
+      "to": "m1-thm-main",
+      "label": "prop:graphical-realization",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Make the sequence of compatible constructions just described. Proposition~\\ref{prop:graphical-realization} embeds $\\HH$ in every $\\Gamma_\\nu$. Proposition~\\ref{prop:torsion-detector} proves torsion-freeness and provides an int"
+    }
+  ]
+}

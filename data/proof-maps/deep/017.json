@@ -1,0 +1,195 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "017",
+  "title": "The irrationality exponent of <i>π</i> is 2",
+  "result": {
+    "id": "paper-result",
+    "label": "The irrationality exponent of <i>π</i> is 2",
+    "statement": "Proves that the irrationality exponent of π is exactly 2: for every ε > 0 and all sufficiently large denominators q , every rational p/q satisfies | -p/q| q^ -2- . This also proves convergence of the Flint–Hills series n 1 1/(n^3 ^2 n), with angles in radians.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "interpolation-with-separated-weights",
+      "label": "Interpolation with separated weights",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-arithmetic-and-analytic-determinant-estimates",
+      "label": "The arithmetic and analytic determinant estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "flint-hills-series-and-its-generalization",
+      "label": "Flint--Hills series and its generalization",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "The irrationality exponent of pi is 2",
+      "title": "The irrationality exponent of pi is 2",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-irrationality-exponent-of-pi-is-2-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from The irrationality exponent of pi is 2.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-flinthills",
+          "role": "introduction",
+          "label": "corollary m1-thm-flinthills",
+          "fullLabel": "corollary m1-thm-flinthills",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-geom-interpolation",
+          "role": "interpolation-with-separated-weights",
+          "label": "theorem m1-geom-interpolation",
+          "fullLabel": "theorem m1-geom-interpolation",
+          "kind": "theorem",
+          "source": "Interpolation with separated weights",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-geom-multiplicity",
+          "role": "interpolation-with-separated-weights",
+          "label": "lemma m1-geom-multiplicity",
+          "fullLabel": "lemma m1-geom-multiplicity",
+          "kind": "lemma",
+          "source": "Interpolation with separated weights",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-geom-curve-inequality",
+          "role": "interpolation-with-separated-weights",
+          "label": "proposition m1-geom-curve-inequality",
+          "fullLabel": "proposition m1-geom-curve-inequality",
+          "kind": "proposition",
+          "source": "Interpolation with separated weights",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-det-arithmetic",
+          "role": "the-arithmetic-and-analytic-determinant-estimates",
+          "label": "lemma m1-det-arithmetic",
+          "fullLabel": "lemma m1-det-arithmetic",
+          "kind": "lemma",
+          "source": "The arithmetic and analytic determinant estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-det-translation",
+          "role": "the-arithmetic-and-analytic-determinant-estimates",
+          "label": "lemma m1-det-translation",
+          "fullLabel": "lemma m1-det-translation",
+          "kind": "lemma",
+          "source": "The arithmetic and analytic determinant estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-det-collision",
+          "role": "the-arithmetic-and-analytic-determinant-estimates",
+          "label": "lemma m1-det-collision",
+          "fullLabel": "lemma m1-det-collision",
+          "kind": "lemma",
+          "source": "The arithmetic and analytic determinant estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-det-comparison",
+          "role": "the-arithmetic-and-analytic-determinant-estimates",
+          "label": "proposition m1-det-comparison",
+          "fullLabel": "proposition m1-det-comparison",
+          "kind": "proposition",
+          "source": "The arithmetic and analytic determinant estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-par-constants",
+          "role": "the-arithmetic-and-analytic-determinant-estimates",
+          "label": "lemma m1-par-constants",
+          "fullLabel": "lemma m1-par-constants",
+          "kind": "lemma",
+          "source": "The arithmetic and analytic determinant estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-series-dyadic",
+          "role": "flint-hills-series-and-its-generalization",
+          "label": "lemma m1-series-dyadic",
+          "fullLabel": "lemma m1-series-dyadic",
+          "kind": "lemma",
+          "source": "Flint--Hills series and its generalization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-series-generalized",
+          "role": "flint-hills-series-and-its-generalization",
+          "label": "corollary m1-series-generalized",
+          "fullLabel": "corollary m1-series-generalized",
+          "kind": "corollary",
+          "source": "Flint--Hills series and its generalization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "The irrationality exponent of pi is 2",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-irrationality-exponent-of-pi-is-2-September-24-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { type PublicVerificationJob } from "@/db/repositories/verification-market";
+import { useI18n } from "@/app/i18n/client";
 
 type VerificationMarketBoardProps = {
   initialJobs: readonly PublicVerificationJob[];
@@ -20,6 +21,7 @@ export function VerificationMarketBoard({
   hasReviewDelegation,
   signInPath,
 }: VerificationMarketBoardProps) {
+  const { t, locale } = useI18n();
   const router = useRouter();
   const [busyId, setBusyId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -31,10 +33,10 @@ export function VerificationMarketBoard({
     try {
       const response = await fetch(`/api/me/review-jobs/${encodeURIComponent(job.id)}/claim`, { method: "POST" });
       const body = await response.json();
-      if (!response.ok) throw new Error(body?.error?.message ?? "The verification job could not be claimed.");
+      if (!response.ok) throw new Error(locale === "en" ? body?.error?.message ?? "The verification job could not be claimed." : t("marketBoard.error"));
       router.push("/reviews#my-review-work");
     } catch (cause) {
-      setError(cause instanceof Error ? cause.message : "The verification job could not be claimed.");
+      setError(locale === "en" && cause instanceof Error ? cause.message : t("marketBoard.error"));
     } finally {
       setBusyId(null);
     }
@@ -42,32 +44,32 @@ export function VerificationMarketBoard({
 
   return <section className="verification-market" id="open-review-work" aria-labelledby="verification-market-title">
     <SectionHeading as="div" className="verification-market-heading">
-      <div><p className="eyebrow">Open verification work</p><SectionTitle id="verification-market-title">Choose an exact claim to check.</SectionTitle><p>Every job is pinned to one Lean-accepted Bundle and one active credit pool. Claiming creates an immutable accepted assignment; only a completed, evidence-bearing review can later share the verification bucket.</p></div>
-      <Badge className="record-chip">{jobs.length} open</Badge>
+      <div><p className="eyebrow">{t("marketBoard.eyebrow")}</p><SectionTitle id="verification-market-title">{t("marketBoard.title")}</SectionTitle><p>{t("marketBoard.body")}</p></div>
+      <Badge className="record-chip">{t("marketBoard.open", { count: jobs.length })}</Badge>
     </SectionHeading>
     {error && <p className="review-message is-error" role="status">{error}</p>}
     {jobs.length === 0
-      ? <EmptyState as="div" className="verification-market-empty"><strong>No open review work right now.</strong><p>Jobs appear here only after an active pool receives a complete Bundle with accepted isolated Lean evidence. Draft pools, staged-only Bundles, and provisional checkpoints never create public work.</p></EmptyState>
+      ? <EmptyState as="div" className="verification-market-empty"><strong>{t("marketBoard.emptyTitle")}</strong><p>{t("marketBoard.emptyBody")}</p></EmptyState>
       : <div className="verification-job-grid">{jobs.map((job) => <Surface as="article" className="verification-job-card" key={job.id}>
-        <div className="verification-job-top"><span className="micro-label">{job.target.projectSlug} · {isReceiptGate(job.claimType) ? "Receipt gate" : "quality review"}</span><span className="review-share-chip">{job.rewardWeight} {job.rewardWeight === 1 ? "share" : "shares"}</span></div>
+        <div className="verification-job-top"><span className="micro-label">{t("marketBoard.jobLabel", { slug: job.target.projectSlug, kind: isReceiptGate(job.claimType) ? t("marketBoard.receiptGate") : t("marketBoard.qualityReview") })}</span><span className="review-share-chip">{t(job.rewardWeight === 1 ? "reviewCard.share.one" : "reviewCard.share.other", { count: job.rewardWeight })}</span></div>
         <CardTitle>{job.label}</CardTitle>
         <p className="verification-job-target">{job.target.title}</p>
         <FieldList>
-          <Field label="Evidence required">{job.evidenceRequirement}</Field>
-          <Field label="Exact Bundle"><code>{shortHash(job.artifactBundleManifestHash)}</code></Field>
-          <Field label="Pool">{job.pool.totalCredits.toLocaleString()} credits · {job.pool.verificationBucketPercentage}% verification bucket</Field>
-          <Field label="Submitted by">{job.submittingAgentLabel}</Field>
+          <Field label={t("marketBoard.evidenceRequired")}>{job.evidenceRequirement}</Field>
+          <Field label={t("marketBoard.bundle")}><code>{shortHash(job.artifactBundleManifestHash)}</code></Field>
+          <Field label={t("marketBoard.pool")}>{t("marketBoard.poolValue", { credits: job.pool.totalCredits.toLocaleString(locale), percent: job.pool.verificationBucketPercentage })}</Field>
+          <Field label={t("marketBoard.submittedBy")}>{job.submittingAgentLabel}</Field>
         </FieldList>
         <div className="verification-job-actions">
-          <Link className="text-link" href={`/explore/${encodeURIComponent(job.target.problemSlug)}`}>Inspect target <span>→</span></Link>
+          <Link className="text-link" href={`/explore/${encodeURIComponent(job.target.problemSlug)}`}>{t("marketBoard.inspectTarget")} <span>→</span></Link>
           {!signedIn
-            ? <ActionLink className="button button-primary verification-claim" href={signInPath}>Sign in to claim</ActionLink>
+            ? <ActionLink className="button button-primary verification-claim" href={signInPath}>{t("marketBoard.signIn")}</ActionLink>
             : hasReviewDelegation
-              ? <Button className="button button-primary verification-claim" type="button" disabled={busyId === job.id} onClick={() => claim(job)}>{busyId === job.id ? "Claiming…" : "Claim review"}</Button>
-              : <ActionLink className="button button-primary verification-claim" href="/integrations#review-agent">Enable review Agent</ActionLink>}
+              ? <Button className="button button-primary verification-claim" type="button" disabled={busyId === job.id} onClick={() => claim(job)}>{busyId === job.id ? t("marketBoard.claiming") : t("marketBoard.claim")}</Button>
+              : <ActionLink className="button button-primary verification-claim" href="/integrations#review-agent">{t("marketBoard.enableAgent")}</ActionLink>}
         </div>
       </Surface>)}</div>}
-    <p className="verification-market-boundary"><strong>Settlement boundary.</strong> Shares are weights within a fixed review budget, not transferable assets or payment promises. Conflict declarations close work safely but do not earn a share; error bonuses require independent adjudication.</p>
+    <p className="verification-market-boundary"><strong>{t("marketBoard.boundaryTitle")}</strong> {t("marketBoard.boundaryBody")}</p>
   </section>;
 }
 
