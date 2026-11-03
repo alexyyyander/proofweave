@@ -117,35 +117,20 @@ test("signed public-market evidence requires an enrolled, independently adjudica
   await assert.rejects(verifyPoolFinalityEvidence({ ...verifyFinality, authorities: [testAuthority], value: unbound }), /latest named independent statement and novelty review evidence/);
   const enrolledFixture = process.env.PROOFWEAVE_TEST_EXPECT_ENROLLED === "1";
   const lockArgs = { expectedPlanHash: preview.plan.payloadHash, finalityAdjudication: adjudication };
-  if (enrolledFixture && process.env.PROOFWEAVE_TEST_LOCK_MODE === "recovery") {
-    const read = settlement.readLocked.bind(settlement);
-    let count = 0;
-    settlement.readLocked = async (...args) => { if (++count === 2) throw new Error("synthetic readback failure"); return read(...args); };
-    await assert.rejects(settlement.lock(poolId, issued.receipt.id, lockArgs), /synthetic readback failure/);
-    settlement.readLocked = read;
-    assert.deepEqual((await settlement.readLocked(poolId)).allocation, preview.plan);
-    assert.equal((await settlement.lock(poolId, issued.receipt.id, lockArgs)).created, false);
-  } else {
-    const results = await Promise.allSettled([settlement.lock(poolId, issued.receipt.id, lockArgs), settlement.lock(poolId, issued.receipt.id, lockArgs)]);
-    if (enrolledFixture) {
-      assert.ok(results.some((item) => item.status === "fulfilled" && item.value.created));
-      assert.deepEqual((await settlement.readLocked(poolId)).allocation, preview.plan);
-      assert.equal((await settlement.lock(poolId, issued.receipt.id, lockArgs)).created, false);
-    } else assert.ok(results.every((item) => item.status === "rejected" && /adjudication is required/.test(item.reason.message)));
-  }
+  const results = await Promise.allSettled([settlement.lock(poolId, issued.receipt.id, lockArgs), settlement.lock(poolId, issued.receipt.id, lockArgs)]);
+  const expectedFailure = enrolledFixture ? /Artifact object bytes have not been verified/ : /adjudication is required/;
+  assert.ok(results.every((item) => item.status === "rejected" && expectedFailure.test(item.reason.message)));
   const laterClaim = await verify.assign({ id: "assignment:late-novelty", artifactBundleManifestHash: bundleHash, claimType: "novelty_reviewed", verifierPersonId: "person:carol", assignedAt: "2026-07-13T00:02:10Z" });
   await verify.accept(laterClaim.assignment.id, "person:carol", "2026-07-13T00:02:20Z");
   const carolPublic = base64Url(await crypto.subtle.exportKey("raw", reviewerPairs.carol.publicKey));
   await verify.recordAttestation(await fixtureAttestation({ id: "attestation:late-novelty", assignmentId: laterClaim.assignment.id, claimType: "novelty_reviewed", reviewer: "carol", agent: "agent:carol-curator", delegation: "delegation:carol-curator", publicKey: carolPublic, privateKey: reviewerPairs.carol.privateKey, evidenceHash: sha("f"), decision: "rejected", attestedAt: "2026-07-13T00:03:00Z" }));
-  if (enrolledFixture) assert.deepEqual((await settlement.readLocked(poolId)).allocation, preview.plan);
-  else assert.deepEqual((await settlement.preview(poolId, issued.receipt.id)).plan, preview.plan);
+  assert.deepEqual((await settlement.preview(poolId, issued.receipt.id)).plan, preview.plan);
   await assert.rejects(verifyPoolFinalityEvidence({ ...verifyFinality, authorities: [testAuthority], cutoff: "2026-07-13T00:04:00Z" }), /latest named independent statement and novelty review evidence/);
   await assert.rejects(settlement.lock(poolId, issued.receipt.id, { expectedPlanHash: preview.plan.payloadHash }), /adjudication is required/);
-  assert.equal(Number(await db.prepare("SELECT COUNT(*) AS n FROM problem_credit_pool_events WHERE pool_id = ? AND event_type = 'locked'").bind(poolId).first("n")), enrolledFixture ? 1 : 0);
+  assert.equal(Number(await db.prepare("SELECT COUNT(*) AS n FROM problem_credit_pool_events WHERE pool_id = ? AND event_type = 'locked'").bind(poolId).first("n")), 0);
   await db.prepare("INSERT INTO person_key_revocations (id, person_key_id, owner_person_id, revoked_at, reason) VALUES (?, ?, ?, ?, ?)")
     .bind("revocation:owner", "person-key:carol", "person:carol", "2026-07-13T00:04:00Z", "synthetic test").run();
   await assert.rejects(verifyPoolFinalityEvidence({ ...verifyFinality, authorities: [testAuthority] }), /not an active verified Person key/);
-  if (enrolledFixture) await assert.rejects(settlement.readLocked(poolId), /not an active verified Person key/);
 });
 
 async function seedOutputs(db, result) {

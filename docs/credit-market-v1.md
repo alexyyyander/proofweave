@@ -134,6 +134,10 @@ change; the operator cannot supply a trust root at runtime. Both Person keys
 must be active and their signatures valid. Review and owner decisions still
 require human judgment; the software does not prove novelty.
 Preview amounts are not credit balances and do not assert finality.
+An independent hard gate also rejects locking or final readback until actual
+Bundle and review-evidence object bytes can be read from trusted storage and
+rehashed. A database index row or stored metadata alone does not verify the
+object's availability or contents. This byte verifier is not yet implemented.
 If independent review finds a contribution is a reproduction of prior work,
 or novelty is unresolved, no one should sign an `original_final_result`
 decision. The final-result bucket remains unallocated. Completed public review

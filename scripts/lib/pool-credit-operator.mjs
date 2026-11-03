@@ -45,14 +45,14 @@ export async function executePoolCreditOperator({ args, environment, readSourceS
         LEFT JOIN verification_attestations AS attestation ON attestation.assignment_id = assignment.id
         WHERE job.pool_id = ? ORDER BY job.id LIMIT 101`).bind(input.poolId).all();
       const jobs = (rows.results ?? []).slice(0, 100).map((row) => ({ id: row.id, claimType: row.claim_type, projection: row.claim_id ? row.assignment_status ?? "unknown" : "open", decision: row.review_decision ?? null }));
-      return Object.freeze({ mode: "status", databaseFingerprint: fingerprint, sourceRevision: source.revision, poolId: input.poolId, poolState,
+      return Object.freeze({ mode: "status", databaseFingerprint: fingerprint, sourceRevision: source.revision, poolId: input.poolId, poolState, artifactBytes: "unverified", settlementEnabled: false,
         finalResultCredits: locked ? "locked_with_verified_finality" : "not_allocated",
         reviewCredits: locked ? "included_in_verified_allocation" : "pending_eligible_final_result_and_closure_lock",
         jobsAreUnverifiedProjections: true, truncated: (rows.results ?? []).length > 100, jobs });
     }
     if (input.mode === "preview") {
       const preview = await settlement.preview(input.poolId, input.receiptId);
-      return Object.freeze({ mode: "preview", provisional: true, finality: "unverified", finalResultCredits: "not_allocated", reviewCredits: "pending_eligible_final_result_and_closure_lock", completedMarketReviews: preview.plan.reviews.length, reviewCutoff: preview.cutoff, databaseFingerprint: fingerprint, sourceRevision: source.revision, plan: preview.plan });
+      return Object.freeze({ mode: "preview", provisional: true, finality: "unverified", artifactBytes: "unverified", settlementEnabled: false, finalResultCredits: "not_allocated", reviewCredits: "pending_eligible_final_result_and_closure_lock", completedMarketReviews: preview.plan.reviews.length, reviewCutoff: preview.cutoff, databaseFingerprint: fingerprint, sourceRevision: source.revision, plan: preview.plan });
     }
     const locked = await settlement.lock(input.poolId, input.receiptId, { expectedPlanHash: input.planHash, finalityAdjudication: adjudication });
     return Object.freeze({ mode: "lock", databaseFingerprint: fingerprint, sourceRevision: source.revision, result: locked });

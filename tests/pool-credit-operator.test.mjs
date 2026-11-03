@@ -26,6 +26,8 @@ test("operator preview requires a pinned database and clean source and exposes n
   const result = await executePoolCreditOperator({ ...options, args: ["preview", ...common] });
   assert.equal(result.provisional, true);
   assert.equal(result.finality, "unverified");
+  assert.equal(result.artifactBytes, "unverified");
+  assert.equal(result.settlementEnabled, false);
   assert.equal(result.finalResultCredits, "not_allocated");
   assert.equal(result.reviewCredits, "pending_eligible_final_result_and_closure_lock");
   assert.equal(result.completedMarketReviews, 0);
@@ -43,6 +45,8 @@ test("status lists unverified review-job projections without a final Receipt and
   assert.equal(result.finalResultCredits, "not_allocated");
   assert.equal(result.reviewCredits, "pending_eligible_final_result_and_closure_lock");
   assert.equal(result.jobsAreUnverifiedProjections, true);
+  assert.equal(result.artifactBytes, "unverified");
+  assert.equal(result.settlementEnabled, false);
   assert.deepEqual(result.jobs.map((job) => job.projection), ["completed", "open"]);
   assert.deepEqual(result.jobs.map((job) => job.decision), ["rejected", null]);
   assert.deepEqual(calls, ["close"]);

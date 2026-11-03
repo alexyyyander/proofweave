@@ -108,6 +108,7 @@ export class D1PoolCreditSettlement {
   async lock(poolId, finalReceiptId, { expectedPlanHash, finalityAdjudication } = {}) {
     if (typeof expectedPlanHash !== "string" || !/^sha256:[0-9a-f]{64}$/.test(expectedPlanHash)) throw new PoolSettlementError("The reviewed allocation plan hash is required.");
     if (!finalityAdjudication || trustedPoolFinalityAuthorities.length === 0) throw new PoolSettlementError("Independent target-completion and contribution-attribution adjudication is required; settlement is disabled.");
+    await this.#requireArtifactByteVerification();
     const existing = await this.readLocked(poolId);
     if (existing) {
       if (existing.allocation.finalReceipt.receiptId !== finalReceiptId) throw new PoolSettlementError("The pool is already locked to a different final Receipt.");
@@ -180,6 +181,7 @@ export class D1PoolCreditSettlement {
     const calculated = await derivePoolCreditAllocation(stored);
     if (canonicalJson(calculated) !== canonicalJson(stored) || stored.poolId !== poolId) throw new PoolSettlementError("The stored pool allocation is invalid.");
     const finality = await this.#verifyFinalityAdjudication(locked.finalityAdjudication, stored, locked.occurredAt);
+    await this.#requireArtifactByteVerification();
     await this.verifyLockedEvidence(stored, locked.occurredAt, history);
     return Object.freeze({ state: projectCreditPoolState(history), lockedAt: locked.occurredAt, eventHash: locked.payloadHash, finalityHash: finality.hash, allocation: stored });
   }
@@ -421,6 +423,14 @@ export class D1PoolCreditSettlement {
 
   async #verifyFinalityAdjudication(value, plan, cutoff) {
     return verifyPoolFinalityEvidence({ database: this.database, receipts: this.receipts, verifyReviewAttestation: (attestation) => this.verifyReviewAttestation(attestation), authorities: trustedPoolFinalityAuthorities, value, plan, cutoff });
+  }
+
+  async #requireArtifactByteVerification() {
+    // An artifact_objects row proves only that a hash is indexed. It does not
+    // establish that the object exists, or that its bytes hash to that value.
+    // Never commit or present an allocation as final until a real trusted
+    // object-store reader verifies every required evidence object.
+    throw new PoolSettlementError("Artifact object bytes have not been verified; settlement is disabled.");
   }
 }
 
