@@ -596,7 +596,64 @@
     }
   ],
   "finalEdges": [],
-  "crossEdges": [],
+  "crossEdges": [
+    {
+      "from": "m1:m1-lem-goe-counts",
+      "to": "m2:m2-lem-goe-counts",
+      "type": "same-role",
+      "label": "Shared statement: For every compact interval \\(J\\) and every \\(b>0\\), \\[ _ m1 (b\\, G_m(J))<. \\]",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-prop-gaussian-insertion",
+      "to": "m2:m2-prop-gaussian-insertion",
+      "type": "same-role",
+      "label": "Shared statement: Gaussian insertion",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-sw-lindeberg",
+      "to": "m2:m2-sw-lindeberg",
+      "type": "same-role",
+      "label": "Shared statement: Gaussian replacement",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-sw-schur",
+      "to": "m2:m2-sw-schur",
+      "type": "same-role",
+      "label": "Shared statement: Far block and Schur correction",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-sw-trace-cut",
+      "to": "m2:m2-sw-trace-cut",
+      "type": "same-role",
+      "label": "Shared statement: Inner resolvent and trace cut",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-sw-weighted-blocks",
+      "to": "m2:m2-sw-weighted-blocks",
+      "type": "same-role",
+      "label": "Shared statement: Weighted block estimates",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-thm-dbm-input",
+      "to": "m2:m2-thm-dbm-input",
+      "type": "same-role",
+      "label": "Shared statement: Fixed-energy DBM input",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    }
+  ],
   "comparisons": [],
   "sharedInputs": [],
   "relatedManuscripts": [],
@@ -604,7 +661,8 @@
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
-    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements.",
+    "Cross-strategy links are exact normalized statement-label matches only; they are review candidates, not audited dependencies."
   ],
   "sources": [
     {

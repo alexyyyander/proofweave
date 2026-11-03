@@ -471,7 +471,56 @@
     }
   ],
   "finalEdges": [],
-  "crossEdges": [],
+  "crossEdges": [
+    {
+      "from": "m2:m2-lem-quadratic",
+      "to": "m3:m3-lem-quadratic",
+      "type": "same-role",
+      "label": "Shared statement: Uniform quadratic integration",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m2:m2-lem-rounding",
+      "to": "m3:m3-lem-rounding",
+      "type": "same-role",
+      "label": "Shared statement: Rounding with a small defect",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m2:m2-lem-rounding-matrix",
+      "to": "m3:m3-lem-rounding-matrix",
+      "type": "same-role",
+      "label": "Shared statement: There is an absolute constant C_0 such that, for integers 1 s R and a real…",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m2:m2-lem-signed-packing",
+      "to": "m3:m3-lem-signed-packing",
+      "type": "same-role",
+      "label": "Shared statement: Signed interval packing",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m2:m2-prop-auxiliary",
+      "to": "m3:m3-prop-auxiliary",
+      "type": "same-role",
+      "label": "Shared statement: An auxiliary polynomial with controlled widths",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m2:m2-thm-packing-edge-coloring",
+      "to": "m3:m3-thm-packing-edge-coloring",
+      "type": "same-role",
+      "label": "Shared statement: Pippenger--Spencer",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    }
+  ],
   "comparisons": [],
   "sharedInputs": [],
   "relatedManuscripts": [],
@@ -479,7 +528,8 @@
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
-    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements.",
+    "Cross-strategy links are exact normalized statement-label matches only; they are review candidates, not audited dependencies."
   ],
   "sources": [
     {
