@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "088",
   "title": "Sharp projection-body inequalities and a counterexample to simplex maximization",
   "result": {
@@ -14,22 +15,12 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
     },
     {
       "id": "facet-vectors-and-cartesian-products",
-      "label": "Facet vectors and Cartesian products",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "facet-vectors-and-cartesian-products-2",
-      "label": "Facet vectors and Cartesian products",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "facet-vectors-and-cartesian-products-3",
       "label": "Facet vectors and Cartesian products",
       "description": "A section of the paper."
     },
@@ -62,54 +53,54 @@
       "nodes": [
         {
           "id": "m1-thm-counterexample",
-          "role": "result",
-          "label": "Let \\(T_ 10 =(0,e_1,,e_ 10 )^ 10 \\), where the \\(e_i\\) are the coordinate unit…",
-          "fullLabel": "Let \\(T_ 10 =(0,e_1,,e_ 10 )^ 10 \\), where the \\(e_i\\) are the coordinate unit…",
+          "role": "introduction",
+          "label": "theorem m1-thm-counterexample",
+          "fullLabel": "theorem m1-thm-counterexample",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "Let \\(T_ 10 =(0,e_1,,e_ 10 )^ 10 \\), where the \\(e_i\\) are the coordinate unit vectors, and let \\(K=T_ 10 T_ 10 ^ 20 \\). Then \\[ R_ 20 (K) c_ 20 = 12120 10 212^ 20 =22\\,355\\,476 22\\,020\\,096 >1. \\]…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-facets",
           "role": "facet-vectors-and-cartesian-products",
-          "label": "Let \\(P^d\\), \\(d2\\), be a full-dimensional convex polytope. For each facet…",
-          "fullLabel": "Let \\(P^d\\), \\(d2\\), be a full-dimensional convex polytope. For each facet…",
+          "label": "lemma m1-lem-facets",
+          "fullLabel": "lemma m1-lem-facets",
           "kind": "lemma",
           "source": "Facet vectors and Cartesian products",
-          "detail": "Let \\(P^d\\), \\(d2\\), be a full-dimensional convex polytope. For each facet \\(F\\), let \\(s_F\\) be its \\((d-1)\\)-dimensional volume and \\(_F\\) its outward unit normal. Then h_ P (u)=12_Fs_F|_F,u|, u^d,…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-product",
-          "role": "facet-vectors-and-cartesian-products-2",
-          "label": "Let \\(A^r\\) and \\(B^s\\) be full-dimensional convex polytopes, where \\(r,s2\\).…",
-          "fullLabel": "Let \\(A^r\\) and \\(B^s\\) be full-dimensional convex polytopes, where \\(r,s2\\).…",
+          "role": "facet-vectors-and-cartesian-products",
+          "label": "proposition m1-prop-product",
+          "fullLabel": "proposition m1-prop-product",
           "kind": "proposition",
           "source": "Facet vectors and Cartesian products",
-          "detail": "Let \\(A^r\\) and \\(B^s\\) be full-dimensional convex polytopes, where \\(r,s2\\). In the orthogonal product space \\(^ r+s =^r^s\\), (A B)=(|B| A)(|A| B). In particular, R_ r+s (A B)=R_r(A)R_s(B).",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-facets"
           ]
         },
         {
           "id": "m1-lem-affine",
-          "role": "facet-vectors-and-cartesian-products-3",
-          "label": "Let \\(P^d\\), \\(d2\\), be a convex body. For every invertible linear map…",
-          "fullLabel": "Let \\(P^d\\), \\(d2\\), be a convex body. For every invertible linear map…",
+          "role": "facet-vectors-and-cartesian-products",
+          "label": "lemma m1-lem-affine",
+          "fullLabel": "lemma m1-lem-affine",
           "kind": "lemma",
           "source": "Facet vectors and Cartesian products",
-          "detail": "Let \\(P^d\\), \\(d2\\), be a convex body. For every invertible linear map \\(L^d^d\\), \\[ (LP)=| L|L^ -t P, R_d(LP)=R_d(P), \\] where \\(L^ -t \\) denotes the inverse transpose. Translations also preserve…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-simplex",
           "role": "the-simplex-value",
-          "label": "For \\(d2\\), the standard simplex \\(T_d=(0,e_1,,e_d)^d\\) satisfies \\[ |T_d|=1 d!…",
-          "fullLabel": "For \\(d2\\), the standard simplex \\(T_d=(0,e_1,,e_d)^d\\) satisfies \\[ |T_d|=1 d!…",
+          "label": "proposition m1-prop-simplex",
+          "fullLabel": "proposition m1-prop-simplex",
           "kind": "proposition",
           "source": "The simplex value",
-          "detail": "For \\(d2\\), the standard simplex \\(T_d=(0,e_1,,e_d)^d\\) satisfies \\[ |T_d|=1 d! , | T_d|=d+1 ((d-1)!)^d , R_d(T_d)=c_d. \\] Every full-dimensional \\(d\\)-simplex has the same value \\(c_d\\).",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-affine",
             "m1-prop-product"
@@ -121,24 +112,17 @@
         {
           "id": "m1-cor-exponential-excess",
           "role": "the-counterexample-and-exponential-excess",
-          "label": "There exist a constant \\(>1\\) and an integer \\(N20\\) such that, for every…",
-          "fullLabel": "There exist a constant \\(>1\\) and an integer \\(N20\\) such that, for every…",
+          "label": "corollary m1-cor-exponential-excess",
+          "fullLabel": "corollary m1-cor-exponential-excess",
           "kind": "corollary",
           "source": "The counterexample and exponential excess",
-          "detail": "There exist a constant \\(>1\\) and an integer \\(N20\\) such that, for every integer \\(n N\\), some full-dimensional convex polytope \\(K_n^n\\) satisfies \\[ R_n(K_n) R_n(T_n) ^n. \\] The polytopes \\(K_n\\)…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         }
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-counterexample",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -146,7 +130,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

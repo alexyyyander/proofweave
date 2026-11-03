@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "372",
   "title": "Global uniqueness in smooth isotropic elasticity",
   "result": {
@@ -14,17 +15,12 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
-    },
-    {
-      "id": "boundary-reduction-and-physical-transfer",
-      "label": "Boundary reduction and physical transfer",
+      "id": "introduction",
+      "label": "Introduction",
       "description": "A section of the paper."
     },
     {
-      "id": "boundary-reduction-and-physical-transfer-2",
+      "id": "boundary-reduction-and-physical-transfer",
       "label": "Boundary reduction and physical transfer",
       "description": "A section of the paper."
     },
@@ -34,27 +30,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "an-augmented-system-and-analytic-estimates-2",
-      "label": "An augmented system and analytic estimates",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "an-augmented-system-and-analytic-estimates-3",
-      "label": "An augmented system and analytic estimates",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "an-augmented-system-and-analytic-estimates-4",
-      "label": "An augmented system and analytic estimates",
-      "description": "A section of the paper."
-    },
-    {
       "id": "physical-solutions-realizing-local-transport-frames",
-      "label": "Physical solutions realizing local transport frames",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "physical-solutions-realizing-local-transport-frames-2",
       "label": "Physical solutions realizing local transport frames",
       "description": "A section of the paper."
     },
@@ -64,27 +40,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "matching-the-leading-transports-2",
-      "label": "Matching the leading transports",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "matching-the-leading-transports-3",
-      "label": "Matching the leading transports",
-      "description": "A section of the paper."
-    },
-    {
       "id": "recovery-of-the-coefficients",
-      "label": "Recovery of the coefficients",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "recovery-of-the-coefficients-2",
-      "label": "Recovery of the coefficients",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "recovery-of-the-coefficients-3",
       "label": "Recovery of the coefficients",
       "description": "A section of the paper."
     }
@@ -107,94 +63,94 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "Let ^3 be any bounded connected domain with C^ boundary. For j=1,2 , let _j,_j…",
-          "fullLabel": "Let ^3 be any bounded connected domain with C^ boundary. For j=1,2 , let _j,_j…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "Let ^3 be any bounded connected domain with C^ boundary. For j=1,2 , let _j,_j C^(;) satisfy _j>0 and 3_j+2_j>0 on . If \\[ _ _1,_1 =_ _2,_2 H^ 1/2 (;^3) H^ -1/2 (;^3), \\] then _1=_2 and _1=_2…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-common-extension",
           "role": "boundary-reduction-and-physical-transfer",
-          "label": "Common exterior extension",
-          "fullLabel": "Common exterior extension",
+          "label": "lemma m1-lem-common-extension",
+          "fullLabel": "lemma m1-lem-common-extension",
           "kind": "lemma",
           "source": "Boundary reduction and physical transfer",
-          "detail": "[Common exterior extension] The two pairs admit real smooth extensions to ^3 that satisfy everywhere, coincide on ^3 , and equal a common constant admissible pair outside a ball.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-physical-transfer",
-          "role": "boundary-reduction-and-physical-transfer-2",
-          "label": "Transfer of physical solutions",
-          "fullLabel": "Transfer of physical solutions",
+          "role": "boundary-reduction-and-physical-transfer",
+          "label": "proposition m1-prop-physical-transfer",
+          "fullLabel": "proposition m1-prop-physical-transfer",
           "kind": "proposition",
           "source": "Boundary reduction and physical transfer",
-          "detail": "[Transfer of physical solutions] Let B be a ball containing B_r . Every smooth solution u_1 of L_1u_1=0 on B has a smooth counterpart u_2 satisfying L_2u_2=0 on B and \\[ u_2=u_1on B. \\] In…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-augmented-system",
           "role": "an-augmented-system-and-analytic-estimates",
-          "label": "For every smooth pair (u,d) , Lu=R(u, u), R(u,d)-S(u,d)=P( u-d). In particular,…",
-          "fullLabel": "For every smooth pair (u,d) , Lu=R(u, u), R(u,d)-S(u,d)=P( u-d). In particular,…",
+          "label": "lemma m1-lem-augmented-system",
+          "fullLabel": "lemma m1-lem-augmented-system",
           "kind": "lemma",
           "source": "An augmented system and analytic estimates",
-          "detail": "For every smooth pair (u,d) , Lu=R(u, u), R(u,d)-S(u,d)=P( u-d). In particular, Lu=0 implies R(u, u)=S(u, u)=0 . The normalized augmented operator U= (m^ -1 R(u,d),\\, ^ -1 (S(u,d)-2m^ -1 m R(u,d)))…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-carleman",
-          "role": "an-augmented-system-and-analytic-estimates-2",
-          "label": "Supported Carleman estimate",
-          "fullLabel": "Supported Carleman estimate",
+          "role": "an-augmented-system-and-analytic-estimates",
+          "label": "proposition m1-prop-carleman",
+          "fullLabel": "proposition m1-prop-carleman",
           "kind": "proposition",
           "source": "An augmented system and analytic estimates",
-          "detail": "[Supported Carleman estimate] Let B be a bounded ball. For U C_c^(B;^4) and all sufficiently small h>0 , E_^ -1 U _ H_h^1 Ch E_^ -1 U _ H_h^ -1 .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-cor-physical-solvability",
-          "role": "an-augmented-system-and-analytic-estimates-3",
-          "label": "For the same B and , and all sufficiently large , every w C_c^(B;^3) satisfies…",
-          "fullLabel": "For the same B and , and all sufficiently large , every w C_c^(B;^3) satisfies…",
+          "role": "an-augmented-system-and-analytic-estimates",
+          "label": "corollary m1-cor-physical-solvability",
+          "fullLabel": "corollary m1-cor-physical-solvability",
           "kind": "corollary",
           "source": "An augmented system and analytic estimates",
-          "detail": "For the same B and , and all sufficiently large , every w C_c^(B;^3) satisfies E_^ -1 w _ L^2(B) C E_^ -1 Lw _ L^2(B) . Moreover, for every f L^2(B;^3) there exists z L^2(B;^3) satisfying,…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-prop-carleman"
           ]
         },
         {
           "id": "m1-lem-scaled-interior",
-          "role": "an-augmented-system-and-analytic-estimates-4",
-          "label": "Scaled interior estimate",
-          "fullLabel": "Scaled interior estimate",
+          "role": "an-augmented-system-and-analytic-estimates",
+          "label": "lemma m1-lem-scaled-interior",
+          "fullLabel": "lemma m1-lem-scaled-interior",
           "kind": "lemma",
           "source": "An augmented system and analytic estimates",
-          "detail": "[Scaled interior estimate] Let B' B . There exists h_ B' >0 such that, whenever 0<h=^ -1 <h_ B' and z,f L^2(B;^3) satisfy E_^ -1 L(E_ z)=f distributionally in B , _ j=0 ^2 h^j ^jz_ L^2(B') C_ B' (z_…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-planar-frames",
           "role": "physical-solutions-realizing-local-transport-frames",
-          "label": "Planar frames and inhomogeneous transports",
-          "fullLabel": "Planar frames and inhomogeneous transports",
+          "label": "lemma m1-lem-planar-frames",
+          "fullLabel": "lemma m1-lem-planar-frames",
           "kind": "lemma",
           "source": "Physical solutions realizing local transport frames",
-          "detail": "[Planar frames and inhomogeneous transports] Let I be an open interval and let A C^(D_R^2 I;^ n n ) . For each fixed t I , the equation _ z V=A(z,t)V has a smooth invertible matrix solution on D_R^2…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-physical-amplitudes",
-          "role": "physical-solutions-realizing-local-transport-frames-2",
-          "label": "Physical realization of local transport frames",
-          "fullLabel": "Physical realization of local transport frames",
+          "role": "physical-solutions-realizing-local-transport-frames",
+          "label": "proposition m1-prop-physical-amplitudes",
+          "fullLabel": "proposition m1-prop-physical-amplitudes",
           "kind": "proposition",
           "source": "Physical solutions realizing local transport frames",
-          "detail": "[Physical realization of local transport frames] For every nonzero null vector and every t_0(-2r,2r) , there exist an open interval J(-2r,2r) containing t_0 and three smooth solutions (a_0^ ,b_0^ ) ,…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-planar-frames",
             "m1-cor-physical-solvability",
@@ -204,33 +160,33 @@
         {
           "id": "m1-lem-transport-normal-form",
           "role": "matching-the-leading-transports",
-          "label": "Transport normal form",
-          "fullLabel": "Transport normal form",
+          "label": "lemma m1-lem-transport-normal-form",
+          "fullLabel": "lemma m1-lem-transport-normal-form",
           "kind": "lemma",
           "source": "Matching the leading transports",
-          "detail": "[Transport normal form] For one coefficient pair, set g= m . The change of variables p= m\\,a, s=-k 2 m \\,b-12 g p is a smooth invertible map of _ to itself. It transforms into D_p s =M_p s , M_= 0&\\\\…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-supported-transport",
-          "role": "matching-the-leading-transports-2",
-          "label": "Supported planar transport",
-          "fullLabel": "Supported planar transport",
+          "role": "matching-the-leading-transports",
+          "label": "lemma m1-lem-supported-transport",
+          "fullLabel": "lemma m1-lem-supported-transport",
           "kind": "lemma",
           "source": "Matching the leading transports",
-          "detail": "[Supported planar transport] Let U^d be open, let n1 , and suppose that \\[ _ =()(_ y_1 +i_ y_2 ) +A(y,), U, \\] where is smooth and nonzero and A is a smooth complex n n matrix on a neighborhood of D_…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-planar-frames"
           ]
         },
         {
           "id": "m1-prop-transport-matching",
-          "role": "matching-the-leading-transports-3",
-          "label": "Matching of the transports",
-          "fullLabel": "Matching of the transports",
+          "role": "matching-the-leading-transports",
+          "label": "proposition m1-prop-transport-matching",
+          "fullLabel": "proposition m1-prop-transport-matching",
           "kind": "proposition",
           "source": "Matching the leading transports",
-          "detail": "[Matching of the transports] For the two extended coefficient pairs of Lemma~ , equality of the physical displacement-to-traction maps implies that there is a unique smooth field \\[ G(x,[])End(_),…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-prop-physical-amplitudes",
             "m1-prop-physical-transfer",
@@ -242,31 +198,31 @@
         {
           "id": "m1-lem-conic-bundle",
           "role": "recovery-of-the-coefficients",
-          "label": "The bundle H has no nonzero global holomorphic sections, and H/ N is…",
-          "fullLabel": "The bundle H has no nonzero global holomorphic sections, and H/ N is…",
+          "label": "lemma m1-lem-conic-bundle",
+          "fullLabel": "lemma m1-lem-conic-bundle",
           "kind": "lemma",
           "source": "Recovery of the coefficients",
-          "detail": "The bundle H has no nonzero global holomorphic sections, and H/ N is holomorphically trivial. More precisely, under the identification C P^1() , \\[ H O(-1)^ 2 , N O(-2), \\] and their quotient…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-comparison-rigidity",
-          "role": "recovery-of-the-coefficients-2",
-          "label": "The comparison endomorphism of Proposition~ is G= . Consequently, for every x^3…",
-          "fullLabel": "The comparison endomorphism of Proposition~ is G= . Consequently, for every x^3…",
+          "role": "recovery-of-the-coefficients",
+          "label": "proposition m1-prop-comparison-rigidity",
+          "fullLabel": "proposition m1-prop-comparison-rigidity",
           "kind": "proposition",
           "source": "Recovery of the coefficients",
-          "detail": "The comparison endomorphism of Proposition~ is G= . Consequently, for every x^3 and every nonzero null vector , M_ 1, =M_ 2, on _.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-finite-type",
-          "role": "recovery-of-the-coefficients-3",
-          "label": "Let U^n be connected and open, with n2 , and let ,q and B_ ij ^ \\ a be smooth,…",
-          "fullLabel": "Let U^n be connected and open, with n2 , and let ,q and B_ ij ^ \\ a be smooth,…",
+          "role": "recovery-of-the-coefficients",
+          "label": "lemma m1-lem-finite-type",
+          "fullLabel": "lemma m1-lem-finite-type",
           "kind": "lemma",
           "source": "Recovery of the coefficients",
-          "detail": "Let U^n be connected and open, with n2 , and let ,q and B_ ij ^ \\ a be smooth, real- or complex-valued functions on U satisfying _i_j =_ a=1 ^n B_ ij ^ \\ a _a+_ ij q. Then (,q) satisfies a…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-common-extension",
             "m1-prop-transport-matching",
@@ -276,14 +232,7 @@
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -291,7 +240,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

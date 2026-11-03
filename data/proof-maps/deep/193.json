@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "193",
   "title": "Serre’s intersection-multiplicity conjecture",
   "result": {
@@ -14,11 +15,6 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
-    },
-    {
       "id": "introduction",
       "label": "Introduction",
       "description": "A section of the paper."
@@ -29,52 +25,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "residue-fields-and-normalized-length-2",
-      "label": "Residue fields and normalized length",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "residue-fields-and-normalized-length-3",
-      "label": "Residue fields and normalized length",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "residue-fields-and-normalized-length-4",
-      "label": "Residue fields and normalized length",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "residue-fields-and-normalized-length-5",
-      "label": "Residue fields and normalized length",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "residue-fields-and-normalized-length-6",
-      "label": "Residue fields and normalized length",
-      "description": "A section of the paper."
-    },
-    {
       "id": "rational-descent-with-closed-supports",
-      "label": "Rational descent with closed supports",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "rational-descent-with-closed-supports-2",
-      "label": "Rational descent with closed supports",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "rational-descent-with-closed-supports-3",
-      "label": "Rational descent with closed supports",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "rational-descent-with-closed-supports-4",
-      "label": "Rational descent with closed supports",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "rational-descent-with-closed-supports-5",
       "label": "Rational descent with closed supports",
       "description": "A section of the paper."
     },
@@ -84,57 +35,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "supported-asymptotic-complexes-2",
-      "label": "Supported asymptotic complexes",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "supported-asymptotic-complexes-3",
-      "label": "Supported asymptotic complexes",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "supported-asymptotic-complexes-4",
-      "label": "Supported asymptotic complexes",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "supported-asymptotic-complexes-5",
-      "label": "Supported asymptotic complexes",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "supported-asymptotic-complexes-6",
-      "label": "Supported asymptotic complexes",
-      "description": "A section of the paper."
-    },
-    {
       "id": "proof-of-strict-positivity",
-      "label": "Proof of strict positivity",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "proof-of-strict-positivity-2",
-      "label": "Proof of strict positivity",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "proof-of-strict-positivity-3",
-      "label": "Proof of strict positivity",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "proof-of-strict-positivity-4",
-      "label": "Proof of strict positivity",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "proof-of-strict-positivity-5",
-      "label": "Proof of strict positivity",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "proof-of-strict-positivity-6",
       "label": "Proof of strict positivity",
       "description": "A section of the paper."
     }
@@ -157,22 +58,22 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "Let (R,) be a commutative Noetherian regular local ring of dimension d , and…",
-          "fullLabel": "Let (R,) be a commutative Noetherian regular local ring of dimension d , and…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "Let (R,) be a commutative Noetherian regular local ring of dimension d , and let M,N be nonzero finitely generated R -modules. If _R(M_R N)< and _R M+_R N=d , then \\[ ^R(M,N)>0. \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-cor-tangent-cone",
           "role": "introduction",
-          "label": "Finite strict-transform intersection",
-          "fullLabel": "Finite strict-transform intersection",
+          "label": "corollary m1-cor-tangent-cone",
+          "fullLabel": "corollary m1-cor-tangent-cone",
           "kind": "corollary",
           "source": "Introduction",
-          "detail": "[Finite strict-transform intersection] Let (A,) be a commutative Noetherian regular local ring with residue field k , and let P,Q be prime ideals such that A/(P+Q) has finite length and (A/P)+(A/Q)=…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-thm-main"
           ]
@@ -180,51 +81,51 @@
         {
           "id": "m1-len-residue-extension",
           "role": "residue-fields-and-normalized-length",
-          "label": "Residue-field extension",
-          "fullLabel": "Residue-field extension",
+          "label": "lemma m1-len-residue-extension",
+          "fullLabel": "lemma m1-len-residue-extension",
           "kind": "lemma",
           "source": "Residue fields and normalized length",
-          "detail": "[Residue-field extension] Let (B, b,k) be a complete Noetherian local ring, and let k be an algebraic closure of k . There is a complete Noetherian local ring (B', b',k) and a flat local map B B'…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-len-normalization",
-          "role": "residue-fields-and-normalized-length-2",
-          "label": "Regular normalization bases",
-          "fullLabel": "Regular normalization bases",
+          "role": "residue-fields-and-normalized-length",
+          "label": "lemma m1-len-normalization",
+          "fullLabel": "lemma m1-len-normalization",
           "kind": "lemma",
           "source": "Residue fields and normalized length",
-          "detail": "[Regular normalization bases] Let (D, d,k) be a complete Noetherian local domain of dimension h>0 , where k is perfect of characteristic p>0 . There is a finite, generically separable inclusion A D ,…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-len-tower",
-          "role": "residue-fields-and-normalized-length-3",
-          "label": "The tower and its length",
-          "fullLabel": "The tower and its length",
+          "role": "residue-fields-and-normalized-length",
+          "label": "lemma m1-len-tower",
+          "fullLabel": "lemma m1-len-tower",
           "kind": "lemma",
           "source": "Residue fields and normalized length",
-          "detail": "[The tower and its length] Each A_n is a complete regular local ring with residue field k . For b a , the map A_a A_b is finite free of rank p^ (b-a)h ; in particular A A_n has rank p^ nh . On the…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-len-zero-length-limits",
-          "role": "residue-fields-and-normalized-length-4",
-          "label": "Zero-length limits",
-          "fullLabel": "Zero-length limits",
+          "role": "residue-fields-and-normalized-length",
+          "label": "lemma m1-len-zero-length-limits",
+          "fullLabel": "lemma m1-len-zero-length-limits",
           "kind": "lemma",
           "source": "Residue fields and normalized length",
-          "detail": "[Zero-length limits] Suppose all modules under consideration are killed by one fixed power of m_A . Sums, direct sums, and directed colimits of zero-length modules have length zero. For an increasing…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-len-input",
-          "role": "residue-fields-and-normalized-length-5",
-          "label": "Normalized-length input",
-          "fullLabel": "Normalized-length input",
+          "role": "residue-fields-and-normalized-length",
+          "label": "theorem m1-len-input",
+          "fullLabel": "theorem m1-len-input",
           "kind": "theorem",
           "source": "Residue fields and normalized length",
-          "detail": "[Normalized-length input] Let (D, d,k) and a chosen finite generically separable base A D be as in Lemma~ , and let be the tower . There is a D -algebra C_D , carrying a compatible -action, such that…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-len-zero-length-limits",
             "m1-len-tower"
@@ -232,64 +133,64 @@
         },
         {
           "id": "m1-len-finite-length-base-change",
-          "role": "residue-fields-and-normalized-length-6",
-          "label": "Finite-length base change",
-          "fullLabel": "Finite-length base change",
+          "role": "residue-fields-and-normalized-length",
+          "label": "corollary m1-len-finite-length-base-change",
+          "fullLabel": "corollary m1-len-finite-length-base-change",
           "kind": "corollary",
           "source": "Residue fields and normalized length",
-          "detail": "[Finite-length base change] In Theorem~ , put r=_A D . For every finite-length A -module V , \\[ _D_i^A(V,C_D)=0(i>0), _D(V_A C_D)=r_A(V). \\] Moreover _D(C_D/ d C_D)>0 .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-ds-descent",
           "role": "rational-descent-with-closed-supports",
-          "label": "Supported rational descent",
-          "fullLabel": "Supported rational descent",
+          "label": "theorem m1-ds-descent",
+          "fullLabel": "theorem m1-ds-descent",
           "kind": "theorem",
           "source": "Rational descent with closed supports",
-          "detail": "[Supported rational descent] Let A be a commutative Noetherian _ (p) -algebra of finite Krull dimension, let J A be an ideal containing p , and let H be a connective associative A -algebra with…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-ds-finite-flat",
-          "role": "rational-descent-with-closed-supports-2",
-          "label": "The functor satisfies ordinary Cech descent for finite faithfully flat covers,…",
-          "fullLabel": "The functor satisfies ordinary Cech descent for finite faithfully flat covers,…",
+          "role": "rational-descent-with-closed-supports",
+          "label": "lemma m1-ds-finite-flat",
+          "fullLabel": "lemma m1-ds-finite-flat",
           "kind": "lemma",
           "source": "Rational descent with closed supports",
-          "detail": "The functor satisfies ordinary Cech descent for finite faithfully flat covers, universally under base change.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-ds-finite-surjection",
-          "role": "rational-descent-with-closed-supports-3",
-          "label": "The functor satisfies ordinary Cech descent for every finite surjection of…",
-          "fullLabel": "The functor satisfies ordinary Cech descent for every finite surjection of…",
+          "role": "rational-descent-with-closed-supports",
+          "label": "lemma m1-ds-finite-surjection",
+          "fullLabel": "lemma m1-ds-finite-surjection",
           "kind": "lemma",
           "source": "Rational descent with closed supports",
-          "detail": "The functor satisfies ordinary Cech descent for every finite surjection of finite-type A -schemes.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-ds-finite-flat"
           ]
         },
         {
           "id": "m1-ds-finite-length-basechange",
-          "role": "rational-descent-with-closed-supports-4",
-          "label": "For every finite-length A -module V , _i^A(V,C)=0(i>0), (V_A C)=r_A(V). All…",
-          "fullLabel": "For every finite-length A -module V , _i^A(V,C)=0(i>0), (V_A C)=r_A(V). All…",
+          "role": "rational-descent-with-closed-supports",
+          "label": "lemma m1-ds-finite-length-basechange",
+          "fullLabel": "lemma m1-ds-finite-length-basechange",
           "kind": "lemma",
           "source": "Rational descent with closed supports",
-          "detail": "For every finite-length A -module V , _i^A(V,C)=0(i>0), (V_A C)=r_A(V). All these lengths are finite.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-ds-ordinary-norm",
-          "role": "rational-descent-with-closed-supports-5",
-          "label": "Ordinary norm comparison",
-          "fullLabel": "Ordinary norm comparison",
+          "role": "rational-descent-with-closed-supports",
+          "label": "lemma m1-ds-ordinary-norm",
+          "fullLabel": "lemma m1-ds-ordinary-norm",
           "kind": "lemma",
           "source": "Rational descent with closed supports",
-          "detail": "[Ordinary norm comparison] Assume, in addition, that a finite group G acts on T over A and is transitive on every geometric fiber of T A . For a perfect T -complex P supported on V(_A T) , the…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-ds-finite-length-basechange",
             "m1-ds-descent"
@@ -298,45 +199,45 @@
         {
           "id": "m1-as-supported-quotient",
           "role": "supported-asymptotic-complexes",
-          "label": "The natural exact functor \\[ S_S/( S_S N_S) D_S/ N_S \\] is fully faithful. Its…",
-          "fullLabel": "The natural exact functor \\[ S_S/( S_S N_S) D_S/ N_S \\] is fully faithful. Its…",
+          "label": "lemma m1-as-supported-quotient",
+          "fullLabel": "lemma m1-as-supported-quotient",
           "kind": "lemma",
           "source": "Supported asymptotic complexes",
-          "detail": "The natural exact functor \\[ S_S/( S_S N_S) D_S/ N_S \\] is fully faithful. Its idempotent completion is P_S^J .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-as-evaluations",
-          "role": "supported-asymptotic-complexes-2",
-          "label": "There are homological functors \\[ H_i^ ord : P_T^J A_T, H_i^C: P_T^J A_C \\]…",
-          "fullLabel": "There are homological functors \\[ H_i^ ord : P_T^J A_T, H_i^C: P_T^J A_C \\]…",
+          "role": "supported-asymptotic-complexes",
+          "label": "proposition m1-as-evaluations",
+          "fullLabel": "proposition m1-as-evaluations",
           "kind": "proposition",
           "source": "Supported asymptotic complexes",
-          "detail": "There are homological functors \\[ H_i^ ord : P_T^J A_T, H_i^C: P_T^J A_C \\] whose values on a uniformly supported lift are its ordinary homology sequence and its homology sequence after tensoring…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-as-supported-quotient"
           ]
         },
         {
           "id": "m1-as-finite-tor",
-          "role": "supported-asymptotic-complexes-3",
-          "label": "For every finite-length A -module V , \\[ _j^A(V,C)=0(j>0), (V_A C)=r_A V. \\]…",
-          "fullLabel": "For every finite-length A -module V , \\[ _j^A(V,C)=0(j>0), (V_A C)=r_A V. \\]…",
+          "role": "supported-asymptotic-complexes",
+          "label": "lemma m1-as-finite-tor",
+          "fullLabel": "lemma m1-as-finite-tor",
           "kind": "lemma",
           "source": "Supported asymptotic complexes",
-          "detail": "For every finite-length A -module V , \\[ _j^A(V,C)=0(j>0), (V_A C)=r_A V. \\] All these modules are annihilated by a power of J .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-ds-finite-length-basechange"
           ]
         },
         {
           "id": "m1-as-base-equality",
-          "role": "supported-asymptotic-complexes-4",
-          "label": "For every X P_A^J , \\[ _ ord (X_A^ L T) =r_A(X) =_C(X_A^ L T). \\] These…",
-          "fullLabel": "For every X P_A^J , \\[ _ ord (X_A^ L T) =r_A(X) =_C(X_A^ L T). \\] These…",
+          "role": "supported-asymptotic-complexes",
+          "label": "proposition m1-as-base-equality",
+          "fullLabel": "proposition m1-as-base-equality",
           "kind": "proposition",
           "source": "Supported asymptotic complexes",
-          "detail": "For every X P_A^J , \\[ _ ord (X_A^ L T) =r_A(X) =_C(X_A^ L T). \\] These equalities hold for summands defined by idempotents in the Verdier quotient, without assuming that the idempotents lift to…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-as-supported-quotient",
             "m1-as-finite-tor"
@@ -344,22 +245,22 @@
         },
         {
           "id": "m1-as-connective",
-          "role": "supported-asymptotic-complexes-5",
-          "label": "Connective coefficients",
-          "fullLabel": "Connective coefficients",
+          "role": "supported-asymptotic-complexes",
+          "label": "lemma m1-as-connective",
+          "fullLabel": "lemma m1-as-connective",
           "kind": "lemma",
           "source": "Supported asymptotic complexes",
-          "detail": "[Connective coefficients] There is a connective associative derived A -algebra H and compatible equivalences \\[ P_A(H), P_T(H_A^ L T). \\] The equivalences respect central localization by elements of…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-as-norm",
-          "role": "supported-asymptotic-complexes-6",
-          "label": "Asymptotic norm comparison",
-          "fullLabel": "Asymptotic norm comparison",
+          "role": "supported-asymptotic-complexes",
+          "label": "theorem m1-as-norm",
+          "fullLabel": "theorem m1-as-norm",
           "kind": "theorem",
           "source": "Supported asymptotic complexes",
-          "detail": "[Asymptotic norm comparison] Let A,J,T,C, satisfy the setup of this section and . Suppose a finite group G acts on T over A , the map T A is surjective, and G is transitive on every geometric fiber.…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-as-connective",
             "m1-ds-descent",
@@ -369,67 +270,67 @@
         {
           "id": "m1-pos-reduction",
           "role": "proof-of-strict-positivity",
-          "label": "To prove Theorem~ , it suffices to prove the assertion for \\[ D=R/P, E=R/Q, h=…",
-          "fullLabel": "To prove Theorem~ , it suffices to prove the assertion for \\[ D=R/P, E=R/Q, h=…",
+          "label": "lemma m1-pos-reduction",
+          "fullLabel": "lemma m1-pos-reduction",
           "kind": "lemma",
           "source": "Proof of strict positivity",
-          "detail": "To prove Theorem~ , it suffices to prove the assertion for \\[ D=R/P, E=R/Q, h= D>0, l= E>0, h+l=d, \\] where R is complete with algebraically closed residue field k of characteristic p>0 , P,Q are…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-len-residue-extension"
           ]
         },
         {
           "id": "m1-pos-first-average",
-          "role": "proof-of-strict-positivity-2",
-          "label": "The lengths in Equation~ are finite, and |G_D|a_Da_E\\,^R(D,E)=_ G_D c_.",
-          "fullLabel": "The lengths in Equation~ are finite, and |G_D|a_Da_E\\,^R(D,E)=_ G_D c_.",
+          "role": "proof-of-strict-positivity",
+          "label": "lemma m1-pos-first-average",
+          "fullLabel": "lemma m1-pos-first-average",
           "kind": "lemma",
           "source": "Proof of strict positivity",
-          "detail": "The lengths in Equation~ are finite, and |G_D|a_Da_E\\,^R(D,E)=_ G_D c_.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-ds-ordinary-norm"
           ]
         },
         {
           "id": "m1-pos-tor-bound",
-          "role": "proof-of-strict-positivity-3",
-          "label": "For every finite B -module L , all the following lengths are finite, and…",
-          "fullLabel": "For every finite B -module L , all the following lengths are finite, and…",
+          "role": "proof-of-strict-positivity",
+          "label": "lemma m1-pos-tor-bound",
+          "fullLabel": "lemma m1-pos-tor-bound",
           "kind": "lemma",
           "source": "Proof of strict positivity",
-          "detail": "For every finite B -module L , all the following lengths are finite, and _i(L):=(_i^B(U,L)) =(_i^R(C,L)), _i(L)=0(i>l).",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-pos-approximation",
-          "role": "proof-of-strict-positivity-4",
-          "label": "There are finite-length B -modules M_n and positive integers s_n , with…",
-          "fullLabel": "There are finite-length B -modules M_n and positive integers s_n , with…",
+          "role": "proof-of-strict-positivity",
+          "label": "lemma m1-pos-approximation",
+          "fullLabel": "lemma m1-pos-approximation",
           "kind": "lemma",
           "source": "Proof of strict positivity",
-          "detail": "There are finite-length B -modules M_n and positive integers s_n , with _B^aM_n=0 , such that _B(M_n) s_n &(U), \\\\ _B _i^B(M_n,L) s_n &_i(L) (L=k,E',\\ i0). Writing _0(M_n)=_k(M_n/_BM_n) , we also…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-len-input"
           ]
         },
         {
           "id": "m1-pos-supported-truncation",
-          "role": "proof-of-strict-positivity-5",
-          "label": "The sequence (F_ n, ')_n is supported at the closed point in that category. Its…",
-          "fullLabel": "The sequence (F_ n, ')_n is supported at the closed point in that category. Its…",
+          "role": "proof-of-strict-positivity",
+          "label": "lemma m1-pos-supported-truncation",
+          "fullLabel": "lemma m1-pos-supported-truncation",
           "kind": "lemma",
           "source": "Proof of strict positivity",
-          "detail": "The sequence (F_ n, ')_n is supported at the closed point in that category. Its ordinary Euler evaluation is c_ for every G_E .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-pos-positive-evaluation",
-          "role": "proof-of-strict-positivity-6",
-          "label": "The _E Euler evaluation of (F_ n, ')_n is a number b_ , satisfying b_ , __E…",
-          "fullLabel": "The _E Euler evaluation of (F_ n, ')_n is a number b_ , satisfying b_ , __E…",
+          "role": "proof-of-strict-positivity",
+          "label": "lemma m1-pos-positive-evaluation",
+          "fullLabel": "lemma m1-pos-positive-evaluation",
           "kind": "lemma",
           "source": "Proof of strict positivity",
-          "detail": "The _E Euler evaluation of (F_ n, ')_n is a number b_ , satisfying b_ , __E _D(U) _B(B/_B^a) r_E t_E >0.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-len-input",
             "m1-as-norm",
@@ -440,14 +341,7 @@
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -455,7 +349,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

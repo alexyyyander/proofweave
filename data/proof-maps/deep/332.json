@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "332",
   "title": "Metric Markov cotype of <i>ℓ</i><sub>1</sub> and Hilbert-space Lipschitz extension",
   "result": {
@@ -14,9 +15,9 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
     },
     {
       "id": "finite-cuts-and-reconstruction",
@@ -29,22 +30,12 @@
       "description": "A section of the paper."
     },
     {
-      "id": "a-flat-map-and-a-quartic-potential-2",
-      "label": "A flat map and a quartic potential",
-      "description": "A section of the paper."
-    },
-    {
       "id": "geometric-and-ces-aro-endpoint-costs",
       "label": "Geometric and Ces\\`aro endpoint costs",
       "description": "A section of the paper."
     },
     {
       "id": "complex-scalars-and-lipschitz-extension",
-      "label": "Complex scalars and Lipschitz extension",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "complex-scalars-and-lipschitz-extension-2",
       "label": "Complex scalars and Lipschitz extension",
       "description": "A section of the paper."
     }
@@ -67,42 +58,42 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "The real space _1 satisfies \\[ N_2(_1)1221. \\]",
-          "fullLabel": "The real space _1 satisfies \\[ N_2(_1)1221. \\]",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "The real space _1 satisfies \\[ N_2(_1)1221. \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-cuts",
           "role": "finite-cuts-and-reconstruction",
-          "label": "Given x_1,,x_n_1 , either all the points coincide, or there exist a finite set…",
-          "fullLabel": "Given x_1,,x_n_1 , either all the points coincide, or there exist a finite set…",
+          "label": "lemma m1-lem-cuts",
+          "fullLabel": "lemma m1-lem-cuts",
           "kind": "lemma",
           "source": "Finite cuts and reconstruction",
-          "detail": "Given x_1,,x_n_1 , either all the points coincide, or there exist a finite set B , positive weights (w_B)_ B B , binary vectors z_i\\ 0,1\\ ^ B , and an affine map T:^ B _1 with the following…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-flat",
           "role": "a-flat-map-and-a-quartic-potential",
-          "label": "For u,u' Q and e\\ 0,1\\ ^ B , put a=u-e , =u'-u , and F_e(u)=\\|u-e\\|_H^4 . Then…",
-          "fullLabel": "For u,u' Q and e\\ 0,1\\ ^ B , put a=u-e , =u'-u , and F_e(u)=\\|u-e\\|_H^4 . Then…",
+          "label": "lemma m1-lem-flat",
+          "fullLabel": "lemma m1-lem-flat",
           "kind": "lemma",
           "source": "A flat map and a quartic potential",
-          "detail": "For u,u' Q and e\\ 0,1\\ ^ B , put a=u-e , =u'-u , and F_e(u)=\\|u-e\\|_H^4 . Then \\|(u')-(u)\\|_ 1,w ^2 108(F_e(u')-F_e(u) -4\\|a\\|_H^2 a,_H).",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-cor-martingale",
-          "role": "a-flat-map-and-a-quartic-potential-2",
-          "label": "Let (M_m)_ m0 be an H -valued martingale with respect to a filtration (_m) ,…",
-          "fullLabel": "Let (M_m)_ m0 be an H -valued martingale with respect to a filtration (_m) ,…",
+          "role": "a-flat-map-and-a-quartic-potential",
+          "label": "corollary m1-cor-martingale",
+          "fullLabel": "corollary m1-cor-martingale",
           "kind": "corollary",
           "source": "A flat map and a quartic potential",
-          "detail": "Let (M_m)_ m0 be an H -valued martingale with respect to a filtration (_m) , taking values in Q and converging almost surely to M_ . If e is an _0 -measurable binary vector, then _ m=0 ^ \\|(M_ m+1…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-flat"
           ]
@@ -110,46 +101,39 @@
         {
           "id": "m1-lem-comparison",
           "role": "geometric-and-ces-aro-endpoint-costs",
-          "label": "Let (X_s)_ s0 be a stationary Markov chain on [n] , and let x_1,,x_n lie in a…",
-          "fullLabel": "Let (X_s)_ s0 be a stationary Markov chain on [n] , and let x_1,,x_n lie in a…",
+          "label": "lemma m1-lem-comparison",
+          "fullLabel": "lemma m1-lem-comparison",
           "kind": "lemma",
           "source": "Geometric and Ces\\`aro endpoint costs",
-          "detail": "Let (X_s)_ s0 be a stationary Markov chain on [n] , and let x_1,,x_n lie in a metric space (X,d) . For t , set p=1/(t+1) and q=1-p . If S is independent of the walk and (S=s)=pq^s for s0 , then d(x_…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-cor-complex",
           "role": "complex-scalars-and-lipschitz-extension",
-          "label": "For complex scalars, N_2(_1( C))1242 .",
-          "fullLabel": "For complex scalars, N_2(_1( C))1242 .",
+          "label": "corollary m1-cor-complex",
+          "fullLabel": "corollary m1-cor-complex",
           "kind": "corollary",
           "source": "Complex scalars and Lipschitz extension",
-          "detail": "For complex scalars, N_2(_1( C))1242 .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-thm-main"
           ]
         },
         {
           "id": "m1-cor-extension",
-          "role": "complex-scalars-and-lipschitz-extension-2",
-          "label": "There is a universal constant K< such that, for every real Hilbert space H ,…",
-          "fullLabel": "There is a universal constant K< such that, for every real Hilbert space H ,…",
+          "role": "complex-scalars-and-lipschitz-extension",
+          "label": "corollary m1-cor-extension",
+          "fullLabel": "corollary m1-cor-extension",
           "kind": "corollary",
           "source": "Complex scalars and Lipschitz extension",
-          "detail": "There is a universal constant K< such that, for every real Hilbert space H , every subset S H , and every Lipschitz map f:S_1 , there is an extension F: H_1 with (F) K(f) .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         }
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -157,7 +141,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

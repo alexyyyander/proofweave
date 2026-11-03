@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "325",
   "title": "The complete Crouzeix conjecture",
   "result": {
@@ -14,9 +15,9 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
     },
     {
       "id": "exterior-coordinates-and-coefficient-estimates",
@@ -24,17 +25,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "exterior-coordinates-and-coefficient-estimates-2",
-      "label": "Exterior coordinates and coefficient estimates",
-      "description": "A section of the paper."
-    },
-    {
       "id": "singular-vectors-and-the-amplified-estimate",
-      "label": "Singular vectors and the amplified estimate",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "singular-vectors-and-the-amplified-estimate-2",
       "label": "Singular vectors and the amplified estimate",
       "description": "A section of the paper."
     },
@@ -54,27 +45,12 @@
       "description": "A section of the paper."
     },
     {
-      "id": "the-structural-question-2",
-      "label": "The structural question",
-      "description": "A section of the paper."
-    },
-    {
       "id": "the-metric-its-representation-and-its-extremal-data",
       "label": "The metric, its representation, and its extremal data",
       "description": "A section of the paper."
     },
     {
-      "id": "the-metric-its-representation-and-its-extremal-data-2",
-      "label": "The metric, its representation, and its extremal data",
-      "description": "A section of the paper."
-    },
-    {
       "id": "local-boundary-tools",
-      "label": "Local boundary tools",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "local-boundary-tools-2",
       "label": "Local boundary tools",
       "description": "A section of the paper."
     },
@@ -85,16 +61,6 @@
     },
     {
       "id": "from-admissible-domains-to-bounded-hilbert-space-operators",
-      "label": "From admissible domains to bounded Hilbert-space operators",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "from-admissible-domains-to-bounded-hilbert-space-operators-2",
-      "label": "From admissible domains to bounded Hilbert-space operators",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "from-admissible-domains-to-bounded-hilbert-space-operators-3",
       "label": "From admissible domains to bounded Hilbert-space operators",
       "description": "A section of the paper."
     }
@@ -117,32 +83,32 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "For every pair of positive integers n,m , every A M_n() , every nonnegative…",
-          "fullLabel": "For every pair of positive integers n,m , every A M_n() , every nonnegative…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "For every pair of positive integers n,m , every A M_n() , every nonnegative integer d , and every polynomial P(z)=_ k=0 ^d B_kz^k with B_k M_m() , \\|P[A]\\|2_ z W(A) \\|P(z)\\|. The constant two cannot…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-faber",
           "role": "exterior-coordinates-and-coefficient-estimates",
-          "label": "Exterior Faber coefficients and the positive kernel",
-          "fullLabel": "Exterior Faber coefficients and the positive kernel",
+          "label": "theorem m1-lem-faber",
+          "fullLabel": "theorem m1-lem-faber",
           "kind": "theorem",
           "source": "Exterior coordinates and coefficient estimates",
-          "detail": "[Exterior Faber coefficients and the positive kernel] Let be a bounded convex domain with regular real-analytic Jordan boundary. Let h be meromorphic and one-to-one on ||>r including infinity, where…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-coefficients",
-          "role": "exterior-coordinates-and-coefficient-estimates-2",
-          "label": "The coefficient norm estimate",
-          "fullLabel": "The coefficient norm estimate",
+          "role": "exterior-coordinates-and-coefficient-estimates",
+          "label": "proposition m1-prop-coefficients",
+          "fullLabel": "proposition m1-prop-coefficients",
           "kind": "proposition",
           "source": "Exterior coordinates and coefficient estimates",
-          "detail": "[The coefficient norm estimate] For every positive integer m and every M_m() -valued polynomial G(z)=_ k=0 ^N b_k(z)C_k , _ k=0 ^NC_k^2 _G(h( ))^2\\,d() C_0^2+2_ k=1 ^NC_k^2.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-faber"
           ]
@@ -150,21 +116,21 @@
         {
           "id": "m1-lem-resolvent",
           "role": "singular-vectors-and-the-amplified-estimate",
-          "label": "The resolvent expansion and double-layer positivity",
-          "fullLabel": "The resolvent expansion and double-layer positivity",
+          "label": "theorem m1-lem-resolvent",
+          "fullLabel": "theorem m1-lem-resolvent",
           "kind": "theorem",
           "source": "Singular vectors and the amplified estimate",
-          "detail": "[The resolvent expansion and double-layer positivity] Let ,h,q , and (b_k) satisfy the hypotheses and conclusions of Theorem~ . For any positive integer n and A M_n() with W(A) , on let…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-thm-domain",
-          "role": "singular-vectors-and-the-amplified-estimate-2",
-          "label": "The bound on an analytic convex domain",
-          "fullLabel": "The bound on an analytic convex domain",
+          "role": "singular-vectors-and-the-amplified-estimate",
+          "label": "theorem m1-thm-domain",
+          "fullLabel": "theorem m1-thm-domain",
           "kind": "theorem",
           "source": "Singular vectors and the amplified estimate",
-          "detail": "[The bound on an analytic convex domain] For positive integers n,m , let be bounded, open, and convex with regular real-analytic Jordan boundary, and let A M_n() satisfy W(A) . For every M_m()…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-exterior-collar",
             "m1-lem-faber",
@@ -177,11 +143,11 @@
         {
           "id": "m1-lem-approx",
           "role": "enclosing-domains-and-arbitrary-numerical-ranges",
-          "label": "Analytic convex outer approximation",
-          "fullLabel": "Analytic convex outer approximation",
+          "label": "lemma m1-lem-approx",
+          "fullLabel": "lemma m1-lem-approx",
           "kind": "lemma",
           "source": "Enclosing domains and arbitrary numerical ranges",
-          "detail": "[Analytic convex outer approximation] Let K be nonempty, compact, and convex. There are bounded convex open domains _j with regular real-analytic Jordan boundaries such that K_j and \\[ _ z_j (z,K)0.…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-thm-domain"
           ]
@@ -189,11 +155,11 @@
         {
           "id": "m1-lem-exterior-collar",
           "role": "the-exterior-conformal-collar",
-          "label": "Exterior coordinate and a univalent collar",
-          "fullLabel": "Exterior coordinate and a univalent collar",
+          "label": "lemma m1-lem-exterior-collar",
+          "fullLabel": "lemma m1-lem-exterior-collar",
           "kind": "lemma",
           "source": "The exterior conformal collar",
-          "detail": "[Exterior coordinate and a univalent collar] Let C be a bounded convex domain whose boundary is a regular real-analytic Jordan curve. There are 0<r_0<1 and a map h , meromorphic on \\ :||>r_0\\ \\ \\ ,…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         }
       ]
@@ -216,81 +182,81 @@
         {
           "id": "m2-lem-conformal-coordinates",
           "role": "the-structural-question",
-          "label": "Conformal coordinates",
-          "fullLabel": "Conformal coordinates",
+          "label": "lemma m2-lem-conformal-coordinates",
+          "fullLabel": "lemma m2-lem-conformal-coordinates",
           "kind": "lemma",
           "source": "The structural question",
-          "detail": "[Conformal coordinates] For every admissible there is a conformal bijection f: such that f and f^ -1 extend univalently through and , respectively. There is also a conformal bijection G:\\ |t|>1\\ that…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-thm-structural",
-          "role": "result",
-          "label": "The optimal metric",
-          "fullLabel": "The optimal metric",
+          "role": "the-structural-question",
+          "label": "theorem m2-thm-structural",
+          "fullLabel": "theorem m2-thm-structural",
           "kind": "theorem",
           "source": "The structural question",
-          "detail": "[The optimal metric] For every admissible , every finite n1 , every A M_n() with W(A) , and the interior conformal coordinate f above, the problem is strictly feasible and has an attained minimum…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-thm-representation",
-          "role": "the-structural-question-2",
-          "label": "A common positive representation",
-          "fullLabel": "A common positive representation",
+          "role": "the-structural-question",
+          "label": "theorem m2-thm-representation",
+          "fullLabel": "theorem m2-thm-representation",
           "kind": "theorem",
           "source": "The structural question",
-          "detail": "[A common positive representation] With the same ,A,f,G and any chosen minimizing metric in Theorem~ , there is one continuous function : M_n() satisfying \\[ (t)0, _(t)\\,d(t)=I_n, \\] such that, for…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-prop-density",
           "role": "the-metric-its-representation-and-its-extremal-data",
-          "label": "One density for every coefficient size",
-          "fullLabel": "One density for every coefficient size",
+          "label": "proposition m2-prop-density",
+          "fullLabel": "proposition m2-prop-density",
           "kind": "proposition",
           "source": "The metric, its representation, and its extremal data",
-          "detail": "[One density for every coefficient size] For the fixed minimizing metric, the representation holds, before any bound on is proved, with _D()&=(I-D/)^ -1 +[(I-D/)^ -1 ]^*-I, \\\\ j(t)&=tG'(t)f'(G(t))…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-prop-extremal",
-          "role": "the-metric-its-representation-and-its-extremal-data-2",
-          "label": "Endpoint extremal",
-          "fullLabel": "Endpoint extremal",
+          "role": "the-metric-its-representation-and-its-extremal-data",
+          "label": "proposition m2-prop-extremal",
+          "fullLabel": "proposition m2-prop-extremal",
           "kind": "proposition",
           "source": "The metric, its representation, and its extremal data",
-          "detail": "[Endpoint extremal] If >1 , there are X,Y M_n() with \\[ (XX^*)=(YY^*)=1, SX= X, SY=Y, X^*Y=0, \\] and an M_n -valued rational function F_ , holomorphic on a neighborhood of and contractive on , such…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-input-analytic",
           "role": "local-boundary-tools",
-          "label": "Exterior coefficients and the original-matrix resolvent",
-          "fullLabel": "Exterior coefficients and the original-matrix resolvent",
+          "label": "proposition m2-input-analytic",
+          "fullLabel": "proposition m2-input-analytic",
           "kind": "proposition",
           "source": "Local boundary tools",
-          "detail": "[Exterior coefficients and the original-matrix resolvent] Assume the admissible and the exterior map G supplied above. Write G(t)=at+b+O(t^ -1 ) at infinity, where a0 , and q_G(t)=tG'(t) . There are…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-prop-projection",
-          "role": "local-boundary-tools-2",
-          "label": "The local projection theorem",
-          "fullLabel": "The local projection theorem",
+          "role": "local-boundary-tools",
+          "label": "proposition m2-prop-projection",
+          "fullLabel": "proposition m2-prop-projection",
           "kind": "proposition",
           "source": "Local boundary tools",
-          "detail": "[The local projection theorem] For finite Laurent data u , the polynomial c_u has boundary trace u=c_u G . This map extends to a bounded projection on every _k . With u=((u^*))^* , one has \\[…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-lem-comparison",
           "role": "the-ordered-comparison-and-the-constant-two",
-          "label": "Ordered density comparison",
-          "fullLabel": "Ordered density comparison",
+          "label": "lemma m2-lem-comparison",
+          "fullLabel": "lemma m2-lem-comparison",
           "kind": "lemma",
           "source": "The ordered comparison and the constant two",
-          "detail": "[Ordered density comparison] Let k1 , and let F=F_ G be M_k -valued, with F_ holomorphic near and \\|F(t)\\|1 on . Suppose p,q,r_k satisfy \\[ p=p^*, q=q^*, p=F^*r, q=rF^*, r_0=0,(p_0)>0. \\] For a…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m2-thm-structural",
             "m2-thm-representation",
@@ -301,21 +267,21 @@
         {
           "id": "m2-cor-polynomial",
           "role": "from-admissible-domains-to-bounded-hilbert-space-operators",
-          "label": "The sharp complete polynomial inequality for matrices",
-          "fullLabel": "The sharp complete polynomial inequality for matrices",
+          "label": "corollary m2-cor-polynomial",
+          "fullLabel": "corollary m2-cor-polynomial",
           "kind": "corollary",
           "source": "From admissible domains to bounded Hilbert-space operators",
-          "detail": "[The sharp complete polynomial inequality for matrices] For every pair of positive integers n,m , every A M_n() , every nonnegative integer d , and every choice of matrices B_0,,B_d M_m() , the…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-lem-gaussian",
-          "role": "from-admissible-domains-to-bounded-hilbert-space-operators-2",
-          "label": "Gaussian analytic outer approximation",
-          "fullLabel": "Gaussian analytic outer approximation",
+          "role": "from-admissible-domains-to-bounded-hilbert-space-operators",
+          "label": "lemma m2-lem-gaussian",
+          "fullLabel": "lemma m2-lem-gaussian",
           "kind": "lemma",
           "source": "From admissible domains to bounded Hilbert-space operators",
-          "detail": "[Gaussian analytic outer approximation] For every nonempty compact convex K^2 and every >0 , there is an admissible _ such that \\[ K_, _\\ x:(x,K)<\\ . \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m2-thm-structural",
             "m2-thm-representation"
@@ -323,12 +289,12 @@
         },
         {
           "id": "m2-cor-hilbert",
-          "role": "from-admissible-domains-to-bounded-hilbert-space-operators-3",
-          "label": "The sharp complete inequality for bounded operators",
-          "fullLabel": "The sharp complete inequality for bounded operators",
+          "role": "from-admissible-domains-to-bounded-hilbert-space-operators",
+          "label": "corollary m2-cor-hilbert",
+          "fullLabel": "corollary m2-cor-hilbert",
           "kind": "corollary",
           "source": "From admissible domains to bounded Hilbert-space operators",
-          "detail": "[The sharp complete inequality for bounded operators] Let H be a complex Hilbert space, with no separability assumption, and let A B( H) . Suppose first that H\\ 0\\ , and put \\[ W(A)=\\ x,Ax:x H,\\…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m2-lem-gaussian"
           ],
@@ -339,20 +305,7 @@
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    },
-    {
-      "from": "m2:m2-thm-structural",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -360,7 +313,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "326",
   "title": "The cotype–cotype conjecture under the approximation property",
   "result": {
@@ -14,11 +15,6 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
-    },
-    {
       "id": "the-characterization",
       "label": "The characterization",
       "description": "A section of the paper."
@@ -29,32 +25,12 @@
       "description": "A section of the paper."
     },
     {
-      "id": "walsh-transforms-and-moment-lifts-2",
-      "label": "Walsh transforms and moment lifts",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "walsh-transforms-and-moment-lifts-3",
-      "label": "Walsh transforms and moment lifts",
-      "description": "A section of the paper."
-    },
-    {
       "id": "a-scalar-fourier-coefficient-lemma",
       "label": "A scalar Fourier-coefficient lemma",
       "description": "A section of the paper."
     },
     {
       "id": "uniform-walsh-decay-for-finite-rank-operators",
-      "label": "Uniform Walsh decay for finite-rank operators",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "uniform-walsh-decay-for-finite-rank-operators-2",
-      "label": "Uniform Walsh decay for finite-rank operators",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "uniform-walsh-decay-for-finite-rank-operators-3",
       "label": "Uniform Walsh decay for finite-rank operators",
       "description": "A section of the paper."
     },
@@ -87,52 +63,52 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "Let \\(X\\) be a nonzero real Banach space with the ordinary approximation…",
-          "fullLabel": "Let \\(X\\) be a nonzero real Banach space with the ordinary approximation…",
+          "role": "the-characterization",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "The characterization",
-          "detail": "Let \\(X\\) be a nonzero real Banach space with the ordinary approximation property. Then \\(X\\) is \\(K\\)-convex if and only if \\[ C_q(X)< and C_r(X^*)< for some q,r The exponents \\(q\\) and \\(r\\) may…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-cor-uniform-cotype-entropy",
           "role": "the-characterization",
-          "label": "Uniform cotype bounds and entropy duality",
-          "fullLabel": "Uniform cotype bounds and entropy duality",
+          "label": "corollary m1-cor-uniform-cotype-entropy",
+          "fullLabel": "corollary m1-cor-uniform-cotype-entropy",
           "kind": "corollary",
           "source": "The characterization",
-          "detail": "[Uniform cotype bounds and entropy duality] Fix \\(q,r satisfies \\(K(X)\\). Consequently there are \\(a,b1\\), depending only on \\(q,r,C,D\\), such that for every \\(n1\\), all origin-symmetric convex…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-walsh-basic",
           "role": "walsh-transforms-and-moment-lifts",
-          "label": "Basic Walsh estimates",
-          "fullLabel": "Basic Walsh estimates",
+          "label": "lemma m1-lem-walsh-basic",
+          "fullLabel": "lemma m1-lem-walsh-basic",
           "kind": "lemma",
           "source": "Walsh transforms and moment lifts",
-          "detail": "[Basic Walsh estimates] For every bounded \\(T:G F\\): [label=( *)] \\(2^ -n/2 \\|T\\| w_n(T)\\|T\\|\\), and \\(w_n(T)\\) is nonincreasing in \\(n\\). If \\(T_:L_2(;G) L_2(;F)\\) acts pointwise as \\(T\\), where…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-kahane",
-          "role": "walsh-transforms-and-moment-lifts-2",
-          "label": "Moment comparison",
-          "fullLabel": "Moment comparison",
+          "role": "walsh-transforms-and-moment-lifts",
+          "label": "lemma m1-lem-kahane",
+          "fullLabel": "lemma m1-lem-kahane",
           "kind": "lemma",
           "source": "Walsh transforms and moment lifts",
-          "detail": "[Moment comparison] For every finite Rademacher sum \\(S=_ i=1 ^m_i z_i\\) in a Banach space, (\\|S\\|^2)^ 1/2 L\\,\\|S\\|, L=24.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-lifts",
-          "role": "walsh-transforms-and-moment-lifts-3",
-          "label": "Bounded moment lifts",
-          "fullLabel": "Bounded moment lifts",
+          "role": "walsh-transforms-and-moment-lifts",
+          "label": "lemma m1-lem-lifts",
+          "fullLabel": "lemma m1-lem-lifts",
           "kind": "lemma",
           "source": "Walsh transforms and moment lifts",
-          "detail": "[Bounded moment lifts] Suppose \\[ c_m(G^*) D_g, c_m(F) D_f, D_g,D_f1. \\] Set a=1 2LD_g m , b=1 2LD_f m . Then: [label=( *)] For \\(x_1,,x_m B_G\\), there are \\(P_ B_G\\) such that \\[ __iP_=ax_i(1 i m).…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-kahane"
           ]
@@ -140,31 +116,31 @@
         {
           "id": "m1-lem-coefficient",
           "role": "a-scalar-fourier-coefficient-lemma",
-          "label": "A coefficient of rank at least two",
-          "fullLabel": "A coefficient of rank at least two",
+          "label": "lemma m1-lem-coefficient",
+          "fullLabel": "lemma m1-lem-coefficient",
           "kind": "lemma",
           "source": "A scalar Fourier-coefficient lemma",
-          "detail": "[A coefficient of rank at least two] Let \\(M_0=4\\), and suppose that \\[ 4 d=2_2m<m. \\] Let \\(a,b>0\\), put \\(A=ma\\), \\(B=mb\\), and assume (A,B)20M_0d(d+1)^2. There is \\(c_*>0\\), depending only on…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-frames",
           "role": "uniform-walsh-decay-for-finite-rank-operators",
-          "label": "Pairs of frames",
-          "fullLabel": "Pairs of frames",
+          "label": "lemma m1-lem-frames",
+          "fullLabel": "lemma m1-lem-frames",
           "kind": "lemma",
           "source": "Uniform Walsh decay for finite-rank operators",
-          "detail": "[Pairs of frames] The action \\[ (U,V)(HU,H^ -t V), H(n,_2), \\] is transitive on pairs of frames of fixed lengths with a prescribed matrix of pairings \\((u_i v_j)\\). Every binary \\(r s\\) matrix is…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-growth",
-          "role": "uniform-walsh-decay-for-finite-rank-operators-2",
-          "label": "Growth from a slow decrease",
-          "fullLabel": "Growth from a slow decrease",
+          "role": "uniform-walsh-decay-for-finite-rank-operators",
+          "label": "lemma m1-lem-growth",
+          "fullLabel": "lemma m1-lem-growth",
           "kind": "lemma",
           "source": "Uniform Walsh decay for finite-rank operators",
-          "detail": "[Growth from a slow decrease] Fix an integer \\(m1\\) and constants \\(D_g,D_f1\\). Suppose that \\(m\\) and the parameters \\(a,b\\) in satisfy the hypotheses of Lemma~ . There is \\(c_1(0,1/2]\\), depending…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-walsh-basic",
             "m1-lem-lifts",
@@ -173,12 +149,12 @@
         },
         {
           "id": "m1-thm-uniform-decay",
-          "role": "uniform-walsh-decay-for-finite-rank-operators-3",
-          "label": "Uniform finite-rank decay",
-          "fullLabel": "Uniform finite-rank decay",
+          "role": "uniform-walsh-decay-for-finite-rank-operators",
+          "label": "theorem m1-thm-uniform-decay",
+          "fullLabel": "theorem m1-thm-uniform-decay",
           "kind": "theorem",
           "source": "Uniform Walsh decay for finite-rank operators",
-          "detail": "[Uniform finite-rank decay] Fix \\(m,D_g,D_f\\) satisfying the assumptions of Lemma~ . There is an integer \\(n_0\\), depending only on these parameters, such that every finite-rank \\(T:G F\\) with…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-growth"
           ]
@@ -186,11 +162,11 @@
         {
           "id": "m1-lem-compact-domain",
           "role": "compact-factorization-and-the-approximation-property",
-          "label": "A compact domain with controlled dual moments",
-          "fullLabel": "A compact domain with controlled dual moments",
+          "label": "lemma m1-lem-compact-domain",
+          "fullLabel": "lemma m1-lem-compact-domain",
           "kind": "lemma",
           "source": "Compact factorization and the approximation property",
-          "detail": "[A compact domain with controlled dual moments] Let \\(m1\\) be an integer, let \\(1\\), and let \\(X\\) be a Banach space with \\(c_m(X^*)\\). For every nonzero finite-dimensional subspace \\(E X\\), there…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [],
           "objectUses": [
             "m1-lem-coefficient"
@@ -199,11 +175,11 @@
         {
           "id": "m1-cor-grothendieck",
           "role": "the-conjecture-on-grothendieck-pairs",
-          "label": "If \\(( E,F)\\) is a Grothendieck pair and \\(F\\) is infinite-dimensional with the…",
-          "fullLabel": "If \\(( E,F)\\) is a Grothendieck pair and \\(F\\) is infinite-dimensional with the…",
+          "label": "corollary m1-cor-grothendieck",
+          "fullLabel": "corollary m1-cor-grothendieck",
           "kind": "corollary",
           "source": "The conjecture on Grothendieck pairs",
-          "detail": "If \\(( E,F)\\) is a Grothendieck pair and \\(F\\) is infinite-dimensional with the approximation property, then \\(( E,_2)\\) is a Grothendieck pair. In particular, Pisier's conjecture holds, with the…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-thm-main"
           ]
@@ -211,14 +187,7 @@
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -226,7 +195,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

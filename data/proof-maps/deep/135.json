@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "135",
   "title": "Homogeneous depth-five lower bounds for iterated matrix multiplication",
   "result": {
@@ -14,9 +15,9 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
     },
     {
       "id": "a-rank-measure-from-differentiation-and-multiplication",
@@ -29,22 +30,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "the-rank-of-a-homogeneous-depth-five-circuit-2",
-      "label": "The rank of a homogeneous depth-five circuit",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-rank-of-a-homogeneous-depth-five-circuit-3",
-      "label": "The rank of a homogeneous depth-five circuit",
-      "description": "A section of the paper."
-    },
-    {
       "id": "trace-moments-for-iterated-matrix-multiplication",
-      "label": "Trace moments for iterated matrix multiplication",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "trace-moments-for-iterated-matrix-multiplication-2",
       "label": "Trace moments for iterated matrix multiplication",
       "description": "A section of the paper."
     },
@@ -55,11 +41,6 @@
     },
     {
       "id": "completion-and-consequences",
-      "label": "Completion and consequences",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "completion-and-consequences-2",
       "label": "Completion and consequences",
       "description": "A section of the paper."
     }
@@ -82,52 +63,52 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "There exist absolute constants c>0 and n_0 such that, for every integer n n_0 ,…",
-          "fullLabel": "There exist absolute constants c>0 and n_0 such that, for every integer n n_0 ,…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "There exist absolute constants c>0 and n_0 such that, for every integer n n_0 , every syntactically homogeneous circuit over computing _ n,n has size at least \\[ n^ c n . \\] One may take c=1/400 .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-parameters",
           "role": "a-rank-measure-from-differentiation-and-multiplication",
-          "label": "For all sufficiently large n , the parameters in~ satisfy n 2 s n, 38, 0<<1,…",
-          "fullLabel": "For all sufficiently large n , the parameters in~ satisfy n 2 s n, 38, 0<<1,…",
+          "label": "lemma m1-lem-parameters",
+          "fullLabel": "lemma m1-lem-parameters",
           "kind": "lemma",
           "source": "A rank measure from differentiation and multiplication",
-          "detail": "For all sufficiently large n , the parameters in~ satisfy n 2 s n, 38, 0<<1, v,u=(n^3), a,b=(n^ 5/2 ),\\\\ a k, 2n12(a,b), n^ -1/2 =n^ -1/2 (O(1/a)), ^ -1 n,\\\\ ^^(C/b), 2 n ,\\\\ q=n^ -1/2 (O(s…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-circuit",
           "role": "the-rank-of-a-homogeneous-depth-five-circuit",
-          "label": "There are absolute constants C>0 and n_0 with the following property. For n n_0…",
-          "fullLabel": "There are absolute constants C>0 and n_0 with the following property. For n n_0…",
+          "label": "proposition m1-prop-circuit",
+          "fullLabel": "proposition m1-prop-circuit",
           "kind": "proposition",
           "source": "The rank of a homogeneous depth-five circuit",
-          "detail": "There are absolute constants C>0 and n_0 with the following property. For n n_0 , use the parameters in~ and any partition of the matrix layers with k layers in V and m layers in U . Let K be a…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-product-rank",
-          "role": "the-rank-of-a-homogeneous-depth-five-circuit-2",
-          "label": "Let K be a field, and let Q_1,,Q_r K[V,U] be homogeneous of respective positive…",
-          "fullLabel": "Let K be a field, and let Q_1,,Q_r K[V,U] be homogeneous of respective positive…",
+          "role": "the-rank-of-a-homogeneous-depth-five-circuit",
+          "label": "lemma m1-lem-product-rank",
+          "fullLabel": "lemma m1-lem-product-rank",
           "kind": "lemma",
           "source": "The rank of a homogeneous depth-five circuit",
-          "detail": "Let K be a field, and let Q_1,,Q_r K[V,U] be homogeneous of respective positive degrees e_1,,e_r , with _ j=1 ^r e_j=n . Then \\[ R(_ j=1 ^r Q_j) 2D_ j=1 ^r H_ e_j . \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-degree-estimates",
-          "role": "the-rank-of-a-homogeneous-depth-five-circuit-3",
-          "label": "For every integer e1 , H_e q^ d_e (1+4q^ 1-2d_e )5. If 1 e<t_0 , then d_e=…",
-          "fullLabel": "For every integer e1 , H_e q^ d_e (1+4q^ 1-2d_e )5. If 1 e<t_0 , then d_e=…",
+          "role": "the-rank-of-a-homogeneous-depth-five-circuit",
+          "label": "lemma m1-lem-degree-estimates",
+          "fullLabel": "lemma m1-lem-degree-estimates",
           "kind": "lemma",
           "source": "The rank of a homogeneous depth-five circuit",
-          "detail": "For every integer e1 , H_e q^ d_e (1+4q^ 1-2d_e )5. If 1 e<t_0 , then d_e= se/(2n),&e even,\\\\ 1/2-se/(2n),&e odd, d_ese 2n . In this range, odd degrees satisfy H_e q^ d_e/2 , whereas even degrees…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-parameters"
           ]
@@ -135,31 +116,31 @@
         {
           "id": "m1-prop-imm",
           "role": "trace-moments-for-iterated-matrix-multiplication",
-          "label": "Over , for the partition~ , there is an absolute constant C such that, for all…",
-          "fullLabel": "Over , for the partition~ , there is an absolute constant C such that, for all…",
+          "label": "proposition m1-prop-imm",
+          "fullLabel": "proposition m1-prop-imm",
           "kind": "proposition",
           "source": "Trace moments for iterated matrix multiplication",
-          "detail": "Over , for the partition~ , there is an absolute constant C such that, for all sufficiently large n , \\[ R(_ n,n ) D(-C n). \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-occupation-moments",
-          "role": "trace-moments-for-iterated-matrix-multiplication-2",
-          "label": "Let M=(M_1,,M_r) be uniform among the weak compositions of an integer t0 into…",
-          "fullLabel": "Let M=(M_1,,M_r) be uniform among the weak compositions of an integer t0 into…",
+          "role": "trace-moments-for-iterated-matrix-multiplication",
+          "label": "lemma m1-lem-occupation-moments",
+          "fullLabel": "lemma m1-lem-occupation-moments",
           "kind": "lemma",
           "source": "Trace moments for iterated matrix multiplication",
-          "detail": "Let M=(M_1,,M_r) be uniform among the weak compositions of an integer t0 into r1 parts. For integers d_i0 and H=_i d_i , E_i(M_i)_ d_i =(t)_H r^ H _i d_i!. The right side is zero when H>t . Let…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-word-sum",
           "role": "bounding-the-path-type-sum",
-          "label": "For all sufficiently large n , use the layer schedule and the parameters ,, of…",
-          "fullLabel": "For all sufficiently large n , use the layer schedule and the parameters ,, of…",
+          "label": "lemma m1-lem-word-sum",
+          "fullLabel": "lemma m1-lem-word-sum",
           "kind": "lemma",
           "source": "Bounding the path-type sum",
-          "detail": "For all sufficiently large n , use the layer schedule and the parameters ,, of . For a word \\ N, D\\ ^n , let w() be its number of switches, let d_V(),d_U() count its D positions in the respective…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-parameters",
             "m1-prop-imm",
@@ -169,11 +150,11 @@
         {
           "id": "m1-cor-characteristic-zero",
           "role": "completion-and-consequences",
-          "label": "There is an absolute integer n_0 such that, for every field K of characteristic…",
-          "fullLabel": "There is an absolute integer n_0 such that, for every field K of characteristic…",
+          "label": "corollary m1-cor-characteristic-zero",
+          "fullLabel": "corollary m1-cor-characteristic-zero",
           "kind": "corollary",
           "source": "Completion and consequences",
-          "detail": "There is an absolute integer n_0 such that, for every field K of characteristic zero and every n n_0 , every syntactically homogeneous circuit over K computing _ n,n has at least n^ n/400 gates.…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [],
           "objectUses": [
             "m1-prop-imm"
@@ -181,25 +162,18 @@
         },
         {
           "id": "m1-prop-upper",
-          "role": "completion-and-consequences-2",
-          "label": "Let K be any field and n2 . Put \\[ t= n, r= nt. \\] There is a syntactically…",
-          "fullLabel": "Let K be any field and n2 . Put \\[ t= n, r= nt. \\] There is a syntactically…",
+          "role": "completion-and-consequences",
+          "label": "proposition m1-prop-upper",
+          "fullLabel": "proposition m1-prop-upper",
           "kind": "proposition",
           "source": "Completion and consequences",
-          "detail": "Let K be any field and n2 . Put \\[ t= n, r= nt. \\] There is a syntactically homogeneous circuit over K computing _ n,n whose number of gates, including leaves, is at most 2n^3+rn^2+rn^ t+1 +n^ r-1 +1…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         }
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -207,7 +181,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

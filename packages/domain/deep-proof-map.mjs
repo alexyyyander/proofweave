@@ -86,6 +86,8 @@ function assertAcyclic(nodes, strategyId) {
  */
 export function validateDeepProofMap(data, collection, leanCoverage = null) {
   expectObject(data, "deep proof map");
+  const machineDerived = data.machineDerived === true;
+  if (data.machineDerived !== undefined && !machineDerived) fail("machineDerived must be true when present");
   if (data.schemaVersion !== DEEP_PROOF_MAP_SCHEMA_VERSION) fail(`schemaVersion must be ${DEEP_PROOF_MAP_SCHEMA_VERSION}`);
   if (data.status !== "deep") fail('status must be "deep"');
   if (data.reviewStatus !== "unreviewed") fail('reviewStatus must be "unreviewed"');
@@ -170,7 +172,8 @@ export function validateDeepProofMap(data, collection, leanCoverage = null) {
       if (nodeByQualifiedId.has(fullId)) fail(`duplicate qualified node id ${fullId}`);
       nodeByQualifiedId.set(fullId, { strategyId: strategy.id, node });
     }
-    if (resultNodeCount === 0) fail(`${label} must contain at least one node with role "result"`);
+    if (!machineDerived && resultNodeCount === 0) fail(`${label} must contain at least one node with role "result"`);
+    if (machineDerived && resultNodeCount !== 0) fail(`${label} must not assign an unverified result role`);
     resultNodesByStrategy.set(strategy.id, resultNodeCount);
     assertAcyclic(nodes, strategy.id);
     for (const node of nodes) {
@@ -183,7 +186,8 @@ export function validateDeepProofMap(data, collection, leanCoverage = null) {
   }
 
   const finalEdges = expectArray(data.finalEdges, "finalEdges");
-  if (finalEdges.length === 0) fail("finalEdges must not be empty");
+  if (!machineDerived && finalEdges.length === 0) fail("finalEdges must not be empty");
+  if (machineDerived && finalEdges.length !== 0) fail("machine-derived maps must not infer final edges");
   const strategiesWithFinalEdge = new Set();
   const finalEdgeKeys = new Set();
   for (const [index, edge] of finalEdges.entries()) {
@@ -203,7 +207,7 @@ export function validateDeepProofMap(data, collection, leanCoverage = null) {
     finalEdgeKeys.add(key);
   }
   for (const strategyId of strategyIds) {
-    if (!strategiesWithFinalEdge.has(strategyId)) fail(`strategy ${strategyId} has no final edge to the shared result`);
+    if (!machineDerived && !strategiesWithFinalEdge.has(strategyId)) fail(`strategy ${strategyId} has no final edge to the shared result`);
   }
 
   const crossEdges = Array.isArray(data.crossEdges) ? data.crossEdges : fail("crossEdges must be an array");

@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "104",
   "title": "Quasipolynomial algorithms for mean-payoff, stochastic and parity games",
   "result": {
@@ -14,9 +15,9 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
     },
     {
       "id": "mean-payoff-input-and-arena-restrictions",
@@ -24,27 +25,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "mean-payoff-input-and-arena-restrictions-2",
-      "label": "Mean-payoff input and arena restrictions",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "mean-payoff-input-and-arena-restrictions-3",
-      "label": "Mean-payoff input and arena restrictions",
-      "description": "A section of the paper."
-    },
-    {
       "id": "combining-strategies-and-extracting-dominions",
-      "label": "Combining strategies and extracting dominions",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "combining-strategies-and-extracting-dominions-2",
-      "label": "Combining strategies and extracting dominions",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "combining-strategies-and-extracting-dominions-3",
       "label": "Combining strategies and extracting dominions",
       "description": "A section of the paper."
     },
@@ -77,32 +58,32 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "A uniform deterministic algorithm returns exactly all vertices from which Max…",
-          "fullLabel": "A uniform deterministic algorithm returns exactly all vertices from which Max…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "A uniform deterministic algorithm returns exactly all vertices from which Max can force~ against every Min strategy. For an absolute constant C>0 , it uses at most \\[ 2^ C(_2(L+2))^2 \\] bit…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-mp-interface",
           "role": "mean-payoff-input-and-arena-restrictions",
-          "label": "Mean-payoff input",
-          "fullLabel": "Mean-payoff input",
+          "label": "proposition m1-prop-mp-interface",
+          "fullLabel": "proposition m1-prop-mp-interface",
           "kind": "proposition",
           "source": "Mean-payoff input and arena restrictions",
-          "detail": "[Mean-payoff input] For a finite nonempty total arena H with signed binary integer weights, its ordinary mean-payoff winning set \\[ U_ mp (H)= \\ v:Max can force liminf mean payoff at least 0\\ \\] is…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-mp-prefix",
-          "role": "mean-payoff-input-and-arena-restrictions-2",
-          "label": "Uniform prefix bound",
-          "fullLabel": "Uniform prefix bound",
+          "role": "mean-payoff-input-and-arena-restrictions",
+          "label": "lemma m1-lem-mp-prefix",
+          "fullLabel": "lemma m1-lem-mp-prefix",
           "kind": "lemma",
           "source": "Mean-payoff input and arena restrictions",
-          "detail": "[Uniform prefix bound] If Max wins ordinary mean payoff from every vertex of a nonempty arena H of size N , then a single positional strategy guarantees \\[ () -(N-1)W_H \\] for every finite consistent…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [],
           "objectUses": [
             "m1-prop-mp-interface"
@@ -110,34 +91,34 @@
         },
         {
           "id": "m1-lem-arena-facts",
-          "role": "mean-payoff-input-and-arena-restrictions-3",
-          "label": "Restriction facts",
-          "fullLabel": "Restriction facts",
+          "role": "mean-payoff-input-and-arena-restrictions",
+          "label": "lemma m1-lem-arena-facts",
+          "fullLabel": "lemma m1-lem-arena-facts",
           "kind": "lemma",
           "source": "Mean-payoff input and arena restrictions",
-          "detail": "[Restriction facts] Let P,Q be opposite players in an arena H . (enumi) If D is a P -dominion in H and R is a restriction closed at P 's vertices, then D R is a P -dominion in R . If R is closed at P…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-combine",
           "role": "combining-strategies-and-extracting-dominions",
-          "label": "Strategy combination",
-          "fullLabel": "Strategy combination",
+          "label": "lemma m1-lem-combine",
+          "fullLabel": "lemma m1-lem-combine",
           "kind": "lemma",
           "source": "Combining strategies and extracting dominions",
-          "detail": "[Strategy combination] Let H be a nonempty arena, and let d0 be an integer such that p(v) d for every v H . Define P= ,&d even,\\\\,&d odd, S=\\ v H:p(v)=d\\ ,\\\\ A=_P^H(S), R=H A. The set S is allowed to…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-mp-prefix"
           ]
         },
         {
           "id": "m1-thm-determinacy",
-          "role": "combining-strategies-and-extracting-dominions-2",
-          "label": "In every finite arena, each vertex is winning for exactly one of \\ and . From…",
-          "fullLabel": "In every finite arena, each vertex is winning for exactly one of \\ and . From…",
+          "role": "combining-strategies-and-extracting-dominions",
+          "label": "theorem m1-thm-determinacy",
+          "fullLabel": "theorem m1-thm-determinacy",
           "kind": "theorem",
           "source": "Combining strategies and extracting dominions",
-          "detail": "In every finite arena, each vertex is winning for exactly one of \\ and . From each vertex winning for , there is a conjunction-winning strategy satisfying .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-prop-mp-interface"
           ],
@@ -147,12 +128,12 @@
         },
         {
           "id": "m1-lem-extract",
-          "role": "combining-strategies-and-extracting-dominions-3",
-          "label": "Dominion extraction",
-          "fullLabel": "Dominion extraction",
+          "role": "combining-strategies-and-extracting-dominions",
+          "label": "lemma m1-lem-extract",
+          "fullLabel": "lemma m1-lem-extract",
           "kind": "lemma",
           "source": "Combining strategies and extracting dominions",
-          "detail": "[Dominion extraction] Let H be a nonempty arena and d0 an integer such that p(v) d for all v H . Let P= if d is even and P= if d is odd, and let Q be the other player. Put \\[ S=\\ v H:p(v)=d\\ ,…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-thm-determinacy",
             "m1-lem-combine",
@@ -162,11 +143,11 @@
         {
           "id": "m1-thm-labels",
           "role": "recursion-with-bounded-dominion-guarantees",
-          "label": "Bounded-dominion guarantee",
-          "fullLabel": "Bounded-dominion guarantee",
+          "label": "theorem m1-thm-labels",
+          "fullLabel": "theorem m1-thm-labels",
           "kind": "theorem",
           "source": "Recursion with bounded-dominion guarantees",
-          "detail": "[Bounded-dominion guarantee] For every subarena H of the original game and every b\\ 0,,n\\ ^2 , the procedure (H, b) terminates and returns a partition satisfying for both players.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-arena-facts"
           ],
@@ -177,11 +158,11 @@
         {
           "id": "m1-prop-reduction-cost",
           "role": "complexity-in-the-full-binary-input-length",
-          "label": "Cost of the reduction",
-          "fullLabel": "Cost of the reduction",
+          "label": "proposition m1-prop-reduction-cost",
+          "fullLabel": "proposition m1-prop-reduction-cost",
           "kind": "proposition",
           "source": "Complexity in the full binary input length",
-          "detail": "[Cost of the reduction] For an arena with n1 vertices and complete binary input length L , the call (G,(n,n)) makes \\[ 2^ O((_2(n+2))^2) \\] calls to the ordinary mean-payoff winning-set subroutine.…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-thm-labels"
           ]
@@ -189,14 +170,7 @@
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -204,7 +178,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "028",
   "title": "Uniformly bounded components of Gaussian-prime graphs",
   "result": {
@@ -13,11 +14,6 @@
     "roleNote": "The family's stated result in the release."
   },
   "roles": [
-    {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
-    },
     {
       "id": "the-gaussian-moat-problem",
       "label": "The Gaussian moat problem",
@@ -34,27 +30,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "arithmetic-walks-and-entropy-2",
-      "label": "Arithmetic, walks, and entropy",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "arithmetic-walks-and-entropy-3",
-      "label": "Arithmetic, walks, and entropy",
-      "description": "A section of the paper."
-    },
-    {
       "id": "entropy-enrichment-from-a-forward-segment",
-      "label": "Entropy enrichment from a forward segment",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "entropy-enrichment-from-a-forward-segment-2",
-      "label": "Entropy enrichment from a forward segment",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "entropy-enrichment-from-a-forward-segment-3",
       "label": "Entropy enrichment from a forward segment",
       "description": "A section of the paper."
     },
@@ -64,17 +40,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "coverage-from-shared-continuation-data-2",
-      "label": "Coverage from shared continuation data",
-      "description": "A section of the paper."
-    },
-    {
       "id": "a-common-sampling-schedule",
-      "label": "A common sampling schedule",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "a-common-sampling-schedule-2",
       "label": "A common sampling schedule",
       "description": "A section of the paper."
     },
@@ -107,92 +73,92 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "Uniform component bound",
-          "fullLabel": "Uniform component bound",
+          "role": "the-gaussian-moat-problem",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "The Gaussian moat problem",
-          "detail": "[Uniform component bound] For every finite real D there is a finite B_D such that every connected component of G_D has at most B_D vertices. The bound is independent of the starting prime and…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-thm-sieve",
           "role": "the-gaussian-moat-problem",
-          "label": "Finite sieve obstruction",
-          "fullLabel": "Finite sieve obstruction",
+          "label": "theorem m1-thm-sieve",
+          "fullLabel": "theorem m1-thm-sieve",
           "kind": "theorem",
           "source": "The Gaussian moat problem",
-          "detail": "[Finite sieve obstruction] For every D1 there is a finite set P_D of rational primes congruent to 1 modulo 4 such that A( P_D) contains no infinite sequence of distinct points with successive…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-periodic",
           "role": "periodicity-and-the-uniform-bound",
-          "label": "From a periodic obstruction to a uniform bound",
-          "fullLabel": "From a periodic obstruction to a uniform bound",
+          "label": "proposition m1-prop-periodic",
+          "fullLabel": "proposition m1-prop-periodic",
           "kind": "proposition",
           "source": "Periodicity and the uniform bound",
-          "detail": "[From a periodic obstruction to a uniform bound] Fix D1 and a finite set P of rational primes congruent to 1 modulo 4 . Suppose that A( P) contains no infinite self-avoiding walk with steps at most D…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-displacement",
           "role": "arithmetic-walks-and-entropy",
-          "label": "Displacement entropy",
-          "fullLabel": "Displacement entropy",
+          "label": "lemma m1-lem-displacement",
+          "fullLabel": "lemma m1-lem-displacement",
           "kind": "lemma",
           "source": "Arithmetic, walks, and entropy",
-          "detail": "[Displacement entropy] If \\(T_0,T_1\\) are jointly distributed finite random times and \\(|T_1-T_0| n\\) almost surely, then \\[ H(z_ T_1 -z_ T_0 )2(n+1)+O_D(1). \\] The same bound holds conditionally on…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-continuity",
-          "role": "arithmetic-walks-and-entropy-2",
-          "label": "Continuity",
-          "fullLabel": "Continuity",
+          "role": "arithmetic-walks-and-entropy",
+          "label": "lemma m1-lem-continuity",
+          "fullLabel": "lemma m1-lem-continuity",
           "kind": "lemma",
           "source": "Arithmetic, walks, and entropy",
-          "detail": "[Continuity] If two laws of \\((X,Y)\\), on the same finite product alphabet, have total variation at most \\(1/2\\), and the product alphabet has at most \\(a\\) elements, then \\[ |H(X Y)-H( X Y)| 2h()+2…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-list",
-          "role": "arithmetic-walks-and-entropy-3",
-          "label": "A short-list entropy bound",
-          "fullLabel": "A short-list entropy bound",
+          "role": "arithmetic-walks-and-entropy",
+          "label": "lemma m1-lem-list",
+          "fullLabel": "lemma m1-lem-list",
           "kind": "lemma",
           "source": "Arithmetic, walks, and entropy",
-          "detail": "[A short-list entropy bound] Let \\(X\\) have at most \\(a\\) values, let \\(Y\\) be finite data, and let \\( L(Y)\\) be a list of possible values of \\(X\\). If \\[ \\ X L(Y),\\ | L(Y)| b\\ =, 1 b a, \\] then \\[…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-differences",
           "role": "entropy-enrichment-from-a-forward-segment",
-          "label": "Many differences",
-          "fullLabel": "Many differences",
+          "label": "lemma m1-lem-differences",
+          "fullLabel": "lemma m1-lem-differences",
           "kind": "lemma",
           "source": "Entropy enrichment from a forward segment",
-          "detail": "[Many differences] Let \\(E\\) consist of the points of a segment of \\(n1\\) steps of the walk. Let \\(R\\) be its diameter, choose a line through two points realizing that diameter, and let \\(W\\) be the…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-rectangle",
-          "role": "entropy-enrichment-from-a-forward-segment-2",
-          "label": "A randomly signed product avoids a thin rectangle",
-          "fullLabel": "A randomly signed product avoids a thin rectangle",
+          "role": "entropy-enrichment-from-a-forward-segment",
+          "label": "lemma m1-lem-rectangle",
+          "fullLabel": "lemma m1-lem-rectangle",
           "kind": "lemma",
           "source": "Entropy enrichment from a forward segment",
-          "detail": "[A randomly signed product avoids a thin rectangle] Let \\(p_1,,p_r\\) be distinct rational primes congruent to \\(1\\) modulo \\(4\\), all in \\([T,2T]\\), where \\(T5\\), and put \\(P=_i p_i\\). Let \\(Q\\) be…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-enrichment",
-          "role": "entropy-enrichment-from-a-forward-segment-3",
-          "label": "Entropy enrichment",
-          "fullLabel": "Entropy enrichment",
+          "role": "entropy-enrichment-from-a-forward-segment",
+          "label": "lemma m1-lem-enrichment",
+          "fullLabel": "lemma m1-lem-enrichment",
           "kind": "lemma",
           "source": "Entropy enrichment from a forward segment",
-          "detail": "[Entropy enrichment] Let \\(Z=z_\\) and \\(V\\) be the starting point and sampled endpoint in the preceding transition for a fixed self-avoiding \\(D\\)-step walk. Set \\[ q= U/L_*, b= g^2U/L_*. \\] Consider…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-differences",
             "m1-lem-rectangle",
@@ -202,21 +168,21 @@
         {
           "id": "m1-lem-conditioning",
           "role": "coverage-from-shared-continuation-data",
-          "label": "One shared conditioning cost",
-          "fullLabel": "One shared conditioning cost",
+          "label": "lemma m1-lem-conditioning",
+          "fullLabel": "lemma m1-lem-conditioning",
           "kind": "lemma",
           "source": "Coverage from shared continuation data",
-          "detail": "[One shared conditioning cost] Let (Y,) be any pair of finite variables, with Y taking values in , and let S be selected independently as above. If \\[ _S H(F_S(Y))(1-)s L, H() s L, \\] then _c[…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-thm-transfer",
-          "role": "coverage-from-shared-continuation-data-2",
-          "label": "One-step coverage transfer",
-          "fullLabel": "One-step coverage transfer",
+          "role": "coverage-from-shared-continuation-data",
+          "label": "theorem m1-thm-transfer",
+          "fullLabel": "theorem m1-thm-transfer",
           "kind": "theorem",
           "source": "Coverage from shared continuation data",
-          "detail": "[One-step coverage transfer] Use the signed coordinates and the experiment just defined, with integers 1 s k and n1 . Let \\[ 0<3/8, 0<1/64, '=+4, 0<'<1, 0<1, 0'1. \\] Suppose that at every a in the…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-list"
           ]
@@ -224,21 +190,21 @@
         {
           "id": "m1-lem-future-shift",
           "role": "a-common-sampling-schedule",
-          "label": "Future shifts and smoothing",
-          "fullLabel": "Future shifts and smoothing",
+          "label": "lemma m1-lem-future-shift",
+          "fullLabel": "lemma m1-lem-future-shift",
           "kind": "lemma",
           "source": "A common sampling schedule",
-          "detail": "[Future shifts and smoothing] Let \\(V\\) be a scheduled scale in a band with parameter \\(g\\). For all sufficiently large \\(M\\), the maximum total forward time shift from the checkpoint before \\(V\\) to…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-coverage",
-          "role": "a-common-sampling-schedule-2",
-          "label": "Terminal residue coverage",
-          "fullLabel": "Terminal residue coverage",
+          "role": "a-common-sampling-schedule",
+          "label": "proposition m1-prop-coverage",
+          "fullLabel": "proposition m1-prop-coverage",
           "kind": "proposition",
           "source": "A common sampling schedule",
-          "detail": "[Terminal residue coverage] For all sufficiently large \\(M\\), uniformly over the batches, \\(0 i J\\), and all exact start times \\(a0\\) at \\(A_i\\), all but a fraction at most \\(_i\\) of the signed…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-thm-transfer",
             "m1-lem-conditioning"
@@ -247,11 +213,11 @@
         {
           "id": "m1-prop-information-rate",
           "role": "zero-avoidance-costs-information",
-          "label": "Information cost of one batch",
-          "fullLabel": "Information cost of one batch",
+          "label": "proposition m1-prop-information-rate",
+          "fullLabel": "proposition m1-prop-information-rate",
           "kind": "proposition",
           "source": "Zero avoidance costs information",
-          "detail": "[Information cost of one batch] There is a constant \\(c_1>0\\), depending only on the fixed schedule parameters, such that for all sufficiently large \\(M\\) and every batch in , 1 L_T \\, _ C I(X'_T;W_…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [],
           "objectUses": [
             "m1-prop-coverage"
@@ -260,11 +226,11 @@
         {
           "id": "m1-lem-telescope",
           "role": "the-common-law-entropy-budget",
-          "label": "A common-law entropy telescope",
-          "fullLabel": "A common-law entropy telescope",
+          "label": "lemma m1-lem-telescope",
+          "fullLabel": "lemma m1-lem-telescope",
           "kind": "lemma",
           "source": "The common-law entropy budget",
-          "detail": "[A common-law entropy telescope] For every fixed collection \\( C\\) of prime choices, _T I(X'_T;W_ L_T (t_*) O'_T) L_T K_D+o(1), where the error tends to zero uniformly over the choices and the walks…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-continuity",
             "m1-prop-information-rate"
@@ -273,14 +239,7 @@
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -288,7 +247,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

@@ -169,9 +169,12 @@ function buildDeep(structure, family) {
   if (dependencyCount === 0) return { error: "no dependency edges" };
 
   const usedRoleIds = new Set(["result"]);
-  const rolesById = new Map([["result", { id: "result", label: "Result", description: "The paper's main stated theorem for this family." }]]);
+  const rolesById = new Map();
+  const sectionIds = new Map();
   const roleForSection = (section) => {
+    if (sectionIds.has(section || "document")) return sectionIds.get(section || "document");
     const id = uniqueId(slug(section || "document"), usedRoleIds);
+    sectionIds.set(section || "document", id);
     if (!rolesById.has(id)) rolesById.set(id, { id, label: section || "Document", description: "A section of the paper." });
     return id;
   };
@@ -180,17 +183,16 @@ function buildDeep(structure, family) {
   const strategiesOut = [];
   for (const [index, strategy] of strategies.entries()) {
     const strategyId = `m${index + 1}`;
-    const main = strategy.nodes.find((node) => node.kind === "theorem") ?? strategy.nodes[strategy.nodes.length - 1];
     const { dependencies, dropped } = acyclic(strategy.nodes, strategy.dependencies);
     counts.cycles += dropped;
     const strategyNodes = strategy.nodes.map((node) => ({
       id: node.id,
-      role: node.id === main.id ? "result" : roleForSection(node.section),
-      label: node.label.slice(0, 180),
-      fullLabel: node.label,
+      role: roleForSection(node.section),
+      label: `${node.kind} ${node.id}`,
+      fullLabel: `${node.kind} ${node.id}`,
       kind: node.kind,
       source: node.section ?? strategy.manuscript.title,
-      detail: node.statement || node.label,
+      detail: "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
       dependsOn: dependencies.get(node.id) ?? [],
       ...(strategy.objectUses.get(node.id)?.length ? { objectUses: strategy.objectUses.get(node.id) } : {}),
       ...(strategy.mentions.get(node.id)?.length ? { mentions: strategy.mentions.get(node.id) } : {}),
@@ -209,11 +211,11 @@ function buildDeep(structure, family) {
       proofDetail: "section",
       nodes: strategyNodes,
     });
-    finalEdges.push({ from: `${strategyId}:${main.id}`, to: "paper-result", type: "proves", label: "states the result" });
   }
 
   const data = {
     schemaVersion: "pw-deep-proof-map-v1",
+    machineDerived: true,
     status: "deep",
     reviewStatus: "unreviewed",
     curatedAt: new Date().toISOString().slice(0, 10),
@@ -237,6 +239,7 @@ function buildDeep(structure, family) {
     caveats: [
       `${machineMarker}: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.`,
       "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+      "No extracted statement has been identified as proving the family result; consult the source paper for exact statements.",
     ],
     sources: structure.manuscripts.map((manuscript) => ({ label: manuscript.title, url: manuscript.pdfUrl, kind: "paper" })),
   };

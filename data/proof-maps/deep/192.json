@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "192",
   "title": "Boolean functions violate the square-root degree bound by arbitrary factors",
   "result": {
@@ -14,9 +15,9 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
     },
     {
       "id": "finite-observations-and-amplification",
@@ -24,22 +25,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "finite-observations-and-amplification-2",
-      "label": "Finite observations and amplification",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "finite-observations-and-amplification-3",
-      "label": "Finite observations and amplification",
-      "description": "A section of the paper."
-    },
-    {
       "id": "retaining-more-variance-than-the-degree-cost",
-      "label": "Retaining more variance than the degree cost",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "retaining-more-variance-than-the-degree-cost-2",
       "label": "Retaining more variance than the degree cost",
       "description": "A section of the paper."
     },
@@ -50,16 +36,6 @@
     },
     {
       "id": "amplifying-an-average-degree-saving",
-      "label": "Amplifying an average degree saving",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "amplifying-an-average-degree-saving-2",
-      "label": "Amplifying an average degree saving",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "amplifying-an-average-degree-saving-3",
       "label": "Amplifying an average degree saving",
       "description": "A section of the paper."
     },
@@ -87,42 +63,42 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "For every real \\(C>0\\), there are a positive integer \\(n\\) and a nonconstant…",
-          "fullLabel": "For every real \\(C>0\\), there are a positive integer \\(n\\) and a nonconstant…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "For every real \\(C>0\\), there are a positive integer \\(n\\) and a nonconstant Boolean function \\(f:\\ -1,1\\ ^n\\ -1,1\\ \\) such that \\[ _ i=1 ^n f(\\ i\\ )>C (f). \\] Consequently, \\[ _ n1,\\ f:\\ -1,1\\ ^n\\…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-transfer",
           "role": "finite-observations-and-amplification",
-          "label": "Transfer of predictor errors",
-          "fullLabel": "Transfer of predictor errors",
+          "label": "lemma m1-lem-transfer",
+          "fullLabel": "lemma m1-lem-transfer",
           "kind": "lemma",
           "source": "Finite observations and amplification",
-          "detail": "[Transfer of predictor errors] Let \\(Z_j\\) be centered, variance-one random variables converging in distribution to a standard normal, with \\(_j Z_j^4<\\). For fixed \\(r\\), let \\( Z_j\\) consist of…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-readout",
-          "role": "finite-observations-and-amplification-2",
-          "label": "Boolean readout",
-          "fullLabel": "Boolean readout",
+          "role": "finite-observations-and-amplification",
+          "label": "lemma m1-lem-readout",
+          "fullLabel": "lemma m1-lem-readout",
           "kind": "lemma",
           "source": "Finite observations and amplification",
-          "detail": "[Boolean readout] Suppose finite observations have positive cell degree bounds \\(D\\) and arbitrarily large ratios \\(v(F)/D\\). Then Theorem~ holds.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-amplification",
-          "role": "finite-observations-and-amplification-3",
-          "label": "Amplification criterion",
-          "fullLabel": "Amplification criterion",
+          "role": "finite-observations-and-amplification",
+          "label": "proposition m1-prop-amplification",
+          "fullLabel": "proposition m1-prop-amplification",
           "kind": "proposition",
           "source": "Finite observations and amplification",
-          "detail": "[Amplification criterion] Let \\(1 d<r\\) be integers, and let \\( W\\) be a measurable observation rule on \\(r\\) real inputs. Suppose: On any product of finite input alphabets, the indicator of each…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-readout"
           ]
@@ -130,84 +106,77 @@
         {
           "id": "m1-lem-report",
           "role": "retaining-more-variance-than-the-degree-cost",
-          "label": "For every product of finite input alphabets, the rule W has finite range, and…",
-          "fullLabel": "For every product of finite input alphabets, the rule W has finite range, and…",
+          "label": "lemma m1-lem-report",
+          "fullLabel": "lemma m1-lem-report",
           "kind": "lemma",
           "source": "Retaining more variance than the degree cost",
-          "detail": "For every product of finite input alphabets, the rule W has finite range, and each output indicator is a finite linear combination of functions of at most m input coordinates. For independent…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-gaussian",
-          "role": "retaining-more-variance-than-the-degree-cost-2",
-          "label": "There are a finite odd integer m3 , closed intervals I_1,,I_m , and a selector…",
-          "fullLabel": "There are a finite odd integer m3 , closed intervals I_1,,I_m , and a selector…",
+          "role": "retaining-more-variance-than-the-degree-cost",
+          "label": "lemma m1-lem-gaussian",
+          "fullLabel": "lemma m1-lem-gaussian",
           "kind": "lemma",
           "source": "Retaining more variance than the degree cost",
-          "detail": "There are a finite odd integer m3 , closed intervals I_1,,I_m , and a selector with finitely many cut points such that the following holds for independent standard normal inputs. Let _j be the…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-coarse-report",
           "role": "two-other-reporting-rules",
-          "label": "Cost and error of the coarse report",
-          "fullLabel": "Cost and error of the coarse report",
+          "label": "lemma m1-lem-coarse-report",
+          "fullLabel": "lemma m1-lem-coarse-report",
           "kind": "lemma",
           "source": "Two other reporting rules",
-          "detail": "[Cost and error of the coarse report] On every product of finite input alphabets, O has finite range, and each output indicator is a finite linear combination of functions of at most m input…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-refinement",
           "role": "amplifying-an-average-degree-saving",
-          "label": "Refining the complement of one event",
-          "fullLabel": "Refining the complement of one event",
+          "label": "lemma m1-lem-refinement",
+          "fullLabel": "lemma m1-lem-refinement",
           "kind": "lemma",
           "source": "Amplifying an average degree saving",
-          "detail": "[Refining the complement of one event] Let q2 , let G=(G_1,,G_q) have independent standard normal coordinates, and put S_G=_iG_i . Suppose a measurable set A^q has Gaussian-null boundary, \\[ p_A:=(G…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-thm-mean-cost",
-          "role": "amplifying-an-average-degree-saving-2",
-          "label": "Amplification from a mean cost advantage",
-          "fullLabel": "Amplification from a mean cost advantage",
+          "role": "amplifying-an-average-degree-saving",
+          "label": "theorem m1-thm-mean-cost",
+          "fullLabel": "theorem m1-thm-mean-cost",
           "kind": "theorem",
           "source": "Amplifying an average degree saving",
-          "detail": "[Amplification from a mean cost advantage] Let q2 , let P:^q L be a measurable map to a finite label set, and let : L\\ 1,,q\\ . Suppose that, on every product of finite input alphabets, each cell…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-mc-transfer",
-          "role": "amplifying-an-average-degree-saving-3",
-          "label": "Transfer for a fixed finite partition",
-          "fullLabel": "Transfer for a fixed finite partition",
+          "role": "amplifying-an-average-degree-saving",
+          "label": "lemma m1-lem-mc-transfer",
+          "fullLabel": "lemma m1-lem-mc-transfer",
           "kind": "lemma",
           "source": "Amplifying an average degree saving",
-          "detail": "[Transfer for a fixed finite partition] Under the boundary hypothesis of Theorem~ , let Z_n be centered random variables of variance one converging in distribution to a standard normal. Use q…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-weighted-event",
           "role": "a-weighted-gaussian-mixture",
-          "label": "The weighted-mixture event",
-          "fullLabel": "The weighted-mixture event",
+          "label": "lemma m1-lem-weighted-event",
+          "fullLabel": "lemma m1-lem-weighted-event",
           "kind": "lemma",
           "source": "A weighted Gaussian mixture",
-          "detail": "[The weighted-mixture event] For all sufficiently large finite R , the event A just defined satisfies \\[ p_A:=(G A)>0, r_A:=(L G A)<1. \\] Its boundary is contained in finitely many coordinate…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         }
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -215,7 +184,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

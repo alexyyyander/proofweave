@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "188",
   "title": "The sharp terminal leave in random triangle removal",
   "result": {
@@ -14,9 +15,9 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
     },
     {
       "id": "a-uniform-early-prefix",
@@ -29,27 +30,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "exact-queries-and-independent-unfoldings-2",
-      "label": "Exact queries and independent unfoldings",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "exact-queries-and-independent-unfoldings-3",
-      "label": "Exact queries and independent unfoldings",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "exact-queries-and-independent-unfoldings-4",
-      "label": "Exact queries and independent unfoldings",
-      "description": "A section of the paper."
-    },
-    {
       "id": "stable-unfolded-probabilities",
-      "label": "Stable unfolded probabilities",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "stable-unfolded-probabilities-2",
       "label": "Stable unfolded probabilities",
       "description": "A section of the paper."
     },
@@ -59,22 +40,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "coupling-the-finite-and-independent-tests-2",
-      "label": "Coupling the finite and independent tests",
-      "description": "A section of the paper."
-    },
-    {
       "id": "counting-and-visiting-collision-witnesses",
-      "label": "Counting and visiting collision witnesses",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "counting-and-visiting-collision-witnesses-2",
-      "label": "Counting and visiting collision witnesses",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "counting-and-visiting-collision-witnesses-3",
       "label": "Counting and visiting collision witnesses",
       "description": "A section of the paper."
     }
@@ -97,82 +63,82 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "For the uniform triangle-removal process starting from K_n , \\[ 0. \\] In…",
-          "fullLabel": "For the uniform triangle-removal process starting from K_n , \\[ 0. \\] In…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "For the uniform triangle-removal process starting from K_n , \\[ 0. \\] In particular, \\[ F_n n^ 3/2 1 22 , F_n n^ 3/2 1 22 . \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-prefix",
           "role": "a-uniform-early-prefix",
-          "label": "Good prefix",
-          "fullLabel": "Good prefix",
+          "label": "proposition m1-prop-prefix",
+          "fullLabel": "proposition m1-prop-prefix",
           "kind": "proposition",
           "source": "A uniform early prefix",
-          "detail": "[Good prefix] There are constants c>0 and C_0< and an event G_n measurable from the process through step i_0 such that \\[ ( G_n^c) (- ( n)^ 4/3 )=n^ -(1) \\] for all sufficiently large n . On this…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-priority",
           "role": "exact-queries-and-independent-unfoldings",
-          "label": "Priority representation",
-          "fullLabel": "Priority representation",
+          "label": "lemma m1-lem-priority",
+          "fullLabel": "lemma m1-lem-priority",
           "kind": "lemma",
           "source": "Exact queries and independent unfoldings",
-          "detail": "[Priority representation] For any finite simple graph G , the graph sequence indexed by the accepted triangles in this scan has the law of uniform sequential triangle removal started from G .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-finite-test",
-          "role": "exact-queries-and-independent-unfoldings-2",
-          "label": "Exact paired test",
-          "fullLabel": "Exact paired test",
+          "role": "exact-queries-and-independent-unfoldings",
+          "label": "lemma m1-lem-finite-test",
+          "fullLabel": "lemma m1-lem-finite-test",
           "kind": "lemma",
           "source": "Exact queries and independent unfoldings",
-          "detail": "[Exact paired test] For any finite simple graph with distinct triangle priorities, the finite test terminates. A root call at (e,t) returns true exactly when e is untouched before t in the priority…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-unfolding-finite",
-          "role": "exact-queries-and-independent-unfoldings-3",
-          "label": "Finite evaluation",
-          "fullLabel": "Finite evaluation",
+          "role": "exact-queries-and-independent-unfoldings",
+          "label": "lemma m1-lem-unfolding-finite",
+          "fullLabel": "lemma m1-lem-unfolding-finite",
           "kind": "lemma",
           "source": "Exact queries and independent unfoldings",
-          "detail": "[Finite evaluation] For a fixed good graph G , independent unfoldings can be constructed so that, almost surely, every possible call and all thresholds t have finite evaluations. Their outputs are…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-products",
-          "role": "exact-queries-and-independent-unfoldings-4",
-          "label": "Product identities",
-          "fullLabel": "Product identities",
+          "role": "exact-queries-and-independent-unfoldings",
+          "label": "proposition m1-prop-products",
+          "fullLabel": "proposition m1-prop-products",
           "kind": "proposition",
           "source": "Exact queries and independent unfoldings",
-          "detail": "[Product identities] For every triangle T=\\ e,f,g\\ and t , the independent unfolding satisfies ( the pair \\ f,g\\ T returns true at t ) =q_ f,T (t)q_ g,T (t), q_e(t)&=_ S e (1-I_ e,S (t)),\\\\ q_ e,T…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-semigroup",
           "role": "stable-unfolded-probabilities",
-          "label": "There are fixed constants C_1,J< such that every graph G satisfying the degree,…",
-          "fullLabel": "There are fixed constants C_1,J< such that every graph G satisfying the degree,…",
+          "label": "proposition m1-prop-semigroup",
+          "fullLabel": "proposition m1-prop-semigroup",
           "kind": "proposition",
           "source": "Stable unfolded probabilities",
-          "detail": "There are fixed constants C_1,J< such that every graph G satisfying the degree, codegree and link-cycle conditions of Proposition~ obeys _ 0 s n e^ -sA/D _ C_1(1+ n)^J for all sufficiently large n .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-unfolding",
-          "role": "stable-unfolded-probabilities-2",
-          "label": "For every graph G satisfying Proposition~ , the independent-unfolding…",
-          "fullLabel": "For every graph G satisfying Proposition~ , the independent-unfolding…",
+          "role": "stable-unfolded-probabilities",
+          "label": "proposition m1-prop-unfolding",
+          "fullLabel": "proposition m1-prop-unfolding",
           "kind": "proposition",
           "source": "Stable unfolded probabilities",
-          "detail": "For every graph G satisfying Proposition~ , the independent-unfolding probabilities obey q_e(t)=(1+o(1))q(t), q_ e,T (t)=(1+o(1))q(t), I_ e,T (t)=O\\!( n D ). The estimates hold uniformly over G , 0…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-prop-semigroup"
           ]
@@ -180,53 +146,53 @@
         {
           "id": "m1-lem-coupling",
           "role": "coupling-the-finite-and-independent-tests",
-          "label": "Coupling by exposed triangle types",
-          "fullLabel": "Coupling by exposed triangle types",
+          "label": "lemma m1-lem-coupling",
+          "fullLabel": "lemma m1-lem-coupling",
           "kind": "lemma",
           "source": "Coupling the finite and independent tests",
-          "detail": "[Coupling by exposed triangle types] Let X^ fin ,X^ ind \\ 0,1\\ ^k be the vectors of root answers in the two experiments, where 1 denotes true. For every H\\ 0,1\\ ^k , \\[ |(X^ fin H) -(X^ ind H)| _ ind…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-witness",
-          "role": "coupling-the-finite-and-independent-tests-2",
-          "label": "A geometric witness for a collision",
-          "fullLabel": "A geometric witness for a collision",
+          "role": "coupling-the-finite-and-independent-tests",
+          "label": "lemma m1-lem-witness",
+          "fullLabel": "lemma m1-lem-witness",
           "kind": "lemma",
           "source": "Coupling the finite and independent tests",
-          "detail": "[A geometric witness for a collision] If the initial root labels are all distinct, then every occurrence of C_k produces an extra-edge witness. Moreover, uniformly over the graphs under…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-embeddings",
           "role": "counting-and-visiting-collision-witnesses",
-          "label": "Embedding an extra edge",
-          "fullLabel": "Embedding an extra edge",
+          "label": "lemma m1-lem-embeddings",
+          "fullLabel": "lemma m1-lem-embeddings",
           "kind": "lemma",
           "source": "Counting and visiting collision witnesses",
-          "detail": "[Embedding an extra edge] For every such pattern with r\\ 1,2\\ roots and non-root calls, the number of embeddings of J^+ into G is at most (2m)^r(2D)^ D^ -B for all sufficiently large n , uniformly…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-visitation",
-          "role": "counting-and-visiting-collision-witnesses-2",
-          "label": "Visiting an embedded pattern",
-          "fullLabel": "Visiting an embedded pattern",
+          "role": "counting-and-visiting-collision-witnesses",
+          "label": "lemma m1-lem-visitation",
+          "fullLabel": "lemma m1-lem-visitation",
           "kind": "lemma",
           "source": "Counting and visiting collision witnesses",
-          "detail": "[Visiting an embedded pattern] Conditional on the prescribed ordered root labels, the probability that all calls in the embedded pattern are visited is at most C_D^3(2 )^ h!\\,_1!\\,_2! . This includes…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-prop-products"
           ]
         },
         {
           "id": "m1-prop-collision",
-          "role": "counting-and-visiting-collision-witnesses-3",
-          "label": "Uniform collision bound",
-          "fullLabel": "Uniform collision bound",
+          "role": "counting-and-visiting-collision-witnesses",
+          "label": "proposition m1-prop-collision",
+          "fullLabel": "proposition m1-prop-collision",
           "kind": "proposition",
           "source": "Counting and visiting collision witnesses",
-          "detail": "[Uniform collision bound] Fix k\\ 1,2\\ and sample k independent uniform oriented edges of G , with replacement. Execute the independent root queries at threshold 1 , executing every root regardless of…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-witness"
           ]
@@ -234,14 +200,7 @@
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -249,7 +208,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

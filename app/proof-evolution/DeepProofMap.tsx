@@ -18,11 +18,11 @@ export async function DeepProofMapView({ deep, subject, revision }: {
   return <>
     <section id="argument-map" className="deep-proof-map-section" aria-labelledby="deep-argument-map-title">
       <div className="proof-map-family-section-heading">
-        <div><p className="eyebrow">{t("proofMaps.deep.eyebrow")}</p><h2 id="deep-argument-map-title">{t("proofMaps.deep.title")}</h2></div>
+        <div><p className="eyebrow">{t(deep.machineDerived ? "proofMaps.paper.eyebrow" : "proofMaps.deep.eyebrow")}</p><h2 id="deep-argument-map-title">{t(deep.machineDerived ? "proofMaps.paper.graphTitle" : "proofMaps.deep.title")}</h2></div>
         <span><Badge tone="warning">{t("proofMaps.deep.badge")}</Badge></span>
       </div>
       <p className="deep-proof-map-intro">
-        {t("proofMaps.deep.intro")}
+        {t(deep.machineDerived ? "proofMaps.paper.body" : "proofMaps.deep.intro")}
       </p>
       <Surface tone="card" className="deep-proof-map-result">
         <span>{t("proofMaps.deep.sharedResult")}</span>

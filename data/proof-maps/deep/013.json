@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "013",
   "title": "Ostmann’s inverse Goldbach conjecture",
   "result": {
@@ -14,32 +15,12 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
     },
     {
       "id": "finite-summands-and-residue-supports",
-      "label": "Finite summands and residue supports",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "finite-summands-and-residue-supports-2",
-      "label": "Finite summands and residue supports",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "finite-summands-and-residue-supports-3",
-      "label": "Finite summands and residue supports",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "finite-summands-and-residue-supports-4",
-      "label": "Finite summands and residue supports",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "finite-summands-and-residue-supports-5",
       "label": "Finite summands and residue supports",
       "description": "A section of the paper."
     },
@@ -49,32 +30,12 @@
       "description": "A section of the paper."
     },
     {
-      "id": "quadratic-characters-with-arbitrary-translating-centres-2",
-      "label": "Quadratic characters with arbitrary translating centres",
-      "description": "A section of the paper."
-    },
-    {
       "id": "translated-characters-of-higher-order",
       "label": "Translated characters of higher order",
       "description": "A section of the paper."
     },
     {
-      "id": "translated-characters-of-higher-order-2",
-      "label": "Translated characters of higher order",
-      "description": "A section of the paper."
-    },
-    {
       "id": "a-supply-of-nonsparse-additive-transforms",
-      "label": "A supply of nonsparse additive transforms",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "a-supply-of-nonsparse-additive-transforms-2",
-      "label": "A supply of nonsparse additive transforms",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "a-supply-of-nonsparse-additive-transforms-3",
       "label": "A supply of nonsparse additive transforms",
       "description": "A section of the paper."
     },
@@ -112,98 +73,98 @@
       "nodes": [
         {
           "id": "m1-cor-ostmann",
-          "role": "result",
-          "label": "Ostmann's conjecture",
-          "fullLabel": "Ostmann's conjecture",
+          "role": "introduction",
+          "label": "theorem m1-cor-ostmann",
+          "fullLabel": "theorem m1-cor-ostmann",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "[Ostmann's conjecture] If A,B_0 satisfy |A|,|B|2 , then (A+B) P is infinite. Equivalently, every finite modification of P is additively indecomposable into two sets with at least two elements each.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-shifted-sieve",
           "role": "finite-summands-and-residue-supports",
-          "label": "Fixed shifts",
-          "fullLabel": "Fixed shifts",
+          "label": "lemma m1-lem-shifted-sieve",
+          "fullLabel": "lemma m1-lem-shifted-sieve",
           "kind": "lemma",
           "source": "Finite summands and residue supports",
-          "detail": "[Fixed shifts] Let b_1,,b_j be distinct nonnegative integers, where j1 is fixed. If C_0 and each c+b_i is prime for all sufficiently large c C , then \\[ C(Y)_ b_1,,b_j Y ( Y)^j . \\] The implicit…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-finite-factor",
-          "role": "finite-summands-and-residue-supports-2",
-          "label": "Finite summands",
-          "fullLabel": "Finite summands",
+          "role": "finite-summands-and-residue-supports",
+          "label": "lemma m1-lem-finite-factor",
+          "fullLabel": "lemma m1-lem-finite-factor",
           "kind": "lemma",
           "source": "Finite summands and residue supports",
-          "detail": "[Finite summands] If A,B_0 have at least two elements each and A+B agrees with P outside a finite set, then both A and B are infinite.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-shifted-sieve"
           ]
         },
         {
           "id": "m1-thm-main",
-          "role": "finite-summands-and-residue-supports-3",
-          "label": "Two infinite summands",
-          "fullLabel": "Two infinite summands",
+          "role": "finite-summands-and-residue-supports",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Finite summands and residue supports",
-          "detail": "[Two infinite summands] There do not exist two infinite sets A,B_0 such that (A+B) P is finite.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-size",
-          "role": "finite-summands-and-residue-supports-4",
-          "label": "Square-root bounds",
-          "fullLabel": "Square-root bounds",
+          "role": "finite-summands-and-residue-supports",
+          "label": "lemma m1-lem-size",
+          "fullLabel": "lemma m1-lem-size",
           "kind": "lemma",
           "source": "Finite summands and residue supports",
-          "detail": "[Square-root bounds] Under the assumed decomposition with both summands infinite, Y ( Y)^3 A(Y),B(Y) Y( Y)^2.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-shifted-sieve"
           ]
         },
         {
           "id": "m1-lem-collision",
-          "role": "finite-summands-and-residue-supports-5",
-          "label": "Collision stability",
-          "fullLabel": "Collision stability",
+          "role": "finite-summands-and-residue-supports",
+          "label": "lemma m1-lem-collision",
+          "fullLabel": "lemma m1-lem-collision",
           "kind": "lemma",
           "source": "Finite summands and residue supports",
-          "detail": "[Collision stability] Let b1 be fixed. Suppose , are probability measures on \\[ A( X+N_*,X], D respectively, and that every point mass is at most ( X)^b/ X . Put Q= X/( X)^ b+1 . Then _ p Q p(…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-quadratic",
           "role": "quadratic-characters-with-arbitrary-translating-centres",
-          "label": "Under the assumed eventual decomposition of the primes, _ T p 2T p p _ t_p |_ x…",
-          "fullLabel": "Under the assumed eventual decomposition of the primes, _ T p 2T p p _ t_p |_ x…",
+          "label": "proposition m1-prop-quadratic",
+          "fullLabel": "proposition m1-prop-quadratic",
           "kind": "proposition",
           "source": "Quadratic characters with arbitrary translating centres",
-          "detail": "Under the assumed eventual decomposition of the primes, _ T p 2T p p _ t_p |_ x S_p _p(x-t)|=o(T) (T).",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-size"
           ]
         },
         {
           "id": "m1-cor-quad-harmonic",
-          "role": "quadratic-characters-with-arbitrary-translating-centres-2",
-          "label": "For fixed 0<< , as L_* , \\[ _ L_* p L_* 1p _ t_p |_ x S_p _p(x-t)|=o(L_*). \\]",
-          "fullLabel": "For fixed 0<< , as L_* , \\[ _ L_* p L_* 1p _ t_p |_ x S_p _p(x-t)|=o(L_*). \\]",
+          "role": "quadratic-characters-with-arbitrary-translating-centres",
+          "label": "corollary m1-cor-quad-harmonic",
+          "fullLabel": "corollary m1-cor-quad-harmonic",
           "kind": "corollary",
           "source": "Quadratic characters with arbitrary translating centres",
-          "detail": "For fixed 0<< , as L_* , \\[ _ L_* p L_* 1p _ t_p |_ x S_p _p(x-t)|=o(L_*). \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-characters",
           "role": "translated-characters-of-higher-order",
-          "label": "For every fixed \\(0<<\\), one has _ L p L 1p _ t_p,\\ \\ multiplicative \\\\ ()>2 |_…",
-          "fullLabel": "For every fixed \\(0<<\\), one has _ L p L 1p _ t_p,\\ \\ multiplicative \\\\ ()>2 |_…",
+          "label": "proposition m1-prop-characters",
+          "fullLabel": "proposition m1-prop-characters",
           "kind": "proposition",
           "source": "Translated characters of higher order",
-          "detail": "For every fixed \\(0<<\\), one has _ L p L 1p _ t_p,\\ \\ multiplicative \\\\ ()>2 |_ x S_p (x-t)|=o(L) (L).",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-collision",
             "m1-lem-size"
@@ -211,12 +172,12 @@
         },
         {
           "id": "m1-cor-mixed-flatness",
-          "role": "translated-characters-of-higher-order-2",
-          "label": "Define \\[ F_p(x)= _ S_p (x)-_p _p(1- _p) , g_p(v)= p\\,_ x_p F_p(x)e_p(-vx). \\]…",
-          "fullLabel": "Define \\[ F_p(x)= _ S_p (x)-_p _p(1- _p) , g_p(v)= p\\,_ x_p F_p(x)e_p(-vx). \\]…",
+          "role": "translated-characters-of-higher-order",
+          "label": "corollary m1-cor-mixed-flatness",
+          "fullLabel": "corollary m1-cor-mixed-flatness",
           "kind": "corollary",
           "source": "Translated characters of higher order",
-          "detail": "Define \\[ F_p(x)= _ S_p (x)-_p _p(1- _p) , g_p(v)= p\\,_ x_p F_p(x)e_p(-vx). \\] For every fixed \\(0<<\\), outside a set of primes of harmonic mass \\(o(L)\\) in \\( L p L\\), one has uniformly _p=12+o(1),…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-collision",
             "m1-prop-quadratic",
@@ -226,74 +187,67 @@
         {
           "id": "m1-prop-supply",
           "role": "a-supply-of-nonsparse-additive-transforms",
-          "label": "There is an absolute constant \\(_0>0\\) such that, for all sufficiently large…",
-          "fullLabel": "There is an absolute constant \\(_0>0\\) such that, for all sufficiently large…",
+          "label": "proposition m1-prop-supply",
+          "fullLabel": "proposition m1-prop-supply",
           "kind": "proposition",
           "source": "A supply of nonsparse additive transforms",
-          "detail": "There is an absolute constant \\(_0>0\\) such that, for all sufficiently large \\(L\\), _ .05L p .9L\\\\ 1/3 _p 2/3\\\\ _p _0 1p \\ \\ .15L .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-supply-local-contraction",
-          "role": "a-supply-of-nonsparse-additive-transforms-2",
-          "label": "For sufficiently small \\(_0\\), uniformly for \\(p S\\) and complex \\(u,v\\) with…",
-          "fullLabel": "For sufficiently small \\(_0\\), uniformly for \\(p S\\) and complex \\(u,v\\) with…",
+          "role": "a-supply-of-nonsparse-additive-transforms",
+          "label": "lemma m1-lem-supply-local-contraction",
+          "fullLabel": "lemma m1-lem-supply-local-contraction",
           "kind": "lemma",
           "source": "A supply of nonsparse additive transforms",
-          "detail": "For sufficiently small \\(_0\\), uniformly for \\(p S\\) and complex \\(u,v\\) with \\(|u|,|v|1.03\\), \\[ \\|L_p(u,v)\\|1+C/p, |U_p(u,v)|1+C/p. \\] For all sufficiently large such primes, \\|L_p(1,1)\\|…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-supply-total-prime-error",
-          "role": "a-supply-of-nonsparse-additive-transforms-3",
-          "label": "Fix \\(C_K>0\\), and let \\(\\) be a fixed smooth function compactly supported in…",
-          "fullLabel": "Fix \\(C_K>0\\), and let \\(\\) be a fixed smooth function compactly supported in…",
+          "role": "a-supply-of-nonsparse-additive-transforms",
+          "label": "lemma m1-lem-supply-total-prime-error",
+          "fullLabel": "lemma m1-lem-supply-total-prime-error",
           "kind": "lemma",
           "source": "A supply of nonsparse additive transforms",
-          "detail": "Fix \\(C_K>0\\), and let \\(\\) be a fixed smooth function compactly supported in \\((1/2,1)\\). Among primitive characters of conductor at most \\(Q_b\\), omit the possible exceptional character in the…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-tree-comparison",
           "role": "a-finite-field-tree-comparison",
-          "label": "Tree comparison",
-          "fullLabel": "Tree comparison",
+          "label": "lemma m1-lem-tree-comparison",
+          "fullLabel": "lemma m1-lem-tree-comparison",
           "kind": "lemma",
           "source": "A finite-field tree comparison",
-          "detail": "[Tree comparison] In a single diagram let the leaf variables be independent uniform elements of U . Then |W|^23^r. For two diagrams of the same depth, partition the leaves in each into b nonempty…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-comparisons",
           "role": "a-positive-statistic-and-its-binary-tree-transfers",
-          "label": "Comparison estimates",
-          "fullLabel": "Comparison estimates",
+          "label": "proposition m1-prop-comparisons",
+          "fullLabel": "proposition m1-prop-comparisons",
           "kind": "proposition",
           "source": "A positive statistic and its binary-tree transfers",
-          "detail": "[Comparison estimates] In either of the two outer environments, the following estimates hold uniformly over the indicated assignments. For one assignment, _ 0<|s| V_l G|A_l(s)|^2 (r(_0+Cm)+o_k(m)).…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-arith-progression",
           "role": "arithmetic-comparison-of-the-histories",
-          "label": "Fix a row of . There is at most one primitive real character _* , with…",
-          "fullLabel": "Fix a row of . There is at most one primitive real character _* , with…",
+          "label": "lemma m1-lem-arith-progression",
+          "fullLabel": "lemma m1-lem-arith-progression",
           "kind": "lemma",
           "source": "Arithmetic comparison of the histories",
-          "detail": "Fix a row of . There is at most one primitive real character _* , with conductor at most (( L)) , and one associated real zero _*<1 which must be retained in the following formula. If \\[ M_* e^ L ,…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         }
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-cor-ostmann",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -301,7 +255,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

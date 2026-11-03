@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "284",
   "title": "The optimal quartic separation between randomized and quantum queries",
   "result": {
@@ -14,17 +15,12 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
-    },
-    {
-      "id": "an-addressed-certificate-with-outward-pointers",
-      "label": "An addressed certificate with outward pointers",
+      "id": "introduction",
+      "label": "Introduction",
       "description": "A section of the paper."
     },
     {
-      "id": "an-addressed-certificate-with-outward-pointers-2",
+      "id": "an-addressed-certificate-with-outward-pointers",
       "label": "An addressed certificate with outward pointers",
       "description": "A section of the paper."
     },
@@ -34,47 +30,12 @@
       "description": "A section of the paper."
     },
     {
-      "id": "quantum-search-with-probabilistic-comparisons-2",
-      "label": "Quantum search with probabilistic comparisons",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "quantum-search-with-probabilistic-comparisons-3",
-      "label": "Quantum search with probabilistic comparisons",
-      "description": "A section of the paper."
-    },
-    {
       "id": "the-randomized-lower-bound",
       "label": "The randomized lower bound",
       "description": "A section of the paper."
     },
     {
-      "id": "the-randomized-lower-bound-2",
-      "label": "The randomized lower bound",
-      "description": "A section of the paper."
-    },
-    {
       "id": "the-universal-quartic-bound",
-      "label": "The universal quartic bound",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-universal-quartic-bound-2",
-      "label": "The universal quartic bound",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-universal-quartic-bound-3",
-      "label": "The universal quartic bound",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-universal-quartic-bound-4",
-      "label": "The universal quartic bound",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-universal-quartic-bound-5",
       "label": "The universal quartic bound",
       "description": "A section of the paper."
     }
@@ -97,84 +58,84 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "The optimal power is _ tot =4 . More precisely, (f)=O((1+(f))^4) for every…",
-          "fullLabel": "The optimal power is _ tot =4 . More precisely, (f)=O((1+(f))^4) for every…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "The optimal power is _ tot =4 . More precisely, (f)=O((1+(f))^4) for every total Boolean function. For each fixed integer k2 , there are positive constants c_k,C_k,b_k and total Boolean functions F_…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-forrelation",
           "role": "an-addressed-certificate-with-outward-pointers",
-          "label": "For each fixed integer k2 , the functions P_ k,m have the following properties.…",
-          "fullLabel": "For each fixed integer k2 , the functions P_ k,m have the following properties.…",
+          "label": "lemma m1-lem-forrelation",
+          "fullLabel": "lemma m1-lem-forrelation",
           "kind": "lemma",
           "source": "An addressed certificate with outward pointers",
-          "detail": "For each fixed integer k2 , the functions P_ k,m have the following properties. For all sufficiently large powers of four m , (P_ k,m )>L, L= m^ 1-1/k (_2 m)^2 . For every 0<<1/2 , a quantum…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-local-tests",
-          "role": "an-addressed-certificate-with-outward-pointers-2",
-          "label": "For every input to F_ k,m and every pair (i,s)^r , the assertion that i wins at…",
-          "fullLabel": "For every input to F_ k,m and every pair (i,s)^r , the assertion that i wins at…",
+          "role": "an-addressed-certificate-with-outward-pointers",
+          "label": "lemma m1-lem-local-tests",
+          "fullLabel": "lemma m1-lem-local-tests",
           "kind": "lemma",
           "source": "An addressed certificate with outward pointers",
-          "detail": "For every input to F_ k,m and every pair (i,s)^r , the assertion that i wins at address s is a conjunction of \\[ K_ k,m =m+(m-1)+r(S_ k,m +2) =O_k(m( m)^3) \\] Boolean tests. Each test can be…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-amplification",
           "role": "quantum-search-with-probabilistic-comparisons",
-          "label": "Bounded amplification",
-          "fullLabel": "Bounded amplification",
+          "label": "lemma m1-lem-amplification",
+          "fullLabel": "lemma m1-lem-amplification",
           "kind": "lemma",
           "source": "Quantum search with probabilistic comparisons",
-          "detail": "[Bounded amplification] Let A be a quantum state preparation with a designated success bit. Its success probability is p , and, if p>0 , its normalized successful state is g . Let 0<1/2 and 0<<1/2 .…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-tournament",
-          "role": "quantum-search-with-probabilistic-comparisons-2",
-          "label": "A tournament for probabilistic comparisons",
-          "fullLabel": "A tournament for probabilistic comparisons",
+          "role": "quantum-search-with-probabilistic-comparisons",
+          "label": "proposition m1-prop-tournament",
+          "fullLabel": "proposition m1-prop-tournament",
           "kind": "proposition",
           "source": "Quantum search with probabilistic comparisons",
-          "detail": "[A tournament for probabilistic comparisons] For m2 , put \\[ T=(1000m), =1 1000T . \\] Suppose a coherent comparison circuit, controlled by two candidate indices and reversible with all workspace…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-amplification"
           ]
         },
         {
           "id": "m1-prop-quantum",
-          "role": "quantum-search-with-probabilistic-comparisons-3",
-          "label": "For every fixed k2 , the total functions of Section~ satisfy \\[ (F_ k,m ) m(…",
-          "fullLabel": "For every fixed k2 , the total functions of Section~ satisfy \\[ (F_ k,m ) m(…",
+          "role": "quantum-search-with-probabilistic-comparisons",
+          "label": "proposition m1-prop-quantum",
+          "fullLabel": "proposition m1-prop-quantum",
           "kind": "proposition",
           "source": "Quantum search with probabilistic comparisons",
-          "detail": "For every fixed k2 , the total functions of Section~ satisfy \\[ (F_ k,m ) m( m)^ O_k(1) . \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-adaptive-product",
           "role": "the-randomized-lower-bound",
-          "label": "Let P D , where D^n , let be a distribution on D , and let L be a nonnegative…",
-          "fullLabel": "Let P D , where D^n , let be a distribution on D , and let L be a nonnegative…",
+          "label": "lemma m1-lem-adaptive-product",
+          "fullLabel": "lemma m1-lem-adaptive-product",
           "kind": "lemma",
           "source": "The randomized lower bound",
-          "detail": "Let P D , where D^n , let be a distribution on D , and let L be a nonnegative integer. Suppose every deterministic algorithm making at most L queries computes P under with success probability at most…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-classical",
-          "role": "the-randomized-lower-bound-2",
-          "label": "For each fixed integer k2 and every sufficiently large power of four m , the…",
-          "fullLabel": "For each fixed integer k2 and every sufficiently large power of four m , the…",
+          "role": "the-randomized-lower-bound",
+          "label": "proposition m1-prop-classical",
+          "fullLabel": "proposition m1-prop-classical",
           "kind": "proposition",
           "source": "The randomized lower bound",
-          "detail": "For each fixed integer k2 and every sufficiently large power of four m , the total function of Section~ satisfies (F_ k,m )> G:=mL 100 , L= m^ 1-1/k (_2m)^2 .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-adaptive-product",
             "m1-prop-quantum",
@@ -184,53 +145,53 @@
         {
           "id": "m1-thm-quartic-upper",
           "role": "the-universal-quartic-bound",
-          "label": "[ ] Every total Boolean function satisfies \\[ (f)(f)=O((1+(f))^4). \\]",
-          "fullLabel": "[ ] Every total Boolean function satisfies \\[ (f)(f)=O((1+(f))^4). \\]",
+          "label": "theorem m1-thm-quartic-upper",
+          "fullLabel": "theorem m1-thm-quartic-upper",
           "kind": "theorem",
           "source": "The universal quartic bound",
-          "detail": "[ ] Every total Boolean function satisfies \\[ (f)(f)=O((1+(f))^4). \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-adversary",
-          "role": "the-universal-quartic-bound-2",
-          "label": "Nonnegative spectral adversary bound",
-          "fullLabel": "Nonnegative spectral adversary bound",
+          "role": "the-universal-quartic-bound",
+          "label": "lemma m1-lem-adversary",
+          "fullLabel": "lemma m1-lem-adversary",
           "kind": "lemma",
           "source": "The universal quartic bound",
-          "detail": "[Nonnegative spectral adversary bound] Let f be a nonconstant total Boolean function. Let be a nonzero real symmetric matrix, indexed by inputs, with nonnegative entries and _ xy =0 whenever…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-bs-lambda",
-          "role": "the-universal-quartic-bound-3",
-          "label": "For every nonconstant total Boolean function, \\[ (f)=O((f)^2), (f)=O((f)). \\]",
-          "fullLabel": "For every nonconstant total Boolean function, \\[ (f)=O((f)^2), (f)=O((f)). \\]",
+          "role": "the-universal-quartic-bound",
+          "label": "lemma m1-lem-bs-lambda",
+          "fullLabel": "lemma m1-lem-bs-lambda",
           "kind": "lemma",
           "source": "The universal quartic bound",
-          "detail": "For every nonconstant total Boolean function, \\[ (f)=O((f)^2), (f)=O((f)). \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-adversary"
           ]
         },
         {
           "id": "m1-lem-degree-lambda",
-          "role": "the-universal-quartic-bound-4",
-          "label": ", using",
-          "fullLabel": ", using",
+          "role": "the-universal-quartic-bound",
+          "label": "lemma m1-lem-degree-lambda",
+          "fullLabel": "lemma m1-lem-degree-lambda",
           "kind": "lemma",
           "source": "The universal quartic bound",
-          "detail": "[ , using ] Every nonconstant total Boolean function satisfies (f)(f)^2 .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-degree-bs",
-          "role": "the-universal-quartic-bound-5",
-          "label": "[ ] Every total Boolean function satisfies (f)(f)(f) .",
-          "fullLabel": "[ ] Every total Boolean function satisfies (f)(f)(f) .",
+          "role": "the-universal-quartic-bound",
+          "label": "lemma m1-lem-degree-bs",
+          "fullLabel": "lemma m1-lem-degree-bs",
           "kind": "lemma",
           "source": "The universal quartic bound",
-          "detail": "[ ] Every total Boolean function satisfies (f)(f)(f) .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-bs-lambda",
             "m1-lem-degree-lambda"
@@ -239,14 +200,7 @@
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -254,7 +208,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

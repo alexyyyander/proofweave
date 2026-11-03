@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "156",
   "title": "Borsuk's conjecture fails in dimension nine",
   "result": {
@@ -14,17 +15,12 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
-    },
-    {
-      "id": "from-diameter-covers-to-projective-maps",
-      "label": "From diameter covers to projective maps",
+      "id": "introduction",
+      "label": "Introduction",
       "description": "A section of the paper."
     },
     {
-      "id": "from-diameter-covers-to-projective-maps-2",
+      "id": "from-diameter-covers-to-projective-maps",
       "label": "From diameter covers to projective maps",
       "description": "A section of the paper."
     },
@@ -34,22 +30,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "an-extension-to-symmetric-matrices-2",
-      "label": "An extension to symmetric matrices",
-      "description": "A section of the paper."
-    },
-    {
       "id": "the-equality-case-gives-a-simplicial-cycle",
-      "label": "The equality case gives a simplicial cycle",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-equality-case-gives-a-simplicial-cycle-2",
-      "label": "The equality case gives a simplicial cycle",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-equality-case-gives-a-simplicial-cycle-3",
       "label": "The equality case gives a simplicial cycle",
       "description": "A section of the paper."
     },
@@ -59,32 +40,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "triangle-systems-on-six-labels-2",
-      "label": "Triangle systems on six labels",
-      "description": "A section of the paper."
-    },
-    {
       "id": "the-obstruction-on-ten-labels",
-      "label": "The obstruction on ten labels",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-obstruction-on-ten-labels-2",
-      "label": "The obstruction on ten labels",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-obstruction-on-ten-labels-3",
-      "label": "The obstruction on ten labels",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-obstruction-on-ten-labels-4",
-      "label": "The obstruction on ten labels",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-obstruction-on-ten-labels-5",
       "label": "The obstruction on ten labels",
       "description": "A section of the paper."
     },
@@ -112,32 +68,32 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "The compact set \\[ X=\\ uu^ T :u R^4,\\ \\|u\\|=1\\ \\ ASym_4( R):trA=1\\ , \\] with…",
-          "fullLabel": "The compact set \\[ X=\\ uu^ T :u R^4,\\ \\|u\\|=1\\ \\ ASym_4( R):trA=1\\ , \\] with…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "The compact set \\[ X=\\ uu^ T :u R^4,\\ \\|u\\|=1\\ \\ ASym_4( R):trA=1\\ , \\] with the Frobenius metric, has diameter 2 and cannot be covered by ten subsets of diameter strictly less than 2 .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-projector-geometry",
           "role": "from-diameter-covers-to-projective-maps",
-          "label": "Projector geometry",
-          "fullLabel": "Projector geometry",
+          "label": "lemma m1-lem-projector-geometry",
+          "fullLabel": "lemma m1-lem-projector-geometry",
           "kind": "lemma",
           "source": "From diameter covers to projective maps",
-          "detail": "[Projector geometry] The map x P_x identifies P(V) homeomorphically with the compact set X_k in the trace-one affine subspace of Sym(V) . This affine subspace is Euclidean of dimension N_k-1 . If u,v…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-cover-to-map",
-          "role": "from-diameter-covers-to-projective-maps-2",
-          "label": "The strict-gap reduction",
-          "fullLabel": "The strict-gap reduction",
+          "role": "from-diameter-covers-to-projective-maps",
+          "label": "lemma m1-lem-cover-to-map",
+          "fullLabel": "lemma m1-lem-cover-to-map",
           "kind": "lemma",
           "source": "From diameter covers to projective maps",
-          "detail": "[The strict-gap reduction] If X_k is covered by at most m subsets, each of diameter strictly less than 2 , then there is an admissible map f: P(V) R^m .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-projector-geometry"
           ]
@@ -145,21 +101,21 @@
         {
           "id": "m1-lem-positive-extension",
           "role": "an-extension-to-symmetric-matrices",
-          "label": "Properties of the positive extension",
-          "fullLabel": "Properties of the positive extension",
+          "label": "lemma m1-lem-positive-extension",
+          "fullLabel": "lemma m1-lem-positive-extension",
           "kind": "lemma",
           "source": "An extension to symmetric matrices",
-          "detail": "[Properties of the positive extension] The map E_V is continuous on the full positive semidefinite cone, including its singular boundary. For t0 it satisfies \\[ E_V(tQ)=tE_V(Q), E_V(Q)_i0, _ i=1 ^m…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-signed-extension",
-          "role": "an-extension-to-symmetric-matrices-2",
-          "label": "The odd sphere map",
-          "fullLabel": "The odd sphere map",
+          "role": "an-extension-to-symmetric-matrices",
+          "label": "lemma m1-lem-signed-extension",
+          "fullLabel": "lemma m1-lem-signed-extension",
           "kind": "lemma",
           "source": "An extension to symmetric matrices",
-          "detail": "[The odd sphere map] The map F:Sym(V) R^m is continuous, odd, and homogeneous of degree one for nonnegative scalars. It satisfies \\|F(A)\\|_1=tr|A|, _iF(A)_i=trA. More precisely, its positive and…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-positive-extension"
           ]
@@ -167,31 +123,31 @@
         {
           "id": "m1-thm-label-bound",
           "role": "the-equality-case-gives-a-simplicial-cycle",
-          "label": "The number of labels",
-          "fullLabel": "The number of labels",
+          "label": "proposition m1-thm-label-bound",
+          "fullLabel": "proposition m1-thm-label-bound",
           "kind": "proposition",
           "source": "The equality case gives a simplicial cycle",
-          "detail": "[The number of labels] If k2 , every smooth admissible map f: P( R^k)^ m-1 satisfies m N_k . If m=N_k , its extension F has mod-two degree one and is surjective. In this equality case, every pair of…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-local-degree",
-          "role": "the-equality-case-gives-a-simplicial-cycle-2",
-          "label": "Local counting",
-          "fullLabel": "Local counting",
+          "role": "the-equality-case-gives-a-simplicial-cycle",
+          "label": "lemma m1-lem-local-degree",
+          "fullLabel": "lemma m1-lem-local-degree",
           "kind": "lemma",
           "source": "The equality case gives a simplicial cycle",
-          "detail": "[Local counting] Let M be a closed smooth n -manifold, possibly disconnected, and let q:M Y be continuous, with Y Hausdorff. Suppose a point y Y has a neighborhood homeomorphic to an open subset of…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-thm-equality-complex",
-          "role": "the-equality-case-gives-a-simplicial-cycle-3",
-          "label": "Supports at equality",
-          "fullLabel": "Supports at equality",
+          "role": "the-equality-case-gives-a-simplicial-cycle",
+          "label": "theorem m1-thm-equality-complex",
+          "fullLabel": "theorem m1-thm-equality-complex",
           "kind": "theorem",
           "source": "The equality case gives a simplicial cycle",
-          "detail": "[Supports at equality] Let k3 and m=N_k . Suppose f: P( R^k)^ m-1 is a smooth admissible map. Its support complex K has every pair of labels as an edge, every facet has k vertices, and \\[ _ I a facet…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [],
           "objectUses": [
             "m1-lem-local-degree"
@@ -203,33 +159,33 @@
         {
           "id": "m1-lem-six-from-map",
           "role": "triangle-systems-on-six-labels",
-          "label": "The triangles of the support complex of an admissible map f:RP^2^5 form a…",
-          "fullLabel": "The triangles of the support complex of an admissible map f:RP^2^5 form a…",
+          "label": "lemma m1-lem-six-from-map",
+          "fullLabel": "lemma m1-lem-six-from-map",
           "kind": "lemma",
           "source": "Triangle systems on six labels",
-          "detail": "The triangles of the support complex of an admissible map f:RP^2^5 form a six-label triangle system.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-thm-equality-complex"
           ]
         },
         {
           "id": "m1-lem-six-properties",
-          "role": "triangle-systems-on-six-labels-2",
-          "label": "Let T be a six-label triangle system on C . Every vertex link is a cycle of…",
-          "fullLabel": "Let T be a six-label triangle system on C . Every vertex link is a cycle of…",
+          "role": "triangle-systems-on-six-labels",
+          "label": "lemma m1-lem-six-properties",
+          "fullLabel": "lemma m1-lem-six-properties",
           "kind": "lemma",
           "source": "Triangle systems on six labels",
-          "detail": "Let T be a six-label triangle system on C . Every vertex link is a cycle of length five. Every four-element subset of C contains a triangle, but does not contain all four of its triples as triangles.…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-facet-complement",
           "role": "the-obstruction-on-ten-labels",
-          "label": "Suppose f:RP^3^9 is admissible, let K be its support complex, and let S be a…",
-          "fullLabel": "Suppose f:RP^3^9 is admissible, let K be its support complex, and let S be a…",
+          "label": "lemma m1-lem-facet-complement",
+          "fullLabel": "lemma m1-lem-facet-complement",
           "kind": "lemma",
           "source": "The obstruction on ten labels",
-          "detail": "Suppose f:RP^3^9 is admissible, let K be its support complex, and let S be a tetrahedron of K . The triangles of K contained in the six-element set C=[10] S form a six-label triangle system. In…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-thm-equality-complex",
             "m1-thm-label-bound",
@@ -238,36 +194,36 @@
         },
         {
           "id": "m1-lem-two-tetrahedra",
-          "role": "the-obstruction-on-ten-labels-2",
-          "label": "Every triangle of K belongs to exactly two tetrahedra.",
-          "fullLabel": "Every triangle of K belongs to exactly two tetrahedra.",
+          "role": "the-obstruction-on-ten-labels",
+          "label": "lemma m1-lem-two-tetrahedra",
+          "fullLabel": "lemma m1-lem-two-tetrahedra",
           "kind": "lemma",
           "source": "The obstruction on ten labels",
-          "detail": "Every triangle of K belongs to exactly two tetrahedra.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-six-properties"
           ]
         },
         {
           "id": "m1-lem-short-links",
-          "role": "the-obstruction-on-ten-labels-3",
-          "label": "Every connected component of an edge link is a cycle of length three or four.",
-          "fullLabel": "Every connected component of an edge link is a cycle of length three or four.",
+          "role": "the-obstruction-on-ten-labels",
+          "label": "lemma m1-lem-short-links",
+          "fullLabel": "lemma m1-lem-short-links",
           "kind": "lemma",
           "source": "The obstruction on ten labels",
-          "detail": "Every connected component of an edge link is a cycle of length three or four.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-two-tetrahedra"
           ]
         },
         {
           "id": "m1-lem-partner-blocks",
-          "role": "the-obstruction-on-ten-labels-4",
-          "label": "Fix a tetrahedron S of K . For v S , let p(v) be the unique label outside S…",
-          "fullLabel": "Fix a tetrahedron S of K . For v S , let p(v) be the unique label outside S…",
+          "role": "the-obstruction-on-ten-labels",
+          "label": "lemma m1-lem-partner-blocks",
+          "fullLabel": "lemma m1-lem-partner-blocks",
           "kind": "lemma",
           "source": "The obstruction on ten labels",
-          "detail": "Fix a tetrahedron S of K . For v S , let p(v) be the unique label outside S such that (S\\ v\\ )\\ p(v)\\ is a tetrahedron. For each distinct value y of p , set \\[ B_y=p^ -1 (y)\\ y\\ . \\] The sets B_y are…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-two-tetrahedra",
             "m1-lem-short-links",
@@ -276,12 +232,12 @@
         },
         {
           "id": "m1-thm-no-ten-labels",
-          "role": "the-obstruction-on-ten-labels-5",
-          "label": "There is no admissible map RP^3^9 .",
-          "fullLabel": "There is no admissible map RP^3^9 .",
+          "role": "the-obstruction-on-ten-labels",
+          "label": "theorem m1-thm-no-ten-labels",
+          "fullLabel": "theorem m1-thm-no-ten-labels",
           "kind": "theorem",
           "source": "The obstruction on ten labels",
-          "detail": "There is no admissible map RP^3^9 .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-partner-blocks",
             "m1-lem-six-properties",
@@ -291,11 +247,11 @@
         {
           "id": "m1-cor-higher-dimensions",
           "role": "the-diameter-obstruction",
-          "label": "For every integer d9 , there is a compact subset of R^d of diameter 2 that…",
-          "fullLabel": "For every integer d9 , there is a compact subset of R^d of diameter 2 that…",
+          "label": "corollary m1-cor-higher-dimensions",
+          "fullLabel": "corollary m1-cor-higher-dimensions",
           "kind": "corollary",
           "source": "The diameter obstruction",
-          "detail": "For every integer d9 , there is a compact subset of R^d of diameter 2 that cannot be covered by d+1 subsets of strictly smaller diameter.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [],
           "mentions": [
             "m1-thm-main"
@@ -304,14 +260,7 @@
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -319,7 +268,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

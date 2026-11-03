@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "165",
   "title": "The Harary–Hill and Zarankiewicz crossing-number formulas",
   "result": {
@@ -14,9 +15,9 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
     },
     {
       "id": "signed-intersections-of-cycles",
@@ -29,32 +30,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "an-even-node-order-detector-2",
-      "label": "An even-node order detector",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "an-even-node-order-detector-3",
-      "label": "An even-node order detector",
-      "description": "A section of the paper."
-    },
-    {
       "id": "the-lower-bound",
-      "label": "The lower bound",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-lower-bound-2",
-      "label": "The lower bound",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-lower-bound-3",
-      "label": "The lower bound",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-lower-bound-4",
       "label": "The lower bound",
       "description": "A section of the paper."
     },
@@ -74,33 +50,13 @@
       "description": "A section of the paper."
     },
     {
-      "id": "a-subspace-intersection-inequality-2",
-      "label": "A subspace intersection inequality",
-      "description": "A section of the paper."
-    },
-    {
       "id": "signed-intersections-and-cycle-relations",
-      "label": "Signed intersections and cycle relations",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "signed-intersections-and-cycle-relations-2",
       "label": "Signed intersections and cycle relations",
       "description": "A section of the paper."
     },
     {
       "id": "detecting-spoke-orders-by-matrices-of-full-rank",
       "label": "Detecting spoke orders by matrices of full rank",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "detecting-spoke-orders-by-matrices-of-full-rank-2",
-      "label": "Detecting spoke orders by matrices of full rank",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "normalization-of-continuous-arc-drawings-2",
-      "label": "Normalization of continuous-arc drawings",
       "description": "A section of the paper."
     }
   ],
@@ -122,52 +78,52 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "For every integer \\(n3\\), \\[ (K_n)=Z(n):= 14 n2 n-12 n-22 n-32. \\]",
-          "fullLabel": "For every integer \\(n3\\), \\[ (K_n)=Z(n):= 14 n2 n-12 n-22 n-32. \\]",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "For every integer \\(n3\\), \\[ (K_n)=Z(n):= 14 n2 n-12 n-22 n-32. \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-cycles",
           "role": "signed-intersections-of-cycles",
-          "label": "Cycle pairing",
-          "fullLabel": "Cycle pairing",
+          "label": "lemma m1-lem-cycles",
+          "fullLabel": "lemma m1-lem-cycles",
           "kind": "lemma",
           "source": "Signed intersections of cycles",
-          "detail": "[Cycle pairing] For any two cycles \\(z,z'\\), one has \\(J(z,z')=0\\).",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-weights",
           "role": "an-even-node-order-detector",
-          "label": "Interpolation weights",
-          "fullLabel": "Interpolation weights",
+          "label": "lemma m1-lem-weights",
+          "fullLabel": "lemma m1-lem-weights",
           "kind": "lemma",
           "source": "An even-node order detector",
-          "detail": "[Interpolation weights] For distinct real nodes \\(u_1,,u_N\\), put \\(G(t)=_ p=1 ^ N (t-u_p)\\). Then \\[ _ p=1 ^ N A(u_p) G'(u_p) =0 if A N-2. \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-triangles",
-          "role": "an-even-node-order-detector-2",
-          "label": "Two-triangle interpolation",
-          "fullLabel": "Two-triangle interpolation",
+          "role": "an-even-node-order-detector",
+          "label": "lemma m1-lem-triangles",
+          "fullLabel": "lemma m1-lem-triangles",
           "kind": "lemma",
           "source": "An even-node order detector",
-          "detail": "[Two-triangle interpolation] Let \\(s2\\) and let \\(u_1,,u_ 2s \\) be distinct real numbers. Set \\[ L_s=\\ (p,q):1 q<p s\\ \\;\\;\\ (p,q):s<p<q2s\\ . \\] Evaluation at \\((u_p,u_q)\\), \\((p,q) L_s\\), is an…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-detector",
-          "role": "an-even-node-order-detector-3",
-          "label": "Order detection",
-          "fullLabel": "Order detection",
+          "role": "an-even-node-order-detector",
+          "label": "lemma m1-lem-detector",
+          "fullLabel": "lemma m1-lem-detector",
           "kind": "lemma",
           "source": "An even-node order detector",
-          "detail": "[Order detection] The pairing \\(M\\) on \\(_ s-1,s-2 _ s-2,s-1 \\) is nonsingular. Consequently, A_ s-2,s-2 , M(A,B)=0\\ for every B_ s-1,s-1 A=0.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-weights",
             "m1-lem-triangles"
@@ -176,11 +132,11 @@
         {
           "id": "m1-lem-tests",
           "role": "the-lower-bound",
-          "label": "Polynomial cycle tests",
-          "fullLabel": "Polynomial cycle tests",
+          "label": "lemma m1-lem-tests",
+          "fullLabel": "lemma m1-lem-tests",
           "kind": "lemma",
           "source": "The lower bound",
-          "detail": "[Polynomial cycle tests] For every polynomial \\(H(x,u,y,v)\\) of degree at most \\(n-2\\) separately in each variable, _ i,p,k,q J([ip],[kq])w_iw_pw_kw_q H(t_i,t_p,t_k,t_q)=0.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-weights",
             "m1-lem-cycles"
@@ -188,24 +144,24 @@
         },
         {
           "id": "m1-lem-injectivity",
-          "role": "the-lower-bound-2",
-          "label": "Injectivity",
-          "fullLabel": "Injectivity",
+          "role": "the-lower-bound",
+          "label": "lemma m1-lem-injectivity",
+          "fullLabel": "lemma m1-lem-injectivity",
           "kind": "lemma",
           "source": "The lower bound",
-          "detail": "[Injectivity] The map \\(E\\) is injective.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-detector"
           ]
         },
         {
           "id": "m1-prop-odd",
-          "role": "the-lower-bound-3",
-          "label": "Odd lower bound",
-          "fullLabel": "Odd lower bound",
+          "role": "the-lower-bound",
+          "label": "proposition m1-prop-odd",
+          "fullLabel": "proposition m1-prop-odd",
           "kind": "proposition",
           "source": "The lower bound",
-          "detail": "[Odd lower bound] Every normalized minimum drawing of \\(K_ 2s+1 \\), \\(s2\\), has at least \\(s 2 ^ 2 \\) crossings.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-tests",
             "m1-lem-injectivity"
@@ -213,12 +169,12 @@
         },
         {
           "id": "m1-cor-lower",
-          "role": "the-lower-bound-4",
-          "label": "For every \\(n3\\), \\((K_n) Z(n)\\).",
-          "fullLabel": "For every \\(n3\\), \\((K_n) Z(n)\\).",
+          "role": "the-lower-bound",
+          "label": "corollary m1-cor-lower",
+          "fullLabel": "corollary m1-cor-lower",
           "kind": "corollary",
           "source": "The lower bound",
-          "detail": "For every \\(n3\\), \\((K_n) Z(n)\\).",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-prop-odd"
           ]
@@ -226,21 +182,21 @@
         {
           "id": "m1-prop-upper",
           "role": "a-matching-two-page-drawing",
-          "label": "This drawing has exactly \\(Z(n)\\) crossings for every \\(n3\\).",
-          "fullLabel": "This drawing has exactly \\(Z(n)\\) crossings for every \\(n3\\).",
+          "label": "proposition m1-prop-upper",
+          "fullLabel": "proposition m1-prop-upper",
           "kind": "proposition",
           "source": "A matching two-page drawing",
-          "detail": "This drawing has exactly \\(Z(n)\\) crossings for every \\(n3\\).",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-normalization",
           "role": "normalization-of-continuous-arc-drawings",
-          "label": "For every finite simple graph, a minimum ordinary drawing can be chosen…",
-          "fullLabel": "For every finite simple graph, a minimum ordinary drawing can be chosen…",
+          "label": "lemma m1-lem-normalization",
+          "fullLabel": "lemma m1-lem-normalization",
           "kind": "lemma",
           "source": "Normalization of continuous-arc drawings",
-          "detail": "For every finite simple graph, a minimum ordinary drawing can be chosen polygonal, straight near every vertex and crossing, and without crossings between edges having a common endpoint.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         }
       ]
@@ -262,32 +218,32 @@
       "nodes": [
         {
           "id": "m2-thm-main",
-          "role": "result",
-          "label": "For all positive integers m,n , \\[ (K_ m,n )=d_m d_n. \\]",
-          "fullLabel": "For all positive integers m,n , \\[ (K_ m,n )=d_m d_n. \\]",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "For all positive integers m,n , \\[ (K_ m,n )=d_m d_n. \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-lem-subspace",
           "role": "a-subspace-intersection-inequality",
-          "label": "Subspace intersection bound",
-          "fullLabel": "Subspace intersection bound",
+          "label": "lemma m2-lem-subspace",
+          "fullLabel": "lemma m2-lem-subspace",
           "kind": "lemma",
           "source": "A subspace intersection inequality",
-          "detail": "[Subspace intersection bound] Let W be a real vector space of dimension N , and let U_1,,U_m,V_1,,V_m be subspaces of W , where m1 . If U_i V_i=\\ 0\\ for every i , then _ i,j=1 ^ m (U_i V_j) m^2 4 N.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-cor-rank-sum",
-          "role": "a-subspace-intersection-inequality-2",
-          "label": "Rank sum for differences",
-          "fullLabel": "Rank sum for differences",
+          "role": "a-subspace-intersection-inequality",
+          "label": "corollary m2-cor-rank-sum",
+          "fullLabel": "corollary m2-cor-rank-sum",
           "kind": "corollary",
           "source": "A subspace intersection inequality",
-          "detail": "[Rank sum for differences] Let X_1,,X_m,Y_1,,Y_m be real d d matrices. If X_i-Y_i is invertible for every i , then _ 1 i,j m\\ j (X_i-Y_j)2d_m d, d_m= m2 m-1 2 . The sum is over ordered pairs of…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m2-lem-subspace"
           ]
@@ -295,21 +251,21 @@
         {
           "id": "m2-lem-cycle-pairing",
           "role": "signed-intersections-and-cycle-relations",
-          "label": "Cycle pairing",
-          "fullLabel": "Cycle pairing",
+          "label": "lemma m2-lem-cycle-pairing",
+          "fullLabel": "lemma m2-lem-cycle-pairing",
           "kind": "lemma",
           "source": "Signed intersections and cycle relations",
-          "detail": "[Cycle pairing] Let z,y^ E(K_ m,n ) be the signed edge vectors of two oriented simple graph cycles: an entry is 1 or -1 according as the traversal agrees or disagrees with the fixed edge orientation,…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-lem-additive",
-          "role": "signed-intersections-and-cycle-relations-2",
-          "label": "Additive block relation",
-          "fullLabel": "Additive block relation",
+          "role": "signed-intersections-and-cycle-relations",
+          "label": "lemma m2-lem-additive",
+          "fullLabel": "lemma m2-lem-additive",
           "kind": "lemma",
           "source": "Signed intersections and cycle relations",
-          "detail": "[Additive block relation] For every 1 i,k m , J^ ik -J^ i1 -J^ 1k +J^ 11 L.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m2-lem-cycle-pairing"
           ]
@@ -317,52 +273,39 @@
         {
           "id": "m2-lem-triangular-basis",
           "role": "detecting-spoke-orders-by-matrices-of-full-rank",
-          "label": "Two-triangle interpolation",
-          "fullLabel": "Two-triangle interpolation",
+          "label": "lemma m2-lem-triangular-basis",
+          "fullLabel": "lemma m2-lem-triangular-basis",
           "kind": "lemma",
           "source": "Detecting spoke orders by matrices of full rank",
-          "detail": "[Two-triangle interpolation] For any pairwise distinct real numbers x_1,,x_ 2s+1 , set Q_s= \\ (p,q):1 q<p s+1\\ \\ (p,q):s+1<p<q2s+1\\ . The values at (x_p,x_q) for (p,q) Q_s determine uniquely a…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-lem-detector",
-          "role": "detecting-spoke-orders-by-matrices-of-full-rank-2",
-          "label": "Rank detector",
-          "fullLabel": "Rank detector",
+          "role": "detecting-spoke-orders-by-matrices-of-full-rank",
+          "label": "lemma m2-lem-detector",
+          "fullLabel": "lemma m2-lem-detector",
           "kind": "lemma",
           "source": "Detecting spoke orders by matrices of full rank",
-          "detail": "[Rank detector] Fix any pairwise distinct real numbers x_1,,x_n , where n=2s+1 and d=s^2 . There is a linear map :^ n n ^ d d with the following properties. [label=( *)] annihilates every additive…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m2-lem-triangular-basis"
           ]
         },
         {
           "id": "m2-lem-normalization",
-          "role": "normalization-of-continuous-arc-drawings-2",
-          "label": "Drawing normalization",
-          "fullLabel": "Drawing normalization",
+          "role": "normalization-of-continuous-arc-drawings",
+          "label": "lemma m2-lem-normalization",
+          "fullLabel": "lemma m2-lem-normalization",
           "kind": "lemma",
           "source": "Normalization of continuous-arc drawings",
-          "detail": "[Drawing normalization] An admissible continuous-arc drawing of a finite simple graph can be replaced by a polygonal drawing with no more crossing points, with edges straight near every vertex and…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         }
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    },
-    {
-      "from": "m2:m2-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -370,7 +313,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

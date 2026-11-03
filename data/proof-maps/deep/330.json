@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "330",
   "title": "A uniformly discrete counterexample to bounded approximation in Lipschitz-free spaces",
   "result": {
@@ -14,17 +15,7 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
-    },
-    {
       "id": "introduction",
-      "label": "Introduction",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "introduction-2",
       "label": "Introduction",
       "description": "A section of the paper."
     },
@@ -39,27 +30,12 @@
       "description": "A section of the paper."
     },
     {
-      "id": "colored-graphs-and-the-bounded-block-2",
-      "label": "Colored graphs and the bounded block",
-      "description": "A section of the paper."
-    },
-    {
       "id": "finite-rank-operators-and-signed-measures",
       "label": "Finite-rank operators and signed measures",
       "description": "A section of the paper."
     },
     {
-      "id": "finite-rank-operators-and-signed-measures-2",
-      "label": "Finite-rank operators and signed measures",
-      "description": "A section of the paper."
-    },
-    {
       "id": "rare-matched-walks-and-continuation-records",
-      "label": "Rare matched walks and continuation records",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "rare-matched-walks-and-continuation-records-2",
       "label": "Rare matched walks and continuation records",
       "description": "A section of the paper."
     },
@@ -87,42 +63,42 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "There is a countable, unbounded, nonproper pointed metric space (M,d,o) such…",
-          "fullLabel": "There is a countable, unbounded, nonproper pointed metric space (M,d,o) such…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "There is a countable, unbounded, nonproper pointed metric space (M,d,o) such that d(x,y)1 for distinct points and (M) has AP but fails -BAP for every finite 1 .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-thm-blocks",
           "role": "introduction",
-          "label": "For each integer p1 , there are a bounded countably infinite pointed metric…",
-          "fullLabel": "For each integer p1 , there are a bounded countably infinite pointed metric…",
+          "label": "theorem m1-thm-blocks",
+          "fullLabel": "theorem m1-thm-blocks",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "For each integer p1 , there are a bounded countably infinite pointed metric space (M_p,d_p,o) and a finite set A_p M_p containing o such that \\[ d_p(x,y)1(x y), diamM_p B_p:=300p^2+150p+5, \\] and…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-cor-renorming",
-          "role": "introduction-2",
-          "label": "For each integer p1 , real _1 has an equivalent norm _p such that \\[ 12c_1c_p…",
-          "fullLabel": "For each integer p1 , real _1 has an equivalent norm _p such that \\[ 12c_1c_p…",
+          "role": "introduction",
+          "label": "corollary m1-cor-renorming",
+          "fullLabel": "corollary m1-cor-renorming",
           "kind": "corollary",
           "source": "Introduction",
-          "detail": "For each integer p1 , real _1 has an equivalent norm _p such that \\[ 12c_1c_p B_pc_1, \\] and (_1, _p) has 2B_p -BAP but fails p -BAP. For p=1 , this norm fails MAP.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-coefficients",
           "role": "from-bounded-blocks-to-ap-without-bap",
-          "label": "Let (N,d,o) be a countable pointed metric space such that d(x,y)1 for distinct…",
-          "fullLabel": "Let (N,d,o) be a countable pointed metric space such that d(x,y)1 for distinct…",
+          "label": "proposition m1-prop-coefficients",
+          "fullLabel": "proposition m1-prop-coefficients",
           "kind": "proposition",
           "source": "From bounded blocks to AP without BAP",
-          "detail": "Let (N,d,o) be a countable pointed metric space such that d(x,y)1 for distinct points and diamN B< . The map \\[ J:_1(N\\ o\\ )(N), Jc=_ x o c_x_x, \\] is a linear isomorphism onto (N) and satisfies…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-thm-blocks"
           ]
@@ -130,41 +106,41 @@
         {
           "id": "m1-lem-local-limit",
           "role": "colored-graphs-and-the-bounded-block",
-          "label": "For every even integer 4 and positive integer k , there is a deterministic…",
-          "fullLabel": "For every even integer 4 and positive integer k , there is a deterministic…",
+          "label": "lemma m1-lem-local-limit",
+          "fullLabel": "lemma m1-lem-local-limit",
           "kind": "lemma",
           "source": "Colored graphs and the bounded block",
-          "detail": "For every even integer 4 and positive integer k , there is a deterministic sequence of nonempty finite -regular multigraphs G_m , with vertices colored by \\ 1,,k\\ , such that, for every fixed integer…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-block-geometry",
-          "role": "colored-graphs-and-the-bounded-block-2",
-          "label": "The preceding construction has the following properties. [label=( *)]…",
-          "fullLabel": "The preceding construction has the following properties. [label=( *)]…",
+          "role": "colored-graphs-and-the-bounded-block",
+          "label": "lemma m1-lem-block-geometry",
+          "fullLabel": "lemma m1-lem-block-geometry",
           "kind": "lemma",
           "source": "Colored graphs and the bounded block",
-          "detail": "The preceding construction has the following properties. [label=( *)] (M_p,d_p,o) is a countably infinite pointed metric space with separation at least one and diameter at most B=B_p . The anchor set…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-finite-support",
           "role": "finite-rank-operators-and-signed-measures",
-          "label": "Suppose that a bounded finite-rank linear operator T_0:(M_p)(M_p) satisfies T_0…",
-          "fullLabel": "Suppose that a bounded finite-rank linear operator T_0:(M_p)(M_p) satisfies T_0…",
+          "label": "lemma m1-lem-finite-support",
+          "fullLabel": "lemma m1-lem-finite-support",
           "kind": "lemma",
           "source": "Finite-rank operators and signed measures",
-          "detail": "Suppose that a bounded finite-rank linear operator T_0:(M_p)(M_p) satisfies T_0 p and \\[ T_0 _a- _a<12(a A_p). \\] Then there are a finite set S M_p containing o and a bounded finite-rank linear…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-measure-bounds",
-          "role": "finite-rank-operators-and-signed-measures-2",
-          "label": "Let S M_p be finite and contain o , and let T:(M_p)(M_p) be a bounded linear…",
-          "fullLabel": "Let S M_p be finite and contain o , and let T:(M_p)(M_p) be a bounded linear…",
+          "role": "finite-rank-operators-and-signed-measures",
+          "label": "lemma m1-lem-measure-bounds",
+          "fullLabel": "lemma m1-lem-measure-bounds",
           "kind": "lemma",
           "source": "Finite-rank operators and signed measures",
-          "detail": "Let S M_p be finite and contain o , and let T:(M_p)(M_p) be a bounded linear operator satisfying . There is a family (_x)_ x M_p of signed measures on S , each of total mass one, such that…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-block-geometry"
           ]
@@ -172,11 +148,11 @@
         {
           "id": "m1-lem-rare-walks",
           "role": "rare-matched-walks-and-continuation-records",
-          "label": "For a fixed integer n1 , let _m be the fraction of vertices of G_m from which a…",
-          "fullLabel": "For a fixed integer n1 , let _m be the fraction of vertices of G_m from which a…",
+          "label": "lemma m1-lem-rare-walks",
+          "fullLabel": "lemma m1-lem-rare-walks",
           "kind": "lemma",
           "source": "Rare matched walks and continuation records",
-          "detail": "For a fixed integer n1 , let _m be the fraction of vertices of G_m from which a matched walk of length n starts. Then _ m _m |S| Hk( QH k )^n. Consequently one can choose n2 and then m so that…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-block-geometry",
             "m1-lem-local-limit"
@@ -184,22 +160,22 @@
         },
         {
           "id": "m1-lem-exceptional-directions",
-          "role": "rare-matched-walks-and-continuation-records-2",
-          "label": "Let e:x y be an incidence of G and let j,j' S be states. If (x,j) and (y,j')…",
-          "fullLabel": "Let e:x y be an incidence of G and let j,j' S be states. If (x,j) and (y,j')…",
+          "role": "rare-matched-walks-and-continuation-records",
+          "label": "lemma m1-lem-exceptional-directions",
+          "fullLabel": "lemma m1-lem-exceptional-directions",
           "kind": "lemma",
           "source": "Rare matched walks and continuation records",
-          "detail": "Let e:x y be an incidence of G and let j,j' S be states. If (x,j) and (y,j') are compatible and d_p(j,j')2L , then j E_e or j' E_ e .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-edge-test",
           "role": "scalar-tests-and-incidence-averaging",
-          "label": "For every incidence e:x y of G , there is a 1 -Lipschitz function f_e:M_p such…",
-          "fullLabel": "For every incidence e:x y of G , there is a 1 -Lipschitz function f_e:M_p such…",
+          "label": "lemma m1-lem-edge-test",
+          "fullLabel": "lemma m1-lem-edge-test",
           "kind": "lemma",
           "source": "Scalar tests and incidence averaging",
-          "detail": "For every incidence e:x y of G , there is a 1 -Lipschitz function f_e:M_p such that \\[ f_e(j)=b_x(j)(j S E_e), f_e(j')=-b_y(j')(j' S E_ e ). \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-block-geometry",
             "m1-lem-finite-support"
@@ -208,14 +184,7 @@
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -223,7 +192,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

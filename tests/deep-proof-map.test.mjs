@@ -17,6 +17,21 @@ function clone(value) {
   return JSON.parse(JSON.stringify(value));
 }
 
+test("machine-extracted maps never infer that a paper node proves the family result", () => {
+  const machineMaps = [...deep.values()].filter((data) => data.machineDerived);
+  assert.ok(machineMaps.length > 0);
+  for (const data of machineMaps) {
+    assert.deepEqual(data.finalEdges, []);
+    for (const strategy of data.strategies) {
+      assert.ok(strategy.nodes.every((node) => node.role !== "result"));
+      assert.ok(strategy.nodes.every((node) => node.detail.includes("original statement")));
+    }
+  }
+  const forged = clone(deep.get("004"));
+  forged.finalEdges.push({ from: `${forged.strategies[0].id}:${forged.strategies[0].nodes[0].id}`, to: forged.result.id, type: "proves", label: "inferred" });
+  assert.throws(() => validateDeepProofMap(forged, collection, lean), /must not infer final edges/);
+});
+
 test("every deep map validates against the catalog and Lean coverage", () => {
   assert.equal(deep.size, 342);
   for (const [number, data] of deep) {

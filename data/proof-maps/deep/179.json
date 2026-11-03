@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "179",
   "title": "The circulant Hadamard and Barker-sequence conjectures",
   "result": {
@@ -14,11 +15,6 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
-    },
-    {
       "id": "introduction",
       "label": "Introduction",
       "description": "A section of the paper."
@@ -29,22 +25,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "the-order-restriction-2",
-      "label": "The order restriction",
-      "description": "A section of the paper."
-    },
-    {
       "id": "alternating-character-products",
-      "label": "Alternating character products",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "alternating-character-products-2",
-      "label": "Alternating character products",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "alternating-character-products-3",
       "label": "Alternating character products",
       "description": "A section of the paper."
     },
@@ -72,42 +53,42 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "For a positive integer \\(n\\), a real circulant Hadamard matrix of order \\(n\\)…",
-          "fullLabel": "For a positive integer \\(n\\), a real circulant Hadamard matrix of order \\(n\\)…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "For a positive integer \\(n\\), a real circulant Hadamard matrix of order \\(n\\) exists if and only if \\(n\\ 1,4\\ \\).",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-cor-barker",
           "role": "introduction",
-          "label": "Barker-sequence lengths",
-          "fullLabel": "Barker-sequence lengths",
+          "label": "corollary m1-cor-barker",
+          "fullLabel": "corollary m1-cor-barker",
           "kind": "corollary",
           "source": "Introduction",
-          "detail": "[Barker-sequence lengths] For an integer \\(n>1\\), a Barker sequence of length \\(n\\) exists if and only if \\[ n\\ 2,3,4,5,7,11,13\\ . \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-local-ring",
           "role": "the-order-restriction",
-          "label": "Let \\(p\\) be a prime, let \\(\\) be a primitive \\(L\\)-th root of unity with \\(p…",
-          "fullLabel": "Let \\(p\\) be a prime, let \\(\\) be a primitive \\(L\\)-th root of unity with \\(p…",
+          "label": "lemma m1-lem-local-ring",
+          "fullLabel": "lemma m1-lem-local-ring",
           "kind": "lemma",
           "source": "The order restriction",
-          "detail": "Let \\(p\\) be a prime, let \\(\\) be a primitive \\(L\\)-th root of unity with \\(p L\\), and let \\(A\\) be the localization of \\(A_0=\\) at a maximal ideal containing \\(p\\). The case \\(L=1\\) is allowed. Then…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-order",
-          "role": "the-order-restriction-2",
-          "label": "If a real circulant Hadamard matrix has order \\(n>1\\), then \\(n=4u^2\\) for an…",
-          "fullLabel": "If a real circulant Hadamard matrix has order \\(n>1\\), then \\(n=4u^2\\) for an…",
+          "role": "the-order-restriction",
+          "label": "proposition m1-prop-order",
+          "fullLabel": "proposition m1-prop-order",
           "kind": "proposition",
           "source": "The order restriction",
-          "detail": "If a real circulant Hadamard matrix has order \\(n>1\\), then \\(n=4u^2\\) for an odd positive integer \\(u\\).",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-local-ring"
           ]
@@ -115,31 +96,31 @@
         {
           "id": "m1-lem-comparison",
           "role": "alternating-character-products",
-          "label": "Character comparison",
-          "fullLabel": "Character comparison",
+          "label": "lemma m1-lem-comparison",
+          "fullLabel": "lemma m1-lem-comparison",
           "kind": "lemma",
           "source": "Alternating character products",
-          "detail": "[Character comparison] Let \\(A\\) be as in Lemma~ . Suppose that \\(e1\\) and \\[ F,K A[C_ p^e ], FK=p^e b, b A^. \\] For a primitive \\(p\\)-th root \\(\\), both ratios \\[ F( ) F(1) , K( ) K(1) \\] are units…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-torsion",
-          "role": "alternating-character-products-2",
-          "label": "[label=( *)] Let \\(B\\) be generated over \\(\\) by finitely many roots of unity.…",
-          "fullLabel": "[label=( *)] Let \\(B\\) be generated over \\(\\) by finitely many roots of unity.…",
+          "role": "alternating-character-products",
+          "label": "lemma m1-lem-torsion",
+          "fullLabel": "lemma m1-lem-torsion",
           "kind": "lemma",
           "source": "Alternating character products",
-          "detail": "[label=( *)] Let \\(B\\) be generated over \\(\\) by finitely many roots of unity. If \\(z B\\) satisfies \\(|(z)|=1\\) for every unital ring homomorphism \\(:B\\), then \\(z\\) is a root of unity. In a local…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-alternating",
-          "role": "alternating-character-products-3",
-          "label": "Suppose \\(x[P]\\) satisfies \\(xx^*=u^2\\). Then the alternating product \\((x)\\)…",
-          "fullLabel": "Suppose \\(x[P]\\) satisfies \\(xx^*=u^2\\). Then the alternating product \\((x)\\)…",
+          "role": "alternating-character-products",
+          "label": "proposition m1-prop-alternating",
+          "fullLabel": "proposition m1-prop-alternating",
           "kind": "proposition",
           "source": "Alternating character products",
-          "detail": "Suppose \\(x[P]\\) satisfies \\(xx^*=u^2\\). Then the alternating product \\((x)\\) defined in belongs to \\(B\\) and is a root of unity. For each \\(p I\\), its order is a power of \\(p\\). In particular, its…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-comparison",
             "m1-lem-torsion"
@@ -148,11 +129,11 @@
         {
           "id": "m1-lem-first-order",
           "role": "the-binary-coefficient-identity",
-          "label": "Let \\(O\\) be a local domain with maximal ideal \\(\\), let \\(k=O/\\), and let \\(0…",
-          "fullLabel": "Let \\(O\\) be a local domain with maximal ideal \\(\\), let \\(k=O/\\), and let \\(0…",
+          "label": "lemma m1-lem-first-order",
+          "fullLabel": "lemma m1-lem-first-order",
           "kind": "lemma",
           "source": "The binary coefficient identity",
-          "detail": "Let \\(O\\) be a local domain with maximal ideal \\(\\), let \\(k=O/\\), and let \\(0 t\\). Then \\(1+tO\\) is a subgroup of \\(O^\\), and \\[ _t:1+tO(k,+), _t(1+tL)=L \\] is a group homomorphism.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-prop-order",
             "m1-prop-alternating",
@@ -162,14 +143,7 @@
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -177,7 +151,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

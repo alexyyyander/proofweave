@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "279",
   "title": "Exact quantum factoring over a fixed finite gate set",
   "result": {
@@ -14,9 +15,9 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
     },
     {
       "id": "exact-circuits-and-classical-records",
@@ -24,27 +25,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "exact-circuits-and-classical-records-2",
-      "label": "Exact circuits and classical records",
-      "description": "A section of the paper."
-    },
-    {
       "id": "an-order-trial-with-prescribed-success-probability",
-      "label": "An order trial with prescribed success probability",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "an-order-trial-with-prescribed-success-probability-2",
-      "label": "An order trial with prescribed success probability",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "an-order-trial-with-prescribed-success-probability-3",
-      "label": "An order trial with prescribed success probability",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "an-order-trial-with-prescribed-success-probability-4",
       "label": "An order trial with prescribed success probability",
       "description": "A section of the paper."
     },
@@ -55,16 +36,6 @@
     },
     {
       "id": "from-verified-runs-to-certain-output",
-      "label": "From verified runs to certain output",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "from-verified-runs-to-certain-output-2",
-      "label": "From verified runs to certain output",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "from-verified-runs-to-certain-output-3",
       "label": "From verified runs to certain output",
       "description": "A section of the paper."
     },
@@ -92,72 +63,72 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "There is a polynomial-time uniform family of polynomial-size quantum circuits…",
-          "fullLabel": "There is a polynomial-time uniform family of polynomial-size quantum circuits…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "There is a polynomial-time uniform family of polynomial-size quantum circuits that outputs the complete prime factorization of every input integer N2 with probability one. The number of gates and…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-dyadic",
           "role": "exact-circuits-and-classical-records",
-          "label": "Exact dyadic sampling",
-          "fullLabel": "Exact dyadic sampling",
+          "label": "lemma m1-lem-dyadic",
+          "fullLabel": "lemma m1-lem-dyadic",
           "kind": "lemma",
           "source": "Exact circuits and classical records",
-          "detail": "[Exact dyadic sampling] Let a classical basis label specify a dyadic q by a polynomial-time computation with polynomially bounded bit lengths. A circuit over the stated gates can append a flag that…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-records",
-          "role": "exact-circuits-and-classical-records-2",
-          "label": "Retained classical records",
-          "fullLabel": "Retained classical records",
+          "role": "exact-circuits-and-classical-records",
+          "label": "lemma m1-lem-records",
+          "fullLabel": "lemma m1-lem-records",
           "kind": "lemma",
           "source": "Exact circuits and classical records",
-          "detail": "[Retained classical records] Consider a procedure with polynomially bounded time and workspace that uses the stated gates, computational-basis measurements, and polynomial-time classical control.…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-order-trial",
           "role": "an-order-trial-with-prescribed-success-probability",
-          "label": "Let 2 m<B and let a be a unit modulo m , of order r . There is a uniform…",
-          "fullLabel": "Let 2 m<B and let a be a unit modulo m , of order r . There is a uniform…",
+          "label": "proposition m1-prop-order-trial",
+          "fullLabel": "proposition m1-prop-order-trial",
           "kind": "proposition",
           "source": "An order trial with prescribed success probability",
-          "detail": "Let 2 m<B and let a be a unit modulo m , of order r . There is a uniform quantum trial of worst-case cost polynomial in n that returns either no candidate or an integer d satisfying 1 d<B and r d .…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-transform",
-          "role": "an-order-trial-with-prescribed-success-probability-2",
-          "label": "There is a circuit of size polynomial in b on a b -qubit data register and…",
-          "fullLabel": "There is a circuit of size polynomial in b on a b -qubit data register and…",
+          "role": "an-order-trial-with-prescribed-success-probability",
+          "label": "lemma m1-lem-transform",
+          "fullLabel": "lemma m1-lem-transform",
           "kind": "lemma",
           "source": "An order trial with prescribed success probability",
-          "detail": "There is a circuit of size polynomial in b on a b -qubit data register and ancillary registers initially in the all-zero state, with a designated ancillary success outcome, such that its unnormalized…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-bins",
-          "role": "an-order-trial-with-prescribed-success-probability-3",
-          "label": "Given 0 k<Q , one can determine in polynomial bit time whether k=k(d,j) for a…",
-          "fullLabel": "Given 0 k<Q , one can determine in polynomial bit time whether k=k(d,j) for a…",
+          "role": "an-order-trial-with-prescribed-success-probability",
+          "label": "lemma m1-lem-bins",
+          "fullLabel": "lemma m1-lem-bins",
           "kind": "lemma",
           "source": "An order trial with prescribed success probability",
-          "detail": "Given 0 k<Q , one can determine in polynomial bit time whether k=k(d,j) for a reduced fraction 0 j<d<B , and recover (d,j) when it exists. Such a label is unique.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-majorant",
-          "role": "an-order-trial-with-prescribed-success-probability-4",
-          "label": "For every \\(1 d<B\\) and \\(0 j<d\\) with \\((j,d)=1\\), there are nonnegative…",
-          "fullLabel": "For every \\(1 d<B\\) and \\(0 j<d\\) with \\((j,d)=1\\), there are nonnegative…",
+          "role": "an-order-trial-with-prescribed-success-probability",
+          "label": "lemma m1-lem-majorant",
+          "fullLabel": "lemma m1-lem-majorant",
           "kind": "lemma",
           "source": "An order trial with prescribed success probability",
-          "detail": "For every \\(1 d<B\\) and \\(0 j<d\\) with \\((j,d)=1\\), there are nonnegative dyadic numbers \\(U(d,j,u)\\), \\(0 u<d\\), such that 0& U(d,j,jt d)-P(d,j,t) 128 Q &&(0 t<d), \\\\ 1 128d & S(d,j):=12_ u=0 ^ d-1…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-bins"
           ],
@@ -168,11 +139,11 @@
         {
           "id": "m1-prop-process",
           "role": "factoring-with-verifiable-auxiliary-data",
-          "label": "A process with verifiable transition probabilities",
-          "fullLabel": "A process with verifiable transition probabilities",
+          "label": "proposition m1-prop-process",
+          "fullLabel": "proposition m1-prop-process",
           "kind": "proposition",
           "source": "Factoring with verifiable auxiliary data",
-          "detail": "[A process with verifiable transition probabilities] There is a uniformly polynomial-time process, using the order trial of Proposition~ , with the following properties. It either aborts or generates…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-primality",
             "m1-prop-order-trial"
@@ -181,21 +152,21 @@
         {
           "id": "m1-lem-completion",
           "role": "from-verified-runs-to-certain-output",
-          "label": "Dyadic completion",
-          "fullLabel": "Dyadic completion",
+          "label": "lemma m1-lem-completion",
+          "fullLabel": "lemma m1-lem-completion",
           "kind": "lemma",
           "source": "From verified runs to certain output",
-          "detail": "[Dyadic completion] Let W be a nonnegative integer. Consider an ordinary transition with output in \\ 0,1\\ ^W , a designated set of good outputs of dyadic probability 0<s1 , and a specified good…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-known-probability",
-          "role": "from-verified-runs-to-certain-output-2",
-          "label": "Known probability from deferred filters",
-          "fullLabel": "Known probability from deferred filters",
+          "role": "from-verified-runs-to-certain-output",
+          "label": "proposition m1-prop-known-probability",
+          "fullLabel": "proposition m1-prop-known-probability",
           "kind": "proposition",
           "source": "From verified runs to certain output",
-          "detail": "[Known probability from deferred filters] The implemented preparation just described has success probability exactly p_*=(1-2^ -n )^ n^ 10 . Every successful branch outputs the correct prime…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-prop-process",
             "m1-lem-records",
@@ -204,12 +175,12 @@
         },
         {
           "id": "m1-lem-quarter",
-          "role": "from-verified-runs-to-certain-output-3",
-          "label": "Quarter-success preparation",
-          "fullLabel": "Quarter-success preparation",
+          "role": "from-verified-runs-to-certain-output",
+          "label": "lemma m1-lem-quarter",
+          "fullLabel": "lemma m1-lem-quarter",
           "kind": "lemma",
           "source": "From verified runs to certain output",
-          "detail": "[Quarter-success preparation] There is a polynomial-size uniform unitary preparation V_N whose flag is 1 with probability exactly 1/4 and whose flagged output is always the fixed encoding of the…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-records"
           ]
@@ -217,24 +188,17 @@
         {
           "id": "m1-lem-primality",
           "role": "an-elementary-polynomial-time-primality-test",
-          "label": "There is a uniform deterministic algorithm which, given integers n128 and 2…",
-          "fullLabel": "There is a uniform deterministic algorithm which, given integers n128 and 2…",
+          "label": "lemma m1-lem-primality",
+          "fullLabel": "lemma m1-lem-primality",
           "kind": "lemma",
           "source": "An elementary polynomial-time primality test",
-          "detail": "There is a uniform deterministic algorithm which, given integers n128 and 2 m<2^n , decides whether m is prime using a number of bit operations polynomial in n .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         }
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -242,7 +206,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

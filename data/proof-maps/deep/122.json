@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "122",
   "title": "Quantitative trace-reconstruction bounds with a uniform decoder",
   "result": {
@@ -14,11 +15,6 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
-    },
-    {
       "id": "introduction",
       "label": "Introduction",
       "description": "A section of the paper."
@@ -29,22 +25,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "the-induction-and-global-scales-2",
-      "label": "The induction and global scales",
-      "description": "A section of the paper."
-    },
-    {
       "id": "common-mass-smoothing-and-score-moments",
-      "label": "Common mass, smoothing, and score moments",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "common-mass-smoothing-and-score-moments-2",
-      "label": "Common mass, smoothing, and score moments",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "common-mass-smoothing-and-score-moments-3",
       "label": "Common mass, smoothing, and score moments",
       "description": "A section of the paper."
     },
@@ -54,32 +35,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "an-initial-pair-at-the-working-deletion-rate-2",
-      "label": "An initial pair at the working deletion rate",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "an-initial-pair-at-the-working-deletion-rate-3",
-      "label": "An initial pair at the working deletion rate",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "an-initial-pair-at-the-working-deletion-rate-4",
-      "label": "An initial pair at the working deletion rate",
-      "description": "A section of the paper."
-    },
-    {
       "id": "one-amplification-block-words-and-overlap",
-      "label": "One amplification block: words and overlap",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "one-amplification-block-words-and-overlap-2",
-      "label": "One amplification block: words and overlap",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "one-amplification-block-words-and-overlap-3",
       "label": "One amplification block: words and overlap",
       "description": "A section of the paper."
     },
@@ -117,142 +73,142 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "Quantitative sample lower bound",
-          "fullLabel": "Quantitative sample lower bound",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "[Quantitative sample lower bound] Fix s(0,1] and 0<c<1/(42) . Along every sequence of instances (n,q) with n , q(0,1) , and q^3 n , T_ q,s (n) n^ c(q^3 n) eventually. All logarithms are natural. In…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-thm-tv",
           "role": "introduction",
-          "label": "Superpolynomial one-trace indistinguishability",
-          "fullLabel": "Superpolynomial one-trace indistinguishability",
+          "label": "theorem m1-thm-tv",
+          "fullLabel": "theorem m1-thm-tv",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "[Superpolynomial one-trace indistinguishability] For every fixed deletion probability q(0,1) , _ n n^A _ x,y\\ 0,1\\ ^n\\ y (_q(x),_q(y))=0 for every A>0. At this same channel T_ q,s (n)/n^A for every…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-scale-margins",
           "role": "the-induction-and-global-scales",
-          "label": "Uniform scale margins",
-          "fullLabel": "Uniform scale margins",
+          "label": "lemma m1-lem-scale-margins",
+          "fullLabel": "lemma m1-lem-scale-margins",
           "kind": "lemma",
           "source": "The induction and global scales",
-          "detail": "[Uniform scale margins] For the parameters above, N_0_B ( n)2^ -BD _B ( n)H_ del ^ -(1-) = H_ del ^ . Moreover, \\[ N_0_B ( n)^ 1+ n n+(d_D+B+1). \\] For every fixed nonnegative integer h , uniformly…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-construction",
-          "role": "the-induction-and-global-scales-2",
-          "label": "Construction at every scale",
-          "fullLabel": "Construction at every scale",
+          "role": "the-induction-and-global-scales",
+          "label": "proposition m1-prop-construction",
+          "fullLabel": "proposition m1-prop-construction",
           "kind": "proposition",
           "source": "The induction and global scales",
-          "detail": "[Construction at every scale] Fix B,,c_+ and the parameters of this section. Along every sequence with n and ^3 n , for all sufficiently large instances there exist level- i pairs satisfying…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-moment",
           "role": "common-mass-smoothing-and-score-moments",
-          "label": "Multilinear moment bound",
-          "fullLabel": "Multilinear moment bound",
+          "label": "lemma m1-lem-moment",
+          "fullLabel": "lemma m1-lem-moment",
           "kind": "lemma",
           "source": "Common mass, smoothing, and score moments",
-          "detail": "[Multilinear moment bound] Let t2 be an even integer, let h0 , and let (Z_j)_ j J be a finite family of independent centered real variables with \\|Z_j\\|_t h . For an integer r1 , the degree- r…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-lift",
-          "role": "common-mass-smoothing-and-score-moments-2",
-          "label": "Lifting adjacent-power overlap",
-          "fullLabel": "Lifting adjacent-power overlap",
+          "role": "common-mass-smoothing-and-score-moments",
+          "label": "lemma m1-lem-lift",
+          "fullLabel": "lemma m1-lem-lift",
           "kind": "lemma",
           "source": "Common mass, smoothing, and score moments",
-          "detail": "[Lifting adjacent-power overlap] Let w be a nonempty word, k a positive integer, and 0<<1/8 such that ((w^k),(w^ k+1 )) . There is an absolute constant C_ abs such that, whenever C C_ abs / , P is a…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-clipping",
-          "role": "common-mass-smoothing-and-score-moments-3",
-          "label": "Clipping with a common event",
-          "fullLabel": "Clipping with a common event",
+          "role": "common-mass-smoothing-and-score-moments",
+          "label": "lemma m1-lem-clipping",
+          "fullLabel": "lemma m1-lem-clipping",
           "kind": "lemma",
           "source": "Common mass, smoothing, and score moments",
-          "detail": "[Clipping with a common event] Fix a level 0 i D and its parameters from Section~ . Suppose preliminary oracle laws have common ``side'' metadata with law Q_ side , and conditional densities G_x,G_y…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-initial",
           "role": "an-initial-pair-at-the-working-deletion-rate",
-          "label": "Initial pair",
-          "fullLabel": "Initial pair",
+          "label": "proposition m1-prop-initial",
+          "fullLabel": "proposition m1-prop-initial",
           "kind": "proposition",
           "source": "An initial pair at the working deletion rate",
-          "detail": "[Initial pair] For the parameters of Section~ , there is a choice of the common constants in Definition~ with \\(M_B=1\\) for which a level-zero pair exists with simulation error \\(E_0\\). One may…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-base-kernel",
-          "role": "an-initial-pair-at-the-working-deletion-rate-2",
-          "label": "Rank-kernel square sum",
-          "fullLabel": "Rank-kernel square sum",
+          "role": "an-initial-pair-at-the-working-deletion-rate",
+          "label": "lemma m1-lem-base-kernel",
+          "fullLabel": "lemma m1-lem-base-kernel",
           "kind": "lemma",
           "source": "An initial pair at the working deletion rate",
-          "detail": "[Rank-kernel square sum] For the \\(u\\)-period construction and admissible count above, and every \\(1 r u\\), \\|A_ r, b \\|_ ^2 ^2 (C_3/)^r(u/m)^ r/2 r^ -r/2 , where \\(^2\\) uses counting measure on…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-base-differences",
-          "role": "an-initial-pair-at-the-working-deletion-rate-3",
-          "label": "Finite differences of a rank kernel",
-          "fullLabel": "Finite differences of a rank kernel",
+          "role": "an-initial-pair-at-the-working-deletion-rate",
+          "label": "lemma m1-lem-base-differences",
+          "fullLabel": "lemma m1-lem-base-differences",
           "kind": "lemma",
           "source": "An initial pair at the working deletion rate",
-          "detail": "[Finite differences of a rank kernel] Fix \\(1 r<R_0\\), an admissible central count, and a tagged tuple in \\(K\\) periods with coarse gaps \\(_i\\). For disjoint sets \\( D, V\\ 1,,r\\ \\), put \\(v'=| D|+2|…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-base-fixed-sums",
-          "role": "an-initial-pair-at-the-working-deletion-rate-4",
-          "label": "Gap sums at a fixed period",
-          "fullLabel": "Gap sums at a fixed period",
+          "role": "an-initial-pair-at-the-working-deletion-rate",
+          "label": "lemma m1-lem-base-fixed-sums",
+          "fullLabel": "lemma m1-lem-base-fixed-sums",
           "kind": "lemma",
           "source": "An initial pair at the working deletion rate",
-          "detail": "[Gap sums at a fixed period] For fixed \\(1 r<R_0\\), uniformly in \\(h\\) and \\(j\\), _ r,h (j) C_r(Km)^ -1/2 ^ r-1 , _ r,h ^ bd (j) C_ r,s_0 (Km)^ -1/2 m^ -1/2 ^ r-2 (r2).",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-block",
           "role": "one-amplification-block-words-and-overlap",
-          "label": "One amplification block",
-          "fullLabel": "One amplification block",
+          "label": "proposition m1-prop-block",
+          "fullLabel": "proposition m1-prop-block",
           "kind": "proposition",
           "source": "One amplification block: words and overlap",
-          "detail": "[One amplification block] For the parameters of Section~ , let 1 i D and suppose a level- (i-1) pair satisfies Definition~ with constants C,,M_B . Set \\[ C'=\\ C,C_ abs /\\ . \\] The input pair remains…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-binomial-smoothing",
-          "role": "one-amplification-block-words-and-overlap-2",
-          "label": "Signed binomial smoothing",
-          "fullLabel": "Signed binomial smoothing",
+          "role": "one-amplification-block-words-and-overlap",
+          "label": "lemma m1-lem-binomial-smoothing",
+          "fullLabel": "lemma m1-lem-binomial-smoothing",
           "kind": "lemma",
           "source": "One amplification block: words and overlap",
-          "detail": "[Signed binomial smoothing] Let be the Prouhet--Thue--Morse sequence of order s_* above. Suppose is an integer translation or reflection of a fair binomial probability mass function with g c_0^2m…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-nested-overlap",
-          "role": "one-amplification-block-words-and-overlap-3",
-          "label": "Overlap of the nested atoms",
-          "fullLabel": "Overlap of the nested atoms",
+          "role": "one-amplification-block-words-and-overlap",
+          "label": "lemma m1-lem-nested-overlap",
+          "fullLabel": "lemma m1-lem-nested-overlap",
           "kind": "lemma",
           "source": "One amplification block: words and overlap",
-          "detail": "[Overlap of the nested atoms] Under the input hypotheses of Proposition~ , the words and counts constructed above satisfy, for every 1 j b , \\[ (((U_j^+)^ h_j ),((U_j^+)^ h_j+1 )). \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-lift",
             "m1-lem-moment"
@@ -261,11 +217,11 @@
         {
           "id": "m1-lem-tree-simulation",
           "role": "an-observation-with-randomly-displaced-windows",
-          "label": "Simulation of a genuine trace",
-          "fullLabel": "Simulation of a genuine trace",
+          "label": "lemma m1-lem-tree-simulation",
+          "fullLabel": "lemma m1-lem-tree-simulation",
           "kind": "lemma",
           "source": "An observation with randomly displaced windows",
-          "detail": "[Simulation of a genuine trace] For the unconditioned surrogate laws and the common projection above, ( K_ tree _i,(U_b^+)) & o()+(_ j=1 ^bT_j)E_ i-1 ,\\\\ ( K_ tree _i,(U_b^-)) & o()+(_ j=1 ^bT_j)E_…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-scale-margins"
           ]
@@ -273,34 +229,27 @@
         {
           "id": "m1-lem-tree-score",
           "role": "likelihood-cancellation-and-the-forced-binary-subtree",
-          "label": "Conditional score gain",
-          "fullLabel": "Conditional score gain",
+          "label": "lemma m1-lem-tree-score",
+          "fullLabel": "lemma m1-lem-tree-score",
           "kind": "lemma",
           "source": "Likelihood cancellation and the forced binary subtree",
-          "detail": "[Conditional score gain] For every exact typical metadata value d , the densities in satisfy \\[ \\|G_+-G_-\\|_ L^ r_i (Q) ^2 N^ -d'-.01 . \\] The bound is uniform in d and the block level i .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-restoration",
           "role": "genuine-traces-exact-lengths-and-testing",
-          "label": "Restoration and padding",
-          "fullLabel": "Restoration and padding",
+          "label": "lemma m1-lem-restoration",
+          "fullLabel": "lemma m1-lem-restoration",
           "kind": "lemma",
           "source": "Genuine traces, exact lengths, and testing",
-          "detail": "[Restoration and padding] For the parameters in Section~ , there are distinct words x,y\\ 0,1\\ ^n such that, for every positive integer m , (_q(x)^ m ,_q(y)^ m ) m n^ -d_D +2mn(D+1). In particular,…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         }
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -308,7 +257,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

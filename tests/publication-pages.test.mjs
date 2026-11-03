@@ -114,14 +114,15 @@ test("the proof-map index, scaffold, deep maps, and API render with explicit sta
   assert.equal(promoted.status, 200);
   const promotedHtml = await promoted.text();
   assert.ok(promotedHtml.includes("Deep argument map"));
-  assert.ok(promotedHtml.includes("Theorem dependencies"));
+  assert.ok(promotedHtml.includes("Follow the paper&#x27;s statements and references."));
   assert.ok(promotedHtml.includes("Machine-promoted from the paper structure"));
 
   const leanDerived = await fetchPage("/proof-evolution/openai-math/024");
   assert.equal(leanDerived.status, 200);
   const leanDerivedHtml = await leanDerived.text();
   assert.ok(leanDerivedHtml.includes("Lean-derived structure"));
-  assert.ok(leanDerivedHtml.includes("What the pinned Lean closure records for this family."));
+  assert.ok(leanDerivedHtml.includes("Comparator metadata from the pinned source."));
+  assert.ok(leanDerivedHtml.includes("unverified metadata"));
   assert.ok(leanDerivedHtml.includes("Formal target"));
 
   const deep = await fetchPage("/proof-evolution/openai-math/032");

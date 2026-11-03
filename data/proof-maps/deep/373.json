@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "373",
   "title": "Nonattainment of the three-marginal Coulomb Monge problem",
   "result": {
@@ -14,9 +15,9 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
+      "id": "the-problem-and-the-result",
+      "label": "The problem and the result",
+      "description": "A section of the paper."
     },
     {
       "id": "an-obstruction-to-deterministic-selection",
@@ -34,17 +35,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "a-supporting-inequality-on-five-components-2",
-      "label": "A supporting inequality on five components",
-      "description": "A section of the paper."
-    },
-    {
       "id": "equality-of-the-two-infima",
-      "label": "Equality of the two infima",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "equality-of-the-two-infima-2",
       "label": "Equality of the two infima",
       "description": "A section of the paper."
     },
@@ -72,54 +63,54 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "There is a nonnegative density \\(\\) on \\(^3\\) such that \\[ _ ^3 (x) x=1,…",
-          "fullLabel": "There is a nonnegative density \\(\\) on \\(^3\\) such that \\[ _ ^3 (x) x=1,…",
+          "role": "the-problem-and-the-result",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "The problem and the result",
-          "detail": "There is a nonnegative density \\(\\) on \\(^3\\) such that \\[ _ ^3 (x) x=1, C_c^(^3), C_c^(^3), \\] with the following properties. For \\(= x\\), the value \\(()\\) is finite and is attained by a coupling in…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-splitting",
           "role": "an-obstruction-to-deterministic-selection",
-          "label": "Let \\(d2\\) be an integer, let \\(B^d\\) be open, let \\(\\) be a Borel probability…",
-          "fullLabel": "Let \\(d2\\) be an integer, let \\(B^d\\) be open, let \\(\\) be a Borel probability…",
+          "label": "lemma m1-lem-splitting",
+          "fullLabel": "lemma m1-lem-splitting",
           "kind": "lemma",
           "source": "An obstruction to deterministic selection",
-          "detail": "Let \\(d2\\) be an integer, let \\(B^d\\) be open, let \\(\\) be a Borel probability measure with \\((B)=1\\), and let \\(H_1,,H_4:B^d\\) be homeomorphisms onto open images. Suppose that \\(B,H_1(B),,H_4(B)\\)…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-local",
           "role": "two-local-coulomb-branches",
-          "label": "There are a number \\(K>0\\), open neighborhoods \\(P_0^k,P_k^+,P_k^-\\) of…",
-          "fullLabel": "There are a number \\(K>0\\), open neighborhoods \\(P_0^k,P_k^+,P_k^-\\) of…",
+          "label": "lemma m1-lem-local",
+          "fullLabel": "lemma m1-lem-local",
           "kind": "lemma",
           "source": "Two local Coulomb branches",
-          "detail": "There are a number \\(K>0\\), open neighborhoods \\(P_0^k,P_k^+,P_k^-\\) of \\(0,a_k,-a_k\\), respectively, and smooth maps \\(X_k,Z_k:P_k^+^3\\), for \\(k=1,2\\), with the following properties: Each of…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-certificate",
           "role": "a-supporting-inequality-on-five-components",
-          "label": "There are pairwise disjoint open balls \\(U_0,U_k^+,U_k^-\\) centered at…",
-          "fullLabel": "There are pairwise disjoint open balls \\(U_0,U_k^+,U_k^-\\) centered at…",
+          "label": "proposition m1-prop-certificate",
+          "fullLabel": "proposition m1-prop-certificate",
           "kind": "proposition",
           "source": "A supporting inequality on five components",
-          "detail": "There are pairwise disjoint open balls \\(U_0,U_k^+,U_k^-\\) centered at \\(0,a_k,-a_k\\), respectively, and a bounded continuous function \\(u:U\\), where \\[ U=U_0 U_1^+ U_1^- U_2^+ U_2^-, \\] such that…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-local"
           ]
         },
         {
           "id": "m1-lem-common-ball",
-          "role": "a-supporting-inequality-on-five-components-2",
-          "label": "There is an open ball \\(B\\) of positive radius centered at zero, contained in…",
-          "fullLabel": "There is an open ball \\(B\\) of positive radius centered at zero, contained in…",
+          "role": "a-supporting-inequality-on-five-components",
+          "label": "lemma m1-lem-common-ball",
+          "fullLabel": "lemma m1-lem-common-ball",
           "kind": "lemma",
           "source": "A supporting inequality on five components",
-          "detail": "There is an open ball \\(B\\) of positive radius centered at zero, contained in \\(U_0\\), on which the maps \\[ Y_k=(X_k|_ U_k^+ )^ -1 |_B, W_k=Z_k Y_k (k=1,2) \\] are well defined and are diffeomorphisms…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-prop-certificate"
           ]
@@ -127,21 +118,21 @@
         {
           "id": "m1-prop-equal-infima",
           "role": "equality-of-the-two-infima",
-          "label": "For the probability measure \\(\\) of Theorem~ , \\[ _ T_2,T_3:^3^3\\ Borel\\\\…",
-          "fullLabel": "For the probability measure \\(\\) of Theorem~ , \\[ _ T_2,T_3:^3^3\\ Borel\\\\…",
+          "label": "proposition m1-prop-equal-infima",
+          "fullLabel": "proposition m1-prop-equal-infima",
           "kind": "proposition",
           "source": "Equality of the two infima",
-          "detail": "For the probability measure \\(\\) of Theorem~ , \\[ _ T_2,T_3:^3^3\\ Borel\\\\ (T_2)_\\#=(T_3)_\\#= c(x,T_2(x),T_3(x))(x)=(). \\] Every pair in this infimum has cost strictly greater than the common infimum,…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-borel-transport",
-          "role": "equality-of-the-two-infima-2",
-          "label": "Let \\(d2\\) be an integer. If \\(\\) and \\(\\) are absolutely continuous Borel…",
-          "fullLabel": "Let \\(d2\\) be an integer. If \\(\\) and \\(\\) are absolutely continuous Borel…",
+          "role": "equality-of-the-two-infima",
+          "label": "lemma m1-lem-borel-transport",
+          "fullLabel": "lemma m1-lem-borel-transport",
           "kind": "lemma",
           "source": "Equality of the two infima",
-          "detail": "Let \\(d2\\) be an integer. If \\(\\) and \\(\\) are absolutely continuous Borel probability measures on \\(^d\\), there is a Borel map \\(Q:^d^d\\) such that \\(Q_\\#=\\).",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [],
           "mentions": [
             "m1-thm-main"
@@ -150,11 +141,11 @@
         {
           "id": "m1-thm-riesz",
           "role": "inverse-power-riesz-interactions",
-          "label": "For every integer \\(d2\\) and every real \\(s>0\\), there is a nonnegative density…",
-          "fullLabel": "For every integer \\(d2\\) and every real \\(s>0\\), there is a nonnegative density…",
+          "label": "theorem m1-thm-riesz",
+          "fullLabel": "theorem m1-thm-riesz",
           "kind": "theorem",
           "source": "Inverse-power Riesz interactions",
-          "detail": "For every integer \\(d2\\) and every real \\(s>0\\), there is a nonnegative density \\(\\) on \\(^d\\) such that \\[ _ ^d (x) x=1, C_c^(^d), C_c^(^d), \\] with the following properties. For \\(= x\\), the value…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-common-ball",
             "m1-prop-equal-infima",
@@ -168,14 +159,7 @@
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -183,7 +167,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

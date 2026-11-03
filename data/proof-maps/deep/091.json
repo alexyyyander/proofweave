@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "091",
   "title": "Logarithmic and <i>L</i><sub><i>p</i></sub> Brunn–Minkowski inequalities and the B-conjecture",
   "result": {
@@ -13,11 +14,6 @@
     "roleNote": "The family's stated result in the release."
   },
   "roles": [
-    {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
-    },
     {
       "id": "introduction",
       "label": "Introduction",
@@ -67,62 +63,62 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "Even logarithmic Brunn--Minkowski inequality",
-          "fullLabel": "Even logarithmic Brunn--Minkowski inequality",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "[Even logarithmic Brunn--Minkowski inequality] Let n1 and let K,L^n be convex bodies satisfying K=-K and L=-L . For every 01 , | W[h_K^ 1- h_L^]| |K|^ 1- |L|^.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-cor-lp",
           "role": "introduction",
-          "label": "Symmetric L_p Brunn--Minkowski inequality",
-          "fullLabel": "Symmetric L_p Brunn--Minkowski inequality",
+          "label": "corollary m1-cor-lp",
+          "fullLabel": "corollary m1-cor-lp",
           "kind": "corollary",
           "source": "Introduction",
-          "detail": "[Symmetric L_p Brunn--Minkowski inequality] Let n1 , let K,L^n be full-dimensional origin-symmetric convex bodies, and let 0<p<1 . For every 01 , | W\\!|^ p/n (1-)|K|^ p/n +|L|^ p/n .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-variance",
           "role": "from-a-variance-bound-to-volume",
-          "label": "Variance bound",
-          "fullLabel": "Variance bound",
+          "label": "proposition m1-prop-variance",
+          "fullLabel": "proposition m1-prop-variance",
           "kind": "proposition",
           "source": "From a variance bound to volume",
-          "detail": "[Variance bound] Let n2 , N1 , q2 be an even integer, and >0 . Let p_1,,p_N^n\\ 0\\ and h_1,,h_N>0 . Set _i(x)=( p_i,x h_i )^q, V(x)= 2 |x|^2+_ i=1 ^N_i(x), d=Z^ -1 e^ -V(x) \\,dx, where Z=_ ^n e^ -V(x)…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-moment",
           "role": "moment-coordinates-on-the-whole-space",
-          "label": "Moment coordinates",
-          "fullLabel": "Moment coordinates",
+          "label": "lemma m1-lem-moment",
+          "fullLabel": "lemma m1-lem-moment",
           "kind": "lemma",
           "source": "Moment coordinates on the whole space",
-          "detail": "[Moment coordinates] Let n2 , >0 , and let V C^(^n) be even with D^2V I . Set \\[ Z=_ ^n e^ -V(x) \\,dx, d(x)=Z^ -1 e^ -V(x) \\,dx. \\] There is an even C^(^n) such that d(z)=e^ -(z) \\,dz is a…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-density",
           "role": "density-of-the-even-tests",
-          "label": "Density of even tests",
-          "fullLabel": "Density of even tests",
+          "label": "lemma m1-lem-density",
+          "fullLabel": "lemma m1-lem-density",
           "kind": "lemma",
           "source": "Density of the even tests",
-          "detail": "[Density of even tests] Let d=(x)\\,dx be a probability measure on ^n with a smooth, strictly positive, even density. Let be a smooth even symmetric matrix field with 0<(x) I for some finite , and set…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-tensor",
           "role": "a-tensor-estimate-for-the-divergence-tests",
-          "label": "Moment-coordinate tensor estimate",
-          "fullLabel": "Moment-coordinate tensor estimate",
+          "label": "lemma m1-lem-tensor",
+          "fullLabel": "lemma m1-lem-tensor",
           "kind": "lemma",
           "source": "A tensor estimate for the divergence tests",
-          "detail": "[Moment-coordinate tensor estimate] Let d=Z^ -1 e^ -V dx and d=e^ - dz be smooth probability measures on ^n . Suppose D_z^2 is positive definite and x=(z) is a smooth diffeomorphism pushing to . For…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-moment",
             "m1-lem-density",
@@ -132,24 +128,17 @@
         {
           "id": "m1-cor-measure",
           "role": "volume-and-measure-consequences",
-          "label": "Measure inequality and scalar (B) -conjecture",
-          "fullLabel": "Measure inequality and scalar (B) -conjecture",
+          "label": "corollary m1-cor-measure",
+          "fullLabel": "corollary m1-cor-measure",
           "kind": "corollary",
           "source": "Volume and measure consequences",
-          "detail": "[Measure inequality and scalar (B) -conjecture] Let n1 , let be an even log-concave Radon measure on ^n , and let K,L^n be origin-symmetric convex bodies. Then, for every 01 , ( W[h_K^ 1- h_L^]) (K)^…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         }
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -157,7 +146,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

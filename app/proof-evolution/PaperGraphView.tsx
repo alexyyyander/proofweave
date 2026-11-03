@@ -57,9 +57,9 @@ export function PaperGraphView({ structure, claim }: { structure: PaperStructure
           pages: 0,
           proofSteps: nodes.map((node) => ({
             id: node.id,
-            label: node.label,
+            label: `${node.kind} ${node.id}`,
             kind: kindOf(node.kind),
-            detail: node.statement,
+            detail: t("proofMaps.paper.exactStatement"),
             source: node.section ?? manuscript.title,
             dependsOn: dependencies.get(node.id) ?? [],
           })),
@@ -70,11 +70,7 @@ export function PaperGraphView({ structure, claim }: { structure: PaperStructure
       };
     }).filter((entry) => entry.version.proofSteps.length > 0);
 
-    const finalEdges = strategies.flatMap((entry) => {
-      const nodes = entry.version.proofSteps;
-      const main = nodes.find((node) => node.kind === "theorem") ?? nodes[nodes.length - 1];
-      return main ? [{ from: `${entry.version.id}:${main.id}`, to: "paper-result", type: "proves" as const, label: t("proofMaps.paper.finalEdge") }] : [];
-    });
+    const finalEdges: ArgumentMapData["finalEdges"] = [];
 
     const data = { versions: strategies.map((entry) => entry.version) } as unknown as ProofEvolutionData;
     const argumentMap: ArgumentMapData = {

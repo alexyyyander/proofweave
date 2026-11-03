@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "370",
   "title": "The Lane–Emden and Hénon–Lane–Emden conjectures",
   "result": {
@@ -14,11 +15,6 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
-    },
-    {
       "id": "introduction",
       "label": "Introduction",
       "description": "A section of the paper."
@@ -29,27 +25,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "reductions-and-newton-potentials-2",
-      "label": "Reductions and Newton potentials",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "reductions-and-newton-potentials-3",
-      "label": "Reductions and Newton potentials",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "reductions-and-newton-potentials-4",
-      "label": "Reductions and Newton potentials",
-      "description": "A section of the paper."
-    },
-    {
       "id": "a-localized-virial-identity",
-      "label": "A localized virial identity",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "a-localized-virial-identity-2",
       "label": "A localized virial identity",
       "description": "A section of the paper."
     },
@@ -64,17 +40,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "pressure-from-weighted-source-layers-2",
-      "label": "Pressure from weighted source layers",
-      "description": "A section of the paper."
-    },
-    {
       "id": "the-energy-bound-and-the-scaling-contradiction",
-      "label": "The energy bound and the scaling contradiction",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-energy-bound-and-the-scaling-contradiction-2",
       "label": "The energy bound and the scaling contradiction",
       "description": "A section of the paper."
     }
@@ -97,82 +63,82 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "Let \\(n2\\) be an integer, let \\(p,q>0\\), and let \\(A,B\\). Suppose that n+A p+1…",
-          "fullLabel": "Let \\(n2\\) be an integer, let \\(p,q>0\\), and let \\(A,B\\). Suppose that n+A p+1…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "Let \\(n2\\) be an integer, let \\(p,q>0\\), and let \\(A,B\\). Suppose that n+A p+1 +n+B q+1 >n-2. There are no functions \\[ u,v C^2(^n\\ 0\\ ) C(^n), u(x)>0, v(x)>0(x^n), \\] satisfying Equation~ at every…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-cor-lane-emden",
           "role": "introduction",
-          "label": "Unweighted Lane--Emden conjecture",
-          "fullLabel": "Unweighted Lane--Emden conjecture",
+          "label": "corollary m1-cor-lane-emden",
+          "fullLabel": "corollary m1-cor-lane-emden",
           "kind": "corollary",
           "source": "Introduction",
-          "detail": "[Unweighted Lane--Emden conjecture] For every integer \\(n3\\) and \\(p,q>0\\) satisfying \\[ 1 p+1 +1 q+1 >n-2 n , \\] there is no strictly positive \\(C^2(^n)\\) solution of \\[ - u=v^p, - v=u^qin ^n. \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-reductions",
           "role": "reductions-and-newton-potentials",
-          "label": "Origin reductions",
-          "fullLabel": "Origin reductions",
+          "label": "lemma m1-lem-reductions",
+          "fullLabel": "lemma m1-lem-reductions",
           "kind": "lemma",
           "source": "Reductions and Newton potentials",
-          "detail": "[Origin reductions] The existence of a solution implies n3 and A,B>-2 .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-potential",
-          "role": "reductions-and-newton-potentials-2",
-          "label": "Distributional extension and potentials",
-          "fullLabel": "Distributional extension and potentials",
+          "role": "reductions-and-newton-potentials",
+          "label": "lemma m1-lem-potential",
+          "fullLabel": "lemma m1-lem-potential",
           "kind": "lemma",
           "source": "Reductions and Newton potentials",
-          "detail": "[Distributional extension and potentials] For every solution with n3 and A,B>-2 , the sources f,g belong to L^1_ loc (^n) and \\[ - u=g, - v=f in distributions on ^n. \\] The Newton potentials are…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-low-exponents",
-          "role": "reductions-and-newton-potentials-3",
-          "label": "Exclusion of small products",
-          "fullLabel": "Exclusion of small products",
+          "role": "reductions-and-newton-potentials",
+          "label": "lemma m1-lem-low-exponents",
+          "fullLabel": "lemma m1-lem-low-exponents",
           "kind": "lemma",
           "source": "Reductions and Newton potentials",
-          "detail": "[Exclusion of small products] A solution with n3 and A,B>-2 necessarily has pq>1 .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-uniform",
-          "role": "reductions-and-newton-potentials-4",
-          "label": "Universal centered estimates",
-          "fullLabel": "Universal centered estimates",
+          "role": "reductions-and-newton-potentials",
+          "label": "proposition m1-prop-uniform",
+          "fullLabel": "proposition m1-prop-uniform",
           "kind": "proposition",
           "source": "Reductions and Newton potentials",
-          "detail": "[Universal centered estimates] Fix n3 , p,q>0 , A,B>-2 , and pq>1 . There is a universal constant C such that every solution satisfies, for all R>0 , _ B_R f CR^ n-2- , _ B_R g CR^ n-2- . The…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-eq-virial",
           "role": "a-localized-virial-identity",
-          "label": "Localized virial identity",
-          "fullLabel": "Localized virial identity",
+          "label": "lemma m1-eq-virial",
+          "fullLabel": "lemma m1-eq-virial",
           "kind": "lemma",
           "source": "A localized virial identity",
-          "detail": "[Localized virial identity] The following identity holds, with an absolutely convergent integral: a(n+B)E_f+b(n+A)E_g-aW_f-bW_g &=(n-2)_ ^ 2n (x,y)(x,y),\\\\ (x,y)&= (X(x)-X(y)) (x-y) |x-y|^2 .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-localization",
-          "role": "a-localized-virial-identity-2",
-          "label": "Localization",
-          "fullLabel": "Localization",
+          "role": "a-localized-virial-identity",
+          "label": "lemma m1-lem-localization",
+          "fullLabel": "lemma m1-lem-localization",
           "kind": "lemma",
           "source": "A localized virial identity",
-          "detail": "[Localization] For every \\(>0\\), there is a constant \\(C_\\), independent of the solution, such that |E_f-E_g|+ _ ^ 2n |(x,y)-(x)+w(x)D(x,y)|(x,y) E+C_.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-prop-uniform"
           ]
@@ -180,41 +146,41 @@
         {
           "id": "m1-lem-interval-pair",
           "role": "an-interval-pair-inequality",
-          "label": "Weighted interval comparison",
-          "fullLabel": "Weighted interval comparison",
+          "label": "lemma m1-lem-interval-pair",
+          "fullLabel": "lemma m1-lem-interval-pair",
           "kind": "lemma",
           "source": "An interval-pair inequality",
-          "detail": "[Weighted interval comparison] Let n3 , >0 , and let I,J be nonempty open intervals, possibly unbounded. Let c_I,c_J0 , with I bounded whenever c_I>0 and J bounded whenever c_J>0 . Then _ I J…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-pressure",
           "role": "pressure-from-weighted-source-layers",
-          "label": "Localized pressure",
-          "fullLabel": "Localized pressure",
+          "label": "proposition m1-prop-pressure",
+          "fullLabel": "proposition m1-prop-pressure",
           "kind": "proposition",
           "source": "Pressure from weighted source layers",
-          "detail": "[Localized pressure] Let (u,v) be a positive solution pair as in Theorem~ , with n3 , A,B>-2 , and pq>1 . For every >0 there is a constant C_ , depending only on the equation parameters and , such…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-layer-loss",
-          "role": "pressure-from-weighted-source-layers-2",
-          "label": "Averaged layer loss",
-          "fullLabel": "Averaged layer loss",
+          "role": "pressure-from-weighted-source-layers",
+          "label": "lemma m1-lem-layer-loss",
+          "fullLabel": "lemma m1-lem-layer-loss",
           "kind": "lemma",
           "source": "Pressure from weighted source layers",
-          "detail": "[Averaged layer loss] For the cap weights and component weights , under the hypotheses of Proposition~ , every P1 satisfies E_e(L_f(e)+L_g(e)) (C_+C_ , P^ -1 )E+CP. The constants in the relative…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-energy",
           "role": "the-energy-bound-and-the-scaling-contradiction",
-          "label": "Uniform local energy bound",
-          "fullLabel": "Uniform local energy bound",
+          "label": "proposition m1-prop-energy",
+          "fullLabel": "proposition m1-prop-energy",
           "kind": "proposition",
           "source": "The energy bound and the scaling contradiction",
-          "detail": "[Uniform local energy bound] For the fixed equation parameters there is a constant \\(C\\), independent of the solution pair, such that _ B_1 (|x|^B u^ q+1 +|x|^A v^ p+1 ) x E C.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-localization",
             "m1-prop-pressure"
@@ -222,12 +188,12 @@
         },
         {
           "id": "m1-cor-phan-classification",
-          "role": "the-energy-bound-and-the-scaling-contradiction-2",
-          "label": "H\\'enon--Lane--Emden classification; Phan's Conjecture C",
-          "fullLabel": "H\\'enon--Lane--Emden classification; Phan's Conjecture C",
+          "role": "the-energy-bound-and-the-scaling-contradiction",
+          "label": "corollary m1-cor-phan-classification",
+          "fullLabel": "corollary m1-cor-phan-classification",
           "kind": "corollary",
           "source": "The energy bound and the scaling contradiction",
-          "detail": "[H\\'enon--Lane--Emden classification; Phan's Conjecture C] Let \\(n3\\) be an integer, let \\(p,q>0\\), and let \\(A,B>-2\\). There is no pair \\[ u,v C^2(^n\\ 0\\ ) C(^n), u(x)>0, v(x)>0(x^n), \\] satisfying…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-thm-main"
           ]
@@ -235,14 +201,7 @@
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -250,7 +209,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

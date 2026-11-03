@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "127",
   "title": "Average sensitivity of polynomial threshold functions",
   "result": {
@@ -14,9 +15,9 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
     },
     {
       "id": "a-one-sided-coupling-estimate",
@@ -30,11 +31,6 @@
     },
     {
       "id": "noise-sensitivity-and-agnostic-learning",
-      "label": "Noise sensitivity and agnostic learning",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "noise-sensitivity-and-agnostic-learning-2",
       "label": "Noise sensitivity and agnostic learning",
       "description": "A section of the paper."
     }
@@ -57,32 +53,32 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "Let n1 and 1 d n be integers. Let p be a real multilinear polynomial of degree…",
-          "fullLabel": "Let n1 and 1 d n be integers. Let p be a real multilinear polynomial of degree…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "Let n1 and 1 d n be integers. Let p be a real multilinear polynomial of degree at most d , and define f:\\ -1,1\\ ^n\\ -1,1\\ by f(x)=(p(x)) , with (0)=1 . Then, for average sensitivity under the uniform…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-coupling",
           "role": "a-one-sided-coupling-estimate",
-          "label": "Let U,V be real random variables with the same distribution, finite mean m ,…",
-          "fullLabel": "Let U,V be real random variables with the same distribution, finite mean m ,…",
+          "label": "lemma m1-lem-coupling",
+          "fullLabel": "lemma m1-lem-coupling",
           "kind": "lemma",
           "source": "A one-sided coupling estimate",
-          "detail": "Let U,V be real random variables with the same distribution, finite mean m , and finite variance ^2 . If V-U a almost surely, where a0 , then \\[ (U-V)^2 8a. \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-edges",
           "role": "recovering-edges-from-the-anticommutator",
-          "label": "Recovering edges from the grading",
-          "fullLabel": "Recovering edges from the grading",
+          "label": "lemma m1-lem-edges",
+          "fullLabel": "lemma m1-lem-edges",
           "kind": "lemma",
           "source": "Recovering edges from the anticommutator",
-          "detail": "[Recovering edges from the grading] Let n1 , =\\ -1,1\\ ^n , and w:(0,) . Let M be the centered grading operator constructed from w . For h:\\ -1,1\\ , let H be multiplication by h and set \\[ E_h=\\…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-coupling"
           ]
@@ -90,23 +86,23 @@
         {
           "id": "m1-cor-noise-sensitivity",
           "role": "noise-sensitivity-and-agnostic-learning",
-          "label": "Boolean noise sensitivity",
-          "fullLabel": "Boolean noise sensitivity",
+          "label": "corollary m1-cor-noise-sensitivity",
+          "fullLabel": "corollary m1-cor-noise-sensitivity",
           "kind": "corollary",
           "source": "Noise sensitivity and agnostic learning",
-          "detail": "[Boolean noise sensitivity] Let n1 and d0 be integers. If f=(p) on \\ -1,1\\ ^n for a real polynomial p of degree at most d , with (0)=1 , then \\[ NS_ (f) C d (0<1/2), \\] where C is an absolute…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-thm-main"
           ]
         },
         {
           "id": "m1-cor-agnostic-learning",
-          "role": "noise-sensitivity-and-agnostic-learning-2",
-          "label": "Uniform-marginal agnostic learning",
-          "fullLabel": "Uniform-marginal agnostic learning",
+          "role": "noise-sensitivity-and-agnostic-learning",
+          "label": "corollary m1-cor-agnostic-learning",
+          "fullLabel": "corollary m1-cor-agnostic-learning",
           "kind": "corollary",
           "source": "Noise sensitivity and agnostic learning",
-          "detail": "[Uniform-marginal agnostic learning] Let n,d1 be integers, and let C_ n,d be the class of functions (p) on \\ -1,1\\ ^n with p d . Let D be any distribution on \\ -1,1\\ ^n\\ -1,1\\ whose first marginal is…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-cor-noise-sensitivity"
           ]
@@ -114,14 +110,7 @@
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -129,7 +118,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

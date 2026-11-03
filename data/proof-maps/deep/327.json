@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "327",
   "title": "Markov type characterizes superreflexivity",
   "result": {
@@ -14,22 +15,12 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
     },
     {
       "id": "reduction-to-a-finite-walk",
-      "label": "Reduction to a finite walk",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "reduction-to-a-finite-walk-2",
-      "label": "Reduction to a finite walk",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "reduction-to-a-finite-walk-3",
       "label": "Reduction to a finite walk",
       "description": "A section of the paper."
     },
@@ -39,17 +30,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "finite-charts-for-ordered-motion-2",
-      "label": "Finite charts for ordered motion",
-      "description": "A section of the paper."
-    },
-    {
       "id": "two-levels-from-reduced-words",
-      "label": "Two levels from reduced words",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "two-levels-from-reduced-words-2",
       "label": "Two levels from reduced words",
       "description": "A section of the paper."
     }
@@ -72,42 +53,42 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "Every real Banach space with Markov type p for at least one p>1 is…",
-          "fullLabel": "Every real Banach space with Markov type p for at least one p>1 is…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "Every real Banach space with Markov type p for at least one p>1 is superreflexive.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-ordered-norm",
           "role": "reduction-to-a-finite-walk",
-          "label": "If a real Banach space X is not superreflexive, there is a norm N on c_ 00 such…",
-          "fullLabel": "If a real Banach space X is not superreflexive, there is a norm N on c_ 00 such…",
+          "label": "lemma m1-lem-ordered-norm",
+          "fullLabel": "lemma m1-lem-ordered-norm",
           "kind": "lemma",
           "source": "Reduction to a finite walk",
-          "detail": "If a real Banach space X is not superreflexive, there is a norm N on c_ 00 such that: [label=( *),leftmargin=*] N is spreading invariant; merging two adjacent entries is contractive: N(a_1,,a_ i-1…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-walks",
-          "role": "reduction-to-a-finite-walk-2",
-          "label": "A finite walk with linear displacement",
-          "fullLabel": "A finite walk with linear displacement",
+          "role": "reduction-to-a-finite-walk",
+          "label": "proposition m1-prop-walks",
+          "fullLabel": "proposition m1-prop-walks",
           "kind": "proposition",
           "source": "Reduction to a finite walk",
-          "detail": "[A finite walk with linear displacement] Let N be a spreading invariant norm on c_ 00 for which merging adjacent entries is contractive. For every integer n1 , there are a finite stationary…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-edge-labels",
-          "role": "reduction-to-a-finite-walk-3",
-          "label": "Odd edge labels",
-          "fullLabel": "Odd edge labels",
+          "role": "reduction-to-a-finite-walk",
+          "label": "lemma m1-lem-edge-labels",
+          "fullLabel": "lemma m1-lem-edge-labels",
           "kind": "lemma",
           "source": "Reduction to a finite walk",
-          "detail": "[Odd edge labels] Suppose V is a normed space of Markov type p with constant K . For a finite marked chain satisfying , let g: E V satisfy g(e^*)=-g(e) . If E_1,,E_n are its first n edges, with…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-ordered-norm",
             "m1-prop-walks"
@@ -116,21 +97,21 @@
         {
           "id": "m1-lem-order-averaging",
           "role": "finite-charts-for-ordered-motion",
-          "label": "Finite order averaging",
-          "fullLabel": "Finite order averaging",
+          "label": "lemma m1-lem-order-averaging",
+          "fullLabel": "lemma m1-lem-order-averaging",
           "kind": "lemma",
           "source": "Finite charts for ordered motion",
-          "detail": "[Finite order averaging] For every finite ordered set and every >0 , there are an integer B and a probability distribution on charts such that, whenever A,A' are increasing subtuples of of the same…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-chart-transport",
-          "role": "finite-charts-for-ordered-motion-2",
-          "label": "Reversible chart transport",
-          "fullLabel": "Reversible chart transport",
+          "role": "finite-charts-for-ordered-motion",
+          "label": "proposition m1-prop-chart-transport",
+          "fullLabel": "proposition m1-prop-chart-transport",
           "kind": "proposition",
           "source": "Finite charts for ordered motion",
-          "detail": "[Reversible chart transport] Let be a finite ordered set, and let T_s:D_s R_s be order-preserving bijections between its subsets, indexed by a nonempty finite set with a fixed-point-free involution s…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-order-averaging"
           ]
@@ -138,21 +119,21 @@
         {
           "id": "m1-lem-action",
           "role": "two-levels-from-reduced-words",
-          "label": "There are increasing homeomorphisms h_s: such that h_s(y+1)&=h_s(y)+1, & h_ s^…",
-          "fullLabel": "There are increasing homeomorphisms h_s: such that h_s(y+1)&=h_s(y)+1, & h_ s^…",
+          "label": "lemma m1-lem-action",
+          "fullLabel": "lemma m1-lem-action",
           "kind": "lemma",
           "source": "Two levels from reduced words",
-          "detail": "There are increasing homeomorphisms h_s: such that h_s(y+1)&=h_s(y)+1, & h_ s^ -1 &=h_s^ -1 , \\\\ h_s(_ s^ -1 )&=_s, & |h_s(y)-y|&<2. For a word w=s_1 s_k , write h_w=h_ s_1 h_ s_k , with h_ the…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-two-levels",
-          "role": "two-levels-from-reduced-words-2",
-          "label": "Two levels",
-          "fullLabel": "Two levels",
+          "role": "two-levels-from-reduced-words",
+          "label": "lemma m1-lem-two-levels",
+          "fullLabel": "lemma m1-lem-two-levels",
           "kind": "lemma",
           "source": "Two levels from reduced words",
-          "detail": "[Two levels] Let the reduced form of w have length >0 , with n_+ positive letters and n_- negative letters. For every j , c_w(j)=-n_-, c_w(h_w(0)+j)=n_+.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-action",
             "m1-prop-chart-transport"
@@ -161,14 +142,7 @@
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -176,7 +150,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

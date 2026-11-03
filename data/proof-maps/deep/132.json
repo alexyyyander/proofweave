@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "132",
   "title": "A superquadratic separation of sensitivity and block sensitivity",
   "result": {
@@ -14,22 +15,12 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
     },
     {
       "id": "the-labelled-tournament-and-nested-predicates",
-      "label": "The labelled tournament and nested predicates",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-labelled-tournament-and-nested-predicates-2",
-      "label": "The labelled tournament and nested predicates",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-labelled-tournament-and-nested-predicates-3",
       "label": "The labelled tournament and nested predicates",
       "description": "A section of the paper."
     },
@@ -40,16 +31,6 @@
     },
     {
       "id": "quantitative-bounds-and-separation",
-      "label": "Quantitative bounds and separation",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "quantitative-bounds-and-separation-2",
-      "label": "Quantitative bounds and separation",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "quantitative-bounds-and-separation-3",
       "label": "Quantitative bounds and separation",
       "description": "A section of the paper."
     }
@@ -72,62 +53,62 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "For every real \\(C>0\\), there are a positive integer \\(n\\) and a nonconstant…",
-          "fullLabel": "For every real \\(C>0\\), there are a positive integer \\(n\\) and a nonconstant…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "For every real \\(C>0\\), there are a positive integer \\(n\\) and a nonconstant total Boolean function \\(f:\\ 0,1\\ ^n\\ 0,1\\ \\) such that \\[ (f)>C\\,s(f)^2. \\] More precisely, for every integer \\(d1\\) the…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-labelling",
           "role": "the-labelled-tournament-and-nested-predicates",
-          "label": "The edges can be labelled by numbers \\(a(i,j)\\) so that there is no set \\(I\\)…",
-          "fullLabel": "The edges can be labelled by numbers \\(a(i,j)\\) so that there is no set \\(I\\)…",
+          "label": "lemma m1-lem-labelling",
+          "fullLabel": "lemma m1-lem-labelling",
           "kind": "lemma",
           "source": "The labelled tournament and nested predicates",
-          "detail": "The edges can be labelled by numbers \\(a(i,j)\\) so that there is no set \\(I\\) of size \\(t\\) admitting choices \\(m_j\\), \\(j I\\), with \\[ a(i,j)=m_j for every edge i j within I. \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-base",
-          "role": "the-labelled-tournament-and-nested-predicates-2",
-          "label": "The initial sensitivity profiles satisfy S_ 0,0 L, S_ 0,1 LM, J_ 0,0 =J_ 0,1 =0.",
-          "fullLabel": "The initial sensitivity profiles satisfy S_ 0,0 L, S_ 0,1 LM, J_ 0,0 =J_ 0,1 =0.",
+          "role": "the-labelled-tournament-and-nested-predicates",
+          "label": "lemma m1-lem-base",
+          "fullLabel": "lemma m1-lem-base",
           "kind": "lemma",
           "source": "The labelled tournament and nested predicates",
-          "detail": "The initial sensitivity profiles satisfy S_ 0,0 L, S_ 0,1 LM, J_ 0,0 =J_ 0,1 =0.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-blocks",
-          "role": "the-labelled-tournament-and-nested-predicates-3",
-          "label": "At every level \\(0 d\\), all predicates are zero at the all-zero input. There…",
-          "fullLabel": "At every level \\(0 d\\), all predicates are zero at the all-zero input. There…",
+          "role": "the-labelled-tournament-and-nested-predicates",
+          "label": "lemma m1-lem-blocks",
+          "fullLabel": "lemma m1-lem-blocks",
           "kind": "lemma",
           "source": "The labelled tournament and nested predicates",
-          "detail": "At every level \\(0 d\\), all predicates are zero at the all-zero input. There are \\(Mk^\\) pairwise disjoint nonempty blocks of coordinates, each of size \\(Lr^\\), such that flipping any one block at…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-recurrences",
           "role": "sensitivity-recurrences",
-          "label": "For 1 d , write S'_b=S_ -1,b and J'_b=J_ -1,b . Then S_ ,1 & M^2S'_0+rS'_1, &…",
-          "fullLabel": "For 1 d , write S'_b=S_ -1,b and J'_b=J_ -1,b . Then S_ ,1 & M^2S'_0+rS'_1, &…",
+          "label": "proposition m1-prop-recurrences",
+          "fullLabel": "proposition m1-prop-recurrences",
           "kind": "proposition",
           "source": "Sensitivity recurrences",
-          "detail": "For 1 d , write S'_b=S_ -1,b and J'_b=J_ -1,b . Then S_ ,1 & M^2S'_0+rS'_1, & J_ ,1 & M^2J'_0+rS'_1,\\\\ S_ ,0 & tS'_0+S'_1+3J'_1, & J_ ,0 & tS'_0+3J'_1.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-quantitative-profiles",
           "role": "quantitative-bounds-and-separation",
-          "label": "Suppose that d 1 and M 9^ d+1 . For every 0 d and b\\ 0,1\\ , the predicates of…",
-          "fullLabel": "Suppose that d 1 and M 9^ d+1 . For every 0 d and b\\ 0,1\\ , the predicates of…",
+          "label": "lemma m1-lem-quantitative-profiles",
+          "fullLabel": "lemma m1-lem-quantitative-profiles",
           "kind": "lemma",
           "source": "Quantitative bounds and separation",
-          "detail": "Suppose that d 1 and M 9^ d+1 . For every 0 d and b\\ 0,1\\ , the predicates of the construction satisfy \\[ S_ ,b 2L M^ +b . \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-prop-recurrences",
             "m1-lem-labelling",
@@ -136,22 +117,22 @@
         },
         {
           "id": "m1-lem-composition",
-          "role": "quantitative-bounds-and-separation-2",
-          "label": "Let f:\\ 0,1\\ ^a\\ 0,1\\ and g:\\ 0,1\\ ^b\\ 0,1\\ be total Boolean functions. Their…",
-          "fullLabel": "Let f:\\ 0,1\\ ^a\\ 0,1\\ and g:\\ 0,1\\ ^b\\ 0,1\\ be total Boolean functions. Their…",
+          "role": "quantitative-bounds-and-separation",
+          "label": "lemma m1-lem-composition",
+          "fullLabel": "lemma m1-lem-composition",
           "kind": "lemma",
           "source": "Quantitative bounds and separation",
-          "detail": "Let f:\\ 0,1\\ ^a\\ 0,1\\ and g:\\ 0,1\\ ^b\\ 0,1\\ be total Boolean functions. Their disjoint composition is the function on ab bits defined by \\[ (f g)(x_1,,x_a) =f(g(x_1),,g(x_a)), x_i\\ 0,1\\ ^b. \\] Then…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-cor-power-separation",
-          "role": "quantitative-bounds-and-separation-3",
-          "label": "There exist a real number >2 and nonconstant total Boolean functions F_m , for…",
-          "fullLabel": "There exist a real number >2 and nonconstant total Boolean functions F_m , for…",
+          "role": "quantitative-bounds-and-separation",
+          "label": "corollary m1-cor-power-separation",
+          "fullLabel": "corollary m1-cor-power-separation",
           "kind": "corollary",
           "source": "Quantitative bounds and separation",
-          "detail": "There exist a real number >2 and nonconstant total Boolean functions F_m , for integers m1 , such that \\[ (F_m,0) s(F_m)^ for every m, (F_m,0). \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-composition"
           ],
@@ -162,14 +143,7 @@
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -177,7 +151,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

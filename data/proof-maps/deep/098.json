@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "098",
   "title": "Compact counterexamples to bi-Lipschitz dimension reduction",
   "result": {
@@ -14,9 +15,9 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
     },
     {
       "id": "the-subset-and-its-doubling-bound",
@@ -62,42 +63,42 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "There is a fixed subset S of real _2 , equipped with its induced Hilbert…",
-          "fullLabel": "There is a fixed subset S of real _2 , equipped with its induced Hilbert…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "There is a fixed subset S of real _2 , equipped with its induced Hilbert distance, whose doubling constant is at most 76800 and which admits no bi-Lipschitz embedding into ^k for any positive integer…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-doubling",
           "role": "the-subset-and-its-doubling-bound",
-          "label": "The doubling constant of S is at most 30016^2=76800 .",
-          "fullLabel": "The doubling constant of S is at most 30016^2=76800 .",
+          "label": "proposition m1-prop-doubling",
+          "fullLabel": "proposition m1-prop-doubling",
           "kind": "proposition",
           "source": "The subset and its doubling bound",
-          "detail": "The doubling constant of S is at most 30016^2=76800 .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-compact",
           "role": "sheets-and-extremal-derivatives",
-          "label": "Near the lexicographic maximum",
-          "fullLabel": "Near the lexicographic maximum",
+          "label": "lemma m1-lem-compact",
+          "fullLabel": "lemma m1-lem-compact",
           "kind": "lemma",
           "source": "Sheets and extremal derivatives",
-          "detail": "[Near the lexicographic maximum] Let D>0 , let K^2 be nonempty and compact, and define A=\\ s:(s,t) K\\ and B=\\ t:(A,t) K\\ . For every >0 there is >0 such that \\[ (s,t) K, s>A- t B+. \\] Consequently,…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-energy",
           "role": "near-extremal-rectangles-and-two-energy-estimates",
-          "label": "Anisotropic energy estimates",
-          "fullLabel": "Anisotropic energy estimates",
+          "label": "proposition m1-prop-energy",
+          "fullLabel": "proposition m1-prop-energy",
           "kind": "proposition",
           "source": "Near-extremal rectangles and two energy estimates",
-          "detail": "[Anisotropic energy estimates] For each n , let F,F_i,Q,u,v,r and the selected derivative fields be chosen as above, satisfying -- . Then, as n , n^2G_H^x-F_x^2_Q&0, \\\\ G_V^y-F_y^2_Q&0.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-compact"
           ]
@@ -105,34 +106,27 @@
         {
           "id": "m1-cor-lp",
           "role": "crossings-force-a-packing-contradiction",
-          "label": "Finite- p function-space obstruction",
-          "fullLabel": "Finite- p function-space obstruction",
+          "label": "corollary m1-cor-lp",
+          "fullLabel": "corollary m1-cor-lp",
           "kind": "corollary",
           "source": "Crossings force a packing contradiction",
-          "detail": "[Finite- p function-space obstruction] For every real 1 p< , the fixed metric space S of Theorem~ is isometric to a subset S_p of L_p([0,1];) , where [0,1] carries Lebesgue measure. With its induced…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-cor-banach",
           "role": "compact-obstructions-in-infinite-dimensional-banach-spaces",
-          "label": "Compact Banach-space obstruction",
-          "fullLabel": "Compact Banach-space obstruction",
+          "label": "corollary m1-cor-banach",
+          "fullLabel": "corollary m1-cor-banach",
           "kind": "corollary",
           "source": "Compact obstructions in infinite-dimensional Banach spaces",
-          "detail": "[Compact Banach-space obstruction] There is a universal constant such that every infinite-dimensional real Banach space B contains a compact subset K_B whose doubling constant is at most and which…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         }
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -140,7 +134,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

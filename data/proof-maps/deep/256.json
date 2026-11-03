@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "256",
   "title": "Nonsingular systems of equations over arbitrary groups",
   "result": {
@@ -14,9 +15,9 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
     },
     {
       "id": "simultaneous-fixed-spaces",
@@ -29,18 +30,8 @@
       "description": "A section of the paper."
     },
     {
-      "id": "spectral-phase-2",
-      "label": "Spectral phase",
-      "description": "A section of the paper."
-    },
-    {
       "id": "the-planar-boundary-obstruction",
       "label": "The planar boundary obstruction",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "introduction",
-      "label": "Introduction",
       "description": "A section of the paper."
     },
     {
@@ -77,52 +68,52 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "Nonsingular systems",
-          "fullLabel": "Nonsingular systems",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "[Nonsingular systems] Let G be any group, let 1 m n be integers, and let w_1,,w_m G*F_n . If their exponent-sum matrix has row rank m over Q , then the canonical homomorphism \\[ G (G*F_n)/\\!…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-thm-fixed-space",
           "role": "simultaneous-fixed-spaces",
-          "label": "Simultaneous fixed spaces",
-          "fullLabel": "Simultaneous fixed spaces",
+          "label": "theorem m1-thm-fixed-space",
+          "fullLabel": "theorem m1-thm-fixed-space",
           "kind": "theorem",
           "source": "Simultaneous fixed spaces",
-          "detail": "[Simultaneous fixed spaces] Let r 0 and n 1 , and let k_1,,k_r be positive integers. For each j\\ 1,,n\\ , let B_j be a finite ordered list of pairs (i,s) with 1 i r and s\\ 1,-1\\ ; repetitions are…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-phase-subadditivity",
           "role": "spectral-phase",
-          "label": "Spectral-phase subadditivity",
-          "fullLabel": "Spectral-phase subadditivity",
+          "label": "lemma m1-lem-phase-subadditivity",
+          "fullLabel": "lemma m1-lem-phase-subadditivity",
           "kind": "lemma",
           "source": "Spectral phase",
-          "detail": "[Spectral-phase subadditivity] For every group G , every positive integer d , and all unitaries U,V M_d( M) , \\[ (UV)(U)+(V). \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-cycle-phase",
-          "role": "spectral-phase-2",
-          "label": "Weighted-cycle formula",
-          "fullLabel": "Weighted-cycle formula",
+          "role": "spectral-phase",
+          "label": "lemma m1-lem-cycle-phase",
+          "fullLabel": "lemma m1-lem-cycle-phase",
           "kind": "lemma",
           "source": "Spectral phase",
-          "detail": "[Weighted-cycle formula] Let a be a positive integer, let Q_1,,Q_a M be unitary, and define T M_a( M) by \\[ T(e_t v)=e_ t+1 Q_tv(1 t a), e_ a+1 =e_1. \\] If C=Q_aQ_ a-1 Q_1 is the product around the…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-planar",
           "role": "the-planar-boundary-obstruction",
-          "label": "Planar boundary obstruction",
-          "fullLabel": "Planar boundary obstruction",
+          "label": "proposition m1-prop-planar",
+          "fullLabel": "proposition m1-prop-planar",
           "kind": "proposition",
           "source": "The planar boundary obstruction",
-          "detail": "[Planar boundary obstruction] Let w_1,,w_m G*F_n have exponent-sum matrix of row rank m over Q . Let be a connected oriented surface of genus zero obtained from a nonempty finite collection of signed…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-thm-fixed-space",
             "m1-lem-phase-subadditivity",
@@ -148,22 +139,22 @@
       "nodes": [
         {
           "id": "m2-thm-main",
-          "role": "result",
-          "label": "For every group A and every unimodular word w A* t , the canonical homomorphism…",
-          "fullLabel": "For every group A and every unimodular word w A* t , the canonical homomorphism…",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "For every group A and every unimodular word w A* t , the canonical homomorphism \\[ A (A* t)/\\! w\\!_H \\] is injective.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-cor-kervaire",
           "role": "introduction",
-          "label": "The Kervaire conjecture",
-          "fullLabel": "The Kervaire conjecture",
+          "label": "corollary m2-cor-kervaire",
+          "fullLabel": "corollary m2-cor-kervaire",
           "kind": "corollary",
           "source": "Introduction",
-          "detail": "[The Kervaire conjecture] If A1 , then (A* t)/\\! w\\!_H1 for every w A* t .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m2-thm-main"
           ]
@@ -171,50 +162,37 @@
         {
           "id": "m2-lem-phase",
           "role": "spectral-phase-and-its-trace",
-          "label": "Subadditivity of spectral phase",
-          "fullLabel": "Subadditivity of spectral phase",
+          "label": "lemma m2-lem-phase",
+          "fullLabel": "lemma m2-lem-phase",
           "kind": "lemma",
           "source": "Spectral phase and its trace",
-          "detail": "[Subadditivity of spectral phase] For all unitaries U,V M_b( M) , \\[ (UV)(U)+(V). \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-lem-fixed",
           "role": "a-unitary-with-a-large-fixed-space",
-          "label": "Let s_1,,s_n\\ 1,-1\\ satisfy :=_i s_i\\ 1,-1\\ , let k1 be an integer, and put…",
-          "fullLabel": "Let s_1,,s_n\\ 1,-1\\ satisfy :=_i s_i\\ 1,-1\\ , let k1 be an integer, and put…",
+          "label": "lemma m2-lem-fixed",
+          "fullLabel": "lemma m2-lem-fixed",
           "kind": "lemma",
           "source": "A unitary with a large fixed space",
-          "detail": "Let s_1,,s_n\\ 1,-1\\ satisfy :=_i s_i\\ 1,-1\\ , let k1 be an integer, and put m=nk . For every P(m) there is an X(k) such that \\[ F(X)=diag(X^ s_1 ,,X^ s_n )P \\] fixes a complex subspace of dimension…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-thm-planar",
           "role": "a-planar-surface-cannot-have-one-nontrivial-boundary",
-          "label": "Planar boundary theorem",
-          "fullLabel": "Planar boundary theorem",
+          "label": "theorem m2-thm-planar",
+          "fullLabel": "theorem m2-thm-planar",
           "kind": "theorem",
           "source": "A planar surface cannot have one nontrivial boundary",
-          "detail": "[Planar boundary theorem] Let be a connected surface of genus zero constructed from a nonempty finite collection of word disks for and bands as above. If every boundary word except possibly one is…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         }
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    },
-    {
-      "from": "m2:m2-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -222,7 +200,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

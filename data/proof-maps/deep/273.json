@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "273",
   "title": "The entropy photon-number inequality",
   "result": {
@@ -14,11 +15,6 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
-    },
-    {
       "id": "introduction",
       "label": "Introduction",
       "description": "A section of the paper."
@@ -29,22 +25,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "bosonic-states-energy-and-entropy-2",
-      "label": "Bosonic states, energy, and entropy",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "bosonic-states-energy-and-entropy-3",
-      "label": "Bosonic states, energy, and entropy",
-      "description": "A section of the paper."
-    },
-    {
       "id": "interpolation-of-diagonal-form-comparisons",
-      "label": "Interpolation of diagonal form comparisons",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "interpolation-of-diagonal-form-comparisons-2",
       "label": "Interpolation of diagonal form comparisons",
       "description": "A section of the paper."
     },
@@ -54,42 +35,12 @@
       "description": "A section of the paper."
     },
     {
-      "id": "a-regularized-minimum-and-its-hessian-2",
-      "label": "A regularized minimum and its Hessian",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "a-regularized-minimum-and-its-hessian-3",
-      "label": "A regularized minimum and its Hessian",
-      "description": "A section of the paper."
-    },
-    {
       "id": "the-metric-adapted-to-thermal-relaxation",
       "label": "The metric adapted to thermal relaxation",
       "description": "A section of the paper."
     },
     {
-      "id": "the-metric-adapted-to-thermal-relaxation-2",
-      "label": "The metric adapted to thermal relaxation",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-metric-adapted-to-thermal-relaxation-3",
-      "label": "The metric adapted to thermal relaxation",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-metric-adapted-to-thermal-relaxation-4",
-      "label": "The metric adapted to thermal relaxation",
-      "description": "A section of the paper."
-    },
-    {
       "id": "stationarity-and-the-thermal-limit",
-      "label": "Stationarity and the thermal limit",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "stationarity-and-the-thermal-limit-2",
       "label": "Stationarity and the thermal limit",
       "description": "A section of the paper."
     },
@@ -117,22 +68,22 @@
       "nodes": [
         {
           "id": "m1-thm-epni",
-          "role": "result",
-          "label": "Entropy photon-number inequality",
-          "fullLabel": "Entropy photon-number inequality",
+          "role": "introduction",
+          "label": "theorem m1-thm-epni",
+          "fullLabel": "theorem m1-thm-epni",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "[Entropy photon-number inequality] Let \\(n1\\) be finite, and let \\(_A,_B\\) be states on \\(n\\) bosonic modes, with annihilation operators \\(a_1,,a_n\\) and \\(b_1,,b_n\\), respectively, satisfying \\[ _A_…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-cor-thermal-attenuator",
           "role": "introduction",
-          "label": "Constrained entropy minimum for identical thermal attenuators",
-          "fullLabel": "Constrained entropy minimum for identical thermal attenuators",
+          "label": "corollary m1-cor-thermal-attenuator",
+          "fullLabel": "corollary m1-cor-thermal-attenuator",
           "kind": "corollary",
           "source": "Introduction",
-          "detail": "[Constrained entropy minimum for identical thermal attenuators] Let \\(n1\\) be finite, let \\(s,N_B0\\) be finite, and let \\(01\\). Every state \\(\\) on \\(n\\) modes with \\(_ j=1 ^n a_j^ a_j<\\) satisfies…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-energy-compactness",
             "m1-thm-epni",
@@ -142,71 +93,71 @@
         {
           "id": "m1-lem-gibbs-variational",
           "role": "bosonic-states-energy-and-entropy",
-          "label": "Relative entropy and the Gibbs variational inequality",
-          "fullLabel": "Relative entropy and the Gibbs variational inequality",
+          "label": "lemma m1-lem-gibbs-variational",
+          "fullLabel": "lemma m1-lem-gibbs-variational",
           "kind": "lemma",
           "source": "Bosonic states, energy, and entropy",
-          "detail": "[Relative entropy and the Gibbs variational inequality] Let \\(\\) be a faithful state, and suppose both \\(S()\\) and \\((-)\\) are finite. Then \\[ D():=-S()+(-)0, \\] with equality if and only if \\(=\\).…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-energy-compactness",
-          "role": "bosonic-states-energy-and-entropy-2",
-          "label": "Energy bound and compactness",
-          "fullLabel": "Energy bound and compactness",
+          "role": "bosonic-states-energy-and-entropy",
+          "label": "lemma m1-lem-energy-compactness",
+          "fullLabel": "lemma m1-lem-energy-compactness",
           "kind": "lemma",
           "source": "Bosonic states, energy, and entropy",
-          "detail": "[Energy bound and compactness] For each finite \\(E0\\), the set of states with \\( N E\\) is compact in trace norm. On this set entropy is continuous and obeys 0 S() n g(E/n). Every finite-energy state…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-thermal-mixing",
-          "role": "bosonic-states-energy-and-entropy-3",
-          "label": "Thermal mixing",
-          "fullLabel": "Thermal mixing",
+          "role": "bosonic-states-energy-and-entropy",
+          "label": "proposition m1-prop-thermal-mixing",
+          "fullLabel": "proposition m1-prop-thermal-mixing",
           "kind": "proposition",
           "source": "Bosonic states, energy, and entropy",
-          "detail": "[Thermal mixing] Suppose independent ports carry the \\(n\\)-mode states \\(_ r_s \\), and the retained modes are \\(_s _s\\,d_ s,j \\), where \\(_s0\\) and \\(_s_s=1\\). Their joint retained state is \\[ _ _s_s…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-thm-interpolation",
           "role": "interpolation-of-diagonal-form-comparisons",
-          "label": "Four-weight interpolation",
-          "fullLabel": "Four-weight interpolation",
+          "label": "theorem m1-thm-interpolation",
+          "fullLabel": "theorem m1-thm-interpolation",
           "kind": "theorem",
           "source": "Interpolation of diagonal form comparisons",
-          "detail": "[Four-weight interpolation] At every coordinate of every space, let m>0 and x,y be given. Suppose each Z T is supported on finitely many values of the parameter tuple (m,x,y) , and T is invariant…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-int-stieltjes",
-          "role": "interpolation-of-diagonal-form-comparisons-2",
-          "label": "The function B extends holomorphically to the upper half-plane and across the…",
-          "fullLabel": "The function B extends holomorphically to the upper half-plane and across the…",
+          "role": "interpolation-of-diagonal-form-comparisons",
+          "label": "lemma m1-int-stieltjes",
+          "fullLabel": "lemma m1-int-stieltjes",
           "kind": "lemma",
           "source": "Interpolation of diagonal form comparisons",
-          "detail": "The function B extends holomorphically to the upper half-plane and across the positive real axis, is real and strictly decreasing there, and satisfies B(1)=1 , B'(1)=-1 . There are a constant c0 and…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-gibbs-regularity",
           "role": "a-regularized-minimum-and-its-hessian",
-          "label": "Let W=1+N on the n -mode Fock space. Suppose k>0 and B is a bounded positive…",
-          "fullLabel": "Let W=1+N on the n -mode Fock space. Suppose k>0 and B is a bounded positive…",
+          "label": "lemma m1-lem-gibbs-regularity",
+          "fullLabel": "lemma m1-lem-gibbs-regularity",
           "kind": "lemma",
           "source": "A regularized minimum and its Hessian",
-          "detail": "Let W=1+N on the n -mode Fock space. Suppose k>0 and B is a bounded positive operator. The positive form \\[ K=kW^4+W^ 1/2 BW^ 1/2 , D(K^ 1/2 )= D(W^2), \\] defines a positive self-adjoint operator…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-regularized-minimum",
-          "role": "a-regularized-minimum-and-its-hessian-2",
-          "label": "For every 0<_0 , the functional J_ attains a minimum of value at most -c . The…",
-          "fullLabel": "For every 0<_0 , the functional J_ attains a minimum of value at most -c . The…",
+          "role": "a-regularized-minimum-and-its-hessian",
+          "label": "proposition m1-prop-regularized-minimum",
+          "fullLabel": "proposition m1-prop-regularized-minimum",
           "kind": "proposition",
           "source": "A regularized minimum and its Hessian",
-          "detail": "For every 0<_0 , the functional J_ attains a minimum of value at most -c . The input energies at these minima are bounded uniformly in . At each minimum all four states _s , s=0,1,2,D , are faithful,…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-energy-compactness",
             "m1-lem-gibbs-regularity"
@@ -214,12 +165,12 @@
         },
         {
           "id": "m1-prop-hessian",
-          "role": "a-regularized-minimum-and-its-hessian-3",
-          "label": "For i=1,2 , the slice map on the centered output space satisfies \\|L_iZ\\|_i^2…",
-          "fullLabel": "For i=1,2 , the slice map on the centered output space satisfies \\|L_iZ\\|_i^2…",
+          "role": "a-regularized-minimum-and-its-hessian",
+          "label": "proposition m1-prop-hessian",
+          "fullLabel": "proposition m1-prop-hessian",
           "kind": "proposition",
           "source": "A regularized minimum and its Hessian",
-          "detail": "For i=1,2 , the slice map on the centered output space satisfies \\|L_iZ\\|_i^2 1+ 1- \\,\\|Z\\|_0^2. It consequently extends continuously to the completed centered spaces. For bounded observables this…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-gibbs-regularity",
             "m1-lem-gibbs-variational"
@@ -228,45 +179,45 @@
         {
           "id": "m1-prop-metric",
           "role": "the-metric-adapted-to-thermal-relaxation",
-          "label": "Interpolated comparison",
-          "fullLabel": "Interpolated comparison",
+          "label": "proposition m1-prop-metric",
+          "fullLabel": "proposition m1-prop-metric",
           "kind": "proposition",
           "source": "The metric adapted to thermal relaxation",
-          "detail": "[Interpolated comparison] The positive weights F_s(v)=1 h_s f(h_sv/2)f(-h_s/2) f(h_s(v-1)/2) =b_s(v)-(r_s+ 12)v 1-v satisfy . The quotient at v=1 is understood continuously. For each fixed r_s>0…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-thm-interpolation"
           ]
         },
         {
           "id": "m1-lem-dual-finiteness",
-          "role": "the-metric-adapted-to-thermal-relaxation-2",
-          "label": "Dual norm and logarithmic sums",
-          "fullLabel": "Dual norm and logarithmic sums",
+          "role": "the-metric-adapted-to-thermal-relaxation",
+          "label": "lemma m1-lem-dual-finiteness",
+          "fullLabel": "lemma m1-lem-dual-finiteness",
           "kind": "lemma",
           "source": "The metric adapted to thermal relaxation",
-          "detail": "[Dual norm and logarithmic sums] At each minimizing state, q_s has finite dual norm. Set \\[ K_ s,lr =(r_s+1)p_r-r_sp_l. \\] Then \\|q_s\\|_ F_s,* ^2 =_ j,l,r (1-v_s(l,r))K_ s,lr |(d'_ s,j )_ lr |^2. The…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-prop-regularized-minimum"
           ]
         },
         {
           "id": "m1-lem-weak-traces",
-          "role": "the-metric-adapted-to-thermal-relaxation-3",
-          "label": "Weak convolution identity",
-          "fullLabel": "Weak convolution identity",
+          "role": "the-metric-adapted-to-thermal-relaxation",
+          "label": "lemma m1-lem-weak-traces",
+          "fullLabel": "lemma m1-lem-weak-traces",
           "kind": "lemma",
           "source": "The metric adapted to thermal relaxation",
-          "detail": "[Weak convolution identity] Let _=_i _i_i be the raw output mean. For every bounded output observable Z , q_ 0,j (Z)=_i w_iq_ i,j (L_iZ) +(1-)( _ )_j .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-defect-estimate",
-          "role": "the-metric-adapted-to-thermal-relaxation-4",
-          "label": "Defect estimate",
-          "fullLabel": "Defect estimate",
+          "role": "the-metric-adapted-to-thermal-relaxation",
+          "label": "proposition m1-prop-defect-estimate",
+          "fullLabel": "proposition m1-prop-defect-estimate",
           "kind": "proposition",
           "source": "The metric adapted to thermal relaxation",
-          "detail": "[Defect estimate] Set \\[ A_*^2=_iw_i\\|q_i\\|_ F_i,* ^2, M_*^2=_iw_i|_i|^2, C_0=(h_0_ v F_0(v))^ -1/2 . \\] Then \\|q_0\\|_ F_0,* A_*+2 \\,C_0M_*. In particular, the previously reserved choice of may be…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-prop-metric"
           ],
@@ -277,21 +228,21 @@
         {
           "id": "m1-lem-generator-covariance",
           "role": "stationarity-and-the-thermal-limit",
-          "label": "Generator covariance and logarithmic pairings",
-          "fullLabel": "Generator covariance and logarithmic pairings",
+          "label": "lemma m1-lem-generator-covariance",
+          "fullLabel": "lemma m1-lem-generator-covariance",
           "kind": "lemma",
           "source": "Stationarity and the thermal limit",
-          "detail": "[Generator covariance and logarithmic pairings] At a minimizing pair, _s is traceless and W_s^2_sW_s^2 is trace class. If _i is the raw channel with the other two input states fixed, extended…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-entropy-production",
-          "role": "stationarity-and-the-thermal-limit-2",
-          "label": "Entropy production identity",
-          "fullLabel": "Entropy production identity",
+          "role": "stationarity-and-the-thermal-limit",
+          "label": "lemma m1-lem-entropy-production",
+          "fullLabel": "lemma m1-lem-entropy-production",
           "kind": "lemma",
           "source": "Stationarity and the thermal limit",
-          "detail": "[Entropy production identity] The quantities in satisfy _s=\\|q_s\\|_ F_s,* ^2-(e'_s-nr_s).",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-dual-finiteness"
           ],
@@ -302,11 +253,11 @@
         {
           "id": "m1-cor-broadcast-capacity",
           "role": "a-degraded-pure-loss-broadcast-capacity-region",
-          "label": "Degraded two-receiver pure-loss broadcast capacity",
-          "fullLabel": "Degraded two-receiver pure-loss broadcast capacity",
+          "label": "corollary m1-cor-broadcast-capacity",
+          "fullLabel": "corollary m1-cor-broadcast-capacity",
           "kind": "corollary",
           "source": "A degraded pure-loss broadcast capacity region",
-          "detail": "[Degraded two-receiver pure-loss broadcast capacity] Let \\(0 N<\\), \\(0_C<_B\\), and \\(_B+_C1\\). The classical capacity region for the channel and coding model above, with rates in nats per use, is the…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-thm-epni",
             "m1-cor-thermal-attenuator",
@@ -316,14 +267,7 @@
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-epni",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -331,7 +275,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

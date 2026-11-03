@@ -6,9 +6,8 @@ import { LeanGraphView } from "./LeanGraphView";
 
 /**
  * A machine-extracted structure for families without a curated proof spine.
- * Every node comes from the pinned comparator/solution files: the formal
- * target, the named proving theorems, and the permitted axioms. The component
- * deliberately does not draw lemma-level dependency edges it cannot source.
+ * Comparator identifiers, theorem names and permitted axioms are unverified
+ * metadata; no proof or dependency relationship is inferred from the names.
  */
 export function LeanDerivedMap({ family, entry, t, date }: {
   family: LeanCoverageFamily;
@@ -58,14 +57,12 @@ export function LeanDerivedMap({ family, entry, t, date }: {
             <code>{comparator.label}</code>
             <small>{t("proofMaps.derived.targetDetail")}</small>
           </div>
-          <i className="lean-derived-arrow" aria-hidden="true">→</i>
           <div className="lean-derived-node is-theorems">
             <span className="lean-derived-node-label">{t("proofMaps.derived.theorems")}</span>
             {comparator.theoremNames.length > 0
               ? <ul>{comparator.theoremNames.map((name) => <li key={name}><code>{name}</code></li>)}</ul>
               : <small>{t("proofMaps.derived.noTheorems")}</small>}
           </div>
-          <i className="lean-derived-arrow" aria-hidden="true">→</i>
           <div className="lean-derived-node is-axioms">
             <span className="lean-derived-node-label">{t("proofMaps.derived.axioms")}</span>
             {comparator.permittedAxioms.length > 0

@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "366",
   "title": "The planar Mumford–Shah regularity conjecture and local weak-<i>L</i><sup>4</sup> gradient bounds",
   "result": {
@@ -14,17 +15,12 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
-    },
-    {
-      "id": "reduction-to-rectifiable-minimizers",
-      "label": "Reduction to rectifiable minimizers",
+      "id": "introduction",
+      "label": "Introduction",
       "description": "A section of the paper."
     },
     {
-      "id": "reduction-to-rectifiable-minimizers-2",
+      "id": "reduction-to-rectifiable-minimizers",
       "label": "Reduction to rectifiable minimizers",
       "description": "A section of the paper."
     },
@@ -44,27 +40,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "excluding-an-isolated-compact-piece-2",
-      "label": "Excluding an isolated compact piece",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "excluding-an-isolated-compact-piece-3",
-      "label": "Excluding an isolated compact piece",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "excluding-an-isolated-compact-piece-4",
-      "label": "Excluding an isolated compact piece",
-      "description": "A section of the paper."
-    },
-    {
       "id": "classification-and-interior-regularity",
-      "label": "Classification and interior regularity",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "classification-and-interior-regularity-2",
       "label": "Classification and interior regularity",
       "description": "A section of the paper."
     }
@@ -87,94 +63,94 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "Let (u,K) be a reduced absolute minimizer of in a bounded Lipschitz domain R^2…",
-          "fullLabel": "Let (u,K) be a reduced absolute minimizer of in a bounded Lipschitz domain R^2…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "Let (u,K) be a reduced absolute minimizer of in a bounded Lipschitz domain R^2 , with g L^() . Every x K has an interior neighborhood in which K has one of the following forms, with C^ 1, arcs for…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-initial-reduction",
           "role": "reduction-to-rectifiable-minimizers",
-          "label": "Reduction to a rectifiable pair",
-          "fullLabel": "Reduction to a rectifiable pair",
+          "label": "proposition m1-prop-initial-reduction",
+          "fullLabel": "proposition m1-prop-initial-reduction",
           "kind": "proposition",
           "source": "Reduction to rectifiable minimizers",
-          "detail": "[Reduction to a rectifiable pair] Let R^2 be bounded and open, let g L^() , and let (u,K) be an admissible absolute minimizer for F_g as defined in Section~ . In particular, K is relatively closed,…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-dirichlet-input",
-          "role": "reduction-to-rectifiable-minimizers-2",
-          "label": "The smooth-data Dirichlet input",
-          "fullLabel": "The smooth-data Dirichlet input",
+          "role": "reduction-to-rectifiable-minimizers",
+          "label": "lemma m1-lem-dirichlet-input",
+          "fullLabel": "lemma m1-lem-dirichlet-input",
           "kind": "lemma",
           "source": "Reduction to rectifiable minimizers",
-          "detail": "[The smooth-data Dirichlet input] Let D R^2 be a disk, g L^(D) , and w C^1_c( R^2) . The problem has a bounded minimizer z , and H^1((J_z J_z) D)=0. In particular, C:=J_z D is compact and has finite…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-planar-facts",
           "role": "planar-compactness-and-regularity-facts",
-          "label": "The planar theory used here",
-          "fullLabel": "The planar theory used here",
+          "label": "proposition m1-prop-planar-facts",
+          "fullLabel": "proposition m1-prop-planar-facts",
           "kind": "proposition",
           "source": "Planar compactness and regularity facts",
-          "detail": "[The planar theory used here] The following facts hold. Let (u,K) be a reduced, rectifiable absolute minimizer of the fidelity functional in an open set R^2 , with bounded fidelity datum and locally…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-compact-isolation",
           "role": "isolating-a-compact-piece",
-          "label": "Isolating a compact piece",
-          "fullLabel": "Isolating a compact piece",
+          "label": "lemma m1-lem-compact-isolation",
+          "fullLabel": "lemma m1-lem-compact-isolation",
           "kind": "lemma",
           "source": "Isolating a compact piece",
-          "detail": "[Isolating a compact piece] Let H R^2 be closed, locally of finite length, and equal to the support of H^1\\! H . Every nonempty bounded connected component of H is contained in a nonempty compact…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-compact-piece",
           "role": "excluding-an-isolated-compact-piece",
-          "label": "Exclusion of a separated compact piece",
-          "fullLabel": "Exclusion of a separated compact piece",
+          "label": "proposition m1-prop-compact-piece",
+          "fullLabel": "proposition m1-prop-compact-piece",
           "kind": "proposition",
           "source": "Excluding an isolated compact piece",
-          "detail": "[Exclusion of a separated compact piece] Let H R^2 be closed, rectifiable, and locally of finite H^1 measure, and assume D= R^2 H is connected. Let (v,H) be an absolute minimizer of E_0 under…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-compact-projection",
-          "role": "excluding-an-isolated-compact-piece-2",
-          "label": "Projection of a compactly supported function",
-          "fullLabel": "Projection of a compactly supported function",
+          "role": "excluding-an-isolated-compact-piece",
+          "label": "lemma m1-lem-compact-projection",
+          "fullLabel": "lemma m1-lem-compact-projection",
           "kind": "lemma",
           "source": "Excluding an isolated compact piece",
-          "detail": "[Projection of a compactly supported function] Let A R^2 be compact and have zero area. Suppose h W^ 1,2 ( R^2 A) has compact support, and write e= h for its gradient density. Let \\[ Z= \\ : C_c^(…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-translated-comparison",
-          "role": "excluding-an-isolated-compact-piece-3",
-          "label": "Translated comparison",
-          "fullLabel": "Translated comparison",
+          "role": "excluding-an-isolated-compact-piece",
+          "label": "lemma m1-lem-translated-comparison",
+          "fullLabel": "lemma m1-lem-translated-comparison",
           "kind": "lemma",
           "source": "Excluding an isolated compact piece",
-          "detail": "[Translated comparison] Let H=A B R^2 be closed, rectifiable, and locally of finite H^1 measure, where A is compact, B is closed, and dist(A,B)>0 . Let (v,H) be an absolute minimizer of E_0 under…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-compact-projection"
           ]
         },
         {
           "id": "m1-lem-harmonic-interaction",
-          "role": "excluding-an-isolated-compact-piece-4",
-          "label": "Harmonicity and constancy of the interaction",
-          "fullLabel": "Harmonicity and constancy of the interaction",
+          "role": "excluding-an-isolated-compact-piece",
+          "label": "lemma m1-lem-harmonic-interaction",
+          "fullLabel": "lemma m1-lem-harmonic-interaction",
           "kind": "lemma",
           "source": "Excluding an isolated compact piece",
-          "detail": "[Harmonicity and constancy of the interaction] In the setting of Lemma~ , suppose in addition that f is harmonic on O= R^2 B . After decreasing if necessary, I_p is harmonic on B_(0) as a function of…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-compact-projection"
           ]
@@ -182,11 +158,11 @@
         {
           "id": "m1-cor-classification",
           "role": "classification-and-interior-regularity",
-          "label": "Classification of the generalized limits",
-          "fullLabel": "Classification of the generalized limits",
+          "label": "corollary m1-cor-classification",
+          "fullLabel": "corollary m1-cor-classification",
           "kind": "corollary",
           "source": "Classification and interior regularity",
-          "detail": "[Classification of the generalized limits] The closed set of every global generalized minimizer arising from absolute minimizers is empty, a line, a 120 -degree triod of half-lines, or a half-line.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-prop-planar-facts",
             "m1-thm-main",
@@ -195,12 +171,12 @@
         },
         {
           "id": "m1-cor-weak-l4",
-          "role": "classification-and-interior-regularity-2",
-          "label": "Local weak- L^4 gradient bound",
-          "fullLabel": "Local weak- L^4 gradient bound",
+          "role": "classification-and-interior-regularity",
+          "label": "corollary m1-cor-weak-l4",
+          "fullLabel": "corollary m1-cor-weak-l4",
           "kind": "corollary",
           "source": "Classification and interior regularity",
-          "detail": "[Local weak- L^4 gradient bound] Let (u,K) satisfy the hypotheses of Theorem~ . Let u denote the approximate gradient furnished by Proposition~ ; it agrees almost everywhere on K with the gradient in…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-prop-initial-reduction"
           ],
@@ -211,14 +187,7 @@
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -226,7 +195,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

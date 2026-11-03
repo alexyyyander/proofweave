@@ -8,9 +8,8 @@ import { useI18n } from "@/app/i18n/client";
 
 /**
  * The same matrix/network graph for Lean-derived families: lanes are the
- * pinned comparators, columns are the formal target, proving theorems, and
- * permitted axioms. Edges only follow the comparator config; they are not a
- * lemma-level dependency graph.
+ * pinned comparators and columns describe their metadata. The names and
+ * permitted axioms do not establish proof relationships, so no edges are drawn.
  */
 const strategyColors = ["#5c8fd6", "#8b75c9", "#c98b5c", "#5cc9a0", "#b07cc6", "#4fa3a3"];
 
@@ -42,15 +41,15 @@ export function LeanGraphView({ family, claim, date }: { family: LeanCoverageFam
           label: name,
           kind: "theorem" as ProofStepKind,
           detail: t("proofMaps.derived.theoremDetail"),
-          source: comparator.solutionModule ?? comparator.label,
-          dependsOn: theoremIndex === 0 ? axiomIds : [],
+          source: comparator.label,
+          dependsOn: [],
         })),
         ...comparator.permittedAxioms.map((axiom, axiomIndex) => ({
           id: axiomIds[axiomIndex],
           label: axiom,
           kind: "external" as ProofStepKind,
           detail: t("proofMaps.derived.axiomDetail"),
-          source: comparator.solutionModule ?? comparator.label,
+          source: comparator.label,
           dependsOn: [],
         })),
       ];
@@ -74,12 +73,7 @@ export function LeanGraphView({ family, claim, date }: { family: LeanCoverageFam
       };
     });
 
-    const finalEdges = strategies.flatMap((entry) => {
-      const theorem = entry.version.proofSteps.find((step) => step.kind === "theorem");
-      const target = entry.version.proofSteps.find((step) => !["theorem", "external"].includes(step.kind));
-      const from = theorem ?? target;
-      return from ? [{ from: `${entry.version.id}:${from.id}`, to: "lean-result", type: "proves" as const, label: t("proofMaps.derived.finalEdge") }] : [];
-    });
+    const finalEdges: ArgumentMapData["finalEdges"] = [];
 
     const data = { versions: strategies.map((entry) => entry.version) } as unknown as ProofEvolutionData;
     const argumentMap: ArgumentMapData = {

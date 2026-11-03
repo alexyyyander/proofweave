@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "017",
   "title": "The irrationality exponent of <i>π</i> is 2",
   "result": {
@@ -14,11 +15,6 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
-    },
-    {
       "id": "introduction",
       "label": "Introduction",
       "description": "A section of the paper."
@@ -29,47 +25,12 @@
       "description": "A section of the paper."
     },
     {
-      "id": "interpolation-with-separated-weights-2",
-      "label": "Interpolation with separated weights",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "interpolation-with-separated-weights-3",
-      "label": "Interpolation with separated weights",
-      "description": "A section of the paper."
-    },
-    {
       "id": "the-arithmetic-and-analytic-determinant-estimates",
       "label": "The arithmetic and analytic determinant estimates",
       "description": "A section of the paper."
     },
     {
-      "id": "the-arithmetic-and-analytic-determinant-estimates-2",
-      "label": "The arithmetic and analytic determinant estimates",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-arithmetic-and-analytic-determinant-estimates-3",
-      "label": "The arithmetic and analytic determinant estimates",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-arithmetic-and-analytic-determinant-estimates-4",
-      "label": "The arithmetic and analytic determinant estimates",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-arithmetic-and-analytic-determinant-estimates-5",
-      "label": "The arithmetic and analytic determinant estimates",
-      "description": "A section of the paper."
-    },
-    {
       "id": "flint-hills-series-and-its-generalization",
-      "label": "Flint--Hills series and its generalization",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "flint-hills-series-and-its-generalization-2",
       "label": "Flint--Hills series and its generalization",
       "description": "A section of the paper."
     }
@@ -92,52 +53,52 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "The irrationality exponent of \\(\\) is \\(2\\). More precisely, for every real…",
-          "fullLabel": "The irrationality exponent of \\(\\) is \\(2\\). More precisely, for every real…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "The irrationality exponent of \\(\\) is \\(2\\). More precisely, for every real \\(>2\\), there is an integer \\(Q()\\) such that \\[ |- pq| q^ - (p,\\ q,\\ q Q()). \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-thm-flinthills",
           "role": "introduction",
-          "label": "The classical Flint--Hills series converges.",
-          "fullLabel": "The classical Flint--Hills series converges.",
+          "label": "corollary m1-thm-flinthills",
+          "fullLabel": "corollary m1-thm-flinthills",
           "kind": "corollary",
           "source": "Introduction",
-          "detail": "The classical Flint--Hills series converges.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-geom-interpolation",
           "role": "interpolation-with-separated-weights",
-          "label": "Separated-weight interpolation",
-          "fullLabel": "Separated-weight interpolation",
+          "label": "theorem m1-geom-interpolation",
+          "fullLabel": "theorem m1-geom-interpolation",
           "kind": "theorem",
           "source": "Interpolation with separated weights",
-          "detail": "[Separated-weight interpolation] Fix integers m,K1 and positive rational numbers w_0,v_0, such that 0<<1 and K^m<1, Kw_0 v_0 ^m<1. There are successive lower thresholds for positive rational numbers…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-geom-multiplicity",
-          "role": "interpolation-with-separated-weights-2",
-          "label": "Weighted transverse multiplicity",
-          "fullLabel": "Weighted transverse multiplicity",
+          "role": "interpolation-with-separated-weights",
+          "label": "lemma m1-geom-multiplicity",
+          "fullLabel": "lemma m1-geom-multiplicity",
           "kind": "lemma",
           "source": "Interpolation with separated weights",
-          "detail": "[Weighted transverse multiplicity] Give the coordinates x_1,,x_d positive rational degree weights _1,,_d . On an open subset of ^d , let D_1,,D_d be commuting analytic vector fields forming a frame,…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-geom-curve-inequality",
-          "role": "interpolation-with-separated-weights-3",
-          "label": "Curve inequality",
-          "fullLabel": "Curve inequality",
+          "role": "interpolation-with-separated-weights",
+          "label": "proposition m1-geom-curve-inequality",
+          "fullLabel": "proposition m1-geom-curve-inequality",
           "kind": "proposition",
           "source": "Interpolation with separated weights",
-          "detail": "[Curve inequality] With the weights chosen above, every such curve satisfies _W C(1+)_ P a_j h_P, where the sum includes all branches through the prescribed points.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-geom-multiplicity"
           ]
@@ -145,41 +106,41 @@
         {
           "id": "m1-det-arithmetic",
           "role": "the-arithmetic-and-analytic-determinant-estimates",
-          "label": "Arithmetic lower bound",
-          "fullLabel": "Arithmetic lower bound",
+          "label": "lemma m1-det-arithmetic",
+          "fullLabel": "lemma m1-det-arithmetic",
           "kind": "lemma",
           "source": "The arithmetic and analytic determinant estimates",
-          "detail": "[Arithmetic lower bound] Let =42 , and define E_ ar = F_0m v_0 +_ i=1 ^m1 w_i + w_* . Then every minor just chosen satisfies | _H| MH -(1- b)-E_ ar .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-det-translation",
-          "role": "the-arithmetic-and-analytic-determinant-estimates-2",
-          "label": "Exact row translation",
-          "fullLabel": "Exact row translation",
+          "role": "the-arithmetic-and-analytic-determinant-estimates",
+          "label": "lemma m1-det-translation",
+          "fullLabel": "lemma m1-det-translation",
           "kind": "lemma",
           "source": "The arithmetic and analytic determinant estimates",
-          "detail": "[Exact row translation] Every row =(j,s,) of is a sum of at most Q_H=( H+1)^ 2m ( H/v_0+1) scalar multiples of row vectors of the form \\[ ([t^]f_ a,P (j+(1+t)))_P, a, wa H,0 s. \\] Each scalar…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-det-collision",
-          "role": "the-arithmetic-and-analytic-determinant-estimates-3",
-          "label": "Collision estimate",
-          "fullLabel": "Collision estimate",
+          "role": "the-arithmetic-and-analytic-determinant-estimates",
+          "label": "lemma m1-det-collision",
+          "fullLabel": "lemma m1-det-collision",
           "kind": "lemma",
           "source": "The arithmetic and analytic determinant estimates",
-          "detail": "[Collision estimate] Choose one translated test row from each row expansion in Lemma~ , and remove its scalar factor. Let T be the resulting square matrix, and let n_a be the number of its rows with…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-det-comparison",
-          "role": "the-arithmetic-and-analytic-determinant-estimates-4",
-          "label": "Determinant comparison",
-          "fullLabel": "Determinant comparison",
+          "role": "the-arithmetic-and-analytic-determinant-estimates",
+          "label": "proposition m1-det-comparison",
+          "fullLabel": "proposition m1-det-comparison",
           "kind": "proposition",
           "source": "The arithmetic and analytic determinant estimates",
-          "detail": "[Determinant comparison] Let 0<A<1 and 0<<1 , and define g=(A(1-)-)-(1-), L= ^2K ^m (m+1)v_0A^m . The approximations and the interpolation hypotheses cannot hold simultaneously if g>0, E_ ar +E_ an…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-det-translation",
             "m1-det-collision"
@@ -187,12 +148,12 @@
         },
         {
           "id": "m1-par-constants",
-          "role": "the-arithmetic-and-analytic-determinant-estimates-5",
-          "label": "For every real \\(>2\\), there are positive rational numbers \\(,A,B,C\\) such that…",
-          "fullLabel": "For every real \\(>2\\), there are positive rational numbers \\(,A,B,C\\) such that…",
+          "role": "the-arithmetic-and-analytic-determinant-estimates",
+          "label": "lemma m1-par-constants",
+          "fullLabel": "lemma m1-par-constants",
           "kind": "lemma",
           "source": "The arithmetic and analytic determinant estimates",
-          "detail": "For every real \\(>2\\), there are positive rational numbers \\(,A,B,C\\) such that 0<<A<B<1, (A-)>1-, C>1, B<1/C, B<C<1. One can then choose \\(0<<1\\) such that g:=(A(1-)-)-(1-)>0.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-det-comparison"
           ]
@@ -200,21 +161,21 @@
         {
           "id": "m1-series-dyadic",
           "role": "flint-hills-series-and-its-generalization",
-          "label": "Dyadic spacing estimate",
-          "fullLabel": "Dyadic spacing estimate",
+          "label": "lemma m1-series-dyadic",
+          "fullLabel": "lemma m1-series-dyadic",
           "kind": "lemma",
           "source": "Flint--Hills series and its generalization",
-          "detail": "[Dyadic spacing estimate] Let \\(>0\\) be irrational. Suppose that, for some \\(c>0\\) and \\(1<<5/2\\), \\[ \\|q\\| c q^ 1- (q,\\ q1). \\] Then \\[ _ q=1 ^ 1 q^3\\|q\\|^2 <. \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-series-generalized",
-          "role": "flint-hills-series-and-its-generalization-2",
-          "label": "Generalized Flint--Hills series",
-          "fullLabel": "Generalized Flint--Hills series",
+          "role": "flint-hills-series-and-its-generalization",
+          "label": "corollary m1-series-generalized",
+          "fullLabel": "corollary m1-series-generalized",
           "kind": "corollary",
           "source": "Flint--Hills series and its generalization",
-          "detail": "[Generalized Flint--Hills series] For fixed real numbers \\(a,b>0\\), the series \\[ _ n=1 ^ 1 n^a| n|^b \\] with angles in radians converges if and only if \\(a>\\ 1,b\\ \\).",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-thm-main"
           ]
@@ -222,14 +183,7 @@
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -237,7 +191,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

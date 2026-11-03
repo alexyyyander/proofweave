@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "186",
   "title": "Uniform influence and sharp thresholds for graph and hypergraph properties",
   "result": {
@@ -14,9 +15,9 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
     },
     {
       "id": "a-fourier-estimate-for-small-individual-influences",
@@ -29,18 +30,8 @@
       "description": "A section of the paper."
     },
     {
-      "id": "restriction-to-a-vertex-block-2",
-      "label": "Restriction to a vertex block",
-      "description": "A section of the paper."
-    },
-    {
       "id": "the-uniform-bound-and-its-threshold-consequence",
       "label": "The uniform bound and its threshold consequence",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "introduction",
-      "label": "Introduction",
       "description": "A section of the paper."
     },
     {
@@ -50,16 +41,6 @@
     },
     {
       "id": "restricting-to-the-edges-incident-with-a-vertex-block",
-      "label": "Restricting to the edges incident with a vertex block",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "restricting-to-the-edges-incident-with-a-vertex-block-2",
-      "label": "Restricting to the edges incident with a vertex block",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "restricting-to-the-edges-incident-with-a-vertex-block-3",
       "label": "Restricting to the edges incident with a vertex block",
       "description": "A section of the paper."
     }
@@ -82,54 +63,54 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "For every integer r3 there is a finite constant C_r such that, for every…",
-          "fullLabel": "For every integer r3 there is a finite constant C_r such that, for every…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "For every integer r3 there is a finite constant C_r such that, for every integer n r , every 0<p<1 , and every hypergraph property f:\\ 0,1\\ ^ E_ n,r \\ 0,1\\ , _p(f) C_r ( n)^ r/(r-1) I_p(f). No…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-low",
           "role": "a-fourier-estimate-for-small-individual-influences",
-          "label": "Low-degree mass",
-          "fullLabel": "Low-degree mass",
+          "label": "lemma m1-lem-low",
+          "fullLabel": "lemma m1-lem-low",
           "kind": "lemma",
           "source": "A Fourier estimate for small individual influences",
-          "detail": "[Low-degree mass] Let m2 be real and let h:\\ 0,1\\ ^J\\ 0,1\\ satisfy I_i(h) I(h)/m for every i J . With k= m/64 , one has _ 1 |S| k h(S)^2 m^ -1/4 I(h). The sum is empty when k<1 .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-block",
           "role": "restriction-to-a-vertex-block",
-          "label": "Averaged restriction estimate",
-          "fullLabel": "Averaged restriction estimate",
+          "label": "lemma m1-lem-block",
+          "fullLabel": "lemma m1-lem-block",
           "kind": "lemma",
           "source": "Restriction to a vertex block",
-          "detail": "[Averaged restriction estimate] Let r+1 m n be integers and set k= m/64 . For B chosen uniformly among the m -subsets of [n] , _ S E _B(1|S F_B| k) f(S)^2 m^ -1/4 rm n I_p(f).",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-low"
           ]
         },
         {
           "id": "m1-lem-capture",
-          "role": "restriction-to-a-vertex-block-2",
-          "label": "Capturing a support at one vertex",
-          "fullLabel": "Capturing a support at one vertex",
+          "role": "restriction-to-a-vertex-block",
+          "label": "lemma m1-lem-capture",
+          "fullLabel": "lemma m1-lem-capture",
           "kind": "lemma",
           "source": "Restriction to a vertex block",
-          "detail": "[Capturing a support at one vertex] Let n r3 and 1 m n be integers, let k>0 , and put \\[ = r r-1 , L=(k/r)^. \\] Suppose rLm-1 n-1 12. For a uniform m -subset B of [n] and every S E_ n,r with 1|S| L ,…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-cor-threshold",
           "role": "the-uniform-bound-and-its-threshold-consequence",
-          "label": "For a nontrivial increasing property of r -uniform hypergraphs on n r vertices,…",
-          "fullLabel": "For a nontrivial increasing property of r -uniform hypergraphs on n r vertices,…",
+          "label": "corollary m1-cor-threshold",
+          "fullLabel": "corollary m1-cor-threshold",
           "kind": "corollary",
           "source": "The uniform bound and its threshold consequence",
-          "detail": "For a nontrivial increasing property of r -uniform hypergraphs on n r vertices, where r3 , and every 0<<1/2 , \\[ p_ 1- -p_ 2C_r ( n)^ r/(r-1) 1- . \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-thm-main"
           ]
@@ -153,52 +134,52 @@
       "nodes": [
         {
           "id": "m2-thm-threshold",
-          "role": "result",
-          "label": "Friedgut--Kalai sharp-threshold conjecture",
-          "fullLabel": "Friedgut--Kalai sharp-threshold conjecture",
+          "role": "introduction",
+          "label": "theorem m2-thm-threshold",
+          "fullLabel": "theorem m2-thm-threshold",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "[Friedgut--Kalai sharp-threshold conjecture] For every integer n2 , every nontrivial increasing family P of graphs on n vertices invariant under all vertex permutations, and every 0<<1/2 , p_ 1- (…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-thm-variance",
           "role": "introduction",
-          "label": "Variance and influence",
-          "fullLabel": "Variance and influence",
+          "label": "theorem m2-thm-variance",
+          "fullLabel": "theorem m2-thm-variance",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "[Variance and influence] For every integer n2 , every Boolean function f on E_n invariant under vertex permutations, and every 0<p<1 , _p(f) 2^ 17 ( n)^2 I_p(f). No monotonicity assumption is needed.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-lem-low-degree",
           "role": "a-low-degree-estimate-on-biased-products",
-          "label": "Let m2 be real and let h:\\ 0,1\\ ^J\\ 0,1\\ satisfy I_i(h) I(h)/m for every i J .…",
-          "fullLabel": "Let m2 be real and let h:\\ 0,1\\ ^J\\ 0,1\\ satisfy I_i(h) I(h)/m for every i J .…",
+          "label": "lemma m2-lem-low-degree",
+          "fullLabel": "lemma m2-lem-low-degree",
           "kind": "lemma",
           "source": "A low-degree estimate on biased products",
-          "detail": "Let m2 be real and let h:\\ 0,1\\ ^J\\ 0,1\\ satisfy I_i(h) I(h)/m for every i J . If \\[ k= m 64 , \\] then _ 1 |S| k h(S)^2 m^ -1/4 I(h). Every degree cutoff is interpreted literally for integer degrees…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-lem-restriction",
           "role": "restricting-to-the-edges-incident-with-a-vertex-block",
-          "label": "Exact averaging over a restriction",
-          "fullLabel": "Exact averaging over a restriction",
+          "label": "lemma m2-lem-restriction",
+          "fullLabel": "lemma m2-lem-restriction",
           "kind": "lemma",
           "source": "Restricting to the edges incident with a vertex block",
-          "detail": "[Exact averaging over a restriction] Let F E_n , put H=E_n F , and, for y\\ 0,1\\ ^ H , let f_y(x)=f(x,y) for x\\ 0,1\\ ^ F . If y has the Bernoulli- p product law, then, for every real k>0 , _y_ A F\\\\1…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-prop-block",
-          "role": "restricting-to-the-edges-incident-with-a-vertex-block-2",
-          "label": "The block estimate",
-          "fullLabel": "The block estimate",
+          "role": "restricting-to-the-edges-incident-with-a-vertex-block",
+          "label": "proposition m2-prop-block",
+          "fullLabel": "proposition m2-prop-block",
           "kind": "proposition",
           "source": "Restricting to the edges incident with a vertex block",
-          "detail": "[The block estimate] Let 3 m n be an integer, let B be uniform among the m -element subsets of [n] , and set \\[ F_B=\\ e E_n:e B\\ , k= m 64 . \\] Then _ S E_n _B\\ 1 |S F_B| k\\ f(S)^2 2m n \\,m^ -1/4…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m2-lem-low-degree",
             "m2-lem-restriction"
@@ -206,31 +187,18 @@
         },
         {
           "id": "m2-lem-block-capture",
-          "role": "restricting-to-the-edges-incident-with-a-vertex-block-3",
-          "label": "Capturing low Fourier levels",
-          "fullLabel": "Capturing low Fourier levels",
+          "role": "restricting-to-the-edges-incident-with-a-vertex-block",
+          "label": "lemma m2-lem-block-capture",
+          "fullLabel": "lemma m2-lem-block-capture",
           "kind": "lemma",
           "source": "Restricting to the edges incident with a vertex block",
-          "detail": "[Capturing low Fourier levels] Suppose t= n16 , and put \\[ m= n, k= m 64 . \\] Then _ S E_n\\\\1 |S| k^2/2 f(S)^2 4m^ -1/4 I(f).",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         }
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    },
-    {
-      "from": "m2:m2-thm-threshold",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -238,7 +206,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

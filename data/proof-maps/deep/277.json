@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "277",
   "title": "Threshold repetition for entangled games",
   "result": {
@@ -14,22 +15,12 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
     },
     {
       "id": "from-conditioning-to-a-threshold-bound",
-      "label": "From conditioning to a threshold bound",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "from-conditioning-to-a-threshold-bound-2",
-      "label": "From conditioning to a threshold bound",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "from-conditioning-to-a-threshold-bound-3",
       "label": "From conditioning to a threshold bound",
       "description": "A section of the paper."
     },
@@ -39,27 +30,12 @@
       "description": "A section of the paper."
     },
     {
-      "id": "a-common-purification-of-effects-2",
-      "label": "A common purification of effects",
-      "description": "A section of the paper."
-    },
-    {
       "id": "conditioning-on-a-tested-set",
       "label": "Conditioning on a tested set",
       "description": "A section of the paper."
     },
     {
-      "id": "conditioning-on-a-tested-set-2",
-      "label": "Conditioning on a tested set",
-      "description": "A section of the paper."
-    },
-    {
       "id": "a-cubic-bound-for-a-fixed-question-distribution",
-      "label": "A cubic bound for a fixed question distribution",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "a-cubic-bound-for-a-fixed-question-distribution-2",
       "label": "A cubic bound for a fixed question distribution",
       "description": "A section of the paper."
     },
@@ -87,42 +63,42 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "Threshold parallel repetition",
-          "fullLabel": "Threshold parallel repetition",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "[Threshold parallel repetition] There is a universal constant _0>0 such that the following holds. Let G be any finite two-player one-round game with Boolean acceptance predicate and entangled value…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-tail-sampling",
           "role": "from-conditioning-to-a-threshold-bound",
-          "label": "Sampling the upper tail",
-          "fullLabel": "Sampling the upper tail",
+          "label": "lemma m1-lem-tail-sampling",
+          "fullLabel": "lemma m1-lem-tail-sampling",
           "kind": "lemma",
           "source": "From conditioning to a threshold bound",
-          "detail": "[Sampling the upper tail] Let I_1,,I_k be arbitrary jointly distributed \\ 0,1\\ -valued random variables. Suppose 0<q_0<q<1 , 0<<1 , and p_H=(W qk)>0 . Put \\[ = (4/( p_H)) (q/q_0) . \\] There is a set…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-conditioning-to-tail",
-          "role": "from-conditioning-to-a-threshold-bound-2",
-          "label": "Conditioning-to-threshold transfer",
-          "fullLabel": "Conditioning-to-threshold transfer",
+          "role": "from-conditioning-to-a-threshold-bound",
+          "label": "proposition m1-prop-conditioning-to-tail",
+          "fullLabel": "proposition m1-prop-conditioning-to-tail",
           "kind": "proposition",
           "source": "From conditioning to a threshold bound",
-          "detail": "[Conditioning-to-threshold transfer] Let G be a finite two-prover game with nonempty answer alphabets, d=| A|| B| , and v=^*(G)<1 . Fix 0<<1-v and 0<T/4 . Suppose the following holds for every k1 ,…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-song-conditioning",
-          "role": "from-conditioning-to-a-threshold-bound-3",
-          "label": "Song's conditioning estimate, [Definition~4.3 and Lemma~4.4",
-          "fullLabel": "Song's conditioning estimate, [Definition~4.3 and Lemma~4.4",
+          "role": "from-conditioning-to-a-threshold-bound",
+          "label": "proposition m1-prop-song-conditioning",
+          "fullLabel": "proposition m1-prop-song-conditioning",
           "kind": "proposition",
           "source": "From conditioning to a threshold bound",
-          "detail": "[Song's conditioning estimate, ] There is a universal constant B_41 with the following property. Let G be a finite two-player game with entangled value v<1 , and fix a finite-dimensional strategy for…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-prop-conditioning-to-tail"
           ]
@@ -130,61 +106,61 @@
         {
           "id": "m1-lem-resolvent",
           "role": "a-common-purification-of-effects",
-          "label": "Resolvent purification",
-          "fullLabel": "Resolvent purification",
+          "label": "lemma m1-lem-resolvent",
+          "fullLabel": "lemma m1-lem-resolvent",
           "kind": "lemma",
           "source": "A common purification of effects",
-          "detail": "[Resolvent purification] For every effect T on H , F_T^* F_T=T . If A_1,,A_N are effects, q_1,,q_N>0 sum to 1 , and B=_jq_jA_j , then _j q_j( F_ A_j - F_B)^* ( F_ A_j - F_B) _jq_j f(A_j)-f(B). For…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-measurement-transport",
-          "role": "a-common-purification-of-effects-2",
-          "label": "Transporting answer measurements",
-          "fullLabel": "Transporting answer measurements",
+          "role": "a-common-purification-of-effects",
+          "label": "lemma m1-lem-measurement-transport",
+          "fullLabel": "lemma m1-lem-measurement-transport",
           "kind": "lemma",
           "source": "A common purification of effects",
-          "detail": "[Transporting answer measurements] Let H, K be finite-dimensional complex Hilbert spaces, let T be an effect on H , and let F: H K satisfy F^*F=T . Suppose that A is a nonempty finite set and that…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-exposure",
           "role": "conditioning-on-a-tested-set",
-          "label": "Mixed exposure",
-          "fullLabel": "Mixed exposure",
+          "label": "lemma m1-lem-exposure",
+          "fullLabel": "lemma m1-lem-exposure",
           "kind": "lemma",
           "source": "Conditioning on a tested set",
-          "detail": "[Mixed exposure] For any finite-dimensional repeated-game strategy, proper tested set C with p=(E_C)>0 , and fixed ordering of the m=k-|C| untested coordinates, the preceding construction gives…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-question-drift",
-          "role": "conditioning-on-a-tested-set-2",
-          "label": "Question drift",
-          "fullLabel": "Question drift",
+          "role": "conditioning-on-a-tested-set",
+          "label": "lemma m1-lem-question-drift",
+          "fullLabel": "lemma m1-lem-question-drift",
           "kind": "lemma",
           "source": "Conditioning on a tested set",
-          "detail": "[Question drift] Under the preceding assumptions, put \\[ _i=\\|law(X_i,Y_i E_C)-\\|_1. \\] For a uniformly chosen untested coordinate, \\[ E_i_i 2 (1/p) m 2 . \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-root-conditioning",
           "role": "a-cubic-bound-for-a-fixed-question-distribution",
-          "label": "Conditioning through support components",
-          "fullLabel": "Conditioning through support components",
+          "label": "proposition m1-prop-root-conditioning",
+          "fullLabel": "proposition m1-prop-root-conditioning",
           "kind": "proposition",
           "source": "A cubic bound for a fixed question distribution",
-          "detail": "[Conditioning through support components] Let G be a finite two-prover game with question distribution and v=^*(G) . For any finite-dimensional strategy for k copies and C , suppose that \\[ E_C=\\…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-cor-support-threshold",
-          "role": "a-cubic-bound-for-a-fixed-question-distribution-2",
-          "label": "Let G be a finite two-player game with Boolean acceptance predicate, question…",
-          "fullLabel": "Let G be a finite two-player game with Boolean acceptance predicate, question…",
+          "role": "a-cubic-bound-for-a-fixed-question-distribution",
+          "label": "corollary m1-cor-support-threshold",
+          "fullLabel": "corollary m1-cor-support-threshold",
           "kind": "corollary",
           "source": "A cubic bound for a fixed question distribution",
-          "detail": "Let G be a finite two-player game with Boolean acceptance predicate, question distribution , and entangled value v<1 . Put d=| A|| B| , and define _ by . For every 0<<1-v , every k1 , and every…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-prop-root-conditioning",
             "m1-prop-conditioning-to-tail"
@@ -193,11 +169,11 @@
         {
           "id": "m1-cor-error-amplification",
           "role": "two-sided-error-amplification",
-          "label": "Two-sided error amplification",
-          "fullLabel": "Two-sided error amplification",
+          "label": "corollary m1-cor-error-amplification",
+          "fullLabel": "corollary m1-cor-error-amplification",
           "kind": "corollary",
           "source": "Two-sided error amplification",
-          "detail": "[Two-sided error amplification] Let G be a finite two-player one-round game in the model above, and fix 0 s<c1 . Put =c-s , t=(c+s)/2 , and d=| A|| B| . For an integer k1 , let H_k sample k…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-thm-main"
           ]
@@ -205,14 +181,7 @@
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -220,7 +189,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "209",
   "title": "Integral counterexamples to Gersten’s conjecture",
   "result": {
@@ -14,9 +15,9 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
     },
     {
       "id": "the-model-and-its-distinguished-divisor",
@@ -30,11 +31,6 @@
     },
     {
       "id": "the-field-comparison-and-norm-detector",
-      "label": "The field comparison and norm detector",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-field-comparison-and-norm-detector-2",
       "label": "The field comparison and norm detector",
       "description": "A section of the paper."
     },
@@ -62,52 +58,52 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "The ring A is a two-dimensional Noetherian regular local domain of mixed…",
-          "fullLabel": "The ring A is a two-dimensional Noetherian regular local domain of mixed…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "The ring A is a two-dimensional Noetherian regular local domain of mixed characteristic (0,5) , with m_A^2 . There is an integral class c K_3(A) such that \\[ c|_ A =0, c|_ A[1/] 50 in G_3(A[1/];/5).…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-model",
           "role": "the-model-and-its-distinguished-divisor",
-          "label": "The generic fiber C=_L is an integral projective curve. The ring A=_ ,m is a…",
-          "fullLabel": "The generic fiber C=_L is an integral projective curve. The ring A=_ ,m is a…",
+          "label": "lemma m1-lem-model",
+          "fullLabel": "lemma m1-lem-model",
           "kind": "lemma",
           "source": "The model and its distinguished divisor",
-          "detail": "The generic fiber C=_L is an integral projective curve. The ring A=_ ,m is a two-dimensional Noetherian regular local domain of mixed characteristic (0,5) with m_A^2 . For every closed point q C with…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-integral",
           "role": "lifting-on-the-divisor",
-          "label": "There exists b K_3(S) whose restriction to D , followed by coefficient…",
-          "fullLabel": "There exists b K_3(S) whose restriction to D , followed by coefficient…",
+          "label": "proposition m1-prop-integral",
+          "fullLabel": "proposition m1-prop-integral",
           "kind": "proposition",
           "source": "Lifting on the divisor",
-          "detail": "There exists b K_3(S) whose restriction to D , followed by coefficient reduction, is a_D . If j: S A and c=j_*b G_3(A)=K_3(A) , then c|_ A =0 . Moreover, for T= A[1/] and i: D T , \\[ c|_T5=i_*a_Din…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-field",
           "role": "the-field-comparison-and-norm-detector",
-          "label": "Multiplicative field comparison",
-          "fullLabel": "Multiplicative field comparison",
+          "label": "lemma m1-lem-field",
+          "fullLabel": "lemma m1-lem-field",
           "kind": "lemma",
           "source": "The field comparison and norm detector",
-          "detail": "[Multiplicative field comparison] For L=_5() and the fixed above, every finite extension E/L has an isomorphism _E:E^/E^ 5 _3(E;/5), u E^ 5 _E. The degree-three motivic edge identifies the target…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-norm-detector",
-          "role": "the-field-comparison-and-norm-detector-2",
-          "label": "Norm detector",
-          "fullLabel": "Norm detector",
+          "role": "the-field-comparison-and-norm-detector",
+          "label": "lemma m1-lem-norm-detector",
+          "fullLabel": "lemma m1-lem-norm-detector",
           "kind": "lemma",
           "source": "The field comparison and norm detector",
-          "detail": "[Norm detector] For every finite extension E/L and every u E^ , _ E/L _E(u)=_L(N_ E/L u). Consequently \\[ _L=(v_L5)_L^ -1 : K_3(L;/5)/5 \\] satisfies \\[ _L(_ E/L (a))=0 for every a K_3(E;/5) if 5. \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-field"
           ]
@@ -115,11 +111,11 @@
         {
           "id": "m1-lem-opens",
           "role": "detection-on-the-projective-curve",
-          "label": "Let =R m , where R=V[x,y]/(F) and m=(,x,y) . For h put \\[ U_h= R[1/,1/h] C. \\]…",
-          "fullLabel": "Let =R m , where R=V[x,y]/(F) and m=(,x,y) . For h put \\[ U_h= R[1/,1/h] C. \\]…",
+          "label": "lemma m1-lem-opens",
+          "fullLabel": "lemma m1-lem-opens",
           "kind": "lemma",
           "source": "Detection on the projective curve",
-          "detail": "Let =R m , where R=V[x,y]/(F) and m=(,x,y) . For h put \\[ U_h= R[1/,1/h] C. \\] Then the refinement maps U_ hk U_h are affine and flat, and T=_ h U_h, _ h G_3(U_h;/5) \\ \\ G_3(T;/5). Every U_h contains…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-model",
             "m1-lem-field",
@@ -132,14 +128,7 @@
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -147,7 +136,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

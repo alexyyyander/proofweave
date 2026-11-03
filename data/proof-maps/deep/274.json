@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "274",
   "title": "Parity is not in QAC<sup>0</sup>",
   "result": {
@@ -14,9 +15,9 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
     },
     {
       "id": "product-projections-and-localization",
@@ -34,16 +35,6 @@
       "description": "A section of the paper."
     },
     {
-      "id": "depth-reduction-for-small-support-projections-2",
-      "label": "Depth reduction for small-support projections",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "depth-reduction-for-small-support-projections-3",
-      "label": "Depth reduction for small-support projections",
-      "description": "A section of the paper."
-    },
-    {
       "id": "the-finite-scale-induction",
       "label": "The finite scale induction",
       "description": "A section of the paper."
@@ -54,37 +45,12 @@
       "description": "A section of the paper."
     },
     {
-      "id": "consequences-of-localization-and-parity-2",
-      "label": "Consequences of localization and parity",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "consequences-of-localization-and-parity-3",
-      "label": "Consequences of localization and parity",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "consequences-of-localization-and-parity-4",
-      "label": "Consequences of localization and parity",
-      "description": "A section of the paper."
-    },
-    {
       "id": "product-tests-and-regular-trajectories",
       "label": "Product tests and regular trajectories",
       "description": "A section of the paper."
     },
     {
-      "id": "product-tests-and-regular-trajectories-2",
-      "label": "Product tests and regular trajectories",
-      "description": "A section of the paper."
-    },
-    {
       "id": "two-polynomial-filters",
-      "label": "Two polynomial filters",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "two-polynomial-filters-2",
       "label": "Two polynomial filters",
       "description": "A section of the paper."
     },
@@ -99,32 +65,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "transporting-excitation-tails-2",
-      "label": "Transporting excitation tails",
-      "description": "A section of the paper."
-    },
-    {
       "id": "projection-insertion-and-pruning",
-      "label": "Projection insertion and pruning",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "projection-insertion-and-pruning-2",
-      "label": "Projection insertion and pruning",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "projection-insertion-and-pruning-3",
-      "label": "Projection insertion and pruning",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "projection-insertion-and-pruning-4",
-      "label": "Projection insertion and pruning",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "projection-insertion-and-pruning-5",
       "label": "Projection insertion and pruning",
       "description": "A section of the paper."
     }
@@ -147,62 +88,62 @@
       "nodes": [
         {
           "id": "m1-thm-parity",
-          "role": "result",
-          "label": "Parity lower bound",
-          "fullLabel": "Parity lower bound",
+          "role": "introduction",
+          "label": "theorem m1-thm-parity",
+          "fullLabel": "theorem m1-thm-parity",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "[Parity lower bound] Fix a nonnegative integer \\(d\\), a real number \\(c1\\), and \\(0<1/2\\). For all sufficiently large \\(n\\), no circuit of depth at most \\(d\\) on \\(n\\) input qubits and at most…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-thm-localization",
           "role": "product-projections-and-localization",
-          "label": "Localization of conjugated product projections",
-          "fullLabel": "Localization of conjugated product projections",
+          "label": "theorem m1-thm-localization",
+          "fullLabel": "theorem m1-thm-localization",
           "kind": "theorem",
           "source": "Product projections and localization",
-          "detail": "[Localization of conjugated product projections] Fix a nonnegative integer \\(d\\) and real numbers \\(0 s<t\\). For all sufficiently large \\(N\\), every \\(U_d(N)\\) and every pair of counts \\(M,D\\) on \\(…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-polynomial",
           "role": "a-polynomial-approximation-with-controlled-coefficients",
-          "label": "Fix real numbers 0<a<b and u>(a+b)/2 . For every sufficiently large integer N ,…",
-          "fullLabel": "Fix real numbers 0<a<b and u>(a+b)/2 . For every sufficiently large integer N ,…",
+          "label": "lemma m1-lem-polynomial",
+          "fullLabel": "lemma m1-lem-polynomial",
           "kind": "lemma",
           "source": "A polynomial approximation with controlled coefficients",
-          "detail": "Fix real numbers 0<a<b and u>(a+b)/2 . For every sufficiently large integer N , there is a real polynomial p such that p N^u, W_N(p) (N^u), p(0)=1, and |p(x)| (-N^a) for every integer 1 x N^b. The…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-base",
           "role": "depth-reduction-for-small-support-projections",
-          "label": "Depth zero",
-          "fullLabel": "Depth zero",
+          "label": "lemma m1-lem-base",
+          "fullLabel": "lemma m1-lem-base",
           "kind": "lemma",
           "source": "Depth reduction for small-support projections",
-          "detail": "[Depth zero] For every fixed 0 s<t , the statement _0(s,t) holds.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-propagation",
-          "role": "depth-reduction-for-small-support-projections-2",
-          "label": "Propagation from low counts",
-          "fullLabel": "Propagation from low counts",
+          "role": "depth-reduction-for-small-support-projections",
+          "label": "lemma m1-lem-propagation",
+          "fullLabel": "lemma m1-lem-propagation",
           "kind": "lemma",
           "source": "Depth reduction for small-support projections",
-          "detail": "[Propagation from low counts] Fix d1 and assume _ d-1 (s,t) for every fixed pair 0 s<t . For fixed ,0 and >\\ ,\\ , all sufficiently large N satisfy [M N^ ]B[M<N^ ] (-N^) uniformly for every count M…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-small-support",
-          "role": "depth-reduction-for-small-support-projections-3",
-          "label": "Small-support depth reduction",
-          "fullLabel": "Small-support depth reduction",
+          "role": "depth-reduction-for-small-support-projections",
+          "label": "lemma m1-lem-small-support",
+          "fullLabel": "lemma m1-lem-small-support",
           "kind": "lemma",
           "source": "Depth reduction for small-support projections",
-          "detail": "[Small-support depth reduction] Fix d1 and assume _ d-1 (s,t) for every fixed pair 0 s<t . For fixed u,w0 and t>\\ u,w\\ , all sufficiently large N satisfy [M N^t]UAU^ [M=0] (-N^w) uniformly for every…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-propagation"
           ]
@@ -210,11 +151,11 @@
         {
           "id": "m1-lem-backward",
           "role": "the-finite-scale-induction",
-          "label": "One backward step",
-          "fullLabel": "One backward step",
+          "label": "lemma m1-lem-backward",
+          "fullLabel": "lemma m1-lem-backward",
           "kind": "lemma",
           "source": "The finite scale induction",
-          "detail": "[One backward step] Fix \\(d1\\), and assume \\(_ d-1 (s,t)\\) for every fixed \\(0 s<t\\). Let \\(s,t,b\\) be fixed real numbers with \\[ 0 s<t<b<2t-s. \\] If \\(_d(t,b)\\) holds, then \\(_d(s,t)\\) holds.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-small-support"
           ]
@@ -222,21 +163,21 @@
         {
           "id": "m1-cor-state-preparation",
           "role": "consequences-of-localization-and-parity",
-          "label": "State-preparation obstructions",
-          "fullLabel": "State-preparation obstructions",
+          "label": "corollary m1-cor-state-preparation",
+          "fullLabel": "corollary m1-cor-state-preparation",
           "kind": "corollary",
           "source": "Consequences of localization and parity",
-          "detail": "[State-preparation obstructions] Fix a nonnegative integer d , c1 , a>0 , and 0<<1 . For all sufficiently large n , every n -qubit reduced state prepared from zero inputs by an allowed depth-at-most-…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-cor-quantum-lmn",
-          "role": "consequences-of-localization-and-parity-2",
-          "label": "Qualitative scalar-output Quantum-LMN",
-          "fullLabel": "Qualitative scalar-output Quantum-LMN",
+          "role": "consequences-of-localization-and-parity",
+          "label": "corollary m1-cor-quantum-lmn",
+          "fullLabel": "corollary m1-cor-quantum-lmn",
           "kind": "corollary",
           "source": "Consequences of localization and parity",
-          "detail": "[Qualitative scalar-output Quantum-LMN] For every fixed nonnegative integer d , there is a positive function _d on the positive integers, depending only on d , such that _d(k)/k^A for every fixed A>0…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-thm-parity",
             "m1-thm-localization"
@@ -244,22 +185,22 @@
         },
         {
           "id": "m1-cor-symmetric-functions",
-          "role": "consequences-of-localization-and-parity-3",
-          "label": "Majority and symmetric functions",
-          "fullLabel": "Majority and symmetric functions",
+          "role": "consequences-of-localization-and-parity",
+          "label": "corollary m1-cor-symmetric-functions",
+          "fullLabel": "corollary m1-cor-symmetric-functions",
           "kind": "corollary",
           "source": "Consequences of localization and parity",
-          "detail": "[Majority and symmetric functions] Let \\((f_n)\\) be a symmetric Boolean family satisfying either \\((f_n) n^\\) for some fixed \\(>0\\), or \\( _ 1/3 (f_n)=(n^ 1/2+ )\\) for some fixed \\(>0\\), for all…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-cor-majority-average",
-          "role": "consequences-of-localization-and-parity-4",
-          "label": "High-average-accuracy majority obstruction",
-          "fullLabel": "High-average-accuracy majority obstruction",
+          "role": "consequences-of-localization-and-parity",
+          "label": "corollary m1-cor-majority-average",
+          "fullLabel": "corollary m1-cor-majority-average",
           "kind": "corollary",
           "source": "Consequences of localization and parity",
-          "detail": "[High-average-accuracy majority obstruction] For every fixed \\(>0\\), no nonuniform family \\((C_n)\\) in the circuit model of , with fixed depth and polynomially many total qubits, satisfies \\[ 2^ -n _…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-cor-quantum-lmn"
           ]
@@ -283,62 +224,62 @@
       "nodes": [
         {
           "id": "m2-thm-parity",
-          "role": "result",
-          "label": "Fix positive integers d,k,C and a real 0<1/2 . There is an integer…",
-          "fullLabel": "Fix positive integers d,k,C and a real 0<1/2 . There is an integer…",
+          "role": "introduction",
+          "label": "theorem m2-thm-parity",
+          "fullLabel": "theorem m2-thm-parity",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "Fix positive integers d,k,C and a real 0<1/2 . There is an integer n_0=n_0(d,k,C,) such that, for every n n_0 , every allowed circuit of depth at most d on at most C(n+1)^k total qubits has an input…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-lem-uniformization",
           "role": "product-tests-and-regular-trajectories",
-          "label": "Uniformity from arbitrary choices",
-          "fullLabel": "Uniformity from arbitrary choices",
+          "label": "lemma m2-lem-uniformization",
+          "fullLabel": "lemma m2-lem-uniformization",
           "kind": "lemma",
           "source": "Product tests and regular trajectories",
-          "detail": "[Uniformity from arbitrary choices] Fix a sequence of base data, and let D_ be the nonempty set of permitted auxiliary choices at index . Suppose that for every sequence D_ D_ and every fixed…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-lem-degree-shift",
-          "role": "product-tests-and-regular-trajectories-2",
-          "label": "Degree controls excitation shifts",
-          "fullLabel": "Degree controls excitation shifts",
+          "role": "product-tests-and-regular-trajectories",
+          "label": "lemma m2-lem-degree-shift",
+          "fullLabel": "lemma m2-lem-degree-shift",
           "kind": "lemma",
           "source": "Product tests and regular trajectories",
-          "detail": "[Degree controls excitation shifts] Let be a nonnegative integer. If E and A is any test, then \\[ _ H_A=f \\,E\\,_ H_A=e =0 whenever |f-e|>. \\] In particular, for every real x , \\[ _ H_A>x+ \\,E\\,_ H_A…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-lem-zero-filter",
           "role": "two-polynomial-filters",
-          "label": "Integer zero filter",
-          "fullLabel": "Integer zero filter",
+          "label": "lemma m2-lem-zero-filter",
+          "fullLabel": "lemma m2-lem-zero-filter",
           "kind": "lemma",
           "source": "Two polynomial filters",
-          "detail": "[Integer zero filter] Fix 0<q<L<1 and r>(q+L)/2 . For all sufficiently large integers m there is a real polynomial Q such that \\[ Q m^r, _ 0 x m |Q(x)|(m^r), \\] and, for every integer j with 0 j m^L…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-lem-tail-filter",
-          "role": "two-polynomial-filters-2",
-          "label": "Tail filter",
-          "fullLabel": "Tail filter",
+          "role": "two-polynomial-filters",
+          "label": "lemma m2-lem-tail-filter",
+          "fullLabel": "lemma m2-lem-tail-filter",
           "kind": "lemma",
           "source": "Two polynomial filters",
-          "detail": "[Tail filter] Fix 0<v<h<u1 and s>0 . Let k be a degree exponent satisfying k>s+(u-h)/2 . For all sufficiently large integers m , there is a real polynomial T with \\[ T m^k, T(x)0(x R), _ 0 x m…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-prop-propagation",
           "role": "propagation-of-low-degree-perturbations",
-          "label": "Low-degree propagation",
-          "fullLabel": "Low-degree propagation",
+          "label": "proposition m2-prop-propagation",
+          "fullLabel": "proposition m2-prop-propagation",
           "kind": "proposition",
           "source": "Propagation of low-degree perturbations",
-          "detail": "[Low-degree propagation] Let V be a circuit with a bounded number of analytic layers, and suppose the trajectory from , with 1 , is regular for V . Here k,K denote degree exponents: fix 0<k<K<1 . For…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m2-lem-zero-filter"
           ]
@@ -346,21 +287,21 @@
         {
           "id": "m2-lem-tail-transport",
           "role": "transporting-excitation-tails",
-          "label": "Tail transport",
-          "fullLabel": "Tail transport",
+          "label": "lemma m2-lem-tail-transport",
+          "fullLabel": "lemma m2-lem-tail-transport",
           "kind": "lemma",
           "source": "Transporting excitation tails",
-          "detail": "[Tail transport] Let V have a bounded number of analytic layers, let A and B be tests at its initial and final endpoints, respectively, and put \\[ =V^ P_BV, 1. \\] Assume that both the trajectory from…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-lem-exponent-budget",
-          "role": "transporting-excitation-tails-2",
-          "label": "Exponent budget",
-          "fullLabel": "Exponent budget",
+          "role": "transporting-excitation-tails",
+          "label": "lemma m2-lem-exponent-budget",
+          "fullLabel": "lemma m2-lem-exponent-budget",
           "kind": "lemma",
           "source": "Transporting excitation tails",
-          "detail": "[Exponent budget] Suppose \\[ 0 b<h<u1, 0<<<h, u-h<. \\] There are fixed exponents q,k,K,r,r',s,v_0,v, satisfying 0<h-<q<r<r'<s<k<h, k<K<1, k<u-,\\\\ K+q 2 <r, s+u-h 2 <k,\\\\ \\ b,r'\\ <v_0<v<h, r'<<v_0.…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m2-lem-tail-filter",
             "m2-prop-propagation",
@@ -371,11 +312,11 @@
         {
           "id": "m2-prop-projection-insertion",
           "role": "projection-insertion-and-pruning",
-          "label": "Projection insertion",
-          "fullLabel": "Projection insertion",
+          "label": "proposition m2-prop-projection-insertion",
+          "fullLabel": "proposition m2-prop-projection-insertion",
           "kind": "proposition",
           "source": "Projection insertion and pruning",
-          "detail": "[Projection insertion] Let W=U_t U_1 have a bounded number of layers, and suppose the trajectory \\[ _j=U_j U_1_0, 0 j t, \\] is regular, with _01 . For any product test B at the output, set \\[…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m2-lem-tail-transport",
             "m2-lem-uniformization"
@@ -383,12 +324,12 @@
         },
         {
           "id": "m2-cor-product-tail",
-          "role": "projection-insertion-and-pruning-2",
-          "label": "Tail at a product input",
-          "fullLabel": "Tail at a product input",
+          "role": "projection-insertion-and-pruning",
+          "label": "corollary m2-cor-product-tail",
+          "fullLabel": "corollary m2-cor-product-tail",
           "kind": "corollary",
           "source": "Projection insertion and pruning",
-          "detail": "[Tail at a product input] Suppose _0 is a normalized product state and its trajectory under W is regular. Let P_0=|_0_0| be the full product projection and H_0 its count. For any product test B at…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m2-prop-projection-insertion"
           ],
@@ -398,12 +339,12 @@
         },
         {
           "id": "m2-cor-overlap-tail",
-          "role": "projection-insertion-and-pruning-3",
-          "label": "Overlap and output tail",
-          "fullLabel": "Overlap and output tail",
+          "role": "projection-insertion-and-pruning",
+          "label": "corollary m2-cor-overlap-tail",
+          "fullLabel": "corollary m2-cor-overlap-tail",
           "kind": "corollary",
           "source": "Projection insertion and pruning",
-          "detail": "[Overlap and output tail] Under the hypotheses of Corollary~ , write _t=W_0 . For any product test B at the output and every fixed 0<p<h<1 , P_B _t^ 2 _ H_B m^h _t (-m^p) eventually. For each fixed…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m2-lem-tail-transport",
             "m2-prop-projection-insertion"
@@ -411,24 +352,24 @@
         },
         {
           "id": "m2-lem-retained-layer",
-          "role": "projection-insertion-and-pruning-4",
-          "label": "A retained layer is regular",
-          "fullLabel": "A retained layer is regular",
+          "role": "projection-insertion-and-pruning",
+          "label": "lemma m2-lem-retained-layer",
+          "fullLabel": "lemma m2-lem-retained-layer",
           "kind": "lemma",
           "source": "Projection insertion and pruning",
-          "detail": "[A retained layer is regular] Let W have a regular trajectory from a normalized product state, and write =W_0 . Consider a proposed next layer of disjoint reflections I-2P_g . Retain precisely the…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m2-cor-overlap-tail"
           ]
         },
         {
           "id": "m2-prop-pruning",
-          "role": "projection-insertion-and-pruning-5",
-          "label": "Pruning from a product state",
-          "fullLabel": "Pruning from a product state",
+          "role": "projection-insertion-and-pruning",
+          "label": "proposition m2-prop-pruning",
+          "fullLabel": "proposition m2-prop-pruning",
           "kind": "proposition",
           "source": "Projection insertion and pruning",
-          "detail": "[Pruning from a product state] For any sequence of circuits U=U_t U_1 on m qubits, with a bounded number t of analytic layers, and any normalized product starting states _0 , the following…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m2-lem-retained-layer",
             "m2-cor-product-tail"
@@ -437,20 +378,7 @@
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-parity",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    },
-    {
-      "from": "m2:m2-thm-parity",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -458,7 +386,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

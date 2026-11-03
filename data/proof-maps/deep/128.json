@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "128",
   "title": "A factor-two approximation for shortest common superstring",
   "result": {
@@ -14,17 +15,12 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
-    },
-    {
-      "id": "forced-occurrence-counts",
-      "label": "Forced occurrence counts",
+      "id": "introduction",
+      "label": "Introduction",
       "description": "A section of the paper."
     },
     {
-      "id": "forced-occurrence-counts-2",
+      "id": "forced-occurrence-counts",
       "label": "Forced occurrence counts",
       "description": "A section of the paper."
     },
@@ -34,42 +30,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "periodic-layers-2",
-      "label": "Periodic layers",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "periodic-layers-3",
-      "label": "Periodic layers",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "periodic-layers-4",
-      "label": "Periodic layers",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "periodic-layers-5",
-      "label": "Periodic layers",
-      "description": "A section of the paper."
-    },
-    {
       "id": "connection-operations",
-      "label": "Connection operations",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "connection-operations-2",
-      "label": "Connection operations",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "connection-operations-3",
-      "label": "Connection operations",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "connection-operations-4",
       "label": "Connection operations",
       "description": "A section of the paper."
     },
@@ -79,22 +40,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "processing-the-period-groups-2",
-      "label": "Processing the period groups",
-      "description": "A section of the paper."
-    },
-    {
       "id": "opening-cycles-of-planned-links",
-      "label": "Opening cycles of planned links",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "opening-cycles-of-planned-links-2",
-      "label": "Opening cycles of planned links",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "opening-cycles-of-planned-links-3",
       "label": "Opening cycles of planned links",
       "description": "A section of the paper."
     }
@@ -117,191 +63,184 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "There is a deterministic algorithm, polynomial in the total encoded input size,…",
-          "fullLabel": "There is a deterministic algorithm, polynomial in the total encoded input size,…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "There is a deterministic algorithm, polynomial in the total encoded input size, that on every finite collection S of explicitly represented ordinary strings outputs a common superstring T satisfying…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-counts",
           "role": "forced-occurrence-counts",
-          "label": "Occurrence lower bound",
-          "fullLabel": "Occurrence lower bound",
+          "label": "lemma m1-lem-counts",
+          "fullLabel": "lemma m1-lem-counts",
           "kind": "lemma",
           "source": "Forced occurrence counts",
-          "detail": "[Occurrence lower bound] For every common superstring T and every nonempty s V , \\[ m(s) N_T(s). \\] Consequently, for W=_ c m(c), we have W( S) and m(s) L .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-base",
-          "role": "forced-occurrence-counts-2",
-          "label": "The graph G is balanced, contains every required string as a used vertex, and…",
-          "fullLabel": "The graph G is balanced, contains every required string as a used vertex, and…",
+          "role": "forced-occurrence-counts",
+          "label": "lemma m1-lem-base",
+          "fullLabel": "lemma m1-lem-base",
           "kind": "lemma",
           "source": "Forced occurrence counts",
-          "detail": "The graph G is balanced, contains every required string as a used vertex, and has W up edges and W down edges, counted with multiplicity.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-recorded",
           "role": "periodic-layers",
-          "label": "The total number of recorded occurrences of s on all the closed walks is m(s) .",
-          "fullLabel": "The total number of recorded occurrences of s on all the closed walks is m(s) .",
+          "label": "lemma m1-lem-recorded",
+          "fullLabel": "lemma m1-lem-recorded",
           "kind": "lemma",
           "source": "Periodic layers",
-          "detail": "The total number of recorded occurrences of s on all the closed walks is m(s) .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-layers",
-          "role": "periodic-layers-2",
-          "label": "Ordered layers",
-          "fullLabel": "Ordered layers",
+          "role": "periodic-layers",
+          "label": "lemma m1-lem-layers",
+          "fullLabel": "lemma m1-lem-layers",
           "kind": "lemma",
           "source": "Periodic layers",
-          "detail": "[Ordered layers] The walks of a group can be rearranged, without changing the multiset of their graph edges, into one-turn layers of period p . Each layer has an integer function z: such that z(x-1)…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-matching-window",
-          "role": "periodic-layers-3",
-          "label": "Matching window",
-          "fullLabel": "Matching window",
+          "role": "periodic-layers",
+          "label": "lemma m1-lem-matching-window",
+          "fullLabel": "lemma m1-lem-matching-window",
           "kind": "lemma",
           "source": "Periodic layers",
-          "detail": "[Matching window] Over all layers, the number of blocked occurrences of s relative to A is B_A(s;m) . Every unblocked occurrence is contained in an actual layer window that agrees with A throughout.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-recorded"
           ]
         },
         {
           "id": "m1-lem-agreement",
-          "role": "periodic-layers-4",
-          "label": "Agreement bounds",
-          "fullLabel": "Agreement bounds",
+          "role": "periodic-layers",
+          "label": "lemma m1-lem-agreement",
+          "fullLabel": "lemma m1-lem-agreement",
           "kind": "lemma",
           "source": "Periodic layers",
-          "detail": "[Agreement bounds] Two distinct aligned periodic texts of periods p,q agree on fewer than p+q consecutive letters. If both have period p , they agree on fewer than p consecutive letters.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-max-rotation",
-          "role": "periodic-layers-5",
-          "label": "Maximal rotation",
-          "fullLabel": "Maximal rotation",
+          "role": "periodic-layers",
+          "label": "lemma m1-lem-max-rotation",
+          "fullLabel": "lemma m1-lem-max-rotation",
           "kind": "lemma",
           "source": "Periodic layers",
-          "detail": "[Maximal rotation] Let A have least period p , and let t be distinguished. Let D be a distinct aligned periodic text of period q , all of whose forward rotations are lexicographically at most the…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-ordered-windows",
           "role": "connection-operations",
-          "label": "Ordered windows",
-          "fullLabel": "Ordered windows",
+          "label": "lemma m1-lem-ordered-windows",
+          "fullLabel": "lemma m1-lem-ordered-windows",
           "kind": "lemma",
           "source": "Connection operations",
-          "detail": "[Ordered windows] Let [a,b) and [c,d) be windows in a common text over , each spelling a word in V . If a c and b d , there is a hierarchical-graph walk from the first word to the second of cost d-b…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-band",
-          "role": "connection-operations-2",
-          "label": "Joining an ordered band",
-          "fullLabel": "Joining an ordered band",
+          "role": "connection-operations",
+          "label": "lemma m1-lem-band",
+          "fullLabel": "lemma m1-lem-band",
           "kind": "lemma",
           "source": "Connection operations",
-          "detail": "[Joining an ordered band] Consider k ordered layers from one primitive-text group of period p . At a start t , let H be the top layer's first end and E the bottom layer's last end. If h is a…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-ordered-windows"
           ]
         },
         {
           "id": "m1-lem-collective",
-          "role": "connection-operations-3",
-          "label": "Collective link",
-          "fullLabel": "Collective link",
+          "role": "connection-operations",
+          "label": "lemma m1-lem-collective",
+          "fullLabel": "lemma m1-lem-collective",
           "kind": "lemma",
           "source": "Connection operations",
-          "detail": "[Collective link] Consider k ordered layers with a common period- p text A , and put K=kp . Let R=[a,b) spell a word in V agreeing with A . Let r_H=f_H(a) be the top layer's first end and r_L=l_L(a)…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-host",
-          "role": "connection-operations-4",
-          "label": "Host requests",
-          "fullLabel": "Host requests",
+          "role": "connection-operations",
+          "label": "lemma m1-lem-host",
+          "fullLabel": "lemma m1-lem-host",
           "kind": "lemma",
           "source": "Connection operations",
-          "detail": "[Host requests] Let a host layer have period q . On that layer choose actual windows R_i=[a_i,b_i) , indexed by a nonempty collection of distinct child groups. The text of child group i has period…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-choose-k",
           "role": "processing-the-period-groups",
-          "label": "This procedure stops with 1 k n . If L_* is the lowest of the top k layers,…",
-          "fullLabel": "This procedure stops with 1 k n . If L_* is the lowest of the top k layers,…",
+          "label": "lemma m1-lem-choose-k",
+          "fullLabel": "lemma m1-lem-choose-k",
           "kind": "lemma",
           "source": "Processing the period groups",
-          "detail": "This procedure stops with 1 k n . If L_* is the lowest of the top k layers, then l_ L_* (t)& H-(k-1)p, \\\\ f_H(x)-l_ L_* (x)& K(x). At most k recorded occurrences of w=A[t:H-K) have a full-text…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-partition",
-          "role": "processing-the-period-groups-2",
-          "label": "After all groups have been processed, every layer is either marked rooted or…",
-          "fullLabel": "After all groups have been processed, every layer is either marked rooted or…",
+          "role": "processing-the-period-groups",
+          "label": "proposition m1-prop-partition",
+          "fullLabel": "proposition m1-prop-partition",
           "kind": "proposition",
           "source": "Processing the period groups",
-          "detail": "After all groups have been processed, every layer is either marked rooted or belongs to exactly one outgoing block. These two classes are disjoint. Each block consists of layers from one…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-free-period",
           "role": "opening-cycles-of-planned-links",
-          "label": "One free period",
-          "fullLabel": "One free period",
+          "label": "lemma m1-lem-free-period",
+          "fullLabel": "lemma m1-lem-free-period",
           "kind": "lemma",
           "source": "Opening cycles of planned links",
-          "detail": "[One free period] A block of k layers and period p can be joined internally, in place of its outgoing link, for cost at most (k-1)p . Thus this replacement leaves at least p of its total budget…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-cycle-contact",
-          "role": "opening-cycles-of-planned-links-2",
-          "label": "A short contact on a maximal link",
-          "fullLabel": "A short contact on a maximal link",
+          "role": "opening-cycles-of-planned-links",
+          "label": "lemma m1-lem-cycle-contact",
+          "fullLabel": "lemma m1-lem-cycle-contact",
           "kind": "lemma",
           "source": "Opening cycles of planned links",
-          "detail": "[A short contact on a maximal link] On a directed cycle of blocks, choose a block whose group's distinguished forward rotation is lexicographically greatest. If its target layer has period q , its…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-ordered-windows"
           ]
         },
         {
           "id": "m1-thm-connection",
-          "role": "opening-cycles-of-planned-links-3",
-          "label": "Connecting the base graph",
-          "fullLabel": "Connecting the base graph",
+          "role": "opening-cycles-of-planned-links",
+          "label": "theorem m1-thm-connection",
+          "fullLabel": "theorem m1-thm-connection",
           "kind": "theorem",
           "source": "Opening cycles of planned links",
-          "detail": "[Connecting the base graph] The base graph can be connected to by adding closed walks of total up cost at most W .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         }
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -309,7 +248,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

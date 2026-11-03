@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "184",
   "title": "Correspondence coloring with a fixed forbidden subgraph",
   "result": {
@@ -14,11 +15,6 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
-    },
-    {
       "id": "introduction",
       "label": "Introduction",
       "description": "A section of the paper."
@@ -29,32 +25,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "local-weight-adjustment-with-bounded-participation-2",
-      "label": "Local weight adjustment with bounded participation",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "local-weight-adjustment-with-bounded-participation-3",
-      "label": "Local weight adjustment with bounded participation",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "local-weight-adjustment-with-bounded-participation-4",
-      "label": "Local weight adjustment with bounded participation",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "local-weight-adjustment-with-bounded-participation-5",
-      "label": "Local weight adjustment with bounded participation",
-      "description": "A section of the paper."
-    },
-    {
       "id": "controlling-triangles-by-splitting-vertices",
-      "label": "Controlling triangles by splitting vertices",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "controlling-triangles-by-splitting-vertices-2",
       "label": "Controlling triangles by splitting vertices",
       "description": "A section of the paper."
     },
@@ -64,47 +35,12 @@
       "description": "A section of the paper."
     },
     {
-      "id": "coloring-rounds-with-dependent-entry-weights-2",
-      "label": "Coloring rounds with dependent entry weights",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "coloring-rounds-with-dependent-entry-weights-3",
-      "label": "Coloring rounds with dependent entry weights",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "coloring-rounds-with-dependent-entry-weights-4",
-      "label": "Coloring rounds with dependent entry weights",
-      "description": "A section of the paper."
-    },
-    {
       "id": "an-extremal-weight-and-its-cross-mass-bound",
       "label": "An extremal weight and its cross-mass bound",
       "description": "A section of the paper."
     },
     {
-      "id": "an-extremal-weight-and-its-cross-mass-bound-2",
-      "label": "An extremal weight and its cross-mass bound",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "an-extremal-weight-and-its-cross-mass-bound-3",
-      "label": "An extremal weight and its cross-mass bound",
-      "description": "A section of the paper."
-    },
-    {
       "id": "from-cross-mass-to-triangle-mass",
-      "label": "From cross mass to triangle mass",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "from-cross-mass-to-triangle-mass-2",
-      "label": "From cross mass to triangle mass",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "from-cross-mass-to-triangle-mass-3",
       "label": "From cross mass to triangle mass",
       "description": "A section of the paper."
     },
@@ -115,21 +51,6 @@
     },
     {
       "id": "splitting-vertices-and-bounding-triangle-mass",
-      "label": "Splitting vertices and bounding triangle mass",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "splitting-vertices-and-bounding-triangle-mass-2",
-      "label": "Splitting vertices and bounding triangle mass",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "splitting-vertices-and-bounding-triangle-mass-3",
-      "label": "Splitting vertices and bounding triangle mass",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "splitting-vertices-and-bounding-triangle-mass-4",
       "label": "Splitting vertices and bounding triangle mass",
       "description": "A section of the paper."
     },
@@ -157,22 +78,22 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "For every integer r4 there are constants C_r>0 and _r3 such that every K_r…",
-          "fullLabel": "For every integer r4 there are constants C_r>0 and _r3 such that every K_r…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "For every integer r4 there are constants C_r>0 and _r3 such that every K_r -free graph G of maximum degree _r satisfies \\[ _ DP (G) C_r . \\] The constants depend only on r .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-cor-forbidden",
           "role": "introduction",
-          "label": "For every finite graph F there are constants C_F>0 and _F3 such that every F…",
-          "fullLabel": "For every finite graph F there are constants C_F>0 and _F3 such that every F…",
+          "label": "corollary m1-cor-forbidden",
+          "fullLabel": "corollary m1-cor-forbidden",
           "kind": "corollary",
           "source": "Introduction",
-          "detail": "For every finite graph F there are constants C_F>0 and _F3 such that every F -free graph G of maximum degree _F satisfies \\[ _ DP (G) C_F . \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-thm-main"
           ]
@@ -180,75 +101,75 @@
         {
           "id": "m1-lem-adjustment",
           "role": "local-weight-adjustment-with-bounded-participation",
-          "label": "Local weight adjustment",
-          "fullLabel": "Local weight adjustment",
+          "label": "lemma m1-lem-adjustment",
+          "fullLabel": "lemma m1-lem-adjustment",
           "kind": "lemma",
           "source": "Local weight adjustment with bounded participation",
-          "detail": "[Local weight adjustment] For every integer r4 there are constants A=A(r)>0 , B=B(r)1 , and _r1 with the following property. Let _r , and let H be a finite K_r -free graph whose vertex set has a…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-sparse-multipliers",
-          "role": "local-weight-adjustment-with-bounded-participation-2",
-          "label": "Sparse multipliers",
-          "fullLabel": "Sparse multipliers",
+          "role": "local-weight-adjustment-with-bounded-participation",
+          "label": "lemma m1-lem-sparse-multipliers",
+          "fullLabel": "lemma m1-lem-sparse-multipliers",
           "kind": "lemma",
           "source": "Local weight adjustment with bounded participation",
-          "detail": "[Sparse multipliers] For every integer r2 there is a constant D_r1 such that the following holds. Let F be a finite K_r -free graph with positive vertex weights q_i of total mass s . For every 0<1/2…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-local-cross",
-          "role": "local-weight-adjustment-with-bounded-participation-3",
-          "label": "Local cross estimate",
-          "fullLabel": "Local cross estimate",
+          "role": "local-weight-adjustment-with-bounded-participation",
+          "label": "lemma m1-lem-local-cross",
+          "fullLabel": "lemma m1-lem-local-cross",
           "kind": "lemma",
           "source": "Local weight adjustment with bounded participation",
-          "detail": "[Local cross estimate] Assume the prices satisfy , and fix a level b . Let S,D V(H_b) , where S D is contained in a ball of radius R_0 in H and meets every part of D in at most P_0 vertices. Suppose…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-sparse-multipliers"
           ]
         },
         {
           "id": "m1-lem-local-cross-transfer",
-          "role": "local-weight-adjustment-with-bounded-participation-4",
-          "label": "Transfer under vertex splitting",
-          "fullLabel": "Transfer under vertex splitting",
+          "role": "local-weight-adjustment-with-bounded-participation",
+          "label": "corollary m1-lem-local-cross-transfer",
+          "fullLabel": "corollary m1-lem-local-cross-transfer",
           "kind": "corollary",
           "source": "Local weight adjustment with bounded participation",
-          "detail": "[Transfer under vertex splitting] Let F be a graph with a homomorphism p:F H_b that is injective on directed edges. Give every vertex of F the weight, prices, coefficients, and part of its image.…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-local-cross"
           ]
         },
         {
           "id": "m1-prop-triangle-bound",
-          "role": "local-weight-adjustment-with-bounded-participation-5",
-          "label": "Triangle bound",
-          "fullLabel": "Triangle bound",
+          "role": "local-weight-adjustment-with-bounded-participation",
+          "label": "proposition m1-prop-triangle-bound",
+          "fullLabel": "proposition m1-prop-triangle-bound",
           "kind": "proposition",
           "source": "Local weight adjustment with bounded participation",
-          "detail": "[Triangle bound] For the graphs H_b , weights q , and prices constructed above from , with A chosen as in Lemma~ , the quantities in and satisfy \\[ T_0 O_r(M_x). \\] The implicit constant depends only…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-triangle-splitting",
           "role": "controlling-triangles-by-splitting-vertices",
-          "label": "Splitting a level graph",
-          "fullLabel": "Splitting a level graph",
+          "label": "lemma m1-lem-triangle-splitting",
+          "fullLabel": "lemma m1-lem-triangle-splitting",
           "kind": "lemma",
           "source": "Controlling triangles by splitting vertices",
-          "detail": "[Splitting a level graph] Let 32_0 , and let F be a nonempty finite graph with no isolated vertices, with a homomorphism into some H_b injective on directed edges. Give its vertices the inherited…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-walk-entropy-bound",
-          "role": "controlling-triangles-by-splitting-vertices-2",
-          "label": "With the above definitions, H_0-, H_R O_r().",
-          "fullLabel": "With the above definitions, H_0-, H_R O_r().",
+          "role": "controlling-triangles-by-splitting-vertices",
+          "label": "lemma m1-lem-walk-entropy-bound",
+          "fullLabel": "lemma m1-lem-walk-entropy-bound",
           "kind": "lemma",
           "source": "Controlling triangles by splitting vertices",
-          "detail": "With the above definitions, H_0-, H_R O_r().",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-adjustment"
           ]
@@ -256,43 +177,43 @@
         {
           "id": "m1-prop-one-round",
           "role": "coloring-rounds-with-dependent-entry-weights",
-          "label": "One coloring round",
-          "fullLabel": "One coloring round",
+          "label": "proposition m1-prop-one-round",
+          "fullLabel": "proposition m1-prop-one-round",
           "kind": "proposition",
           "source": "Coloring rounds with dependent entry weights",
-          "detail": "[One coloring round] For all sufficiently large depending only on r , suppose that a proper partial correspondence coloring and entry weights satisfy availability, , and K/2 W_v2K(v V(G')). There is…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-round-expectation",
-          "role": "coloring-rounds-with-dependent-entry-weights-2",
-          "label": "Expected changes",
-          "fullLabel": "Expected changes",
+          "role": "coloring-rounds-with-dependent-entry-weights",
+          "label": "lemma m1-lem-round-expectation",
+          "fullLabel": "lemma m1-lem-round-expectation",
           "kind": "lemma",
           "source": "Coloring rounds with dependent entry weights",
-          "detail": "[Expected changes] For the random update just defined, W_v& W_v+o(),\\\\ F_v& F_v+(B+1)D_v+o(),\\\\ D_ vu &12D_ vu (vu E(G')).",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-adjustment"
           ]
         },
         {
           "id": "m1-lem-read-concentration",
-          "role": "coloring-rounds-with-dependent-entry-weights-3",
-          "label": "Bounded input participation",
-          "fullLabel": "Bounded input participation",
+          "role": "coloring-rounds-with-dependent-entry-weights",
+          "label": "lemma m1-lem-read-concentration",
+          "fullLabel": "lemma m1-lem-read-concentration",
           "kind": "lemma",
           "source": "Coloring rounds with dependent entry weights",
-          "detail": "[Bounded input participation] Let X_1,,X_m be bounded real functions of finitely many independent inputs. Suppose that X_j has range of length at most b_j , and that each input is used by at most p…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-activation-collisions",
-          "role": "coloring-rounds-with-dependent-entry-weights-4",
-          "label": "Collision bound",
-          "fullLabel": "Collision bound",
+          "role": "coloring-rounds-with-dependent-entry-weights",
+          "label": "lemma m1-lem-activation-collisions",
+          "fullLabel": "lemma m1-lem-activation-collisions",
           "kind": "lemma",
           "source": "Coloring rounds with dependent entry weights",
-          "detail": "[Collision bound] Let E_v be the set of edges of H with an endpoint hosted at a neighbor of v in G' , and let X_v count the edges of E_v whose two endpoints activate. Then (4K^ -0.99 X_v>) O(^3)e^…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-round-expectation"
           ]
@@ -316,42 +237,42 @@
       "nodes": [
         {
           "id": "m2-thm-main",
-          "role": "result",
-          "label": "For every integer r4 , there is a constant c_r>0 such that every finite simple…",
-          "fullLabel": "For every integer r4 , there is a constant c_r>0 such that every finite simple…",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "For every integer r4 , there is a constant c_r>0 such that every finite simple K_r -free graph G with n vertices and average degree d2 satisfies \\[ (G) c_rn d d . \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-lem-optimizer",
           "role": "an-extremal-weight-and-its-cross-mass-bound",
-          "label": "For every nonempty finite simple graph G , the function F_G attains its…",
-          "fullLabel": "For every nonempty finite simple graph G , the function F_G attains its…",
+          "label": "lemma m2-lem-optimizer",
+          "fullLabel": "lemma m2-lem-optimizer",
           "kind": "lemma",
           "source": "An extremal weight and its cross-mass bound",
-          "detail": "For every nonempty finite simple graph G , the function F_G attains its maximum. Every maximizer w has positive coordinates and satisfies (1/w_v)=w(N_G(v)) (v V(G)). In particular, w_v1 . For every…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-lem-sparse-multipliers",
-          "role": "an-extremal-weight-and-its-cross-mass-bound-2",
-          "label": "Let r2 be an integer, let G be a finite K_r -free graph with positive vertex…",
-          "fullLabel": "Let r2 be an integer, let G be a finite K_r -free graph with positive vertex…",
+          "role": "an-extremal-weight-and-its-cross-mass-bound",
+          "label": "lemma m2-lem-sparse-multipliers",
+          "fullLabel": "lemma m2-lem-sparse-multipliers",
           "kind": "lemma",
           "source": "An extremal weight and its cross-mass bound",
-          "detail": "Let r2 be an integer, let G be a finite K_r -free graph with positive vertex weights w , and put s=w(V(G)) . For every 0<1/2 there are jointly distributed random variables (m_v)_ v V(G) such that 0…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-lem-cross-mass",
-          "role": "an-extremal-weight-and-its-cross-mass-bound-3",
-          "label": "Let r2 be an integer and let w maximize F_G on a nonempty finite K_r -free…",
-          "fullLabel": "Let r2 be an integer and let w maximize F_G on a nonempty finite K_r -free…",
+          "role": "an-extremal-weight-and-its-cross-mass-bound",
+          "label": "lemma m2-lem-cross-mass",
+          "fullLabel": "lemma m2-lem-cross-mass",
           "kind": "lemma",
           "source": "An extremal weight and its cross-mass bound",
-          "detail": "Let r2 be an integer and let w maximize F_G on a nonempty finite K_r -free graph G . For every x1 and all vertex sets S,D with w(S),w(D) e^x , e_w(S,D) C_r g_x(w(S)), C_r=16r^2. The sets S and D need…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m2-lem-sparse-multipliers"
           ]
@@ -359,31 +280,31 @@
         {
           "id": "m2-thm-weighted-triangles",
           "role": "from-cross-mass-to-triangle-mass",
-          "label": "Triangle mass from cross mass",
-          "fullLabel": "Triangle mass from cross mass",
+          "label": "theorem m2-thm-weighted-triangles",
+          "fullLabel": "theorem m2-thm-weighted-triangles",
           "kind": "theorem",
           "source": "From cross mass to triangle mass",
-          "detail": "[Triangle mass from cross mass] For every C1 there is a constant C_ (C) with the following property. If G is a finite simple graph with positive vertex weights w satisfying , then \\[ T_G(w) C_…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-lem-invariant-preservation",
-          "role": "from-cross-mass-to-triangle-mass-2",
-          "label": "Preservation under splitting",
-          "fullLabel": "Preservation under splitting",
+          "role": "from-cross-mass-to-triangle-mass",
+          "label": "lemma m2-lem-invariant-preservation",
+          "fullLabel": "lemma m2-lem-invariant-preservation",
           "kind": "lemma",
           "source": "From cross mass to triangle mass",
-          "detail": "[Preservation under splitting] Let (G,w) satisfy with constant C . Let H be a finite simple graph and let :V(H) V(G) satisfy the following conditions: every edge \\ a,b\\ of H maps to the edge \\…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-lem-triangle-peeling",
-          "role": "from-cross-mass-to-triangle-mass-3",
-          "label": "Triangle normalization and peeling",
-          "fullLabel": "Triangle normalization and peeling",
+          "role": "from-cross-mass-to-triangle-mass",
+          "label": "lemma m2-lem-triangle-peeling",
+          "fullLabel": "lemma m2-lem-triangle-peeling",
           "kind": "lemma",
           "source": "From cross mass to triangle mass",
-          "detail": "[Triangle normalization and peeling] For a positive-weighted finite simple graph G , put \\[ s_u=w(N_G(u)), c_ uv =w(N_G(u) N_G(v)), h_u=_ v N_G(u) w_vc_ uv . \\] Thus h_u=2M_ G[N_G(u)] (w) is twice…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m2-lem-invariant-preservation"
           ]
@@ -391,53 +312,53 @@
         {
           "id": "m2-lem-entropy-smoothing",
           "role": "local-walks-and-entropy",
-          "label": "Smoothing the local walks",
-          "fullLabel": "Smoothing the local walks",
+          "label": "lemma m2-lem-entropy-smoothing",
+          "fullLabel": "lemma m2-lem-entropy-smoothing",
           "kind": "lemma",
           "source": "Local walks and entropy",
-          "detail": "[Smoothing the local walks] Under and , put \\[ E_C=42C^2+2C, A_C=10+E_C, B_C=2A_C+1, R= x. \\] Each K_u^j is reversible with stationary measure _u , and K_u^j(v,y) xw_y(j0). Moreover, - x H_0 H_1 H_R…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-lem-shared-rejection",
           "role": "splitting-vertices-and-bounding-triangle-mass",
-          "label": "Shared rejection sampling",
-          "fullLabel": "Shared rejection sampling",
+          "label": "lemma m2-lem-shared-rejection",
+          "fullLabel": "lemma m2-lem-shared-rejection",
           "kind": "lemma",
           "source": "Splitting vertices and bounding triangle mass",
-          "detail": "[Shared rejection sampling] Let I and J be finite nonempty sets, and let (p_i)_ i I be probability distributions on J . There are jointly distributed random variables (Y_i)_ i I such that Y_i has law…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-lem-reverse-admissibility",
-          "role": "splitting-vertices-and-bounding-triangle-mass-2",
-          "label": "The probability that Y_ u,v is inadmissible, averaged over (u,v) , is at most…",
-          "fullLabel": "The probability that Y_ u,v is inadmissible, averaged over (u,v) , is at most…",
+          "role": "splitting-vertices-and-bounding-triangle-mass",
+          "label": "lemma m2-lem-reverse-admissibility",
+          "fullLabel": "lemma m2-lem-reverse-admissibility",
           "kind": "lemma",
           "source": "Splitting vertices and bounding triangle mass",
-          "detail": "The probability that Y_ u,v is inadmissible, averaged over (u,v) , is at most _x:=(A_C+1) x x+ x .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m2-lem-weighted-splitting",
-          "role": "splitting-vertices-and-bounding-triangle-mass-3",
-          "label": "There is a choice of these labels for which the projection (u,y) u preserves…",
-          "fullLabel": "There is a choice of these labels for which the projection (u,y) u preserves…",
+          "role": "splitting-vertices-and-bounding-triangle-mass",
+          "label": "lemma m2-lem-weighted-splitting",
+          "fullLabel": "lemma m2-lem-weighted-splitting",
           "kind": "lemma",
           "source": "Splitting vertices and bounding triangle mass",
-          "detail": "There is a choice of these labels for which the projection (u,y) u preserves weights, maps directed edges injectively to directed edges of H , and satisfies _ a V(H') w(N_ H' (a))& e^ x , \\\\ T_ H'…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m2-lem-reverse-admissibility"
           ]
         },
         {
           "id": "m2-prop-neighborhood-reduction",
-          "role": "splitting-vertices-and-bounding-triangle-mass-4",
-          "label": "Let G be a finite positive-vertex-weighted graph satisfying the cross-mass…",
-          "fullLabel": "Let G be a finite positive-vertex-weighted graph satisfying the cross-mass…",
+          "role": "splitting-vertices-and-bounding-triangle-mass",
+          "label": "proposition m2-prop-neighborhood-reduction",
+          "fullLabel": "proposition m2-prop-neighborhood-reduction",
           "kind": "proposition",
           "source": "Splitting vertices and bounding triangle mass",
-          "detail": "Let G be a finite positive-vertex-weighted graph satisfying the cross-mass condition~ with constant C1 , and suppose that _vw(N_G(v)) e^x for some x>X(C) . There is a finite positive-vertex-weighted…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m2-lem-triangle-peeling",
             "m2-lem-weighted-splitting",
@@ -447,11 +368,11 @@
         {
           "id": "m2-prop-maximum-degree",
           "role": "from-triangle-mass-to-independent-sets",
-          "label": "For every integer r4 , every real number 3 , and every finite K_r -free graph G…",
-          "fullLabel": "For every integer r4 , every real number 3 , and every finite K_r -free graph G…",
+          "label": "proposition m2-prop-maximum-degree",
+          "fullLabel": "proposition m2-prop-maximum-degree",
           "kind": "proposition",
           "source": "From triangle mass to independent sets",
-          "detail": "For every integer r4 , every real number 3 , and every finite K_r -free graph G with n vertices and maximum degree at most , \\[ (G) F_G^* D_r and (G) n 4D_r . \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m2-lem-optimizer"
           ]
@@ -459,20 +380,7 @@
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    },
-    {
-      "from": "m2:m2-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -480,7 +388,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

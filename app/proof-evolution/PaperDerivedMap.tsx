@@ -90,16 +90,16 @@ export function PaperDerivedMap({ structure, entry, t }: {
             return <article className={`paper-derived-node kind-${node.kind}`} id={`paper-node-${node.id}`} key={node.id}>
               <div className="paper-derived-node-top">
                 <Badge>{node.kind}</Badge>
-                <strong>{node.label}</strong>
+                <strong>{node.id}</strong>
               </div>
-              {node.statement && <p>{node.statement}</p>}
+              <p>{t("proofMaps.paper.exactStatement")}</p>
               {nodeCites.length > 0 && <div className="paper-derived-links">
                 <span>{t("proofMaps.paper.cites")}</span>
-                {nodeCites.map((target) => <a href={`#paper-node-${target.id}`} key={target.id}>{target.label}</a>)}
+                {nodeCites.map((target) => <a href={`#paper-node-${target.id}`} key={target.id}>{target.id}</a>)}
               </div>}
               {nodeCitedBy.length > 0 && <div className="paper-derived-links is-inbound">
                 <span>{t("proofMaps.paper.citedBy")}</span>
-                {nodeCitedBy.map((target) => <a href={`#paper-node-${target.id}`} key={target.id}>{target.label}</a>)}
+                {nodeCitedBy.map((target) => <a href={`#paper-node-${target.id}`} key={target.id}>{target.id}</a>)}
               </div>}
             </article>;
           })}

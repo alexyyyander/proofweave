@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "196",
   "title": "A counterexample to Kaplansky’s zero-divisor conjecture",
   "result": {
@@ -14,22 +15,12 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
     },
     {
       "id": "prescribed-types-and-random-matchings",
-      "label": "Prescribed types and random matchings",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "prescribed-types-and-random-matchings-2",
-      "label": "Prescribed types and random matchings",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "prescribed-types-and-random-matchings-3",
       "label": "Prescribed types and random matchings",
       "description": "A section of the paper."
     },
@@ -44,32 +35,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "from-bounded-patterns-to-spherical-arrangements-2",
-      "label": "From bounded patterns to spherical arrangements",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "from-bounded-patterns-to-spherical-arrangements-3",
-      "label": "From bounded patterns to spherical arrangements",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "from-bounded-patterns-to-spherical-arrangements-4",
-      "label": "From bounded patterns to spherical arrangements",
-      "description": "A section of the paper."
-    },
-    {
       "id": "cone-pictures-and-torsion-freeness",
-      "label": "Cone pictures and torsion-freeness",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "cone-pictures-and-torsion-freeness-2",
-      "label": "Cone pictures and torsion-freeness",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "cone-pictures-and-torsion-freeness-3",
       "label": "Cone pictures and torsion-freeness",
       "description": "A section of the paper."
     }
@@ -92,42 +58,42 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "There exist a finitely presented torsion-free group \\(G\\) and nonzero elements…",
-          "fullLabel": "There exist a finitely presented torsion-free group \\(G\\) and nonzero elements…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "There exist a finitely presented torsion-free group \\(G\\) and nonzero elements \\(, F_2[G]\\) such that \\(=0\\). Moreover, \\(G\\) admits a finite two-dimensional classifying space.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-squared-words",
           "role": "prescribed-types-and-random-matchings",
-          "label": "There is a constant \\(>0\\) such that, for every sufficiently large \\(h\\), _ W…",
-          "fullLabel": "There is a constant \\(>0\\) such that, for every sufficiently large \\(h\\), _ W…",
+          "label": "lemma m1-lem-squared-words",
+          "fullLabel": "lemma m1-lem-squared-words",
           "kind": "lemma",
           "source": "Prescribed types and random matchings",
-          "detail": "There is a constant \\(>0\\) such that, for every sufficiently large \\(h\\), _ W T^h P(W)^2 e^ -2 h .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-prescriptions",
-          "role": "prescribed-types-and-random-matchings-2",
-          "label": "For all sufficiently large admissible \\(n\\), there is a tuple of matchings with…",
-          "fullLabel": "For all sufficiently large admissible \\(n\\), there is a tuple of matchings with…",
+          "role": "prescribed-types-and-random-matchings",
+          "label": "lemma m1-lem-prescriptions",
+          "fullLabel": "lemma m1-lem-prescriptions",
           "kind": "lemma",
           "source": "Prescribed types and random matchings",
-          "detail": "For all sufficiently large admissible \\(n\\), there is a tuple of matchings with \\(() L\\). In the uniform distribution on such tuples, condition further on any feasible set of \\(s\\) prescribed…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-diameter",
-          "role": "prescribed-types-and-random-matchings-3",
-          "label": "With conditional probability tending to one, every connected component of \\(\\)…",
-          "fullLabel": "With conditional probability tending to one, every connected component of \\(\\)…",
+          "role": "prescribed-types-and-random-matchings",
+          "label": "lemma m1-lem-diameter",
+          "fullLabel": "lemma m1-lem-diameter",
           "kind": "lemma",
           "source": "Prescribed types and random matchings",
-          "detail": "With conditional probability tending to one, every connected component of \\(\\) has diameter at most \\(D_0L\\), for a fixed constant \\(D_0\\).",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-prescriptions"
           ]
@@ -135,11 +101,11 @@
         {
           "id": "m1-prop-bounded-pattern",
           "role": "a-bounded-pattern-estimate",
-          "label": "Bounded-pattern estimate",
-          "fullLabel": "Bounded-pattern estimate",
+          "label": "proposition m1-prop-bounded-pattern",
+          "fullLabel": "proposition m1-prop-bounded-pattern",
           "kind": "proposition",
           "source": "A bounded-pattern estimate",
-          "detail": "[Bounded-pattern estimate] There is a constant \\(>0\\), depending only on the fixed types and turn weights, with the following property. For every fixed positive integer \\(K\\), fixed real \\(C1\\), and…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-squared-words",
             "m1-lem-prescriptions"
@@ -148,21 +114,21 @@
         {
           "id": "m1-lem-short-closure",
           "role": "from-bounded-patterns-to-spherical-arrangements",
-          "label": "Closing a segment without cancellation",
-          "fullLabel": "Closing a segment without cancellation",
+          "label": "lemma m1-lem-short-closure",
+          "fullLabel": "lemma m1-lem-short-closure",
           "kind": "lemma",
           "source": "From bounded patterns to spherical arrangements",
-          "detail": "[Closing a segment without cancellation] There is a fixed integer D , independent of n and of the segment, such that every positive-length immersed segment in extends to a cyclically immersed closed…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-planar-intervals",
-          "role": "from-bounded-patterns-to-spherical-arrangements-2",
-          "label": "A linear bound on comparison intervals",
-          "fullLabel": "A linear bound on comparison intervals",
+          "role": "from-bounded-patterns-to-spherical-arrangements",
+          "label": "lemma m1-lem-planar-intervals",
+          "fullLabel": "lemma m1-lem-planar-intervals",
           "kind": "lemma",
           "source": "From bounded patterns to spherical arrangements",
-          "detail": "[A linear bound on comparison intervals] Suppose an arrangement with N disk boundaries is divided into N' N pieces by cutting each original path into consecutive segments, without crossing an…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [],
           "objectUses": [
             "m1-prop-bounded-pattern"
@@ -170,22 +136,22 @@
         },
         {
           "id": "m1-lem-planar-separation",
-          "role": "from-bounded-patterns-to-spherical-arrangements-3",
-          "label": "Recursive planar separation",
-          "fullLabel": "Recursive planar separation",
+          "role": "from-bounded-patterns-to-spherical-arrangements",
+          "label": "lemma m1-lem-planar-separation",
+          "fullLabel": "lemma m1-lem-planar-separation",
           "kind": "lemma",
           "source": "From bounded patterns to spherical arrangements",
-          "detail": "[Recursive planar separation] Put \\[ C_ sep =2 2 1-2/3 . \\] For every integer K1 , a planar multigraph with m vertices has a set of at most C_ sep m/ K vertices whose deletion leaves components of…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-no-arrangements",
-          "role": "from-bounded-patterns-to-spherical-arrangements-4",
-          "label": "Absence of reduced spherical arrangements",
-          "fullLabel": "Absence of reduced spherical arrangements",
+          "role": "from-bounded-patterns-to-spherical-arrangements",
+          "label": "proposition m1-prop-no-arrangements",
+          "fullLabel": "proposition m1-prop-no-arrangements",
           "kind": "proposition",
           "source": "From bounded patterns to spherical arrangements",
-          "detail": "[Absence of reduced spherical arrangements] With probability 1-o(1) , admits no reduced spherical arrangement. In particular, for all sufficiently large admissible n there exist graphs of the…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-planar-intervals"
           ],
@@ -196,44 +162,37 @@
         {
           "id": "m1-prop-topology",
           "role": "cone-pictures-and-torsion-freeness",
-          "label": "The complex \\(X\\) satisfies \\(_2(X)=0\\). Moreover, if a path in \\(\\) starts at…",
-          "fullLabel": "The complex \\(X\\) satisfies \\(_2(X)=0\\). Moreover, if a path in \\(\\) starts at…",
+          "label": "proposition m1-prop-topology",
+          "fullLabel": "proposition m1-prop-topology",
           "kind": "proposition",
           "source": "Cone pictures and torsion-freeness",
-          "detail": "The complex \\(X\\) satisfies \\(_2(X)=0\\). Moreover, if a path in \\(\\) starts at \\(x_A\\) or \\(x_B\\) and ends at a different vertex, its label is nontrivial in \\(G\\).",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-pictures",
-          "role": "cone-pictures-and-torsion-freeness-2",
-          "label": "Every essential sphere map to \\(X\\) can be replaced by an essential sphere map…",
-          "fullLabel": "Every essential sphere map to \\(X\\) can be replaced by an essential sphere map…",
+          "role": "cone-pictures-and-torsion-freeness",
+          "label": "lemma m1-lem-pictures",
+          "fullLabel": "lemma m1-lem-pictures",
           "kind": "lemma",
           "source": "Cone pictures and torsion-freeness",
-          "detail": "Every essential sphere map to \\(X\\) can be replaced by an essential sphere map admitting a cone picture. Every null-homotopy of a graph-path label can be represented by a disk cone picture with that…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-cor-torsion-free",
-          "role": "cone-pictures-and-torsion-freeness-3",
-          "label": "The universal cover of \\(X\\) is contractible, and \\(G\\) is torsion-free.",
-          "fullLabel": "The universal cover of \\(X\\) is contractible, and \\(G\\) is torsion-free.",
+          "role": "cone-pictures-and-torsion-freeness",
+          "label": "corollary m1-cor-torsion-free",
+          "fullLabel": "corollary m1-cor-torsion-free",
           "kind": "corollary",
           "source": "Cone pictures and torsion-freeness",
-          "detail": "The universal cover of \\(X\\) is contractible, and \\(G\\) is torsion-free.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         }
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -241,7 +200,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

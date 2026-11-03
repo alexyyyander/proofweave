@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "251",
   "title": "Amenability, unitarizability, and strong Ulam stability",
   "result": {
@@ -14,17 +15,12 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
-    },
-    {
-      "id": "an-invariant-kernel-obstruction",
-      "label": "An invariant-kernel obstruction",
+      "id": "introduction",
+      "label": "Introduction",
       "description": "A section of the paper."
     },
     {
-      "id": "an-invariant-kernel-obstruction-2",
+      "id": "an-invariant-kernel-obstruction",
       "label": "An invariant-kernel obstruction",
       "description": "A section of the paper."
     },
@@ -34,27 +30,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "sparse-assignments-from-nonamenability-2",
-      "label": "Sparse assignments from nonamenability",
-      "description": "A section of the paper."
-    },
-    {
       "id": "finite-dimensional-weights-and-sparse-block-operators",
-      "label": "Finite-dimensional weights and sparse block operators",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "finite-dimensional-weights-and-sparse-block-operators-2",
-      "label": "Finite-dimensional weights and sparse block operators",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "finite-dimensional-weights-and-sparse-block-operators-3",
-      "label": "Finite-dimensional weights and sparse block operators",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "finite-dimensional-weights-and-sparse-block-operators-4",
       "label": "Finite-dimensional weights and sparse block operators",
       "description": "A section of the paper."
     },
@@ -82,94 +58,94 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "A discrete group is amenable if and only if it is unitarizable. For every…",
-          "fullLabel": "A discrete group is amenable if and only if it is unitarizable. For every…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "A discrete group is amenable if and only if it is unitarizable. For every discrete nonamenable group \\(G\\) and every \\(>0\\), there are a complex Hilbert space \\( K\\) and a representation \\(:GGL( K)\\)…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-kernel-obstruction",
           "role": "an-invariant-kernel-obstruction",
-          "label": "Distance from the translation commutant",
-          "fullLabel": "Distance from the translation commutant",
+          "label": "lemma m1-lem-kernel-obstruction",
+          "fullLabel": "lemma m1-lem-kernel-obstruction",
           "kind": "lemma",
           "source": "An invariant-kernel obstruction",
-          "detail": "[Distance from the translation commutant] Let G be a countable group, let k be a positive integer, and let A,T B( H_k) with A U_k(G)' . Write \\[ A[x,y]=W(x^ -1 y), E=_ s G W(s)_ ^2. \\] Suppose that,…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-direct-sum-obstruction",
-          "role": "an-invariant-kernel-obstruction-2",
-          "label": "Direct-sum obstruction",
-          "fullLabel": "Direct-sum obstruction",
+          "role": "an-invariant-kernel-obstruction",
+          "label": "proposition m1-prop-direct-sum-obstruction",
+          "fullLabel": "proposition m1-prop-direct-sum-obstruction",
           "kind": "proposition",
           "source": "An invariant-kernel obstruction",
-          "detail": "[Direct-sum obstruction] Let G be a countable group. For each j , let k_j be a positive integer, put \\[ H_j=^2(G;^ k_j ), (U_j(g))(x)=(g^ -1 x), \\] and let A_j,T_j B( H_j) with A_j U_j(G)' . Write \\[…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-contracting-average",
           "role": "sparse-assignments-from-nonamenability",
-          "label": "If \\(G\\) is a nonamenable discrete group, there are a finite set \\(S G\\)…",
-          "fullLabel": "If \\(G\\) is a nonamenable discrete group, there are a finite set \\(S G\\)…",
+          "label": "lemma m1-lem-contracting-average",
+          "fullLabel": "lemma m1-lem-contracting-average",
           "kind": "lemma",
           "source": "Sparse assignments from nonamenability",
-          "detail": "If \\(G\\) is a nonamenable discrete group, there are a finite set \\(S G\\) containing \\(e\\), with \\(d=|S|2\\), and a number \\(0<<1\\) such that \\[ 1d_ t S R_t . \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-sparse-splitting",
-          "role": "sparse-assignments-from-nonamenability-2",
-          "label": "Let \\(G\\) be countable and nonamenable, and fix \\(S,d,\\) as in . For every…",
-          "fullLabel": "Let \\(G\\) be countable and nonamenable, and fix \\(S,d,\\) as in . For every…",
+          "role": "sparse-assignments-from-nonamenability",
+          "label": "proposition m1-prop-sparse-splitting",
+          "fullLabel": "proposition m1-prop-sparse-splitting",
           "kind": "proposition",
           "source": "Sparse assignments from nonamenability",
-          "detail": "Let \\(G\\) be countable and nonamenable, and fix \\(S,d,\\) as in . For every \\(1\\), list the products of \\(\\) elements of \\(S\\), with multiplicity, as \\(s_1,,s_n\\), where \\(n=d^\\), and put \\(r= n^\\).…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-frames",
           "role": "finite-dimensional-weights-and-sparse-block-operators",
-          "label": "An upper bound for all small subfamilies",
-          "fullLabel": "An upper bound for all small subfamilies",
+          "label": "lemma m1-lem-frames",
+          "fullLabel": "lemma m1-lem-frames",
           "kind": "lemma",
           "source": "Finite-dimensional weights and sparse block operators",
-          "detail": "[An upper bound for all small subfamilies] Let n 2 and r 1 be integers, and put p=(2r,n), k= 2r(2n), b_0=10, where denotes the natural logarithm. There are unit vectors v_1,,v_n^k such that, for…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-masked",
-          "role": "finite-dimensional-weights-and-sparse-block-operators-2",
-          "label": "The masked operator estimate",
-          "fullLabel": "The masked operator estimate",
+          "role": "finite-dimensional-weights-and-sparse-block-operators",
+          "label": "lemma m1-lem-masked",
+          "fullLabel": "lemma m1-lem-masked",
           "kind": "lemma",
           "source": "Finite-dimensional weights and sparse block operators",
-          "detail": "[The masked operator estimate] In the preceding setting, let 1 p n and b_0>0 . Suppose that \\[ V_J b_0 for every J\\ 1,,n\\ with |J| p, \\] where V_J is the synthesis operator with columns v_i , i J .…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-cor-block-rows-columns",
-          "role": "finite-dimensional-weights-and-sparse-block-operators-3",
-          "label": "Individual block rows and columns",
-          "fullLabel": "Individual block rows and columns",
+          "role": "finite-dimensional-weights-and-sparse-block-operators",
+          "label": "corollary m1-cor-block-rows-columns",
+          "fullLabel": "corollary m1-cor-block-rows-columns",
           "kind": "corollary",
           "source": "Finite-dimensional weights and sparse block operators",
-          "detail": "[Individual block rows and columns] Under , one has \\[ q_xT b_0^2(x G), (A-T) _y b_0^2(y G). \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-masked"
           ]
         },
         {
           "id": "m1-prop-uniform-differences",
-          "role": "finite-dimensional-weights-and-sparse-block-operators-4",
-          "label": "Uniformly bounded conjugation differences",
-          "fullLabel": "Uniformly bounded conjugation differences",
+          "role": "finite-dimensional-weights-and-sparse-block-operators",
+          "label": "proposition m1-prop-uniform-differences",
+          "fullLabel": "proposition m1-prop-uniform-differences",
           "kind": "proposition",
           "source": "Finite-dimensional weights and sparse block operators",
-          "detail": "[Uniformly bounded conjugation differences] Under , the maps U(g) in form a unitary representation of G , and A commutes with every U(g) . Define \\[ D(g)=T-U(g)TU(g)^ -1 (g G). \\] Then _ g G D(g)…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-frames",
             "m1-cor-block-rows-columns"
@@ -178,24 +154,17 @@
         {
           "id": "m1-lem-subgroup-induction",
           "role": "proof-of-the-main-theorem",
-          "label": "Induction from a subgroup",
-          "fullLabel": "Induction from a subgroup",
+          "label": "lemma m1-lem-subgroup-induction",
+          "fullLabel": "lemma m1-lem-subgroup-induction",
           "kind": "lemma",
           "source": "Proof of the main theorem",
-          "detail": "[Induction from a subgroup] Let \\(H\\) be a subgroup of a discrete group \\(G\\), and let \\(:HGL( K)\\) be a uniformly bounded representation on a complex Hilbert space. There is a uniformly bounded…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         }
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -203,7 +172,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

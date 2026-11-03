@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "333",
   "title": "Smooth isometric immersions of surfaces into ℝ<sup>4</sup>",
   "result": {
@@ -14,17 +15,12 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
-    },
-    {
-      "id": "normal-geometry-and-admissible-phases",
-      "label": "Normal geometry and admissible phases",
+      "id": "introduction",
+      "label": "Introduction",
       "description": "A section of the paper."
     },
     {
-      "id": "normal-geometry-and-admissible-phases-2",
+      "id": "normal-geometry-and-admissible-phases",
       "label": "Normal geometry and admissible phases",
       "description": "A section of the paper."
     },
@@ -44,32 +40,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "an-exact-smooth-correction-2",
-      "label": "An exact smooth correction",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "an-exact-smooth-correction-3",
-      "label": "An exact smooth correction",
-      "description": "A section of the paper."
-    },
-    {
       "id": "a-velocity-circle-with-controlled-turns",
-      "label": "A velocity circle with controlled turns",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "a-velocity-circle-with-controlled-turns-2",
-      "label": "A velocity circle with controlled turns",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "a-velocity-circle-with-controlled-turns-3",
-      "label": "A velocity circle with controlled turns",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "a-velocity-circle-with-controlled-turns-4",
       "label": "A velocity circle with controlled turns",
       "description": "A section of the paper."
     },
@@ -79,17 +50,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "realizing-the-primitive-metric-addition-2",
-      "label": "Realizing the primitive metric addition",
-      "description": "A section of the paper."
-    },
-    {
       "id": "global-preparation-and-finite-assembly",
-      "label": "Global preparation and finite assembly",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "global-preparation-and-finite-assembly-2",
       "label": "Global preparation and finite assembly",
       "description": "A section of the paper."
     }
@@ -112,82 +73,82 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "Every closed smooth Riemannian surface (M,g) admits a C^ isometric immersion…",
-          "fullLabel": "Every closed smooth Riemannian surface (M,g) admits a C^ isometric immersion…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "Every closed smooth Riemannian surface (M,g) admits a C^ isometric immersion into (^4,_4) , where _4=_ i=1 ^4 dx_i^2 .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-phase-data",
           "role": "normal-geometry-and-admissible-phases",
-          "label": "Positive phase decompositions",
-          "fullLabel": "Positive phase decompositions",
+          "label": "lemma m1-lem-phase-data",
+          "fullLabel": "lemma m1-lem-phase-data",
           "kind": "lemma",
           "source": "Normal geometry and admissible phases",
-          "detail": "[Positive phase decompositions] Let F:M^4 be a smooth immersion with B_F(p)0 for every p , and let h_0 be a smooth positive definite tensor. There are finitely many functions _ defined on coordinate…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-polynomial-phase-data",
-          "role": "normal-geometry-and-admissible-phases-2",
-          "label": "Phase data for a varying family",
-          "fullLabel": "Phase data for a varying family",
+          "role": "normal-geometry-and-admissible-phases",
+          "label": "lemma m1-lem-polynomial-phase-data",
+          "fullLabel": "lemma m1-lem-polynomial-phase-data",
           "kind": "lemma",
           "source": "Normal geometry and admissible phases",
-          "detail": "[Phase data for a varying family] Fix a metric h_* and suppose that f_z , 0<z<z_0 , are smooth immersions satisfying uniform upper and positive lower metric bounds, \\[ \\|f_z\\|_ C^j =O(z^ -j )(0 j3),…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-primitive-addition",
           "role": "the-primitive-metric-addition",
-          "label": "Primitive addition with preserved boundary conditions",
-          "fullLabel": "Primitive addition with preserved boundary conditions",
+          "label": "proposition m1-prop-primitive-addition",
+          "fullLabel": "proposition m1-prop-primitive-addition",
           "kind": "proposition",
           "source": "The primitive metric addition",
-          "detail": "[Primitive addition with preserved boundary conditions] Let M be a closed smooth surface and F:M^4 a smooth immersion whose second fundamental form is nonzero as a tensor at every point. Assume F has…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-small-increment",
           "role": "small-oscillatory-metric-increments",
-          "label": "Small increment",
-          "fullLabel": "Small increment",
+          "label": "proposition m1-prop-small-increment",
+          "fullLabel": "proposition m1-prop-small-increment",
           "kind": "proposition",
           "source": "Small oscillatory metric increments",
-          "detail": "[Small increment] Let the phase data above be fixed. Let P_1,,P_d be fixed smooth tensor-valued differential operators polynomial above order two, and put \\[ P(G)=(G)+_ i=1 ^d^i P_i(G), 01. \\] There…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-exact-correction",
           "role": "an-exact-smooth-correction",
-          "label": "Exact correction",
-          "fullLabel": "Exact correction",
+          "label": "proposition m1-prop-exact-correction",
+          "fullLabel": "proposition m1-prop-exact-correction",
           "kind": "proposition",
           "source": "An exact smooth correction",
-          "detail": "[Exact correction] Let M be a closed smooth surface, and let h_* be a smooth Riemannian metric on M . Fix background norms. There are positive integers R,N with the following property. Suppose that…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-finite-order-smoothing",
-          "role": "an-exact-smooth-correction-2",
-          "label": "For each positive integer r , there are linear smoothing operators S_s , 0<s…",
-          "fullLabel": "For each positive integer r , there are linear smoothing operators S_s , 0<s…",
+          "role": "an-exact-smooth-correction",
+          "label": "lemma m1-lem-finite-order-smoothing",
+          "fullLabel": "lemma m1-lem-finite-order-smoothing",
           "kind": "lemma",
           "source": "An exact smooth correction",
-          "detail": "For each positive integer r , there are linear smoothing operators S_s , 0<s s_0 , on smooth sections of any fixed smooth vector bundle over M , with the following properties. For fixed nonnegative…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-exact-step",
-          "role": "an-exact-smooth-correction-3",
-          "label": "One smoothing step",
-          "fullLabel": "One smoothing step",
+          "role": "an-exact-smooth-correction",
+          "label": "lemma m1-lem-exact-step",
+          "fullLabel": "lemma m1-lem-exact-step",
           "kind": "lemma",
           "source": "An exact smooth correction",
-          "detail": "[One smoothing step] Under , take either '=^k or '=^ k+1 . For sufficiently small t , there is a smooth increment U such that, with \\[ G'=G+U, H'='^ -2 (h_*-(G')), S'_m= S_m(;G',H'), \\] for every…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-prop-small-increment"
           ]
@@ -195,61 +156,61 @@
         {
           "id": "m1-lem-velocity-plane",
           "role": "a-velocity-circle-with-controlled-turns",
-          "label": "On a neighborhood of D and a sufficiently small neighborhood of the 2-jet…",
-          "fullLabel": "On a neighborhood of D and a sufficiently small neighborhood of the 2-jet…",
+          "label": "lemma m1-lem-velocity-plane",
+          "fullLabel": "lemma m1-lem-velocity-plane",
           "kind": "lemma",
           "source": "A velocity circle with controlled turns",
-          "detail": "On a neighborhood of D and a sufficiently small neighborhood of the 2-jet section of F , the vectors Y,C are independent, P is a smooth 2-plane, and R_0 is bounded below by a positive constant.…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-loop-density",
-          "role": "a-velocity-circle-with-controlled-turns-2",
-          "label": "Smooth densities for interior averages",
-          "fullLabel": "Smooth densities for interior averages",
+          "role": "a-velocity-circle-with-controlled-turns",
+          "label": "lemma m1-lem-loop-density",
+          "fullLabel": "lemma m1-lem-loop-density",
           "kind": "lemma",
           "source": "A velocity circle with controlled turns",
-          "detail": "[Smooth densities for interior averages] Let a smooth family of circle-valued paths p_b(t)^2 and targets c_b^2 be parametrized by a finite-dimensional parameter b . On a compact parameter set,…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-small-value-derivative",
-          "role": "a-velocity-circle-with-controlled-turns-3",
-          "label": "Let K be a compact subset of a finite union of smooth embedded curves in the…",
-          "fullLabel": "Let K be a compact subset of a finite union of smooth embedded curves in the…",
+          "role": "a-velocity-circle-with-controlled-turns",
+          "label": "lemma m1-lem-small-value-derivative",
+          "fullLabel": "lemma m1-lem-small-value-derivative",
           "kind": "lemma",
           "source": "A velocity circle with controlled turns",
-          "detail": "Let K be a compact subset of a finite union of smooth embedded curves in the interior of a coordinate disk. Suppose the curves have only finitely many intersections and only finitely many tangencies…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-velocity-loop",
-          "role": "a-velocity-circle-with-controlled-turns-4",
-          "label": "Velocity loop",
-          "fullLabel": "Velocity loop",
+          "role": "a-velocity-circle-with-controlled-turns",
+          "label": "lemma m1-lem-velocity-loop",
+          "fullLabel": "lemma m1-lem-velocity-loop",
           "kind": "lemma",
           "source": "A velocity circle with controlled turns",
-          "detail": "[Velocity loop] Under the hypotheses of Proposition~ , fix any finite threshold T . There is a neighborhood of the 2-jet section of F over D and a small exterior neighborhood, on which one can choose…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-primitive-realization",
           "role": "realizing-the-primitive-metric-addition",
-          "label": "Realization of a velocity loop",
-          "fullLabel": "Realization of a velocity loop",
+          "label": "proposition m1-prop-primitive-realization",
+          "fullLabel": "proposition m1-prop-primitive-realization",
           "kind": "proposition",
           "source": "Realizing the primitive metric addition",
-          "detail": "[Realization of a velocity loop] Let M be a closed smooth surface and let F:M^4 be a smooth immersion whose second fundamental form is nonzero at every point. Let D be a disk with coordinates x,y on…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-finite-periodic-expansion",
-          "role": "realizing-the-primitive-metric-addition-2",
-          "label": "Finite periodic expansion",
-          "fullLabel": "Finite periodic expansion",
+          "role": "realizing-the-primitive-metric-addition",
+          "label": "lemma m1-lem-finite-periodic-expansion",
+          "fullLabel": "lemma m1-lem-finite-periodic-expansion",
           "kind": "lemma",
           "source": "Realizing the primitive metric addition",
-          "detail": "[Finite periodic expansion] Under the hypotheses of Proposition~ , for each integer L2 there are periodic differential operators U_1,,U_L with values in ^4 , and symmetric tensor differential…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-phase-data"
           ],
@@ -261,21 +222,21 @@
         {
           "id": "m1-lem-spherical-preparation",
           "role": "global-preparation-and-finite-assembly",
-          "label": "Finite-point spherical preparation",
-          "fullLabel": "Finite-point spherical preparation",
+          "label": "lemma m1-lem-spherical-preparation",
+          "fullLabel": "lemma m1-lem-spherical-preparation",
           "kind": "lemma",
           "source": "Global preparation and finite assembly",
-          "detail": "[Finite-point spherical preparation] Let M be a closed smooth surface and let I:M S^3 be a smooth immersion. There are constants C,c>0 and _0>0 with the following property. For every finite set P M…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-global-preparation",
-          "role": "global-preparation-and-finite-assembly-2",
-          "label": "Global primitive preparation",
-          "fullLabel": "Global primitive preparation",
+          "role": "global-preparation-and-finite-assembly",
+          "label": "lemma m1-lem-global-preparation",
+          "fullLabel": "lemma m1-lem-global-preparation",
           "kind": "lemma",
           "source": "Global preparation and finite assembly",
-          "detail": "[Global primitive preparation] Let (M,g) be a closed smooth Riemannian surface. There exist a smooth immersion F^0:M^4 , a smooth unit normal n^0 , and a finite list \\[ (D_j,x_j,y_j,a_j), 1 j K, \\]…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-prop-primitive-addition"
           ],
@@ -286,14 +247,7 @@
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -301,7 +255,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

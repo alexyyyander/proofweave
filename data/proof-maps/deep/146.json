@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "146",
   "title": "Positive metric entropy for the standard map",
   "result": {
@@ -13,11 +14,6 @@
     "roleNote": "The family's stated result in the release."
   },
   "roles": [
-    {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
-    },
     {
       "id": "introduction",
       "label": "Introduction",
@@ -34,27 +30,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "nearly-full-rate-cancellations-2",
-      "label": "Nearly full-rate cancellations",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "nearly-full-rate-cancellations-3",
-      "label": "Nearly full-rate cancellations",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "nearly-full-rate-cancellations-4",
-      "label": "Nearly full-rate cancellations",
-      "description": "A section of the paper."
-    },
-    {
       "id": "a-product-estimate-across-a-fast-bridge",
-      "label": "A product estimate across a fast bridge",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "a-product-estimate-across-a-fast-bridge-2",
       "label": "A product estimate across a fast bridge",
       "description": "A section of the paper."
     },
@@ -64,72 +40,12 @@
       "description": "A section of the paper."
     },
     {
-      "id": "product-distances-and-measures-across-scales-2",
-      "label": "Product distances and measures across scales",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "product-distances-and-measures-across-scales-3",
-      "label": "Product distances and measures across scales",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "product-distances-and-measures-across-scales-4",
-      "label": "Product distances and measures across scales",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "product-distances-and-measures-across-scales-5",
-      "label": "Product distances and measures across scales",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "product-distances-and-measures-across-scales-6",
-      "label": "Product distances and measures across scales",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "product-distances-and-measures-across-scales-7",
-      "label": "Product distances and measures across scales",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "product-distances-and-measures-across-scales-8",
-      "label": "Product distances and measures across scales",
-      "description": "A section of the paper."
-    },
-    {
       "id": "support-restrictions-and-the-geometry-of-limiting-distances",
       "label": "Support restrictions and the geometry of limiting distances",
       "description": "A section of the paper."
     },
     {
-      "id": "support-restrictions-and-the-geometry-of-limiting-distances-2",
-      "label": "Support restrictions and the geometry of limiting distances",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "support-restrictions-and-the-geometry-of-limiting-distances-3",
-      "label": "Support restrictions and the geometry of limiting distances",
-      "description": "A section of the paper."
-    },
-    {
       "id": "a-capped-deficit-and-the-final-balance",
-      "label": "A capped deficit and the final balance",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "a-capped-deficit-and-the-final-balance-2",
-      "label": "A capped deficit and the final balance",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "a-capped-deficit-and-the-final-balance-3",
-      "label": "A capped deficit and the final balance",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "a-capped-deficit-and-the-final-balance-4",
       "label": "A capped deficit and the final balance",
       "description": "A section of the paper."
     }
@@ -152,22 +68,22 @@
       "nodes": [
         {
           "id": "m1-main-entropy",
-          "role": "result",
-          "label": "There exists k_0>0 such that \\[ h_m(f_k)>0for every k k_0. \\] Equivalently, for…",
-          "fullLabel": "There exists k_0>0 such that \\[ h_m(f_k)>0for every k k_0. \\] Equivalently, for…",
+          "role": "introduction",
+          "label": "theorem m1-main-entropy",
+          "fullLabel": "theorem m1-main-entropy",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "There exists k_0>0 such that \\[ h_m(f_k)>0for every k k_0. \\] Equivalently, for every such k the largest Lyapunov exponent of f_k is positive on a set of positive m -measure.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-main-components",
           "role": "introduction",
-          "label": "Nonuniformly hyperbolic ergodic component",
-          "fullLabel": "Nonuniformly hyperbolic ergodic component",
+          "label": "corollary m1-main-components",
+          "fullLabel": "corollary m1-main-components",
           "kind": "corollary",
           "source": "Introduction",
-          "detail": "[Nonuniformly hyperbolic ergodic component] For each k k_0 there is a measurable f_k -invariant set E=E(k) with m(E)>0 such that (E,m(E)^ -1 m|_E,f_k) is ergodic and f_k has one positive and one…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-main-entropy"
           ]
@@ -175,240 +91,233 @@
         {
           "id": "m1-setup-shortfall-count",
           "role": "transfer-matrices-and-growth-shortfalls",
-          "label": "Shortfall count",
-          "fullLabel": "Shortfall count",
+          "label": "lemma m1-setup-shortfall-count",
+          "fullLabel": "lemma m1-setup-shortfall-count",
           "kind": "lemma",
           "source": "Transfer matrices and growth shortfalls",
-          "detail": "[Shortfall count] Let z_0,,z_N be real numbers with z_j-z_ j-1 1 , and set \\[ D=N-(z_N-z_0) =_ j=1 ^N(1-z_j+z_ j-1 ). \\] For c<1 , the number of indices j for which some 0 l<j satisfies…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-can-theorem",
           "role": "nearly-full-rate-cancellations",
-          "label": "Cancellation estimate",
-          "fullLabel": "Cancellation estimate",
+          "label": "theorem m1-can-theorem",
+          "fullLabel": "theorem m1-can-theorem",
           "kind": "theorem",
           "source": "Nearly full-rate cancellations",
-          "detail": "[Cancellation estimate] There are constants >0 , C< , >0 , and M_0< such that, for every M M_0 , every i , and every n , \\ l (_M T_ i,i-n , _M T_ i,i+n )(1-)n,\\\\[2pt] _M T_ i-n,i+n n \\ C(- n). All…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-can-many-good",
-          "role": "nearly-full-rate-cancellations-2",
-          "label": "There is a constant A such that, on each outward path associated to , the…",
-          "fullLabel": "There is a constant A such that, on each outward path associated to , the…",
+          "role": "nearly-full-rate-cancellations",
+          "label": "lemma m1-can-many-good",
+          "fullLabel": "lemma m1-can-many-good",
           "kind": "lemma",
           "source": "Nearly full-rate cancellations",
-          "detail": "There is a constant A such that, on each outward path associated to , the number of indices in \\ 2,,N-2\\ which are not good is at most A( n+1) 1-c . The estimate holds uniformly for M e .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-can-matching",
-          "role": "nearly-full-rate-cancellations-3",
-          "label": "There are fixed constants _0>0 , c_1>0 , C_1< , and n_*< with the following…",
-          "fullLabel": "There are fixed constants _0>0 , c_1>0 , C_1< , and n_*< with the following…",
+          "role": "nearly-full-rate-cancellations",
+          "label": "lemma m1-can-matching",
+          "fullLabel": "lemma m1-can-matching",
           "kind": "lemma",
           "source": "Nearly full-rate cancellations",
-          "detail": "There are fixed constants _0>0 , c_1>0 , C_1< , and n_*< with the following property. If 0<_0 is fixed, increasing n_* if necessary, every configuration in with n n_* has at least c_1n pairs…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-can-local-scarcity",
-          "role": "nearly-full-rate-cancellations-4",
-          "label": "Local scarcity",
-          "fullLabel": "Local scarcity",
+          "role": "nearly-full-rate-cancellations",
+          "label": "lemma m1-can-local-scarcity",
+          "fullLabel": "lemma m1-can-local-scarcity",
           "kind": "lemma",
           "source": "Nearly full-rate cancellations",
-          "detail": "[Local scarcity] For every >0 there are '>0 and M_< such that the following holds for M M_ . Fix q_e , a base coordinate _* , and indices j_+,j_-2 on the two outward paths. Suppose both indices are…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-bridge-theorem",
           "role": "a-product-estimate-across-a-fast-bridge",
-          "label": "Product estimate across a fast bridge",
-          "fullLabel": "Product estimate across a fast bridge",
+          "label": "theorem m1-bridge-theorem",
+          "fullLabel": "theorem m1-bridge-theorem",
           "kind": "theorem",
           "source": "A product estimate across a fast bridge",
-          "detail": "[Product estimate across a fast bridge] There are absolute constants c_b(0,1) , >0 , and >0 with the following property. Fix observation bounds (R,L,B) and a threshold h>0 . For sufficiently large M…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-bridge-graphs",
-          "role": "a-product-estimate-across-a-fast-bridge-2",
-          "label": "Contracting graphs and their distortion",
-          "fullLabel": "Contracting graphs and their distortion",
+          "role": "a-product-estimate-across-a-fast-bridge",
+          "label": "lemma m1-bridge-graphs",
+          "fullLabel": "lemma m1-bridge-graphs",
           "kind": "lemma",
           "source": "A product estimate across a fast bridge",
-          "detail": "[Contracting graphs and their distortion] For sufficiently large M , suppose B_+2 and, at a fixed state with central coordinates (x,y)=(q_0,q_ -1 ) , D_l:= T_ 0,l M^ cl (1 l B_+). For at least one…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-scale-fourpoint",
           "role": "product-distances-and-measures-across-scales",
-          "label": "Four-point comparison",
-          "fullLabel": "Four-point comparison",
+          "label": "lemma m1-scale-fourpoint",
+          "fullLabel": "lemma m1-scale-fourpoint",
           "kind": "lemma",
           "source": "Product distances and measures across scales",
-          "detail": "[Four-point comparison] Fix a base index i and write \\[ D_j= T_ i,j , R_ jp =M^ g(j,p)-g(i,j)-g(i,p) . \\] There is an absolute constant C_01 such that, for every orbit, every sufficiently large…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-scale-truncation",
-          "role": "product-distances-and-measures-across-scales-2",
-          "label": "Truncation of a cancellation",
-          "fullLabel": "Truncation of a cancellation",
+          "role": "product-distances-and-measures-across-scales",
+          "label": "lemma m1-scale-truncation",
+          "fullLabel": "lemma m1-scale-truncation",
           "kind": "lemma",
           "source": "Product distances and measures across scales",
-          "detail": "[Truncation of a cancellation] Fix integers i , n1 , and 1 s n , and put \\[ L=i-n, R=i+n, L'=i-s, R'=i+s, \\] \\[ D=n-\\ g(i,L),g(i,R)\\ , =g(i,L)+g(i,R)-g(L,R). \\] Use the quantities R_ uv of with base…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-scale-doubling",
-          "role": "product-distances-and-measures-across-scales-3",
-          "label": "Doubling bound",
-          "fullLabel": "Doubling bound",
+          "role": "product-distances-and-measures-across-scales",
+          "label": "lemma m1-scale-doubling",
+          "fullLabel": "lemma m1-scale-doubling",
           "kind": "lemma",
           "source": "Product distances and measures across scales",
-          "detail": "[Doubling bound] For all sufficiently large parameters and every integer n1 , e_n e_ 2n C e_n+C n , with a constant independent of n and the parameter.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-scale-selection",
-          "role": "product-distances-and-measures-across-scales-4",
-          "label": "Critical scales",
-          "fullLabel": "Critical scales",
+          "role": "product-distances-and-measures-across-scales",
+          "label": "lemma m1-scale-selection",
+          "fullLabel": "lemma m1-scale-selection",
           "kind": "lemma",
           "source": "Product distances and measures across scales",
-          "detail": "[Critical scales] Along the assumed zero-exponent parameter sequence, there are powers of two n_0=n_0(K) and N=N(K)>n_0 , and numbers =e_N , such that n_0, 0, n_0, and, for every fixed integer m…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-scale-doubling"
           ]
         },
         {
           "id": "m1-scale-local-mass",
-          "role": "product-distances-and-measures-across-scales-5",
-          "label": "Bounds for local tests",
-          "fullLabel": "Bounds for local tests",
+          "role": "product-distances-and-measures-across-scales",
+          "label": "lemma m1-scale-local-mass",
+          "fullLabel": "lemma m1-scale-local-mass",
           "kind": "lemma",
           "source": "Product distances and measures across scales",
-          "detail": "[Bounds for local tests] Let I have dyadic endpoints and length p=2^m , where m is fixed. Then (J(I)+V(I))\\,_K=O_I(1). Uniformly over the individual dyadic scales n_0 n N , ^ -1 =O_I(1). At the…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-scale-affinity-tests",
-          "role": "product-distances-and-measures-across-scales-6",
-          "label": "Detection of affinity",
-          "fullLabel": "Detection of affinity",
+          "role": "product-distances-and-measures-across-scales",
+          "label": "lemma m1-scale-affinity-tests",
+          "fullLabel": "lemma m1-scale-affinity-tests",
           "kind": "lemma",
           "source": "Product distances and measures across scales",
-          "detail": "[Detection of affinity] As I ranges over intervals with dyadic endpoints and power-of-two length, the common zero set of J(I)+V(I) is exactly A . Consequently, every compact subset F U admits…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-scale-limits",
-          "role": "product-distances-and-measures-across-scales-7",
-          "label": "Limits away from affinity",
-          "fullLabel": "Limits away from affinity",
+          "role": "product-distances-and-measures-across-scales",
+          "label": "proposition m1-scale-limits",
+          "fullLabel": "proposition m1-scale-limits",
           "kind": "proposition",
           "source": "Product distances and measures across scales",
-          "detail": "[Limits away from affinity] After passing to a subsequence, the restrictions of _K and _K to U converge vaguely to locally finite nonnegative Borel measures and , respectively. Moreover, _K0vaguely…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-scale-decomposition",
-          "role": "product-distances-and-measures-across-scales-8",
-          "label": "Positive dilation decomposition",
-          "fullLabel": "Positive dilation decomposition",
+          "role": "product-distances-and-measures-across-scales",
+          "label": "proposition m1-scale-decomposition",
+          "fullLabel": "proposition m1-scale-decomposition",
           "kind": "proposition",
           "source": "Product distances and measures across scales",
-          "detail": "[Positive dilation decomposition] On U , with the measures supported on X_0 as above, S_*=+. There is a locally finite nonnegative measure _ , invariant under S and every dyadic translation, such…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-shape-exclusions",
           "role": "support-restrictions-and-the-geometry-of-limiting-distances",
-          "label": "Support exclusions",
-          "fullLabel": "Support exclusions",
+          "label": "proposition m1-shape-exclusions",
+          "fullLabel": "proposition m1-shape-exclusions",
           "kind": "proposition",
           "source": "Support restrictions and the geometry of limiting distances",
-          "detail": "[Support exclusions] There is a measurable set of full measure for , , and _ on which the following statements hold for every real choice of their arguments. There do not exist r and t>0 such that…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-shape-classification",
-          "role": "support-restrictions-and-the-geometry-of-limiting-distances-2",
-          "label": "Shape classification",
-          "fullLabel": "Shape classification",
+          "role": "support-restrictions-and-the-geometry-of-limiting-distances",
+          "label": "proposition m1-shape-classification",
+          "fullLabel": "proposition m1-shape-classification",
           "kind": "proposition",
           "source": "Support restrictions and the geometry of limiting distances",
-          "detail": "[Shape classification] Every nonaffine array in X_0 satisfying has one of the following forms: every secant has speed at most c_b ; there is one exterior ray of exact unit speed, and the…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-shape-crossloss",
-          "role": "support-restrictions-and-the-geometry-of-limiting-distances-3",
-          "label": "Loss across two rays",
-          "fullLabel": "Loss across two rays",
+          "role": "support-restrictions-and-the-geometry-of-limiting-distances",
+          "label": "lemma m1-shape-crossloss",
+          "fullLabel": "lemma m1-shape-crossloss",
           "kind": "lemma",
           "source": "Support restrictions and the geometry of limiting distances",
-          "detail": "[Loss across two rays] Suppose there are two exterior unit rays with slow interval [a,b] , and put L=b-a . Then L>0 , and, with the fixed constant C_*=2+6, every z and t>0 satisfy 0 1-d(z,z+t)tC_*L t…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-end-balance",
           "role": "a-capped-deficit-and-the-final-balance",
-          "label": "Exact limiting balance",
-          "fullLabel": "Exact limiting balance",
+          "label": "proposition m1-end-balance",
+          "fullLabel": "proposition m1-end-balance",
           "kind": "proposition",
           "source": "A capped deficit and the final balance",
-          "detail": "[Exact limiting balance] With the preceding choices, G\\,=H_>0.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-scale-truncation"
           ]
         },
         {
           "id": "m1-end-terminal",
-          "role": "a-capped-deficit-and-the-final-balance-2",
-          "label": "Strict bound for the terminal contribution",
-          "fullLabel": "Strict bound for the terminal contribution",
+          "role": "a-capped-deficit-and-the-final-balance",
+          "label": "lemma m1-end-terminal",
+          "fullLabel": "lemma m1-end-terminal",
           "kind": "lemma",
           "source": "A capped deficit and the final balance",
-          "detail": "[Strict bound for the terminal contribution] The series in satisfies _ j=1 ^ G(S^ -j d)\\,(d)<H_.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-end-remainder",
-          "role": "a-capped-deficit-and-the-final-balance-3",
-          "label": "Nonpositive invariant contribution",
-          "fullLabel": "Nonpositive invariant contribution",
+          "role": "a-capped-deficit-and-the-final-balance",
+          "label": "lemma m1-end-remainder",
+          "fullLabel": "lemma m1-end-remainder",
           "kind": "lemma",
           "source": "A capped deficit and the final balance",
-          "detail": "[Nonpositive invariant contribution] The invariant remainder satisfies G\\,_0.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-shape-crossloss"
           ]
         },
         {
           "id": "m1-end-contradiction",
-          "role": "a-capped-deficit-and-the-final-balance-4",
-          "label": "Contradiction and eventual positive entropy",
-          "fullLabel": "Contradiction and eventual positive entropy",
+          "role": "a-capped-deficit-and-the-final-balance",
+          "label": "theorem m1-end-contradiction",
+          "fullLabel": "theorem m1-end-contradiction",
           "kind": "theorem",
           "source": "A capped deficit and the final balance",
-          "detail": "[Contradiction and eventual positive entropy] There is no sequence k+ along which the largest Lyapunov exponent of f_k is zero almost everywhere. Consequently holds.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         }
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-main-entropy",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -416,7 +325,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

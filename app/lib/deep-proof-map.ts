@@ -67,6 +67,7 @@ export type DeepLeanAlignment = {
 
 export type DeepProofMapData = {
   schemaVersion: "pw-deep-proof-map-v1";
+  machineDerived?: true;
   status: "deep";
   reviewStatus: "unreviewed";
   curatedAt: string;
@@ -202,8 +203,10 @@ export function adaptDeepProofMap(deep: DeepProofMapData, revision: string, subj
     },
     tracks: [{
       id: "deep",
-      label: "Deep argument map",
-      description: "A curated theorem-level strategy map. It is not a kernel check or a Proofweave replay.",
+      label: deep.machineDerived ? "Machine-extracted reference map" : "Deep argument map",
+      description: deep.machineDerived
+        ? "Unreviewed references extracted from the paper. They do not establish the family result; consult the source for exact statements."
+        : "A curated theorem-level strategy map. It is not a kernel check or a Proofweave replay.",
     }],
     versions: deep.strategies.map((strategy) => ({
       id: strategy.id,

@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "322",
   "title": "Tingley’s sphere-isometry problem",
   "result": {
@@ -14,17 +15,12 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
-    },
-    {
-      "id": "supporting-functionals-and-radial-contact",
-      "label": "Supporting functionals and radial contact",
+      "id": "introduction",
+      "label": "Introduction",
       "description": "A section of the paper."
     },
     {
-      "id": "supporting-functionals-and-radial-contact-2",
+      "id": "supporting-functionals-and-radial-contact",
       "label": "Supporting functionals and radial contact",
       "description": "A section of the paper."
     },
@@ -39,37 +35,12 @@
       "description": "A section of the paper."
     },
     {
-      "id": "aligning-extremal-chords-2",
-      "label": "Aligning extremal chords",
-      "description": "A section of the paper."
-    },
-    {
       "id": "the-chord-contradiction",
       "label": "The chord contradiction",
       "description": "A section of the paper."
     },
     {
-      "id": "the-chord-contradiction-2",
-      "label": "The chord contradiction",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-chord-contradiction-3",
-      "label": "The chord contradiction",
-      "description": "A section of the paper."
-    },
-    {
       "id": "the-fixed-point-ingredients",
-      "label": "The fixed-point ingredients",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-fixed-point-ingredients-2",
-      "label": "The fixed-point ingredients",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-fixed-point-ingredients-3",
       "label": "The fixed-point ingredients",
       "description": "A section of the paper."
     }
@@ -92,62 +63,62 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "Let X,Y be nonzero real Banach spaces and let f:S_X S_Y be a surjective…",
-          "fullLabel": "Let X,Y be nonzero real Banach spaces and let f:S_X S_Y be a surjective…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "Let X,Y be nonzero real Banach spaces and let f:S_X S_Y be a surjective isometry. Then \\[ T(0)=0, T(x)=xf(x x )(x0) \\] is a surjective real-linear isometry. It is the unique linear extension of f .",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-support",
           "role": "supporting-functionals-and-radial-contact",
-          "label": "Supports exist, and can be extended with the same norm bound to any specified…",
-          "fullLabel": "Supports exist, and can be extended with the same norm bound to any specified…",
+          "label": "lemma m1-lem-support",
+          "fullLabel": "lemma m1-lem-support",
           "kind": "lemma",
           "source": "Supporting functionals and radial contact",
-          "detail": "Supports exist, and can be extended with the same norm bound to any specified finite-dimensional enlargement of their domain. If unit vectors v,w and positive numbers , satisfy \\[ v+ w=+, \\] then…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-radial",
-          "role": "supporting-functionals-and-radial-contact-2",
-          "label": "If c<1 , each ray c+_+v , v S_X , meets S_X at a unique point c+(v)v . The…",
-          "fullLabel": "If c<1 , each ray c+_+v , v S_X , meets S_X at a unique point c+(v)v . The…",
+          "role": "supporting-functionals-and-radial-contact",
+          "label": "lemma m1-lem-radial",
+          "fullLabel": "lemma m1-lem-radial",
           "kind": "lemma",
           "source": "Supporting functionals and radial contact",
-          "detail": "If c<1 , each ray c+_+v , v S_X , meets S_X at a unique point c+(v)v . The radius is continuous and satisfies \\[ 1-c(v)1+c. \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-attainment",
           "role": "attaining-the-maximal-defect",
-          "label": "If some surjective sphere isometry has M>0 , there are nonzero real Banach…",
-          "fullLabel": "If some surjective sphere isometry has M>0 , there are nonzero real Banach…",
+          "label": "lemma m1-lem-attainment",
+          "fullLabel": "lemma m1-lem-attainment",
           "kind": "lemma",
           "source": "Attaining the maximal defect",
-          "detail": "If some surjective sphere isometry has M>0 , there are nonzero real Banach spaces, a surjective sphere isometry, still denoted by f:S_X S_Y , and x_0,y S_X , 0<t<1 , such that |D_q(a,c)|& M &&(a,c…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-thm-condensing",
           "role": "aligning-extremal-chords",
-          "label": "Let C be a nonempty closed bounded convex subset of a Banach space. If g:C C is…",
-          "fullLabel": "Let C be a nonempty closed bounded convex subset of a Banach space. If g:C C is…",
+          "label": "theorem m1-thm-condensing",
+          "fullLabel": "theorem m1-thm-condensing",
           "kind": "theorem",
           "source": "Aligning extremal chords",
-          "detail": "Let C be a nonempty closed bounded convex subset of a Banach space. If g:C C is continuous and, for some 0<1 , \\[ (g(H))(H)(H C), \\] then g has a fixed point.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-alignment",
-          "role": "aligning-extremal-chords-2",
-          "label": "Under , put b=f(y) and keep y,t fixed. There are endpoints x,z S_X , directions…",
-          "fullLabel": "Under , put b=f(y) and keep y,t fixed. There are endpoints x,z S_X , directions…",
+          "role": "aligning-extremal-chords",
+          "label": "proposition m1-prop-alignment",
+          "fullLabel": "proposition m1-prop-alignment",
           "kind": "proposition",
           "source": "Aligning extremal chords",
-          "detail": "Under , put b=f(y) and keep y,t fixed. There are endpoints x,z S_X , directions v S_X , w S_Y , and positive numbers p,r,s,u such that x&=ty+pv S_X,& z&=ty-rv S_X,\\\\ f(x)&=tb+sw S_Y,& f(z)&=tb-uw…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-radial",
             "m1-thm-condensing"
@@ -156,33 +127,33 @@
         {
           "id": "m1-lem-secant",
           "role": "the-chord-contradiction",
-          "label": "Put \\[ h=\\ t s, u\\ , =hs p , K= (r/u)v+hy-(p/s)v+hy r/u-p/s . \\] For every…",
-          "fullLabel": "Put \\[ h=\\ t s, u\\ , =hs p , K= (r/u)v+hy-(p/s)v+hy r/u-p/s . \\] For every…",
+          "label": "lemma m1-lem-secant",
+          "fullLabel": "lemma m1-lem-secant",
           "kind": "lemma",
           "source": "The chord contradiction",
-          "detail": "Put \\[ h=\\ t s, u\\ , =hs p , K= (r/u)v+hy-(p/s)v+hy r/u-p/s . \\] For every support at v+ y , p(v) K 1-B,& B,\\\\ B,& B>.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-large",
-          "role": "the-chord-contradiction-2",
-          "label": "Neither A> nor B> is possible.",
-          "fullLabel": "Neither A> nor B> is possible.",
+          "role": "the-chord-contradiction",
+          "label": "lemma m1-lem-large",
+          "fullLabel": "lemma m1-lem-large",
           "kind": "lemma",
           "source": "The chord contradiction",
-          "detail": "Neither A> nor B> is possible.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-secant"
           ]
         },
         {
           "id": "m1-prop-no-defect",
-          "role": "the-chord-contradiction-3",
-          "label": "An attained positive maximum as in is impossible.",
-          "fullLabel": "An attained positive maximum as in is impossible.",
+          "role": "the-chord-contradiction",
+          "label": "proposition m1-prop-no-defect",
+          "fullLabel": "proposition m1-prop-no-defect",
           "kind": "proposition",
           "source": "The chord contradiction",
-          "detail": "An attained positive maximum as in is impossible.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-large",
             "m1-lem-secant"
@@ -191,31 +162,31 @@
         {
           "id": "m1-lem-chi",
           "role": "the-fixed-point-ingredients",
-          "label": "For every bounded nonempty set H in a normed space, \\[ ( H)=(H), ( H)=(H). \\]…",
-          "fullLabel": "For every bounded nonempty set H in a normed space, \\[ ( H)=(H), ( H)=(H). \\]…",
+          "label": "lemma m1-lem-chi",
+          "fullLabel": "lemma m1-lem-chi",
           "kind": "lemma",
           "source": "The fixed-point ingredients",
-          "detail": "For every bounded nonempty set H in a normed space, \\[ ( H)=(H), ( H)=(H). \\] If C_n are nonempty closed bounded subsets of a Banach space with C_ n+1 C_n and (C_n)0 , then their intersection is…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-simplex",
-          "role": "the-fixed-point-ingredients-2",
-          "label": "Every continuous self-map of a finite-dimensional probability simplex has a…",
-          "fullLabel": "Every continuous self-map of a finite-dimensional probability simplex has a…",
+          "role": "the-fixed-point-ingredients",
+          "label": "lemma m1-lem-simplex",
+          "fullLabel": "lemma m1-lem-simplex",
           "kind": "lemma",
           "source": "The fixed-point ingredients",
-          "detail": "Every continuous self-map of a finite-dimensional probability simplex has a fixed point.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-compactfixed",
-          "role": "the-fixed-point-ingredients-3",
-          "label": "Every continuous self-map g of a nonempty compact convex subset K of a normed…",
-          "fullLabel": "Every continuous self-map g of a nonempty compact convex subset K of a normed…",
+          "role": "the-fixed-point-ingredients",
+          "label": "lemma m1-lem-compactfixed",
+          "fullLabel": "lemma m1-lem-compactfixed",
           "kind": "lemma",
           "source": "The fixed-point ingredients",
-          "detail": "Every continuous self-map g of a nonempty compact convex subset K of a normed space has a fixed point.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-simplex",
             "m1-lem-chi"
@@ -224,14 +195,7 @@
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -239,7 +203,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

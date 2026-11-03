@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "181",
   "title": "The Erdős–Gallai cycle-decomposition conjecture",
   "result": {
@@ -14,32 +15,12 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
-    },
-    {
       "id": "introduction",
       "label": "Introduction",
       "description": "A section of the paper."
     },
     {
       "id": "conventions-and-preliminary-results",
-      "label": "Conventions and preliminary results",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "conventions-and-preliminary-results-2",
-      "label": "Conventions and preliminary results",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "conventions-and-preliminary-results-3",
-      "label": "Conventions and preliminary results",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "conventions-and-preliminary-results-4",
       "label": "Conventions and preliminary results",
       "description": "A section of the paper."
     },
@@ -54,22 +35,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "expansion-in-small-reservoirs-2",
-      "label": "Expansion in small reservoirs",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "expansion-in-small-reservoirs-3",
-      "label": "Expansion in small reservoirs",
-      "description": "A section of the paper."
-    },
-    {
       "id": "splitting-at-a-scale",
-      "label": "Splitting at a scale",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "splitting-at-a-scale-2",
       "label": "Splitting at a scale",
       "description": "A section of the paper."
     },
@@ -79,17 +45,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "pair-folding-and-resolving-batches-2",
-      "label": "Pair folding and resolving batches",
-      "description": "A section of the paper."
-    },
-    {
       "id": "the-induction",
-      "label": "The induction",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-induction-2",
       "label": "The induction",
       "description": "A section of the paper."
     }
@@ -112,104 +68,104 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "There is an absolute constant \\(C>0\\) such that, for every finite simple…",
-          "fullLabel": "There is an absolute constant \\(C>0\\) such that, for every finite simple…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "There is an absolute constant \\(C>0\\) such that, for every finite simple undirected graph \\(G\\) with \\(n\\) vertices, \\(E(G)\\) has a partition into at most \\(Cn\\) parts, each of which is the edge set…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-cor-eulerian-cycles",
           "role": "introduction",
-          "label": "Every finite simple undirected Eulerian graph on \\(n\\) vertices has an edge…",
-          "fullLabel": "Every finite simple undirected Eulerian graph on \\(n\\) vertices has an edge…",
+          "label": "corollary m1-cor-eulerian-cycles",
+          "fullLabel": "corollary m1-cor-eulerian-cycles",
           "kind": "corollary",
           "source": "Introduction",
-          "detail": "Every finite simple undirected Eulerian graph on \\(n\\) vertices has an edge partition into at most \\(Cn\\) cycles, with \\(C\\) from . For every fixed \\(,p>0\\), there exist \\(>0\\) and an integer…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-thm-lovasz",
           "role": "conventions-and-preliminary-results",
-          "label": "Lov\\'asz",
-          "fullLabel": "Lov\\'asz",
+          "label": "theorem m1-thm-lovasz",
+          "fullLabel": "theorem m1-thm-lovasz",
           "kind": "theorem",
           "source": "Conventions and preliminary results",
-          "detail": "[Lov\\'asz] The edges of a finite simple graph on \\(n\\) vertices can be partitioned into at most \\(n/2\\) paths and cycles.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-cor-endpoint-paths",
-          "role": "conventions-and-preliminary-results-2",
-          "label": "Every finite simple graph on \\(n\\) vertices has an edge partition into paths…",
-          "fullLabel": "Every finite simple graph on \\(n\\) vertices has an edge partition into paths…",
+          "role": "conventions-and-preliminary-results",
+          "label": "corollary m1-cor-endpoint-paths",
+          "fullLabel": "corollary m1-cor-endpoint-paths",
           "kind": "corollary",
           "source": "Conventions and preliminary results",
-          "detail": "Every finite simple graph on \\(n\\) vertices has an edge partition into paths such that each vertex is an endpoint of at most two paths. In particular, the partition has at most \\(n\\) paths.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-thm-lovasz"
           ]
         },
         {
           "id": "m1-thm-aharoni-haxell",
-          "role": "conventions-and-preliminary-results-3",
-          "label": "Aharoni--Haxell",
-          "fullLabel": "Aharoni--Haxell",
+          "role": "conventions-and-preliminary-results",
+          "label": "theorem m1-thm-aharoni-haxell",
+          "fullLabel": "theorem m1-thm-aharoni-haxell",
           "kind": "theorem",
           "source": "Conventions and preliminary results",
-          "detail": "[Aharoni--Haxell] Let \\(s\\) be a positive integer and let \\(( H_i)_ i J \\) be a finite indexed family of hypergraphs on a common ground set. Suppose every edge is nonempty and has size at most \\(s\\).…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-chernoff",
-          "role": "conventions-and-preliminary-results-4",
-          "label": "If \\(X\\) is binomial with mean \\(\\), then \\[ (X/2) e^ -/8 , (X2) e^ -/3 . \\]",
-          "fullLabel": "If \\(X\\) is binomial with mean \\(\\), then \\[ (X/2) e^ -/8 , (X2) e^ -/3 . \\]",
+          "role": "conventions-and-preliminary-results",
+          "label": "lemma m1-lem-chernoff",
+          "fullLabel": "lemma m1-lem-chernoff",
           "kind": "lemma",
           "source": "Conventions and preliminary results",
-          "detail": "If \\(X\\) is binomial with mean \\(\\), then \\[ (X/2) e^ -/8 , (X2) e^ -/3 . \\]",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-routing",
           "role": "routing-with-team-constraints",
-          "label": "Routing",
-          "fullLabel": "Routing",
+          "label": "lemma m1-lem-routing",
+          "fullLabel": "lemma m1-lem-routing",
           "kind": "lemma",
           "source": "Routing with team constraints",
-          "detail": "[Routing] Let P be a graph of order r 2 with cut expansion h>0 , and put g=8(r/h) (2r), =2g(1+ r). Let D be a finite set of demands, where demand p has distinct endvertices x_p,y_p V(P) . Suppose…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-edge-split",
           "role": "expansion-in-small-reservoirs",
-          "label": "Edge splitting",
-          "fullLabel": "Edge splitting",
+          "label": "lemma m1-lem-edge-split",
+          "fullLabel": "lemma m1-lem-edge-split",
           "kind": "lemma",
           "source": "Expansion in small reservoirs",
-          "detail": "[Edge splitting] Fix c>0 and a positive integer l . For all sufficiently large D , if an r -vertex graph P has cut expansion at least h_0 cD^ 0.90 and D^ 0.90 r D^ 1.02 , then its edge set can be…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-vertex-sampling",
-          "role": "expansion-in-small-reservoirs-2",
-          "label": "Vertex sampling",
-          "fullLabel": "Vertex sampling",
+          "role": "expansion-in-small-reservoirs",
+          "label": "lemma m1-lem-vertex-sampling",
+          "fullLabel": "lemma m1-lem-vertex-sampling",
           "kind": "lemma",
           "source": "Expansion in small reservoirs",
-          "detail": "[Vertex sampling] Fix c'>0 and p(0,1) . Let P have order D^ 0.90 r D^ 1.02 and cut expansion at least h=c'D^ 0.90 . Select each vertex independently with probability p to form V' . With probability…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-small-residue",
-          "role": "expansion-in-small-reservoirs-3",
-          "label": "Small residue",
-          "fullLabel": "Small residue",
+          "role": "expansion-in-small-reservoirs",
+          "label": "lemma m1-lem-small-residue",
+          "fullLabel": "lemma m1-lem-small-residue",
           "kind": "lemma",
           "source": "Expansion in small reservoirs",
-          "detail": "[Small residue] Fix >0 and c>0 . For all sufficiently large D , let G be an r -vertex graph with D^ 0.90 r D^ 1.02 containing a spanning subgraph of cut expansion at least cD^ 0.90 . Then E(G) has a…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-vertex-sampling"
           ]
@@ -217,74 +173,67 @@
         {
           "id": "m1-lem-scale-split",
           "role": "splitting-at-a-scale",
-          "label": "Splitting at a scale",
-          "fullLabel": "Splitting at a scale",
+          "label": "lemma m1-lem-scale-split",
+          "fullLabel": "lemma m1-lem-scale-split",
           "kind": "lemma",
           "source": "Splitting at a scale",
-          "detail": "[Splitting at a scale] There are absolute constants D_ sp and C_0 such that, for every real D D_ sp , every graph G on a nonempty vertex set of order N and with average degree at most D admits the…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-split-vertex-expansion",
-          "role": "splitting-at-a-scale-2",
-          "label": "Vertex expansion gives a long cycle",
-          "fullLabel": "Vertex expansion gives a long cycle",
+          "role": "splitting-at-a-scale",
+          "label": "lemma m1-lem-split-vertex-expansion",
+          "fullLabel": "lemma m1-lem-split-vertex-expansion",
           "kind": "lemma",
           "source": "Splitting at a scale",
-          "detail": "[Vertex expansion gives a long cycle] Fix =1/32 . For every sufficiently large integer u , put =/^2 u . If a graph H of order u satisfies N_H(U) U U (0< U u2), then H contains a simple cycle of…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-pair-folding",
           "role": "pair-folding-and-resolving-batches",
-          "label": "Pair folding",
-          "fullLabel": "Pair folding",
+          "label": "lemma m1-lem-pair-folding",
+          "fullLabel": "lemma m1-lem-pair-folding",
           "kind": "lemma",
           "source": "Pair folding and resolving batches",
-          "detail": "[Pair folding] Let J be a finite simple graph and let X_1,,X_t be pairwise disjoint subsets of its vertex set. Suppose that a1 , that m_i=X_i\\ 8,a^2\\ for every i , and that d_J(x)& a &&for every x_i…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-batch-resolution",
-          "role": "pair-folding-and-resolving-batches-2",
-          "label": "Batch resolution",
-          "fullLabel": "Batch resolution",
+          "role": "pair-folding-and-resolving-batches",
+          "label": "lemma m1-lem-batch-resolution",
+          "fullLabel": "lemma m1-lem-batch-resolution",
           "kind": "lemma",
           "source": "Pair folding and resolving batches",
-          "detail": "[Batch resolution] For every sufficiently large real D , set \\[ a=D^ 0.01 , L_0=D^ 0.03 , B_0=D^ 0.30 , =D^ 0.90 . \\] Let Y be a finite vertex set. Let W be a finite indexed family of subsets W Y ,…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-prefix-choice",
           "role": "the-induction",
-          "label": "Selection of a prefix",
-          "fullLabel": "Selection of a prefix",
+          "label": "lemma m1-lem-prefix-choice",
+          "fullLabel": "lemma m1-lem-prefix-choice",
           "kind": "lemma",
           "source": "The induction",
-          "detail": "[Selection of a prefix] Let \\((S_j)_ j0 \\) be a nonnegative, finitely supported sequence which is not identically zero. There is an index \\(i\\) with \\(S_i>0\\) such that _ j=0 ^ i+K S_j P_0S_i.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-induction-bound",
-          "role": "the-induction-2",
-          "label": "There is an absolute constant \\(C\\) such that every finite simple graph on…",
-          "fullLabel": "There is an absolute constant \\(C\\) such that every finite simple graph on…",
+          "role": "the-induction",
+          "label": "proposition m1-prop-induction-bound",
+          "fullLabel": "proposition m1-prop-induction-bound",
           "kind": "proposition",
           "source": "The induction",
-          "detail": "There is an absolute constant \\(C\\) such that every finite simple graph on \\(n1\\) vertices has an edge partition into at most \\(C(n)n\\) simple cycles and single edges.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         }
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -292,7 +241,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {

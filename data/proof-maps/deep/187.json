@@ -1,8 +1,9 @@
 {
   "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
   "status": "deep",
   "reviewStatus": "unreviewed",
-  "curatedAt": "2026-11-02",
+  "curatedAt": "2026-11-03",
   "familyNumber": "187",
   "title": "Snaky in 21 Maker moves",
   "result": {
@@ -14,17 +15,12 @@
   },
   "roles": [
     {
-      "id": "result",
-      "label": "Result",
-      "description": "The paper's main stated theorem for this family."
-    },
-    {
-      "id": "conditional-winning-positions",
-      "label": "Conditional winning positions",
+      "id": "introduction",
+      "label": "Introduction",
       "description": "A section of the paper."
     },
     {
-      "id": "conditional-winning-positions-2",
+      "id": "conditional-winning-positions",
       "label": "Conditional winning positions",
       "description": "A section of the paper."
     },
@@ -49,17 +45,7 @@
       "description": "A section of the paper."
     },
     {
-      "id": "the-reduced-envelope-25-move-construction-2",
-      "label": "The reduced-envelope 25-move construction",
-      "description": "A section of the paper."
-    },
-    {
       "id": "the-35-move-construction-and-its-conditional-interfaces",
-      "label": "The 35-move construction and its conditional interfaces",
-      "description": "A section of the paper."
-    },
-    {
-      "id": "the-35-move-construction-and-its-conditional-interfaces-2",
       "label": "The 35-move construction and its conditional interfaces",
       "description": "A section of the paper."
     }
@@ -82,42 +68,42 @@
       "nodes": [
         {
           "id": "m1-thm-main",
-          "role": "result",
-          "label": "In this game, there is one globally legal Maker policy that completes an…",
-          "fullLabel": "In this game, there is one globally legal Maker policy that completes an…",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
           "kind": "theorem",
           "source": "Introduction",
-          "detail": "In this game, there is one globally legal Maker policy that completes an allowed copy of S within at most 21 actual Maker claims against every legal continuation of Breaker. Equivalently, extend the…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-combination",
           "role": "conditional-winning-positions",
-          "label": "Combination rule",
-          "fullLabel": "Combination rule",
+          "label": "lemma m1-lem-combination",
+          "fullLabel": "lemma m1-lem-combination",
           "kind": "lemma",
           "source": "Conditional winning positions",
-          "detail": "[Combination rule] Let (A_i,T_i,h_i) , 1 i r , be valid claims, where 1 r< , and let p^2 . Define T=\\ p\\ _ i=1 ^rT_i, A=(_ i=1 ^r A_i\\ \\ _ i=1 ^rT_i)\\ p\\ , h=1+_i h_i. Then (A,T,h) is valid. Also, at…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-lem-bases",
-          "role": "conditional-winning-positions-2",
-          "label": "Six bases",
-          "fullLabel": "Six bases",
+          "role": "conditional-winning-positions",
+          "label": "lemma m1-lem-bases",
+          "fullLabel": "lemma m1-lem-bases",
           "kind": "lemma",
           "source": "Conditional winning positions",
-          "detail": "[Six bases] Write the points of S in the order in as s_0,,s_5 . The claims (A_j,T_j,h_j)=(S\\ s_j\\ ,S,1), 0 j<6, are valid.",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-certificate",
           "role": "the-certificate-and-its-final-condition",
-          "label": "The data in Appendix~ have exactly 722 numbered lines, with indices 6,,727 .…",
-          "fullLabel": "The data in Appendix~ have exactly 722 numbered lines, with indices 6,,727 .…",
+          "label": "proposition m1-prop-certificate",
+          "fullLabel": "proposition m1-prop-certificate",
           "kind": "proposition",
           "source": "The certificate and its final condition",
-          "detail": "The data in Appendix~ have exactly 722 numbered lines, with indices 6,,727 . Every line has a nonempty child list, every reference uses an allowed placement of an earlier card, and every…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-lem-bases"
           ]
@@ -125,41 +111,41 @@
         {
           "id": "m1-cor-finite-board",
           "role": "one-strategy-against-every-continuation",
-          "label": "A finite board",
-          "fullLabel": "A finite board",
+          "label": "corollary m1-cor-finite-board",
+          "fullLabel": "corollary m1-cor-finite-board",
           "kind": "corollary",
           "source": "One strategy against every continuation",
-          "detail": "[A finite board] Maker wins the weak Maker--Breaker game within 21 actual Maker claims on the initially empty 251 -cell board T_ 727 , and also on the initially empty 1717 board \\ 0,,16\\ ^2 . In each…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-prop-four-row",
           "role": "four-stones-in-a-row",
-          "label": "Suppose it is Maker's turn at an arbitrary finite position, Maker owns the four…",
-          "fullLabel": "Suppose it is Maker's turn at an arbitrary finite position, Maker owns the four…",
+          "label": "proposition m1-prop-four-row",
+          "fullLabel": "proposition m1-prop-four-row",
           "kind": "proposition",
           "source": "Four stones in a row",
-          "detail": "Suppose it is Maker's turn at an arbitrary finite position, Maker owns the four cells \\[ \\ (0,0),(1,0),(2,0),(3,0)\\ , \\] and Breaker owns at most three cells in \\[ Q=([-3,6])^2. \\] Then Maker has…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-r25-composition",
           "role": "the-reduced-envelope-25-move-construction",
-          "label": "Reduced composition",
-          "fullLabel": "Reduced composition",
+          "label": "proposition m1-r25-composition",
+          "fullLabel": "proposition m1-r25-composition",
           "kind": "proposition",
           "source": "The reduced-envelope 25-move construction",
-          "detail": "[Reduced composition] Let (P_j,E_j,h_j) , 1 j m , be valid reduced cards already placed in one coordinate plane, where 1 m< . Given an attack cell x , put U&=_jP_j,& V&=_jE_j,& I&=_jE_j,\\\\ H&=U I,&…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-r25-bound",
-          "role": "the-reduced-envelope-25-move-construction-2",
-          "label": "The 25 -move strategy",
-          "fullLabel": "The 25 -move strategy",
+          "role": "the-reduced-envelope-25-move-construction",
+          "label": "proposition m1-r25-bound",
+          "fullLabel": "proposition m1-r25-bound",
           "kind": "proposition",
           "source": "The reduced-envelope 25-move construction",
-          "detail": "[The 25 -move strategy] There is one ordinary Maker policy on the infinite square board that, from the empty position, completes a copy of S within 25 actual fresh Maker claims against every legal…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [
             "m1-r25-composition"
           ]
@@ -167,21 +153,21 @@
         {
           "id": "m1-r35-conditional",
           "role": "the-35-move-construction-and-its-conditional-interfaces",
-          "label": "The 35-move certificate has 616 cards, including its six base cards, and 1,837…",
-          "fullLabel": "The 35-move certificate has 616 cards, including its six base cards, and 1,837…",
+          "label": "proposition m1-r35-conditional",
+          "fullLabel": "proposition m1-r35-conditional",
           "kind": "proposition",
           "source": "The 35-move construction and its conditional interfaces",
-          "detail": "The 35-move certificate has 616 cards, including its six base cards, and 1,837 placement terms. Every card satisfies \\(A_i^ 35 T_i^ 35 \\), \\(o T_i^ 35 A_i^ 35 \\), and \\(h_i^ 35 34\\). Four of its…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": []
         },
         {
           "id": "m1-r35-theorem",
-          "role": "the-35-move-construction-and-its-conditional-interfaces-2",
-          "label": "There is one ordinary Maker policy on the initially empty infinite square board…",
-          "fullLabel": "There is one ordinary Maker policy on the initially empty infinite square board…",
+          "role": "the-35-move-construction-and-its-conditional-interfaces",
+          "label": "theorem m1-r35-theorem",
+          "fullLabel": "theorem m1-r35-theorem",
           "kind": "theorem",
           "source": "The 35-move construction and its conditional interfaces",
-          "detail": "There is one ordinary Maker policy on the initially empty infinite square board that completes an allowed copy of \\(S\\) within 35 actual Maker claims against every legal Breaker play. Equivalently,…",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
           "dependsOn": [],
           "objectUses": [
             "m1-r35-conditional"
@@ -190,14 +176,7 @@
       ]
     }
   ],
-  "finalEdges": [
-    {
-      "from": "m1:m1-thm-main",
-      "to": "paper-result",
-      "type": "proves",
-      "label": "states the result"
-    }
-  ],
+  "finalEdges": [],
   "crossEdges": [],
   "comparisons": [],
   "sharedInputs": [],
@@ -205,7 +184,8 @@
   "leanAlignments": [],
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
-    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed."
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
   ],
   "sources": [
     {
